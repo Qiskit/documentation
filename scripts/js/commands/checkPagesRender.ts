@@ -22,6 +22,7 @@ import { zxMain } from "../lib/zx.js";
 // These are expected to 404 in the cloud app due to being legacy only.
 const LEGACY_ONLY_PAGES: Set<string> = new Set([
   "docs/guides/setup-channel.mdx",
+  "docs/guides/estimate-job-run-time.mdx",
 ]);
 
 // These are expected to 404 in the legacy app due to being cloud only.
@@ -173,9 +174,7 @@ async function canRender(fp: string): Promise<RenderSuccess | RenderFailure> {
 }
 
 function pathToUrl(path: string): string {
-  const strippedPath = path
-    .replace("docs/", "")
-    .replace(/\.(?:md|mdx|ipynb)$/g, "");
+  const strippedPath = path.replace(/\.(?:md|mdx|ipynb)$/g, "");
   return `http://localhost:${PORT}/${strippedPath}`;
 }
 
@@ -207,7 +206,7 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
 
   const globs = [];
   if (args.nonApi || args.legacy) {
-    globs.push("docs/**/*.{ipynb,mdx}");
+    globs.push("{docs,learning}/**/*.{ipynb,mdx}");
   }
 
   for (const [isIncluded, glob] of [
@@ -230,7 +229,8 @@ function filterPlatformSpecificPage(page: string, legacy?: boolean) {
     return (
       !CLOUD_ONLY_PAGES.has(page) &&
       !page.startsWith("docs/api") &&
-      !page.startsWith("docs/tutorials")
+      !page.startsWith("docs/tutorials") &&
+      !page.startsWith("learning")
     );
   }
 

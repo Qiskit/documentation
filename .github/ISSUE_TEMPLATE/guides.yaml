@@ -1,0 +1,83 @@
+name: (GUIDES AND ADDITIONAL RESOURCES) Report a bug/typo or request new content
+description: Report typos, bugs, out-of-date content, broken links, etc. or make a request for new content
+labels: ["content 📄", "needs triage 🤔"]
+assignees:
+  - abbycross
+  - beckykd
+
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for reporting or requesting new content!  Please also use the search to see if there are any other relevant issues or pull requests.
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ Note that this issue template is only for guides and additional resources.
+  - type: markdown
+    attributes:
+      value: |
+        * If your issue concerns tutorials (with /tutorials/ in the URL), use the [Tutorials issue template](https://github.com/Qiskit/documentation/issues/new?template=tutorials.yaml) instead.
+  - type: markdown
+    attributes:
+      value: |
+        * If your issue concerns courses (with /learning/ in the URL), use the [Courses issue template](https://github.com/Qiskit/documentation/issues/new?template=courses.yaml) instead.
+  - type: markdown
+    attributes:
+      value: |
+        * If your issue concerns Qiskit API content, open an issue in the [Qiskit repository](https://github.com/Qiskit/qiskit/issues/new/choose).
+  - type: markdown
+    attributes:
+      value: |
+        * If your issue concerns Qiskit Runtime API content, open an issue in the [Qiskit IBM Runtime repository](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
+  - type: markdown
+    attributes:
+      value: |
+        * If your issue concerns a Qiskit ecosystem project, open an issue in the relevant [ecosystem project repository.](https://www.ibm.com/quantum/ecosystem)
+
+  - type: textarea
+    attributes:
+      label: URL to the relevant guide or resource
+      description: provide a URL and section name/paragraph if reporting a problem with existing content.
+    validations:
+      required: false
+
+  - type: checkboxes
+    attributes:
+      label: Select all that apply
+      description: Please select all that apply from the following.
+      options:
+        - label: new content request
+        - label: typo
+        - label: code bug
+        - label: out-of-date content
+        - label: broken link
+        - label: other
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Describe the fix or the content request.
+      description: >
+        If reporting a bug, please be as specific as possible (steps to reproduce, screenshot, etc.).
+        If requesting new content, please give a clear and concise description. What value does the new content bring?
+    validations:
+      required: true
+
+  - type: dropdown
+    attributes:
+      label: For new content requests - if the request is accepted, do you want to write the content?
+      description:
+      multiple: false
+      options:
+        - I will write (or already have written) a draft of the proposed content
+        - I can help the team by providing enough information or by referring them to a specific Subject Matter Expert to write the material
+        - I only want to review the material when it's finished
+        - "no"
+      default: 0
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: Thank you for your feedback! If you are interested in joining the IBM Quantum Feedback Program, <a href="https://www.ibm.com/quantum/feedback-program">sign up here</a>.

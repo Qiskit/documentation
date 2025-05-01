@@ -7,6 +7,13 @@ Refer to:
 - Our [MDX guide](./mdx-guide.md) for how to write documentation and use our variant of markdown.
 - Our [style guide](./style-guide.md) for technical writing guidance.
 
+### Licensing
+
+This repository is dual-licensed to distinguish between code and content.
+
+- Code (including scripts, source files, and code snippets in documentation examples) is licensed under the Apache License 2.0, please review the `LICENSE` file for more information
+- Content (including guides, tutorials, courses, media, and other non-code assets) is licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0), please review the `LICENSE-DOCS` file for more information.
+
 ## Improving IBM Quantum and Qiskit documentation
 
 Maintaining up-to-date documentation is a huge challenge for any software project, but especially for a field like quantum computing, because advances in new research and technological capabilities come at a fast pace. As a result, we greatly appreciate anyone who takes the time to support us in keeping this content accurate and up to the highest quality standard possible, to benefit the broadest range of users.
@@ -99,6 +106,16 @@ You can preview the docs locally by following these two steps:
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
 Maintainers: when you release a new version of the image, you need to update the image digest in `./start` by following the instructions at the top of the file and opening a pull request.
+
+### Tip: Periodically prune Docker
+
+Occasionally, Docker might fail when it runs out of disk space. For example, you might encounter an error like this:
+
+```
+ENOSPC: no space left on device, mkdir '/tmp/xfs-4d1dfe51'
+```
+
+Try running `docker system prune` to clear Docker's system space.
 
 ### API docs authors: How to preview your changes
 

@@ -1,7 +1,7 @@
 ---
 title: Workload usage
 description: Explains what usage is and how to estimate how long a job that uses a primitive will take to run
-
+platform: legacy
 ---
 
 <span id="usage"></span>
@@ -28,62 +28,55 @@ Usage is a measurement of the amount of time the QPU is locked for your workload
 The usage reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
 </LegacyContent>
 <CloudContent>
-Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
+The reported usage is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
 
-For Standard Plan users, usage determines how much the workload costs. See [Manage cost](/guides/manage-cost) for details.
+For paid plan users, usage determines how much the workload costs. See [Manage cost](/docs/guides/manage-cost) for details.
 </CloudContent>
 
 <LegacyContent>
 Your usage has different impacts, depending on which channel you're using:
 
-- For Qiskit Runtime on IBM Cloud&reg; users, the usage determines how much the job costs.  See [Manage cost](/guides/manage-cost) for details.
-- For IBM Quantum&reg; Platform users, this translates to shares. The [fair-share scheduler](/guides/fair-share-scheduler) prioritizes instances with the most shares left. Thus, the higher your usage, the longer your next job stays in the queue.
+- For Qiskit Runtime on IBM Cloud&reg; users, the usage determines how much the job costs.  See [Manage cost](/docs/guides/manage-cost) for details.
+- For IBM Quantum&reg; Platform users, this translates to shares. The [fair-share scheduler](/docs/guides/fair-share-scheduler) prioritizes instances with the most shares left. Thus, the higher your usage, the longer your next job stays in the queue.
 </LegacyContent>
 
 <span id="failed-job"></span>
 ## Usage for failed and canceled jobs
-<CloudContent>
-When a job is failed or canceled, the usage is as follows:
-
-* Job or batch mode: The usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the failure or cancellation occurred before the lock, the usage is zero. Otherwise, the workload's usage is the amount of usage before the workload failed or was canceled. Thus, some failed jobs do not appear in your usage and others do.
-
-* Session mode: The usage is the wall-clock time from when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
-</CloudContent>
-<LegacyContent>
 When a job is failed or canceled, the reported usage is as follows:
 
 * Job or batch mode: The reported usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the failure or cancellation occurred before the lock, the reported usage is zero. Otherwise, the workload's reported usage is the amount of usage before the workload failed or was canceled. Thus, some failed jobs do not appear in your reported usage and others do.
 
 * Session mode: The reported usage is the wall-clock time from when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
-</LegacyContent>
 
 <span id="view-usage"></span>
 ## Determine a workload's actual usage
 
 After a workload has completed, there are several ways to view its actual usage:
 
-- Run [`batch.usage()`](/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`](/api/qiskit-ibm-runtime/session#usage) in `qiskit-ibm-runtime` 0.30 or later.  If using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
-- Call the [GET usage](/api/runtime/tags/usage#tags__usage) REST API directly to see the total usage across all workloads for your account (IBM Quantum Platform channel only).
-- Use [`GET /sessions/{id}`](/api/runtime/tags/sessions#tags__sessions__operations__GetSessionDetailsExtendedController_getSessionDetails) to see usage for a specific batch or session.
-- Use [`GET /jobs/{id}`](/api/runtime/tags/jobs#tags__jobs__operations__GetJobByIdController_getJobById) to see usage for a single job.
+- Run [`batch.usage()`](/docs/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`](/docs/api/qiskit-ibm-runtime/session#usage) in `qiskit-ibm-runtime` 0.30 or later.  If using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
+- Call the [GET usage](/docs/api/runtime/tags/usage#tags__usage) REST API directly to see the total usage across all workloads for your account (IBM Quantum Platform channel only).
+- Use [`GET /sessions/{id}`](/docs/api/runtime/tags/sessions#tags__sessions__operations__GetSessionDetailsExtendedController_getSessionDetails) to see usage for a specific batch or session.
+- Use [`GET /jobs/{id}`](/docs/api/runtime/tags/jobs#tags__jobs__operations__GetJobByIdController_getJobById) to see usage for a single job.
 
+<CloudContent>
+<span id="instance-usage"></span>
+## View instance usage
+
+You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page, or, for those with the proper authority, the [Analytics](https://quantum.cloud.ibm.com/analytics) page.  Note that the pages might show different usage numbers because they calculate usage differently.
+
+The Instances page shows real-time usage for the last 28 days (rolling), up to the current time on the current day.  The Analytics page usage is re-calculated hourly and includes the last 28 full days; that is, it shows usage from 00:00 28 days ago to today, at the top of the hour.
+
+</CloudContent>
+<LegacyContent>
 ## Estimate workload usage
 
-After submitting a job to the IBM Quantum channel, you can see an estimation for how much _quantum time_ the job will take to run by using `job.usage_estimation`.  Alternatively, you can [view this information on the IBM Quantum Platform user interface](#view-usage).
+After submitting a job to the IBM Quantum channel, you can see an estimation for how much _quantum time_ the job will take to run by using `job.usage_estimation`.  Quantum time is the duration, in seconds, a QPU is committed to fulfilling a user request.
 
-Quantum time is the duration, in seconds, a QPU is committed to fulfilling a user request.
+Alternatively, you can view this information on IBM Quantum Platform by opening the job details.
 
-<LegacyContent>
-<Admonition type="note" title="Notes">
-    - This only applies to jobs that use primitives.
-    - This is not yet available on the Qiskit Runtime on IBM Cloud&reg; channel.
-</Admonition>
-</LegacyContent>
-<CloudContent>
 <Admonition type="note">
 This only applies to jobs that use primitives.
 </Admonition>
-</CloudContent>
 
 Example:
 
@@ -128,7 +121,7 @@ Output:
 ```python
 {'quantum_seconds': 4.1058720028432445}
 ```
-
+</LegacyContent>
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">

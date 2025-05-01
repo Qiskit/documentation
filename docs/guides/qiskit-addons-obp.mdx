@@ -5,7 +5,7 @@ description: Learn about the operator backpropagation addon to reduce the depth 
 
 # Operator backpropagation (OBP)
 
-Operator backpropagation (OBP) is a technique to reduce circuit depth by trimming operations from its end at the cost of more operator measurements. There are a number of ways in which operator backpropagation can be performed, and this package uses a method based on Clifford perturbation theory.
+Operator backpropagation (OBP) is a technique to reduce circuit depth by trimming operations from its end at the cost of more operator measurements. There are a number of ways in which operator backpropagation can be performed, and this package uses a method based on Clifford perturbation theory [[1]](#references).
 
 As one propagates an operator further through a circuit, the size of the observable to measure grows exponentially. This results in both a classical and quantum resource overhead. However, for some circuits, the resulting distribution of additional Pauli observables is more concentrated than the worst-case exponential scaling. This implies that some terms in an observable with small coefficients can be truncated to reduce the quantum overhead. The error incurred by doing so can be controlled to find a suitable tradeoff between precision and efficiency.
 
@@ -39,7 +39,7 @@ pip install tox notebook -e '.[notebook-dependencies, dev]'
 
 ## Theoretical background
 
-When using the Estimator primitive, the output of a quantum workload is the estimation of one or more expectation values $\langle O \rangle$ with respect to some state prepared using a QPU. This section summarizes the procedure.
+The OBP procedure implemented in this package is described in detail in [[1]](#references). When using the Estimator primitive, the output of a quantum workload is the estimation of one or more expectation values $\langle O \rangle$ with respect to some state prepared using a QPU. This section summarizes the procedure.
 
 First, start by writing the expectation value measurement of an observable $O$ in terms of some initial state $|\psi\rangle$ and a quantum circuit $U_Q$:
 
@@ -47,7 +47,7 @@ $$ \langle O \rangle_{U|\psi\rangle} = \langle\psi | U^\dagger O U |\psi \rangle
 
 To distribute this problem across both classical and quantum resources, split the circuit $U$ into two subcircuits, $U_C$ and $U_Q$, classically simulate the circuit $U_C$, then execute the circuit $U_Q$ on quantum hardware and use the results of the classical simulation to reconstruct the measurement of the observable $O$.
 
-![OBP diagram depicting splitting a circuit into two subcircuits, classically computing one of the subcircuits, then measuring the other circuit using quantum hardware](/images/guides/qiskit-addons/obp-diagram.avif)
+![OBP diagram depicting splitting a circuit into two subcircuits, classically computing one of the subcircuits, then measuring the other circuit using quantum hardware](/docs/images/guides/qiskit-addons/obp-diagram.avif)
 
 
 The subcircuit $U_C$ should be selected to be classically simulable and will compute the expectation value
@@ -90,7 +90,11 @@ where $S$ represents the total number of slices and $\mathcal{U}_s$ denotes a si
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - [Get started with OBP.](/guides/qiskit-addons-obp-get-started)    
-    - Become familiar with the [error mitigation techniques](/guides/error-mitigation-and-suppression-techniques) available in Qiskit Runtime.
+    - [Get started with OBP.](/docs/guides/qiskit-addons-obp-get-started)    
+    - Become familiar with the [error mitigation techniques](/docs/guides/error-mitigation-and-suppression-techniques) available in Qiskit Runtime.
     - Read the tutorial on using [OBP to improve expectation values.](https://learning.quantum.ibm.com/tutorial/improving-estimation-of-expectation-values-with-operator-backpropagation)
 </Admonition>
+
+## References
+
+[1] Fuller, Bryce, et al. "Improved Quantum Computation using Operator Backpropagation." [arXiv:2502.01897 \[quant-ph\]](https://arxiv.org/abs/2502.01897) (2025).

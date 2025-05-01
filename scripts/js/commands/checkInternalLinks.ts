@@ -24,8 +24,7 @@ import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
-  "docs/administration/quickstart-org.mdx",
-  "docs/administration/analytics.mdx",
+  "docs/admin/analytics.mdx",
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
   "docs/api/runtime/tags/jobs.mdx",
@@ -76,9 +75,9 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("public/docs/{images,videos,open-source}/**/*")).map(
-      (fp) => new File(fp, new Set()),
-    ),
+    ...(
+      await globby("public/{docs,learning}/{images,videos,open-source}/**/*")
+    ).map((fp) => new File(fp, new Set())),
     ...SYNTHETIC_FILES.map((fp) => new File(fp, new Set(), true)),
   ];
 
@@ -189,7 +188,7 @@ async function determineCurrentDocsFileBatch(
   args: Arguments,
 ): Promise<FileBatch> {
   const toCheck = [
-    "docs/**/*.{ipynb,mdx}",
+    "{docs,learning}/**/*.{ipynb,mdx}",
     "public/docs/api/*/objects.inv",
     // Ignore historical versions
     "!docs/api/*/[0-9]*/*",
