@@ -13,7 +13,10 @@ All IBM QPUs use dynamic repetition rate execution, which allows you to change t
 ![The first column represents shot 0.  The circuits are run in order from 0 through 3.  The second column represents shot 1.  The circuits are run in order from 0 through 3.  The remaining columns follow the same pattern. ](/docs/images/guides/repetition-rate-execution/circuits_shots_matrix1.avif "Column-wise execution matrix")
 
 
-Because `rep_delay` is inserted between circuits, each shot of the execution encounters this delay. Therefore, lowering the `rep_delay` decreases the total QPU execution time, but at the expense of increased state preparation error rate.
+Because `rep_delay` is inserted between circuits, each shot of the execution encounters this delay. Therefore, lowering the `rep_delay` decreases the total QPU execution time, but at the expense of increased state preparation error rate, as can be seen in the following image:
+
+![This image shows that as the `rep_delay` value is lowered, the state preparation error rate increases.](/docs/images/guides/repetition-rate-execution/rep_delay.avif "Repetition delay versus error rate")
+
 
 Note that while circuits in a primitive job are batched together for QPU execution, there is no guarantee on the order the circuits from PUBs are executed. Thus, even though you submit `pubs=[pub1, pub2]`, there is no guarantee the circuits from `pub1` will run before those from `pub2`. There is also no guarantee that circuits from the same job would run as a single batch on the QPU.
 
