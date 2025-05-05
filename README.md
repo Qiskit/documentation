@@ -77,6 +77,12 @@ git clone --filter=blob:none https://github.com/Qiskit/documentation.git
 
 `--filter=blob:none` means that Git will _lazily_ download file contents when you need them, rather than eagerly downloading everything on the initial clone.
 
+We also recommend running this command once to tell Git to ignore the `gh-pages` branch, which is solely used for PR previews and is very large:
+
+```bash
+git config --add remote.origin.fetch '^refs/heads/gh-pages'
+```
+
 ### Prerequisites to building the docs locally
 
 We provide several tools to preview the documentation locally and to run quality checks. While many of these tools run in your PR through CI, we recommend installing them locally for faster iteration.
