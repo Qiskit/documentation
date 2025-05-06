@@ -51,7 +51,7 @@ Successful quantum algorithms must be adapted to exploit the capabilities of qua
 Quantum simulators should be used to help develop and test programs before fine-tuning them and sending them to quantum hardware. Local simulators can do this with good performance and efficiency.  Clifford circuits can be simulated very efficiently, and results can be verified, which is a useful way to gain confidence in an experiment.
 
 <Admonition type="note">
-Local testing mode does not have built-in error suppression or mitigation.  Instead, you must specify those options explicitly. See [Configure error mitigation for Qiskit Runtime](/guides/configure-error-mitigation) for details.
+Local testing mode does not have built-in error suppression or mitigation.  Instead, you must specify those options explicitly. See [Configure error mitigation for Qiskit Runtime](/docs/guides/configure-error-mitigation) for details.
 </Admonition>
 
 ## Migrate to local simulators
@@ -78,7 +78,7 @@ For most users, `AerSimulator` is a good choice, due to its flexibility and perf
 
 ### Fake backends
 
-The [fake backends](/api/qiskit-ibm-runtime/fake-provider) mimic the behaviors of IBM QPUs by using snapshots. The snapshots contain important information about the QPU, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the QPU.  The noise model from the snapshot is automatically applied during simulation.
+The [fake backends](/docs/api/qiskit-ibm-runtime/fake-provider) mimic the behaviors of IBM QPUs by using snapshots. The snapshots contain important information about the QPU, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the QPU.  The noise model from the snapshot is automatically applied during simulation.
 
 Example:
 
@@ -112,14 +112,13 @@ result = sampler.run([isa_qc]).result()
 
 ### AerSimulator
 
-You can use local testing mode with simulators from [Qiskit Aer](/guides/simulate-with-qiskit-aer), which provides higher-performance simulation that can handle larger circuits and [custom noise models](/guides/build-noise-models). It also supports Clifford simulation mode, which can efficiently simulate Clifford circuits with a large number of qubits.
+You can use local testing mode with simulators from [Qiskit Aer](/docs/guides/simulate-with-qiskit-aer), which provides higher-performance simulation that can handle larger circuits and [custom noise models](/docs/guides/build-noise-models). It also supports Clifford simulation mode, which can efficiently simulate Clifford circuits with a large number of qubits.
 
 Example with sessions, without noise:
-<CloudContent>Note that Open Plan users cannot submit session jobs.</CloudContent>
 
 <CloudContent>
 <Admonition type="caution">
-The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
@@ -149,7 +148,7 @@ with Session(backend=aer_sim) as session:
     result = sampler.run([isa_qc]).result()
 ```
 
-To simulate with noise, specify a QPU (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that QPU and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](/guides/build-noise-models).
+To simulate with noise, specify a QPU (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that QPU and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](/docs/guides/build-noise-models).
 
 Example with noise:
 
@@ -183,7 +182,7 @@ result = sampler.run([isa_qc]).result()
 <span id="clifford-sim"></span>
 ### Clifford simulation
 
-Because Clifford circuits can be simulated efficiently with verifiable results, Clifford simulation is a very useful tool. For an in-depth example, see [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](/guides/simulate-stabilizer-circuits).
+Because Clifford circuits can be simulated efficiently with verifiable results, Clifford simulation is a very useful tool. For an in-depth example, see [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](/docs/guides/simulate-stabilizer-circuits).
 
 Example:
 

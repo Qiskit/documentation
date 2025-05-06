@@ -1,0 +1,100 @@
+---
+title: ContainsInstruction (v1.4)
+description: API reference for qiskit.transpiler.passes.ContainsInstruction in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.ContainsInstruction
+---
+
+# ContainsInstruction
+
+<Class id="qiskit.transpiler.passes.ContainsInstruction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/utils/contains_instruction.py#L18-L45" signature="qiskit.transpiler.passes.ContainsInstruction(*args, **kwargs)" modifiers="class">
+  Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+
+  An analysis pass to detect if the DAG contains a specific instruction.
+
+  This pass takes in a single instruction name for example `'delay'` and will set the property set `contains_delay` to `True` if the DAG contains that instruction and `False` if it does not.
+
+  ContainsInstruction initializer.
+
+  **Parameters**
+
+  *   **instruction\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – The instruction or instructions to check are in the DAG. The output in the property set is set to `contains_` prefixed on each value for this parameter.
+  *   **recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if `True` (default), then recurse into control-flow operations.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.ContainsInstruction.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.ContainsInstruction.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.ContainsInstruction.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L72-L118" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.ContainsInstruction.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.ContainsInstruction.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/utils/contains_instruction.py#L41-L45" signature="run(dag)">
+    Run the ContainsInstruction pass on dag.
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.ContainsInstruction.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L120-L138" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

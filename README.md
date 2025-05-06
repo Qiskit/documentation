@@ -7,6 +7,13 @@ Refer to:
 - Our [MDX guide](./mdx-guide.md) for how to write documentation and use our variant of markdown.
 - Our [style guide](./style-guide.md) for technical writing guidance.
 
+### Licensing
+
+This repository is dual-licensed to distinguish between code and content.
+
+- Code (including scripts, source files, and code snippets in documentation examples) is licensed under the Apache License 2.0, please review the `LICENSE` file for more information
+- Content (including guides, tutorials, courses, media, and other non-code assets) is licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0), please review the `LICENSE-DOCS` file for more information.
+
 ## Improving IBM Quantum and Qiskit documentation
 
 Maintaining up-to-date documentation is a huge challenge for any software project, but especially for a field like quantum computing, because advances in new research and technological capabilities come at a fast pace. As a result, we greatly appreciate anyone who takes the time to support us in keeping this content accurate and up to the highest quality standard possible, to benefit the broadest range of users.
@@ -70,15 +77,23 @@ git clone --filter=blob:none https://github.com/Qiskit/documentation.git
 
 `--filter=blob:none` means that Git will _lazily_ download file contents when you need them, rather than eagerly downloading everything on the initial clone.
 
+We also recommend running this command once to tell Git to ignore the `gh-pages` branch, which is solely used for PR previews and is very large:
+
+```bash
+git config --add remote.origin.fetch '^refs/heads/gh-pages'
+```
+
 ### Prerequisites to building the docs locally
 
-These tools will also run in CI, but it can be convenient when iterating to run the tools locally.
+We provide several tools to preview the documentation locally and to run quality checks. While many of these tools run in your PR through CI, we recommend installing them locally for faster iteration.
 
 First, install the below software:
 
 1. [Node.js](https://nodejs.org/en). If you expect to use JavaScript in other projects, consider using [NVM](https://github.com/nvm-sh/nvm). Otherwise, consider using [Homebrew](https://formulae.brew.sh/formula/node) or installing [Node.js directly](https://nodejs.org/en).
 2. [Docker](https://www.docker.com). You must also ensure that it is running.
    - If you cannot use Docker from docker.com, consider using use [Colima](https://github.com/abiosoft/colima) or [Rancher Desktop](https://rancherdesktop.io). When installing Rancher Desktop, choose Moby/Dockerd as the engine, rather than nerdctl. To ensure it's running, open up the app "Rancher Desktop".
+3. [Tox](https://tox.wiki/) to run Python tools.
+   - We recommend using [pipx](https://pipx.pypa.io/stable/), which is a tool to install Python programs while keeping your Python installation clean. After installing pipx, use `pipx install tox`.
 
 Then, install the dependencies with:
 
@@ -98,12 +113,55 @@ The preview application does not include the top nav bar. Instead, navigate to t
 
 Maintainers: when you release a new version of the image, you need to update the image digest in `./start` by following the instructions at the top of the file and opening a pull request.
 
+### Tip: Periodically prune Docker
+
+Occasionally, Docker might fail when it runs out of disk space. For example, you might encounter an error like this:
+
+```
+ENOSPC: no space left on device, mkdir '/tmp/xfs-4d1dfe51'
+```
+
+Try running `docker system prune` to clear Docker's system space.
+
 ### API docs authors: How to preview your changes
 
 API docs authors can preview their changes to one of the APIs by using the `-a` parameter to specify the path to the docs folder:
 
 1. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <path/to/docs/_build/html>`.
 2. Execute `./start` and open up `http://localhost:3000`, as explained in the prior section.
+
+## Run quality checks
+
+We use multiple tools to ensure that documentation meets high standards. These tools will run automatically in your PR through CI, but it is much faster to run the checks locally.
+
+Use `./fix` to automatically apply fixes, like fixing formatting. Warning: we cannot automatically fix every problem, so you should also run `./check` afterwards.
+
+```sh
+./fix
+```
+
+Use `./check` to validate that there are no issues. If you encounter an error, fix it by following the instructions in the error message, then keep running `./check` and fixing any errors until it fully passes without any error.
+
+```sh
+./check
+```
+
+On Windows, run `python fix` and `python check` instead. Alternatively, use Windows Subsystem for Linux and run `./fix` and `./check`.
+
+### VSCode: optional extensions
+
+You may find it convenient to install the following VSCode extensions to automatically run some of our tools. Setting up these extensions is optional.
+
+- For Jupyter notebooks, add the tool 'squeaky' as a [pre-save
+  hook](https://github.com/frankharkins/squeaky?tab=readme-ov-file#jupyter-pre-save-hook).
+  This will fix and lint your notebooks when you save them.
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+
+### Advanced: run additional checks
+
+We offer some tools that are not included in `./check` and `./fix`. Likewise, many of the checks skip API docs by default.
+
+Run `npm run` to see a list of all our checks. For any particular check, run `npm run my-check -- --help` for more information and advanced arguments, such as `npm run check:metadata -- --help`.
 
 ## Jupyter notebooks
 
@@ -211,189 +269,11 @@ block is only for testing. Make sure you add the tag `remove-cell`.
 If something ever causes this value to
 change, CI will alert us.
 
-### Lint notebooks
-
-We use [`squeaky`](https://github.com/frankharkins/squeaky) and
-[`ruff`](https://docs.astral.sh/ruff/) to lint our notebooks. First install
-`tox` using [pipx](https://pipx.pypa.io/stable/).
-
-```sh
-pipx install tox
-```
-
-To check if a notebook needs linting:
-
-```sh
-# Check all notebooks in ./docs
-tox -e lint
-```
-
-Some problems can be fixed automatically. To fix these problems, run:
-
-```sh
-# Fix problems in all notebooks
-tox -e fix
-
-# Fix problems in a specific notebook
-tox -e fix -- <path/to/notebook>
-```
-
-If you use the Jupyter notebook editor, consider adding squeaky as a [pre-save
-hook](https://github.com/frankharkins/squeaky?tab=readme-ov-file#jupyter-pre-save-hook).
-This will lint your notebooks as you save them, so you never need to worry
-about it.
-
-## Check for broken links
-
-We have two broken link checkers: for internal links and for external links.
-
-To check internal links:
-
-```bash
-# Only check non-API docs
-npm run check:internal-links
-
-# You can add any of the below arguments to also check API docs.
-npm run check:internal-links -- --current-apis --dev-apis --historical-apis --qiskit-legacy-release-notes
-
-# Or, run all the checks. Although this only checks non-API docs.
-npm run check
-```
-
-To check external links:
-
-```bash
-# Specify the files you want after `--`
-npm run check:external-links -- docs/guides/index.md docs/guides/circuit-execution.mdx
-
-# You can also use globs
-npm run check:external-links -- 'docs/guides/*' '!docs/guides/index.mdx'
-```
-
-## Check for orphan pages
-
-Every file should have a home in one of the `_toc.json` files.
-
-To check for orphaned pages, run:
-
-```bash
-# Only check non-API docs
-npm run check:orphan-pages
-
-# You can also check API docs
-npm run check:orphan-pages -- --apis
-
-# Or, run all the checks. However this will skip the API docs
-npm run check
-```
-
-## Check page metadata
-
-Every file needs to have a `title` and `description`, as explained in [Page Metadata](#page-metadata) The `lint` job in CI will fail with instructions for any bad file.
-
-You can also check for valid metadata locally:
-
-```bash
-# Only check file metadata
-npm run check:metadata
-
-# By default, only the non-API docs are checked. You can add the
-# below argument to also check API docs.
-npm run check:metadata -- --apis
-
-# Or, run all the checks. Although this only checks non-API docs.
-npm run check
-```
-
-## Check images
-
-Every image needs to have alt text for accessibility and must use markdown syntax. To avoid changing the styling of the images, the use of the `<img>` HTML tag is not allowed. The lint job in CI will fail if images do not have alt text defined or if an `<img>` tag is found.
-We also require raster images (PNG, JPEG) to be converted to AVIF format to save space and make the website faster for users. You can convert images to AVIF using [ImageMagick](https://imagemagick.org/index.php).
-
-You can check images locally by running:
-
-```bash
-# Only check images
-npm run check:images
-
-# By default, only the non-API docs are checked. You can add the
-# below argument to also check API docs.
-npm run check:images -- --apis
-
-# Or, run all the checks
-npm run check
-```
-
-## Spellcheck
-
-We use [cSpell](https://cspell.org) to check for spelling. The `lint` job in CI will fail if there are spelling issues.
-
-There are two ways to check spelling locally, rather than needing CI.
-
-1.
-
-```bash
-# Only check spelling
-npm run check:spelling
-
-# Or, run all the checks
-npm run check
-```
-
-2. Use the VSCode extension [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker).
-
-### Fix false positives
-
-There are two ways to deal with cSpell incorrectly complaining about a word, such as abbreviations.
-
-1. Ignore the word in the local file:
-
-   - For a markdown file, add a comment to the file, like below. The word is not case-sensitive, and the comment can be placed anywhere.
-
-     ```markdown
-     {/* cspell:ignore hellllooooo, ayyyyy */}
-
-     # Hellllooooo!
-
-     Ayyyyy, this is a fake description.
-     ```
-
-   - For a Jupyter notebook, add the comment inside a markdown cell in the source part. Each line should be surrounded by quotes and end with "\n".
-
-     ```python
-     {
-      "cell_type": "markdown",
-      "id": "552b1077",
-      "metadata": {},
-      "source": [
-       "# Hello world\n",
-       "{/* cspell:ignore helloooooo */}\n"
-      ]
-     },
-     ```
-
-2. If the word is a name, add it to the `scripts/config/cspell/dictionaries/people.txt` file. If it is a scientific or quantum specific word, add it to the `scripts/config/cspell/dictionaries/qiskit.txt` file. If it doesn't fit in either category, add it to the `words` section in `scripts/config/cspell/cSpell.json`. The word is not case-sensitive.
-
-If the word appears in multiple files, prefer the second approach to add it to one of the dictionaries or `cSpell.json`.
-
-## Check that pages render
-
-It's possible to write broken pages that crash when loaded. This is usually due to syntax errors.
-
-To check that all the non-API docs render:
-
-1. Start up the local preview with `./start` by following the instructions at [Preview the docs locally](#preview-the-docs-locally)
-2. In a new tab, `npm run check:pages-render -- --non-api`
-
-You can also check that API docs render by using any of these arguments: `npm run check:pages-render -- --non-api --qiskit-release-notes --current-apis --dev-apis --historical-apis`. Warning that this is exponentially slower.
-
-CI will check on every PR that any changed files render correctly. We also run a weekly cron job to check that every page renders correctly.
-
 ## Format README and TypeScript files
 
 Run `npm run fmt` to automatically format the README, `.github` folder, and `scripts/` folder. You should run this command if you get the error in CI `run Prettier to fix`.
 
-To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
+To check that formatting is valid without actually making changes, run `npm run check:fmt`.
 
 ## Regenerate an existing API docs version
 

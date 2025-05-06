@@ -23,15 +23,21 @@ import {
 export class ReleaseNotesConfig {
   readonly enabled: boolean;
   readonly separatePagesVersions: string[];
+  readonly linkToPackage?: string;
 
-  constructor(kwargs: { enabled?: boolean; separatePagesVersions?: string[] }) {
+  constructor(kwargs: {
+    enabled?: boolean;
+    separatePagesVersions?: string[];
+    linkToPackage?: string;
+  }) {
     this.enabled = kwargs.enabled ?? true;
     this.separatePagesVersions = kwargs.separatePagesVersions ?? [];
+    this.linkToPackage = kwargs.linkToPackage;
   }
 }
 
 type PackageType = "latest" | "historical" | "dev";
-type PackageLanguage = "Python" | "C";
+export type PackageLanguage = "Python" | "C";
 
 /**
  * Information about the specific package and version we're dealing with, e.g. qiskit 0.45.
@@ -48,6 +54,7 @@ export class Pkg {
   readonly tocGrouping?: TocGrouping;
   /// Convert URLs like `my_pkg.SomeClass` to `some-class` for better SEO.
   readonly kebabCaseAndShortenUrls: boolean;
+  readonly artifactPackageName: string;
 
   static VALID_NAMES = [
     "qiskit",
@@ -73,6 +80,7 @@ export class Pkg {
     releaseNotesConfig?: ReleaseNotesConfig;
     tocGrouping?: TocGrouping;
     kebabCaseAndShortenUrls: boolean;
+    artifactPackageName?: string;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -85,6 +93,7 @@ export class Pkg {
       kwargs.releaseNotesConfig ?? new ReleaseNotesConfig({});
     this.tocGrouping = kwargs.tocGrouping;
     this.kebabCaseAndShortenUrls = kwargs.kebabCaseAndShortenUrls;
+    this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
   }
 
   static async fromArgs(
@@ -198,8 +207,10 @@ export class Pkg {
         kebabCaseAndShortenUrls: true,
         language: "C",
         releaseNotesConfig: new ReleaseNotesConfig({
-          enabled: false,
+          enabled: true,
+          linkToPackage: "qiskit",
         }),
+        artifactPackageName: "qiskit",
       });
     }
 
@@ -275,6 +286,10 @@ export class Pkg {
       ? ` ${this.versionWithoutPatch}`
       : "";
     return `${this.title}${versionStr} release notes`;
+  }
+
+  releaseNotesPackageName(): string {
+    return this.releaseNotesConfig.linkToPackage ?? this.name;
   }
 
   /**

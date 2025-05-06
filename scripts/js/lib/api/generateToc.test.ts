@@ -70,7 +70,7 @@ test("generate a basic toc", () => {
     },
     {
       meta: { apiType: "class", apiName: "Options" },
-      url: "docs/my-quantum-project/my_quantum_project.options.Options",
+      url: "/my-quantum-project/my_quantum_project.options.Options",
       ...DEFAULT_ARGS,
     },
     {
@@ -78,7 +78,7 @@ test("generate a basic toc", () => {
         apiType: "function",
         apiName: "runSomething",
       },
-      url: "docs/my-quantum-project/my_quantum_project.runSomething",
+      url: "/my-quantum-project/my_quantum_project.runSomething",
       ...DEFAULT_ARGS,
     },
     {
@@ -95,23 +95,23 @@ test("generate a basic toc", () => {
     children: [
       {
         title: "my_quantum_project",
-        url: "/api/my-quantum-project",
+        url: "/docs/api/my-quantum-project",
       },
       {
         title: "my_quantum_project.options",
-        url: "/api/my-quantum-project/options",
+        url: "/docs/api/my-quantum-project/options",
       },
       {
         title: "my_quantum_project.options.submodule",
-        url: "/api/my-quantum-project/my_quantum_project.options.submodule",
+        url: "/docs/api/my-quantum-project/my_quantum_project.options.submodule",
       },
       {
         title: "my_quantum_project.single",
-        url: "/api/my-quantum-project/single",
+        url: "/docs/api/my-quantum-project/single",
       },
       {
         title: "Release notes",
-        url: "/api/my-quantum-project/release-notes",
+        url: "/docs/api/my-quantum-project/release-notes",
       },
     ],
     collapsed: true,
@@ -184,14 +184,14 @@ test("TOC with grouped modules", () => {
     children: [
       {
         title: "API index (custom)",
-        url: "/api/my-quantum-project",
+        url: "/docs/api/my-quantum-project",
       },
       {
         title: "Group 2",
         children: [
           {
             title: "my_quantum_project.module.submodule",
-            url: "/api/my-quantum-project/my_quantum_project.module.submodule",
+            url: "/docs/api/my-quantum-project/my_quantum_project.module.submodule",
           },
         ],
       },
@@ -200,17 +200,17 @@ test("TOC with grouped modules", () => {
         children: [
           {
             title: "my_quantum_project.module",
-            url: "/api/my-quantum-project/my_quantum_project.module",
+            url: "/docs/api/my-quantum-project/my_quantum_project.module",
           },
         ],
       },
       {
         title: "dedicated module",
-        url: "/api/my-quantum-project/my_quantum_project.another",
+        url: "/docs/api/my-quantum-project/my_quantum_project.another",
       },
       {
         title: "Release notes",
-        url: "/api/my-quantum-project/release-notes",
+        url: "/docs/api/my-quantum-project/release-notes",
       },
     ],
   });
@@ -240,17 +240,17 @@ test("TOC with separate release note files", () => {
     children: [
       {
         title: "my_quantum_project",
-        url: "/api/my-quantum-project",
+        url: "/docs/api/my-quantum-project",
       },
       {
         children: [
           {
             title: "0.39",
-            url: "/api/my-quantum-project/release-notes/0.39",
+            url: "/docs/api/my-quantum-project/release-notes/0.39",
           },
           {
             title: "0.38",
-            url: "/api/my-quantum-project/release-notes/0.38",
+            url: "/docs/api/my-quantum-project/release-notes/0.38",
           },
         ],
         title: "Release notes",
@@ -307,7 +307,7 @@ test("generate a toc without modules and releaes notes", () => {
     children: [
       {
         title: "API index",
-        url: "/api/my-quantum-project",
+        url: "/docs/api/my-quantum-project",
       },
     ],
     collapsed: true,

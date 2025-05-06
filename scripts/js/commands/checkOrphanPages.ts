@@ -76,14 +76,14 @@ async function readTocUrls(filePath: string): Promise<Set<string>> {
 
 async function findExistentUrls(directory: string): Promise<string[]> {
   const fileList = await globby([`${directory}/*.{mdx,ipynb}`]);
-  return fileList.map((fileName) =>
-    fileName.replace("docs", "").replace(".mdx", "").replace(".ipynb", ""),
+  return fileList.map(
+    (fileName) => "/" + fileName.replace(".mdx", "").replace(".ipynb", ""),
   );
 }
 
 async function findTocFiles(includeApis: boolean): Promise<string[]> {
   const globs = [
-    "docs/**/_toc.json",
+    "{docs,learning}/**/_toc.json",
     includeApis ? "docs/api/**/_toc.json" : "!docs/api/**",
   ];
   return globby(globs);
@@ -130,13 +130,13 @@ function qiskitLegacyIgnores(): string[] {
   ];
   return [
     ...versions.flatMap((vers) => [
-      `/api/qiskit/${vers}aer`,
-      `/api/qiskit/${vers}aqua`,
-      `/api/qiskit/${vers}ibmq-provider`,
-      `/api/qiskit/${vers}ibmq_jupyter`,
-      `/api/qiskit/${vers}ibmq_visualization`,
-      `/api/qiskit/${vers}parallel`,
-      `/api/qiskit/${vers}transpiler_builtin_plugins`,
+      `/docs/api/qiskit/${vers}aer`,
+      `/docs/api/qiskit/${vers}aqua`,
+      `/docs/api/qiskit/${vers}ibmq-provider`,
+      `/docs/api/qiskit/${vers}ibmq_jupyter`,
+      `/docs/api/qiskit/${vers}ibmq_visualization`,
+      `/docs/api/qiskit/${vers}parallel`,
+      `/docs/api/qiskit/${vers}transpiler_builtin_plugins`,
     ]),
   ];
 }

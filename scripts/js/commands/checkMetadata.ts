@@ -87,8 +87,8 @@ const main = async (): Promise<void> => {
 };
 
 async function determineFiles(args: Arguments): Promise<[string[], string[]]> {
-  const mdGlobs = ["docs/**/*.mdx"];
-  const notebookGlobs = ["docs/**/*.ipynb"];
+  const mdGlobs = ["{docs,learning}/**/*.mdx"];
+  const notebookGlobs = ["{docs,learning}/**/*.ipynb"];
   if (!args.apis) {
     const apiIgnore = `!docs/api/**/*`;
     mdGlobs.push(apiIgnore);

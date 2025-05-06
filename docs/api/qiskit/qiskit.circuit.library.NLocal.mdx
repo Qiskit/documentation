@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
 # NLocal
 
-<Class id="qiskit.circuit.library.NLocal" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L268-L1242" signature="qiskit.circuit.library.NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal', flatten=None)" modifiers="class">
+<Class id="qiskit.circuit.library.NLocal" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/n_local.py#L268-L1242" signature="qiskit.circuit.library.NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal', flatten=None)" modifiers="class">
   Bases: `BlueprintCircuit`
 
   The n-local circuit class.
@@ -40,11 +40,11 @@ python_api_name: qiskit.circuit.library.NLocal
   If specified, barriers can be inserted in between every block. If an initial state object is provided, it is added in front of the NLocal.
 
   <Admonition title="See also" type="note">
-    The `n_local()` function constructs a functionally equivalent circuit, but faster.
+    The [`n_local()`](qiskit.circuit.library.n_local "qiskit.circuit.library.n_local") function constructs a functionally equivalent circuit, but faster.
   </Admonition>
 
   <Admonition title="Deprecated since version 1.3_pending" type="danger">
-    The class `qiskit.circuit.library.n_local.n_local.NLocal` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use the function qiskit.circuit.library.n\_local instead.
+    The class `qiskit.circuit.library.n_local.n_local.NLocal` is pending deprecation as of Qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use the function qiskit.circuit.library.n\_local instead.
   </Admonition>
 
   **Parameters**
@@ -76,21 +76,15 @@ python_api_name: qiskit.circuit.library.NLocal
     A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
-  ### calibrations
-
-  <Attribute id="qiskit.circuit.library.NLocal.calibrations">
-    Return calibration dictionary.
-
-    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
-    </Admonition>
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.circuit.library.NLocal.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.NLocal.cregs">
     A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
@@ -114,7 +108,7 @@ python_api_name: qiskit.circuit.library.NLocal
     The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.NLocal.unit "qiskit.circuit.library.NLocal.unit").
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -172,7 +166,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.NLocal.instances" attributeValue="185" />
+  <Attribute id="qiskit.circuit.library.NLocal.instances" attributeValue="212" />
 
   ### layout
 
@@ -198,6 +192,14 @@ python_api_name: qiskit.circuit.library.NLocal
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_stretches()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.NLocal.num_input_vars "qiskit.circuit.library.NLocal.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.circuit.library.NLocal.num_captured_vars">
@@ -212,12 +214,28 @@ python_api_name: qiskit.circuit.library.NLocal
     Return number of classical bits.
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the `iter_declared_stretches()` iterable.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.library.NLocal.num_declared_vars">
     The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.library.NLocal.num_vars "qiskit.circuit.library.NLocal.num_vars") + [`num_stretches()`](#qiskit.circuit.library.NLocal.num_stretches "qiskit.circuit.library.NLocal.num_stretches").
   </Attribute>
 
   ### num\_input\_vars
@@ -270,6 +288,14 @@ python_api_name: qiskit.circuit.library.NLocal
     The number of qubits.
   </Attribute>
 
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the `iter_stretches()` iterable.
+  </Attribute>
+
   ### num\_vars
 
   <Attribute id="qiskit.circuit.library.NLocal.num_vars">
@@ -283,11 +309,15 @@ python_api_name: qiskit.circuit.library.NLocal
   <Attribute id="qiskit.circuit.library.NLocal.op_start_times">
     Return a list of operation start times.
 
+    <Admonition title="Note" type="note">
+      This attribute computes the estimate starting time of the operations in the scheduled circuit and only works for simple circuits that have no control flow or other classical feed-forward operations.
+    </Admonition>
+
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
     **Returns**
 
-    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    List of integers representing instruction estimated start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
     **Raises**
 
@@ -404,8 +434,8 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.NLocal.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  <Attribute id="qiskit.circuit.library.NLocal.qregs">
+    A list of the quantum registers associated with the circuit.
   </Attribute>
 
   ### qubits
@@ -440,7 +470,7 @@ python_api_name: qiskit.circuit.library.NLocal
     The unit that [`duration`](#qiskit.circuit.library.NLocal.duration "qiskit.circuit.library.NLocal.duration") is specified in.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -450,17 +480,11 @@ python_api_name: qiskit.circuit.library.NLocal
     A human-readable name for the circuit.
   </Attribute>
 
-  ### cregs
-
-  <Attribute id="qiskit.circuit.library.NLocal.cregs" attributeTypeHint="list[ClassicalRegister]">
-    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
   ## Methods
 
   ### add\_layer
 
-  <Function id="qiskit.circuit.library.NLocal.add_layer" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L985-L1045" signature="add_layer(other, entanglement=None, front=False)">
+  <Function id="qiskit.circuit.library.NLocal.add_layer" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/n_local.py#L985-L1045" signature="add_layer(other, entanglement=None, front=False)">
     Append another layer to the NLocal.
 
     **Parameters**
@@ -484,7 +508,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### assign\_parameters
 
-  <Function id="qiskit.circuit.library.NLocal.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L1047-L1075" signature="assign_parameters(parameters, inplace=False, **kwargs)">
+  <Function id="qiskit.circuit.library.NLocal.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/n_local.py#L1047-L1075" signature="assign_parameters(parameters, inplace=False, **kwargs)">
     Assign parameters to the n-local circuit.
 
     This method also supports passing a list instead of a dictionary. If a list is passed, the list must have the same length as the number of unbound parameters in the circuit. The parameters are assigned in the order of the parameters in [`ordered_parameters()`](#qiskit.circuit.library.NLocal.ordered_parameters "qiskit.circuit.library.NLocal.ordered_parameters").
@@ -509,7 +533,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### get\_entangler\_map
 
-  <Function id="qiskit.circuit.library.NLocal.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L818-L938" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
+  <Function id="qiskit.circuit.library.NLocal.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/n_local.py#L818-L938" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
     Get the entangler map for in the repetition `rep_num` and the block `block_num`.
 
     The entangler map for the current block is derived from the value of `self.entanglement`. Below the different cases are listed, where `i` and `j` denote the repetition number and the block number, respectively, and `n` the number of qubits in the block.
@@ -550,7 +574,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### get\_unentangled\_qubits
 
-  <Function id="qiskit.circuit.library.NLocal.get_unentangled_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L709-L722" signature="get_unentangled_qubits()">
+  <Function id="qiskit.circuit.library.NLocal.get_unentangled_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/n_local.py#L709-L722" signature="get_unentangled_qubits()">
     Get the indices of unentangled qubits in a set.
 
     **Returns**
@@ -564,7 +588,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### print\_settings
 
-  <Function id="qiskit.circuit.library.NLocal.print_settings" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L794-L806" signature="print_settings()">
+  <Function id="qiskit.circuit.library.NLocal.print_settings" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/n_local.py#L794-L806" signature="print_settings()">
     Returns information about the setting.
 
     **Returns**

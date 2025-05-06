@@ -1,0 +1,35 @@
+---
+title: convert_to_target (v1.4)
+description: API reference for qiskit.providers.convert_to_target in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.convert_to_target
+---
+
+<span id="qiskit-providers-convert-to-target" />
+
+# qiskit.providers.convert\_to\_target
+
+<Function id="qiskit.providers.convert_to_target" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend_compat.py#L35-L75" signature="qiskit.providers.convert_to_target(configuration, properties=None, defaults=None, custom_name_mapping=None, add_delay=True, filter_faulty=True)">
+  Decode transpiler target from backend data set.
+
+  This function generates `` Target` `` instance from intermediate legacy objects such as [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") and [`PulseDefaults`](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults"). These objects are usually components of the legacy [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") model.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    `qiskit.providers.backend_compat.convert_to_target()`’s argument `defaults` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and this argument uses a dependency on the package.
+  </Admonition>
+
+  **Parameters**
+
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.backendconfiguration.BackendConfiguration")) – Backend configuration as `BackendConfiguration`
+  *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.backendproperties.BackendProperties")) – Backend property dictionary or `BackendProperties`
+  *   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.pulsedefaults.PulseDefaults")) – DEPRECATED. Backend pulse defaults dictionary or `PulseDefaults`
+  *   **custom\_name\_mapping** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*] | None*) – A name mapping must be supplied for the operation not included in Qiskit Standard Gate name mapping, otherwise the operation will be dropped in the resulting `Target` object.
+  *   **add\_delay** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, adds delay to the instruction set.
+  *   **filter\_faulty** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, this filters the non-operational qubits.
+
+  **Returns**
+
+  A `Target` instance.
+</Function>
+

@@ -16,11 +16,14 @@ import { getLastPartFromFullIdentifier } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 import type { TocGrouping } from "./TocGrouping.js";
+import { DOCS_BASE_PATH } from "./conversionPipeline.js";
 
 export type TocEntry = {
   title: string;
   url?: string;
   children?: TocEntry[];
+  isNew?: string;
+  isNewDate?: string;
 };
 
 type Toc = {
@@ -103,7 +106,7 @@ function generateTocModules(modules: HtmlToMdResultWithUrl[]): TocEntry[] {
     (module): TocEntry => ({
       title: module.meta.apiName!,
       // Remove the final /index from the url
-      url: module.url.replace(/\/index$/, ""),
+      url: `${DOCS_BASE_PATH}${module.url.replace(/\/index$/, "")}`,
     }),
   );
 }
@@ -125,7 +128,7 @@ function addItemsToModules(
       if (!itemModule.children) itemModule.children = [];
       const itemTocEntry: TocEntry = {
         title: getLastPartFromFullIdentifier(item.meta.apiName!),
-        url: item.url,
+        url: `${DOCS_BASE_PATH}${item.url}`,
       };
       itemModule.children.push(itemTocEntry);
     }
@@ -205,7 +208,7 @@ function ensureIndexPage(
   pkg: Pkg,
   tocModules: TocEntry[],
 ): TocEntry | undefined {
-  const docsFolder = pkg.outputDir("/");
+  const docsFolder = pkg.outputDir(`${DOCS_BASE_PATH}/`);
   return tocModules.some((entry) => entry.url === docsFolder)
     ? undefined
     : {
@@ -228,19 +231,18 @@ function generateOverviewPage(tocModules: TocEntry[]): void {
 
 function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
   if (!pkg.releaseNotesConfig.enabled) return;
-  const releaseNotesUrl = `/api/${pkg.name}/release-notes`;
+  const releaseNotesUrl = `${DOCS_BASE_PATH}/api/${pkg.releaseNotesPackageName()}/release-notes`;
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
-  if (pkg.hasSeparateReleaseNotes()) {
-    releaseNotesEntry.children =
-      pkg.releaseNotesConfig.separatePagesVersions.map((vers) => ({
-        title: vers,
-        url: `${releaseNotesUrl}/${vers}`,
-      }));
-  } else {
-    releaseNotesEntry.url = releaseNotesUrl;
-  }
+  if (!pkg.hasSeparateReleaseNotes())
+    return { ...releaseNotesEntry, url: releaseNotesUrl };
+  releaseNotesEntry.children = pkg.releaseNotesConfig.separatePagesVersions.map(
+    (vers) => ({
+      title: vers,
+      url: `${releaseNotesUrl}/${vers}`,
+    }),
+  );
   return releaseNotesEntry;
 }
 

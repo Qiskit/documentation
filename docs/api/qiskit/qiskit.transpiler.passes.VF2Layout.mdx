@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
 # VF2Layout
 
-<Class id="qiskit.transpiler.passes.VF2Layout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/layout/vf2_layout.py#L40-L274" signature="qiskit.transpiler.passes.VF2Layout(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.VF2Layout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/layout/vf2_layout.py#L39-L256" signature="qiskit.transpiler.passes.VF2Layout(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   A pass for choosing a Layout of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++.
@@ -34,10 +34,6 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
   Initialize a `VF2Layout` pass instance
 
-  <Admonition title="Deprecated since version 1.4" type="danger">
-    `qiskit.transpiler.passes.layout.vf2_layout.VF2Layout.__init__()`’s argument `properties` is deprecated as of Qiskit 1.4. It will be removed in Qiskit 2.0. The BackendProperties data structure has been deprecated and will be removed in Qiskit 2.0. The target input argument should be used instead. You can use Target.from\_configuration() to build the target from the properties object, but in 2.0 you will need to generate a target directly.
-  </Admonition>
-
   **Parameters**
 
   *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
@@ -45,9 +41,8 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
   *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Sets the seed of the PRNG. -1 Means no node shuffling.
   *   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of state visits to attempt in each execution of VF2.
   *   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The total time limit in seconds to run `VF2Layout`
-  *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – The backend properties for the backend. If [`readout_error()`](qiskit.providers.models.BackendProperties#readout_error "qiskit.providers.models.BackendProperties.readout_error") is available it is used to score the layout.
   *   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of trials to run VF2 to find a layout. If this is not specified the number of trials will be limited based on the number of edges in the interaction graph or the coupling graph (whichever is larger) if no other limits are set. If set to a value \<= 0 no limit on the number of trials will be set.
-  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2Layout` on. If specified it will supersede a set value for `properties` and `coupling_map` if the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") contains connectivity constraints. If the value of `target` models an ideal backend without any constraints then the value of `coupling_map` will be used.
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2Layout` on. If specified it will supersede a set value for `coupling_map` if the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") contains connectivity constraints. If the value of `target` models an ideal backend without any constraints then the value of `coupling_map` will be used.
 
   **Raises**
 
@@ -75,7 +70,7 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.VF2Layout.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L72-L118" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.VF2Layout.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L72-L118" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -95,7 +90,7 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.VF2Layout.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.VF2Layout.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -105,13 +100,13 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.VF2Layout.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/layout/vf2_layout.py#L143-L274" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.VF2Layout.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/layout/vf2_layout.py#L127-L256" signature="run(dag)">
     run the layout method
   </Function>
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.VF2Layout.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L120-L138" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.VF2Layout.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L120-L138" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

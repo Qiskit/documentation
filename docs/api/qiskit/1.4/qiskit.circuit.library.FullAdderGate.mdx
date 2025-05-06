@@ -1,0 +1,164 @@
+---
+title: FullAdderGate (v1.4)
+description: API reference for qiskit.circuit.library.FullAdderGate in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.FullAdderGate
+---
+
+# FullAdderGate
+
+<Class id="qiskit.circuit.library.FullAdderGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/arithmetic/adders/adder.py#L184-L235" signature="qiskit.circuit.library.FullAdderGate(num_state_qubits, label=None)" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  Compute the sum of two $n$-sized qubit registers, including carry-in and -out bits.
+
+  For two registers $|a\rangle_n$ and $|b\rangle_n$ with $n$ qubits each, an adder performs the following operation
+
+$$
+|c_{\text{in}}\rangle_1 |a\rangle_n |b\rangle_n
+\mapsto |a\rangle_n |c_{\text{in}} + a + b \rangle_{n + 1}.
+$$
+
+  The quantum register $|a\rangle_n$ (and analogously $|b\rangle_n$)
+
+$$
+|a\rangle_n = |a_0\rangle \otimes \cdots \otimes |a_{n - 1}\rangle,
+$$
+
+  for $a_i \in \{0, 1\}$, is associated with the integer value
+
+$$
+a = 2^{0}a_{0} + 2^{1}a_{1} + \cdots + 2^{n - 1}a_{n - 1}.
+$$
+
+  **Parameters**
+
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits in each of the registers.
+  *   **name** – The name of the circuit.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.FullAdderGate.base_class "qiskit.circuit.library.FullAdderGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.condition">
+    The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.condition_bits">
+    Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.duration">
+    Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### num\_state\_qubits
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.num_state_qubits">
+    The number of state qubits, i.e. the number of bits in each input register.
+
+    **Returns**
+
+    The number of state qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.FullAdderGate.unit">
+    Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+</Class>
+

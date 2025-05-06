@@ -18,7 +18,7 @@ This documentation is relevant to the new IBM Quantum&reg; Platform. If you need
 
 The following example demonstrates how to port existing code to leverage Qiskit Serverless.
 <Admonition type="note">
-The following code assumes that you have saved your credentials. If you have not, follow the instructions in <LegacyContent>[Set up an IBM Quantum channel](/guides/setup-channel#iqp)</LegacyContent><CloudContent>[Set up your IBM Cloud account](/guides/cloud-setup#cloud-untrusted)</CloudContent> to authenticate with your API key.
+The following code assumes that you have saved your credentials. If you have not, follow the instructions in <LegacyContent>[Set up an IBM Quantum channel](/docs/guides/setup-channel#iqp)</LegacyContent><CloudContent>[Set up your IBM Cloud account](/docs/guides/cloud-setup#cloud-untrusted)</CloudContent> to authenticate with your API key.
 </Admonition>
 
 ## Update the experiment
@@ -34,7 +34,7 @@ qc_random = [(random_circuit(20, 20, measure=True)) for _ in range(30)]
 optimization_level = 3
 
 service = QiskitRuntimeService()
-backend = service.get_backend(backend_name)
+backend = service.backend(backend_name)
 
 pass_manager = generate_preset_pass_manager(
     optimization_level=optimization_level, backend=backend
@@ -50,7 +50,7 @@ def transpile_parallel(circuit, pass_manager):
 
 transpiled_circuits = [
     transpile_parallel(circuit, pass_manager)
-    for circuit in circuits
+    for circuit in qc_random
 ]
 
 print(transpiled_circuits)
@@ -58,7 +58,7 @@ print(transpiled_circuits)
   </TabItem>
 
   <TabItem value="Serverless" label="Serverless">
-    ```python
+```python
 # transpile_remote.py
 
 from qiskit.transpiler import generate_preset_pass_manager
@@ -206,7 +206,7 @@ except Exception as e:
 
 ## Upload to Qiskit Serverless
 
-Follow the instructions on the [Introduction to Qiskit Functions](/guides/functions) page to authenticate with your API key.
+Follow the instructions on the [Introduction to Qiskit Functions](/docs/guides/functions) page to authenticate with your API key.
 
 ```python
 from qiskit_ibm_catalog import QiskitServerless, QiskitFunction
@@ -240,14 +240,14 @@ backend = "ibm_brisbane"
 optimization_level = 3
 
 # Running program
-transpile_remote_serverless = serverless.get('transpile_remote_serverless')
+transpile_remote_serverless = serverless.load('transpile_remote_serverless')
 job = transpile_remote_serverless.run(
     circuits=qc_random,
     backend=backend,
     optimization_level=optimization_level
 )
 
-job.job_id()
+job.job_id
 ```
 Output
 ```text

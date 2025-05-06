@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.GroverOperator
 
 # GroverOperator
 
-<Class id="qiskit.circuit.library.GroverOperator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/grover_operator.py#L285-L557" signature="qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')" modifiers="class">
+<Class id="qiskit.circuit.library.GroverOperator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/grover_operator.py#L285-L557" signature="qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   The Grover operator.
@@ -137,7 +137,7 @@ $$
   ```
 
   <Admonition title="See also" type="note">
-    The `grover_operator()` implements the same functionality but keeping the [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate") abstract, such that the compiler may choose the optimal decomposition. We recommend using `grover_operator()` for performance reasons, which does not wrap the circuit into an opaque gate.
+    The [`grover_operator()`](qiskit.circuit.library.grover_operator "qiskit.circuit.library.grover_operator") implements the same functionality but keeping the [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate") abstract, such that the compiler may choose the optimal decomposition. We recommend using [`grover_operator()`](qiskit.circuit.library.grover_operator "qiskit.circuit.library.grover_operator") for performance reasons, which does not wrap the circuit into an opaque gate.
   </Admonition>
 
   **References**
@@ -155,7 +155,7 @@ $$
   Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
 
   <Admonition title="Deprecated since version 1.3_pending" type="danger">
-    The class `qiskit.circuit.library.grover_operator.GroverOperator` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use qiskit.circuit.library.grover\_operator instead.
+    The class `qiskit.circuit.library.grover_operator.GroverOperator` is pending deprecation as of Qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use qiskit.circuit.library.grover\_operator instead.
   </Admonition>
 
   **Parameters**
@@ -176,21 +176,15 @@ $$
     A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
-  ### calibrations
-
-  <Attribute id="qiskit.circuit.library.GroverOperator.calibrations">
-    Return calibration dictionary.
-
-    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
-    </Admonition>
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.circuit.library.GroverOperator.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.cregs">
     A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
@@ -214,7 +208,7 @@ $$
     The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.GroverOperator.unit "qiskit.circuit.library.GroverOperator.unit").
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -226,7 +220,7 @@ $$
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.GroverOperator.instances" attributeValue="190" />
+  <Attribute id="qiskit.circuit.library.GroverOperator.instances" attributeValue="160" />
 
   ### layout
 
@@ -252,6 +246,14 @@ $$
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_stretches()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.GroverOperator.num_input_vars "qiskit.circuit.library.GroverOperator.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.circuit.library.GroverOperator.num_captured_vars">
@@ -266,12 +268,28 @@ $$
     Return number of classical bits.
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the `iter_declared_stretches()` iterable.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.library.GroverOperator.num_declared_vars">
     The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.library.GroverOperator.num_vars "qiskit.circuit.library.GroverOperator.num_vars") + [`num_stretches()`](#qiskit.circuit.library.GroverOperator.num_stretches "qiskit.circuit.library.GroverOperator.num_stretches").
   </Attribute>
 
   ### num\_input\_vars
@@ -294,6 +312,14 @@ $$
     Return number of qubits.
   </Attribute>
 
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the `iter_stretches()` iterable.
+  </Attribute>
+
   ### num\_vars
 
   <Attribute id="qiskit.circuit.library.GroverOperator.num_vars">
@@ -307,11 +333,15 @@ $$
   <Attribute id="qiskit.circuit.library.GroverOperator.op_start_times">
     Return a list of operation start times.
 
+    <Admonition title="Note" type="note">
+      This attribute computes the estimate starting time of the operations in the scheduled circuit and only works for simple circuits that have no control flow or other classical feed-forward operations.
+    </Admonition>
+
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
     **Returns**
 
-    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    List of integers representing instruction estimated start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
     **Raises**
 
@@ -386,6 +416,12 @@ $$
 
   <Attribute id="qiskit.circuit.library.GroverOperator.prefix" attributeValue="'circuit'" />
 
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.qregs">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
   ### qubits
 
   <Attribute id="qiskit.circuit.library.GroverOperator.qubits">
@@ -410,7 +446,7 @@ $$
     The unit that [`duration`](#qiskit.circuit.library.GroverOperator.duration "qiskit.circuit.library.GroverOperator.duration") is specified in.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -424,18 +460,6 @@ $$
 
   <Attribute id="qiskit.circuit.library.GroverOperator.name" attributeTypeHint="str">
     A human-readable name for the circuit.
-  </Attribute>
-
-  ### qregs
-
-  <Attribute id="qiskit.circuit.library.GroverOperator.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
-  ### cregs
-
-  <Attribute id="qiskit.circuit.library.GroverOperator.cregs" attributeTypeHint="list[ClassicalRegister]">
-    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
   </Attribute>
 </Class>
 

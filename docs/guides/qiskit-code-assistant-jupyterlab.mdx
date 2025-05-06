@@ -2,6 +2,7 @@
 title: Use Qiskit Code Assistant in JupyterLab
 description: How to install, use, and configure Qiskit Code Assistant in JupyterLab.
 ---
+{/* cspell:ignore labextension */}
 
 # Use Qiskit Code Assistant in JupyterLab
 
@@ -26,7 +27,7 @@ Learn how to install, use, configure, and uninstall the official Qiskit Code Ass
 
 
 <video title="A user uses Qiskit Code Assistant in JupyterLab. The user has a comment in the code to get the available backends for their account in IBM Quantum, Qiskit Code Assistant gives a code suggestion to get the available backends. The user executes the code, gets the available backends in IBM Quantum Platform for the current account. The user asks Qiskit Code Assistant to generate the code to get the T1, T2 and other properties for the qubit 1 in the device ibm_brisbane. The assistant gives a code suggestion. The user runs the suggested code and gets the desired output." className="max-w-auto h-auto" controls>
-  <source src="/videos/guides/qiskit-code-assistant/demo-JupyterLab-t1t2-granite-8b-qiskit-short.mp4" type="video/mp4"></source>
+  <source src="/docs/videos/guides/qiskit-code-assistant/demo-JupyterLab-t1t2-granite-8b-qiskit-short.mp4" type="video/mp4"></source>
 </video>
 
 ## Install the JupyterLab extension
@@ -56,7 +57,7 @@ Other settings you might want to change:
 
 - Keyboard shortcuts can be changed from Settings > Settings Editor > Keyboard Shortcuts.
 
-- You can change the IBM Quantum API token to use in the JupyterLab command palette. To do that, type `Alt` + `Shift` + `C`, search for `qiskit`, select the **Qiskit Code Assistant: Set IBM Quantum API token** command, and paste in your token.
+- You can change the IBM Quantum API key to use in the JupyterLab command palette. To do that, type `Alt` + `Shift` + `C`, search for `qiskit`, select the **Qiskit Code Assistant: Set IBM Quantum API token** command, and paste in your key.
 
 - [Advanced] To change the instance of the Qiskit Code Assistant service that the extension should use, edit Qiskit Code Assistant `serviceUrl` setting.
 
@@ -67,10 +68,10 @@ Other settings you might want to change:
 ### Authentication and setup
 
 <LegacyContent>
-After installing the extension, it tries to authenticate you. By default, the package tries to authenticate to IBM Quantum services with the defined Qiskit API token, and uses your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`). If you need help configuring your account, follow the instructions in [Set up to use IBM Quantum Platform.](/guides/setup-channel#set-up-to-use-ibm-quantum-platform)
+After installing the extension, it tries to authenticate you. By default, the package tries to authenticate to IBM Quantum services with the defined Qiskit API key, and uses your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`). If you need help configuring your account, follow the instructions in [Set up to use IBM Quantum Platform.](/docs/guides/setup-channel#set-up-to-use-ibm-quantum-platform)
 </LegacyContent>
 <CloudContent>
-After installing the extension, it tries to authenticate you. By default, the package tries to authenticate to IBM Quantum services with the defined API key, and uses your key from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`). If you need help configuring your account, follow the instructions in [Set up your IBM Cloud account.](/guides/cloud-setup)
+After installing the extension, it tries to authenticate you. By default, the package tries to authenticate to IBM Quantum services with the defined API key, and uses your key from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`). If you need help configuring your account, follow the instructions in [Set up your IBM Cloud account.](/docs/guides/cloud-setup)
 </CloudContent>
 
 By default, the extension uses the `granite-8b-qiskit` model, which is listed in the Model Picker in the bottom status bar.
@@ -110,7 +111,7 @@ Use the following to accept, reject, and cycle through suggestions:
 
 Additionally, after the assistant runs, you can use the buttons on the widget to cycle or accept the suggestion:
 
-![The popup pane with buttons is shown.](/images/guides/qiskit-code-assistant/jupyterlab-inline-complete.avif)
+![The popup pane with buttons is shown.](/docs/images/guides/qiskit-code-assistant/jupyterlab-inline-complete.avif)
 
 <Admonition type="note">
 The service can sometimes take a few seconds to return a suggestion, you can see when the service is working by checking the status bar.
@@ -153,5 +154,5 @@ The code for this extension is publicly available and open source. Check it out 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-See examples to use Qiskit Code Assistant for [circuits](/guides/circuit-library), [configuring error suppression](/guides/configure-error-suppression), and [transpiling with pass managers.](/guides/transpile-with-pass-managers)
+See examples to use Qiskit Code Assistant for [circuits](/docs/guides/circuit-library), [configuring error suppression](/docs/guides/configure-error-suppression), and [transpiling with pass managers.](/docs/guides/transpile-with-pass-managers)
 </Admonition>

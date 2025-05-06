@@ -11,15 +11,16 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from scripts.tool_runner import run_cmd
+from scripts.tool_runner import configure_logging, run_cmd
 
 
 def main() -> None:
-    run_cmd(["tox", "-e", "fix"])
+    run_cmd("notebook formatters", ["tox", "-e", "fix"], progress=None)
 
 
 if __name__ == "__main__":
     try:
+        configure_logging()
         main()
     except KeyboardInterrupt:
         raise SystemExit(1)

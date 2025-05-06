@@ -1,0 +1,255 @@
+---
+title: LinearFunction (v1.4)
+description: API reference for qiskit.circuit.library.LinearFunction in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.LinearFunction
+---
+
+# LinearFunction
+
+<Class id="qiskit.circuit.library.LinearFunction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/linear_function.py#L26-L318" signature="qiskit.circuit.library.LinearFunction(linear, validate_input=False)" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  A linear reversible circuit on n qubits.
+
+  Internally, a linear function acting on n qubits is represented as a n x n matrix of 0s and 1s in numpy array format.
+
+  A linear function can be synthesized into CX and SWAP gates using the Patel–Markov–Hayes algorithm, as implemented in [`synth_cnot_count_full_pmh()`](synthesis#qiskit.synthesis.synth_cnot_count_full_pmh "qiskit.synthesis.synth_cnot_count_full_pmh") based on reference \[1].
+
+  For efficiency, the internal n x n matrix is stored in the format expected by cnot\_synth, which is the big-endian (and not the little-endian) bit-ordering convention.
+
+  **Example:** the circuit
+
+  ```text
+  q_0: ──■──
+       ┌─┴─┐
+  q_1: ┤ X ├
+       └───┘
+  q_2: ─────
+  ```
+
+  is represented by a 3x3 linear matrix
+
+$$
+\begin{pmatrix}
+1 & 0 & 0 \\
+1 & 1 & 0 \\
+0 & 0 & 1
+\end{pmatrix}
+$$
+
+  **References:**
+
+  \[1] Ketan N. Patel, Igor L. Markov, and John P. Hayes, Optimal synthesis of linear reversible circuits, Quantum Inf. Comput. 8(3) (2008). [Online at umich.edu.](https://web.eecs.umich.edu/~imarkov/pubs/jour/qic08-cnot.pdf)
+
+  Create a new linear function.
+
+  **Parameters**
+
+  *   **linear** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*]] | np.ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*LinearFunction*](#qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")  *|*[*PermutationGate*](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate")  *|*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – data from which a linear function can be constructed. It can be either a nxn matrix (describing the linear transformation), a permutation (which is a special case of a linear function), another linear function, a clifford (when it corresponds to a linear function), or a quantum circuit composed of linear gates (CX and SWAP) and other objects described above, including nested subcircuits.
+  *   **validate\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, performs more expensive input validation checks, such as checking that a given n x n matrix is invertible.
+
+  **Raises**
+
+  [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the input is invalid: either the input matrix is not square or not invertible, or the input quantum circuit contains non-linear objects (for example, a Hadamard gate, or a Clifford that does not correspond to a linear function).
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.LinearFunction.base_class "qiskit.circuit.library.LinearFunction.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.condition">
+    The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.condition_bits">
+    Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.duration">
+    Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.label">
+    Return instruction label
+  </Attribute>
+
+  ### linear
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.linear">
+    Returns the n x n matrix representing this linear function.
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### original\_circuit
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.original_circuit">
+    Returns the original circuit used to construct this linear function (including None, when the linear function is not constructed from a circuit).
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.LinearFunction.unit">
+    Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### extend\_with\_identity
+
+  <Function id="qiskit.circuit.library.LinearFunction.extend_with_identity" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/linear_function.py#L275-L293" signature="extend_with_identity(num_qubits, positions)">
+    Extend linear function to a linear function over nq qubits, with identities on other subsystems.
+
+    **Parameters**
+
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of qubits of the extended function.
+    *   **positions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – describes the positions of original qubits in the extended function’s qubits.
+
+    **Returns**
+
+    extended linear function.
+
+    **Return type**
+
+    [LinearFunction](#qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")
+  </Function>
+
+  ### function\_str
+
+  <Function id="qiskit.circuit.library.LinearFunction.function_str" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/linear_function.py#L301-L318" signature="function_str()">
+    Return string representation of the linear function viewed as a linear transformation.
+  </Function>
+
+  ### is\_permutation
+
+  <Function id="qiskit.circuit.library.LinearFunction.is_permutation" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/linear_function.py#L254-L261" signature="is_permutation()">
+    Returns whether this linear function is a permutation, that is whether every row and every column of the n x n matrix has exactly one 1.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### mat\_str
+
+  <Function id="qiskit.circuit.library.LinearFunction.mat_str" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/linear_function.py#L295-L299" signature="mat_str()">
+    Return string representation of the linear function viewed as a matrix with 0/1 entries.
+  </Function>
+
+  ### permutation\_pattern
+
+  <Function id="qiskit.circuit.library.LinearFunction.permutation_pattern" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/linear_function.py#L263-L273" signature="permutation_pattern()">
+    This method first checks if a linear function is a permutation and raises a qiskit.circuit.exceptions.CircuitError if not. In the case that this linear function is a permutation, returns the permutation pattern.
+  </Function>
+
+  ### synthesize
+
+  <Function id="qiskit.circuit.library.LinearFunction.synthesize" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/linear_function.py#L229-L240" signature="synthesize()">
+    Synthesizes the linear function into a quantum circuit.
+
+    <Admonition title="Deprecated since version 1.3_pending" type="danger">
+      The method `qiskit.circuit.library.generalized_gates.linear_function.LinearFunction.synthesize()` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Call LinearFunction.definition instead, or compile the circuit.
+    </Admonition>
+
+    **Returns**
+
+    A circuit implementing the evolution.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.library.LinearFunction.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/linear_function.py#L219-L221" signature="validate_parameter(parameter)">
+    Parameter validation
+  </Function>
+</Class>
+

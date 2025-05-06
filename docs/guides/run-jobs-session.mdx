@@ -15,7 +15,7 @@ description: How to run a quantum computing job in a Qiskit Runtime session.
 <CloudContent>
 <Admonition type="note" title="Notes">
 * This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/run-jobs-session)
-* Open Plan users cannot submit session jobs. Workloads must be run in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+* Open Plan users cannot submit session jobs. Workloads must be run in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
@@ -25,7 +25,7 @@ Use sessions when you need dedicated and exclusive access to the QPU.
 
 Before starting a session, you must [set up Qiskit Runtime](./install-qiskit) and initialize it as a service:
 
-``` python
+```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Session, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
 service = QiskitRuntimeService()
@@ -45,11 +45,11 @@ If you open a session but do not submit any jobs to it for 30 minutes, the sessi
 
 <CloudContent>
 <Admonition type="caution">
-The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
-``` python
+```python
 from qiskit_ibm_runtime import Session, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
@@ -66,11 +66,11 @@ The context manager automatically opens and closes the session.
 
 <CloudContent>
 <Admonition type="caution">
-The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
-``` python
+```python
 from qiskit_ibm_runtime import Session, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
@@ -88,11 +88,11 @@ This timer starts when the session starts.  When the value is reached, the sessi
 
 <CloudContent>
 <Admonition type="caution">
-The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
-``` python
+```python
 with Session(backend=backend, max_time="25m"):
   ...
 ```
@@ -132,11 +132,11 @@ A session automatically closes when it exits the context manager. When the sessi
 
 <CloudContent>
 <Admonition type="caution">
-The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
-``` python
+```python
 with Session(backend=backend) as session:
     estimator = Estimator()
     job1 = estimator.run(...)
@@ -153,11 +153,11 @@ If you are not using a context manager, manually close the session to avoid unwa
 
 <CloudContent>
 <Admonition type="caution">
-The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
-``` python
+```python
 session = Session(backend=backend)
 
 # If using qiskit-ibm-runtime earlier than 0.24.0, change `mode=` to `session=`
@@ -195,11 +195,11 @@ For a comprehensive overview of a session's configuration and status, use the  `
 
 <CloudContent>
 <Admonition type="caution">
-The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
-``` python
+```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Session, EstimatorV2 as Estimator
 
 service = QiskitRuntimeService()
@@ -217,23 +217,25 @@ Example: Run an iterative workload that uses the classical SciPy optimizer to mi
 
 <CloudContent>
 <Admonition type="caution">
-The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
 ```python
+import numpy as np
 def cost_func(params, ansatz, hamiltonian, estimator):
     # Return estimate of energy from estimator
 
     energy = estimator.run(ansatz, hamiltonian, parameter_values=params).result().values[0]
     return energy
 
+num_params = 5
 x0 = 2 * np.pi * np.random.random(num_params)
 
 session = Session(backend=backend)
 
 # If using qiskit-ibm-runtime earlier than 0.24.0, change `mode=` to `session=`
-estimator = Estimator(mode=session, options={"shots": int(1e4)})
+estimator = Estimator(mode=session, options={"default_shots": int(1e4)})
 res = minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method="cobyla")
 
 # Close the session because no context manager was used.
@@ -247,7 +249,7 @@ You can get more out of a session by running multiple workloads simultaneously. 
 
 <CloudContent>
 <Admonition type="caution">
-The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
@@ -279,6 +281,6 @@ with Session(backend=backend), ThreadPoolExecutor() as executor:
 
 <Admonition type="tip" title="Recommendations">
   - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial.
-  - Review the [Session API](/api/qiskit-ibm-runtime/session) reference.
-  - Understand the [Job limits](/guides/job-limits) when sending a job to an IBM&reg; QPU.
+  - Review the [Session API](/docs/api/qiskit-ibm-runtime/session) reference.
+  - Understand the [Job limits](/docs/guides/job-limits) when sending a job to an IBM&reg; QPU.
 </Admonition>

@@ -1,0 +1,177 @@
+---
+title: DiagonalGate (v1.4)
+description: API reference for qiskit.circuit.library.DiagonalGate in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.DiagonalGate
+---
+
+# DiagonalGate
+
+<Class id="qiskit.circuit.library.DiagonalGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/diagonal.py#L55-L149" signature="qiskit.circuit.library.DiagonalGate(diag)" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  A generic diagonal quantum gate.
+
+  Matrix form:
+
+$$
+\text{DiagonalGate}\ q_0, q_1, .., q_{n-1} =
+\begin{pmatrix}
+D[0]    & 0         & \dots     & 0 \\
+0       & D[1]      & \dots     & 0 \\
+\vdots  & \vdots    & \ddots    & 0 \\
+0       & 0         & \dots     & D[n-1]
+\end{pmatrix}
+
+
+$$
+
+  Diagonal gates are useful as representations of Boolean functions, as they can map from $\{0,1\}^{2^n}$ to $\{0,1\}^{2^n}$ space. For example a phase oracle can be seen as a diagonal gate with $\{1, -1\}$ on the diagonals. Such an oracle will induce a $+1$ or :math\`-1\` phase on the amplitude of any corresponding basis state.
+
+  Diagonal gates appear in many classically hard oracular problems such as Forrelation or Hidden Shift circuits.
+
+  Diagonal gates are represented and simulated more efficiently than a dense $2^n \times 2^n$ unitary matrix.
+
+  The reference implementation is via the method described in Theorem 7 of \[1]. The code is based on Emanuel Malvetti’s semester thesis at ETH in 2018, supervised by Raban Iten and Prof. Renato Renner.
+
+  **Reference:**
+
+  \[1] Shende et al., Synthesis of Quantum Logic Circuits, 2009 [arXiv:0406176](https://arxiv.org/pdf/quant-ph/0406176.pdf)
+
+  **Parameters**
+
+  **diag** (*Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")*]*) – list of the $2^k$ diagonal entries (for a diagonal gate on $k$ qubits).
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.DiagonalGate.base_class "qiskit.circuit.library.DiagonalGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.condition">
+    The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.condition_bits">
+    Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.duration">
+    Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.DiagonalGate.unit">
+    Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.DiagonalGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/diagonal.py#L133-L138" signature="inverse(annotated=False)">
+    Return the inverse of the diagonal gate.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.library.DiagonalGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/diagonal.py#L125-L131" signature="validate_parameter(parameter)">
+    Diagonal Gate parameter should accept complex (in addition to the Gate parameter types) and always return build-in complex.
+  </Function>
+</Class>
+

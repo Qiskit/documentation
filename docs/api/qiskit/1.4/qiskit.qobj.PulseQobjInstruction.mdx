@@ -1,0 +1,76 @@
+---
+title: PulseQobjInstruction (v1.4)
+description: API reference for qiskit.qobj.PulseQobjInstruction in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.PulseQobjInstruction
+---
+
+# PulseQobjInstruction
+
+<Class id="qiskit.qobj.PulseQobjInstruction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/pulse_qobj.py#L82-L279" signature="qiskit.qobj.PulseQobjInstruction(name, t0, ch=None, conditional=None, val=None, phase=None, duration=None, qubits=None, memory_slot=None, register_slot=None, kernels=None, discriminators=None, label=None, type=None, pulse_shape=None, parameters=None, frequency=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A class representing a single instruction in an PulseQobj Experiment.
+
+  Instantiate a new PulseQobjInstruction object.
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The class `qiskit.qobj.pulse_qobj.PulseQobjInstruction` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
+  </Admonition>
+
+  **Parameters**
+
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the instruction
+  *   **t0** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Pulse start time in integer **dt** units.
+  *   **ch** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The channel to apply the pulse instruction.
+  *   **conditional** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The register to use for a conditional for this instruction
+  *   **val** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")) – Complex value to apply, bounded by an absolute value of 1.
+  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – if a `fc` instruction, the frame change phase in radians.
+  *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – if a `sf` instruction, the frequency in Hz.
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The duration of the pulse in **dt** units.
+  *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of `int` representing the qubits the instruction operates on
+  *   **memory\_slot** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – If a `measure` instruction this is a list of `int` containing the list of memory slots to store the measurement results in (must be the same length as qubits). If a `bfunc` instruction this is a single `int` of the memory slot to store the boolean function result in.
+  *   **register\_slot** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – If a `measure` instruction this is a list of `int` containing the list of register slots in which to store the measurement results (must be the same length as qubits). If a `bfunc` instruction this is a single `int` of the register slot in which to store the result.
+  *   **kernels** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of [`QobjMeasurementOption`](qiskit.qobj.QobjMeasurementOption "qiskit.qobj.QobjMeasurementOption") objects defining the measurement kernels and set of parameters if the measurement level is 1 or 2. Only used for `acquire` instructions.
+  *   **discriminators** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of [`QobjMeasurementOption`](qiskit.qobj.QobjMeasurementOption "qiskit.qobj.QobjMeasurementOption") used to set the discriminators to be used if the measurement level is 2. Only used for `acquire` instructions.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Label of instruction
+  *   **type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Type of instruction
+  *   **pulse\_shape** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The shape of the parametric pulse
+  *   **parameters** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – The parameters for a parametric pulse
+
+  ## Methods
+
+  ### from\_dict
+
+  <Function id="qiskit.qobj.PulseQobjInstruction.from_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/pulse_qobj.py#L236-L273" signature="from_dict(data)" modifiers="classmethod">
+    Create a new PulseQobjExperimentConfig object from a dictionary.
+
+    **Parameters**
+
+    **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – A dictionary for the experiment config
+
+    **Returns**
+
+    The object from the input dictionary.
+
+    **Return type**
+
+    [PulseQobjInstruction](#qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")
+  </Function>
+
+  ### to\_dict
+
+  <Function id="qiskit.qobj.PulseQobjInstruction.to_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/pulse_qobj.py#L200-L214" signature="to_dict()">
+    Return a dictionary format representation of the Instruction.
+
+    **Returns**
+
+    The dictionary form of the PulseQobjInstruction.
+
+    **Return type**
+
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+  </Function>
+</Class>
+

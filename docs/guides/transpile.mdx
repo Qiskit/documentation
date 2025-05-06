@@ -11,15 +11,15 @@ Transpilation is the process of rewriting a given input circuit to match the top
 
 The process of transpilation takes a circuit that contains your instructions:
 
-![A two-qubit quantum circuit containing a Hadamard and two CNOT gates.](/images/guides/pre-transpiled.avif "Quantum circuit")
+![A two-qubit quantum circuit containing a Hadamard and two CNOT gates.](/docs/images/guides/transpile/pre-transpiled.avif "Quantum circuit")
 
 Transpilation then transforms it such that only instructions available on a chosen backend are used, and optimizes those instructions to minimize the effects of noise:
 
-![The same two-qubit quantum circuit after transpilation.  It contains RZ, X, SX, and ECR gates.](/images/guides/transpiled.avif "Quantum circuit after transpilation")
+![The same two-qubit quantum circuit after transpilation.  It contains RZ, X, SX, and ECR gates.](/docs/images/guides/transpile/transpiled.avif "Quantum circuit after transpilation")
 
 ----
 
-A central component of the Qiskit SDK, the transpiler is designed for modularity and extensibility. Its main use is to write new circuit transformations (known as transpiler **passes**), and combine them with other existing passes, greatly reducing the depth and complexity of quantum circuits.  Which passes are chained together and in which order has a major effect on the final outcome. This pipeline is determined by the [`PassManager`](/api/qiskit/qiskit.transpiler.PassManager) and [`StagedPassManager`](/api/qiskit/qiskit.transpiler.StagedPassManager) objects.  The `StagedPassManager` orchestrates the execution of one or more `PassManagers` and determines the order in which they are executed, while the `PassManager` object is merely a collection of one or more passes.  Think of the `StagedPassManager` as the conductor in an orchestra, the `PassManagers` as the different instrument sections, and the `Pass` objects as the individual musicians.  In this way, you can compose hardware-efficient quantum circuits that let you execute utility-scale work while keeping noise manageable.
+A central component of the Qiskit SDK, the transpiler is designed for modularity and extensibility. Its main use is to write new circuit transformations (known as transpiler **passes**), and combine them with other existing passes, greatly reducing the depth and complexity of quantum circuits.  Which passes are chained together and in which order has a major effect on the final outcome. This pipeline is determined by the [`PassManager`](/docs/api/qiskit/qiskit.transpiler.PassManager) and [`StagedPassManager`](/docs/api/qiskit/qiskit.transpiler.StagedPassManager) objects.  The `StagedPassManager` orchestrates the execution of one or more `PassManagers` and determines the order in which they are executed, while the `PassManager` object is merely a collection of one or more passes.  Think of the `StagedPassManager` as the conductor in an orchestra, the `PassManagers` as the different instrument sections, and the `Pass` objects as the individual musicians.  In this way, you can compose hardware-efficient quantum circuits that let you execute utility-scale work while keeping noise manageable.
 
 Find more information about the pass manager stages in the [Transpiler stages](transpiler-stages) topic.
 
@@ -42,7 +42,7 @@ Qiskit's prebuilt transpiler pipeline consists of six fundamental stages:
 
 ## Transpile with pass managers
 
-The recommended way to transpile a circuit is to create a staged pass manager and then execute its `run` method with your circuit as input. You can use the [`generate_preset_pass_manager`](/api/qiskit/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager) function to generate a staged pass manager with reasonable defaults.
+The recommended way to transpile a circuit is to create a staged pass manager and then execute its `run` method with your circuit as input. You can use the [`generate_preset_pass_manager`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager) function to generate a staged pass manager with reasonable defaults.
 
 More advanced users can customize a set of `PassManager` and `StagedPassManager` objects and determine the order in which each stage is run.  This can dramatically change the final output circuit. In fact, a custom approach to transpiling a quantum algorithm often produces more efficient error suppression than the default approach.  A custom approach involves rewriting quantum circuits to match hardware constraints and suppress the effects of noise.  The flow of logic for this tool chain is customizable and need not be linear.  The transpilation process can prepare iterative loops, conditional branches, and other complex behaviors.  A good starting place when developing a set of custom passes is to examine the default sequence of transformations.
 
@@ -51,7 +51,7 @@ For an overview of transpiling using pass managers, see [Transpile with pass man
 
 ## Default transpilation
 
-For a simpler, but less customizable, "out-of-the-box" way to use the transpiler, use the [`qiskit.compiler.transpile`](/api/qiskit/compiler#qiskit.compiler.transpile) function.  This generates and runs one of the preset `StagedPassManager`s based on, among other options, an `optimization_level` flag that can be set to 0, 1, 2, or 3.  Higher levels generate more optimized circuits at the expense of longer transpilation times.
+For a simpler, but less customizable, "out-of-the-box" way to use the transpiler, use the [`qiskit.compiler.transpile`](/docs/api/qiskit/compiler#qiskit.compiler.transpile) function.  This generates and runs one of the preset `StagedPassManager`s based on, among other options, an `optimization_level` flag that can be set to 0, 1, 2, or 3.  Higher levels generate more optimized circuits at the expense of longer transpilation times.
 
 ## Next steps
 
