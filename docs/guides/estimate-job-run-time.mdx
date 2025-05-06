@@ -134,7 +134,7 @@ While getting an accurate local estimation is complicated by the extra operation
 - `<circuit length>` is the total instruction length. Each instruction takes different amount of time on the QPU, so the total length varies from circuit to circuit. A measurement, for example, can take 56 times longer than an `x` gate. `backend.target[<instruction>][<qubit>].duration` can be used to find the exact duration for each instruction. A typical circuit length is likely between 50-100 microseconds. If you are using error suppression or mitigation techniques with the primitives, extra instructions might be inserted into your circuit, which would increase the total circuit length.
 - `<num executions>` is the total number of circuits times the number of shots, where the circuits are those generated after PUB elements are broadcasted. If you are using error-mitigation techniques with the primitives, extra circuits can be run as part of the mitigation process, which would increase the total number of executions. Advanced error-mitigation techniques such as PEA and PEC come with much higher overhead because they require running circuits for noise learning.
 
-If you aren't using any advanced error-mitigation techiques, you can use `2+0.00035*<num executions>` as a quick formula. (Note that this does not include overhead from control electronics operations, such as loading the payload.)
+If you aren't using any advanced error-mitigation techniques, you can use `2+0.00035*<num executions>` as a quick formula. (Note that this does not include overhead from control electronics operations, such as loading the payload.)
 </CloudContent>
 
 ## Next steps
