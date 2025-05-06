@@ -8,24 +8,27 @@ python_api_name: qiskit.circuit.library.PhaseOracle
 
 # PhaseOracle
 
-<Class id="qiskit.circuit.library.PhaseOracle" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/phase_oracle.py#L28-L160" signature="qiskit.circuit.library.PhaseOracle(expression, synthesizer=None, var_order=None)" modifiers="class">
+<Class id="qiskit.circuit.library.PhaseOracle" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/phase_oracle.py#L22-L129" signature="qiskit.circuit.library.PhaseOracle(expression, var_order=None)" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   Phase Oracle.
 
-  The Phase Oracle object constructs circuits for any arbitrary input logical expressions. A logical expression is composed of logical operators & (AND), | (OR), \~ (NOT), and ^ (XOR). as well as symbols for literals (variables). For example, ‘a & b’, and (v0 | \~v1) & (\~v2 & v3) are both valid string representation of boolean logical expressions.
+  The Phase Oracle object constructs circuits for any arbitrary input logical expressions. A logical expression is composed of logical operators & (logical AND), | (logical OR), \~ (logical NOT), and ^ (logical XOR). as well as symbols for literals (variables). For example, ‘a & b’, and (v0 | \~v1) & (\~v2 & v3) are both valid string representation of boolean logical expressions.
 
-  For convenience, this oracle, in addition to parsing arbitrary logical expressions, also supports input strings in the [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals. See `qiskit.circuit.library.phase_oracle.PhaseOracle.from_dimacs_file()`.
+  A phase oracle for a boolean function f(x) performs the following quantum operation:
+
+$$
+|x\rangle \mapsto (-1)^{f(x)}|x\rangle
+$$
+
+  For convenience, this oracle, in addition to parsing arbitrary logical expressions, also supports input strings in the [DIMACS CNF format](https://web.archive.org/web/20190325181937/https://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals. See `qiskit.circuit.library.phase_oracle.PhaseOracle.from_dimacs_file()`.
 
   From 16 variables on, possible performance issues should be expected when using the default synthesizer.
 
-  Creates a PhaseOracle object
-
   **Parameters**
 
-  *   **expression** (*Union\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, ClassicalElement]*) – A Python-like boolean expression.
-  *   **synthesizer** (*Optional\[Callable\[\[*[*BooleanExpression*](qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]]*) – Optional. A function to convert a BooleanExpression into a QuantumCircuit If None is provided, Tweedledum’s pkrm\_synth with phase\_esop will be used.
-  *   **var\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list with the order in which variables will be created. (default: by appearance)
+  *   **expression** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – A Python-like boolean expression.
+  *   **var\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | None*) – A list with the order in which variables will be created. (default: by appearance)
 
   ## Attributes
 
@@ -35,21 +38,15 @@ python_api_name: qiskit.circuit.library.PhaseOracle
     A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
-  ### calibrations
-
-  <Attribute id="qiskit.circuit.library.PhaseOracle.calibrations">
-    Return calibration dictionary.
-
-    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
-    </Admonition>
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.circuit.library.PhaseOracle.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.PhaseOracle.cregs">
     A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
@@ -73,7 +70,7 @@ python_api_name: qiskit.circuit.library.PhaseOracle
     The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.PhaseOracle.unit "qiskit.circuit.library.PhaseOracle.unit").
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -85,7 +82,7 @@ python_api_name: qiskit.circuit.library.PhaseOracle
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.PhaseOracle.instances" attributeValue="266" />
+  <Attribute id="qiskit.circuit.library.PhaseOracle.instances" attributeValue="224" />
 
   ### layout
 
@@ -111,6 +108,14 @@ python_api_name: qiskit.circuit.library.PhaseOracle
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.library.PhaseOracle.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_stretches()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.PhaseOracle.num_input_vars "qiskit.circuit.library.PhaseOracle.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.circuit.library.PhaseOracle.num_captured_vars">
@@ -125,12 +130,28 @@ python_api_name: qiskit.circuit.library.PhaseOracle
     Return number of classical bits.
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.library.PhaseOracle.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the `iter_declared_stretches()` iterable.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.library.PhaseOracle.num_declared_vars">
     The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.library.PhaseOracle.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.library.PhaseOracle.num_vars "qiskit.circuit.library.PhaseOracle.num_vars") + [`num_stretches()`](#qiskit.circuit.library.PhaseOracle.num_stretches "qiskit.circuit.library.PhaseOracle.num_stretches").
   </Attribute>
 
   ### num\_input\_vars
@@ -153,6 +174,14 @@ python_api_name: qiskit.circuit.library.PhaseOracle
     Return number of qubits.
   </Attribute>
 
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.library.PhaseOracle.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the `iter_stretches()` iterable.
+  </Attribute>
+
   ### num\_vars
 
   <Attribute id="qiskit.circuit.library.PhaseOracle.num_vars">
@@ -166,11 +195,15 @@ python_api_name: qiskit.circuit.library.PhaseOracle
   <Attribute id="qiskit.circuit.library.PhaseOracle.op_start_times">
     Return a list of operation start times.
 
+    <Admonition title="Note" type="note">
+      This attribute computes the estimate starting time of the operations in the scheduled circuit and only works for simple circuits that have no control flow or other classical feed-forward operations.
+    </Admonition>
+
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
     **Returns**
 
-    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    List of integers representing instruction estimated start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
     **Raises**
 
@@ -239,6 +272,12 @@ python_api_name: qiskit.circuit.library.PhaseOracle
 
   <Attribute id="qiskit.circuit.library.PhaseOracle.prefix" attributeValue="'circuit'" />
 
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.PhaseOracle.qregs">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
   ### qubits
 
   <Attribute id="qiskit.circuit.library.PhaseOracle.qubits">
@@ -251,7 +290,7 @@ python_api_name: qiskit.circuit.library.PhaseOracle
     The unit that [`duration`](#qiskit.circuit.library.PhaseOracle.duration "qiskit.circuit.library.PhaseOracle.duration") is specified in.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -261,23 +300,11 @@ python_api_name: qiskit.circuit.library.PhaseOracle
     A human-readable name for the circuit.
   </Attribute>
 
-  ### qregs
-
-  <Attribute id="qiskit.circuit.library.PhaseOracle.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
-  ### cregs
-
-  <Attribute id="qiskit.circuit.library.PhaseOracle.cregs" attributeTypeHint="list[ClassicalRegister]">
-    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
   ## Methods
 
   ### evaluate\_bitstring
 
-  <Function id="qiskit.circuit.library.PhaseOracle.evaluate_bitstring" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/phase_oracle.py#L99-L110" signature="evaluate_bitstring(bitstring)">
+  <Function id="qiskit.circuit.library.PhaseOracle.evaluate_bitstring" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/phase_oracle.py#L70-L81" signature="evaluate_bitstring(bitstring)">
     Evaluate the oracle on a bitstring. This evaluation is done classically without any quantum circuit.
 
     **Parameters**
@@ -295,10 +322,10 @@ python_api_name: qiskit.circuit.library.PhaseOracle
 
   ### from\_dimacs\_file
 
-  <Function id="qiskit.circuit.library.PhaseOracle.from_dimacs_file" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/phase_oracle.py#L112-L160" signature="from_dimacs_file(filename)" modifiers="classmethod">
+  <Function id="qiskit.circuit.library.PhaseOracle.from_dimacs_file" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/phase_oracle.py#L83-L129" signature="from_dimacs_file(filename)" modifiers="classmethod">
     Create a PhaseOracle from the string in the DIMACS format.
 
-    It is possible to build a PhaseOracle from a file in [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals.
+    It is possible to build a PhaseOracle from a file in [DIMACS CNF format](https://web.archive.org/web/20190325181937/https://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals.
 
     The following is an example of a CNF expressed in the DIMACS format:
 

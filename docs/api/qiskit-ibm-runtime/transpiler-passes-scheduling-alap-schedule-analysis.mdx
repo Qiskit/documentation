@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
 # ALAPScheduleAnalysis
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L438-L655" signature="ALAPScheduleAnalysis(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L422-L639" signature="ALAPScheduleAnalysis(*args, **kwargs)" modifiers="class">
   Bases: `BaseDynamicCircuitAnalysis`
 
   Dynamic circuits as-late-as-possible (ALAP) scheduling analysis pass.
@@ -62,7 +62,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
     **Parameters**
 
     *   **circuit** (*QuantumCircuit*) – The dag on which the pass is run.
-    *   **property\_set** (*PropertySet | dict | None*) – Input/output property set. An analysis pass might change the property set in-place.
+    *   **property\_set** (*PropertySet | dict | None*) – Input/output property set. An analysis pass might change the property set in-place. If not given, the existing `property_set` attribute of the pass will be used (if set).
 
     **Returns**
 
@@ -81,7 +81,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
     **Parameters**
 
     *   **passmanager\_ir** (*Any*) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.3)")) – State associated with workflow execution by the pass manager itself.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.0)")) – State associated with workflow execution by the pass manager itself.
     *   **callback** (*Callable | None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
@@ -90,7 +90,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
     **Return type**
 
-    tuple\[*Any*, [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.3)")]
+    tuple\[*Any*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.0)")]
   </Function>
 
   ### name
@@ -105,7 +105,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L459-L478" signature="run(dag)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L443-L462" signature="run(dag)">
     Run the ASAPSchedule pass on dag. :param dag: DAG to schedule. :type dag: DAGCircuit
 
     **Raises**
@@ -119,7 +119,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.3)"))
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.0)"))
 
     **Return type**
 
@@ -133,7 +133,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
     **Parameters**
 
-    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.3)")) – Pass manager state to update.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.0)")) – Pass manager state to update.
     *   **run\_state** (*RunState*) – Completion status of current task.
 
     **Returns**
@@ -142,7 +142,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
     **Return type**
 
-    [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.3)")
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.0)")
   </Function>
 </Class>
 

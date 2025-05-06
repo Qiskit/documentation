@@ -8,32 +8,27 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
 # UnitarySynthesis
 
-<Class id="qiskit.transpiler.passes.UnitarySynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/unitary_synthesis.py#L316-L621" signature="qiskit.transpiler.passes.UnitarySynthesis(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.UnitarySynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/synthesis/unitary_synthesis.py#L54-L348" signature="qiskit.transpiler.passes.UnitarySynthesis(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Synthesize gates according to their basis gates.
 
   Synthesize unitaries over some basis gates.
 
-  This pass can approximate 2-qubit unitaries given some gate fidelities (either via `backend_props` or `target`). More approximation can be forced by setting a heuristic dial `approximation_degree`.
-
-  <Admonition title="Deprecated since version 1.4" type="danger">
-    `qiskit.transpiler.passes.synthesis.unitary_synthesis.UnitarySynthesis.__init__()`’s argument `backend_props` is deprecated as of Qiskit 1.4. It will be removed in Qiskit 2.0. The BackendProperties data structure has been deprecated and will be removed in Qiskit 2.0. The target input argument should be used instead. You can use Target.from\_configuration() to build the target from the properties object, but in 2.0 you will need to generate a target directly.
-  </Admonition>
+  This pass can approximate 2-qubit unitaries given some gate fidelities (via `target`). More approximation can be forced by setting a heuristic dial `approximation_degree`.
 
   **Parameters**
 
   *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – List of gate names to target. If this is not specified the `target` argument must be used. If both this and the `target` are specified the value of `target` will be used and this will be ignored.
   *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation). Approximation can make the synthesized circuit cheaper at the cost of straying from the original unitary. If None, approximation is done based on gate fidelities.
-  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – the coupling map of the backend in case synthesis is done on a physical circuit. The directionality of the coupling\_map will be taken into account if `pulse_optimize` is `True`/`None` and `natural_direction` is `True`/`None`.
-  *   **backend\_props** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties of a backend to synthesize for (e.g. gate fidelities).
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – the coupling map of the target in case synthesis is done on a physical circuit. The directionality of the coupling\_map will be taken into account if `pulse_optimize` is `True`/`None` and `natural_direction` is `True`/`None`.
   *   **pulse\_optimize** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to optimize pulses during synthesis. A value of `None` will attempt it but fall back if it does not succeed. A value of `True` will raise an error if pulse-optimized synthesis does not succeed.
-  *   **natural\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to apply synthesis considering directionality of 2-qubit gates. Only applies when `pulse_optimize` is `True` or `None`. The natural direction is determined by first checking to see whether the coupling map is unidirectional. If there is no coupling map or the coupling map is bidirectional, the gate direction with the shorter duration from the backend properties will be used. If set to True, and a natural direction can not be determined, raises [`TranspilerError`](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError"). If set to None, no exception will be raised if a natural direction can not be determined.
+  *   **natural\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to apply synthesis considering directionality of 2-qubit gates. Only applies when `pulse_optimize` is `True` or `None`. The natural direction is determined by first checking to see whether the coupling map is unidirectional. If there is no coupling map or the coupling map is bidirectional, the gate direction with the shorter duration from the target properties will be used. If set to True, and a natural direction can not be determined, raises [`TranspilerError`](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError"). If set to None, no exception will be raised if a natural direction can not be determined.
   *   **synth\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – List of gates to synthesize. If None and `pulse_optimize` is False or None, default to `['unitary']`. If `None` and `pulse_optimize == True`, default to `['unitary', 'swap']`
   *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The unitary synthesis method plugin to use.
   *   **min\_qubits** – The minimum number of qubits in the unitary to synthesize. If this is set and the unitary is less than the specified number of qubits it will not be synthesized.
   *   **plugin\_config** – Optional extra configuration arguments (as a `dict`) which are passed directly to the specified unitary synthesis plugin. By default, this will have no effect as the default plugin has no extra arguments. Refer to the documentation of your unitary synthesis plugin on how to use this.
-  *   **target** – The optional [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") for the target device the pass is compiling for. If specified this will supersede the values set for `basis_gates`, `coupling_map`, and `backend_props`.
+  *   **target** – The optional [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") for the target device the pass is compiling for. If specified this will supersede the values set for `basis_gates` and `coupling_map`.
 
   **Raises**
 
@@ -61,7 +56,7 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.UnitarySynthesis.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.UnitarySynthesis.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -81,7 +76,7 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.UnitarySynthesis.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.UnitarySynthesis.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -91,7 +86,7 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.UnitarySynthesis.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/unitary_synthesis.py#L433-L538" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.UnitarySynthesis.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/synthesis/unitary_synthesis.py#L159-L265" signature="run(dag)">
     Run the UnitarySynthesis pass on `dag`.
 
     **Parameters**
@@ -109,7 +104,7 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.UnitarySynthesis.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.UnitarySynthesis.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

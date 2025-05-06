@@ -33,8 +33,11 @@ async def _main() -> None:
     start_time = datetime.now()
     print("Executing notebooks:")
     results = await asyncio.gather(*(execute_notebook(job) for job in jobs))
-    print("Checking for trailing jobs...")
-    results.append(cancel_trailing_jobs(start_time))
+
+    if not args.ignore_trailing_jobs:
+        print("Checking for trailing jobs...")
+        results.append(cancel_trailing_jobs(start_time))
+
     if not all(results):
         sys.exit(1)
 

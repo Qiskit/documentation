@@ -1,0 +1,148 @@
+---
+title: GateDirection (v1.4)
+description: API reference for qiskit.transpiler.passes.GateDirection in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.GateDirection
+---
+
+# GateDirection
+
+<Class id="qiskit.transpiler.passes.GateDirection" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/utils/gate_direction.py#L19-L86" signature="qiskit.transpiler.passes.GateDirection(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Modify asymmetric gates to match the hardware coupling direction.
+
+  This pass supports replacements for the cx, cz, ecr, swap, rzx, rxx, ryy and rzz gates, using the following identities:
+
+  ```python
+                       ┌───┐┌───┐┌───┐
+  q_0: ──■──      q_0: ┤ H ├┤ X ├┤ H ├
+       ┌─┴─┐  =        ├───┤└─┬─┘├───┤
+  q_1: ┤ X ├      q_1: ┤ H ├──■──┤ H ├
+       └───┘           └───┘     └───┘
+
+
+                    global phase: 3π/2
+       ┌──────┐           ┌───┐ ┌────┐┌─────┐┌──────┐┌───┐
+  q_0: ┤0     ├     q_0: ─┤ S ├─┤ √X ├┤ Sdg ├┤1     ├┤ H ├
+       │  ECR │  =       ┌┴───┴┐├────┤└┬───┬┘│  Ecr │├───┤
+  q_1: ┤1     ├     q_1: ┤ Sdg ├┤ √X ├─┤ S ├─┤0     ├┤ H ├
+       └──────┘          └─────┘└────┘ └───┘ └──────┘└───┘
+  Note: This is done in terms of less-efficient S/SX/Sdg gates instead of the more natural
+  `RY(pi /2)` so we have a chance for basis translation to keep things in a discrete basis
+  during resynthesis, if that's what's being asked for.
+
+
+       ┌──────┐          ┌───┐┌──────┐┌───┐
+  q_0: ┤0     ├     q_0: ┤ H ├┤1     ├┤ H ├
+       │  RZX │  =       ├───┤│  RZX │├───┤
+  q_1: ┤1     ├     q_1: ┤ H ├┤0     ├┤ H ├
+       └──────┘          └───┘└──────┘└───┘
+
+  cz, swap, rxx, ryy and rzz directions are fixed by reversing their qargs order.
+  ```
+
+  This pass assumes that the positions of the qubits in the [`DAGCircuit.qubits`](qiskit.dagcircuit.DAGCircuit#qubits "qiskit.dagcircuit.DAGCircuit.qubits") attribute are the physical qubit indices. For example if `dag.qubits[0]` is qubit 0 in the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") or [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").
+
+  GateDirection pass.
+
+  **Parameters**
+
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The backend target to use for this pass. If this is specified it will be used instead of the coupling map
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.GateDirection.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.GateDirection.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.GateDirection.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.GateDirection.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.GateDirection.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/utils/gate_direction.py#L68-L86" signature="run(dag)">
+    Run the GateDirection pass on dag.
+
+    Flips the cx nodes to match the directed coupling map. Modifies the input dag.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
+
+    **Returns**
+
+    The rearranged dag for the coupling map
+
+    **Return type**
+
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+    **Raises**
+
+    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the circuit cannot be mapped just by flipping the cx nodes.
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.GateDirection.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

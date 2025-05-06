@@ -38,17 +38,17 @@ This documentation is relevant to the new IBM Quantum&reg; Platform. If you need
 
 ## Background
 
-The [`qiskit.algorithms`](/api/qiskit/0.46/algorithms) module was originally built on top of the [`qiskit.opflow`](/api/qiskit/0.46/opflow) library and the
-[`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance) utility. The development of the [`qiskit.primitives`](/api/qiskit/primitives)
-introduced a higher-level execution paradigm, with the Estimator for computing expectation values for observables, and Sampler for executing circuits and returning probability distributions. These tools allowed the [`qiskit.algorithms`](/api/qiskit/0.46/algorithms) module to be refactored, after which,
-[`qiskit.opflow`](/api/qiskit/0.46/opflow) and [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance) were deprecated.
+The [`qiskit.algorithms`](/docs/api/qiskit/0.46/algorithms) module was originally built on top of the [`qiskit.opflow`](/docs/api/qiskit/0.46/opflow) library and the
+[`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance) utility. The development of the [`qiskit.primitives`](/docs/api/qiskit/primitives)
+introduced a higher-level execution paradigm, with the Estimator for computing expectation values for observables, and Sampler for executing circuits and returning probability distributions. These tools allowed the [`qiskit.algorithms`](/docs/api/qiskit/0.46/algorithms) module to be refactored, after which,
+[`qiskit.opflow`](/docs/api/qiskit/0.46/opflow) and [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance) were deprecated.
 
 <Admonition type="caution">
-  The transition away from [`qiskit.opflow`](/api/qiskit/0.46/opflow) affects the classes that algorithms use as part of the problem
-  setup. Most [`qiskit.opflow`](/api/qiskit/0.46/opflow) dependencies have a direct [`qiskit.quantum_info`](/api/qiskit/quantum_info)
-  replacement. One common example is the class [`qiskit.opflow.primitive_ops.PauliSumOp`](/api/qiskit/0.46/qiskit.opflow.primitive_ops.PauliSumOp), used to define Hamiltonians
-  (for example, to plug into VQE), which can be replaced by [`qiskit.quantum_info.SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp).
-  For information to migrate other [`qiskit.opflow`](/api/qiskit/0.46/opflow) objects, refer to the [Opflow migration guide](./qiskit-opflow-module).
+  The transition away from [`qiskit.opflow`](/docs/api/qiskit/0.46/opflow) affects the classes that algorithms use as part of the problem
+  setup. Most [`qiskit.opflow`](/docs/api/qiskit/0.46/opflow) dependencies have a direct [`qiskit.quantum_info`](/docs/api/qiskit/quantum_info)
+  replacement. One common example is the class [`qiskit.opflow.primitive_ops.PauliSumOp`](/docs/api/qiskit/0.46/qiskit.opflow.primitive_ops.PauliSumOp), used to define Hamiltonians
+  (for example, to plug into VQE), which can be replaced by [`qiskit.quantum_info.SparsePauliOp`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp).
+  For information to migrate other [`qiskit.opflow`](/docs/api/qiskit/0.46/opflow) objects, refer to the [Opflow migration guide](./qiskit-opflow-module).
 </Admonition>
 
 For further background and detailed migration steps, see these guides:
@@ -58,16 +58,16 @@ For further background and detailed migration steps, see these guides:
 
 ## What has changed
 
-The [`qiskit.algorithms`](/api/qiskit/0.46/algorithms) module has been fully refactored to use the [`qiskit.primitives`](/api/qiskit/primitives), for circuit execution, instead of the [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), which is now deprecated.
+The [`qiskit.algorithms`](/docs/api/qiskit/0.46/algorithms) module has been fully refactored to use the [`qiskit.primitives`](/docs/api/qiskit/primitives), for circuit execution, instead of the [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance), which is now deprecated.
 
 There have been three types of refactoring:
 
-1. Algorithms that were refactored in a new location to support [`qiskit.primitives`](/api/qiskit/primitives). These algorithms have the same
-   class names as the [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance)-based ones but are in a new subpackage.
+1. Algorithms that were refactored in a new location to support [`qiskit.primitives`](/docs/api/qiskit/primitives). These algorithms have the same
+   class names as the [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance)-based ones but are in a new subpackage.
 
  <Admonition type="caution">
    Be careful with import paths. The legacy algorithms can still be imported from
-   [`qiskit.algorithms`](/api/qiskit/0.46/algorithms). Until the legacy imports are removed, this convenience import is not available
+   [`qiskit.algorithms`](/docs/api/qiskit/0.46/algorithms). Until the legacy imports are removed, this convenience import is not available
    for the refactored algorithms. Thus, to import the refactored algorithms you must specify the full import path.  For example, `from qiskit.algorithms.eigensolvers import VQD`.
  </Admonition>
 
@@ -75,45 +75,45 @@ There have been three types of refactoring:
  - [Eigensolvers](#eigensolvers)
  - [Time Evolvers](#time-evolvers)
 
-2. Algorithms that were refactored in-place (same namespace) to support both [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance) and
-   [`qiskit.primitives`](/api/qiskit/primitives). In the future, [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance) will be removed.
+2. Algorithms that were refactored in-place (same namespace) to support both [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance) and
+   [`qiskit.primitives`](/docs/api/qiskit/primitives). In the future, [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance) will be removed.
 
  - [Amplitude Amplifiers](#amplitude-amplifiers)
  - [Amplitude Estimators](#amplitude-estimators)
  - [Phase Estimators](#phase-estimators)
 
-3. Algorithms that were deprecated and are now removed entirely from [`qiskit.algorithms`](/api/qiskit/0.46/algorithms). These are algorithms that do not serve
+3. Algorithms that were deprecated and are now removed entirely from [`qiskit.algorithms`](/docs/api/qiskit/0.46/algorithms). These are algorithms that do not serve
    as building blocks for applications and are only valuable for education, as described in the following tutorials:
 
  - [Linear Solvers (HHL)](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/hhl_tutorial.ipynb) ,
  - [Factorizers (Shor)](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/shor.ipynb)
 
 This migration guide focuses on the algorithms with migration alternatives within
-[`qiskit.algorithms`](/api/qiskit/0.46/algorithms), that is, refactoring types 1 and 2.
+[`qiskit.algorithms`](/docs/api/qiskit/0.46/algorithms), that is, refactoring types 1 and 2.
 
 ## How to choose a primitive configuration for your algorithm
 
 The classes in
-[`qiskit.algorithms`](/api/qiskit/0.46/algorithms) are initialized with any implementation of [`qiskit.primitives.BaseSampler`](/api/qiskit/0.46/qiskit.primitives.BaseSampler) or [`qiskit.primitives.BaseEstimator`](/api/qiskit/0.46/qiskit.primitives.BaseEstimator).
+[`qiskit.algorithms`](/docs/api/qiskit/0.46/algorithms) are initialized with any implementation of [`qiskit.primitives.BaseSampler`](/docs/api/qiskit/0.46/qiskit.primitives.BaseSampler) or [`qiskit.primitives.BaseEstimator`](/docs/api/qiskit/0.46/qiskit.primitives.BaseEstimator).
 
 Once you know which primitive you want to use, choose the primitive implementation that meets your needs. For example:
 
-* For quick prototyping, use the reference implementations of primitives included in Qiskit: [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator).
+* For quick prototyping, use the reference implementations of primitives included in Qiskit: [`qiskit.primitives.Sampler`](/docs/api/qiskit/1.4/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](/docs/api/qiskit/1.4/qiskit.primitives.Estimator).
 
 * For finer algorithm tuning, use a local simulator such as the primitive implementation in Aer: [`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html) and [`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html).
 
 * For running on quantum hardware choose from these options:
 
-   - Access services with native primitive implementations, such as the Qiskit Runtime service, by using [`qiskit_ibm_runtime.Sampler`](/api/qiskit-ibm-runtime/0.26/sampler) and [`qiskit_ibm_runtime.Estimator`.](/api/qiskit-ibm-runtime/0.26/estimator)
-   - Wrap any QPU (quantum processing unti) with `Backend` primitives ([`qiskit.primitives.BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](/api/qiskit/qiskit.primitives.BackendEstimator)). These wrappers implement a primitive interface on top of a backend that only supports `backend.run()`.
+   - Access services with native primitive implementations, such as the Qiskit Runtime service, by using [`qiskit_ibm_runtime.Sampler`](/docs/api/qiskit-ibm-runtime/0.26/sampler) and [`qiskit_ibm_runtime.Estimator`.](/docs/api/qiskit-ibm-runtime/0.26/estimator)
+   - Wrap any QPU (quantum processing unti) with `Backend` primitives ([`qiskit.primitives.BackendSampler`](/docs/api/qiskit/1.4/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](/docs/api/qiskit/1.4/qiskit.primitives.BackendEstimator)). These wrappers implement a primitive interface on top of a backend that only supports `backend.run()`.
 
 For detailed information and examples, particularly on the use of the `Backend` primitives, refer to
 the [QuantumInstance migration guide](./qiskit-quantum-instance).
 
 This guide describes these common configurations for algorithms that determine which primitive import to use:
 
-* Running an algorithm with a statevector simulator when you want the ideal outcome without shot noise.  For example, using the [`qiskit.opflow`](/api/qiskit/0.46/opflow) legacy
-   [`qiskit.opflow.expectations.MatrixExpectation`](/api/qiskit/0.46/qiskit.opflow.expectations.MatrixExpectation):
+* Running an algorithm with a statevector simulator when you want the ideal outcome without shot noise.  For example, using the [`qiskit.opflow`](/docs/api/qiskit/0.46/opflow) legacy
+   [`qiskit.opflow.expectations.MatrixExpectation`](/docs/api/qiskit/0.46/qiskit.opflow.expectations.MatrixExpectation):
 
  - Reference Primitives with default configuration.  See [QAOA](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/05_qaoa.ipynb) for an example.
 
@@ -130,7 +130,7 @@ This guide describes these common configurations for algorithms that determine w
  estimator = Estimator(backend_options={"method": "statevector"})
  ```
 
-* Running an algorithm using a simulator or device with shot noise.  For example, using the [`qiskit.opflow`](/api/qiskit/0.46/opflow) legacy [`qiskit.opflow.expectations.PauliExpectation`](/api/qiskit/0.46/qiskit.opflow.expectations.PauliExpectation):
+* Running an algorithm using a simulator or device with shot noise.  For example, using the [`qiskit.opflow`](/docs/api/qiskit/0.46/opflow) legacy [`qiskit.opflow.expectations.PauliExpectation`](/docs/api/qiskit/0.46/qiskit.opflow.expectations.PauliExpectation):
 
  - Reference primitives with shots.  See the [VQE](#vqe) examples.
 
@@ -160,8 +160,8 @@ This guide describes these common configurations for algorithms that determine w
  from qiskit_ibm_runtime import Sampler, Estimator
  ```
 
-* Running an algorithm on an Aer simulator using a custom instruction.  For example, using the [`qiskit.opflow`](/api/qiskit/0.46/opflow) legacy
-[`qiskit.opflow.expectations.AerPauliExpectation`](/api/qiskit/0.46/qiskit.opflow.expectations.AerPauliExpectation).
+* Running an algorithm on an Aer simulator using a custom instruction.  For example, using the [`qiskit.opflow`](/docs/api/qiskit/0.46/opflow) legacy
+[`qiskit.opflow.expectations.AerPauliExpectation`](/docs/api/qiskit/0.46/qiskit.opflow.expectations.AerPauliExpectation).
 
 - Aer Primitives with default options.  See [TrotterQRTE](#trotterqrte) for examples.
 
@@ -176,12 +176,12 @@ estimator = Estimator()
 ## Minimum Eigensolvers
 
 The minimum eigensolver algorithms were refactored in a new location.
-Instead of a [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), [`qiskit.algorithms.minimum_eigensolvers`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers) are now initialized
-by using an instance of the [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler) or [`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator) primitive, depending
+Instead of a [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance), [`qiskit.algorithms.minimum_eigensolvers`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers) are now initialized
+by using an instance of the [`qiskit.primitives.Sampler`](/docs/api/qiskit/1.4/qiskit.primitives.Sampler) or [`qiskit.primitives.Estimator`](/docs/api/qiskit/1.4/qiskit.primitives.Estimator) primitive, depending
 on the algorithm. The legacy classes can still be found in `qiskit.algorithms.minimum_eigen_solvers`.
 
 <Admonition type="caution">
-  For the [`qiskit.algorithms.minimum_eigensolvers`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers) classes, depending on the import path,
+  For the [`qiskit.algorithms.minimum_eigensolvers`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers) classes, depending on the import path,
   you will access either the primitive-based or the quantum-instance-based implementation. You have to be careful, because the class name does not change.
 
   - Old import (QuantumInstance-based): `from qiskit.algorithms import VQE, QAOA, NumPyMinimumEigensolver`
@@ -192,29 +192,29 @@ on the algorithm. The legacy classes can still be found in `qiskit.algorithms.mi
 
 The legacy `qiskit.algorithms.minimum_eigen_solvers.VQE` class has now been split according to the use case:
 
-- For general-purpose Hamiltonians, use the Estimator-based [`qiskit.algorithms.minimum_eigensolvers.VQE`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.VQE)
+- For general-purpose Hamiltonians, use the Estimator-based [`qiskit.algorithms.minimum_eigensolvers.VQE`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.VQE)
   class.
 - If you have a diagonal Hamiltonian and want the algorithm to return a sampling of the state, use
-  the new Sampler-based [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.SamplingVQE) algorithm. Previously, this was done by using the legacy `qiskit.algorithms.minimum_eigen_solvers.VQE` with
-  [`qiskit.opflow.expectations.CVaRExpectation`](/api/qiskit/0.46/qiskit.opflow.expectations.CVaRExpectation).
+  the new Sampler-based [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.SamplingVQE) algorithm. Previously, this was done by using the legacy `qiskit.algorithms.minimum_eigen_solvers.VQE` with
+  [`qiskit.opflow.expectations.CVaRExpectation`](/docs/api/qiskit/0.46/qiskit.opflow.expectations.CVaRExpectation).
 
 <Admonition type="note">
-  In addition to taking in an [`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator) instance instead of a [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance),
-  the new [`qiskit.algorithms.minimum_eigensolvers.VQE`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.VQE) signature has undergone the following changes:
+  In addition to taking in an [`qiskit.primitives.Estimator`](/docs/api/qiskit/1.4/qiskit.primitives.Estimator) instance instead of a [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance),
+  the new [`qiskit.algorithms.minimum_eigensolvers.VQE`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.VQE) signature has undergone the following changes:
 
   * The `expectation` and `include_custom` parameters have been removed, as this functionality is now
      defined at the Estimator level.
   * The `gradient` parameter now takes in an instance of a primitive-based gradient class from
-     [`qiskit.algorithms.gradients`](/api/qiskit/0.46/qiskit.algorithms.gradients) instead of the legacy [`qiskit.opflow.gradients.Gradient`](/api/qiskit/0.46/qiskit.opflow.gradients.Gradient) class.
+     [`qiskit.algorithms.gradients`](/docs/api/qiskit/0.46/qiskit.algorithms.gradients) instead of the legacy [`qiskit.opflow.gradients.Gradient`](/docs/api/qiskit/0.46/qiskit.opflow.gradients.Gradient) class.
   * The `max_evals_grouped` parameter has been removed, as it can be set directly on the optimizer class.
   * The `estimator`, `ansatz` and `optimizer` are the only parameters that can be defined positionally
      (and in this order). All others have become keyword-only arguments.
 </Admonition>
 
 <Admonition type="note">
-  The new [`qiskit.algorithms.minimum_eigensolvers.VQEResult`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.VQEResult) class does not include the state, as
+  The new [`qiskit.algorithms.minimum_eigensolvers.VQEResult`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.VQEResult) class does not include the state, as
   this output was only useful in the case of diagonal operators. However, it is available as part of the new
-  [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.SamplingVQE) [`qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult).
+  [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.SamplingVQE) [`qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.SamplingVQEResult).
 </Admonition>
 
 #### VQE examples
@@ -351,27 +351,27 @@ For complete code examples, see the following updated tutorials:
 ### QAOA
 
 The new QAOA only supports diagonal operators.  This is because the legacy `qiskit.algorithms.minimum_eigen_solvers.QAOA` class extended
-`qiskit.algorithms.minimum_eigen_solvers.VQE`, but now, [`qiskit.algorithms.minimum_eigensolvers.QAOA`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.QAOA)
-extends [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.SamplingVQE).
+`qiskit.algorithms.minimum_eigen_solvers.VQE`, but now, [`qiskit.algorithms.minimum_eigensolvers.QAOA`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.QAOA)
+extends [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.SamplingVQE).
 
 <Admonition type="note">
-  In addition to taking in a [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler) instance instead of a [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance),
-  the new [`qiskit.algorithms.minimum_eigensolvers.QAOA`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.QAOA) signature has undergone the following changes:
+  In addition to taking in a [`qiskit.primitives.Sampler`](/docs/api/qiskit/1.4/qiskit.primitives.Sampler) instance instead of a [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance),
+  the new [`qiskit.algorithms.minimum_eigensolvers.QAOA`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.QAOA) signature has undergone the following changes:
 
   * The `expectation` and `include_custom` parameters have been removed and the `aggregation`
      parameter has been added.  This was previously defined through a custom `expectation` parameter.
   * The `gradient` parameter now takes in an instance of a primitive-based gradient class from
-     [`qiskit.algorithms.gradients`](/api/qiskit/0.46/qiskit.algorithms.gradients) instead of the legacy [`qiskit.opflow.gradients.Gradient`](/api/qiskit/0.46/qiskit.opflow.gradients.Gradient) class.
+     [`qiskit.algorithms.gradients`](/docs/api/qiskit/0.46/qiskit.algorithms.gradients) instead of the legacy [`qiskit.opflow.gradients.Gradient`](/docs/api/qiskit/0.46/qiskit.opflow.gradients.Gradient) class.
   * The `max_evals_grouped` parameter has been removed, as it can be set directly on the optimizer class.
   * The `sampler` and `optimizer` parameters are the only parameters that can be defined positionally
      (and in this order). All others have become keyword-only arguments.
 </Admonition>
 
 <Admonition type="note">
-  If you want to run QAOA on a non-diagonal operator, use the [`qiskit.circuit.library.QAOAAnsatz`](/api/qiskit/qiskit.circuit.library.QAOAAnsatz) with
-  [`qiskit.algorithms.minimum_eigensolvers.VQE`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.VQE), but there will be no state result.
+  If you want to run QAOA on a non-diagonal operator, use the [`qiskit.circuit.library.QAOAAnsatz`](/docs/api/qiskit/qiskit.circuit.library.QAOAAnsatz) with
+  [`qiskit.algorithms.minimum_eigensolvers.VQE`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.VQE), but there will be no state result.
   If your application requires the final probability distribution, instantiate `SamplerV2`
-  and run it with the optimal circuit after [`qiskit.algorithms.minimum_eigensolvers.VQE`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.VQE).
+  and run it with the optimal circuit after [`qiskit.algorithms.minimum_eigensolvers.VQE`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.VQE).
 </Admonition>
 
 #### QAOA example
@@ -442,7 +442,7 @@ For complete code examples, see the updated [QAOA tutorial.](https://github.com/
 
 Because this is a classical solver, the workflow has not changed between the old and new implementation.
 However, the import has changed from `qiskit.algorithms.minimum_eigen_solvers.NumPyMinimumEigensolver`
-to [`qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver`](/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver) to conform to the new interfaces
+to [`qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver`](/docs/api/qiskit/0.46/qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver) to conform to the new interfaces
 and result classes.
 
 #### NumPyMinimumEigensolver example
@@ -490,13 +490,13 @@ For complete code examples, see the updated [VQE, callback, gradients, initial p
 ## Eigensolvers
 
 The eigensolver algorithms were refactored in a new location.  Instead of using
-[`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), [`qiskit.algorithms.eigensolvers`](/api/qiskit/0.46/qiskit.algorithms.eigensolvers) are now initialized
-using an instance of the [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler) or [`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator) primitive, or
+[`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance), [`qiskit.algorithms.eigensolvers`](/docs/api/qiskit/0.46/qiskit.algorithms.eigensolvers) are now initialized
+using an instance of the [`qiskit.primitives.Sampler`](/docs/api/qiskit/1.4/qiskit.primitives.Sampler) or [`qiskit.primitives.Estimator`](/docs/api/qiskit/1.4/qiskit.primitives.Estimator) primitive, or
 a primitive-based subroutine, depending on the algorithm. The legacy classes can still be found
 in `qiskit.algorithms.eigen_solvers`.
 
 <Admonition type="caution">
-  For the [`qiskit.algorithms.eigensolvers`](/api/qiskit/0.46/qiskit.algorithms.eigensolvers) classes, depending on the import path,
+  For the [`qiskit.algorithms.eigensolvers`](/docs/api/qiskit/0.46/qiskit.algorithms.eigensolvers) classes, depending on the import path,
   you will access either the primitive-based or the QuantumInstance-based
 implementation. You have to be careful, because the class name is the same.
 
@@ -506,19 +506,19 @@ implementation. You have to be careful, because the class name is the same.
 
 ### VQD
 
-The new [`qiskit.algorithms.eigensolvers.VQD`](/api/qiskit/0.46/qiskit.algorithms.eigensolvers.VQD) class is initialized with an instance of the
-[`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator) primitive instead of a [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance).
+The new [`qiskit.algorithms.eigensolvers.VQD`](/docs/api/qiskit/0.46/qiskit.algorithms.eigensolvers.VQD) class is initialized with an instance of the
+[`qiskit.primitives.Estimator`](/docs/api/qiskit/1.4/qiskit.primitives.Estimator) primitive instead of a [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance).
 It also takes an instance of a state fidelity class from mod:`qiskit.algorithms.state_fidelities`,
-such as the [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler)-based [`qiskit.algorithms.state_fidelities.ComputeUncompute`](/api/qiskit/0.46/qiskit.algorithms.state_fidelities.ComputeUncompute).
+such as the [`qiskit.primitives.Sampler`](/docs/api/qiskit/1.4/qiskit.primitives.Sampler)-based [`qiskit.algorithms.state_fidelities.ComputeUncompute`](/docs/api/qiskit/0.46/qiskit.algorithms.state_fidelities.ComputeUncompute).
 
 <Admonition type="note">
-  In addition to taking in a [`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator) instance instead of a [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance),
-  the new [`qiskit.algorithms.eigensolvers.VQD`](/api/qiskit/0.46/qiskit.algorithms.eigensolvers.VQD) signature has undergone the following changes:
+  In addition to taking in a [`qiskit.primitives.Estimator`](/docs/api/qiskit/1.4/qiskit.primitives.Estimator) instance instead of a [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance),
+  the new [`qiskit.algorithms.eigensolvers.VQD`](/docs/api/qiskit/0.46/qiskit.algorithms.eigensolvers.VQD) signature has undergone the following changes:
 
   * The `expectation` and `include_custom` parameters have been removed, as this functionality is now
      defined at the Estimator level.
   * The custom `fidelity` parameter has been added and the custom `gradient` parameter has
-     been removed because current classes in [`qiskit.algorithms.gradients`](/api/qiskit/0.46/qiskit.algorithms.gradients) cannot use state fidelity
+     been removed because current classes in [`qiskit.algorithms.gradients`](/docs/api/qiskit/0.46/qiskit.algorithms.gradients) cannot use state fidelity
      gradients.
   * The `max_evals_grouped` parameter has been removed because it can be set directly on the `optimizer` class.
   * The `estimator`, `fidelity`, `ansatz` and `optimizer` parameters are the only parameters that can be defined positionally
@@ -526,10 +526,10 @@ such as the [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler)
 </Admonition>
 
 <Admonition type="note">
-  Similar to VQE, the new [`qiskit.algorithms.eigensolvers.VQDResult`](/api/qiskit/0.46/qiskit.algorithms.eigensolvers.VQDResult) class does not include
+  Similar to VQE, the new [`qiskit.algorithms.eigensolvers.VQDResult`](/docs/api/qiskit/0.46/qiskit.algorithms.eigensolvers.VQDResult) class does not include
   the state. If your application requires the final probability distribution, instantiate
  `SamplerV2` and run it with the optimal circuit for the desired excited state
-  after running [`qiskit.algorithms.eigensolvers.VQD`](/api/qiskit/0.46/qiskit.algorithms.eigensolvers.VQD).
+  after running [`qiskit.algorithms.eigensolvers.VQD`](/docs/api/qiskit/0.46/qiskit.algorithms.eigensolvers.VQD).
 </Admonition>
 
 #### VQD Example
@@ -567,7 +567,7 @@ print(result.eigenvalues)
 
 <CloudContent>
 <Admonition type="caution">
-The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
 </CloudContent>
 
@@ -636,7 +636,7 @@ For complete code examples, see the updated [VQD tutorial.](https://github.com/Q
 Similarly to its minimum eigensolver counterpart, because this is a classical solver, the workflow has not changed
 between the old and new implementation.
 However, the import has changed from `qiskit.algorithms.eigen_solvers.NumPyEigensolver`
-to [`qiskit.algorithms.eigensolvers.NumPyEigensolver`](/api/qiskit/0.46/qiskit.algorithms.eigensolvers.NumPyEigensolver) to conform to the new interfaces and result classes.
+to [`qiskit.algorithms.eigensolvers.NumPyEigensolver`](/docs/api/qiskit/0.46/qiskit.algorithms.eigensolvers.NumPyEigensolver) to conform to the new interfaces and result classes.
 
 #### NumPyEigensolver Example
 
@@ -681,8 +681,8 @@ print(result.eigenvalues)
 ## Time Evolvers
 
 The time evolvers were refactored in a new location.
-Instead of using a [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), `qiskit.algorithms.time_evolvers` are now initialized
-using a [`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator) primitive instance. The legacy classes can still be found
+Instead of using a [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance), `qiskit.algorithms.time_evolvers` are now initialized
+using a [`qiskit.primitives.Estimator`](/docs/api/qiskit/1.4/qiskit.primitives.Estimator) primitive instance. The legacy classes can still be found
 in `qiskit.algorithms.evolvers`.
 
 In addition to the migration, the module has been substantially expanded to include Variational Quantum Time Evolution
@@ -700,8 +700,8 @@ In addition to the migration, the module has been substantially expanded to incl
 </Admonition>
 
 <Admonition type="note">
-  In addition to taking in a [`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator) instance instead of a [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance),
-  the new [`qiskit.algorithms.eigensolvers.VQD`](/api/qiskit/0.46/qiskit.algorithms.eigensolvers.VQD) signature has undergone the following changes:
+  In addition to taking in a [`qiskit.primitives.Estimator`](/docs/api/qiskit/1.4/qiskit.primitives.Estimator) instance instead of a [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance),
+  the new [`qiskit.algorithms.eigensolvers.VQD`](/docs/api/qiskit/0.46/qiskit.algorithms.eigensolvers.VQD) signature has undergone the following changes:
 
   * The `expectation` parameter has been removed, as this functionality is now
      defined at the Estimator level.
@@ -777,8 +777,8 @@ q:  ┤ exp(it X) ├┤ exp(it Z) ├
 ## Amplitude amplifiers
 
 The amplitude amplifier algorithms were refactored in-place.
-Instead of a [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), `qiskit.algorithms.amplitude_amplifiers` are now initialized
-using an instance of any Sampler primitive.  That is, [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler).
+Instead of a [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance), `qiskit.algorithms.amplitude_amplifiers` are now initialized
+using an instance of any Sampler primitive.  That is, [`qiskit.primitives.Sampler`](/docs/api/qiskit/1.4/qiskit.primitives.Sampler).
 
 <Admonition type="note">
   The full `qiskit.algorithms.amplitude_amplifiers` module has been refactored in place. Therefore, you don't need to
@@ -816,8 +816,8 @@ For complete code examples, see the following updated tutorials:
 ## Amplitude estimators
 
 Similarly to the amplitude amplifiers, the amplitude estimators were refactored in-place.
-Instead of a [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), `qiskit.algorithms.amplitude_estimators` are now initialized
-using an instance of any Sampler primitive.  That is, [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler).
+Instead of a [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance), `qiskit.algorithms.amplitude_estimators` are now initialized
+using an instance of any Sampler primitive.  That is, [`qiskit.primitives.Sampler`](/docs/api/qiskit/1.4/qiskit.primitives.Sampler).
 
 <Admonition type="note">
   The full `qiskit.algorithms.amplitude_estimators` module has been refactored in place. You do not need to
@@ -859,8 +859,8 @@ For a complete code example, see the updated [Amplitude Estimation tutorial.](ht
 ## Phase estimators
 
 The phase estimators were refactored in-place.
-Instead of a [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), `qiskit.algorithms.phase_estimators` are now initialized by
-using an instance of any Sampler primitive.  That is, [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler).
+Instead of a [`qiskit.utils.QuantumInstance`](/docs/api/qiskit/0.46/qiskit.utils.QuantumInstance), `qiskit.algorithms.phase_estimators` are now initialized by
+using an instance of any Sampler primitive.  That is, [`qiskit.primitives.Sampler`](/docs/api/qiskit/1.4/qiskit.primitives.Sampler).
 
 <Admonition type="note">
   The full `qiskit.algorithms.phase_estimators` module has been refactored in place. Therefore, you do not need to change import paths.

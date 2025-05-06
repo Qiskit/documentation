@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
 # Session
 
-<Class id="qiskit_ibm_runtime.Session" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/session.py#L46-L363" signature="Session(backend=None, max_time=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.Session" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/session.py#L46-L363" signature="Session(backend=None, max_time=None, *, create_new=True)" modifiers="class">
   Bases: `object`
 
   Class for creating a Qiskit Runtime session.
@@ -50,8 +50,9 @@ python_api_name: qiskit_ibm_runtime.Session
 
   **Parameters**
 
-  *   **backend** (*Optional\[Union\[BackendV1, BackendV2]]*) – Instance of `Backend` class.
-  *   **max\_time** (*Optional\[Union\[int, str]]*) – Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/guides/max-execution-time).
+  *   **backend** (*Optional\[BackendV2]*) – Instance of `Backend` class.
+  *   **max\_time** (*Optional\[Union\[int, str]]*) – Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/docs/guides/max-execution-time).
+  *   **create\_new** (*Optional\[bool]*) – If True, the POST session API endpoint will be called to create a new session. Prevents creating a new session when `from_id()` is called.
 
   **Raises**
 
@@ -83,7 +84,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.Session.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/session.py#L204-L212" signature="backend()">
+  <Function id="qiskit_ibm_runtime.Session.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/session.py#L206-L214" signature="backend()">
     Return backend for this session.
 
     **Returns**
@@ -97,7 +98,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### cancel
 
-  <Function id="qiskit_ibm_runtime.Session.cancel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/session.py#L190-L194" signature="cancel()">
+  <Function id="qiskit_ibm_runtime.Session.cancel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/session.py#L192-L196" signature="cancel()">
     Cancel all pending jobs in a session.
 
     **Return type**
@@ -107,7 +108,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### close
 
-  <Function id="qiskit_ibm_runtime.Session.close" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/session.py#L196-L202" signature="close()">
+  <Function id="qiskit_ibm_runtime.Session.close" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/session.py#L198-L204" signature="close()">
     Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
     **Return type**
@@ -117,7 +118,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### details
 
-  <Function id="qiskit_ibm_runtime.Session.details" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/session.py#L255-L297" signature="details()">
+  <Function id="qiskit_ibm_runtime.Session.details" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/session.py#L257-L299" signature="details()">
     Return session details.
 
     **Returns**
@@ -146,7 +147,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### from\_id
 
-  <Function id="qiskit_ibm_runtime.Session.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/session.py#L317-L350" signature="from_id(session_id, service)" modifiers="classmethod">
+  <Function id="qiskit_ibm_runtime.Session.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/session.py#L319-L350" signature="from_id(session_id, service)" modifiers="classmethod">
     Construct a Session object with a given session\_id
 
     **Parameters**
@@ -172,7 +173,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### status
 
-  <Function id="qiskit_ibm_runtime.Session.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/session.py#L214-L239" signature="status()">
+  <Function id="qiskit_ibm_runtime.Session.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/session.py#L216-L241" signature="status()">
     Return current session status.
 
     **Returns**
@@ -192,7 +193,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### usage
 
-  <Function id="qiskit_ibm_runtime.Session.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/session.py#L241-L253" signature="usage()">
+  <Function id="qiskit_ibm_runtime.Session.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/session.py#L243-L255" signature="usage()">
     Return session usage in seconds.
 
     Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens last.

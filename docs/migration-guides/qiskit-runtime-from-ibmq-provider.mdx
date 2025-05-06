@@ -73,7 +73,7 @@ Use the updated code to work save accounts.
 <LegacyContent>
 The new syntax accepts credentials for
 Qiskit Runtime on IBM Cloud&reg; or IBM Quantum Platform. For more
-information on retrieving account credentials, see [Select and set up an IBM Quantum channel](/guides/setup-channel).
+information about retrieving account credentials, see [Select and set up an IBM Quantum channel](/docs/guides/setup-channel).
 
 ```python
 # IBM Quantum channel; set to default
@@ -82,7 +82,7 @@ QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", ov
 ```
 </LegacyContent>
 <CloudContent>
-For information on retrieving account credentials, see [Set up your IBM Cloud account](/guides/cloud-setup).
+For information about retrieving account credentials, see [Set up your IBM Cloud account](/docs/guides/cloud-setup).
 ```python
 QiskitRuntimeService.save_account(channel="ibm_cloud", token="<API_TOKEN>", overwrite=True, set_as_default=True)
 ```
@@ -191,6 +191,29 @@ service = QiskitRuntimeService(channel="ibm_cloud", instance="<CRN>")
 Use the updated code to specify a backend.
 
 <Tabs>
+<CloudContent>
+  <TabItem value="updated" label="Runtime primitives">
+```python
+service = QiskitRuntimeService(instance="<CRN>")
+backend = service.backend("<QPU-name>")
+```
+
+With Qiskit Runtime, you can also run in local testing mode.
+
+```python
+# Define a local backend
+from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+backend = FakeManilaV2()
+
+# You could use an Aer simulator instead by using the following code:
+# from qiskit_aer import AerSimulator
+# backend = AerSimulator()
+```
+
+  </TabItem>
+  </CloudContent>
+
+<LegacyContent>
   <TabItem value="updated" label="Runtime primitives">
 ```python
 # You can specify the instance in service.backend() instead of initializing a new service
@@ -217,6 +240,7 @@ backend = FakeManilaV2()
 ```
 
   </TabItem>
+  </LegacyContent>
 
   <TabItem value="legacy" label="backend.run">
 ```python

@@ -1,0 +1,58 @@
+---
+title: AlignEquispaced (v1.4)
+description: API reference for qiskit.pulse.transforms.AlignEquispaced in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.transforms.AlignEquispaced
+---
+
+# AlignEquispaced
+
+<Class id="qiskit.pulse.transforms.AlignEquispaced" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/transforms/alignments.py#L259-L325" signature="qiskit.pulse.transforms.AlignEquispaced(duration)" modifiers="class">
+  Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+
+  Align instructions with equispaced interval within a specified duration.
+
+  Instructions played on different channels are also arranged in a sequence. This alignment is convenient to create dynamical decoupling sequences such as PDD.
+
+  Create new equispaced context.
+
+  **Parameters**
+
+  **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
+
+  ## Attributes
+
+  ### duration
+
+  <Attribute id="qiskit.pulse.transforms.AlignEquispaced.duration">
+    Return context duration.
+  </Attribute>
+
+  ### is\_sequential
+
+  <Attribute id="qiskit.pulse.transforms.AlignEquispaced.is_sequential" />
+
+  ## Methods
+
+  ### align
+
+  <Function id="qiskit.pulse.transforms.AlignEquispaced.align" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/transforms/alignments.py#L286-L325" signature="align(schedule)">
+    Reallocate instructions according to the policy.
+
+    Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+
+    **Parameters**
+
+    **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
+
+    **Returns**
+
+    Schedule with reallocated instructions.
+
+    **Return type**
+
+    [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  </Function>
+</Class>
+

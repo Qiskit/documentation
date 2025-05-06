@@ -8,20 +8,39 @@ python_api_name: qiskit.primitives.BaseEstimatorV2
 
 # BaseEstimatorV2
 
-<Class id="qiskit.primitives.BaseEstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_estimator.py#L220-L252" signature="qiskit.primitives.BaseEstimatorV2" modifiers="class">
+<Class id="qiskit.primitives.BaseEstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/primitives/base/base_estimator.py#L41-L93" signature="qiskit.primitives.BaseEstimatorV2" modifiers="class">
   Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
 
-  Estimator V2 base class.
+  Base class for `EstimatorV2` implementations.
 
-  An estimator estimates expectation values for provided quantum circuit and observable combinations.
+  An estimator calculates expectation values for provided quantum circuit and observable combinations. Implementations of this [`BaseEstimatorV2`](#qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") interface must define their own [`run()`](#qiskit.primitives.BaseEstimatorV2.run "qiskit.primitives.BaseEstimatorV2.run") method, which is designed to take the following inputs:
 
-  An Estimator implementation must treat the [`run()`](#qiskit.primitives.BaseEstimatorV2.run "qiskit.primitives.BaseEstimatorV2.run") method `precision=None` kwarg as using a default `precision` value. The default value and methods to set it can be determined by the Estimator implementor.
+  > *   **pubs: list of pubs (Primitive Unified Blocs). An estimator pub is a list**
+  >
+  >     or tuple of two to four elements that define the unit of work for the estimator. These are:
+  >
+  >     *   **A single [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), possibly parametrized,**
+  >
+  >         whose final state we define as $\psi(\theta)$.
+  >
+  >     *   **One or more observables (specified as any `ObservablesArrayLike`, including**
+  >
+  >         [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"), `str`) that specify which expectation values to estimate, denoted $H_j$.
+  >
+  >     *   A collection parameter value sets to bind the circuit against, $\theta_k$
+  >
+  >     *   Optionally, the estimation precision.
+  > *   **precision: the estimation precision. This specification is optional and will be overriden by**
+  >
+  >     the pub-wise shots if provided.
+
+  All estimator implementations must implement default value for the `precision` in the [`run()`](#qiskit.primitives.BaseEstimatorV2.run "qiskit.primitives.BaseEstimatorV2.run") method. This default value will be used any time `precision=None` is specified, which can take place in the [`run()`](#qiskit.primitives.BaseEstimatorV2.run "qiskit.primitives.BaseEstimatorV2.run") kwargs or at the pub level.
 
   ## Methods
 
   ### run
 
-  <Function id="qiskit.primitives.BaseEstimatorV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_estimator.py#L237-L252" signature="run(pubs, *, precision=None)" modifiers="abstract">
+  <Function id="qiskit.primitives.BaseEstimatorV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/primitives/base/base_estimator.py#L78-L93" signature="run(pubs, *, precision=None)" modifiers="abstract">
     Estimate expectation values for each provided pub (Primitive Unified Bloc).
 
     **Parameters**

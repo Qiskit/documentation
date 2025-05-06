@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDir
 
 # MCXSynthesisNDirtyI15
 
-<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1002-L1051" signature="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15" modifiers="class">
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1032-L1082" signature="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15" modifiers="class">
   Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
 
   Synthesis plugin for a multi-controlled X gate based on the paper by Iten et al. (2016).
@@ -17,7 +17,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDir
 
   This plugin name is :`mcx.n_dirty_i15` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
 
-  For a multi-controlled X gate with $k\ge 3$ control qubits this synthesis method requires $k - 2$ additional dirty auxiliary qubits. The synthesized circuit consists of $2 * k - 1$ qubits and at most $8 * k - 6$ CX gates.
+  For a multi-controlled X gate with $k\ge 4$ control qubits this synthesis method requires $k - 2$ additional dirty auxiliary qubits. The synthesized circuit consists of $2 * k - 1$ qubits and at most $8 * k - 6$ CX gates. For $k\le 3$ explicit efficient circuits are used instead.
 
   The plugin supports the following plugin-specific options:
 
@@ -34,7 +34,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDir
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1030-L1051" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1061-L1082" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
     Run synthesis for the given MCX gate.
   </Function>
 </Class>

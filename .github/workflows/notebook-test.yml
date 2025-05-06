@@ -14,13 +14,16 @@ name: Test notebooks
 on:
   pull_request:
     paths:
+      - ".github/workflows/notebook-test.yml"
       - "docs/**/*.ipynb"
+      - "learning/**/*.ipynb"
       - "!docs/api/**/*"
       - "scripts/nb-tester/**/*"
   workflow_dispatch:
 jobs:
   execute:
     name: Execute notebooks
+    if: github.repository_owner == 'Qiskit'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +32,7 @@ jobs:
         id: all-changed
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
-          files: "{docs/**/*.ipynb,scripts/nb-tester/**/*}"
+          files: "{{docs,learning}/**/*.ipynb,scripts/nb-tester/**/*,.github/workflows/notebook-test.yml}"
           separator: "\n"
           write_output_files: true
 
@@ -49,7 +52,7 @@ jobs:
           github_output = os.getenv("GITHUB_OUTPUT")
           all_files = """${{ steps.all-changed.outputs.all_changed_files }}""".split("\n")
 
-          config_changed = any(path.startswith("scripts/") for path in all_files)
+          config_changed = any(path.startswith("scripts/") or path.startswith(".github") for path in all_files)
           extra_deps = config_changed or any(path in EXTRA_DEPS_NOTEBOOKS for path in all_files)
 
           with open(github_output, "a") as output:

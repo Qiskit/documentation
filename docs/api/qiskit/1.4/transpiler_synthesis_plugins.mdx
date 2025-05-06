@@ -1,0 +1,414 @@
+---
+title: plugin (v1.4)
+description: API reference for qiskit.transpiler.passes.synthesis.plugin in qiskit v1.4
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.transpiler.passes.synthesis.plugin
+---
+
+<span id="module-qiskit.transpiler.passes.synthesis.plugin" />
+
+<span id="qiskit-transpiler-synthesis-plugins" />
+
+<span id="synthesis-plugins-qiskit-transpiler-passes-synthesis-plugin" />
+
+# Synthesis Plugins
+
+`qiskit.transpiler.passes.synthesis.plugin`
+
+This module defines the plugin interfaces for the synthesis transpiler passes in Qiskit. These provide a hook point for external python packages to implement their own synthesis techniques and have them seamlessly exposed as opt-in options to users when they run [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile").
+
+The plugin interfaces are built using setuptools [entry points](https://setuptools.readthedocs.io/en/latest/userguide/entry_point.html) which enable packages external to qiskit to advertise they include a synthesis plugin.
+
+See [`qiskit.transpiler.preset_passmanagers.plugin`](transpiler_plugins#module-qiskit.transpiler.preset_passmanagers.plugin "qiskit.transpiler.preset_passmanagers.plugin") for details on how to write plugins for transpiler stages.
+
+## Synthesis Plugin API
+
+### Unitary Synthesis Plugin API
+
+|                                                                                                                                                                                           |                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")()                         | Abstract unitary synthesis plugin class                   |
+| [`UnitarySynthesisPluginManager`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPluginManager "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPluginManager")()    | Unitary Synthesis plugin manager class                    |
+| [`unitary_synthesis_plugin_names`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names")() | Return a list of installed unitary synthesis plugin names |
+
+### High-Level Synthesis Plugin API
+
+|                                                                                                                                                                                                            |                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")()                                    | Abstract high-level synthesis plugin class.                                |
+| [`HighLevelSynthesisPluginManager`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager")()               | Class tracking the installed high-level-synthesis plugins.                 |
+| [`high_level_synthesis_plugin_names`](qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names")(op\_name) | Return a list of plugin names installed for a given high level object name |
+
+## Writing Plugins
+
+### Unitary Synthesis Plugins
+
+To write a unitary synthesis plugin there are 2 main steps. The first step is to create a subclass of the abstract plugin class: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin"). The plugin class defines the interface and contract for unitary synthesis plugins. The primary method is [`run()`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin#run "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.run") which takes in a single positional argument, a unitary matrix as a numpy array, and is expected to return a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object representing the synthesized circuit from that unitary matrix. Then to inform the Qiskit transpiler about what information is necessary for the pass there are several required property methods that need to be implemented such as `supports_basis_gates` and `supports_coupling_map` depending on whether the plugin supports and/or requires that input to perform synthesis. For the full details refer to the [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") documentation for all the required fields. An example plugin class would look something like:
+
+```python
+from qiskit.transpiler.passes.synthesis import plugin
+from qiskit_plugin_pkg.synthesis import generate_dag_circuit_from_matrix
+
+
+class SpecialUnitarySynthesis(plugin.UnitarySynthesisPlugin):
+    @property
+    def supports_basis_gates(self):
+        return True
+
+    @property
+    def supports_coupling_map(self):
+        return False
+
+    @property
+    def supports_natural_direction(self):
+        return False
+
+    @property
+    def supports_pulse_optimize(self):
+        return False
+
+    @property
+    def supports_gate_lengths(self):
+        return False
+
+    @property
+    def supports_gate_errors(self):
+        return False
+
+    @property
+    def supports_gate_lengths_by_qubit(self):
+        return False
+
+    @property
+    def supports_gate_errors_by_qubit(self):
+        return False
+
+    @property
+    def min_qubits(self):
+        return None
+
+    @property
+    def max_qubits(self):
+        return None
+
+    @property
+    def supported_bases(self):
+        return None
+
+    def run(self, unitary, **options):
+        basis_gates = options['basis_gates']
+        dag_circuit = generate_dag_circuit_from_matrix(unitary, basis_gates)
+        return dag_circuit
+```
+
+If for some reason the available inputs to the [`run()`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin#run "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.run") method are insufficient please open an issue and we can discuss expanding the plugin interface with new opt-in inputs that can be added in a backwards compatible manner for future releases. Do note though that this plugin interface is considered stable and guaranteed to not change in a breaking manner. If changes are needed (for example to expand the available optional input options) it will be done in a way that will **not** require changes from existing plugins.
+
+<Admonition title="Note" type="note">
+  All methods prefixed with `supports_` are reserved on a `UnitarySynthesisPlugin` derived class for part of the interface. You should not define any custom `supports_*` methods on a subclass that are not defined in the abstract class.
+</Admonition>
+
+The second step is to expose the [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") as a setuptools entry point in the package metadata. This is done by simply adding an `entry-points` table in `pyproject.toml` for the plugin package with the necessary entry points under the `qiskit.unitary_synthesis` namespace. For example:
+
+```toml
+[project.entry-points."qiskit.unitary_synthesis"]
+"special" = "qiskit_plugin_pkg.module.plugin:SpecialUnitarySynthesis"
+```
+
+There isn’t a limit to the number of plugins a single package can include as long as each plugin has a unique name. So a single package can expose multiple plugins if necessary. The name `default` is used by Qiskit itself and can’t be used in a plugin.
+
+#### Unitary Synthesis Plugin Configuration
+
+For some unitary synthesis plugins that expose multiple options and tunables the plugin interface has an option for users to provide a free form configuration dictionary. This will be passed through to the `run()` method as the `options` kwarg. If your plugin has these configuration options you should clearly document how a user should specify these configuration options and how they’re used as it’s a free form field.
+
+### High-Level Synthesis Plugins
+
+Writing a high-level synthesis plugin is conceptually similar to writing a unitary synthesis plugin. The first step is to create a subclass of the abstract plugin class: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin"), which defines the interface and contract for high-level synthesis plugins. The primary method is [`run()`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin#run "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin.run"). The positional argument `high_level_object` specifies the “higher-level-object” to be synthesized, which is any object of type [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") (including, for example, [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.generalized_gates.linear_function.LinearFunction") or [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.operators.symplectic.clifford.Clifford")). The keyword argument `target` specifies the target backend, allowing the plugin to access all target-specific information, such as the coupling map, the supported gate set, and so on. The keyword argument `coupling_map` only specifies the coupling map, and is only used when `target` is not specified. The keyword argument `qubits` specifies the list of qubits over which the higher-level-object is defined, in case the synthesis is done on the physical circuit. The value of `None` indicates that the layout has not yet been chosen and the physical qubits in the target or coupling map that this operation is operating on has not yet been determined. Additionally, plugin-specific options and tunables can be specified via `options`, which is a free form configuration dictionary. If your plugin has these configuration options you should clearly document how a user should specify these configuration options and how they’re used as it’s a free form field. The method [`run()`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin#run "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin.run") is expected to return a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object representing the synthesized circuit from that higher-level-object. It is also allowed to return `None` representing that the synthesis method is unable to synthesize the given higher-level-object. The actual synthesis of higher-level objects is performed by [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.synthesis.high_level_synthesis.HighLevelSynthesis") transpiler pass. For the full details refer to the [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin") documentation for all the required fields. An example plugin class would look something like:
+
+```python
+from qiskit.transpiler.passes.synthesis.plugin import HighLevelSynthesisPlugin
+from qiskit.synthesis.clifford import synth_clifford_bm
+
+
+class SpecialSynthesisClifford(HighLevelSynthesisPlugin):
+
+def run(self, high_level_object, coupling_map=None, target=None, qubits=None, **options):
+    if higher_level_object.num_qubits <= 3:
+        return synth_clifford_bm(high_level_object)
+    else:
+        return None
+```
+
+The above example creates a plugin to synthesize objects of type [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") that have at most 3 qubits, using the method `synth_clifford_bm`.
+
+The second step is to expose the [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin") as a setuptools entry point in the package metadata. This is done by adding an `entry-points` table in `pyproject.toml` for the plugin package with the necessary entry points under the `qiskit.synthesis` namespace. For example:
+
+```toml
+[project.entry-points."qiskit.synthesis"]
+"clifford.special" = "qiskit_plugin_pkg.module.plugin:SpecialSynthesisClifford"
+```
+
+The `name` consists of two parts separated by dot “.”: the name of the type of [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") to which the synthesis plugin applies (`clifford`), and the name of the plugin (`special`). There isn’t a limit to the number of plugins a single package can include as long as each plugin has a unique name.
+
+## Using Plugins
+
+<span id="id1" />
+
+### Unitary Synthesis Plugins
+
+To use a plugin all you need to do is install the package that includes a synthesis plugin. Then Qiskit will automatically discover the installed plugins and expose them as valid options for the appropriate [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") kwargs and pass constructors. If there are any installed plugins which can’t be loaded/imported this will be logged to Python logging.
+
+To get the installed list of installed unitary synthesis plugins you can use the [`qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names") function.
+
+<span id="using-high-level-synthesis-plugins" />
+
+<span id="id2" />
+
+### High-level Synthesis Plugins
+
+To use a high-level synthesis plugin, you first instantiate an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") to store the names of the plugins to use for various high-level objects. For example:
+
+```python
+HLSConfig(permutation=["acg"], clifford=["layers"], linear_function=["pmh"])
+```
+
+creates a high-level synthesis configuration that uses the `acg` plugin for synthesizing [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") objects, the `layers` plugin for synthesizing [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects, and the `pmh` plugin for synthesizing [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction") objects. The keyword arguments are the [`Operation.name`](qiskit.circuit.Operation#name "qiskit.circuit.Operation.name") fields of the relevant objects. For example, all [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") operations have the [`name`](qiskit.circuit.Operation#name "qiskit.circuit.Operation.name") `clifford`, so this is used as the keyword argument. You can specify any keyword argument here that you have installed plugins to handle, including custom user objects if you have plugins installed for them. See [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") for more detail on alternate formats for configuring the plugins within each argument.
+
+For each high-level object, the list of given plugins are tried in sequence until one of them succeeds (in the example above, each list only contains a single plugin). In addition to specifying a plugin by its name, you can instead pass a `(name, options)` tuple, where the second element of the tuple is a dictionary containing options for the plugin.
+
+Once created you then pass this [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object into the `hls_config` argument for [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`generate_preset_pass_manager()`](qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") which will use the specified plugins as part of the larger compilation workflow.
+
+To get a list of installed high level synthesis plugins for any given [`Operation.name`](qiskit.circuit.Operation#name "qiskit.circuit.Operation.name"), you can use the [`high_level_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names") function, passing the desired `name` as the argument:
+
+```python
+high_level_synthesis_plugin_names("clifford")
+```
+
+will return a list of all the installed Clifford synthesis plugins.
+
+## Available Plugins
+
+High-level synthesis plugins that are directly available in Qiskit include plugins for synthesizing [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects, [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction") objects, and [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") objects. Some of these plugins implicitly target all-to-all connectivity. This is not a practical limitation since [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.synthesis.high_level_synthesis.HighLevelSynthesis") typically runs before layout and routing, which will ensure that the final circuit adheres to the device connectivity by inserting additional SWAP gates. A good example is the permutation synthesis plugin `ACGSynthesisPermutation` which can synthesize any permutation with at most 2 layers of SWAP gates. On the other hand, some plugins implicitly target linear connectivity. Typically, the synthesizing circuits have larger depth and the number of gates, however no additional SWAP gates would be inserted if the following layout pass chose a consecutive line of qubits inside the topology of the device. A good example of this is the permutation synthesis plugin `KMSSynthesisPermutation` which can synthesize any permutation of `n` qubits in depth `n`. Typically, it is difficult to know in advance which of the two approaches: synthesizing circuits for all-to-all connectivity and inserting SWAP gates vs. synthesizing circuits for linear connectivity and inserting less or no SWAP gates lead a better final circuit, so it likely makes sense to try both and see which gives better results. Finally, some plugins can target a given connectivity, and hence should be run after the layout is set. In this case the synthesized circuit automatically adheres to the topology of the device. A good example of this is the permutation synthesis plugin `TokenSwapperSynthesisPermutation` which is able to synthesize arbitrary permutations with respect to arbitrary coupling maps. For more detail, please refer to description of each individual plugin.
+
+Below are the synthesis plugin classes available in Qiskit. These classes should not be used directly, but instead should be used through the plugin interface documented above. The classes are listed here to ease finding the documentation for each of the included plugins and to ease the comparison between different synthesis methods for a given object.
+
+<span id="id3" />
+
+### Unitary Synthesis Plugins
+
+<span id="module-qiskit.transpiler.passes.synthesis.aqc_plugin" />
+
+<span id="aqc-synthesis-plugin-in-qiskit-transpiler-passes-synthesis-aqc-plugin" />
+
+#### AQC Synthesis Plugin (in [`qiskit.transpiler.passes.synthesis.aqc_plugin`](#module-qiskit.transpiler.passes.synthesis.aqc_plugin "qiskit.transpiler.passes.synthesis.aqc_plugin"))
+
+|                                                                                                                                                               |                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [`AQCSynthesisPlugin`](qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin "qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin")() | An AQC-based Qiskit unitary synthesis plugin. |
+
+<span id="module-qiskit.transpiler.passes.synthesis.unitary_synthesis" />
+
+<span id="unitary-synthesis-plugin-in-qiskit-transpiler-passes-synthesis-unitary-synthesis" />
+
+#### Unitary Synthesis Plugin (in [`qiskit.transpiler.passes.synthesis.unitary_synthesis`](#module-qiskit.transpiler.passes.synthesis.unitary_synthesis "qiskit.transpiler.passes.synthesis.unitary_synthesis"))
+
+|                                                                                                                                                                                            |                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+| [`DefaultUnitarySynthesis`](qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis "qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis")() | The default unitary synthesis plugin. |
+
+<span id="module-qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis" />
+
+<span id="solovay-kitaev-synthesis-plugin-in-qiskit-transpiler-passes-synthesis-solovay-kitaev-synthesis" />
+
+#### Solovay-Kitaev Synthesis Plugin (in [`qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis`](#module-qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis "qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis"))
+
+|                                                                                                                                                                                                       |                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| [`SolovayKitaevSynthesis`](qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis "qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis")() | A Solovay-Kitaev Qiskit unitary synthesis plugin. |
+
+### High Level Synthesis
+
+For each high-level object we give a table that lists all of its plugins available directly in Qiskit. We include the name of the plugin, the class of the plugin, the targeted connectivity map and optionally additional information. Recall the plugins should be used via the previously described [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), for example:
+
+```python
+HLSConfig(permutation=["kms"])
+```
+
+creates a high-level synthesis configuration that uses the `kms` plugin for synthesizing [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") objects – i.e. those with `name = "permutation"`. In this case, the plugin name is “kms”, the plugin class is [`KMSSynthesisPermutation`](qiskit.transpiler.passes.synthesis.hls_plugins.KMSSynthesisPermutation "qiskit.transpiler.passes.synthesis.hls_plugins.KMSSynthesisPermutation"). This particular synthesis algorithm created a circuit adhering to the linear nearest-neighbor connectivity.
+
+<span id="module-qiskit.transpiler.passes.synthesis.hls_plugins" />
+
+<span id="id4" />
+
+#### High Level Synthesis Plugins
+
+##### Clifford Synthesis
+
+| Plugin name | Plugin class                                                                                                                                                                       | Targeted connectivity | Description                                                           |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | --------------------------------------------------------------------- |
+| `"ag"`      | [`AGSynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.AGSynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.AGSynthesisClifford")                   | all-to-all            | greedily optimizes CX-count                                           |
+| `"bm"`      | [`BMSynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.BMSynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.BMSynthesisClifford")                   | all-to-all            | optimal count for n=2,3; used in `"default"` for n=2,3                |
+| `"greedy"`  | [`GreedySynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.GreedySynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.GreedySynthesisClifford")       | all-to-all            | greedily optimizes CX-count; used in `"default"` for n>=4             |
+| `"layers"`  | [`LayerSynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.LayerSynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.LayerSynthesisClifford")          | all-to-all            |                                                                       |
+| `"lnn"`     | [`LayerLnnSynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.LayerLnnSynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.LayerLnnSynthesisClifford") | linear                | many CX-gates but guarantees CX-depth of at most 7\*n+2               |
+| `"default"` | [`DefaultSynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.DefaultSynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.DefaultSynthesisClifford")    | all-to-all            | usually best for optimizing CX-count (and optimal CX-count for n=2,3) |
+
+|                                                                                                                                                                                      |                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`AGSynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.AGSynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.AGSynthesisClifford")()                   | Clifford synthesis plugin based on the Aaronson-Gottesman method.                                                                                          |
+| [`BMSynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.BMSynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.BMSynthesisClifford")()                   | Clifford synthesis plugin based on the Bravyi-Maslov method.                                                                                               |
+| [`GreedySynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.GreedySynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.GreedySynthesisClifford")()       | Clifford synthesis plugin based on the greedy synthesis Bravyi-Hu-Maslov-Shaydulin method.                                                                 |
+| [`LayerSynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.LayerSynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.LayerSynthesisClifford")()          | Clifford synthesis plugin based on the Bravyi-Maslov method to synthesize Cliffords into layers.                                                           |
+| [`LayerLnnSynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.LayerLnnSynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.LayerLnnSynthesisClifford")() | Clifford synthesis plugin based on the Bravyi-Maslov method to synthesize Cliffords into layers, with each layer synthesized adhering to LNN connectivity. |
+| [`DefaultSynthesisClifford`](qiskit.transpiler.passes.synthesis.hls_plugins.DefaultSynthesisClifford "qiskit.transpiler.passes.synthesis.hls_plugins.DefaultSynthesisClifford")()    | The default clifford synthesis plugin.                                                                                                                     |
+
+##### Linear Function Synthesis
+
+| Plugin name | Plugin class                                                                                                                                                                                      | Targeted connectivity | Description                                           |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | ----------------------------------------------------- |
+| `"kms"`     | [`KMSSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.hls_plugins.KMSSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.hls_plugins.KMSSynthesisLinearFunction")             | linear                | many CX-gates but guarantees CX-depth of at most 5\*n |
+| `"pmh"`     | [`PMHSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.hls_plugins.PMHSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.hls_plugins.PMHSynthesisLinearFunction")             | all-to-all            | greedily optimizes CX-count; used in `"default"`      |
+| `"default"` | [`DefaultSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.hls_plugins.DefaultSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.hls_plugins.DefaultSynthesisLinearFunction") | all-to-all            | best for optimizing CX-count                          |
+
+|                                                                                                                                                                                                     |                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`KMSSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.hls_plugins.KMSSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.hls_plugins.KMSSynthesisLinearFunction")()             | Linear function synthesis plugin based on the Kutin-Moulton-Smithline method. |
+| [`PMHSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.hls_plugins.PMHSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.hls_plugins.PMHSynthesisLinearFunction")()             | Linear function synthesis plugin based on the Patel-Markov-Hayes method.      |
+| [`DefaultSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.hls_plugins.DefaultSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.hls_plugins.DefaultSynthesisLinearFunction")() | The default linear function synthesis plugin.                                 |
+
+##### Permutation Synthesis
+
+| Plugin name       | Plugin class                                                                                                                                                                                            | Targeted connectivity | Description                                              |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | -------------------------------------------------------- |
+| `"basic"`         | [`BasicSynthesisPermutation`](qiskit.transpiler.passes.synthesis.hls_plugins.BasicSynthesisPermutation "qiskit.transpiler.passes.synthesis.hls_plugins.BasicSynthesisPermutation")                      | all-to-all            | optimal SWAP-count; used in `"default"`                  |
+| `"acg"`           | [`ACGSynthesisPermutation`](qiskit.transpiler.passes.synthesis.hls_plugins.ACGSynthesisPermutation "qiskit.transpiler.passes.synthesis.hls_plugins.ACGSynthesisPermutation")                            | all-to-all            | guarantees SWAP-depth of at most 2                       |
+| `"kms"`           | [`KMSSynthesisPermutation`](qiskit.transpiler.passes.synthesis.hls_plugins.KMSSynthesisPermutation "qiskit.transpiler.passes.synthesis.hls_plugins.KMSSynthesisPermutation")                            | linear                | many SWAP-gates, but guarantees SWAP-depth of at most n  |
+| `"token_swapper"` | [`TokenSwapperSynthesisPermutation`](qiskit.transpiler.passes.synthesis.hls_plugins.TokenSwapperSynthesisPermutation "qiskit.transpiler.passes.synthesis.hls_plugins.TokenSwapperSynthesisPermutation") | any                   | greedily optimizes SWAP-count for arbitrary connectivity |
+| `"default"`       | [`BasicSynthesisPermutation`](qiskit.transpiler.passes.synthesis.hls_plugins.BasicSynthesisPermutation "qiskit.transpiler.passes.synthesis.hls_plugins.BasicSynthesisPermutation")                      | all-to-all            | best for optimizing SWAP-count                           |
+
+|                                                                                                                                                                                                           |                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`BasicSynthesisPermutation`](qiskit.transpiler.passes.synthesis.hls_plugins.BasicSynthesisPermutation "qiskit.transpiler.passes.synthesis.hls_plugins.BasicSynthesisPermutation")()                      | The permutation synthesis plugin based on sorting.                              |
+| [`ACGSynthesisPermutation`](qiskit.transpiler.passes.synthesis.hls_plugins.ACGSynthesisPermutation "qiskit.transpiler.passes.synthesis.hls_plugins.ACGSynthesisPermutation")()                            | The permutation synthesis plugin based on the Alon, Chung, Graham method.       |
+| [`KMSSynthesisPermutation`](qiskit.transpiler.passes.synthesis.hls_plugins.KMSSynthesisPermutation "qiskit.transpiler.passes.synthesis.hls_plugins.KMSSynthesisPermutation")()                            | The permutation synthesis plugin based on the Kutin, Moulton, Smithline method. |
+| [`TokenSwapperSynthesisPermutation`](qiskit.transpiler.passes.synthesis.hls_plugins.TokenSwapperSynthesisPermutation "qiskit.transpiler.passes.synthesis.hls_plugins.TokenSwapperSynthesisPermutation")() | The permutation synthesis plugin based on the token swapper algorithm.          |
+
+##### QFT Synthesis
+
+| Plugin name | Plugin class                                                                                                                                            | Targeted connectivity |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `"full"`    | [`QFTSynthesisFull`](qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisFull "qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisFull") | all-to-all            |
+| `"line"`    | [`QFTSynthesisLine`](qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine "qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine") | linear                |
+| `"default"` | [`QFTSynthesisFull`](qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisFull "qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisFull") | all-to-all            |
+
+|                                                                                                                                                           |                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [`QFTSynthesisFull`](qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisFull "qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisFull")() | Synthesis plugin for QFT gates using all-to-all connectivity. |
+| [`QFTSynthesisLine`](qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine "qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine")() | Synthesis plugin for QFT gates using linear connectivity.     |
+
+##### MCX Synthesis
+
+The following table lists synthesis plugins available for an [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate") gate with k control qubits. If the available number of clean/dirty auxiliary qubits is not sufficient, the corresponding synthesis method will return None.
+
+| Plugin name     | Plugin class                                                                                                                                                           | Number of clean ancillas | Number of dirty ancillas | Description                                                                      |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ------------------------ | -------------------------------------------------------------------------------- |
+| `"gray_code"`   | [`MCXSynthesisGrayCode`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisGrayCode "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisGrayCode")    | 0                        | 0                        | exponentially many CX gates; use only for small values of k                      |
+| `"noaux_v24"`   | [`MCXSynthesisNoAuxV24`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24")    | 0                        | 0                        | quadratic number of CX gates; use instead of `"gray_code"` for large values of k |
+| `"n_clean_m15"` | [`MCXSynthesisNCleanM15`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNCleanM15 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNCleanM15") | k-2                      | 0                        | at most 6\*k-6 CX gates                                                          |
+| `"n_dirty_i15"` | [`MCXSynthesisNDirtyI15`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15") | 0                        | k-2                      | at most 8\*k-6 CX gates                                                          |
+| `"1_clean_b95"` | [`MCXSynthesis1CleanB95`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95") | 1                        | 0                        | at most 16\*k-8 CX gates                                                         |
+| `"default"`     | [`MCXSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisDefault")       | any                      | any                      | chooses the best algorithm based on the ancillas available                       |
+
+|                                                                                                                                                                          |                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`MCXSynthesisGrayCode`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisGrayCode "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisGrayCode")()    | Synthesis plugin for a multi-controlled X gate based on the Gray code.                                                                                 |
+| [`MCXSynthesisNoAuxV24`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24")()    | Synthesis plugin for a multi-controlled X gate based on the implementation for MCPhaseGate, which is in turn based on the paper by Vale et al. (2024). |
+| [`MCXSynthesisNCleanM15`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNCleanM15 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNCleanM15")() | Synthesis plugin for a multi-controlled X gate based on the paper by Maslov (2016).                                                                    |
+| [`MCXSynthesisNDirtyI15`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15")() | Synthesis plugin for a multi-controlled X gate based on the paper by Iten et al. (2016).                                                               |
+| [`MCXSynthesis1CleanB95`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95")() | Synthesis plugin for a multi-controlled X gate based on the paper by Barenco et al. (1995).                                                            |
+| [`MCXSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisDefault")()       | The default synthesis plugin for a multi-controlled X gate.                                                                                            |
+
+##### MCMT Synthesis
+
+| Plugin name | Plugin class                                                                                                                                                        | Number of clean ancillas | Number of dirty ancillas | Description                                                |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ------------------------ | ---------------------------------------------------------- |
+| `"vchain"`  | [`MCMTSynthesisVChain`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain")    | k-1                      | 0                        | uses a linear number of Toffoli gates                      |
+| `"noaux"`   | [`MCMTSynthesisNoAux`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux")       | 0                        | 0                        | uses Qiskit’s standard control mechanism                   |
+| `"default"` | [`MCMTSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault") | any                      | any                      | chooses the best algorithm based on the ancillas available |
+
+|                                                                                                                                                                       |                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| [`MCMTSynthesisVChain`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain")()    | A V-chain based synthesis for `MCMTGate`. |
+| [`MCMTSynthesisNoAux`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux")()       | A V-chain based synthesis for `MCMTGate`. |
+| [`MCMTSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault")() | A default decomposition for MCMT gates.   |
+
+##### Pauli Evolution Synthesis
+
+| Plugin name | Plugin class                                                                                                                                                                                      | Description                                                                                               | Targeted connectivity |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------- |
+| `"rustiq"`  | [`PauliEvolutionSynthesisRustiq`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq")    | use the synthesis method from [Rustiq circuit synthesis library](https://github.com/smartiel/rustiq-core) | all-to-all            |
+| `"default"` | [`PauliEvolutionSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault") | use a diagonalizing Clifford per Pauli term                                                               | all-to-all            |
+
+|                                                                                                                                                                                                     |                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`PauliEvolutionSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault")() | Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") using the default synthesis algorithm. |
+| [`PauliEvolutionSynthesisRustiq`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq")()    | Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") using Rustiq.                          |
+
+##### Modular Adder Synthesis
+
+| Plugin name     | Plugin class                                                                                                                                                                                | Number of clean ancillas   | Description                                                |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------- |
+| `"ripple_cdkm"` | [`ModularAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisC04")             | 1                          | a ripple-carry adder                                       |
+| `"ripple_vbe"`  | [`ModularAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95")             | $n-1$, for $n$-bit numbers | a ripple-carry adder                                       |
+| `"qft"`         | [`ModularAdderSynthesisD00`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisD00 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisD00")             | 0                          | a QFT-based adder                                          |
+| `"default"`     | [`ModularAdderSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisDefault") | any                        | chooses the best algorithm based on the ancillas available |
+
+|                                                                                                                                                                                               |                                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [`ModularAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisC04")()             | A ripple-carry adder, modulo $2^n$.                                    |
+| [`ModularAdderSynthesisD00`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisD00 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisD00")()             | A QFT-based adder, modulo $2^n$.                                       |
+| [`ModularAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95")()             | A ripple-carry adder, modulo $2^n$.                                    |
+| [`ModularAdderSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisDefault")() | The default modular adder (no carry in, no carry out qubit) synthesis. |
+
+##### Half Adder Synthesis
+
+| Plugin name     | Plugin class                                                                                                                                                                       | Number of clean ancillas   | Description                                                |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------- |
+| `"ripple_cdkm"` | [`HalfAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisC04")             | 1                          | a ripple-carry adder                                       |
+| `"ripple_vbe"`  | [`HalfAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95")             | $n-1$, for $n$-bit numbers | a ripple-carry adder                                       |
+| `"qft"`         | [`HalfAdderSynthesisD00`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisD00 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisD00")             | 0                          | a QFT-based adder                                          |
+| `"default"`     | [`HalfAdderSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault") | any                        | chooses the best algorithm based on the ancillas available |
+
+|                                                                                                                                                                                      |                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| [`HalfAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisC04")()             | A ripple-carry adder with a carry-out bit.                             |
+| [`HalfAdderSynthesisD00`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisD00 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisD00")()             | A QFT-based adder with a carry-in and a carry-out bit.                 |
+| [`HalfAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95")()             | A ripple-carry adder with a carry-out bit.                             |
+| [`HalfAdderSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault")() | The default half-adder (no carry in, but a carry out qubit) synthesis. |
+
+##### Full Adder Synthesis
+
+| Plugin name     | Plugin class                                                                                                                                                                       | Number of clean ancillas   | Description                                                |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ---------------------------------------------------------- |
+| `"ripple_cdkm"` | [`FullAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisC04")             | 0                          | a ripple-carry adder                                       |
+| `"ripple_vbe"`  | [`FullAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95")             | $n-1$, for $n$-bit numbers | a ripple-carry adder                                       |
+| `"default"`     | [`FullAdderSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisDefault") | any                        | chooses the best algorithm based on the ancillas available |
+
+|                                                                                                                                                                                      |                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| [`FullAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisC04")()             | A ripple-carry adder with a carry-in and a carry-out bit. |
+| [`FullAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95")()             | A ripple-carry adder with a carry-in and a carry-out bit. |
+| [`FullAdderSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisDefault")() | A ripple-carry adder with a carry-in and a carry-out bit. |
+
+##### Multiplier Synthesis
+
+| Plugin name    | Plugin class                                                                                                                                                              | Number of clean ancillas                                                                                             | Description                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| `"cumulative"` | [`MultiplierSynthesisH18`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18") | depending on the [`HalfAdderGate`](qiskit.circuit.library.HalfAdderGate "qiskit.circuit.library.HalfAdderGate") used | a cumulative adder based on controlled adders |
+| `"qft"`        | [`MultiplierSynthesisR17`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17") | 0                                                                                                                    | a QFT-based multiplier                        |
+
+|                                                                                                                                                                             |                                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`MultiplierSynthesisH18`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18")() | A cumulative multiplier based on controlled adders. |
+| [`MultiplierSynthesisR17`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17")() | A QFT-based multiplier.                             |
+

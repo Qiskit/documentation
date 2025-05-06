@@ -1,0 +1,74 @@
+---
+title: BaseSampler (v1.4)
+description: API reference for qiskit.primitives.BaseSampler in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.BaseSampler
+---
+
+# BaseSampler
+
+<Class id="qiskit.primitives.BaseSampler" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_sampler.py#L154-L177" signature="qiskit.primitives.BaseSampler(*, options=None)" modifiers="class">
+  Bases: [`BaseSamplerV1`](qiskit.primitives.BaseSamplerV1 "qiskit.primitives.base.base_sampler.BaseSamplerV1")\[`T`]
+
+  DEPRECATED. Type alias for Sampler V1 base class
+
+  See [`BaseSamplerV1`](qiskit.primitives.BaseSamplerV1 "qiskit.primitives.BaseSamplerV1") for details.
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The class `qiskit.primitives.base.base_sampler.BaseSampler` is deprecated as of qiskit 1.2. It will be removed no earlier than 3 months after the release date. The BaseSampler class is a type alias for the BaseSamplerV1 interface that has been deprecated in favor of explicitly versioned interface classes. It is recommended to migrate all implementations to use BaseSamplerV2. However, for implementations incompatible with BaseSamplerV2, BaseSampler can be replaced with the explicitly versioned BaseSamplerV1 class.
+  </Admonition>
+
+  **Parameters**
+
+  **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)") *| None*) – Default options.
+
+  ## Attributes
+
+  ### options
+
+  <Attribute id="qiskit.primitives.BaseSampler.options">
+    Return options values for the estimator.
+
+    **Returns**
+
+    options
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.primitives.BaseSampler.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_sampler.py#L111-L142" signature="run(circuits, parameter_values=None, **run_options)">
+    Run the job of the sampling of bitstrings.
+
+    **Parameters**
+
+    *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – One of more circuit objects.
+    *   **parameter\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | None*) – Parameters to be bound to the circuit.
+    *   **run\_options** – Backend runtime options used for circuit execution.
+
+    **Returns**
+
+    The job object of the result of the sampler. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Invalid arguments are given.
+
+    **Return type**
+
+    T
+  </Function>
+
+  ### set\_options
+
+  <Function id="qiskit.primitives.BaseSampler.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive.py#L39-L45" signature="set_options(**fields)">
+    Set options values for the estimator.
+
+    **Parameters**
+
+    **\*\*fields** – The fields to update the options
+  </Function>
+</Class>
+

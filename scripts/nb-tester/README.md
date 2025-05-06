@@ -14,9 +14,11 @@ pip install git+https://github.com/Qiskit/documentation.git@main#subdirectory=sc
 > [!NOTE]
 > If adding this package as a dependency, change `main` to point to a specific
 > commit. For example:
+>
 > ```
 > git+https://github.com/Qiskit/documentation.git@91bce99173f46be985698cc78ec4521856bf83b6#subdirectory=scripts/nb-tester
 > ```
+>
 > This means changes to this repository won't break your tests. You can update
 > the commit when you're ready to pull in our changes.
 
@@ -32,8 +34,8 @@ list of notebooks you'd like to execute.
 test-docs-notebooks <path/to/notebook.ipynb> <path/to/another.ipynb>
 ```
 
-* To write the executed notebooks to disk, include the `--write` argument.
-* To set a time limit for each cell, include the `--cell-timeout` argument,
+- To write the executed notebooks to disk, include the `--write` argument.
+- To set a time limit for each cell, include the `--cell-timeout` argument,
   followed by the time in seconds.
 
 ## Patches
@@ -107,9 +109,10 @@ test-docs-notebooks\
 ```
 
 This will execute:
- * `notebook.ipynb` with no patch
- * `notebook-2.ipynb` and `notebook-3.ipynb` with `least_busy` patched to return a 6-qubit simulator
- * `notebook-4.ipynb` with `least_busy` patched to return the `test-eagle` cloud backend
+
+- `notebook.ipynb` with no patch
+- `notebook-2.ipynb` and `notebook-3.ipynb` with `least_busy` patched to return a 6-qubit simulator
+- `notebook-4.ipynb` with `least_busy` patched to return the `test-eagle` cloud backend
 
 </details>
 
@@ -158,7 +161,7 @@ notebooks = [
 
 Here's a few different commands you could run:
 
-* ```
+- ```
   test-docs-notebooks --config-path config.toml
   ```
 
@@ -166,7 +169,7 @@ Here's a few different commands you could run:
   is "main". This means both `notebook.ipynb` and `another-notebook.ipynb` will
   run without patching, as their `test-strategies.main` has no `patch` arg.
 
-* ```
+- ```
   test-docs-notebooks --config-path config.toml --test-strategy mock
   ```
 
@@ -176,7 +179,7 @@ Here's a few different commands you could run:
   strategy also has a timeout defined, so each cell will timeout after 300s.
   You can override this with your own `--timeout` argument.
 
-* ```
+- ```
   test-docs-notebooks notebook.ipynb --config-path config.toml
   ```
 

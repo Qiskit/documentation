@@ -19,6 +19,7 @@ import transformLinks from "transform-markdown-links";
 import { pathExists } from "../fs.js";
 import type { Pkg } from "./Pkg.js";
 import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { DOCS_BASE_PATH } from "./conversionPipeline.js";
 
 // ---------------------------------------------------------------------------
 // Generic release notes handling
@@ -39,6 +40,12 @@ export async function handleReleaseNotesFile(
     return false;
   }
 
+  // If we're linking to a different to a different package's release notes, we
+  // shouldn't create a new release notes file.
+  if (pkg.releaseNotesConfig.linkToPackage) {
+    return false;
+  }
+
   // When the release notes are a single file, only use them if this is the latest version rather
   // than a historical release.
   if (!pkg.hasSeparateReleaseNotes()) {
@@ -47,14 +54,24 @@ export async function handleReleaseNotesFile(
 
   // Else, there is a distinct release note per version. So, we use the release note but
   // have custom logic to handle it.
-  const baseUrl = pkg.isHistorical()
+  const apiBaseUrl = pkg.isHistorical()
     ? `/api/${pkg.name}/${pkg.versionWithoutPatch}`
     : `/api/${pkg.name}`;
-  result.markdown = transformLinks(result.markdown, (link, _) =>
-    link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
-      ? link
-      : `${baseUrl}/${link}`,
-  );
+  result.markdown = transformLinks(result.markdown, (link, _) => {
+    const fullPathLink =
+      link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+        ? link
+        : `${apiBaseUrl}/${link}`;
+
+    // We check that the links does not start with the base path and does not end with the base path to include the docs home page.
+    if (
+      fullPathLink.startsWith("/") &&
+      !fullPathLink.startsWith(`${DOCS_BASE_PATH}/`) &&
+      !fullPathLink.endsWith(DOCS_BASE_PATH)
+    )
+      return `${DOCS_BASE_PATH}${fullPathLink}`;
+    return fullPathLink;
+  });
   await writeReleaseNoteForVersion(pkg, result.markdown);
   return false;
 }
@@ -71,7 +88,11 @@ export async function maybeUpdateReleaseNotesFolder(
   pkg: Pkg,
   markdownPath: string,
 ): Promise<void> {
-  if (!pkg.hasSeparateReleaseNotes() || !pkg.isLatest()) {
+  if (
+    !pkg.hasSeparateReleaseNotes() ||
+    !pkg.isLatest() ||
+    !pkg.releaseNotesConfig.enabled
+  ) {
     return;
   }
   addNewReleaseNotes(pkg);

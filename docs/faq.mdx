@@ -16,7 +16,16 @@ This documentation is relevant to the new IBM Quantum&reg; Platform. If you need
 </Admonition>
 </CloudContent>
 
-For FAQs specific to the execution modes, see the [Qiskit Runtime execution modes FAQ](/guides/execution-modes-faq) guide.
+For FAQs specific to the execution modes, see the [Qiskit Runtime execution modes FAQ](/docs/guides/execution-modes-faq) guide.
+
+## Trouble creating an IBM Cloud account
+
+If you get an error when you create an IBM Cloud&reg; account, first check whether you have access to the [Support center.](https://cloud.ibm.com/unifiedsupport/supportcenter)
+
+- If you do have access, click "create case", then select *Account* as the Topic and *Account verification* as the Subtopic.
+- If you do not have access, contact Support by calling 1-866-325-0045 and selecting the third option.
+
+See [Why is my account inactive?](https://cloud.ibm.com/docs/account?topic=account-ts_accnt_inactive) and [Why does a resource group error occur after reactivation or upgrade of a suspended account?](https://cloud.ibm.com/docs/account?topic=account-resource_inactive) for more information.
 
 ## How do I cite Qiskit in my research?
 
@@ -56,6 +65,10 @@ Try choosing a different account from the account switcher in the top header of 
 ## I don't see something in the user interface.
 
 Try choosing a different account from the account switcher in the top header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
+
+## I'm just using the Open Plan, but I had to put in my credit card.  Will I be charged?
+
+You will not be charged unless you create a Standard Plan [instance](/docs/guides/instances) and use it to send workloads to QPUs. See [Manage cost on the Standard Plan](/docs/guides/manage-cost) for instructions to set a cost limit and to learn about other ways to manage costs.
 </CloudContent>
 
 ## What happened to Python distributions such as Qiskit Aer, Qiskit Nature, and Qiskit Experiments?
@@ -66,14 +79,14 @@ Before the release of the Qiskit SDK v1.0, Qiskit was comprised of many differen
 
 These separate software packages were combined into what was called the Qiskit *metapackage*, which allowed users to install all of these components together through `pip install qiskit`. This metapackage architecture was removed with the release of the Qiskit SDK v1.0, and now each of the individual software distributions needs to be installed separately.
 
-If you want to install the packages that were previously included in the Qiskit metapackage, visit the [Qiskit ecosystem](https://www.ibm.com/quantum/ecosystem) to find a range of packages to suit your needs. You can also read the [v1.0 migration guide](/migration-guides/metapackage-migration) for more information about this change.
+If you want to install the packages that were previously included in the Qiskit metapackage, visit the [Qiskit ecosystem](https://www.ibm.com/quantum/ecosystem) to find a range of packages to suit your needs. You can also read the [v1.0 migration guide](/docs/migration-guides/metapackage-migration) for more information about this change.
 
 ## Why do I receive the error message "AttributeError: `QuantumCircuit` object has no attribute `save_state`" when using `save_*`method on a circuit?
 
 The `save_*` instructions are part of Qiskit Aer project,
 a high performance simulator for quantum circuits. These instructions do not
 exist outside of Qiskit Aer and are added dynamically to the
-[QuantumCircuit](/api/qiskit/qiskit.circuit.QuantumCircuit#quantumcircuit-class) class by Qiskit Aer on import. To
+[QuantumCircuit](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#quantumcircuit-class) class by Qiskit Aer on import. To
 use these instructions you must first import
 `qiskit_aer` in your program. Refer
 to the [qiskit_aer.library](https://qiskit.org/ecosystem/aer/apidocs/aer_library.html) for details.
@@ -84,13 +97,17 @@ The simulator models an ideal environment, without noise or decoherence. When jo
 
 <LegacyContent>
 ## How do I delete my account and data?
-
 To delete your account, go to your [account page](https://quantum.ibm.com/account#delete-account). Scroll to the Delete Account section, and click *Delete your account and account data*. You will receive an email with a link to delete your account.
 </LegacyContent>
+<CloudContent>
+## How do I close my IBM Cloud account?
+
+Find instructions on the [Closing an account](https://cloud.ibm.com/docs/account?topic=account-account-close) page.
+</CloudContent>
 ## Questions about cloud simulator retirement
 
-See the [migration guide](/migration-guides/local-simulators) for details on the retirement of cloud simulators, and how to migrate to local simulators.
+See the [migration guide](/docs/migration-guides/local-simulators) for details on the retirement of cloud simulators, and how to migrate to local simulators.
 
 ## Didn't find what you were looking for?
 
-Visit the [Support page](/support) for further guidance.
+Visit the [Support page](/docs/support) for further guidance.

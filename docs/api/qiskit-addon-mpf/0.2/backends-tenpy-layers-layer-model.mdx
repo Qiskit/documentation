@@ -1,0 +1,106 @@
+---
+title: LayerModel (v0.2)
+description: API reference for qiskit_addon_mpf.backends.tenpy_layers.LayerModel in qiskit-addon-mpf v0.2
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_mpf.backends.tenpy_layers.LayerModel
+---
+
+# LayerModel
+
+<Class id="qiskit_addon_mpf.backends.tenpy_layers.LayerModel" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_layers/model.py#L26-L162" signature="LayerModel(model_params)" modifiers="class">
+  Bases: [`CouplingMPOModel`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.model.CouplingMPOModel.html#tenpy.models.model.CouplingMPOModel "(in TeNPy v1.0.4)"), [`NearestNeighborModel`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.model.NearestNeighborModel.html#tenpy.models.model.NearestNeighborModel "(in TeNPy v1.0.4)")
+
+  A model for representing a layer of time-evolution interactions.
+
+  Essentially, this class is a simple wrapper of [`tenpy.models.model.CouplingMPOModel`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.model.CouplingMPOModel.html#tenpy.models.model.CouplingMPOModel "(in TeNPy v1.0.4)") and [`tenpy.models.model.NearestNeighborModel`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.model.NearestNeighborModel.html#tenpy.models.model.NearestNeighborModel "(in TeNPy v1.0.4)"). Its main purpose is to provide a simple interface for constructing a TeNPy-compatible Hamiltonian from Qiskit objects.
+
+  ## Methods
+
+  ### calc\_H\_bond
+
+  <Function id="qiskit_addon_mpf.backends.tenpy_layers.LayerModel.calc_H_bond" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_layers/model.py#L75-L104" signature="calc_H_bond(tol_zero=1e-15)">
+    Calculate the interaction Hamiltonian based on the coupling and onsite terms.
+
+    Essentially, this class overwrites [`calc_H_bond()`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.model.CouplingModel.html#tenpy.models.model.CouplingModel.calc_H_bond "(in TeNPy v1.0.4)") and takes care of removing even or odd bond interaction Hamiltonians depending on the value of `keep_only_odd` (see [`tenpy_layers`](backends-tenpy-layers#module-qiskit_addon_mpf.backends.tenpy_layers "qiskit_addon_mpf.backends.tenpy_layers") for more details).
+
+    **Parameters**
+
+    **tol\_zero** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the threshold for values considered to be zero.
+
+    **Returns**
+
+    The list of interaction Hamiltonians for all bonds.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")
+  </Function>
+
+  ### from\_quantum\_circuit
+
+  <Function id="qiskit_addon_mpf.backends.tenpy_layers.LayerModel.from_quantum_circuit" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_layers/model.py#L106-L162" signature="from_quantum_circuit(circuit, *, scaling_factor=1.0, **kwargs)" modifiers="classmethod">
+    Construct a [`LayerModel`](#qiskit_addon_mpf.backends.tenpy_layers.LayerModel "qiskit_addon_mpf.backends.tenpy_layers.LayerModel") from a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)").
+
+    You can see an example of this function in action in the docs of `tenpy_layers`.
+
+    **Parameters**
+
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")) – the quantum circuit to parse.
+    *   **scaling\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – a factor with which to scale the term strengths. This can be used to apply (for example) a time step scaling factor. It may also be used (e.g.) to split onsite terms into two layers (even and odd) with \$0.5\$ of the strength, each.
+    *   **kwargs** – any additional keyword arguments to pass to the [`LayerModel`](#qiskit_addon_mpf.backends.tenpy_layers.LayerModel "qiskit_addon_mpf.backends.tenpy_layers.LayerModel") constructor.
+
+    **Returns**
+
+    A new LayerModel instance.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if an unsupported quantum gate is encountered.
+
+    **Return type**
+
+    [*LayerModel*](#qiskit_addon_mpf.backends.tenpy_layers.LayerModel "qiskit_addon_mpf.backends.tenpy_layers.model.LayerModel")
+  </Function>
+
+  ### init\_sites
+
+  <Function id="qiskit_addon_mpf.backends.tenpy_layers.LayerModel.init_sites" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_layers/model.py#L35-L54" signature="init_sites(model_params)">
+    Initializes the sites of this Hamiltonian.
+
+    See [`init_sites()`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.model.CouplingMPOModel.html#tenpy.models.model.CouplingMPOModel.init_sites "(in TeNPy v1.0.4)") for more details.
+
+    <Admonition title="Caution" type="note">
+      Currently, this enforces `Sz` conservation on all sites.
+    </Admonition>
+
+    **Parameters**
+
+    **model\_params** ([*Config*](https://tenpy.readthedocs.io/en/latest/reference/tenpy.tools.params.Config.html#tenpy.tools.params.Config "(in TeNPy v1.0.4)")) – the model parameters.
+
+    **Returns**
+
+    The site to be used internally.
+
+    **Return type**
+
+    [*Site*](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.site.Site.html#tenpy.networks.site.Site "(in TeNPy v1.0.4)")
+  </Function>
+
+  ### init\_terms
+
+  <Function id="qiskit_addon_mpf.backends.tenpy_layers.LayerModel.init_terms" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_layers/model.py#L56-L73" signature="init_terms(model_params)">
+    Initializes the terms of this Hamiltonian.
+
+    See [`init_terms()`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.model.CouplingMPOModel.html#tenpy.models.model.CouplingMPOModel.init_terms "(in TeNPy v1.0.4)") for more details.
+
+    **Parameters**
+
+    **model\_params** ([*Config*](https://tenpy.readthedocs.io/en/latest/reference/tenpy.tools.params.Config.html#tenpy.tools.params.Config "(in TeNPy v1.0.4)")) – the model parameters.
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+

@@ -17,7 +17,7 @@ This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need
 </Admonition>
 </LegacyContent>
 
-When you submit a workload to a quantum processing unit (QPU), it enters the scheduler for the specific QPU, joining the pool of workloads (from all users) that are waiting to be executed on that QPU. The order in which these workloads are executed is, by default, determined by a fair-share formula. As discussed below, this formula attempts to balance the workload between different [instances](/guides/instances) according to the allocated QPU access amount over a given time window. In practice, this means that workloads from various instances are interweaved in such a way that the order in which workloads complete is not necessarily the order in which they were submitted. Because the order is calculated dynamically as new workloads arrive, it is generally impossible to guarantee when a workload will be executed from the fair-share scheduler.
+When you submit a workload to a quantum processing unit (QPU), it enters the scheduler for the specific QPU, joining the pool of workloads (from all users) that are waiting to be executed on that QPU. The order in which these workloads are executed is, by default, determined by a fair-share formula. As discussed below, this formula attempts to balance the workload between different [instances](/docs/guides/instances) according to the allocated QPU access amount over a given time window. In practice, this means that workloads from various instances are interweaved in such a way that the order in which workloads complete is not necessarily the order in which they were submitted. Because the order is calculated dynamically as new workloads arrive, it is generally impossible to guarantee when a workload will be executed from the fair-share scheduler.
 
 ## Fair-share terms
 
@@ -30,7 +30,7 @@ When you submit a workload to a quantum processing unit (QPU), it enters the sch
 </LegacyContent>
 <CloudContent>
 * **Account:** Individuals and organizations use an IBM Cloud account to access IBM Quantum Platform and Qiskit Runtime.
-* **Instance:** The base-level construct to which time is allocated from the overarching account to a set of QPUs, and to which users are directly assigned. Instances are connected to a specific region and [plan](/guides/cloud-setup#cloud-plans).
+* **Instance:** The base-level construct to which time is allocated from the overarching account to a set of QPUs, and to which users are directly assigned. Instances are connected to a specific region and [plan](/docs/guides/plans-overview). See the [Instances](/docs/guides/instances) guide for more information.
 </CloudContent>
 *   **28-day rolling window:** The fair-share scheduler accounts for usage over a rolling time window. Only execution time accumulated within that window is accounted for the purpose of fairness. The length of that window is currently 28 days. When the fair-share scheduler is invoked, it takes into account usage starting 28 days ago.
 <LegacyContent>
@@ -80,5 +80,5 @@ Your workload's position in the queue is listed in the **Queue position** column
 
 <Admonition type="tip" title="Recommendations">
     - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
-    - Learn how to [Monitor a workload](/guides/monitor-job).
+    - Learn how to [Monitor a workload](/docs/guides/monitor-job).
 </Admonition>

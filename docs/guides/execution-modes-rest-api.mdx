@@ -5,10 +5,21 @@ description: How to run a quantum computing job in a Qiskit Runtime session.
 
 # Execution modes using REST API
 
+<LegacyContent>
+<Admonition type="note">
+This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.](https://quantum.cloud.ibm.com/docs/guides/execution-modes-rest-api)
+</Admonition>
+</LegacyContent>
+<CloudContent>
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/execution-modes-rest-api)
+</Admonition>
+</CloudContent>
+
 You can run your Qiskit primitive workloads using REST APIs in one of three execution modes, depending on your needs: job, session, and batch. This topic explains these modes.
 
 <Admonition type="note">
-    This documentation utilizes the Python `requests` module to demonstrate the Qiskit Runtime REST API. However, this workflow can be executed using any language or framework that supports working with REST APIs. Refer to the [API reference documentation](/api/runtime/tags/jobs) for details.
+    This documentation utilizes the Python `requests` module to demonstrate the Qiskit Runtime REST API. However, this workflow can be executed using any language or framework that supports working with REST APIs. Refer to the [API reference documentation](/docs/api/runtime/tags/jobs) for details.
 </Admonition>
 
 ## Job mode with REST API
@@ -19,11 +30,15 @@ In job mode, a single primitive request of the Estimator or the Sampler is made 
 
 A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources. More details about Sessions can be found in the [documentation](./execution-modes).
 
-<CloudContent>Note that Open Plan users cannot submit session jobs.</CloudContent>
+<CloudContent>
+<Admonition type="note">
+Open Plan users cannot submit session jobs.
+</Admonition>
+</CloudContent>
 
 ### Start a session
 
-Begin with creating a session and obtaining a session ID.
+Begin by creating a session and obtaining a session ID.
 
 <LegacyContent>
 ```python
@@ -44,7 +59,7 @@ payload = json.dumps({
   "instance": "hub1/group1/project1",
 })
 
-response = requests.request("POST", sessionsUrl, data=payload,  headers=headersList)
+response = requests.request("POST", sessionsUrl, data=payload, headers=headersList)
 
 sessionId = response.json()['id']
 
@@ -62,7 +77,7 @@ Output
 import json
 import requests
 
-sessionsUrl = "https://quantum.cloud.ibm.com/api/qiskit-runtime-rest/v1/sessions"
+sessionsUrl = "https://quantum.cloud.ibm.com/api/v1/sessions"
 auth_id = "Bearer <YOUR_BEARER_TOKEN>"
 backend = "<BACKEND_NAME>"
 crn = "<SERVICE-CRN>"
@@ -120,7 +135,7 @@ Session closure response ok?: True
 
 <CloudContent>
 ```python
-closureURL="https://quantum.cloud.ibm.com/api/qiskit-runtime-rest/v1/sessions/"+sessionId+"/close"
+closureURL="https://quantum.cloud.ibm.com/api/v1/sessions/"+sessionId+"/close"
 
 headersList = {
   "Accept": "application/json",
@@ -144,7 +159,7 @@ Session closure response ok?: True
 
 ## Batch mode with REST API
 
-Alternatively, you can submit a batch job by specifying the `mode` in the request payload. Batch mode can help shorten processing time if all jobs can be provided at the outset. More details about batch mode can be found in the [documentation](./run-jobs-batch).
+Alternatively, you can submit a batch job by specifying the `mode` in the request payload. Batch mode can help shorten processing time if all jobs can be provided at the outset. Learn about batch mode in the [introduction to execution modes](./execution-modes#batch-mode) guide.
 
 <LegacyContent>
 ```python
@@ -176,7 +191,7 @@ sessionId = response.json()['id']
 import json
 import requests
 
-sessionsUrl = "https://quantum.cloud.ibm.com/api/qiskit-runtime-rest/sessions"
+sessionsUrl = "https://quantum.cloud.ibm.com/api/v1/sessions"
 
 headersList = {
   "Accept": "application/json",
@@ -476,7 +491,7 @@ Once a session is set up, one or more Sampler or Estimator jobs can be submitted
 <Admonition type="tip" title="Recommendations">
     - Review detailed [Sampler and Estimator](primitives-rest-api) primitives examples using REST API.
     - Learn how to [transpile circuits using REST API](./transpile-rest-api).
-    - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
+    - Read [Migrate to V2 primitives](/docs/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum&reg; Learning.
     - Learn how to transpile locally in the [Transpile](./transpile) section.
 </Admonition>

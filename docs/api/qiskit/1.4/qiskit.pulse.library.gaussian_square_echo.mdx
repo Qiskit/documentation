@@ -1,0 +1,79 @@
+---
+title: gaussian_square_echo (v1.4)
+description: API reference for qiskit.pulse.library.gaussian_square_echo in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.library.gaussian_square_echo
+---
+
+<span id="qiskit-pulse-library-gaussian-square-echo" />
+
+# qiskit.pulse.library.gaussian\_square\_echo
+
+<Function id="qiskit.pulse.library.gaussian_square_echo" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/library/symbolic_pulses.py#L1076-L1277" signature="qiskit.pulse.library.gaussian_square_echo(duration, amp, sigma, width=None, angle=0.0, active_amp=0.0, active_angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)">
+  An echoed Gaussian square pulse with an active tone overlaid on it.
+
+  The Gaussian Square Echo pulse is composed of three pulses. First, a Gaussian Square pulse $f_{echo}(x)$ with amplitude `amp` and phase `angle` playing for half duration, followed by a second Gaussian Square pulse $-f_{echo}(x)$ with opposite amplitude and same phase playing for the rest of the duration. Third a Gaussian Square pulse $f_{active}(x)$ with amplitude `active_amp` and phase `active_angle` playing for the entire duration. The Gaussian Square Echo pulse $g_e()$ can be written as:
+
+$$
+\begin{aligned}
+g_e(x) &= \begin{cases}            f_{\text{active}} + f_{\text{echo}}(x)                & x < \frac{\text{duration}}{2}\\
+f_{\text{active}} - f_{\text{echo}}(x)                & \frac{\text{duration}}{2} < x        \end{cases}\\
+\end{aligned}
+$$
+
+  One case where this pulse can be used is when implementing a direct CNOT gate with a cross-resonance superconducting qubit architecture. When applying this pulse to the target qubit, the active portion can be used to cancel IX terms from the cross-resonance drive while the echo portion can reduce the impact of a static ZZ coupling.
+
+  Exactly one of the `risefall_sigma_ratio` and `width` parameters has to be specified.
+
+  If `risefall_sigma_ratio` is not `None` and `width` is `None`:
+
+$$
+\begin{aligned}
+\text{risefall} &= \text{risefall\_sigma\_ratio} \times \text{sigma}\\
+\text{width} &= \text{duration} - 2 \times \text{risefall}
+\end{aligned}
+$$
+
+  If `width` is not None and `risefall_sigma_ratio` is None:
+
+$$
+\text{risefall} = \frac{\text{duration} - \text{width}}{2}
+
+
+$$
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.library.symbolic_pulses.gaussian_square_echo()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
+  **References**
+
+  1.  [*Jurcevic, P., Javadi-Abhari, A., Bishop, L. S., Lauer, I., Bogorin, D. F., Brink, M., Capelluto, L., G\{“u}nl\{“u}k, O., Itoko, T., Kanazawa, N. & others Demonstration of quantum volume 64 on a superconducting quantum computing system. (Section V)*](https://iopscience.iop.org/article/10.1088/2058-9565/abe519)
+
+  **Parameters**
+
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| ParameterValueType*) – Pulse length in terms of the sampling period dt.
+  *   **amp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The amplitude of the rise and fall and of the echoed pulse.
+  *   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – A measure of how wide or narrow the risefall is; see the class docstring for more details.
+  *   **width** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The duration of the embedded square pulse.
+  *   **angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The angle in radians of the complex phase factor uniformly scaling the echoed pulse. Default value 0.
+  *   **active\_amp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The amplitude of the active pulse.
+  *   **active\_angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The angle in radian of the complex phase factor uniformly scaling the active pulse. Default value 0.
+  *   **risefall\_sigma\_ratio** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The ratio of each risefall duration to sigma.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Display name for this pulse envelope.
+  *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+
+  **Returns**
+
+  ScalableSymbolicPulse instance.
+
+  **Raises**
+
+  [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When width and risefall\_sigma\_ratio are both empty or both non-empty.
+
+  **Return type**
+
+  [SymbolicPulse](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse")
+</Function>
+

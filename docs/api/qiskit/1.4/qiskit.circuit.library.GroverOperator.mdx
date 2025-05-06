@@ -1,0 +1,441 @@
+---
+title: GroverOperator (v1.4)
+description: API reference for qiskit.circuit.library.GroverOperator in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.GroverOperator
+---
+
+# GroverOperator
+
+<Class id="qiskit.circuit.library.GroverOperator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/grover_operator.py#L285-L557" signature="qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  The Grover operator.
+
+  Grover’s search algorithm \[1, 2] consists of repeated applications of the so-called Grover operator used to amplify the amplitudes of the desired output states. This operator, $\mathcal{Q}$, consists of the phase oracle, $\mathcal{S}_f$, zero phase-shift or zero reflection, $\mathcal{S}_0$, and an input state preparation $\mathcal{A}$:
+
+$$
+\mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f
+
+
+$$
+
+  In the standard Grover search we have $\mathcal{A} = H^{\otimes n}$:
+
+$$
+\mathcal{Q} = H^{\otimes n} \mathcal{S}_0 H^{\otimes n} \mathcal{S}_f
+= D \mathcal{S_f}
+
+
+$$
+
+  The operation $D = H^{\otimes n} \mathcal{S}_0 H^{\otimes n}$ is also referred to as diffusion operator. In this formulation we can see that Grover’s operator consists of two steps: first, the phase oracle multiplies the good states by -1 (with $\mathcal{S}_f$) and then the whole state is reflected around the mean (with $D$).
+
+  This class allows setting a different state preparation, as in quantum amplitude amplification (a generalization of Grover’s algorithm), $\mathcal{A}$ might not be a layer of Hardamard gates \[3].
+
+  The action of the phase oracle $\mathcal{S}_f$ is defined as
+
+$$
+\mathcal{S}_f: |x\rangle \mapsto (-1)^{f(x)}|x\rangle
+
+
+$$
+
+  where $f(x) = 1$ if $x$ is a good state and 0 otherwise. To highlight the fact that this oracle flips the phase of the good states and does not flip the state of a result qubit, we call $\mathcal{S}_f$ a phase oracle.
+
+  Note that you can easily construct a phase oracle from a bitflip oracle by sandwiching the controlled X gate on the result qubit by a X and H gate. For instance
+
+  ```text
+  Bitflip oracle     Phaseflip oracle
+  q_0: ──■──         q_0: ────────────■────────────
+       ┌─┴─┐              ┌───┐┌───┐┌─┴─┐┌───┐┌───┐
+  out: ┤ X ├         out: ┤ X ├┤ H ├┤ X ├┤ H ├┤ X ├
+       └───┘              └───┘└───┘└───┘└───┘└───┘
+  ```
+
+  There is some flexibility in defining the oracle and $\mathcal{A}$ operator. Before the Grover operator is applied in Grover’s algorithm, the qubits are first prepared with one application of the $\mathcal{A}$ operator (or Hadamard gates in the standard formulation). Thus, we always have operation of the form $\mathcal{A} \mathcal{S}_f \mathcal{A}^\dagger$. Therefore it is possible to move bitflip logic into $\mathcal{A}$ and leaving the oracle only to do phaseflips via Z gates based on the bitflips. One possible use-case for this are oracles that do not uncompute the state qubits.
+
+  The zero reflection $\mathcal{S}_0$ is usually defined as
+
+$$
+\mathcal{S}_0 = 2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n
+
+
+$$
+
+  where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
+
+  **Examples**
+
+  ```python
+  >>> from qiskit.circuit import QuantumCircuit
+  >>> from qiskit.circuit.library import GroverOperator
+  >>> oracle = QuantumCircuit(2)
+  >>> oracle.z(0)  # good state = first qubit is |1>
+  >>> grover_op = GroverOperator(oracle, insert_barriers=True)
+  >>> grover_op.decompose().draw()
+           ┌───┐ ░ ┌───┐ ░ ┌───┐          ┌───┐      ░ ┌───┐
+  state_0: ┤ Z ├─░─┤ H ├─░─┤ X ├───────■──┤ X ├──────░─┤ H ├
+           └───┘ ░ ├───┤ ░ ├───┤┌───┐┌─┴─┐├───┤┌───┐ ░ ├───┤
+  state_1: ──────░─┤ H ├─░─┤ X ├┤ H ├┤ X ├┤ H ├┤ X ├─░─┤ H ├
+                 ░ └───┘ ░ └───┘└───┘└───┘└───┘└───┘ ░ └───┘
+  ```
+
+  ```python
+  >>> oracle = QuantumCircuit(1)
+  >>> oracle.z(0)  # the qubit state |1> is the good state
+  >>> state_preparation = QuantumCircuit(1)
+  >>> state_preparation.ry(0.2, 0)  # non-uniform state preparation
+  >>> grover_op = GroverOperator(oracle, state_preparation)
+  >>> grover_op.decompose().draw()
+           ┌───┐┌──────────┐┌───┐┌───┐┌───┐┌─────────┐
+  state_0: ┤ Z ├┤ RY(-0.2) ├┤ X ├┤ Z ├┤ X ├┤ RY(0.2) ├
+           └───┘└──────────┘└───┘└───┘└───┘└─────────┘
+  ```
+
+  ```python
+  >>> oracle = QuantumCircuit(4)
+  >>> oracle.z(3)
+  >>> reflection_qubits = [0, 3]
+  >>> state_preparation = QuantumCircuit(4)
+  >>> state_preparation.cry(0.1, 0, 3)
+  >>> state_preparation.ry(0.5, 3)
+  >>> grover_op = GroverOperator(oracle, state_preparation,
+  ... reflection_qubits=reflection_qubits)
+  >>> grover_op.decompose().draw()
+                                        ┌───┐          ┌───┐
+  state_0: ──────────────────────■──────┤ X ├───────■──┤ X ├──────────■────────────────
+                                 │      └───┘       │  └───┘          │
+  state_1: ──────────────────────┼──────────────────┼─────────────────┼────────────────
+                                 │                  │                 │
+  state_2: ──────────────────────┼──────────────────┼─────────────────┼────────────────
+           ┌───┐┌──────────┐┌────┴─────┐┌───┐┌───┐┌─┴─┐┌───┐┌───┐┌────┴────┐┌─────────┐
+  state_3: ┤ Z ├┤ RY(-0.5) ├┤ RY(-0.1) ├┤ X ├┤ H ├┤ X ├┤ H ├┤ X ├┤ RY(0.1) ├┤ RY(0.5) ├
+           └───┘└──────────┘└──────────┘└───┘└───┘└───┘└───┘└───┘└─────────┘└─────────┘
+  ```
+
+  ```python
+  >>> mark_state = Statevector.from_label('011')
+  >>> diffuse_operator = 2 * DensityMatrix.from_label('000') - Operator.from_label('III')
+  >>> grover_op = GroverOperator(oracle=mark_state, zero_reflection=diffuse_operator)
+  >>> grover_op.decompose().draw(fold=70)
+           ┌─────────────────┐      ┌───┐                          »
+  state_0: ┤0                ├──────┤ H ├──────────────────────────»
+           │                 │┌─────┴───┴─────┐     ┌───┐          »
+  state_1: ┤1 UCRZ(0,pi,0,0) ├┤0              ├─────┤ H ├──────────»
+           │                 ││  UCRZ(pi/2,0) │┌────┴───┴────┐┌───┐»
+  state_2: ┤2                ├┤1              ├┤ UCRZ(-pi/4) ├┤ H ├»
+           └─────────────────┘└───────────────┘└─────────────┘└───┘»
+  «         ┌─────────────────┐      ┌───┐
+  «state_0: ┤0                ├──────┤ H ├─────────────────────────
+  «         │                 │┌─────┴───┴─────┐    ┌───┐
+  «state_1: ┤1 UCRZ(pi,0,0,0) ├┤0              ├────┤ H ├──────────
+  «         │                 ││  UCRZ(pi/2,0) │┌───┴───┴────┐┌───┐
+  «state_2: ┤2                ├┤1              ├┤ UCRZ(pi/4) ├┤ H ├
+  «         └─────────────────┘└───────────────┘└────────────┘└───┘
+  ```
+
+  <Admonition title="See also" type="note">
+    The `grover_operator()` implements the same functionality but keeping the [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate") abstract, such that the compiler may choose the optimal decomposition. We recommend using `grover_operator()` for performance reasons, which does not wrap the circuit into an opaque gate.
+  </Admonition>
+
+  **References**
+
+  **\[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,**
+
+  [arXiv:quant-ph/9605043](https://arxiv.org/abs/quant-ph/9605043).
+
+  **\[2]: I. Chuang & M. Nielsen, Quantum Computation and Quantum Information,**
+
+  Cambridge: Cambridge University Press, 2000. Chapter 6.1.2.
+
+  **\[3]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
+
+  Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
+
+  <Admonition title="Deprecated since version 1.3_pending" type="danger">
+    The class `qiskit.circuit.library.grover_operator.GroverOperator` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use qiskit.circuit.library.grover\_operator instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **oracle** (*Union\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")*]*) – The phase oracle implementing a reflection about the bad state. Note that this is not a bitflip oracle, see the docstring for more information.
+  *   **state\_preparation** (*Optional\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The operator preparing the good and bad state. For Grover’s algorithm, this is a n-qubit Hadamard gate and for amplitude amplification or estimation the operator $\mathcal{A}$.
+  *   **zero\_reflection** (*Optional\[Union\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")*,* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")*]]*) – The reflection about the zero state, $\mathcal{S}_0$.
+  *   **reflection\_qubits** (*Optional\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – Qubits on which the zero reflection acts on.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether barriers should be inserted between the reflections and A.
+  *   **mcx\_mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The mode to use for building the default zero reflection.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
+
+  ## Attributes
+
+  ### ancillas
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### calibrations
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.calibrations">
+    Return calibration dictionary.
+
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
+    </Admonition>
+  </Attribute>
+
+  ### clbits
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### data
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.data">
+    The circuit data (instructions and context).
+
+    **Returns**
+
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+
+    **Return type**
+
+    QuantumCircuitData
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.GroverOperator.unit "qiskit.circuit.library.GroverOperator.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### global\_phase
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.global_phase">
+    The global phase of the current circuit scope in radians.
+  </Attribute>
+
+  ### instances
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.instances" attributeValue="190" />
+
+  ### layout
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.layout">
+    Return any associated layout information about the circuit
+
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.metadata">
+    Arbitrary user-defined metadata for the circuit.
+
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
+  </Attribute>
+
+  ### num\_ancillas
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.GroverOperator.num_input_vars "qiskit.circuit.library.GroverOperator.num_input_vars") must be zero.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_clbits">
+    Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.GroverOperator.num_captured_vars "qiskit.circuit.library.GroverOperator.num_captured_vars") must be zero.
+  </Attribute>
+
+  ### num\_parameters
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_qubits">
+    Return number of qubits.
+  </Attribute>
+
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
+  </Attribute>
+
+  ### op\_start\_times
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.op_start_times">
+    Return a list of operation start times.
+
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+    **Returns**
+
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – When circuit is not scheduled.
+  </Attribute>
+
+  ### oracle
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.oracle">
+    The oracle implementing a reflection about the bad state.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.parameters">
+    The parameters defined in the circuit.
+
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+
+    **Examples**
+
+    The snippet below shows that insertion order of parameters does not matter.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
+
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
+
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
+
+    **Returns**
+
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
+
+  ### prefix
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.prefix" attributeValue="'circuit'" />
+
+  ### qubits
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### reflection\_qubits
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.reflection_qubits">
+    Reflection qubits, on which S0 is applied (if S0 is not user-specified).
+  </Attribute>
+
+  ### state\_preparation
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.state_preparation">
+    The subcircuit implementing the A operator or Hadamards.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.unit">
+    The unit that [`duration`](#qiskit.circuit.library.GroverOperator.duration "qiskit.circuit.library.GroverOperator.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### zero\_reflection
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.zero_reflection">
+    The subcircuit implementing the reflection about 0.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.GroverOperator.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+</Class>
+

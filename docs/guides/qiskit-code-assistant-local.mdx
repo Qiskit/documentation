@@ -3,7 +3,7 @@ title: Use Qiskit Code Assistant in local mode
 description: Learn how to deploy and use the Qiskit Code Assistant model locally.
 ---
 
-{/* cspell:ignore ollama, gguf */}
+{/* cspell:ignore ollama, gguf, modelfile */}
 
 # Use Qiskit Code Assistant in local mode
 
@@ -154,8 +154,8 @@ from llama_cpp import Llama
 model_path = <PATH-TO-GGUF-FILE>
 
 model = Llama(
-        model_path, 
-        seed=17, 
+        model_path,
+        seed=17,
         n_ctx=10000,
         n_gpu_layers=37, # to offload in gpu, but put 0 if all in cpu
     )
@@ -185,7 +185,7 @@ Use the VS Code extension and JupyterLab extension for the Qiskit Code Assistant
 
 With the Qiskit Code Assistant VS Code extension, you can interact with the model and perform code completion while writing your code. This can work well for users looking for assistance writing Qiskit code for their Python applications.
 
-1. Install the [Qiskit Code Assistant VS Code extension](/guides/qiskit-code-assistant-vscode).
+1. Install the [Qiskit Code Assistant VS Code extension](/docs/guides/qiskit-code-assistant-vscode).
 1. In VS Code, go to the **User Settings** and set the **Qiskit Code Assistant: Url** to the URL of your local Ollama deployment (for example, `http://localhost:11434`).
 1. Reload VS Code by going to **View > Command Palette...** and selecting **Developer: Reload Window**.
 
@@ -195,7 +195,7 @@ The `granite-8b-qiskit` configured in Ollama should appear in the status bar and
 
 With the Qiskit Code Assistant JupyterLab extension, you can interact with the model and perform code completion directly in your Jupyter Notebook. Users who predominantly work with Jupyter Notebooks can take advantage of this extension to further enhance their experience writing Qiskit code.
 
-1. Install the [Qiskit Code Assistant JupyterLab extension](/guides/qiskit-code-assistant-jupyterlab).
+1. Install the [Qiskit Code Assistant JupyterLab extension](/docs/guides/qiskit-code-assistant-jupyterlab).
 1. In JupyterLab, go to the **Settings Editor** and set the **Qiskit Code Assistant Service API** to the URL of your local Ollama deployment (for example, `http://localhost:11434`).
 
 The `granite-8b-qiskit` configured in Ollama should appear in the status bar and is then ready to use.

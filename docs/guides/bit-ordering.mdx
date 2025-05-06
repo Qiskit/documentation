@@ -58,10 +58,10 @@ with bit $0$ being `0`, and bit $1$ being `1`. This is interpreted as the
 decimal integer `2` (measured with probability `1.0`).
 
 ```python
-from qiskit.primitives import SamplerV2 as Sampler
+from qiskit.primitives import StatevectorSampler as Sampler
 qc.measure_all()
 
-job = sampler.run([qc])
+job = Sampler().run([qc])
 result = job.result()
 print(f" > Counts: {result[0].data.meas.get_counts()}")
 ```
@@ -187,5 +187,5 @@ Note that in this new circuit, the X-gate acts on qubit $1$.
 
 <Admonition type="tip" title="Recommendations">
   -  See an example of using circuits in the [Grover's Algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
-  -  Explore the [QuantumCircuit API](/api/qiskit/qiskit.circuit.QuantumCircuit#quantumcircuit-class) reference.
+  -  Explore the [QuantumCircuit API](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#quantumcircuit-class) reference.
 </Admonition>

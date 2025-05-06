@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
 # ZFeatureMap
 
-<Class id="qiskit.circuit.library.ZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/data_preparation/_z_feature_map.py#L22-L115" signature="qiskit.circuit.library.ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')" modifiers="class">
+<Class id="qiskit.circuit.library.ZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/data_preparation/_z_feature_map.py#L22-L115" signature="qiskit.circuit.library.ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')" modifiers="class">
   Bases: [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
   The first order Pauli Z-evolution circuit.
@@ -71,7 +71,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
   Create a new first-order Pauli-Z expansion circuit.
 
   <Admonition title="Deprecated since version 1.3_pending" type="danger">
-    The class `qiskit.circuit.library.data_preparation._z_feature_map.ZFeatureMap` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use the z\_feature\_map function as a replacement. Note that this will no longer return a BlueprintCircuit, but just a plain QuantumCircuit.
+    The class `qiskit.circuit.library.data_preparation._z_feature_map.ZFeatureMap` is pending deprecation as of Qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use the z\_feature\_map function as a replacement. Note that this will no longer return a BlueprintCircuit, but just a plain QuantumCircuit.
   </Admonition>
 
   **Parameters**
@@ -101,21 +101,15 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
     A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
-  ### calibrations
-
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.calibrations">
-    Return calibration dictionary.
-
-    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
-    </Admonition>
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.circuit.library.ZFeatureMap.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.cregs">
     A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
@@ -139,7 +133,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
     The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.ZFeatureMap.unit "qiskit.circuit.library.ZFeatureMap.unit").
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -207,7 +201,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.instances" attributeValue="161" />
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.instances" attributeValue="171" />
 
   ### layout
 
@@ -233,6 +227,14 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_stretches()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.ZFeatureMap.num_input_vars "qiskit.circuit.library.ZFeatureMap.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.circuit.library.ZFeatureMap.num_captured_vars">
@@ -247,12 +249,28 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
     Return number of classical bits.
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the `iter_declared_stretches()` iterable.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.library.ZFeatureMap.num_declared_vars">
     The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.library.ZFeatureMap.num_vars "qiskit.circuit.library.ZFeatureMap.num_vars") + [`num_stretches()`](#qiskit.circuit.library.ZFeatureMap.num_stretches "qiskit.circuit.library.ZFeatureMap.num_stretches").
   </Attribute>
 
   ### num\_input\_vars
@@ -295,6 +313,14 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
     The number of qubits.
   </Attribute>
 
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the `iter_stretches()` iterable.
+  </Attribute>
+
   ### num\_vars
 
   <Attribute id="qiskit.circuit.library.ZFeatureMap.num_vars">
@@ -308,11 +334,15 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
   <Attribute id="qiskit.circuit.library.ZFeatureMap.op_start_times">
     Return a list of operation start times.
 
+    <Admonition title="Note" type="note">
+      This attribute computes the estimate starting time of the operations in the scheduled circuit and only works for simple circuits that have no control flow or other classical feed-forward operations.
+    </Admonition>
+
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
     **Returns**
 
-    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    List of integers representing instruction estimated start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
     **Raises**
 
@@ -439,8 +469,8 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.qregs">
+    A list of the quantum registers associated with the circuit.
   </Attribute>
 
   ### qubits
@@ -475,7 +505,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
     The unit that [`duration`](#qiskit.circuit.library.ZFeatureMap.duration "qiskit.circuit.library.ZFeatureMap.duration") is specified in.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -483,12 +513,6 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   <Attribute id="qiskit.circuit.library.ZFeatureMap.name" attributeTypeHint="str">
     A human-readable name for the circuit.
-  </Attribute>
-
-  ### cregs
-
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.cregs" attributeTypeHint="list[ClassicalRegister]">
-    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
   </Attribute>
 </Class>
 

@@ -1,0 +1,166 @@
+---
+title: AnnotatedOperation (v1.4)
+description: API reference for qiskit.circuit.AnnotatedOperation in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.AnnotatedOperation
+---
+
+# AnnotatedOperation
+
+<Class id="qiskit.circuit.AnnotatedOperation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/annotated_operation.py#L60-L242" signature="qiskit.circuit.AnnotatedOperation(base_op, modifiers)" modifiers="class">
+  Bases: [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
+
+  Annotated operation.
+
+  Create a new AnnotatedOperation.
+
+  An “annotated operation” allows to add a list of modifiers to the “base” operation. For now, the only supported modifiers are of types [`InverseModifier`](circuit#qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier"), [`ControlModifier`](circuit#qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier") and [`PowerModifier`](circuit#qiskit.circuit.PowerModifier "qiskit.circuit.PowerModifier").
+
+  An annotated operation can be viewed as an extension of [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") (which also allows adding control to the base operation). However, an important difference is that the circuit definition of an annotated operation is not constructed when the operation is declared, and instead happens during transpilation, specifically during the [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transpiler pass.
+
+  An annotated operation can be also viewed as a “higher-level” or “more abstract” object that can be added to a quantum circuit. This enables writing transpiler optimization passes that make use of this higher-level representation, for instance removing a gate that is immediately followed by its inverse.
+
+  **Parameters**
+
+  *   **base\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – base operation being modified
+  *   **modifiers** (*Union\[Modifier, List\[Modifier]]*) – ordered list of modifiers. Supported modifiers include `InverseModifier`, `ControlModifier` and `PowerModifier`.
+
+  Examples:
+
+  ```python
+  op1 = AnnotatedOperation(SGate(), [InverseModifier(), ControlModifier(2)])
+
+  op2_inner = AnnotatedGate(SGate(), InverseModifier())
+  op2 = AnnotatedGate(op2_inner, ControlModifier(2))
+  ```
+
+  Both op1 and op2 are semantically equivalent to an `SGate()` which is first inverted and then controlled by 2 qubits.
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.AnnotatedOperation.name">
+    Unique string identifier for operation type.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.AnnotatedOperation.num_clbits">
+    Number of classical bits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.AnnotatedOperation.num_qubits">
+    Number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.AnnotatedOperation.params">
+    The params of the underlying base operation.
+  </Attribute>
+
+  ### base\_op
+
+  <Attribute id="qiskit.circuit.AnnotatedOperation.base_op">
+    The base operation that the modifiers in this annotated operation applies to.
+  </Attribute>
+
+  ### modifiers
+
+  <Attribute id="qiskit.circuit.AnnotatedOperation.modifiers">
+    Ordered sequence of the modifiers to apply to [`base_op`](#qiskit.circuit.AnnotatedOperation.base_op "qiskit.circuit.AnnotatedOperation.base_op"). The modifiers are applied in order from lowest index to highest index.
+  </Attribute>
+
+  ## Methods
+
+  ### control
+
+  <Function id="qiskit.circuit.AnnotatedOperation.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/annotated_operation.py#L159-L186" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=True)">
+    Return the controlled version of itself.
+
+    Implemented as an annotated operation, see [`AnnotatedOperation`](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of controls to add to gate (default: `1`)
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – ignored (used for consistency with other control methods)
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – ignored (used for consistency with other control methods)
+
+    **Returns**
+
+    Controlled version of the given operation.
+
+    **Return type**
+
+    [AnnotatedOperation](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.circuit.AnnotatedOperation.copy" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/annotated_operation.py#L134-L136" signature="copy()">
+    Return a copy of the [`AnnotatedOperation`](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+
+    **Return type**
+
+    [*AnnotatedOperation*](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.annotated_operation.AnnotatedOperation")
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.circuit.AnnotatedOperation.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/annotated_operation.py#L188-L203" signature="inverse(annotated=True)">
+    Return the inverse version of itself.
+
+    Implemented as an annotated operation, see [`AnnotatedOperation`](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – ignored (used for consistency with other inverse methods)
+
+    **Returns**
+
+    Inverse version of the given operation.
+  </Function>
+
+  ### power
+
+  <Function id="qiskit.circuit.AnnotatedOperation.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/annotated_operation.py#L205-L221" signature="power(exponent, annotated=False)">
+    Raise this gate to the power of `exponent`.
+
+    Implemented as an annotated operation, see [`AnnotatedOperation`](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+
+    **Parameters**
+
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – ignored (used for consistency with other power methods)
+
+    **Returns**
+
+    An operation implementing `gate^exponent`
+  </Function>
+
+  ### to\_matrix
+
+  <Function id="qiskit.circuit.AnnotatedOperation.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/annotated_operation.py#L138-L157" signature="to_matrix()">
+    Return a matrix representation (allowing to construct Operator).
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.AnnotatedOperation.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/annotated_operation.py#L237-L242" signature="validate_parameter(parameter)">
+    Validate a parameter for the underlying base operation.
+
+    **Parameters**
+
+    **parameter** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
+
+    **Return type**
+
+    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+  </Function>
+</Class>
+

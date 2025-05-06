@@ -14,7 +14,7 @@ python_api_name: qiskit_addon_mpf.backends.tenpy_layers
 
 `qiskit_addon_mpf.backends.tenpy_layers`
 
-A layer-wise time-evolution backend using [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)").
+A layer-wise time-evolution backend using [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.5)").
 
 <Admonition title="Caution" type="note">
   The optional dependency [TeNPy](https://github.com/tenpy/tenpy) was previously offered under a GPLv3 license. As of the release of [v1.0.4](https://github.com/tenpy/tenpy/releases/tag/v1.0.4) on October 2nd, 2024, it has been offered under the Apache v2 license. The license of this package is only compatible with Apache-licensed versions of TeNPy.
@@ -35,9 +35,9 @@ A layer-wise time-evolution backend using [`tenpy`](https://tenpy.readthedocs.io
 
 ## Underlying method
 
-This module provides a time-evolution backend similar to the TEBD-based one provided by the [`tenpy_tebd`](backends-tenpy-tebd#module-qiskit_addon_mpf.backends.tenpy_tebd "qiskit_addon_mpf.backends.tenpy_tebd") module. The main difference is that this module gives the user full flexibility for defining their product formulas, thereby not limiting them to the options built into the [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)") library.
+This module provides a time-evolution backend similar to the TEBD-based one provided by the [`tenpy_tebd`](backends-tenpy-tebd#module-qiskit_addon_mpf.backends.tenpy_tebd "qiskit_addon_mpf.backends.tenpy_tebd") module. The main difference is that this module gives the user full flexibility for defining their product formulas, thereby not limiting them to the options built into the [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.5)") library.
 
-At its core, the algorithm provided by this module is still a TEBD \[1] algorithm. However, rather than enforcing the alternating updates to the even and odd bonds of the time-evolution state (see also [`evolve_step()`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.algorithms.tebd.TEBDEngine.html#tenpy.algorithms.tebd.TEBDEngine.evolve_step "(in TeNPy v1.0.4)")) this implementation outsources the responsibility of updating bonds in alternating fashion to the definition of multiple time-evolution **layers**.
+At its core, the algorithm provided by this module is still a TEBD \[1] algorithm. However, rather than enforcing the alternating updates to the even and odd bonds of the time-evolution state (see also [`evolve_step()`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.algorithms.tebd.TEBDEngine.html#tenpy.algorithms.tebd.TEBDEngine.evolve_step "(in TeNPy v1.0.5)")) this implementation outsources the responsibility of updating bonds in alternating fashion to the definition of multiple time-evolution **layers**.
 
 This is best explained with an example. Let us assume, we have some generic Hamiltonian acting on a 1-dimensional chain of sites.
 
@@ -65,7 +65,7 @@ Let us now inspect the time-evolution circuit of this Hamiltonian using a second
 <Figure size 956...x869... with 1 Axes>
 ```
 
-![Output from the previous code.](/images/api/qiskit-addon-mpf/qiskit_addon_mpf-backends-tenpy_layers-2.avif)
+![Output from the previous code.](/docs/images/api/qiskit-addon-mpf/qiskit_addon_mpf-backends-tenpy_layers-2.avif)
 
 In the circuit above, we can clearly identify its layer-wise structure. We can emphasize this further, by splitting the circuit into multiple layers as shown below (we recombine the `layers` into a single circuit with barriers between them to ease the visualization).
 
@@ -76,10 +76,10 @@ In the circuit above, we can clearly identify its layer-wise structure. We can e
 <Figure size 1374...x869... with 1 Axes>
 ```
 
-![Output from the previous code.](/images/api/qiskit-addon-mpf/qiskit_addon_mpf-backends-tenpy_layers-3.avif)
+![Output from the previous code.](/docs/images/api/qiskit-addon-mpf/qiskit_addon_mpf-backends-tenpy_layers-3.avif)
 
 <Admonition title="Hint" type="note">
-  The asymmetry of the central layers is a result of the implementation of Qiskit’s [`SuzukiTrotter`](/api/qiskit/qiskit.synthesis.SuzukiTrotter "(in Qiskit v1.3)") formula. In its second-order form, it combines the two half-time evolutions of the final term in the Hamiltonian into a single one of twice the length. We could transpile this circuit to collapse all such subequent gates in the central two layers (just like the last one), but for the sake of simplicity of this example, we will not do that here.
+  The asymmetry of the central layers is a result of the implementation of Qiskit’s [`SuzukiTrotter`](/docs/api/qiskit/qiskit.synthesis.SuzukiTrotter "(in Qiskit v1.4)") formula. In its second-order form, it combines the two half-time evolutions of the final term in the Hamiltonian into a single one of twice the length. We could transpile this circuit to collapse all such subequent gates in the central two layers (just like the last one), but for the sake of simplicity of this example, we will not do that here.
 </Admonition>
 
 It is not possible to instruct TeNPy’s TEBD algorithm to simulate the exact structure of the circuit shown above. The reason for that is a limitation in its interface, as it only accepts the full Hamiltonian to be provided which is then time-evolved using pre-defined Trotter formulas. However, in doing so it does not treat the order of the Pauli terms in a Hamiltonian with any significance (like we do here).
@@ -108,11 +108,11 @@ In the code above you can see how simple the conversion is for layers which cont
 
 However, we must be more careful with layers including single-qubit gates. The reason for that is that the TEBD algorithm underlying the [`LayerwiseEvolver`](backends-tenpy-layers-layerwise-evolver "qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver") must update even and odd bonds in an alternating manner. And because single-qubit gates are not applied on a site, but instead are split in half and applied to the bonds on either side, a layer of single-qubit gates acting on all qubits would break this assumption.
 
-To circumvent this problem, we can take any layer consisting of only single-qubit gates, and apply it twice (once on the even and once on the odd bonds) while scaling each one with a factor of `0.5`.
+To circumvent this problem, we can take any layer consisting of only single-qubit gates, and apply it twice (once on the even and once on the odd bonds).
 
 ```python
->>> model1a = LayerModel.from_quantum_circuit(layers[1], keep_only_odd=True, scaling_factor=0.5)
->>> model1b = LayerModel.from_quantum_circuit(layers[1], keep_only_odd=False, scaling_factor=0.5)
+>>> model1a = LayerModel.from_quantum_circuit(layers[1], keep_only_odd=True)
+>>> model1b = LayerModel.from_quantum_circuit(layers[1], keep_only_odd=False)
 >>> layer_models.extend([model1a, model1b])
 ```
 
@@ -125,10 +125,10 @@ Now that we know how to treat layers consisting of two-qubit and single-qubit ga
 ...         layer_models.append(LayerModel.from_quantum_circuit(layer))
 ...     else:
 ...         layer_models.append(
-...             LayerModel.from_quantum_circuit(layer, keep_only_odd=True, scaling_factor=0.5)
+...             LayerModel.from_quantum_circuit(layer, keep_only_odd=True)
 ...         )
 ...         layer_models.append(
-...             LayerModel.from_quantum_circuit(layer, keep_only_odd=False, scaling_factor=0.5)
+...             LayerModel.from_quantum_circuit(layer, keep_only_odd=False)
 ...         )
 >>> assert len(layer_models) == 8
 ```

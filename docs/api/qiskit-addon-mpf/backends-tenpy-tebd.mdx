@@ -14,7 +14,7 @@ python_api_name: qiskit_addon_mpf.backends.tenpy_tebd
 
 `qiskit_addon_mpf.backends.tenpy_tebd`
 
-A [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)")-based TEBD backend.
+A [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.5)")-based TEBD backend.
 
 <Admonition title="Caution" type="note">
   The optional dependency [TeNPy](https://github.com/tenpy/tenpy) was previously offered under a GPLv3 license. As of the release of [v1.0.4](https://github.com/tenpy/tenpy/releases/tag/v1.0.4) on October 2nd, 2024, it has been offered under the Apache v2 license. The license of this package is only compatible with Apache-licensed versions of TeNPy.
@@ -36,20 +36,20 @@ A [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in T
 
 ## Underlying method
 
-This module provides a time-evolution backend for computing dynamic MPF coefficients based on the time-evolving block decimation (TEBD) algorithm \[1] implemented in the [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)") tensor network library.
+This module provides a time-evolution backend for computing dynamic MPF coefficients based on the time-evolving block decimation (TEBD) algorithm \[1] implemented in the [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.5)") tensor network library.
 
 The classes provided by this module serve two purposes:
 
-1.  Connecting [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)")’s implementation to the interface set out by [`qiskit_addon_mpf.backends`](backends#module-qiskit_addon_mpf.backends "qiskit_addon_mpf.backends").
-2.  Extending [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)")’s TEBD implementation to handle an internal MPO (rather than MPS) state (see also [`State`](backends#state "qiskit_addon_mpf.backends.State") for more details).
+1.  Connecting [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.5)")’s implementation to the interface set out by [`qiskit_addon_mpf.backends`](backends#module-qiskit_addon_mpf.backends "qiskit_addon_mpf.backends").
+2.  Extending [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.5)")’s TEBD implementation to handle an internal MPO (rather than MPS) state (see also [`State`](backends#state "qiskit_addon_mpf.backends.State") for more details).
 
-In the simplest sense, this module provides a straight-forward extension of the TEBD algorithm to evolve an internal MPO state. As such, if you wish to use this backend for your dynamic MPF algorithm, you must encode the Hamiltonian that you wish to time-evolve, in a [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)")-native form. To be more concrete, the [`TEBDEvolver`](backends-tenpy-tebd-tebd-evolver "qiskit_addon_mpf.backends.tenpy_tebd.TEBDEvolver") class (which is a subclass of [`tenpy.algorithms.tebd.TEBDEngine`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.algorithms.tebd.TEBDEngine.html#tenpy.algorithms.tebd.TEBDEngine "(in TeNPy v1.0.4)")) works with a Hamiltonian in the form of a [`Model`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.model.Model.html#tenpy.models.model.Model "(in TeNPy v1.0.4)"). TeNPy provides a number of convenience methods for constructing such Hamiltonians in its [`tenpy.models`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.html#module-tenpy.models "(in TeNPy v1.0.4)") module. If none of those fulfill your needs, you can consider using the [`LayerModel`](backends-tenpy-layers-layer-model "qiskit_addon_mpf.backends.tenpy_layers.LayerModel") class which implements some conversion methods from Qiskit-native objects.
+In the simplest sense, this module provides a straight-forward extension of the TEBD algorithm to evolve an internal MPO state. As such, if you wish to use this backend for your dynamic MPF algorithm, you must encode the Hamiltonian that you wish to time-evolve, in a [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.5)")-native form. To be more concrete, the [`TEBDEvolver`](backends-tenpy-tebd-tebd-evolver "qiskit_addon_mpf.backends.tenpy_tebd.TEBDEvolver") class (which is a subclass of [`tenpy.algorithms.tebd.TEBDEngine`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.algorithms.tebd.TEBDEngine.html#tenpy.algorithms.tebd.TEBDEngine "(in TeNPy v1.0.5)")) works with a Hamiltonian in the form of a [`Model`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.model.Model.html#tenpy.models.model.Model "(in TeNPy v1.0.5)"). TeNPy provides a number of convenience methods for constructing such Hamiltonians in its [`tenpy.models`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.html#module-tenpy.models "(in TeNPy v1.0.5)") module. If none of those fulfill your needs, you can consider using the [`LayerModel`](backends-tenpy-layers-layer-model "qiskit_addon_mpf.backends.tenpy_layers.LayerModel") class which implements some conversion methods from Qiskit-native objects.
 
 ## Code example
 
 This section shows a simple example to get you started with using this backend. The example shows how to create the three factory functions required for the [`setup_dynamic_lse()`](dynamic#setup_dynamic_lse "qiskit_addon_mpf.dynamic.setup_dynamic_lse").
 
-First of all, we define the Hamiltonian which we would like to time-evolve. Here, we simply choose one of [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)")’s convenience methods.
+First of all, we define the Hamiltonian which we would like to time-evolve. Here, we simply choose one of [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.5)")’s convenience methods.
 
 ```python
 >>> from tenpy.models import XXZChain2
@@ -108,7 +108,7 @@ Below, we do not fix the `dt` value and use only a second-order Suzuki-Trotter f
 ... )
 ```
 
-Of course, you are not limited to the examples shown here, and we encourage you to play around with the other settings provided by TeNPy’s [`TEBDEngine`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.algorithms.tebd.TEBDEngine.html#tenpy.algorithms.tebd.TEBDEngine "(in TeNPy v1.0.4)") implementation.
+Of course, you are not limited to the examples shown here, and we encourage you to play around with the other settings provided by TeNPy’s [`TEBDEngine`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.algorithms.tebd.TEBDEngine.html#tenpy.algorithms.tebd.TEBDEngine "(in TeNPy v1.0.5)") implementation.
 
 ## Limitations
 

@@ -1,0 +1,49 @@
+---
+title: pass_manager_drawer (v1.4)
+description: API reference for qiskit.visualization.pass_manager_drawer in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.pass_manager_drawer
+---
+
+<span id="qiskit-visualization-pass-manager-drawer" />
+
+# qiskit.visualization.pass\_manager\_drawer
+
+<Function id="qiskit.visualization.pass_manager_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/visualization/pass_manager_visualization.py#L32-L90" signature="qiskit.visualization.pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)">
+  Draws the pass manager.
+
+  This function needs [pydot](https://github.com/pydot/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed.
+
+  **Parameters**
+
+  *   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – the pass manager to be drawn
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – file path to save image to
+  *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)") *or OrderedDict*) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict
+  *   **raw** ([*Bool*](circuit_classical#qiskit.circuit.classical.types.Bool "qiskit.circuit.classical.types.Bool")) – True if you want to save the raw Dot output not an image. The default is False.
+
+  **Returns**
+
+  an in-memory representation of the pass manager. Or None if no image was generated or PIL is not installed.
+
+  **Return type**
+
+  PIL.Image or None
+
+  **Raises**
+
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – when nxpd or pydot not installed.
+  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – If raw=True and filename=None.
+
+  **Example**
+
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.transpiler import generate_preset_pass_manager
+  from qiskit.visualization import pass_manager_drawer
+
+  pm = generate_preset_pass_manager(optimization_level=0)
+  pass_manager_drawer(pm)
+  ```
+</Function>
+

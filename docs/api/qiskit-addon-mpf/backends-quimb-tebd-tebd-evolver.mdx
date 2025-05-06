@@ -8,7 +8,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver
 
 # TEBDEvolver
 
-<Class id="qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_tebd/evolver.py#L25-L160" signature="TEBDEvolver(evolution_state, *args, order=2, **kwargs)" modifiers="class">
+<Class id="qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_tebd/evolver.py#L25-L175" signature="TEBDEvolver(evolution_state, *args, order=2, **kwargs)" modifiers="class">
   Bases: [`TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d_tebd/index.html#quimb.tensor.tensor_1d_tebd.TEBD "(in quimb v1.10)"), [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.interface.Evolver")
 
   A TEBD algorithm for evolving an internal MPO.
@@ -25,7 +25,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver
 
   **Parameters**
 
-  *   **evolution\_state** ([*MPOState*](backends-quimb-tebd-mpo-state "qiskit_addon_mpf.backends.quimb_tebd.MPOState")) –
+  *   **evolution\_state** ([*MPOState*](backends-quimb-tebd-mpo-state "qiskit_addon_mpf.backends.quimb_tebd.MPOState") *| MatrixProductState*) –
 
       a reference to the time-evolution state. This overwrites the `p0` argument of the underlying [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD "(in quimb v1.10)") class.
 
@@ -57,7 +57,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver
 
   ### step
 
-  <Function id="qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver.step" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_tebd/evolver.py#L81-L87" signature="step()">
+  <Function id="qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver.step" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_tebd/evolver.py#L83-L89" signature="step()">
     Perform a single time step of TEBD.
 
     This essentially calls [`quimb.tensor.TEBD.step()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD.step "(in quimb v1.10)") and forwards the value of the `order` attribute that was provided upon construction.
@@ -69,7 +69,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver
 
   ### sweep
 
-  <Function id="qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver.sweep" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_tebd/evolver.py#L89-L160" signature="sweep(direction, dt_frac, dt=None, queue=False)">
+  <Function id="qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver.sweep" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_tebd/evolver.py#L91-L175" signature="sweep(direction, dt_frac, dt=None, queue=False)">
     Perform a single sweep of the TEBD algorithm \[1].
 
     The TEBD algorithm updates the even and odd bonds of the underlying tensor network in alternating fashion. In the implementation of the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD "(in quimb v1.10)") base class, this is realized in the form of alternating “sweeps” in left and right directions over the internal state.

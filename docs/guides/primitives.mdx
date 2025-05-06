@@ -2,9 +2,26 @@
 title: Introduction to primitives
 description: Introduction to primitives in Qiskit and Qiskit Runtime, and an explanation of available primitives
 
+
 ---
 
 # Introduction to primitives
+
+<span id="qpu-access-patterns"></span>
+## Why did Qiskit introduce primitives?
+
+Similar to the early days of classical computers, when developers had to manipulate CPU registers directly, the early interface to QPUs simply returned the raw data from the control electronics.
+This was not a big issue when QPUs lived in labs and only allowed direct access by researchers.
+Acknowledging that most developers would not and should not be familiar with distilling such raw data into 0s and 1s, Qiskit introduced `backend.run`, a first abstraction for accessing QPUs in the cloud. This allowed developers
+to operate on a familiar data format and focus on the bigger picture.
+
+As access to QPUs became more widespread, and with more quantum algorithms being developed,
+again the need for a higher-level abstraction emerged. In response, Qiskit introduced
+the primitives interface, which is optimized for two core tasks in quantum algorithm development:
+expectation value estimation (`Estimator`) and circuit sampling (`Sampler`). The goal is once
+again to help developers to focus more on innovation and less on data conversion. The primitives interface supersedes the `backend.run` interface, since `Sampler` provides the same direct hardware access that was offered by `backend.run`.
+
+## What is a primitive?
 
 Computing systems are built on multiple layers of abstraction. Abstractions allow you to focus on a
 particular level of detail relevant to the task at hand. The closer you get to the hardware,
@@ -32,29 +49,29 @@ you are trying to achieve.
 
 ## Primitive definition and implementations
 
-There are two types of Qiskit primitives: the base classes, and their implementations. The Qiskit primitives are defined by open-source primitive base classes that live in the Qiskit SDK (in the  [`qiskit.primitives`](/api/qiskit/primitives) module). Providers (such as Qiskit Runtime) can use these base classes to derive their own Sampler and Estimator implementations.  Most users will interact with provider implementations, not the base primitives.
+There are two types of Qiskit primitives: the base classes, and their implementations. The Qiskit primitives are defined by open-source primitive base classes that live in the Qiskit SDK (in the  [`qiskit.primitives`](/docs/api/qiskit/primitives) module). Providers (such as Qiskit Runtime) can use these base classes to derive their own Sampler and Estimator implementations.  Most users will interact with provider implementations, not the base primitives.
 
 ### Base classes
 
-[`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2) - Abstract base classes that define a common interface for implementing primitives. All other classes in the [`qiskit.primitives`](/api/qiskit/primitives) module inherit from these base classes.  Developers should use these if they are interested in creating their own primitives-based execution model for a specific provider. These classes might also be useful for those who want to do highly customized processing and find that the existing primitives implementations are too simple for their needs. General users will not directly use the base classes.
+[`BaseEstimatorV2`](/docs/api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2) - Abstract base classes that define a common interface for implementing primitives. All other classes in the [`qiskit.primitives`](/docs/api/qiskit/primitives) module inherit from these base classes.  Developers should use these if they are interested in creating their own primitives-based execution model for a specific provider. These classes might also be useful for those who want to do highly customized processing and find that the existing primitives implementations are too simple for their needs. General users will not directly use the base classes.
 
 <span id="implementations"></span>
 ### Implementations
 
 These are implementations of the primitives base classes:
 
-- The Qiskit Runtime primitives ([`EstimatorV2`](/api/qiskit-ibm-runtime/estimator-v2) and [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v2)) provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service. This implementation of the base primitives is used to access IBM Quantum&reg; hardware.  They are accessed through IBM Qiskit Runtime.
+- The Qiskit Runtime primitives ([`EstimatorV2`](/docs/api/qiskit-ibm-runtime/estimator-v2) and [`SamplerV2`](/docs/api/qiskit-ibm-runtime/sampler-v2)) provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service. This implementation of the base primitives is used to access IBM Quantum&reg; hardware.  They are accessed through IBM Qiskit Runtime.
 
-- [`StatevectorEstimator`](/api/qiskit/qiskit.primitives.StatevectorEstimator) and [`StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler#statevectorsampler) - Reference implementations of the primitives that use the simulator built into Qiskit. They are built with the Qiskit [`quantum_info`](/api/qiskit/quantum_info#quantum-information) module, producing results based on ideal statevector simulations.  They are accessed through Qiskit.
+- [`StatevectorEstimator`](/docs/api/qiskit/qiskit.primitives.StatevectorEstimator) and [`StatevectorSampler`](/docs/api/qiskit/qiskit.primitives.StatevectorSampler#statevectorsampler) - Reference implementations of the primitives that use the simulator built into Qiskit. They are built with the Qiskit [`quantum_info`](/docs/api/qiskit/quantum_info#quantum-information) module, producing results based on ideal statevector simulations.  They are accessed through Qiskit.
 
-- [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2) - You can use these classes to “wrap” any quantum computing resource into a primitive. This lets you write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional `backend` argument for selecting which quantum computer to run on. They are accessed by using Qiskit.
+- [`BackendEstimatorV2`](/docs/api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSamplerV2`](/docs/api/qiskit/qiskit.primitives.BackendSamplerV2) - You can use these classes to “wrap” any quantum computing resource into a primitive. This lets you write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional `backend` argument for selecting which quantum computer to run on. They are accessed by using Qiskit.
 
 ## Benefits of Qiskit primitives
 
 With primitives, Qiskit users can write quantum code for a specific QPU without having to explicitly
 manage every detail. Also, because of the additional layer of abstraction, you might be able to more easily
 access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
-you can take advantage of the latest advancements in error mitigation and suppression by toggling options such as the primitive's [`resilience_level`,](/api/qiskit-ibm-runtime/options-estimator-options#resilience_level) rather than building your own implementation of these techniques.
+you can take advantage of the latest advancements in error mitigation and suppression by toggling options such as the primitive's [`resilience_level`,](/docs/api/qiskit-ibm-runtime/options-estimator-options#resilience_level) rather than building your own implementation of these techniques.
 
 For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box”
 way to access your hardware features such as advanced post-processing techniques. It is therefore easier for your users to benefit from your hardware's best capabilities.
@@ -72,13 +89,13 @@ Because most users access the Qiskit Runtime primitives, the examples in the res
 
 The Estimator primitive computes the expectation values for one or more observables with respect to states prepared by quantum circuits. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
 
-The input is an array of [PUBs.](/guides/primitive-input-output#pubs) Each PUB is in the format:
+The input is an array of [PUBs.](/docs/guides/primitive-input-output#pubs) Each PUB is in the format:
 
 (`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`),
 
 where the optional `parameter values` can be a list or a single parameter.  Different Estimator implementations support various configuration options. If the input contains measurements, they are ignored.
 
-The output is a [`PubResult`](/api/qiskit/qiskit.primitives.PubResult#pubresult) that contains the computed expectation values per pair, and their standard errors, in `PubResult` form. Each `PubResult` contains both data and metadata.
+The output is a [`PubResult`](/docs/api/qiskit/qiskit.primitives.PubResult#pubresult) that contains the computed expectation values per pair, and their standard errors, in `PubResult` form. Each `PubResult` contains both data and metadata.
 
 The Estimator combines elements from observables and parameter values by following NumPy broadcasting rules as described in the [Primitive inputs and outputs](primitive-input-output#broadcasting-rules) topic.
 
@@ -93,13 +110,13 @@ estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, pa
 
 The Sampler's core task is sampling the output register from the execution of one or more quantum circuits. The input circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
 
-The input is one or more [PUBs,](/guides/primitive-input-output#pubs) in the format:
+The input is one or more [PUBs,](/docs/guides/primitive-input-output#pubs) in the format:
 
 (`<single circuit>`, `<one or more optional parameter value>`, `<optional shots>`),
 
 where there can be multiple `parameter values` items, and each item can be either an array or a single parameter, depending on the chosen circuit. Additionally, the input must contain measurements.
 
-The output is counts or per-shot measurements, as [`PubResult`](/api/qiskit/qiskit.primitives.PubResult#pubresult) objects, without weights. The result class, however, has methods to return weighted samples, such as counts. See [Primitive inputs and outputs](primitive-input-output#broadcasting-rules) for full details.
+The output is counts or per-shot measurements, as [`PubResult`](/docs/api/qiskit/qiskit.primitives.PubResult#pubresult) objects, without weights. The result class, however, has methods to return weighted samples, such as counts. See [Primitive inputs and outputs](primitive-input-output#broadcasting-rules) for full details.
 
 Example:
 
@@ -116,7 +133,7 @@ sampler.run([
     - Read [Get started with primitives](get-started-with-primitives) to implement primitives in your work.
     - Review detailed [primitives examples.](primitives-examples)
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
-    - See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/estimator-v2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/sampler-v2).
-    - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
+    - See the [EstimatorV2 API reference](/docs/api/qiskit-ibm-runtime/estimator-v2) and [SamplerV2 API reference](/docs/api/qiskit-ibm-runtime/sampler-v2).
+    - Read [Migrate to V2 primitives](/docs/migration-guides/v2-primitives).
 </Admonition>
 
