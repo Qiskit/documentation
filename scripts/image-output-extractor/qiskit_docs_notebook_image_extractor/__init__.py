@@ -82,19 +82,27 @@ def extract_images(
 
             if svg_data := data.get("image/svg+xml", None):
                 image = SvgImage(filepath=filestem.with_suffix(".svg"), data=svg_data)
-                del data["image/svg+xml"]
             elif png_data := data.get("image/png", None):
-                png_bytes = base64.b64decode(png_data)
                 png_image = RasterImage(
-                    filepath=filestem.with_suffix(".png"), data=png_bytes
+                    filepath=filestem.with_suffix(".png"),
+                    data=base64.b64decode(png_data),
                 )
                 print(f"  - Converting PNG output for cell {cell_index}")
                 image = convert_to_avif(png_image)
-                del data["image/png"]
+            elif jpeg_data := data.get("image/jpeg", None):
+                jpeg_image = RasterImage(
+                    filepath=filestem.with_suffix(".jpeg"),
+                    data=base64.b64decode(jpeg_data),
+                )
+                print(f"  - Converting JPEG output for cell {cell_index}")
+                image = convert_to_avif(jpeg_image)
             else:
                 continue
 
             data["text/plain"] = mdx_component(image.filepath)
+            # Delete all image outputs now we've converted one
+            for datatype in ["png", "jpeg", "svg+xml"]:
+                data.pop(f"image/{datatype}", None)
             images.append(image)
     return nb, images
 
@@ -128,7 +136,3 @@ def prepare_image_folder(nb_path: Path) -> Path:
         shutil.rmtree(images_folder)
     images_folder.mkdir(parents=True)
     return images_folder
-
-
-if __name__ == "__main__":
-    main()
