@@ -129,57 +129,6 @@ def test_png():
     )
 
 
-def test_jpeg():
-    nb_source = dedent(
-        """
-     {
-      "cells": [
-       {
-        "cell_type": "code",
-        "execution_count": 1,
-        "id": "aaaaaa",
-        "metadata": {},
-        "outputs": [
-         {
-          "data": {
-           "image/jpeg": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAALCAABAAEBAREA/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/9oACAEBAAA/APn+v//Z",
-           "text/plain": [
-            "<Figure size ... with 1 Axes>"
-           ]
-          },
-          "execution_count": 1,
-          "metadata": {},
-          "output_type": "execute_result"
-         }
-        ],
-        "source": []
-       }
-      ],
-      "metadata": {},
-      "nbformat": 4,
-      "nbformat_minor": 5
-     }
-    """.strip()
-    )
-    nb = nbformat.reads(nb_source, 4)
-    new_nb, images = extract_images(nb, Path("public/root"))
-
-    assert len(images) == 1
-    assert images[0].filepath == Path("public/root/aaaaaa-0.avif")
-    assert (
-        base64.b64encode(images[0].data)
-        == b"AAAAHGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZgAAAOptZXRhAAAAAAAAACFoZGxyAAAAAAAAAABwaWN0AAAAAAAAAAAAAAAAAAAAAA5waXRtAAAAAAABAAAAImlsb2MAAAAAREAAAQABAAAAAAEOAAEAAAAAAAAAGgAAACNpaW5mAAAAAAABAAAAFWluZmUCAAAAAAEAAGF2MDEAAAAAamlwcnAAAABLaXBjbwAAABNjb2xybmNseAABAA0ABoAAAAAMYXYxQ4EADAAAAAAUaXNwZQAAAAAAAAABAAAAAQAAABBwaXhpAAAAAAMICAgAAAAXaXBtYQAAAAAAAAABAAEEAYIDBAAAACJtZGF0EgAKCBgABggIaDQgMgwYAAooooQAALATS9g="
-    )
-
-    assert len(new_nb.cells[0]["outputs"]) == 1
-    output_data = new_nb.cells[0]["outputs"][0]["data"]
-    assert "image/jpeg" not in output_data
-    assert (
-        output_data["text/plain"]
-        == '<Image src="/root/aaaaaa-0.avif" alt="Output of the previous code cell" />'
-    )
-
-
 def test_png_and_jpeg():
     """If more than one image output is present, we prioritize SVG then PNG, then discard the rest."""
     nb_source = dedent(

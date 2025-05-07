@@ -89,18 +89,15 @@ def extract_images(
                 )
                 print(f"  - Converting PNG output for cell {cell_index}")
                 image = convert_to_avif(png_image)
-            elif jpeg_data := data.get("image/jpeg", None):
-                jpeg_image = RasterImage(
-                    filepath=filestem.with_suffix(".jpeg"),
-                    data=base64.b64decode(jpeg_data),
-                )
-                print(f"  - Converting JPEG output for cell {cell_index}")
-                image = convert_to_avif(jpeg_image)
             else:
                 continue
 
             data["text/plain"] = mdx_component(image.filepath)
-            # Delete all image outputs now we've converted one
+            # Delete all image outputs now we've converted one.
+            # An output can have many different representations (e.g. text,
+            # html, image), including many image representations in different
+            # formats. We only want to keep one image representation, so we ignore
+            # the rest.
             for datatype in ["png", "jpeg", "svg+xml"]:
                 data.pop(f"image/{datatype}", None)
             images.append(image)
