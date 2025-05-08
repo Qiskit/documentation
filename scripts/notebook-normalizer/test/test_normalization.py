@@ -2,7 +2,12 @@ import nbformat
 from pathlib import Path
 from textwrap import dedent
 import base64
-from qiskit_docs_notebook_normalizer import extract_images, RasterImage, SvgImage
+from qiskit_docs_notebook_normalizer import (
+    normalize_notebook,
+    RasterImage,
+    SvgImage,
+    changes_made,
+)
 
 
 def test_no_outputs():
@@ -26,9 +31,8 @@ def test_no_outputs():
     """.strip()
     )
     nb = nbformat.reads(nb_source, 4)
-    new_nb, images = extract_images(nb, Path("public/images"))
-    assert images == []
-    assert new_nb.cells[0]["outputs"] == []
+    result = normalize_notebook(nb, Path("public/images"))
+    assert not changes_made(result)
 
 
 def test_svg():
@@ -64,15 +68,16 @@ def test_svg():
     """.strip()
     )
     nb = nbformat.reads(nb_source, 4)
-    new_nb, images = extract_images(nb, Path("public/root"))
-    assert images == [
+    result = normalize_notebook(nb, Path("public/root"))
+    assert changes_made(result)
+    assert result.images == [
         SvgImage(
             data="svgdata",
             filepath=Path("public/root/aaaaaa-0.svg"),
         )
     ]
-    assert len(new_nb.cells[0]["outputs"]) == 1
-    output_data = new_nb.cells[0]["outputs"][0]["data"]
+    assert len(result.nb.cells[0]["outputs"]) == 1
+    output_data = result.nb.cells[0]["outputs"][0]["data"]
     assert "image/svg+xml" not in output_data
     assert (
         output_data["text/plain"]
@@ -113,15 +118,16 @@ def test_png():
     """.strip()
     )
     nb = nbformat.reads(nb_source, 4)
-    new_nb, images = extract_images(nb, Path("public/root"))
-    assert images == [
+    result = normalize_notebook(nb, Path("public/root"))
+    assert changes_made(result)
+    assert result.images == [
         RasterImage(
             data="".encode(),
             filepath=Path("public/root/aaaaaa-0.avif"),
         )
     ]
-    assert len(new_nb.cells[0]["outputs"]) == 1
-    output_data = new_nb.cells[0]["outputs"][0]["data"]
+    assert len(result.nb.cells[0]["outputs"]) == 1
+    output_data = result.nb.cells[0]["outputs"][0]["data"]
     assert "image/svg+xml" not in output_data
     assert (
         output_data["text/plain"]
@@ -164,15 +170,16 @@ def test_png_and_jpeg():
     """.strip()
     )
     nb = nbformat.reads(nb_source, 4)
-    new_nb, images = extract_images(nb, Path("public/root"))
-    assert images == [
+    result = normalize_notebook(nb, Path("public/root"))
+    assert changes_made(result)
+    assert result.images == [
         RasterImage(
             data="".encode(),
             filepath=Path("public/root/aaaaaa-0.avif"),
         )
     ]
-    assert len(new_nb.cells[0]["outputs"]) == 1
-    output_data = new_nb.cells[0]["outputs"][0]["data"]
+    assert len(result.nb.cells[0]["outputs"]) == 1
+    output_data = result.nb.cells[0]["outputs"][0]["data"]
     assert "image/jpeg" not in output_data
     assert (
         output_data["text/plain"]

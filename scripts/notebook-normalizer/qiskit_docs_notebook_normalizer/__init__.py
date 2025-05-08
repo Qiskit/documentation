@@ -118,7 +118,7 @@ def main():
 
 
 def normalize_notebook(
-    nb: nbformat.NotebookNode, image_folder: Path, check_only: bool
+    nb: nbformat.NotebookNode, image_folder: Path, check_only: bool = False
 ) -> NormalizationResult:
     """
     Extracts images (converting if necessary) and returns an updated notebook.
