@@ -14,6 +14,7 @@ import argparse
 import nbformat
 import base64
 import shutil
+from typing import TypeGuard
 from subprocess import Popen, PIPE
 from pathlib import Path
 from dataclasses import dataclass
@@ -46,6 +47,26 @@ class RasterImage:
 Image = SvgImage | RasterImage
 
 
+# Result types for normalization process
+@dataclass
+class NormalizationNeeded:
+    changes = True
+    nb: nbformat.NotebookNode
+    images: list[Image]
+
+
+@dataclass
+class AlreadyNormalized:
+    changes = False
+
+
+NormalizationResult = NormalizationNeeded | AlreadyNormalized
+
+
+def changes_made(result: NormalizationResult) -> TypeGuard[NormalizationNeeded]:
+    return result.changes
+
+
 def main():
     """
     Search for notebooks and extract image outputs if necessary.
@@ -61,17 +82,19 @@ def main():
         nb = nbformat.read(nb_path, 4)
         images_folder = determine_image_folder(nb_path)
 
-        new_nb, images, change_made = extract_images(nb, images_folder, args.check)
-        if not change_made:
+        result = normalize_notebook(nb, images_folder, args.check)
+        if not changes_made(result):
             continue
 
         problem_notebooks.append(nb_path)
-        if change_made and not args.check:
-            ensure_exists_and_empty(images_folder)
-            for image in images:
-                image.write()
-            nbformat.write(new_nb, nb_path)
-            print(f"  Written notebook and {len(images)} image(s)")
+        if args.check:
+            continue
+
+        ensure_exists_and_empty(images_folder)
+        for image in result.images:
+            image.write()
+        nbformat.write(result.nb, nb_path)
+        print(f"  Written notebook and {len(result.images)} image(s)")
 
     if args.check and problem_notebooks:
         print(
@@ -82,9 +105,9 @@ def main():
         raise SystemExit(1)
 
 
-def extract_images(
+def normalize_notebook(
     nb: nbformat.NotebookNode, image_folder: Path, check_only: bool
-) -> tuple[nbformat.NotebookNode, list[Image], bool]:
+) -> NormalizationResult:
     """
     Extracts images (converting if necessary) and returns an updated notebook.
     """
@@ -118,7 +141,7 @@ def extract_images(
             change_made = True
             if check_only:
                 # We know the notebook needs linting so we can stop here
-                return nb, [], True
+                return NormalizationNeeded(nb=nb, images=[])
 
             data["text/plain"] = mdx_component(image.filepath)
             # Delete all image outputs now we've converted one.
@@ -129,7 +152,9 @@ def extract_images(
             for datatype in ["png", "jpeg", "svg+xml"]:
                 data.pop(f"image/{datatype}", None)
             images.append(image)
-    return nb, images, change_made
+    if change_made:
+        return NormalizationNeeded(nb=nb, images=images)
+    return AlreadyNormalized()
 
 
 def mdx_component(image_path: Path) -> str:
