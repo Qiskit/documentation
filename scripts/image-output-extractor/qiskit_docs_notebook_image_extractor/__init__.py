@@ -77,6 +77,8 @@ def main():
 
     problem_notebooks = []
     for nb_path in NOTEBOOK_PATHS:
+        if is_hidden(nb_path):
+            continue
 
         print(f"{nb_path}")
         nb = nbformat.read(nb_path, 4)
@@ -194,3 +196,6 @@ def ensure_exists_and_empty(folder: Path) -> None:
         shutil.rmtree(folder)
     folder.mkdir(parents=True)
 
+
+def is_hidden(path: Path) -> bool:
+    return any(part.startswith(".") for part in path.parts)
