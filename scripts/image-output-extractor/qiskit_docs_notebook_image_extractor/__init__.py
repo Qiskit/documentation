@@ -10,6 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
+import argparse
 import nbformat
 import base64
 import shutil
@@ -49,26 +50,46 @@ def main():
     """
     Search for notebooks and extract image outputs if necessary.
     """
+    parser = argparse.ArgumentParser(prog="Qiskit/documentation notebook normalization")
+    parser.add_argument("--check", action="store_true")
+    args = parser.parse_args()
+
+    problem_notebooks = []
     for nb_path in NOTEBOOK_PATHS:
-        images_folder = prepare_image_folder(nb_path)
-        nb = nbformat.read(nb_path, 4)
+
         print(f"{nb_path}")
-        new_nb, images = extract_images(nb, images_folder)
-        if len(images) == 0:
+        nb = nbformat.read(nb_path, 4)
+        images_folder = determine_image_folder(nb_path)
+
+        new_nb, images, change_made = extract_images(nb, images_folder, args.check)
+        if not change_made:
             continue
-        for image in images:
-            image.write()
-        nbformat.write(new_nb, nb_path)
-        print(f"  Written notebook and {len(images)} image(s)")
+
+        problem_notebooks.append(nb_path)
+        if change_made and not args.check:
+            ensure_exists_and_empty(images_folder)
+            for image in images:
+                image.write()
+            nbformat.write(new_nb, nb_path)
+            print(f"  Written notebook and {len(images)} image(s)")
+
+    if args.check and problem_notebooks:
+        print(
+            "\nThe following notebooks need normalizing:\n ",
+            "\n  ".join(map(str, problem_notebooks)),
+            "\nRun ./fix to fix them automatically.",
+        )
+        raise SystemExit(1)
 
 
 def extract_images(
-    nb: nbformat.NotebookNode, image_folder: Path
-) -> tuple[nbformat.NotebookNode, list[Image]]:
+    nb: nbformat.NotebookNode, image_folder: Path, check_only: bool
+) -> tuple[nbformat.NotebookNode, list[Image], bool]:
     """
     Extracts images (converting if necessary) and returns an updated notebook.
     """
     images = []
+    change_made = False
     for cell_index, cell in enumerate(nb.cells):
         if cell.cell_type != "code":
             continue
@@ -83,14 +104,21 @@ def extract_images(
             if svg_data := data.get("image/svg+xml", None):
                 image = SvgImage(filepath=filestem.with_suffix(".svg"), data=svg_data)
             elif png_data := data.get("image/png", None):
-                png_image = RasterImage(
+                image = RasterImage(
                     filepath=filestem.with_suffix(".png"),
                     data=base64.b64decode(png_data),
                 )
-                print(f"  - Converting PNG output for cell {cell_index}")
-                image = convert_to_avif(png_image)
+                # Conversion can take a long time, so skip if only checking
+                if not check_only:
+                    print(f"  - Converting PNG output for cell {cell_index}")
+                    image = convert_to_avif(image)
             else:
                 continue
+
+            change_made = True
+            if check_only:
+                # We know the notebook needs linting so we can stop here
+                return nb, [], True
 
             data["text/plain"] = mdx_component(image.filepath)
             # Delete all image outputs now we've converted one.
@@ -101,7 +129,7 @@ def extract_images(
             for datatype in ["png", "jpeg", "svg+xml"]:
                 data.pop(f"image/{datatype}", None)
             images.append(image)
-    return nb, images
+    return nb, images, change_made
 
 
 def mdx_component(image_path: Path) -> str:
@@ -118,18 +146,26 @@ def convert_to_avif(image: RasterImage) -> RasterImage:
     return RasterImage(filepath=new_path, data=new_data)
 
 
-def prepare_image_folder(nb_path: Path) -> Path:
+def determine_image_folder(nb_path: Path) -> Path:
     """
     Determine the appropriate output folder for the extracted images, and ensure it exists and is empty.
+
+    For example, the following notebook path:
+        docs/guides/my-notebook.ipynb
+    Should have its images extracted to:
+        public/docs/images/guides/my-notebook/extracted-outputs/
     """
-    images_folder = Path(
+    return Path(
         "public",
-        nb_path.parts[0],
+        nb_path.parts[0],  # i.e. "docs" or "learning"
         "images",
-        *nb_path.with_suffix("").parts[1:],
+        *nb_path.with_suffix("").parts[1:],  # e.g. "guides/visualize-results"
         "extracted-outputs",
     )
-    if images_folder.exists():
-        shutil.rmtree(images_folder)
-    images_folder.mkdir(parents=True)
-    return images_folder
+
+
+def ensure_exists_and_empty(folder: Path) -> None:
+    if folder.exists():
+        shutil.rmtree(folder)
+    folder.mkdir(parents=True)
+
