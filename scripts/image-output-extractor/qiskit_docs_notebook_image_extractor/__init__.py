@@ -25,6 +25,16 @@ NOTEBOOK_PATHS = chain(
     Path("learning").rglob("*.ipynb"),
 )
 
+# Qiskit's QuantumCircuit.draw() results in Jupyter outputting both a `text/html` and
+# `text/plain` entry. The HTML entry has pre-applied formatting that makes sense in
+# a Jupyter notebook, but renders horribly in our app:
+# https://github.com/Qiskit/qiskit/blob/df379876ba10d6f490a96723b6dbbf723ec45d7a/qiskit/visualization/circuit/text.py#L761-L769
+#
+# So, we instead should render the `text/plain` entry rather than `text/html`.
+CIRCUIT_DRAW_HTML_PREFIX = '<pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">'
+
+# Types for extracted images
+
 
 @dataclass
 class SvgImage:
@@ -124,6 +134,16 @@ def normalize_notebook(
             if "data" not in output:
                 continue
             data = output["data"]
+
+            # 1. Check for bad circuit drawing HTML
+            if html := data.get("text/html"):
+                if html.startswith(CIRCUIT_DRAW_HTML_PREFIX):
+                    if check_only:
+                        return NormalizationNeeded(nb=nb, images=[])
+                    change_made = True
+                    del data["text/html"]
+
+            # 2. Extract image outputs
             filestem = Path(image_folder, f"{cell.id}-{index}")
 
             if svg_data := data.get("image/svg+xml", None):
