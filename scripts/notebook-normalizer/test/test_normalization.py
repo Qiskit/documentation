@@ -2,7 +2,7 @@ import nbformat
 from pathlib import Path
 from textwrap import dedent
 import base64
-from qiskit_docs_notebook_image_extractor import extract_images, RasterImage, SvgImage
+from qiskit_docs_notebook_normalizer import extract_images, RasterImage, SvgImage
 
 
 def test_no_outputs():
