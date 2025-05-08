@@ -185,3 +185,65 @@ def test_png_and_jpeg():
         output_data["text/plain"]
         == '<Image src="/root/aaaaaa-0.avif" alt="Output of the previous code cell" />'
     )
+
+
+def test_circuit_draw_html():
+    nb_source = dedent(
+        r"""
+    {
+     "cells": [
+      {
+       "cell_type": "code",
+       "execution_count": 1,
+       "id": "aaaaaaa",
+       "metadata": {},
+       "outputs": [
+        {
+         "data": {
+          "text/html": [
+           "<pre style=\"word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace\">     ┌───┐          ┌─┐   \n",
+           "q_0: ┤ H ├───────■──┤M├───\n",
+           "     ├───┤┌───┐┌─┴─┐└╥┘┌─┐\n",
+           "q_1: ┤ X ├┤ H ├┤ X ├─╫─┤M├\n",
+           "     ├───┤└┬─┬┘└───┘ ║ └╥┘\n",
+           "q_2: ┤ H ├─┤M├───────╫──╫─\n",
+           "     └───┘ └╥┘       ║  ║ \n",
+           "c: 3/═══════╩════════╩══╩═\n",
+           "            2        0  1 </pre>"
+          ],
+          "text/plain": [
+           "     ┌───┐          ┌─┐   \n",
+           "q_0: ┤ H ├───────■──┤M├───\n",
+           "     ├───┤┌───┐┌─┴─┐└╥┘┌─┐\n",
+           "q_1: ┤ X ├┤ H ├┤ X ├─╫─┤M├\n",
+           "     ├───┤└┬─┬┘└───┘ ║ └╥┘\n",
+           "q_2: ┤ H ├─┤M├───────╫──╫─\n",
+           "     └───┘ └╥┘       ║  ║ \n",
+           "c: 3/═══════╩════════╩══╩═\n",
+           "            2        0  1 "
+          ]
+         },
+         "execution_count": 4,
+         "metadata": {},
+         "output_type": "execute_result"
+        }
+       ],
+       "source": [
+        "circuit.draw()"
+       ]
+      }
+     ],
+     "metadata": {},
+     "nbformat": 4,
+     "nbformat_minor": 5
+    }
+    """.strip()
+    )
+    nb = nbformat.reads(nb_source, 4)
+    result = normalize_notebook(nb, Path("public/root"))
+    assert changes_made(result)
+    assert result.images == []
+    assert len(result.nb.cells[0]["outputs"]) == 1
+    output_data = result.nb.cells[0]["outputs"][0]["data"]
+    assert "text/html" not in output_data
+    assert "text/plain" in output_data
