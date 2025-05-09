@@ -15,7 +15,7 @@ import shutil
 from dataclasses import dataclass
 from itertools import chain
 from pathlib import Path
-from typing import TypeGuard
+from typing import TypeGuard, ClassVar
 
 import nbformat
 
@@ -30,14 +30,14 @@ NOTEBOOK_PATHS = chain(
 # Result types for normalization process
 @dataclass
 class NormalizationNeeded:
-    changes = True
+    changes: ClassVar[bool] = True
     nb: nbformat.NotebookNode
     images: list[Image]
 
 
 @dataclass
 class AlreadyNormalized:
-    changes = False
+    changes: ClassVar[bool] = False
 
 
 NormalizationResult = NormalizationNeeded | AlreadyNormalized
