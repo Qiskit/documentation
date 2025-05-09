@@ -82,7 +82,7 @@ with Session(backend=backend):
 <span id="specify-length"></span>
 ## Session length
 
-The maximum session time to live (TTL) determines how long a session can run.  You can set this value with the `max_time` parameter. This should exceed the longest job's execution time.
+The session maximum time to live (TTL) determines how long a session can run.  You can set this value with the `max_time` parameter. This should exceed the longest job's execution time.
 
 This timer starts when the session starts.  When the value is reached, the session is closed.  Any jobs that are running will finish, but jobs still queued are failed.
 
@@ -97,30 +97,32 @@ with Session(backend=backend, max_time="25m"):
   ...
 ```
 
-There is also an interactive time to live (interactive TTL) value that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated.
+There is also an interactive time to live (interactive TTL) value that cannot be configured (1 minute for all plans).  If no session jobs are queued within that window, the session is temporarily deactivated.
 
 Default values:
 <LegacyContent>
-| Instance type (Open or Premium Plan) |  Interactive TTL | Maximum TTL |
-| --- | --- | --- |
-| Premium Plan | 60 sec* | 8 h* |
-| Open Plan | sessions run in job mode | sessions run in job mode |
+| Instance type (Open or Premium Plan) | Maximum TTL |
+| --- | --- |
+| Premium Plan | 8 h* |
+| Open Plan | sessions run in job mode |
 </LegacyContent>
 <CloudContent>
-| Instance type (Open or Premium Plan) |  Interactive TTL | Maximum TTL |
-| --- | --- | --- |
-| Premium Plan | 60 sec* | 8 h* |
+
+| Instance type  | Default maximum TTL |
+|----------------|---------------------|
+| All paid plans | 8 hours             |
+| Open           | 10 minutes          |
 </CloudContent>
 *\* Certain Premium Plan instances might be configured to have a different value.*
 
-To determine a session's max TTL or  interactive TTL, follow the instructions in [Determine session details](#session-details) and look for the `max_time`or `interactive_timeout` value, respectively.
+To determine a session's maximum TTL or  interactive TTL, follow the instructions in [Determine session details](#session-details) and look for the `max_time`or `interactive_timeout` value, respectively.
 
 <span id="ends"></span>
 ## End a session
 
 A session ends in the following circumstances:
 
-* The maximum timeout (TTL) value is reached, resulting in the cancellation of all queued jobs.
+* The maximum TTL value is reached, resulting in the cancellation of all queued jobs.
 * The session is manually canceled, resulting in the cancellation of all queued jobs.
 * The session is manually closed.  The session stops accepting new jobs but continues to run queued jobs with priority.
 * If you use Session as a context manager, that is,  `with Session()`, the session is automatically closed when the context ends (the same behavior as using `session.close()`).
