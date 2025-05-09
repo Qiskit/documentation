@@ -60,7 +60,6 @@ def main():
         if is_hidden(nb_path):
             continue
 
-        print(f"{nb_path}")
         nb = nbformat.read(nb_path, 4)
         images_folder = determine_image_folder(nb_path)
 
