@@ -47,21 +47,6 @@ def extract_image_output(
 ) -> Image | None:
     """Extract image output if one exists and mutate the cell to point to the destination image."""
 
-    def _get_image(
-        output_data: dict, filestem: Path, skip_conversion: bool
-    ) -> Image | None:
-        """Just get the image data if it exists, nothing else"""
-        if svg_data := output_data.get("image/svg+xml", None):
-            return SvgImage(filepath=filestem.with_suffix(".svg"), data=svg_data)
-        if png_data := output_data.get("image/png", None):
-            png_image = RasterImage(
-                filepath=filestem.with_suffix(".png"),
-                data=base64.b64decode(png_data),
-            )
-            if skip_conversion:
-                return png_image
-            return _convert_to_avif(png_image)
-
     image = _get_image(output_data, filestem, skip_conversion)
     if image is None:
         return None
@@ -75,6 +60,22 @@ def extract_image_output(
     for datatype in ["png", "jpeg", "svg+xml"]:
         output_data.pop(f"image/{datatype}", None)
     return image
+
+
+def _get_image(
+    output_data: dict, filestem: Path, skip_conversion: bool
+) -> Image | None:
+    """Just get the image data if it exists, nothing else"""
+    if svg_data := output_data.get("image/svg+xml", None):
+        return SvgImage(filepath=filestem.with_suffix(".svg"), data=svg_data)
+    if png_data := output_data.get("image/png", None):
+        png_image = RasterImage(
+            filepath=filestem.with_suffix(".png"),
+            data=base64.b64decode(png_data),
+        )
+        if skip_conversion:
+            return png_image
+        return _convert_to_avif(png_image)
 
 
 def _convert_to_avif(image: RasterImage) -> RasterImage:

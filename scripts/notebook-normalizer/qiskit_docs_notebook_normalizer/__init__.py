@@ -75,7 +75,7 @@ def main():
         for image in result.images:
             image.write()
         nbformat.write(result.nb, nb_path)
-        print(f"  Written notebook and {len(result.images)} image(s)")
+        print(f"✍️ Written '{nb_path}' and {len(result.images)} image(s)")
 
     if args.check and problem_notebooks:
         print(
@@ -117,7 +117,8 @@ def normalize_notebook(
                 images.append(image)
 
             if change_made and check_only:
-                # We know the notebook needs linting so we can stop here
+                # We now know the notebook needs linting so we don't need to
+                # keep looking at other cells
                 return NormalizationNeeded(nb=nb, images=[])
 
     if change_made:
