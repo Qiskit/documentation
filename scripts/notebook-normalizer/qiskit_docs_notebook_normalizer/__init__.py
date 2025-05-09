@@ -11,50 +11,20 @@
 # that they have been altered from the originals.
 
 import argparse
-import nbformat
-import base64
 import shutil
-from typing import TypeGuard
-from subprocess import Popen, PIPE
-from pathlib import Path
 from dataclasses import dataclass
 from itertools import chain
+from pathlib import Path
+from typing import TypeGuard
+
+import nbformat
+
+from .cell_output_data import remove_circuit_drawing_html, extract_image_output, Image
 
 NOTEBOOK_PATHS = chain(
     Path("docs").rglob("*.ipynb"),
     Path("learning").rglob("*.ipynb"),
 )
-
-# Qiskit's QuantumCircuit.draw() results in Jupyter outputting both a `text/html` and
-# `text/plain` entry. The HTML entry has pre-applied formatting that makes sense in
-# a Jupyter notebook, but renders horribly in our app:
-# https://github.com/Qiskit/qiskit/blob/df379876ba10d6f490a96723b6dbbf723ec45d7a/qiskit/visualization/circuit/text.py#L761-L769
-#
-# So, we instead should render the `text/plain` entry rather than `text/html`.
-CIRCUIT_DRAW_HTML_PREFIX = '<pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">'
-
-# Types for extracted images
-
-
-@dataclass
-class SvgImage:
-    data: str
-    filepath: Path
-
-    def write(self):
-        self.filepath.write_text(self.data)
-
-
-@dataclass
-class RasterImage:
-    data: bytes
-    filepath: Path
-
-    def write(self):
-        self.filepath.write_bytes(self.data)
-
-
-Image = SvgImage | RasterImage
 
 
 # Result types for normalization process
@@ -135,62 +105,25 @@ def normalize_notebook(
                 continue
             data = output["data"]
 
-            # 1. Check for bad circuit drawing HTML
-            if html := data.get("text/html"):
-                if html.startswith(CIRCUIT_DRAW_HTML_PREFIX):
-                    if check_only:
-                        return NormalizationNeeded(nb=nb, images=[])
-                    change_made = True
-                    del data["text/html"]
+            html_removed = remove_circuit_drawing_html(data)
+            if html_removed:
+                change_made = True
 
             # 2. Extract image outputs
             filestem = Path(image_folder, f"{cell.id}-{index}")
+            if image := extract_image_output(
+                data, filestem, skip_conversion=check_only
+            ):
+                change_made = True
+                images.append(image)
 
-            if svg_data := data.get("image/svg+xml", None):
-                image = SvgImage(filepath=filestem.with_suffix(".svg"), data=svg_data)
-            elif png_data := data.get("image/png", None):
-                image = RasterImage(
-                    filepath=filestem.with_suffix(".png"),
-                    data=base64.b64decode(png_data),
-                )
-                # Conversion can take a long time, so skip if only checking
-                if not check_only:
-                    print(f"  - Converting PNG output for cell {cell_index}")
-                    image = convert_to_avif(image)
-            else:
-                continue
-
-            change_made = True
-            if check_only:
+            if change_made and check_only:
                 # We know the notebook needs linting so we can stop here
                 return NormalizationNeeded(nb=nb, images=[])
 
-            data["text/plain"] = mdx_component(image.filepath)
-            # Delete all image outputs now we've converted one.
-            # An output can have many different representations (e.g. text,
-            # html, image), including many image representations in different
-            # formats. We only want to keep one image representation, so we ignore
-            # the rest.
-            for datatype in ["png", "jpeg", "svg+xml"]:
-                data.pop(f"image/{datatype}", None)
-            images.append(image)
     if change_made:
         return NormalizationNeeded(nb=nb, images=images)
     return AlreadyNormalized()
-
-
-def mdx_component(image_path: Path) -> str:
-    return f'<Image src="/{image_path.relative_to("public")}" alt="Output of the previous code cell" />'
-
-
-def convert_to_avif(image: RasterImage) -> RasterImage:
-    """
-    Pipe image through ImageMagick subprocess to convert to AVIF.
-    """
-    new_path = image.filepath.with_suffix(".avif")
-    imagemagick = Popen(["magick", "-", "avif:-"], stdout=PIPE, stderr=PIPE, stdin=PIPE)
-    (new_data, _stderr) = imagemagick.communicate(input=image.data)
-    return RasterImage(filepath=new_path, data=new_data)
 
 
 def determine_image_folder(nb_path: Path) -> Path:

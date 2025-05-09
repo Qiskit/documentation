@@ -1,12 +1,13 @@
 import nbformat
 from pathlib import Path
 from textwrap import dedent
-import base64
 from qiskit_docs_notebook_normalizer import (
     normalize_notebook,
+    changes_made,
+)
+from qiskit_docs_notebook_normalizer.cell_output_data import (
     RasterImage,
     SvgImage,
-    changes_made,
 )
 
 
