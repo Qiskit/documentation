@@ -31,8 +31,7 @@ pip install .
 There are various options to write a C extension for Python. For simplicity, this guide starts with an approach that uses Python's built-in [`ctypes`](https://docs.python.org/3/library/ctypes.html) module.  In the next section, the [the Manual C extension](#manual-c-extension) section provides an example of building the C extension using Python's C API to reduce runtime overhead.
 
 As an example, assume you write a C function to build an observable and would like to return
-it to Python. You can convert a C-side `QkObs*` to a Python-side `SparseObservable` object
-(both are backed by the same Rust data structure), using the provided converter
+it to Python. You can convert a C-side `QkObs*` to a Python-side `SparseObservable` object, using the provided converter
 `qk_obs_to_python`:
 ```c
 // file: extension.c

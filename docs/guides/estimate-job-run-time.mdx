@@ -1,7 +1,6 @@
 ---
 title: Workload usage
 description: Explains what usage is and how to estimate how long a job that uses a primitive will take to run
-platform: legacy
 ---
 
 <span id="usage"></span>
@@ -54,7 +53,9 @@ When a job is failed or canceled, the reported usage is as follows:
 After a workload has completed, there are several ways to view its actual usage:
 
 - Run [`batch.usage()`](/docs/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`](/docs/api/qiskit-ibm-runtime/session#usage) in `qiskit-ibm-runtime` 0.30 or later.  If using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
-- Call the [GET usage](/docs/api/runtime/tags/usage#tags__usage) REST API directly to see the total usage across all workloads for your account (IBM Quantum Platform channel only).
+<LegacyContent>
+- Call the [GET usage](/docs/api/runtime/tags/usage#tags__usage) REST API directly to see the total usage across all workloads for your account.
+</LegacyContent>
 - Use [`GET /sessions/{id}`](/docs/api/runtime/tags/sessions#tags__sessions__operations__GetSessionDetailsExtendedController_getSessionDetails) to see usage for a specific batch or session.
 - Use [`GET /jobs/{id}`](/docs/api/runtime/tags/jobs#tags__jobs__operations__GetJobByIdController_getJobById) to see usage for a single job.
 
@@ -68,6 +69,7 @@ The Instances page shows real-time usage for the last 28 days (rolling), up to t
 
 </CloudContent>
 <LegacyContent>
+
 ## Estimate workload usage
 
 After submitting a job to the IBM Quantum channel, you can see an estimation for how much _quantum time_ the job will take to run by using `job.usage_estimation`.  Quantum time is the duration, in seconds, a QPU is committed to fulfilling a user request.
@@ -122,6 +124,20 @@ Output:
 {'quantum_seconds': 4.1058720028432445}
 ```
 </LegacyContent>
+
+## Estimate usage before submitting a job
+
+While getting an accurate local estimation is complicated by the extra operations done for error suppression and mitigation, you can use this baseline formula to get an approximation of estimated usage:
+
+`<per sub-job overhead> + (rep_delay + <circuit length>) * <num executions>`
+
+- `<per sub-job overhead>` is an overhead of approximately 2s per sub-job. This includes operations such as loading the payload into control electronics. Your primitive job may be divided into multiple sub-jobs if it is too large for the execution engine to process all at once. 
+- `rep_delay` is a [user-customizable](/api/qiskit-ibm-runtime/options-execution-options-v2#rep_delay) option, and the default is given by `backend.default_rep_delay`, which is 250 microseconds on most IBM Quantum backends. Note that lowering `rep_delay` decreases the total QPU execution time, but at the expense of increased state preparation error rate; see the [Dynamic repetition rate execution](/docs/guides/repetition-rate-execution) guide for more information.
+- `<circuit length>` is the total instruction length. Each instruction takes different amount of time on the QPU, so the total length varies from circuit to circuit. A measurement, for example, can take 56 times longer than an `x` gate. `backend.target[<instruction>][<qubit>].duration` can be used to find the exact duration for each instruction. A typical circuit length is likely between 50-100 microseconds. If you are using error suppression or mitigation techniques with the primitives, extra instructions might be inserted into your circuit, which would increase the total circuit length.
+- `<num executions>` is the total number of circuits times the number of shots, where the circuits are those generated after PUB elements are broadcasted. If you are using error-mitigation techniques with the primitives, extra circuits can be run as part of the mitigation process, which would increase the total number of executions. Advanced error-mitigation techniques such as PEA and PEC come with much higher overhead because they require running circuits for noise learning.
+
+If you aren't using any advanced error-mitigation techniques or custom `rep_delay`, you can use `2+0.00035*<num executions>` as a quick formula. 
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
