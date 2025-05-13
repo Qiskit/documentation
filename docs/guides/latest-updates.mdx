@@ -110,23 +110,29 @@ Wondering what will change? Read the [changelog](https://github.com/Qiskit/qiski
 
 
 <span id="latest-qiskit-runtime"></span>
-## Qiskit Runtime client 0.37.0
+## Qiskit Runtime client 0.38.0
 
-**13 March 2025**
+**15 April 2025**
 
 - Deprecation
 
-  - The `IBMBackend` attributes `max_shots` and `max_experiments`, as well as the property `max_circuits`, have all been deprecated. Previously, these attribute values represented the maximum number of shots and circuits that could be submitted in one job. See [job limits](/docs/guides/job-limits#job-limits) for details.
+  *   [`RuntimeJob`](runtime-job "qiskit_ibm_runtime.RuntimeJob") is now deprecated and will be removed no sooner than three months from this release. [`RuntimeJob`](runtime-job "qiskit_ibm_runtime.RuntimeJob") was superseded by [`RuntimeJobV2`](runtime-job-v2 "qiskit_ibm_runtime.RuntimeJobV2") in all primitive implementations, so the deprecation should not have any user impact. The major difference between the two classes is that [`status()`](runtime-job-v2#status "qiskit_ibm_runtime.RuntimeJobV2.status") returns a string instead of Qiskit’s `JobStatus` enum. ([2170](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2170))
+  *   Since pulse gates are no longer supported, the [`IBMBackend`](ibm-backend "qiskit_ibm_runtime.IBMBackend") and `FakeBackendV2` `defaults()` method has been deprecated and will be removed no sooner than three months from this release. While the method still exists, these pulse defaults are no longer used to construct the backend target. ([2186](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2186))
+  *   The `ibm_quantum` channel option is deprecated and will be sunset on 1 July. After this date, `ibm_cloud` will be the only valid channel. For help migrating to the new IBM Quantum Platform on the `ibm_cloud` channel, read the [migration guide](https://quantum.cloud.ibm.com/docs/migration-guides/classic-iqp-to-cloud-iqp). ([2205](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2205))
 
 - New features
 
-  - `qiskit-ibm-runtime` is now compatible with Qiskit v2.0. This means that classes and methods removed in Qiskit v2.0 have also been removed or handled accordingly.  The `pulse`- and `channel`-related changes are highlighted in the following list. See the [Pulse migration guide](/docs/migration-guides/pulse-migration) for details.
+  *   Attributes from the configuration of fake backends can now be retrieved directly with `backend.<attribute_name>`. ([2202](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2202))
 
-    - `Channel` methods in `IBMBackend` have been removed.
-    - The backend configuration class `PulseBackendConfiguration` has been removed, so all backends are now  returned as `QasmBackendConfiguration`.
-    - `PulseDefaults` (backend defaults) can still be retrieved but they are no longer necessary when creating a backend `Target`.
+- Bug fixes
 
-- See the full [0.37.0 release notes.](/docs/api/qiskit-ibm-runtime/release-notes#0370-2025-03-13)
+  *   Fixed a bug where `DoubleSliceSpan.mask()` and `TwirledSliceSpan.mask()` error when they contain a one-dimensional slice. ([2184](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2184))
+
+-  Upgrade notes
+
+*   Since support for streaming results was removed in `0.32.0`, the remaining related websocket code has been removed. As a part of this process, the environment option `callback` is deprecated, as well as the parameters `client_params` and `user_callback` in `BaseRuntimeJob`. ([2143](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2143))
+
+- See the full [0.38.0 release notes.](/docs/api/qiskit-ibm-runtime/release-notes#0380-2025-04-15)
 
 {/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
 
