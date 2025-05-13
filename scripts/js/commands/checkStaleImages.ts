@@ -15,8 +15,14 @@ import { globby } from "globby";
 
 import { zxMain, isInstalled } from "../lib/zx.js";
 
-// When users link to this folder, they leave off this prefix.
-const PUBLIC_FOLDER_PREFIX = "public/docs/";
+// When writers link to this folder, they leave off this prefix.
+const PUBLIC_FOLDER_PREFIX = "public/";
+const IMAGES_GLOBS = [
+  `${PUBLIC_FOLDER_PREFIX}*/images/**`,
+  // We don't check API images because the API pipeline will already ensure there are no
+  // stale images when regenerating API docs.
+  `!${PUBLIC_FOLDER_PREFIX}docs/images/api/**`,
+];
 
 // Files that are used in closed source, so should not be removed.
 // Format: full file path, e.g. "public/docs/images/guides/paulibasis.png"
@@ -24,6 +30,9 @@ const ALLOW_LIST = new Set<string>([]);
 
 zxMain(async () => {
   const paths = await getStrippedImagePaths();
+  if (paths.size === 0) {
+    throw new Error("Did not detect any images: Please check this script.");
+  }
   let allGood = true;
   let numFilesChecked = 0;
   for (const fp of paths) {
@@ -51,12 +60,7 @@ zxMain(async () => {
 });
 
 async function getStrippedImagePaths(): Promise<Set<string>> {
-  const fullPaths = await globby([
-    `${PUBLIC_FOLDER_PREFIX}images/**`,
-    // We don't check API images because the API pipeline will already ensure there are no
-    // stale images when regenerating API docs.
-    `!${PUBLIC_FOLDER_PREFIX}images/api/**`,
-  ]);
+  const fullPaths = await globby(IMAGES_GLOBS);
   return new Set(
     fullPaths.map((fp) =>
       fp
@@ -70,8 +74,8 @@ async function getStrippedImagePaths(): Promise<Set<string>> {
 
 async function isImageUnused(strippedFp: string): Promise<boolean> {
   const args = (await isInstalled("rg"))
-    ? ["rg", "-l", strippedFp, "docs", "-g", "!docs/api"]
-    : ["git", "grep", "-l", strippedFp, "docs", ":!docs/api"];
+    ? ["rg", "-l", strippedFp, "docs", "learning", "-g", "!docs/api"]
+    : ["git", "grep", "-l", strippedFp, "docs", "learning", ":!docs/api"];
   const proc = await $`${args}`.quiet().catch((result) => result);
   return (
     proc.stdout === "" &&

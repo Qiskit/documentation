@@ -61,13 +61,14 @@ with Batch(backend=backend, max_time="25m"):
   ...
 ```
 
-There is also an interactive time to live (interactive TTL) value that cannot be configured.  If no batch jobs are queued within that window, the batch is temporarily deactivated.
+There is also an interactive time to live (interactive TTL) value that cannot be configured (1 minute for all plans).  If no batch jobs are queued within that window, the batch is temporarily deactivated.
 
-Default values:
+Default maximum TTL values:
 
-| Instance type (Open or Premium Plan) | Interactive TTL | Maximum TTL |
-| --- | --- | --- |
-| Both Open and Premium Plan | 1 sec | 10 min |
+| Instance type  | Default maximum TTL |
+|----------------|---------------------|
+| All paid plans | 8 hours             |
+| Open           | 10 minutes          |
 
 To determine a batch's maximum TTL or interactive TTL, follow the instructions in [Determine batch details](#batch-details) and look for the `max_time`or `interactive_timeout` value, respectively.
 

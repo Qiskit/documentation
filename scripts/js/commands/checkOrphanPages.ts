@@ -83,7 +83,7 @@ async function findExistentUrls(directory: string): Promise<string[]> {
 
 async function findTocFiles(includeApis: boolean): Promise<string[]> {
   const globs = [
-    "docs/**/_toc.json",
+    "{docs,learning}/**/_toc.json",
     includeApis ? "docs/api/**/_toc.json" : "!docs/api/**",
   ];
   return globby(globs);

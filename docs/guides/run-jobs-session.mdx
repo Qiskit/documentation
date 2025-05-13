@@ -97,19 +97,21 @@ with Session(backend=backend, max_time="25m"):
   ...
 ```
 
-There is also an interactive time to live (interactive TTL) value that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated.
+There is also an interactive time to live (interactive TTL) value that cannot be configured (1 minute for all plans).  If no session jobs are queued within that window, the session is temporarily deactivated.
 
 Default values:
 <LegacyContent>
-| Instance type (Open or Premium Plan) |  Interactive TTL | Maximum TTL |
-| --- | --- | --- |
-| Premium Plan | 60 sec* | 8 h* |
-| Open Plan | sessions run in job mode | sessions run in job mode |
+| Instance type (Open or Premium Plan) | Maximum TTL |
+| --- | --- |
+| Premium Plan | 8 h* |
+| Open Plan | sessions run in job mode |
 </LegacyContent>
 <CloudContent>
-| Instance type (Open or Premium Plan) |  Interactive TTL | Maximum TTL |
-| --- | --- | --- |
-| Premium Plan | 60 sec* | 8 h* |
+
+| Plan type  | Default maximum TTL |
+|----------------|---------------------|
+| All paid plans | 8 hours             |
+| Open           | 10 minutes          |
 </CloudContent>
 *\* Certain Premium Plan instances might be configured to have a different value.*
 

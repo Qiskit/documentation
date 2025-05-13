@@ -16,6 +16,7 @@ on:
     paths:
       - ".github/workflows/notebook-test.yml"
       - "docs/**/*.ipynb"
+      - "learning/**/*.ipynb"
       - "!docs/api/**/*"
       - "scripts/nb-tester/**/*"
   workflow_dispatch:
@@ -31,7 +32,7 @@ jobs:
         id: all-changed
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
-          files: "{docs/**/*.ipynb,scripts/nb-tester/**/*,.github/workflows/notebook-test.yml}"
+          files: "{{docs,learning}/**/*.ipynb,scripts/nb-tester/**/*,.github/workflows/notebook-test.yml}"
           separator: "\n"
           write_output_files: true
 

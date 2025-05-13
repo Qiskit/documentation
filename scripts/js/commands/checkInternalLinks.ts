@@ -75,9 +75,9 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("public/docs/{images,videos,open-source}/**/*")).map(
-      (fp) => new File(fp, new Set()),
-    ),
+    ...(
+      await globby("public/{docs,learning}/{images,videos,open-source}/**/*")
+    ).map((fp) => new File(fp, new Set())),
     ...SYNTHETIC_FILES.map((fp) => new File(fp, new Set(), true)),
   ];
 
@@ -188,7 +188,7 @@ async function determineCurrentDocsFileBatch(
   args: Arguments,
 ): Promise<FileBatch> {
   const toCheck = [
-    "docs/**/*.{ipynb,mdx}",
+    "{docs,learning}/**/*.{ipynb,mdx}",
     "public/docs/api/*/objects.inv",
     // Ignore historical versions
     "!docs/api/*/[0-9]*/*",
