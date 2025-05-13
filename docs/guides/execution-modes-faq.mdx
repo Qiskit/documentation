@@ -57,7 +57,7 @@ No. On-demand calibration is not available.
 
 <details>
   <summary>
-    Is there an interactive timeout (ITTL) with session mode?
+    Is there an interactive timeout (interactive TTL) with session mode?
   </summary>
 
 Yes. This reduces unwanted cost if a user forgets to close their session.
@@ -65,10 +65,10 @@ Yes. This reduces unwanted cost if a user forgets to close their session.
 
 <details>
   <summary>
-    Can I change the interactive timeout (ITTL) or the maximum timeout of a session?
+    Can I change the interactive TTL or the maximum TTL of a session?
   </summary>
 
-You cannot change the interactive timeout value. You can change the maximum timeout value of a session (see [Specify the session length](run-jobs-session#specify-length)), but it must be less than the system-defined maximum. Ask your administrator to contact IBM support if you need a different interactive TTL or system maximum TTL.
+You cannot change the interactive TTL value. You can change the maximum TTL value of a session (see [Specify the session length](run-jobs-session#specify-length)), but it must be less than the system-defined maximum. Ask your administrator to contact IBM support if you need a different interactive TTL or system maximum TTL.
 
 </details>
 
@@ -101,7 +101,7 @@ No.  Sessions run in dedicated mode, which means that the user has total access 
     Is compilation time counted as usage in session mode?
   </summary>
 
-Yes.  In session mode, usage is the wall clock time the QPU is **committed to the session**. It starts when the first session job starts and ends when the session goes inactive, is closed, or when the last job completes, whichever happens **last**. Thus, usage continues to accumulate after a session ends if the QPU is still running a job. Additionally, time after a job completes while the QPU waits for another session job (the interactive time to live (ITTL)) counts as usage. This is why you should ensure the session is closed as soon as you are done submitting jobs to it.
+Yes.  In session mode, usage is the wall clock time the QPU is **committed to the session**. It starts when the first session job starts and ends when the session goes inactive, is closed, or when the last job completes, whichever happens **last**. Thus, usage continues to accumulate after a session ends if the QPU is still running a job. Additionally, time after a job completes while the QPU waits for another session job (the interactive TTL) counts as usage. This is why you should ensure the session is closed as soon as you are done submitting jobs to it.
 </details>
 
 ## Batch

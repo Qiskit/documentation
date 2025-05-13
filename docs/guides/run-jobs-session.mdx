@@ -82,7 +82,7 @@ with Session(backend=backend):
 <span id="specify-length"></span>
 ## Session length
 
-The session maximum time to live (TTL) determines how long a session can run.  You can set this value with the `max_time` parameter. This should exceed the longest job's execution time.
+The maximum session TTL determines how long a session can run before it expires.  You can set this value with the `max_time` parameter. This should exceed the longest job's execution time.
 
 This timer starts when the session starts.  When the value is reached, the session is closed.  Any jobs that are running will finish, but jobs still queued are failed.
 
@@ -115,7 +115,7 @@ Default values:
 </CloudContent>
 *\* Certain Premium Plan instances might be configured to have a different value.*
 
-To determine a session's maximum TTL or  interactive TTL, follow the instructions in [Determine session details](#session-details) and look for the `max_time`or `interactive_timeout` value, respectively.
+To determine a session's maximum TTL or interactive TTL, follow the instructions in [Determine session details](#session-details) and look for the `max_time`or `interactive_timeout` value, respectively.
 
 <span id="ends"></span>
 ## End a session
@@ -130,7 +130,7 @@ A session ends in the following circumstances:
 <span id="close"></span>
 ### Close a session
 
-A session automatically closes when it exits the context manager. When the session context manager is exited, the session is put into "In progress, not accepting new jobs" status. This means that the session finishes processing all running or queued jobs until the maximum timeout value is reached. After all jobs are completed, the session is immediately closed. This allows the scheduler to run the next job without waiting for the session interactive timeout, thereby reducing the average job queuing time. You cannot submit jobs to a closed session.
+A session automatically closes when it exits the context manager. When the session context manager is exited, the session is put into "In progress, not accepting new jobs" status. This means that the session finishes processing all running or queued jobs until the maximum TTL value is reached. After all jobs are completed, the session is immediately closed. This allows the scheduler to run the next job without waiting for the session interactive timeout, thereby reducing the average job queuing time. You cannot submit jobs to a closed session.
 
 <CloudContent>
 <Admonition type="caution">
