@@ -8,7 +8,7 @@ in_page_toc_max_heading_level: 2
 
 # Latest updates
 
-*Last updated 8 May 2025*
+*Last updated 14 May 2025*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
@@ -91,13 +91,18 @@ For full details on the early access release and upcoming improvements, [check o
 </CloudContent>
 
 <span id="latest-qiskit-sdk"></span>
-## Qiskit SDK v1.4.0
+## Qiskit SDK v2.0
 
-**21 Feb 2025**
+**31 Mar 2025**
 
-- The latest Qiskit version, 1.4.0, has been released on GitHub and is available on [PyPi](https://pypi.org/project/qiskit/). Even if you recently upgraded to v1.3.3, you should still upgrade to Qiskit v1.4, because this is the last minor version of the v1.x series, and contains all of the deprecation warnings for API changes in Qiskit v2.0. Install it now, and see what to change to be ready for 2.0!
+Qiskit SDK v2.0 introduces significant performance improvements over its predecessor, and lays the groundwork for powerful new tools and capabilities that we plan to share in the coming months. Highlights include:
 
-  Wondering what will change? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/1.4.0) and the [v1.4 release notes.](/docs/api/qiskit/release-notes/1.4)
+- **A brand new C API** - We are kicking off this major release by introducing a C-language API to interact with the SparseObservable class. This new functionality is just the first step toward building a robust C interface for the Qiskit SDK, and you can expect major expansions of the new C interface as we progress through the rest of the v2.x series. We believe this work will play an important role in supporting large-scale quantum experimentation and enabling the hunt for quantum advantage.
+- **Removal of deprecated features** - Many of the minor releases in the previous v1.x series included new deprecation warnings to make room for us to continue improving the SDK. This major release is where all of the deprecated classes, functions, and modules are now being removed.
+- **Continued performance improvements** - We have continued work on porting more and more of the functionality of the Qiskit SDK over to Rust, resulting in a 2x speedup for circuit construction benchmarking tasks and a roughly 20% speedup for transpilation benchmarking tasks.
+- **Introducing boxes and stretches** - Qiskit SDK v2.0 introduces helpful new features for structuring your circuits in preparation for future changes to dynamic circuits on IBM QPUs.
+
+Wondering what will change? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.0.0) and the [v2.0 release notes.](/docs/api/qiskit/release-notes/2.0)
 
 {/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
 
