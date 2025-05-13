@@ -35,7 +35,7 @@ The maximum execution time for a job is the smaller of these values:
 - The value set for `max_execution_time`
 - The service-determined job timeout value
 
-The `max_execution_time` value is based on _quantum time_, not wall clock time. Quantum time is the time spent by the QPU complex to process the job. Simulator jobs use wall clock time because they do not have quantum time.
+The `max_execution_time` value is based on _quantum time_, not wall clock time. Quantum time is the amount of time that the QPU is dedicated to processing your job. Simulator jobs use wall clock time because they do not have quantum time.
 
 Set the maximum execution time (in seconds) on the job options, as shown in the following example.  See [Specify options](/docs/guides/specify-runtime-options) for information about setting options.
 
@@ -59,11 +59,11 @@ print(f"Quantum time used by job {job.job_id()} was {job.metrics()['usage']['qua
 ```
 
 <span id="max-QPU"></span>
-### QPU maximum execution time
+### Service-calculated maximum execution time
 
-The QPU calculates an appropriate job timeout value based on the input circuits and options. This QPU-calculated timeout is capped at 3 hours to ensure fair device usage. If a `max_execution_time` is also specified for the job, the lesser of the two values is used.
+The service calculates an appropriate job timeout value based on the input circuits and options. This service-calculated timeout is capped at 3 hours to ensure fair device usage. If a `max_execution_time` is also specified for the job, the lesser of the two values is used.
 
-For example, if you specify `max_execution_time=5000` (approximately 83 minutes), but the QPU determines it should not take more than 5 minutes (300 seconds) to execute the job, then the job is canceled after 5 minutes.
+For example, if you specify `max_execution_time=5000` (approximately 83 minutes), but the service determines it should not take more than 5 minutes (300 seconds) to execute the job, then the job is canceled after 5 minutes.
 
 <span id="batch-max-time"></span>
 ## Batch maximum execution time
@@ -86,11 +86,11 @@ For instructions to work with these values, see [Run jobs in a session.](/docs/g
 ## Other limitations
 <LegacyContent>
 *   Inputs to jobs cannot exceed 64MB in size.
-*   Open Plan users can use up to 10 minutes of QPU execution time per month (resets at 00:00 UTC on the first of each month). QPU execution time is the amount of time that the QPU is dedicated to processing your job. You can track your monthly usage on the [Platform dashboard,](https://quantum.ibm.com/)  [IBM Quantum&reg; Platform Workloads page,](https://quantum.ibm.com/workloads) and [Account](https://quantum.ibm.com/account) page.
+*   Open Plan users can use up to 10 minutes of quantum time per month (resets at 00:00 UTC on the first of each month). Quantum time is the amount of time that the QPU is dedicated to processing your job. You can track your monthly usage on the [Platform dashboard,](https://quantum.ibm.com/)  [IBM Quantum&reg; Platform Workloads page,](https://quantum.ibm.com/workloads) and [Account](https://quantum.ibm.com/account) page.
 </LegacyContent>
 <CloudContent>
-*   Inputs to jobs cannot exceed 64MB in size.
-*   Open Plan users can use up to 10 minutes of QPU execution time per month. QPU execution time is the amount of time that the QPU is dedicated to processing your job. You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page.
+*   Inputs to jobs cannot exceed 50MB in size.
+*   Open Plan users can use up to 10 minutes of quantum time per month. Quantum time is the amount of time that the QPU is dedicated to processing your job. You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page.
 </CloudContent>
 ## Next steps
 

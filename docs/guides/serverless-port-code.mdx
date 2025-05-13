@@ -62,7 +62,7 @@ print(transpiled_circuits)
 # transpile_remote.py
 
 from qiskit.transpiler import generate_preset_pass_manager
-from qiskit_serverless import get_arguments, save_result, distribute_task, get
+from qiskit_serverless import get_arguments, save_result, distribute_task, get, update_status, Job
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 # Get program arguments
@@ -90,6 +90,7 @@ try:
 
     # run distributed tasks as async function
     # we get task references as a return type
+    update_status(Job.OPTIMIZING_HARDWARE)
     sample_task_references = [
         transpile_parallel(circuit, pass_manager)
         for circuit in circuits
