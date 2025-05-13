@@ -76,8 +76,8 @@ def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
 
             warning_filter = ""
             if config.check_pending_deprecations:
-                warning_filter = "import warnings as warnings \
-                \nwarnings.simplefilter('default', category=PendingDeprecationWarning)"
+                warning_filter = "import warnings as _warnings \
+                \n_warnings.simplefilter('default', category=PendingDeprecationWarning)"
             pre_execute_code = PRE_EXECUTE_CODE + warning_filter
 
             patch = config.get_patch_for_group(group)
