@@ -225,88 +225,88 @@ Improvements include the following:
 
 ## Qiskit Serverless
 
-[Developers can set detailed statuses and track what's happening across a workflow](https://docs.quantum.ibm.com/guides/serverless-manage-resources#set-detailed-statuses)
+- [Developers can set detailed statuses and track what's happening across a workflow.](/docs/guides/serverless-manage-resources#set-detailed-statuses)
 
-Serverless workloads have several stages across a workflow. By default, the following statuses are viewable with `job.status()`:
+  Serverless workloads have several stages across a workflow. By default, the following statuses are viewable with `job.status()`:
 
-- `QUEUED`: the workload is queued for classical resources
-- `INITIALIZING`: the workload is set up
-- `RUNNING`: the workload is currently running on classical resources
-- `DONE`: the workload has successfully completed
+  - `QUEUED`: the workload is queued for classical resources
+  - `INITIALIZING`: the workload is set up
+  - `RUNNING`: the workload is currently running on classical resources
+  - `DONE`: the workload has successfully completed
 
-Now, you can also set custom statuses that further describe the specific workflow stage, as follows:
+  Now, you can also set custom statuses that further describe the specific workflow stage, as follows:
 
-```python
-from qiskit_serverless import update_status, Job
- 
-## If your function has a mapping stage, particularly application functions, you can set the status to "RUNNING: MAPPING" as follows:
-update_status(Job.MAPPING)
- 
-## While handling transpilation, error suppression, and so forth, you can set the status to "RUNNING: OPTIMIZING_FOR_HARDWARE":
-update_status(Job.OPTIMIZING_HARDWARE)
- 
-## After you submit jobs to Qiskit Runtime, the underlying quantum job will be queued. You can set status to "RUNNING: WAITING_FOR_QPU":
-update_status(Job.WAITING_QPU)
- 
-## When the Qiskit Runtime job starts running on the QPU, set the following status "RUNNING: EXECUTING_QPU":
-update_status(Job.EXECUTING_QPU)
- 
-## Once QPU is completed and post-processing has begun, set the status "RUNNING: POST_PROCESSING":
-update_status(Job.POST_PROCESSING)
-```
+  ```python
+  from qiskit_serverless import update_status, Job
+  
+  ## If your function has a mapping stage, particularly application functions, you can set the status to "RUNNING: MAPPING" as follows:
+  update_status(Job.MAPPING)
+  
+  ## While handling transpilation, error suppression, and so forth, you can set the status to "RUNNING: OPTIMIZING_FOR_HARDWARE":
+  update_status(Job.OPTIMIZING_HARDWARE)
+  
+  ## After you submit jobs to Qiskit Runtime, the underlying quantum job will be queued. You can set status to "RUNNING: WAITING_FOR_QPU":
+  update_status(Job.WAITING_QPU)
+  
+  ## When the Qiskit Runtime job starts running on the QPU, set the following status "RUNNING: EXECUTING_QPU":
+  update_status(Job.EXECUTING_QPU)
+  
+  ## Once QPU is completed and post-processing has begun, set the status "RUNNING: POST_PROCESSING":
+  update_status(Job.POST_PROCESSING)
+  ```
 
 <span id="latest-qiskit-functions"></span>
 ## Qiskit Functions
 
-Over the coming weeks, every function will give detailed information to help you run, debug, and analyse your workflows. This includes:
+- Over the coming weeks, every function will give detailed information to help you run, debug, and analyse your workflows. This includes:
 
-- When jobs fail, you can use `job.error_message()` to find out specific error codes and messages to help you debug your workflows
-- `job.status()` will give more information on what's happening while a Function is `RUNNING`, including:
-   - `RUNNING: MAPPING`
-   - `RUNNING: OPTIMIZING_FOR_HARDWARE`
-   - `RUNNING: WAITING_FOR_QPU`
-   - `RUNNING: EXECUTING_QPU`
-   - `RUNNING: POST_PROCESSING`
-- Finally, after a Qiskit Function is complete, you can inspect how much time is spent across each stage with `job.result()['metadata']['resource_usage']`:
+  - When jobs fail, you can use `job.error_message()` to find out specific error codes and messages to help you debug your workflows
+  - `job.status()` will give more information on what's happening while a Function is `RUNNING`, including:
+    - `RUNNING: MAPPING`
+    - `RUNNING: OPTIMIZING_FOR_HARDWARE`
+    - `RUNNING: WAITING_FOR_QPU`
+    - `RUNNING: EXECUTING_QPU`
+    - `RUNNING: POST_PROCESSING`
+  - Finally, after a Qiskit Function is complete, you can inspect how much time is spent across each stage with `job.result()['metadata']['resource_usage']`:
 
-```json
-{
-       ...,
-	"metadata": {
-		"resource_usage": {
-			{
-				"RUNNING: MAPPING": {
-					"CPU_TIME": seconds,
-					"GPU_TIME": seconds,
-					"QPU_TIME": seconds,
-				}, 
-				"RUNNING: OPTIMIZING_FOR_HARDWARE": {
-					"CPU_TIME": seconds,
-					"GPU_TIME": seconds,
-					"QPU_TIME": seconds,
-				}, 
-				"RUNNING: WAITING_FOR_QPU": {
-					"CPU_TIME": seconds,
-					"GPU_TIME": seconds,
-					"QPU_TIME": seconds,
-				}, 
-				"RUNNING: EXECUTING_QPU": {
-					"CPU_TIME": seconds,
-					"GPU_TIME": seconds,
-					"QPU_TIME": seconds,
-				}, 
-				"RUNNING: POST_PROCESSING": {
-					"CPU_TIME": seconds,
-					"GPU_TIME": seconds,
-					"QPU_TIME": seconds,
-				}, 
-			}, 
-		}
-	}
-}
-```
+  ```json
+  {
+        ...,
+    "metadata": {
+      "resource_usage": {
+        {
+          "RUNNING: MAPPING": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          }, 
+          "RUNNING: OPTIMIZING_FOR_HARDWARE": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          }, 
+          "RUNNING: WAITING_FOR_QPU": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          }, 
+          "RUNNING: EXECUTING_QPU": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          }, 
+          "RUNNING: POST_PROCESSING": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          }, 
+        }, 
+      }
+    }
+  }
+  ```
 
-We're hoping these changes make it easier to use Qiskit Functions, and [you can get started with free trials in the catalog today.](https://quantum.cloud.ibm.com/functions)
+  We're hoping these changes make it easier to use Qiskit Functions, and [you can get started with free trials in the catalog today.](https://quantum.cloud.ibm.com/functions)
 
 <details>
 <summary><b>Previous updates</b></summary>
