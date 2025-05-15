@@ -18,6 +18,9 @@ import sys
 import platform
 from datetime import datetime
 
+import nbclient
+from filelock import FileLock
+
 from .config import get_notebook_jobs, get_parser
 from .execute import execute_notebook, cancel_trailing_jobs
 
@@ -32,7 +35,10 @@ async def _main() -> None:
 
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = await asyncio.gather(*(execute_notebook(job) for job in jobs))
+    setup_kernel_lock = FileLock(".nbclient-kernel-creation.lock")
+    results = await asyncio.gather(
+        *(execute_notebook(job, setup_kernel_lock) for job in jobs)
+    )
 
     if not args.ignore_trailing_jobs:
         print("Checking for trailing jobs...")

@@ -20,6 +20,7 @@ from datetime import datetime
 
 import nbclient
 import nbformat
+from filelock import FileLock
 from jupyter_client.manager import start_new_async_kernel, AsyncKernelClient
 from qiskit_ibm_runtime import QiskitRuntimeService
 
@@ -65,7 +66,7 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
     return notebook_warnings
 
 
-async def execute_notebook(job: NotebookJob) -> Result:
+async def execute_notebook(job: NotebookJob, kernel_setup_lock: FileLock) -> Result:
     """
     Wrapper function for `_execute_notebook` to print status and write result
     """
@@ -80,7 +81,7 @@ async def execute_notebook(job: NotebookJob) -> Result:
         nbclient.exceptions.CellTimeoutError,
     )
     try:
-        nb = await _execute_notebook(job, working_directory.name)
+        nb = await _execute_notebook(job, working_directory.name, kernel_setup_lock)
     except execution_exceptions as err:
         print(f"❌ Problem in {job.path}:\n{err}")
         return Result(False, reason="Exception in notebook")
@@ -118,7 +119,7 @@ async def _execute_in_kernel(kernel: AsyncKernelClient, code: str) -> None:
 
 
 async def _execute_notebook(
-    job: NotebookJob, working_directory: str
+    job: NotebookJob, working_directory: str, kernel_setup_lock: FileLock
 ) -> nbformat.NotebookNode:
     """
     Use nbclient to execute notebook. The steps are:
@@ -130,11 +131,12 @@ async def _execute_notebook(
     """
     nb = nbformat.read(job.path, as_version=4)
 
-    kernel_manager, kernel = await start_new_async_kernel(
-        kernel_name="python3",
-        extra_arguments=["--InlineBackend.figure_format='svg'"],
-        cwd=working_directory,
-    )
+    with kernel_setup_lock:
+        kernel_manager, kernel = await start_new_async_kernel(
+            kernel_name="python3",
+            extra_arguments=["--InlineBackend.figure_format='svg'"],
+            cwd=working_directory,
+        )
 
     await _execute_in_kernel(kernel, job.pre_execute_code)
     if job.backend_patch:
