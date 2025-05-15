@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 
+import asyncio
 import tempfile
 import textwrap
 from dataclasses import dataclass
@@ -20,7 +21,6 @@ from datetime import datetime
 
 import nbclient
 import nbformat
-from filelock import FileLock
 from jupyter_client.manager import start_new_async_kernel, AsyncKernelClient
 from qiskit_ibm_runtime import QiskitRuntimeService
 
@@ -66,7 +66,7 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
     return notebook_warnings
 
 
-async def execute_notebook(job: NotebookJob, kernel_setup_lock: FileLock) -> Result:
+async def execute_notebook(job: NotebookJob, kernel_setup_lock: asyncio.Lock) -> Result:
     """
     Wrapper function for `_execute_notebook` to print status and write result
     """
@@ -119,7 +119,7 @@ async def _execute_in_kernel(kernel: AsyncKernelClient, code: str) -> None:
 
 
 async def _execute_notebook(
-    job: NotebookJob, working_directory: str, kernel_setup_lock: FileLock
+    job: NotebookJob, working_directory: str, kernel_setup_lock: asyncio.Lock
 ) -> nbformat.NotebookNode:
     """
     Use nbclient to execute notebook. The steps are:
@@ -131,7 +131,7 @@ async def _execute_notebook(
     """
     nb = nbformat.read(job.path, as_version=4)
 
-    with kernel_setup_lock:
+    async with kernel_setup_lock:
         kernel_manager, kernel = await start_new_async_kernel(
             kernel_name="python3",
             extra_arguments=["--InlineBackend.figure_format='svg'"],
