@@ -18,8 +18,6 @@ import sys
 import platform
 from datetime import datetime
 
-import nbclient
-
 from .config import get_notebook_jobs, get_parser
 from .execute import execute_notebook, cancel_trailing_jobs
 
