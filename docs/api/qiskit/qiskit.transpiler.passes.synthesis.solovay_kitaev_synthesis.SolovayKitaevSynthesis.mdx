@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.Sol
 
 # SolovayKitaevSynthesis
 
-<Class id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L198-L303" signature="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis" modifiers="class">
+<Class id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L198-L313" signature="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis" modifiers="class">
   Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 
   A Solovay-Kitaev Qiskit unitary synthesis plugin.
@@ -19,17 +19,17 @@ python_api_name: qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.Sol
 
   Supported parameters in the dictionary:
 
-  **basis\_approximations (str | dict):**
+  **basic\_approximations (str | dict):**
 
   The basic approximations for the finding the best discrete decomposition at the root of the recursion. If a string, it specifies the `.npy` file to load the approximations from. If a dictionary, it contains `{label: SO(3)-matrix}` pairs. If None, a default based on the specified `basis_gates` and `depth` is generated.
 
   **basis\_gates (list):**
 
-  A list of strings specifying the discrete basis gates to decompose to. If None, defaults to `["h", "t", "tdg"]`.
+  A list of strings specifying the discrete basis gates to decompose to. If None, it defaults to `["h", "t", "tdg"]`. If `basic_approximations` is not None, `basis_set` is required to correspond to the basis set that was used to generate it.
 
   **depth (int):**
 
-  The gate-depth of the basic approximations. All possible, unique combinations of the basis gates up to length `depth` are considered. If None, defaults to 10.
+  The gate-depth of the basic approximations. All possible, unique combinations of the basis gates up to length `depth` are considered. If None, defaults to 10. If `basic_approximations` is not None, `depth` is required to correspond to the depth that was used to generate it.
 
   **recursion\_degree (int):**
 
@@ -149,21 +149,8 @@ python_api_name: qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.Sol
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L279-L303" signature="run(unitary, **options)">
-    Run synthesis for the given unitary matrix
-
-    **Parameters**
-
-    *   **unitary** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – The unitary matrix to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object
-    *   **options** – The optional kwargs that are passed based on the output the `support_*` methods on the class. Refer to the documentation for these methods on [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") to see what the keys and values are.
-
-    **Returns**
-
-    The dag circuit representation of the unitary. Alternatively, you can return a tuple of the form `(dag, wires)` where `dag` is the dag circuit representation of the circuit representation of the unitary and `wires` is the mapping wires to use for [`qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag()`](qiskit.dagcircuit.DAGCircuit#substitute_node_with_dag "qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag"). If you return a tuple and `wires` is `None` this will behave just as if only a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") was returned. Additionally if this returns `None` no substitution will be made.
-
-    **Return type**
-
-    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  <Function id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L291-L313" signature="run(unitary, **options)">
+    Run the SolovayKitaevSynthesis synthesis plugin on the given unitary.
   </Function>
 </Class>
 
