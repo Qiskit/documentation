@@ -132,6 +132,10 @@ async def _execute_notebook(
     nb = nbformat.read(job.path, as_version=4)
 
     async with kernel_setup_lock:
+        # New kernels choose a port on creation. They usually detect if the
+        # port is in use and will choose another if so, but there can be race
+        # conditions when creating many kernels at once.The lock avoids this.
+        # This might be fixed by https://github.com/jupyter/nbclient/pull/327
         kernel_manager, kernel = await start_new_async_kernel(
             kernel_name="python3",
             extra_arguments=["--InlineBackend.figure_format='svg'"],
