@@ -19,6 +19,7 @@ from pathlib import Path
 from dataclasses import dataclass
 import json
 import re
+from typing import Iterator
 
 TUTORIALS_ROOT = Path("docs/tutorials")
 INDEX_PAGE = Path("docs/tutorials/index.mdx")
@@ -32,24 +33,28 @@ class Link:
         return f"[{self.link_text}]({self.href})"
 
 def is_hidden(path: Path) -> bool:
+    """Filter out .ipynb-checkpoint files"""
     return any(part.startswith(".") for part in path.parts)
 
 def get_notebook_title(path: Path) -> str:
     data = json.loads(path.read_text())
-    return data['metadata']['title'].strip()
+    try:
+        return data['metadata']['title'].strip()
+    except KeyError as err:
+        raise Exception("Make sure your notebook has a 'title' metadata!") from err
 
-def get_expected_links() -> list[Link]:
+def get_expected_links() -> Iterator[Link]:
     notebook_paths = TUTORIALS_ROOT.rglob("**/*.ipynb")
-    return [
+    return (
         Link(
             href=f"/{path.with_suffix('')}",
             link_text=get_notebook_title(path)
         )
         for path in notebook_paths
         if not is_hidden(path)
-    ]
+    )
 
-def extract_markdown_links(md: str) -> Link:
+def extract_markdown_links(md: str) -> list[Link]:
     link_regex = r"\[([^\]]*)\]\(([^\)]+)\)"
     return [
         Link(
@@ -61,7 +66,7 @@ def extract_markdown_links(md: str) -> Link:
 
 def check_link(expected_link: Link, found_links: list[Link]) -> tuple[bool, str]:
     links_with_matching_hrefs = [link for link in found_links if link.href == expected_link.href]
-    if links_with_matching_hrefs == []:
+    if not links_with_matching_hrefs:
         return (False, f"* Expected to find link '{expected_link}'")
 
     bad_link_texts = [
@@ -69,7 +74,7 @@ def check_link(expected_link: Link, found_links: list[Link]) -> tuple[bool, str]
         if link.link_text != expected_link.link_text
     ]
 
-    if bad_link_texts != []:
+    if bad_link_texts:
         msg = f"* The following links have incorrect link texts, should be '{expected_link.link_text}' (pay attention to capitalization):\n   * "
         msg += "\n   * ".join(map(str, bad_link_texts))
         return (False, msg)
@@ -92,12 +97,11 @@ def main() -> None:
         if not ok
     ]
 
-
     if not problems:
         return
 
     print(
-        f"\n\nFound the following problems in {INDEX_PAGE}:\n\n"
+        f"\n\n❌ Found the following problems in {INDEX_PAGE}:\n\n"
         + '\n\n'.join(map(str, problems))
         +"\n\n"
     )
