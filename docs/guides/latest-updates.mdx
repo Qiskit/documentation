@@ -98,8 +98,8 @@ For full details on the early access release and upcoming improvements, [check o
 Qiskit SDK v2.0 introduces significant performance improvements over its predecessor, and lays the groundwork for powerful new tools and capabilities that we plan to share in the coming months. Highlights include:
 
 - **A brand new C API** - This major release introduces a C-language API to interact with the `SparseObservable` class. This new functionality is just the first step toward building a robust C interface for the Qiskit SDK, and you can expect major expansions of the new C interface as we progress through the rest of the v2.x series. We believe this work will play an important role in supporting large-scale quantum experimentation and enabling the hunt for quantum advantage.
-- **Removal of deprecated features** - Many of the minor releases in the previous v1.x series included new deprecation warnings to make room for us to continue improving the SDK. This major release is where all of the deprecated classes, functions, and modules are now being removed.
-- **Continued performance improvements** - We have continued work on porting more and more of the functionality of the Qiskit SDK over to Rust, resulting in a 2x speedup for circuit construction benchmarking tasks and a roughly 20% speedup for transpilation benchmarking tasks.
+- **Removal of deprecated features** - Many of the minor releases in the previous v1.x series included new deprecation warnings to make room for us to continue improving the SDK. In this major release, all of the deprecated classes, functions, and modules are now being removed.
+- **Continued performance improvements** - We have continued work on porting more of the Qiskit SDK functionality over to Rust, resulting in a 2x speedup for circuit construction benchmarking tasks and a roughly 20% speedup for transpilation benchmarking tasks.
 - **Introducing boxes and stretches** - Qiskit SDK v2.0 introduces helpful new features for structuring your circuits in preparation for future changes to dynamic circuits on IBM QPUs.
 
 Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.0.0) and the [v2.0 release notes.](/docs/api/qiskit/release-notes/2.0)
@@ -116,7 +116,7 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 - Deprecation
 
-  *   [`RuntimeJob`](/docs/api/qiskit-ibm-runtime/runtime-job "qiskit_ibm_runtime.RuntimeJob") is now deprecated and will be removed no sooner than three months from this release. [`RuntimeJob`](/docs/api/qiskit-ibm-runtime/runtime-job "qiskit_ibm_runtime.RuntimeJob") was superseded by [`RuntimeJobV2`](/docs/api/qiskit-ibm-runtime/runtime-job-v2 "qiskit_ibm_runtime.RuntimeJobV2") in all primitive implementations, so the deprecation should not have any user impact. The major difference between the two classes is that [`status()`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#status "qiskit_ibm_runtime.RuntimeJobV2.status") returns a string instead of Qiskit’s `JobStatus` enum. ([2170](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2170))
+  *   [`RuntimeJob`](/docs/api/qiskit-ibm-runtime/runtime-job "qiskit_ibm_runtime.RuntimeJob") is now deprecated and will be removed no sooner than three months from this release. [`RuntimeJob`](/docs/api/qiskit-ibm-runtime/runtime-job "qiskit_ibm_runtime.RuntimeJob") was superseded by [`RuntimeJobV2`](/docs/api/qiskit-ibm-runtime/runtime-job-v2 "qiskit_ibm_runtime.RuntimeJobV2") in all primitive implementations, so the deprecation should not have any user impact. The major difference between the two classes is that [`status()`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#status "qiskit_ibm_runtime.RuntimeJobV2.status") returns a string instead of the Qiskit `JobStatus` enum. ([2170](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2170))
   *   Since pulse gates are no longer supported, the [`IBMBackend`](/docs/api/qiskit-ibm-runtime/ibm-backend "qiskit_ibm_runtime.IBMBackend") and `FakeBackendV2` `defaults()` method has been deprecated and will be removed no sooner than three months from this release. While the method still exists, these pulse defaults are no longer used to construct the backend target. ([2186](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2186))
   *   The `ibm_quantum` channel option is deprecated and will be sunset on 1 July. After this date, `ibm_cloud` will be the only valid channel. For help migrating to the new IBM Quantum Platform on the `ibm_cloud` channel, read the [migration guide](https://quantum.cloud.ibm.com/docs/migration-guides/classic-iqp-to-cloud-iqp). ([2205](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2205))
 
@@ -232,10 +232,10 @@ Improvements include the following:
 
   Serverless workloads have several stages across a workflow. By default, the following statuses are viewable with `job.status()`:
 
-  - `QUEUED`: the workload is queued for classical resources
-  - `INITIALIZING`: the workload is set up
-  - `RUNNING`: the workload is currently running on classical resources
-  - `DONE`: the workload has successfully completed
+  - `QUEUED`: The workload is queued for classical resources.
+  - `INITIALIZING`: The workload is set up.```
+  - `RUNNING`: The workload is currently running on classical resources.
+  - `DONE`: The workload has successfully completed.
 
   Now, you can also set custom statuses that further describe the specific workflow stage, as in the following example.
 
@@ -257,7 +257,7 @@ Improvements include the following:
     ## When the Qiskit Runtime job starts running on the QPU, set the following status "RUNNING: EXECUTING_QPU":
     update_status(Job.EXECUTING_QPU)
     
-    ## Once QPU is completed and post-processing has begun, set the status "RUNNING: POST_PROCESSING":
+    ## After the QPU is completed and post-processing has begun, set the status "RUNNING: POST_PROCESSING":
     update_status(Job.POST_PROCESSING)
     ```
   </details>
@@ -269,7 +269,7 @@ Improvements include the following:
 
 - Over the coming weeks, every function will give detailed information to help you run, debug, and analyze your workflows. This includes:
 
-  - When jobs fail, you can use `job.error_message()` to find out specific error codes and messages to help you debug your workflows
+  - When jobs fail, you can use `job.error_message()` to find specific error codes and messages to help you debug your workflows
   - `job.status()` will give more information on what's happening while a Function is `RUNNING`, including:
     - `RUNNING: MAPPING`
     - `RUNNING: OPTIMIZING_FOR_HARDWARE`
