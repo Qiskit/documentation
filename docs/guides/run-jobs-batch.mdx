@@ -54,7 +54,7 @@ with Batch(backend=backend):
 <span id="specify-batch-length"></span>
 ## Batch length
 
-You can define the batch's maximum time to live (TTL) with the `max_time` parameter. This should exceed the longest job's execution time. This timer starts when the batch starts.  When the value is reached, the batch is closed.  Any jobs that are running will finish, but jobs still queued are failed.
+A batch's maximum time to live (TTL) determines how long each batch job can run before it expires. You can set this value with the `max_time` parameter. This should exceed the longest job's execution time. This timer starts when the batch starts.  When the value is reached, the batch is closed. Any jobs that are running will finish, but jobs still queued are failed.
 
 ```python
 with Batch(backend=backend, max_time="25m"):
