@@ -14,15 +14,57 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 2.0.1
+
+<span id="relnotes-2-0-1-prelude" />
+
+### Prelude
+
+Qiskit v2.0.1 is a minor bugfix release for the v2.0.x release series.
+
+<span id="relnotes-2-0-1-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a visualization bug in the text circuit drawer where post-transpilation control-flow operations could have their closing “bracket” rendered vertically out of order. See [#14271](https://github.com/Qiskit/qiskit/issues/14271) for more detail.
+
+*   Fixed a bug in the [`UnitarySynthesis`](/docs/api/qiskit/qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") transpiler pass, where the pass ignored the `synth_gates` parameter and only synthesized the `unitary` gates. The pass now correctly synthesizes all gates specified in the `synth_gates` parameter. Fixed [#14343](https://github.com/Qiskit/qiskit/issues/14343).
+
+*   Added missing `repr` support for [`Duration`](/docs/api/qiskit/circuit#qiskit.circuit.Duration "qiskit.circuit.Duration").
+
+*   Added missing support for Python pickling of [`Duration`](/docs/api/qiskit/circuit#qiskit.circuit.Duration "qiskit.circuit.Duration"). This was preventing parallel transpilation of circuits with [`delay()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#delay "qiskit.circuit.QuantumCircuit.delay") instructions that use duration expressions.
+
+*   Fixed a problem in the [`HighLevelSynthesis`](/docs/api/qiskit/qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transpiler pass that caused it to erroneously terminate early on certain circuits with control flow operations. Fixed [#14338](https://github.com/Qiskit/qiskit-terra/issues/14338)
+
+*   Fixed the construction of Instantaneous Quantum Polynomial time (IQP) circuits in [`IQP`](/docs/api/qiskit/qiskit.circuit.library.IQP "qiskit.circuit.library.IQP") and by [`iqp()`](/docs/api/qiskit/qiskit.circuit.library.iqp_function#qiskit.circuit.library.iqp "qiskit.circuit.library.iqp"). The previous implementation incorrectly used powers of the $\sqrt{T}$ gate instead of powers of the $T$ gate.
+
+*   [`SabreLayout`](/docs/api/qiskit/qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") will now correctly propagate a circuit’s [`name`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#name "qiskit.dagcircuit.DAGCircuit.name") and [`metadata`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#metadata "qiskit.dagcircuit.DAGCircuit.metadata") fields when performing as a joint layout and routing pass.
+
+*   Fixed a problem in the [`SolovayKitaevSynthesis`](/docs/api/qiskit/qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis "qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis") unitary synthesis plugin, where repeatedly running the plugin with different basis gates incorrectly reused the basis gates from the first run only. This problem was due to ignoring the basis gates when caching basic approximations.
+
+*   Fixed a problem in the [`SolovayKitaev`](/docs/api/qiskit/qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev") transpiler pass where the pass could crash due to encountering a 180 degree rotation in the internal recursion, which was not handled correctly.
+
+*   Fixed a problem in the [`SolovayKitaev`](/docs/api/qiskit/qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev") transpiler pass where the generated approximation could have a phase that differs by $\pi$ from the correct value. This resulted due to the internal $SO(3)$ representation, which requires additional handling to obtain the correct sign of the qubit gate matrix. Fixed [#9552](https://github.com/Qiskit/qiskit-terra/issues/9552)
+
+*   Circuits containing delays with stretches (see [`QuantumCircuit.add_stretch()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#add_stretch "qiskit.circuit.QuantumCircuit.add_stretch")) can now successfully compile using the preset pass-managers ([`transpile()`](/docs/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") and [`generate_preset_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager")) when targetting a backend that has alignment constraints, for example IBM Quantum Eagle devices like `ibm_sherbrooke`.
+
+*   The fallback error heuristic in [`VF2Layout`](/docs/api/qiskit/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") and [`VF2PostLayout`](/docs/api/qiskit/qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout"), used when there were no reported error rates, could previously assign errors greater than one, and have unpredictable effects on the resulting layout scores.
+
+<span id="relnotes-2-0-0" />
+
+<span id="id2" />
+
 ## 2.0.0
 
 <span id="relnotes-2-0-0-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
 We are pleased to release Qiskit v2.0.0, with new features that improve its performance and capabilities. The feature highlights of Qiskit v2.0.0 include:
 
-> *   The introduction of a [C API](https://quantum.cloud.ibm.com/docs/api/qiskit-c) for building and interacting with [`SparseObservable`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") objects. This first compiled language interface represents an important milestone in the evolution of Qiskit and will grow in scope throughout the v2.x release series. The initial iteration of the C API is an experimental feature, and there may be breaking API changes in minor versions following our [version strategy](/docs/open-source/qiskit-sdk-version-strategy).
+> *   The introduction of a [C API](/docs/api/qiskit-c) for building and interacting with [`SparseObservable`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") objects. This first compiled language interface represents an important milestone in the evolution of Qiskit and will grow in scope throughout the v2.x release series. The initial iteration of the C API is an experimental feature, and there may be breaking API changes in minor versions following our [version strategy](/docs/open-source/qiskit-sdk-version-strategy).
 > *   The addition of a new [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") control-flow op that maps to [the OpenQASM 3 concept of a box](https://openqasm.com/language/delays.html#boxed-expressions) and allows to group series of instructions for later processing and custom scheduling. This operator is useful for applications such as twirling, noise-learning, and stretch-based scheduling among others.
 > *   The ability to create `stretch` durations for [`Delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay "qiskit.circuit.Delay") instructions, which enable expressing relationships between timing-aware instructions. The new [`Stretch`](/docs/api/qiskit/circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") type extends the existing classical expression system, allowing design intent to be captured at circuit construction time and resolved at compile time. See the [OpenQASM documentation](https://openqasm.com/language/delays.html#duration-and-stretch-types) for details.
 > *   Improved synthesis when a [`Target`](/docs/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") contains fractional two qubit basis gates with support for arbitrary angles such as [`RZXGate`](/docs/api/qiskit/qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate") or [`RZZGate`](/docs/api/qiskit/qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate"), which significantly reduces gate counts in the synthesized circuits.
@@ -36,13 +78,13 @@ In line with our [semantic versioning policy](/docs/open-source/qiskit-sdk-versi
 
 *   Support for the Linux aarch64 platform has been promoted to tier 1 support as documented in:
 
-    [https://quantum.cloud.ibm.com/docs/guides/install-qiskit#operating-system-support](https://quantum.cloud.ibm.com/docs/guides/install-qiskit#operating-system-support)
+    [/guides/install-qiskit#operating-system-support](/docs/guides/install-qiskit#operating-system-support)
 
     from its previous support level of tier 2 in the v1.x release series.
 
 *   Introduced a new C API to build and interact with sparse observables. While the API surface in this release is fairly small - covering only the [`SparseObservable`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") class - it represents an important milestone in the evolution of Qiskit, as this is the first time the SDK exposes a public interface in C and it lays the foundation for future expansions of the Qiskit C interface. As this is the first public interface in C this is an experimental feature, and if necessary the API may change in a minor version release.
 
-    Detailed syntax and additional information can be found in the [C API documentation](https://quantum.cloud.ibm.com/docs/api/qiskit-c). A minimal example to construct the 100-qubit observable `2 X0 Y1 Z2` is:
+    Detailed syntax and additional information can be found in the [C API documentation](/docs/api/qiskit-c). A minimal example to construct the 100-qubit observable `2 X0 Y1 Z2` is:
 
     ```c
     #include <complex.h>
@@ -276,7 +318,7 @@ In line with our [semantic versioning policy](/docs/open-source/qiskit-sdk-versi
     print(evo_proj.definition.draw())
     ```
 
-*   A new expression node [`Stretch`](/docs/api/qiskit/circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") has been added to the classical expression system to represent `stretch` variables. To create a new `stretch` variable, you can use `QuantumCircuit.add_stretch()`. The resulting expression is a constant expression of type [`Duration`](/docs/api/qiskit/circuit_classical#qiskit.circuit.classical.types.Duration "qiskit.circuit.classical.types.Duration"), which can be used as the `duration` argument of a [`delay()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#delay "qiskit.circuit.QuantumCircuit.delay").
+*   A new expression node [`Stretch`](/docs/api/qiskit/circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") has been added to the classical expression system to represent `stretch` variables. To create a new `stretch` variable, you can use [`QuantumCircuit.add_stretch()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#add_stretch "qiskit.circuit.QuantumCircuit.add_stretch"). The resulting expression is a constant expression of type [`Duration`](/docs/api/qiskit/circuit_classical#qiskit.circuit.classical.types.Duration "qiskit.circuit.classical.types.Duration"), which can be used as the `duration` argument of a [`delay()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#delay "qiskit.circuit.QuantumCircuit.delay").
 
     For example, to ensure a sequence of gates between two barriers will be left-aligned, whatever their actual durations are, you can do the following:
 
@@ -1123,6 +1165,8 @@ In line with our [semantic versioning policy](/docs/open-source/qiskit-sdk-versi
 *   Fixed a security vulnerability in [`qpy.load()`](/docs/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load") when loading payloads that use `sympy` to serialize [`ParameterExpression`](/docs/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects and other symbolic expressions. This potentially includes any QPY payload using QPY version \< 10, and optionally 10, 11, and 12 depending on the symbolic encoding used in the serialization step ([`qpy.dump()`](/docs/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump")).
 
 <span id="relnotes-2-0-0-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
