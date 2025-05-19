@@ -586,7 +586,7 @@ hamiltonian = SparsePauliOp.from_list([("XXZ", 1), ("XYI", 1)])
 
 # example executing on a QPU
 service = QiskitRuntimeService(channel="ibm_quantum")
-backend = service.backend("ibm_sherbrooke")
+backend = service.backend(<specify backend>)
 
 with Session(backend=backend) as session:
     estimator = Estimator()
@@ -613,7 +613,7 @@ hamiltonian = SparsePauliOp.from_list([("XXZ", 1), ("XYI", 1)])
 
 # example executing on a QPU
 service = QiskitRuntimeService(channel="ibm_cloud")
-backend = service.backend("ibm_sherbrooke")
+backend = service.backend(<specify backend>)
 
 with Session(backend=backend) as session:
     estimator = Estimator()
