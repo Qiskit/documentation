@@ -1,0 +1,316 @@
+
+
+
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <script src="assets/color-modes.js" ></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ImageMagick – Develop</title>
+  <meta name="keywords" content="Develop, Image Processing, Digital Image Editing, Image Conversion, Open-Source Software, Image Manipulation, Command-Line Image Tools" />
+  <meta name="description" content="ImageMagick is a powerful, open-source software suite for creating, editing, converting, and manipulating images in over 200 formats. Ideal for web developers, graphic designers, and researchers, it offers versatile tools for image processing, including batch processing, format conversion, and complex image transformations." />
+  <meta name="application-name" content="ImageMagick" />
+  <meta name="application-url" content="https://imagemagick.org" />
+  <meta name="copyright" content="Copyright (c) 1999 ImageMagick Studio LLC" />
+  <meta itemprop='url' content='../' />
+  <meta itemprop='title' content='ImageMagick' />
+  <meta itemprop='description' content="ImageMagick is a powerful, open-source software suite for creating, editing, converting, and manipulating images in over 200 formats. Ideal for web developers, graphic designers, and researchers, it offers versatile tools for image processing, including batch processing, format conversion, and complex image transformations." />
+  <meta property='og:url' content='../' />
+  <meta property='og:name' content='ImageMagick' />
+  <meta property='og:image' content='../images/logo.png' />
+  <meta property='og:type' content='website' />
+  <meta property='og:site_name' content='ImageMagick' />
+  <meta property='og:description' content="ImageMagick is a powerful, open-source software suite for creating, editing, converting, and manipulating images in over 200 formats. Ideal for web developers, graphic designers, and researchers, it offers versatile tools for image processing, including batch processing, format conversion, and complex image transformations." />
+  <meta name="google-site-verification" content="_bMOCDpkx9ZAzBwb2kF3PRHbfUUdFj2uO8Jd1AXArz4" />
+  <link type="images/png" sizes="64x64" href="../images/wand.png" rel="icon" />
+  <link type="images/icon" sizes="16x16" href="../images/wand.ico" rel="shortcut icon" />
+  <link href="develop.html" rel="canonical" />
+  <link href="assets/bootstrap.min.css" rel="stylesheet" />
+  <script async src="https://localhost/cse.js?cx=006134137889097767902:turn9fku95u"> </script>
+</head>
+<body>
+  <script async src="https://localhost/pagead/js/adsbygoogle.js?client=ca-pub-3129977114552745" crossorigin="anonymous"></script>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check2" viewBox="0 0 16 16">
+      <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+    </symbol>
+    <symbol id="circle-half" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+    </symbol>
+    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+      <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+      <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+    </symbol>
+    <symbol id="sun-fill" viewBox="0 0 16 16">
+      <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+    </symbol>
+  </svg>
+  <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <button class="btn btn-bd-secondary py-2 dropdown-toggle d-flex align-items-center"
+            id="bd-theme"
+            type="button"
+            aria-expanded="false"
+            data-bs-toggle="dropdown"
+            aria-label="Toggle theme (auto)">
+      <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+          <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+          Light
+          <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark" aria-pressed="false">
+          <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+          Dark
+          <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+        </button>
+      </li>
+      <li>
+        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="auto" aria-pressed="true">
+          <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
+          Auto
+          <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="arrow-right-circle" viewBox="0 0 16 16">
+      <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+    </symbol>
+    <symbol id="color-mode" viewBox="0 0 118 94">
+      <title>Color Modes</title>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
+    </symbol>
+  </svg>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../index.html"><img class="d-block" id="icon" alt="ImageMagick" width="32" height="32" src="../images/wand.ico"/></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#magick-navbars" aria-controls="magick-navbars" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="magick-navbars">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link " href="download.html">Download</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="command-line-tools.html">Tools</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="command-line-processing.html">CLI</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="develop.html">Develop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" rel="noopener" target="_blank" href="https://github.com/ImageMagick/ImageMagick/discussions">Community</a>
+        </li>
+        <li class="nav-item">
+          <iframe src="https://github.com/sponsors/ImageMagick/button" title="Sponsor ImageMagick" height="35" width="107" style="border: 0;"></iframe>
+        </li>
+      </ul>
+      <form class="d-flex form-inline" action="search.html">
+        <input class="form-control me-2" type="text" name="q" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit" name="sa">Search</button>
+      </form>
+    </div>
+  </div>
+  </nav>
+
+<div class="col-lg-8 mx-auto p-4 py-md-5 text-body-secondary">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+    <a href="../index.html" class="d-flex align-items-center text-decoration-none">
+      <h1 class="mt-5 fs-4">Develop</h1>
+    </a>
+  </header>
+
+  <main class="container">
+<div>
+<p class="lead">The functionality of ImageMagick is typically utilized from the <a href="command-line-processing.html">command-line</a> or you can use the features from programs written in your favorite language. Choose from these interfaces: 
+<a href="develop.html#ada">G2F</a> (Ada), 
+<a href="develop.html#c">MagickCore</a> (C), 
+<a href="develop.html#c">MagickWand</a> (C), 
+<a href="develop.html#ch">ChMagick</a> (Ch), 
+<a href="develop.html#c__">Magick++</a> (C++), 
+<a href="develop.html#java">JMagick</a> (Java), 
+<a href="develop.html#javascript">WASM-ImageMagick</a> (Javawww/Typescript), 
+<a href="develop.html#julia">JuliaIO</a> (Julia), 
+<a href="develop.html#kmagick">KMagick</a> (Kotlin), 
+<a href="develop.html#lisp">L-Magick</a> (Lisp), 
+<a href="develop.html#lua">Lua</a> (LuaJIT), 
+<a href="develop.html#neko">NMagick</a> (Neko/haXe), 
+<a href="develop.html#dot-net">Magick.NET</a> (.NET), 
+<a href="develop.html#node.js">Node-magickwand</a> (Node.js), 
+<a href="develop.html#pascal">PascalMagick</a> (Pascal), 
+<a href="develop.html#perl">PerlMagick</a> (Perl), 
+<a href="develop.html#php">IMagick</a> (PHP), 
+<a href="develop.html#python">PythonMagick</a> (Python), 
+<a href="develop.html#r">magick</a> (R), 
+<a href="develop.html#ruby">RMagick</a> (Ruby), 
+<a href="develop.html#tcl">TclMagick</a> (Tcl/TK), 
+or <a href="develop.html#wasm">WASM</a>. 
+With a language interface, use ImageMagick to modify or create images dynamically and <var>automagically</var>.</p>
+<p>Choose from these language interfaces:</p>
+
+<dl class="row">
+  <dt class="col-md-4"><a class="anchor" id="c"></a>C</dt>
+
+<dd class="col-md-8">Use the thread-safe <a href="magick-wand.html">MagickWand</a> library to convert, compose, and edit images from the C language.  There is also the low-level thread-safe <a href="magick-core.html">MagickCore</a> library for wizard-level developers.  The <a href="api/MagickCache/index.html">MagickCache API</a> is a development library to utilize an efficient <a href="https://github.com/ImageMagick/MagickCache#readme#readme">image cache</a>.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="ch"></a>Ch</dt>
+
+<dd class="col-md-8"><a href="../archive/ch/">ChMagick</a> is a <a href="../index.html">Ch</a> binding to the MagickCore and MagickWand API.  Ch is an embeddable C/C++ interpreter for cross-platform scripting.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="c__"></a>C++</dt>
+
+<dd class="col-md-8"><a href="magick++.html">Magick++</a> provides a thread-safe object-oriented C++ interface to ImageMagick.  See <a href="../Magick++/tutorial/Magick++_tutorial.pdf">A Gentle Introduction to Magick++</a> for an introductory tutorial to Magick++.  We include the <a href="../Magick++/tutorial/Magick++_tutorial.odt">source</a> if you want to correct, enhance, or expand the tutorial.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="go"></a>GO</dt>
+  <dd class="col-md-8"><a href="https://github.com/gographics/imagick">GoImagick</a> is a set of Go bindings to ImageMagick's MagickWand and MagickCore C APIs.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="java"></a>Java</dt>
+
+<dd class="col-md-8"><a href="../index.html">JMagick</a> provides an object-oriented Java interface to ImageMagick.  <a href="../index.html">Im4java</a> is a pure-java interface to the ImageMagick command-line.</dd>
+
+<dt class="col-md-4"><a class="anchor" id="javascript"></a>Javawww/TypeScript</dt>
+
+<dd class="col-md-8"><a href="https://github.com/KnicKnic/WASM-ImageMagick">WASM-ImageMagick</a> Webassembly compilation of ImageMagick that allows serverless clientside bindings for Typescript and Javascript. Works in Progressive Web Apps.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="julia"></a>Julia</dt>
+
+<dd class="col-md-8"><a href="https://github.com/JuliaIO/ImageMagick.jl">JuliaIO</a> provides an object-oriented Julia interface to ImageMagick.</dd>
+
+<dt class="col-md-4"><a class="anchor" id="kmagick"></a>KMagick</dt>
+  <dd class="col-md-8"><a href="https://github.com/MolotovCherry/kmagick">KMagick</a> provides Kotlin bindings to ImageMagick.</dd>
+  
+  <dt class="col-md-4"><a class="anchor" id="labview"></a>LabVIEW</dt>
+
+<dd class="col-md-8"><a href="http://forums.lavag.org/downloads-file90.html">LVOOP ImageMagick</a> is an object-oriented LabVIEW interface to ImageMagick.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="lisp"></a>Lisp</dt>
+
+<dd class="col-md-8"><a href="http://common-lisp.net/project/cl-magick/">CL-Magick</a> provides a Common Lisp interface to the ImageMagick library.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="lua"></a>Lua</dt>
+
+<dd class="col-md-8"><a href="https://github.com/leafo/magick">Lua</a> bindings to ImageMagick for LuaJIT using FFI.</dd>
+  <dt class="col-md-4"><a class="anchor" id="lua"></a> </dt>
+<dd class="col-md-8"><a href="https://github.com/isage/lua-imagick">Lua</a> bindings to ImageMagick for Lua using pure-C.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="neko"></a>Neko</dt>
+
+<dd class="col-md-8"><a href="http://code.google.com/p/nmagick">NMagick</a> is a port of the ImageMagick library to the haXe and Neko platforms. It provides image manipulation capabilities to both web and desktop applications using Neko.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="dot-net"></a>.NET</dt>
+
+<dd class="col-md-8">Use <a href="https://github.com/dlemstra/Magick.NET">Magick.NET</a> to convert, compose, and edit images from Windows .NET.</dd>
+  <dt class="col-md-4"><a class="anchor" id="dot-net"></a> </dt>
+
+<dd class="col-md-8"><a href="http://sourceforge.net/projects/imagemagickapp/">ImageMagickApp</a> is a .NET application written in C# that utilizes the ImageMagick command line to allow conversion of multiple image formats to different formats.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="node.js"></a>Node.js</dt>
+
+<dd class="col-md-8"><a href="https://www.npmjs.com/package/node-magickwand" rel="noopener" target="_blank">Node-magickwand</a> is a full native port of the ImageMagick-7 C++ library to Node.js using SWIG Node-API. Unlike all other ImageMagick npm packages, it does not use the CLI to interact with the utilities, but offers direct access to the full C++ API. It supports both synchronous and multithreaded asynchronous operations, it is fully integrated with TypedArrays and it has full TypeScript support.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="pascal"></a>Pascal</dt>
+
+<dd class="col-md-8"><a href="http://wiki.freepascal.org/PascalMagick">PascalMagick</a> a Pascal binding for the MagickWand API and also the low-level MagickCore library. It works with Free Pascal / Lazarus and Delphi.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="perl"></a>Perl</dt>
+
+<dd class="col-md-8">Use <a href="perl-magick.html">PerlMagick</a> to convert, compose, and edit images from the Perl language.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="php"></a>PHP</dt>
+
+<dd class="col-md-8"><a href="http://pecl.html.net/package/imagick">IMagick</a> is a native PHP extension to create and modify images using the ImageMagick API.  Documentation for the extension is available <a href="http://php.net/imagick">here</a>, and a site showing examples is available at <a href="../index.html">PHPImagick.com</a>.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="php"></a> </dt>
+<dd class="col-md-8"><a href="https://github.com/francodacosta/phmagick">phMagick</a> is a wrapper class for ImageMagick, wrapping the most common web image manipulation actions in easy to use functions, but allowing full access to ImageMagick's power by issuing system calls to it's command-line programs.</dd>
+
+
+  <dt class="col-md-4"><a class="anchor" id="python"></a>Python</dt>
+
+
+<dd class="col-md-8"><a href="../index.html">Wand</a> is a ctypes-based ImagedMagick binding library for Python.</dd>
+  <dt class="col-md-4"><a class="anchor" id="php"></a> </dt>
+<dd class="col-md-8"><a href="../archive/python/">PythonMagick</a> is an object-oriented Python interface to ImageMagick.</dd>
+  <dt class="col-md-4"><a class="anchor" id="php"></a> </dt>
+<dd class="col-md-8"><a href="http://www.assembla.com/wiki/show/pythonmagickwand">PythonMagickWand</a> is an object-oriented Python interface to MagickWand based on ctypes.</dd>
+  <dt class="col-md-4"><a class="anchor" id="php"></a> </dt>
+<dd class="col-md-8"><a href="../index.html">Scilab Image Processing</a> toolbox utilizes ImageMagick to do imaging tasks such as filtering, blurring, edge detection, thresholding, histogram manipulation, segmentation, mathematical morphology, color image processing, etc..</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="realbasic"></a>REALbasic</dt>
+
+<dd class="col-md-8">The <a href="http://www.monkeybreadsoftware.de/realbasic/plugin-imagemagick.shtml">MBS Realbasic ImageMagick</a> is a plugin that utilizes the power of ImageMagick from within the RealBasic environment.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="r"></a>R</dt>
+
+<dd class="col-md-8"> The <a href="https://cran.r-project.org/package=magick">magick</a> package wraps the Magick++ STL to provide vectorized image processing in R. Get started with using the package <a href="https://cran.r-project.org/web/packages/magick/vignettes/intro.html">vignette</a>.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="ruby"></a>Ruby</dt>
+
+<dd class="col-md-8"><a href="../index.html">RMagick</a> is an interface between the Ruby programming language and the <a href="magick-core.html">MagickCore</a> image processing libraries.  Get started with RMagick by perusing the <a href="../index.html">documentation</a>.</dd>
+  <dt class="col-md-4"><a class="anchor" id="php"></a> </dt>
+
+<dd class="col-md-8"><a href="../index.html">MagickWand for Ruby</a> is an interface between the Ruby programming language and the <a href="magick-wand.html">MagickWand</a> image processing libraries.  Get started with MagickWand for PHP by perusing the <a href="../index.html">documentation</a>.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="php"></a> </dt>
+<dd class="col-md-8"><a href="https://github.com/minimagick">MiniMagick</a> is a Ruby wrapper for ImageMagick command line. MiniMagick gives you convenient access to all the command line options ImageMagick supports.</dd>
+  <dt class="col-md-4"><a class="anchor" id="php"></a> </dt>
+
+<dd class="col-md-8"><a href="http://quickmagick.rubyforge.org/quick_magick">QuickMagick</a> is a gem for easily accessing ImageMagick command line tools from Ruby programs.</dd>
+
+  <dt class="col-md-4"><a class="anchor" id="rust"></a>Rust</dt>
+
+<dd class="col-md-8"><a href="https://github.com/nlfiedler/magick-rust">MagickRust</a> is a MagickWand bindings for the Rust language.</dd>
+
+<dt class="col-md-4"><a class="anchor" id="tcl"></a>Tcl/Tk</dt>
+
+<dd class="col-md-8"><a href="../archive/tcl">TclMagick</a> a native Tcl-extension to the ImageMagick MagickWand API.</dd>
+
+<dt class="col-md-4"><a class="anchor" id="wasm"></a>WebAssembly</dt>
+<dd class="col-md-8"><a href="https://github.com/dlemstra/Magick.WASM">Magick.WASM</a> the WASM library for ImageMagick.</dd>
+
+<dt class="col-md-4"><a class="anchor" id="xml-rpc"></a>XML RPC</dt>
+
+<dd class="col-md-8"><a href="http://code.google.com/p/remotemagick/">RemoteMagick</a> is an XML-RPC web service that creates image thumbnails.</dd>
+</dl>
+</div>
+  </div>
+  </main><!-- /.container -->
+  <footer class="text-center pt-5 my-5 text-body-secondary border-top">
+    <div class="container-fluid">
+      <a href="security-policy.html">Security</a> •
+      <a href="news.html">News</a>
+     
+      <a href="#"><img class="d-inline" id="wand" alt="And Now a Touch of Magick" width="16" height="16" src="../images/wand.ico"/></a>
+     
+      <a href="links.html">Related</a> •
+      <a href="sitemap.html">Sitemap</a>
+   <br/>
+     <a href="support.html">Sponsor</a> •
+     <a href="cite.html">Cite</a> •
+     <a href="http://pgp.mit.edu/pks/lookup?op=get&amp;search=0x89AB63D48277377A">Public Key</a> •
+     <a href="../www/https://imagemagick.org/script/contact.php">Contact Us</a>
+   <br/>
+     <a href="https://github.com/imagemagick/imagemagick" rel="noopener" target="_blank" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" viewBox="0 0 512 499.36" width="2%" height="2%" role="img" focusable="false"><title>GitHub</title><path fill="currentColor" fill-rule="evenodd" d="M256 0C114.64 0 0 114.61 0 256c0 113.09 73.34 209 175.08 242.9 12.8 2.35 17.47-5.56 17.47-12.34 0-6.08-.22-22.18-.35-43.54-71.2 15.49-86.2-34.34-86.2-34.34-11.64-29.57-28.42-37.45-28.42-37.45-23.27-15.84 1.73-15.55 1.73-15.55 25.69 1.81 39.21 26.38 39.21 26.38 22.84 39.12 59.92 27.82 74.5 21.27 2.33-16.54 8.94-27.82 16.25-34.22-56.84-6.43-116.6-28.43-116.6-126.49 0-27.95 10-50.8 26.35-68.69-2.63-6.48-11.42-32.5 2.51-67.75 0 0 21.49-6.88 70.4 26.24a242.65 242.65 0 0 1 128.18 0c48.87-33.13 70.33-26.24 70.33-26.24 14 35.25 5.18 61.27 2.55 67.75 16.41 17.9 26.31 40.75 26.31 68.69 0 98.35-59.85 120-116.88 126.32 9.19 7.9 17.38 23.53 17.38 47.41 0 34.22-.31 61.83-.31 70.23 0 6.85 4.61 14.81 17.6 12.31C438.72 464.97 512 369.08 512 256.02 512 114.62 397.37 0 256 0z"/></svg></a> •
+     <a href="https://twitter.com/imagemagick" rel="noopener" target="_blank" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="navbar-nav-svg" viewBox="0 0 300 300" width="2%" height="2%" role="img" focusable="false"><title>Twitter</title><path d="M178.57 127.15 290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34M36.01 19.54H76.66l187.13 262.13h-40.66"/></svg></a>
+    <br/>
+    <small>Copyright © 1999 ImageMagick Studio LLC</small>
+    </div>
+  </footer>
+</div>
+
+  <!-- Javascript assets -->
+  <script src="assets/bootstrap.bundle.min.js" ></script>
+  </body>
+</html>
+<!-- Magick Cache 1st March 2025 17:12 -->
