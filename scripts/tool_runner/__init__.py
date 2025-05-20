@@ -34,6 +34,7 @@ def run_cmd(name: str, cmd: list[str], *, progress: str | None) -> None:
         # Merge stderr into stdout so that output is sequential.
         stderr=subprocess.STDOUT,
         text=True,
+        encoding="utf-8",
     )
     if result.returncode == 0:
         progress_formatted = f" ({progress})" if progress else ""
