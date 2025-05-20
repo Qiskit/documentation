@@ -34,6 +34,9 @@ jobs:
         timeout-minutes: 350
         run: tox -- --write --test-strategy hardware
 
+      - name: Normalize notebooks
+        run: tox -e fix
+
       - name: Detect changed notebooks
         id: changed-notebooks
         if: "!cancelled()"
