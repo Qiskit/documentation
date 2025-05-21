@@ -14,9 +14,43 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 1.4.3
+
+<span id="relnotes-1-4-3-prelude" />
+
+### Prelude
+
+Qiskit v1.4.3 is a minor bugfix release for the v1.4.x release series.
+
+<span id="relnotes-1-4-3-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a bug in [`DAGCircuit`](/docs/api/qiskit/1.4/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") that would cause output [`Var`](/docs/api/qiskit/1.4/circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes to become input nodes during `deepcopy` and pickling.
+
+*   Fixed a problem in [`BasisTranslator`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") transpiler pass, where the global phase of the DAG was not updated correctly. Fixed [#14074](https://github.com/Qiskit/qiskit/issues/14074).
+
+*   Fixed a bug in QPY ([`qiskit.qpy`](/docs/api/qiskit/1.4/qpy#module-qiskit.qpy "qiskit.qpy")) where circuits containing gates of class [`MCMTGate`](/docs/api/qiskit/1.4/qiskit.circuit.library.MCMTGate "qiskit.circuit.library.MCMTGate") would fail to serialize. See [#13965](https://github.com/Qiskit/qiskit/issues/13965).
+
+*   [`SabreLayout`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") will now correctly propagate a circuit’s [`name`](/docs/api/qiskit/1.4/qiskit.dagcircuit.DAGCircuit#name "qiskit.dagcircuit.DAGCircuit.name") and [`metadata`](/docs/api/qiskit/1.4/qiskit.dagcircuit.DAGCircuit#metadata "qiskit.dagcircuit.DAGCircuit.metadata") fields when performing as a joint layout and routing pass.
+
+*   Fixed a problem in the [`SolovayKitaevSynthesis`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis "qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis") unitary synthesis plugin, where repeatedly running the plugin with different basis gates incorrectly reused the basis gates from the first run only. The problem was due to ignoring the basis gates when caching basic approximations, and is now fixed.
+
+*   Fixed a problem in the [`SolovayKitaev`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev") transpiler pass where the pass could crash due to encountering a 180 degree rotation in the internal recursion, which was not handled correctly.
+
+*   Fixed a problem in the [`SolovayKitaev`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev") transpiler pass where the generated approximation could have a phase that differs by $\pi$ from the correct value. This resulted due to the internal $SO(3)$ representation, which requires additional handling to obtain the correct sign of the qubit gate matrix. Fixed [#9552](https://github.com/Qiskit/qiskit-terra/issues/9552)
+
+*   The fallback error heuristic in [`VF2Layout`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") and [`VF2PostLayout`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout"), used when there were no reported error rates, could previously assign errors greater than one, and have unpredictable effects on the resulting layout scores.
+
+<span id="relnotes-1-4-2" />
+
+<span id="id2" />
+
 ## 1.4.2
 
 <span id="relnotes-1-4-2-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
@@ -42,19 +76,21 @@ Qiskit 1.4.2 is a patch release that fixes bugs found in the 1.4 release series.
 
 <span id="relnotes-1-4-2-bug-fixes" />
 
+<span id="id4" />
+
 ### Bug Fixes
 
 *   Fixed a bug in the basis approximation generation for [`SolovayKitaev`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev"). Previously, generating discrete basis approximations using `generate_basis_approximations` for a basis containing `"sx"` or `"sxdg"` gates would fail. This has now been fixed.
 
 <span id="relnotes-1-4-1" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 1.4.1
 
 <span id="relnotes-1-4-1-prelude" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### Prelude
 
@@ -62,7 +98,7 @@ Qiskit 1.4.1 is a small patch release, fixing some bugs found in the 1.4 extende
 
 <span id="relnotes-1-4-1-bug-fixes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Bug Fixes
 
@@ -85,13 +121,13 @@ Qiskit 1.4.1 is a small patch release, fixing some bugs found in the 1.4 extende
 
 <span id="relnotes-1-4-0" />
 
-<span id="id5" />
+<span id="id8" />
 
 ## 1.4.0
 
 <span id="relnotes-1-4-0-prelude" />
 
-<span id="id6" />
+<span id="id9" />
 
 ### Prelude
 
@@ -231,7 +267,7 @@ The Qiskit v1.4 release is the final minor version release for the v1.x series. 
 
 <span id="relnotes-1-4-0-bug-fixes" />
 
-<span id="id7" />
+<span id="id10" />
 
 ### Bug Fixes
 

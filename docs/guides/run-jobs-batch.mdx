@@ -21,8 +21,8 @@ service = QiskitRuntimeService()
 
 ## Open a batch
 
-You can open a runtime batch by using the context manager `with Batch(...)` or by initializing the `Batch`
-class. When you start a batch,  you must specify a QPU by passing a `backend` object.  The batch starts when its first job begins execution.
+You can open a runtime batch by using the context manager `with <Batch instance>` or by passing a `Batch` instance to the primitive's `mode` parameter.  
+When you start a batch,  you must specify a QPU by passing a `backend` object.  The batch starts when its first job begins execution.
 
 
 **Batch class**
@@ -54,22 +54,23 @@ with Batch(backend=backend):
 <span id="specify-batch-length"></span>
 ## Batch length
 
-You can define the batch's maximum time to live (TTL) with the `max_time` parameter. This should exceed the longest job's execution time. This timer starts when the batch starts.  When the value is reached, the batch is closed.  Any jobs that are running will finish, but jobs still queued are failed.
+A batch's maximum time to live (TTL) determines how long each batch job can run before it expires. You can set this value with the `max_time` parameter. This should exceed the longest job's execution time. This timer starts when the batch starts.  When the value is reached, the batch is closed. Any jobs that are running will finish, but jobs still queued are failed.
 
 ```python
 with Batch(backend=backend, max_time="25m"):
   ...
 ```
 
-There is also an interactive time to live (interactive TTL) value that cannot be configured.  If no batch jobs are queued within that window, the batch is temporarily deactivated.
+There is also an interactive time to live (interactive TTL) value that cannot be configured (1 minute for all plans).  If no batch jobs are queued within that window, the batch is temporarily deactivated.
 
-Default values:
+Default maximum TTL values:
 
-| Instance type (Open or Premium Plan) | Interactive TTL | Maximum TTL |
-| --- | --- | --- |
-| Both Open and Premium Plan | 1 sec | 10 min |
+| Instance type  | Default maximum TTL |
+|----------------|---------------------|
+| All paid plans | 8 hours             |
+| Open           | 10 minutes          |
 
-To determine a batch's max TTL or interactive TTL, follow the instructions in [Determine batch details](#batch-details) and look for the `max_time`or `interactive_timeout` value, respectively.
+To determine a batch's maximum TTL or interactive TTL, follow the instructions in [Determine batch details](#batch-details) and look for the `max_time`or `interactive_timeout` value, respectively.
 
 <span id="close"></span>
 ## Close a batch
@@ -108,7 +109,7 @@ batch.close()
 <span id="batch-details"></span>
 ## Determine batch details
 
-For a comprehensive overview of a batch's configuration and status, including its interactive and max TTL, use the  `batch.details() method`.
+For a comprehensive overview of a batch's configuration and status, including its interactive and maximum TTL, use the  the [`details` method](/docs/api/qiskit-ibm-runtime/batch#details) from the `Batch` class.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, batch, SamplerV2 as Sampler
