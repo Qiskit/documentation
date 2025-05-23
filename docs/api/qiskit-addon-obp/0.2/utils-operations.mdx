@@ -1,6 +1,6 @@
 ---
-title: operations (latest version)
-description: API reference for qiskit_addon_obp.utils.operations in the latest version of qiskit-addon-obp
+title: operations (v0.2)
+description: API reference for qiskit_addon_obp.utils.operations in qiskit-addon-obp v0.2
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit_addon_obp.utils.operations
@@ -18,7 +18,7 @@ Utility functions for operator backpropagation.
 
 ### apply\_op\_to
 
-<Function id="qiskit_addon_obp.utils.operations.apply_op_to" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.3/qiskit_addon_obp/utils/operations.py#L54-L109" signature="apply_op_to(op1, op1_qargs, op2, op2_qargs, *, apply_as_transform=False)">
+<Function id="qiskit_addon_obp.utils.operations.apply_op_to" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/operations.py#L21-L90" signature="apply_op_to(op1, op1_qargs, op2, op2_qargs, *, apply_as_transform=False)">
   Apply the operator `op2` to the operator `op1`.
 
   These operators do not necessarily need to act on the same number of qubits, as they are assumed to act on a larger system. The position in the system of each operator is defined by the corresponding `qargs`. The output operator will be defined on `union(op1_qargs, op2_qargs)`.
@@ -33,9 +33,9 @@ Utility functions for operator backpropagation.
 
   **Parameters**
 
-  *   **op1** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)")) – The operator on which `op2` will be applied.
+  *   **op1** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)")) – The operator on which `op2` will be applied.
   *   **op1\_qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The qubit indices for `op1`.
-  *   **op2** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)")) – The operator to apply to `op1`.
+  *   **op2** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)")) – The operator to apply to `op1`.
   *   **op2\_qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The qubit indices for `op2`.
   *   **apply\_as\_transform** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to apply `op2` to `op1` as a transformation.
 
@@ -51,12 +51,12 @@ Utility functions for operator backpropagation.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]]
 </Function>
 
 ### apply\_reset\_to
 
-<Function id="qiskit_addon_obp.utils.operations.apply_reset_to" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.3/qiskit_addon_obp/utils/operations.py#L194-L225" signature="apply_reset_to(op, qubit_id, inplace=False)">
+<Function id="qiskit_addon_obp.utils.operations.apply_reset_to" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/operations.py#L175-L206" signature="apply_reset_to(op, qubit_id, inplace=False)">
   Apply a reset operation to a Pauli operator.
 
   This function applies a reset operation to `op` in the following way:
@@ -67,7 +67,7 @@ Utility functions for operator backpropagation.
 
   **Parameters**
 
-  *   **op** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)")) – The operator to which the reset will be applied.
+  *   **op** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)")) – The operator to which the reset will be applied.
   *   **qubit\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The index of the qubit on which to apply the reset.
   *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to modify the operator in-place.
 
@@ -77,17 +77,17 @@ Utility functions for operator backpropagation.
 
   **Return type**
 
-  [*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)")
+  [*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)")
 </Function>
 
 ### to\_global\_op
 
-<Function id="qiskit_addon_obp.utils.operations.to_global_op" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.3/qiskit_addon_obp/utils/operations.py#L112-L136" signature="to_global_op(op, qargs, n_qubits)">
+<Function id="qiskit_addon_obp.utils.operations.to_global_op" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/operations.py#L93-L117" signature="to_global_op(op, qargs, n_qubits)">
   Convert a local operator to a global operator by inserting identities on qubits which aren’t used.
 
   **Parameters**
 
-  *   **op** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)")) – Local operator to expand.
+  *   **op** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)")) – Local operator to expand.
   *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – Qubit indices for local operator.
   *   **n\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of qubits in the global system.
 
@@ -101,12 +101,12 @@ Utility functions for operator backpropagation.
 
   **Return type**
 
-  [*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)")
+  [*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)")
 </Function>
 
 ### reduce\_op
 
-<Function id="qiskit_addon_obp.utils.operations.reduce_op" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.3/qiskit_addon_obp/utils/operations.py#L147-L191" signature="reduce_op(global_op)">
+<Function id="qiskit_addon_obp.utils.operations.reduce_op" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/operations.py#L128-L172" signature="reduce_op(global_op)">
   Create a lean representation of a global Pauli operator.
 
   This function returns a lean representation of the input operator such that all of the qubits associated solely with Pauli-I terms have been removed. A list of indices is also returned indicating on which qubits the lean operator acts.
@@ -125,7 +125,7 @@ Utility functions for operator backpropagation.
 
   **Parameters**
 
-  **global\_op** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)")) – The global operator for which to generate a lean representation
+  **global\_op** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)")) – The global operator for which to generate a lean representation
 
   **Returns**
 
@@ -138,6 +138,6 @@ Utility functions for operator backpropagation.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]]
 </Function>
 
