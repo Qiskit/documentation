@@ -211,6 +211,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/release-notes/index.mdx",
     "docs/api/qiskit/release-notes/0.45.mdx",
     "docs/api/qiskit/release-notes/1.*.mdx",
+    "docs/api/qiskit/release-notes/2.*.mdx",
     // Used by release notes.
     "docs/api/qiskit-ibm-runtime/0.20/sampler.mdx",
     "docs/api/qiskit-ibm-runtime/0.21/qiskit-runtime-service.mdx",

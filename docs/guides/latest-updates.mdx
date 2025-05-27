@@ -8,7 +8,7 @@ in_page_toc_max_heading_level: 2
 
 # Latest updates
 
-*Last updated 8 May 2025*
+*Last updated 16 May 2025*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
@@ -17,10 +17,10 @@ Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 For all product announcements, visit the [Announcements](https://docs.quantum.ibm.com/announcements/product-updates) page on IBM Quantum Platform Classic.
 
 <CloudContent>
-Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit Functions](#latest-qiskit-functions) | [Documentation](#latest-docs)
+Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Documentation](#latest-docs)
 </CloudContent>
 <LegacyContent>
-Jump to [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler service](#latest-qiskit-transpiler-service) | [Qiskit Functions](#latest-qiskit-functions) | [Documentation](#latest-docs)
+Jump to [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Documentation](#latest-docs)
 </LegacyContent>
 
 <CloudContent>
@@ -91,13 +91,18 @@ For full details on the early access release and upcoming improvements, [check o
 </CloudContent>
 
 <span id="latest-qiskit-sdk"></span>
-## Qiskit SDK v1.4.0
+## Qiskit SDK v2.0
 
-**21 Feb 2025**
+**31 Mar 2025**
 
-- The latest Qiskit version, 1.4.0, has been released on GitHub and is available on [PyPi](https://pypi.org/project/qiskit/). Even if you recently upgraded to v1.3.3, you should still upgrade to Qiskit v1.4, because this is the last minor version of the v1.x series, and contains all of the deprecation warnings for API changes in Qiskit v2.0. Install it now, and see what to change to be ready for 2.0!
+Qiskit SDK v2.0 introduces significant performance improvements over its predecessor, and lays the groundwork for powerful new tools and capabilities that we plan to share in the coming months. Highlights include:
 
-  Wondering what will change? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/1.4.0) and the [v1.4 release notes.](/docs/api/qiskit/release-notes/1.4)
+- **A brand new C API** - This major release introduces a C-language API to interact with the `SparseObservable` class. This new functionality is just the first step toward building a robust C interface for the Qiskit SDK, and you can expect major expansions of the new C interface as we progress through the rest of the v2.x series. We believe this work will play an important role in supporting large-scale quantum experimentation and enabling the hunt for quantum advantage.
+- **Removal of deprecated features** - Many of the minor releases in the previous v1.x series included new deprecation warnings to make room for us to continue improving the SDK. In this major release, all of the deprecated classes, functions, and modules are now being removed.
+- **Continued performance improvements** - We have continued work on porting more of the Qiskit SDK functionality over to Rust, resulting in a 2x speedup for circuit construction benchmarking tasks and a roughly 20% speedup for transpilation benchmarking tasks.
+- **Introducing boxes and stretches** - Qiskit SDK v2.0 introduces helpful new features for structuring your circuits in preparation for future changes to dynamic circuits on IBM QPUs.
+
+Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.0.0) and the [v2.0 release notes.](/docs/api/qiskit/release-notes/2.0)
 
 {/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
 
@@ -105,23 +110,29 @@ For full details on the early access release and upcoming improvements, [check o
 
 
 <span id="latest-qiskit-runtime"></span>
-## Qiskit Runtime client 0.37.0
+## Qiskit Runtime client 0.38.0
 
-**13 March 2025**
+**15 April 2025**
 
 - Deprecation
 
-  - The `IBMBackend` attributes `max_shots` and `max_experiments`, as well as the property `max_circuits`, have all been deprecated. Previously, these attribute values represented the maximum number of shots and circuits that could be submitted in one job. See [job limits](/docs/guides/job-limits#job-limits) for details.
+  *   [`RuntimeJob`](/docs/api/qiskit-ibm-runtime/runtime-job "qiskit_ibm_runtime.RuntimeJob") is now deprecated and will be removed no sooner than three months from this release. [`RuntimeJob`](/docs/api/qiskit-ibm-runtime/runtime-job "qiskit_ibm_runtime.RuntimeJob") was superseded by [`RuntimeJobV2`](/docs/api/qiskit-ibm-runtime/runtime-job-v2 "qiskit_ibm_runtime.RuntimeJobV2") in all primitive implementations, so the deprecation should not have any user impact. The major difference between the two classes is that [`status()`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#status "qiskit_ibm_runtime.RuntimeJobV2.status") returns a string instead of the Qiskit `JobStatus` enum. ([2170](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2170))
+  *   Since pulse gates are no longer supported, the [`IBMBackend`](/docs/api/qiskit-ibm-runtime/ibm-backend "qiskit_ibm_runtime.IBMBackend") and `FakeBackendV2` `defaults()` method has been deprecated and will be removed no sooner than three months from this release. While the method still exists, these pulse defaults are no longer used to construct the backend target. ([2186](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2186))
+  *   The `ibm_quantum` channel option is deprecated and will be sunset on 1 July. After this date, `ibm_cloud` will be the only valid channel. For help migrating to the new IBM Quantum Platform on the `ibm_cloud` channel, read the [migration guide](https://quantum.cloud.ibm.com/docs/migration-guides/classic-iqp-to-cloud-iqp). ([2205](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2205))
 
 - New features
 
-  - `qiskit-ibm-runtime` is now compatible with Qiskit v2.0. This means that classes and methods removed in Qiskit v2.0 have also been removed or handled accordingly.  The `pulse`- and `channel`-related changes are highlighted in the following list. See the [Pulse migration guide](/docs/migration-guides/pulse-migration) for details.
+  *   Attributes from the configuration of fake backends can now be retrieved directly with `backend.<attribute_name>`. ([2202](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2202))
 
-    - `Channel` methods in `IBMBackend` have been removed.
-    - The backend configuration class `PulseBackendConfiguration` has been removed, so all backends are now  returned as `QasmBackendConfiguration`.
-    - `PulseDefaults` (backend defaults) can still be retrieved but they are no longer necessary when creating a backend `Target`.
+- Bug fixes
 
-- See the full [0.37.0 release notes.](/docs/api/qiskit-ibm-runtime/release-notes#0370-2025-03-13)
+  *   Fixed a bug where `DoubleSliceSpan.mask()` and `TwirledSliceSpan.mask()` error when they contain a one-dimensional slice. ([2184](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2184))
+
+-  Upgrade notes
+
+*   Since support for streaming results was removed in `0.32.0`, the remaining related websocket code has been removed. As a part of this process, the environment option `callback` is deprecated, as well as the parameters `client_params` and `user_callback` in `BaseRuntimeJob`. ([2143](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2143))
+
+- See the full [0.38.0 release notes.](/docs/api/qiskit-ibm-runtime/release-notes#0380-2025-04-15)
 
 {/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
 
@@ -154,12 +165,13 @@ Improvements include the following:
   - The ability to use control flow instructions inside the body of a branch (as in, nested control flow)
   - Conditional measurements
 
-**7 January 2025**
-
-- The rollout of the Gen3 engine stack begins today. This engine stack gives a 75x speedup in execution.  The rollout will be done on one QPU at a time, where a percentage of the jobs on the QPU will use the Gen3 path.  You can also force the Gen3 path using the [`gen3-turbo` experimental option.](/docs/guides/runtime-options-overview#available-options) Note that this engine stack is not compatible with fractional gates, pulse gates, or dynamic circuits.
 
 <details>
 <summary><b>Previous updates</b></summary>
+
+**7 January 2025**
+
+- The rollout of the Gen3 engine stack begins today. This engine stack gives a 75x speedup in execution.  The rollout will be done on one QPU at a time, where a percentage of the jobs on the QPU will use the Gen3 path.  You can also force the Gen3 path using the [`gen3-turbo` experimental option.](/docs/guides/runtime-options-overview#available-options) Note that this engine stack is not compatible with fractional gates, pulse gates, or dynamic circuits.
 
 **15 October 2024**
 
@@ -212,9 +224,106 @@ Improvements include the following:
   - The Qiskit Transpiler Service leverages IBM Cloud&reg; resources to provide users with the latest transpilation capabilities from the Qiskit SDK. It offers a Python library that helps users seamlessly integrate the service into their current Qiskit patterns and workflows. Perhaps most importantly, the service invites users to experiment with new and improved AI-powered transpiler passes — cutting-edge tools that might be faster and produce better results than traditional transpilation methods. Read the [blog](https://www.ibm.com/quantum/blog/ai-transpiler-passes) for more information.
 </details>
 
+<span id="latest-qiskit-serverless"></span>
+## Qiskit Serverless
+
+**16 May 2025**
+
+- [Developers can set detailed statuses and track what's happening across a workflow.](/docs/guides/serverless-manage-resources#set-detailed-statuses)
+
+  Serverless workloads have several stages across a workflow. By default, the following statuses are viewable with `job.status()`:
+
+  - `QUEUED`: The workload is queued for classical resources.
+  - `INITIALIZING`: The workload is set up.
+  - `RUNNING`: The workload is currently running on classical resources.
+  - `DONE`: The workload has successfully completed.
+
+  Now, you can also set custom statuses that further describe the specific workflow stage, as in the following example.
+
+    <details>
+  <summary>Expand for code example</summary>
+
+    ```python
+    from qiskit_serverless import update_status, Job
+    
+    ## If your function has a mapping stage, particularly application functions, you can set the status to "RUNNING: MAPPING" as follows:
+    update_status(Job.MAPPING)
+    
+    ## While handling transpilation, error suppression, and so forth, you can set the status to "RUNNING: OPTIMIZING_FOR_HARDWARE":
+    update_status(Job.OPTIMIZING_HARDWARE)
+    
+    ## After you submit jobs to Qiskit Runtime, the underlying quantum job will be queued. You can set status to "RUNNING: WAITING_FOR_QPU":
+    update_status(Job.WAITING_QPU)
+    
+    ## When the Qiskit Runtime job starts running on the QPU, set the following status "RUNNING: EXECUTING_QPU":
+    update_status(Job.EXECUTING_QPU)
+    
+    ## After the QPU is completed and post-processing has begun, set the status "RUNNING: POST_PROCESSING":
+    update_status(Job.POST_PROCESSING)
+    ```
+  </details>
+
 <span id="latest-qiskit-functions"></span>
 ## Qiskit Functions
 
+**16 May 2025**
+
+- Over the coming weeks, every function will give detailed information to help you run, debug, and analyze your workflows. This includes:
+
+  - When jobs fail, you can use `job.error_message()` to find specific error codes and messages to help you debug your workflows
+  - `job.status()` will give more information on what's happening while a Function is `RUNNING`, including:
+    - `RUNNING: MAPPING`
+    - `RUNNING: OPTIMIZING_FOR_HARDWARE`
+    - `RUNNING: WAITING_FOR_QPU`
+    - `RUNNING: EXECUTING_QPU`
+    - `RUNNING: POST_PROCESSING`
+  - Finally, after a Qiskit Function is complete, you can inspect how much time is spent across each stage with `job.result()['metadata']['resource_usage']`, as in the following example.
+
+  <details>
+  <summary>Expand for code example</summary>
+  ```json
+  {
+        ...,
+    "metadata": {
+      "resource_usage": {
+        {
+          "RUNNING: MAPPING": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          }, 
+          "RUNNING: OPTIMIZING_FOR_HARDWARE": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          }, 
+          "RUNNING: WAITING_FOR_QPU": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          }, 
+          "RUNNING: EXECUTING_QPU": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          }, 
+          "RUNNING: POST_PROCESSING": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          }, 
+        }, 
+      }
+    }
+  }
+  ```
+
+  </details>
+
+  We're hoping these changes make it easier to use Qiskit Functions, and [you can get started with free trials in the catalog today.](https://quantum.cloud.ibm.com/functions)
+
+<details>
+<summary><b>Previous updates</b></summary>
 
 **10 March 2025**
 
@@ -226,9 +335,6 @@ Improvements include the following:
 
 
 To get started, explore the [Qiskit Functions documentation.](/docs/guides/functions)
-
-<details>
-<summary><b>Previous updates</b></summary>
 
 **16 September 2024**
 
