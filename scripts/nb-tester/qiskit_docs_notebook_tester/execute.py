@@ -18,6 +18,7 @@ import tempfile
 import textwrap
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Iterable
 
 import nbclient
 import nbformat
@@ -146,12 +147,16 @@ async def _execute_notebook(
     if job.backend_patch:
         await _execute_in_kernel(kernel, job.backend_patch)
 
+    def log_cell_output(cell, cell_index: int, execute_reply) -> None:
+        print(f"ℹ️ Cell {cell_index} output:\n", "\n".join(get_text_output(cell)))
+
     notebook_client = nbclient.NotebookClient(
         nb=nb,
         km=kernel_manager,
         kc=kernel,
         # -1 means no timeout
         timeout=job.cell_timeout or -1,
+        on_cell_executed=log_cell_output,
     )
     await notebook_client.async_execute()
     return post_process_notebook(nb)
@@ -184,3 +189,12 @@ def cancel_trailing_jobs(start_time: datetime) -> Result:
     for job in jobs:
         job.cancel()
     return Result(False, reason="Trailing jobs detected")
+
+
+def get_text_output(cell) -> Iterable[str]:
+    for output in cell.outputs:
+        if output["output_type"] == "stream" and "text" in output:
+            yield output["text"]
+        if output["output_type"] == "execute_result":
+            if text_output := output.get("data", {}).get("text/plain", None):
+                yield text_output
