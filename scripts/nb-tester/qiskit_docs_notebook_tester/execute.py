@@ -148,7 +148,8 @@ async def _execute_notebook(
         await _execute_in_kernel(kernel, job.backend_patch)
 
     def log_cell_output(cell, cell_index: int, execute_reply) -> None:
-        print(f"ℹ️ Cell {cell_index} output:\n", "\n".join(get_text_output(cell)))
+        if job.log_cell_outputs:
+            print(f"ℹ️ Cell {cell_index} output:\n", "\n".join(get_text_output(cell)))
 
     notebook_client = nbclient.NotebookClient(
         nb=nb,
