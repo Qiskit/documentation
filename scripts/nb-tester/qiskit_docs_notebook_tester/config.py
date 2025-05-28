@@ -281,6 +281,10 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--log-cell-outputs",
         action="store_true",
-        help="Print text outputs of cells to the console as they run",
+        help=(
+            "Print text outputs of cells to the console as they run.\n"
+            "NOTE: This script runs notebooks in parallel. When running more than one "
+            "notebook, cell outputs will appear as they're received, not grouped by notebook."
+        )
     )
     return parser
