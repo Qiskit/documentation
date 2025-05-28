@@ -38,6 +38,7 @@ def test_no_config_file():
             backend_patch=None,
             cell_timeout=None,
             write=Result(False, "--write arg not set"),
+            log_cell_outputs=False,
         )
         for path in filenames
     ]
@@ -82,6 +83,7 @@ def test_cli_patch():
             backend_patch=expected_patch,
             cell_timeout=None,
             write=Result(False, "hardware was mocked"),
+            log_cell_outputs=False,
         )
     ]
 
@@ -124,6 +126,7 @@ def test_config_file():
             backend_patch=QISKIT_PROVIDER_PATCH,
             cell_timeout=350,
             write=Result(False, "hardware was mocked"),
+            log_cell_outputs=False,
         )
     ]
 
@@ -155,6 +158,7 @@ def test_config_file_with_filenames():
             backend_patch=None,
             cell_timeout=None,
             write=Result(True),
+            log_cell_outputs=False,
         )
     ]
 
@@ -194,6 +198,7 @@ def test_config_strategy_selection():
             backend_patch=None,
             cell_timeout=None,
             write=Result(False, "--write arg not set"),
+            log_cell_outputs=False,
         )
     ]
 
@@ -236,6 +241,7 @@ def test_config_with_different_patches_per_notebook():
             backend_patch=None,
             cell_timeout=None,
             write=Result(False, "--write arg not set"),
+            log_cell_outputs=False,
         ),
         NotebookJob(
             path=Path("path/to/another.ipynb"),
@@ -243,6 +249,7 @@ def test_config_with_different_patches_per_notebook():
             backend_patch=QISKIT_PROVIDER_PATCH,
             cell_timeout=None,
             write=Result(False, "hardware was mocked"),
+            log_cell_outputs=False,
         ),
     ]
 
@@ -270,6 +277,7 @@ def test_patch_file():
             backend_patch="print('Hello, world!')",
             cell_timeout=None,
             write=Result(False, "hardware was mocked"),
+            log_cell_outputs=False,
         )
     ]
 
@@ -297,6 +305,7 @@ def test_patch_file_multiple_groups():
             backend_patch=None,
             cell_timeout=None,
             write=Result(False, "--write arg not set"),
+            log_cell_outputs=False,
         ),
         NotebookJob(
             path=Path("fake-provider-3q-1.ipynb"),
@@ -304,6 +313,7 @@ def test_patch_file_multiple_groups():
             backend_patch=QISKIT_PROVIDER_PATCH.replace("5", "3"),
             cell_timeout=None,
             write=Result(False, "hardware was mocked"),
+            log_cell_outputs=False,
         ),
         NotebookJob(
             path=Path("fake-provider-3q-2.ipynb"),
@@ -311,6 +321,7 @@ def test_patch_file_multiple_groups():
             backend_patch=QISKIT_PROVIDER_PATCH.replace("5", "3"),
             cell_timeout=None,
             write=Result(False, "hardware was mocked"),
+            log_cell_outputs=False,
         ),
         NotebookJob(
             path=Path("fake-provider-5q.ipynb"),
@@ -318,5 +329,6 @@ def test_patch_file_multiple_groups():
             backend_patch=QISKIT_PROVIDER_PATCH,
             cell_timeout=None,
             write=Result(False, "hardware was mocked"),
+            log_cell_outputs=False,
         ),
     ]
