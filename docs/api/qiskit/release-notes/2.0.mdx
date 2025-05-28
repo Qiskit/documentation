@@ -14,15 +14,41 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 2.0.2
+
+<span id="relnotes-2-0-2-prelude" />
+
+### Prelude
+
+Qiskit v2.0.2 is a bugfix release for the v2.0 minor version series.
+
+<span id="relnotes-2-0-2-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed the [`name`](/docs/api/qiskit/qiskit.circuit.Gate#name "qiskit.circuit.Gate.name") attribute of the [`OrGate`](/docs/api/qiskit/qiskit.circuit.library.OrGate "qiskit.circuit.library.OrGate") class so that it now is set to `"or"` to uniquely identify this gate. It was previously incorrectly set to `"and"` which made it impossible to distinguish it from [`AndGate`](/docs/api/qiskit/qiskit.circuit.library.AndGate "qiskit.circuit.library.AndGate") or have synthesis plugins to synthesize an [`OrGate`](/docs/api/qiskit/qiskit.circuit.library.OrGate "qiskit.circuit.library.OrGate").
+
+*   Fixed an issue in the [`ConsolidateBlocks`](/docs/api/qiskit/qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks") transpiler pass where it would fail to consolidate some blocks if the KAK gate selected (either directly or via the target) is supercontrolled and not [`CXGate`](/docs/api/qiskit/qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"). Fixed [#14413](https://github.com/Qiskit/qiskit/issues/14413)
+
+*   Fixed a bug in the circuit functions [`evolved_operator_ansatz()`](/docs/api/qiskit/qiskit.circuit.library.evolved_operator_ansatz "qiskit.circuit.library.evolved_operator_ansatz"), [`qaoa_ansatz()`](/docs/api/qiskit/qiskit.circuit.library.qaoa_ansatz "qiskit.circuit.library.qaoa_ansatz") and [`hamiltonian_variational_ansatz()`](/docs/api/qiskit/qiskit.circuit.library.hamiltonian_variational_ansatz "qiskit.circuit.library.hamiltonian_variational_ansatz"), where the parameters had a zero complex component. This was normally not an issue unless the parameter was translated to SymPy using the [`ParameterExpression.sympify()`](/docs/api/qiskit/qiskit.circuit.ParameterExpression#sympify "qiskit.circuit.ParameterExpression.sympify") method, which would then raise an error.
+
+<span id="relnotes-2-0-1" />
+
+<span id="id2" />
+
 ## 2.0.1
 
 <span id="relnotes-2-0-1-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
 Qiskit v2.0.1 is a minor bugfix release for the v2.0.x release series.
 
 <span id="relnotes-2-0-1-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
@@ -52,13 +78,13 @@ Qiskit v2.0.1 is a minor bugfix release for the v2.0.x release series.
 
 <span id="relnotes-2-0-0" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 2.0.0
 
 <span id="relnotes-2-0-0-prelude" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### Prelude
 
@@ -1166,7 +1192,7 @@ In line with our [semantic versioning policy](/docs/open-source/qiskit-sdk-versi
 
 <span id="relnotes-2-0-0-bug-fixes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Bug Fixes
 
