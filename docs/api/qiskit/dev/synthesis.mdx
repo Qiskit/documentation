@@ -681,7 +681,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_qft\_line
 
-<Function id="qiskit.synthesis.synth_qft_line" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/qft/qft_decompose_lnn.py#L22-L79" signature="qiskit.synthesis.synth_qft_line(num_qubits, do_swaps=True, approximation_degree=0)">
+<Function id="qiskit.synthesis.synth_qft_line" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/qft/qft_decompose_lnn.py#L22-L61" signature="qiskit.synthesis.synth_qft_line(num_qubits, do_swaps=True, approximation_degree=0)">
   Construct a circuit for the Quantum Fourier Transform using linear neighbor connectivity.
 
   The construction is based on Fig 2.b in Fowler et al. \[1].
@@ -742,7 +742,7 @@ Decomposition of general $2^n \times 2^n$ unitary matrices for any number of qub
 
 ### qs\_decomposition
 
-<Function id="qiskit.synthesis.qs_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/unitary/qsd.py#L36-L150" signature="qiskit.synthesis.qs_decomposition(mat, opt_a1=True, opt_a2=True, decomposer_1q=None, decomposer_2q=None, *, _depth=0)">
+<Function id="qiskit.synthesis.qs_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/unitary/qsd.py#L36-L165" signature="qiskit.synthesis.qs_decomposition(mat, opt_a1=True, opt_a2=True, decomposer_1q=None, decomposer_2q=None, *, _depth=0)">
   Decomposes a unitary matrix into one and two qubit gates using Quantum Shannon Decomposition,
 
   This decomposition is described in Shende et al. \[1].
@@ -1279,6 +1279,58 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
   \[1] Vedral et al., Quantum Networks for Elementary Arithmetic Operations, 1995. [arXiv:quant-ph/9511018](https://arxiv.org/pdf/quant-ph/9511018.pdf)
 
   \[2] Cuccaro et al., A new quantum ripple-carry addition circuit, 2004. [arXiv:quant-ph/0410184](https://arxiv.org/pdf/quant-ph/0410184.pdf)
+</Function>
+
+#### adder\_ripple\_r25
+
+<Function id="qiskit.synthesis.adder_ripple_r25" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/adders/rv_ripple_carry_adder.py#L79-L156" signature="qiskit.synthesis.adder_ripple_r25(num_qubits)">
+  The RV ripple carry adder \[1]. Construct an ancilla-free quantum adder circuit with sublinear depth based on the RV ripple-carry adder shown in \[1]. The implementation has a depth of $O(\log^2 n)$ and uses math:O(n log n) gates.
+
+  As an example, a ripple-carry adder circuit that performs addition on two 4-qubit sized registers is as follows:
+
+  ```python
+                                 ┌───────────┐                    ┌────────┐
+   a_0: ─────────────────────────┤0          ├────────────────────┤0       ├───────────────■─────────────────
+                       ┌────────┐│           │                    │        │┌───────────┐  │
+   a_1: ──■────────────┤0       ├┤2          ├──■─────────────────┤2       ├┤0          ├──┼────■────────────
+          │            │        ││           │  │                 │        ││           │  │    │
+   a_2: ──┼────■───────┤1       ├┤4          ├──┼────■────────────┤4       ├┤1 LAD_1_dg ├──┼────┼────■───────
+          │    │       │        ││           │  │    │            │        ││           │  │    │    │
+   a_3: ──┼────┼────■──┤2       ├┤6          ├──┼────┼────■───────┤6 LAD_2 ├┤2          ├──┼────┼────┼────■──
+          │    │    │  │        ││           │  │    │    │       │        │└───────────┘┌─┴─┐  │    │    │
+   b_0: ──┼────┼────┼──┤        ├┤1 LAD_2_dg ├──┼────┼────┼───────┤1       ├─────────────┤ X ├──┼────┼────┼──
+        ┌─┴─┐  │    │  │  LAD_1 ││           │┌─┴─┐  │    │  ┌───┐│        │    ┌───┐    └───┘┌─┴─┐  │    │
+   b_1: ┤ X ├──┼────┼──┤        ├┤3          ├┤ X ├──┼────┼──┤ X ├┤3       ├────┤ X ├─────────┤ X ├──┼────┼──
+        └───┘┌─┴─┐  │  │        ││           │└───┘┌─┴─┐  │  ├───┤│        │    ├───┤         └───┘┌─┴─┐  │
+   b_2: ─────┤ X ├──┼──┤        ├┤5          ├─────┤ X ├──┼──┤ X ├┤5       ├────┤ X ├──────────────┤ X ├──┼──
+             └───┘┌─┴─┐│        ││           │     └───┘┌─┴─┐└───┘└────────┘    └───┘              └───┘┌─┴─┐
+   b_3: ──────────┤ X ├┤        ├┤7          ├──────────┤ X ├───────────────────────────────────────────┤ X ├
+                  └───┘│        ││           │          └───┘                                           └───┘
+  cout: ───────────────┤3       ├┤8          ├───────────────────────────────────────────────────────────────
+                       └────────┘└───────────┘
+  ```
+
+  Here *LAD\_1* and *LAD\_2* are the CX and CCX ladders respectively introduced in \[1]. Note that in this implementation the input register qubits are ordered as all qubits from the first input register, followed by all qubits from the second input register.
+
+  **Parameters**
+
+  **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The size of the register.
+
+  **Returns**
+
+  The quantum circuit implementing the RV ripple carry adder.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If `num_state_qubits` is lower than 1.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  **References:**
+
+  1\. Remaud and Vandaele, Ancilla-free Quantum Adder with Sublinear Depth, 2025. [arXiv:2501.16802](https://arxiv.org/abs/2501.16802)
 </Function>
 
 ### Multipliers
