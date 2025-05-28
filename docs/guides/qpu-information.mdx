@@ -99,11 +99,12 @@ Each qubit on a QPU has specific properties that characterize its performance an
 
 - **T1**: The longitudinal relaxation time, representing how long it takes (in seconds) for a qubit to decay from the |1⟩ state to the |0⟩ state.
 - **T2**: The transverse relaxation time, representing how long (in seconds) quantum phase information is preserved.
+- **Frequency**: The operating frequency of the qubit (in Hz).
 - **Readout error**: The average probability of a measurement error for the qubit, calculated as:  
   `(prob_meas1_prep0 + prob_meas0_prep1)/2`
 - **prob_meas0_prep1**: The probability of measuring `0` when the qubit was intended to be prepared in the |1⟩ state (P(0|1)).
 - **prob_meas1_prep0**: The probability of measuring `1` when the qubit was intended to be prepared in the |0⟩ state (P(1|0)).
-- **Readout length**: The duration of the measurement operation, from when the measurement pulse starts until the system is ready for another measurement.
+- **Readout length**: The duration (in seconds) of the measurement operation, from when the measurement pulse starts until the system is ready for another measurement.
 
 <Admonition type="note" title="Measurement errors">
 These measurement probabilities (`prob_meas0_prep1` and `prob_meas1_prep0`) represent what are known as SPAM errors (State Preparation And Measurement). While they primarily reflect measurement errors in IBM Quantum systems, they may include small contributions from imperfect state preparation.
@@ -113,7 +114,6 @@ These measurement probabilities (`prob_meas0_prep1` and `prob_meas1_prep0`) repr
 You can access these properties programmatically using:
 ```python
 backend.properties().qubit_property(qubit_index)
-```
 
 ## View your resources
 <LegacyContent>
