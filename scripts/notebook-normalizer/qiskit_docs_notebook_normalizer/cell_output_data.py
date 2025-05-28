@@ -1,7 +1,9 @@
 import base64
+import subprocess
+from tempfile import NamedTemporaryFile
+from typing import Literal
 from dataclasses import dataclass
 from pathlib import Path
-from subprocess import Popen, PIPE
 
 # Qiskit's QuantumCircuit.draw() results in Jupyter outputting both a `text/html` and
 # `text/plain` entry. The HTML entry has pre-applied formatting that makes sense in
@@ -15,19 +17,27 @@ CIRCUIT_DRAW_HTML_PREFIX = '<pre style="word-wrap: normal;white-space: pre;backg
 @dataclass
 class SvgImage:
     data: str
-    filepath: Path
+    destination_filepath: Path
 
     def write(self):
-        self.filepath.write_text(self.data)
+        self.destination_filepath.write_text(self.data)
 
 
 @dataclass
 class RasterImage:
     data: bytes
-    filepath: Path
+    source_format: Literal['.png']
+    destination_filepath: Path
 
     def write(self):
-        self.filepath.write_bytes(self.data)
+        """
+        Save to a tempfile, then use ImageMagick to convert to AVIF in the right place.
+        """
+        temp_file = NamedTemporaryFile(suffix=self.source_format)
+        with temp_file as f:
+            f.write(self.data)
+            subprocess.run(["magick", temp_file.name, self.destination_filepath], check=True)
+
 
 
 Image = SvgImage | RasterImage
@@ -67,26 +77,18 @@ def _get_image(
 ) -> Image | None:
     """Just get the image data if it exists, nothing else"""
     if svg_data := output_data.get("image/svg+xml", None):
-        return SvgImage(filepath=filestem.with_suffix(".svg"), data=svg_data)
+        return SvgImage(destination_filepath=filestem.with_suffix(".svg"), data=svg_data)
     if png_data := output_data.get("image/png", None):
         png_image = RasterImage(
-            filepath=filestem.with_suffix(".png"),
+            destination_filepath=filestem.with_suffix(".avif"),
+            source_format='.png',
             data=base64.b64decode(png_data),
         )
         if skip_conversion:
             return png_image
-        return _convert_to_avif(png_image)
+        return png_image
 
-
-def _convert_to_avif(image: RasterImage) -> RasterImage:
-    """
-    Pipe image through ImageMagick subprocess to convert to AVIF.
-    """
-    new_path = image.filepath.with_suffix(".avif")
-    imagemagick = Popen(["magick", "-", "avif:-"], stdout=PIPE, stderr=PIPE, stdin=PIPE)
-    (new_data, _stderr) = imagemagick.communicate(input=image.data)
-    return RasterImage(filepath=new_path, data=new_data)
 
 
 def _image_mdx_component(image: Image) -> str:
-    return f'<Image src="/{image.filepath.relative_to("public")}" alt="Output of the previous code cell" />'
+    return f'<Image src="/{image.destination_filepath.relative_to("public")}" alt="Output of the previous code cell" />'
