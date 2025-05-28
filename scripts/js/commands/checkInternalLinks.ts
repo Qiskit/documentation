@@ -117,14 +117,14 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/index.mdx",
   "docs/migration-guides/qiskit-1.0-features.mdx",
   "docs/guides/construct-circuits.ipynb",
-  "docs/guides/bit-ordering.mdx",
+  "docs/guides/bit-ordering.ipynb",
   "docs/guides/pulse.ipynb",
   "docs/guides/primitives.mdx",
   "docs/guides/configure-qiskit-local.mdx",
   "docs/guides/transpiler-stages.ipynb",
   "docs/api/qiskit/providers.mdx",
   "docs/open-source/qiskit-sdk-version-strategy.mdx",
-  "docs/migration-guides/qiskit-backendv1-to-v2.mdx",
+  "docs/migration-guides/qiskit-backengdv1-to-v2.mdx",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
