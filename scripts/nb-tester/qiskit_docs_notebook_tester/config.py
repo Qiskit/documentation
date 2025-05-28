@@ -53,6 +53,7 @@ class NotebookJob:
     pre_execute_code: str
     backend_patch: str | None
     cell_timeout: int | None
+    log_cell_outputs: bool | None
     write: Result
 
 
@@ -94,6 +95,7 @@ def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
                 pre_execute_code=pre_execute_code,
                 backend_patch=patch,
                 cell_timeout=config.cell_timeout,
+                log_cell_outputs=config.log_cell_outputs,
                 write=write,
             )
 
@@ -106,6 +108,7 @@ class Config:
     check_pending_deprecations: bool
     write: bool
     groups: list[dict]
+    log_cell_outputs: bool
 
     @classmethod
     def from_args(cls, args: argparse.Namespace) -> Config:
@@ -144,6 +147,7 @@ class Config:
                 check_pending_deprecations=args.check_pending_deprecations,
                 write=args.write,
                 groups=groups,
+                log_cell_outputs=args.log_cell_outputs,
             )
 
         try:
@@ -169,6 +173,7 @@ class Config:
             check_pending_deprecations=args.check_pending_deprecations,
             write=args.write,
             groups=groups,
+            log_cell_outputs=args.log_cell_outputs,
         )
 
     def get_patch_for_group(self, group: dict) -> str | None:
@@ -272,5 +277,14 @@ def get_parser() -> argparse.ArgumentParser:
         "--check-pending-deprecations",
         action="store_true",
         help="Include checking for PendingDeprecationWarnings in notebook outputs",
+    )
+    parser.add_argument(
+        "--log-cell-outputs",
+        action="store_true",
+        help=(
+            "Print text outputs of cells to the console as they run.\n"
+            "NOTE: This script runs notebooks in parallel. When running more than one "
+            "notebook, cell outputs will appear as they're received, not grouped by notebook."
+        )
     )
     return parser
