@@ -124,7 +124,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/transpiler-stages.ipynb",
   "docs/api/qiskit/providers.mdx",
   "docs/open-source/qiskit-sdk-version-strategy.mdx",
-  "docs/migration-guides/qiskit-backengdv1-to-v2.mdx",
+  "docs/migration-guides/qiskit-backendv1-to-v2.mdx",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
