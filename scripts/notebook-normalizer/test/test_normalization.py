@@ -1,3 +1,4 @@
+import base64
 import nbformat
 from pathlib import Path
 from textwrap import dedent
@@ -74,7 +75,7 @@ def test_svg():
     assert result.images == [
         SvgImage(
             data="svgdata",
-            filepath=Path("public/root/aaaaaa-0.svg"),
+            destination_filepath=Path("public/root/aaaaaa-0.svg"),
         )
     ]
     assert len(result.nb.cells[0]["outputs"]) == 1
@@ -123,8 +124,11 @@ def test_png():
     assert changes_made(result)
     assert result.images == [
         RasterImage(
-            data="".encode(),
-            filepath=Path("public/root/aaaaaa-0.avif"),
+            data=b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01'
+                 b'\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90wS\xde\x00\x00\x00'
+                 b'\x0cIDATx\x9cc\xf8\xcf\xc0\x00\x00\x03\x01\x01\x00\xc9',
+            destination_filepath=Path("public/root/aaaaaa-0.avif"),
+            source_format='.png',
         )
     ]
     assert len(result.nb.cells[0]["outputs"]) == 1
@@ -175,8 +179,11 @@ def test_png_and_jpeg():
     assert changes_made(result)
     assert result.images == [
         RasterImage(
-            data="".encode(),
-            filepath=Path("public/root/aaaaaa-0.avif"),
+            data=b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01'
+                 b'\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90wS\xde\x00\x00\x00'
+                 b'\x0cIDATx\x9cc\xf8\xcf\xc0\x00\x00\x03\x01\x01\x00\xc9',
+            destination_filepath=Path("public/root/aaaaaa-0.avif"),
+            source_format='.png',
         )
     ]
     assert len(result.nb.cells[0]["outputs"]) == 1

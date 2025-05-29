@@ -83,7 +83,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
-const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [];
+const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
+  "/learning/courses/quantum-business-foundations/exam",
+];
 
 export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
@@ -193,6 +195,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
       "0.36/",
       "0.37/",
       "0.38/",
+      "0.39/",
     ].map((vers) => [
       `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [
