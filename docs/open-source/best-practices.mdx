@@ -1,0 +1,149 @@
+---
+title: Project setup and best practices
+description: Testing, packaging, and code-quality best practices for your Python project.
+---
+
+# Best practices for your project
+
+If you have an idea for a Qiskit-based project, you'll often want to share it
+with the community. Putting your code online is a good start, but if a user
+can't work out how to install or use your project, they'll give up and move on.
+This page covers licensing, packaging, testing, and documenting your project,
+all of which improve your users' experience. If you're releasing research code,
+following best practices will also help others reproduce your results.
+
+Once you've put the finishing touches on it, consider adding your project to the [Qiskit
+ecosystem](https://www.ibm.com/quantum/ecosystem).
+
+## GitHub
+
+Most Qiskit projects are hosted on [GitHub](https://github.com/), a source-code
+hosting platform. GitHub is based on [Git](https://git-scm.com/), a version
+control system. It provides a large set of tools to collaborate and
+maintain high quality. See [Github
+skills](https://skills.github.com/) to get up to speed on GitHub quickly.
+
+Some key features are:
+
+* **Issues and pull requests**
+
+  Users can use GitHub to report bugs in your project or request changes to it.
+  Your team and external contributors can use pull requests to propose and
+  review changes to your project's code.
+
+  If you want to accept contributions from others, make sure to add a
+  [contributing
+  guide](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/setting-guidelines-for-repository-contributors)
+  and a [code of
+  conduct](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-code-of-conduct-to-your-project).
+
+* **GitHub actions**
+
+  This feature runs scripts in the cloud when certain events happen in your
+  GitHub repo. For example, you can run your [test suite](#test-your-project)
+  when you push new code or automatically [publish your
+  package](#package-your-project) when you tag a commit.
+
+  Use GitHub actions for [continuous
+  integration](https://www.atlassian.com/continuous-delivery/continuous-integration)
+  (CI) and [continuous
+  deployment](https://www.ibm.com/topics/continuous-deployment) (CD) of your
+  project.
+
+* **Security features**
+
+  GitHub supports features to keep your projects secure. These include:
+
+  * [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates)
+    – a tool to automatically update your dependencies.
+  * [Trusted publishing to PyPI](https://docs.pypi.org/trusted-publishers/) –
+    to reduce the risk of a malicious actor gaining control of your package.
+  * [Branch
+    protection](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
+    – to make sure code meets some criteria before being pushed to certain
+    branches.
+
+The rest of this page will assume you have your project hosted on GitHub, although
+you are welcome to other providers like GitLab.
+
+## Choose a license
+
+If you want others to use your project, you *must* choose an appropriate
+license. Otherwise, your grant no permission for others to use it. Most
+projects in the [Qiskit ecosystem](https://www.ibm.com/quantum/ecosystem) use
+the Apache 2.0 or MIT licenses. Visit GitHub's
+[choosealicense.com](https://choosealicense.com) to decide which license is
+best for you, and consider seeking legal help.
+
+Add your license to the top level of your repository in a text file named
+`LICENSE`. When you create a new repository, GitHub will give you the option to
+automatically add a standard license.
+
+## Dependency management
+
+Most projects depend on other projects, such as Qiskit or NumPy. If you don't
+clearly specify your project's dependencies, users (including your future self)
+will struggle to install and use it.
+
+The simplest way to list your requirements is to put the Python version you're
+using in your `README` and include a
+[`requirements.txt`](https://pip.pypa.io/en/stable/reference/requirements-file-format/)
+file in your repository. You may also see `requirements-dev.txt` for
+dependencies only used for contributing to the project, such as linters or test
+runners. You must manually identify your requirements and keep requirements
+files up to date.
+
+Tools such as [Poetry](https://python-poetry.org/) manage dependencies for you
+and keep track of everything you've installed. Installing a dependency through
+Poetry will add it to a "lockfile", which stores the exact versions of each
+package needed to replicate your environment. Without a lockfile, future users
+may try to run your project with more recent versions of your dependencies,
+with which it might not work correctly.
+
+See [Poetry: Basic usage](https://python-poetry.org/docs/basic-usage/) to set
+up your project with Poetry.
+
+## Package your project
+
+Consider [packaging your Python
+project](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
+to make it easy for others to install and use. You should also consider
+uploading your package to [PyPI](https://pypi.org/) so it can be installed
+through `pip`.
+
+If your project is a transpiler plugin, see [Create a transpiler
+plugin](/guides/create-transpiler-plugin) to integrate correctly with Qiskit's
+transpiler. This makes it easy for users to incorporate your plugin into their
+Qiskit code.
+
+## Test your project
+
+Tests are small functions you'll write to make sure your code is working
+correctly. A good test suite makes working on your code easier; if the tests
+pass, your code works. This means you can be confident you haven't broken
+anything when refactoring or adding new features. Seeing tests in a project's
+repository gives users more confidence in the stability of the project.
+
+The two most popular testing frameworks in Python are:
+* [`pytest`](https://docs.pytest.org/en/stable/)
+* Python's built-in [`unittest`](https://docs.python.org/3/library/unittest.html)
+
+You can also consider using [`tox`](https://tox.wiki/en/4.18.0/) to test your
+project against different versions of Python. Tox [is compatible](https://python-poetry.org/docs/faq/#is-tox-supported) with Poetry.
+
+## Code quality tools
+
+A linter is a tool that detects (and sometimes corrects) common problems in
+your code. Formatters will auto-format your code to use a consistent style.
+
+A popular linter for Python is
+[`ruff`](https://docs.astral.sh/ruff/), which also
+includes a formatter (based on the popular tool [Black](https://black.readthedocs.io/en/stable/)).
+Other popular tools include
+[`mypy`](https://www.mypy-lang.org/) for type-checking, and
+[`bandit`](https://bandit.readthedocs.io/en/latest/) for security scanning.
+
+Once you've set up your tools, you can use a [GitHub action](#github) to make
+sure all code pushed to your repository has been linted.
+
+Document how to run the linters and formatters in your README.md or CONTRIBUTOR.md.
