@@ -27,7 +27,7 @@ There are a few major changes you will see in the updated IBM Quantum Platform:
 
 * For Open Plan users, there is no longer a limit to the number of jobs you can have in the queue.
 * Open Plan users cannot run session jobs.  Previously, if you tried to run a job in a session, it was run in job mode.  Now, if you try to run a job in a session, the job fails.  Instead, Open Plan users should explicitly write their code to run in job or batch mode. See [execution modes](/docs/guides/execution-modes) to learn how to set the execution mode.
-* When activating the service, an instance is required, and the channel must be set to `ibm_cloud`. The instance is specified by using its cloud resource name (CRN).
+* When activating the service, an instance is required, and the channel must be set to `ibm_cloud` or `ibm_quantum_platform`. Both of these two channels point to the new IBM Quantum Platform API but the `ibm_cloud` channel will be deprecated and removed in a future release. The instance is specified by using its cloud resource name (CRN).
 * Quantum computers powered by the state-of-the-art IBM Quantum Heron processor are available through the Open Plan.
 * For IBM Quantum Platform Classic users, the hierarchical authorization structure has changed.  That is, there are no hubs, groups, or projects in the new platform. All user management is done through IBM Cloud [identity and access management (IAM)](https://cloud.ibm.com/docs/account?topic=account-iamoverview). By default, access groups are created for you when you create an instance through the IBM Quantum Platform user interface.
 
@@ -35,7 +35,8 @@ There are a few major changes you will see in the updated IBM Quantum Platform:
 
 _Instances_ are virtual servers that manage your workload execution, including executing quantum programs and classical compute tasks (such as processing error mitigation).  Instances are specified by their Cloud Resource Name (CRN).
 
-You can see the instances you have access to on the dashboard or by clicking the Instances tab from the dashboard. Each instance is listed with its CRN identifier. You need to include this identifier when connecting to Qiskit Runtime via the `QiskitRuntimeService` object when using `qiskit-ibm-runtime` in a Python environment.
+You can see the instances you have access to on the dashboard or by clicking the Instances tab from the dashboard. Each instance is listed with its CRN identifier. You can include this identifier when connecting to Qiskit Runtime via the `QiskitRuntimeService` object when using `qiskit-ibm-runtime` in a Python environment. When an instance is passed in, only backends and jobs from the instance passed in will be available. Alternatively, if an instance is not included, then all backends and jobs across all instances in your account will be available. In this case, when a backend is selected, an instance with the backend available will be selected. 
+
 
 ## Available plans
 
@@ -80,8 +81,8 @@ Follow these steps to start using the new version of IBM Quantum Platform.
       </Admonition>
    1. Choose whether you want an access group to be created for this instance and click **Create instance**.  For an Open instance, you probably don't need an access group, although creating one won't impact your usage unless you add another user to the group. You can add or remove access groups at any time from IBM Cloud. To learn more, see [Setting up access groups.](https://cloud.ibm.com/docs/account?topic=account-groups)
 3. Set up your credentials using the [following steps.](#credentials)
-   * Set the channel to `ibm_cloud`. If you previously set your default channel to `ibm_quantum` in your saved credentials, you need to update that setting. If you were previously working with Qiskit Runtime on IBM Cloud, you can skip this.
-   * Specify the instance's CRN. To copy the instance CRN, go to your [dashboard](https://quantum.cloud.ibm.com/), go to [Instances](https://quantum.cloud.ibm.com/instances), and click the copy icon at the end of the instance's row.
+   * Set the channel to `ibm_quantum_platform`. If you previously set your default channel to `ibm_quantum` in your saved credentials, you need to update that setting. If you were previously working with Qiskit Runtime on IBM Cloud, you can skip this.
+   * Optionally specify the instance's CRN. To copy the instance CRN, go to your [dashboard](https://quantum.cloud.ibm.com/), go to [Instances](https://quantum.cloud.ibm.com/instances), and click the copy icon at the end of the instance's row. If an instance is not specified, all instances in your account will be available. 
    * Optionally name this set of credentials.
 
 <span id="credentials"></span>
@@ -104,12 +105,22 @@ Follow these steps to start using the new version of IBM Quantum Platform.
 
     QiskitRuntimeService.save_account(
       token=token,
-      channel="ibm_cloud", # `channel` distinguishes between different account types.
-      instance="instance-CRN", # Copy the instance CRN from the Instance section on the dashboard.
+      channel="ibm_quantum_platform", # `channel` distinguishes between different account types.
+      instance="instance-CRN", # Optionally copy the instance CRN from the Instance section on the dashboard.
       name="account-name", # Optionally name this set of credentials.
       overwrite=True # Only needed if you already have Cloud credentials.
     )
     ```
+   
+   Note that it is no longer required to pass in an instance when saving an account or initializing the `QiskitRuntimeService()`. If an instance is not passed in, all instances will be checked when a backend is retrieved (`service.backend("backend_name")`). If an instance is passed into `save_account()`, or passed in during initialization, it will be used as the default instance when retrieving backends. The instance passed in at initialization will take precedence over the one saved in the account.
+
+      * New parameters, `region`, and `plans_preference`, have been added to the `QiskitRuntimeService()` initializer and the `save_account()` method. These can be used to prioritize certain instances on the new platform (`ibm_quantum_platform`, and temporarily, `ibm_cloud` channels) without explicitly providing the CRN. 
+      `region` allows you to set a region preference (`us-east` or `eu-de`), so if `us-east` is saved, 
+      then only instances from `us-east` will be checked. `plans_preference` takes a list of plans where instances will be prioritized in the order of plans given. For example, `['Open', 'Premium']` would prioritize all Open Plan instances, then all Premium Plan instances, and then the rest.
+      * In addition to the IBM Cloud Resource Name (CRN), the instance name can also be passed in as the instance value.
+      * If you have access to multiple accounts, only one account per API token can be used. The 
+      IBM Cloud API Token is treated as the account identifier and will unlock the resources associated with the account the token was created in. A list of tokens per account can be found on the [API keys](https://cloud.ibm.com/iam/apikeys) page.
+
     Run `exit()` to close the Python shell. From now on, whenever you need to authenticate to the service, you can load your credentials with `QiskitRuntimeService()`.
 
     ```python
@@ -132,7 +143,7 @@ Follow these steps to start using the new version of IBM Quantum Platform.
 
     # After using the following code, go to the IBM Cloud API keys page (https://cloud.ibm.com/iam/apikeys)
     # and disable your API key (click Enabled slider in the API key field)
-    service = QiskitRuntimeService(channel="ibm_cloud", token="<MY_IBM_QUANTUM_TOKEN>", instance="<MY_INSTANCE_CRN>")
+    service = QiskitRuntimeService(channel="ibm_quantum_platform", token="<MY_IBM_QUANTUM_TOKEN>", instance="<MY_INSTANCE_CRN>")
     ```
 
     <Admonition type="caution">
