@@ -1,23 +1,20 @@
 ---
 title: QPU information
 description: Information about QPU calibration, properties, and versioning
+
 ---
 
 # QPU information
 
 <LegacyContent>
-  <Admonition type="note">
-    This documentation is relevant to IBM Quantum&reg; Platform Classic. If you
-    need the newer version, go to the new [IBM Quantum Platform
-    documentation.](https://quantum.cloud.ibm.com/docs/guides/qpu-information)
-  </Admonition>
+<Admonition type="note">
+This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.](https://quantum.cloud.ibm.com/docs/guides/qpu-information)
+</Admonition>
 </LegacyContent>
 <CloudContent>
-  <Admonition type="note">
-    This documentation is relevant to the new IBM Quantum&reg; Platform. If you
-    need the previous version, return to the [IBM Quantum Platform Classic
-    documentation.](https://docs.quantum.ibm.com/guides/qpu-information)
-  </Admonition>
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/qpu-information)
+</Admonition>
 </CloudContent>
 
 IBM&reg; offers both open and premium access to a wide variety of quantum processing units (QPUs). All QPUs deployed by IBM are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these QPUs. You can see the full details of all IBM QPUs on the [Quantum processing units page](https://quantum.ibm.com/services/resources).
@@ -30,26 +27,26 @@ Each QPU has a version number in the form X.Y.Z (major.minor.revision). A circui
 
 The major version will increment for changes such as:
 
-- Sample changes.
-- Major changes to the control electronics.
-- Moving the QPU to a new location, if significant behavior changes result.
+*   Sample changes.
+*   Major changes to the control electronics.
+*   Moving the QPU to a new location, if significant behavior changes result.
 
 ### Minor version
 
 The minor version will increment for changes such as:
 
-- Warmup / cool-down cycles.
-- Swapping out some electronics, if the replacement appreciably affects operation.
-- Changing the direction of a controlled-NOT gate.
-- Dropping a gate for some duration of time due to calibration issues, and corrections cannot readily be done in software.
+*   Warmup / cool-down cycles.
+*   Swapping out some electronics, if the replacement appreciably affects operation.
+*   Changing the direction of a controlled-NOT gate.
+*   Dropping a gate for some duration of time due to calibration issues, and corrections cannot readily be done in software.
 
 ### Revision version
 
 The revision version number will increment for fixes that do not break the existing compiled circuit. These changes include:
 
-- Manual calibrations to improve fidelities.
-- Small electronics changes that don’t affect operation.
-- QPU software updates.
+*   Manual calibrations to improve fidelities.
+*   Small electronics changes that don’t affect operation.
+*   QPU software updates.
 
 ## QPU configuration values
 
@@ -74,73 +71,51 @@ These values are shown on both the [Compute resources page](https://quantum.clou
 *   **Features** - Additional information about the QPU, such as whether it supports pulse inputs.
 
 <Admonition type="note" title="Average gate fidelity">
-  Note that the metric for median ECR error (for Eagle processors) and median CZ
-  error (for Heron processors) is the [average gate
-  fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity), which is the
-  average over all possible input states of the fidelity between the state
-  produced by the actual operation and the state produced by the ideal
-  operation.
+Note that the metric for median ECR error (for Eagle processors) and median CZ error (for Heron processors) is the [average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity), which is the average over all possible input states of the fidelity between the state produced by the actual operation and the state produced by the ideal operation.
 </Admonition>
 
 **Additional information available on the details page for each QPU**
 
 To access the details page, click the **Compute resources** tab, then click the name of the QPU.
 
-- **Version** - The version number of a QPU in the form `major.minor.revision`. See [QPU versioning](#qpu-versioning) for details on how this number is assigned.
+*   **Version** - The version number of a QPU in the form `major.minor.revision`. See [QPU versioning](#qpu-versioning) for details on how this number is assigned.
 
-- **Calibration data** - Download the calibration data as a CSV file or click the arrow to display the Topology diagram, Individual qubit readout graph, or the Calibration data table. You can customize the data that is shown, depending on the view you have open. For example, on the Topology diagram, you can choose the data you want to see for connections and qubits. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
+*   **Calibration data** - Download the calibration data as a CSV file or click the arrow to display the Topology diagram, Individual qubit readout graph, or the Calibration data table. You can customize the data that is shown, depending on the view you have open. For example, on the Topology diagram, you can choose the data you want to see for connections and qubits. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
 
-  > - <span id="coupling-map">**Topology diagram** or **coupling map** </span> -
-  >   A diagram that indicates the pairs of qubits that support two-qubit gate operations
-  >   between them. This is also called the coupling map or connectivity. Qubits
-  >   are represented as circles and the supported two-qubit gate operations are
-  >   displayed as lines connecting the qubits.
-  > - **Individual qubit properties** - Shows the following properties:
-  >   - **T1 (Relaxation Time)**: The T1 time represents the average duration a qubit remains in its excited state ($|1\rangle$) before decaying to its ground state ($|0\rangle$) due to energy relaxation. This parameter is crucial for understanding the qubit's energy relaxation behavior and is typically measured in microseconds (µs).
-  >   - **T2 (Dephasing Time)**: The T2 time denotes the timescale over which a qubit maintains phase coherence between the $|0\rangle$ and $|1\rangle$ states. It accounts for both energy relaxation and pure dephasing processes, providing insight into the qubit's coherence properties. T2 is also measured in microseconds (µs).
-  >   - **frequency**: This parameter specifies the resonant frequency of the qubit, indicating the energy difference between the $|0\rangle$ and $|1\rangle$ states. It is typically expressed in gigahertz (GHz) and is essential for calibrating control pulses and understanding qubit behavior.
-  >   - **anharmonicity**: Anharmonicity in superconducting qubits refers to the difference in energy between the first and second excited states of the qubit. It is typically expressed in frequency units, such as gigahertz (GHz) or hertz (Hz).
-  >   - **readout_error**: The readout error quantifies the average probability of incorrectly measuring a qubit's state. It is commonly calculated as the mean of prob_meas0_prep1 and prob_meas1_prep0, providing a single metric for measurement fidelity.
-  >   - **prob_meas0_prep1**: This parameter indicates the probability of measuring a qubit in the 0 state when it was intended to be prepared in the $|1\rangle$ state, denoted as $P(0|1)$. It reflects errors in state preparation and measurement (SPAM), particularly measurement errors in superconducting qubits.
-  >   - **prob_meas1_prep0**: Similarly, this parameter represents the probability of measuring a qubit in the 1 state when it was intended to be prepared in the $|0\rangle$ state, denoted as $P(1|0)$. Like prob_meas0_prep1, it reflects SPAM errors, with measurement errors being the predominant contributor in superconducting qubits.
-  >   - **readout_length**: The readout_length specifies the duration of the readout operation for a qubit. It measures the time from the initiation of the measurement pulse to the completion of signal digitization, after which the system is ready for the next operation. Understanding this parameter is crucial for optimizing circuit execution, especially when incorporating mid-circuit measurements.
+    > *   <span id="coupling-map">**Topology diagram** or **coupling map** </span> - A diagram that indicates the pairs of qubits that support two-qubit gate operations between them. This is also called the coupling map or connectivity. Qubits are represented as circles and the supported two-qubit gate operations are displayed as lines connecting the qubits.
+    > - **Individual qubit properties** - Shows the selected property for each qubit on the QPU. You can view properties such as:
+    >   - **T1 (Relaxation Time)**: The T1 time represents the average duration a qubit remains in its excited state ($|1\rangle$) before decaying to its ground state ($|0\rangle$) due to energy relaxation. This parameter is crucial for understanding the qubit's energy relaxation behavior and is typically measured in microseconds (µs).
+    >   - **T2 (Dephasing Time)**: The T2 time denotes the timescale over which a qubit maintains phase coherence between the $|0\rangle$ and $|1\rangle$ states. It accounts for both energy relaxation and pure dephasing processes, providing insight into the qubit's coherence properties. T2 is also measured in microseconds (µs).
+    >   - **frequency**: This parameter specifies the resonant frequency of the qubit, indicating the energy difference between the $|0\rangle$ and $|1\rangle$ states. It is typically expressed in gigahertz (GHz) and is essential for calibrating control pulses and understanding qubit behavior.
+    >   - **anharmonicity**: Anharmonicity in superconducting qubits refers to the difference in energy between the first and second excited states of the qubit. It is typically expressed in frequency units, such as gigahertz (GHz) or hertz (Hz).
+    >   - **readout_error**: The readout error quantifies the average probability of incorrectly measuring a qubit's state. It is commonly calculated as the mean of prob_meas0_prep1 and prob_meas1_prep0, providing a single metric for measurement fidelity.
+    >   - **prob_meas0_prep1**: This parameter indicates the probability of measuring a qubit in the 0 state when it was intended to be prepared in the $|1\rangle$ state, denoted as $P(0|1)$. It reflects errors in state preparation and measurement (SPAM), particularly measurement errors in superconducting qubits.
+    >   - **prob_meas1_prep0**: Similarly, this parameter represents the probability of measuring a qubit in the 1 state when it was intended to be prepared in the $|0\rangle$ state, denoted as $P(1|0)$. Like prob_meas0_prep1, it reflects SPAM errors, with measurement errors being the predominant contributor in superconducting qubits.
+    >   - **readout_length**: The readout_length specifies the duration of the readout operation for a qubit. It measures the time from the initiation of the measurement pulse to the completion of signal digitization, after which the system is ready for the next operation. Understanding this parameter is crucial for optimizing circuit execution, especially when incorporating mid-circuit measurements.
 
-- **Your access instance** - Instances that you can use. Click the arrow on the right to expand or collapse this section. For each instance, you can see the following information:
+*   **Your access instance** - Instances that you can use. Click the arrow on the right to expand or collapse this section. For each instance, you can see the following information:
 
-  - **Max shots** - The maximum number of times you can execute a single circuit on a QPU. The number of shots taken determines the precision of the output probability distribution over repeated executions.
-  - **Max circuits** - The maximum number of quantum circuits that you can submit to this QPU at one time.
-  - **Max qubits per pulse gate** - The maximum number of qubit arguments allowed to a gate.
-  - **Max channels per pulse gate** - The maximum number of channels you can refer to within a pulse schedule. Typically each qubit is associated with a drive channel, a measure channel, an acquisition channel, and then auxiliary control channels for things like cross resonance.
-  - **Usage** - Click the link to see the jobs that you have run on this QPU.
+    *   **Max shots** - The maximum number of times you can execute a single circuit on a QPU. The number of shots taken determines the precision of the output probability distribution over repeated executions.
+    *   **Max circuits** - The maximum number of quantum circuits that you can submit to this QPU at one time.
+    *   **Max qubits per pulse gate** - The maximum number of qubit arguments allowed to a gate.
+    *   **Max channels per pulse gate** - The maximum number of channels you can refer to within a pulse schedule. Typically each qubit is associated with a drive channel, a measure channel, an acquisition channel, and then auxiliary control channels for things like cross resonance.
+    *   **Usage** - Click the link to see the jobs that you have run on this QPU.
 
 ## View your resources
-
 <LegacyContent>
-  To find your available QPUs, open the [Compute
-  resources](https://quantum.ibm.com/services/resources) page. Click a QPU to
-  view its details.
+To find your available QPUs, open the [Compute resources](https://quantum.ibm.com/services/resources) page.  Click a QPU to view its details.
 </LegacyContent>
 <CloudContent>
-  To find your available QPUs, open the [Compute
-  resources](https://quantum.cloud.ibm.com/computers) page. Click a QPU to view
-  its details.
+To find your available QPUs, open the [Compute resources](https://quantum.cloud.ibm.com/computers) page.  Click a QPU to view its details.
 </CloudContent>
-You can also view your available QPUs by using the [backends
-API.](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backends)
+You can also view your available QPUs by using the [backends API.](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backends)
 
 ## View QPU configuration
-
 <LegacyContent>
-  View QPU configuration values by selecting a QPU on the [Quantum processing
-  units](https://quantum.ibm.com/services/resources) page from the Compute
-  resources tab. The three tabs in the Calibration data section let you choose
-  how to view the calibration data; the Map view tab is automatically selected.
+View QPU configuration values by selecting a QPU on the [Quantum processing units](https://quantum.ibm.com/services/resources) page from the Compute resources tab. The three tabs in the Calibration data section let you choose how to view the calibration data; the Map view tab is automatically selected.
 </LegacyContent>
 <CloudContent>
-  View QPU configuration values by selecting a QPU on the [Compute
-  resources](https://quantum.cloud.ibm.com/computers) page. The three tabs in
-  the Calibration data section let you choose how to view the calibration data;
-  the Map view tab is automatically selected.
+View QPU configuration values by selecting a QPU on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. The three tabs in the Calibration data section let you choose how to view the calibration data; the Map view tab is automatically selected.
 </CloudContent>
 
 ### Expanded card for a sample QPU
@@ -165,5 +140,4 @@ Click the download icon in the upper right of any tab to download a CSV file of 
 To find your available QPUs on **IBM Cloud**, view the [IBM Cloud Compute resources page.](https://cloud.ibm.com/quantum/resources/your-resources) You must be logged in to see your available compute resources. You are shown a snapshot of each QPU. To see full details, click the QPU name. You can also search for QPU from this page.
 
 To see the QPUs available to you on **IBM Quantum Platform**, click the [Compute resources tab](https://quantum.ibm.com/services/resources) from your dashboard. You are shown a snapshot of each QPU. To see full details, click the QPU name. You can also sort, filter, and search from this page.
-
 </LegacyContent>
