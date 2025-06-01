@@ -103,7 +103,7 @@ circuit_drawer(new_circ, output='mpl')
 ```
 
 ## Implement a BasicMapper pass
-The DAG structure can be leveraged for writing transpiler passes. In the example below, a ```BasicMapper``` pass is implemented to map an arbitrary circuit onto a device with restricted qubit connectivity. For additional guidance, refer to the official documentation on writing custom transpiler passes.
+The DAG structure can be leveraged for writing transpiler passes. In the example below, a ```BasicMapper``` pass is implemented to map an arbitrary circuit onto a device with restricted qubit connectivity. For additional guidance, refer to the guide on [writing custom transpiler passes.](custom-transpiler-pass)
 
 The pass is defined as a ```TransformationPass```, meaning that it modifies the circuit. It does so by traversing the DAG layer-by-layer, checking whether each instruction satisfies the constraints imposed by the device's coupling map. If a violation is detected, a swap path is determined and the necessary SWAP gates are inserted accordingly.
 
