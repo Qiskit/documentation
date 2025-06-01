@@ -94,7 +94,7 @@ cx_node = dag.op_nodes(op=CXGate).pop()
 dag.substitute_node_with_dag(cx_node, mini_dag, wires=[p[0], p[1]])
 dag_drawer(dag)
 ```
-After all transformations are completed, the DAG can be converted back into a regular ```QuantumCircuit object```. This is how the transpiler operates. A circuit is taken, processed in DAG form, and a transformed circuit is produced as output.
+After all transformations are completed, the DAG can be converted back into a regular ```QuantumCircuit object```. This is how the transpiler pipeline operates. A circuit is taken, processed in DAG form, and a transformed circuit is produced as output.
 
 ```python
 from qiskit.converters import dag_to_circuit
