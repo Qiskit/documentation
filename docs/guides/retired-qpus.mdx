@@ -104,11 +104,16 @@ jobs = service.jobs(backend_name=<backend_name>)
 ```
 </LegacyContent>
 <CloudContent>
+
+<Admonition type="Note">
+Passing in a Cloud Resource Name (CRN) or name in the following code is optional.  When it is passed in, only backends and jobs from that instance are available.  If an instance is not specified, all backends and jobs across all instances in your account are available. In this case, when a backend is specified, an instance that can access that backend is found and used.
+</Admonition>
+
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-# Load your IBM Quantum account(s). Replace "<IBM Cloud CRN>" with your desired instance's CRN
-service = QiskitRuntimeService(channel="ibm_cloud", instance="<IBM Cloud CRN>")
+# Load your IBM Quantum account. Replace "<IBM Cloud CRN>" with your desired instance's CRN or name.
+service = QiskitRuntimeService(channel="ibm_cloud", instance="<IBM Cloud CRN or Name>")
 
 # Retrieve a single job by id
 job = service.job(<job_id>)

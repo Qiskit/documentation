@@ -34,7 +34,7 @@ The instances that you can access are listed at the bottom of your [Account page
 <CloudContent>
 Access to IBM Quantum Platform services is controlled by the **instances** to which you are assigned. Users can belong to more than one instance at any given time.
 
-An instance is a deployment of Qiskit Runtime. You need a different instance for every service plan (such as Open or Standard) you use in every region that you want to use. The account manager and anyone with enough permission can create an instance and define its configuration, such as its allocations, usage limits, quantum computers, and user permissions. Each instance is identified by a unique Cloud Resource Name (CRN).  This CRN is used when sending workloads from your Qiskit programs.
+An instance is a deployment of Qiskit Runtime. You need a different instance for every service plan (such as Open or Standard) you use in every region that you want to use. The account manager and anyone with enough permission can create an instance and define its configuration, such as its allocations, usage limits, quantum computers, and user permissions. Each instance is identified by a unique Cloud Resource Name (CRN).  This CRN can be used when sending workloads from your Qiskit programs.
 
 The IBM Quantum Platform [dashboard](https://quantum.cloud.ibm.com/) displays the instances to which you have access.  You can view full details, edit, and delete instances on the [Instances page.](https://quantum.cloud.ibm.com/instances)
 
@@ -130,10 +130,15 @@ If you do not specify an instance, the code will select one in the following ord
 
 </LegacyContent>
 <CloudContent>
-You must use the CRN to specify an instance to use; either when initializing the service or when sending the workload to a QPU.  The instance's CRN is listed on the [Platform dashboard](https://quantum.cloud.ibm.com/). Before running the below code, follow the steps to [save an account.](/docs/guides/cloud-setup#cloud-save)
+You can use the CRN or instance name to specify an instance to use; either when initializing the service or when sending the workload to a QPU.  When an instance is passed in, only backends and jobs from that instance are available.
+
+If an instance is not included, all backends and jobs across all instances in your account are available. In this case, when a backend is specified, an instance that can access the backend is found and used.
+
+The instance's CRN is listed on the [Platform dashboard](https://quantum.cloud.ibm.com/). Before running the below code, follow the steps to [save an account.](/docs/guides/cloud-setup#cloud-save)
 
 ```python
-# Specify an instance at service level. This becomes the default unless overwritten.
+# Optional: Specify an instance at service level.
+# This becomes the default unless overwritten.
 service = QiskitRuntimeService(instance="<CRN>")
 backend = service.backend("<QPU-name>")
 ```
