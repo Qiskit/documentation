@@ -67,7 +67,10 @@ The OpenAI Python library provides convenient access to the OpenAI REST API (suc
 from openai import OpenAI
 
 # Initialize the client with your API token
-client = OpenAI(api_key=<IBM Quantum Classic API token>, base_url="https://qiskit-code-assistant.quantum.ibm.com/v1")
+client = OpenAI(
+    api_key="<IBM Quantum Classic API token>",
+    base_url="https://qiskit-code-assistant.quantum.ibm.com/v1",
+)
 
 # Make a request to the completions API
 try:
@@ -92,14 +95,16 @@ from litellm import completion
 
 response = completion(
     model=f"text-completion-openai/granite-8b-qiskit",
-    base_url= https://qiskit-code-assistant.quantum.ibm.com/v1,
+    base_url="https://qiskit-code-assistant.quantum.ibm.com/v1",
     messages=[
-        {"role": "user", "content": "#Transpile a random circuit using the Qiskit Transpiler Service"}
+        {
+            "role": "user",
+            "content": "#Transpile a random circuit using the Qiskit Transpiler Service",
+        }
     ],
-    api_key=<IBM Quantum Classic API key>
+    api_key="<IBM Quantum Classic API key>",
 )
 
 completion_response = response.json()
 print(completion_response)
-
 ```
