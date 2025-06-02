@@ -189,31 +189,4 @@ out_circ.draw(output='mpl')
 
 
 ## DAGOpNode Attributes in Qiskit
-In Qiskit's DAGCircuit framework, quantum circuits are represented as directed acyclic graphs (DAGs), where operations and data dependencies are encoded as graph nodes and edges. One of the central elements of this representation is the DAGOpNode class, which is used to represent quantum instructions as nodes within the DAG.
-
-A DAGOpNode is instantiated automatically when a gate or instruction is added to a DAGCircuit. Each such node contains detailed information about the operation it represents. Below are some of the most commonly used attributes of a DAGOpNode:
-
-- ```op```:
-The Instruction object represented by the node is stored here. This could be a single-qubit gate like HGate, a controlled operation like CXGate, or a composite instruction.
-
-- ```name```:
-The name of the operation is stored as a string. For example, the name of an HGate node would be 'h'.
-
-- ```qargs```:
-The quantum arguments (qubits) on which the operation acts are recorded here. This is a list of Qubit instances from the quantum registers defined in the DAG.
-
-- ```cargs```:
-The classical arguments (if any) associated with the operation, such as control bits for classically controlled operations, are stored in this list.
-
-- ```condition```:
-If the instruction is classically conditioned (e.g., an X gate applied only when a classical bit is 1), the condition is specified here as a tuple (ClassicalRegister, int).
-
-- ```type```:
-The type of node (e.g., 'op') is captured here. For DAGOpNode instances, this will always be 'op'.
-
-- ```wire``` (for DAGInNode and DAGOutNode):
-Though not an attribute of DAGOpNode, it is worth noting that input and output nodes (DAGInNode and DAGOutNode) use the wire attribute to denote the qubit or classical bit they correspond to.
-
-Each DAGOpNode also contains information about its relationships to other nodes in the DAG. Through methods provided by the DAGCircuit API, such as .successors(node) and .predecessors(node), dependencies and execution order constraints can be examined.
-
-By accessing and analyzing these attributes, circuits can be introspected, transformed, and optimized during the transpilation process. This information is used extensively when writing custom transpiler passes.
+For a complete reference of available attributes and methods for ```DAGOpNode```, please see the Qiskit API documentation.
