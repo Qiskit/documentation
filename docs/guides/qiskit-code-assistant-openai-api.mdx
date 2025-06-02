@@ -38,7 +38,7 @@ To retrieve/view the model disclaimer, make a **GET** request to the disclaimer 
 curl -X 'GET' \
   'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-3.3-8b-qiskit/disclaimer' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer <IBM Quantum API key>'
+  -H 'Authorization: Bearer <IBM Quantum Classic API key>'
 ```
 
 If you agree with the model disclaimer, to accept it, **POST** to the disclaimer endpoint providing the disclaimer's ID and whether it is accepted or rejected. For example:
@@ -47,7 +47,7 @@ If you agree with the model disclaimer, to accept it, **POST** to the disclaimer
 curl -X 'POST' \
   'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-3.3-8b-qiskit/disclaimer' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer <IBM Quantum API key>' \
+  -H 'Authorization: Bearer <IBM Quantum Classic API key>' \
   -H 'Content-Type: application/json' \
   -d '{
   "disclaimer": "<DISCLAIMER_ID>",
@@ -66,9 +66,9 @@ The OpenAI Python library provides convenient access to the OpenAI REST API (suc
 ```
 from openai import OpenAI
 
-# Initialize the client with your API key
+# Initialize the client with your API token
 client = OpenAI(
-    api_key="<IBM Quantum Classic API key>",
+    api_key="<IBM Quantum Classic API token>",
     base_url="https://qiskit-code-assistant.quantum.ibm.com/v1",
 )
 
@@ -108,5 +108,4 @@ response = completion(
 
 completion_response = response.json()
 print(completion_response)
-
 ```
