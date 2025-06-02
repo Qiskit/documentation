@@ -5,7 +5,7 @@ description: How to use Directed Acyclic Graphs (DAGs) to analyze and transform 
 
 # Work with DAGs in transpiler passes
 
-In Qiskit, within the transpiler stages, circuits are represented internally using a Directed Acyclic Graph (DAG). The advantage of this representation over a pure list of gates (that is, netlist) is that the flow of information between operations is explicit, making it easier for passes to make transformation decisions without changing the semantics of the circuit.
+In Qiskit, within the transpilation stages, circuits are represented using a DAG. In general, a DAG is composed of vertices (also known as "nodes") and directed edges that connect pairs of vertices in a particular orientation. This representation is stored using ```qiskit.dagcircuit.DAGCircuit``` objects that are composed of invididual ```DagNode``` objects. The advantage of this representation over a pure list of gates (that is, a netlist) is that the flow of information between operations is explicit, making it easier to make transformation decisions.
 
 This guide demonstrates how to work with DAGs and use them to write custom transpiler passes. It will start with building a simple circuit and examining its DAG representation, then explores basic DAG operations and implements a custom `BasicMapper` pass.
 
