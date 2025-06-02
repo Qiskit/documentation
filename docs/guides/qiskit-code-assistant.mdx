@@ -5,7 +5,7 @@ description: Learn how to use Qiskit Code Assistant, a generative AI code assist
 
 # Qiskit Code Assistant
 
-Qiskit Code Assistant aims to make quantum computing more accessible to new Qiskit adopters and to improve the coding experience for current users. It is a generative AI code assistant powered by [watsonx](https://www.ibm.com/products/watsonx-ai). It is trained using millions of text tokens from Qiskit SDK v1.x, years of Qiskit code examples and IBM Quantum&reg; features. Qiskit Code Assistant can help your quantum development workflow by offering LLM-generated suggestions based on [IBM Granite 8B Code,](https://www.ibm.com/products/watsonx-ai/foundation-models) which incorporate the latest features and functionalities from IBM&reg;.
+Qiskit Code Assistant aims to make quantum computing more accessible to new Qiskit adopters and to improve the coding experience for current users. It is a generative AI code assistant powered by [watsonx](https://www.ibm.com/products/watsonx-ai). It is trained using millions of text tokens from Qiskit SDK v1.x, years of Qiskit code examples and IBM Quantum&reg; features. Qiskit Code Assistant can help your quantum development workflow by offering LLM-generated suggestions based on [IBM Granite models,](https://www.ibm.com/products/watsonx-ai/foundation-models) which incorporate the latest features and functionalities from IBM&reg;.
 
 <Admonition type="note" title="Notes">
     - This is an experimental feature available only to IBM Quantum Premium Plan users.
@@ -21,7 +21,7 @@ Qiskit Code Assistant aims to make quantum computing more accessible to new Qisk
 
 The following features are included in the [Visual Studio Code](https://code.visualstudio.com/) (VS Code) and [JupyterLab.](https://jupyterlab.readthedocs.io/en/latest/) extensions:
 
-* Accelerates Qiskit code generation by leveraging generative AI based on the `granite-8b-qiskit` model.
+* Accelerates Qiskit code generation by leveraging generative AI based on the our Granite models specialized on generating Qiskit code.
 * Allows abstract and specific prompts to generate recommendations.
 * Presents suggestions that you can review, accept, or reject.
 * Supports Python code and Jupyter notebook files.
@@ -33,13 +33,13 @@ For instructions to integrate Qiskit Code Assistant directly into your developme
 
 ## The Large Language Model (LLM) behind Qiskit Code Assistant
 
-To provide code suggestions, Qiskit Code Assistant uses a Large Language Model (LLM). In this case, Qiskit Code Assistant relies on the model `granite-8b-qiskit`, built on the IBM [granite-8b-code model.](https://github.com/ibm-granite/granite-code-models) The `granite-8b-qiskit` model improves the `granite-8b-code` model's code generation capabilities for Qiskit through extended pretraining and fine-tuning it on high-quality Qiskit data, as well as Python commits and chat. For more information about the IBM Granite models family, refer to [Granite Code Models: A Family of Open Foundation Models for Code Intelligence.](https://arxiv.org/abs/2405.04324) For more details about the `granite-.*-qiskit` models, see [Qiskit Code Assistant: Training LLMs for generating Quantum Computing Code.](https://arxiv.org/abs/2405.19495)
+To provide code suggestions, Qiskit Code Assistant uses a Large Language Model (LLM). In this case, Qiskit Code Assistant currently relies on the model `granite-3.3-8b-qiskit`, built on the IBM [granite-3.3-8b models.](https://huggingface.co/collections/ibm-granite/granite-33-language-models-67f65d0cca24bcbd1d3a08e3) The `granite-3.3-8b-qiskit` model improves the `granite-3.3-8b` models' code generation capabilities for Qiskit through extended pretraining and fine-tuning it on high-quality Qiskit data, as well as Python commits and chat. For more information about the IBM Granite models family, refer to [Granite Code Models: A Family of Open Foundation Models for Code Intelligence.](https://arxiv.org/abs/2405.04324) For more details about the `granite-.*-qiskit` models, see [Qiskit Code Assistant: Training LLMs for generating Quantum Computing Code.](https://arxiv.org/abs/2405.19495)
 
-The model `granite-8b-qiskit` model is expected to be open source soon.
+Our LLMs specialized for Qiskit are available also as Open Source models. Check all the models available in <https://huggingface.co/Qiskit>
 
 ## The Qiskit HumanEval benchmark
 
-To test the `granite-8b-qiskit` model, we are creating, in collaboration with Qiskit Advocates and experts, a new execution-based benchmark called Qiskit HumanEval (QHE). This benchmark is similar to [HumanEval](https://arxiv.org/abs/2107.03374), including multiple challenging code problems to solve, all based on the official Qiskit libraries.
+To test our `granite-.*-qiskit` models, we are creating, in collaboration with Qiskit Advocates and experts, a new execution-based benchmark called Qiskit HumanEval (QHE). This benchmark is similar to [HumanEval](https://arxiv.org/abs/2107.03374), including multiple challenging code problems to solve, all based on the official Qiskit libraries.
 
 The benchmark is composed of approximately 150 tests, each one made from a function definition, followed by a docstring that details the task the model is required to solve. Each example also includes a reference canonical solution, as well as unit tests, to evaluate the correctness of the generated solutions. There are three levels of difficulty for tests: basic, intermediate, and difficult.
 
