@@ -32,7 +32,7 @@ jobs:
         uses: ./.github/actions/set-up-notebook-testing
         with:
           ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
-          instance: ${{ secrets.IBM_QUANTUM_TEST_INSTANCE }}
+          instance: ${{ env.IBM_QUANTUM_TEST_INSTANCE }}
           install-linux-deps: true
 
       - name: Execute notebooks
