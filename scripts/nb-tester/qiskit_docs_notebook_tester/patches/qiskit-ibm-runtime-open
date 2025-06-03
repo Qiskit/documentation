@@ -5,7 +5,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 QiskitRuntimeService._original_least_busy = QiskitRuntimeService.least_busy
 
 def patched_least_busy(self, *args, **kwargs):
-    open_backends = [b.name for b in self.backends(instance="ibm-q/open/main")]
+    open_backends = [ "alt_brisbane", "alt_sherbrooke", "alt_torino" ]
     return self._original_least_busy(filters=lambda backend: backend.name in open_backends)
 
 QiskitRuntimeService.least_busy = patched_least_busy
