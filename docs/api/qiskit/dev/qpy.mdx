@@ -166,6 +166,34 @@ with open('twenty_bells.qpy', 'rb') as fd:
   *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – When an unsupported version number is passed in for the `version` argument.
 </Function>
 
+### get\_qpy\_version
+
+<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L347-L374" signature="qiskit.qpy.get_qpy_version(file_obj)">
+  This function identifies the QPY version of the file.
+
+  This function will read the header of `file_obj` and will return the QPY format version. It will **not** advance the cursor of `file_obj`. If you are using this for a subsequent read, such as to call [`load()`](#qiskit.qpy.load "qiskit.qpy.load"), you can pass `file_obj` directly. For example:
+
+  ```python
+  from qiskit import qpy
+
+  qpy_version = qpy.get_qpy_version(qpy_file)
+  if qpy_version > 12:
+      qpy.load(qpy_file)
+  ```
+
+  **Parameters**
+
+  **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) – A file like object that contains the QPY binary data for a circuit.
+
+  **Returns**
+
+  The QPY version of the specified file.
+
+  **Return type**
+
+  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+</Function>
+
 These functions will raise a custom subclass of [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") if they encounter problems during serialization or deserialization.
 
 ### QpyError
