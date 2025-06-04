@@ -1,0 +1,115 @@
+---
+title: TwirledSliceSpan (v0.39)
+description: API reference for qiskit_ibm_runtime.execution_span.TwirledSliceSpan in qiskit-ibm-runtime v0.39
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.execution_span.TwirledSliceSpan
+---
+
+# TwirledSliceSpan
+
+<Class id="qiskit_ibm_runtime.execution_span.TwirledSliceSpan" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.39/qiskit_ibm_runtime/execution_span/twirled_slice_span.py#L27-L92" signature="TwirledSliceSpan(start, stop, data_slices)" modifiers="class">
+  Bases: [`ExecutionSpan`](execution-span-execution-span "qiskit_ibm_runtime.execution_span.execution_span.ExecutionSpan")
+
+  An [`ExecutionSpan`](execution-span-execution-span "qiskit_ibm_runtime.execution_span.ExecutionSpan") for data stored in a sliceable format when twirling.
+
+  This type of execution span references pub result data that came from a twirled sampler experiment which was executed by either prepending or appending an axis to paramater values to account for twirling. Concretely, `data_slices` is a map from pub slices to tuples `(twirled_shape, at_front, shape_slice, shots_slice)` where
+
+  *   `twirled_shape` is the shape tuple including a twirling axis, and where the last axis is shots per randomization,
+  *   `at_front` is whether `num_randomizations` is at the front of the tuple, as opposed to right before the `shots` axis at the end,
+  *   `shape_slice` is a slice of an array of shape `twirled_shape[:-1]`, flattened,
+  *   and `shots_slice` is a slice of `twirled_shape[-1]`.
+
+  **Parameters**
+
+  *   **start** (*datetime*) – The start time of the span, in UTC.
+  *   **stop** (*datetime*) – The stop time of the span, in UTC.
+  *   **data\_slices** (*dict\[int, tuple\[ShapeType, bool, slice, slice]]*) – A map from pub indices to length-4 tuples described above.
+
+  ## Attributes
+
+  ### duration
+
+  <Attribute id="qiskit_ibm_runtime.execution_span.TwirledSliceSpan.duration">
+    The duration of this span, in seconds.
+  </Attribute>
+
+  ### pub\_idxs
+
+  <Attribute id="qiskit_ibm_runtime.execution_span.TwirledSliceSpan.pub_idxs" />
+
+  ### size
+
+  <Attribute id="qiskit_ibm_runtime.execution_span.TwirledSliceSpan.size" />
+
+  ### start
+
+  <Attribute id="qiskit_ibm_runtime.execution_span.TwirledSliceSpan.start">
+    The start time of the span, in UTC.
+  </Attribute>
+
+  ### stop
+
+  <Attribute id="qiskit_ibm_runtime.execution_span.TwirledSliceSpan.stop">
+    The stop time of the span, in UTC.
+  </Attribute>
+
+  ## Methods
+
+  ### contains\_pub
+
+  <Function id="qiskit_ibm_runtime.execution_span.TwirledSliceSpan.contains_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.39/qiskit_ibm_runtime/execution_span/execution_span.py#L112-L122" signature="contains_pub(pub_idx)">
+    Return whether the pub with the given index has data with dependence on this span.
+
+    **Parameters**
+
+    **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices from the original primitive call.
+
+    **Returns**
+
+    Whether there is dependence on this span.
+
+    **Return type**
+
+    bool
+  </Function>
+
+  ### filter\_by\_pub
+
+  <Function id="qiskit_ibm_runtime.execution_span.TwirledSliceSpan.filter_by_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.39/qiskit_ibm_runtime/execution_span/twirled_slice_span.py#L89-L92" signature="filter_by_pub(pub_idx)">
+    Return a new span whose slices are filtered to the provided pub indices.
+
+    For example, if this span contains slice information for pubs with indices 1, 3, 4 and `[1, 4]` is provided, then the span returned by this method will contain slice information for only those two indices, but be identical otherwise.
+
+    **Parameters**
+
+    **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices from the original primitive call.
+
+    **Returns**
+
+    A new filtered span.
+
+    **Return type**
+
+    [TwirledSliceSpan](#qiskit_ibm_runtime.execution_span.TwirledSliceSpan "qiskit_ibm_runtime.execution_span.TwirledSliceSpan")
+  </Function>
+
+  ### mask
+
+  <Function id="qiskit_ibm_runtime.execution_span.TwirledSliceSpan.mask" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.39/qiskit_ibm_runtime/execution_span/twirled_slice_span.py#L75-L87" signature="mask(pub_idx)">
+    Return an array-valued mask specifying which parts of a pub result depend on this span.
+
+    **Parameters**
+
+    **pub\_idx** (*int*) – The index of the pub to return a mask for.
+
+    **Returns**
+
+    An array with the same shape as the pub data.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")\[*Any*, [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.2)")\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.2)")]]
+  </Function>
+</Class>
+

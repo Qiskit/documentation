@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.options.EnvironmentOptions
 
 # EnvironmentOptions
 
-<Class id="qiskit_ibm_runtime.options.EnvironmentOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.39/qiskit_ibm_runtime/options/environment_options.py#L28-L63" signature="EnvironmentOptions(log_level='WARNING', callback=None, job_tags=None, private=False)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.EnvironmentOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/options/environment_options.py#L28-L63" signature="EnvironmentOptions(log_level='WARNING', callback=None, job_tags=None, private=False)" modifiers="class">
   Bases: `object`
 
   Options related to the execution environment.
@@ -52,7 +52,7 @@ python_api_name: qiskit_ibm_runtime.options.EnvironmentOptions
   ### private
 
   <Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.private" attributeTypeHint="bool | None" attributeValue="False">
-    Boolean that indicates whether the job is marked as private. This is only supported for `ibm_quantum` channel. When set to true, input parameters are not returned, and the results can only be read once. After the results are read or after a specified time after the job is completed, the results are deleted from the service. When set to false, the input parameters and results follow the standard retention behavior.
+    Boolean that indicates whether the job is marked as private. When set to true, input parameters are not returned, and the results can only be read once. After the job is completed, input parameters are deleted from the service. After the results are read, these are also deleted from the service. When set to false, the input parameters and results follow the standard retention behavior of the API.
 
     Default: False.
   </Attribute>
