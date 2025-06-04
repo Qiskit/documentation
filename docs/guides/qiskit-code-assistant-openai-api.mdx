@@ -36,18 +36,18 @@ To retrieve/view the model disclaimer, make a **GET** request to the disclaimer 
 
 ```
 curl -X 'GET' \
-  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-8b-qiskit/disclaimer' \
+  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-3.3-8b-qiskit/disclaimer' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer <IBM Quantum API key>'
+  -H 'Authorization: Bearer <IBM Quantum Classic API key>'
 ```
 
 If you agree with the model disclaimer, to accept it, **POST** to the disclaimer endpoint providing the disclaimer's ID and whether it is accepted or rejected. For example:
 
 ```
 curl -X 'POST' \
-  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-8b-qiskit/disclaimer' \
+  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-3.3-8b-qiskit/disclaimer' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer <IBM Quantum API key>' \
+  -H 'Authorization: Bearer <IBM Quantum Classic API key>' \
   -H 'Content-Type: application/json' \
   -d '{
   "disclaimer": "<DISCLAIMER_ID>",
@@ -66,13 +66,16 @@ The OpenAI Python library provides convenient access to the OpenAI REST API (suc
 ```
 from openai import OpenAI
 
-# Initialize the client with your API key
-client = OpenAI(api_key=auth_token_iqp, base_url=assistant_url)
+# Initialize the client with your API token
+client = OpenAI(
+    api_key="<IBM Quantum Classic API token>",
+    base_url="https://qiskit-code-assistant.quantum.ibm.com/v1",
+)
 
 # Make a request to the completions API
 try:
     response = client.completions.create(
-        model=model,  # or another compatible model
+        model="granite-3.3-8b-qiskit",
         prompt="#Transpile a random circuit using the Qiskit Transpiler Service",
     )
 
@@ -81,6 +84,7 @@ try:
 
 except Exception as e:
     print(f"An error occurred: {e}")
+
 ```
 
 ### Use LiteLLM
@@ -91,15 +95,17 @@ LiteLLM is a convenient Python library to access multiple LLM APIs using the Ope
 from litellm import completion
 
 response = completion(
-    model=f"text-completion-openai/{model}",
-    base_url= assistant_url,
+    model=f"text-completion-openai/granite-3.3-8b-qiskit",
+    base_url="https://qiskit-code-assistant.quantum.ibm.com/v1",
     messages=[
-        {"role": "user", "content": "#Transpile a random circuit using the Qiskit Transpiler Service"}
+        {
+            "role": "user",
+            "content": "#Transpile a random circuit using the Qiskit Transpiler Service",
+        }
     ],
-    api_key=<IBM Quantum API key>
+    api_key="<IBM Quantum Classic API key>",
 )
 
 completion_response = response.json()
 print(completion_response)
-
 ```
