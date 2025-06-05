@@ -10,13 +10,41 @@ in_page_toc_max_heading_level: 2
 
 # Sample-based quantum diagonalization (SQD) release notes
 
-<span id="release-notes-0-10-0" />
+<span id="release-notes-0-11-0" />
 
 <span id="id2" />
+
+## 0.11.0
+
+<span id="release-notes-0-11-0-new-features" />
+
+### New Features
+
+*   Added a new function [`qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian()`](fermion#diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") to serve as the main entrypoint to the SQD algorithm. See the updated [tutorials](https://qiskit.github.io/qiskit-addon-sqd/tutorials/index.html) for a demonstration of how to use this function.
+
+*   [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") now accepts a `shift` argument used to shift states which have the wrong spin, $(H + shift * S^2)|ψ> = E|ψ>$.
+
+<span id="release-notes-0-11-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") and [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals") now accept trailing `kwargs`, which will be passed directly to [pyscf.fci.selected\_ci.kernel\_fixed\_space](https://pyscf.org/pyscf_api_docs/pyscf.fci.html#pyscf.fci.selected_ci.kernel_fixed_space) under the hood to calculate the target state. The `max_davidson` argument should now be passed as `max_cycle` in both functions.
+
+<span id="release-notes-0-11-0-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a float to integer type conversion affecting the `qubit` module
+
+<span id="release-notes-0-10-0" />
+
+<span id="id3" />
 
 ## 0.10.0
 
 <span id="release-notes-0-10-0-upgrade-notes" />
+
+<span id="id4" />
 
 ### Upgrade Notes
 
@@ -34,19 +62,21 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0-bug-fixes" />
 
+<span id="id5" />
+
 ### Bug Fixes
 
 *   Fixed a bug which would cause the energy output from [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") to be incorrect when the input `spin_sq` deviates from the spin^2 of the output wavefunction.
 
 <span id="release-notes-0-9-0" />
 
-<span id="id3" />
+<span id="id6" />
 
 ## 0.9.0
 
 <span id="release-notes-0-9-0-upgrade-notes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Upgrade Notes
 
@@ -54,7 +84,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-0-bug-fixes" />
 
-<span id="id5" />
+<span id="id8" />
 
 ### Bug Fixes
 
@@ -64,11 +94,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-8-0" />
 
-<span id="id6" />
+<span id="id9" />
 
 ## 0.8.0
 
 <span id="release-notes-0-8-0-new-features" />
+
+<span id="id10" />
 
 ### New Features
 
@@ -78,7 +110,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-8-0-upgrade-notes" />
 
-<span id="id7" />
+<span id="id11" />
 
 ### Upgrade Notes
 
@@ -86,13 +118,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-7-0" />
 
-<span id="id8" />
+<span id="id12" />
 
 ## 0.7.0
 
 <span id="release-notes-0-7-0-bug-fixes" />
 
-<span id="id9" />
+<span id="id13" />
 
 ### Bug Fixes
 
@@ -102,13 +134,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0" />
 
-<span id="id10" />
+<span id="id14" />
 
 ## 0.6.0
 
 <span id="release-notes-0-6-0-upgrade-notes" />
 
-<span id="id11" />
+<span id="id15" />
 
 ### Upgrade Notes
 
@@ -159,11 +191,11 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0-deprecation-notes" />
 
-<span id="id12" />
+<span id="id16" />
 
 ### Deprecation Notes
 
-*   The [`qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()`](fermion#bitstring_matrix_to_sorted_addresses "qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses") function has been deprecated in favor of [`qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs()`](fermion#bitstring_matrix_to_ci_strs "qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs"). These two functions behave the same with one key exception – [`qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()`](fermion#bitstring_matrix_to_sorted_addresses "qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses") returns the configurations as `tuple(spin_dn, spin_up)`; whereas, [`qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs()`](fermion#bitstring_matrix_to_ci_strs "qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs") returns the configurations as `tuple(spin_up, spin_dn)`.
+*   The `qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()` function has been deprecated in favor of [`qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs()`](fermion#bitstring_matrix_to_ci_strs "qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs"). These two functions behave the same with one key exception – `qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()` returns the configurations as `tuple(spin_dn, spin_up)`; whereas, [`qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs()`](fermion#bitstring_matrix_to_ci_strs "qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs") returns the configurations as `tuple(spin_up, spin_dn)`.
 
     To migrate
 
@@ -188,7 +220,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0-bug-fixes" />
 
-<span id="id13" />
+<span id="id17" />
 
 ### Bug Fixes
 
@@ -198,13 +230,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-0" />
 
-<span id="id14" />
+<span id="id18" />
 
 ## 0.5.0
 
 <span id="release-notes-0-5-0-upgrade-notes" />
 
-<span id="id15" />
+<span id="id19" />
 
 ### Upgrade Notes
 
@@ -262,7 +294,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-4-0" />
 
-<span id="id16" />
+<span id="id20" />
 
 ## 0.4.0
 
@@ -274,7 +306,7 @@ This is a minor release which introduces a couple of small, but important, break
 
 <span id="release-notes-0-4-0-upgrade-notes" />
 
-<span id="id17" />
+<span id="id21" />
 
 ### Upgrade Notes
 
