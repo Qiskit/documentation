@@ -8,7 +8,7 @@ in_page_toc_max_heading_level: 2
 
 # Latest updates
 
-*Last updated 4 June 2025*
+*Last updated 9 June 2025*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
@@ -17,10 +17,10 @@ Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 For all product announcements, visit the [Announcements](https://docs.quantum.ibm.com/announcements/product-updates) page on IBM Quantum Platform Classic.
 
 <CloudContent>
-Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Documentation](#latest-docs)
+Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca) | [Documentation](#latest-docs)
 </CloudContent>
 <LegacyContent>
-Jump to [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Documentation](#latest-docs)
+Jump to [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca) | [Documentation](#latest-docs)
 </LegacyContent>
 
 <CloudContent>
@@ -29,16 +29,27 @@ Jump to [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiski
 
 This section summarizes the recent enhancements and new features for the new [IBM Quantum Platform.](https://quantum.cloud.ibm.com/)
 
+**5 June 2025**
+
+- Added instance job filter: The platform now displays only your workloads by default. On the dashboard, you will see only the latest workloads you have submitted to instances within your account.
+
+![Only the latest workloads now shown by default](/docs/images/guides/latest-updates/workloads.avif)
+
+- A new qiskit-ibm-runtime release, featuring:
+  - Support for private jobs for developers of Qiskit Functions
+  - A new channel for the platform that makes instance selection optional, which simplifies account setup and backend access by automatically checking all available instances. This update benefits users who manage multiple instances or prefer a streamlined workflow without specifying instance details each time. Developers and researchers working across various projects with different levels of access and multiple backends will find this especially helpful.
+
+  See the [Runtime Client v0.40.0](#latest-qiskit-runtime) section for more information. {/* When next Runtime release overwrites the .40 section below, remove this link and replace with direct link to release notes */}
+
+<details>
+<summary><b>Previous updates</b></summary>
+
 **8 May 2025**
 
 - [Flex Plan](https://www.ibm.com/quantum/blog/flex-plan), a new resource consumption offering, has been released.
 - [Tutorials](/docs/tutorials) are now available on the platform to help users with use-case exploration.
 - The [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions) has launched on the platform.
 - Updated Session OpenAPI schema: `backend_name` field is now nullable.
-
-
-<details>
-<summary><b>Previous updates</b></summary>
 
 **24 April 2025**
 
@@ -202,10 +213,13 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (by using `qiskit-ibm-runtime` or otherwise), or which version of the client SDK you use.
 
+**5 June 2025**
+
+- Now available: Early access to the new version of dynamic circuits on select QPUs. This new version will allow you to run dynamic circuits at utility scale and comes with improvements in speed, quality, and usability. Premium Plan and Flex Plan users interested in participating in this early access can [contact us.](/docs/support#get-help-with-qiskit-and-ibm-quantum-platform)
+
 **3 February 2025**
 
 - Pulse-level control on all IBM Quantum processors has been removed.  Additionally, the pulse module is scheduled for removal in Qiskit SDK v2.0.  Instead, you can use fractional gates that are now built into the Instruction Set Architecture (ISA). For full details and help migrating your code, refer to [Migrate from Qiskit Pulse to fractional gates.](/docs/migration-guides/pulse-migration)
-
 
 **2 February 2025**
 
@@ -325,11 +339,23 @@ Improvements include the following:
 <span id="latest-qiskit-functions"></span>
 ## Qiskit Functions
 
+**5 June 2025**
+
+- We're excited to roll out two new functions for finance and optimization:
+  - [QUICK-PDE](https://quantum.cloud.ibm.com/functions?id=colibritd-quick-pde) by ColibriTD allows users to solve certain differential equations for material deformation and computational fluid dynamics problems. For example, one team of researchers has already begun using the QUICK-PDE function to study the dynamics of novel reactive fluids developed to transfer heat more efficiently in a type of nuclear reactor known as Small Modular Reactors.
+
+  - [Quantum Portfolio Optimizer](https://quantum.cloud.ibm.com/functions?id=global-data-quantum-quantum-portfolio-optimizer) by Global Data Quantum enables quantitative finance researchers to back-test portfolio optimization strategies. Running on over 100 qubits, this function calculates a portfolio’s Sharpe ratio versus return across a specified time period. Early users are exploring the optimizer’s ability to evaluate historical performance of an investment strategy and to enable comparisons of different portfolios under similar conditions.
+
+Check out the [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions) to request a free trial today.
+
 **4 June 2025**
 
 - New updates
 
   - Documentation for Singularity Machine Learning - Classification has been updated. View the [Changelog](/docs/guides/multiverse-computing-singularity#changelog).
+
+<details>
+<summary><b>Previous updates</b></summary>
 
 **16 May 2025**
 
@@ -387,9 +413,6 @@ Improvements include the following:
 
   We're hoping these changes make it easier to use Qiskit Functions, and [you can get started with free trials in the catalog today.](https://quantum.cloud.ibm.com/functions)
 
-<details>
-<summary><b>Previous updates</b></summary>
-
 **10 March 2025**
 
 - Latest additions to the Qiskit Functions Catalog
@@ -426,6 +449,20 @@ To get started, explore the [Qiskit Functions documentation.](/docs/guides/funct
   - QunaSys is releasing a chemistry application function comprising three algorithms meant to solve the ground state energy estimation (GSEE) problem.
   - Q-CTRL is releasing an optimization solver with which users can pass a graph or an objective, and receive solution costs.
 </details>
+
+<span id="latest-qca"></span>
+## Qiskit Code Assistant
+
+**5 June 2025**
+
+- We have updated the model available in the service to the newer granite-3.3-8b-qiskit model
+- We have open-sourced three new models for local inference in Hugging Face: 
+
+  - [qiskit/granite-3.3-8b-qiskit](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit)
+  - [qiskit/granite-3.2-8b-qiskit](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit)
+  - [qiskit/qwen2.5-coder-14b-qiskit](https://huggingface.co/Qiskit/qwen2.5-coder-14b-qiskit)
+
+For more details on Qiskit Code Assistant, see the [documentation.](/docs/guides/qiskit-code-assistant)
 
 <span id="latest-docs"></span>
 ## Documentation
