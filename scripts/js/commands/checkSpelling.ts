@@ -90,7 +90,7 @@ async function checkMdxAndToc(
 ): Promise<void> {
   const cspellCmd = ["npx", "cspell", "--no-progress", "--config", configPath];
   try {
-    await $`${cspellCmd} docs/**/*.mdx docs/**/_toc.json !docs/api/**/*.mdx !docs/api/**/_toc.json`.pipe(
+    await $`${cspellCmd} {docs,learning}/**/*.mdx {docs,learning}/**/_toc.json !docs/api/**/*.mdx !docs/api/**/_toc.json`.pipe(
       process.stdout,
     );
     if (checkApis) {
@@ -105,7 +105,7 @@ async function checkMdxAndToc(
 }
 
 async function checkNotebooks(configPath: string): Promise<void> {
-  const paths = await globby("docs/**/*.ipynb");
+  const paths = await globby("{docs,learning}/**/*.ipynb");
   let allGood = true;
   await pMap(paths, async (path) => {
     const text = await readMarkdown(path, { includeCodeCellSourceCode: true });

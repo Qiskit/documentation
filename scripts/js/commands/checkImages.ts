@@ -70,7 +70,7 @@ async function determineContentFiles(args: Arguments): Promise<string[]> {
   // If an image is missed by the API repo's linter, it will still have an alt text defined,
   // although it won't be very useful. That's because Sphinx auto-generates alt text.
   const globs = [
-    "docs/**/*.{ipynb,mdx}",
+    "{docs,learning}/**/*.{ipynb,mdx}",
     args.apis ? "!docs/api/*/([0-9]*)/*.mdx" : "!docs/api/**/*.mdx",
     // Remove when https://github.com/Qiskit/documentation/issues/2564 is fixed
     `!docs/api/qiskit/release-notes/*.mdx`,

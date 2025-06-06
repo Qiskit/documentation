@@ -25,6 +25,11 @@ jobs:
           node-version: 18
       - name: Install Node.js dependencies
         run: npm ci
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          sudo ln -s /usr/bin/convert /usr/bin/magick
 
       - name: File metadata
         run: npm run check:metadata
@@ -36,6 +41,8 @@ jobs:
         run: npm run check:qiskit-bot
       - name: Check Patterns index
         run: npm run check:patterns-index
+      - name: Check tutorials index
+        run: python scripts/ci/check-tutorials-index.py
       - name: Internal link checker
         run: npm run check:internal-links
       - name: Check orphaned pages
@@ -53,7 +60,7 @@ jobs:
         id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
-          files: docs/**/*.{md,mdx,ipynb}
+          files: "{docs,learning}/**/*.{md,mdx,ipynb}"
           separator: "\n"
           write_output_files: true
 

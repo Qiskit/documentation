@@ -13,7 +13,7 @@ python_api_name: qiskit.primitives.StatevectorEstimator
 
   Simple implementation of [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") with full state vector simulation.
 
-  This class is implemented via [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") which turns provided circuits into pure state vectors. These states are subsequently acted on by :class:\~.SparsePauliOp\`, which implies that, at present, this implementation is only compatible with Pauli-based observables.
+  This class is implemented via [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") which turns provided circuits into pure state vectors. These states are subsequently acted on by [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"), which implies that, at present, this implementation is only compatible with Pauli-based observables.
 
   Each tuple of `(circuit, observables, <optional> parameter values, <optional> precision)`, called an estimator primitive unified bloc (PUB), produces its own array-based result. The `run()` method can be given a sequence of pubs to run in one call.
 
@@ -80,7 +80,7 @@ python_api_name: qiskit.primitives.StatevectorEstimator
   plt.legend()
   ```
 
-  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-primitives-StatevectorEstimator-1.avif)
+  ![Output from the previous code.](/docs/images/api/qiskit/1.4/qiskit-primitives-StatevectorEstimator-1.avif)
 
   **Parameters**
 

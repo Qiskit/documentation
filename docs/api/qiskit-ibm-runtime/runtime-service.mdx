@@ -122,11 +122,11 @@ with Session(backend=aer_sim) as session:
 
 You need to initialize your account before you can start using the Qiskit Runtime service. This is done by initializing a [`QiskitRuntimeService`](qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") instance with your account credentials. If you don’t want to pass in the credentials each time, you can use the [`QiskitRuntimeService.save_account()`](qiskit-runtime-service#save_account "qiskit_ibm_runtime.QiskitRuntimeService.save_account") method to save the credentials on disk.
 
-Qiskit Runtime is available on both IBM Cloud and IBM Quantum, and you can specify `channel="ibm_cloud"` for IBM Cloud and `channel="ibm_quantum"` for IBM Quantum. The default is IBM Cloud.
+Qiskit Runtime is available on IBM Cloud, and you can specify the channel with `channel="ibm_cloud"` or `channel="ibm_quantum_platform"`.
 
 ### Runtime Jobs
 
-When you use the `run()` method of the [`Sampler`](sampler "qiskit_ibm_runtime.Sampler") or [`Estimator`](estimator "qiskit_ibm_runtime.Estimator") to invoke the primitive, a [`RuntimeJob`](runtime-job "qiskit_ibm_runtime.RuntimeJob") instance is returned. This class has all the basic job methods, such as [`RuntimeJob.status()`](runtime-job#status "qiskit_ibm_runtime.RuntimeJob.status"), [`RuntimeJob.result()`](runtime-job#result "qiskit_ibm_runtime.RuntimeJob.result"), and [`RuntimeJob.cancel()`](runtime-job#cancel "qiskit_ibm_runtime.RuntimeJob.cancel").
+When you use the `run()` method of the [`Sampler`](sampler "qiskit_ibm_runtime.Sampler") or [`Estimator`](estimator "qiskit_ibm_runtime.Estimator") to invoke the primitive, a [`RuntimeJobV2`](runtime-job-v2 "qiskit_ibm_runtime.RuntimeJobV2") instance is returned. This class has all the basic job methods, such as [`RuntimeJobV2.status()`](runtime-job-v2#status "qiskit_ibm_runtime.RuntimeJobV2.status"), [`RuntimeJobV2.result()`](runtime-job-v2#result "qiskit_ibm_runtime.RuntimeJobV2.result"), and [`RuntimeJobV2.cancel()`](runtime-job-v2#cancel "qiskit_ibm_runtime.RuntimeJobV2.cancel").
 
 ### Logging
 

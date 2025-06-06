@@ -8,37 +8,47 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
 # QiskitRuntimeService
 
-<Class id="qiskit_ibm_runtime.QiskitRuntimeService" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L52-L1189" signature="QiskitRuntimeService(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.QiskitRuntimeService" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L54-L1478" signature="QiskitRuntimeService(*args, **kwargs)" modifiers="class">
   Bases: `object`
 
   Class for interacting with the Qiskit Runtime service.
 
-  QiskitRuntimeService constructor
+  QiskitRuntimeService constructor.
 
-  An account is selected in the following order:
+  **An account is selected in the following order:**
 
-  > *   Account with the input name, if specified.
-  > *   Default account for the channel type, if channel is specified but token is not.
-  > *   Account defined by the input channel and token, if specified.
-  > *   Account defined by the default\_channel if defined in filename
-  > *   Account defined by the environment variables, if defined.
-  > *   Default account for the `ibm_cloud` account, if one is available.
-  > *   Default account for the `ibm_quantum` account, if one is available.
+  *   **If a `filename` is specified, account details will be loaded from `filename`,**
 
-  instance, proxies, and verify can be used to overwrite corresponding values in the loaded account.
+      else they will be loaded from the default configuration file.
+
+  *   **If `name` is specified, the corresponding account details will be loaded from**
+
+      the configuration file, including `channel`, `token`, `instance`, `region` (only `"ibm_cloud"` and `"ibm_quantum_platform"`), ```plans_preference` (only ``"ibm_cloud"``` and `"ibm_quantum_platform"`), and the advanced configuration parameters: `url`, `url_resolver`, `private_endpoint`, `verify`, and `proxies`.
+
+  *   **If `channel` is specified, the default account details for that channel will be**
+
+      loaded from the configuration file, else, the account details will be loaded from the `default_channel` defined in the configuration file.
+
+  *   **Any loaded details will be overwritten by the corresponding parameter in the**
+
+      service constructor.
+
+  The minimum required information for service authentication to a non-local channel is the `token`. The `local` channel doesn’t require authentication. For the `"ibm_cloud"` and `"ibm_quantum_platform"` channels it is recommended to provide the relevant `instance` to minimize API calls. If an `instance` is not defined, the service will fetch all instances accessible within the account, filtered by `region` and `plans_preference`.
 
   **Parameters**
 
-  *   **channel** – Channel type. `ibm_cloud`, `ibm_quantum` or `local`. If `local` is selected, the local testing mode will be used, and primitive queries will run on a local simulator. For more details, check the [Qiskit Runtime local testing mode](/guides/local-testing-mode) documentation.
-  *   **token** – IBM Cloud API key or IBM Quantum API token.
-  *   **url** – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum.ibm.com/api](https://auth.quantum.ibm.com/api) (ibm\_quantum).
-  *   **filename** – Full path of the file where the account is created. Default: \_DEFAULT\_ACCOUNT\_CONFIG\_JSON\_FILE
-  *   **name** – Name of the account to load.
-  *   **instance** – The service instance to use. For `ibm_cloud` runtime, this is the Cloud Resource Name (CRN) or the service name. For `ibm_quantum` runtime, this is the hub/group/project in that format.
-  *   **proxies** – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
-  *   **verify** – Whether to verify the server’s TLS certificate.
-  *   **private\_endpoint** – Connect to private API URL.
-  *   **url\_resolver** – Function used to resolve the runtime url.
+  *   **channel** (*Optional\[ChannelType]*) – Channel type. `ibm_quantum`, `ibm_cloud`, `ibm_quantum_platform` or `local`. The `ibm_quantum` channel is deprecated and will be removed no earlier than July 1st 2025, `ibm_quantum_platform`, which points to the new Quantum Platform cloud API ([https://quantum.cloud.ibm.com](https://quantum.cloud.ibm.com)) should be used instead. For help migrating to the alternative channels, review the [migration guide.](/docs/migration-guides/classic-iqp-to-cloud-iqp) If `local` is selected, the local testing mode will be used, and primitive queries will run on a local simulator. For more details, check the [Qiskit Runtime local testing mode](/docs/guides/local-testing-mode) documentation.
+  *   **token** (*Optional\[str]*) – IBM Cloud API key or IBM Quantum API token.
+  *   **url** (*Optional\[str]*) – The API URL. Defaults to [https://quantum-computing.cloud.ibm.com](https://quantum-computing.cloud.ibm.com) (`ibm_cloud`), [https://quantum.cloud.ibm.com](https://quantum.cloud.ibm.com) (`ibm_quantum_platform`) or [https://auth.quantum.ibm.com/api](https://auth.quantum.ibm.com/api) (`ibm_quantum`).
+  *   **filename** (*Optional\[str]*) – Full path of the file where the account is created. Default: \_DEFAULT\_ACCOUNT\_CONFIG\_JSON\_FILE
+  *   **name** (*Optional\[str]*) – Name of the account to load.
+  *   **instance** (*Optional\[str]*) – The service instance to use. For `ibm_cloud` and `ibm_quantum_platform`, this is the Cloud Resource Name (CRN) or the service name. If set, it will define a default instance for service instantiation, if not set, the service will fetch all instances accessible within the account. For `ibm_quantum`, this is the hub/group/project specification.
+  *   **proxies** (*Optional\[dict]*) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
+  *   **verify** (*Optional\[bool]*) – Whether to verify the server’s TLS certificate.
+  *   **private\_endpoint** (*Optional\[bool]*) – Connect to private API URL.
+  *   **url\_resolver** (*Optional\[Callable]*) – Function used to resolve the runtime url.
+  *   **region** (*Optional\[str]*) – Set a region preference for the `ibm_cloud` or `ibm_quantum_platform` channel. Accepted values are `us-east` or `eu-de`. An instance with this region will be prioritized if an instance is not passed in.
+  *   **plans\_preference** (*Optional\[List\[str]]*) – A list of account types, ordered by preference, for the `ibm_cloud` or `ibm_quantum_platform` channel. An instance with the first value in the list will be prioritized if an instance is not passed in.
 
   **Returns**
 
@@ -64,7 +74,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### active\_account
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.active_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L613-L619" signature="active_account()">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.active_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L860-L866" signature="active_account()">
     Return the IBM Quantum account currently in use for the session.
 
     **Returns**
@@ -78,7 +88,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L722-L763" signature="backend(name, instance=None, use_fractional_gates=False)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L994-L1035" signature="backend(name, instance=None, use_fractional_gates=False)">
     Return a single backend matching the specified filtering.
 
     **Parameters**
@@ -102,7 +112,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### backends
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backends" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L423-L542" signature="backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, *, use_fractional_gates=False, **kwargs)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backends" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L589-L715" signature="backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, *, use_fractional_gates=False, **kwargs)">
     Return all backends accessible via this account, subject to optional filtering.
 
     **Parameters**
@@ -111,7 +121,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **min\_num\_qubits** (*int | None*) – Minimum number of qubits the backend has to have.
 
-    *   **instance** (*str | None*) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
+    *   **instance** (*str | None*) – In hub/group/project format if on the `ibm_quantum` channel. IBM Cloud account CRN if on the `ibm_cloud` and `ibm_quantum_platform` channels
 
     *   **dynamic\_circuits** (*bool | None*) – Filter by whether the backend supports dynamic circuits.
 
@@ -145,7 +155,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
         QiskitRuntimeService.backends(open_pulse=True)
         ```
 
-        For the full list of backend attributes, see the IBMBackend class documentation \<[api/qiskit/1.4/providers\_models](/api/qiskit/1.4/providers_models)>
+        For the full list of backend attributes, see the IBMBackend class documentation \<[/api/qiskit/1.4/providers\_models](/docs/api/qiskit/1.4/providers_models)>
 
     **Returns**
 
@@ -163,7 +173,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### check\_pending\_jobs
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.check_pending_jobs" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L880-L907" signature="check_pending_jobs()">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.check_pending_jobs" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L1152-L1179" signature="check_pending_jobs()">
     Check the number of pending jobs and wait for the oldest pending job if the maximum number of pending jobs has been reached.
 
     **Return type**
@@ -173,14 +183,14 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### delete\_account
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L621-L639" signature="delete_account(filename=None, name=None, channel=None)" modifiers="static">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L868-L886" signature="delete_account(filename=None, name=None, channel=None)" modifiers="static">
     Delete a saved account from disk.
 
     **Parameters**
 
     *   **filename** (*str | None*) – Name of file from which to delete the account.
     *   **name** (*str | None*) – Name of the saved account to delete.
-    *   **channel** (*Literal\['ibm\_cloud', 'ibm\_quantum', 'local'] | None*) – Channel type of the default account to delete. Ignored if account name is provided.
+    *   **channel** (*Literal\['ibm\_quantum\_platform', 'ibm\_cloud', 'ibm\_quantum', 'local'] | None*) – Channel type of the default account to delete. Ignored if account name is provided.
 
     **Returns**
 
@@ -193,7 +203,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### delete\_job
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_job" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L1027-L1044" signature="delete_job(job_id)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_job" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L1310-L1327" signature="delete_job(job_id)">
     Delete a runtime job.
 
     Note that this operation cannot be reversed.
@@ -214,21 +224,23 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### instances
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.instances" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L1162-L1170" signature="instances()">
-    Return the IBM Quantum instances list currently in use for the session.
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.instances" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L1446-L1459" signature="instances()">
+    **Return the instance list associated to the active account. For the “ibm\_quantum” channel,**
+
+    the list elements will be in the hub/group/project format. For the “ibm\_cloud” and “ibm\_quantum\_platform” channels, this list will contain a series of dictionaries with the following instance identifiers per instance: “crn”, “plan”, “name”.
 
     **Returns**
 
-    A list with instances currently in the session.
+    A list with instances available for the active account.
 
     **Return type**
 
-    *List*\[str]
+    *Sequence*\[str | *Dict*\[str, str]]
   </Function>
 
   ### job
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.job" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L909-L928" signature="job(job_id)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.job" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L1181-L1212" signature="job(job_id)">
     Retrieve a runtime job.
 
     **Parameters**
@@ -251,7 +263,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### jobs
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.jobs" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L930-L1025" signature="jobs(limit=10, skip=0, backend_name=None, pending=None, program_id=None, instance=None, job_tags=None, session_id=None, created_after=None, created_before=None, descending=True)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.jobs" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L1214-L1308" signature="jobs(limit=10, skip=0, backend_name=None, pending=None, program_id=None, instance=None, job_tags=None, session_id=None, created_after=None, created_before=None, descending=True)">
     Retrieve all runtime jobs, subject to optional filtering.
 
     **Parameters**
@@ -283,7 +295,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### least\_busy
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.least_busy" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L1125-L1160" signature="least_busy(min_num_qubits=None, instance=None, filters=None, **kwargs)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.least_busy" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L1409-L1444" signature="least_busy(min_num_qubits=None, instance=None, filters=None, **kwargs)">
     Return the least busy available backend.
 
     **Parameters**
@@ -317,22 +329,38 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### save\_account
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.save_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L641-L690" signature="save_account(token=None, url=None, instance=None, channel=None, filename=None, name=None, proxies=None, verify=None, overwrite=False, set_as_default=None, private_endpoint=False)" modifiers="static">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.save_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L888-L957" signature="save_account(token=None, url=None, instance=None, channel=None, filename=None, name=None, proxies=None, verify=None, overwrite=False, set_as_default=None, private_endpoint=False, region=None, plans_preference=None)" modifiers="static">
     Save the account to disk for future use.
 
     **Parameters**
 
     *   **token** (*str | None*) – IBM Cloud API key or IBM Quantum API token.
-    *   **url** (*str | None*) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum.ibm.com/api](https://auth.quantum.ibm.com/api) (ibm\_quantum).
-    *   **instance** (*str | None*) – The CRN (ibm\_cloud) or hub/group/project (ibm\_quantum).
-    *   **channel** (*Literal\['ibm\_cloud', 'ibm\_quantum', 'local'] | None*) – Channel type. ibm\_cloud or ibm\_quantum.
+
+    *   **url** (*str | None*) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (`ibm_cloud`), [https://quantum.cloud.ibm.com](https://quantum.cloud.ibm.com) (`ibm_quantum_platform`) or [https://auth.quantum.ibm.com/api](https://auth.quantum.ibm.com/api) (`ibm_quantum`).
+
+    *   **instance** (*str | None*) – This is an optional parameter to specify the CRN or service name for `ibm_cloud` and `ibm_quantum_platform`, and the hub/group/project for `ibm_quantum`. If set, it will define a default instance for service instantiation, if not set, the service will fetch all instances accessible within the account.
+
+    *   **channel** (*Literal\['ibm\_quantum\_platform', 'ibm\_cloud', 'ibm\_quantum', 'local'] | None*) –
+
+        Channel type. `ibm_quantum`, `ibm_cloud` or `ibm_quantum_platform`. The `ibm_quantum` channel is deprecated and will be removed no earlier than July 1st 2025. `ibm_quantum_platform` should be used instead. Note that `ibm_cloud` and `ibm_quantum_platform` point to the same url. For help migrating to the alternative channels, review the [migration guide.](/docs/migration-guides/classic-iqp-to-cloud-iqp)
+
     *   **filename** (*str | None*) – Full path of the file where the account is saved.
+
     *   **name** (*str | None*) – Name of the account to save.
+
     *   **proxies** (*dict | None*) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
+
     *   **verify** (*bool | None*) – Verify the server’s TLS certificate.
+
     *   **overwrite** (*bool | None*) – `True` if the existing account is to be overwritten.
+
     *   **set\_as\_default** (*bool | None*) – If `True`, the account is saved in filename, as the default account.
+
     *   **private\_endpoint** (*bool | None*) – Connect to private API URL.
+
+    *   **region** (*Literal\['us-east', 'eu-de'] | None*) – Set a region preference. us-east or eu-de. An instance with this region will be prioritized if an instance is not passed in.
+
+    *   **plans\_preference** (*List\[str] | None*) – A list of account types, ordered by preference. An instance with the first value in the list will be prioritized if an instance is not passed in.
 
     **Return type**
 
@@ -341,14 +369,19 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### saved\_accounts
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.saved_accounts" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L692-L720" signature="saved_accounts(default=None, channel=None, filename=None, name=None)" modifiers="static">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.saved_accounts" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L959-L992" signature="saved_accounts(default=None, channel=None, filename=None, name=None)" modifiers="static">
     List the accounts saved on disk.
 
     **Parameters**
 
     *   **default** (*bool | None*) – If set to True, only default accounts are returned.
-    *   **channel** (*Literal\['ibm\_cloud', 'ibm\_quantum', 'local'] | None*) – Channel type. ibm\_cloud or ibm\_quantum.
+
+    *   **channel** (*Literal\['ibm\_quantum\_platform', 'ibm\_cloud', 'ibm\_quantum', 'local'] | None*) –
+
+        Channel type. `ibm_quantum`, `ibm_cloud` or `ibm_quantum_platform`. The `ibm_quantum` channel is deprecated and will be removed no earlier than July 1st 2025. `ibm_quantum_platform` should be used instead. Note that `ibm_cloud` and `ibm_quantum_platform` point to the same url. For help migrating to the alternative channels, review the [migration guide.](/docs/migration-guides/classic-iqp-to-cloud-iqp)
+
     *   **filename** (*str | None*) – Name of file whose accounts are returned.
+
     *   **name** (*str | None*) – If set, only accounts with the given name are returned.
 
     **Returns**
@@ -366,7 +399,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### usage
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.37/qiskit_ibm_runtime/qiskit_runtime_service.py#L1046-L1059" signature="usage()">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/qiskit_runtime_service.py#L1329-L1342" signature="usage()">
     Return monthly open plan usage information.
 
     **Returns**

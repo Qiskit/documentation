@@ -6,7 +6,7 @@ description: How to build a C extension for your Qiskit workflow in Python
 # Extend Qiskit in Python with C
 
 To accelerate your Qiskit Python programs with C, you can use the Qiskit C extension for Python.
-This requires additional steps to the standalone C usage; for more details, see the [Install the Qiskit C API guide](/guides/install-c-api).
+This requires additional steps to the standalone C usage; for more details, see the [Install the Qiskit C API guide](/docs/guides/install-c-api).
 
 <Admonition type="warning">
   The Qiskit C API is still experimental, and has not yet committed to a fully stable programming or 
@@ -20,7 +20,7 @@ This requires additional steps to the standalone C usage; for more details, see 
 
 ## Requirements
 
-Start by ensuring you have installed the [Qiskit C API](/guides/install-c-api). Next, install the Qiskit Python interface, as follows:
+Start by ensuring you have installed the [Qiskit C API](/docs/guides/install-c-api). Next, install the Qiskit Python interface, as follows:
 ```bash
 pip install -r requirements.txt -c constraints.txt
 pip install .
@@ -31,8 +31,7 @@ pip install .
 There are various options to write a C extension for Python. For simplicity, this guide starts with an approach that uses Python's built-in [`ctypes`](https://docs.python.org/3/library/ctypes.html) module.  In the next section, the [the Manual C extension](#manual-c-extension) section provides an example of building the C extension using Python's C API to reduce runtime overhead.
 
 As an example, assume you write a C function to build an observable and would like to return
-it to Python. You can convert a C-side `QkObs*` to a Python-side `SparseObservable` object
-(both are backed by the same Rust data structure), using the provided converter
+it to Python. You can convert a C-side `QkObs*` to a Python-side `SparseObservable` object, using the provided converter
 `qk_obs_to_python`:
 ```c
 // file: extension.c

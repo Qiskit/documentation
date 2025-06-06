@@ -24,8 +24,7 @@ import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
-  "docs/administration/quickstart-org.mdx",
-  "docs/administration/analytics.mdx",
+  "docs/admin/analytics.mdx",
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
   "docs/api/runtime/tags/jobs.mdx",
@@ -76,9 +75,9 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("public/docs/{images,videos,open-source}/**/*")).map(
-      (fp) => new File(fp, new Set()),
-    ),
+    ...(
+      await globby("public/{docs,learning}/{images,videos,open-source}/**/*")
+    ).map((fp) => new File(fp, new Set())),
     ...SYNTHETIC_FILES.map((fp) => new File(fp, new Set(), true)),
   ];
 
@@ -118,9 +117,9 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/index.mdx",
   "docs/migration-guides/qiskit-1.0-features.mdx",
   "docs/guides/construct-circuits.ipynb",
-  "docs/guides/bit-ordering.mdx",
+  "docs/guides/bit-ordering.ipynb",
   "docs/guides/pulse.ipynb",
-  "docs/guides/primitives.mdx",
+  "docs/guides/primitives.ipynb",
   "docs/guides/configure-qiskit-local.mdx",
   "docs/guides/transpiler-stages.ipynb",
   "docs/api/qiskit/providers.mdx",
@@ -189,7 +188,7 @@ async function determineCurrentDocsFileBatch(
   args: Arguments,
 ): Promise<FileBatch> {
   const toCheck = [
-    "docs/**/*.{ipynb,mdx}",
+    "{docs,learning}/**/*.{ipynb,mdx}",
     "public/docs/api/*/objects.inv",
     // Ignore historical versions
     "!docs/api/*/[0-9]*/*",
@@ -212,6 +211,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/release-notes/index.mdx",
     "docs/api/qiskit/release-notes/0.45.mdx",
     "docs/api/qiskit/release-notes/1.*.mdx",
+    "docs/api/qiskit/release-notes/2.*.mdx",
     // Used by release notes.
     "docs/api/qiskit-ibm-runtime/0.20/sampler.mdx",
     "docs/api/qiskit-ibm-runtime/0.21/qiskit-runtime-service.mdx",

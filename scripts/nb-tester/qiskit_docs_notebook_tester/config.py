@@ -28,6 +28,7 @@ PRE_EXECUTE_CODE = """\
 # Import with underscores to avoid interfering with user-facing code.
 from matplotlib import set_loglevel as _set_mpl_loglevel
 
+
 # See https://github.com/matplotlib/matplotlib/issues/23326#issuecomment-1164772708
 _set_mpl_loglevel("critical")
 """
@@ -52,6 +53,7 @@ class NotebookJob:
     pre_execute_code: str
     backend_patch: str | None
     cell_timeout: int | None
+    log_cell_outputs: bool | None
     write: Result
 
 
@@ -73,6 +75,12 @@ def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
                     )
                 continue
 
+            warning_filter = ""
+            if config.check_pending_deprecations:
+                warning_filter = "import warnings as _warnings \
+                \n_warnings.simplefilter('default', category=PendingDeprecationWarning)"
+            pre_execute_code = PRE_EXECUTE_CODE + warning_filter
+
             patch = config.get_patch_for_group(group)
 
             if patch and not "# nb-tester: allow-write" in patch:
@@ -84,9 +92,10 @@ def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
 
             yield NotebookJob(
                 path=Path(path),
-                pre_execute_code=PRE_EXECUTE_CODE,
+                pre_execute_code=pre_execute_code,
                 backend_patch=patch,
                 cell_timeout=config.cell_timeout,
+                log_cell_outputs=config.log_cell_outputs,
                 write=write,
             )
 
@@ -96,8 +105,10 @@ class Config:
     cli_filenames: list[Path]
     cell_timeout: int
     test_strategy: str
+    check_pending_deprecations: bool
     write: bool
     groups: list[dict]
+    log_cell_outputs: bool
 
     @classmethod
     def from_args(cls, args: argparse.Namespace) -> Config:
@@ -133,8 +144,10 @@ class Config:
                 cli_filenames=cli_filenames,
                 cell_timeout=args.cell_timeout,
                 test_strategy="custom",
+                check_pending_deprecations=args.check_pending_deprecations,
                 write=args.write,
                 groups=groups,
+                log_cell_outputs=args.log_cell_outputs,
             )
 
         try:
@@ -150,18 +163,17 @@ class Config:
             {"name": key, **value} for key, value in config_file["groups"].items()
         ]
         test_strategy = args.test_strategy or config_file["default-strategy"]
-        cell_timeout = (
-            args.cell_timeout or
-            config_file.get("test-strategies", {})
-            .get(test_strategy, {})
-            .get("timeout", None)
-        )
+        cell_timeout = args.cell_timeout or config_file.get("test-strategies", {}).get(
+            test_strategy, {}
+        ).get("timeout", None)
         return cls(
             cli_filenames=args.filenames,
             cell_timeout=cell_timeout,
             test_strategy=test_strategy,
+            check_pending_deprecations=args.check_pending_deprecations,
             write=args.write,
             groups=groups,
+            log_cell_outputs=args.log_cell_outputs,
         )
 
     def get_patch_for_group(self, group: dict) -> str | None:
@@ -260,5 +272,19 @@ def get_parser() -> argparse.ArgumentParser:
             "Do not cancel trailing jobs with QiskitRuntimeService. This is "
             "useful to set if your patch does not use QiskitRuntimeService"
         ),
+    )
+    parser.add_argument(
+        "--check-pending-deprecations",
+        action="store_true",
+        help="Include checking for PendingDeprecationWarnings in notebook outputs",
+    )
+    parser.add_argument(
+        "--log-cell-outputs",
+        action="store_true",
+        help=(
+            "Print text outputs of cells to the console as they run.\n"
+            "NOTE: This script runs notebooks in parallel. When running more than one "
+            "notebook, cell outputs will appear as they're received, not grouped by notebook."
+        )
     )
     return parser
