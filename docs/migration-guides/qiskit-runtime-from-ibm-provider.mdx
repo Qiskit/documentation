@@ -47,7 +47,7 @@ QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", ov
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-QiskitRuntimeService.save_account(channel="ibm_cloud", token="<API_TOKEN>", overwrite=True, set_as_default=True)
+QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>", overwrite=True, set_as_default=True)
 ```
 </CloudContent>
 Additionally, you can now name your saved credentials and load the credentials by name.
@@ -68,8 +68,8 @@ service = QiskitRuntimeService(name="open")
 ```python
 # Save different accounts for open and premium access
 
-QiskitRuntimeService.save_account(channel="ibm_cloud", token="<API_TOKEN>", instance="<CRN for premium instance>", name="premium")
-QiskitRuntimeService.save_account(channel="ibm_cloud", token="<API_TOKEN>", instance="<CRN for open instance>", name="open")
+QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>", instance="<CRN for premium instance>", name="premium")
+QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>", instance="<CRN for open instance>", name="open")
 
 # Load the "open" credentials
 
@@ -98,7 +98,7 @@ optional. If multiple accounts have been saved in one device and no
 
 ```python
 # To access saved credentials for the IBM cloud channel
-service = QiskitRuntimeService(channel="ibm_cloud")
+service = QiskitRuntimeService(channel="ibm_quantum_platform")
 
 # To access saved credentials for the IBM quantum channel
 service = QiskitRuntimeService(channel="ibm_quantum")
@@ -145,7 +145,7 @@ The new syntax combines the functionality from `load_account()` and
 
 ```python
 # To access saved credentials for the IBM quantum channel and select an instance
-service = QiskitRuntimeService(channel="ibm_cloud", instance="<CRN>")
+service = QiskitRuntimeService(channel="ibm_quantum_platform", instance="<CRN>")
 ```
 </CloudContent>
 ## Get a backend
