@@ -1,0 +1,617 @@
+---
+title: PauliLindbladMap (dev version)
+description: API reference for qiskit.quantum_info.PauliLindbladMap in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.PauliLindbladMap
+---
+
+# PauliLindbladMap
+
+<Class id="qiskit.quantum_info.PauliLindbladMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.PauliLindbladMap" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A Pauli Lindblad map stored in a qubit-sparse format.
+
+  ## Mathematics
+
+  A Pauli-Lindblad map is a linear map acting on density matrices on $n$-qubits of the form:
+
+$$
+\Lambda\bigl[\circ\bigr] = \exp\left(\sum_{P \in K} \lambda_P (P \circ P - \circ)\right)
+$$
+
+  where $K$ is a subset of $n$-qubit Pauli operators, and the rates, or coefficients, $\lambda_P$ are real numbers. When all the rates $\lambda_P$ are non-negative, this corresponds to a completely positive and trace preserving map. The sum in the exponential is called the generator, and each individual term the generators. To simplify notation in the rest of the documention, we denote $L(P)\bigl[\circ\bigr] = P \circ P - \circ$.
+
+  ## Quasi-probability representation
+
+  The map $\Lambda$ can be written as a product:
+
+$$
+\Lambda\bigl[\circ\bigr] = \prod_{P \in K}\exp\left(\lambda_P(P \circ P - \circ)\right).
+$$
+
+  For each $P$, it holds that
+
+$$
+\exp\left(\lambda_P(P \circ P - \circ)\right) = \omega(\lambda_P) \circ + (1 - \omega(\lambda_P)) P \circ P,
+$$
+
+  where $\omega(x) = \frac{1}{2}(1 + e^{-2 x})$. Observe that if $\lambda_P \geq 0$, then $\omega(\lambda_P) \in (\frac{1}{2}, 1]$, and this term is a completely-positive and trace-preserving map. However, if $\lambda_P < 0$, then $\omega(\lambda_P) > 1$ and the map is not completely positive or trace preserving. Letting $\gamma_P = \omega(\lambda_P) + |1 - \omega(\lambda_P)|$, $p_P = \omega(\lambda_P) / \gamma_P$ and $b_P \in \{0, 1\}$ be $1$ if $\lambda_P < 0$ and $0$ otherwise, we rewrite the map as:
+
+$$
+\omega(\lambda_P) \circ + (1 - \omega(\lambda_P)) P \circ P = \gamma_P \left(p_P \circ + (-1)^{b_P}(1 - p_P) P \circ P\right).
+$$
+
+  If $\lambda_P \geq 0$, $\gamma_P = 1$ and the expression reduces to the standard mixture of the identity map and conjugation by $P$. If $\lambda_P < 0$, $\gamma_P > 1$, and the map is a scaled difference of the identity map and conjugation by $P$, with probability weights (hence “quasi-probability”). Note that this is a slightly different presentation than in the literature, but this notation allows us to handle both non-negative and negative rates simultaneously. The overall $\gamma$ of the channel is the product $\gamma = \prod_{P \in K} \gamma_P$.
+
+  See the [`PauliLindbladMap.sample()`](#qiskit.quantum_info.PauliLindbladMap.sample "qiskit.quantum_info.PauliLindbladMap.sample") method for the sampling procedure for this map.
+
+  ## Representation
+
+  Each individual Pauli operator in the generator is a tensor product of single-qubit Pauli operators of the form $P = \bigotimes_n A^{(n)}_i$, for $A^{(n)}_i \in \{I, X, Y, Z\}$. The internal representation of a [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") stores only the non-identity single-qubit Pauli operators. This makes it significantly more efficient to represent generators such as $\sum_{n\in \text{qubits}} c_n L(Z^{(n)})$; for which [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") requires an amount of memory linear in the total number of qubits.
+
+  Internally, [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") stores an array of rates and a [`QubitSparsePauliList`](qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") containing the corresponding sparse Pauli operators. Additionally, [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") can compute the overall channel $\gamma$ in the `get_gamma()` method, as well as the corresponding probabilities (or quasi-probabilities) via the `get_probabilities()` method.
+
+  ### Indexing
+
+  [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") behaves as [a Python sequence](https://docs.python.org/3/glossary.html#term-sequence) (the standard form, not the expanded [`collections.abc.Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")). The generators of the map can be indexed by integers, and iterated through to yield individual generator terms.
+
+  Each generator term appears as an instance a self-contained class. The individual terms are copied out of the base map; mutations to them will not affect the original map from which they are indexed.
+
+  #### GeneratorTerm
+
+  <Class id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="GeneratorTerm" modifiers="class">
+    Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+    A single term from a complete [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap").
+
+    These are typically created by indexing into or iterating through a [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap").
+
+    ##### copy
+
+    <Function id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm.copy" signature="copy()">
+      Get a copy of this term.
+    </Function>
+
+    ##### indices
+
+    <Attribute id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm.indices">
+      Read-only view onto the indices of each non-identity single-qubit term.
+
+      The indices will always be in sorted order.
+    </Attribute>
+
+    ##### num\_qubits
+
+    <Attribute id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm.num_qubits">
+      The number of qubits the term is defined on.
+    </Attribute>
+
+    ##### pauli\_labels
+
+    <Function id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm.pauli_labels" signature="pauli_labels()">
+      Return the pauli labels of the term as a string.
+
+      The pauli labels will match the order of [`GeneratorTerm.indices`](#qiskit.quantum_info.PauliLindbladMap.GeneratorTerm.indices "qiskit.quantum_info.PauliLindbladMap.GeneratorTerm.indices"), such that the i-th character in the string is applied to the qubit index at `term.indices[i]`. E.g. the term with operator `X` acting on qubit 0 and `Y` acting on qubit `3` will have `term.indices == np.array([0, 3])` and `term.pauli_labels == "XY"`.
+
+      **Returns**
+
+      The non-identity bit terms as a concatenated string.
+    </Function>
+
+    ##### paulis
+
+    <Attribute id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm.paulis">
+      Read-only view onto the individual single-qubit terms.
+
+      The only valid values in the array are those with a corresponding `Pauli`.
+    </Attribute>
+
+    ##### qubit\_sparse\_pauli
+
+    <Attribute id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm.qubit_sparse_pauli">
+      The term’s qubit\_sparse\_pauli.
+    </Attribute>
+
+    ##### rate
+
+    <Attribute id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm.rate">
+      The term’s rate.
+    </Attribute>
+
+    ##### to\_pauli\_lindblad\_map
+
+    <Function id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm.to_pauli_lindblad_map" signature="to_pauli_lindblad_map()">
+      Convert this term to a complete [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap").
+    </Function>
+  </Class>
+
+  ## Construction
+
+  [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") defines several constructors. The default constructor will attempt to delegate to one of the more specific constructors, based on the type of the input. You can always use the specific constructors to have more control over the construction.
+
+  <span id="pauli-lindblad-map-convert-constructors" />
+
+  | Method                                                                                                                                 | Summary                                                                                                                                                    |
+  | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`from_list()`](#qiskit.quantum_info.PauliLindbladMap.from_list "qiskit.quantum_info.PauliLindbladMap.from_list")                      | Generators given as a list of tuples of dense string labels and the associated rates.                                                                      |
+  | [`from_sparse_list()`](#qiskit.quantum_info.PauliLindbladMap.from_sparse_list "qiskit.quantum_info.PauliLindbladMap.from_sparse_list") | Generators given as a list of tuples of sparse string labels, the qubits they apply to, and their rates.                                                   |
+  | [`from_terms()`](#qiskit.quantum_info.PauliLindbladMap.from_terms "qiskit.quantum_info.PauliLindbladMap.from_terms")                   | Sum explicit single [`GeneratorTerm`](#qiskit.quantum_info.PauliLindbladMap.GeneratorTerm "qiskit.quantum_info.PauliLindbladMap.GeneratorTerm") instances. |
+  | [`from_components()`](#qiskit.quantum_info.PauliLindbladMap.from_components "qiskit.quantum_info.PauliLindbladMap.from_components")    | Build from an array of rates and a [`QubitSparsePauliList`](qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") instance. |
+
+  ### \_\_new\_\_
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.__new__" signature="__new__(data, /, num_qubits=None)">
+    The default constructor of [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap").
+
+    This delegates to one of [the explicit conversion-constructor methods](#pauli-lindblad-map-convert-constructors), based on the type of the `data` argument. If `num_qubits` is supplied and constructor implied by the type of `data` does not accept a number, the given integer must match the input.
+
+    **Parameters**
+
+    *   **data** – The data type of the input. This can be another [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap"), in which case the input is copied, or it can be a list in a valid format for either [`from_list()`](#qiskit.quantum_info.PauliLindbladMap.from_list "qiskit.quantum_info.PauliLindbladMap.from_list") or [`from_sparse_list()`](#qiskit.quantum_info.PauliLindbladMap.from_sparse_list "qiskit.quantum_info.PauliLindbladMap.from_sparse_list").
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*|None*) – Optional number of qubits for the map. For most data inputs, this can be inferred and need not be passed. It is only necessary for empty lists or the sparse-list format. If given unnecessarily, it must match the data input.
+  </Function>
+
+  In addition to the conversion-based constructors, there are also helper methods that construct special forms of maps.
+
+  | Method                                                                                                         | Summary                                       |
+  | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+  | [`identity()`](#qiskit.quantum_info.PauliLindbladMap.identity "qiskit.quantum_info.PauliLindbladMap.identity") | The identity map on a given number of qubits. |
+
+  ## Conversions
+
+  An existing [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") can be converted into other formats.
+
+  | Method                                                                                                                           | Summary                                                                          |
+  | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`to_sparse_list()`](#qiskit.quantum_info.PauliLindbladMap.to_sparse_list "qiskit.quantum_info.PauliLindbladMap.to_sparse_list") | Express the map in a sparse list format with elements `(paulis, indices, rate)`. |
+
+  ## Attributes
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.quantum_info.PauliLindbladMap.num_qubits">
+    The number of qubits the map acts on.
+
+    This is not inferable from any other shape or values, since identities are not stored explicitly.
+  </Attribute>
+
+  ### num\_terms
+
+  <Attribute id="qiskit.quantum_info.PauliLindbladMap.num_terms">
+    The number of generator terms in the exponent for this map.
+  </Attribute>
+
+  ### rates
+
+  <Attribute id="qiskit.quantum_info.PauliLindbladMap.rates">
+    The rates for the map.
+  </Attribute>
+
+  ## Methods
+
+  ### apply\_layout
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.apply_layout" signature="apply_layout(layout, num_qubits=None)">
+    Apply a transpiler layout to this Pauli Lindblad map.
+
+    This enables remapping of qubit indices, e.g. if the map is defined in terms of virtual qubit labels.
+
+    **Parameters**
+
+    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – The layout to apply. Most uses of this function should pass the [`QuantumCircuit.layout`](qiskit.circuit.QuantumCircuit#layout "qiskit.circuit.QuantumCircuit.layout") field from a circuit that was transpiled for hardware. In addition, you can pass a list of new qubit indices. If given as explicitly `None`, no remapping is applied (but you can still use `num_qubits` to expand the map).
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits to expand the map to. If not supplied, the output will be as wide as the given [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), or the same width as the input if the `layout` is given in another form.
+
+    **Returns**
+
+    A new [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") with the provided layout applied.
+  </Function>
+
+  ### clear
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.clear" signature="clear()">
+    Clear all the generator terms from this map, making it equal to the identity map again.
+
+    This does not change the capacity of the internal allocations, so subsequent addition or substraction operations resulting from composition may not need to reallocate.
+
+    **Examples**
+
+    ```python
+    >>> pauli_lindblad_map = PauliLindbladMap.from_list([("IXXXYY", 2.0), ("ZZYZII", -1)])
+    >>> pauli_lindblad_map.clear()
+    >>> assert pauli_lindblad_map == PauliLindbladMap.identity(pauli_lindblad_map.py_num_qubits())
+    ```
+  </Function>
+
+  ### compose
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.compose" signature="compose(other)">
+    Compose with another [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap").
+
+    This appends the internal arrays of self and other, and therefore results in a map with whose enumerated terms are those of self followed by those of other.
+
+    **Parameters**
+
+    **other** ([*PauliLindbladMap*](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap")) – the Pauli Lindblad map to compose with.
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.copy" signature="copy()">
+    Get a copy of this Pauli Lindblad map.
+
+    **Examples**
+
+    ```python
+    >>> pauli_lindblad_map = PauliLindbladMap.from_list([("IXZXYYZZ", 2.5), ("ZXIXYYZZ", 0.5)])
+    >>> assert pauli_lindblad_map == pauli_lindblad_map.copy()
+    >>> assert pauli_lindblad_map is not pauli_lindblad_map.copy()
+    ```
+  </Function>
+
+  ### drop\_paulis
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.drop_paulis" signature="drop_paulis(indices)">
+    Drop Paulis out of this Pauli Lindblad map.
+
+    Drop every Pauli on the given indices, effectively replacing them with an identity.
+
+    **Parameters**
+
+    **indices** (*Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The indices for which Paulis must be dropped.
+
+    **Returns**
+
+    A new Pauli Lindblad map where every Pauli on the given indices has been dropped.
+
+    **Examples**
+
+    ```python
+    >>> pauli_map_in = PauliLindbladMap.from_list([("XXIZI", 2.0), ("IIIYZ", 0.5), ("ZIIXY", -0.25)])
+    >>> pauli_map_out = pauli_map_in.keep_paulis([1, 2, 4])
+    >>> assert pauli_map_out == PauliLindbladMap.from_list([("XIIZI", 2.0), ("IIIYI", 0.5), ("ZIIXI", -0.25)])
+    ```
+  </Function>
+
+  ### from\_components
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.from_components" signature="from_components(rates, qubit_sparse_pauli_list)" modifiers="static" />
+
+  ### from\_list
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.from_list" signature="from_list(iter, /, *, num_qubits=None)" modifiers="static">
+    Construct a Pauli Lindblad map from a list of dense generator labels and rates.
+
+    This is analogous to [`SparsePauliOp.from_list()`](qiskit.quantum_info.SparsePauliOp#from_list "qiskit.quantum_info.SparsePauliOp.from_list"). In this dense form, you must supply all identities explicitly in each label.
+
+    The label must be a sequence of the alphabet `'IXYZ'`. The label is interpreted analogously to a bitstring. In other words, the right-most letter is associated with qubit 0, and so on. This is the same as the labels for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") and [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+
+    **Parameters**
+
+    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]*) – Pairs of labels and their associated rates in the generator sum.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – It is not necessary to specify this if you are sure that `iter` is not an empty sequence, since it can be inferred from the label lengths. If `iter` may be empty, you must specify this argument to disambiguate how many qubits the map acts on. If this is given and `iter` is not empty, the value must match the label lengths.
+
+    **Examples**
+
+    Construct a Pauli Lindblad map from a list of labels:
+
+    ```python
+    >>> PauliLindbladMap.from_list([
+    ...     ("IIIXX", 1.0),
+    ...     ("IIYYI", 1.0),
+    ...     ("IXXII", -0.5),
+    ...     ("ZZIII", -0.25),
+    ... ])
+    <PauliLindbladMap with 4 terms on 5 qubits:
+        (1)L(X_1 X_0) + (1)L(Y_2 Y_1) + (-0.5)L(X_3 X_2) + (-0.25)L(Z_4 Z_3)>
+    ```
+
+    Use `num_qubits` to disambiguate potentially empty inputs:
+
+    ```python
+    >>> PauliLindbladMap.from_list([], num_qubits=10)
+    <PauliLindbladMap with 0 terms on 10 qubits: 0.0>
+    ```
+
+    This method is equivalent to calls to [`from_sparse_list()`](#qiskit.quantum_info.PauliLindbladMap.from_sparse_list "qiskit.quantum_info.PauliLindbladMap.from_sparse_list") with the explicit qubit-arguments field set to decreasing integers:
+
+    ```python
+    >>> labels = ["XYXZ", "YYZZ", "XYXZ"]
+    >>> rates = [1.5, 2.0, -0.5]
+    >>> from_list = PauliLindbladMap.from_list(list(zip(labels, rates)))
+    >>> from_sparse_list = PauliLindbladMap.from_sparse_list([
+    ...     (label, (3, 2, 1, 0), rate)
+    ...     for label, rate in zip(labels, rates)
+    ... ])
+    >>> assert from_list == from_sparse_list
+    ```
+
+    <Admonition title="See also" type="note">
+      **[`from_sparse_list()`](#qiskit.quantum_info.PauliLindbladMap.from_sparse_list "qiskit.quantum_info.PauliLindbladMap.from_sparse_list")**
+
+      Construct the map from a list of labels without explicit identities, but with the qubits each single-qubit generator term applies to listed explicitly.
+    </Admonition>
+  </Function>
+
+  ### from\_sparse\_list
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.from_sparse_list" signature="from_sparse_list(iter, /, num_qubits)" modifiers="static">
+    Construct a Pauli Lindblad map from a list of labels, the qubits each item applies to, and the rate of the whole term.
+
+    This is analogous to [`SparsePauliOp.from_sparse_list()`](qiskit.quantum_info.SparsePauliOp#from_sparse_list "qiskit.quantum_info.SparsePauliOp.from_sparse_list").
+
+    The “labels” and “indices” fields of the triples are associated by zipping them together. For example, this means that a call to [`from_list()`](#qiskit.quantum_info.PauliLindbladMap.from_list "qiskit.quantum_info.PauliLindbladMap.from_list") can be converted to the form used by this method by setting the “indices” field of each triple to `(num_qubits-1, ..., 1, 0)`.
+
+    **Parameters**
+
+    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]*) – triples of labels, the qubits each single-qubit term applies to, and the rate of the entire term.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits the map acts on.
+
+    **Examples**
+
+    Construct a simple map:
+
+    ```python
+    >>> PauliLindbladMap.from_sparse_list(
+    ...     [("ZX", (1, 4), 1.0), ("YY", (0, 3), 2)],
+    ...     num_qubits=5,
+    ... )
+    <PauliLindbladMap with 2 terms on 5 qubits: (1)L(X_4 Z_1) + (2)L(Y_3 Y_0)>
+    ```
+
+    This method can replicate the behavior of [`from_list()`](#qiskit.quantum_info.PauliLindbladMap.from_list "qiskit.quantum_info.PauliLindbladMap.from_list"), if the qubit-arguments field of the triple is set to decreasing integers:
+
+    ```python
+    >>> labels = ["XYXZ", "YYZZ", "XYXZ"]
+    >>> rates = [1.5, 2.0, -0.5]
+    >>> from_list = PauliLindbladMap.from_list(list(zip(labels, rates)))
+    >>> from_sparse_list = PauliLindbladMap.from_sparse_list([
+    ...     (label, (3, 2, 1, 0), rate)
+    ...     for label, rate in zip(labels, rates)
+    ... ])
+    >>> assert from_list == from_sparse_list
+    ```
+
+    <Admonition title="See also" type="note">
+      **[`to_sparse_list()`](#qiskit.quantum_info.PauliLindbladMap.to_sparse_list "qiskit.quantum_info.PauliLindbladMap.to_sparse_list")**
+
+      The reverse of this method.
+    </Admonition>
+  </Function>
+
+  ### from\_terms
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.from_terms" signature="from_terms(obj, /, num_qubits=None)" modifiers="static">
+    Construct a [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") out of individual terms.
+
+    All the terms must have the same number of qubits. If supplied, the `num_qubits` argument must match the terms.
+
+    No simplification is done as part of the map creation.
+
+    **Parameters**
+
+    *   **obj** (*Iterable\[*[*Term*](qiskit.quantum_info.SparseObservable#term "qiskit.quantum_info.SparseObservable.Term")*]*) – Iterable of individual terms to build the map generator from.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits the map should act on. This is usually inferred from the input, but can be explicitly given to handle the case of an empty iterable.
+
+    **Returns**
+
+    The corresponding map.
+  </Function>
+
+  ### gamma
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.gamma" signature="gamma()">
+    Calculate the $\gamma$ for the map.
+  </Function>
+
+  ### get\_qubit\_sparse\_pauli\_list\_copy
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.get_qubit_sparse_pauli_list_copy" signature="get_qubit_sparse_pauli_list_copy()">
+    Get a copy of the map’s qubit sparse pauli list.
+  </Function>
+
+  ### identity
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.identity" signature="identity(num_qubits)" modifiers="static">
+    Get the identity map on the given number of qubits.
+
+    The identity map contains no generator terms, and is the identity element for composition of two [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") instances; anything composed with the identity map is equal to itself.
+
+    **Examples**
+
+    Get the identity map on 100 qubits:
+
+    ```python
+    >>> PauliLindbladMap.identity(100)
+    <PauliLindbladMap with 0 terms on 100 qubits: 0.0>
+    ```
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.inverse" signature="inverse()">
+    Return a new [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") that is the mathematical inverse of self.
+  </Function>
+
+  ### keep\_paulis
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.keep_paulis" signature="keep_paulis(indices)">
+    Keep every Pauli on the given indices and drop all others.
+
+    This is equivalent to using [`PauliLindbladMap.drop_paulis()`](#qiskit.quantum_info.PauliLindbladMap.drop_paulis "qiskit.quantum_info.PauliLindbladMap.drop_paulis") on the complement set of indices.
+
+    **Parameters**
+
+    **indices** (*Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The indices for which Paulis must be kept.
+
+    **Returns**
+
+    A new Pauli Lindblad map where every Pauli on the given indices has been kept and all other Paulis have been dropped.
+
+    **Examples**
+
+    ```python
+    >>> pauli_map_in = PauliLindbladMap.from_list([("XXIZI", 2.0), ("IIIYZ", 0.5), ("ZIIXY", -0.25)])
+    >>> pauli_map_out = pauli_map_in.keep_paulis([1, 2, 4])
+    >>> assert pauli_map_out == PauliLindbladMap.from_list([("XIIZI", 2.0), ("IIIYI", 0.5), ("ZIIXI", -0.25)])
+    ```
+  </Function>
+
+  ### pauli\_fidelity
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.pauli_fidelity" signature="pauli_fidelity(qubit_sparse_pauli)">
+    Compute the Pauli fidelity of this map for a qubit sparse Pauli.
+
+    For a Pauli $Q$, the fidelity with respect to the Pauli Lindblad map $\Lambda$ is the real number $f(Q)$ for which $\Lambda(Q) = f(Q) Q$. I.e. every Pauli is an eigenvector of the linear map $\Lambda$, and the fidelity is the corresponding eigenvalue. For a Pauli Lindblad map with generator set $K$ and rate function $\lambda : K \rightarrow \mathbb{R}$, the pauli fidelity mathematically is
+
+$$
+f(Q) = \exp\left(-2 \sum_{P \in K} \lambda(P) \langle P, Q\rangle_{sp}),
+$$
+
+    where $\langle P, Q\rangle_{sp}$ is $0$ if $P$ and $Q$ commute, and $1$ if they anti-commute.
+
+    **Args: qubit\_sparse\_pauli (QubitSparsePauli): the qubit sparse Pauli to compute the Pauli**
+
+    fidelity of.
+  </Function>
+
+  ### probabilities
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.probabilities" signature="probabilities()">
+    Calculate the probabilities for the map.
+  </Function>
+
+  ### sample
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.sample" signature="sample(num_samples, seed=None)">
+    For [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") instances with purely non-negative rates, sample Pauli operators from the map. If the map has negative rates, use [`PauliLindbladMap.signed_sample()`](#qiskit.quantum_info.PauliLindbladMap.signed_sample "qiskit.quantum_info.PauliLindbladMap.signed_sample").
+
+    Given the quasi-probability representation given in the class-level documentation, each sample is drawn via the following process:
+
+    *   Initialize a :class\`\~.QubitSparsePauli\` instance to the identity operator.
+    *   Iterate through each Pauli in the map. Using the pseudo-probability associated with each operator, randomly choose between applying the operator or not.
+    *   If the operator is applied, update the :class\`QubitSparsePauli\` by multiplying it with the Pauli.
+
+    The sampled qubit sparse Paulis are returned in the form of a [`QubitSparsePauliList`](qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList").
+
+    **Parameters**
+
+    *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of samples to draw.
+    *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Random seed. Defaults to `None`.
+
+    **Returns**
+
+    The list of qubit sparse paulis.
+
+    **Return type**
+
+    qubit\_sparse\_pauli\_list
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If any of the rates in the map are negative.
+  </Function>
+
+  ### scale\_rates
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.scale_rates" signature="scale_rates(scale_factor)">
+    Return a new [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") with rates scaled by scale\_factor.
+
+    **Parameters**
+
+    **scale\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the scaling coefficient.
+  </Function>
+
+  ### signed\_sample
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.signed_sample" signature="signed_sample(num_samples, seed=None)">
+    Sample sign and Pauli operator pairs from the map.
+
+    Each sign is represented by a boolean, with `True` representing `+1`, and `False` representing `-1`.
+
+    Given the quasi-probability representation given in the class-level documentation, each sample is drawn via the following process:
+
+    *   Initialize the sign boolean, and a [`QubitSparsePauli`](qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli") instance to the identity operator.
+    *   Iterate through each Pauli in the map. Using the pseudo-probability associated with each operator, randomly choose between applying the operator or not.
+    *   If the operator is applied, update the :class\`QubitSparsePauli\` by multiplying it with the Pauli. If the rate associated with the Pauli is negative, flip the sign boolean.
+
+    The results are returned as a 1d array of booleans, and the corresponding sampled qubit sparse Paulis in the form of a [`QubitSparsePauliList`](qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList").
+
+    **Parameters**
+
+    *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of samples to draw.
+    *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Random seed.
+
+    **Returns**
+
+    The boolean array of signs and the list of qubit sparse paulis.
+
+    **Return type**
+
+    signs, qubit\_sparse\_pauli\_list
+  </Function>
+
+  ### simplify
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.simplify" signature="simplify(tol=1e-08)">
+    Sum any like terms in the generator, removing them if the resulting rate has an absolute value within tolerance of zero. This also removes terms whose Pauli operator is proportional to the identity, as the correponding generator is actually the zero map.
+
+    As a side effect, this sorts the generators into a fixed canonical order.
+
+    <Admonition title="Note" type="note">
+      When using this for equality comparisons, note that floating-point rounding and the non-associativity fo floating-point addition may cause non-zero coefficients of summed terms to compare unequal. To compare two observables up to a tolerance, it is safest to compare the canonicalized difference of the two observables to zero.
+    </Admonition>
+
+    **Parameters**
+
+    **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – after summing like terms, any rates whose absolute value is less than the given absolute tolerance will be suppressed from the output.
+
+    **Examples**
+
+    Using [`simplify()`](#qiskit.quantum_info.PauliLindbladMap.simplify "qiskit.quantum_info.PauliLindbladMap.simplify") to compare two operators that represent the same map, but would compare unequal due to the structural tests by default:
+
+    ```python
+    >>> base = PauliLindbladMap.from_sparse_list([
+    ...     ("XZ", (2, 1), 1e-10),  # value too small
+    ...     ("XX", (3, 1), 2),
+    ...     ("XX", (3, 1), 2),      # can be combined with the above
+    ...     ("ZZ", (3, 1), 0.5),    # out of order compared to `expected`
+    ... ], num_qubits=5)
+    >>> expected = PauliLindbladMap.from_list([("IZIZI", 0.5), ("IXIXI", 4)])
+    >>> assert base != expected  # non-canonical comparison
+    >>> assert base.simplify() == expected.simplify()
+    ```
+
+    Note that in the above example, the coefficients are chosen such that all floating-point calculations are exact, and there are no intermediate rounding or associativity concerns. If this cannot be guaranteed to be the case, the safer form is:
+
+    ```python
+    >>> left = PauliLindbladMap.from_list([("XYZ", 1.0/3.0)] * 3)   # sums to 1.0
+    >>> right = PauliLindbladMap.from_list([("XYZ", 1.0/7.0)] * 7)  # doesn't sum to 1.0
+    >>> assert left.simplify() != right.simplify()
+    >>> assert left.compose(right.inverse()).simplify() == PauliLindbladMap.identity(left.num_qubits)
+    ```
+  </Function>
+
+  ### to\_sparse\_list
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.to_sparse_list" signature="to_sparse_list()">
+    Express the map in terms of a sparse list format.
+
+    This can be seen as counter-operation of [`PauliLindbladMap.from_sparse_list()`](#qiskit.quantum_info.PauliLindbladMap.from_sparse_list "qiskit.quantum_info.PauliLindbladMap.from_sparse_list"), however the order of terms is not guaranteed to be the same at after a roundtrip to a sparse list and back.
+
+    **Examples**
+
+    ```python
+    >>> pauli_lindblad_map = PauliLindbladMap.from_list([("IIXIZ", 2), ("IIZIX", 3)])
+    >>> reconstructed = PauliLindbladMap.from_sparse_list(pauli_lindblad_map.to_sparse_list(), pauli_lindblad_map.num_qubits)
+    ```
+
+    <Admonition title="See also" type="note">
+      **[`from_sparse_list()`](#qiskit.quantum_info.PauliLindbladMap.from_sparse_list "qiskit.quantum_info.PauliLindbladMap.from_sparse_list")**
+
+      The constructor that can interpret these lists.
+    </Admonition>
+  </Function>
+</Class>
+

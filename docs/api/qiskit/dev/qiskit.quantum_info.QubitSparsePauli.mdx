@@ -134,6 +134,26 @@ python_api_name: qiskit.quantum_info.QubitSparsePauli
 
   ## Methods
 
+  ### commutes
+
+  <Function id="qiskit.quantum_info.QubitSparsePauli.commutes" signature="commutes(other)">
+    Check if self\` commutes with another qubit sparse pauli.
+
+    **Parameters**
+
+    **other** ([*QubitSparsePauli*](#qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli")) – the qubit sparse Pauli to check for commutation with.
+  </Function>
+
+  ### compose
+
+  <Function id="qiskit.quantum_info.QubitSparsePauli.compose" signature="compose(other)">
+    Phaseless composition with another [`QubitSparsePauli`](#qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli").
+
+    **Parameters**
+
+    **other** ([*QubitSparsePauli*](#qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli")) – the qubit sparse Pauli to compose with.
+  </Function>
+
   ### copy
 
   <Function id="qiskit.quantum_info.QubitSparsePauli.copy" signature="copy()">
@@ -244,6 +264,21 @@ python_api_name: qiskit.quantum_info.QubitSparsePauli
     ...     num_qubits=4
     ... )
     >>> assert from_label == from_sparse_label
+    ```
+  </Function>
+
+  ### identity
+
+  <Function id="qiskit.quantum_info.QubitSparsePauli.identity" signature="identity(num_qubits)" modifiers="static">
+    Get the identity operator for a given number of qubits.
+
+    **Examples**
+
+    Get the identity on 100 qubits:
+
+    ```python
+    >>> QubitSparsePauli.identity(100)
+    <QubitSparsePauli on 100 qubits: >
     ```
   </Function>
 
