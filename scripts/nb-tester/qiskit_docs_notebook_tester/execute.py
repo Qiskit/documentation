@@ -29,6 +29,12 @@ from .config import NotebookJob, Result
 from .post_process import post_process_notebook
 
 
+OPEN_BACKENDS_TO_INTERNAL = {
+    "ibm_brisbane": "alt_brisbane",
+    "ibm_torino": "alt_torino",
+}
+
+
 @dataclass(frozen=True)
 class NotebookWarning:
     cell_index: int
@@ -151,6 +157,13 @@ async def _execute_notebook(
         if job.log_cell_outputs:
             print(f"ℹ️ Cell {cell_index} output:\n", "\n".join(get_text_output(cell)))
 
+    # Our instance gives us high-priority access to open backends through different names.
+    # E.g. 'ibm_brisbane' through 'alt_brisbane'. However, these names won't work for users.
+    # We get round this by mapping between open and internal backend names before and after execution.
+    # This is a temporary hack while we wait for high-priority access to open backends
+    if job.map_open_backends_to_internal:
+        nb = open_backends_to_internal(nb)
+
     notebook_client = nbclient.NotebookClient(
         nb=nb,
         km=kernel_manager,
@@ -160,8 +173,32 @@ async def _execute_notebook(
         on_cell_executed=log_cell_output,
     )
     await notebook_client.async_execute()
+
+    if job.map_open_backends_to_internal:
+        nb = internal_backends_to_open(nb)
+
     return post_process_notebook(nb)
 
+def open_backends_to_internal(nb: nbformat.NotebookNode) -> nbformat.NotebookNode:
+    for cell in nb.cells:
+        if cell.cell_type != 'code':
+            continue
+        for open, internal in OPEN_BACKENDS_TO_INTERNAL.items():
+            cell.source = cell.source.replace(open, internal)
+    return nb
+
+def internal_backends_to_open(nb: nbformat.NotebookNode) -> nbformat.NotebookNode:
+    for cell in nb.cells:
+        if cell.cell_type != 'code':
+            continue
+        for open, internal in OPEN_BACKENDS_TO_INTERNAL.items():
+            cell.source = cell.source.replace(internal, open)
+            for output in cell.outputs:
+                if 'text' in output:
+                    output['text'] = output['text'].replace(internal, open)
+                if text := output.get('data', {}).get('text/plain', None):
+                    output['data']['text/plain'] = text.replace(internal, open)
+    return nb
 
 def cancel_trailing_jobs(start_time: datetime) -> Result:
     """
