@@ -179,12 +179,18 @@ async def _execute_notebook(
 
     return post_process_notebook(nb)
 
+def replace_string_literals(source: str, literal: str, replace: str) -> str:
+    return (source
+        .replace(f"\"{literal}\"", f"\"{replace}\"")
+        .replace(f"'{literal}'", f"'{replace}'")
+    )
+
 def open_backends_to_internal(nb: nbformat.NotebookNode) -> nbformat.NotebookNode:
     for cell in nb.cells:
         if cell.cell_type != 'code':
             continue
         for open, internal in OPEN_BACKENDS_TO_INTERNAL.items():
-            cell.source = cell.source.replace(open, internal)
+            cell.source = replace_string_literals(cell.source, open, internal)
     return nb
 
 def internal_backends_to_open(nb: nbformat.NotebookNode) -> nbformat.NotebookNode:
@@ -192,8 +198,9 @@ def internal_backends_to_open(nb: nbformat.NotebookNode) -> nbformat.NotebookNod
         if cell.cell_type != 'code':
             continue
         for open, internal in OPEN_BACKENDS_TO_INTERNAL.items():
-            cell.source = cell.source.replace(internal, open)
+            cell.source = replace_string_literals(cell.source, internal, open)
             for output in cell.outputs:
+                # We don't restrict to string literals (surrounded by quotes) in outputs
                 if 'text' in output:
                     output['text'] = output['text'].replace(internal, open)
                 if text := output.get('data', {}).get('text/plain', None):
