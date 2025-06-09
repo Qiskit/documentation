@@ -1,0 +1,598 @@
+---
+title: QkTarget (dev version)
+description: API reference for QkTarget in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QkTarget
+---
+
+# QkTarget
+
+```C
+typedef struct QkTarget QkTarget
+```
+
+A mapping of instructions and properties representing the partiucular constraints of a backend. Its purpose is to provide the compiler with information that allows it to compile an input circuit into another that is optimized taking in consideration the `QkTarget`’s specifications. This structure represents a low level interface to the main Target data structure in Rust, which represents the base class for its Python counterpart, [`Target`](qiskit-transpiler-target#qiskit.transpiler.Target "qiskit.transpiler.Target").
+
+Here’s an example of how this structure works:
+
+```C
+#include <qiskit.h>
+#include <math.h>
+
+// Create a Target with 2 qubits
+QkTarget *target = qk_target_new(2);
+// Create an entry for a CX Gate with qargs (0, 1) and properties
+// duration = 0.0123
+// error = NaN
+uint32_t qargs[2] = {0, 1};
+QkTargetEntry *entry = qk_target_entry_new(QkGate_CX);
+qk_target_entry_add(entry, qargs, 2, 0.0123, NAN);
+
+// Add a CX Gate to the target
+qk_target_add_instruction(target, entry);
+
+// Add a global H gate
+qk_target_add_instruction(target, qk_target_entry_new(QkGate_H));
+
+// Free the created target.
+qk_target_free(target);
+```
+
+The Target C API currently only supports additions of `QkGate` instances with either no parameters or fixed parameters. Support for regular parameters will be added in the future. The functionality will keep expanding over time as we improve our Rust data model capabilities.
+
+## Functions
+
+### qk\_target\_new
+
+<Function id="qk_target_new" signature="QkTarget *qk_target_new(uint32_t num_qubits)">
+  Construct a new `QkTarget` with the given number of qubits. The number of qubits is bound to change if an instruction is added with properties that apply to a collection of qargs in which any index is higher than the specified number of qubits
+
+  <span id="group__QkTarget_1autotoc_md94" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  ```
+
+  **Parameters**
+
+  **num\_qubits** – The number of qubits the `QkTarget` will explicitly support.
+
+  **Returns**
+
+  A pointer to the new `QkTarget`
+</Function>
+
+### qk\_target\_num\_qubits
+
+<Function id="qk_target_num_qubits" signature="uint32_t qk_target_num_qubits(const QkTarget *target)">
+  Returns the number of qubits of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md95" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  uint32_t num_qubits = qk_target_num_qubits(target);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md96" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md96" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  **target** – A pointer to the `QkTarget`.
+
+  **Returns**
+
+  The number of qubits this target can use.
+</Function>
+
+### qk\_target\_dt
+
+<Function id="qk_target_dt" signature="double qk_target_dt(const QkTarget *target)">
+  Returns the dt value of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md97" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  qk_target_set_dt(target, 10e-9);
+  double dt = qk_target_dt(target);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md98" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md98" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  **target** – A pointer to the `QkTarget`.
+
+  **Returns**
+
+  The dt value of this `QkTarget` or `NaN` if not assigned.
+</Function>
+
+### qk\_target\_granularity
+
+<Function id="qk_target_granularity" signature="uint32_t qk_target_granularity(const QkTarget *target)">
+  Returns the granularity value of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md99" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  // The value defaults to 1
+  uint32_t granularity = qk_target_granularity(target);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md100" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md100" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  **target** – A pointer to the `QkTarget`.
+
+  **Returns**
+
+  The `granularity` value of this `QkTarget`.
+</Function>
+
+### qk\_target\_min\_length
+
+<Function id="qk_target_min_length" signature="uint32_t qk_target_min_length(const QkTarget *target)">
+  Returns the `min_length` value of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md101" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  // The value defaults to 1
+  size_t min_length = qk_target_min_length(target);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md102" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md102" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  **target** – A pointer to the `QkTarget`.
+
+  **Returns**
+
+  The `min_length` value of this `QkTarget`.
+</Function>
+
+### qk\_target\_pulse\_alignment
+
+<Function id="qk_target_pulse_alignment" signature="uint32_t qk_target_pulse_alignment(const QkTarget *target)">
+  Returns the `pulse_alignment` value of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md103" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  // The value defaults to 1
+  uint32_t pulse_alignment = qk_target_pulse_alignment(target);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md104" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md104" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  **target** – A pointer to the `QkTarget`.
+
+  **Returns**
+
+  The `pulse_alignment` value of this `QkTarget`.
+</Function>
+
+### qk\_target\_acquire\_alignment
+
+<Function id="qk_target_acquire_alignment" signature="uint32_t qk_target_acquire_alignment(const QkTarget *target)">
+  Returns the `acquire_alignment` value of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md105" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  // The value defaults to 0
+  uint32_t acquire_alignment = qk_target_pulse_alignment(target);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md106" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md106" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  **target** – A pointer to the `QkTarget`.
+
+  **Returns**
+
+  The `acquire_alignment` value of this `QkTarget`.
+</Function>
+
+### qk\_target\_set\_dt
+
+<Function id="qk_target_set_dt" signature="QkExitCode qk_target_set_dt(QkTarget *target, double dt)">
+  Sets the dt value of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md107" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  double dt = qk_target_set_dt(target, 10e-9);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md108" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md108" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **dt** – The `dt` value for the system time resolution of input.
+
+  **Returns**
+
+  `QkExitCode` specifying if the operation was successful.
+</Function>
+
+### qk\_target\_set\_granularity
+
+<Function id="qk_target_set_granularity" signature="QkExitCode qk_target_set_granularity(QkTarget *target, uint32_t granularity)">
+  Sets the `granularity` value of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md109" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  // The value defaults to 1
+  qk_target_set_granularity(target, 2);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md110" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md110" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **granularity** – The value for the minimum pulse gate resolution in units of `dt`.
+
+  **Returns**
+
+  `QkExitCode` specifying if the operation was successful.
+</Function>
+
+### qk\_target\_set\_min\_length
+
+<Function id="qk_target_set_min_length" signature="QkExitCode qk_target_set_min_length(QkTarget *target, uint32_t min_length)">
+  Sets the `min_length` value of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md111" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  // The value defaults to 1
+  qk_target_set_min_length(target, 3);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md112" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md112" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **min\_length** – The minimum pulse gate length value in units of `dt`.
+
+  **Returns**
+
+  `QkExitCode` specifying if the operation was successful.
+</Function>
+
+### qk\_target\_set\_pulse\_alignment
+
+<Function id="qk_target_set_pulse_alignment" signature="QkExitCode qk_target_set_pulse_alignment(QkTarget *target, uint32_t pulse_alignment)">
+  Returns the `pulse_alignment` value of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md113" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  // The value defaults to 1
+  qk_target_set_pulse_alignment(target, 4);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md114" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md114" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **pulse\_alignment** – value representing a time resolution of gate.
+
+  **Returns**
+
+  `QkExitCode` specifying if the operation was successful.
+</Function>
+
+### qk\_target\_set\_acquire\_alignment
+
+<Function id="qk_target_set_acquire_alignment" signature="QkExitCode qk_target_set_acquire_alignment(QkTarget *target, uint32_t acquire_alignment)">
+  Sets the `acquire_alignment` value of this `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md115" />
+
+  #### Example
+
+  <span id="group__QkTarget_1autotoc_md115" />
+
+  QkTarget \*target = qk\_target\_new(5); // The value defaults to 0 qk\_target\_set\_acquire\_alignment(target, 5);
+
+  <span id="group__QkTarget_1autotoc_md116" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md116" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **acquire\_alignment** – value representing a time resolution of measure instruction starting time.
+
+  **Returns**
+
+  `QkExitCode` specifying if the operation was successful.
+</Function>
+
+### qk\_target\_copy
+
+<Function id="qk_target_copy" signature="QkTarget *qk_target_copy(QkTarget *target)">
+  Creates a copy of the `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md117" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  QkTargetEntry *entry = qk_target_entry_new(QkGate_CX);
+  uint32_t qargs[2] = {0, 1};
+  qk_target_entry_add_property(entry, qargs, 2, 0.0, 0.1);
+  QkExitCode result = qk_target_add_instruction(target, entry);
+
+  QkTarget *copied = qk_target_copy(target);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md118" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md118" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  **target** – A pointer to the `QkTarget` to copy.
+
+  **Returns**
+
+  A pointer to the new copy of the `QkTarget`.
+</Function>
+
+### qk\_target\_free
+
+<Function id="qk_target_free" signature="void qk_target_free(QkTarget *target)">
+  Free the `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md119" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  qk_target_free(target);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md120" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md120" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  **target** – A pointer to the `QkTarget` to free.
+</Function>
+
+### qk\_target\_add\_instruction
+
+<Function id="qk_target_add_instruction" signature="QkExitCode qk_target_add_instruction(QkTarget *target, QkTargetEntry *target_entry)">
+  Adds a gate to the `QkTarget` through a `QkTargetEntry`.
+
+  <span id="group__QkTarget_1autotoc_md132" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  QkTargetEntry *entry = qk_target_entry_new(QkGate_CX);
+  uint32_t qargs[2] = {0, 1};
+  qk_target_entry_add_property(entry, qargs, 2, 0.0, 0.1);
+  QkExitCode result = qk_target_add_instruction(target, entry);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md133" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md133" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  Behavior is undefined if `entry` is not a valid, non-null pointer to a `QkTargetEntry`.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **target\_entry** – A pointer to the `QkTargetEntry`. The pointer gets freed when added to the `QkTarget`.
+
+  **Returns**
+
+  `QkExitCode` specifying if the operation was successful.
+</Function>
+
+### qk\_target\_update\_property
+
+<Function id="qk_target_update_property" signature="QkExitCode qk_target_update_property(QkTarget *target, QkGate instruction, uint32_t *qargs, uint32_t num_qubits, double duration, double error)">
+  Modifies the properties of a gate in the `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md134" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  double params[1] = {3.1415};
+  QkTargetEntry *entry = qk_target_entry_new_fixed(QkGate_CRX, params);
+  uint32_t qargs[2] = {0, 1};
+  qk_target_entry_add_property(entry, qargs, 2, 0.0, 0.1);
+  qk_target_add_instruction(target, entry);
+
+  qk_target_update_property(target, QkGate_CRX, qargs, 2, 0.0012, 1.1)
+  ```
+
+  <span id="group__QkTarget_1autotoc_md135" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md135" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  The `qargs` type is expected to be a pointer to an array of `uint32_t` where the length matches is specified by `num_qubits` and has to match the expectation of the gate. If the array is insufficently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits for a given gate. You can check `qk_gate_num_qubits` to determine how many qubits are required for a given gate.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **instruction** – The instruction to modify.
+  *   **qargs** – The pointer to the array of `uint32_t` values to use as qargs. Can be `NULL` if global.
+  *   **num\_qubits** – The number of qubits of the instruction..
+  *   **duration** – The instruction’s duration in seconds on the specific set of qubits.
+  *   **error** – The instruction’s average error rate on the specific set of qubits.
+
+  **Returns**
+
+  `QkExitCode` specifying if the operation was successful.
+</Function>
+
+### qk\_target\_num\_instructions
+
+<Function id="qk_target_num_instructions" signature="uintptr_t qk_target_num_instructions(const QkTarget *target)">
+  Returns the number of instructions tracked by a `QkTarget`.
+
+  <span id="group__QkTarget_1autotoc_md136" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  QkTargetEntry *target_enty = qk_target_entry_new(QkGate_H);
+  qk_target_add_instruction(target, target_entry);
+
+  size_t num_instructions = qk_target_num_instructions(target);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md137" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md137" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  **target** – A pointer to the `QkTarget`.
+
+  **Returns**
+
+  The length of the target.
+</Function>
+
