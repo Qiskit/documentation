@@ -18,7 +18,7 @@ Functions for the study of fermionic systems.
 
 ### SCIState
 
-<Class id="qiskit_addon_sqd.fermion.SCIState" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.10/qiskit_addon_sqd/fermion.py#L32-L69" signature="SCIState(amplitudes, ci_strs_a, ci_strs_b)" modifiers="class">
+<Class id="qiskit_addon_sqd.fermion.SCIState" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L37-L102" signature="SCIState(amplitudes, ci_strs_a, ci_strs_b, norb, nelec)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   The amplitudes and determinants describing a quantum state.
@@ -28,6 +28,8 @@ Functions for the study of fermionic systems.
   *   **amplitudes** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
   *   **ci\_strs\_a** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
   *   **ci\_strs\_b** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
+  *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
+  *   **nelec** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*)
 
   #### amplitudes
 
@@ -49,20 +51,57 @@ Functions for the study of fermionic systems.
 
   #### load
 
-  <Function id="qiskit_addon_sqd.fermion.SCIState.load" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.10/qiskit_addon_sqd/fermion.py#L65-L69" signature="load(filename)" modifiers="classmethod">
+  <Function id="qiskit_addon_sqd.fermion.SCIState.load" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L76-L80" signature="load(filename)" modifiers="classmethod">
     Load an SCIState object from an .npz file.
+  </Function>
+
+  #### nelec
+
+  <Attribute id="qiskit_addon_sqd.fermion.SCIState.nelec" attributeTypeHint="tuple[int, int]">
+    The numbers of alpha and beta electrons.
+  </Attribute>
+
+  #### norb
+
+  <Attribute id="qiskit_addon_sqd.fermion.SCIState.norb" attributeTypeHint="int">
+    The number of spatial orbitals.
+  </Attribute>
+
+  #### orbital\_occupancies
+
+  <Function id="qiskit_addon_sqd.fermion.SCIState.orbital_occupancies" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L99-L102" signature="orbital_occupancies()">
+    Average orbital occupancies.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+  </Function>
+
+  #### rdm
+
+  <Function id="qiskit_addon_sqd.fermion.SCIState.rdm" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L82-L97" signature="rdm(rank=1, spin_summed=False)">
+    Compute reduced density matrix.
+
+    **Parameters**
+
+    *   **rank** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
+    *   **spin\_summed** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)"))
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")
   </Function>
 
   #### save
 
-  <Function id="qiskit_addon_sqd.fermion.SCIState.save" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.10/qiskit_addon_sqd/fermion.py#L59-L63" signature="save(filename)">
+  <Function id="qiskit_addon_sqd.fermion.SCIState.save" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L70-L74" signature="save(filename)">
     Save the SCIState object to an .npz file.
   </Function>
 </Class>
 
 ### bitstring\_matrix\_to\_ci\_strs
 
-<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.10/qiskit_addon_sqd/fermion.py#L386-L430" signature="bitstring_matrix_to_ci_strs(bitstring_matrix, open_shell=False)">
+<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L686-L730" signature="bitstring_matrix_to_ci_strs(bitstring_matrix, open_shell=False)">
   Convert bitstrings (rows) in a `bitstring_matrix` into integer representations of determinants.
 
   This function separates each bitstring in `bitstring_matrix` in half, flips the bits and translates them into integer representations, and finally appends them to their respective (spin-up or spin-down) lists. Those lists are sorted and output from this function.
@@ -81,9 +120,71 @@ Functions for the study of fermionic systems.
   [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
 </Function>
 
+### diagonalize\_fermionic\_hamiltonian
+
+<Function id="qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L125-L324" signature="diagonalize_fermionic_hamiltonian(one_body_tensor, two_body_tensor, bit_array, samples_per_batch, norb, nelec, *, num_batches=1, energy_tol=1e-08, occupancies_tol=1e-05, max_iterations=100, sci_solver=None, symmetrize_spin=False, include_configurations=None, initial_occupancies=None, carryover_threshold=0.0001, callback=None, seed=None)">
+  Run the sample-based quantum diagonalization (SQD) algorithm.
+
+  **Parameters**
+
+  *   **one\_body\_tensor** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – The one-body tensor of the Hamiltonian.
+
+  *   **two\_body\_tensor** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – The two-body tensor of the Hamiltonian.
+
+  *   **bit\_array** ([*BitArray*](/docs/api/qiskit/qiskit.primitives.BitArray "(in Qiskit v2.0)")) – Array of sampled bitstrings. Each bitstring should have both the alpha part and beta part concatenated together, with the alpha part concatenated on the right-hand side, like this: `[b_N, ..., b_0, a_N, ..., a_0]`.
+
+  *   **samples\_per\_batch** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of bitstrings to include in each subsampled batch of bitstrings.
+
+  *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of spatial orbitals.
+
+  *   **nelec** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The numbers of alpha and beta electrons.
+
+  *   **num\_batches** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of batches to subsample in each configuration recovery iteration. This argument indirectly controls the dimensions of the diagonalization subspaces. A higher value will yield larger subspace dimensions.
+
+  *   **energy\_tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Numerical tolerance for convergence of the energy. If the change in energy between iterations is smaller than this value, then the configuration recovery loop will exit, if the occupancies have also converged (see the `occupancies_tol` argument).
+
+  *   **occupancies\_tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Numerical tolerance for convergence of the average orbital occupancies. If the maximum change in absolute value of the average occupancy of an orbital between iterations is smaller than this value, then the configuration recovery loop will exit, if the energy has also converged (see the `energy_tol` argument).
+
+  *   **max\_iterations** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Limit on the number of configuration recovery iterations.
+
+  *   **sci\_solver** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*]],* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[SCIResult]] | None*) –
+
+      Selected configuration interaction solver function.
+
+      Inputs:
+
+      *   List of pairs (strings\_a, strings\_b) of arrays of spin-alpha CI strings and spin-beta CI strings whose Cartesian product give the basis of the subspace in which to perform a diagonalization. A list is passed to allow the solver function to perform the diagonalizations in parallel.
+      *   One-body tensor of the Hamiltonian.
+      *   Two-body tensor of the Hamiltonian.
+      *   The number of spatial orbitals.
+      *   A pair (n\_alpha, n\_beta) indicating the numbers of alpha and beta electrons.
+
+      Output: List of (energy, sci\_state, occupancies) triplets, where each triplet contains the result of the corresponding diagonalization.
+
+  *   **symmetrize\_spin** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to always merge spin-alpha and spin-beta CI strings into a single list, so that the diagonalization subspace is invariant with respect to the exchange of spin alpha with spin beta.
+
+  *   **include\_configurations** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]] | None*) – Configurations to always include in the diagonalization subspace. You can specify either a single list of single-spin strings to use for both spin sectors, or a pair (alpha\_strings, beta\_strings) of lists of single-spin strings, one for each spin.
+
+  *   **initial\_occupancies** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*] | None*) – Initial guess for the average occupancies of the orbitals.
+
+  *   **carryover\_threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Threshold for carrying over bitstrings with large CI weight from one iteration of configuration recovery to the next. All single-spin CI strings associated with configurations whose coefficient has absolute value greater than this threshold will be included in the diagonalization subspace for the next iteration. A smaller threshold will retain more configurations, leading to a larger subspace and hence a more costly diagonalization.
+
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[SCIResult]], None] | None*) – A callback function to be called after each configuration recovery iteration. The function will be passed the output of the sci\_solver function, which is a list of (energy, sci\_state, occupancies) triplets, where each triplet contains the result of a diagonalization.
+
+  *   **seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.2)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for the pseudorandom number generator.
+
+  **Returns**
+
+  The estimate of the energy and the SCI state with that energy.
+
+  **Return type**
+
+  *SCIResult*
+</Function>
+
 ### enlarge\_batch\_from\_transitions
 
-<Function id="qiskit_addon_sqd.fermion.enlarge_batch_from_transitions" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.10/qiskit_addon_sqd/fermion.py#L433-L456" signature="enlarge_batch_from_transitions(bitstring_matrix, transition_operators)">
+<Function id="qiskit_addon_sqd.fermion.enlarge_batch_from_transitions" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L733-L756" signature="enlarge_batch_from_transitions(bitstring_matrix, transition_operators)">
   Apply the set of transition operators to the configurations represented in `bitstring_matrix`.
 
   **Parameters**
@@ -102,16 +203,19 @@ Functions for the study of fermionic systems.
 
 ### solve\_fermion
 
-<Function id="qiskit_addon_sqd.fermion.solve_fermion" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.10/qiskit_addon_sqd/fermion.py#L72-L171" signature="solve_fermion(bitstring_matrix, /, hcore, eri, *, open_shell=False, spin_sq=None, max_davidson=100, verbose=None)">
+<Function id="qiskit_addon_sqd.fermion.solve_fermion" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L429-L529" signature="solve_fermion(bitstring_matrix, /, hcore, eri, *, open_shell=False, spin_sq=None, shift=0.1, **kwargs)">
   Approximate the ground state given molecular integrals and a set of electronic configurations.
 
   **Parameters**
 
   *   **bitstring\_matrix** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) –
 
-      A set of configurations defining the subspace onto which the Hamiltonian will be projected and diagonalized. This is a 2D array of `bool` representations of bit values such that each row represents a single bitstring. The spin-up configurations should be specified by column indices in range `(N, N/2]`, and the spin-down configurations should be specified by column indices in range `(N/2, 0]`, where `N` is the number of qubits.
+      A set of configurations defining the subspace onto which the Hamiltonian will be projected and diagonalized.
 
-      (DEPRECATED) The configurations may also be specified by a length-2 tuple of sorted 1D arrays containing unsigned integer representations of the determinants. The two lists should represent the spin-up and spin-down orbitals, respectively.
+      This may be specified in two ways:
+
+      *   Bitstring matrix: A 2D `numpy.ndarray` of `bool` values, where each row represents a bitstring. The spin-up configurations should occupy column indices `(N, N/2]`, and the spin-down configurations should occupy column indices `(N/2, 0]`, where `N` is the number of qubits.
+      *   CI strings: A tuple of two sequences containing integer representations of spin-up and spin-down determinants, respectively. The expected format is `([a_str_0, ..., a_str_N], [b_str_0, ..., b_str_M])`.
 
   *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – Core Hamiltonian matrix representing single-electron integrals
 
@@ -119,11 +223,11 @@ Functions for the study of fermionic systems.
 
   *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether configurations from the left and right halves of the bitstrings should be kept separate. If `False`, CI strings from the left and right halves of the bitstrings are combined into a single set of unique configurations and used for both the alpha and beta subspaces.
 
-  *   **spin\_sq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – Target value for the total spin squared for the ground state. If `None`, no spin will be imposed.
+  *   **spin\_sq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – Target value for the total spin squared for the ground state, $S^2 = s(s + 1)$. If `None`, no spin will be imposed.
 
-  *   **max\_davidson** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of cycles of Davidson’s algorithm
+  *   **shift** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Level shift for states which have different spin. $(H + shift * S^2)|ψ> = E|ψ>$
 
-  *   **verbose** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A verbosity level between 0 and 10
+  *   **\*\*kwargs** – Keyword arguments to pass to [pyscf.fci.selected\_ci.kernel\_fixed\_space](https://pyscf.org/pyscf_api_docs/pyscf.fci.html#pyscf.fci.selected_ci.kernel_fixed_space)
 
   **Returns**
 
@@ -137,9 +241,73 @@ Functions for the study of fermionic systems.
   [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [*SCIState*](#qiskit_addon_sqd.fermion.SCIState "qiskit_addon_sqd.fermion.SCIState"), [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
 </Function>
 
+### solve\_sci
+
+<Function id="qiskit_addon_sqd.fermion.solve_sci" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L368-L426" signature="solve_sci(ci_strings, one_body_tensor, two_body_tensor, norb, nelec, *, spin_sq=None, **kwargs)">
+  Diagonalize Hamiltonian in subspace defined by CI strings.
+
+  **Parameters**
+
+  *   **ci\_strings** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*]*) – Pair (strings\_a, strings\_b) of arrays of spin-alpha CI strings and spin-beta CI strings whose Cartesian product give the basis of the subspace in which to perform a diagonalization.
+
+  *   **one\_body\_tensor** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – The one-body tensor of the Hamiltonian.
+
+  *   **two\_body\_tensor** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – The two-body tensor of the Hamiltonian.
+
+  *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of spatial orbitals.
+
+  *   **nelec** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The numbers of alpha and beta electrons.
+
+  *   **spin\_sq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – Target value for the total spin squared for the ground state. If `None`, no spin will be imposed.
+
+  *   **\*\*kwargs** –
+
+      Keyword arguments to pass to [pyscf.fci.selected\_ci.kernel\_fixed\_space](https://pyscf.org/pyscf_api_docs/pyscf.fci.html#pyscf.fci.selected_ci.kernel_fixed_space)
+
+  **Returns**
+
+  The diagonalization result.
+
+  **Return type**
+
+  *SCIResult*
+</Function>
+
+### solve\_sci\_batch
+
+<Function id="qiskit_addon_sqd.fermion.solve_sci_batch" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L327-L365" signature="solve_sci_batch(ci_strings, one_body_tensor, two_body_tensor, norb, nelec, *, spin_sq=None, **kwargs)">
+  Diagonalize Hamiltonian in subspaces.
+
+  **Parameters**
+
+  *   **ci\_strings** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*]]*) – List of pairs (strings\_a, strings\_b) of arrays of spin-alpha CI strings and spin-beta CI strings whose Cartesian product give the basis of the subspace in which to perform a diagonalization.
+
+  *   **one\_body\_tensor** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – The one-body tensor of the Hamiltonian.
+
+  *   **two\_body\_tensor** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – The two-body tensor of the Hamiltonian.
+
+  *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of spatial orbitals.
+
+  *   **nelec** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The numbers of alpha and beta electrons.
+
+  *   **spin\_sq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – Target value for the total spin squared for the ground state. If `None`, no spin will be imposed.
+
+  *   **\*\*kwargs** –
+
+      Keyword arguments to pass to [pyscf.fci.selected\_ci.kernel\_fixed\_space](https://pyscf.org/pyscf_api_docs/pyscf.fci.html#pyscf.fci.selected_ci.kernel_fixed_space)
+
+  **Returns**
+
+  The results of the diagonalizations in the subspaces given by ci\_strings.
+
+  **Return type**
+
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[*SCIResult*]
+</Function>
+
 ### optimize\_orbitals
 
-<Function id="qiskit_addon_sqd.fermion.optimize_orbitals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.10/qiskit_addon_sqd/fermion.py#L174-L290" signature="optimize_orbitals(bitstring_matrix, /, hcore, eri, k_flat, *, open_shell=False, spin_sq=0.0, num_iters=10, num_steps_grad=10000, learning_rate=0.01, max_davidson=100)">
+<Function id="qiskit_addon_sqd.fermion.optimize_orbitals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L532-L643" signature="optimize_orbitals(bitstring_matrix, /, hcore, eri, k_flat, *, open_shell=False, spin_sq=0.0, num_iters=10, num_steps_grad=10000, learning_rate=0.01, **kwargs)">
   Optimize orbitals to produce a minimal ground state.
 
   The process involves iterating over 3 steps:
@@ -156,9 +324,12 @@ Functions for the study of fermionic systems.
 
   *   **bitstring\_matrix** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) –
 
-      A set of configurations defining the subspace onto which the Hamiltonian will be projected and diagonalized. This is a 2D array of `bool` representations of bit values such that each row represents a single bitstring. The spin-up configurations should be specified by column indices in range `(N, N/2]`, and the spin-down configurations should be specified by column indices in range `(N/2, 0]`, where `N` is the number of qubits.
+      A set of configurations defining the subspace onto which the Hamiltonian will be projected and diagonalized.
 
-      (DEPRECATED) The configurations may also be specified by a length-2 tuple of sorted 1D arrays containing unsigned integer representations of the determinants. The two lists should represent the spin-up and spin-down orbitals, respectively.
+      This may be specified in two ways:
+
+      *   Bitstring matrix: A 2D `numpy.ndarray` of `bool` values, where each row represents a bitstring. The spin-up configurations should occupy column indices `(N, N/2]`, and the spin-down configurations should occupy column indices `(N/2, 0]`, where `N` is the number of qubits.
+      *   CI strings: A tuple of two sequences containing integer representations of spin-up and spin-down determinants, respectively. The expected format is `([a_str_0, ..., a_str_N], [b_str_0, ..., b_str_M])`.
 
   *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – Core Hamiltonian matrix representing single-electron integrals
 
@@ -172,11 +343,13 @@ Functions for the study of fermionic systems.
 
   *   **num\_iters** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of iterations of orbital optimization to perform
 
-  *   **max\_davidson** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of cycles of Davidson’s algorithm to perform during diagonalization.
-
   *   **num\_steps\_grad** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of steps of gradient descent to perform during each optimization iteration
 
   *   **learning\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The learning rate to use during gradient descent
+
+  *   **\*\*kwargs** –
+
+      Keyword arguments to pass to [pyscf.fci.selected\_ci.kernel\_fixed\_space](https://pyscf.org/pyscf_api_docs/pyscf.fci.html#pyscf.fci.selected_ci.kernel_fixed_space)
 
   **Returns**
 
@@ -191,7 +364,7 @@ Functions for the study of fermionic systems.
 
 ### rotate\_integrals
 
-<Function id="qiskit_addon_sqd.fermion.rotate_integrals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.10/qiskit_addon_sqd/fermion.py#L293-L330" signature="rotate_integrals(hcore, eri, k_flat)">
+<Function id="qiskit_addon_sqd.fermion.rotate_integrals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.11/qiskit_addon_sqd/fermion.py#L646-L683" signature="rotate_integrals(hcore, eri, k_flat)">
   Perform a similarity transform on the integrals.
 
   The transformation is described as:
@@ -212,31 +385,6 @@ $$
 
   *   The rotated core Hamiltonian matrix
   *   The rotated ERI matrix
-
-  **Return type**
-
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
-</Function>
-
-### bitstring\_matrix\_to\_sorted\_addresses
-
-<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.10/qiskit_addon_sqd/fermion.py#L333-L383" signature="bitstring_matrix_to_sorted_addresses(bitstring_matrix, open_shell=False)">
-  Convert a bitstring matrix into a sorted array of unique, unsigned integers.
-
-  This function separates each bitstring in `bitstring_matrix` in half, flips the bits and translates them into integer representations, and finally appends them to their respective (spin-up or spin-down) lists. Those lists are sorted and output from this function.
-
-  <Admonition title="Deprecated since version 0.6.0" type="danger">
-    The function `qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()` is deprecated as of qiskit-addon-sqd 0.6.0. It will be removed no sooner than qiskit-addon-sqd 0.10.0. Use the bitstring\_matrix\_to\_ci\_strs function.
-  </Admonition>
-
-  **Parameters**
-
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
-  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether unique addresses from the left and right halves of the bitstrings should be kept separate. If `False`, addresses from the left and right halves of the bitstrings are combined into a single set of unique addresses. That combined set will be returned for both the left and right bitstrings.
-
-  **Returns**
-
-  A length-2 tuple of sorted, unique determinants representing the left (spin-down) and right (spin-up) halves of the bitstrings, respectively.
 
   **Return type**
 
