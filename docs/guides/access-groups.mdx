@@ -27,6 +27,8 @@ When you create this access group, include the following policies:
   - **Viewer** platform management access role
 - All IAM Account Management services - Grant access to invite users, manage access groups, and create access policies.
   - **Administrator** platform management access role
+- Support Center service - Grant access to enable users to open support cases through IBM Cloud Support Center.
+    - **Administrator** platform management access role
 
 
 <Admonition type="note">
@@ -136,6 +138,31 @@ You can use the following JSON code to create policies for an Administrators acc
 }
 ```
 
+- Support Center service (administrator)
+```json
+{
+    "type": "access",
+    "roles": [
+        {
+            "role_id": "crn:v1:bluemix:public:iam::::role:Administrator"
+        },
+    ],
+    "resources": [
+        {
+            "attributes": [
+                {
+                    "name": "accountId",
+                    "value": "[ACCOUNT_ID]"
+                },
+                {
+                    "name": "serviceName",
+                    "value": "support"
+                }
+            ]
+        }
+    ]
+}
+```
 
 <span id="ui"></span>
 ### Use the IBM Cloud IAM console
@@ -172,6 +199,14 @@ Create a third policy for the same instance.
 1. In the **Create policy** page that opens, define these elements:
    - **Service** - Select **All Account Management services**. Click **Next**.
    - **Roles and actions** - For Platform access, select **Viewer**, Click **Next**.
+   At the bottom, click **Add**, then click **Assign**.
+
+Create a fourth policy for the same instance.
+
+1. In the same access group, click the **Access** tab, then click **Assign access**.
+1. In the **Create policy** page that opens, define these elements:
+   - **Service** - Select **Support Center**. Click **Next**.
+   - **Roles and actions** - For Platform access, select **Administrator**. Click **Next**.
    At the bottom, click **Add**, then click **Assign**.
 
 Finally, add users to the access group.  You can do this from the access group's **Users** page, or by using the IBM Quantum Platform [Access management](https://quantum.cloud.ibm.com/access-groups) page.
