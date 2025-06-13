@@ -366,7 +366,7 @@ Download one of the visualizations at the bottom of the Quantum Composer workspa
 A single-qubit state can be represented as
 
 $$
-\begin{split}\vert\psi\rangle = \sqrt{1-p}\vert0\rangle + e^{j\varphi} \sqrt{p} \vert1\rangle,\end{split}
+\begin{split}\vert\psi\rangle = \sqrt{1-p}\vert0\rangle + e^{jφ} \sqrt{p} \vert1\rangle,\end{split}
 $$
 
 where $p$ is the probability that the qubit is in the $|1\rangle$ state, and $\varphi$ is the quantum phase. $p$ is strongly analogous to a classical probabilistic bit. For $p=0$, the qubit is in the $|0\rangle$ state, for $p=1$ the qubit is in the $|1\rangle$ state, and for $p=1/2$ the qubit is a 50/50 mixture. We call this a superposition as, unlike classical bits, this mixture can have a quantum phase. The phase disk visualizes this state.
@@ -393,17 +393,17 @@ Two examples of the phase disk visualization. The first example is a $|1\rangle$
 
 **Connection to the Bloch sphere**
 
-The phase disk, which contains all the information in the Bloch sphere, is a two-dimensional representation of a qubit. To convert to the Bloch sphere representation: $x=2\sqrt{p(1-p)}\mathrm{Re}[e^{j\varphi} ]$, $y=2\sqrt{p(1-p)}\mathrm{Im}[e^{j\varphi} ]$, and $z=1-2p$.
+The phase disk, which contains all the information in the Bloch sphere, is a two-dimensional representation of a qubit. To convert to the Bloch sphere representation: $x=2\sqrt{p(1-p)}\mathrm{Re}[e^{jφ} ]$, $y=2\sqrt{p(1-p)}\mathrm{Im}[e^{jφ} ]$, and $z=1-2p$.
 
 **N-qubit states: maximum 15 qubits**
 
 An N-qubit quantum state takes the form
 
 $$
-\begin{split}\vert\psi\rangle = \sqrt{1-p}\vert0...0\rangle + \sum_{k=1}^{2^N-1}e^{j\varphi_k} \sqrt{p_k} \vert k\rangle,\end{split}
+\begin{split}\vert\psi\rangle = \sqrt{1-p}\vert0...0\rangle + \sum_{k=1}^{2^N-1}e^{jφ_k} \sqrt{p_k} \vert k\rangle,\end{split}
 $$
 
-where $p_k$ is the probability that the qubits are in the state $|k\rangle$ with quantum phase $\varphi_k$ with respect to the $|0...0\rangle$ state. $p=\sum_{k\neq0}p_k$ is the probability that the qubits are not in the ground state $|0...0\rangle$. Here it is simple to see that for an N-qubit quantum state there are $2^N-1$ probabilities and $2^N-1$ phases. The phase disk fails to represent this state, as N-qubit phase disks would only contain $N$ probabilities and $N$ phases; this is because most states are entangled and are not separable into independent single-qubit quantum states. To represent that full information is not contained in this visualization, we introduce the reduced purity as a component in the phase disk.
+where $p_k$ is the probability that the qubits are in the state $|k\rangle$ with quantum phase $\varphi_k$ with respect to the $|0...0\rangle$ state. $p=\sum_{k ≠ 0}p_k$ is the probability that the qubits are not in the ground state $|0...0\rangle$. Here it is simple to see that for an N-qubit quantum state there are $2^N-1$ probabilities and $2^N-1$ phases. The phase disk fails to represent this state, as N-qubit phase disks would only contain $N$ probabilities and $N$ phases; this is because most states are entangled and are not separable into independent single-qubit quantum states. To represent that full information is not contained in this visualization, we introduce the reduced purity as a component in the phase disk.
 
 **Reduced purity of the qubit state**
 
