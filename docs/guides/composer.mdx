@@ -3,6 +3,8 @@ title: Explore gates and circuits with IBM Quantum Composer
 description: IBM Quantum Composer is a graphical programming tool. Drag and drop operations to build circuits and run them on quantum hardware.
 platform: cloud
 ---
+
+{/* cspell:ignore gatename, ungroup, ungrouping */}
 # Explore gates and circuits with IBM Quantum Composer
 
 ## What is it?
@@ -276,15 +278,15 @@ Once you have defined your custom operation, drag it onto the graphical editor a
 
 a) The gates to be included in the custom operation:
 
-![cust-icon-explod](/docs/images/tutorials/explore-composer/763d3b42-4b6e-4409-817f-7d15abae2d76.avif)
+![Gates in the custom operation](/docs/images/tutorials/explore-composer/763d3b42-4b6e-4409-817f-7d15abae2d76.avif)
 
 b) The code for the new operation:
 
-![cust-qasm](/docs/images/tutorials/explore-composer/db5856ca-751c-4f12-9f25-6060b9003687.avif)
+![Customized new operation](/docs/images/tutorials/explore-composer/db5856ca-751c-4f12-9f25-6060b9003687.avif)
 
 c) The new operation in the graphical editor:
 
-![cust-icon](/docs/images/tutorials/explore-composer/d7fb8ec5-5eae-4ad4-9972-1e3665b39b7f.avif)
+![New operation](/docs/images/tutorials/explore-composer/d7fb8ec5-5eae-4ad4-9972-1e3665b39b7f.avif)
 
 ### 4. Inspect your circuit, step-by-step
 
@@ -515,7 +517,7 @@ The SWAP gate swaps the states of two qubits.
 
 | Composer reference                                  | OpenQASM reference | Q-Sphere | Note about q-sphere representations                                                                                                                                                                                                     |
 | --------------------------------------------------- | ------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![swapgate](/docs/images/tutorials/explore-composer/61f641e0-fb8f-4a67-af60-9b1bf792f2c6.avif) | `swap q[0], q[1];` | ![swap\_qsph](/docs/images/tutorials/explore-composer/e2090577-7a13-484a-a642-2c56f42119cb.avif)                        | The q-sphere representation shows the state after the gate operates on the initial equal superposition state $\frac{1}{\sqrt{2^{n}}}\sum_{i=0}^{2^{n}-1}\vert i\rangle, $ where $n$ is the number of qubits needed to support the gate. |
+| ![SWAP gate](/docs/images/tutorials/explore-composer/61f641e0-fb8f-4a67-af60-9b1bf792f2c6.avif) | `swap q[0], q[1];` | ![swap\_qsph](/docs/images/tutorials/explore-composer/e2090577-7a13-484a-a642-2c56f42119cb.avif)                        | The q-sphere representation shows the state after the gate operates on the initial equal superposition state $\frac{1}{\sqrt{2^{n}}}\sum_{i=0}^{2^{n}-1}\vert i\rangle, $ where $n$ is the number of qubits needed to support the gate. |
 
 **Identity gate**
 
@@ -523,7 +525,7 @@ The identity gate (sometimes called the Id or the I gate) is actually the absenc
 
 | Composer reference                                 | Qasm reference |
 | -------------------------------------------------- | -------------- |
-| ![idgate](/docs/images/tutorials/explore-composer/f3c1f16a-d5b4-4f1c-9f18-2d9b6dcfd2fe.avif) | `id q[0];`     |
+| ![Identity gate](/docs/images/tutorials/explore-composer/f3c1f16a-d5b4-4f1c-9f18-2d9b6dcfd2fe.avif) | `id q[0];`     |
 
 ### Phase gates
 
@@ -559,7 +561,7 @@ The inverse of the T gate.
 
 | Composer reference                                | OpenQASM reference | Q-Sphere | Note about q-sphere representations                                                                                                                                                                                                     |
 | ------------------------------------------------- | ------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![tdggate](/docs/images/tutorials/explore-composer/8e348308-7e1f-4e61-a002-ff84d04d89b1.avif) | `tdg q[0];`        | ![image31](/docs/images/tutorials/explore-composer/b79890e8-e6f1-4c22-8546-6322bc6ed57b.avif)                            | The q-sphere representation shows the state after the gate operates on the initial equal superposition state $\frac{1}{\sqrt{2^{n}}}\sum_{i=0}^{2^{n}-1}\vert i\rangle, $ where $n$ is the number of qubits needed to support the gate. |
+| ![T-dagger gate](/docs/images/tutorials/explore-composer/8e348308-7e1f-4e61-a002-ff84d04d89b1.avif) | `tdg q[0];`        | ![image31](/docs/images/tutorials/explore-composer/b79890e8-e6f1-4c22-8546-6322bc6ed57b.avif)                            | The q-sphere representation shows the state after the gate operates on the initial equal superposition state $\frac{1}{\sqrt{2^{n}}}\sum_{i=0}^{2^{n}-1}\vert i\rangle, $ where $n$ is the number of qubits needed to support the gate. |
 
 **$S^{\dagger}$ gate**
 
@@ -569,7 +571,7 @@ The inverse of the S gate.
 
 | Composer reference                                | OpenQASM reference | Q-Sphere | Note about q-sphere representations                                                                                                                                                                                                     |
 | ------------------------------------------------- | ------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![sdggate](/docs/images/tutorials/explore-composer/ae59613c-0c65-447c-869d-81c7ffb8b2ad.avif) | `sdg q[0];`        | ![image27](/docs/images/tutorials/explore-composer/1de10ec2-2026-40f6-8f96-cd332f79780d.avif)                            | The q-sphere representation shows the state after the gate operates on the initial equal superposition state $\frac{1}{\sqrt{2^{n}}}\sum_{i=0}^{2^{n}-1}\vert i\rangle, $ where $n$ is the number of qubits needed to support the gate. |
+| ![S-dagger gate](/docs/images/tutorials/explore-composer/ae59613c-0c65-447c-869d-81c7ffb8b2ad.avif) | `sdg q[0];`        | ![image27](/docs/images/tutorials/explore-composer/1de10ec2-2026-40f6-8f96-cd332f79780d.avif)                            | The q-sphere representation shows the state after the gate operates on the initial equal superposition state $\frac{1}{\sqrt{2^{n}}}\sum_{i=0}^{2^{n}-1}\vert i\rangle, $ where $n$ is the number of qubits needed to support the gate. |
 
 **Phase gate**
 
@@ -607,7 +609,7 @@ Measurement in the standard basis, also known as the z basis or computational ba
 
 | Composer reference                                       | OpenQASM reference |
 | -------------------------------------------------------- | ------------------ |
-| ![z-measu](/docs/images/tutorials/explore-composer/9fca7f1e-ba46-400d-a3d1-312ee011d705.avif) | `measure q[0];`    |
+| ![Measurement in the standard or z basis](/docs/images/tutorials/explore-composer/9fca7f1e-ba46-400d-a3d1-312ee011d705.avif) | `measure q[0];`    |
 
 **Control modifier**
 
@@ -619,7 +621,7 @@ To remove a control, right-click the gate and select the option to remove contro
 
 | Composer reference                                          | OpenQASM reference |
 | ----------------------------------------------------------- | ------------------ |
-| ![cntrl-mod](/docs/images/tutorials/explore-composer/243c0fad-8236-4b03-a71a-bacaed4055c8.avif) | `c`                |
+| ![Control modifier](/docs/images/tutorials/explore-composer/243c0fad-8236-4b03-a71a-bacaed4055c8.avif) | `c`                |
 
 **Barrier operation**
 
