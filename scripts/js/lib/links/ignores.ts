@@ -104,7 +104,7 @@ function _addonsObjectsInvRegexes(): string[] {
       // Latest version
       `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
       // Historical versions
-      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]\/${path}(\/.*|#.*|$)`,
+      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]{1,2}\/${path}(\/.*|#.*|$)`,
     ],
   );
 }

@@ -36,7 +36,8 @@ class RasterImage:
         temp_file = NamedTemporaryFile(suffix=self.source_format)
         with temp_file as f:
             f.write(self.data)
-            subprocess.run(["magick", temp_file.name, self.destination_filepath], check=True)
+            f.file.seek(0) # change the File Handle position to the beginning of the file
+            subprocess.run(["magick", f.name, self.destination_filepath], check=True)
 
 
 
