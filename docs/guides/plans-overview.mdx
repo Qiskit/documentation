@@ -13,7 +13,20 @@ This documentation is relevant to the new IBM Quantum&reg; Platform. If you need
 
 IBM Quantum Platform has Open (free access), and paid plans, as described below. See [IBM Quantum access plans](https://www.ibm.com/quantum/pricing) for full details.
 
-If you want access to multiple plans, you can create multiple instances and assign different plans to them.  For example, you can have an Open Plan instance and a Standard Plan instance.
+If you want access to multiple plans, you can create multiple instances and assign different plans to them.  For example, you can have an Open Plan instance and a Standard Plan instance.  You can set prefered instances to use in the `QiskitRuntimeService` initializer or `QiskitRuntimeService.save_account()` method.  Example:
+
+```python
+  from qiskit_ibm_runtime import QiskitRuntimeService
+  service = QiskitRuntimeService.save_account(
+    token=token, # Your token is confidential.
+    # Do not share your key in public code.
+    instance="<IBM Cloud CRN or instance name>", # Optionally specify the instance to use.
+    plans_preference="['plan-type1', 'plan-type2']", # Optionally set the types of plans to prioritize.  This is ignored if the instance is specified.
+    region="<region>", # Optionally set the region to prioritize.
+    name="<account-name>", # Optionally name this set of account credentials.
+    set_as_default=True, # Optionally set these as your default credentials.
+  )
+```
 
 ## Open Plan
 
