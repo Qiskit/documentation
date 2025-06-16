@@ -100,6 +100,7 @@ To use the component, you only need the video's `id` and a descriptive `title` t
 ```
 
 Ensure that the video is allowed to be embedded on `*.cloud.ibm.com` and `qiskit.github.io`. This is set as metadata in IBM Video Streaming. This should work automatically as long as the video is uploaded to the same group as our other videos.
+
 ## Math
 
 We use [LaTeX](https://www.latex-project.org) to write math, which gets rendered by the library [KaTeX](https://katex.org).
