@@ -76,9 +76,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeKawasaki
   ### max\_circuits
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeKawasaki.max_circuits">
-    (DEPRECATED) The maximum number of circuits
-
-    The maximum number of circuits that the backend supports in a single execution. Note that the actual number of circuits the service allows may be different.
+    This property used to return the max\_experiments value from the backend configuration but this value is no longer an accurate representation of backend circuit limits. New fields will be added to indicate new limits.
   </Attribute>
 
   ### meas\_map
@@ -271,7 +269,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeKawasaki
 
   ### refresh
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeKawasaki.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L446-L522" signature="refresh(service)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeKawasaki.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L439-L515" signature="refresh(service)">
     Update the data files from its real counterpart
 
     This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation:
@@ -298,7 +296,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeKawasaki
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeKawasaki.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L330-L361" signature="run(run_input, **options)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeKawasaki.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L323-L354" signature="run(run_input, **options)">
     Run on the fake backend using a simulator.
 
     This method runs circuit jobs (an individual or a list of QuantumCircuit) using BasicSimulator or Aer simulator and returns a [`Job`](/docs/api/qiskit/qiskit.providers.Job "(in Qiskit v2.0)") object.
