@@ -89,16 +89,14 @@ To include a caption:
 
 You can include a version of the image to be with the dark theme. You only need to create an image with the same name ending in `@dark`. So for example, if you have a `sampler.png` image, the dark version would be `sampler@dark.png`. This is important for images that have a white background.
 
-## Videos
+## IBM Videos
 
-Videos are stored in the `public/docs/videos` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/docs/videos/guides/my-file/video1.mp4`.
+The `IBMVideo` component allows you to add embeded videos from [video.ibm.com](https://video.ibm.com).
 
-To add a video:
+To use the component, you only need the video's `id` and a descriptive `title` that will be used for accessibility purposes:
 
-```markdown
-<video title="Write a description of the video here as 'alt text' for accessibility." className="max-w-auto h-auto" controls>
-    <source src="/docs/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
-</video>
+```mdx
+<IBMVideo id="134056207" title="This is an example"/>
 ```
 
 ## Math
@@ -211,16 +209,6 @@ We also have a specialized admonition for Qiskit Code Assistant prompt suggestio
     "# Install Qiskit 1.0.2"
   ]}
 />
-```
-
-### IBM Videos
-
-The `IBMVideo` component allows you to add embeded videos from [video.ibm.com](https://video.ibm.com).
-
-To use the component, you only need the video's `id` and a descriptive `title` that will be used for accessibility purposes:
-
-```mdx
-<IBMVideo id="134056207" title="This is an example"/>
 ```
 
 ### Definition Tooltip
