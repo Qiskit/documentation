@@ -95,7 +95,7 @@ The `IBMVideo` component allows you to add embeded videos from [video.ibm.com](h
 
 To use the component, you only need the video's `id` and a descriptive `title` that will be used for accessibility purposes:
 
-```mdx
+```markdown
 <IBMVideo id="134056207" title="This is an example"/>
 ```
 
