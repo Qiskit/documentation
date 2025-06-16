@@ -58,7 +58,7 @@ Your user account is associated with one or more [instances](./instances) that g
     token = "<your-API-token>"
     ```
 <Admonition type="Note">
-When an instance CRN or name is passed in, only backends and jobs from that instance are available.  If an instance is not specified, all backends and jobs across all instances in your account are available. In this case, when a backend is specified, an instance that can access that backend is found and used.
+When an instance CRN or name is passed in, only backends and jobs from that instance are available.  If an instance is not specified (allowed in Qiskit Runtime v0.40.1 and later), all backends and jobs across all instances in your account are available. In this case, when a backend is specified, an instance that can access that backend is found and used.
 </Admonition>
 
 ```python
@@ -68,7 +68,7 @@ When an instance CRN or name is passed in, only backends and jobs from that inst
     # Do not share your key in public code.
     instance="<IBM Cloud CRN or instance name>", # Optionally specify the instance to use.
     plans_preference="['plan-type1', 'plan-type2']", # Optionally set the types of plans to prioritize.  This is ignored if the instance is specified.
-    region="<region>", # Optionally set the region to prioritize.
+    region="<region>", # Optionally set the region to prioritize. This is ignored if the instance is specified.
     name="<account-name>", # Optionally name this set of account credentials.
     set_as_default=True, # Optionally set these as your default credentials.
   )
