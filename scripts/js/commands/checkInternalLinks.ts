@@ -24,6 +24,8 @@ import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
+  "learning/index.mdx",
+  "docs/index.mdx",
   "docs/admin/analytics.mdx",
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
