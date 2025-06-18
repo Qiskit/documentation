@@ -52,6 +52,28 @@ def test_internal_to_open_stream_outputs():
     assert received.cells[0].outputs[0].output_type == "stream"
     assert received.cells[0].outputs[0].text == "Using backend: ibm_brisbane"
 
+def test_internal_to_open_stream_outputs_alt():
+    nb = create_notebook(
+        "print(\"Using backend: {backend.name}\")\nprint(\"Using backend: '{backend.name}'\")",
+        outputs=[{
+            "output_type": "stream",
+            "text": "Using backend: alt_brisbane"
+        },
+        {
+            "output_type": "stream",
+            "text": "Using backend: 'alt_brisbane'"
+        },
+        ]
+    )
+    received = internal_backends_to_open(nb)
+    assert len(received.cells) == 1
+    assert received.cells[0].source == "print(\"Using backend: {backend.name}\")\nprint(\"Using backend: '{backend.name}'\")"
+    assert len(received.cells[0].outputs) == 2
+    assert received.cells[0].outputs[0].output_type == "stream"
+    assert received.cells[0].outputs[0].text == "Using backend: ibm_brisbane"
+    assert received.cells[0].outputs[1].output_type == "stream"
+    assert received.cells[0].outputs[1].text == "Using backend: 'ibm_brisbane'"
+
 def test_internal_to_open_result_outputs():
     nb = create_notebook(
         "print(\"Using backend: {backend.name}\")",
@@ -66,3 +88,18 @@ def test_internal_to_open_result_outputs():
     assert len(received.cells[0].outputs) == 1
     assert received.cells[0].outputs[0].output_type == "execute_result"
     assert received.cells[0].outputs[0].data["text/plain"] == "Using backend: ibm_brisbane"
+
+def test_internal_to_open_result_outputs_alt():
+    nb = create_notebook(
+        "print(\"Using backend:\\n>>> '{backend.name}'\")",
+        outputs=[{
+            "output_type": "execute_result",
+            "data": { "text/plain": "Using backend:\n>>> 'alt_brisbane'" }
+        }]
+    )
+    received = internal_backends_to_open(nb)
+    assert len(received.cells) == 1
+    assert received.cells[0].source == "print(\"Using backend:\\n>>> '{backend.name}'\")"
+    assert len(received.cells[0].outputs) == 1
+    assert received.cells[0].outputs[0].output_type == "execute_result"
+    assert received.cells[0].outputs[0].data["text/plain"] == "Using backend:\n>>> 'ibm_brisbane'"
