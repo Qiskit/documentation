@@ -4,3 +4,103 @@ description: How to use stretch to defer timing resolution with dynamic circuits
 ---
 
 # Deferred timing resolution using stretch
+
+Overview:  what is stretch and why is it useful?
+
+## Example
+
+Example of using stretch in a dynamic circuit
+
+## Limitiations
+
+The following contstraints apply when using `stretch`:
+
+- At most one stretch variable per _qubit set_ between barriers (implicit and explicit). A qubit set is one or more qubits; these sets must be mutually exclusive.
+    Valid:
+
+        ```python
+        stretch a;
+        stretch b;
+        delay[a] $0, $1;
+        delay[b] $2
+        ```
+
+    Invalid:
+
+        ```python
+        stretch a;
+        stretch b;
+        delay[a] $0, $1;
+        delay[b] $0;
+        ```
+
+- A stretch variable cannot be used between multiple sets of barriers.
+        Valid:
+
+        ```python
+        barrier $0, $1;
+        delay[a] $0;
+        barrier $3;
+        delay[a] $0;
+        barrier $0, $1;
+        ```
+
+    Invalid:
+
+        ```python
+        barrier $0, $1;
+        delay[a] $0;
+        barrier $0, $1;
+        delay[a] $0;
+        barrier $0, $1;
+         ```
+
+- Stretch expressions are limited to those of the form `A*stretch + B` where `A` and `B` are floating point or integer constants.
+        Valid:
+
+        ```python
+        delay[2 * a + 3.0] $0;
+        delay[a / 5 - 40.0] $0;
+        delay[a + a] $0; # equivalent to "delay[2 * a] $0;"
+        ```
+
+    Invalid:
+
+        ```python
+        delay[2 * a * a] $0;
+         ```
+
+- Stretch expressions can only include a single stretch variable.
+    Invalid:
+
+        ```python
+        stretch a;stretch b;
+        delay[ a + b ] $0;delay[ a * b ] $0;
+         ```
+
+- Stretch expressions cannot resolve to negative delay values.
+    Invalid:
+
+        ```python
+        delay[a  - 40.0] $0; #if "a" resolves to a value <= 40.0
+         ```
+
+- Any remainder resulting from a stretch resolution is added to the first delay that uses the stretch.
+    Example:
+
+        ```python
+        stretch a;
+        barrier $0, $1;
+        delay[100dt] $0;
+        delay[a] $1; # resolves to 26
+        x $1; # duration: 8
+        delay[a] $1; # resolves to  25
+        x $1; # duration: 8
+        delay[a] $1; # resolves to  25
+        x $1; # duration: 8
+        barrier  $0, $1;
+         ```
+
+    The above code resolves to a value of 25 with a remainder of 1. The first delay`[a]` will have the remainder added.
+
+    Stretch resolution equation:  $a + 8 + a + 8 + a + 8 = 100   =   3*a + 24$
