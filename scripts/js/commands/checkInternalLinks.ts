@@ -34,6 +34,9 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/runtime/tags/usage.mdx",
   "docs/api/runtime/tags/sessions.mdx",
   "docs/api/qiskit-runtime-rest/tags/instances.mdx",
+  "announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update.mdx",
+  "announcements/product-updates.mdx",
+  "announcements/product-updates/2025-03-03-new-version-dynamic-circuits.mdx",
 ];
 
 interface Arguments {
