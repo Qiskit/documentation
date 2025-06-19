@@ -88,12 +88,14 @@ export function normalizeUrl(
     return url;
   url = transformSpecialCaseUrl(url);
 
-  const nonCAPIFolders = ["stubs", "apidocs", "apidoc"];
+  // The C API uses the same artifact as the Python API, but all its pages are
+  // located under the `cdoc` folder.
+  const pythonApiFolders = ["stubs", "apidocs", "apidoc"];
   const addQiskitPrefix =
     kwargs.pkgName == "qiskit-c" &&
-    nonCAPIFolders.some((f) => url.split("/").includes(f));
+    pythonApiFolders.some((f) => url.split("/").includes(f));
 
-  url = removePart(url, "/", [...nonCAPIFolders, ".."]);
+  url = removePart(url, "/", [...pythonApiFolders, ".."]);
 
   // TODO (#3375): Investigate if we can make this case more generic.
   // The Qiskit C API sometimes links to the Python API. In those cases, we need to add the
