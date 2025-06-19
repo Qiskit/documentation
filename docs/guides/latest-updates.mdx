@@ -8,19 +8,19 @@ in_page_toc_max_heading_level: 2
 
 # Latest updates
 
-*Last updated 16 May 2025*
+*Last updated 9 June 2025*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
 Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 
-For all product announcements, visit the [Announcements](https://docs.quantum.ibm.com/announcements/product-updates) page on IBM Quantum Platform Classic.
+For all product announcements, visit the [Announcements](/announcements/product-updates) page on IBM Quantum Platform.
 
 <CloudContent>
-Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Documentation](#latest-docs)
+Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca) | [Documentation](#latest-docs)
 </CloudContent>
 <LegacyContent>
-Jump to [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Documentation](#latest-docs)
+Jump to [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca) | [Documentation](#latest-docs)
 </LegacyContent>
 
 <CloudContent>
@@ -29,16 +29,27 @@ Jump to [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiski
 
 This section summarizes the recent enhancements and new features for the new [IBM Quantum Platform.](https://quantum.cloud.ibm.com/)
 
+**5 June 2025**
+
+- Added instance job filter: The platform now displays only your workloads by default. On the dashboard, you will see only the latest workloads you have submitted to instances within your account.
+
+![Only the latest workloads now shown by default](/docs/images/guides/latest-updates/workloads.avif)
+
+- A new qiskit-ibm-runtime release, featuring:
+  - Support for private jobs for developers of Qiskit Functions
+  - A new channel for the platform that makes instance selection optional, which simplifies account setup and backend access by automatically checking all available instances. This update benefits users who manage multiple instances or prefer a streamlined workflow without specifying instance details each time. Developers and researchers working across various projects with different levels of access and multiple backends will find this especially helpful.
+
+  See the [Runtime Client v0.40.0](#latest-qiskit-runtime) section for more information. {/* When next Runtime release overwrites the .40 section below, remove this link and replace with direct link to release notes */}
+
+<details>
+<summary><b>Previous updates</b></summary>
+
 **8 May 2025**
 
 - [Flex Plan](https://www.ibm.com/quantum/blog/flex-plan), a new resource consumption offering, has been released.
 - [Tutorials](/docs/tutorials) are now available on the platform to help users with use-case exploration.
 - The [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions) has launched on the platform.
 - Updated Session OpenAPI schema: `backend_name` field is now nullable.
-
-
-<details>
-<summary><b>Previous updates</b></summary>
 
 **24 April 2025**
 
@@ -110,29 +121,88 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 
 <span id="latest-qiskit-runtime"></span>
-## Qiskit Runtime client 0.38.0
+## Qiskit Runtime client 0.40.0
 
-**15 April 2025**
+**28 May 2025**
 
-- Deprecation
+### New features
 
-  *   [`RuntimeJob`](/docs/api/qiskit-ibm-runtime/runtime-job "qiskit_ibm_runtime.RuntimeJob") is now deprecated and will be removed no sooner than three months from this release. [`RuntimeJob`](/docs/api/qiskit-ibm-runtime/runtime-job "qiskit_ibm_runtime.RuntimeJob") was superseded by [`RuntimeJobV2`](/docs/api/qiskit-ibm-runtime/runtime-job-v2 "qiskit_ibm_runtime.RuntimeJobV2") in all primitive implementations, so the deprecation should not have any user impact. The major difference between the two classes is that [`status()`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#status "qiskit_ibm_runtime.RuntimeJobV2.status") returns a string instead of the Qiskit `JobStatus` enum. ([2170](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2170))
-  *   Since pulse gates are no longer supported, the [`IBMBackend`](/docs/api/qiskit-ibm-runtime/ibm-backend "qiskit_ibm_runtime.IBMBackend") and `FakeBackendV2` `defaults()` method has been deprecated and will be removed no sooner than three months from this release. While the method still exists, these pulse defaults are no longer used to construct the backend target. ([2186](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2186))
-  *   The `ibm_quantum` channel option is deprecated and will be sunset on 1 July. After this date, `ibm_cloud` will be the only valid channel. For help migrating to the new IBM Quantum Platform on the `ibm_cloud` channel, read the [migration guide](https://quantum.cloud.ibm.com/docs/migration-guides/classic-iqp-to-cloud-iqp). ([2205](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2205))
+*   The following changes were made to support the upcoming [IBM Quantum platform migration](/docs/migration-guides/classic-iqp-to-cloud-iqp):
 
-- New features
+    *   A new channel type, `ibm_quantum_platform`, has been introduced for service initialization (`QiskitRuntimeService()`). It joins the existing `ibm_quantum` (now deprecated) and `ibm_cloud` channels. By **default**, `ibm_quantum_platform` is selected when no channel is specified. This new channel connects to the new IBM Quantum Platform API and is intended to replace `ibm_cloud`. In the meantime, the `ibm_cloud` channel will redirect to the new API, but its continued use is discouraged.
 
-  *   Attributes from the configuration of fake backends can now be retrieved directly with `backend.<attribute_name>`. ([2202](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2202))
+    *   An `instance` value is **no longer required** for saving ([`QiskitRuntimeService.save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account "qiskit_ibm_runtime.QiskitRuntimeService.save_account")) or initializing (`QiskitRuntimeService()`) an account on the new platform (`ibm_quantum_platform`, and temporarily, `ibm_cloud` channels). If an instance is not passed in, all instances will be checked when a backend is retrieved, (`service.backend("backend_name")`). If an instance is passed into [`QiskitRuntimeService.save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account "qiskit_ibm_runtime.QiskitRuntimeService.save_account"), or passed in during initialization, it will be used as the **default instance** when retrieving backends. The instance passed in at initialization will take **precedence** over the one saved in the account.
 
-- Bug fixes
+    *   Note that the IBM Cloud API Token (`token`) is required for saving ([`QiskitRuntimeService.save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account "qiskit_ibm_runtime.QiskitRuntimeService.save_account")) or initializing (`QiskitRuntimeService()`) an account on the new platform. It’s treated as the account identifier and will unlock the resources associated with the account the token was created in. A list of tokens per account can be found [here](https://cloud.ibm.com/iam/apikeys). Only one account per API token can be used. If you want to use multiple accounts, you must create multiple API tokens.
 
-  *   Fixed a bug where `DoubleSliceSpan.mask()` and `TwirledSliceSpan.mask()` error when they contain a one-dimensional slice. ([2184](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2184))
+    *   The [`QiskitRuntimeService.backend()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backend "qiskit_ibm_runtime.QiskitRuntimeService.backend") and [`QiskitRuntimeService.backends()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backends "qiskit_ibm_runtime.QiskitRuntimeService.backends") methods have been updated to accept an `instance` passed in explicitly when retrieving backends: `service.backend(name="...", instance="...")`.
 
--  Upgrade notes
+    *   New parameters, `region` and `plans_preference`, have been added to the [`QiskitRuntimeService`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") initializer and [`QiskitRuntimeService.save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account "qiskit_ibm_runtime.QiskitRuntimeService.save_account") method. These can be used to **prioritize** certain instances on the new platform (`ibm_quantum_platform`, and temporarily, `ibm_cloud` channels) without explicitly providing the CRN. In more detail:
 
-*   Since support for streaming results was removed in `0.32.0`, the remaining related websocket code has been removed. As a part of this process, the environment option `callback` is deprecated, as well as the parameters `client_params` and `user_callback` in `BaseRuntimeJob`. ([2143](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2143))
+        *   `region`: Sets a region preference. `us-east` or `eu-de`.
+        *   `plans_preference`: Is a list of account types, ordered by preference. An instance of the first type in the list will be prioritized.
 
-- See the full [0.38.0 release notes.](/docs/api/qiskit-ibm-runtime/release-notes#0380-2025-04-15)
+        For example, if `region` is saved as `us-east`, only instances from `us-east` will be checked. If `plans_preference` is set, the instances will be prioritized in the order given, so `['Open', 'Premium']` would prioritize all Open Plan instances, then all Premium Plan instances, and then the rest. Note that the plan names in `plans_preference` must exactly match the API names (case insensitive).
+
+    *   The `instance` input parameter of [`QiskitRuntimeService`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") has been extended to accept new input types for the `ibm_quantum_platform` and `ibm_cloud` channels. In addition to the IBM Cloud Resource Name (CRN), the instance **name** can now be passed in as the instance value.
+
+    *   The [`instances()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#instances "qiskit_ibm_runtime.QiskitRuntimeService.instances") method has been extended to show all available instances associated to an account for the `ibm_quantum_platform` and `ibm_cloud` channels, in addition to the already enabled `ibm_quantum` channel.
+
+        The following code snippets show the new usage patterns enabled by the changes described above ([2239](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2239)):
+
+        ```python
+        # save account
+        service = QiskitRuntimeService.save_account(
+          # No channel needs to be specified, ibm_quantum_platform is the default
+          token=token,
+          region="eu-de", # Optional
+          plans_preference=['Open',...], #Optional
+          set_as_default=True  #Optional
+          )
+
+        # initialize account
+        service = QiskitRuntimeService() # defaults to ibm_quantum_platform account
+        service.backend(name="...") # picks instance based on saved preferences
+        service.backend(name="...", instance="...") # can also explicity pass in an instance to use
+
+        # initialize account with instance
+        service = QiskitRuntimeService(instance = "...") # sets instance as default instance
+        service.backend(name="...") # only checks default instance, fails if the backend not in the instance
+        service.backend(name="...", instance="...") # can still explicity pass in a different instance
+
+        # OR
+
+        # save account with instance
+        service = QiskitRuntimeService.save_account(
+          # No channel needs to be specified, ibm_quantum_platform is the default
+          token=token,
+          instance="..." # This will be the default instance
+          region="us-east", # Optional
+          plans_preference=['Open',...], #Optional
+          set_as_default=True  #Optional
+          )
+
+        # initialize account
+        service = QiskitRuntimeService() # defaults to ibm_quantum_platform account
+        service.backend(name="...") # only checks saved default instance from save_account
+        service.backend(name="...", instance="...") # can also explicity pass in an instance which takes precedence
+
+        # initializing account with instance works the same way
+        service = QiskitRuntimeService(instance = "...") # sets instance as default instance, overrides instance from save_account
+        service.backend(name="...") # only checks default instance, fails if the backend not in the instance
+        service.backend(name="...", instance="...") # can still explicity pass in a different instance
+        ```
+
+*   The `private` option under `EnvironmentOptions` is now supported on the `ibm_cloud` and `ibm_quantum_platform` channels (new IBM Quantum Platform). When this option is set to `True`, the job will be returned without parameters, and results can only be retrieved once.
+
+    There is also a new `private()` property that returns whether or not a job is private. ([2263](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2263))
+
+### Bug fixes
+
+*   The call to [`defaults()`](/docs/api/qiskit-ibm-runtime/ibm-backend#defaults "qiskit_ibm_runtime.IBMBackend.defaults") in `target()` was removed because backend defaults are no longer used in the target generation. ([2261](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2261))
+
+
+- See the full [0.40.0 release notes.](/docs/api/qiskit-ibm-runtime/release-notes#0400-2025-05-28)
 
 {/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
 
@@ -143,10 +213,13 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (by using `qiskit-ibm-runtime` or otherwise), or which version of the client SDK you use.
 
+**5 June 2025**
+
+- Now available: Early access to the new version of dynamic circuits on select QPUs. This new version will allow you to run dynamic circuits at utility scale and comes with improvements in speed, quality, and usability. Premium Plan and Flex Plan users interested in participating in this early access can [contact us.](/docs/support#get-help-with-qiskit-and-ibm-quantum-platform)
+
 **3 February 2025**
 
 - Pulse-level control on all IBM Quantum processors has been removed.  Additionally, the pulse module is scheduled for removal in Qiskit SDK v2.0.  Instead, you can use fractional gates that are now built into the Instruction Set Architecture (ISA). For full details and help migrating your code, refer to [Migrate from Qiskit Pulse to fractional gates.](/docs/migration-guides/pulse-migration)
-
 
 **2 February 2025**
 
@@ -266,6 +339,24 @@ Improvements include the following:
 <span id="latest-qiskit-functions"></span>
 ## Qiskit Functions
 
+**5 June 2025**
+
+- We're excited to roll out two new functions for finance and optimization:
+  - [QUICK-PDE](https://quantum.cloud.ibm.com/functions?id=colibritd-quick-pde) by ColibriTD allows users to solve certain differential equations for material deformation and computational fluid dynamics problems. For example, one team of researchers has already begun using the QUICK-PDE function to study the dynamics of novel reactive fluids developed to transfer heat more efficiently in a type of nuclear reactor known as Small Modular Reactors.
+
+  - [Quantum Portfolio Optimizer](https://quantum.cloud.ibm.com/functions?id=global-data-quantum-quantum-portfolio-optimizer) by Global Data Quantum enables quantitative finance researchers to back-test portfolio optimization strategies. Running on over 100 qubits, this function calculates a portfolio’s Sharpe ratio versus return across a specified time period. Early users are exploring the optimizer’s ability to evaluate historical performance of an investment strategy and to enable comparisons of different portfolios under similar conditions.
+
+Check out the [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions) to request a free trial today.
+
+**4 June 2025**
+
+- New updates
+
+  - Documentation for Singularity Machine Learning - Classification has been updated. View the [Changelog](/docs/guides/multiverse-computing-singularity#changelog).
+
+<details>
+<summary><b>Previous updates</b></summary>
+
 **16 May 2025**
 
 - Over the coming weeks, every function will give detailed information to help you run, debug, and analyze your workflows. This includes:
@@ -322,9 +413,6 @@ Improvements include the following:
 
   We're hoping these changes make it easier to use Qiskit Functions, and [you can get started with free trials in the catalog today.](https://quantum.cloud.ibm.com/functions)
 
-<details>
-<summary><b>Previous updates</b></summary>
-
 **10 March 2025**
 
 - Latest additions to the Qiskit Functions Catalog
@@ -361,6 +449,20 @@ To get started, explore the [Qiskit Functions documentation.](/docs/guides/funct
   - QunaSys is releasing a chemistry application function comprising three algorithms meant to solve the ground state energy estimation (GSEE) problem.
   - Q-CTRL is releasing an optimization solver with which users can pass a graph or an objective, and receive solution costs.
 </details>
+
+<span id="latest-qca"></span>
+## Qiskit Code Assistant
+
+**5 June 2025**
+
+- We have updated the model available in the service to the newer granite-3.3-8b-qiskit model
+- We have open-sourced three new models for local inference in Hugging Face: 
+
+  - [qiskit/granite-3.3-8b-qiskit](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit)
+  - [qiskit/granite-3.2-8b-qiskit](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit)
+  - [qiskit/qwen2.5-coder-14b-qiskit](https://huggingface.co/Qiskit/qwen2.5-coder-14b-qiskit)
+
+For more details on Qiskit Code Assistant, see the [documentation.](/docs/guides/qiskit-code-assistant)
 
 <span id="latest-docs"></span>
 ## Documentation

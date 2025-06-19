@@ -1,0 +1,170 @@
+---
+title: Quantum Technology
+description: Recognize that solving meaningful problems will involve a combination of quantum and classical resources.
+---
+# IBM Quantum technology
+
+The fleet of IBM&reg; quantum computers, all with at least 127 qubits, is the largest in the world. These quantum computers use superconducting transmon qubits, which are not the only kind of qubit, but which have many advantages. Combining our world-class quantum computers with Qiskit enables our users to explore how quantum computing can be useful in the world, today. Industry partners and researchers are using IBM Quantum&reg; technology to explore meaningful computations and realistic applications. Let's explore the breadth of programs and services IBM Quantum offers partners.
+
+If you are part of an institution that is a member of the IBM Quantum Network, make sure you to reach out to your institution's quantum computing group to determine what benefits you have access to.
+
+## Learning objectives
+
+By the end of this module, you should be able to:
+
+* Recognize that solving meaningful problems will involve a combination of quantum and classical resources.
+* Identify the hardware, software, and services available to solve meaningful problems.
+* Describe how to measure quantum computing performance, including scale, quality, and speed.
+
+### IBM Quantum Platform
+
+IBM Quantum Platform provides a suite of quantum computing tools that brings together all of the research and development resources that users need to do great work, in one place. Users can create an account and sign in to get access to IBM quantum computers, view computer details, track workloads, and access enablement material in Documentation and Learning.
+
+* [Home page](https://quantum.cloud.ibm.com/) serves as the primary starting point for the product ecosystem, where users can get their API keys, view a summary of their instances and usage information, view recent job details, and access helpful links to other places across platform.
+* [Documentation](/docs) aggregates Qiskit documentation, service documentation, and API reference information into one location, organized in a way that supports users' natural workflows.
+* [Learning](/learning) is the home for educational material including courses and teaching modules, and the interactive Circuit Composer (coming soon). This combination graphical and code editor allows users to prototype, simulate, and debug circuits visually, and then run them on IBM quantum computers.
+
+### Qiskit Runtime
+
+Qiskit Runtime is a portable, secure, containerized architecture that runs quantum programs on a classical computing unit tightly integrated with the quantum processor. Qiskit Runtime allows the quantum computer to become a part of any computing environment to accelerate computation—similar to a graphics processing unit (GPU)—and handles the job orchestration and data transfer to the quantum processing unit, maximizing efficiency.
+
+Qiskit and Qiskit Runtime make it simple to quickly orchestrate programs across compute resources on the cloud. IBM builds middleware for quantum to maximize the performance of quantum applications running across parallelized, cloud-based, quantum and classical computational resources. This middleware includes the circuit knitting toolbox and our quantum serverless architecture.
+
+The [circuit cutting Qiskit addon](/docs/api/qiskit-addon-cutting) allows developers to cut large circuits into smaller circuits suitable for current quantum computers. Circuit knitting uses classical computation to take on some of the computational burden of a quantum circuit to exceed what we can achieve with either alone. Additional tools help reconstruct circuits with classical resources and stitch together final results.
+
+[Quantum Serverless](/docs/guides/serverless) is a multi-cloud orchestration toolkit to connect elastic classical resources with the IBM Qiskit Runtime service. Quantum serverless allows developers to focus on the code, rather than resource provisioning.
+
+### IBM's superconducting quantum computers
+
+IBM Quantum processors use a physical type of qubit called a **superconducting transmon qubit**, which is made from superconducting materials patterned on a silicon substrate. Other quantum processors might use photonic qubits, which are made from single photons of light, or trapped-ion qubits, which store information in charged atomic particles. To facilitate the flow of electrical current, superconducting qubits need to be maintained at extremely low temperatures—close to absolute zero.
+
+![IBM 127-qubit processor](/learning/images/courses/quantum-business-foundations/quantum-technology/127qubit-processer.avif)
+
+*IBM 127-qubit processor*
+
+## Quantum computing performance
+
+### Measuring quantum computing performance
+
+A universal fault–tolerant quantum computer is the grand challenge of quantum computing. It is a device that can properly perform universal quantum operations using unreliable components. Today’s quantum computers are not fault-tolerant.
+
+To compare quantum computers to each other, qubit count is not sufficient. Many other details must be considered, such as error rates and how the system is wired. There are four key metrics for measuring quantum computing performance:
+
+* **Scale** - Measured by the **number of qubits**, which indicates the amount of information we can encode in the quantum computer.
+* **Quality** - Measured by **Quantum Volume**, which indicates the quality of circuits and how faithfully circuits are implemented in hardware.
+* **Speed** - Measured by **CLOPS (Circuit Layer Operations Per Second)**, which indicates how many circuits can run on hardware in a given time.
+* **Layer Fidelity** - Measured by **EPLG (Errors Per Layered Gate)**, which describes how errors occur when operations are performed on qubits.
+
+For a more detailed description of some of the above metrics, see [this article](https://research.ibm.com/blog/quantum-metric-layer-fidelity) on the IBM Research Blog. Each phase in the adoption of quantum computing in industry is driven by increasing Quantum Volume, which is calculated using various parameters such as circuit width, qubit connectivity, and error rates.
+
+The technical definition of Quantum Volume is difficult to communicate without equations.
+IBM's Dario Gil explains:
+
+<IBMVideo id="133345140" title="Dario Gil explains the concept of quantum volume. In particular he explains how and why it depends on both qubit count and error rates."/>
+
+To better understand Quantum Volume, consider the following interesting analogy. The section below covers time, space, and error rates in terms of taking a tour of New York City.
+
+**Touring the states of Quantum Volume**
+
+Quantum Volume describes the largest quantum computational space that a quantum computer can explore, where the volume of the quantum space is 2<sup>N</sup>, with N being the number of qubits, i.e., the usual state space dimension. We purposely use the word “space” here because once we mention space, it is straightforward to think of a volume.
+
+The factor limiting this exploration is the error rate. The error rate may be equated to the amount of time we are allowed to explore the space. More errors mean less time to explore. The more computational space we have, the more time it takes to fully explore the space, and thus we need a quantum computer with a smaller error rate.
+
+Consider a tourist exploring New York City. The tourist wants to explore all of the city, meaning the tourist wants a tourist volume the size of NYC. If we give the tourist only one day, then there is no way to explore that much space, so the tourist does not get the desired tourist volume. However, if we give the tourist three days, then the tourist could probably hit all of the top spots and get the needed tourist volume of NYC.
+
+Now, what if we give the tourist more time but still restrict the space to NYC? In other words, what if we keep the number of qubits the same but decrease the error rate? Then there is no benefit to the tourist since the tourist has already explored the city and is just hitting the same spots over and over again. The tourist volume remains the same. Instead, given more time, it is smarter for the tourist to expand the number of tourist spots to visit.
+
+Or, suppose we keep the time fixed to three days but the tourist decides to try and explore all of NYC and Long Island? In other words, what if we fix the error rate but add more qubits? Again, the tourist volume remains that of NYC because the tourist cannot explore the larger space in the allotted time. Thus, being a better tourist, and achieving a larger tourist volume, requires simultaneously increasing the touring space and the amount of time the tourist is allowed to explore.
+
+In the exact same way, building better quantum computers that achieve larger Quantum Volumes requires simultaneously increasing the quantum computational space (number of qubits) while decreasing the error rate (increasing the amount of time the algorithm can run for). For example, through advances tunable coupling architectures, IBM doubled the quantum volume twice in just one year!
+
+
+![Quantum Volume](/learning/images/courses/quantum-business-foundations/quantum-technology/QV.avif)
+
+However, as quantum computing evolves, we start to care more about the useful work our quantum computers can do in a reasonable amount of time. If we measure scale by the number of qubits, and quality by quantum volume, then quantum processing speed is the measure of the useful work those qubits can do in a reasonable amount of time. We define it as the number of primitive circuits that can be processed in a second. It is similar to FLOPS in classical computing — the number of floating point operations per second. Improving QPU speed is the key to practical quantum computing. Like classical computer programming, quantum programming requires running many circuits. A reasonable QPU speed will allow users to incorporate quantum computing as a part of their workflows.
+
+#### Check your understanding
+
+Read the question below, think about your answer, then click the triangle to reveal the solution.
+
+<details>
+<summary>
+
+True or false: Quantum Volume refers to the size of the cryogenic refrigerators that house IBM quantum computers.
+
+</summary>
+
+False.  Quantum Volume is a single number meant to encapsulate the performance of today’s quantum computers.
+
+</details>
+
+
+
+## What's next in quantum computing
+
+Today’s quantum computers, and those expected for the foreseeable future, are noisy. This means they are sensitive to environmental disturbances that can impact the fidelity of results. In much the same way that classical computing evolved through the modular scaling of processors, efficient computation, and parallelization, we see quantum computing evolving to realize its full potential. As we work toward fully fault-tolerant quantum computers, we want to solve useful problems with the hardware and software we possess today.
+
+### Quantum utility
+
+IBM Quantum and the University of California, Berkeley presented evidence that quantum computers can provide value sooner than expected thanks to advances in IBM Quantum hardware and error mitigation methods. Beyond just a proof of concept, we delivered results accurate enough to be useful. The model of computation we explored with this work is a core facet of many algorithms designed for near-term quantum computers.
+
+The feedback loop between quantum and classical is key to advancing quantum technologies. With a focus on quantum utility, we use quantum to probe complex problems that challenge existing high-performance compute frameworks, then check the results classically. This continued back-and-forth of quantum running a complex circuit and classical computers verifying the quantum results will improve both computational domains and provide users confidence in the abilities of near-term quantum computers.
+
+<IBMVideo id="134056420" title="This video outlines how noisy quantum computers use error mitigation to out-perform brute force classical methods on an example problem."/>
+
+<details>
+<summary>
+
+Optional reading — click on the triangle to read more about the experiment
+
+</summary>
+
+* In this experiment, we used all 127 qubits of our IBM Quantum Eagle processor to simulate the changing behavior of a system that naturally maps to a quantum computer, called the quantum Ising model. Ising models are simplifications of nature that represent interacting atoms as a lattice of interacting quantum two-choice systems in an energy field. These systems look a lot like the two-state qubits that make up our quantum computers, making them a good fit for testing the abilities of our methods. We used ZNE to try and accurately calculate a property of the system called its expectation value — essentially a weighted average of the possible outcomes of the circuit.
+
+* Simultaneously, the Berkeley team attempted to simulate the same system using tensor network methods with the help of advanced supercomputers located at Lawrence Berkeley National Lab’s National Energy Research Scientific Computing Center (NERSC) and at Purdue University.
+
+* The quantum methods continued to agree with the exact methods. But eventually, the classical approximation methods started to falter as the difficulty was turned up.
+
+* Finally, we asked both computers to run calculations beyond what could be calculated exactly — and the quantum computer returned an answer we were more confident to be correct. And while we can’t prove whether that answer was actually correct, Eagle’s success on the previous runs of the experiment gave us confidence that they were.
+
+</details>
+
+
+
+### Error Correction
+
+Error correction has been a key area of research for decades. But for most of that time, theoretical error correction techniques have been impractical to implement on real quantum computers, most often due to the very large number of qubits needed. Indeed, many experts predict that practical fault tolerant quantum computing (FTQC) will require millions of physical qubits. But in a recent paper published on the cover of Nature, researchers from IBM introduced a new code, which we call the Gross code, that overcomes that limitation.
+
+The paper [High-threshold and low-overhead fault-tolerant quantum memory](https://www.nature.com/articles/s41586-024-07107-7) describes the new quantum error-correcting code that is roughly 10 times more efficient than previous methods at protecting delicate quantum data from accumulating errors. To consider how much closer we are now to the beginning of error correction, consider that using the Gross code, you can protect 12 logical qubits for roughly a million cycles of error checks using 288 qubits.
+
+It is not expected that error correction will suddenly replace error mitigation and error suppression. Rather, over the next few years, error mitigation and suppression will continue to play a pivotal role, alongside increasing numbers of error-corrected qubits.
+
+### IBM Quantum Development Roadmap
+
+We are now firmly in the era of quantum utility. That means quantum computers are better at quantum computing than classical computers, and can be leveraged by our users to discover new algorithms and search for quantum advantages. Our roadmap outlines our historic milestones and plans to achieve near-term quantum advantage by 2026.
+
+By 2029, we will deliver Starling—a large-scale fault-tolerant quantum computer capable of running quantum circuits comprising 100 million quantum gates on 200 logical qubits. We are building this system right now at our historic facility in Poughkeepsie, New York. Learn more about our progress in the [Guided Roadmap PDF.](http://www.ibm.com/downloads/documents/us-en/131cf87ab63319bf)
+
+![Development Roadmap](/learning/images/courses/quantum-business-foundations/quantum-technology/IBM-Quantum-Development-and-Innovation-Roadmap-2025.svg)
+
+Read more about the IBM Quantum development roadmap [here](https://www.ibm.com/quantum/roadmap).
+
+### 5k challenge
+
+IBM works together with the quantum research community to find potential use cases that could benefit from quantum computing. We provide increasingly powerful tools so users can explore pressing problems with quantum. In 2024, we will release a tool capable of calculating unbiased observables of long, high-quality circuits. Finding what can be done with this combination of 100+ qubits and deep circuits was at one time called the "100x100 challenge". But the precise number of qubits and depth on each is less important than leveraging the power of the combination. Imagine what will be made possible with 5,000 quantum circuits in a single computation. ​Users will be able to run quantum circuits with complexity and runtime beyond the capabilities of the best classical computers today. With the release of these new capabilities, we are excited to see what the quantum community will build to help us harness the power of quantum and solve important problems.
+
+### Quantum-centric supercomputers
+
+Going beyond single chip processors is the key to solving scale. This year we plan to introduce classical parallelized quantum computing with multiple Heron processors connected by a single control system. In 2024, we will debut Crossbill, the first single processor made from multiple chips. These are the first steps to ushering in a new era of scaling providing a clear path to 100,000 qubits and beyond with the quantum-centric supercomputer, a modular computing architecture which enables scaling, combining quantum communication and computation to increase computational capacity, while employing hybrid cloud middleware to seamlessly integrate quantum and classical workflows.
+
+Solving the world’s most complex problems will require a combination of classical and quantum resources. Furthermore, it will depend on the continued collaboration between industry and academia.
+
+## Key takeaways
+
+You can keep these key takeaways in mind:
+
+* Today’s quantum computers are not fault tolerant.
+* Quantum Volume is a holistic measure of how good a quantum computer is. The higher the Quantum Volume, the better. Talking only about qubit count is misleading.
+* To measure the performance of quantum computers, there are four key metrics: scale, quality, speed, and layer fidelity.
+* A joint IBM Quantum-UC Berkeley experiment presented evidence of IBM quantum computers delivering reliable, accurate results for challenging simulation problems at a scale of 127 qubits.
+* Quantum-centric supercomputing means treating quantum as one piece of a broader HPC paradigm with classical and quantum working as one computational unit.

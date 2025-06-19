@@ -157,7 +157,11 @@ async function postProcessResults(
   specialCaseResults(results);
   await updateLinks(
     results,
-    { kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls, pkgName: pkg.name },
+    {
+      kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
+      pkgName: pkg.name,
+      pkgOutputDir: pkg.outputDir(DOCS_BASE_PATH),
+    },
     maybeObjectsInv,
   );
   await dedupeHtmlIdsFromResults(results);
