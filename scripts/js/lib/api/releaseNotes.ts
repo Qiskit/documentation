@@ -19,7 +19,9 @@ import transformLinks from "transform-markdown-links";
 import { pathExists } from "../fs.js";
 import type { Pkg } from "./Pkg.js";
 import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
-import { DOCS_BASE_PATH } from "./conversionPipeline.js";
+import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./conversionPipeline.js";
+import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
+import { removePrefix } from "../stringUtils.js";
 
 // ---------------------------------------------------------------------------
 // Generic release notes handling
@@ -58,6 +60,16 @@ export async function handleReleaseNotesFile(
     ? `/api/${pkg.name}/${pkg.versionWithoutPatch}`
     : `/api/${pkg.name}`;
   result.markdown = transformLinks(result.markdown, (link, _) => {
+    // The Qiskit release notes refer to the C API by using a relative path
+    // to `cdoc`.
+    if (pkg.name == "qiskit" && link.startsWith(C_API_BASE_PATH)) {
+      const qiskitCBasePath = apiBaseUrl.replace(pkg.name, `${pkg.name}-c`);
+      const linkWithoutPrefix = removePrefix(link, C_API_BASE_PATH + "/");
+      // The anchors do not exist on the final page, so we remove them from the link.
+      const [path, _anchor] = linkWithoutPrefix.split("#");
+      return `${DOCS_BASE_PATH}${qiskitCBasePath}/${kebabCaseAndShortenPage(path, `${pkg.name}-c`)}`;
+    }
+
     const fullPathLink =
       link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
         ? link
