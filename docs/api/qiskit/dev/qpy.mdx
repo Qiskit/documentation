@@ -84,7 +84,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   *   **file\_obj** (*BinaryIO*) – A file like object that contains the QPY binary data for a circuit.
   *   **metadata\_deserializer** (*Optional\[*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[JSONDecoder]]*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
-  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the loading of custom `Annotation` objects.
+  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the loading of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects.
 
   **Returns**
 
@@ -161,7 +161,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
           If serializing a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that contains [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects with `version` set low with the intent to load the payload using a historical release of Qiskit, it is safest to set the `use_symengine` flag to `False`. Versions of Qiskit prior to 1.2.4 cannot load QPY files containing `symengine`-serialized [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects unless the version of `symengine` used between the loading and generating environments matches.
         </Admonition>
 
-  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the dumping of custom `Annotation` objects. The subsequent call to [`load()`](#qiskit.qpy.load "qiskit.qpy.load") will need to use similar serializer objects, that understand the custom output format of those serializers.
+  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the dumping of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects. The subsequent call to [`load()`](#qiskit.qpy.load "qiskit.qpy.load") will need to use similar serializer objects, that understand the custom output format of those serializers.
 
   **Raises**
 
@@ -253,7 +253,7 @@ The QPY format is designed to be backwards compatible moving forward. This means
 
 For example, if you generated a QPY file using qiskit-terra 0.18.1 you could load that QPY file with qiskit-terra 0.19.0 and a hypothetical qiskit-terra 0.29.0. However, loading that QPY file with 0.18.0 is not supported and may not work.
 
-Note that circuit metadata and custom `Annotation` objects are serialized and deserialized by user-supplied classes, as the objects themselves are completely user-custom, so the forwards- and backwards-compatibility of these is limited by what the user provides.
+Note that circuit metadata and custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects are serialized and deserialized by user-supplied classes, as the objects themselves are completely user-custom, so the forwards- and backwards-compatibility of these is limited by what the user provides.
 
 If a feature being loaded is deprecated in the corresponding qiskit release, QPY will raise a [`QPYLoadingDeprecatedFeatureWarning`](#qiskit.qpy.QPYLoadingDeprecatedFeatureWarning "qiskit.qpy.QPYLoadingDeprecatedFeatureWarning") informing of the deprecation period and how the feature will be internally handled.
 
