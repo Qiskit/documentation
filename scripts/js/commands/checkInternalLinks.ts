@@ -24,6 +24,8 @@ import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
+  "learning/index.mdx",
+  "docs/index.mdx",
   "docs/admin/analytics.mdx",
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
@@ -32,6 +34,9 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/runtime/tags/usage.mdx",
   "docs/api/runtime/tags/sessions.mdx",
   "docs/api/qiskit-runtime-rest/tags/instances.mdx",
+  "announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update.mdx",
+  "announcements/product-updates.mdx",
+  "announcements/product-updates/2025-03-03-new-version-dynamic-circuits.mdx",
 ];
 
 interface Arguments {
@@ -125,6 +130,8 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/providers.mdx",
   "docs/open-source/qiskit-sdk-version-strategy.mdx",
   "docs/migration-guides/qiskit-backendv1-to-v2.mdx",
+  "docs/guides/install-qiskit.mdx",
+  "docs/api/qiskit-c/index.mdx",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
