@@ -1,0 +1,34 @@
+---
+title: Annotation (latest version)
+description: API reference for qiskit.circuit.Annotation in the latest version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.Annotation
+---
+
+# Annotation
+
+<Class id="qiskit.circuit.Annotation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/__init__.py" signature="qiskit.circuit.Annotation" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  An arbitrary annotation for instructions.
+
+  <Admonition title="Note" type="note">
+    The annotation framework is a new and evolving component of Qiskit. We expect the functionality of this and its first-class support within the transpiler to expand as we get more evidence of how it is used.
+  </Admonition>
+
+  This base class alone has very little prescribed behavior or semantics. The primary interaction is by user- or library subclassing. See [Custom annotation subclasses](circuit_annotation#circuit-annotation-subclassing) for more detail.
+
+  This is a framework for structuring additional metadata that can be attached to [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") instructions within a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") in ways that can be tracked and consumed by arbitrary transpiler passes, including custom passes that are not in Qiskit core.
+
+  While the stateful [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") used during a compilation also supplies a way for custom transpiler passes to store arbitrary “state” objects into the compilation workflow that can be retrieved by later compiler passes, the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") is stored next to the circuit, and so is most suitable for analyses that relate to the circuit as a whole. An [`Annotation`](#qiskit.circuit.Annotation "qiskit.circuit.Annotation") is intended to be more local in scope, applying to a box of instructions, and further, may still be present in the output of `transpile`, if it is intended for further consumption by a lower-level part of your backend’s execution machinery (for example, an annotation might include metadata instructing an error-mitigation routine to treat a particular box in a special way).
+
+  The [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") currently does not make any effort to track and validate pre-conditions on the validity of an [`Annotation`](#qiskit.circuit.Annotation "qiskit.circuit.Annotation"). That is, if you apply a custom annotation to a box of instructions that would be invalidated by certain transformations (such as routing, basis-gate decomposition, etc), it is currently up to you as the caller of [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`generate_preset_pass_manager()`](qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") to ensure that the compiler passes selected will not invalidate the annotation. We expect to have more first-class support for annotations to declare their validity requirements in the future.
+
+  ## Attributes
+
+  ### namespace
+
+  <Attribute id="qiskit.circuit.Annotation.namespace" attributeValue="''" />
+</Class>
+
