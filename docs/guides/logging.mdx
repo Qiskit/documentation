@@ -1,0 +1,47 @@
+---
+title: Logging for Qiskit Runtime
+description: Information about IBM Quantum on IBM Cloud logging
+platform: cloud
+---
+
+# Logging for Qiskit Runtime
+
+IBM Cloud&reg; services, such as Qiskit Runtime, generate platform logs that you can use to investigate abnormal activity and critical actions in your account, and troubleshoot problems.
+
+You can use IBM Cloud Logs Routing, which is a platform service, to route platform logs in your account to a destination of your choice by configuring a tenant that defines where platform logs are sent. For more information, see [About Logs Routing.](https://cloud.ibm.com/docs/logs-router?topic=logs-router-about)
+
+You can use IBM Cloud Logs to visualize and alert on platform logs that are generated in your account and routed by IBM Cloud Logs Routing to an IBM Cloud Logs instance.
+
+## Locations where platform logs are generated
+
+IBM Cloud Container Registry generates platform logs that are displayed in your logging instances. The following table lists the locations where the automatic collection of Container Registry service logs is enabled.
+
+| Location                   | Are platform services logs available? |
+|----------------------------|---------------------------------------|
+| Washington, D.C. (us-east) |                  Yes                  |
+| Frankfurt (eu-de)          |                  Yes                  |
+
+## Platform logs that are generated
+
+IBM Qiskit Runtime generates platform services logs that are displayed in your logging instances for the following specific cases:
+
+- When IBM Cloud Container Registry runs scheduled retention policies for namespaces in your account.
+- When IBM Cloud Container Registry calculates your account's registry traffic and average storage usage per hour for a region.
+
+
+## Viewing logs from the Observability page
+
+For information about launching the IBM Cloud Logs interface, see **Launching the UI** in the [IBM Cloud Logs documentation.](https://cloud.ibm.com/docs/cloud-logs?topic=cloud-logs-instance-launch)
+
+
+## Fields by log type
+
+For information about fields included in every platform log, see [Fields that are included in platform logs.](https://cloud.ibm.com/docs/logs-router?topic=logs-router-about-platform-logs#about-platform-logs-2)
+
+The following fields are included in the log record.
+
+| Field           | Type     | Description                                                              |
+|-----------------|----------|--------------------------------------------------------------------------|
+| logSourceCRN    | Required | Defines the account and flow log instance where the log is published.    |
+| saveServiceCopy | Required | Defines whether IBM saves a copy of the record for operational purposes. |
+| message         | Required | Description of the log that is generated.                                |
