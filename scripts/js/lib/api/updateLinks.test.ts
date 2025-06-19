@@ -85,7 +85,7 @@ test.describe("updateLinks", () => {
       {
         kebabCaseAndShorten: false,
         pkgName: "qiskit-ibm-runtime",
-        pkgOutputDir: "",
+        pkgOutputDir: "/docs/api/qiskit-ibm-runtime",
       },
       objectsInv,
     );
@@ -143,7 +143,7 @@ test.describe("updateLinks", () => {
       {
         kebabCaseAndShorten: true,
         pkgName: "qiskit-ibm-runtime",
-        pkgOutputDir: "",
+        pkgOutputDir: "/docs/api/qiskit-ibm-runtime",
       },
       objectsInv,
     );
@@ -237,7 +237,7 @@ test("normalizeUrl()", () => {
     normalizeUrl(url, resultsByName, itemNames, {
       kebabCaseAndShorten: false,
       pkgName: "qiskit-ibm-runtime",
-      pkgOutputDir: "",
+      pkgOutputDir: "/docs/api/qiskit-ibm-runtime",
     }),
   );
   expect(newUrls).toEqual([
@@ -257,7 +257,7 @@ test("normalizeUrl()", () => {
     normalizeUrl(url, resultsByName, itemNames, {
       kebabCaseAndShorten: true,
       pkgName: "qiskit-ibm-runtime",
-      pkgOutputDir: "",
+      pkgOutputDir: "/docs/api/qiskit-ibm-runtime",
     }),
   );
   expect(kebabResults).toEqual([
@@ -271,6 +271,46 @@ test("normalizeUrl()", () => {
     "#qiskit_ibm_runtime.RuntimeJob.job",
     "runtime-job#run",
     "runtime-job",
+  ]);
+});
+
+test("normalizeUrl() Qiskit C API", () => {
+  const urls = [
+    `my-page`,
+    `../my-page-2`,
+    `../stubs/qiskit-page-1`,
+    `../apidocs/qiskit-page-2`,
+    `../apidoc/qiskit-page-3`,
+    `#my-anchor`,
+  ];
+  const resultsByName: { [key: string]: HtmlToMdResultWithUrl } = {
+    "my-class": {
+      markdown: "",
+      meta: {
+        apiType: "class",
+        apiName: "my-class",
+      },
+      url: "/docs/api/qiskit-c/stubs/my-class",
+      images: [],
+      isReleaseNotes: false,
+    },
+  };
+  const itemNames = new Set(["my-class"]);
+
+  const CApiResults = urls.map((url) =>
+    normalizeUrl(url, resultsByName, itemNames, {
+      kebabCaseAndShorten: true,
+      pkgName: "qiskit-c",
+      pkgOutputDir: "/docs/api/qiskit-c",
+    }),
+  );
+  expect(CApiResults).toEqual([
+    "my-page",
+    "my-page-2",
+    "/docs/api/qiskit/qiskit-page-1",
+    "/docs/api/qiskit/qiskit-page-2",
+    "/docs/api/qiskit/qiskit-page-3",
+    "#my-anchor",
   ]);
 });
 
