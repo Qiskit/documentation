@@ -401,7 +401,29 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _legacyQiskitSDKIssues(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
+function _qiskitCObjectsInvRegexes(): FilesToIgnores {
+  return {
+    "public/docs/api/qiskit-c/objects.inv": [
+      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_from_native",
+      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_from_native.value",
+      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_to_native",
+      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_to_native.value",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ms",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ns",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ps",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_s",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_us",
+      "/docs/api/qiskit-c/index#c_api",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1a1d0477d0d30b088dfd322e85b4be5464",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1ae08ef5279f405357144d24ec1147b5f9",
+    ],
+  };
+}
+
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
+  _qiskitCObjectsInvRegexes(),
+);
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
