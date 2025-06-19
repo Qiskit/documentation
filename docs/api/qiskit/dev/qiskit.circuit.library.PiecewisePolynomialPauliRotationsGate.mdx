@@ -8,12 +8,14 @@ python_api_name: qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate
 
 # PiecewisePolynomialPauliRotationsGate
 
-<Class id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L319-L488" signature="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate(num_state_qubits, breakpoints=None, coeffs=None, basis='Y', label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L325-L495" signature="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate(num_state_qubits, breakpoints=None, coeffs=None, basis='Y', label=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Piecewise-polynomially-controlled Pauli rotations.
 
-  This class implements a piecewise polynomial (not necessarily continuous) function, $f(x)$, on qubit amplitudes, which is defined through breakpoints and coefficients as follows. Suppose the breakpoints $(x_0, ..., x_J)$ are a subset of $[0, 2^n-1]$, where $n$ is the number of state qubits. Further on, denote the corresponding coefficients by $[a_{j,1},...,a_{j,d}]$, where $d$ is the highest degree among all polynomials.
+  This class implements a piecewise polynomial (not necessarily continuous) function, $f(x)$, on qubit amplitudes, which is defined through breakpoints and coefficients as follows.
+
+  Suppose the breakpoints $(x_0, ..., x_J)$ are a subset of $[0, 2^n-1]$, where $n$ is the number of state qubits. Further on, denote the corresponding coefficients by $[a_{j,1},...,a_{j,d}]$, where $d$ is the highest degree among all polynomials.
 
   Then $f(x)$ is defined as:
 
@@ -35,14 +37,14 @@ $$
   ```python
   >>> from qiskit import QuantumCircuit
   >>> from qiskit.circuit.library.arithmetic.piecewise_polynomial_pauli_rotations import\
-  ... PiecewisePolynomialPauliRotations
+  ... PiecewisePolynomialPauliRotationsGate
   >>> qubits, breakpoints, coeffs = (2, [0, 2], [[0, -1.2],[-1, 1, 3]])
-  >>> poly_r = PiecewisePolynomialPauliRotations(num_state_qubits=qubits,
+  >>> poly_r = PiecewisePolynomialPauliRotationsGate(num_state_qubits=qubits,
   ...breakpoints=breakpoints, coeffs=coeffs)
   >>>
   >>> qc = QuantumCircuit(poly_r.num_qubits)
   >>> qc.h(list(range(qubits)));
-  >>> qc.append(poly_r.to_instruction(), list(range(qc.num_qubits)));
+  >>> qc.append(poly_r, list(range(qc.num_qubits)));
   >>> qc.draw()
        ┌───┐┌──────────┐
   q_0: ┤ H ├┤0         ├
@@ -254,7 +256,7 @@ $$
 
   ### evaluate
 
-  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.evaluate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L427-L442" signature="evaluate(x)">
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.evaluate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L434-L449" signature="evaluate(x)">
     Classically evaluate the piecewise polynomial rotation.
 
     **Parameters**
