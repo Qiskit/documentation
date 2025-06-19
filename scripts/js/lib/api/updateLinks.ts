@@ -95,6 +95,7 @@ export function normalizeUrl(
 
   url = removePart(url, "/", [...nonCAPIFolders, ".."]);
 
+  // TODO (#3375): Investigate if we can make this case more generic.
   // The Qiskit C API sometimes links to the Python API. In those cases, we need to add the
   // full prefix
   if (addQiskitPrefix) {

@@ -62,6 +62,7 @@ export async function handleReleaseNotesFile(
   result.markdown = transformLinks(result.markdown, (link, _) => {
     // The Qiskit release notes refer to the C API by using a relative path
     // to `cdoc`.
+    // TODO (#3375): Investigate if we can make this case more generic.
     if (pkg.name == "qiskit" && link.startsWith(C_API_BASE_PATH)) {
       const qiskitCBasePath = apiBaseUrl.replace(pkg.name, `${pkg.name}-c`);
       const linkWithoutPrefix = removePrefix(link, C_API_BASE_PATH + "/");
