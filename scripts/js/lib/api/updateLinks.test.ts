@@ -82,7 +82,11 @@ test.describe("updateLinks", () => {
   test("no kebab-case", async () => {
     await updateLinks(
       data,
-      { kebabCaseAndShorten: false, pkgName: "qiskit-ibm-runtime" },
+      {
+        kebabCaseAndShorten: false,
+        pkgName: "qiskit-ibm-runtime",
+        pkgOutputDir: "",
+      },
       objectsInv,
     );
     expect(data).toEqual([
@@ -136,7 +140,11 @@ test.describe("updateLinks", () => {
   test("kebab-case", async () => {
     await updateLinks(
       data,
-      { kebabCaseAndShorten: true, pkgName: "qiskit-ibm-runtime" },
+      {
+        kebabCaseAndShorten: true,
+        pkgName: "qiskit-ibm-runtime",
+        pkgOutputDir: "",
+      },
       objectsInv,
     );
     expect(data).toEqual([
@@ -229,6 +237,7 @@ test("normalizeUrl()", () => {
     normalizeUrl(url, resultsByName, itemNames, {
       kebabCaseAndShorten: false,
       pkgName: "qiskit-ibm-runtime",
+      pkgOutputDir: "",
     }),
   );
   expect(newUrls).toEqual([
@@ -248,6 +257,7 @@ test("normalizeUrl()", () => {
     normalizeUrl(url, resultsByName, itemNames, {
       kebabCaseAndShorten: true,
       pkgName: "qiskit-ibm-runtime",
+      pkgOutputDir: "",
     }),
   );
   expect(kebabResults).toEqual([
