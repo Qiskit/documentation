@@ -91,6 +91,9 @@ jobs:
 
       - name: Setup Python environment
         uses: ./.github/actions/set-up-notebook-testing
+        with:
+          ibm-cloud-token: ${{ secrets.IBM_CLOUD_TEST_TOKEN }}
+          instance: ${{ vars.IBM_CLOUD_TEST_CRN }}
 
       - name: Check all notebooks are listed in the config file
         run: python scripts/ci/check-all-notebooks-are-tested.py
