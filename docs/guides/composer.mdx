@@ -9,7 +9,7 @@ platform: cloud
 
 ## What is it?
 
-[IBM Quantum Composer](https://quantum.cloud.ibm.com/composer) is a graphical quantum programming tool that lets you drag and drop operations to build quantum circuits and run them on real quantum hardware or simulators.
+[IBM Quantum&reg; Composer](https://quantum.cloud.ibm.com/composer) is a graphical quantum programming tool that lets you drag and drop operations to build quantum circuits and run them on real quantum hardware or simulators.
 
 ## What can it do?
 
@@ -31,31 +31,25 @@ IBM Quantum Composer has a customizable set of tools that allow you to build, vi
 
 ![IBM Quantum Composer window.](/docs/images/tutorials/explore-composer/52af25d0-aafe-4a4d-b92b-91cd3a3c54a1.avif)
 
-1. **Menu bar** - Use these menus to create a new circuit, download circuit files to work with later, and more.
-
-2. **Run settings** - Change the run settings and then run your circuit on a quantum system or simulator.
-
-3. **Circuit name** - Click here to name your circuit.
-
-4. **Operations catalog** - These are the building blocks of quantum circuits. Drag and drop these gates and other operations onto the graphical circuit editor. Different types of gates are grouped together by color. For example, classical gates are dark blue, phase gates are light blue, and non-unitary operations are grey.
+1. **Operations catalog** - These are the building blocks of quantum circuits. Drag and drop these gates and other operations onto the graphical circuit editor. Different types of gates are grouped together by color. For example, classical gates are dark blue, phase gates are light blue, and non-unitary operations are grey.
 
    To learn about the available gates and operations, right-click an operation and select Info to read its definition.
 
-5. **Code editor** - Use the View menu to open or close the code editor, which allows you to view the OpenQASM or Qiskit code for the circuit. You can edit the OpenQASM code; the Qiskit code is read-only.
+2. **Code editor** - Use the View menu to open or close the code editor, which allows you to view the OpenQASM or Qiskit code for the circuit. You can edit the OpenQASM code; the Qiskit code is read-only.
 
-6. **Graphical circuit editor** - This is where you build a circuit. Drag gates and other operations onto the horizontal qubit “wires” that make up your quantum register.
+3. **Graphical circuit editor** - This is where you build a circuit. Drag gates and other operations onto the horizontal qubit “wires” that make up your quantum register.
 
    To remove a gate from a wire, select the gate and click the trash can icon.
 
    To edit the parameters and settings on gates that support editing, select the gate on the graphical editor and click Edit.
 
-7. **Toolbar** - Access frequently used tools to undo and redo actions, change the gate alignment, and switch to inspect mode. Inspect mode lets you view a step-by-step view of the qubit states as you circuit computation evolves. To learn more, see [Inspect your circuit, step-by-step](#4-inspect-your-circuit-step-by-step).
+4. **Toolbar** - Access frequently used tools to undo and redo actions, change the gate alignment, and switch to inspect mode. Inspect mode lets you view a step-by-step view of the qubit states as you circuit computation evolves. To learn more, see [Inspect your circuit, step-by-step](#4-inspect-your-circuit-step-by-step).
 
-8. **Phase disks** - The phase of the qubit state vector in the complex plane is given by the line that extends from the center of the diagram to the edge of the gray disk (which rotates counterclockwise around the center point).
+5. **Phase disks** - The phase of the qubit state vector in the complex plane is given by the line that extends from the center of the diagram to the edge of the gray disk (which rotates counterclockwise around the center point).
 
     Use the View menu to show or hide the phase disks.
 
-9. **Visualizations** - Visualizations characterize your circuit as you build it. They use a single-shot statevector simulator, which is different from the system specified in the Setup and run settings. Note that the visualizations ignore any measurement operations you add. Sign in and click **Setup and run** to get results from the specified backend instead.
+6. **Visualizations** - Visualizations characterize your circuit as you build it. They use a single-shot statevector simulator, which is different from the system specified in the Run circuit settings. Note that the visualizations ignore any measurement operations you add. Sign in and click **Run circuit** to get results from the specified backend instead.
 
    To learn about the visualizations, see [Visualizations](#visualizations).
 
@@ -281,7 +275,7 @@ c) The new operation in the graphical editor:
 
 ### 4. Inspect your circuit, step-by-step
 
-The Circuit Inspector de-mystifies the inner workings of the circuits you create. It steps through a simulation of your circuit, one layer at a time, so that you can see the state of the qubits as the computation evolves.
+The Inspect mode de-mystifies the inner workings of the circuits you create. It steps through a simulation of your circuit, one layer at a time, so that you can see the state of the qubits as the computation evolves.
 
 ![Circuit Inspector.](/docs/images/tutorials/explore-composer/138134c2-cdfb-4a8b-918d-98df70fb8e3c.avif)
 
@@ -312,30 +306,29 @@ Follow the steps below to run quantum circuits on IBM Quantum systems or simulat
 
 ### Choose your job settings
 
-Click **Setup and run** in the upper right corner. In the window that opens, select an available system or simulator. Systems send the circuit to real quantum hardware, and simulators have the word ‘simulator’ in the name.
+Click **Run circuit** in the upper right corner. In the window that opens, select an available QPU (quantum processing unit) or simulator. QPUs send the circuit to real quantum hardware, and simulators have the word ‘simulator’ in the name. You can also choose an instance, which is associated with a plan (such as the Open, Flex, or Premium Plans). The instance you choose affects which QPUs are available to you. Click the View details link in the table of QPUs to see more information on each QPU.
 
-Next, you can choose your provider and set the number of shots (executions) of your circuit that the backend will perform.
+Next, you can set the number of shots (executions) of your circuit that the backend will perform.
 
-You can optionally name the job and add tags in this panel as well. This will not change the name of the circuit.
+You can optionally name the job and add tags in this panel as well. This will not change the name of the circuit. A "Composer" tag has been pre-populated to make it easier to filter your Workloads table by Composer jobs. You can remove this tag.
 
-If you have an open access account and choose a physical system, you will see the remaining number of jobs that you can have in the queue at any one time. This will not apply if you have a premium access account. Once a job has finished, the job limit will replenish. See more information in [Fair-share queueing](https://docs.quantum-computing.ibm.com/run/queue).
 
 ![Window displaying job options.](/docs/images/tutorials/explore-composer/21dd1126-b0e7-4d35-b86a-6ec0ef2c7385.avif)
 
 > **Note**
-> When you run a circuit, it is automatically sent to the least busy system, unless you change the system in the Run settings. If you run the same circuit again, the system selection window will default to your previous choice.
+> When you run a circuit, it is automatically sent to the least busy QPU, unless you specify a QPU in the Run settings. If you run the same circuit again, the system selection window will default to your previous choice.
 
-### Click "Run on xxxxx"
+### Click "Run on (QPU name)"
 
-You can view the job’s progress by clicking the Jobs icon.
+You can view the job’s progress by clicking the View jobs button in the top right corner, which will open the Workloads page in IBM Quantum Platform.
 
 ### View results
 
-Once your job completes, the details are updated in the Jobs panel. You can also see more information by clicking **See more details**.
+Once your job completes, the details are updated in the Workloads table in IBM Quantum Platform.
 
 The Jobs results page displays run details, diagrams of the original and the transpiled circuit, a histogram of the results, and OpenQASM and Qiskit tabs to view both original and transpiled circuits in OpenQASM or Qiskit.
 
-You can download the circuits and the histogram by clicking the menu in the upper right corner of each diagram, then selecting a format for the download (PNG, PDF, or SVG; additionally, you can export the histogram as a CSV file). You can open the OpenQASM circuits directly in Composer, and you can open the Qiskit circuits directly in Quantum Lab.
+You can download the circuits and the histogram by clicking the menu in the upper right corner of each diagram, then selecting a format for the download (PNG, PDF, or SVG; additionally, you can export the histogram as a CSV file). You can open the OpenQASM circuits directly in Composer.
 
 ## Visualizations
 
