@@ -27,7 +27,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
   Here is an example of how the estimator is used.
 
   ```python
-  from qiskit.circuit.library import RealAmplitudes
+  from qiskit.circuit.library import real_amplitudes
   from qiskit.quantum_info import SparsePauliOp
   from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
   from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
@@ -35,7 +35,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
   service = QiskitRuntimeService()
   backend = service.least_busy(operational=True, simulator=False)
 
-  psi = RealAmplitudes(num_qubits=2, reps=2)
+  psi = real_amplitudes(num_qubits=2, reps=2)
   hamiltonian = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
   theta = [0, 1, 1, 2, 3, 5]
 
@@ -93,7 +93,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.EstimatorV2.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_primitive.py#L226-L228" signature="backend()">
+  <Function id="qiskit_ibm_runtime.EstimatorV2.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_primitive.py#L217-L219" signature="backend()">
     Return the backend the primitive query will be run on.
 
     **Return type**
