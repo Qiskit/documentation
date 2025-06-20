@@ -9,7 +9,7 @@ platform: cloud
 
 ## What is it?
 
-<a href="https://quantum-computing.ibm.com/composer" target="_blank">IBM Quantum Composer</a> is a graphical quantum programming tool that lets you drag and drop operations to build quantum circuits and run them on real quantum hardware or simulators.
+[IBM Quantum Composer](https://quantum.cloud.ibm.com/composer) is a graphical quantum programming tool that lets you drag and drop operations to build quantum circuits and run them on real quantum hardware or simulators.
 
 ## What can it do?
 
@@ -31,13 +31,9 @@ IBM Quantum Composer has a customizable set of tools that allow you to build, vi
 
 ![IBM Quantum Composer window.](/docs/images/tutorials/explore-composer/52af25d0-aafe-4a4d-b92b-91cd3a3c54a1.avif)
 
-1. **Tools panels** - Use the side panel to view your files or jobs, or the documentation. To close the side panel, click the icon for the open tab.
-
 2. **Menu bar** - Use these menus to create a new circuit, manage saved circuits and registers, customize your workspace, and more.
 
-3. **Run area** - Change the run settings and then run your circuit on a quantum system or simulator.
-
-4. **Composer files** - The circuits you create save automatically and display in the Composer files panel.
+3. **Run settings** - Change the run settings and then run your circuit on a quantum system or simulator.
 
 5. **Circuit name** - Click here to name your circuit.
 
@@ -45,7 +41,7 @@ IBM Quantum Composer has a customizable set of tools that allow you to build, vi
 
    To learn about the available gates and operations, right-click an operation and select Info to read its definition.
 
-7. **Code editor** - Use the View menu to open or close the code editor, which allows you to view and edit the OpenQASM or Qiskit code for the circuit.
+7. **Code editor** - Use the View menu to open or close the code editor, which allows you to view the OpenQASM or Qiskit code for the circuit. You can edit the OpenQASM code; the Qiskit code is read-only.
 
 8. **Graphical circuit editor** - This is where you build a circuit. Drag gates and other operations onto the horizontal qubit “wires” that make up your quantum register.
 
@@ -61,34 +57,33 @@ IBM Quantum Composer has a customizable set of tools that allow you to build, vi
 
 11. **Visualizations** - Visualizations characterize your circuit as you build it. They use a single-shot statevector simulator, which is different from the system specified in the Setup and run settings. Note that the visualizations ignore any measurement operations you add. Sign in and click **Setup and run** to get results from the specified backend instead.
 
-    To learn about the visualizations, see [Visualizations](#visualizations).
+   To learn about the visualizations, see [Visualizations](#visualizations).
 
 ## Build, edit, and inspect quantum circuits
 
 ### 1. Open IBM Quantum Composer
 
-1. (Optional) If you are not currently signed in to IBM Quantum, select **Sign in** in the upper right corner. Then, you can either sign in or **Create an IBMid account**.
+1. (Optional) If you are not currently signed in to IBM Quantum, select **Sign in** in the upper right corner. Then, you can either sign in or **Create an IBM Cloud account**.
 
-   If you don’t sign in, the visualizations automatically show simulated results for up to four qubits. If you want to run your circuit on a quantum system or simulator, or if you want to visualize a circuit that has more than four qubits, you must sign in.
+   If you don’t sign in, the visualizations automatically show simulated results for up to four qubits. If you want to run your circuit on a quantum computer or simulator, or if you want to visualize a circuit that has more than four qubits, you must sign in.
 
-2. Open IBM Quantum Composer by clicking the Application switcher on the upper left corner, then click **Composer**. The workspace displays an untitled empty circuit.
+2. Open IBM Quantum Composer by clicking the link on the [Learning page](/learning) navigation. The workspace displays an untitled empty circuit. You can either create a new circuit, or upload a .qasm file to continue working with with a circuit you've already created. 
 
 3. Name your circuit by clicking on the words **Untitled circuit** and typing in a name for your circuit. Click the checkmark to save the name.
 
 4. (Optional) Customize your workspace:
    * Use the **View** menu to change from the default theme to a monochrome theme. You can also select which panels to include on your workspace, then use the menu in the right corner of any panel to access options for further customization. The options to show or hide phase disks, choose the alignment of the qubits on your circuit, and reset the workspace to the default are in the View menu as well.
-   * Open your account settings to switch between dark and light workspace themes.
-   * If you are signed in, the Files panel displays by default. You can close it by clicking the Files icon.
+   * Switch between dark and light workspace themes in the bottom-right corner of the footer.
 
-To build a circuit, you can either [drag and drop operations](#2-build-your-circuit-with-drag-and-drop), or you can enter [OpenQASM code](#3-build-your-circuit-with-openqasm-code) into the code editor. Your circuit is automatically saved every time you make a change.
+To build a circuit, you can either [drag and drop operations](#2-build-your-circuit-with-drag-and-drop), or you can enter [OpenQASM code](#3-build-your-circuit-with-openqasm-code) into the code editor.
 
 ### 2. Build your circuit with drag-and-drop
 
 #### Operations catalog
 
-Drag and drop operations from the operations catalog onto the quantum and classical registers. Start typing in the search window to quickly find an operation.
+Drag and drop operations from the operations catalog onto the quantum and classical registers. Click the search icon and enter a term in the search bar to quickly find an operation.
 
-Collapse and expand the operations catalog by clicking the icon in the upper right corner of the operations panel. You can also switch between an expanded or condensed view of the operations by using the icons next to the search window.
+Collapse and expand the operations catalog by clicking the icon in the upper right corner of the operations panel. Click the icon next to it to toggle between a grid and list view of the catalog.
 
 Right-click an operation icon and select Info to view the definition of an operation, along with its QASM reference.
 
@@ -167,10 +162,6 @@ Read more about the phase disk visualization [here.](#phase-disk)
 #### Export a circuit image
 
 To export an image of your circuit, select File → Export. The Export options window opens, where you can choose a theme (light, dark, white on black, or black on white), a format (.svg or .png), and whether you want to apply a line wrap. After you’ve chosen your options, click Export.
-
-#### Conditional reset
-
-Several hardware systems can now perform [conditional reset](https://docs.quantum-computing.ibm.com/build/backend_reset#conditional-reset). If you have access to these systems, you can now initialize (or re-initialize) qubits in the $|0\rangle$ state, through measurement followed by a conditional X gate. Conditional reset will be rolled out to more systems, including open-access systems, over time.
 
 ### 3. Build your circuit with OpenQASM code
 
