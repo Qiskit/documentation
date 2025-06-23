@@ -76,6 +76,10 @@ jobs:
         if: steps.all-changed-files.outputs.any_changed == 'true'
         run: |
           npm run check:pages-render -- --from-file .github/outputs/all_changed_files.txt
+      - name: Check that Katex expressions render (cloud app)
+        if: steps.all-changed-files.outputs.any_changed == 'true'
+        run: |
+          npm run check:katex-render -- --from-file .github/outputs/all_changed_files.txt
       - name: Stop Docker preview (cloud app)
         if: steps.all-changed-files.outputs.any_changed == 'true'
         run: docker ps -q | xargs docker stop
