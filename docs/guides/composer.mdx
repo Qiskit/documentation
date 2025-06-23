@@ -9,7 +9,7 @@ platform: cloud
 
 ## What is it?
 
-[IBM Quantum&reg; Composer](https://quantum.cloud.ibm.com/composer) is a graphical quantum programming tool that lets you drag and drop operations to build quantum circuits and run them on real quantum hardware or simulators.
+[IBM Quantum&reg; Composer](https://quantum.cloud.ibm.com/composer) is a graphical quantum programming tool that lets you drag and drop operations to build quantum circuits and run them on quantum hardware.
 
 ## What can it do?
 
@@ -27,7 +27,7 @@ Instead of writing code by hand, automatically generate OpenQASM or Python code 
 
 ## Tour of the interface
 
-IBM Quantum Composer has a customizable set of tools that allow you to build, visualize, and run quantum circuits on quantum systems or simulators. Use the More options menu on each window to access additional tools and actions.
+IBM Quantum Composer has a customizable set of tools that allow you to build, visualize, and run quantum circuits on quantum processing units (QPUs). Use the More options menu on each window to access additional tools and actions.
 
 ![IBM Quantum Composer window.](/docs/images/tutorials/explore-composer/52af25d0-aafe-4a4d-b92b-91cd3a3c54a1.avif)
 
@@ -49,7 +49,7 @@ IBM Quantum Composer has a customizable set of tools that allow you to build, vi
 
     Use the View menu to show or hide the phase disks.
 
-6. **Visualizations** - Visualizations characterize your circuit as you build it. They use a single-shot statevector simulator, which is different from the system specified in the Run circuit settings. Note that the visualizations ignore any measurement operations you add. Sign in and click **Run circuit** to get results from the specified backend instead.
+6. **Visualizations** - Visualizations characterize your circuit as you build it. They use a single-shot statevector simulator, which is different from the QPU specified in the Run circuit settings. Note that the visualizations ignore any measurement operations you add. Sign in and click **Run circuit** to get results from the specified backend instead.
 
    Learn more in the [Visualizations](#visualizations) section.
 
@@ -59,7 +59,7 @@ IBM Quantum Composer has a customizable set of tools that allow you to build, vi
 
 1. (Optional) If you are not currently signed in to IBM Quantum, select **Sign in** in the upper right corner. Then, you can either sign in or **Create an IBM Cloud account**.
 
-   If you don’t sign in, the visualizations automatically show simulated results for up to four qubits. If you want to run your circuit on a quantum computer or simulator, or if you want to visualize a circuit that has more than four qubits, you must sign in.
+   If you don’t sign in, the visualizations automatically show simulated results for up to four qubits. If you want to run your circuit on a quantum computer, or if you want to visualize a circuit that has more than four qubits, you must sign in.
 
 2. Open IBM Quantum Composer by clicking the link on the [Learning page](/learning) navigation. The workspace displays an untitled empty circuit. You can either create a new circuit, or upload a .qasm file to continue working with with a circuit you've already created. 
 
@@ -277,7 +277,7 @@ c) The new operation in the graphical editor:
 
 The Inspect mode de-mystifies the inner workings of the circuits you create. It steps through a simulation of your circuit, one layer at a time, so that you can see the state of the qubits as the computation evolves.
 
-![Circuit Inspector.](/docs/images/tutorials/explore-composer/138134c2-cdfb-4a8b-918d-98df70fb8e3c.avif)
+![Inspect mode.](/docs/images/tutorials/explore-composer/138134c2-cdfb-4a8b-918d-98df70fb8e3c.avif)
 
 * In the **View** menu, select the panels for the visualizations that you want to use.
 
@@ -302,11 +302,11 @@ Inspector controls, in order: jump to the beginning of a circuit, step backward,
 
 ## Run circuits and view results
 
-Follow the steps below to run quantum circuits on IBM Quantum systems or simulators, and view the results.
+Follow the steps below to run quantum circuits on QPUs or simulators, and view the results.
 
 ### Choose your job settings
 
-Click **Run circuit** in the upper right corner. In the window that opens, select an available QPU (quantum processing unit) or simulator. QPUs send the circuit to real quantum hardware, and simulators have the word ‘simulator’ in the name. You can also choose an instance, which is associated with a plan (such as the Open, Flex, or Premium Plans). The instance you choose affects which QPUs are available to you. Click the View details link in the table of QPUs to see more information on each QPU.
+Click **Run circuit** in the upper right corner. In the window that opens, select an available QPU. You can also choose an instance, which is associated with a plan (such as the Open, Flex, or Premium Plans). The instance you choose affects which QPUs are available to you. Click the View details link in the table of QPUs to see more information on each QPU.
 
 Next, you can set the number of shots (executions) of your circuit that the backend will perform.
 
@@ -316,7 +316,7 @@ You can optionally name the job and add tags in this panel as well. This will no
 ![Window displaying job options.](/docs/images/tutorials/explore-composer/21dd1126-b0e7-4d35-b86a-6ec0ef2c7385.avif)
 
 > **Note**
-> When you run a circuit, it is automatically sent to the least busy QPU, unless you specify a QPU in the Run settings. If you run the same circuit again, the system selection window will default to your previous choice.
+> When you run a circuit, it is automatically sent to the least busy QPU, unless you specify a QPU in the Run settings. If you run the same circuit again, the QPU selection window will default to your previous choice.
 
 ### Click "Run on (QPU name)"
 
@@ -335,7 +335,7 @@ You can download the circuits and the histogram by clicking the menu in the uppe
 The live visualizations in IBM Quantum Composer show you different views of how quantum circuits affect the state of a collection of qubits. Each type of live visualization is explained in detail below.
 
 > **Randomness in the simulator**
-> The live visualizations come from a single-shot statevector simulator, which is different from the system specified in the Run settings, which can have multiple shots. The simulator creates randomness by generating results based on a *seed*. The seed is the initial value introduced into the algorithm that generates pseudorandom numbers and simulates quantum randomness. Because the seed is fixed during your circuit session, your live visualizations will be repeatable. However, when you close your circuit and re-open it, the seed will have a new value, so you may see a different visualization. You can set the seed yourself by changing the value in the box (up to four digits) after the words `Visualizations seed` above the Composer, and observe how the live visualizations for your circuit change.
+> The live visualizations come from a single-shot statevector simulator, which is different from the QPU specified in the Run settings, which can have multiple shots. The simulator creates randomness by generating results based on a *seed*. The seed is the initial value introduced into the algorithm that generates pseudorandom numbers and simulates quantum randomness. Because the seed is fixed during your circuit session, your live visualizations will be repeatable. However, when you close your circuit and re-open it, the seed will have a new value, so you may see a different visualization. You can set the seed yourself by changing the value in the box (up to four digits) after the words `Visualizations seed` above the Composer, and observe how the live visualizations for your circuit change.
 
 ### View visualizations
 
