@@ -36,7 +36,6 @@ _set_mpl_loglevel("critical")
 
 # Ignore server configuration warnings from qiskit-ibm-runtime; we can't control these and they seem to be benign
 def _runtime_warnings_filter(record):
-    return False
     ignore_patterns = {
         # If you add more patterns, make sure to add the filter to the correct logger path using getLogger
         r'Remote backend "[_a-z]+" for service instance .+ could not be instantiated due to an invalid server-side configuration',
