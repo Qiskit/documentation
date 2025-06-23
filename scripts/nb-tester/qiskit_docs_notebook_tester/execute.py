@@ -28,7 +28,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 from .config import NotebookJob, Result
 from .post_process import post_process_notebook
 
-# Keep this in sync with
+# Keep this in sync with `OPEN_BACKENDS` in
 # scripts/nb-tester/qiskit_docs_notebook_tester/patches/qiskit-ibm-runtime-open
 OPEN_BACKENDS_TO_INTERNAL = {
     "ibm_brisbane": "alt_brisbane",
