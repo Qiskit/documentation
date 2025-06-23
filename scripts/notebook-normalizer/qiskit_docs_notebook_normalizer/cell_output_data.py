@@ -4,6 +4,7 @@ from tempfile import NamedTemporaryFile
 from typing import Literal
 from dataclasses import dataclass
 from pathlib import Path
+import re
 
 # Qiskit's QuantumCircuit.draw() results in Jupyter outputting both a `text/html` and
 # `text/plain` entry. The HTML entry has pre-applied formatting that makes sense in
@@ -49,6 +50,16 @@ def remove_circuit_drawing_html(output_data: dict) -> bool:
     if html := output_data.get("text/html"):
         if html.startswith(CIRCUIT_DRAW_HTML_PREFIX):
             del output_data["text/html"]
+            return True
+    return False
+
+def remove_inline_katex_expression(output_data: dict) -> bool:
+    """Convertes inline katex expressions into display mode if needed and returns True if any changes were made."""
+    if latex := output_data.get("text/latex"):
+        if latex.startswith('$\\displaystyle') and latex.endswith('$'):
+            latex = latex.replace('$\\displaystyle', '$$\n') # Replace the first '$'
+            latex = re.sub(r'\$$', '\n$$', latex) # Replace the last '$'
+            output_data["text/latex"] = latex
             return True
     return False
 

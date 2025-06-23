@@ -118,7 +118,7 @@ const main = async (): Promise<void> => {
 
   if (!allGood) {
     console.log(
-      "\nThe previous inline math expressions are too long. Please convert the expressions into a 'Katex Display' by using `$$` instead of `$` in a new line.\n",
+      "\nThe previous inline math expressions are too long. Please run `./fix` or manually convert the expressions into a 'Katex Display' by using `$$` instead of `$` in a new line.\n",
       "Example of the convertion:\n",
       "--------------------------\n",
       "$[sample_{0}observable_{0}, \ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, \ldots, sample_{M-1}observable_{N-1}]$\n",
