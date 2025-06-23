@@ -380,7 +380,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### copy\_empty\_like
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.copy_empty_like" signature="copy_empty_like(*, vars_mode='alike')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.copy_empty_like" signature="copy_empty_like(*, vars_mode=Ellipsis)">
     Return a copy of self with the same structure but empty.
 
     **That structure includes:**
@@ -650,7 +650,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### layers
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.layers" signature="layers(*, vars_mode='captures')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.layers" signature="layers(*, vars_mode=Ellipsis)">
     Yield a shallow view on a layer of this DAGCircuit for all d layers of this circuit.
 
     A layer is a circuit whose gates act on disjoint qubits, i.e., a layer has depth 1. The total number of layers equals the circuit depth d. The layers are indexed from 0 to d-1 with the earliest layer at index 0. The layers are constructed using a greedy algorithm. Each returned layer is a dict containing \{“graph”: circuit graph, “partition”: list of qubit lists}.
@@ -664,6 +664,20 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   <Function id="qiskit.dagcircuit.DAGCircuit.longest_path" signature="longest_path()">
     Returns the longest path in the dag as a list of DAGOpNodes, DAGInNodes, and DAGOutNodes.
+  </Function>
+
+  ### make\_physical
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.make_physical" signature="make_physical(num_qubits=None)">
+    Put `self` into the canonical physical form, with the given number of qubits.
+
+    This acts in place, and does not need to traverse the DAG. It is intended for use when the DAG is known to already represent a physical circuit, and we just need to assert that it is canonical physical form.
+
+    This erases any information about virtual qubits in the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"); if using this yourself, you may need to ensure you have created and stored a suitable [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout"). Effectively, this applies the “trivial” layout mapping virtual qubit 0 to physical qubit 0, and so on.
+
+    **Parameters**
+
+    **num\_qubits** – if given, the total number of physical qubits in the output; it must be at least as large as the number of qubits in the DAG. If not given, the number of qubits is unchanged.
   </Function>
 
   ### multi\_qubit\_ops
@@ -735,6 +749,12 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   <Function id="qiskit.dagcircuit.DAGCircuit.num_clbits" signature="num_clbits()">
     Return the total number of classical bits used by the circuit.
+  </Function>
+
+  ### num\_ops
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.num_ops" signature="num_ops()">
+    Get the number of op nodes in the DAG.
   </Function>
 
   ### num\_qubits
@@ -965,7 +985,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### separable\_circuits
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.separable_circuits" signature="separable_circuits(remove_idle_qubits=False, *, vars_mode='alike')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.separable_circuits" signature="separable_circuits(remove_idle_qubits=False, *, vars_mode=Ellipsis)">
     Decompose the circuit into sets of qubits with no gates connecting them.
 
     **Parameters**
@@ -987,7 +1007,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### serial\_layers
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.serial_layers" signature="serial_layers(*, vars_mode='captures')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.serial_layers" signature="serial_layers(*, vars_mode=Ellipsis)">
     Yield a layer for all gates of this circuit.
 
     A serial layer is a circuit with one gate. The layers have the same structure as in layers().

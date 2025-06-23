@@ -1,0 +1,331 @@
+---
+title: QubitSparsePauliList (dev version)
+description: API reference for qiskit.quantum_info.QubitSparsePauliList in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.QubitSparsePauliList
+---
+
+# QubitSparsePauliList
+
+<Class id="qiskit.quantum_info.QubitSparsePauliList" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.QubitSparsePauliList" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A list of phase-less Pauli operators stored in a qubit-sparse format.
+
+  ## Representation
+
+  Each individual Pauli operator in the list is a tensor product of single-qubit Pauli operators of the form $P = \bigotimes_n A^{(n)}_i$, for $A^{(n)}_i \in \{I, X, Y, Z\}$. The internal representation of a [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") stores only the non-identity single-qubit Pauli operators. This makes it significantly more efficient to represent lists of Pauli operators with low weights on a large number of qubits. For example, the list of :math\`n\`-qubit operators $[Z^{(0)}, \dots Z^{(n-1)}]$, where $Z^{(j)}$ represents The $Z$ operator on qubit $j$ and identity on all others, can be stored in [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") with a linear amount of memory in the number of qubits.
+
+  ### Indexing
+
+  [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") behaves as [a Python sequence](https://docs.python.org/3/glossary.html#term-sequence) (the standard form, not the expanded [`collections.abc.Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")). The elements of the list can be indexed by integers, as well as iterated through. Whether through indexing or iterating, elements of the list are returned as [`QubitSparsePauli`](qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli") instances.
+
+  ## Construction
+
+  [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") defines several constructors. The default constructor will attempt to delegate to one of the more specific constructors, based on the type of the input. You can always use the specific constructors to have more control over the construction.
+
+  <span id="qubit-sparse-pauli-list-convert-constructors" />
+
+  | Method                                                                                                                                                                 | Summary                                                                                                                                                                                                               |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`from_label()`](#qiskit.quantum_info.QubitSparsePauliList.from_label "qiskit.quantum_info.QubitSparsePauliList.from_label")                                           | Convert a dense string label into a single-element [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList").                                                    |
+  | [`from_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_list "qiskit.quantum_info.QubitSparsePauliList.from_list")                                              | Construct from a list of dense string labels.                                                                                                                                                                         |
+  | [`from_sparse_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_sparse_list "qiskit.quantum_info.QubitSparsePauliList.from_sparse_list")                         | Elements given as a list of tuples of sparse string labels and the qubits they apply to.                                                                                                                              |
+  | [`from_pauli()`](#qiskit.quantum_info.QubitSparsePauliList.from_pauli "qiskit.quantum_info.QubitSparsePauliList.from_pauli")                                           | Raise a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") into a single-element [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList"). |
+  | [`from_qubit_sparse_paulis()`](#qiskit.quantum_info.QubitSparsePauliList.from_qubit_sparse_paulis "qiskit.quantum_info.QubitSparsePauliList.from_qubit_sparse_paulis") | Construct from a list of [`QubitSparsePauli`](qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli")s.                                                                                          |
+
+  ### \_\_new\_\_
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.__new__" signature="__new__(data, /, num_qubits=None)">
+    The default constructor of [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList").
+
+    This delegates to one of [the explicit conversion-constructor methods](#qubit-sparse-pauli-list-convert-constructors), based on the type of the `data` argument. If `num_qubits` is supplied and constructor implied by the type of `data` does not accept a number, the given integer must match the input.
+
+    **Parameters**
+
+    *   **data** – The data type of the input. This can be another [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList"), in which case the input is copied, or it can be a list in a valid format for either [`from_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_list "qiskit.quantum_info.QubitSparsePauliList.from_list") or [`from_sparse_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_sparse_list "qiskit.quantum_info.QubitSparsePauliList.from_sparse_list").
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*|None*) – Optional number of qubits for the list. For most data inputs, this can be inferred and need not be passed. It is only necessary for empty lists or the sparse-list format. If given unnecessarily, it must match the data input.
+  </Function>
+
+  In addition to the conversion-based constructors, the method [`empty()`](#qiskit.quantum_info.QubitSparsePauliList.empty "qiskit.quantum_info.QubitSparsePauliList.empty") can be used to construct an empty list of qubit-sparse Paulis acting on a given number of qubits.
+
+  ## Conversions
+
+  An existing [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") can be converted into other formats.
+
+  | Method                                                                                                                                   | Summary                                                                           |
+  | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+  | [`to_sparse_list()`](#qiskit.quantum_info.QubitSparsePauliList.to_sparse_list "qiskit.quantum_info.QubitSparsePauliList.to_sparse_list") | Express the observable in a sparse list format with elements `(paulis, indices)`. |
+
+  ## Attributes
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.quantum_info.QubitSparsePauliList.num_qubits">
+    The number of qubits the operators in the list act on.
+
+    This is not inferable from any other shape or values, since identities are not stored explicitly.
+  </Attribute>
+
+  ### num\_terms
+
+  <Attribute id="qiskit.quantum_info.QubitSparsePauliList.num_terms">
+    The number of elements in the list.
+  </Attribute>
+
+  ## Methods
+
+  ### apply\_layout
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.apply_layout" signature="apply_layout(layout, num_qubits=None)">
+    Apply a transpiler layout to this qubit sparse Pauli list.
+
+    This enables remapping of qubit indices, e.g. if the list is defined in terms of virtual qubit labels.
+
+    **Parameters**
+
+    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – The layout to apply. Most uses of this function should pass the [`QuantumCircuit.layout`](qiskit.circuit.QuantumCircuit#layout "qiskit.circuit.QuantumCircuit.layout") field from a circuit that was transpiled for hardware. In addition, you can pass a list of new qubit indices. If given as explicitly `None`, no remapping is applied (but you can still use `num_qubits` to expand the qubits in the list).
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits to expand the list elements to. If not supplied, the output will be as wide as the given [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), or the same width as the input if the `layout` is given in another form.
+
+    **Returns**
+
+    A new [`QubitSparsePauli`](qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli") with the provided layout applied.
+  </Function>
+
+  ### clear
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.clear" signature="clear()">
+    Clear all the elements from the list, making it equal to the empty list again.
+
+    This does not change the capacity of the internal allocations, so subsequent addition or substraction operations resulting from composition may not need to reallocate.
+
+    **Examples**
+
+    ```python
+    >>> pauli_list = QubitSparsePauliList.from_list(["IXXXYY", "ZZYZII"])
+    >>> pauli_list.clear()
+    >>> assert pauli_list == QubitSparsePauliList.empty(pauli_list.num_qubits)
+    ```
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.copy" signature="copy()">
+    Get a copy of this qubit sparse Pauli list.
+
+    **Examples**
+
+    ```python
+    >>> qubit_sparse_pauli_list = QubitSparsePauliList.from_list(["IXZXYYZZ", "ZXIXYYZZ"])
+    >>> assert qubit_sparse_pauli_list == qubit_sparse_pauli_list.copy()
+    >>> assert qubit_sparse_pauli_list is not qubit_sparse_pauli_list.copy()
+    ```
+  </Function>
+
+  ### empty
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.empty" signature="empty(num_qubits)" modifiers="static">
+    Get the empty list for a given number of qubits.
+
+    The empty list contains no elements, and is the identity element for joining two [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") instances.
+
+    **Examples**
+
+    Get the empty list on 100 qubits:
+
+    ```python
+    >>> QubitSparsePauliList.empty(100)
+    <QubitSparsePauliList with 0 elements on 100 qubits: []>
+    ```
+  </Function>
+
+  ### from\_label
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.from_label" signature="from_label(label, /)" modifiers="static">
+    Construct a list with a single-term from a dense string label.
+
+    The label must be a sequence of the alphabet `'IXYZ'`. The label is interpreted analogously to a bitstring. In other words, the right-most letter is associated with qubit 0, and so on. This is the same as the labels for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") and [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+
+    **Parameters**
+
+    **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the dense label.
+
+    **Examples**
+
+    ```python
+    >>> QubitSparsePauliList.from_label("IIIIXZI")
+    <QubitSparsePauliList with 1 element on 7 qubits: [X_2 Z_1]>
+    >>> label = "IYXZI"
+    >>> pauli = Pauli(label)
+    >>> assert QubitSparsePauliList.from_label(label) == QubitSparsePauliList.from_pauli(pauli)
+    ```
+
+    <Admonition title="See also" type="note">
+      **[`from_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_list "qiskit.quantum_info.QubitSparsePauliList.from_list")**
+
+      A generalization of this method that constructs a list from multiple labels.
+    </Admonition>
+  </Function>
+
+  ### from\_list
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.from_list" signature="from_list(iter, /, *, num_qubits=None)" modifiers="static">
+    Construct a qubit-sparse Pauli list from a list of dense labels.
+
+    This is analogous to [`SparsePauliOp.from_list()`](qiskit.quantum_info.SparsePauliOp#from_list "qiskit.quantum_info.SparsePauliOp.from_list"). In this dense form, you must supply all identities explicitly in each label.
+
+    The label must be a sequence of the alphabet `'IXYZ'`. The label is interpreted analogously to a bitstring. In other words, the right-most letter is associated with qubit 0, and so on. This is the same as the labels for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") and [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+
+    **Parameters**
+
+    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – List of dense string labels.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – It is not necessary to specify this if you are sure that `iter` is not an empty sequence, since it can be inferred from the label lengths. If `iter` may be empty, you must specify this argument to disambiguate how many qubits the operators act on. If this is given and `iter` is not empty, the value must match the label lengths.
+
+    **Examples**
+
+    Construct a qubit sparse Pauli list from a list of labels:
+
+    ```python
+    >>> QubitSparsePauliList.from_list([
+    ...     "IIIXX",
+    ...     "IIYYI",
+    ...     "IXXII",
+    ...     "ZZIII",
+    ... ])
+    <QubitSparsePauliList with 4 elements on 5 qubits:
+        [X_1 X_0, Y_2 Y_1, X_3 X_2, Z_4 Z_3]>
+    ```
+
+    Use `num_qubits` to disambiguate potentially empty inputs:
+
+    ```python
+    >>> QubitSparsePauliList.from_list([], num_qubits=10)
+    <QubitSparsePauliList with 0 elements on 10 qubits: []>
+    ```
+
+    This method is equivalent to calls to [`from_sparse_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_sparse_list "qiskit.quantum_info.QubitSparsePauliList.from_sparse_list") with the explicit qubit-arguments field set to decreasing integers:
+
+    ```python
+    >>> labels = ["XYXZ", "YYZZ", "XYXZ"]
+    >>> from_list = QubitSparsePauliList.from_list(labels)
+    >>> from_sparse_list = QubitSparsePauliList.from_sparse_list([
+    ...     (label, (3, 2, 1, 0))
+    ...     for label in labels
+    ... ])
+    >>> assert from_list == from_sparse_list
+    ```
+
+    <Admonition title="See also" type="note">
+      **[`from_sparse_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_sparse_list "qiskit.quantum_info.QubitSparsePauliList.from_sparse_list")**
+
+      Construct the list from labels without explicit identities, but with the qubits each single-qubit operator term applies to listed explicitly.
+    </Admonition>
+  </Function>
+
+  ### from\_pauli
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.from_pauli" signature="from_pauli(pauli, /)" modifiers="static">
+    Construct a [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") from a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") instance.
+
+    The output list will have a single term. Note that the phase is dropped.
+
+    **Parameters**
+
+    **pauli** ([`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – the single Pauli to convert.
+
+    **Examples**
+
+    ```python
+    >>> label = "IYXZI"
+    >>> pauli = Pauli(label)
+    >>> QubitSparsePauliList.from_pauli(pauli)
+    <QubitSparsePauliList with 1 element on 5 qubits: [Y_3 X_2 Z_1]>
+    >>> assert QubitSparsePauliList.from_label(label) == QubitSparsePauliList.from_pauli(pauli)
+    ```
+  </Function>
+
+  ### from\_qubit\_sparse\_paulis
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.from_qubit_sparse_paulis" signature="from_qubit_sparse_paulis(obj, /, num_qubits=None)" modifiers="static">
+    Construct a [`QubitSparsePauliList`](#qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") out of individual [`QubitSparsePauli`](qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli") instances.
+
+    All the terms must have the same number of qubits. If supplied, the `num_qubits` argument must match the terms.
+
+    **Parameters**
+
+    *   **obj** (*Iterable\[*[*QubitSparsePauli*](qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli")*]*) – Iterable of individual terms to build the list from.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits the elements of the list should act on. This is usually inferred from the input, but can be explicitly given to handle the case of an empty iterable.
+
+    **Returns**
+
+    The corresponding list.
+  </Function>
+
+  ### from\_sparse\_list
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.from_sparse_list" signature="from_sparse_list(iter, /, num_qubits)" modifiers="static">
+    Construct a qubit sparse Pauli list from a list of labels and the qubits each item applies to.
+
+    This is analogous to [`SparsePauliOp.from_sparse_list()`](qiskit.quantum_info.SparsePauliOp#from_sparse_list "qiskit.quantum_info.SparsePauliOp.from_sparse_list").
+
+    The “labels” and “indices” fields of the tuples are associated by zipping them together. For example, this means that a call to [`from_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_list "qiskit.quantum_info.QubitSparsePauliList.from_list") can be converted to the form used by this method by setting the “indices” field of each triple to `(num_qubits-1, ..., 1, 0)`.
+
+    **Parameters**
+
+    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]]*) – tuples of labels and the qubits each single-qubit term applies to.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits the operators in the list act on.
+
+    **Examples**
+
+    Construct a simple list:
+
+    ```python
+    >>> QubitSparsePauliList.from_sparse_list(
+    ...     [("ZX", (1, 4)), ("YY", (0, 3))],
+    ...     num_qubits=5,
+    ... )
+    <QubitSparsePauliList with 2 elements on 5 qubits: [X_4 Z_1, Y_3 Y_0]>
+    ```
+
+    This method can replicate the behavior of [`from_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_list "qiskit.quantum_info.QubitSparsePauliList.from_list"), if the qubit-arguments field of the tuple is set to decreasing integers:
+
+    ```python
+    >>> labels = ["XYXZ", "YYZZ", "XYXZ"]
+    >>> from_list = QubitSparsePauliList.from_list(labels)
+    >>> from_sparse_list = QubitSparsePauliList.from_sparse_list([
+    ...     (label, (3, 2, 1, 0))
+    ...     for label in labels
+    ... ])
+    >>> assert from_list == from_sparse_list
+    ```
+
+    <Admonition title="See also" type="note">
+      **[`to_sparse_list()`](#qiskit.quantum_info.QubitSparsePauliList.to_sparse_list "qiskit.quantum_info.QubitSparsePauliList.to_sparse_list")**
+
+      The reverse of this method.
+    </Admonition>
+  </Function>
+
+  ### to\_sparse\_list
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.to_sparse_list" signature="to_sparse_list()">
+    Express the list in terms of a sparse list format.
+
+    This can be seen as counter-operation of [`QubitSparsePauliList.from_sparse_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_sparse_list "qiskit.quantum_info.QubitSparsePauliList.from_sparse_list"), however the order of terms is not guaranteed to be the same at after a roundtrip to a sparse list and back.
+
+    **Examples**
+
+    ```python
+    >>> qubit_sparse_list = QubitSparsePauliList.from_list(["IIXIZ", "IIZIX"])
+    >>> reconstructed = QubitSparsePauliList.from_sparse_list(qubit_sparse_list.to_sparse_list(), qubit_sparse_list.num_qubits)
+    ```
+
+    <Admonition title="See also" type="note">
+      **[`from_sparse_list()`](#qiskit.quantum_info.QubitSparsePauliList.from_sparse_list "qiskit.quantum_info.QubitSparsePauliList.from_sparse_list")**
+
+      The constructor that can interpret these lists.
+    </Admonition>
+  </Function>
+</Class>
+

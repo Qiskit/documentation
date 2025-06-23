@@ -1,0 +1,180 @@
+---
+title: ContextAwareDynamicalDecoupling (dev version)
+description: API reference for qiskit.transpiler.passes.ContextAwareDynamicalDecoupling in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.ContextAwareDynamicalDecoupling
+---
+
+# ContextAwareDynamicalDecoupling
+
+<Class id="qiskit.transpiler.passes.ContextAwareDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/context_aware_dynamical_decoupling.py#L42-L640" signature="qiskit.transpiler.passes.ContextAwareDynamicalDecoupling(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Implement an X-sequence dynamical decoupling considering the gate- and qubit-context.
+
+  This pass implements a context-aware dynamical decoupling (DD) \[1], which ensures that
+
+  > 1.  simultaneously occurring DD sequences on device-adjacent qubits are mutually orthogonal, and
+  > 2.  DD sequences on spectator qubits of ECR and CX gates are orthogonal to the echo pulses on the neighboring target/control qubits.
+
+  The mutually orthogonal DD sequences are currently Walsh-Hadamard sequences, consisting of only X gates. In some cases it might therefore be beneficial to use [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") with more generic sequences, such as XY4.
+
+  This pass performs best if the two-qubit interactions have the same durations on the device, as it allows to align delay sequences and take into account potential control and target operations on neighboring qubits. However, it is still valid if this is not the case.
+
+  <Admonition title="Note" type="note">
+    If this pass is run within a pass manager (as in the example below), it will automatically run [`PadDelay`](qiskit.transpiler.passes.PadDelay "qiskit.transpiler.passes.PadDelay") to allocate the delays. If instead it is run as standalone (not inside a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")), the delays must already be inserted.
+  </Admonition>
+
+  Example:
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import QFTGate
+  from qiskit.transpiler import PassManager
+  from qiskit.transpiler.passes import ALAPScheduleAnalysis, ContextAwareDynamicalDecoupling
+  from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+  from qiskit_ibm_runtime.fake_provider import FakeSherbrooke
+
+  num_qubits = 10
+  circuit = QuantumCircuit(num_qubits)
+  circuit.append(QFTGate(num_qubits), circuit.qubits)
+  circuit.measure_all()
+
+  target = FakeSherbrooke().target
+
+  pm = generate_preset_pass_manager(optimization_level=2, target=target)
+  dd = PassManager([
+      ALAPScheduleAnalysis(target=target),
+      ContextAwareDynamicalDecoupling(target=target),
+  ])
+
+  transpiled = pm.run(circuit)
+  with_dd = dd.run(transpiled)
+
+  print(with_dd.draw(idle_wires=False))
+  ```
+
+  **References**
+
+  **\[1] A. Seif et al. (2024). Suppressing Correlated Noise in Quantum Computers via**
+
+  Context-Aware Compiling, [arXiv:2403.06852](https://arxiv.org/abs/2403.06852).
+
+  **Parameters**
+
+  *   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") of the device to run the circuit.
+  *   **min\_duration** – Minimal delay duration (in `dt`) to insert a DD sequence. This can be useful, e.g. if a big delay block would be interrupted and split into smaller blocks due to a very short, adjacent delay. If `None`, this is set to be at least twice the difference of the longest/shortest CX or ECR gate.
+  *   **skip\_reset\_qubits** – Skip initial delays and delays after a reset.
+  *   **skip\_dd\_threshold** – Skip dynamical decoupling on an idle qubit, if the duration of the decoupling sequence exceeds this fraction of the idle window. For example, to skip a DD sequence if it would take up more than 95% of the idle time, set this value to 0.95. A value of 1. means that the DD sequence is applied if it fits into the window.
+  *   **pulse\_alignment** – The hardware constraints (in `dt`) for gate timing allocation. If provided, the inserted gates will only be executed on integer multiples of this value. This is usually provided on `backend.configuration().timing_constraints`. If `None`, this is extracted from the `target`.
+  *   **coloring\_strategy** – The coloring strategy used for `rx.greedy_graph_color`. Defaults to a saturation strategy, which is optimal on bipartite graphs, see Section 1.2.2.8 of \[2].
+
+  **References**
+
+  **\[2] A. Kosowski, and K. Manuszewski, Classical Coloring of Graphs, Graph Colorings,**
+
+  2-19, 2004. ISBN 0-8218-3458-4.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.ContextAwareDynamicalDecoupling.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.ContextAwareDynamicalDecoupling.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.ContextAwareDynamicalDecoupling.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### get\_orthogonal\_sequence
+
+  <Function id="qiskit.transpiler.passes.ContextAwareDynamicalDecoupling.get_orthogonal_sequence" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/context_aware_dynamical_decoupling.py#L231-L234" signature="get_orthogonal_sequence(order)">
+    Return a DD sequence of given order, where different orders are orthogonal.
+
+    **Parameters**
+
+    **order** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")], [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[qiskit.circuit.gate.Gate](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")]]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.ContextAwareDynamicalDecoupling.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.ContextAwareDynamicalDecoupling.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/context_aware_dynamical_decoupling.py#L164-L229" signature="run(dag)">
+    Run a pass on the DAGCircuit. This is implemented by the pass developer.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – the dag on which the pass is run.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – when this is left unimplemented for a pass.
+
+    **Return type**
+
+    [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.ContextAwareDynamicalDecoupling.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+
