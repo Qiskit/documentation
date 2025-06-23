@@ -37,12 +37,20 @@ runs:
       shell: python
       run: |
         from qiskit_ibm_runtime import QiskitRuntimeService
-        QiskitRuntimeService.save_account(
-            channel="ibm_cloud",
-            instance="${{ inputs.instance }}",
-            token="${{ inputs.ibm-cloud-token }}",
-            set_as_default=True
-        )
+
+        if "${{ inputs.ibm-cloud-token }}" == "":
+          print(
+            "Token is an empty string, this can happen when making a PR from a "
+            "fork. We will continue without setting up the account as not all "
+            "notebooks need a valid account to run."
+          )
+        else:
+          QiskitRuntimeService.save_account(
+              channel="ibm_cloud",
+              instance="${{ inputs.instance }}",
+              token="${{ inputs.ibm-cloud-token }}",
+              set_as_default=True
+          )
 
     - name: Install Linux dependencies
       if: ${{ inputs.install-linux-deps == 'true' }}
