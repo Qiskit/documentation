@@ -30,6 +30,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y imagemagick
           sudo ln -s /usr/bin/convert /usr/bin/magick
+      - name: Install Playwright
+        run: npx playwright install
 
       - name: File metadata
         run: npm run check:metadata
