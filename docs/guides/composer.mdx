@@ -27,7 +27,7 @@ Instead of writing code by hand, automatically generate OpenQASM or Python code 
 
 ## Tour of the interface
 
-IBM Quantum Composer has a customizable set of tools that allow you to build, visualize, and run quantum circuits on quantum processing units (QPUs). Use the More options menu on each window to access additional tools and actions.
+IBM Quantum Composer has a customizable set of tools that allow you to build, visualize, and run quantum circuits on quantum processing units (QPUs). Use the "More options" menu on each window to access additional tools and actions.
 
 ![IBM Quantum Composer window.](/docs/images/guides/composer/Learning_Composer-Annotated.svg)
 
@@ -43,13 +43,13 @@ IBM Quantum Composer has a customizable set of tools that allow you to build, vi
 
    To edit the parameters and settings on gates that support editing, select the gate on the graphical editor and click Edit.
 
-4. **Toolbar** - Access frequently used tools to undo and redo actions, change the gate alignment, and switch to inspect mode. Inspect mode lets you view a step-by-step view of the qubit states as you circuit computation evolves. To learn more, see [Inspect your circuit, step-by-step](#4-inspect-your-circuit-step-by-step).
+4. **Toolbar** - Access frequently used tools to undo and redo actions, change the gate alignment, and switch to inspect mode. With inspect mode, you see a step-by-step view of the qubit states as you circuit computation evolves. To learn more, see [Inspect your circuit, step-by-step](#4-inspect-your-circuit-step-by-step).
 
 5. **Phase disks** - The phase of the qubit state vector in the complex plane is given by the line that extends from the center of the diagram to the edge of the gray disk (which rotates counterclockwise around the center point).
 
     Use the View menu to show or hide the phase disks.
 
-6. **Visualizations** - Visualizations characterize your circuit as you build it. They use a single-shot statevector simulator, which is different from the QPU specified in the Run circuit settings. Note that the visualizations ignore any measurement operations you add. Sign in and click **Run circuit** to get results from the specified backend instead.
+6. **Visualizations** - Visualizations characterize your circuit as you build it. They use a single-shot statevector simulator, which is different from the QPU specified in the "Run circuit" settings. Note that the visualizations ignore any measurement operations you add. Sign in and click **Run circuit** to get results from the specified backend instead.
 
    Learn more in the [Visualizations](#visualizations) section.
 
@@ -57,7 +57,7 @@ IBM Quantum Composer has a customizable set of tools that allow you to build, vi
 
 <Admonition type="warning" title="Download your circuit files before exiting the Composer">
 
-If you want to continue working with a circuit at a later time, be sure to download your circuit file and store it locally before exiting your current Composer session. Use the Save file link in the upper-right corner, or go to the File menu and choose Save file. When you are ready to work with the circuit again, go to the File menu and choose Upload .qasm file, then navigate to your circuit file on your local drive and click Open.
+If you want to continue working with a circuit at a later time, be sure to download your circuit file and store it locally before exiting your current Composer session. Use the "Save file" link in the upper-right corner, or go to the File menu and choose "Save file". When you are ready to work with the circuit again, go to the File menu and choose "Upload .qasm file", then navigate to your circuit file on your local drive and click Open.
 </Admonition>
 
 ### 1. Open IBM Quantum Composer
@@ -277,52 +277,52 @@ c) The new operation in the graphical editor:
 
 ### 4. Inspect your circuit, step-by-step
 
-The Inspect mode de-mystifies the inner workings of the circuits you create. It steps through a simulation of your circuit, one layer at a time, so that you can see the state of the qubits as the computation evolves.
+Inspect mode de-mystifies the inner workings of the circuits you create. It steps through a simulation of your circuit, one layer at a time, so that you can see the state of the qubits as the computation evolves.
 
 * In the **View** menu, select the panels for the visualizations that you want to use.
 
-* Click the **Inspect** toggle in the toolbar. Note that once the Circuit Inspector is toggled on, you cannot add any more operations until it is turned off again.
+* Click the **Inspect** toggle in the toolbar. Note that once Inspect mode is toggled on, you cannot add any more operations until it is turned off again.
 
-* If you built your circuit with the Freeform alignment turned on, note that the Circuit Inspector automatically turns on the Left alignment.
+* If you built your circuit with the Freeform alignment turned on, note that Inspect mode automatically turns on the Left alignment.
 
-* To move step-by-step through visualizations of your circuit’s components, control the movement of the Circuit Inspector using the forward and rewind buttons.
+* To move step-by-step through visualizations of your circuit’s components, use the forward and rewind buttons.
 
 ![Controls to step forward and backward, and to jump to a circuit's beginning or end.](/docs/images/guides/composer/5f2dfb7c-a244-405c-8950-f422a4408fcf.avif)
 
-Inspector controls, in order: jump to the beginning of a circuit, step backward, play from one break point to the next, step forward, jump to the end of a circuit.
+Inspect mode controls, in order: jump to the beginning of a circuit, step backward, play from one break point to the next, step forward, jump to the end of a circuit.
 
-* To inspect only some operations, click the operations you want to be inspected, and a colored overlay appears over each that indicates they will be included when you run the Circuit Inspector. To unselect an operation, click on it again, and the overlay disappears.
+* To inspect only some operations, click the operations you want to be inspected, and a colored overlay appears over each that indicates they will be included when you run in Inspect mode. To unselect an operation, click on it again, and the overlay disappears.
 
 * To learn more about interpreting visualizations, see the [Visualizations](#visualizations) topic.
 
-* To close the Inspector and return to editing your circuit, click the Inspect toggle in the toolbar.
+* To exit Inspect mode and return to editing your circuit, click the Inspect toggle in the toolbar.
 
 <Admonition type="note" title="Randomness in the simulator">
-The simulator creates randomness by generating results based on a *seed*. The seed is the initial value introduced into the algorithm that generates pseudorandom numbers. You can see the seed number by selecting Visualizations seed from the Edit menu. You can also set the seed yourself by changing the value in the box.
+The simulator creates randomness by generating results based on a *seed*. The seed is the initial value introduced into the algorithm that generates pseudorandom numbers. You can see the seed number by selecting "Visualizations seed" from the Edit menu. You can also set the seed yourself by changing the value in the box.
 </Admonition>
 
 ## Run circuits and view results
 
-Follow the steps below to run quantum circuits on QPUs or simulators, and view the results.
+Follow the steps below to run quantum circuits on QPUs and view the results.
 
 ### Choose your job settings
 
-Click **Run circuit** in the upper right corner. In the window that opens, select an available QPU. You can also choose an instance, which is associated with a plan (such as the Open, Flex, or Premium Plans). The instance you choose affects which QPUs are available to you. Click the View details link in the table of QPUs to see more information on each QPU.
+Click **Run circuit** in the upper right corner. In the window that opens, select an available QPU. You can also choose an instance, which is associated with a plan (such as the Open, Flex, or Premium Plans). The instance you choose affects which QPUs are available to you. Click the "View details" link in the table of QPUs to see more information on each QPU.
 
 Next, you can set the number of shots (executions) of your circuit that the backend will perform.
 
-You can optionally name the job and add tags in this panel as well. This will not change the name of the circuit. A "Composer" tag has been pre-populated to make it easier to filter your Workloads table by Composer jobs. You can remove this tag.
+You can optionally name the job and add tags in this panel as well. This will not change the name of the circuit. A pre-populated "Composer" tag makes it easier to filter your Workloads table by Composer jobs. You can remove this tag.
 
 
 ![Window displaying job options.](/docs/images/guides/composer/Learning_Run.svg)
 
 <Admonition type="note">
-When you run a circuit, it is automatically sent to the least busy QPU, unless you specify a QPU in the Run settings. If you run the same circuit again, the QPU selection window will default to your previous choice.
+When you run a circuit, it is automatically sent to the least-busy QPU, unless you specify a QPU in the Run settings. If you run the same circuit again, the QPU selection window will default to your previous choice.
 </Admonition>
 
 ### Click "Run on (QPU name)"
 
-You can view the job’s progress by clicking the View jobs button in the top right corner, which will open the Workloads page in IBM Quantum Platform.
+You can view the job’s progress by clicking the "View jobs" button in the top-right corner, which will open the Workloads page in IBM Quantum Platform.
 
 ### View results
 
@@ -337,16 +337,16 @@ You can download the circuits and the histogram by clicking the menu in the uppe
 The live visualizations in IBM Quantum Composer show you different views of how quantum circuits affect the state of a collection of qubits. Each type of live visualization is explained in detail below.
 
 <Admonition type="note" title="Randomness in the simulator">
-The live visualizations come from a single-shot statevector simulator, which is different from the QPU specified in the Run settings, which can have multiple shots. The simulator creates randomness by generating results based on a *seed*. The seed is the initial value introduced into the algorithm that generates pseudorandom numbers. You can see the seed number by selecting Visualizations seed from the Edit menu. You can also set the seed yourself by changing the value in the box.
+The live visualizations come from a single-shot statevector simulator, which is different from the QPU specified in the Run settings, which can have multiple shots. The simulator creates randomness by generating results based on a *seed*. The seed is the initial value introduced into the algorithm that generates pseudorandom numbers. You can see the seed number by selecting "Visualizations seed" from the Edit menu. You can also set the seed yourself by changing the value in the box.
 </Admonition>
 
 ### View visualizations
 
-The live visualizations are shown in windows at the bottom of the Quantum Composer workspace (except the phase disk, which appears at the end of each qubit wire). You can choose any combination of statevector, probabilities, and q-sphere visualizations to appear at the bottom of the workspace. Select or unselect visualizations in the **View** menu.
+The live visualizations are shown in windows at the bottom of the Composer workspace (except the phase disk, which appears at the end of each qubit wire). You can choose any combination of statevector, probabilities, and q-sphere visualizations to appear at the bottom of the workspace. Select or unselect visualizations in the **View** menu.
 
 ### Download visualizations
 
-Download one of the visualizations at the bottom of the Quantum Composer workspace by clicking the More options menu in the visualization window. You can download visualizations as an SVG, a PNG, or a CSV of the underlying data. You can also download the visualization images of the measurement probabilities and statevector histograms as a PDF.
+Download one of the visualizations at the bottom of the Composer workspace by clicking the "More options" menu in the visualization window. You can download visualizations as an SVG, a PNG, or a CSV of the underlying data. You can also download the visualization images of the measurement probabilities and statevector histograms as a PDF.
 
 ### Phase disk
 
