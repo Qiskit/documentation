@@ -41,6 +41,7 @@ const CLOUD_ONLY_PAGES: Set<string> = new Set([
   "docs/guides/plans-overview.mdx",
   "docs/guides/quickstart-steps-org.mdx",
   "docs/guides/allocation-limits.mdx",
+  "docs/guides/composer.mdx",
 ]);
 
 const PORT = 3000;

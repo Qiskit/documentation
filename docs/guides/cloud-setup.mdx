@@ -26,32 +26,41 @@ Your user account is associated with one or more [instances](./instances) that g
 ## Set up to use IBM Cloud
 
 1. Before setting up with IBM Cloud, ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](/docs/guides/install-qiskit#local).
-1. If you do not already have one, set up an [IBM Cloud account.](https://cloud.ibm.com/registration?cm_sp=quantum&utm_content=quantum-next&target=https%3A%2F%2Fquantum.cloud.ibm.com&error_uri=)
+1. If you do not already have one, set up an [IBM Cloud account.](https://quantum.cloud.ibm.com/registration)
    <Admonition type="note">
    You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the top header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
    </Admonition>
-1. Create an instance, if necessary. Go to the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com) If you have one or more instances shown, continue to the next step. Otherwise, follow these steps to create an instance.
-   1. Make sure that you have the correct account selected from the account switcher in the top header. Click **Create instance**.
-      * Choose a name and the plan to use.
-      * If you are creating an instance of the Standard Plan, it is recommended that you set the total cost limit or the usage limit. (These values can be updated later.)
-      * Scroll down to see the **Terms** link.  After reading the terms, agree to the license agreements by checking the box in the bottom right corner of the page, and click **Next**.
-   1. On the Plan inheritance page, leave the default setting (toggle is not enabled) and click **Next** if you're setting up an Open instance.  If you are not setting up an Open instance and you want different QPUs to be available on this instance, enable the "Customize allocated compute resources" toggle, choose the QPUs you want this instance to be able to access, then click **Next**.
-      <Admonition type="note">
-      If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later.
-      </Admonition>
-   1. Choose whether you want an access group to be created for this instance and click **Create instance**.  For an Open instance, you probably don't need this access group, although creating one won't impact your usage unless you add another user to the group.  This access group allows other users (collaborators) to share the time allocated to this instance.  Collaborators can be added on the Users page.
+1. Create an instance, if necessary.
 
-      You can add or remove access groups at any time from IBM Cloud.  See [Setting up access groups](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) for instructions.
+    Go to the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com) If you have one or more instances shown, continue to the next step. Otherwise, follow these steps to create an instance.
+      1. Make sure that you have the correct account selected from the account switcher in the top header. Click **Create instance**.
+         * Choose a name and the plan to use.
+         * If you are creating an instance of the Standard Plan, it is recommended that you set the total cost limit or the usage limit. (These values can be updated later.)
+         * Scroll down to see the **Terms** link.  After reading the terms, agree to the license agreements by checking the box in the bottom right corner of the page, and click **Next**.
+    1. On the Plan inheritance page, leave the default setting (toggle is not enabled) and click **Next** if you're setting up an Open instance.
 
-    <Admonition type="note">
-      If you are an administrator who needs to set up Qiskit Runtime on Cloud for your organization, refer to [Plan Qiskit Runtime for an organization](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-considerations-set-up-runtime).
-    </Admonition>
+        If you are not setting up an Open instance and you want different QPUs to be available on this instance, enable the "Customize allocated compute resources" toggle, choose the QPUs you want this instance to be able to access, then click **Next**.
+        <Admonition type="note">
+       If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later.
+        </Admonition>
+    1. Choose whether you want an access group to be created for this instance and click **Create instance**.   This access group allows other users (collaborators) to share the time allocated to this instance.  Collaborators can be added on the Users page.
+
+       For an Open instance, you probably don't need this access group, although creating one won't impact your usage unless you add another user to the group.
+
+       You can add or remove access groups at any time from IBM Cloud.  See [Setting up access groups](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) for instructions.
+
+        <Admonition type="note">
+          If you are an administrator who needs to set up Qiskit Runtime on Cloud for your organization, refer to [Plan Qiskit Runtime for an organization](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-considerations-set-up-runtime).
+        </Admonition>
 
 1. Find your access credentials.
     1. Find your API key. From the [dashboard](https://quantum.cloud.ibm.com/), create your API key, then copy it to a secure location so you can use it for authentication.
     2. Optional: Find your CRN from the Instances section of the dashboard. Click the icon to copy your CRN for the instance you want to use, then save it in a secure location so you can use it to identify the instance.
 
-1. <span id="cloud-save"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#cloud-untrusted) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Cloud.) To use `save_account()`, activate a Python virtual environment. Then, run Python in your virtual environment and enter the following:
+1. <span id="cloud-save"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally.
+
+    ([Skip to the next step](#cloud-untrusted) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Cloud.)
+    1. To use `save_account()`, activate a Python virtual environment. Then, run Python in your virtual environment and enter the following:
 
 
     ```python
@@ -74,17 +83,15 @@ When an instance CRN or name is passed in, only backends and jobs from that inst
   )
 ```
 
-1. Type `exit()`. From now on, whenever you need to authenticate to the service, you can load your credentials with `QiskitRuntimeService()`.  Test your setup and ensure that you can connect to the service:
 
-    ```python
-    from qiskit_ibm_runtime import QiskitRuntimeService
+      ```python
+        from qiskit_ibm_runtime import QiskitRuntimeService
 
     # If you named your credentials, optionally specify the name here, as follows:
     # QiskitRuntimeService(name='account-name')
     # If you don't specify a name, the default credentials are loaded.
     service = QiskitRuntimeService()
-    ```
-
+       ```
       * If you have saved credentials for both an IBM Quantum Platform account and an IBM Cloud account, IBM Cloud is the default account used when you initialize your account, unless you specify `set_as_default=True` in your IBM Quantum Platform account when you use the `save_account()` method.
       * If you are saving multiple accounts, consider using the `name` parameter to differentiate them.
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
@@ -110,6 +117,9 @@ When an instance CRN or name is passed in, only backends and jobs from that inst
       instance="<IBM Cloud CRN or instance name>"
       )
     ```
+1. Optional: Configure your firewall.
+
+    If necessary, use [this information](/docs/guides/quickstart-steps-org#firewall) to enable access to the IBM Quantum API endpoints.
 
 <span id="iqp-rest-api"></span>
 ## Set up to use IBM Quantum Platform with REST API
@@ -163,9 +173,9 @@ You can access quantum processors with REST APIs, enabling you to work with QPUs
 
 Because of the security risks posed by executing code that contains your API key, the recommended authentication method is to first create an environment variable for your API key, but only do so **if you are working in a trusted Python environment (such as on a personal laptop or workstation).**
 
-[Skip to the next step](#rest-untrusted) if you are not using a trusted environment, such as a shared or public computer.
+Follow the **tips for running code on untrusted systems** (in the following) if you are not using a trusted environment, such as a shared or public computer.
 
-    To set the IQP_API_TOKEN environment variable in your system, you can add the following line to your shell profile (for example, .bashrc or .zshrc) or by setting it directly in your terminal:
+  1.  To set the IQP_API_TOKEN environment variable in your system, you can add the following line to your shell profile (for example, .bashrc or .zshrc) or by setting it directly in your terminal:
 
     ```shell
     export IQP_API_TOKEN=<your-token>
@@ -182,7 +192,7 @@ Because of the security risks posed by executing code that contains your API key
 <details>
 <summary> **Click here for tips for running code on untrusted systems** </summary>
 
-1. <span id="rest-untrusted"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API key after each use by following the [Deleting an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) topic on IBM Cloud. To initialize the service in this situation, use your API key directly:
+<span id="rest-untrusted"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API key after each use by following the [Deleting an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) topic on IBM Cloud. To initialize the service in this situation, use your API key directly:
 
 ```python
 # Refresh your API key on the dashboard after using the code as follows:
@@ -205,6 +215,11 @@ curl -X 'GET' \
    '-H authorization: Bearer <BEARER_TOKEN>' \
    '-H Service-CRN: crn:v1:bluemix:public:quantum-computing:us-east:a/b947c1c5a9378d64aed96696e4d76e8e:a3a7f181-35aa-42c8-94d6-7c8ed6e1a94b::'
 ```
+
+1. Optional: Configure your firewall.
+
+    If necessary, use [this information](/docs/guides/quickstart-steps-org#firewall) to enable access to the IBM Quantum API endpoints.
+
 
 ## Next steps
 
