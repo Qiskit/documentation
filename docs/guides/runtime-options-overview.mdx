@@ -114,7 +114,7 @@ Scroll to see the full table.
 |                      | shots_per_randomization  |                         |   `auto`/ Integer no larger than `backend.max_shots`.                                      | `auto`                    |                      |
 |                      | strategy                 |                         | `active`<br />`active-circuit`<br />`active-accum`<br />`all`                                | `active-accum`            |                      |
 | experimental         |                          |                         |                           |                        |                    |
-|                      | execution_path           |                         | `gen3-turbo` *([see note](#experimental-option-note))*            | None                   |                    |
+|                      | execution_path           |                         |           | None                   |                    |
   </TabItem>
 
   <TabItem value="Sampler" label="Sampler">
@@ -149,14 +149,9 @@ Scroll to see the full table.
 |                                                                                                         | shots_per_randomization  | `auto`/ Integer no larger than `backend.max_shots`.                | `auto`                                                                                                                                 |                      |
 |                                                                                                         | strategy                 | `active`<br />`active-circuit`<br />`active-accum`<br />`all`      | `active-accum`                                                                                                                         |                      |
 | experimental                                                                                            |                          |                                                                    |                                                                                                                                        |                      |
-|                                                                                                         | execution_path           | `gen3-turbo` *([see note](#experimental-option-note))*             | None                                                                                                                                   |                      |
   </TabItem>
 </Tabs>
 
-<span id="experimental-option-note"></span>
-<Admonition type="note">
-Setting `gen3-turbo` enables the next-generation execution path, which provides a great improvement in performance. This option is experimental (subject to change without notice, and stability is not guaranteed).
-</Admonition>
 <span id="options-compatibility-table"></span>
 ### Feature compatibility
 
@@ -166,7 +161,6 @@ Due to differences in the device compilation process, certain runtime features c
   <TabItem value="Dynamic" label="Dynamic circuits">
   Incompatible with:
   - Gate-folding ZNE
-  - gen3-turbo
   - PEA
   - PEC
   - Dynamical decoupling
@@ -184,7 +178,6 @@ Due to differences in the device compilation process, certain runtime features c
   <TabItem value="Fractional" label="Fractional gates">
   Incompatible with:
   - Dynamic circuits
-  - gen3-turbo
   - Gate twirling
   - PEA
   - PEC
@@ -205,13 +198,6 @@ Due to differences in the device compilation process, certain runtime features c
   Other notes:
   - Can be used with dynamic circuits with non-conditional gates.
   - Does not work with non-Clifford entanglers.
-
-  </TabItem>
-
-  <TabItem value="Gen3" label="gen3-turbo">
-  Incompatible with:
-  - Dynamic circuits
-  - Fractional gates
 
   </TabItem>
 
