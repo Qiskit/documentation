@@ -84,6 +84,7 @@ def delete_closed_pr_folders() -> None:
             continue
         if is_stale(folder.name):
             logger.info(f"Would delete {folder} as it is stale")
+            # TODO (#3433) Change the log message and uncomment the following line
             # shutil.rmtree(folder)
             continue
 
