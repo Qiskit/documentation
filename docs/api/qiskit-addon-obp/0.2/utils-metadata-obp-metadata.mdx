@@ -1,0 +1,153 @@
+---
+title: OBPMetadata (v0.2)
+description: API reference for qiskit_addon_obp.utils.metadata.OBPMetadata in qiskit-addon-obp v0.2
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
+---
+
+# OBPMetadata
+
+<Class id="qiskit_addon_obp.utils.metadata.OBPMetadata" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/metadata.py#L93-L259" signature="OBPMetadata(truncation_error_budget, num_slices, operator_budget, backpropagation_history, num_backpropagated_slices)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A container for metadata generated during the `backpropagate()` method.
+
+  ## Attributes
+
+  **Parameters**
+
+  *   **truncation\_error\_budget** ([*TruncationErrorBudget*](utils-truncating#truncationerrorbudget "qiskit_addon_obp.utils.truncating.TruncationErrorBudget"))
+  *   **num\_slices** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*)
+  *   **operator\_budget** ([*OperatorBudget*](utils-simplify#operatorbudget "qiskit_addon_obp.utils.simplify.OperatorBudget"))
+  *   **backpropagation\_history** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*SliceMetadata*](utils-metadata-slice-metadata "qiskit_addon_obp.utils.metadata.SliceMetadata")*]*)
+  *   **num\_backpropagated\_slices** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
+
+  ### truncation\_error\_budget
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.OBPMetadata.truncation_error_budget" attributeTypeHint="TruncationErrorBudget">
+    Values specifying the observable truncation strategy.
+  </Attribute>
+
+  ### num\_slices
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.OBPMetadata.num_slices" attributeTypeHint="int | None">
+    The total number of slices to attempt to backpropagate.
+  </Attribute>
+
+  ### operator\_budget
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.OBPMetadata.operator_budget" attributeTypeHint="OperatorBudget">
+    Values specifying how large the operator may grow.
+  </Attribute>
+
+  ### backpropagation\_history
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.OBPMetadata.backpropagation_history" attributeTypeHint="list[SliceMetadata]">
+    A sequence of metadata objects to track the progression of the backpropagation.
+  </Attribute>
+
+  ### num\_backpropagated\_slices
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.OBPMetadata.num_backpropagated_slices" attributeTypeHint="int">
+    The number of backpropagated slices.
+
+    <Admonition title="Note" type="note">
+      This value can differ from `len(backpropagation_history)` in cases where a stopping criterion such as `operator_budget.max_paulis` or `operator_budget.max_qwc_groups` caused the backpropagation to terminate. Then, this value should be equal to `len(backpropagation_history) - 1` because the last slice caused the thresholds to be exceeded. However, for convenience these values are still recorded for the end-user to inspect them.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### accumulated\_error
+
+  <Function id="qiskit_addon_obp.utils.metadata.OBPMetadata.accumulated_error" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/metadata.py#L121-L159" signature="accumulated_error(observable_idx, slice_idx=None)">
+    Compute the accumulated error for a given observable at a given “time”.
+
+    This method computes the accumulated error for a given observable index at a given “time” during the course of the backpropagation. In this context, “time” is to be understood as the discrete steps of already backpropagated slices.
+
+    The accumulated error is computed as the sum of the individual [`SliceMetadata.slice_errors`](utils-metadata-slice-metadata#slice_errors "qiskit_addon_obp.utils.metadata.SliceMetadata.slice_errors"). These in turn may be computed within a specified [`TruncationErrorBudget.p_norm`](utils-truncating#p_norm "qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm"). Thus, the computed accumulated error is an upper bound to the real accumulated error as given by the [Minkowski inequality](https://en.wikipedia.org/wiki/Minkowski_inequality) (the generalization of the triangle inequality for Lp-norms other than `p=2`).
+
+    <Admonition title="Note" type="note">
+      Since a general Lp-norm (other than `p=2`) is *not* an inner product norm, it does *not* satisfy the [parallelogram law](https://en.wikipedia.org/wiki/Parallelogram_law). Hence, we must use the Minkowski inequality as the upper bound of the accumulated error.
+    </Admonition>
+
+    **Parameters**
+
+    *   **observable\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the index of the observable whose accumulated error to compute.
+    *   **slice\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – the index of the slice (the discrete “time” step) up to which to compute the accumulated error. If this is `None`, it will default to `self.num_backpropagated_slices` which is equivalent to computing the accumulated error of an observable at the latest point in time which has not surpassed any stopping criteria in the algorithm
+
+    **Returns**
+
+    The accumulated error computed per the explanations above.
+
+    **Return type**
+
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+  </Function>
+
+  ### from\_json
+
+  <Function id="qiskit_addon_obp.utils.metadata.OBPMetadata.from_json" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/metadata.py#L224-L248" signature="from_json(json_file)" modifiers="classmethod">
+    Load a metadata from a json file.
+
+    **Parameters**
+
+    **json\_file** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the path to the file to be loaded.
+
+    **Returns**
+
+    The loaded metadata.
+
+    **Return type**
+
+    [*OBPMetadata*](#qiskit_addon_obp.utils.metadata.OBPMetadata "qiskit_addon_obp.utils.metadata.OBPMetadata")
+  </Function>
+
+  ### left\_over\_error\_budget
+
+  <Function id="qiskit_addon_obp.utils.metadata.OBPMetadata.left_over_error_budget" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/metadata.py#L161-L222" signature="left_over_error_budget(observable_idx, slice_idx=None)">
+    Compute the left-over error budget for a given observable at a given “time”.
+
+    This method computes the left-over error budget for a given observable index at a given “time” during the course of the backpropagation. In this context, “time” is to be understood as the discrete steps of already backpropagated slices.
+
+    The left-over error budget is computed as the remainder of the total budget minus the sum of the individual [`SliceMetadata.slice_errors`](utils-metadata-slice-metadata#slice_errors "qiskit_addon_obp.utils.metadata.SliceMetadata.slice_errors"). These in turn may be computed within a specified [`TruncationErrorBudget.p_norm`](utils-truncating#p_norm "qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm").
+
+    <Admonition title="Note" type="note">
+      See also the explanations in [`accumulated_error()`](#qiskit_addon_obp.utils.metadata.OBPMetadata.accumulated_error "qiskit_addon_obp.utils.metadata.OBPMetadata.accumulated_error") for more details on how the individual slice errors are summed up to form an upper bound to the real error via the Minkowski inequality.
+    </Admonition>
+
+    <Admonition title="Note" type="note">
+      The left-over error budget is relative to the value of `self.truncation_error_budget.max_error_total` which may be `numpy.inf` in which case the returned value of this method will be `numpy.inf`, too.
+    </Admonition>
+
+    **Parameters**
+
+    *   **observable\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the index of the observable whose left-over error budget to compute.
+    *   **slice\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – the index of the slice (the discrete “time” step) up to which to compute the left-over error budget. If this is `None`, it will default to `self.num_backpropagated_slices` which is equivalent to computing the left-over error budget of an observable at the latest point in time which has not surpassed any stopping criteria in the algorithm
+
+    **Returns**
+
+    The left-over error budget computed per the explanations above.
+
+    **Return type**
+
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+  </Function>
+
+  ### to\_json
+
+  <Function id="qiskit_addon_obp.utils.metadata.OBPMetadata.to_json" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/metadata.py#L250-L259" signature="to_json(json_file, **kwargs)">
+    Dump this metadata to a json file.
+
+    **Parameters**
+
+    *   **json\_file** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the path to the file into which to dump the metadata.
+    *   **kwargs** – keyword arguments to be passed on towards `json.dump()`.
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+

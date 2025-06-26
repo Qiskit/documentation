@@ -56,7 +56,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/interface.py#L207-L344" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/qpy/interface.py#L214-L354" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
@@ -82,8 +82,9 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   **Parameters**
 
-  *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) – A file like object that contains the QPY binary data for a circuit.
-  *   **metadata\_deserializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.13)")*\[JSONDecoder] | None*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
+  *   **file\_obj** (*BinaryIO*) – A file like object that contains the QPY binary data for a circuit.
+  *   **metadata\_deserializer** (*Optional\[*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[JSONDecoder]]*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
+  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the loading of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects.
 
   **Returns**
 
@@ -98,12 +99,12 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   **Return type**
 
-  [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
+  List\[QPY\_SUPPORTED\_TYPES]
 </Function>
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/interface.py#L75-L204" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=14)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/qpy/interface.py#L78-L211" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=15, annotation_factories=None)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -140,11 +141,11 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   **Parameters**
 
-  *   **programs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+  *   **programs** (*Union\[List\[QPY\_SUPPORTED\_TYPES], QPY\_SUPPORTED\_TYPES]*) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
-  *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) – The file like object to write the QPY data too
+  *   **file\_obj** (*BinaryIO*) – The file like object to write the QPY data too
 
-  *   **metadata\_serializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.13)")*\[JSONEncoder] | None*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
+  *   **metadata\_serializer** (*Optional\[*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[JSONEncoder]]*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
 
   *   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – This flag is no longer used by QPY versions supported by this function and will have no impact on the generated QPY payload except to set a field in a QPY v13 file header which is unused.
 
@@ -160,17 +161,47 @@ with open('twenty_bells.qpy', 'rb') as fd:
           If serializing a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that contains [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects with `version` set low with the intent to load the payload using a historical release of Qiskit, it is safest to set the `use_symengine` flag to `False`. Versions of Qiskit prior to 1.2.4 cannot load QPY files containing `symengine`-serialized [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects unless the version of `symengine` used between the loading and generating environments matches.
         </Admonition>
 
+  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the dumping of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects. The subsequent call to [`load()`](#qiskit.qpy.load "qiskit.qpy.load") will need to use similar serializer objects, that understand the custom output format of those serializers.
+
   **Raises**
 
   *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – When invalid data type is input.
   *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – When an unsupported version number is passed in for the `version` argument.
 </Function>
 
+### get\_qpy\_version
+
+<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/qpy/interface.py#L357-L384" signature="qiskit.qpy.get_qpy_version(file_obj)">
+  This function identifies the QPY version of the file.
+
+  This function will read the header of `file_obj` and will return the QPY format version. It will **not** advance the cursor of `file_obj`. If you are using this for a subsequent read, such as to call [`load()`](#qiskit.qpy.load "qiskit.qpy.load"), you can pass `file_obj` directly. For example:
+
+  ```python
+  from qiskit import qpy
+
+  qpy_version = qpy.get_qpy_version(qpy_file)
+  if qpy_version > 12:
+      qpy.load(qpy_file)
+  ```
+
+  **Parameters**
+
+  **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) – A file like object that contains the QPY binary data for a circuit.
+
+  **Returns**
+
+  The QPY version of the specified file.
+
+  **Return type**
+
+  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+</Function>
+
 These functions will raise a custom subclass of [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") if they encounter problems during serialization or deserialization.
 
 ### QpyError
 
-<Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)" modifiers="exception">
+<Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Errors raised by the qpy module.
@@ -182,7 +213,7 @@ When a lower-than-maximum target QPY version is set for serialization, but the o
 
 ### UnsupportedFeatureForVersion
 
-<Class id="qiskit.qpy.UnsupportedFeatureForVersion" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/exceptions.py#L31-L48" signature="qiskit.qpy.UnsupportedFeatureForVersion(feature, required, target)" modifiers="exception">
+<Class id="qiskit.qpy.UnsupportedFeatureForVersion" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/qpy/exceptions.py#L31-L48" signature="qiskit.qpy.UnsupportedFeatureForVersion(feature, required, target)" modifiers="exception">
   Bases: [`QpyError`](#qiskit.qpy.QpyError "qiskit.qpy.exceptions.QpyError")
 
   QPY error raised when the target dump version is too low for a feature that is present in the object to be serialized.
@@ -222,11 +253,13 @@ The QPY format is designed to be backwards compatible moving forward. This means
 
 For example, if you generated a QPY file using qiskit-terra 0.18.1 you could load that QPY file with qiskit-terra 0.19.0 and a hypothetical qiskit-terra 0.29.0. However, loading that QPY file with 0.18.0 is not supported and may not work.
 
+Note that circuit metadata and custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects are serialized and deserialized by user-supplied classes, as the objects themselves are completely user-custom, so the forwards- and backwards-compatibility of these is limited by what the user provides.
+
 If a feature being loaded is deprecated in the corresponding qiskit release, QPY will raise a [`QPYLoadingDeprecatedFeatureWarning`](#qiskit.qpy.QPYLoadingDeprecatedFeatureWarning "qiskit.qpy.QPYLoadingDeprecatedFeatureWarning") informing of the deprecation period and how the feature will be internally handled.
 
 ### QPYLoadingDeprecatedFeatureWarning
 
-<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
+<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
   Bases: [`QiskitWarning`](exceptions#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning")
 
   Visible deprecation warning for QPY loading functions without a stable point in the call stack.
@@ -251,7 +284,11 @@ If you’re planning to load a QPY file between different Qiskit versions knowin
 
 | Qiskit (qiskit-terra for \< 1.0.0) version | [`dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") format(s) output versions | [`load()`](#qiskit.qpy.load "qiskit.qpy.load") maximum supported version (older format versions can always be read) |
 | ------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| 2.1.0                                      | 13, 14, 15                                                               | 15                                                                                                                  |
+| 2.0.2                                      | 13, 14                                                                   | 14                                                                                                                  |
+| 2.0.1                                      | 13, 14                                                                   | 14                                                                                                                  |
 | 2.0.0                                      | 13, 14                                                                   | 14                                                                                                                  |
+| 1.4.3                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
 | 1.4.2                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
 | 1.4.1                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
 | 1.4.0                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
@@ -335,13 +372,134 @@ struct {
 
 All values use network byte order <span id="id3" />[\[1\]](#f1) (big endian) for cross platform compatibility.
 
-The file header is immediately followed by the circuit payloads. Each individual circuit is composed of the following parts:
+The file header is immediately followed by the circuit payloads. Each individual circuit is composed of the following parts in order from top to bottom:
 
-`HEADER | METADATA | REGISTERS | STANDALONE_VARS | CUSTOM_DEFINITIONS | INSTRUCTIONS`
+```text
+HEADER
+METADATA
+REGISTERS
+ANNOTATION_HEADER
+STANDALONE_VARS
+CUSTOM_DEFINITIONS
+INSTRUCTIONS
+```
 
-The `STANDALONE_VARS` are new in QPY version 12; before that, there was no data between `REGISTERS` and `CUSTOM_DEFINITIONS`.
+Changed in version QPY: 15 `ANNOTATION_HEADER` was added between `REGISTERS` and `STANDALONE_VARS`.
+
+Changed in version QPY: 12 `STANDALONE_VARS` was added between `REGISTERS` and `CUSTOM_DEFINITIONS`.
 
 There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
+
+<span id="qpy-version-15" />
+
+### Version 15
+
+Version 15 adds the concept of custom annotations to the payload format. QPY itself does not specify how annotations are serialized or deserialized, as they are custom user objects. The format does co-operate with sub-serializers, however.
+
+Version 15 adds the `ANNOTATION_HEADER` field between the `STANDALONE_VARS` and `CUSTOM_DEFINITIONS` fields in the top level of a single circuit payload. It modifies the interpretation of one field of the `INSTRUCTION` struct in an ABI-compatible manner, and adds a `INSTRUCTION_ANNOTATIONS` trailer to `INSTRUCTION` which is present conditional on a set bit in the `INSTRUCTION` payload.
+
+<span id="new-annotation-header" />
+
+#### New ANNOTATION\_HEADER
+
+The `ANNOTATION_HEADER` field is a variable-size payload in the header. It begins with an instance of `ANNOTATION_HEADER_STATIC`, which is the C struct:
+
+```c
+struct ANNOTATION_HEADER_STATIC {
+    uint32_t num_namespaces;
+}
+```
+
+This is immediately followed by `num_namespaces` instances of the `ANNOTATION_STATE` payload. The order of these is important and should be retained during the deserialization process, as subsequent `INSTRUCTION_ANNOTATION` payloads will index into it.
+
+The `ANNOTATION_STATE` payload begins with the fixed C struct:
+
+```c
+struct ANNOTATION_STATE_HEADER {
+    uint32_t namespace_size;
+    uint64_t state_size;
+}
+```
+
+This header is immediately followed by `namespace_size` bytes of UTF-8 encoded text, which comprise the namespace. Those bytes are immediately followed by `state_size` bytes of arbitrary data. The format of this “state” payload is not defined by QPY. Instead, it is the responsibility of an external object associated with the stored namespace. The format does not dictate how to produce these objects; as annotations are entirely custom, the user must supply the serialization and deserialization methods.
+
+<span id="qpy-instruction-v15" />
+
+#### Changes to INSTRUCTION
+
+The `INSTRUCTION` struct is modified in an ABI compatible manner to [its previous definition in version 9](#qpy-instruction-v9). The new struct is the C struct (recall that there is no padding between any fields, nor at the end of the struct):
+
+```c
+struct INSTRUCTION {
+    uint16_t name_size;
+    uint16_t label_size;
+    uint16_t num_parameters;
+    uint32_t num_qargs;
+    uint32_t num_cargs;
+    uint8_t extras_key;
+    uint16_t conditional_reg_name_size;
+    int64_t conditional_value;
+    uint32_t num_ctrl_qubits;
+    uint32_t ctrl_state;
+}
+```
+
+where the field `uint8_t extras_key` replaces the previous `uint8_t conditional_key`. The difference is purely in interpretation. The low two bits of the byte are still interpreted as defining the condition and its type. The high bit of the byte is now a flag, indicated whether an `INSTRUCTION_ANNOTATIONS_HEADER` field is present (if the bit is set) in the trailing data of the `INSTRUCTION` struct.
+
+A complete instruction payload appears in the data stream, including trailing objects and without any padding bytes inbetween elements, as:
+
+```text
+struct INSTRUCTION;
+uint8_t name[name_size];
+uint8_t label[label_size];
+uint8_t register[conditional_reg_name_size]; (1)
+struct INSTRUCTION_PARAM;                    (2)
+struct INSTRUCTION_ARG[num_qargs];
+struct INSTRUCTION_ARG[num_cargs];
+struct INSTRUCTION_PARAM[num_parameters];
+INSTRUCTION_ANNOTATIONS;                     (3)
+```
+
+The following notes apply:
+
+1.  if the two low bits of the `extras_key` have the value `2`, indicating the condition is an `EXPRESSION`, the `conditional_reg_name_size` is always zero.
+2.  this field is present if and only if the two low bits of the `extras_key` have the value `2`, indicating the condition is an `EXPRESSION`.
+3.  this field is present if and only if the high bit of the `extras_key` is set. This field has a variable size; see [New INSTRUCTION\_ANNOTATIONS](#qpy-instruction-annotations-v15).
+
+<span id="new-instruction-annotations" />
+
+<span id="qpy-instruction-annotations-v15" />
+
+#### New INSTRUCTION\_ANNOTATIONS
+
+The `INSTRUCTION_ANNOTATIONS` payload begins with the C struct:
+
+```c
+struct INSTRUCTION_ANNOTATIONS_HEADER {
+    uint32_t num_annotations;
+}
+```
+
+This payload is immediately followed by `num_annotations` instances of the `INSTRUCTION_ANNOTATION` payload, which is of a variable size.
+
+The `INSRTUCTION_ANNOTATION` payload is defined by the following C struct plus a trailing number of bytes equal to the `payload_size`, called `ANNOTATION_PAYLOAD`.
+
+```c
+struct INSTRUCTION_ANNOTATION {
+    uint32_t namespace_index;
+    uint32_t payload_size;
+}
+```
+
+The `namespace_index` is an integer index into the list of defined `ANNOTATION_NAMESPACE` objects in the `ANNOTATION_HEADER`. The serialization namespace for an annotation is the UTF-8 encoded string in the relevant payload.
+
+The format of the `ANNOTATION_PAYLOAD` object is not specified by QPY. It is defined by an external serialization object associated with the namespace referred to by the `namespace_index` and its associated serializer state in the `ANNOTATION_HEADER`.
+
+<span id="changes-within-param-expr-elem-v13" />
+
+#### Changes within PARAM\_EXPR\_ELEM\_V13
+
+The struct itself is unchanged. However, for a `PARAM_EXPR_ELEM_V13` representing a [`ParameterExpression.subs()`](qiskit.circuit.ParameterExpression#subs "qiskit.circuit.ParameterExpression.subs") call (with `op_code = 15`, and therefore `lhs_type = 'p'` and `rhs_type = 'n'`), the trailing [MAPPING](#qpy-mapping) now maps keys of the raw bytes of the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") UUIDs to the substituted values. Previously (in QPY versions 13 and 14), this mapping stored the parameter names as the keys.
 
 <span id="qpy-version-14" />
 
@@ -351,7 +509,7 @@ Version 14 adds a new core DURATION type, support for additional [`Type`](circui
 
 #### DURATION
 
-A [`Duration`](circuit#qiskit.circuit.Duration "qiskit.circuit.Duration") is encoded by a single-byte ASCII `char` that encodes the kind of type, followed by a payload that varies depending on the type. The defined codes are:
+A `Duration` is encoded by a single-byte ASCII `char` that encodes the kind of type, followed by a payload that varies depending on the type. The defined codes are:
 
 | Qiskit class | Type code | Payload                         |
 | ------------ | --------- | ------------------------------- |
@@ -397,10 +555,10 @@ The following table shows the new type classes added in the version:
 
 The classical expression’s type system now supports new encoding types for value literals, in addition to the existing encodings for int and bool. The new value type encodings are below:
 
-| Python type                                                             | Type code | Payload             |
-| ----------------------------------------------------------------------- | --------- | ------------------- |
-| `float`                                                                 | `f`       | One `double value`. |
-| [`Duration`](circuit#qiskit.circuit.Duration "qiskit.circuit.Duration") | `t`       | One `DURATION`.     |
+| Python type | Type code | Payload             |
+| ----------- | --------- | ------------------- |
+| `float`     | `f`       | One `double value`. |
+| `Duration`  | `t`       | One `DURATION`.     |
 
 <span id="qpy-version-13" />
 
@@ -678,6 +836,10 @@ This represents a literal object in the classical type system, such as an intege
 | `bool`      | `b`       | One `_Bool value`.                                                                                                                       |
 | `int`       | `i`       | One `uint8_t num_bytes`, followed by the integer encoded into that many many bytes (network order) in a two’s complement representation. |
 
+<span id="qpy-instruction-v9" />
+
+<span id="id5" />
+
 #### Changes to INSTRUCTION
 
 To support the use of [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") nodes in the fields [`IfElseOp.condition`](qiskit.circuit.IfElseOp#condition "qiskit.circuit.IfElseOp.condition"), [`WhileLoopOp.condition`](qiskit.circuit.WhileLoopOp#condition "qiskit.circuit.WhileLoopOp.condition") and `SwitchCaseOp.target`, the INSTRUCTION struct is changed in an ABI compatible-manner to [its previous definition](#qpy-instruction-v5). The new struct is the C struct:
@@ -703,7 +865,7 @@ where the only change is that a `uint8_t conditional_key` entry has replaced `_B
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 0     | The instruction has its `.condition` field set to `None`. The `conditional_reg_name_size` and `conditional_value` fields should be ignored.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | 1     | The instruction has its `.condition` field set to a 2-tuple of either a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"), and a integer of value `conditional_value`. The INSTRUCTION payload, including its trailing data is parsed exactly as it would be in QPY versions less than 8.                                                                                                                                                                                                                        |
-| 2     | The instruction has its `.condition` field set to a [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node. The `conditional_reg_name_size` and `conditional_value` fields should be ignored. The data following the struct is followed (as in QPY versions less than 8) by `name_size` bytes of UTF-8 string data for the class name and `label_size` bytes of UTF-8 string data for the label (if any). Then, there is one INSTRUCTION\_PARAM, which will contain an EXPRESSION. After that, parsing continues with the INSTRUCTION\_ARG structs, as in previous versions of QPY. |
+| 2     | The instruction has its `.condition` field set to a [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node. The `conditional_reg_name_size` and `conditional_value` fields should be ignored. The data following the struct is followed (as in QPY versions less than 9) by `name_size` bytes of UTF-8 string data for the class name and `label_size` bytes of UTF-8 string data for the label (if any). Then, there is one INSTRUCTION\_PARAM, which will contain an EXPRESSION. After that, parsing continues with the INSTRUCTION\_ARG structs, as in previous versions of QPY. |
 
 <span id="changes-to-instruction-param" />
 
@@ -1154,7 +1316,7 @@ struct {
 }
 ```
 
-which is immediately followed by `pauli_op_size` bytes which are .npy format <span id="id5" />[\[2\]](#f2) data which represents the [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+which is immediately followed by `pauli_op_size` bytes which are .npy format <span id="id6" />[\[2\]](#f2) data which represents the [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
 
 Version 3 of the QPY format also defines a struct format to represent a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") as a distinct subclass from a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter"). This adds a new parameter type char `'v'` to represent a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") which is now supported as a type string value for an INSTRUCTION\_PARAM. The payload for these parameters are defined below as [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector).
 
@@ -1235,7 +1397,7 @@ This is immediately followed by `name_size` bytes of utf8 data for the name of t
 
 ### Version 1
 
-<span id="id6" />
+<span id="id7" />
 
 #### HEADER
 
@@ -1377,7 +1539,7 @@ struct {
 }
 ```
 
-After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#qpy-param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a [PARAMETER](#qpy-param-struct) struct, `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a [PARAMETER\_EXPR](#qpy-param-expr) struct (on QPY format [Version 3](#qpy-version-3) the format is tweak slightly see: [PARAMETER\_EXPR](#qpy-param-expr-v3)), `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format <span id="id7" />[\[2\]](#f2) data, and in QPY [Version 3](#qpy-version-3) `'v'` represents a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") which is represented by a [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector) struct.
+After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#qpy-param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a [PARAMETER](#qpy-param-struct) struct, `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a [PARAMETER\_EXPR](#qpy-param-expr) struct (on QPY format [Version 3](#qpy-version-3) the format is tweak slightly see: [PARAMETER\_EXPR](#qpy-param-expr-v3)), `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format <span id="id8" />[\[2\]](#f2) data, and in QPY [Version 3](#qpy-version-3) `'v'` represents a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") which is represented by a [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector) struct.
 
 <span id="qpy-param-struct" />
 
@@ -1396,7 +1558,7 @@ which is immediately followed by `name_size` utf8 bytes representing the paramet
 
 <span id="qpy-param-expr" />
 
-<span id="id8" />
+<span id="id9" />
 
 #### PARAMETER\_EXPR
 
@@ -1435,7 +1597,7 @@ struct {
 }
 ```
 
-this matches the internal C representation of Python’s complex type. <span id="id9" />[\[3\]](#f3)
+this matches the internal C representation of Python’s complex type. <span id="id10" />[\[3\]](#f3)
 
 ## References
 
@@ -1447,13 +1609,13 @@ this matches the internal C representation of Python’s complex type. <span id=
 
 <span id="f2" />
 
-\[2] ([1](#id5),[2](#id7))
+\[2] ([1](#id6),[2](#id8))
 
 [https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html)
 
 <span id="f3" />
 
-\[[3](#id9)]
+\[[3](#id10)]
 
 [https://docs.python.org/3/c-api/complex.html#c.Py\_complex](https://docs.python.org/3/c-api/complex.html#c.Py_complex)
 

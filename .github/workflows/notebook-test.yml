@@ -47,6 +47,7 @@ jobs:
           docs/guides/transpiler-stages.ipynb
           docs/guides/represent-quantum-computers.ipynb
           docs/guides/common-parameters.ipynb
+          docs/guides/DAG-representation.ipynb
           """.strip().split("\n")
           import os
           github_output = os.getenv("GITHUB_OUTPUT")
@@ -64,7 +65,8 @@ jobs:
           # Install Linux deps if the specific guides were changed, or
           # if all files are being tested.
           install-linux-deps: ${{ steps.check-deps.outputs.NEEDS_EXTRA_DEPS }}
-          ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
+          ibm-cloud-token: ${{ secrets.IBM_CLOUD_TEST_TOKEN }}
+          instance: ${{ vars.IBM_CLOUD_TEST_CRN }}
 
       - name: Execute notebooks
         env:

@@ -13,10 +13,12 @@
 from __future__ import annotations
 
 
+import asyncio
 import tempfile
 import textwrap
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Iterable
 
 import nbclient
 import nbformat
@@ -25,6 +27,13 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 
 from .config import NotebookJob, Result
 from .post_process import post_process_notebook
+
+# Keep this in sync with `OPEN_BACKENDS` in
+# scripts/nb-tester/qiskit_docs_notebook_tester/patches/qiskit-ibm-runtime-open
+OPEN_BACKENDS_TO_INTERNAL = {
+    "ibm_brisbane": "alt_brisbane",
+    "ibm_torino": "alt_torino",
+}
 
 
 @dataclass(frozen=True)
@@ -65,7 +74,7 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
     return notebook_warnings
 
 
-async def execute_notebook(job: NotebookJob) -> Result:
+async def execute_notebook(job: NotebookJob, kernel_setup_lock: asyncio.Lock) -> Result:
     """
     Wrapper function for `_execute_notebook` to print status and write result
     """
@@ -80,7 +89,7 @@ async def execute_notebook(job: NotebookJob) -> Result:
         nbclient.exceptions.CellTimeoutError,
     )
     try:
-        nb = await _execute_notebook(job, working_directory.name)
+        nb = await _execute_notebook(job, working_directory.name, kernel_setup_lock)
     except execution_exceptions as err:
         print(f"❌ Problem in {job.path}:\n{err}")
         return Result(False, reason="Exception in notebook")
@@ -118,7 +127,7 @@ async def _execute_in_kernel(kernel: AsyncKernelClient, code: str) -> None:
 
 
 async def _execute_notebook(
-    job: NotebookJob, working_directory: str
+    job: NotebookJob, working_directory: str, kernel_setup_lock: asyncio.Lock
 ) -> nbformat.NotebookNode:
     """
     Use nbclient to execute notebook. The steps are:
@@ -130,15 +139,36 @@ async def _execute_notebook(
     """
     nb = nbformat.read(job.path, as_version=4)
 
-    kernel_manager, kernel = await start_new_async_kernel(
-        kernel_name="python3",
-        extra_arguments=["--InlineBackend.figure_format='svg'"],
-        cwd=working_directory,
-    )
+    async with kernel_setup_lock:
+        # New kernels choose a port on creation. They usually detect if the
+        # port is in use and will choose another if so, but there can be race
+        # conditions when creating many kernels at once.The lock avoids this.
+        # This might be fixed by https://github.com/jupyter/nbclient/pull/327
+        kernel_manager, kernel = await start_new_async_kernel(
+            kernel_name="python3",
+            extra_arguments=["--InlineBackend.figure_format='svg'"],
+            cwd=working_directory,
+        )
 
     await _execute_in_kernel(kernel, job.pre_execute_code)
     if job.backend_patch:
         await _execute_in_kernel(kernel, job.backend_patch)
+
+    def log_cell_output(cell, cell_index: int, execute_reply) -> None:
+        if job.log_cell_outputs:
+            outputs = list(get_text_output(cell))
+            if len(outputs) == 0:
+                message = f"ℹ️ Cell {cell_index} completed"
+            else:
+                message = f"ℹ️ Cell {cell_index} completed with output:\n" + "\n".join(outputs)
+            print(message, flush=True)
+
+    # Our instance gives us high-priority access to open backends through different names.
+    # E.g. 'ibm_brisbane' through 'alt_brisbane'. However, these names won't work for users.
+    # We get round this by mapping between open and internal backend names before and after execution.
+    # This is a temporary hack while we wait for high-priority access to open backends
+    if job.map_open_backends_to_internal:
+        nb = open_backends_to_internal(nb)
 
     notebook_client = nbclient.NotebookClient(
         nb=nb,
@@ -146,10 +176,42 @@ async def _execute_notebook(
         kc=kernel,
         # -1 means no timeout
         timeout=job.cell_timeout or -1,
+        on_cell_executed=log_cell_output,
     )
     await notebook_client.async_execute()
+
+    if job.map_open_backends_to_internal:
+        nb = internal_backends_to_open(nb)
+
     return post_process_notebook(nb)
 
+def replace_string_literals(source: str, literal: str, replace: str) -> str:
+    return (source
+        .replace(f"\"{literal}\"", f"\"{replace}\"")
+        .replace(f"'{literal}'", f"'{replace}'")
+    )
+
+def open_backends_to_internal(nb: nbformat.NotebookNode) -> nbformat.NotebookNode:
+    for cell in nb.cells:
+        if cell.cell_type != 'code':
+            continue
+        for open, internal in OPEN_BACKENDS_TO_INTERNAL.items():
+            cell.source = replace_string_literals(cell.source, open, internal)
+    return nb
+
+def internal_backends_to_open(nb: nbformat.NotebookNode) -> nbformat.NotebookNode:
+    for cell in nb.cells:
+        if cell.cell_type != 'code':
+            continue
+        for open, internal in OPEN_BACKENDS_TO_INTERNAL.items():
+            cell.source = replace_string_literals(cell.source, internal, open)
+            for output in cell.outputs:
+                # We don't restrict to string literals (surrounded by quotes) in outputs
+                if 'text' in output:
+                    output['text'] = output['text'].replace(internal, open)
+                if text := output.get('data', {}).get('text/plain', None):
+                    output['data']['text/plain'] = text.replace(internal, open)
+    return nb
 
 def cancel_trailing_jobs(start_time: datetime) -> Result:
     """
@@ -178,3 +240,12 @@ def cancel_trailing_jobs(start_time: datetime) -> Result:
     for job in jobs:
         job.cancel()
     return Result(False, reason="Trailing jobs detected")
+
+
+def get_text_output(cell) -> Iterable[str]:
+    for output in cell.outputs:
+        if output["output_type"] == "stream" and "text" in output:
+            yield output["text"]
+        if output["output_type"] == "execute_result":
+            if text_output := output.get("data", {}).get("text/plain", None):
+                yield text_output
