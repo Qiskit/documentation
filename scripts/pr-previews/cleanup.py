@@ -30,8 +30,8 @@ from utils import (
 
 INITIAL_COMMIT = "499a5040585d02593cdd8237e19c9ee4a84ae126"
 
-THREE_DAYS_IN_SECONDS = 60 * 60 * 24 *3
-PR_EXPIRATION_TIME = THREE_DAYS_IN_SECONDS
+SEVEN_DAYS_IN_SECONDS = 60 * 60 * 24 * 7
+PR_EXPIRATION_TIME_SECONDS = SEVEN_DAYS_IN_SECONDS
 
 def main() -> None:
     setup_git_account()
@@ -71,7 +71,7 @@ def is_stale(folder_name: str) -> bool:
     # All time measured in seconds, from the unix epoch
     current_timestamp = time.time()
     last_modified_timestamp = int(run_subprocess(["git", "log", "-n", "1", "--format=%at", folder_name]).stdout)
-    return (current_timestamp - last_modified_timestamp) > PR_EXPIRATION_TIME
+    return (current_timestamp - last_modified_timestamp) > PR_EXPIRATION_TIME_SECONDS
 
 def delete_closed_pr_folders() -> None:
     active_pr_folders = get_active_pr_folders()
