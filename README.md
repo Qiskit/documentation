@@ -226,8 +226,11 @@ graphviz`.
   tox -- <path/to/notebook.ipynb> <path/to/another-notebook.ipynb>
   ```
 - To write the execution results to the file, pass the `--write` argument.
+  Since we only allow writing results from real hardware, you will usually also
+  need to pass `--test-strategy=hardware`. Note this means the run will use QPU
+  time.
   ```sh
-  tox -- optional/paths/to/notebooks.ipynb --write
+  tox -- optional/paths/to/notebooks.ipynb --write --test-strategy=hardware
   ```
 
 When you make a pull request changing a notebook that doesn't submit jobs, you
