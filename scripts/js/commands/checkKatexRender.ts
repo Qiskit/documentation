@@ -19,6 +19,34 @@ import fs from "fs/promises";
 import { removeSuffix } from "../lib/stringUtils";
 import { readMarkdown } from "../lib/markdownReader";
 
+// This list contains files with inline math expressions that should be
+// fixed to avoid any possible overflow.
+const IGNORED_FILES_SHOULD_FIX: string[] = [
+  ...[
+    "0.19",
+    "0.24",
+    "0.25",
+    "0.26",
+    "0.27",
+    "0.28",
+    "0.29",
+    "0.30",
+    "0.31",
+    "0.32",
+    "0.33",
+    "0.35",
+    "0.36",
+    "0.37",
+    "0.38",
+    "0.39",
+    "0.40",
+    "0.41",
+  ].map(
+    (version) =>
+      `docs/api/qiskit/${version}/qiskit.providers.aer.utils.NoiseTransformer.mdx`,
+  ),
+];
+
 // Minimum width supported by our app
 const MIN_WIDTH = 380;
 
@@ -31,6 +59,7 @@ interface Arguments {
   devApis?: boolean;
   historicalApis?: boolean;
   qiskitReleaseNotes?: boolean;
+  ignoredFiles?: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -46,6 +75,7 @@ const readArgs = (): Arguments => {
         "dev-apis",
         "historical-apis",
         "qiskit-release-notes",
+        "ignored-files",
       ],
       description:
         "Read the file path for file paths and globs to check, like `docs/guides/index.mdx`. " +
@@ -79,6 +109,11 @@ const readArgs = (): Arguments => {
       description:
         "Check the pages in the `docs/api/qiskit/release-notes` folder.",
     })
+    .option("ignored-files", {
+      type: "boolean",
+      description:
+        "Check the pages the IGNORED_FILES list. Useful to fix the pages",
+    })
     .parseSync();
 };
 
@@ -96,7 +131,7 @@ const main = async (): Promise<void> => {
   let numFilesChecked = 0;
   for (const path of paths) {
     // This script can be slow, so log progress every 5 files.
-    if (numFilesChecked % 5 == 0 && numFilesChecked > 0) {
+    if (numFilesChecked % 5 == 0) {
       console.log(`⏳ Checked ${numFilesChecked} / ${paths.length} pages `);
     }
 
@@ -186,6 +221,7 @@ async function getRawGlobs(args: Arguments): Promise<string[]> {
     [args.historicalApis, "docs/api/*/[0-9]*/*.mdx"],
     [args.devApis, "docs/api/*/dev/*.mdx"],
     [args.qiskitReleaseNotes, "docs/api/qiskit/release-notes/*.mdx"],
+    ...IGNORED_FILES_SHOULD_FIX.map((file) => [args.ignoredFiles, file]),
   ]) {
     const prefix = isIncluded ? "" : "!";
     globs.push(`${prefix}${glob}`);
