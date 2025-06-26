@@ -88,11 +88,11 @@ The `qiskit.BasicAer` object is not available in Qiskit 1.0. See the
 
 The `qiskit.execute` function is not available in Qiskit 1.0. This
 function served as a high-level wrapper around the
-[`transpile`](/api/qiskit/compiler#transpile) and
-[`run`](/api/qiskit/qiskit.providers.BackendV2#run) functions in Qiskit.
+[`transpile`](/docs/api/qiskit/compiler#transpile) and
+[`run`](/docs/api/qiskit/qiskit.providers.BackendV2#run) functions in Qiskit.
 Instead of `qiskit.execute`, use the
-[`transpile`](/api/qiskit/compiler#transpile) function followed by
-[`backend.run()`](/api/qiskit/qiskit.providers.BackendV2#run).
+[`transpile`](/docs/api/qiskit/compiler#transpile) function followed by
+[`backend.run()`](/docs/api/qiskit/qiskit.providers.BackendV2#run).
 
 ```python
 # Legacy path
@@ -107,10 +107,10 @@ new_circuit = transpile(circuit, backend)
 job = backend.run(new_circuit)
 ```
 
-Alternatively, the [Sampler](/api/qiskit/qiskit.primitives.Sampler)
+Alternatively, the [Sampler](/docs/api/qiskit/1.4/qiskit.primitives.Sampler)
 primitive is semantically equivalent to the removed `qiskit.execute`
 function. The class
-[`BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler) is a
+[`BackendSampler`](/docs/api/qiskit/1.4/qiskit.primitives.BackendSampler) is a
 generic wrapper for backends that do not support primitives:
 
 ```python
@@ -127,8 +127,8 @@ job = sampler.run(circuit)
 ### QuantumCircuit.qasm
 
 The `QuantumCircuit.qasm` method has been removed. Instead, use
-[`qasm2.dump`](/api/qiskit/qasm2#dump) or
-[`qasm2.dumps`](/api/qiskit/qasm2#dumps).
+[`qasm2.dump`](/docs/api/qiskit/qasm2#dump) or
+[`qasm2.dumps`](/docs/api/qiskit/qasm2#dumps).
 
 For Pygments-formatted output, look at the standalone
 [`openqasm-pygments`](https://pypi.org/project/openqasm-pygments/) package,
@@ -162,28 +162,28 @@ methods that append the same gates:
 
 | Removed                      | Alternative |
 |------------------------------|----------------------|
-| `QuantumCircuit.cnot`        | [`QuantumCircuit.cx`](/api/qiskit/qiskit.circuit.QuantumCircuit#cx)       |
-| `QuantumCircuit.toffoli`     | [`QuantumCircuit.ccx`](/api/qiskit/qiskit.circuit.QuantumCircuit#ccx)     |
-| `QuantumCircuit.fredkin`     | [`QuantumCircuit.cswap`](/api/qiskit/qiskit.circuit.QuantumCircuit#cswap) |
-| `QuantumCircuit.mct`         | [`QuantumCircuit.mcx`](/api/qiskit/qiskit.circuit.QuantumCircuit#mcx)     |
-| `QuantumCircuit.i`           | [`QuantumCircuit.id`](/api/qiskit/qiskit.circuit.QuantumCircuit#id)       |
-| `QuantumCircuit.squ`         | [`QuantumCircuit.unitary`](/api/qiskit/qiskit.circuit.QuantumCircuit#unitary) |
+| `QuantumCircuit.cnot`        | [`QuantumCircuit.cx`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#cx)       |
+| `QuantumCircuit.toffoli`     | [`QuantumCircuit.ccx`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#ccx)     |
+| `QuantumCircuit.fredkin`     | [`QuantumCircuit.cswap`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#cswap) |
+| `QuantumCircuit.mct`         | [`QuantumCircuit.mcx`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#mcx)     |
+| `QuantumCircuit.i`           | [`QuantumCircuit.id`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#id)       |
+| `QuantumCircuit.squ`         | [`QuantumCircuit.unitary`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#unitary) |
 
 The following circuit methods have been removed. Instead, these gates can be
 applied to a circuit with `QuantumCircuit.append`.
 
 | Removed                      | Alternative (append) |
 |------------------------------|----------------------|
-| `QuantumCircuit.diagonal`    | [`DiagonalGate`](/api/qiskit/qiskit.circuit.library.DiagonalGate)          |
-| `QuantumCircuit.hamiltonian` | [`HamiltonianGate`](/api/qiskit/qiskit.circuit.library.HamiltonianGate)    |
-| `QuantumCircuit.isometry`    | [`Isometry`](/api/qiskit/qiskit.circuit.library.Isometry)           |
-| `QuantumCircuit.iso`         | [`Isometry`](/api/qiskit/qiskit.circuit.library.Isometry)           |
-| `QuantumCircuit.uc`          | [`UCGate`](/api/qiskit/qiskit.circuit.library.UCGate)               |
-| `QuantumCircuit.ucrx`        | [`UCRXGate`](/api/qiskit/qiskit.circuit.library.UCRXGate)           |
-| `QuantumCircuit.ucry`        | [`UCRYGate`](/api/qiskit/qiskit.circuit.library.UCRYGate)           |
-| `QuantumCircuit.ucrz`        | [`UCRZGate`](/api/qiskit/qiskit.circuit.library.UCRZGate)           |
+| `QuantumCircuit.diagonal`    | [`DiagonalGate`](/docs/api/qiskit/qiskit.circuit.library.DiagonalGate)          |
+| `QuantumCircuit.hamiltonian` | [`HamiltonianGate`](/docs/api/qiskit/qiskit.circuit.library.HamiltonianGate)    |
+| `QuantumCircuit.isometry`    | [`Isometry`](/docs/api/qiskit/qiskit.circuit.library.Isometry)           |
+| `QuantumCircuit.iso`         | [`Isometry`](/docs/api/qiskit/qiskit.circuit.library.Isometry)           |
+| `QuantumCircuit.uc`          | [`UCGate`](/docs/api/qiskit/qiskit.circuit.library.UCGate)               |
+| `QuantumCircuit.ucrx`        | [`UCRXGate`](/docs/api/qiskit/qiskit.circuit.library.UCRXGate)           |
+| `QuantumCircuit.ucry`        | [`UCRYGate`](/docs/api/qiskit/qiskit.circuit.library.UCRYGate)           |
+| `QuantumCircuit.ucrz`        | [`UCRZGate`](/docs/api/qiskit/qiskit.circuit.library.UCRZGate)           |
 
-For example, for a [`DiagonalGate`](/api/qiskit/qiskit.circuit.library.DiagonalGate):
+For example, for a [`DiagonalGate`](/docs/api/qiskit/qiskit.circuit.library.DiagonalGate):
 
 ```python
 from qiskit.circuit import QuantumCircuit
@@ -201,7 +201,7 @@ The following `QuantumCircuit` methods have also been removed:
 
 | Removed                          | Alternative |
 |----------------------------------|-------------|
-| `QuantumCircuit.bind_parameters` | [`QuantumCircuit.assign_parameters`](/api/qiskit/qiskit.circuit.QuantumCircuit#assign_parameters) |
+| `QuantumCircuit.bind_parameters` | [`QuantumCircuit.assign_parameters`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#assign_parameters) |
 | `QuantumCircuit.snapshot`        | `qiskit-aer`'s [save instructions](https://qiskit.org/ecosystem/aer/apidocs/circuit.html#saving-simulator-data) |
 
 <span id="qiskit.converters"></span>
@@ -209,17 +209,17 @@ The following `QuantumCircuit` methods have also been removed:
 
 The `qiskit.converters.ast_to_dag` function has been removed from Qiskit. It converted the
 abstract syntax tree generated by the legacy OpenQASM 2 parser to a
-[`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit). As the legacy
+[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit). As the legacy
 OpenQASM 2 parser has been removed (see [qiskit.qasm](#qiskit.qasm)), this
 function no longer serves a purpose. Instead, parse your OpenQASM 2 files into
 a `QuantumCircuit` using the
-[`QuantumCircuit.from_qasm_file`](/api/qiskit/qiskit.circuit.QuantumCircuit#from_qasm_file)
+[`QuantumCircuit.from_qasm_file`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#from_qasm_file)
 or
-[`QuantumCircuit.from_qasm_str`](/api/qiskit/qiskit.circuit.QuantumCircuit#from_qasm_str)
-constructor methods (or the [`qiskit.qasm2`](/api/qiskit/qasm2) module), then
+[`QuantumCircuit.from_qasm_str`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#from_qasm_str)
+constructor methods (or the [`qiskit.qasm2`](/docs/api/qiskit/qasm2) module), then
 convert that `QuantumCircuit` into a
-[`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit) with
-[`circuit_to_dag`](/api/qiskit/converters#circuit_to_dag).
+[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit) with
+[`circuit_to_dag`](/docs/api/qiskit/converters#circuit_to_dag).
 
 ```python
 # Previous
@@ -240,7 +240,7 @@ dag = circuit_to_dag(qiskit.qasm2.load("myfile.qasm"))
 
 The `qiskit.extensions` module is no longer available. Most of its objects have been
 integrated into the circuit library
-([`qiskit.circuit.library`](/api/qiskit/circuit_library)). To migrate to the
+([`qiskit.circuit.library`](/docs/api/qiskit/circuit_library)). To migrate to the
 new location, simply replace `qiskit.extensions` with `qiskit.circuit.library`
 in the object import path. This is a drop-in replacement.
 
@@ -252,33 +252,33 @@ from qiskit.extensions import DiagonalGate
 from qiskit.circuit.library import DiagonalGate
 ```
 
-The classes moved to [`qiskit.circuit.library`](/api/qiskit/circuit_library) are:
+The classes moved to [`qiskit.circuit.library`](/docs/api/qiskit/circuit_library) are:
 
-* [`DiagonalGate`](/api/qiskit/qiskit.circuit.library.DiagonalGate)
-* [`HamiltonianGate`](/api/qiskit/qiskit.circuit.library.HamiltonianGate)
-* [`Initialize`](/api/qiskit/qiskit.circuit.library.Initialize)
-* [`Isometry`](/api/qiskit/qiskit.circuit.library.Isometry)
+* [`DiagonalGate`](/docs/api/qiskit/qiskit.circuit.library.DiagonalGate)
+* [`HamiltonianGate`](/docs/api/qiskit/qiskit.circuit.library.HamiltonianGate)
+* [`Initialize`](/docs/api/qiskit/qiskit.circuit.library.Initialize)
+* [`Isometry`](/docs/api/qiskit/qiskit.circuit.library.Isometry)
 * `qiskit.circuit.library.generalized_gates.mcg_up_diag.MCGupDiag`
-* [`UCGate`](/api/qiskit/qiskit.circuit.library.UCGate)
-* [`UCPauliRotGate`](/api/qiskit/qiskit.circuit.library.UCPauliRotGate)
-* [`UCRXGate`](/api/qiskit/qiskit.circuit.library.UCRXGate)
-* [`UCRYGate`](/api/qiskit/qiskit.circuit.library.UCRYGate)
-* [`UCRZGate`](/api/qiskit/qiskit.circuit.library.UCRZGate)
-* [`UnitaryGate`](/api/qiskit/qiskit.circuit.library.UnitaryGate)
+* [`UCGate`](/docs/api/qiskit/qiskit.circuit.library.UCGate)
+* [`UCPauliRotGate`](/docs/api/qiskit/qiskit.circuit.library.UCPauliRotGate)
+* [`UCRXGate`](/docs/api/qiskit/qiskit.circuit.library.UCRXGate)
+* [`UCRYGate`](/docs/api/qiskit/qiskit.circuit.library.UCRYGate)
+* [`UCRZGate`](/docs/api/qiskit/qiskit.circuit.library.UCRZGate)
+* [`UnitaryGate`](/docs/api/qiskit/qiskit.circuit.library.UnitaryGate)
 
 The following classes have been removed from the codebase, as their
 functions were either redundant or linked to the `extensions` module:
 
 Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
-`SingleQubitUnitary`    |  [`qiskit.circuit.library.UnitaryGate`](/api/qiskit/qiskit.circuit.library.UnitaryGate)
+`SingleQubitUnitary`    |  [`qiskit.circuit.library.UnitaryGate`](/docs/api/qiskit/qiskit.circuit.library.UnitaryGate)
 `Snapshot`             |  Use `qiskit-aer`'s [save instructions](https://qiskit.org/ecosystem/aer/apidocs/circuit.html#saving-simulator-data)
 `ExtensionError` | A relevant error class
 
 <span id="qiskit.primitives"></span>
 ## qiskit.primitives
 
-The most notable change in the [`qiskit.primitives`](/api/qiskit/primitives) module is the
+The most notable change in the [`qiskit.primitives`](/docs/api/qiskit/primitives) module is the
 introduction of the new **primitives V2 interface**. This section shows how to migrate your
 workflow from primitives V1 to primitives V2, as well as the few changes that have taken place
 in the inputs accepted by the V1 interface.
@@ -297,8 +297,8 @@ the original import path from `qiskit.primitives`:
 
 Migrate from                     |   Replace with
 ---------------------------------|--------------------------------------------
-`BaseEstimator`         |  [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2)
-`BaseSampler`             |  [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2)
+`BaseEstimator`         |  [`BaseEstimatorV2`](/docs/api/qiskit/qiskit.primitives.BaseEstimatorV2)
+`BaseSampler`             |  [`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2)
 
 The names of the qiskit core implementations of the V2 primitives (those importable from `qiskit.primitives`),
 have been modified to clarify their purpose as implementations that can be run locally
@@ -306,8 +306,8 @@ with a statevector simulator backend. The new names **do not include the -V2 suf
 
 Migrate from                     |   Replace with
 ---------------------------------|--------------------------------------------
-`qiskit.primitives.Estimator`         |  [`qiskit.primitives.StatevectorEstimator`](/api/qiskit/qiskit.primitives.StatevectorEstimator)
-`qiskit.primitives.Sampler`             |  [`qiskit.primitives.StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler)
+`qiskit.primitives.Estimator`         |  [`qiskit.primitives.StatevectorEstimator`](/docs/api/qiskit/qiskit.primitives.StatevectorEstimator)
+`qiskit.primitives.Sampler`             |  [`qiskit.primitives.StatevectorSampler`](/docs/api/qiskit/qiskit.primitives.StatevectorSampler)
 
 
 There are some conceptual differences to think about when migrating from V1 to V2.
@@ -405,7 +405,7 @@ sampler_v2 = StatevectorSampler()
   </TabItem>
 </Tabs>
 
-2. [Sampler](/api/qiskit/qiskit.primitives.BaseSamplerV2): The V2 sampler now
+2. [Sampler](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2): The V2 sampler now
    returns measurement outcome samples in the form of **bitstrings** or
    **counts**, instead of the quasi-probability distributions from the V1
    interface. The bitstrings show the measurement outcomes, preserving the shot
@@ -466,7 +466,7 @@ sampler_v2 = StatevectorSampler()
   that can be specified at the **PUB** level.
   The V2 base classes expose the arguments in formats different from the V1 API:
 
-    * [`BaseSamplerV2.run`](/api/qiskit/qiskit.primitives.BaseSamplerV2#run)
+    * [`BaseSamplerV2.run`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2#run)
       exposes a `shots` argument (similar to the previous workflow):
         ```python
         # Sample two circuits at 128 shots each.
@@ -477,7 +477,7 @@ sampler_v2 = StatevectorSampler()
         sampler_v2.run([(circuit1, None, 123), (circuit2, None, 456)])
         ```
 
-    * [`EstimatorV2.run`](/api/qiskit/qiskit.primitives.BaseEstimatorV2#run)
+    * [`EstimatorV2.run`](/docs/api/qiskit/qiskit.primitives.BaseEstimatorV2#run)
       introduces a `precision` argument that specifies the error bars that the
       primitive implementation should target for expectation values estimates:
         ```python
@@ -489,17 +489,17 @@ sampler_v2 = StatevectorSampler()
 ### Updates in the V1 interface
 
 * Implicit conversion from a dense `BaseOperator` to a
-  [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp) in
-  [`Estimator`](/api/qiskit/qiskit.primitives.Estimator) observable arguments
+  [`SparsePauliOp`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp) in
+  [`Estimator`](/docs/api/qiskit/1.4/qiskit.primitives.Estimator) observable arguments
   is no longer allowed. You should explicitly convert to a `SparsePauliOp`
 by using
-  [`SparsePauliOp.from_operator(operator)`](/api/qiskit/qiskit.quantum_info.SparsePauliOp#from_operator)
+  [`SparsePauliOp.from_operator(operator)`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp#from_operator)
   instead.
 
-* Using a [`PauliList`](/api/qiskit/qiskit.quantum_info.PauliList) in
+* Using a [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList) in
   Estimator observable arguments is no longer allowed. Instead you should
   explicitly convert the argument by using
-  [`SparsePauliOp(pauli_list)`](/api/qiskit/qiskit.quantum_info.SparsePauliOp)
+  [`SparsePauliOp(pauli_list)`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)
   first.
 
 <span id="qiskit.providers"></span>
@@ -510,23 +510,23 @@ by using
 
 Most of the functionality in the `qiskit.providers.basicaer` module has been
 replaced with the new
-[`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider)
+[`qiskit.providers.basic_provider`](/docs/api/qiskit/providers_basic_provider)
 module, except for the `UnitarySimulatorPy` and `StatevectorSimulatorPy`
 classes, which have been removed; their functionality was already contained in
-the [`quantum_info`](/api/qiskit/quantum_info) module.
+the [`quantum_info`](/docs/api/qiskit/quantum_info) module.
 
 The migration to the new paths is straightforward. You can replace most
 classes in `qiskit.providers.basicaer` with their
-[`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider)
-counterpart (drop-in replacement). Note that the following classes have 
+[`qiskit.providers.basic_provider`](/docs/api/qiskit/providers_basic_provider)
+counterpart (drop-in replacement). Note that the following classes have
 new paths and names:
 
 Removed                          | Alternative
 ---------------------------------|--------------------------------------------
-`qiskit.providers.basicaer`                            |  [`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider)
-`BasicAerProvider`             |  [`BasicProvider`](/api/qiskit/qiskit.providers.basic_provider.BasicProvider)
-`BasicAerJob`                       |  [`BasicProviderJob`](/api/qiskit/qiskit.providers.basic_provider.BasicProviderJob)
-`QasmSimulatorPy`               |  [`BasicSimulator`](/api/qiskit/qiskit.providers.basic_provider.BasicSimulator)
+`qiskit.providers.basicaer`                            |  [`qiskit.providers.basic_provider`](/docs/api/qiskit/providers_basic_provider)
+`BasicAerProvider`             |  [`BasicProvider`](/docs/api/qiskit/qiskit.providers.basic_provider.BasicProvider)
+`BasicAerJob`                       |  [`BasicProviderJob`](/docs/api/qiskit/qiskit.providers.basic_provider.BasicProviderJob)
+`QasmSimulatorPy`               |  [`BasicSimulator`](/docs/api/qiskit/qiskit.providers.basic_provider.BasicSimulator)
 
 <Admonition type="caution" title="Global instances">
     Be aware of any global instances when migrating to the new module. There is no replacement for
@@ -546,14 +546,14 @@ Removed                          | Alternative
 </Admonition>
 
 The unitary and statevector simulators can be replaced with
-different [`quantum_info`](/api/qiskit/quantum_info) classes. This is not a
+different [`quantum_info`](/docs/api/qiskit/quantum_info) classes. This is not a
 drop-in replacement, but the changes are minimal. See the following migration
 examples:
 
 Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
-`UnitarySimulatorPy`         |  [`quantum_info.Operator`](/api/qiskit/qiskit.quantum_info.Operator)
-`StatevectorSimulatorPy` |  [`quantum_info.Statevector`](/api/qiskit/qiskit.quantum_info.Statevector)
+`UnitarySimulatorPy`         |  [`quantum_info.Operator`](/docs/api/qiskit/qiskit.quantum_info.Operator)
+`StatevectorSimulatorPy` |  [`quantum_info.Statevector`](/docs/api/qiskit/qiskit.quantum_info.Statevector)
 
 
 The following examples show the migration paths of the `basicaer` simulators.
@@ -631,7 +631,7 @@ The following examples show the migration paths of the `basicaer` simulators.
 <span id="fake-backends-runtime"></span>
 ### fake_provider
 
-Most of the user-facing 
+Most of the user-facing
 `qiskit.providers.fake_provider` components have
 been migrated to the `qiskit-ibm-runtime` Python package. This includes the
 fake provider classes, all of the device-specific fake backends (such as
@@ -691,15 +691,15 @@ Removed                          |   Alternative
     `qiskit-ibm-runtime` dependency, you can also find new Qiskit-native generic fake backend alternatives.
     These include the following `BackendV1` classes (drop-in replacements):
 
-    * [`qiskit.providers.fake_provider.Fake5QV1`](/api/qiskit/qiskit.providers.fake_provider.Fake5QV1)
-    * [`qiskit.providers.fake_provider.Fake20QV1`](/api/qiskit/qiskit.providers.fake_provider.Fake20QV1)
-    * [`qiskit.providers.fake_provider.Fake7QPulseV1`](/api/qiskit/qiskit.providers.fake_provider.Fake7QPulseV1)
-    * [`qiskit.providers.fake_provider.Fake27QPulseV1`](/api/qiskit/qiskit.providers.fake_provider.Fake27QPulseV1)
-    * [`qiskit.providers.fake_provider.Fake127QPulseV1`](/api/qiskit/qiskit.providers.fake_provider.Fake127QPulseV1)
+    * [`qiskit.providers.fake_provider.Fake5QV1`](/docs/api/qiskit/1.4/qiskit.providers.fake_provider.Fake5QV1)
+    * [`qiskit.providers.fake_provider.Fake20QV1`](/docs/api/qiskit/1.4/qiskit.providers.fake_provider.Fake20QV1)
+    * [`qiskit.providers.fake_provider.Fake7QPulseV1`](/docs/api/qiskit/1.4/qiskit.providers.fake_provider.Fake7QPulseV1)
+    * [`qiskit.providers.fake_provider.Fake27QPulseV1`](/docs/api/qiskit/1.4/qiskit.providers.fake_provider.Fake27QPulseV1)
+    * [`qiskit.providers.fake_provider.Fake127QPulseV1`](/docs/api/qiskit/1.4/qiskit.providers.fake_provider.Fake127QPulseV1)
 
     This is a configurable class that returns `BackendV2` instances:
 
-    * [`qiskit.providers.fake_provider.GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
+    * [`qiskit.providers.fake_provider.GenericBackendV2`](/docs/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
 </Admonition>
 
 
@@ -710,20 +710,20 @@ The fake backend classes for special testing purposes in
 `qiskit.providers.fake_provider` have
 **not** been migrated to `qiskit_ibm_runtime.fake_provider`. The recommended
 migration path is to use the new
-[`GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
+[`GenericBackendV2`](/docs/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
 class to configure a backend with similar properties or to build a custom
 target.
 
 Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
-`fake_provider.FakeBackendV2` | [`fake_provider.GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
-`fake_provider.FakeBackend5QV2` | [`fake_provider.GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
-`fake_provider.FakeBackendV2LegacyQubitProps` | [`fake_provider.GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
-`fake_provider.FakeBackendSimple` | [`fake_provider.GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
-`fake_provider.ConfigurableFakeBackend` | [`fake_provider.GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
+`fake_provider.FakeBackendV2` | [`fake_provider.GenericBackendV2`](/docs/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
+`fake_provider.FakeBackend5QV2` | [`fake_provider.GenericBackendV2`](/docs/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
+`fake_provider.FakeBackendV2LegacyQubitProps` | [`fake_provider.GenericBackendV2`](/docs/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
+`fake_provider.FakeBackendSimple` | [`fake_provider.GenericBackendV2`](/docs/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
+`fake_provider.ConfigurableFakeBackend` | [`fake_provider.GenericBackendV2`](/docs/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
 
 Example: Migrate to the new
-[`GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
+[`GenericBackendV2`](/docs/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2)
 class:
 
 ```python
@@ -752,7 +752,7 @@ backend = GenericBackendV2(num_qubits=5)
     ```
 
 * Support for running pulse jobs on backends from
-  [`qiskit.providers.fake_provider`](/api/qiskit/providers_fake_provider) has
+  [`qiskit.providers.fake_provider`](/docs/api/qiskit/providers_fake_provider) has
   been removed in Qiskit 1.0.  This is because Qiskit Aer removed its
   simulation functionality for such jobs.  For low-level Hamiltonian-simulation
   workloads, consider using a specialized library such as [Qiskit
@@ -766,9 +766,9 @@ backend = GenericBackendV2(num_qubits=5)
 
 The `qiskit.pulse.library.parametric_pulses.ParametricPulse` base class and
 pulse library have been superseded by
-[`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse)
+[`qiskit.pulse.SymbolicPulse`](/docs/api/qiskit/1.4/qiskit.pulse.library.SymbolicPulse)
 and the corresponding pulse library. `SymbolicPulse` supports
-[QPY](/api/qiskit/qpy) serialization:
+[QPY](/docs/api/qiskit/qpy) serialization:
 
 ```python
 from qiskit import pulse, qpy
@@ -782,11 +782,11 @@ with open('schedule.qpy', 'wb') as fd:
 
 Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
-`pulse.library.parametric_pulses.ParametricPulse` | [`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse)
-`pulse.library.parametric_pulses.Constant` |  [`pulse.library.symbolic_pulses.Constant`](/api/qiskit/qiskit.pulse.library.Constant)
-`pulse.library.parametric_pulses.Drag` |  [`pulse.library.symbolic_pulses.Drag`](/api/qiskit/qiskit.pulse.library.Drag)
-`pulse.library.parametric_pulses.Gaussian` |  [`pulse.library.symbolic_pulses.Gaussian`](/api/qiskit/qiskit.pulse.library.Gaussian)
-`qiskit.pulse.library.parametric_pulses.GaussianSquare` |  [`pulse.library.symbolic_pulses.GaussianSquare`](/api/qiskit/qiskit.pulse.library.GaussianSquare)
+`pulse.library.parametric_pulses.ParametricPulse` | [`qiskit.pulse.SymbolicPulse`](/docs/api/qiskit/1.4/qiskit.pulse.library.SymbolicPulse)
+`pulse.library.parametric_pulses.Constant` |  [`pulse.library.symbolic_pulses.Constant`](/docs/api/qiskit/1.4/qiskit.pulse.library.Constant)
+`pulse.library.parametric_pulses.Drag` |  [`pulse.library.symbolic_pulses.Drag`](/docs/api/qiskit/1.4/qiskit.pulse.library.Drag)
+`pulse.library.parametric_pulses.Gaussian` |  [`pulse.library.symbolic_pulses.Gaussian`](/docs/api/qiskit/1.4/qiskit.pulse.library.Gaussian)
+`qiskit.pulse.library.parametric_pulses.GaussianSquare` |  [`pulse.library.symbolic_pulses.GaussianSquare`](/docs/api/qiskit/1.4/qiskit.pulse.library.GaussianSquare)
 
 <span id="complex-val-amp"></span>
 ### Complex-valued amplitude
@@ -810,7 +810,7 @@ schedule.assign_parameters({angle: pi})
 ### Injecting circuit gate operations
 
 Injecting circuit gate operations into the pulse builder context through
-[`qiskit.pulse.builder.call`](/api/qiskit/pulse#call) is no longer possible.
+[`qiskit.pulse.builder.call`](/docs/api/qiskit/1.4/pulse#call) is no longer possible.
 This removal affects input arguments of type `QuantumCircuit`, as well as the
 following functions:
 
@@ -835,7 +835,7 @@ with pulse.build() as only_pulse_scheds:
     pulse.call(sched)
 ```
 
-Similarly, a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit) can
+Similarly, a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) can
 be injected in the builder context by manually transpiling and scheduling the
 object.
 
@@ -843,7 +843,7 @@ object.
 from math import pi
 from qiskit.compiler import schedule, transpile
 
-qc = QuatumCircuit(2)
+qc = QuantumCircuit(2)
 qc.rz(pi / 2, 0)
 qc.sx(0)
 qc.rz(pi / 2, 0)
@@ -856,7 +856,7 @@ with pulse.build() as only_pulse_scheds:
 
 We recommend writing a minimum pulse program with the builder and attaching it to
 `QuantumCircuit` through the
-[`QuantumCircuit.add_calibration`](/api/qiskit/qiskit.circuit.QuantumCircuit#add_calibration)
+[`QuantumCircuit.add_calibration`](/docs/api/qiskit/1.4/qiskit.circuit.QuantumCircuit#add_calibration)
 method as a microcode of a gate instruction, rather than writing the entire
 program with the pulse model.
 
@@ -901,13 +901,13 @@ The discrete pulse library has been removed from the code base. This includes:
 * `qiskit.pulse.library.drag`
 
 Instead, use the corresponding
-[`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse),
+[`qiskit.pulse.SymbolicPulse`](/docs/api/qiskit/1.4/qiskit.pulse.library.SymbolicPulse),
 with
-[`SymbolicPulse.get_waveform()`](/api/qiskit/qiskit.pulse.library.SymbolicPulse#get_waveform).
+[`SymbolicPulse.get_waveform()`](/docs/api/qiskit/1.4/qiskit.pulse.library.SymbolicPulse#get_waveform).
 For example, instead of `pulse.gaussian(100,0.5,10)`, use
 `pulse.Gaussian(100,0.5,10).get_waveform()`. Note that the phase of both
-[`Sawtooth`](/api/qiskit/qiskit.pulse.library.Sawtooth) and
-[`Square`](/api/qiskit/qiskit.pulse.library.Square) is defined such
+[`Sawtooth`](/docs/api/qiskit/1.4/qiskit.pulse.library.Sawtooth) and
+[`Square`](/docs/api/qiskit/1.4/qiskit.pulse.library.Square) is defined such
 that a phase of `2\\pi` shifts by a full cycle, contrary to the discrete
 counterpart. Also note that complex amplitudes are no longer supported in
 the symbolic pulse library; use `float`, `amp`, and  `angle` instead.
@@ -916,33 +916,33 @@ the symbolic pulse library; use `float`, `amp`, and  `angle` instead.
 ### ScalableSymbolicPulse
 
 It is no longer possible to load library `qiskit.pulse.ScalableSymbolicPulse`
-objects with a complex `amp` parameter from version 5 or earlier qpy files 
+objects with a complex `amp` parameter from version 5 or earlier qpy files
 (Qiskit Terra < 0.23.0). No migration action is required, as complex `amp` will
 automatically be converted to `float` (`amp`, `angle`).
 
 This change applies to these pulses:
-* [`qiskit.pulse.Constant`](/api/qiskit/qiskit.pulse.library.Constant)
-* [`qiskit.pulse.Drag`](/api/qiskit/qiskit.pulse.library.Drag)
-* [`qiskit.pulse.Gaussian`](/api/qiskit/qiskit.pulse.library.Gaussian)
-* [`qiskit.pulse.GaussianSquare`](/api/qiskit/qiskit.pulse.library.GaussianSquare)
+* [`qiskit.pulse.Constant`](/docs/api/qiskit/1.4/qiskit.pulse.library.Constant)
+* [`qiskit.pulse.Drag`](/docs/api/qiskit/1.4/qiskit.pulse.library.Drag)
+* [`qiskit.pulse.Gaussian`](/docs/api/qiskit/1.4/qiskit.pulse.library.Gaussian)
+* [`qiskit.pulse.GaussianSquare`](/docs/api/qiskit/1.4/qiskit.pulse.library.GaussianSquare)
 
 
 <span id="qiskit.qasm"></span>
 ## qiskit.qasm
 
 The legacy OpenQASM 2 parser module previously in `qiskit.qasm` has
-been superseded by the [`qiskit.qasm2`](/api/qiskit/qasm2) module, which
+been superseded by the [`qiskit.qasm2`](/docs/api/qiskit/qasm2) module, which
 provides a faster and more accurate parser for OpenQASM 2. The high level
 `QuantumCircuit` methods
-[`from_qasm_file()`](/api/qiskit/qiskit.circuit.QuantumCircuit#from_qasm_file)
+[`from_qasm_file()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#from_qasm_file)
 and
-[`from_qasm_str()`](/api/qiskit/qiskit.circuit.QuantumCircuit#from_qasm_str)
+[`from_qasm_str()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#from_qasm_str)
 remain the same, but will use the new parser internally. However, the public
 interface for the `qasm2` module is not the same. While the `qiskit.qasm`
 module provided an interface to an abstract syntax tree returned by the `ply`
 parser library, `qiskit.qasm2` does not expose the AST or any lower level
 implementation details about the parser. It instead takes OpenQASM 2 input and
-outputs a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit) object.
+outputs a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) object.
 
 For example, if you were previously running something like this:
 
@@ -967,15 +967,15 @@ qasm_circ = qiskit.qasm2.load("myfile.qasm")
 ## qiskit.quantum_info
 
 The `qiskit.quantum_info.synthesis` module has been migrated to various
-locations in the codebase, mostly [`qiskit.synthesis`](/api/qiskit/synthesis).
+locations in the codebase, mostly [`qiskit.synthesis`](/docs/api/qiskit/synthesis).
 
 Removed    | Alternative
 -----------|------------
-`OneQubitEulerDecomposer` | [`qiskit.synthesis.one_qubit.OneQubitEulerDecomposer`](/api/qiskit/qiskit.synthesis.OneQubitEulerDecomposer)
-`TwoQubitBasisDecomposer` | [`qiskit.synthesis.two_qubits.TwoQubitBasisDecomposer`](/api/qiskit/qiskit.synthesis.TwoQubitBasisDecomposer)
-`XXDecomposer` | [`qiskit.synthesis.two_qubits.XXDecomposer`](/api/qiskit/qiskit.synthesis.XXDecomposer)
-`two_qubit_cnot_decompose` | [`qiskit.synthesis.two_qubits.two_qubit_cnot_decompose`](/api/qiskit/synthesis#qiskit.synthesis.two_qubit_cnot_decompose)
-`Quaternion` | [`qiskit.quantum_info.Quaternion`](/api/qiskit/qiskit.quantum_info.Quaternion)
+`OneQubitEulerDecomposer` | [`qiskit.synthesis.one_qubit.OneQubitEulerDecomposer`](/docs/api/qiskit/qiskit.synthesis.OneQubitEulerDecomposer)
+`TwoQubitBasisDecomposer` | [`qiskit.synthesis.two_qubits.TwoQubitBasisDecomposer`](/docs/api/qiskit/qiskit.synthesis.TwoQubitBasisDecomposer)
+`XXDecomposer` | [`qiskit.synthesis.two_qubits.XXDecomposer`](/docs/api/qiskit/qiskit.synthesis.XXDecomposer)
+`two_qubit_cnot_decompose` | [`qiskit.synthesis.two_qubits.two_qubit_cnot_decompose`](/docs/api/qiskit/synthesis#qiskit.synthesis.two_qubit_cnot_decompose)
+`Quaternion` | [`qiskit.quantum_info.Quaternion`](/docs/api/qiskit/qiskit.quantum_info.Quaternion)
 
 This move has not affected the usual import path of `Quaternion`, but you can no longer access
 it through `qiskit.quantum_info.synthesis`.
@@ -996,7 +996,7 @@ test harnesses.
 The `qiskit.tools` module was removed in Qiskit 1.0. Most of this functionality was
 either replaced by similar functionality in other packages or removed with no alternative.
 The primary exception is the `qiskit.tools.parallel_map()` function, which has been relocated to
-the [`qiskit.utils`](/api/qiskit/utils#parallel_map) module. It can be used
+the [`qiskit.utils`](/docs/api/qiskit/utils#parallel_map) module. It can be used
 from this new location instead. For example:
 
 If you were previously running:
@@ -1019,7 +1019,7 @@ parallel_map(func, input)
 The `qiskit.tools.jupyter` submodule has been removed because the functionality
 in this module is tied to the legacy `qiskit-ibmq-provider` package, which is no
 longer supported. It also only supported `BackendV1` and not the newer
-[`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) interface.
+[`BackendV2`](/docs/api/qiskit/qiskit.providers.BackendV2) interface.
 
 <span id="monitor"></span>
 ### monitor
@@ -1027,7 +1027,7 @@ longer supported. It also only supported `BackendV1` and not the newer
 The `qiskit.tools.monitor` submodule has been removed as it was tied to the
 legacy `qiskit-ibmq-provider` package, which is no longer supported (it also
 only supported `BackendV1` interface and not the newer
-[`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) interface). There is
+[`BackendV2`](/docs/api/qiskit/qiskit.providers.BackendV2) interface). There is
 no alternative provided for this functionality.
 
 <span id="visualization"></span>
@@ -1035,10 +1035,10 @@ no alternative provided for this functionality.
 
 The `qiskit.tools.visualization` submodule has been removed. This module was a
 legacy redirect from the original location of the Qiskit visualization module and
-was moved to [`qiskit.visualization`](/api/qiskit/visualization) in Qiskit
+was moved to [`qiskit.visualization`](/docs/api/qiskit/visualization) in Qiskit
 0.8.0. If you're still using this path, update your imports from
 `qiskit.tools.visualization` to
-[`qiskit.visualization`](/api/qiskit/visualization).
+[`qiskit.visualization`](/docs/api/qiskit/visualization).
 
 ```python
 # Previous
@@ -1070,16 +1070,16 @@ The items in `qiskit.transpiler.synthesis` module have been migrated to new loca
 
 Removed    | Alternative
 -----------|------------
-`qiskit.transpiler.synthesis.aqc` (except for [`AQCSynthesisPlugin`](/api/qiskit/qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin)) | [`qiskit.synthesis.unitary.aqc`](/api/qiskit/qiskit.synthesis.unitary.aqc)
-`qiskit.transpiler.synthesis.graysynth` | [`qiskit.synthesis.synth_cnot_phase_aam`](/api/qiskit/synthesis#synth_cnot_phase_aam)
-`qiskit.transpiler.synthesis.cnot_synth` | [`qiskit.synthesis.synth_cnot_count_full_pmh`](/api/qiskit/synthesis#synth_cnot_count_full_pmh)
+`qiskit.transpiler.synthesis.aqc` (except for [`AQCSynthesisPlugin`](/docs/api/qiskit/qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin)) | [`qiskit.synthesis.unitary.aqc`](/docs/api/qiskit/qiskit.synthesis.unitary.aqc)
+`qiskit.transpiler.synthesis.graysynth` | [`qiskit.synthesis.synth_cnot_phase_aam`](/docs/api/qiskit/synthesis#synth_cnot_phase_aam)
+`qiskit.transpiler.synthesis.cnot_synth` | [`qiskit.synthesis.synth_cnot_count_full_pmh`](/docs/api/qiskit/synthesis#synth_cnot_count_full_pmh)
 
 <span id="transpiler.passes"></span>
 ### passes
 
 The `NoiseAdaptiveLayout` transpiler pass has been superseded by
-[`VF2Layout`](/api/qiskit/qiskit.transpiler.passes.VF2Layout) and
-[`VF2PostLayout`](/api/qiskit/qiskit.transpiler.passes.VF2PostLayout),
+[`VF2Layout`](/docs/api/qiskit/qiskit.transpiler.passes.VF2Layout) and
+[`VF2PostLayout`](/docs/api/qiskit/qiskit.transpiler.passes.VF2PostLayout),
 which set a layout based on the reported noise characteristics of a
 backend. Both the pass and the corresponding `"noise_adaptive"` layout stage
 plugin have been removed from Qiskit.
@@ -1094,9 +1094,9 @@ been removed.
 ### passmanager
 
 The `append` methods of the
-[`ConditionalController`](/api/qiskit/qiskit.passmanager.ConditionalController),
-[`FlowControllerLinear`](/api/qiskit/qiskit.passmanager.FlowControllerLinear), and 
-[`DoWhileController`](/api/qiskit/qiskit.passmanager.DoWhileController) classes
+[`ConditionalController`](/docs/api/qiskit/qiskit.passmanager.ConditionalController),
+[`FlowControllerLinear`](/docs/api/qiskit/qiskit.passmanager.FlowControllerLinear), and
+[`DoWhileController`](/docs/api/qiskit/qiskit.passmanager.DoWhileController) classes
 have been removed. Instead, all tasks must be provided when the controller
 objects are constructed.
 

@@ -6,7 +6,7 @@ description: How to transpile quantum circuits using REST APIs.
 # Transpile using REST API
 
 <Admonition type="note">
-    This documentation utilizes the Python `requests` module to demonstrate the Qiskit Transpiler Service API. However, this workflow can be executed using any language or framework that supports working with REST APIs. Refer to the [API reference documentation](/api/runtime/tags/jobs) for details.
+    This documentation utilizes the Python `requests` module to demonstrate the Qiskit Transpiler Service API. However, this workflow can be executed using any language or framework that supports working with REST APIs. Refer to the [API reference documentation](/docs/api/runtime/tags/jobs) for details.
 </Admonition>
 
 The process of rewriting a given input circuit to match the topology of a specific quantum device, and optimizing the circuit instructions for execution on noisy quantum QPUs, is known as [transpilation](./transpile).
@@ -15,17 +15,17 @@ You have two transpilation options:
 
 * Transpile [locally via Qiskit](./defaults-and-configuration-options) before generating the QASM string.
 
-* Use the [Qiskit Transpiler Service Python client](/api/qiskit-ibm-transpiler) or [Qiskit Transpiler Service REST API](/api/qiskit-ibm-transpiler-rest).
+* Use the [Qiskit Transpiler Service Python client](/docs/api/qiskit-ibm-transpiler) or [Qiskit Transpiler Service REST API](/docs/api/qiskit-transpiler-service-rest).
 
 <Admonition type="note">
     [Transpilation is necessary](/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM&reg; QPUs.
 </Admonition>
 
-The steps in this topic describe how to transpile a given QASM circuit and obtain results using the Cloud Transpiler REST API, and include suggestions on how to submit the transpiled quantum circuit to IBM compute resources.  For an example that uses parameterized input, see [Sampler primitive with REST API and parameterized circuits.](/guides/primitives-rest-api#start-sampler-parms)
+The steps in this topic describe how to transpile a given QASM circuit and obtain results using the Cloud Transpiler REST API, and include suggestions on how to submit the transpiled quantum circuit to IBM compute resources.  For an example that uses parameterized input, see [Sampler primitive with REST API and parameterized circuits.](/docs/guides/primitives-rest-api#start-sampler-parms)
 
 ## Query the Qiskit Transpiler Service
 
-Query the Qiskit Transpiler Service REST API and provide your QASM string as input. See more details in the [API reference documentation](/api/qiskit-transpiler-service-rest).
+Query the Qiskit Transpiler Service REST API and provide your QASM string as input. See more details in the [API reference documentation](/docs/api/qiskit-transpiler-service-rest).
 
 There are two ways to invoke the Qiskit Transpiler Service using REST API: with regular transpilation, and with AI-enhanced transpilation. The following demonstrates both ways to invoke the Qiskit Transpiler Service API.
 
@@ -119,7 +119,7 @@ OPENQASM 3.0; include "stdgates.inc"; gate rzx_140040114706704(_gate_p_0) _gate_
 
 <Admonition type="tip" title="Recommendations">
     - Review detailed [Sampler and Estimator](./primitives-rest-api) primitives examples using REST API.
-    - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
+    - Read [Migrate to V2 primitives](/docs/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
     - Learn how to transpile locally in the [Transpile](./transpile) section.
 </Admonition>

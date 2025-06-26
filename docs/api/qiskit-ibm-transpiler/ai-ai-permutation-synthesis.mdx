@@ -8,14 +8,15 @@ python_api_name: qiskit_ibm_transpiler.ai.AIPermutationSynthesis
 
 # AIPermutationSynthesis
 
-<Class id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.10/qiskit_ibm_transpiler/ai/synthesis.py#L314-L358" signature="qiskit_ibm_transpiler.ai.AIPermutationSynthesis(backend_name: str, replace_only_if_better: bool = True, max_threads: int | None = None)" modifiers="class">
+<Class id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.12/qiskit_ibm_transpiler/ai/synthesis.py#L286-L330" signature="qiskit_ibm_transpiler.ai.AIPermutationSynthesis(coupling_map: list[list[int]] | None = None, backend: Backend | None = None, replace_only_if_better: bool = True, max_threads: int | None = None)" modifiers="class">
   Bases: `AISynthesis`
 
   Synthesis for Permutation circuits (blocks of SWAP gates). Currently available for 65, 33, and 27 qubit blocks.
 
   **Parameters**
 
-  *   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Name of the backend used for doing the AI Linear Function synthesis.
+  *   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]], optional*) – A list of pairs that represents physical links between qubits.
+  *   **backend** (*Backend, optional*) – Backend used for doing the AI Permutation synthesis.
   *   **replace\_only\_if\_better** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*, optional*) – Determine if replace the original circuit with the synthesized one if it’s better, defaults to True.
   *   **max\_threads** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*, optional*) – Set the number of requests to send in parallel.
 
@@ -47,7 +48,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AIPermutationSynthesis
     **Parameters**
 
     *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.4)")) – State associated with workflow execution by the pass manager itself.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.1)")) – State associated with workflow execution by the pass manager itself.
     *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)")) – A callback function which is caller per execution of optimization task.
 
     **Returns**
@@ -56,7 +57,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AIPermutationSynthesis
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.4)")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.1)")]
   </Function>
 
   ### name
@@ -71,12 +72,12 @@ python_api_name: qiskit_ibm_transpiler.ai.AIPermutationSynthesis
 
   ### run
 
-  <Function id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.run" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.10/qiskit_ibm_transpiler/ai/synthesis.py#L187-L204" signature="run(dag)">
+  <Function id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.run" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.12/qiskit_ibm_transpiler/ai/synthesis.py#L159-L176" signature="run(dag)">
     Run a pass on the DAGCircuit. This is implemented by the pass developer.
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.4)")) – the dag on which the pass is run.
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.1)")) – the dag on which the pass is run.
 
     **Raises**
 
@@ -85,7 +86,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AIPermutationSynthesis
 
   ### synth\_nodes
 
-  <Function id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.synth_nodes" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.10/qiskit_ibm_transpiler/ai/synthesis.py#L140-L185" signature="synth_nodes(nodes)" />
+  <Function id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.synth_nodes" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.12/qiskit_ibm_transpiler/ai/synthesis.py#L112-L157" signature="synth_nodes(nodes)" />
 
   ### update\_status
 
@@ -94,7 +95,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AIPermutationSynthesis
 
     **Parameters**
 
-    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.4)")) – Pass manager state to update.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.1)")) – Pass manager state to update.
     *   **run\_state** (*RunState*) – Completion status of current task.
 
     **Returns**
@@ -103,7 +104,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AIPermutationSynthesis
 
     **Return type**
 
-    [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.4)")
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.1)")
   </Function>
 </Class>
 

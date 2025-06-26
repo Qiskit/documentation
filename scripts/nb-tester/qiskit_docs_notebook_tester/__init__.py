@@ -32,9 +32,19 @@ async def _main() -> None:
 
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = await asyncio.gather(*(execute_notebook(job) for job in jobs))
-    print("Checking for trailing jobs...")
-    results.append(cancel_trailing_jobs(start_time))
+
+    # New kernels choose a port on creation. They usually detect if the port is
+    # in use and will choose another if so, but there can be race conditions
+    # when creating many kernels at once. We use a lock to avoid this.
+    kernel_setup_lock = asyncio.Lock()
+    results = await asyncio.gather(
+        *(execute_notebook(job, kernel_setup_lock) for job in jobs)
+    )
+
+    if not args.ignore_trailing_jobs:
+        print("Checking for trailing jobs...")
+        results.append(cancel_trailing_jobs(start_time))
+
     if not all(results):
         sys.exit(1)
 

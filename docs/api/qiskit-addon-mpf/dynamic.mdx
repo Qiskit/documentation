@@ -20,7 +20,7 @@ This module provides the generator function for the linear system of equations (
 
 ### setup\_dynamic\_lse
 
-<Function id="qiskit_addon_mpf.dynamic.setup_dynamic_lse" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/dynamic.py#L180-L372" signature="setup_dynamic_lse(trotter_steps, time, identity_factory, exact_evolver_factory, approx_evolver_factory, initial_state)">
+<Function id="qiskit_addon_mpf.dynamic.setup_dynamic_lse" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L193-L385" signature="setup_dynamic_lse(trotter_steps, time, identity_factory, exact_evolver_factory, approx_evolver_factory, initial_state)">
   Return the linear system of equations for computing dynamic MPF coefficients.
 
   This function uses the [`DynamicMPF`](#qiskit_addon_mpf.dynamic.DynamicMPF "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm to compute the components of the Gram matrix ([`LSE.A`](costs#a "qiskit_addon_mpf.costs.LSE.A"), $M$ in \[1] and \[2]) and the overlap vector ([`LSE.b`](costs#b "qiskit_addon_mpf.costs.LSE.b"), $L$ in \[1] and \[2]) for the provided time-evolution parameters.
@@ -157,7 +157,7 @@ The following protocols define the function signatures for the various object fa
 
 ### IdentityStateFactory
 
-<Class id="qiskit_addon_mpf.dynamic.IdentityStateFactory" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/dynamic.py#L141-L150" signature="IdentityStateFactory(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_addon_mpf.dynamic.IdentityStateFactory" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L154-L163" signature="IdentityStateFactory(*args, **kwargs)" modifiers="class">
   Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol "(in Python v3.13)")
 
   The factory function protocol for constructing an identity [`State`](backends#state "qiskit_addon_mpf.backends.State") instance.
@@ -167,7 +167,7 @@ The following protocols define the function signatures for the various object fa
 
 ### ExactEvolverFactory
 
-<Class id="qiskit_addon_mpf.dynamic.ExactEvolverFactory" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/dynamic.py#L153-L162" signature="ExactEvolverFactory(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_addon_mpf.dynamic.ExactEvolverFactory" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L166-L175" signature="ExactEvolverFactory(*args, **kwargs)" modifiers="class">
   Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol "(in Python v3.13)")
 
   The factory function protocol for constructing an exact [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.Evolver") instance.
@@ -177,7 +177,7 @@ The following protocols define the function signatures for the various object fa
 
 ### ApproxEvolverFactory
 
-<Class id="qiskit_addon_mpf.dynamic.ApproxEvolverFactory" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/dynamic.py#L165-L177" signature="ApproxEvolverFactory(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_addon_mpf.dynamic.ApproxEvolverFactory" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L178-L190" signature="ApproxEvolverFactory(*args, **kwargs)" modifiers="class">
   Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol "(in Python v3.13)")
 
   The factory function protocol for constructing an approximate [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.Evolver") instance.
@@ -189,7 +189,7 @@ The following protocols define the function signatures for the various object fa
 
 ### DynamicMPF
 
-<Class id="qiskit_addon_mpf.dynamic.DynamicMPF" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/dynamic.py#L52-L138" signature="DynamicMPF(evolution_state, lhs, rhs)" modifiers="class">
+<Class id="qiskit_addon_mpf.dynamic.DynamicMPF" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L53-L151" signature="DynamicMPF(evolution_state, lhs, rhs)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   The dynamic MPF algorithm.
@@ -214,6 +214,14 @@ The following protocols define the function signatures for the various object fa
   *   **lhs** ([*Evolver*](backends#evolver "qiskit_addon_mpf.backends.Evolver")) – the LHS time-evolution engine.
   *   **rhs** ([*Evolver*](backends#evolver "qiskit_addon_mpf.backends.Evolver")) – the RHS time-evolution engine.
 
+  #### TIME\_DECIMALS
+
+  <Attribute id="qiskit_addon_mpf.dynamic.DynamicMPF.TIME_DECIMALS" attributeTypeHint="int" attributeValue="8">
+    The number of decimal places used for rounding the evolution times.
+
+    During the time evolution of the [`evolution_state`](#qiskit_addon_mpf.dynamic.DynamicMPF.evolution_state "qiskit_addon_mpf.dynamic.DynamicMPF.evolution_state"), we often compare the evolved times of the LHS and RHS engines against each other as well as the target evolution time. These checks compare floating point numbers and this setting specifies the number of decimal places to which we round.
+  </Attribute>
+
   #### evolution\_state
 
   <Attribute id="qiskit_addon_mpf.dynamic.DynamicMPF.evolution_state">
@@ -222,7 +230,7 @@ The following protocols define the function signatures for the various object fa
 
   #### evolve
 
-  <Function id="qiskit_addon_mpf.dynamic.DynamicMPF.evolve" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/dynamic.py#L84-L117" signature="evolve(time)">
+  <Function id="qiskit_addon_mpf.dynamic.DynamicMPF.evolve" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L94-L130" signature="evolve(time)">
     Evolve the dynamic MPF algorithm up to the provided time.
 
     This actually runs the dynamic MPF algorithm by time-evolving [`DynamicMPF.evolution_state`](#qiskit_addon_mpf.dynamic.DynamicMPF.evolution_state "qiskit_addon_mpf.dynamic.DynamicMPF.evolution_state") up to the specified time using the LHS and RHS [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.Evolver") instances.
@@ -248,7 +256,7 @@ The following protocols define the function signatures for the various object fa
 
   #### overlap
 
-  <Function id="qiskit_addon_mpf.dynamic.DynamicMPF.overlap" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/dynamic.py#L119-L138" signature="overlap(initial_state)">
+  <Function id="qiskit_addon_mpf.dynamic.DynamicMPF.overlap" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L132-L151" signature="overlap(initial_state)">
     Compute the overlap of [`DynamicMPF.evolution_state`](#qiskit_addon_mpf.dynamic.DynamicMPF.evolution_state "qiskit_addon_mpf.dynamic.DynamicMPF.evolution_state") with the provided state.
 
     <Admonition title="Warning" type="caution">

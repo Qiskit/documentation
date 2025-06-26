@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.dag_drawer
 
 # qiskit.visualization.dag\_drawer
 
-<Function id="qiskit.visualization.dag_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/visualization/dag_visualization.py#L74-L317" signature="qiskit.visualization.dag_drawer(dag, scale=0.7, filename=None, style='color')">
+<Function id="qiskit.visualization.dag_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/visualization/dag_visualization.py#L77-L389" signature="qiskit.visualization.dag_drawer(dag, scale=0.7, filename=None, style='color')">
   Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit.
 
   This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.16)") function from the `rustworkx` package to draw the DAG.
@@ -18,9 +18,26 @@ python_api_name: qiskit.visualization.dag_drawer
   **Parameters**
 
   *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")  *or*[*DAGDependency*](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency")) – The dag to draw.
+
   *   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – scaling factor
+
   *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – file path to save image to (format inferred from name)
-  *   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – ‘plain’: B\&W graph ‘color’ (default): color input/output/op nodes
+
+  *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+
+      Style name, file name of style JSON file, or a dictionary specifying the style.
+
+      *   **The supported style names are ‘plain’: B\&W graph, ‘color’ (default):**
+
+          (color input/output/op nodes)
+
+      *   **If given a JSON file, e.g. `my_style.json` or `my_style` (the `.json`**
+
+          extension may be omitted), this function attempts to load the style dictionary from that location. Note, that the JSON file must completely specify the visualization specifications. The file is searched for in `qiskit/visualization/circuit/styles`, the current working directory, and the location specified in `~/.qiskit/settings.conf`.
+
+      *   **If `None` the default style `"color"` is used or, if given, the default style**
+
+          specified in `~/.qiskit/settings.conf`.
 
   **Returns**
 
@@ -42,7 +59,6 @@ python_api_name: qiskit.visualization.dag_drawer
 
   ```python
   from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
-  from qiskit.dagcircuit import DAGCircuit
   from qiskit.converters import circuit_to_dag
   from qiskit.visualization import dag_drawer
 
@@ -52,10 +68,18 @@ python_api_name: qiskit.visualization.dag_drawer
   circ.h(q[0])
   circ.cx(q[0], q[1])
   circ.measure(q[0], c[0])
-  circ.rz(0.5, q[1]).c_if(c, 2)
+  with circ.if_test((c, 2)):
+      circ.rz(0.5, q[1])
 
   dag = circuit_to_dag(circ)
-  dag_drawer(dag)
+
+  style = {
+      "inputnodecolor": "pink",
+      "outputnodecolor": "lightblue",
+      "opnodecolor": "red",
+  }
+
+  dag_drawer(dag, style=style)
   ```
 </Function>
 

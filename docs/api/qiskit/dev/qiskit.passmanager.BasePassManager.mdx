@@ -8,7 +8,7 @@ python_api_name: qiskit.passmanager.BasePassManager
 
 # BasePassManager
 
-<Class id="qiskit.passmanager.BasePassManager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/passmanager.py#L33-L267" signature="qiskit.passmanager.BasePassManager(tasks=(), max_iteration=1000)" modifiers="class">
+<Class id="qiskit.passmanager.BasePassManager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/passmanager.py#L33-L282" signature="qiskit.passmanager.BasePassManager(tasks=(), max_iteration=1000)" modifiers="class">
   Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
 
   Pass manager base class.
@@ -80,7 +80,7 @@ python_api_name: qiskit.passmanager.BasePassManager
 
   ### run
 
-  <Function id="qiskit.passmanager.BasePassManager.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/passmanager.py#L172-L251" signature="run(in_programs, callback=None, num_processes=None, **kwargs)">
+  <Function id="qiskit.passmanager.BasePassManager.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/passmanager.py#L172-L266" signature="run(in_programs, callback=None, num_processes=None, *, property_set=None, **kwargs)">
     Run all the passes on the specified `in_programs`.
 
     **Parameters**
@@ -115,6 +115,8 @@ python_api_name: qiskit.passmanager.BasePassManager
 
     *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of parallel processes to launch if parallel execution is enabled. This argument overrides `num_processes` in the user configuration file, and the `QISKIT_NUM_PROCS` environment variable. If set to `None` the system default or local user configuration will be used.
 
+    *   **property\_set** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*object*](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")*] | None*) – If given, the initial value to use as the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") for the pass manager pipeline. This can be used to persist analysis from one run to another, in cases where you know the analysis is safe to share. Beware that some analysis will be specific to the input circuit and the particular [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), so you should take a lot of care when using this argument.
+
     *   **kwargs** – Arbitrary arguments passed to the compiler frontend and backend.
 
     **Returns**
@@ -128,7 +130,7 @@ python_api_name: qiskit.passmanager.BasePassManager
 
   ### to\_flow\_controller
 
-  <Function id="qiskit.passmanager.BasePassManager.to_flow_controller" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/passmanager.py#L253-L261" signature="to_flow_controller()">
+  <Function id="qiskit.passmanager.BasePassManager.to_flow_controller" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/passmanager.py#L268-L276" signature="to_flow_controller()">
     Linearize this manager into a single [`FlowControllerLinear`](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear"), so that it can be nested inside another pass manager.
 
     **Returns**

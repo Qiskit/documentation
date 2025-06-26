@@ -26,7 +26,7 @@ import { Emphasis, Root, Content } from "mdast";
 
 import { processHtml } from "./processHtml.js";
 import { HtmlToMdResult } from "./HtmlToMdResult.js";
-import { Metadata, ApiType } from "./Metadata.js";
+import { Metadata, ApiTypeName } from "./Metadata.js";
 import { removePrefix, removeSuffix, capitalize } from "../stringUtils.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 
@@ -37,6 +37,7 @@ export async function sphinxHtmlToMarkdown(options: {
   determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
+  isCApi: boolean;
 }): Promise<HtmlToMdResult> {
   const processedHtml = await processHtml(options);
   const markdown = await generateMarkdownFile(
@@ -202,7 +203,7 @@ function findNodeWithProperty(nodeList: any[], propertyName: string) {
 function buildDt(
   h: H,
   node: any,
-  apiType?: ApiType,
+  apiType?: ApiTypeName,
 ): void | Content | Content[] {
   if (apiType === "class" || apiType === "module") {
     return [

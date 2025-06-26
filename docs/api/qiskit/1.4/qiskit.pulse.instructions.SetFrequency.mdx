@@ -1,0 +1,218 @@
+---
+title: SetFrequency (v1.4)
+description: API reference for qiskit.pulse.instructions.SetFrequency in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.instructions.SetFrequency
+---
+
+# SetFrequency
+
+<Class id="qiskit.pulse.instructions.SetFrequency" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/frequency.py#L25-L84" signature="qiskit.pulse.instructions.SetFrequency(frequency, channel, name=None)" modifiers="class">
+  Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+
+  Set the channel frequency. This instruction operates on `PulseChannel` s. A `PulseChannel` creates pulses of the form
+
+$$
+Re[\exp(i 2\pi f jdt + \phi) d_j].
+
+
+$$
+
+  Here, $f$ is the frequency of the channel. The instruction `SetFrequency` allows the user to set the value of $f$. All pulses that are played on a channel after SetFrequency has been called will have the corresponding frequency.
+
+  The duration of SetFrequency is 0.
+
+  Creates a new set channel frequency instruction.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.instructions.frequency.SetFrequency` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
+  **Parameters**
+
+  *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – New frequency of the channel in Hz.
+  *   **channel** (*PulseChannel*) – The channel this instruction operates on.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of this set channel frequency instruction.
+
+  ## Attributes
+
+  ### channel
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.channel">
+    Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+  </Attribute>
+
+  ### channels
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.channels">
+    Returns the channels that this schedule uses.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.duration">
+    Duration of this instruction.
+  </Attribute>
+
+  ### frequency
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.frequency">
+    New frequency.
+  </Attribute>
+
+  ### id
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.id">
+    Unique identifier for this instruction.
+  </Attribute>
+
+  ### instructions
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.instructions">
+    Iterable for getting instructions from Schedule tree.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.name">
+    Name of this instruction.
+  </Attribute>
+
+  ### operands
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.operands">
+    Return instruction operands.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.parameters">
+    Parameters which determine the instruction behavior.
+  </Attribute>
+
+  ### start\_time
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.start_time">
+    Relative begin time of this instruction.
+  </Attribute>
+
+  ### stop\_time
+
+  <Attribute id="qiskit.pulse.instructions.SetFrequency.stop_time">
+    Relative end time of this instruction.
+  </Attribute>
+
+  ## Methods
+
+  ### append
+
+  <Function id="qiskit.pulse.instructions.SetFrequency.append" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L187-L200" signature="append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+
+    **Parameters**
+
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the new schedule. Defaults to name of self
+
+    **Returns**
+
+    A new schedule with `schedule` a this instruction at t=0.
+
+    **Return type**
+
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
+
+  ### ch\_duration
+
+  <Function id="qiskit.pulse.instructions.SetFrequency.ch_duration" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L114-L120" signature="ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
+
+    **Parameters**
+
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+
+  ### ch\_start\_time
+
+  <Function id="qiskit.pulse.instructions.SetFrequency.ch_start_time" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L122-L129" signature="ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
+
+    **Parameters**
+
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+
+  ### ch\_stop\_time
+
+  <Function id="qiskit.pulse.instructions.SetFrequency.ch_stop_time" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L131-L139" signature="ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
+
+    **Parameters**
+
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+
+  ### insert
+
+  <Function id="qiskit.pulse.instructions.SetFrequency.insert" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L169-L185" signature="insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
+
+    **Parameters**
+
+    *   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Time to insert the schedule schedule
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the new schedule. Defaults to name of self
+
+    **Returns**
+
+    A new schedule with `schedule` inserted with this instruction at t=0.
+
+    **Return type**
+
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.pulse.instructions.SetFrequency.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L221-L223" signature="is_parameterized()">
+    Return True iff the instruction is parameterized.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### shift
+
+  <Function id="qiskit.pulse.instructions.SetFrequency.shift" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L153-L167" signature="shift(time, name=None)">
+    Return a new schedule shifted forward by time.
+
+    **Parameters**
+
+    *   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Time to shift by
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the new schedule. Defaults to name of self
+
+    **Returns**
+
+    The shifted schedule.
+
+    **Return type**
+
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
+</Class>
+

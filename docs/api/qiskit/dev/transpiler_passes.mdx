@@ -78,47 +78,24 @@ python_api_name: qiskit.transpiler.passes
 | [`ResetAfterMeasureSimplification`](qiskit.transpiler.passes.ResetAfterMeasureSimplification "qiskit.transpiler.passes.ResetAfterMeasureSimplification")(\*args, \*\*kwargs)    | This pass replaces reset after measure with a conditional X gate.                                                                                                                                                                                                                                                                               |
 | [`OptimizeCliffords`](qiskit.transpiler.passes.OptimizeCliffords "qiskit.transpiler.passes.OptimizeCliffords")(\*args, \*\*kwargs)                                              | Combine consecutive Cliffords over the same qubits.                                                                                                                                                                                                                                                                                             |
 | [`ElidePermutations`](qiskit.transpiler.passes.ElidePermutations "qiskit.transpiler.passes.ElidePermutations")(\*args, \*\*kwargs)                                              | Remove permutation operations from a pre-layout circuit                                                                                                                                                                                                                                                                                         |
-| [`NormalizeRXAngle`](qiskit.transpiler.passes.NormalizeRXAngle "qiskit.transpiler.passes.NormalizeRXAngle")(\*args, \*\*kwargs)                                                 | Normalize theta parameter of RXGate instruction.                                                                                                                                                                                                                                                                                                |
 | [`OptimizeAnnotated`](qiskit.transpiler.passes.OptimizeAnnotated "qiskit.transpiler.passes.OptimizeAnnotated")(\*args, \*\*kwargs)                                              | Optimization pass on circuits with annotated operations.                                                                                                                                                                                                                                                                                        |
 | [`Split2QUnitaries`](qiskit.transpiler.passes.Split2QUnitaries "qiskit.transpiler.passes.Split2QUnitaries")(\*args, \*\*kwargs)                                                 | Attempt to splits two-qubit unitaries in a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") into two single-qubit gates.                                                                                                                                                                                             |
 | [`RemoveIdentityEquivalent`](qiskit.transpiler.passes.RemoveIdentityEquivalent "qiskit.transpiler.passes.RemoveIdentityEquivalent")(\*args, \*\*kwargs)                         | Remove gates with negligible effects.                                                                                                                                                                                                                                                                                                           |
 | [`ContractIdleWiresInControlFlow`](qiskit.transpiler.passes.ContractIdleWiresInControlFlow "qiskit.transpiler.passes.ContractIdleWiresInControlFlow")(\*args, \*\*kwargs)       | Remove idle qubits from control-flow operations of a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit").                                                                                                                                                                                                               |
 
-## Calibration
-
-|   |
-| - |
-
-### rzx\_templates
-
-<Function id="qiskit.transpiler.passes.rzx_templates" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rzx_templates.py#L23-L51" signature="qiskit.transpiler.passes.rzx_templates(template_list=None)">
-  Convenience function to get the cost\_dict and templates for template matching.
-
-  **Parameters**
-
-  **template\_list** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | None*) – List of instruction names.
-
-  **Returns**
-
-  Decomposition templates and cost values.
-
-  **Return type**
-
-  [*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")
-</Function>
-
 ## Scheduling
 
-|                                                                                                                                                         |                                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| [`TimeUnitConversion`](qiskit.transpiler.passes.TimeUnitConversion "qiskit.transpiler.passes.TimeUnitConversion")(\*args, \*\*kwargs)                   | Choose a time unit to be used in the following time-aware passes, and make all circuit time units consistent with that. |
-| [`ALAPScheduleAnalysis`](qiskit.transpiler.passes.ALAPScheduleAnalysis "qiskit.transpiler.passes.ALAPScheduleAnalysis")(\*args, \*\*kwargs)             | ALAP Scheduling pass, which schedules the **stop** time of instructions as late as possible.                            |
-| [`ASAPScheduleAnalysis`](qiskit.transpiler.passes.ASAPScheduleAnalysis "qiskit.transpiler.passes.ASAPScheduleAnalysis")(\*args, \*\*kwargs)             | ASAP Scheduling pass, which schedules the start time of instructions as early as possible.                              |
-| [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling")(\*args, \*\*kwargs)       | Dynamical decoupling insertion pass.                                                                                    |
-| [`PadDelay`](qiskit.transpiler.passes.PadDelay "qiskit.transpiler.passes.PadDelay")(\*args, \*\*kwargs)                                                 | Padding idle time with Delay instructions.                                                                              |
-| [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule")(\*args, \*\*kwargs)          | Rescheduler pass that updates node start times to conform to the hardware alignments.                                   |
-| [`InstructionDurationCheck`](qiskit.transpiler.passes.InstructionDurationCheck "qiskit.transpiler.passes.InstructionDurationCheck")(\*args, \*\*kwargs) | Duration validation pass for reschedule.                                                                                |
-| [`SetIOLatency`](qiskit.transpiler.passes.SetIOLatency "qiskit.transpiler.passes.SetIOLatency")(\*args, \*\*kwargs)                                     | Set IOLatency information to the input circuit.                                                                         |
+|                                                                                                                                                                              |                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| [`TimeUnitConversion`](qiskit.transpiler.passes.TimeUnitConversion "qiskit.transpiler.passes.TimeUnitConversion")(\*args, \*\*kwargs)                                        | Choose a time unit to be used in the following time-aware passes, and make all circuit time units consistent with that. |
+| [`ALAPScheduleAnalysis`](qiskit.transpiler.passes.ALAPScheduleAnalysis "qiskit.transpiler.passes.ALAPScheduleAnalysis")(\*args, \*\*kwargs)                                  | ALAP Scheduling pass, which schedules the **stop** time of instructions as late as possible.                            |
+| [`ASAPScheduleAnalysis`](qiskit.transpiler.passes.ASAPScheduleAnalysis "qiskit.transpiler.passes.ASAPScheduleAnalysis")(\*args, \*\*kwargs)                                  | ASAP Scheduling pass, which schedules the start time of instructions as early as possible.                              |
+| [`ContextAwareDynamicalDecoupling`](qiskit.transpiler.passes.ContextAwareDynamicalDecoupling "qiskit.transpiler.passes.ContextAwareDynamicalDecoupling")(\*args, \*\*kwargs) | Implement an X-sequence dynamical decoupling considering the gate- and qubit-context.                                   |
+| [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling")(\*args, \*\*kwargs)                            | Dynamical decoupling insertion pass.                                                                                    |
+| [`PadDelay`](qiskit.transpiler.passes.PadDelay "qiskit.transpiler.passes.PadDelay")(\*args, \*\*kwargs)                                                                      | Padding idle time with Delay instructions.                                                                              |
+| [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule")(\*args, \*\*kwargs)                               | Rescheduler pass that updates node start times to conform to the hardware alignments.                                   |
+| [`InstructionDurationCheck`](qiskit.transpiler.passes.InstructionDurationCheck "qiskit.transpiler.passes.InstructionDurationCheck")(\*args, \*\*kwargs)                      | Duration validation pass for reschedule.                                                                                |
+| [`SetIOLatency`](qiskit.transpiler.passes.SetIOLatency "qiskit.transpiler.passes.SetIOLatency")(\*args, \*\*kwargs)                                                          | Set IOLatency information to the input circuit.                                                                         |
 
 ## Circuit Analysis
 

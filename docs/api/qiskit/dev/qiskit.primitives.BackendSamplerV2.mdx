@@ -13,7 +13,7 @@ python_api_name: qiskit.primitives.BackendSamplerV2
 
   Evaluates bitstrings for provided quantum circuits
 
-  The [`BackendSamplerV2`](#qiskit.primitives.BackendSamplerV2 "qiskit.primitives.BackendSamplerV2") class is a generic implementation of the [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") (or [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) object in the class [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") API. It facilitates using backends that do not provide a native [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") implementation in places that work with [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2"). However, if you’re using a provider that has a native implementation of [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
+  The [`BackendSamplerV2`](#qiskit.primitives.BackendSamplerV2 "qiskit.primitives.BackendSamplerV2") class is a generic implementation of the [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") object in the class [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") API. It facilitates using backends that do not provide a native [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") implementation in places that work with [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2"). However, if you’re using a provider that has a native implementation of [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
 
   This class does not perform any measurement or gate mitigation.
 
@@ -31,7 +31,7 @@ python_api_name: qiskit.primitives.BackendSamplerV2
 
   **Parameters**
 
-  *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – The backend to run the primitive on.
+  *   **backend** ([*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – The backend to run the primitive on.
   *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)") *| None*) – The options to control the default shots (`default_shots`) and the random seed for the simulator (`seed_simulator`).
 
   ## Attributes

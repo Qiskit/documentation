@@ -1,0 +1,117 @@
+---
+title: pauli_feature_map (v1.4)
+description: API reference for qiskit.circuit.library.pauli_feature_map in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.pauli_feature_map
+---
+
+<span id="pauli-feature-map" />
+
+# pauli\_feature\_map
+
+<Class id="qiskit.circuit.library.pauli_feature_map" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L43-L167" signature="qiskit.circuit.library.pauli_feature_map(feature_dimension, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')" modifiers="class">
+  Bases:
+
+  The Pauli expansion circuit.
+
+  The Pauli expansion circuit is a data encoding circuit that transforms input data $\vec{x} \in \mathbb{R}^n$, where $n$ is the `feature_dimension`, as
+
+$$
+U_{\Phi(\vec{x})}=\exp\left(i\sum_{S \in \mathcal{I}}
+\phi_S(\vec{x})\prod_{i\in S} P_i\right).
+$$
+
+  Here, $S$ is a set of qubit indices that describes the connections in the feature map, $\mathcal{I}$ is a set containing all these index sets, and $P_i \in \{I, X, Y, Z\}$. Per default the data-mapping $\phi_S$ is
+
+$$
+\phi_S(\vec{x}) = \begin{cases}
+x_i \text{ if } S = \{i\} \\
+\prod_{j \in S} (\pi - x_j) \text{ if } |S| > 1
+\end{cases}.
+$$
+
+  The possible connections can be set using the `entanglement` and `paulis` arguments. For example, for single-qubit $Z$ rotations and two-qubit $YY$ interactions between all qubit pairs, we can set:
+
+  ```python
+  circuit = pauli_feature_map(..., paulis=["Z", "YY"], entanglement="full")
+  ```
+
+  which will produce blocks of the form
+
+  ```text
+  ┌───┐┌─────────────┐┌──────────┐                                            ┌───────────┐
+  ┤ H ├┤ P(2.0*x[0]) ├┤ RX(pi/2) ├──■──────────────────────────────────────■──┤ RX(-pi/2) ├
+  ├───┤├─────────────┤├──────────┤┌─┴─┐┌────────────────────────────────┐┌─┴─┐├───────────┤
+  ┤ H ├┤ P(2.0*x[1]) ├┤ RX(pi/2) ├┤ X ├┤ P(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├┤ RX(-pi/2) ├
+  └───┘└─────────────┘└──────────┘└───┘└────────────────────────────────┘└───┘└───────────┘
+  ```
+
+  The circuit contains `reps` repetitions of this transformation.
+
+  Please refer to `z_feature_map()` for the case of single-qubit Pauli-$Z$ rotations and to `zz_feature_map()` for the single- and two-qubit Pauli-$Z$ rotations.
+
+  **Examples**
+
+  ```python
+  >>> prep = pauli_feature_map(2, reps=1, paulis=["ZZ"])
+  >>> print(prep)
+       ┌───┐
+  q_0: ┤ H ├──■──────────────────────────────────────■──
+       ├───┤┌─┴─┐┌────────────────────────────────┐┌─┴─┐
+  q_1: ┤ H ├┤ X ├┤ P(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├
+       └───┘└───┘└────────────────────────────────┘└───┘
+  ```
+
+  ```python
+  >>> prep = pauli_feature_map(2, reps=1, paulis=["Z", "XX"])
+  >>> print(prep)
+       ┌───┐┌─────────────┐┌───┐                                            ┌───┐
+  q_0: ┤ H ├┤ P(2.0*x[0]) ├┤ H ├──■──────────────────────────────────────■──┤ H ├
+       ├───┤├─────────────┤├───┤┌─┴─┐┌────────────────────────────────┐┌─┴─┐├───┤
+  q_1: ┤ H ├┤ P(2.0*x[1]) ├┤ H ├┤ X ├┤ P(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├┤ H ├
+       └───┘└─────────────┘└───┘└───┘└────────────────────────────────┘└───┘└───┘
+  ```
+
+  ```python
+  >>> prep = pauli_feature_map(2, reps=1, paulis=["ZY"])
+  >>> print(prep)
+       ┌───┐┌──────────┐                                            ┌───────────┐
+  q_0: ┤ H ├┤ RX(pi/2) ├──■──────────────────────────────────────■──┤ RX(-pi/2) ├
+       ├───┤└──────────┘┌─┴─┐┌────────────────────────────────┐┌─┴─┐└───────────┘
+  q_1: ┤ H ├────────────┤ X ├┤ P(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├─────────────
+       └───┘            └───┘└────────────────────────────────┘└───┘
+  ```
+
+  ```python
+  >>> from qiskit.circuit.library import EfficientSU2
+  >>> prep = pauli_feature_map(3, reps=3, paulis=["Z", "YY", "ZXZ"])
+  >>> wavefunction = EfficientSU2(3)
+  >>> classifier = prep.compose(wavefunction)
+  >>> classifier.num_parameters
+  27
+  >>> classifier.count_ops()
+  OrderedDict([('cx', 39), ('rx', 36), ('u1', 21), ('h', 15), ('ry', 12), ('rz', 12)])
+  ```
+
+  References:
+
+  \[1] Havlicek et al. Supervised learning with quantum enhanced feature spaces, [Nature 567, 209-212 (2019)](https://www.nature.com/articles/s41586-019-0980-2).
+
+  **Parameters**
+
+  *   **feature\_dimension** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| Mapping\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*, Sequence\[Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| Mapping\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*, Sequence\[Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]]]*) –
+  *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
+  *   **paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | None*) –
+  *   **data\_map\_func** (*Callable\[\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*],* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*] | None*) –
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Class>
+

@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_bloch_multivector
 
 # qiskit.visualization.plot\_bloch\_multivector
 
-<Function id="qiskit.visualization.plot_bloch_multivector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/visualization/state_visualization.py#L257-L362" signature="qiskit.visualization.plot_bloch_multivector(state, title='', figsize=None, *, reverse_bits=False, filename=None, font_size=None, title_font_size=None, title_pad=1)">
+<Function id="qiskit.visualization.plot_bloch_multivector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/visualization/state_visualization.py#L257-L369" signature="qiskit.visualization.plot_bloch_multivector(state, title='', figsize=None, *, reverse_bits=False, filename=None, font_size=None, title_font_size=None, title_pad=1)">
   Plot a Bloch sphere for each qubit.
 
   Each component $(x,y,z)$ of the Bloch sphere labeled as ‘qubit i’ represents the expected value of the corresponding Pauli operator acting only on that qubit, that is, the expected value of $I_{N-1} \otimes\dotsb\otimes I_{i+1}\otimes P_i \otimes I_{i-1}\otimes\dotsb\otimes I_0$, where $N$ is the number of qubits, $P\in \{X,Y,Z\}$ and $I$ is the identity operator.
@@ -23,7 +23,8 @@ python_api_name: qiskit.visualization.plot_bloch_multivector
   *   **reverse\_bits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, plots qubits following Qiskit’s convention \[Default:False].
   *   **font\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Font size for the Bloch ball figures.
   *   **title\_font\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Font size for the title.
-  *   **title\_pad** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Padding for the title (suptitle y position is y=1+title\_pad/100).
+  *   **title\_pad** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Padding for the title (suptitle `y` position is `0.98`
+  *   **title\_pad/100**\*\*)\*\*\*\*.\*\* (*and the image height will be extended by 1 +*) –
 
   **Returns**
 
@@ -31,7 +32,7 @@ python_api_name: qiskit.visualization.plot_bloch_multivector
 
   **Return type**
 
-  [`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure "(in Matplotlib v3.10.1)")
+  [`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure "(in Matplotlib v3.10.3)")
 
   **Raises**
 
@@ -53,7 +54,7 @@ python_api_name: qiskit.visualization.plot_bloch_multivector
   plot_bloch_multivector(state)
   ```
 
-  ![Output from the previous code.](/images/api/qiskit/dev/qiskit-visualization-plot_bloch_multivector-1.avif)
+  ![Output from the previous code.](/docs/images/api/qiskit/dev/qiskit-visualization-plot_bloch_multivector-1.avif)
 
   ```python
   from qiskit import QuantumCircuit
@@ -78,6 +79,6 @@ python_api_name: qiskit.visualization.plot_bloch_multivector
   plot_bloch_multivector(matrix, title='My Bloch Spheres', reverse_bits=True)
   ```
 
-  ![Output from the previous code.](/images/api/qiskit/dev/qiskit-visualization-plot_bloch_multivector-2.avif)
+  ![Output from the previous code.](/docs/images/api/qiskit/dev/qiskit-visualization-plot_bloch_multivector-2.avif)
 </Function>
 

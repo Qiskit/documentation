@@ -26,13 +26,14 @@ described in more detail below.
 
 A tentative release schedule is included below:
 
-![Tentative Qiskit release schedule](/images/guides/install/release_schedule.avif)
+![Tentative Qiskit release schedule](/docs/images/guides/install/release_schedule.avif)
 
-For an up-to-date release schedule, refer to the Qiskit Github project's [milestones list](https://github.com/Qiskit/qiskit/milestones), which will always contain the current release plan.
+For an up-to-date release schedule, refer to the Qiskit GitHub project's [milestones list](https://github.com/Qiskit/qiskit/milestones), which will always contain the current release plan.
 
 With the release of a new major version, the previous major version is supported
-for at least six months; only bug and security fixes are accepted during this time and only patch releases are published for this major version. A final
-patch version is published when support is dropped, and that release 
+for at least six months with only bug fixes, and one year for security fixes. During
+this time only patch releases are published for this major version.
+A final patch version is published when support is dropped, and that release
 also documents the end of support for that major version series. A longer
 support window is needed for the previous major version as this gives downstream
 Qiskit consumers and their users a chance to migrate their code.
@@ -102,7 +103,7 @@ the newest version available by default.
 
 The QPY serialization format is backwards-compatible so that a new Qiskit release can always load a QPY
 file generated with an earlier release of Qiskit. However, the format isn't forward-compatible so, in principle, it's not possible
-to load QPY files generated with a newer version of Qiskit using an older release.  To facilitate user migration across major version releases, the [`qiskit.qpy.dump()`](/api/qiskit/qpy#dump) function will always support at least one overlapping version between the `X.0.0` and the `X-1.Y.0` release (where `Y` is the last minor version of 
+to load QPY files generated with a newer version of Qiskit using an older release.  To facilitate user migration across major version releases, the [`qiskit.qpy.dump()`](/docs/api/qiskit/qpy#dump) function will always support at least one overlapping version between the `X.0.0` and the `X-1.Y.0` release (where `Y` is the last minor version of 
 that series). The parameter `qiskit.qpy.dump(..., version=...)` will enable saving QPY format files that can be loaded by both major versions from the newer
 release. See more details in [RFC 0020](https://github.com/Qiskit/RFCs/blob/master/0020-release_cycle.md#qpy-support).
 

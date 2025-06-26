@@ -8,8 +8,8 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
 # EstimatorV2
 
-<Class id="qiskit_ibm_runtime.EstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/estimator.py#L44-L173" signature="EstimatorV2(mode=None, options=None)" modifiers="class">
-  Bases: `BasePrimitiveV2`\[[`EstimatorOptions`](options-estimator-options "qiskit_ibm_runtime.options.estimator_options.EstimatorOptions")], `Estimator`, [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2 "(in Qiskit v1.3)")
+<Class id="qiskit_ibm_runtime.EstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/estimator.py#L44-L174" signature="EstimatorV2(mode=None, options=None)" modifiers="class">
+  Bases: `BasePrimitiveV2`\[[`EstimatorOptions`](options-estimator-options "qiskit_ibm_runtime.options.estimator_options.EstimatorOptions")], `Estimator`, [`BaseEstimatorV2`](/docs/api/qiskit/qiskit.primitives.BaseEstimatorV2 "(in Qiskit v2.0)")
 
   Class for interacting with Qiskit Runtime Estimator primitive service.
 
@@ -19,7 +19,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   Following construction, an estimator is used by calling its [`run()`](#qiskit_ibm_runtime.EstimatorV2.run "qiskit_ibm_runtime.EstimatorV2.run") method with a list of PUBs (Primitive Unified Blocs). Each PUB contains four values that, together, define a computation unit of work for the estimator to complete:
 
-  *   a single [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)"), possibly parametrized, whose final state we define as $\psi(\theta)$,
+  *   a single [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.0)"), possibly parametrized, whose final state we define as $\psi(\theta)$,
   *   one or more observables (specified as any `ObservablesArrayLike`, including `Pauli`, `SparsePauliOp`, `str`) that specify which expectation values to estimate, denoted $H_j$, and
   *   a collection parameter value sets to bind the circuit against, $\theta_k$.
   *   an optional target precision for expectation value estimates.
@@ -55,7 +55,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   **Parameters**
 
-  *   **mode** (*Optional\[Union\[BackendV1, BackendV2,* [*Session*](session "qiskit_ibm_runtime.Session")*,* [*Batch*](batch "qiskit_ibm_runtime.Batch")*, str]]*) –
+  *   **mode** (*Optional\[Union\[BackendV2,* [*Session*](session "qiskit_ibm_runtime.Session")*,* [*Batch*](batch "qiskit_ibm_runtime.Batch")*, str]]*) –
 
       The execution mode used to make the primitive query. It can be:
 
@@ -63,7 +63,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
       *   A [`Session`](session "qiskit_ibm_runtime.Session") if you are using session execution mode.
       *   A [`Batch`](batch "qiskit_ibm_runtime.Batch") if you are using batch execution mode.
 
-      Refer to the [Qiskit Runtime documentation](/guides/execution-modes). for more information about the `Execution modes`.
+      Refer to the [Qiskit Runtime documentation](/docs/guides/execution-modes). for more information about the `Execution modes`.
 
   *   **options** (*Optional\[Union\[Dict,* [*EstimatorOptions*](options-estimator-options "qiskit_ibm_runtime.options.EstimatorOptions")*]]*) – Estimator options, see `EstimatorOptions` for detailed description.
 
@@ -93,17 +93,17 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.EstimatorV2.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/base_primitive.py#L210-L212" signature="backend()">
+  <Function id="qiskit_ibm_runtime.EstimatorV2.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/base_primitive.py#L226-L228" signature="backend()">
     Return the backend the primitive query will be run on.
 
     **Return type**
 
-    BackendV1 | BackendV2
+    [*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v2.0)")
   </Function>
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.EstimatorV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/estimator.py#L126-L149" signature="run(pubs, *, precision=None)">
+  <Function id="qiskit_ibm_runtime.EstimatorV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/estimator.py#L127-L150" signature="run(pubs, *, precision=None)">
     Submit a request to the estimator primitive.
 
     **Parameters**

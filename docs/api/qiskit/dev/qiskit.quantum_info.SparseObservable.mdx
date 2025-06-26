@@ -93,72 +93,72 @@ $$
 
     The numeric structure of these is that they are all four-bit values of which the low two bits are the (phase-less) symplectic representation of the Pauli operator related to the object, where the low bit denotes a contribution by $Z$ and the second lowest a contribution by $X$, while the upper two bits are `00` for a Pauli operator, `01` for the negative-eigenstate projector, and `10` for the positive-eigenstate projector.
 
-    ### Values
+    #### Values
 
-    #### X
+    ##### X
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.X" attributeValue="2">
       The Pauli $X$ operator. Uses the single-letter label `"X"`.
     </Attribute>
 
-    #### PLUS
+    ##### PLUS
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.PLUS" attributeValue="10">
       The projector to the positive eigenstate of the $X$ operator: $\lvert+\rangle\langle+\rvert$. Uses the single-letter label `"+"`.
     </Attribute>
 
-    #### MINUS
+    ##### MINUS
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.MINUS" attributeValue="6">
       The projector to the negative eigenstate of the $X$ operator: $\lvert-\rangle\langle-\rvert$. Uses the single-letter label `"-"`.
     </Attribute>
 
-    #### Y
+    ##### Y
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.Y" attributeValue="3">
       The Pauli $Y$ operator. Uses the single-letter label `"Y"`.
     </Attribute>
 
-    #### RIGHT
+    ##### RIGHT
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.RIGHT" attributeValue="11">
       The projector to the positive eigenstate of the $Y$ operator: $\lvert r\rangle\langle r\rvert$. Uses the single-letter label `"r"`.
     </Attribute>
 
-    #### LEFT
+    ##### LEFT
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.LEFT" attributeValue="7">
       The projector to the negative eigenstate of the $Y$ operator: $\lvert l\rangle\langle l\rvert$. Uses the single-letter label `"l"`.
     </Attribute>
 
-    #### Z
+    ##### Z
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.Z" attributeValue="1">
       The Pauli $Z$ operator. Uses the single-letter label `"Z"`.
     </Attribute>
 
-    #### ZERO
+    ##### ZERO
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.ZERO" attributeValue="9">
       The projector to the positive eigenstate of the $Z$ operator: $\lvert0\rangle\langle0\rvert$. Uses the single-letter label `"0"`.
     </Attribute>
 
-    #### ONE
+    ##### ONE
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.ONE" attributeValue="5">
       The projector to the negative eigenstate of the $Z$ operator: $\lvert1\rangle\langle1\rvert$. Uses the single-letter label `"1"`.
     </Attribute>
 
-    ### Attributes
+    #### Attributes
 
-    #### label
+    ##### label
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.label">
       The single-character string label used to represent this term in the [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") alphabet.
     </Attribute>
   </Class>
 
-  Each of the array-like attributes behaves like a Python sequence. You can index and slice these with standard [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")-like semantics. Slicing an attribute returns a Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)") containing a copy of the relevant data with the natural `dtype` of the field; this lets you easily do mathematics on the results, like bitwise operations on [`bit_terms`](#qiskit.quantum_info.SparseObservable.bit_terms "qiskit.quantum_info.SparseObservable.bit_terms"). You can assign to indices or slices of each of the attributes, but beware that you must uphold [the data coherence rules](#sparse-observable-arrays) while doing this. For example:
+  Each of the array-like attributes behaves like a Python sequence. You can index and slice these with standard [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")-like semantics. Slicing an attribute returns a Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)") containing a copy of the relevant data with the natural `dtype` of the field; this lets you easily do mathematics on the results, like bitwise operations on [`bit_terms`](#qiskit.quantum_info.SparseObservable.bit_terms "qiskit.quantum_info.SparseObservable.bit_terms"). You can assign to indices or slices of each of the attributes, but beware that you must uphold [the data coherence rules](#sparse-observable-arrays) while doing this. For example:
 
   ```python
   >>> obs = SparseObservable.from_list([("XZY", 1.5j), ("+1r", -0.5)])
@@ -210,6 +210,18 @@ $$
 
     These are typically created by indexing into or iterating through a [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
 
+    ##### bit\_labels
+
+    <Function id="qiskit.quantum_info.SparseObservable.Term.bit_labels" signature="bit_labels()">
+      Return the bit labels of the term as string.
+
+      The bit labels will match the order of `SparseTerm.indices`, such that the i-th character in the string is applied to the qubit index at `term.indices[i]`.
+
+      **Returns**
+
+      The non-identity bit terms as concatenated string.
+    </Function>
+
     ##### bit\_terms
 
     <Attribute id="qiskit.quantum_info.SparseObservable.Term.bit_terms">
@@ -251,13 +263,9 @@ $$
 
       For example, the projector `0l+` will return a Pauli `ZYX`. The resulting [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") is dense, in the sense that explicit identities are stored. An identity in the Pauli output does not require a concrete measurement.
 
-      **Returns**
+      **Returns: [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"): the Pauli operator representing the necessary**
 
-      the Pauli operator representing the necessary measurement basis.
-
-      **Return type**
-
-      [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+      measurement basis.
 
       <Admonition title="See also" type="note">
         **[`SparseObservable.pauli_bases()`](#qiskit.quantum_info.SparseObservable.pauli_bases "qiskit.quantum_info.SparseObservable.pauli_bases")**
@@ -698,13 +706,13 @@ $$
 
     *   **num\_qubits** – number of qubits in the observable.
 
-    *   **coeffs** – complex coefficients of each term of the observable. This should be a Numpy array with dtype [`complex128`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.complex128 "(in NumPy v2.2)").
+    *   **coeffs** – complex coefficients of each term of the observable. This should be a Numpy array with dtype [`complex128`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.complex128 "(in NumPy v2.3)").
 
-    *   **bit\_terms** – flattened list of the single-qubit terms comprising all complete terms. This should be a Numpy array with dtype [`uint8`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint8 "(in NumPy v2.2)") (which is compatible with [`BitTerm`](#qiskit.quantum_info.SparseObservable.BitTerm "qiskit.quantum_info.SparseObservable.BitTerm")).
+    *   **bit\_terms** – flattened list of the single-qubit terms comprising all complete terms. This should be a Numpy array with dtype [`uint8`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint8 "(in NumPy v2.3)") (which is compatible with [`BitTerm`](#qiskit.quantum_info.SparseObservable.BitTerm "qiskit.quantum_info.SparseObservable.BitTerm")).
 
-    *   **indices** – flattened term-wise sorted list of the qubits each single-qubit term corresponds to. This should be a Numpy array with dtype [`uint32`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint32 "(in NumPy v2.2)").
+    *   **indices** – flattened term-wise sorted list of the qubits each single-qubit term corresponds to. This should be a Numpy array with dtype [`uint32`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint32 "(in NumPy v2.3)").
 
-    *   **boundaries** – the indices that partition `bit_terms` and `indices` into terms. This should be a Numpy array with dtype [`uintp`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uintp "(in NumPy v2.2)").
+    *   **boundaries** – the indices that partition `bit_terms` and `indices` into terms. This should be a Numpy array with dtype [`uintp`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uintp "(in NumPy v2.3)").
 
     *   **check** –
 

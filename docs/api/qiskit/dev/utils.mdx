@@ -95,7 +95,7 @@ python_api_name: qiskit.utils
 
 ### apply\_prefix
 
-<Function id="qiskit.utils.apply_prefix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/units.py#L21-L68" signature="qiskit.utils.apply_prefix(value, unit)">
+<Function id="qiskit.utils.apply_prefix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/units.py#L24-L71" signature="qiskit.utils.apply_prefix(value, unit)">
   Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
 
   **Parameters**
@@ -131,7 +131,7 @@ python_api_name: qiskit.utils
 
 ### detach\_prefix
 
-<Function id="qiskit.utils.detach_prefix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/units.py#L71-L143" signature="qiskit.utils.detach_prefix(value, decimal=None)">
+<Function id="qiskit.utils.detach_prefix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/units.py#L74-L146" signature="qiskit.utils.detach_prefix(value, decimal=None)">
   Given a SI unit value, find the most suitable prefix to scale the value.
 
   For example, the `value = 1.3e8` will be converted into a tuple of `(130.0, "M")`, which represents a scaled value and auxiliary unit that may be used to display the value. In above example, that value might be displayed as `130 MHz` (unit is arbitrary here).
@@ -512,7 +512,13 @@ Qiskit has several features that are enabled only if certain *optional* dependen
 ##### qiskit.utils.optionals.HAS\_SYMENGINE
 
 <Attribute id="qiskit.utils.optionals.HAS_SYMENGINE">
-  [Symengine](https://github.com/symengine/symengine) is a fast C++ backend for the symbolic-manipulation library [Sympy](https://www.sympy.org/en/index.html). Qiskit uses special methods from Symengine to accelerate its handling of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s if available.
+  [Symengine](https://github.com/symengine/symengine) is a fast C++ backend for the symbolic-manipulation library [Sympy](https://www.sympy.org/en/index.html). This dependency is used to load legacy QPY formats, where this package was used to handle [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s.
+</Attribute>
+
+##### qiskit.utils.optionals.HAS\_SYMPY
+
+<Attribute id="qiskit.utils.optionals.HAS_SYMPY">
+  [SymPy](https://www.sympy.org/en/index.html) is Python library for symbolic mathematics. `SymPy` was historically used for the implementation of the [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") class but isn’t any longer. However it is needed for some legacy functionality that uses [`ParameterExpression.sympify()`](qiskit.circuit.ParameterExpression#sympify "qiskit.circuit.ParameterExpression.sympify"). It is also used in some visualization functions and template matching.
 </Attribute>
 
 ##### qiskit.utils.optionals.HAS\_TESTTOOLS

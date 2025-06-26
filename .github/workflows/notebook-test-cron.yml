@@ -19,19 +19,23 @@ jobs:
   execute:
     name: Execute notebooks
     runs-on: ubuntu-latest
+    if: github.repository_owner == 'Qiskit'
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup environment
         uses: ./.github/actions/set-up-notebook-testing
         with:
-          ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
-          instance: "client-enablement/documentation/qiskit-documenta"
+          ibm-cloud-token: ${{ secrets.IBM_CLOUD_TEST_TOKEN }}
+          instance: ${{ vars.IBM_CLOUD_TEST_CRN }}
           install-linux-deps: true
 
       - name: Execute notebooks
         timeout-minutes: 350
         run: tox -- --write --test-strategy hardware
+
+      - name: Normalize notebooks
+        run: tox -e fix
 
       - name: Detect changed notebooks
         id: changed-notebooks

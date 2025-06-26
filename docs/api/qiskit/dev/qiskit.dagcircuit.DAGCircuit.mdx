@@ -37,12 +37,16 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### cregs
 
-  <Attribute id="qiskit.dagcircuit.DAGCircuit.cregs" />
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.cregs">
+    Returns the dict containing the ClassicalRegisters in the circuit
+  </Attribute>
 
   ### duration
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.duration">
-    Duration.
+    Returns the total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.dagcircuit.DAGCircuit.unit "qiskit.dagcircuit.DAGCircuit.unit")
+
+    DEPRECATED since Qiskit 1.3.0 and will be removed in Qiskit 3.0.0
   </Attribute>
 
   ### global\_phase
@@ -73,10 +77,22 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     Returns the number of nodes in the dag.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.num_captured_stretches">
+    Number of captured stretches tracked by the circuit.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.num_captured_vars">
     Number of captured classical variables tracked by the circuit.
+  </Attribute>
+
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.num_declared_stretches">
+    Number of declared local stretches tracked by the circuit.
   </Attribute>
 
   ### num\_declared\_vars
@@ -91,6 +107,12 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     Number of input classical variables tracked by the circuit.
   </Attribute>
 
+  ### num\_stretches
+
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.num_stretches">
+    Total number of stretches tracked by the circuit.
+  </Attribute>
+
   ### num\_vars
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.num_vars">
@@ -103,7 +125,9 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### qregs
 
-  <Attribute id="qiskit.dagcircuit.DAGCircuit.qregs" />
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.qregs">
+    Returns the dict containing the QuantumRegisters in the circuit
+  </Attribute>
 
   ### qubits
 
@@ -126,7 +150,9 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   ### unit
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.unit">
-    Unit of duration.
+    Returns the unit that duration is specified in.
+
+    DEPRECATED since Qiskit 1.3.0 and will be removed in Qiskit 3.0.0
   </Attribute>
 
   ### wires
@@ -136,6 +162,16 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   </Attribute>
 
   ## Methods
+
+  ### add\_captured\_stretch
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_captured_stretch" signature="add_captured_stretch(var)">
+    Add a captured stretch to the circuit.
+
+    **Parameters**
+
+    **stretch** – the stretch to add.
+  </Function>
 
   ### add\_captured\_var
 
@@ -150,13 +186,23 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   ### add\_clbits
 
   <Function id="qiskit.dagcircuit.DAGCircuit.add_clbits" signature="add_clbits(clbits)">
-    Add individual qubit wires.
+    Add individual clbit wires.
   </Function>
 
   ### add\_creg
 
   <Function id="qiskit.dagcircuit.DAGCircuit.add_creg" signature="add_creg(creg)">
     Add all wires in a classical register.
+  </Function>
+
+  ### add\_declared\_stretch
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_declared_stretch" signature="add_declared_stretch(var)">
+    Add a declared stretch to the circuit.
+
+    **Parameters**
+
+    **var** – the stretch to add.
   </Function>
 
   ### add\_declared\_var
@@ -334,7 +380,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### copy\_empty\_like
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.copy_empty_like" signature="copy_empty_like(*, vars_mode='alike')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.copy_empty_like" signature="copy_empty_like(*, vars_mode=Ellipsis)">
     Return a copy of self with the same structure but empty.
 
     **That structure includes:**
@@ -494,6 +540,26 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
   </Function>
 
+  ### has\_identifier
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.has_identifier" signature="has_identifier(var)">
+    Is this identifier in the DAG?
+
+    **Parameters**
+
+    **var** – the identifier or name to check.
+  </Function>
+
+  ### has\_stretch
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.has_stretch" signature="has_stretch(var)">
+    Is this stretch in the DAG?
+
+    **Parameters**
+
+    **var** – the stretch or name to check.
+  </Function>
+
   ### has\_var
 
   <Function id="qiskit.dagcircuit.DAGCircuit.has_var" signature="has_var(var)">
@@ -534,10 +600,28 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     Checks if a second node is in the successors of node.
   </Function>
 
+  ### iter\_captured\_stretches
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_captured_stretches" signature="iter_captured_stretches()">
+    Iterable over the captured stretches tracked by the circuit.
+  </Function>
+
   ### iter\_captured\_vars
 
   <Function id="qiskit.dagcircuit.DAGCircuit.iter_captured_vars" signature="iter_captured_vars()">
     Iterable over the captured classical variables tracked by the circuit.
+  </Function>
+
+  ### iter\_captures
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_captures" signature="iter_captures()">
+    Iterable over all captured identifiers tracked by the circuit.
+  </Function>
+
+  ### iter\_declared\_stretches
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_declared_stretches" signature="iter_declared_stretches()">
+    Iterable over the declared stretches tracked by the circuit.
   </Function>
 
   ### iter\_declared\_vars
@@ -552,6 +636,12 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     Iterable over the input classical variables tracked by the circuit.
   </Function>
 
+  ### iter\_stretches
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_stretches" signature="iter_stretches()">
+    Iterable over all the stretches tracked by the circuit.
+  </Function>
+
   ### iter\_vars
 
   <Function id="qiskit.dagcircuit.DAGCircuit.iter_vars" signature="iter_vars()">
@@ -560,7 +650,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### layers
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.layers" signature="layers(*, vars_mode='captures')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.layers" signature="layers(*, vars_mode=Ellipsis)">
     Yield a shallow view on a layer of this DAGCircuit for all d layers of this circuit.
 
     A layer is a circuit whose gates act on disjoint qubits, i.e., a layer has depth 1. The total number of layers equals the circuit depth d. The layers are indexed from 0 to d-1 with the earliest layer at index 0. The layers are constructed using a greedy algorithm. Each returned layer is a dict containing \{“graph”: circuit graph, “partition”: list of qubit lists}.
@@ -574,6 +664,20 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   <Function id="qiskit.dagcircuit.DAGCircuit.longest_path" signature="longest_path()">
     Returns the longest path in the dag as a list of DAGOpNodes, DAGInNodes, and DAGOutNodes.
+  </Function>
+
+  ### make\_physical
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.make_physical" signature="make_physical(num_qubits=None)">
+    Put `self` into the canonical physical form, with the given number of qubits.
+
+    This acts in place, and does not need to traverse the DAG. It is intended for use when the DAG is known to already represent a physical circuit, and we just need to assert that it is canonical physical form.
+
+    This erases any information about virtual qubits in the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"); if using this yourself, you may need to ensure you have created and stored a suitable [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout"). Effectively, this applies the “trivial” layout mapping virtual qubit 0 to physical qubit 0, and so on.
+
+    **Parameters**
+
+    **num\_qubits** – if given, the total number of physical qubits in the output; it must be at least as large as the number of qubits in the DAG. If not given, the number of qubits is unchanged.
   </Function>
 
   ### multi\_qubit\_ops
@@ -645,6 +749,12 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   <Function id="qiskit.dagcircuit.DAGCircuit.num_clbits" signature="num_clbits()">
     Return the total number of classical bits used by the circuit.
+  </Function>
+
+  ### num\_ops
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.num_ops" signature="num_ops()">
+    Get the number of op nodes in the DAG.
   </Function>
 
   ### num\_qubits
@@ -875,7 +985,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### separable\_circuits
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.separable_circuits" signature="separable_circuits(remove_idle_qubits=False, *, vars_mode='alike')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.separable_circuits" signature="separable_circuits(remove_idle_qubits=False, *, vars_mode=Ellipsis)">
     Decompose the circuit into sets of qubits with no gates connecting them.
 
     **Parameters**
@@ -897,7 +1007,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### serial\_layers
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.serial_layers" signature="serial_layers(*, vars_mode='captures')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.serial_layers" signature="serial_layers(*, vars_mode=Ellipsis)">
     Yield a layer for all gates of this circuit.
 
     A serial layer is a circuit with one gate. The layers have the same structure as in layers().

@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
 
 # FakeFractionalBackend
 
-<Class id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/backends/fractional/fake_fractional.py#L21-L36" signature="FakeFractionalBackend" modifiers="class">
+<Class id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/backends/fractional/fake_fractional.py#L21-L36" signature="FakeFractionalBackend" modifiers="class">
   Bases: `FakeBackendV2`
 
   A fake 5 qubit backend with dynamic and fractional feature modeled based on FakeLima.
@@ -35,7 +35,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
   ### coupling\_map
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.coupling_map">
-    Return the [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.3)") object
+    Return the [`CouplingMap`](/docs/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v2.0)") object
   </Attribute>
 
   ### defs\_filename
@@ -71,17 +71,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
   ### instruction\_durations
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.instruction_durations">
-    Return the [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.3)") object.
-  </Attribute>
-
-  ### instruction\_schedule\_map
-
-  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.instruction_schedule_map">
-    Return the [`InstructionScheduleMap`](/api/qiskit/qiskit.pulse.InstructionScheduleMap "(in Qiskit v1.3)") for the instructions defined in this backend’s target.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.providers.backend.BackendV2.instruction_schedule_map` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.instruction_schedule_map` will have no alternative in Qiskit.
-    </Admonition>
+    Return the [`InstructionDurations`](/docs/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v2.0)") object.
   </Attribute>
 
   ### instructions
@@ -92,16 +82,26 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
 
   ### max\_circuits
 
-  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.max_circuits" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.max_circuits">
+    (DEPRECATED) The maximum number of circuits
+
+    The maximum number of circuits that the backend supports in a single execution. Note that the actual number of circuits the service allows may be different.
+  </Attribute>
 
   ### meas\_map
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.meas_map">
-    Return the grouping of measurements which are multiplexed This is required to be implemented if the backend supports Pulse scheduling.
+    Return the grouping of measurements which are multiplexed
+
+    This is required to be implemented if the backend supports Pulse scheduling.
 
     **Returns**
 
     The grouping of measurements which are multiplexed
+
+    **Raises**
+
+    **NotImplementedError** – if the backend doesn’t support querying the measurement mapping
   </Attribute>
 
   ### num\_qubits
@@ -119,7 +119,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
   ### operations
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.operations">
-    A list of [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.3)") instances that the backend supports.
+    A list of [`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v2.0)") instances that the backend supports.
   </Attribute>
 
   ### options
@@ -137,21 +137,21 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
   ### provider
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.provider">
-    Return the backend Provider.
+    Return the backend provider.
 
     **Returns**
 
-    the Provider responsible for the backend.
+    the provider responsible for the backend.
 
     **Return type**
 
-    Provider
+    provider
   </Attribute>
 
   ### target
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.target">
-    A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.3)") object for the backend.
+    A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.0)") object for the backend.
 
     **Return type**
 
@@ -188,34 +188,14 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
 
   ## Methods
 
-  ### acquire\_channel
-
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.acquire_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L377-L390" signature="acquire_channel(qubit)">
-    Return the acquisition channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    **Returns**
-
-    The Qubit measurement acquisition line.
-
-    **Return type**
-
-    AcquireChannel
-
-    **Parameters**
-
-    **qubit** (*int*)
-  </Function>
-
   ### check\_faulty
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L232-L264" signature="check_faulty(circuit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L218-L250" signature="check_faulty(circuit)">
     Check if the input circuit uses faulty qubits or edges.
 
     **Parameters**
 
-    **circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")) – Circuit to check.
+    **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.0)")) – Circuit to check.
 
     **Raises**
 
@@ -228,45 +208,22 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
 
   ### configuration
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L228-L230" signature="configuration()">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L214-L216" signature="configuration()">
     Return the backend configuration.
 
     **Return type**
 
-    *QasmBackendConfiguration* | *PulseBackendConfiguration*
-  </Function>
-
-  ### control\_channel
-
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.control_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L392-L412" signature="control_channel(qubits)">
-    Return the secondary drive channel for the given qubit
-
-    This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    **Parameters**
-
-    **qubits** (*Iterable\[int]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
-
-    **Returns**
-
-    The multi qubit control line.
-
-    **Return type**
-
-    List\[ControlChannel]
+    *QasmBackendConfiguration*
   </Function>
 
   ### defaults
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.defaults" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L212-L226" signature="defaults(refresh=False)">
-    Return the pulse defaults for the backend
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.defaults" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L191-L212" signature="defaults(refresh=False)">
+    (DEPRECATED)Return the pulse defaults for the backend
 
     **Parameters**
 
-    *   **refresh** (*bool*) – If `True`, re-retrieve the backend defaults from the
-    *   **file.** (*local*)
+    **refresh** (*bool*) – If `True`, re-retrieve the backend defaults from the local file.
 
     **Returns**
 
@@ -277,55 +234,14 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
     *PulseDefaults*
   </Function>
 
-  ### drive\_channel
-
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.drive_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L347-L360" signature="drive_channel(qubit)">
-    Return the drive channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    **Returns**
-
-    The Qubit drive channel
-
-    **Return type**
-
-    DriveChannel
-
-    **Parameters**
-
-    **qubit** (*int*)
-  </Function>
-
-  ### measure\_channel
-
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.measure_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L362-L375" signature="measure_channel(qubit)">
-    Return the measure stimulus channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    **Returns**
-
-    The Qubit measurement stimulus line
-
-    **Return type**
-
-    MeasureChannel
-
-    **Parameters**
-
-    **qubit** (*int*)
-  </Function>
-
   ### properties
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L198-L210" signature="properties(refresh=False)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L178-L189" signature="properties(refresh=False)">
     Return the backend properties
 
     **Parameters**
 
-    *   **refresh** (*bool*) – If `True`, re-retrieve the backend properties
-    *   **file.** (*from the local*)
+    **refresh** (*bool*) – If `True`, re-retrieve the backend properties from the local file.
 
     **Returns**
 
@@ -357,19 +273,21 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
 
     **Return type**
 
-    [*QubitProperties*](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.3)") | *List*\[[*QubitProperties*](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.3)")]
+    [*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.0)") | *List*\[[*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.0)")]
   </Function>
 
   ### refresh
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L563-L640" signature="refresh(service)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L446-L522" signature="refresh(service)">
     Update the data files from its real counterpart
 
-    This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation: \* ../fake\_provider/backends/\{backend\_name}/conf\_\{backend\_name}.json \* ../fake\_provider/backends/\{backend\_name}/defs\_\{backend\_name}.json \* ../fake\_provider/backends/\{backend\_name}/props\_\{backend\_name}.json
+    This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation:
 
-    **The new data files will persist through sessions so the files will stay updated unless they**
+    *   `../fake_provider/backends/{backend_name}/conf_{backend_name}.json`
+    *   `../fake_provider/backends/{backend_name}/defs_{backend_name}.json`
+    *   `../fake_provider/backends/{backend_name}/props_{backend_name}.json`
 
-    are manually reverted locally or when qiskit-ibm-runtime is upgraded/reinstalled.
+    The new data files will persist through sessions so the files will stay updated unless they are manually reverted locally or when `qiskit-ibm-runtime` is upgraded or reinstalled.
 
     **Parameters**
 
@@ -387,10 +305,10 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L414-L475" signature="run(run_input, **options)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L330-L361" signature="run(run_input, **options)">
     Run on the fake backend using a simulator.
 
-    This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicSimulator or Aer simulator and returns a [`Job`](/api/qiskit/qiskit.providers.Job "(in Qiskit v1.3)") object.
+    This method runs circuit jobs (an individual or a list of QuantumCircuit) using BasicSimulator or Aer simulator and returns a [`Job`](/docs/api/qiskit/qiskit.providers.Job "(in Qiskit v2.0)") object.
 
     If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicSimulator without noise.
 
@@ -398,7 +316,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
 
     **Parameters**
 
-    *   **run\_input** (*QuantumCircuit or Schedule or ScheduleBlock or list*) – An individual or a list of [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)"), [`ScheduleBlock`](/api/qiskit/qiskit.pulse.ScheduleBlock "(in Qiskit v1.3)"), or [`Schedule`](/api/qiskit/qiskit.pulse.Schedule "(in Qiskit v1.3)") objects to run on the backend.
+    *   **run\_input** (*QuantumCircuit or list*) – An individual or a list of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.0)")
     *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
     **Returns**
@@ -408,10 +326,6 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
     **Return type**
 
     Job
-
-    **Raises**
-
-    **QiskitError** – If a pulse job is supplied and qiskit-aer is not installed.
   </Function>
 
   ### set\_options
@@ -432,7 +346,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeFractionalBackend
 
   ### status
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/fake_provider/fake_backend.py#L180-L196" signature="status()">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeFractionalBackend.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L160-L176" signature="status()">
     Return the backend status.
 
     **Returns**

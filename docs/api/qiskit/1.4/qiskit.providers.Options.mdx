@@ -1,0 +1,111 @@
+---
+title: Options (v1.4)
+description: API reference for qiskit.providers.Options in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.Options
+---
+
+# Options
+
+<Class id="qiskit.providers.Options" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/options.py#L19-L273" signature="qiskit.providers.Options(**kwargs)" modifiers="class">
+  Bases: [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping "(in Python v3.13)")
+
+  Base options object
+
+  This class is what all backend options are based on. The properties of the class are intended to be all dynamically adjustable so that a user can reconfigure the backend on demand. If a property is immutable to the user (eg something like number of qubits) that should be a configuration of the backend class itself instead of the options.
+
+  Instances of this class behave like dictionaries. Accessing an option with a default value can be done with the get() method:
+
+  ```python
+  >>> options = Options(opt1=1, opt2=2)
+  >>> options.get("opt1")
+  1
+  >>> options.get("opt3", default="hello")
+  'hello'
+  ```
+
+  Key-value pairs for all options can be retrieved using the items() method:
+
+  ```python
+  >>> list(options.items())
+  [('opt1', 1), ('opt2', 2)]
+  ```
+
+  Options can be updated by name:
+
+  ```python
+  >>> options["opt1"] = 3
+  >>> options.get("opt1")
+  3
+  ```
+
+  Runtime validators can be registered. See set\_validator. Updates through update\_options and indexing (\_\_setitem\_\_) validate the new value before performing the update and raise ValueError if the new value is invalid.
+
+  ```python
+  >>> options.set_validator("opt1", (1, 5))
+  >>> options["opt1"] = 4
+  >>> options["opt1"]
+  4
+  >>> options["opt1"] = 10  
+  Traceback (most recent call last):
+  ...
+  ValueError: ...
+  ```
+
+  ## Attributes
+
+  ### validator
+
+  <Attribute id="qiskit.providers.Options.validator" />
+
+  ## Methods
+
+  ### get
+
+  <Function id="qiskit.providers.Options.get" signature="get(k[, d]) → D[k] if k in D, else d.  d defaults to None." />
+
+  ### items
+
+  <Function id="qiskit.providers.Options.items" signature="items() → a set-like object providing a view on D's items" />
+
+  ### keys
+
+  <Function id="qiskit.providers.Options.keys" signature="keys() → a set-like object providing a view on D's keys" />
+
+  ### set\_validator
+
+  <Function id="qiskit.providers.Options.set_validator" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/options.py#L180-L232" signature="set_validator(field, validator_value)">
+    Set an optional validator for a field in the options
+
+    Setting a validator enables changes to an options values to be validated for correctness when [`update_options()`](#qiskit.providers.Options.update_options "qiskit.providers.Options.update_options") is called. For example if you have a numeric field like `shots` you can specify a bounds tuple that set an upper and lower bound on the value such as:
+
+    ```python
+    options.set_validator("shots", (1, 4096))
+    ```
+
+    In this case whenever the `"shots"` option is updated by the user it will enforce that the value is >=1 and \<=4096. A `ValueError` will be raised if it’s outside those bounds. If a validator is already present for the specified field it will be silently overridden.
+
+    **Parameters**
+
+    *   **field** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The field name to set the validator on
+    *   **validator\_value** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")  *or*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.13)")) – The value to use for the validator depending on the type indicates on how the value for a field is enforced. If a tuple is passed in it must have a length of two and will enforce the min and max value (inclusive) for an integer or float value option. If it’s a list it will list the valid values for a field. If it’s a `type` the validator will just enforce the value is of a certain type.
+
+    **Raises**
+
+    *   [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.13)") – If field is not present in the options object
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the `validator_value` has an invalid value for a given type
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – If `validator_value` is not a valid type
+  </Function>
+
+  ### update\_options
+
+  <Function id="qiskit.providers.Options.update_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/options.py#L234-L256" signature="update_options(**fields)">
+    Update options with kwargs
+  </Function>
+
+  ### values
+
+  <Function id="qiskit.providers.Options.values" signature="values() → an object providing a view on D's values" />
+</Class>
+

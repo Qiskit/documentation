@@ -1,0 +1,65 @@
+---
+title: HLSConfig (v1.4)
+description: API reference for qiskit.transpiler.passes.HLSConfig in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.HLSConfig
+---
+
+# HLSConfig
+
+<Class id="qiskit.transpiler.passes.HLSConfig" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/high_level_synthesis.py#L52-L135" signature="qiskit.transpiler.passes.HLSConfig(use_default_on_unspecified=True, plugin_selection='sequential', plugin_evaluation_fn=None, **kwargs)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  The high-level-synthesis config allows to specify a list of “methods” used by [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass to synthesize different types of higher-level objects.
+
+  A higher-level object is an object of type [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") (e.g., [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") or [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")). Each object is referred to by its [`name`](qiskit.circuit.Operation#name "qiskit.circuit.Operation.name") field (e.g., `"clifford"` for [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects), and the applicable synthesis methods are tied to this name.
+
+  In the config, each method is specified in one of several ways:
+
+  1.  a tuple consisting of the name of a known synthesis plugin and a dictionary providing additional arguments for the algorithm.
+  2.  a tuple consisting of an instance of [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin") and additional arguments for the algorithm.
+  3.  a single string of a known synthesis plugin
+  4.  a single instance of [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin").
+
+  The following example illustrates different ways how a config file can be created:
+
+  ```python
+  from qiskit.transpiler.passes.synthesis.high_level_synthesis import HLSConfig
+  from qiskit.transpiler.passes.synthesis.high_level_synthesis import ACGSynthesisPermutation
+
+  # All the ways to specify hls_config are equivalent
+  hls_config = HLSConfig(permutation=[("acg", {})])
+  hls_config = HLSConfig(permutation=["acg"])
+  hls_config = HLSConfig(permutation=[(ACGSynthesisPermutation(), {})])
+  hls_config = HLSConfig(permutation=[ACGSynthesisPermutation()])
+  ```
+
+  The names of the synthesis plugins should be declared in `entry-points` table for `qiskit.synthesis` in `pyproject.toml`, in the form \<higher-level-object-name>.\<synthesis-method-name>.
+
+  The standard higher-level-objects are recommended to have a synthesis method called “default”, which would be called automatically when synthesizing these objects, without having to explicitly set these methods in the config.
+
+  To avoid synthesizing a given higher-level-object, one can give it an empty list of methods.
+
+  For an explicit example of using such config files, refer to the documentation for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  For an overview of the complete process of using high-level synthesis, see [High-level Synthesis Plugins](transpiler_synthesis_plugins#using-high-level-synthesis-plugins).
+
+  Creates a high-level-synthesis config.
+
+  **Parameters**
+
+  *   **use\_default\_on\_unspecified** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, every higher-level-object without an explicitly specified list of methods will be synthesized using the “default” algorithm if it exists.
+  *   **plugin\_selection** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – if set to `"sequential"` (default), for every higher-level-object the synthesis pass will consider the specified methods sequentially, stopping at the first method that is able to synthesize the object. If set to `"all"`, all the specified methods will be considered, and the best synthesized circuit, according to `plugin_evaluation_fn` will be chosen.
+  *   **plugin\_evaluation\_fn** (*Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*],* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – a callable that evaluates the quality of the synthesized quantum circuit; a smaller value means a better circuit. If `None`, the quality of the circuit its size (i.e. the number of gates that it contains).
+  *   **kwargs** – a dictionary mapping higher-level-objects to lists of synthesis methods.
+
+  ## Methods
+
+  ### set\_methods
+
+  <Function id="qiskit.transpiler.passes.HLSConfig.set_methods" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/high_level_synthesis.py#L132-L135" signature="set_methods(hls_name, hls_methods)">
+    Sets the list of synthesis methods for a given higher-level-object. This overwrites the lists of methods if also set previously.
+  </Function>
+</Class>
+

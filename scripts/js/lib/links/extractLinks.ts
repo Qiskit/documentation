@@ -98,6 +98,7 @@ export async function parseLinks(
 async function parseObjectsInv(filePath: string): Promise<Set<string>> {
   const objinv = await ObjectsInv.fromFile(
     removeSuffix(filePath, "objects.inv"),
+    "any",
   );
   // All URIs are relative to the objects.inv file
   const dirname = removePrefix(path.dirname(filePath), "public");
