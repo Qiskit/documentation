@@ -84,7 +84,7 @@ def yarn_build(root_dir: Path, base_path: str) -> None:
     # dependencies, like the first-party deps, will already have been installed.
     run_subprocess(["yarn", "install"], cwd=root_dir, stream_output=True)
     run_subprocess(
-        ["yarn", "build"],
+        ["yarn", "build:preview"],
         cwd=root_dir,
         env={**os.environ, "NEXT_PUBLIC_BASE_PATH": base_path},
         stream_output=True,
