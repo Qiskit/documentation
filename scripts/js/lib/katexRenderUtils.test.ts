@@ -12,10 +12,10 @@
 
 import { expect, test } from "@playwright/test";
 
-import { hasInlineMath, removeFileExtension } from "./checkKatexRender";
+import { hasInlineMath, removeFileExtension } from "./katexRenderUtils";
 
 test("hasInlineMath()", () => {
-  const md1 = `
+  const baselineMd = `
   ---
 title: Migrate to the upgraded IBM Quantum Platform
 description: Migrate to using the upgraded IBM Quantum Platform for Open users
@@ -25,10 +25,10 @@ description: Migrate to using the upgraded IBM Quantum Platform for Open users
 
 This guide describes how, why, and when to transition to the [new version of IBM Quantum Platform,](https://quantum.cloud.ibm.com/) which is now available in early access mode.
 `;
-  expect(hasInlineMath(md1)).toEqual(false);
+  expect(hasInlineMath(baselineMd)).toEqual(false);
 
-  const md2 =
-    md1 +
+  const mathBlock =
+    baselineMd +
     `
     Katex-display
     $$
@@ -36,11 +36,11 @@ This guide describes how, why, and when to transition to the [new version of IBM
     $$
   `;
 
-  expect(hasInlineMath(md2)).toEqual(false);
+  expect(hasInlineMath(mathBlock)).toEqual(false);
 
-  const md3 = md2 + "Inline math $ 1 + 2 + 3 $";
+  const inlineMath = mathBlock + "Inline math $ 1 + 2 + 3 $";
 
-  expect(hasInlineMath(md3)).toEqual(true);
+  expect(hasInlineMath(inlineMath)).toEqual(true);
 });
 
 test("removeFileExtension()", () => {

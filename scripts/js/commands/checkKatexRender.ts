@@ -16,8 +16,8 @@ import { hideBin } from "yargs/helpers";
 import { firefox, Page } from "playwright";
 import fs from "fs/promises";
 
-import { removeSuffix } from "../lib/stringUtils";
 import { readMarkdown } from "../lib/markdownReader";
+import { hasInlineMath, removeFileExtension } from "../lib/katexRenderUtils";
 
 // This list contains files with inline math expressions that should be
 // fixed to avoid any possible overflow.
@@ -153,11 +153,12 @@ const main = async (): Promise<void> => {
 
   if (!allGood) {
     console.log(
-      "\nThe previous inline math expressions are too long. Please run `./fix` to fix the output of the notebooks' code cells and/or manually convert the expressions into a 'Katex Display' by using `$$` instead of `$` in a new line.\n",
+      "\nThe previous inline math expressions are too long. Please run `./fix` to fix the output of the notebooks' code cells and/or manually convert the expressions into math blocks by using `$$` instead of `$` in a new line.\n",
+      "\n",
       "Example of the conversion:\n",
       "--------------------------\n",
       "$[sample_{0}observable_{0}, \ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, \ldots, sample_{M-1}observable_{N-1}]$\n",
-      "->\n",
+      "↓\n",
       "$$\n",
       "[sample_{0}observable_{0}, \ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, \ldots, sample_{M-1}observable_{N-1}]\n",
       "$$",
@@ -173,12 +174,9 @@ async function checkPage(page: Page, pathname: string): Promise<string[]> {
   try {
     await page.goto(`http://localhost:3000/${pathname}`);
 
-    const allKatex = page.locator("span.katex");
-    const count = await allKatex.count();
+    const allKatex = await page.locator("span.katex").all();
 
-    for (let i = 0; i < count; i++) {
-      const mathExpr = allKatex.nth(i);
-
+    for (const mathExpr of allKatex) {
       // Expressions that are not inline have a parent span with the `katex-display` class.
       const isKatexDisplay = await mathExpr.evaluate((expr: any) =>
         expr.parentElement?.classList.contains("katex-display"),
@@ -193,7 +191,7 @@ async function checkPage(page: Page, pathname: string): Promise<string[]> {
       if (box && box.width >= MIN_WIDTH) {
         const content = await mathExpr.textContent();
         errors.push(
-          `  -  Error found. Approximate preview of the expression:\n\t $${content}}$`,
+          `  -  Error found. Approximate preview of the expression:\n\t \$${content}}\$`,
         );
       }
     }
@@ -230,22 +228,6 @@ async function getRawGlobs(args: Arguments): Promise<string[]> {
   }
 
   return globby(globs);
-}
-
-export function hasInlineMath(markdown: string): boolean {
-  return !!markdown.match(/(?<!\$)\$(?!\$)(.+?)(?<!\$)\$(?!\$)/);
-}
-
-export function removeFileExtension(pathname: string): string {
-  const extensions = [".mdx", ".ipynb"];
-
-  for (const extension of extensions) {
-    if (pathname.endsWith(extension)) {
-      return removeSuffix(pathname, extension);
-    }
-  }
-
-  return pathname;
 }
 
 async function determineFilePaths(args: Arguments): Promise<string[]> {
