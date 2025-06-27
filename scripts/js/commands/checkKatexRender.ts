@@ -193,7 +193,7 @@ async function checkPage(page: Page, pathname: string): Promise<string[]> {
       if (box && box.width >= MIN_WIDTH) {
         const content = await mathExpr.textContent();
         errors.push(
-          `  -  Error found. Approximately preview of the expression:\n\t $${content}}$`,
+          `  -  Error found. Approximate preview of the expression:\n\t $${content}}$`,
         );
       }
     }
