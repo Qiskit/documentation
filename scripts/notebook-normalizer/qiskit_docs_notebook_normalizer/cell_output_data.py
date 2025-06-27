@@ -54,7 +54,7 @@ def remove_circuit_drawing_html(output_data: dict) -> bool:
     return False
 
 def remove_inline_katex_expression(output_data: dict) -> bool:
-    """Convertes inline katex expressions into display mode if needed and returns True if any changes were made."""
+    """Converts inline katex expressions into display mode if needed and returns True if any changes were made."""
     if "text/latex" in output_data:
         latex = output_data.get("text/latex").strip()
 
