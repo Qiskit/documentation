@@ -62,7 +62,7 @@ def remove_inline_katex_expression(output_data: dict) -> bool:
         if latex.startswith('$$'):
             return False
 
-        # We transforms inline katex expressions
+        # We transform inline katex expressions
         if latex.startswith('$') and latex.endswith('$'):
             latex = re.sub(r'^\$', '$$\n', latex)# Replace the first '$'
             latex = re.sub(r'\$$', '\n$$', latex) # Replace the last '$'
