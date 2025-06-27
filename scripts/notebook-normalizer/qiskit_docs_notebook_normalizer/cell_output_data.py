@@ -55,12 +55,20 @@ def remove_circuit_drawing_html(output_data: dict) -> bool:
 
 def remove_inline_katex_expression(output_data: dict) -> bool:
     """Convertes inline katex expressions into display mode if needed and returns True if any changes were made."""
-    if latex := output_data.get("text/latex"):
-        if latex.startswith('$\\displaystyle') and latex.endswith('$'):
-            latex = latex.replace('$\\displaystyle', '$$\n') # Replace the first '$'
+    if "text/latex" in output_data:
+        latex = output_data.get("text/latex").strip()
+
+        # We skip displayed equiations because they already have the desired style
+        if latex.startswith('$$'):
+            return False
+
+        # We transforms inline katex expressions
+        if latex.startswith('$') and latex.endswith('$'):
+            latex = re.sub(r'^\$', '$$\n', latex)# Replace the first '$'
             latex = re.sub(r'\$$', '\n$$', latex) # Replace the last '$'
             output_data["text/latex"] = latex
             return True
+
     return False
 
 

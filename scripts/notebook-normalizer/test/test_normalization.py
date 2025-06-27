@@ -299,7 +299,7 @@ def test_katex():
     output_data = result.nb.cells[0]["outputs"][0]["data"]
     assert "text/latex" in output_data
     assert "text/plain" in output_data
-    assert output_data['text/latex'] == "$$\n \\left[\\begin{matrix}1 & 0 \\\\0 & 1 \\\\ \\end{matrix}\\right]\n$$"
+    assert output_data['text/latex'] == "$$\n\\displaystyle \\left[\\begin{matrix}1 & 0 \\\\0 & 1 \\\\ \\end{matrix}\\right]\n$$"
 
 def test_katex_noop():
     math_expr = "$$\n \\left[\\begin{matrix}1 & 0 \\\\0 & 1 \\\\ \\end{matrix}\\right]\n$$"
