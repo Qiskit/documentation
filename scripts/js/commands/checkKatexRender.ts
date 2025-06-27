@@ -112,7 +112,7 @@ const readArgs = (): Arguments => {
     .option("ignored-files", {
       type: "boolean",
       description:
-        "Check the pages the IGNORED_FILES list. Useful to fix the pages",
+        "Check the pages in the IGNORED_FILES list. This is useful to fix the pages",
     })
     .parseSync();
 };
