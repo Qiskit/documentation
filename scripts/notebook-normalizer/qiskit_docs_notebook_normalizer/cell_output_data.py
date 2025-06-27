@@ -58,7 +58,7 @@ def remove_inline_katex_expression(output_data: dict) -> bool:
     if "text/latex" in output_data:
         latex = output_data.get("text/latex").strip()
 
-        # We skip displayed equiations because they already have the desired style
+        # We skip displayed equations because they already have the desired style
         if latex.startswith('$$'):
             return False
 
