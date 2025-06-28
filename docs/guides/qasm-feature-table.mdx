@@ -17,6 +17,64 @@ Key:
 *   🟡 Partial support
 *   ✅ Supported
 
+| Feature                        | Supported by Qiskit | Supported by Qiskit Runtime | Comments                                                                                                                  |
+| ------------------------------ | ------- | --- | --- |
+| comments                       | ✅       |  ✅  |                                                                                                                       |
+| QASM version string            | ✅       |  ✅  |                                                                                                                      |
+| `include`                      | ✅       |  ✅  |                                                                                                                        |
+| unicode names                  | ✅       |  ✅  |                                                                                                                       |
+| `qubit`                        | 🟡       | 🟡 | Only supports physical qubits, and no arrays.                                                                             |
+| `bit`                          | ✅       | ✅ |                                                                                                                          |
+| `bool`                         | ✅       | ✅ |                                                                                                                          |
+| `int`                          | ✅       | ✅ | Some support for comparisons against integers and casting.                                                                |
+| `uint`                         | ❌       |  ❌ |                                                                                                                         |
+| `float`                        | ❌       |  ❌ |                                                                                                                         |
+| `angle`                        | ❌       |  ❌ |                                                                                                                         |
+| `complex`                      | ❌       | ❌ |                                                                                                                          |
+| `const`                        | ❌       |  ❌ |                                                                                                                         |
+| `pi`/`π`/`tau`/`τ`/`euler`/`ℇ` | ❌       |  ❌ |                                                                                                                         |
+| Aliasing: let                  | ❌       |  ❌ |                                                                                                                         |
+| register concatenation         | ❌       | ❌ |                                                                                                                          |
+| casting                        | 🟡      | 🟡 | Casting between arrays of bits, int, and bool is supported                                                                |
+| `duration`                     | ✅       | ✅ |                                                                                                                          |
+| `durationof`                   | ❌       |  ❌ |                                                                                                                         |
+| `ns`/`µs`/`us`/`ms`/`s`/`dt`   | ✅       | ✅ |                                                                                                                          |
+| `stretch`                      | ❌       |  ❌ |                                                                                                                         |
+| `delay`                        | ✅       | ✅ |                                                                                                                          |
+| `barrier`                      | ✅       |  ✅ |                                                                                                                         |
+| `box`                          | ❌       |  ❌ |                                                                                                                         |
+| Built-in `U`                   | ✅       | ✅ |                                                                                                                          |
+| `gate`                         | ✅       |✅ | No support for non-basis gates                                                                                            |
+| `gphase`                       | ❌       | ❌ |                                                                                                                          |
+| `ctrl @`/ `negctrl @`          | ❌       |  ❌ |                                                                                                                         |
+| `inv @`                        | ❌       |  ❌ |                                                                                                                         |
+| `pow(k) @`                     | ❌       | ❌ |                                                                                                                          |
+| `reset`                        | ✅       | ✅ |                                                                                                                          |
+| `measure`                      | ✅       | ✅ |                                                                                                                          |
+| bit operations                 | ✅       |  ✅ |                                                                                                                         |
+| boolean operations             | ✅       | ✅ |                                                                                                                          |
+| arithmetic expressions         | ❌       |  ❌ |                                                                                                                         |
+| comparisons                    | ✅       |  ✅ |                                                                                                                         |
+| `if`                           | ✅       |   ✅ |                                                                                                                        |
+| `else`                         | ✅       |  ✅ |                                                                                                                         |
+| `else if`                      | ❌       | ❌ |                                                                                                                          |
+| `for` loops                    | 🟡      | 🟡 | Discrete sets and negative stepping is not supported.                                                                     |
+| `while` loops                  | ❌       | ❌ |                                                                                                                          |
+| `continue`                     | ❌       |  ❌ |                                                                                                                         |
+| `break`                        | ❌       |  ❌ |                                                                                                                         |
+| `return`                       | ❌       |  ❌ |                                                                                                                         |
+| `extern`                       | 🟡      | 🟡 | Only for certain extern subroutines exposed by systems. It is currently not possible for clients to submit these. |
+| `def` subroutines (classical)  | ❌       |   ❌ |                                                                                                                        |
+| `def` subroutines (quantum)    | ❌       |  ❌ |                                                                                                                         |
+| `input`                        | ❌       |  ❌ |                                                                                                                         |
+| `output`                       | ❌       | ❌ |                                                                                                                          |
+
+Key:
+
+*   ❌ Not supported
+*   🟡 Partial support
+*   ✅ Supported
+
 | Feature                        | Support | Comments                                                                                                                  |
 | ------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------- |
 | comments                       | ✅       |                                                                                                                           |
