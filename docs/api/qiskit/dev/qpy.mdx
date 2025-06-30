@@ -56,7 +56,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L214-L354" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L237-L401" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
@@ -104,7 +104,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L78-L211" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=15, annotation_factories=None)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L79-L234" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=16, annotation_factories=None)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -171,7 +171,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### get\_qpy\_version
 
-<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L357-L384" signature="qiskit.qpy.get_qpy_version(file_obj)">
+<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L404-L431" signature="qiskit.qpy.get_qpy_version(file_obj)">
   This function identifies the QPY version of the file.
 
   This function will read the header of `file_obj` and will return the QPY format version. It will **not** advance the cursor of `file_obj`. If you are using this for a subsequent read, such as to call [`load()`](#qiskit.qpy.load "qiskit.qpy.load"), you can pass `file_obj` directly. For example:
@@ -284,6 +284,7 @@ If you’re planning to load a QPY file between different Qiskit versions knowin
 
 | Qiskit (qiskit-terra for \< 1.0.0) version | [`dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") format(s) output versions | [`load()`](#qiskit.qpy.load "qiskit.qpy.load") maximum supported version (older format versions can always be read) |
 | ------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| 2.1.1                                      | 13, 14, 15, 16                                                           | 16                                                                                                                  |
 | 2.1.0                                      | 13, 14, 15                                                               | 15                                                                                                                  |
 | 2.0.2                                      | 13, 14                                                                   | 14                                                                                                                  |
 | 2.0.1                                      | 13, 14                                                                   | 14                                                                                                                  |
@@ -370,9 +371,11 @@ struct {
 }
 ```
 
+From V16 on, the file header struct is immediately followed by a circuit start table containing the byte offsets of each circuit payload in the file. There are `num_circuits` entries in the circuit start table, each of which is of type `uint64_t`. In all previous versions, the file header is immediately followed by the circuit payloads in sequence without any padding in-between.
+
 All values use network byte order <span id="id3" />[\[1\]](#f1) (big endian) for cross platform compatibility.
 
-The file header is immediately followed by the circuit payloads. Each individual circuit is composed of the following parts in order from top to bottom:
+Each individual circuit is composed of the following parts in order from top to bottom:
 
 ```text
 HEADER
@@ -389,6 +392,12 @@ Changed in version QPY: 15 `ANNOTATION_HEADER` was added between `REGISTERS` and
 Changed in version QPY: 12 `STANDALONE_VARS` was added between `REGISTERS` and `CUSTOM_DEFINITIONS`.
 
 There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
+
+<span id="qpy-version-16" />
+
+### Version 16
+
+Version 16 adds a circuit start table to the QPY file format. It serves as an index of the byte offsets of each circuit payload in the file. The motivation for this change is to enable a more efficient loading of circuits using multi-threading in a future Rust implementation of the QPY deserializer.
 
 <span id="qpy-version-15" />
 

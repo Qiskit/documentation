@@ -4,8 +4,16 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 
 QiskitRuntimeService._original_least_busy = QiskitRuntimeService.least_busy
 
+# Backends that we have access to through both internal and open plans
+#
+# Keep this in sync with `OPEN_BACKENDS_TO_INTERNAL`
+# scripts/nb-tester/qiskit_docs_notebook_tester/execute.py
+OPEN_BACKENDS = ["brisbane", "torino"]
+
+def is_open(backend):
+    return any(backend.name.endswith(f"_{{name}}") for name in OPEN_BACKENDS)
+
 def patched_least_busy(self, *args, **kwargs):
-    open_backends = [b.name for b in self.backends(instance="ibm-q/open/main")]
-    return self._original_least_busy(filters=lambda backend: backend.name in open_backends)
+    return self._original_least_busy(filters=is_open)
 
 QiskitRuntimeService.least_busy = patched_least_busy

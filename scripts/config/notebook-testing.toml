@@ -54,6 +54,7 @@ notebooks = [
     "docs/guides/native-gates.ipynb",
     "docs/guides/primitives-rest-api.ipynb",
     "docs/guides/repetition-rate-execution.ipynb",
+    "docs/guides/save-jobs.ipynb",
     "docs/guides/simulate-with-qiskit-sdk-primitives.ipynb",
     "docs/guides/synthesize-unitary-operators.ipynb",
     "docs/guides/DAG-representation.ipynb",
@@ -101,7 +102,7 @@ notebooks = [
 [groups.cron-job-only]
 test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
-    "docs/guides/hello-world.ipynb",
+    "docs/tutorials/hello-world.ipynb",
     # The following notebook takes >300s to run and should be executed in the
     # cron job. Even though it does not use real hardware
     "docs/guides/qiskit-addons-cutting-gates.ipynb",
@@ -138,9 +139,6 @@ notebooks = [
 # Don't ever test the following notebooks
 [groups.exclude]
 notebooks = [
-    # TODO: See if this works again after migrating to cloud
-    "docs/guides/save-jobs.ipynb",
-
     # This notebook contains undefined variables so can't run at all.
     "docs/guides/function-template-hamiltonian-simulation.ipynb",
 
@@ -167,6 +165,7 @@ notebooks = [
 
 
     # We never run tutorials notebooks
+    "docs/tutorials/multi-product-formula.ipynb",
     "docs/tutorials/advanced-techniques-for-qaoa.ipynb",
     "docs/tutorials/ai-transpiler-introduction.ipynb",
     "docs/tutorials/circuit-transpilation-settings.ipynb",

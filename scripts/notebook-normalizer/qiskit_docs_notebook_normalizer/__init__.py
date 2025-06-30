@@ -19,7 +19,7 @@ from typing import TypeGuard, ClassVar
 
 import nbformat
 
-from .cell_output_data import remove_circuit_drawing_html, extract_image_output, Image
+from .cell_output_data import remove_circuit_drawing_html, remove_inline_katex_expression, extract_image_output, Image
 
 NOTEBOOK_PATHS = chain(
     Path("docs").rglob("*.ipynb"),
@@ -106,6 +106,10 @@ def normalize_notebook(
 
             html_removed = remove_circuit_drawing_html(data)
             if html_removed:
+                change_made = True
+
+            katex_modified = remove_inline_katex_expression(data)
+            if katex_modified:
                 change_made = True
 
             # 2. Extract image outputs
