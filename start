@@ -37,8 +37,6 @@ def main() -> None:
         subprocess.run(["docker", "pull", IMAGE], check=True)
         sys.exit(0)
 
-    platform = "legacy" if "--legacy" in sys.argv else "cloud"
-
     # Keep this aligned with the Dockerfile at the root of the repository.
     cmd = [
         "docker",
@@ -52,8 +50,6 @@ def main() -> None:
         f"{PWD}/public:/home/node/app/packages/preview/public",
         "-p",
         "3000:3000",
-        "-e",
-        f"DOCS_PLATFORM={platform}",
         # Needed for ctrl-c to shut down the container.
         "--init",
         "--rm",
