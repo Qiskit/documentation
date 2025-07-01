@@ -157,24 +157,6 @@ use `&trade;` to get &trade; for nonregistered trademarks.
 
 ⚠️ **Note**: Do not include trademarks in headings. The code will display rather than the symbol.
 
-## Platform-specific pages
-
-You can restrict pages to only appear on a specific platform (IQP Cloud or IQP Classic).
-
-1. Add `"platform": "cloud"` or `"platform": "legacy"` to the pages' entry in `_toc.json`. This will stop the page from appearing in the left table of contents in the other platform.
-
-   ```json
-   {
-     "title": "Connecting to IBM Cloud",
-     "url": "/cloud/connect-to-ibm-cloud",
-     "platform": "cloud"
-   }
-   ```
-
-   **Note:** If every page in a section is platform-specific, you must also add the `"platform"` attribute to the section too. Otherwise, users will see an empty section on the other platform.
-
-2. Add `platform: cloud` to the page's metadata. This will make the page 404 if a user tries to access that page's URL. See [Page metadata](#page-metadata) for how to set this.
-
 ## Custom components
 
 These are components that we expose through MDX. You can use them in both
