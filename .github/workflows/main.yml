@@ -74,26 +74,17 @@ jobs:
         run: |
           ./start --apis &
           sleep 1
-      - name: Check that pages render (cloud app)
+      - name: Check that pages render
         if: steps.all-changed-files.outputs.any_changed == 'true'
         run: |
           npm run check:pages-render -- --from-file .github/outputs/all_changed_files.txt
-      - name: Check that Katex expressions render (cloud app)
+      - name: Check that Katex expressions render
         if: steps.all-changed-files.outputs.any_changed == 'true'
         run: |
           npm run check:katex-render -- --from-file .github/outputs/all_changed_files.txt
-      - name: Stop Docker preview (cloud app)
+      - name: Stop Docker preview
         if: steps.all-changed-files.outputs.any_changed == 'true'
         run: docker ps -q | xargs docker stop
-      - name: Start local Docker preview (legacy app)
-        if: steps.all-changed-files.outputs.any_changed == 'true'
-        run: |
-          ./start --legacy &
-          sleep 1
-      - name: Check that non-API pages render (legacy app)
-        if: steps.all-changed-files.outputs.any_changed == 'true'
-        run: |
-          npm run check:pages-render -- --legacy --from-file .github/outputs/all_changed_files.txt
 
       - name: Setup Python environment
         uses: ./.github/actions/set-up-notebook-testing
