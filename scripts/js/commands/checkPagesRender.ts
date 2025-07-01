@@ -25,25 +25,6 @@ const LEGACY_ONLY_PAGES: Set<string> = new Set([
   "docs/guides/estimate-job-run-time.mdx",
 ]);
 
-// These are expected to 404 in the legacy app due to being cloud only.
-const CLOUD_ONLY_PAGES: Set<string> = new Set([
-  "docs/guides/calibration-jobs.mdx",
-  "docs/guides/cloud-setup.mdx",
-  "docs/guides/upgrade-from-open.mdx",
-  "docs/guides/view-cost.mdx",
-  "docs/guides/access-groups.mdx",
-  "docs/guides/cloud-account-structure.mdx",
-  "docs/guides/considerations-set-up-runtime.mdx",
-  "docs/guides/custom-roles.mdx",
-  "docs/guides/invite-and-manage-users.mdx",
-  "docs/guides/manage-appid.mdx",
-  "docs/guides/manage-cloud-users.mdx",
-  "docs/guides/plans-overview.mdx",
-  "docs/guides/quickstart-steps-org.mdx",
-  "docs/guides/allocation-limits.mdx",
-  "docs/guides/composer.mdx",
-]);
-
 const PORT = 3000;
 
 interface Arguments {
@@ -54,7 +35,6 @@ interface Arguments {
   devApis?: boolean;
   historicalApis?: boolean;
   qiskitReleaseNotes?: boolean;
-  legacy?: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -97,16 +77,6 @@ const readArgs = (): Arguments => {
       type: "boolean",
       description: "Check the pages in the `api/qiskit/release-notes` folder.",
     })
-    .option("legacy", {
-      type: "boolean",
-      description: "Check that the non-API pages render in the legacy app.",
-      conflicts: [
-        "current-apis",
-        "dev-apis",
-        "historical-apis",
-        "qiskit-release-notes",
-      ],
-    })
     .parseSync();
 };
 
@@ -146,9 +116,7 @@ zxMain(async () => {
       `💔 ${failures.length} pages crash when rendering. This is usually due to invalid syntax, such as forgetting ` +
         "the closing component tag, like `</Admonition>`. You can sometimes get a helpful error message " +
         "by previewing the docs locally or in CI. See the README for instructions.\n\n" +
-        failures.join("\n") +
-        "\n\nIf your files are platform specific, you should add them to the `LEGACY_ONLY_PAGES` or `CLOUD_ONLY_PAGES` list " +
-        "at the beginning of `scripts/js/commands/checkPagesRender.ts`",
+        failures.join("\n"),
     );
     process.exit(1);
   }
@@ -202,11 +170,11 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
   if (args.fromFile) {
     const content = await fs.readFile(args.fromFile, "utf-8");
     const result = await globby(content.split("\n").filter((entry) => entry));
-    return result.filter((fp) => filterPlatformSpecificPage(fp, args.legacy));
+    return result.filter((fp) => filterPlatformSpecificPage(fp));
   }
 
   const globs = [];
-  if (args.nonApi || args.legacy) {
+  if (args.nonApi) {
     globs.push("{docs,learning}/**/*.{ipynb,mdx}");
   }
 
@@ -220,20 +188,9 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
     globs.push(`${prefix}${glob}`);
   }
   const result = await globby(globs);
-  return result.filter((fp) => filterPlatformSpecificPage(fp, args.legacy));
+  return result.filter((fp) => filterPlatformSpecificPage(fp));
 }
 
-function filterPlatformSpecificPage(page: string, legacy?: boolean) {
-  if (legacy) {
-    // API docs should never be checked with the legacy app because they render
-    // identically in the cloud app.
-    return (
-      !CLOUD_ONLY_PAGES.has(page) &&
-      !page.startsWith("docs/api") &&
-      !page.startsWith("docs/tutorials") &&
-      !page.startsWith("learning")
-    );
-  }
-
+function filterPlatformSpecificPage(page: string) {
   return !LEGACY_ONLY_PAGES.has(page);
 }

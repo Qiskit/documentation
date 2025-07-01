@@ -28,11 +28,11 @@ jobs:
           node-version: 18
       - name: Install Node.js dependencies
         run: npm ci
-      - name: Start local Docker preview (cloud app)
+      - name: Start local Docker preview
         run: |
           ./start --apis &
           sleep 20
-      - name: Check all pages render (cloud app)
+      - name: Check all pages render
         run: >
           npm run check:pages-render --
           --non-api
@@ -40,15 +40,8 @@ jobs:
           --current-apis
           --dev-apis
           --historical-apis
-      - name: Stop Docker preview (cloud app)
+      - name: Stop Docker preview
         run: docker ps -q | xargs docker stop
-      - name: Start local Docker preview (legacy app)
-        run: |
-          ./start --legacy &
-          sleep 20
-      - name: Check all non-API pages render (legacy app)
-        run: >
-          npm run check:pages-render -- --legacy
 
   external-link-checker:
     runs-on: ubuntu-latest
