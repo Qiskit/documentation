@@ -5,11 +5,67 @@ description: How to use stretch to defer timing resolution with dynamic circuits
 
 # Deferred timing resolution using stretch
 
-Overview:  what is stretch and why is it useful?
+The OpenQASM 3 language specification contains a `stretch` type that lets you specify relative timing of operations instead of absolute timing. Support for `stretch` as durations for [`Delay`](/docs/api/qiskit/2.0/circuit#qiskit.circuit.Delay) instructions was added in [Qiskit v2.0.0.](/docs/api/qiskit/release-notes/2.0#200) The concrete value of a stretch duration is resolved at compile time, after the exact duration of calibrated gates are known.  The compiler tries to minimize the stretch duration, subject to timing constraints on one or more qubits. This lets you express gate designs such as evenly spacing gates (for example, to implement a higher-order echo decoupling sequence), left-aligning a sequence of gates, or applying a gate for the duration of some sub-circuit, without knowing the exact timing.
 
 ## Example
 
-Example of using stretch in a dynamic circuit
+A common use case of `stretch` is to apply dynamical decoupling to an idling qubit while another qubit is undergoing conditional operations.
+
+For example, we can use `stretch` to apply an XX dynamical decoupling sequence to qubit 1, for the duration of the conditional bloack applied to qubit 0, as illustrated by the following diagram:
+
+![Image illustrating the following circuit](/docs/images/guides/stretch/stretch.png)
+
+The corresponding circuit would look like the following. Note that a pair of barriers is needed to define the boundaries of this relative timing.
+
+```python
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+
+qubits = QuantumRegister(2)
+clbits = ClassicalRegister(2)
+circuit = QuantumCircuit(qubits, clbits)
+(q0, q1) = qubits
+(c0, c1) = clbits
+
+# Add barriers to define the boundaries
+circuit.barrier()
+circuit.h(q0)
+circuit.measure(q0, c0)
+with circuit.if_test((c0, 1)) as else_:
+    circuit.h(q0)
+with else_:
+    circuit.x(q0)
+
+# Apply an XX DD sequence with stretch on qubit 1
+s = circuit.add_stretch("s")
+circuit.delay(s, q1)
+circuit.x(q1)
+circuit.delay(expr.mul(s, 2), q1)
+circuit.x(q1)
+circuit.delay(s, q1)
+circuit.barrier()
+```
+
+Here is another example of using `stretch` to ensure a sequence of gates between two barriers are left-aligned, whatever their actual durations are:
+```python
+from qiskit import QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(5)
+qc.barrier()
+qc.cx(0, 1)
+qc.u(pi/4, 0, pi/2, 2)
+qc.cx(3, 4)
+
+a = qc.add_stretch("a")
+b = qc.add_stretch("b")
+c = qc.add_stretch("c")
+
+# Use the stretches as Delay duration.
+qc.delay(a, [0, 1])
+qc.delay(b, 2)
+qc.delay(c, [3, 4])
+qc.barrier()
+```
 
 ## Limitations
 
