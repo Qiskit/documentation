@@ -25,12 +25,9 @@ Your user account is associated with one or more [instances](./instances) that g
 ### Before you begin
 
 1. Ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](/docs/guides/install-qiskit#local).
-
 1. Accept the email invitation.
-1. If you do not already have one, set up an [IBM Cloud account.](https://quantum.cloud.ibm.com/registration)
-   <Admonition type="note">
-   You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the top header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
-   </Admonition>
+1. Log in with an IBMid or Google account.  If you don't have one, you are guided through creating one. After logging in, confirm your information and accept the invitation to join the account.
+1. Navigate back to [IBM Quantum Platform.](quantum.cloud.ibm.com)
 
 <span id="access-credentials"></span>
 ### 1. Find your access credentials
@@ -39,7 +36,7 @@ Your user account is associated with one or more [instances](./instances) that g
 
 <span id="cloud-save"></span>
 ### 2. Initialize the service (trusted environment)
-If you are working in a trusted Python environment (such as on a personal laptop or workstation), use the `save_account()` method to save your credentials locally, then use them to initialize the service.
+If you are working in a trusted Python environment (such as on a personal laptop or workstation), use the [`save_account()`](/guides/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account) method to save your credentials locally, then use them to initialize the service.
 
 1. Activate a Python virtual environment, run Python in your virtual environment, and enter the following:
 
@@ -56,11 +53,8 @@ When an instance CRN or name is passed in, only backends and jobs from that inst
   service = QiskitRuntimeService.save_account(
     token=token, # Your token is confidential.
     # Do not share your key in public code.
-    instance="<IBM Cloud CRN or instance name>", # Optionally specify the instance to use.
-    plans_preference="['plan-type1', 'plan-type2']", # Optionally set the types of plans to prioritize.  This is ignored if the instance is specified.
-    region="<region>", # Optionally set the region to prioritize. This is ignored if the instance is specified.
-    name="<account-name>", # Optionally name this set of account credentials.
-    set_as_default=True, # Optionally set these as your default credentials.
+    instance="<IBM Cloud CRN or instance name>", # Specify the instance to use.
+    set_as_default=True, # Set these as your default credentials.
   )
 ```
 
