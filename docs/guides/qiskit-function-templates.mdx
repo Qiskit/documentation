@@ -20,45 +20,13 @@ The application template implementations are organized by application area, whic
 
 For convenience, direct download links are provided for each application template directory:
 
-- [Download Hamiltonian Simulation template](https://ibm.biz/ham-sim-template)
-- [Download SQD IEF-PCM template](https://ibm.biz/sqd-pcm-template)
+- [Download Hamiltonian simulation template](https://ibm.biz/ham-sim-template)
+- [Download chemistry-based SQD IEF-PCM template](https://ibm.biz/sqd-pcm-template)
 
-### Chemistry Workflow
+The associated guide page for each of these templates can also be found here:
 
-This template encapsulates a workflow for quantum-centric implicit solvent simulations of ground state energy in molecular systems. More detail about the workflow's methodology can be found in the template's [README.md documentation](https://github.com/qiskit-community/qiskit-function-templates/blob/main/chemistry/sqd_pcm/README.md) and a Jupyter notebook describing how to deploy and run this template can be found in the [same directory](https://github.com/qiskit-community/qiskit-function-templates/blob/main/chemistry/sqd_pcm/deploy_and_run.ipynb). It is composed of three sections described below:
-
-1. Input section
-
-This section takes as an input the geometry of the molecule, selected active space, solvation model, LUCJ options, and SQD options. Subsequently it produces the PySCF Checkpoint file which contains the Hartree-Fock (HF) IEF-PCM data. This data will be used in the SQD portion of the workflow. For LUCJ portion of the workflow the input section also generates the gas-phase HF data which is stored internally in PySCF FCIDUMP format.
-
-2. LUCJ section
-
-It takes as the input the information from the HF gas-phase simulation as well as the definition of the active space. Importantly, it also utilizes the user-defined information from the input section concerning the error suppression, number of shots, circuit transpiler optimization level, and the qubit layout.
-
-It generates one-electron and two-electron integrals within the defined active space. The integrals are then used to perform classical CCSD calculations, which give us t2 amplitudes that we use for parametrization of the LUCJ circuit. The LUCJ calculations return the bitstrings for each measurement, where these bitstrings correspond to electron configurations of the studied system.
-
-3. SQD section
-
-It takes as the input the PySCF Checkpoint file containing the HF IEF-PCM information, the bitstrings representing the electron configurations predicted by LUCJ, as well as the user-defined SQD options selected in the input section. As an output it produces the SQD IEF-PCM total energy of the lowest energy batch as well as the corresponding solvation free energy.
-
-
-### Physics workflow
-
-This template encapsulates a workflow to simulate the time evolution of an initial state against a user defined spin-based Hamiltonian and returns a set of specified expectation values using the [AQC addon](./qiskit-addons-aqc). A demonstration of deploying and running this template can be found as a Jupyter notebook in the [project's directory](https://github.com/qiskit-community/qiskit-function-templates/blob/main/physics/hamiltonian_simulation/deploy_and_run.ipynb). 
-
-Similar to the chemistry workflow it is also divided into several sections:
-
-1. Input validation
-
-This section takes as an input the Hamiltonian to simulate, an initial state in the form of a `QuantumCircuit`, a set of observables to estimate expectation values, and a specification of options for the AQC addon. This step validates that all required input data is present and that they are in the correct format. An [`EstimatorV2`](../api/qiskit-ibm-runtime/estimator-v2) instance is created with a default set of error mitigation options.
-
-2. Mapping
-
-The input arguments are then used to construct the relevant quantum circuits and operators for the workflow. A target circuit is created and a matrix product state representation of this circuit is found using the AQC addon. Following this, an ansatz circuit is generated and optimized using tensor network methods, producing a final circuit which executes the remainder of the time evolution.
-
-3. Execution
-
-Finally, the ansatz circuit is transpiled and executed on a QPU and collects estimates for all of the specified expectation values, which are returned in a serializable format for access by the user.
+- [Chemistry workflow](./function-template-chemistry-workflow)
+- [Hamiltonian simulation](./function-template-hamiltonian-simulation)
 
 
 ## Base templates
