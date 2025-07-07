@@ -1,0 +1,102 @@
+---
+title: Set up to use IBM Quantum Platform with REST API
+description: Setup instructions for using IBM Quantum on IBM Cloud to submit Qiskit SDK and Qiskit Runtime jobs by using the REST API
+platform: cloud
+---
+
+{/* cspell:ignore urlendcoded, WQVY */}
+
+# Set up to use IBM Quantum Platform with REST API
+
+You can access quantum processors with REST APIs, enabling you to work with QPUs using any programming language or framework.
+
+### 1. Get access
+
+1. If you do not already have a user account, get one at the [IBM Quantum login page.](https://quantum.cloud.ibm.com/login)
+1. Create an API key on the [dashboard.](https://quantum.cloud.ibm.com)
+1. Generate an IBM Cloud Identity and Access Management (IAM) bearer token. This is a short-lived token  used to authenticate requests to the REST API. To generate one, call the [IAM Identity Services API](https://cloud.ibm.com/apidocs/iam-identity-token-api#create-api-key) as shown in the following sample request:
+<Tabs>
+
+   <TabItem value="Curl" label="Curl">
+   ```bash
+   curl -X POST 'https://iam.cloud.ibm.com/identity/token' \
+   -H 'Content-Type: application/x-www-form-urlencoded' \
+   -d 'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=MY_APIKEY'
+   ```
+   Expected Response
+   ```text
+   {
+      "access_token": "eyJhbGciOiJIUz......sgrKIi8hdFs",
+      "refresh_token": "SPrXw5tBE3......KBQ+luWQVY=",
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "expiration": 1473188353
+   }
+   ```
+   </TabItem>
+
+   <TabItem value="Python" label="Python">
+   ```python
+   # Use 'service' to invoke operations.
+   import requests
+   import json
+
+   url = 'https://iam.cloud.ibm.com/identity/token'
+   api_key = 'MY_APIKEY'
+   headers = {
+    'Content-Type': 'application/x-www-form-urlendcoded',
+   }
+   data = f'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey={api_key}'
+   response = requests.post(url, headers=headers, data=data)
+
+   # Bearer token to authorize requests to the REST API
+   bearer_token = response.json()['access_token']
+   ```
+   </TabItem>
+</Tabs>
+
+### 2. Choose an authentication method
+
+Choose the appropriate authentication method, depending on your working environment:
+
+* [Create an environment variable for your API key (trusted Python environments)](#environment_variable)
+* [Use your API key directly (untrusted environment)](/docs/guides/cloud-setup-untrusted#rest-untrusted)
+
+<span id="environment_variable"></span>
+#### Create an environment variable (trusted environment)
+
+1.  To set the IQP_API_TOKEN environment variable in your system, you can add the following line to your shell profile (for example, .bashrc or .zshrc) or by setting it directly in your terminal:
+
+    ```shell
+    export IQP_API_TOKEN=<your-token>
+    ```
+    When you invoke the environment variable in your code, include `import os`, as in this example:
+
+    ```python
+    import os
+    api_token = os.environ['IQP_API_TOKEN']
+    ```
+
+    Note that when creating an environment variable, your API key is still stored locally in plain text, and should be safeguarded.
+1. Authenticate requests to the Qiskit Runtime REST API by including the CRN and bearer token to the request's headers.
+```bash
+curl -X 'GET' \
+   'https://quantum.cloud.ibm.com/api/v1/usage' \
+   '-H accept: application/json' \
+   '-H authorization: Bearer <BEARER_TOKEN>' \
+   '-H Service-CRN: crn:v1:bluemix:public:quantum-computing:us-east:a/b947c1c5a9378d64aed96696e4d76e8e:a3a7f181-35aa-42c8-94d6-7c8ed6e1a94b::'
+```
+
+### 3. Optional: Configure your firewall
+
+    If necessary, use [this information](/docs/guides/quickstart-steps-org#firewall) to enable access to the IBM Quantum API endpoints.
+
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  -  [Overview of available plans.](plans-overview)
+  -  [Configure the Qiskit SDK locally.](configure-qiskit-local)
+  -  Follow the steps in [Hello world](/docs/tutorials/hello-world) to write and run a quantum program.
+  -  Try a [tutorial](/docs/tutorials).
+</Admonition>
