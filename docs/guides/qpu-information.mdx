@@ -6,7 +6,7 @@ description: Information about QPU calibration, properties, and versioning
 
 # QPU information
 
-IBM&reg; offers both open and premium access to a wide variety of quantum processing units (QPUs). All QPUs deployed by IBM are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these QPUs. You can see the full details of all IBM QPUs on the [Quantum processing units page](https://quantum.ibm.com/services/resources).
+IBM&reg; offers both open and premium access to a wide variety of quantum processing units (QPUs). All QPUs deployed by IBM are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these QPUs. You can see the full details of all IBM QPUs on the [Quantum processing units page](https://quantum.cloud.ibm.com/computers).
 
 ## QPU versioning
 
@@ -41,12 +41,8 @@ The revision version number will increment for fixes that do not break the exist
 
 The following is a subset of QPU configuration values available in IBM Quantum Platform and from [Qiskit](/docs/api/qiskit/1.4/qiskit.providers.models.BackendConfiguration).
 
-<LegacyContent>
-These values are shown on both the [Compute resources tab](https://quantum.ibm.com/services/resources) and the details page for each QPU.
-</LegacyContent>
-<CloudContent>
 These values are shown on both the [Compute resources page](https://quantum.cloud.ibm.com/computers) and the details page for each QPU.
-</CloudContent>
+
 *   **Name** - The unique name assigned to a specific QPU. QPUs hosted on IBM Cloud® have names that begin with `ibmq_*` (older QPUs) or `ibm_*` (newer QPUs). All QPUs are given a city name, e.g., `ibmq_johannesburg`. This name does not indicate where the actual QPU is hosted. They are named after IBM&reg; locations around the world.
 *   **Qubits** - The number of qubits in a QPU. For physical QPUs, this is the number of physical qubits in the device. For simulators, this number need not be uniquely defined, and instead can depend on the simulation method and/or the amount of memory available.
 *   **2Q error (best)** - The lowest two-qubit (2Q) error on any edge of the device as measured from isolated 2Q randomized benchmarking.
@@ -91,21 +87,14 @@ To access the details page, click the **Compute resources** tab, then click the 
     *   **Usage** - Click the link to see the jobs that you have run on this QPU.
 
 ## View your resources
-<LegacyContent>
-To find your available QPUs, open the [Compute resources](https://quantum.ibm.com/services/resources) page.  Click a QPU to view its details.
-</LegacyContent>
-<CloudContent>
+
 To find your available QPUs, open the [Compute resources](https://quantum.cloud.ibm.com/computers) page.  Click a QPU to view its details.
-</CloudContent>
+
 You can also view your available QPUs by using the [backends API.](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backends)
 
 ## View QPU configuration
-<LegacyContent>
-View QPU configuration values by selecting a QPU on the [Quantum processing units](https://quantum.ibm.com/services/resources) page from the Compute resources tab. The three tabs in the Calibration data section let you choose how to view the calibration data; the Map view tab is automatically selected.
-</LegacyContent>
-<CloudContent>
+
 View QPU configuration values by selecting a QPU on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. The three tabs in the Calibration data section let you choose how to view the calibration data; the Map view tab is automatically selected.
-</CloudContent>
 
 ### Expanded card for a sample QPU
 
@@ -122,11 +111,3 @@ Click the download icon in the upper right of any tab to download a CSV file of 
 **Table view tab**
 
 ![The table view tab shows the calibration information as numerical data.](/docs/images/guides/qpu-information/table-view.avif "Table view tab")
-
-<LegacyContent>
-## Find QPU information from other channels
-
-To find your available QPUs on **IBM Cloud**, view the [IBM Cloud Compute resources page.](https://cloud.ibm.com/quantum/resources/your-resources) You must be logged in to see your available compute resources. You are shown a snapshot of each QPU. To see full details, click the QPU name. You can also search for QPU from this page.
-
-To see the QPUs available to you on **IBM Quantum Platform**, click the [Compute resources tab](https://quantum.ibm.com/services/resources) from your dashboard. You are shown a snapshot of each QPU. To see full details, click the QPU name. You can also sort, filter, and search from this page.
-</LegacyContent>
