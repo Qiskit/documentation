@@ -1,30 +1,30 @@
 ---
-title: AIRouting (latest version)
-description: API reference for qiskit_ibm_transpiler.ai.AIRouting in the latest version of qiskit-ibm-transpiler
+title: AIPermutationSynthesis (v0.12)
+description: API reference for qiskit_ibm_transpiler.ai.AIPermutationSynthesis in qiskit-ibm-transpiler v0.12
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_ibm_transpiler.ai.AIRouting
+python_api_name: qiskit_ibm_transpiler.ai.AIPermutationSynthesis
 ---
 
-# AIRouting
+# AIPermutationSynthesis
 
-<Class id="qiskit_ibm_transpiler.ai.AIRouting" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.13/qiskit_ibm_transpiler/ai/routing.py#L98-L274" signature="qiskit_ibm_transpiler.ai.AIRouting(coupling_map: list[list[int]] | None = None, backend: Backend | None = None, optimization_level: int = 2, layout_mode: str = 'OPTIMIZE')" modifiers="class">
-  Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass "(in Qiskit v2.1)")
+<Class id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.12/qiskit_ibm_transpiler/ai/synthesis.py#L286-L330" signature="qiskit_ibm_transpiler.ai.AIPermutationSynthesis(coupling_map: list[list[int]] | None = None, backend: Backend | None = None, replace_only_if_better: bool = True, max_threads: int | None = None)" modifiers="class">
+  Bases: `AISynthesis`
 
-  The AIRouting pass acts both as a layout stage and a routing stage.
+  Synthesis for Permutation circuits (blocks of SWAP gates). Currently available for 65, 33, and 27 qubit blocks.
 
   **Parameters**
 
   *   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]], optional*) – A list of pairs that represents physical links between qubits.
-  *   **backend** (*Backend, optional*) – Backend used for doing the transpilation.
-  *   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – With a range from 1 to 3, determines the computational effort to spend in the process (higher usually gives better results but takes longer), defaults to 2.
-  *   **layout\_mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Specifies how to handle the layout selection. There are 3 layout modes: keep (respects the layout set by the previous transpiler passes), improve (uses the layout set by the previous transpiler passes as a starting point) and optimize (ignores previous layout selections), defaults to OPTIMIZE.
+  *   **backend** (*Backend, optional*) – Backend used for doing the AI Permutation synthesis.
+  *   **replace\_only\_if\_better** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*, optional*) – Determine if replace the original circuit with the synthesized one if it’s better, defaults to True.
+  *   **max\_threads** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*, optional*) – Set the number of requests to send in parallel.
 
   ## Attributes
 
   ### is\_analysis\_pass
 
-  <Attribute id="qiskit_ibm_transpiler.ai.AIRouting.is_analysis_pass">
+  <Attribute id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.is_analysis_pass">
     Check if the pass is an analysis pass.
 
     If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
@@ -32,7 +32,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AIRouting
 
   ### is\_transformation\_pass
 
-  <Attribute id="qiskit_ibm_transpiler.ai.AIRouting.is_transformation_pass">
+  <Attribute id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.is_transformation_pass">
     Check if the pass is a transformation pass.
 
     If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
@@ -42,7 +42,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AIRouting
 
   ### execute
 
-  <Function id="qiskit_ibm_transpiler.ai.AIRouting.execute" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.execute" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -62,7 +62,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AIRouting
 
   ### name
 
-  <Function id="qiskit_ibm_transpiler.ai.AIRouting.name" signature="name()">
+  <Function id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.name" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -72,30 +72,25 @@ python_api_name: qiskit_ibm_transpiler.ai.AIRouting
 
   ### run
 
-  <Function id="qiskit_ibm_transpiler.ai.AIRouting.run" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.13/qiskit_ibm_transpiler/ai/routing.py#L197-L274" signature="run(dag)">
-    Run the AIRouting pass on dag.
+  <Function id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.run" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.12/qiskit_ibm_transpiler/ai/synthesis.py#L159-L176" signature="run(dag)">
+    Run a pass on the DAGCircuit. This is implemented by the pass developer.
 
     **Parameters**
 
-    **dag** (*DAGCircuit*) – the directed acyclic graph to be mapped.
-
-    **Returns**
-
-    A dag mapped to be compatible with the coupling\_map.
-
-    **Return type**
-
-    DAGCircuit
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.1)")) – the dag on which the pass is run.
 
     **Raises**
 
-    *   **TranspilerError** – if the coupling map or the layout are not
-    *   **compatible with the DAG**\*\*, or \*\***if the coupling\_map=None** –
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – when this is left unimplemented for a pass.
   </Function>
+
+  ### synth\_nodes
+
+  <Function id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.synth_nodes" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.12/qiskit_ibm_transpiler/ai/synthesis.py#L112-L157" signature="synth_nodes(nodes)" />
 
   ### update\_status
 
-  <Function id="qiskit_ibm_transpiler.ai.AIRouting.update_status" signature="update_status(state, run_state)">
+  <Function id="qiskit_ibm_transpiler.ai.AIPermutationSynthesis.update_status" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**
