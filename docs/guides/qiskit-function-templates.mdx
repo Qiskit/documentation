@@ -2,12 +2,11 @@
 title: Qiskit Function templates
 description: Learn how to use and build Qiskit Function templates.
 ---
-{/* cspell:ignore FCIDUMP */}
 
 
 # Introduction to Qiskit Function templates
 
-[Qiskit Function templates](https://github.com/qiskit-community/qiskit-function-templates) are an open-source collection of realistic code examples that give you a detailed guide to building high-quality, utility-scale application workflows using tools like the Qiskit SDK and [Qiskit addons](https://quantum.cloud.ibm.com/docs/en/guides/addons). These pre-built workflows take learnings from practical experiments and package them in a way that you can customize and reuse in your own research so that you don't have to build from scratch. All templates are deployable to [Qiskit Serverless](./serverless) to simplify execution and parallelization of your workflow.
+[Qiskit Function templates](https://github.com/qiskit-community/qiskit-function-templates) are an open-source collection of realistic code examples that give you a detailed guide to building high-quality, utility-scale application workflows using tools like the Qiskit SDK and [Qiskit addons](https://quantum.cloud.ibm.com/docs/en/guides/addons). These pre-built workflows take learnings from practical experiments and package them in a way that you can customize and reuse in your own research so that you don't have to build from scratch. All templates are deployable to [Qiskit Serverless](./serverless) to simplify execution and parallelization of your workflow.
 
 Templates are available in two varieties:
 
@@ -16,12 +15,11 @@ Templates are available in two varieties:
 
 ## Template implementations
 
-The application template implementations are organized by application area, which currently includes a physics and chemistry application utilizing the [SQD addon](./qiskit-addons-sqd) and the integral equation formalism polarizable continuum model (IEF-PCM).
+Qiskit Function template implementations are organized by application area. Currently included in the collection is a physics template for Hamiltonian simulation using the [AQC-Tensor Qiskit addon](./qiskit-addons-aqc) and a chemistry template for electronic structure with the implicit solvent model using the [SQD Qiskit addon](./qiskit-addons-sqd).
+The source files for these two templates can be accessed at the links below:
 
-For convenience, direct download links are provided for each application template directory:
-
-- [Download Hamiltonian simulation template](https://ibm.biz/ham-sim-template)
-- [Download chemistry-based SQD IEF-PCM template](https://ibm.biz/sqd-pcm-template)
+- [Template for Hamiltonian simulation](https://github.com/qiskit-community/qiskit-function-templates/tree/main/physics/hamiltonian_simulation)
+- [Template for electronic structure simulation with implicit solvent model](https://github.com/qiskit-community/qiskit-function-templates/tree/main/chemistry/sqd_pcm)
 
 The associated guide page for each of these templates can also be found here:
 
@@ -31,7 +29,7 @@ The associated guide page for each of these templates can also be found here:
 
 ## Base templates
 
-The *base templates* are references for developing your own original Qiskit Function. They are designed to help you kickstart the development process by illustrating best practices in interface development, code formatting, I/O handling, error messages, checkpointing, unit testing, and more. The repository itself is exposed as a [GitHub template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository) so that the CI/CD implementation can be easily extended.
+The *base templates* are references for developing your own original Qiskit Function. They are designed to help you kickstart the development process by illustrating best practices in interface development, code formatting, I/O handling, error messages, checkpoints, unit testing, and more. The repository itself is exposed as a [GitHub template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository) so that the CI/CD implementation can be easily extended.
 
 There are currently two templates, a [circuit function template](https://github.com/qiskit-community/qiskit-function-templates/blob/main/base_templates/circuit_function_template.py) and an [application function template](https://github.com/qiskit-community/qiskit-function-templates/blob/main/base_templates/application_function_template.py). The circuit function template is built similarly to the [IBM Circuit Function](./ibm-circuit-function) and the application function template illustrates how to structure a typical application workflow.
 
