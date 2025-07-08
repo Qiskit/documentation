@@ -40,12 +40,7 @@ To run in session mode, specify `mode=session` when instantiating a primitive, o
 <Admonition type="note" title="Notes">
 - The queuing time does not decrease for the first job submitted within a session. Therefore, sessions do not provide any benefits when running a single job.
 - Sessions do not work on simulators because simulators do not have a queue.
-<LegacyContent>
-- Session execution mode is not supported in the Open Plan. Jobs will run in job mode instead.
-</LegacyContent>
-<CloudContent>
 - Open Plan users cannot submit session jobs.
-</CloudContent>
 </Admonition>
 
 ## Basic workflow
@@ -58,12 +53,8 @@ The basic workflow for batches and sessions is similar:
    <Admonition type="note">
    The job must go through the normal queue to reactivate the workload.
    </Admonition>
-<LegacyContent>
-4. If the maximum TTL value is reached, the workload ends and any remaining queued jobs fail. In IBM Quantum&reg; Platform, any jobs already running will run to completion.  However, if you are using Qiskit Runtime on IBM Cloud&reg;, jobs won't run to completion if doing so would exceed the instance's cost limit.
-</LegacyContent>
-<CloudContent>
 4. If the maximum TTL value is reached, the workload ends and any remaining queued jobs fail. Any job currently running won't run to completion if doing so would exceed the instance's cost limit.
-</CloudContent>
+
 
 The following video illustrates the basic workflow, using sessions as an example:
 
