@@ -40,6 +40,7 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/docs/guides/global-data-quantum-optimizer",
   "/docs/guides/colibritd-pde",
   "/docs/guides/qunova-chemistry",
+  "/docs/guides/instances",
 ]);
 
 // URLs that show up in the INDEX_PAGES >1 time. This can happen when we
