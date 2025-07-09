@@ -15,45 +15,16 @@ Use the updated code to save accounts.
 
 <Tabs>
   <TabItem value="updated" label="Runtime primitives">
-<LegacyContent>
-The new syntax accepts credentials for
-Qiskit Runtime on IBM Cloud&reg; or IBM Quantum Platform. For more
-information about retrieving account credentials, see [Install and set up](/docs/guides/setup-channel).
-</LegacyContent>
-<CloudContent>
 For information about retrieving account credentials, see [Install and set up](/docs/guides/cloud-setup).
-</CloudContent>
-<LegacyContent>
-```python
-from qiskit_ibm_runtime import QiskitRuntimeService
 
-# IBM Quantum channel; set to default
-
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, set_as_default=True)
-```
-</LegacyContent>
-<CloudContent>
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>", overwrite=True, set_as_default=True)
 ```
-</CloudContent>
+
 Additionally, you can now name your saved credentials and load the credentials by name.
 
-<LegacyContent>
-```python
-# Save different accounts for open and premium access
-
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h1/g1/p1", name="premium")
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h2/g2/p2", name="open")
-
-# Load the "open" credentials
-
-service = QiskitRuntimeService(name="open")
-```
-</LegacyContent>
-<CloudContent>
 ```python
 # Save different accounts for open and premium access
 
@@ -64,7 +35,6 @@ QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TO
 
 service = QiskitRuntimeService(name="open")
 ```
-</CloudContent>
   </TabItem>
 
   <TabItem value="legacy" label="backend.run">
@@ -74,59 +44,8 @@ IBMProvider.save_account(token='MY_API_TOKEN')
   </TabItem>
 </Tabs>
 
-<LegacyContent>
-## Load accounts
-
-Use the updated code to load accounts.
-
-<Tabs>
-  <TabItem value="updated" label="Runtime primitives">
-The `channel` input parameter is
-optional. If multiple accounts have been saved in one device and no
-`channel` is provided, the default is `"ibm_quantum_platform"`.
-
-```python
-# To access saved credentials for the IBM cloud channel
-service = QiskitRuntimeService(channel="ibm_quantum_platform")
-
-# To access saved credentials for the IBM quantum channel
-service = QiskitRuntimeService(channel="ibm_quantum")
-```
-  </TabItem>
-
-  <TabItem value="legacy" label="backend.run">
-```python
-provider = IBMProvider()
-```
-  </TabItem>
-</Tabs>
-</LegacyContent>
-
 ## Instance selection (get a provider)
-<LegacyContent>
-Use the updated code to select a hub, group, and project.
 
-<Tabs>
-  <TabItem value="updated" label="Runtime primitives">
-The new syntax combines the functionality from `load_account()` and
-`get_provider()` in one statement. When using the `ibm_quantum` channel,
-the `hub`, `group`, and `project` are specified through the new
-`instance` keyword.
-
-```python
-# To access saved credentials for the IBM quantum channel and select an instance
-service = QiskitRuntimeService(channel="ibm_quantum", instance="my_hub/my_group/my_project")
-```
-  </TabItem>
-
-  <TabItem value="legacy" label="backend.run">
-```python
-provider = IBMQ.get_provider(project="my_project", group="my_group", hub="my_hub")
-```
-  </TabItem>
-</Tabs>
-</LegacyContent>
-<CloudContent>
 Use the updated code to select an instance.
 
 The new syntax combines the functionality from `load_account()` and
@@ -136,7 +55,6 @@ The new syntax combines the functionality from `load_account()` and
 # To access saved credentials for the IBM quantum channel and select an instance
 service = QiskitRuntimeService(channel="ibm_quantum_platform", instance="<CRN>")
 ```
-</CloudContent>
 ## Get a backend
 
 Use the updated code to specify a backend.
@@ -233,11 +151,11 @@ print(f" > Counts: {job.result().get_counts()}")
 
 ## Example: Use sessions
 
-<CloudContent>
+
 <Admonition type="caution">
 The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
-</CloudContent>
+
 
 <Tabs>
   <TabItem value="Updated" label="Runtime primitives">
