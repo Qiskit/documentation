@@ -22,9 +22,7 @@ Your user account is associated with one or more [instances](./instances), ident
 
 ### Before you begin
 
-1. Ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](/docs/guides/install-qiskit#local).
-
-1. If you do not already have one, set up an [IBM Cloud account.](https://quantum.cloud.ibm.com/registration)
+If you do not already have one, set up an [IBM Cloud account.](https://quantum.cloud.ibm.com/registration)
    <Admonition type="note">
    You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
    </Admonition>
@@ -62,10 +60,11 @@ Your user account is associated with one or more [instances](./instances), ident
     2. Optional: Find the instance you want to use from the [Instances](https://quantum.cloud.ibm.com/instances) page. Click the icon to copy its CRN, then save it in a secure location so you can use it to identify the instance.
 
 <span id="cloud-save"></span>
-### 3. Initialize the service (trusted environment)
+### 3. Connect Qiskit with your service instance
 If you are working in a trusted Python environment (such as on a personal laptop or workstation), use the `save_account()` method to save your credentials locally, then use them to initialize the service.
 
-1. Activate a Python virtual environment, run Python in your virtual environment, and enter the following:
+1. Ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](/docs/guides/install-qiskit#local).
+1. Activate the Python virtual environment, run Python in your virtual environment, and enter the following:
 
     ```python
     token = "<your-API-token>"
@@ -102,13 +101,11 @@ When an instance CRN or name is passed in, only backends and jobs from that inst
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
       * If you don't save your credentials, you must specify them every time you start a new session.
 
-<Admonition type="note">
-      Follow [these instructions](/docs/guides/cloud-setup-untrusted) to authenticate to IBM Cloud if you are not using a trusted environment. For example, if you are using a public comptuer.
+    <Admonition type="note" title="Notes">
+      * Follow [these instructions](/docs/guides/cloud-setup-untrusted) to authenticate to IBM Cloud if you are not using a trusted environment. For example, if you are using a public comptuer.
+      * Follow [these instructions](/docs/guides/cloud-setup-rest-api) if you want to connect by using the REST API instead of using Qiskit.
+      * If necessary, use [this information](/docs/guides/quickstart-steps-org#firewall) to configure your firewall to enable access to the IBM Quantum API endpoints.
     </Admonition>
-
-### 4. Optional: Configure your firewall.
-
-    If necessary, use [this information](/docs/guides/quickstart-steps-org#firewall) to enable access to the IBM Quantum API endpoints.
 
 
 ## Next steps
