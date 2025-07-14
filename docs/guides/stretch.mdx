@@ -67,109 +67,9 @@ qc.delay(c, [3, 4])
 qc.barrier()
 ```
 
-## Limitations
+<Admonition type="note">
+ Any remainder resulting from a stretch resolution is added to the first delay that uses the stretch.
 
-The following constraints apply when using `stretch` in Qiskit Runtime:
-
-- At most one stretch variable per _qubit set_ between barriers (implicit and explicit). A qubit set is one or more qubits; these sets must be mutually exclusive.
-    <Tabs>
-     <TabItem value="Valid" label="Valid">
-        ```python
-        a = circuit.add_stretch("a")
-        b = circuit.add_stretch("b")
-        circuit.delay(a, (q0, q1))
-        circuit.delay(b, q2)
-        ```
-     </TabItem>
-
-     <TabItem value="Invalid" label="Invalid">
-        ```python
-        a = circuit.add_stretch("a")
-        b = circuit.add_stretch("b")
-        circuit.delay(a, (q0, q1))
-        circuit.delay(b, q0)  # Invalid because 2 stretches are applied on q0
-        ```
-     </TabItem>
-    </Tabs>
-
-- We call the area surrounded by a set of barriers a "barrier region". A stretch variable cannot be used in multiple barrier regions.
-    <Tabs>
-     <TabItem value="Valid" label="Valid">
-        ```python
-        # Stretch a is used inside a barrier region that is on q0 and q1
-        a = circuit.add_stretch("a")
-        circuit.barrier((q0, q1))
-        circuit.delay(a, q0)
-        circuit.barrier(q2)
-        circuit.delay(a, q0)
-        circuit.barrier((q0, q1))
-        ```
-
-        ![Illustration of the previous code output](/docs/images/guides/stretch/good-barrier-region.png 'Valid use of stretch in a barrier region')
-
-     </TabItem>
-
-     <TabItem value="Invalid" label="Invalid">
-        ```python
-        # Stretch a is used in two barrier regions
-        a = circuit.add_stretch("a")
-        circuit.barrier((q0, q1))
-        circuit.delay(a, q0)
-        circuit.barrier((q0, q1))
-        circuit.delay(a, q0)
-        circuit.barrier((q0, q1))
-         ```
-
-        ![Illustration of the previous code output](/docs/images/guides/stretch/bad-barrier-region.png 'Invalid use of stretch in barrier regions')
-
-     </TabItem>
-    </Tabs>
-
-- Stretch expressions are limited to those of the form `A*stretch + B` where `A` and `B` are floating point or integer constants.
-    <Tabs>
-     <TabItem value="Valid" label="Valid">
-        ```python
-        delay[2 * a + 3.0] $0;
-        delay[a / 5 - 40.0] $0;
-        delay[a + a] $0; # equivalent to "delay[2 * a] $0;"
-        ```
-     </TabItem>
-
-     <TabItem value="Invalid" label="Invalid">
-        ```python
-        delay[2 * a * a] $0;
-         ```
-     </TabItem>
-    </Tabs>
-
-- Stretch expressions can only include a single stretch variable.
-    <Tabs>
-     <TabItem value="Valid" label="Valid">
-        ```python
-        xxxxxx
-        ```
-     </TabItem>
-
-     <TabItem value="Invalid" label="Invalid">
-        ```python
-        stretch a;stretch b;
-        delay[ a + b ] $0;delay[ a * b ] $0;
-         ```
-     </TabItem>
-    </Tabs>
-
-    Invalid:
-
-
-
-- Stretch expressions cannot resolve to negative delay values.
-    Invalid:
-
-        ```python
-        delay[a  - 40.0] $0; #if "a" resolves to a value <= 40.0
-         ```
-
-- Any remainder resulting from a stretch resolution is added to the first delay that uses the stretch.
     Example:
 
         ```python
@@ -188,3 +88,110 @@ The following constraints apply when using `stretch` in Qiskit Runtime:
     The above code resolves to a value of 25 with a remainder of 1. The first delay`[a]` will have the remainder added.
 
     Stretch resolution equation:  $a + 8 + a + 8 + a + 8 = 100   =   3*a + 24$
+</Admonition>
+
+## Limitations
+
+The following constraints apply when using `stretch` in Qiskit Runtime:
+
+- At most one stretch variable per _qubit set_ between barriers (implicit and explicit). A qubit set is one or more qubits; these sets must be mutually exclusive.
+    <Tabs>
+    <TabItem value="Invalid" label="Invalid">
+        ```python
+        a = circuit.add_stretch("a")
+        b = circuit.add_stretch("b")
+        circuit.delay(a, (q0, q1))
+        circuit.delay(b, q0)  # Invalid because 2 stretches are applied on q0
+        ```
+     </TabItem>
+     <TabItem value="Valid" label="Valid">
+        ```python
+        a = circuit.add_stretch("a")
+        b = circuit.add_stretch("b")
+        circuit.delay(a, (q0, q1))
+        circuit.delay(b, q2)
+        ```
+     </TabItem>
+    </Tabs>
+
+- We call the area surrounded by a set of barriers a "barrier region". A stretch variable cannot be used in multiple barrier regions.
+    <Tabs>
+         <TabItem value="Invalid" label="Invalid">
+        ```python
+        # Stretch a is used in two barrier regions
+        a = circuit.add_stretch("a")
+        circuit.barrier((q0, q1))
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))
+         ```
+
+        ![Illustration of the previous code output](/docs/images/guides/stretch/bad-barrier-region.png 'Invalid use of stretch in barrier regions')
+
+     </TabItem>
+     <TabItem value="Valid" label="Valid">
+        ```python
+        # Stretch a is used inside a barrier region that is on q0 and q1
+        a = circuit.add_stretch("a")
+        circuit.barrier((q0, q1))
+        circuit.delay(a, q0)
+        circuit.barrier(q2)
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))
+        ```
+
+        ![Illustration of the previous code output](/docs/images/guides/stretch/good-barrier-region.png 'Valid use of stretch in a barrier region')
+
+     </TabItem>
+    </Tabs>
+
+- Stretch expressions are limited to those of the form `A*stretch + B` where `A` and `B` are floating point or integer constants.
+    <Tabs>
+         <TabItem value="Invalid" label="Invalid">
+        ```python
+        delay[2 * a * a] $0;
+         ```
+     </TabItem>
+     <TabItem value="Valid" label="Valid">
+        ```python
+        qubit[1] q;
+        stretch a;
+        delay[a * 2 + 3dt] q[0];
+        ```
+     </TabItem>
+    </Tabs>
+
+- Stretch expressions can only include a single stretch variable.
+    <Tabs>
+         <TabItem value="Valid" label="Valid">
+        ```python
+        xxxxxx
+        ```
+     </TabItem>
+         <TabItem value="Invalid" label="Invalid">
+        ```python
+        qubit[1] q;
+        stretch a;
+        stretch b;
+        delay[a * (b / 1dt)] q[0];
+         ```
+     </TabItem>
+
+    </Tabs>
+
+- Stretch expressions cannot resolve to negative delay values.
+    <Tabs>
+         <TabItem value="Invalid" label="Invalid">
+        ```python
+        delay[a  - 40.0] $0; #if "a" resolves to a value <= 40.0
+         ```
+     </TabItem>
+     <TabItem value="Valid" label="Valid">
+        ```python
+        xxxxxx
+        ```
+     </TabItem>
+    </Tabs>
+
+
