@@ -84,10 +84,10 @@ The following constraints apply when using `stretch` in Qiskit Runtime:
 
      <TabItem value="Invalid" label="Invalid">
         ```python
-        stretch a;
-        stretch b;
-        delay[a] $0, $1;
-        delay[b] $0;
+        a = circuit.add_stretch("a")
+        b = circuit.add_stretch("b")
+        circuit.delay(a, (q0, q1))
+        circuit.delay(b, q0)  # Invalid because 2 stretches are applied on q0
         ```
      </TabItem>
     </Tabs>
@@ -96,22 +96,32 @@ The following constraints apply when using `stretch` in Qiskit Runtime:
     <Tabs>
      <TabItem value="Valid" label="Valid">
         ```python
-        barrier $0, $1;
-        delay[a] $0;
-        barrier $3;
-        delay[a] $0;
-        barrier $0, $1;
+        # Stretch a is used inside a barrier region that is on q0 and q1
+        a = circuit.add_stretch("a")
+        circuit.barrier((q0, q1))
+        circuit.delay(a, q0)
+        circuit.barrier(q2)
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))
         ```
+
+        ![Illustration of the previous code output](/docs/images/guides/stretch/good-barrier-region.svg 'Valid use of stretch in a barrier region')
+
      </TabItem>
 
      <TabItem value="Invalid" label="Invalid">
         ```python
-        barrier $0, $1;
-        delay[a] $0;
-        barrier $0, $1;
-        delay[a] $0;
-        barrier $0, $1;
+        # Stretch a is used in two barrier regions
+        a = circuit.add_stretch("a")
+        circuit.barrier((q0, q1))
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))
          ```
+
+        ![Illustration of the previous code output](/docs/images/guides/stretch/bad-barrier-region.svg 'Invalid use of stretch in barrier regions')
+
      </TabItem>
     </Tabs>
 
