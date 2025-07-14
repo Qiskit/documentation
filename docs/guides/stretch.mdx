@@ -69,30 +69,32 @@ qc.barrier()
 
 ## Limitations
 
-The following constraints apply when using `stretch`:
+The following constraints apply when using `stretch` in Qiskit Runtime:
 
 - At most one stretch variable per _qubit set_ between barriers (implicit and explicit). A qubit set is one or more qubits; these sets must be mutually exclusive.
-    Valid:
-
+    <Tabs>
+     <TabItem value="Valid" label="Valid">
         ```python
-        stretch a;
-        stretch b;
-        delay[a] $0, $1;
-        delay[b] $2
+        a = circuit.add_stretch("a")
+        b = circuit.add_stretch("b")
+        circuit.delay(a, (q0, q1))
+        circuit.delay(b, q2)
         ```
+     </TabItem>
 
-    Invalid:
-
+     <TabItem value="Invalid" label="Invalid">
         ```python
         stretch a;
         stretch b;
         delay[a] $0, $1;
         delay[b] $0;
         ```
+     </TabItem>
+    </Tabs>
 
 - A stretch variable cannot be used between multiple sets of barriers.
-        Valid:
-
+    <Tabs>
+     <TabItem value="Valid" label="Valid">
         ```python
         barrier $0, $1;
         delay[a] $0;
@@ -100,9 +102,9 @@ The following constraints apply when using `stretch`:
         delay[a] $0;
         barrier $0, $1;
         ```
+     </TabItem>
 
-    Invalid:
-
+     <TabItem value="Invalid" label="Invalid">
         ```python
         barrier $0, $1;
         delay[a] $0;
@@ -110,29 +112,45 @@ The following constraints apply when using `stretch`:
         delay[a] $0;
         barrier $0, $1;
          ```
+     </TabItem>
+    </Tabs>
 
 - Stretch expressions are limited to those of the form `A*stretch + B` where `A` and `B` are floating point or integer constants.
-        Valid:
-
+    <Tabs>
+     <TabItem value="Valid" label="Valid">
         ```python
         delay[2 * a + 3.0] $0;
         delay[a / 5 - 40.0] $0;
         delay[a + a] $0; # equivalent to "delay[2 * a] $0;"
         ```
+     </TabItem>
 
-    Invalid:
-
+     <TabItem value="Invalid" label="Invalid">
         ```python
         delay[2 * a * a] $0;
          ```
+     </TabItem>
+    </Tabs>
 
 - Stretch expressions can only include a single stretch variable.
-    Invalid:
+    <Tabs>
+     <TabItem value="Valid" label="Valid">
+        ```python
+        xxxxxx
+        ```
+     </TabItem>
 
+     <TabItem value="Invalid" label="Invalid">
         ```python
         stretch a;stretch b;
         delay[ a + b ] $0;delay[ a * b ] $0;
          ```
+     </TabItem>
+    </Tabs>
+
+    Invalid:
+
+
 
 - Stretch expressions cannot resolve to negative delay values.
     Invalid:
