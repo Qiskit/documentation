@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
 # RuntimeJob
 
-<Class id="qiskit_ibm_runtime.RuntimeJob" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L47-L367" signature="RuntimeJob(backend, api_client, job_id, program_id, service, client_params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None, version=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.RuntimeJob" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L47-L374" signature="RuntimeJob(backend, api_client, job_id, program_id, service, client_params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None, version=None)" modifiers="class">
   Bases: [`JobV1`](/docs/api/qiskit/qiskit.providers.JobV1 "(in Qiskit v2.1)"), `BaseRuntimeJob`
 
   Representation of a runtime primitive execution.
@@ -94,7 +94,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
   ### instance
 
   <Attribute id="qiskit_ibm_runtime.RuntimeJob.instance">
-    For ibm\_quantum channel jobs, return the instance where the job was run. For ibm\_cloud and ibm\_quantum\_platform, None is returned.
+    For ibm\_quantum channel jobs, return the instance where the job was run. For ibm\_cloud and ibm\_quantum\_platform, the instance crn is returned.
   </Attribute>
 
   ### primitive\_id
@@ -132,7 +132,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
   ### usage\_estimation
 
   <Attribute id="qiskit_ibm_runtime.RuntimeJob.usage_estimation">
-    Return the usage estimation infromation for this job.
+    Return the usage estimation information for this job.
 
     **Returns**
 
@@ -147,7 +147,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.RuntimeJob.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L353-L367" signature="backend(timeout=None)">
+  <Function id="qiskit_ibm_runtime.RuntimeJob.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L360-L374" signature="backend(timeout=None)">
     Return the backend where this job was executed. Retrieve data again if backend is None.
 
     **Raises**
@@ -244,7 +244,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
   ### logs
 
-  <Function id="qiskit_ibm_runtime.RuntimeJob.logs" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L304-L323" signature="logs()">
+  <Function id="qiskit_ibm_runtime.RuntimeJob.logs" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L311-L330" signature="logs()">
     Return job logs.
 
     <Admonition title="Note" type="note">
@@ -306,7 +306,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
   ### queue\_info
 
-  <Function id="qiskit_ibm_runtime.RuntimeJob.queue_info" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L270-L302" signature="queue_info()">
+  <Function id="qiskit_ibm_runtime.RuntimeJob.queue_info" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L277-L309" signature="queue_info()">
     Return queue information for this job.
 
     The queue information may include queue position, estimated start and end time, and dynamic priorities for the hub, group, and project. See `QueueInfo` for more information.
@@ -326,8 +326,8 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
   ### queue\_position
 
-  <Function id="qiskit_ibm_runtime.RuntimeJob.queue_position" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L243-L268" signature="queue_position(refresh=False)">
-    Return the position of the job in the server queue.
+  <Function id="qiskit_ibm_runtime.RuntimeJob.queue_position" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L243-L275" signature="queue_position(refresh=False)">
+    (DEPRECATED) Return the position of the job in the server queue.
 
     <Admonition title="Note" type="note">
       The position returned is within the scope of the provider and may differ from the global queue position.
@@ -449,7 +449,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
   ### wait\_for\_final\_state
 
-  <Function id="qiskit_ibm_runtime.RuntimeJob.wait_for_final_state" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L325-L351" signature="wait_for_final_state(timeout=None)">
+  <Function id="qiskit_ibm_runtime.RuntimeJob.wait_for_final_state" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L332-L358" signature="wait_for_final_state(timeout=None)">
     Poll for the job status from the API until the status is in a final state.
 
     **Parameters**
