@@ -121,6 +121,7 @@ def _copy_local_content(root_dir: Path) -> None:
         "docs/tutorials",
         "public/docs/images/tutorials",
         "docs/migration-guides",
+        "docs/security",
         "docs/open-source",
         "learning",
         "public/docs/images/guides",
@@ -138,6 +139,7 @@ def _copy_local_content(root_dir: Path) -> None:
         "docs/support.mdx",
         "docs/responsible-quantum-computing.mdx",
         "docs/faq.mdx",
+        "docs/accessibility.mdx",
     ]:
         shutil.copy2(fp, root_dir / f"content/{fp}")
 

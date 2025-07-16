@@ -43,14 +43,24 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/migration-guides/qiskit-1.0",
   "docs/migration-guides/qiskit-1.0-features",
   "docs/migration-guides/qiskit-1.0-installation",
+  // TODO: everything needs an owner
+  "docs/open-source/code-of-conduct",
+  "docs/open-source/create-a-provider",
+  "docs/open-source/index",
+  "docs/open-source/qiskit-sdk-version-strategy",
+  "docs/accessibility",
+  "docs/faq",
+  "docs/responsible-quantum-computing",
+  "docs/security/index",
+  "docs/security/virtual-private-endpoints",
+  "docs/support",
 ]);
 
 const ALLOWED_NONEXISTENT_FILES: Set<string> = new Set([]);
 
 const GLOBS = [
-  "docs/{guides,tutorials}/*",
-  "docs/migration-guides/*",
-  "learning/**/*.{ipynb,mdx}",
+  "{docs,learning}/**/*.{ipynb,mdx}",
+  "!docs/api/**/*",
 ];
 
 async function main() {

@@ -26,9 +26,8 @@ interface NewPillEntry {
 // Grab the toc and grab each url with a newpill
 async function main() {
   const tocFiles = await globby([
-    "docs/guides/_toc.json",
-    "docs/migration-guides/_toc.json",
-    "docs/open-source/_toc.json",
+    "{docs,learning}/**/_toc.json",
+    "!docs/api/**/_toc.json",
   ]);
   const allOutdatedPills = [];
   const allMissingDates = [];
