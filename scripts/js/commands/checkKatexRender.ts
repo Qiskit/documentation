@@ -157,10 +157,10 @@ const main = async (): Promise<void> => {
       "\n",
       "Example of the conversion:\n",
       "--------------------------\n",
-      "$[sample_{0}observable_{0}, \ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, \ldots, sample_{M-1}observable_{N-1}]$\n",
+      "$[sample_{0}observable_{0}, ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, ldots, sample_{M-1}observable_{N-1}]$\n",
       "↓\n",
       "$$\n",
-      "[sample_{0}observable_{0}, \ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, \ldots, sample_{M-1}observable_{N-1}]\n",
+      "[sample_{0}observable_{0}, ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, ldots, sample_{M-1}observable_{N-1}]\n",
       "$$",
     );
     process.exit(1);
