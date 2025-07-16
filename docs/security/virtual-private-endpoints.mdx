@@ -1,0 +1,72 @@
+---
+title: Use virtual private endpoints for VPC to privately connect to IBM Quantum Platform
+description: How to use a virtual private endpoint to privately connect to IBM Quantum Platform.
+
+---
+
+# Use virtual private endpoints for VPC to privately connect to IBM Quantum Platform
+
+Use Virtual Private Endpoints (VPE) for VPC to connect to IBM Quantum&reg; from your VPC network by using IP address that you specify, allocated from a subnet within your VPC.
+
+VPEs are virtual IP interfaces that are bound to an endpoint gateway created on a per-service basis. The endpoint gateway is a virtualized function that scales horizontally, is redundant and highly available, and spans all availability zones of your VPC. Endpoint gateways enable communications from virtual server instances within your VPC and IBM Cloud&reg; service on the private backbone. VPE for VPC lets you control all private addressing within your cloud. For more information, see [About virtual private endpoint gateways](https://cloud.ibm.com/docs/vpc?topic=vpc-about-vpe).
+
+Within IBM Quantum Platform, all customer data is transmitted over the private network regardless of whether it is accessed through a public endpoint or VPE.
+
+Connecting to IBM Quantum Platform through the public endpoints transmits all request and response data over the public internet. To connect to IBM Quantum Platform by using a VPE, you must use the IBM Quantum Platform API or SDK. IBM Quantum Platform can only be accessed through the public network.
+
+## Before you begin
+
+Before you target a VPE for IBM Quantum Platform, complete the following steps:
+
+* [Create a Virtual Private Cloud](https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started).
+* [Plan for the network topology](https://cloud.ibm.com/docs/vpc?topic=vpc-planning-considerations) to connect to VPEs.
+* [Set access controls](https://cloud.ibm.com/docs/vpc?topic=vpc-configure-acls-sgs-endpoint-gateways) for your VPE.
+* Understand the [limitations](https://cloud.ibm.com/docs/vpc?topic=vpc-limitations-vpe) of having a VPE.
+* Understand how to [view VPE details](https://cloud.ibm.com/docs/vpc?topic=vpc-vpe-viewing-details-of-an-endpoint-gateway).
+
+## Set up a VPE for IBM Quantum Platform
+
+There are several ways to create a VPE gateway. If you use the [CLI](https://cloud.ibm.com/docs/vpc?topic=vpc-vpc-reference&interface=cli#vpe-clis) or [API](https://cloud.ibm.com/apidocs/vpc/latest#create-endpoint-gateway), you must specify the [Cloud Resource Name (CRN)](https://cloud.ibm.com/docs/account?topic=account-crn) of the region in which you want connect to IBM Quantum Platform. Review the following table for the available regions and CRNs.
+
+| Region | Plans   | Fully Qualified Domain Name (FDQN) | Cloud Resource Name (CRN) |
+|-----------------|-----------------|-----------------|-----------------|
+| `eu-de` | `Standard` | `private.eu-de.quantum-computing.cloud.ibm.com` | `crn:v1:bluemix:public:quantum-computing:eu-de:::endpoint:qiskit-runtime.private.eu-de.quantum-computing.cloud.ibm.com` |
+|  | `Channel Partner` | `qiskitruntime.private.eu-de.quantum-computing.cloud.ibm.com`, `scheduler.private.eu-de.quantum-computing.cloud.ibm.com` | `crn:v1:bluemix:public:quantum-computing:eu-de:::endpoint:qiskit-runtime.private.eu-de.quantum-computing.cloud.ibm.com` |
+
+### Configuring an endpoint gateway
+
+To configure a VPE gateway, follow these steps:
+
+1. List the available services, including IBM Cloud infrastructure services available (by default) for all VPC users.
+1. [Create an endpoint gateway](https://cloud.ibm.com/docs/vpc?topic=vpc-ordering-endpoint-gateway) for IBM Quantum Platform that you want to be privately available to the VPC.
+1. [Bind a reserved IP address](https://cloud.ibm.com/docs/vpc?topic=vpc-bind-unbind-reserved-ip) to the endpoint gateway.
+1. [View the created VPE gateways](https://cloud.ibm.com/docs/vpc?topic=vpc-vpe-viewing-details-of-an-endpoint-gateway) associated with IBM Quantum Platform.
+
+Now your virtual server instances in the VPC can access your IBM Quantum Platform instance privately.
+
+## Use your VPE for IBM Quantum Platform
+
+After you create an endpoint gateway for IBM Quantum Platform, follow these steps:
+
+### Use the VPE with `qiskit-ibm-runtime` (Python SDK)
+
+<Admonition type="note">
+VPE support requires `qiskit-ibm-runtime` v0.24.0 or later.
+</Admonition>
+
+When instantiating `QiskitRuntimeService`, specify `private_endpoint=True`.
+
+```python
+service = QiskitRuntimeService(token="APIKEY", instance="SERVICE_CRN", channel="ibm_cloud", private_endpoint=True)
+```
+
+### Use the VPE with the IBM Quantum API
+
+After creating an endpoint gateway for IBM Quantum Platform, use the service endpoint's FQDN for the target region.
+
+```bash
+  curl -X POST https://private.$REGION.quantum-computing.cloud.ibm.com/jobs -H "Authorization: Bearer $BEARER_TOKEN" -H "Service-CRN: $SERVICE_INSTANCE_CRN" -d '{
+    "backend": "backend",
+    "program_id": "sampler"
+  }'
+```
