@@ -29,7 +29,7 @@ The are several main personas that are mentioned in this guide:
 This guide uses the following terms:
 
 * _Resource_: A generic IBM Cloud term that refers to an object that can be managed through the Cloud user interface, CLI, or API. For this guide, a _resource_ is an IBM Quantum Platform service instance.
-* _Service instance_: A service instance is used to access Cloud functions. Specifically, quantum computing on real devices or simulators. It is defined through the catalog. You can define several service instances based on the same or different plans, which offer access to different quantum computing backends. See [Available IBM Cloud plan](/docs/guides/plans-overview) for details.
+* _Service instance_: A service instance is used to access Cloud services - specifically, quantum computers. It is defined through the catalog. You can define several service instances based on the same or different plans, which offer access to different quantum computing backends. See [Available IBM Cloud plan](/docs/guides/plans-overview) for details.
 * _Project_: A grouping unit that enables users to work on the same resources. This guide uses two projects: `ml` and `finance`. See [Hierarchical project structures](#nest-org) for more information.
 
    <Admonition type="note">
@@ -48,7 +48,7 @@ Before you set up IBM Quantum Platform for your organization, you need to make t
    * Do not make project names substrings of another. For example, if you use `ml` and `chemlab` for project names, then later you set up a project match for `ml`, it triggers on both values, accidentally granting more access than expected. Instead, use unique names such as `ml` and `chem-lab`. Alternatively, use prefix or suffix values to avoid such unintended substring matches.
    * Using naming conventions along with prefix or suffix values can help you easily allow access to several projects.
    * Quantum experiments (jobs) belong to service instances, and users that have access to an instance can see its jobs.
-   * Service instances can be based on different plans, allowing access to different backends like real devices or simulators.
+   * Service instances can be based on different plans, allowing access to different backends.
 * Which users need to access which projects?
 * Should users be able to delete jobs? Keeping jobs in service instances gives more traceability for billing costs.
 * Will you use access groups that directly reference IBM Quantum Platform service instances or organize services into resource groups?
