@@ -90,19 +90,16 @@ Follow these steps to start using the new version of IBM Quantum Platform.
       <Admonition type="note">
       If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later. If you do not customize them, you will always have access to any QPU the account has access on the plan. So if in the future there is a new system added to the plan, the instance automatically has access to it.
       </Admonition>
-   1. Choose whether you want an access group to be created for this instance and click **Create instance**.  For an Open instance, you probably don't need an access group, although creating one won't impact your usage unless you add another user to the group. You can add or remove access groups at any time from IBM Cloud. To learn more, see [Setting up access groups.](https://cloud.ibm.com/docs/account?topic=account-groups)
-3. Set up your credentials using the [following steps.](#credentials)
-   * Set the channel to `ibm_quantum_platform`. If you previously set your default channel to `ibm_quantum` in your saved credentials, you need to update that setting. If you were previously working with Qiskit Runtime on IBM Cloud, you can skip this.
-   * Optionally specify the instance's CRN or name. To copy the instance CRN, go to your [dashboard,](https://quantum.cloud.ibm.com/) go to [Instances,](https://quantum.cloud.ibm.com/instances) and click the copy icon at the end of the instance's row. The instance name listed in the first column can also be used. If an instance is not specified, all instances in your account will be available.
-   * Optionally name this set of credentials.
+   1. Choose whether you want an access group to be created for this instance and click **Create instance**.  For an Open instance, you probably don't need an access group, although creating one won't impact your usage unless you add another user to the group. You can add or remove access groups at any time from IBM Cloud. To learn more, see [Setting up access groups.](https://cloud.ibm.com/docs/account?topic=account-groups)  
 
 <span id="credentials"></span>
 
-1. Create an API key from the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com/)
+3. Create an API key from the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com/) and set up your credentials.
    <Admonition type="note">
    This API key is only visible for a short amount of time so be sure to store it in a safe place.  To manage your API key, use IBM Cloud.  See [Managing user API keys](https://cloud.ibm.com/docs/account?topic=account-userapikey) for instructions.
    </Admonition>
-2. Use your API key to activate your Python virtual environment.  See the [installation instructions](/docs/guides/install-qiskit#local) if you do not already have a virtual environment set up.
+4. Use your API key to activate your Python virtual environment.  See the [installation instructions](/docs/guides/install-qiskit#local) if you do not already have a virtual environment set up.
+
 
     <span id="save-account"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#untrusted-machine) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Quantum Platform.) To use `save_account()`, run `python` in your shell, then enter the following:
 
@@ -119,10 +116,14 @@ Follow these steps to start using the new version of IBM Quantum Platform.
       instance="instance-CRN or instance-name", # Optionally copy the instance CRN or name from the Instance section on the dashboard.
       name="account-name", # Optionally name this set of credentials.
       overwrite=True # Only needed if you already have Cloud credentials.
+      set_as_default=True # Only needed if you want these credentials to be used as the default account. 
+      # This is recommended if you have an IQP classic account set as the default. 
     )
     ```
 
-   Note that it is not required to pass in an instance when saving an account or initializing the `QiskitRuntimeService()`. If an instance is not passed in, all instances will be checked when a backend is retrieved (`service.backend("backend_name")`). If an instance is passed into `save_account()`, or passed in during initialization, it is used as the default instance when retrieving backends. An instance passed in at initialization takes precedence over the one saved in the account.
+   * The new channel name is `ibm_quantum_platform`. If you previously set your default channel to `ibm_quantum` in your saved credentials, you need to update that setting. If you were previously working with Qiskit Runtime on IBM Cloud, you can skip this.
+
+   Note that it is not required to pass in an instance when saving an account or initializing the `QiskitRuntimeService()`. If an instance is not passed in, all instances will be checked when a backend is retrieved (`service.backend("backend_name")`). If an instance is passed into `save_account()`, or passed in during initialization, it is used as the default instance when retrieving backends. An instance passed in at initialization takes precedence over the one saved in the account. To copy the instance CRN, go to your [dashboard,](https://quantum.cloud.ibm.com/) go to [Instances,](https://quantum.cloud.ibm.com/instances) and click the copy icon at the end of the instance's row.
 
       * New parameters, `region`, and `plans_preference`, have been added to the `QiskitRuntimeService()` initializer and the `save_account()` method. These can be used to prioritize certain instances on the new platform (`ibm_quantum_platform`, and temporarily, `ibm_cloud` channels) without explicitly providing the CRN.
       `region` allows you to set a region preference (`us-east` or `eu-de`), For example, if `us-east` is specified,
@@ -142,11 +143,11 @@ Follow these steps to start using the new version of IBM Quantum Platform.
     service = QiskitRuntimeService(name="account-name")
     ```
 
-      * If you have saved credentials for both an IBM Quantum Platform account and an IBM Cloud account, IBM Cloud is the default account used when you initialize your account, unless you specify `set_as_default=True` in your IBM Quantum Platform account when you use the `save_account()` method.
-      * If you previously saved an IBM Quantum Platform account as the default, specify `set_as_default=True` for your new cloud account when you use the `save_account()` method.
+      * If you previously saved an IBM Quantum Platform classic account as the default, specify `set_as_default=True` for your new cloud account when you use the `save_account()` method.
+      * If no accounts are saved as the default, an account saved on the new IBM Quantum Platform with `ibm_quantum_platform` as the channel name will be used as the default when initializing your account. `set_as_default=True` can still be used to set an account with a certain configuration of credentials as the default.
       * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
-1. <span id="untrusted-machine"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (for example, a public computer), change your API key after each use by following the instructions in the [Delete an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) section to reduce risk. To initialize the service in this situation, you can use code like the following:
+5. <span id="untrusted-machine"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (for example, a public computer), change your API key after each use by following the instructions in the [Delete an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) section to reduce risk. To initialize the service in this situation, you can use code like the following:
 
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
