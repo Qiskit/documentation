@@ -7,15 +7,6 @@ description: Frequently asked questions about IBM Quantum (Platform, or on IBM C
 
 For FAQs specific to the execution modes, see the [Qiskit Runtime execution modes FAQ](/docs/support/execution-modes-faq) guide.
 
-## Trouble creating an IBM Cloud account
-
-If you get an error when you create an IBM Cloud&reg; account, first check whether you have access to the [Support center.](https://cloud.ibm.com/unifiedsupport/supportcenter)
-
-- If you do have access, click "create case", then select *Account* as the Topic and *Account verification* as the Subtopic.
-- If you do not have access, contact Support by calling 1-866-325-0045 and selecting the third option.
-
-See [Why is my account inactive?](https://cloud.ibm.com/docs/account?topic=account-ts_accnt_inactive) and [Why does a resource group error occur after reactivation or upgrade of a suspended account?](https://cloud.ibm.com/docs/account?topic=account-resource_inactive) for more information.
-
 ## How do I cite Qiskit in my research?
 
 Cite Qiskit by using the included [BibTeX file](https://github.com/Qiskit/qiskit/blob/main/CITATION.bib).
@@ -28,7 +19,7 @@ For research papers, we encourage authors to acknowledge IBM Quantum&reg; by usi
 
 Paper references should be cited as follows:
 
-> IBM Quantum. https://<span>quantum.cloud.ibm.com</span>/, 2021
+> IBM Quantum. https://<span>quantum.cloud.ibm.com</span>/, YYYY
 
 Quantum processing units in the paper should be referenced by their unique name (for example, `ibmq_vigo`) and optionally
 adding the version (for example, `ibmq_vigo` v1.0.2).  We also encourage referencing the processor.
@@ -38,26 +29,22 @@ For example:
 
 Example of citing an IBM Quantum program:
 
-> IBM Quantum (2022). Estimator primitive (Version x.y.z) [computer software]. https://<span>quantum.cloud.ibm.com</span>/
+> IBM Quantum (2025). Estimator primitive (Version x.y.z) [computer software]. https://<span>quantum.cloud.ibm.com</span>/
 
 ## How do I cite IBM Quantum Composer in my research?
 
 Example of citing IBM Quantum Composer:
 
-> IBM Quantum Composer. 2023. url: https://<span>quantum.cloud.ibm.com/composer</span>
+> IBM Quantum Composer. 2025. url: https://<span>quantum.cloud.ibm.com/composer</span>
 
 
-## I'm an administrator but I can't access my administration tasks.
+## I don't see something in the user interface, such as my administration tasks.
 
-Try choosing a different account from the account switcher in the header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
-
-## I don't see something in the user interface.
-
-Try choosing a different account from the account switcher in the header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
+Try choosing a different account from the account switcher in the header of the [IBM Quantum Platform](https://quantum.cloud.ibm.com) interface.
 
 ## I'm just using the Open Plan, but I had to put in my credit card.  Will I be charged?
 
-You will not be charged unless you create a Standard Plan [instance](/docs/guides/instances) and use it to send workloads to QPUs. See [Manage cost on the Standard Plan](/docs/guides/manage-cost) for instructions to set a cost limit and to learn about other ways to manage costs.
+You will not be charged unless you create a Pay-As-You-Go [instance](/docs/guides/instances) and use it to send workloads to QPUs. See [Manage cost](/docs/guides/manage-cost) for instructions to set a cost limit and to learn about other ways to manage costs.
 
 
 ## What's the difference between an API key and an API token?
@@ -82,29 +69,6 @@ These separate software packages were combined into what was called the Qiskit *
 
 If you want to install the packages that were previously included in the Qiskit metapackage, visit the [Qiskit ecosystem](https://www.ibm.com/quantum/ecosystem) to find a range of packages to suit your needs. You can also read the [v1.0 migration guide](/docs/migration-guides/metapackage-migration) for more information about this change.
 
-## Why do I receive the error message "AttributeError: `QuantumCircuit` object has no attribute `save_state`" when using `save_*`method on a circuit?
-
-The `save_*` instructions are part of Qiskit Aer project,
-a high performance simulator for quantum circuits. These instructions do not
-exist outside of Qiskit Aer and are added dynamically to the
-[QuantumCircuit](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#quantumcircuit-class) class by Qiskit Aer on import. To
-use these instructions you must first import
-`qiskit_aer` in your program. Refer
-to the [qiskit_aer.library](https://qiskit.org/ecosystem/aer/apidocs/aer_library.html) for details.
-
-## Why do my results from real devices differ from my results from the simulator?
-
-The simulator models an ideal environment, without noise or decoherence. When jobs are run on the real devices, noise from the environment and decoherence cause the qubits to behave differently than in an ideal environment.
-
-
 ## How do I close my IBM Cloud account?
 
 Find instructions on the [Closing an account](https://cloud.ibm.com/docs/account?topic=account-account-close) page.
-
-## Questions about cloud simulator retirement
-
-See the [migration guide](/docs/migration-guides/local-simulators) for details on the retirement of cloud simulators, and how to migrate to local simulators.
-
-## Didn't find what you were looking for?
-
-Visit the [Support page](/docs/support) for further guidance.
