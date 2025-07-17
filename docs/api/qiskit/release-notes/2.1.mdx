@@ -14,9 +14,37 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 2.1.1
+
+<span id="relnotes-2-1-1-prelude" />
+
+### Prelude
+
+Qiskit 2.1.1 is a small patch release, fixing several bugs found in the 2.1 series.
+
+<span id="relnotes-2-1-1-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a bug in the [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode") equality check, where comparing two [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode") objects that contain a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") instruction. Previously, the `BoxOp.unit` attribute was not considered as part of the equality check which could lead to a two unequal nodes be evaluated as equal.
+
+*   Fixed the deprecation warning for Python 3.9 so that it is correctly identified as being caused by user code when importing Qiskit. Previously, it would not be identified as being caused by user code, and this meant that Python’s default warning filters would not display the warning to the user.
+
+*   Fixed the behavior of the `max_trials` argument for [`VF2Layout`](/docs/api/qiskit/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") when set to `None` or a negative number. The pass was documented as limiting the search to be based on the size of the circuit or target if the option was set to `None`, and as accepting negative values to specify an unbounded search. However, in 2.1.0 this behavior was incorrectly changed so that `None` ran an unbounded search and using a negative number would raise an error. These oversights have been corrected so that the pass behaves as documented and is consistent with previous releases.
+
+*   Fixed a problem in high-level synthesis plugins [`MCXSynthesis1DirtyKG24`](/docs/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1DirtyKG24 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1DirtyKG24") and [`MCXSynthesis2DirtyKG24`](/docs/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis2DirtyKG24 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis2DirtyKG24") for [`MCXGate`](/docs/api/qiskit/qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate"), where the plugins did not consider available clean auxiliary qubits as available dirty auxiliary qubits. In particular, the plugin [`MCXSynthesis2DirtyKG24`](/docs/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis2DirtyKG24 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis2DirtyKG24") did not apply when one clean and one dirty auxiliary qubits were available.
+
+*   Fixed a performance regression when incrementally building [`ParameterExpression`](/docs/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") by combining a large number of sub-expressions. Fixed [#14653](https://github.com/Qiskit/qiskit/issues/14653)
+
+<span id="relnotes-2-1-0" />
+
+<span id="id2" />
+
 ## 2.1.0
 
 <span id="relnotes-2-1-0-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
@@ -647,6 +675,8 @@ For more details about the above and much more, please see the release notes bel
     > *   [`MCXVChain`](/docs/api/qiskit/qiskit.circuit.library.MCXVChain "qiskit.circuit.library.MCXVChain") → [`synth_mcx_n_clean_m15()`](/docs/api/qiskit/synthesis#qiskit.synthesis.synth_mcx_n_clean_m15 "qiskit.synthesis.synth_mcx_n_clean_m15")
 
 <span id="relnotes-2-1-0-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
