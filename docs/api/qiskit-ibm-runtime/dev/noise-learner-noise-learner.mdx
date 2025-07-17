@@ -90,7 +90,7 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
     **Return type**
 
-    [*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v2.0)")
+    [*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v2.1)")
   </Function>
 
   ### run
@@ -98,11 +98,11 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
   <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/noise_learner/noise_learner.py#L140-L212" signature="run(circuits)">
     Submit a request to the noise learner program.
 
-    This function breaks the given list of circuits into a list of unique layers, following the strategy set by the `twirling_strategy` field specified in the `options` (see `NoiseLearnerOptions` for more details) and sorting them based on the number of times they occur in the various circuits. Then, it runs the noise learning experiment for as many layers as specified by the `max_layers_to_learn` field in the `options`, prioritizing layers that occurr more frequently.
+    This function breaks the given list of circuits into a list of unique layers, following the strategy set by the `twirling_strategy` field specified in the `options` (see `NoiseLearnerOptions` for more details) and sorting them based on the number of times they occur in the various circuits. Then, it runs the noise learning experiment for as many layers as specified by the `max_layers_to_learn` field in the `options`, prioritizing layers that occur more frequently.
 
     **Parameters**
 
-    **circuits** (*Iterable\[*[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.0)") *| EstimatorPubLike]*) – An iterable of circuits to run the noise learner program for. Alternatively, estimator pub-like (primitive unified bloc) objects can be specified, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`. In this case, the pub-like objects are converted to a list of circuits, and all the other fields (such as `observables` and `parameter_values`) are ignored.
+    **circuits** (*Iterable\[*[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.1)") *| EstimatorPubLike]*) – An iterable of circuits to run the noise learner program for. Alternatively, estimator pub-like (primitive unified bloc) objects can be specified, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`. In this case, the pub-like objects are converted to a list of circuits, and all the other fields (such as `observables` and `parameter_values`) are ignored.
 
     **Returns**
 

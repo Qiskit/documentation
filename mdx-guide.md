@@ -89,17 +89,17 @@ To include a caption:
 
 You can include a version of the image to be with the dark theme. You only need to create an image with the same name ending in `@dark`. So for example, if you have a `sampler.png` image, the dark version would be `sampler@dark.png`. This is important for images that have a white background.
 
-## Videos
+## IBM Videos
 
-Videos are stored in the `public/docs/videos` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/docs/videos/guides/my-file/video1.mp4`.
+The `IBMVideo` component allows you to add embedded videos from [video.ibm.com](https://video.ibm.com).
 
-To add a video:
+To use the component, you only need the video's `id` and a descriptive `title` that will be used for accessibility purposes:
 
 ```markdown
-<video title="Write a description of the video here as 'alt text' for accessibility." className="max-w-auto h-auto" controls>
-    <source src="/docs/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
-</video>
+<IBMVideo id="134056207" title="This is an example"/>
 ```
+
+Ensure that the video is allowed to be embedded on `*.cloud.ibm.com` and `qiskit.github.io`. This is set as metadata in IBM Video Streaming. This should work automatically as long as the video is uploaded to the same group as our other videos.
 
 ## Math
 
@@ -156,24 +156,6 @@ Use `&reg;` to get &reg; for registered trademarks.
 use `&trade;` to get &trade; for nonregistered trademarks.
 
 ⚠️ **Note**: Do not include trademarks in headings. The code will display rather than the symbol.
-
-## Platform-specific pages
-
-You can restrict pages to only appear on a specific platform (IQP Cloud or IQP Classic).
-
-1. Add `"platform": "cloud"` or `"platform": "legacy"` to the pages' entry in `_toc.json`. This will stop the page from appearing in the left table of contents in the other platform.
-
-   ```json
-   {
-     "title": "Connecting to IBM Cloud",
-     "url": "/cloud/connect-to-ibm-cloud",
-     "platform": "cloud"
-   }
-   ```
-
-   **Note:** If every page in a section is platform-specific, you must also add the `"platform"` attribute to the section too. Otherwise, users will see an empty section on the other platform.
-
-2. Add `platform: cloud` to the page's metadata. This will make the page 404 if a user tries to access that page's URL. See [Page metadata](#page-metadata) for how to set this.
 
 ## Custom components
 

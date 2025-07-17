@@ -32,7 +32,6 @@ notebooks = [
     "docs/guides/qiskit-addons-mpf.ipynb",
     "docs/guides/represent-quantum-computers.ipynb",
     "docs/guides/save-circuits.ipynb",
-    "docs/guides/save-jobs.ipynb",
     "docs/guides/set-optimization.ipynb",
     "docs/guides/simulate-stabilizer-circuits.ipynb",
     "docs/guides/simulate-with-qiskit-aer.ipynb",
@@ -55,8 +54,10 @@ notebooks = [
     "docs/guides/native-gates.ipynb",
     "docs/guides/primitives-rest-api.ipynb",
     "docs/guides/repetition-rate-execution.ipynb",
+    "docs/guides/save-jobs.ipynb",
     "docs/guides/simulate-with-qiskit-sdk-primitives.ipynb",
     "docs/guides/synthesize-unitary-operators.ipynb",
+    "docs/guides/DAG-representation.ipynb",
 ]
 
 # Mock the following notebooks using a 6-qubit local simulator
@@ -101,7 +102,7 @@ notebooks = [
 [groups.cron-job-only]
 test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
-    "docs/guides/hello-world.ipynb",
+    "docs/tutorials/hello-world.ipynb",
     # The following notebook takes >300s to run and should be executed in the
     # cron job. Even though it does not use real hardware
     "docs/guides/qiskit-addons-cutting-gates.ipynb",
@@ -117,10 +118,6 @@ notebooks = [
     #   This timed out with no jobs submitted. Adding to the cron to see if it
     #   needs longer.
     "docs/guides/qedma-qesem.ipynb",
-
-    #   Got `KeyError: 'qsci_energy'`; might be due to nonsense results from
-    #   test-eagle? Running in cron job to test on a real backend.
-    "docs/guides/qunasys-quri-chemistry.ipynb",
 
     #   Got: `QiskitServerlessException: "Q-CTRL: Failed to execute Qiskit
     #   Function. Failed to compile the circuit.
@@ -140,6 +137,7 @@ notebooks = [
 notebooks = [
     # This notebook contains undefined variables so can't run at all.
     "docs/guides/function-template-hamiltonian-simulation.ipynb",
+    "docs/guides/function-template-chemistry-workflow.ipynb",
 
     # These notebooks are failing with auth errors and need investigating
     "docs/guides/serverless-first-program.ipynb",
@@ -164,6 +162,7 @@ notebooks = [
 
 
     # We never run tutorials notebooks
+    "docs/tutorials/multi-product-formula.ipynb",
     "docs/tutorials/advanced-techniques-for-qaoa.ipynb",
     "docs/tutorials/ai-transpiler-introduction.ipynb",
     "docs/tutorials/circuit-transpilation-settings.ipynb",
@@ -171,12 +170,11 @@ notebooks = [
     "docs/tutorials/spin-chain-vqe.ipynb",
     "docs/tutorials/quantum-approximate-optimization-algorithm.ipynb",
     "docs/tutorials/quantum-kernel-training.ipynb",
-    "docs/tutorials/repeat-until-success.ipynb",
     "docs/tutorials/transpilation-optimizations-with-sabre.ipynb",
     "docs/tutorials/variational-quantum-eigensolver.ipynb",
     "docs/tutorials/qunova-hivqe.ipynb",
     "docs/tutorials/real-time-benchmarking-for-qubit-selection.ipynb",
-    "docs/tutorials/compute-dissociation-curves-for-strong-coupling-systems-with-quna-sys-qsci.ipynb",
+    "docs/tutorials/sample-based-krylov-quantum-diagonalization.ipynb",
     "docs/tutorials/solve-higher-order-binary-optimization-problems-with-q-ctrls-optimization-solver.ipynb",
     "docs/tutorials/chsh-inequality.ipynb",
     "docs/tutorials/approximate-quantum-compilation-for-time-evolution.ipynb",
@@ -269,7 +267,14 @@ notebooks = [
     "learning/courses/quantum-business-foundations/exam.ipynb",
     "learning/courses/quantum-business-foundations/how-to-become-quantum-ready.ipynb",
     "learning/courses/quantum-business-foundations/quantum-computing-fundamentals.ipynb",
-        "learning/courses/foundations-of-quantum-error-correction/correcting-quantum-errors/introduction.ipynb",
+    "learning/modules/computer-science/deutsch-jozsa.ipynb",
+    "learning/modules/computer-science/quantum-key-distribution.ipynb",
+    "learning/modules/computer-science/quantum-teleportation.ipynb",
+    "learning/modules/quantum-mechanics/superposition-with-qiskit.ipynb",
+    "learning/modules/quantum-mechanics/stern-gerlach-measurements-with-qiskit.ipynb",
+    "learning/modules/quantum-mechanics/exploring-uncertainty-with-qiskit.ipynb",
+    "learning/modules/quantum-mechanics/bells-inequality-with-qiskit.ipynb",
+    "learning/courses/foundations-of-quantum-error-correction/correcting-quantum-errors/introduction.ipynb",
     "learning/courses/foundations-of-quantum-error-correction/correcting-quantum-errors/repetition-codes.ipynb",
     "learning/courses/foundations-of-quantum-error-correction/correcting-quantum-errors/shor-code.ipynb",
     "learning/courses/foundations-of-quantum-error-correction/correcting-quantum-errors/discretization-of-errors.ipynb",
@@ -285,4 +290,35 @@ notebooks = [
     "learning/courses/foundations-of-quantum-error-correction/fault-tolerant-quantum-computing/approach-to-fault-tolerance.ipynb",
     "learning/courses/foundations-of-quantum-error-correction/fault-tolerant-quantum-computing/controlling-error-propagation.ipynb",
     "learning/courses/foundations-of-quantum-error-correction/fault-tolerant-quantum-computing/threshold-theorem.ipynb",
+    "learning/courses/quantum-safe-cryptography/cryptographic-hash-functions.ipynb",
+    "learning/courses/quantum-safe-cryptography/quantum-safe-cryptography.ipynb",
+    "learning/courses/quantum-safe-cryptography/symmetric-key-cryptography.ipynb",
+    "learning/courses/quantum-safe-cryptography/WhatNext.ipynb",
+    "learning/courses/quantum-safe-cryptography/asymmetric-key-cryptography.ipynb",
+    "learning/courses/quantum-chem-with-vqe/introduction.ipynb",
+    "learning/courses/quantum-chem-with-vqe/hamiltonian-construction.ipynb",
+    "learning/courses/quantum-chem-with-vqe/ansatz.ipynb",
+    "learning/courses/quantum-chem-with-vqe/classical-optimizers.ipynb",
+    "learning/courses/quantum-chem-with-vqe/ground-state.ipynb",
+    "learning/courses/quantum-chem-with-vqe/geometry.ipynb",
+    "learning/courses/variational-algorithm-design/variational-algorithms.ipynb",
+    "learning/courses/variational-algorithm-design/reference-states.ipynb",
+    "learning/courses/variational-algorithm-design/ansaetze-and-variational-forms.ipynb",
+    "learning/courses/variational-algorithm-design/cost-functions.ipynb",
+    "learning/courses/variational-algorithm-design/optimization-loops.ipynb",
+    "learning/courses/variational-algorithm-design/examples-and-applications.ipynb",
+    "learning/courses/variational-algorithm-design/instances-and-extensions.ipynb",
+    "learning/courses/utility-scale-quantum-computing/utility-ii.ipynb",
+    "learning/courses/utility-scale-quantum-computing/quantum-simulation.ipynb",
+    "learning/courses/utility-scale-quantum-computing/bits-gates-and-circuits.ipynb",
+    "learning/courses/utility-scale-quantum-computing/quantum-circuit-optimization.ipynb",
+    "learning/courses/utility-scale-quantum-computing/quantum-phase-estimation.ipynb",
+    "learning/courses/utility-scale-quantum-computing/utility-iii.ipynb",
+    "learning/courses/utility-scale-quantum-computing/teleportation.ipynb",
+    "learning/courses/utility-scale-quantum-computing/utility-i.ipynb",
+    "learning/courses/utility-scale-quantum-computing/introduction.ipynb",
+    "learning/courses/utility-scale-quantum-computing/hardware.ipynb",
+    "learning/courses/utility-scale-quantum-computing/error-mitigation.ipynb",
+    "learning/courses/utility-scale-quantum-computing/variational-quantum-algorithms.ipynb",
+    "learning/courses/utility-scale-quantum-computing/grovers-algorithm.ipynb",
 ]

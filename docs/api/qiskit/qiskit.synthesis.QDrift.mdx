@@ -8,7 +8,7 @@ python_api_name: qiskit.synthesis.QDrift
 
 # QDrift
 
-<Class id="qiskit.synthesis.QDrift" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/synthesis/evolution/qdrift.py#L32-L130" signature="qiskit.synthesis.QDrift(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, seed=None, wrap=False, preserve_order=True, *, atomic_evolution_sparse_observable=False)" modifiers="class">
+<Class id="qiskit.synthesis.QDrift" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/synthesis/evolution/qdrift.py#L33-L133" signature="qiskit.synthesis.QDrift(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, seed=None, wrap=False, preserve_order=True, *, atomic_evolution_sparse_observable=False)" modifiers="class">
   Bases: [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
 
   The QDrift Trotterization method, which selects each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in Ref. \[1].
@@ -22,7 +22,7 @@ python_api_name: qiskit.synthesis.QDrift
   *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of times to repeat the Trotterization circuit.
   *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to insert barriers between the atomic evolutions.
   *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – How to arrange the CX gates for the Pauli evolutions, can be `"chain"`, where next neighbor connections are used, or `"fountain"`, where all qubits are connected to one. This only takes effect when `atomic_evolution is None`.
-  *   **atomic\_evolution** (*Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*], None] | None*) – A function to apply the evolution of a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), or [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") of only commuting terms, to a circuit. The function takes in three arguments: the circuit to append the evolution to, the Pauli operator to evolve, and the evolution time. By default, a single Pauli evolution is decomposed into a chain of `CX` gates and a single `RZ` gate.
+  *   **atomic\_evolution** (*Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*], None] | None*) – A function to apply the evolution of a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), or [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") of only commuting terms, to a circuit. The function takes in three arguments: the circuit to append the evolution to, the Pauli operator to evolve, and the evolution time. By default, a single Pauli evolution is decomposed into a chain of `CX` gates and a single `RZ` gate.
   *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – An optional seed for reproducibility of the random sampling process.
   *   **wrap** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to wrap the atomic evolutions into custom gate objects. This only takes effect when `atomic_evolution is None`.
   *   **preserve\_order** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `False`, allows reordering the terms of the operator to potentially yield a shallower evolution circuit. Not relevant when synthesizing operator with a single term.
@@ -48,7 +48,7 @@ python_api_name: qiskit.synthesis.QDrift
 
   ### expand
 
-  <Function id="qiskit.synthesis.QDrift.expand" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/synthesis/evolution/qdrift.py#L94-L130" signature="expand(evolution)">
+  <Function id="qiskit.synthesis.QDrift.expand" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/synthesis/evolution/qdrift.py#L97-L133" signature="expand(evolution)">
     Apply the product formula to expand the Hamiltonian in the evolution gate.
 
     **Parameters**
@@ -66,7 +66,7 @@ python_api_name: qiskit.synthesis.QDrift
 
   ### synthesize
 
-  <Function id="qiskit.synthesis.QDrift.synthesize" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/synthesis/evolution/product_formula.py#L125-L147" signature="synthesize(evolution)">
+  <Function id="qiskit.synthesis.QDrift.synthesize" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/synthesis/evolution/product_formula.py#L128-L150" signature="synthesize(evolution)">
     Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate").
 
     **Parameters**

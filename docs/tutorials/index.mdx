@@ -5,37 +5,41 @@ description: Browse tutorials on workflows toward advantage or Qiskit capabiliti
 
 # Tutorials
 
-Use these tutorials to learn how to apply Qiskit to common quantum computing use cases. 
-- The section on workflows toward advantage contains end-to-end examples of using a quantum computer to solve real-world problems. These tutorials focus on algorithms that are promising candidates for achieving computational advantage by a quantum computer over a classical computer. 
-- The section on Qiskit capabilities contains examples that use the latest and most advanced techniques in the Qiskit ecosystem to improve part or the whole of a particular workflow.
+Use these tutorials to learn how to apply Qiskit to common quantum computing use cases.
 
+- Start with the set of tutorials in the [Get started](#get-started) section if it is your first time running code on a quantum computer.
+- The section on [workflows toward advantage](#explore-workflows-toward-advantage) contains end-to-end examples of using a quantum computer to solve real-world problems. These tutorials focus on algorithms that are promising candidates for achieving computational advantage by a quantum computer over a classical computer.
+- The section on [Qiskit capabilities](#leverage-qiskit-capabilities) contains examples that use the latest and most advanced techniques in the Qiskit ecosystem to improve part or the whole of a particular workflow.
+
+## Get started
+
+These tutorials are for beginners who are ready to explore running quantum algorithms on a quantum computer.
+
+* [Hello world](/docs/tutorials/hello-world)
+* [Variational quantum eigensolver](/docs/tutorials/variational-quantum-eigensolver)
+* [CHSH inequality](/docs/tutorials/chsh-inequality)
 
 ## Explore workflows toward advantage
 
-Tutorials in this section cover large scale demonstrations of quantum algorithms.
+Tutorials in this section cover large-scale demonstrations of quantum algorithms.
 
 
 <details>
   <summary>**Verifiable sampling algorithms**</summary>
 
-The algorithms in this category focus on quantum circuits whose output distributions encode solutions to structured problems with verifiable output. Verifiability means that you can check the consistency between measured data, either through evaluating the chosen bitstring or by knowing that false positives do not occur. 
+The algorithms in this category focus on quantum circuits whose output distributions encode solutions to structured problems with verifiable output. Verifiability means that you can check the consistency between measured data, either through evaluating the chosen bitstring or by knowing that false positives do not occur.
 
 The tutorials highlight techniques where repeated sampling enables estimation of problem-specific quantities (for example, cost function values or spectral weights). These methods are particularly relevant for optimization and simulation tasks with symmetries.
 
 * [Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization)
 
-* [Compute dissociation curves for strong coupling systems with QunaSys QSCI](/docs/tutorials/compute-dissociation-curves-for-strong-coupling-systems-with-quna-sys-qsci)
+* [Sample-based Krylov quantum diagonalization of a fermionic lattice model](/docs/tutorials/sample-based-krylov-quantum-diagonalization)
 
 * [Quantum approximate optimization algorithm](/docs/tutorials/quantum-approximate-optimization-algorithm)
 
 * [Advanced techniques for QAOA](/docs/tutorials/advanced-techniques-for-qaoa)
 
 * [Pauli Correlation Encoding to reduce Maxcut requirements](/docs/tutorials/pauli-correlation-encoding-for-qaoa)
-
-* [Higher-order binary optimization with Q-CTRL's Optimization Solver](/docs/tutorials/solve-higher-order-binary-optimization-problems-with-q-ctrls-optimization-solver)
-
-* [Quantum Portfolio Optimizer - A Qiskit Function by Global Data Quantum](/docs/tutorials/global-data-quantum-optimizer)
-
 
 </details>
 
@@ -48,8 +52,6 @@ These tutorials focus on estimating physically meaningful quantities, such as en
 
 * [Nishimori phase transition](/docs/tutorials/nishimori-phase-transition)
 
-* [Dissociation PES curves with Qunova HiVQE](/docs/tutorials/qunova-hivqe)
-
 * [Variational quantum eigensolver](/docs/tutorials/variational-quantum-eigensolver)
 
 * [Ground state energy estimation of the Heisenberg chain with VQE](/docs/tutorials/spin-chain-vqe)
@@ -58,20 +60,16 @@ These tutorials focus on estimating physically meaningful quantities, such as en
 
 * [CHSH inequality](/docs/tutorials/chsh-inequality)
 
-* [Model a flowing non-viscous fluid using QUICK-PDE](/docs/tutorials/colibritd-pde)
-
 </details>
 
 <details>
-  <summary>**Fault tolerant algorithms**</summary>
+  <summary>**Fault-tolerant algorithms**</summary>
 
 This section features algorithms with well-defined theoretical guarantees that are designed to run on future error-corrected quantum hardware. The circuits or sampling overhead for these algorithms scale in a manner that is not depth-efficient and are thereby are more likely to demonstrate quantum advantage when fault-tolerant quantum computers exist. These tutorials illustrate how the methods operate in idealized settings and demonstrate small scale examples.
 
 * [Grover's algorithm](/docs/tutorials/grovers-algorithm)
 
 </details>
-
-
 
 ## Leverage Qiskit capabilities
 
@@ -81,7 +79,7 @@ This section introduces advanced capabilities within the Qiskit ecosystem that e
 <details>
   <summary>**Workload optimization**</summary>
 
-Workload optimization focuses on either efficient orchestration of classical and quantum resources or tailored methods for improving quantum circuit manipulation. 
+Workload optimization focuses on either efficient orchestration of classical and quantum resources or tailored methods for improving quantum circuit manipulation.
 
 * [Qiskit AI-powered transpiler service introduction](/docs/tutorials/ai-transpiler-introduction)
 
@@ -95,9 +93,32 @@ Workload optimization focuses on either efficient orchestration of classical and
 </details>
 
 <details>
-  <summary>**Addons**</summary>
+<summary>**Qiskit Functions**</summary>
+
+Qiskit Functions are a collection of pre-packaged error management and application tools, making it easy to design large-scale experiments with circuits, molecules, QUBOs, and more.
+
+- Design new algorithms with **Circuit functions** -- with pre-built transpilation, error suppression, and error mitigation pipelines.
+
+  * [Error mitigation with the IBM Circuit function](/docs/tutorials/error-mitigation-with-qiskit-functions)
+
+- Experiment with domain-specific problems with **Application functions** -- with familiar inputs and outputs to classical solvers.
+
+  * [Quantum Portfolio Optimizer - A Qiskit Function by Global Data Quantum](/docs/tutorials/global-data-quantum-optimizer)
+
+  * [Higher-order binary optimization with Q-CTRL's Optimization Solver](/docs/tutorials/solve-higher-order-binary-optimization-problems-with-q-ctrls-optimization-solver)
+
+  * [Model a flowing non-viscous fluid using QUICK-PDE](/docs/tutorials/colibritd-pde)
+
+  * [Dissociation PES curves with Qunova HiVQE](/docs/tutorials/qunova-hivqe)
+
+</details>
+
+<details>
+  <summary>**Qiskit addons**</summary>
 
 Addons enable advanced circuit manipulation, such as cutting, backpropagating observables, or approximating circuits, that allow users to sidestep hardware limitations at the cost of increased classical compute overhead.
+
+* [Multi-product formulas to reduce Trotter error](/docs/tutorials/multi-product-formula)
 
 * [Approximate quantum compilation for time evolution circuits](/docs/tutorials/approximate-quantum-compilation-for-time-evolution)
 
@@ -115,13 +136,11 @@ Addons enable advanced circuit manipulation, such as cutting, backpropagating ob
 <details>
   <summary>**Error mitigation**</summary>
 
-Error mitigation addresses the challenge of noise without full fault tolerance by recovering accurate expectation values through controlled circuit manipulation and post-processing. 
+Error mitigation addresses the challenge of noise without full fault tolerance by recovering accurate expectation values through controlled circuit manipulation and post-processing.
 
 * [Utility-scale error mitigation with probabilistic error amplification](/docs/tutorials/probabilistic-error-amplification)
 
 * [Combine error mitigation options with the Estimator primitive](/docs/tutorials/combine-error-mitigation-techniques)
-
-* [Error mitigation with the IBM Circuit function](/docs/tutorials/error-mitigation-with-qiskit-functions)
 
 * [Real-time benchmarking for qubit selection](/docs/tutorials/real-time-benchmarking-for-qubit-selection)
 
@@ -135,9 +154,7 @@ Error mitigation addresses the challenge of noise without full fault tolerance b
 
 Error detection identifies faulty operations to return noise-free results shot-by-shot by post-processing.
 
-* [Repeat until success](/docs/tutorials/repeat-until-success)
-
-* [Repetition codes](/docs/tutorials/repetition-codes)
+[Repetition codes](/docs/tutorials/repetition-codes)
 
 </details>
 

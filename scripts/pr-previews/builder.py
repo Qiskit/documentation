@@ -84,7 +84,7 @@ def yarn_build(root_dir: Path, base_path: str) -> None:
     # dependencies, like the first-party deps, will already have been installed.
     run_subprocess(["yarn", "install"], cwd=root_dir, stream_output=True)
     run_subprocess(
-        ["yarn", "build"],
+        ["yarn", "build:preview"],
         cwd=root_dir,
         env={**os.environ, "NEXT_PUBLIC_BASE_PATH": base_path},
         stream_output=True,
@@ -121,9 +121,9 @@ def _copy_local_content(root_dir: Path) -> None:
         "docs/tutorials",
         "public/docs/images/tutorials",
         "docs/migration-guides",
+        "docs/security",
         "docs/open-source",
         "learning",
-        "public/docs/videos",
         "public/docs/images/guides",
         "public/docs/images/qiskit-patterns",
         "public/learning",
@@ -139,6 +139,7 @@ def _copy_local_content(root_dir: Path) -> None:
         "docs/support.mdx",
         "docs/responsible-quantum-computing.mdx",
         "docs/faq.mdx",
+        "docs/accessibility.mdx",
     ]:
         shutil.copy2(fp, root_dir / f"content/{fp}")
 

@@ -5,16 +5,7 @@ description: How to update your code to use the new interface for `qiskit.algori
 
 
 # Algorithms migration guide
-<LegacyContent>
-<Admonition type="note">
-This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.]( https://quantum.cloud.ibm.com/docs/migration-guides/qiskit-algorithms-module)
-</Admonition>
-</LegacyContent>
-<CloudContent>
-<Admonition type="note">
-This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/migration-guides/qiskit-algorithms-module)
-</Admonition>
-</CloudContent>
+
 <Admonition type="caution">
   **Deprecation Notice**
 
@@ -565,13 +556,13 @@ print(result.eigenvalues)
 
 **[Updated] Using primitives:**
 
-<CloudContent>
+
 <Admonition type="caution">
 The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
 </Admonition>
-</CloudContent>
 
-<LegacyContent>
+
+
 ```python
 from qiskit_ibm_runtime import Sampler, Estimator, QiskitRuntimeService, Session
 from qiskit.algorithms.eigensolvers import VQD
@@ -585,8 +576,8 @@ optimizer = SLSQP(maxiter=10)
 hamiltonian = SparsePauliOp.from_list([("XXZ", 1), ("XYI", 1)])
 
 # example executing on a QPU
-service = QiskitRuntimeService(channel="ibm_quantum")
-backend = service.backend(<SPECIFY BACKEND>)
+service = QiskitRuntimeService()
+backend = service.backend(<backend_name>)
 
 with Session(backend=backend) as session:
     estimator = Estimator()
@@ -597,34 +588,7 @@ with Session(backend=backend) as session:
 
 print(result.eigenvalues)
 ```
-</LegacyContent>
-<CloudContent>
-```python
-from qiskit_ibm_runtime import Sampler, Estimator, QiskitRuntimeService, Session
-from qiskit.algorithms.eigensolvers import VQD
-from qiskit.algorithms.optimizers import SLSQP
-from qiskit.algorithms.state_fidelities import ComputeUncompute
-from qiskit.circuit.library import TwoLocal
-from qiskit.quantum_info import SparsePauliOp
 
-ansatz = TwoLocal(3, rotation_blocks=["ry", "rz"], entanglement_blocks="cz", reps=1)
-optimizer = SLSQP(maxiter=10)
-hamiltonian = SparsePauliOp.from_list([("XXZ", 1), ("XYI", 1)])
-
-# example executing on a QPU
-service = QiskitRuntimeService(channel="ibm_cloud")
-backend = service.backend(<SPECIFY BACKEND>)
-
-with Session(backend=backend) as session:
-    estimator = Estimator()
-    sampler = Sampler()
-    fidelity = ComputeUncompute(sampler)
-    vqd = VQD(estimator, fidelity, ansatz, optimizer, k=3)
-    result = vqd.compute_eigenvalues(operator=hamiltonian)
-
-print(result.eigenvalues)
-```
-</CloudContent>
 ```python
 [ 0.01765114+0.0e+00j -0.58507654+0.0e+00j -0.15003642-2.8e-17j]
 ```

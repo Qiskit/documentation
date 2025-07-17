@@ -8,26 +8,34 @@ in_page_toc_max_heading_level: 2
 
 # Latest updates
 
-*Last updated 9 June 2025*
+*Last updated 24 June 2025*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
 Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 
-For all product announcements, visit the [Announcements](https://docs.quantum.ibm.com/announcements/product-updates) page on IBM Quantum Platform Classic.
+For all product announcements, visit the [Announcements](/announcements/product-updates) page on IBM Quantum Platform.
 
-<CloudContent>
+
 Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca) | [Documentation](#latest-docs)
-</CloudContent>
-<LegacyContent>
-Jump to [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca) | [Documentation](#latest-docs)
-</LegacyContent>
 
-<CloudContent>
+
+
 <span id="latest-platform"></span>
 ## IBM Quantum Platform
 
 This section summarizes the recent enhancements and new features for the new [IBM Quantum Platform.](https://quantum.cloud.ibm.com/)
+
+**24 June 2025**
+
+- Profile page: Now you can find integrated profile details directly in the new platform. Find your profile by clicking on the user icon in the top right or visiting your [profile page.](https://quantum.cloud.ibm.com/profile)
+- Public backends: View a list of US backends without logging in, available on the updated [Compute Resources](https://quantum.cloud.ibm.com/computers) page.
+- Learning: Quantum computing courses have now been released in the upgraded platform, along with new educational modules designed to help teachers bring Qiskit into their classrooms. This is the first step towards migrating IBM Quantum Learning to the new platform, with more resources to be released in the coming weeks. Resources can be accessed without needing to log in at [IBM Quantum Learning.](/learning) Check out new and updated content, including [Quantum diagonalization algorithms](/learning/courses/quantum-diagonalization-algorithms), [Quantum computing in practice](/learning/courses/quantum-computing-in-practice), and Qiskit in Classrooms modules like [Quantum mechanics](/learning/modules/quantum-mechanics) and [Computer science](/learning/modules/computer-science).
+- IBM Quantum Composer: The circuit-building [Composer](https://quantum.cloud.ibm.com/composer) has now been migrated to the new platform. The experience is largely the same, except for files will no longer be stored in the platform, and will need to be downloaded locally. Find more details in the [Composer documentation](/docs/guides/composer).
+- Announcements: Now you can access news, software updates, and service alerts on the new platform. Click the bell icon in the top navigation bar or the link under Featured resources on the [home page](https://quantum.cloud.ibm.com/) to visit the new [Announcements](/announcements) page.
+
+<details>
+<summary><b>Previous updates</b></summary>
 
 **5 June 2025**
 
@@ -40,9 +48,6 @@ This section summarizes the recent enhancements and new features for the new [IB
   - A new channel for the platform that makes instance selection optional, which simplifies account setup and backend access by automatically checking all available instances. This update benefits users who manage multiple instances or prefer a streamlined workflow without specifying instance details each time. Developers and researchers working across various projects with different levels of access and multiple backends will find this especially helpful.
 
   See the [Runtime Client v0.40.0](#latest-qiskit-runtime) section for more information. {/* When next Runtime release overwrites the .40 section below, remove this link and replace with direct link to release notes */}
-
-<details>
-<summary><b>Previous updates</b></summary>
 
 **8 May 2025**
 
@@ -95,11 +100,11 @@ For full details on the early access release and upcoming improvements, [check o
 
 - Today, we are releasing an early access version of the upgraded experience, and invite you to [open an account and explore the new interface](https://quantum.cloud.ibm.com). We will continue to roll out updates over the coming months, with the end goal of creating an experience that looks and feels like the classic version of IBM Quantum Platform, but with greater functionality. We will eventually sunset IBM Quantum Platform classic, so stay tuned for updates.
 
-- Please note: If your IBM Quantum Platform access falls under a plan administrator (Premium Plan, Dedicated Service, Startup Program, etc.), you will receive guided migration support through your administrator in the coming months. In the meantime, you are welcome to [create a free Open Plan account to explore the new platform.](https://quantum.cloud.ibm.com)
+- Please note: If your IBM Quantum Platform access falls under a plan administrator (Premium Plan, On-Prem Plan, Startup Program, etc.), you will receive guided migration support through your administrator in the coming months. In the meantime, you are welcome to [create a free Open Plan account to explore the new platform.](https://quantum.cloud.ibm.com)
 
 - For full details on the early access release and upcoming improvements, [check out the blog](https://www.ibm.com/quantum/blog/iqp-upgrade).
 </details>
-</CloudContent>
+
 
 <span id="latest-qiskit-sdk"></span>
 ## Qiskit SDK v2.0
@@ -226,7 +231,7 @@ This summary of the latest changes to the Qiskit Runtime service applies to anyo
 - Starting 2 June 2025 and continuing through the year, IBM Quantum will begin a gradual rollout of new features to [dynamic circuits](/docs/guides/classical-feedforward-and-control-flow) that will enable them at the utility scale.
 Improvements include the following:
 
-  - A 75x speedup in execution by using the [Gen3 engine stack](/docs/guides/runtime-options-overview#experimental-option-note)
+  - A 75x speedup in execution by using the Gen3 engine stack
   - Parallel execution of branches, which reduces circuit duration and improves result quality
   - Improvement in mid-circuit measurement
   - Better integration with dynamical decoupling
@@ -244,7 +249,7 @@ Improvements include the following:
 
 **7 January 2025**
 
-- The rollout of the Gen3 engine stack begins today. This engine stack gives a 75x speedup in execution.  The rollout will be done on one QPU at a time, where a percentage of the jobs on the QPU will use the Gen3 path.  You can also force the Gen3 path using the [`gen3-turbo` experimental option.](/docs/guides/runtime-options-overview#available-options) Note that this engine stack is not compatible with fractional gates, pulse gates, or dynamic circuits.
+- The rollout of the Gen3 engine stack begins today. This engine stack gives a 75x speedup in execution.  The rollout will be done on one QPU at a time, where a percentage of the jobs on the QPU will use the Gen3 path.  You can also force the Gen3 path using the `gen3-turbo` experimental option. Note that this engine stack is not compatible with fractional gates, pulse gates, or dynamic circuits.
 
 **15 October 2024**
 
@@ -436,7 +441,7 @@ To get started, explore the [Qiskit Functions documentation.](/docs/guides/funct
 
 - With the launch of the Qiskit Functions Catalog, Premium Plan developers can explore the IBM Circuit function. The IBM Circuit function includes the latest AI-powered extensions to Qiskit for circuit synthesis, optimization, and scheduling, as well as advanced error mitigation methods to return the most accurate estimations possible with today's hardware.
 
-  Users can purchase licenses for the following functions contributed by our partners at Q-CTRL, QEDMA, Algorithmiq, and Qunasys.
+  Users can purchase licenses for the following functions contributed by our partners at Q-CTRL, QEDMA, and Algorithmiq.
 
 - **Circuit functions**
 
@@ -446,7 +451,6 @@ To get started, explore the [Qiskit Functions documentation.](/docs/guides/funct
 
 - **Application functions**
 
-  - QunaSys is releasing a chemistry application function comprising three algorithms meant to solve the ground state energy estimation (GSEE) problem.
   - Q-CTRL is releasing an optimization solver with which users can pass a graph or an objective, and receive solution costs.
 </details>
 
@@ -490,17 +494,13 @@ IBM Quantum documentation recently added a number of user-facing improvements, i
 
 - Content additions and improvements
 
-  <LegacyContent>
-  - Guidance to [securely manage your API key](/docs/guides/setup-channel#set-up-to-use-ibm-quantum-platform), as part of the guide to set up an IBM Quantum channel
-  </LegacyContent>
-  <CloudContent>
+  
   - Guidance to [securely manage your API key](/docs/guides/cloud-setup)
-  </CloudContent>
-  - Revisions by Qunasys to the Qiskit Functions [QURI Chemistry](/docs/guides/qunasys-quri-chemistry) guide
+  
 
   - Updated code examples to fix a bug in [Get started with primitives](/docs/guides/get-started-with-primitives)
 
-  - Updates to [Introduction to options](/docs/guides/runtime-options-overview) to include the new [gen3-turbo](/docs/guides/runtime-options-overview#experimental-option-note) options
+  - Updates to [Introduction to options](/docs/guides/runtime-options-overview) to include the new gen3-turbo options
 
   - Copyediting and typo fixes across the documentation, including bugs reported by open-source contributors - thank you!
 

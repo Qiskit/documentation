@@ -1,13 +1,10 @@
 ---
 title: Configure IBM Quantum Platform for an organization
 description: Configure IBM Quantum Platform for an organization by configuring IAM, resource groups, and access groups.
-platform: cloud
+
 ---
 
 # Configure IBM Quantum Platform for an organization
-<Admonition type="note">
-This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/admin/)
-</Admonition>
 
 Follow these steps to set up IBM Quantum Platform.
 
@@ -51,6 +48,34 @@ Follow the steps in the appropriate topic, depending on the ID provider you chos
 * [Use IBM Cloud as the ID provider for users that do not have IBM Cloud accounts](/docs/guides/manage-appid#id-cloud)
 * [Use an ID provider other than IBM Cloud for users that do not have IBM Cloud accounts](/docs/guides/manage-appid#id-provider)
 * [Invite users and manage their access](/docs/guides/invite-and-manage-users)
+
+<span id="firewall"></span>
+## 6. Configure your firewall
+
+To configure your firewall to enable access to the IBM Quantum API endpoints, add the following URLs to your allowlist:
+
+- IBM Cloud global services:
+    ```text
+    cloud.ibm.com
+    iam.cloud.ibm.com
+    api.global-search-tagging.cloud.ibm.com
+    globalcatalog.cloud.ibm.com
+    resource-controller.cloud.ibm.com
+    ```
+- IBM Quantum Qiskit Runtime services - region us-east:
+    ```text
+    quantum.cloud.ibm.com
+    s3.us-east.cloud-object-storage.appdomain.cloud
+    ```
+- IBM Quantum Qiskit Runtime services - region eu-de:
+    ```text
+    eu-de.quantum.cloud.ibm.com
+    s3.direct.eu-de.cloud-object-storage.appdomain.cloud
+    ```
+- IBM Quantum Qiskit Functions preview service:
+    ```text
+    qiskit-serverless.quantum.ibm.com
+    ```
 
 ## Next steps
 

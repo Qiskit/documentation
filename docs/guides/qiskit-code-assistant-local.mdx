@@ -29,8 +29,11 @@ Follow these steps to download any Qiskit Code Assistant-related model from the 
 
 Publicly available open source models:
 1. [qiskit/granite-3.3-8b-qiskit](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit). Released June 2025.
+1. [qiskit/granite-3.3-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF). Released June 2025. Recommended for use in personal environments/laptops
 1. [qiskit/granite-3.2-8b-qiskit](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit). Released June 2025.
+1. [qiskit/granite-3.2-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF). Released June 2025. Recommended for use in personal environments/laptops
 1. [qiskit/qwen2.5-coder-14b-qiskit](https://huggingface.co/Qiskit/qwen2.5-coder-14b-qiskit). Released June 2025.
+1. [qiskit/qwen2.5-coder-14b-qiskit-GGUF](https://huggingface.co/Qiskit/qwen2.5-coder-14b-qiskit-GGUF). Released June 2025. Recommended for use in personal environments/laptops
 1. [qiskit/granite-8b-qiskit-rc-0.10](https://huggingface.co/Qiskit/granite-8b-qiskit-rc-0.10). Released February 2025 (deprecated).
 1. [qiskit/granite-8b-qiskit](https://huggingface.co/Qiskit/granite-8b-qiskit). Released November 2024 (deprecated).
 
@@ -92,12 +95,14 @@ The [Ollama/Hugging Face Hub integration](https://huggingface.co/docs/hub/ollama
 1. From your terminal, run the command:
 
     ```
-    ollama run hf.co/Qiskit/granite-3.3-8b-qiskit
+    ollama run hf.co/Qiskit/granite-3.3-8b-qiskit-GGUF
     ```
+
+you can use the `hf.co/Qiskit/granite-3.3-8b-qiskit-GGUF` model or any of the other currently recommended GGUF official models `hf.co/Qiskit/qwen2.5-coder-14b-qiskit-GGUF` or `hf.co/Qiskit/granite-3.2-8b-qiskit-GGUF`.
 
 #### Set up Ollama with a manually downloaded Qiskit Code Assistant GGUF model
 
-If you have manually downloaded a GGUF model such as https://huggingface.co/Qiskit/granite-8b-qiskit-GGUF and you want to experiment with different templates and parameters, you can follow these steps to load it into your local Ollama application.
+If you have manually downloaded a GGUF model such as https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF and you want to experiment with different templates and parameters, you can follow these steps to load it into your local Ollama application.
 
 1. Create a `Modelfile` entering the following content and be sure to update `<PATH-TO-GGUF-FILE>` to the actual path of your downloaded model.
 
@@ -126,7 +131,7 @@ If you have manually downloaded a GGUF model such as https://huggingface.co/Qisk
 1. Run the following command to create a custom model instance based on the `Modelfile`.
 
     ```
-    ollama create granite-8b-qiskit -f ./path-to-model-file
+    ollama create granite-3.3-8b-qiskit -f ./path-to-model-file
     ```
 
     <Admonition type="note">This process may take some time for Ollama to read the model file, initialize the model instance, and configure it according to the specifications provided.</Admonition>
@@ -134,18 +139,18 @@ If you have manually downloaded a GGUF model such as https://huggingface.co/Qisk
 
 #### Run the Qiskit Code Assistant model manually downloaded in Ollama
 
-After the `granite-8b-qiskit` GGUF model has been set up in Ollama, run the following command to launch the model and interact with it in the terminal (in chat mode).
+After the `granite-3.3-8b-qiskit-GGUF` model has been set up in Ollama, run the following command to launch the model and interact with it in the terminal (in chat mode).
 
 ```
-ollama run granite-8b-qiskit
+ollama run granite-3.3-8b-qiskit
 ```
 
 Some useful commands:
 
 - `ollama list` - List models on your computer
-- `ollama rm granite-8b-qiskit` - Remove/delete the model
-- `ollama show granite-8b-qiskit` - Show model information
-- `ollama stop granite-8b-qiskit` - Stop a model that is currently running
+- `ollama rm granite-3.3-8b-qiskit` - Remove/delete the model
+- `ollama show granite-3.3-8b-qiskit` - Show model information
+- `ollama stop granite-3.3-8b-qiskit` - Stop a model that is currently running
 - `ollama ps` - List which models are currently loaded
 
 ### Using the `llama-cpp-python` package

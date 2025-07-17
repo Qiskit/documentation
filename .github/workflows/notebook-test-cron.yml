@@ -26,8 +26,8 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/set-up-notebook-testing
         with:
-          ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
-          instance: "client-enablement/documentation/qiskit-documenta"
+          ibm-cloud-token: ${{ secrets.IBM_CLOUD_TEST_TOKEN }}
+          instance: ${{ vars.IBM_CLOUD_TEST_CRN }}
           install-linux-deps: true
 
       - name: Execute notebooks
@@ -35,6 +35,7 @@ jobs:
         run: tox -- --write --test-strategy hardware
 
       - name: Normalize notebooks
+        if: "!cancelled()"
         run: tox -e fix
 
       - name: Detect changed notebooks

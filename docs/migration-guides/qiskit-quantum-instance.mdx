@@ -6,16 +6,7 @@ description: Stop using the deprecated Qiskit `QuantumInstance` class
 
 
 # QuantumInstance migration guide
-<LegacyContent>
-<Admonition type="note">
-This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.]( https://quantum.cloud.ibm.com/docs/migration-guides/qiskit-quantum-instance)
-</Admonition>
-</LegacyContent>
-<CloudContent>
-<Admonition type="note">
-This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/migration-guides/qiskit-quantum-instance)
-</Admonition>
-</CloudContent>
+
 <Admonition type="caution">
   **Deprecation Notice**
 
@@ -402,7 +393,8 @@ is the closest alternative to the QuantumInstance measurement error mitigation i
 is not a one-to-one replacement.
 
 For more information about the error mitigation options in the Qiskit Runtime primitives, see [Configure Error Mitigation](/docs/guides/configure-error-mitigation).
-<LegacyContent>
+
+
 ```python
 from qiskit import QuantumCircuit
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
@@ -412,7 +404,7 @@ circuit.x(0)
 circuit.x(1)
 circuit.measure_all()
 
-service = QiskitRuntimeService(channel="ibm_quantum")
+service = QiskitRuntimeService(channel="ibm_quantum_platform")
 backend = service.backend("ibmq_montreal")
 
 options = Options(resilience_level = 1) # 1 = measurement error mitigation
@@ -424,30 +416,7 @@ quasi_dists = result.quasi_dists
 
 print("Quasi dists: ", quasi_dists)
 ```
-</LegacyContent>
-<CloudContent>
-```python
-from qiskit import QuantumCircuit
-from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
 
-circuit = QuantumCircuit(2)
-circuit.x(0)
-circuit.x(1)
-circuit.measure_all()
-
-service = QiskitRuntimeService(channel="ibm_cloud")
-backend = service.backend("ibmq_montreal")
-
-options = Options(resilience_level = 1) # 1 = measurement error mitigation
-sampler = Sampler(session=backend, options=options)
-
-# Run
-result = sampler.run(circuit, shots=4000).result()
-quasi_dists = result.quasi_dists
-
-print("Quasi dists: ", quasi_dists)
-```
-</CloudContent>
 
 ```text
 Quasi dists: [{2: 0.0008492371522941081, 3: 0.9968874384378738, 0: -0.0003921227905920063,

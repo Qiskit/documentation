@@ -77,10 +77,22 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     Returns the number of nodes in the dag.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.num_captured_stretches">
+    Number of captured stretches tracked by the circuit.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.num_captured_vars">
     Number of captured classical variables tracked by the circuit.
+  </Attribute>
+
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.num_declared_stretches">
+    Number of declared local stretches tracked by the circuit.
   </Attribute>
 
   ### num\_declared\_vars
@@ -93,6 +105,12 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.num_input_vars">
     Number of input classical variables tracked by the circuit.
+  </Attribute>
+
+  ### num\_stretches
+
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.num_stretches">
+    Total number of stretches tracked by the circuit.
   </Attribute>
 
   ### num\_vars
@@ -152,7 +170,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
     **Parameters**
 
-    **var** – the stretch to add.
+    **stretch** – the stretch to add.
   </Function>
 
   ### add\_captured\_var
@@ -222,7 +240,9 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   ### ancestors
 
   <Function id="qiskit.dagcircuit.DAGCircuit.ancestors" signature="ancestors(node)">
-    Returns set of the ancestors of a node as DAGOpNodes and DAGInNodes.
+    Returns set of the ancestors of a node as [`DAGOpNode`](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")s and [`DAGInNode`](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")s.
+
+    The ancestors are the set of all nodes that can reach the target node. Whereas the [`DAGCircuit.predecessors()`](#qiskit.dagcircuit.DAGCircuit.predecessors "qiskit.dagcircuit.DAGCircuit.predecessors") only contains the immediate predecessors, the ancestors recursively contain the predecessors of each predecessor.
   </Function>
 
   ### apply\_operation\_back
@@ -278,7 +298,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   ### bfs\_successors
 
   <Function id="qiskit.dagcircuit.DAGCircuit.bfs_successors" signature="bfs_successors(node)">
-    Returns an iterator of tuples of (DAGNode, \[DAGNodes]) where the DAGNode is the current node and \[DAGNode] is its successors in BFS order.
+    Returns an iterator of tuples of `(DAGNode, [DAGNodes])` where the `DAGNode` is the current node and `[DAGNodes]` is a list of the successors in BFS order.
   </Function>
 
   ### classical\_predecessors
@@ -433,7 +453,9 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   ### descendants
 
   <Function id="qiskit.dagcircuit.DAGCircuit.descendants" signature="descendants(node)">
-    Returns set of the descendants of a node as DAGOpNodes and DAGOutNodes.
+    Returns set of the descendants of a node as [`DAGOpNode`](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")s and [`DAGOutNode`](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")s.
+
+    The descendants are the set of all nodes that can be reached from the target node. In comparison, [`DAGCircuit.successors()`](#qiskit.dagcircuit.DAGCircuit.successors "qiskit.dagcircuit.DAGCircuit.successors") is an iterator over the immediate successors, whereas this method contains all the successors’ succesors.
   </Function>
 
   ### draw
@@ -719,6 +741,12 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     Return the total number of classical bits used by the circuit.
   </Function>
 
+  ### num\_ops
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.num_ops" signature="num_ops()">
+    Get the number of op nodes in the DAG.
+  </Function>
+
   ### num\_qubits
 
   <Function id="qiskit.dagcircuit.DAGCircuit.num_qubits" signature="num_qubits()">
@@ -765,7 +793,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   ### predecessors
 
   <Function id="qiskit.dagcircuit.DAGCircuit.predecessors" signature="predecessors(node)">
-    Returns iterator of the predecessors of a node as DAGOpNodes and DAGInNodes.
+    Returns iterator of the predecessors of a node as [`DAGOpNode`](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")s and [`DAGInNode`](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")s.
   </Function>
 
   ### properties
@@ -1051,7 +1079,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   ### successors
 
   <Function id="qiskit.dagcircuit.DAGCircuit.successors" signature="successors(node)">
-    Returns iterator of the successors of a node as DAGOpNodes and DAGOutNodes.”””
+    Returns iterator of the successors of a node as [`DAGOpNode`](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")s and [`DAGOutNode`](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")s.
   </Function>
 
   ### swap\_nodes

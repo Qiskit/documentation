@@ -35,7 +35,16 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
 // section than `Tools.`
 const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/docs/guides/q-ctrl-optimization-solver",
-  "/docs/guides/qunasys-quri-chemistry",
+  "/docs/guides/kipu-optimization",
+  "/docs/guides/multiverse-computing-singularity",
+  "/docs/guides/global-data-quantum-optimizer",
+  "/docs/guides/colibritd-pde",
+  "/docs/guides/qunova-chemistry",
+  "/docs/guides/instances",
+  "/docs/guides/cloud-setup",
+  "/docs/guides/cloud-setup-untrusted",
+  "/docs/guides/cloud-setup-invited",
+  "/docs/guides/cloud-setup-rest-api",
 ]);
 
 // URLs that show up in the INDEX_PAGES >1 time. This can happen when we

@@ -61,7 +61,11 @@ export function normalizeUrl(
   url: string,
   resultsByName: { [key: string]: HtmlToMdResultWithUrl },
   itemNames: Set<string>,
-  kwargs: { kebabCaseAndShorten: boolean; pkgName: string },
+  kwargs: {
+    kebabCaseAndShorten: boolean;
+    pkgName: string;
+    pkgOutputDir: string;
+  },
 ): string {
   if (isAbsoluteUrl(url)) return url;
 
@@ -84,7 +88,21 @@ export function normalizeUrl(
     return url;
   url = transformSpecialCaseUrl(url);
 
-  url = removePart(url, "/", ["stubs", "apidocs", "apidoc", ".."]);
+  // The C API uses the same artifact as the Python API, but all its pages are
+  // located under the `cdoc` folder.
+  const pythonApiFolders = ["stubs", "apidocs", "apidoc"];
+  const addQiskitPrefix =
+    kwargs.pkgName == "qiskit-c" &&
+    pythonApiFolders.some((f) => url.split("/").includes(f));
+
+  url = removePart(url, "/", [...pythonApiFolders, ".."]);
+
+  // TODO (#3375): Investigate if we can make this case more generic.
+  // The Qiskit C API sometimes links to the Python API. In those cases, we need to add the
+  // full prefix
+  if (addQiskitPrefix) {
+    return `${kwargs.pkgOutputDir.replace(kwargs.pkgName, "qiskit")}/${url}`;
+  }
 
   const urlParts = url.split("/");
   const initialUrlParts = initial(urlParts);
@@ -175,7 +193,11 @@ export function relativizeLink(link: Link): Link | undefined {
 
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
-  kwargs: { kebabCaseAndShorten: boolean; pkgName: string },
+  kwargs: {
+    kebabCaseAndShorten: boolean;
+    pkgName: string;
+    pkgOutputDir: string;
+  },
   maybeObjectsInv?: ObjectsInv,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);

@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 # Get the latest digest by running `docker pull icr.io/qc-open-source-docs-public/preview:latest`.
-IMAGE_DIGEST = "sha256:cd28a84aa2d1b9c6c4295dc82b83bc9044e95089d7ed53fd0a75d6402fd84687"
+IMAGE_DIGEST = "sha256:cebc0063663e738496500325a7f0e52b556f9a0666162471c19d617ea8bb0f8e"
 
 # Docker on Windows uses `/` rather than `\`, so we need to call `.as_posix()`:
 # https://medium.com/@kale.miller96/how-to-mount-your-current-working-directory-to-your-docker-container-in-windows-74e47fa104d7
@@ -37,8 +37,6 @@ def main() -> None:
         subprocess.run(["docker", "pull", IMAGE], check=True)
         sys.exit(0)
 
-    platform = "legacy" if "--legacy" in sys.argv else "cloud"
-
     # Keep this aligned with the Dockerfile at the root of the repository.
     cmd = [
         "docker",
@@ -52,8 +50,6 @@ def main() -> None:
         f"{PWD}/public:/home/node/app/packages/preview/public",
         "-p",
         "3000:3000",
-        "-e",
-        f"DOCS_PLATFORM={platform}",
         # Needed for ctrl-c to shut down the container.
         "--init",
         "--rm",

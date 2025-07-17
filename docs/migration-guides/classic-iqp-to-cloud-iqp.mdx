@@ -5,17 +5,28 @@ description: Migrate to using the upgraded IBM Quantum Platform for Open users
 
 # Migrate to the upgraded IBM Quantum Platform
 
-This guide describes how, why, and when to transition to the [new version of IBM Quantum Platform,](https://quantum.cloud.ibm.com/) which is now available in early access mode.
+This guide describes how, why, and when to transition to the [new version of IBM Quantum Platform.](https://quantum.cloud.ibm.com/)
 
-Early access mode means that while you are able to log in, create instances, run jobs, and so on, some functions are not yet available and will be added in the coming months. Find the recent changes to the new platform on the [Latest updates page,](/docs/guides/latest-updates) which is updated every two weeks.
+<Admonition type="note" title="Users with email invitations for their organization's account">
+If you have been invited by your organization to join an account:
+- Be sure you have accepted the invitation you received by email, and have created your user ID on IBM Cloud. (If you already have an IBM Cloud account associated with the invited email address, there is no need to create a new user ID.)
 
-You can continue to use [IBM Quantum Platform Classic](https://quantum.ibm.com/) until it is sunset on 1 July, 2025.
+- You have already been added to an instance in your organization's account, so your next step is to [find your access credentials](/docs/guides/cloud-setup#access-credentials), as detailed in the "Set up your IBM Cloud account" guide.
+
+- If you have not yet installed Qiskit, start with the [Introduction to Qiskit](/docs/guides) guide.
+</Admonition>
+
+<Admonition type="note" title="New users">
+If you are a new user, ignore this guide and start with the [Introduction to Qiskit](/docs/guides/index) guide.
+</Admonition>
+
+Find the recent changes to the new platform on the [Latest updates page,](/docs/guides/latest-updates) which is updated every two weeks.
 
 ## When should I make the transition?
 
 Open and Pay-as-you-go Standard Plan users are encouraged to create an account and start using the new platform as soon as possible.
 
-Premium Plan, Dedicated Service, and Startup Program users should not create a new account yet and should wait to receive migration guidance from their administrators in the coming weeks.
+Premium Plan, On-Prem Plan, and Startup Program users should not create a new account yet and should wait to receive migration guidance from their administrators in the coming weeks.
 
 ## Benefits
 
@@ -35,7 +46,7 @@ There are a few major changes you will see in the updated IBM Quantum Platform:
 
 _Instances_ are virtual servers that manage your workload execution, including executing quantum programs and classical compute tasks (such as processing error mitigation).  Instances are specified by their Cloud Resource Name (CRN).
 
-You can see the instances you have access to on the dashboard or by clicking the Instances tab from the dashboard. Each instance is listed with its CRN identifier. You can include this identifier or the name of the instance when connecting to Qiskit Runtime by using the `QiskitRuntimeService` object when using `qiskit-ibm-runtime` in a Python environment. When an instance is passed in, only backends and jobs from that instance are available. Alternatively, if an instance is not included, then all backends and jobs across all instances in your account are available. In this case, when a backend is specified, an instance with the backend available will be used. 
+You can see the instances you have access to on the dashboard or by clicking the Instances tab from the dashboard. Each instance is listed with its CRN identifier. You can include this identifier or the name of the instance when connecting to Qiskit Runtime by using the `QiskitRuntimeService` object when using `qiskit-ibm-runtime` in a Python environment. When an instance is passed in, only backends and jobs from that instance are available. Alternatively, if an instance is not included, then all backends and jobs across all instances in your account are available. In this case, when a backend is specified, an instance with the backend available will be used.
 
 
 ## Available plans
@@ -51,7 +62,7 @@ The Lite Plan is deprecated and will be removed on 14 March 2025.
 
 ## Current IBM Quantum Platform users
 
-Instead of accessing [IBM Quantum Platform Classic](https://quantum.ibm.com/), you will now access the [upgraded version of IBM Quantum Platform](https://quantum.cloud.ibm.com/), which is integrated with IBM Cloud.  To use the new platform, users will need to follow these onboarding instructions.
+Instead of accessing IBM Quantum Platform Classic, you will now access the [upgraded version of IBM Quantum Platform](https://quantum.cloud.ibm.com/), which is integrated with IBM Cloud.  To use the new platform, users will need to follow these onboarding instructions.
 
 ### Save results from IBM Quantum Platform Classic
 
@@ -60,14 +71,14 @@ Jobs that were run on IBM Quantum Platform Classic will not be available after t
 </Admonition>
 
 * Open users should save any workloads data from the classic platform prior to that date by following the steps in the [Save and retrieve jobs](/docs/guides/save-jobs) guide.
-* Premium Plan, Dedicated Service, and Startup Program users should wait to receive  guidance from their administrators regarding whether to download historical data.
+* Premium Plan, On-Prem Plan, and Startup Program users should wait to receive  guidance from their administrators regarding whether to download historical data.
 
 <span id="onboard"></span>
 ### Onboard
 
 Follow these steps to start using the new version of IBM Quantum Platform.
 
-1. If you don't already have one, [register for an IBM Cloud account.](https://cloud.ibm.com/registration?cm_sp=quantum&utm_content=quantum-next&target=https%3A%2F%2Fquantum.cloud.ibm.com&error_uri=)  If you already have an IBM Quantum Platform account, use the same email for this account.
+1. If you don't already have one, [register for an IBM Cloud account.](https://quantum.cloud.ibm.com/registration) If you already have an IBM Quantum Platform account, use the same email for this account.
 2. Create an instance.
    1. Log on to the new [IBM Quantum Platform.](https://quantum.cloud.ibm.com) Choose **IBMid** and enter your IBM Cloud account information. The dashboard opens.
    1. If you do not already have an instance, Click **Create instance** on the dashboard page.
@@ -82,15 +93,14 @@ Follow these steps to start using the new version of IBM Quantum Platform.
    1. Choose whether you want an access group to be created for this instance and click **Create instance**.  For an Open instance, you probably don't need an access group, although creating one won't impact your usage unless you add another user to the group. You can add or remove access groups at any time from IBM Cloud. To learn more, see [Setting up access groups.](https://cloud.ibm.com/docs/account?topic=account-groups)
 3. Set up your credentials using the [following steps.](#credentials)
    * Set the channel to `ibm_quantum_platform`. If you previously set your default channel to `ibm_quantum` in your saved credentials, you need to update that setting. If you were previously working with Qiskit Runtime on IBM Cloud, you can skip this.
-   * Optionally specify the instance's CRN or name. To copy the instance CRN, go to your [dashboard](https://quantum.cloud.ibm.com/), go to [Instances](https://quantum.cloud.ibm.com/instances), and click the copy icon at the end of the instance's row. The instance name listed in the first column can also be used. If an instance is not specified, all instances in your account will be available. 
+   * Optionally specify the instance's CRN or name. To copy the instance CRN, go to your [dashboard,](https://quantum.cloud.ibm.com/) go to [Instances,](https://quantum.cloud.ibm.com/instances) and click the copy icon at the end of the instance's row. The instance name listed in the first column can also be used. If an instance is not specified, all instances in your account will be available.
    * Optionally name this set of credentials.
 
 <span id="credentials"></span>
-#### Set up your credentials
 
 1. Create an API key from the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com/)
    <Admonition type="note">
-   This API key is only visible for a short amount of time so be sure to store it in a safe place.  To manage your API key, use IBM Cloud.  See [Managing user API keys](https://cloud.ibm.com/docs/account?topic=account-userapikey) for instructions.
+   This API key is only visible for a short amount of time so be sure to store it in a safe place.  It can be used to authenticate to either region. To manage your API key, use IBM Cloud.  See [Managing user API keys](https://cloud.ibm.com/docs/account?topic=account-userapikey) for instructions.
    </Admonition>
 2. Use your API key to activate your Python virtual environment.  See the [installation instructions](/docs/guides/install-qiskit#local) if you do not already have a virtual environment set up.
 
@@ -111,14 +121,14 @@ Follow these steps to start using the new version of IBM Quantum Platform.
       overwrite=True # Only needed if you already have Cloud credentials.
     )
     ```
-   
+
    Note that it is not required to pass in an instance when saving an account or initializing the `QiskitRuntimeService()`. If an instance is not passed in, all instances will be checked when a backend is retrieved (`service.backend("backend_name")`). If an instance is passed into `save_account()`, or passed in during initialization, it is used as the default instance when retrieving backends. An instance passed in at initialization takes precedence over the one saved in the account.
 
-      * New parameters, `region`, and `plans_preference`, have been added to the `QiskitRuntimeService()` initializer and the `save_account()` method. These can be used to prioritize certain instances on the new platform (`ibm_quantum_platform`, and temporarily, `ibm_cloud` channels) without explicitly providing the CRN. 
-      `region` allows you to set a region preference (`us-east` or `eu-de`), For example, if `us-east` is specified, 
+      * New parameters, `region`, and `plans_preference`, have been added to the `QiskitRuntimeService()` initializer and the `save_account()` method. These can be used to prioritize certain instances on the new platform (`ibm_quantum_platform`, and temporarily, `ibm_cloud` channels) without explicitly providing the CRN.
+      `region` allows you to set a region preference (`us-east` or `eu-de`), For example, if `us-east` is specified,
       then only instances from `us-east` will be checked. `plans_preference` takes a list of plans where instances will be prioritized in the order of plans given. For example, `['Open', 'Premium']` would prioritize all Open Plan instances, then all Premium Plan instances, and then the rest.
       * In addition to the IBM Cloud Resource Name (CRN), the instance name can also be passed in as the instance value.
-      * If you have access to multiple accounts, only one account per API token can be used. The 
+      * If you have access to multiple accounts, only one account per API token can be used. The
       IBM Cloud API Token is treated as the account identifier and will unlock the resources associated with the account the token was created in. A list of your tokens per account can be found on the [API keys](https://cloud.ibm.com/iam/apikeys) page.
 
     Run `exit()` to close the Python shell. From now on, whenever you need to authenticate to the service, you can load your credentials with `QiskitRuntimeService()`.

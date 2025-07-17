@@ -241,7 +241,7 @@ At all optimization levels, the default layout method is `default`, though the s
 
 <span id="transpiler-preset-stage-layout-default" />
 
-<span id="id1" />
+<span id="id2" />
 
 #### Built-in `default` plugin
 
@@ -328,7 +328,7 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 <span id="transpiler-preset-stage-routing-default" />
 
-<span id="id2" />
+<span id="id4" />
 
 #### Built-in `default` plugin
 
@@ -370,7 +370,7 @@ In practice, [the “sabre” plugin](#transpiler-preset-stage-routing-sabre) ru
 
 <span id="transpiler-preset-stage-routing-sabre" />
 
-<span id="id3" />
+<span id="id5" />
 
 #### Built-in `sabre` plugin
 
@@ -406,7 +406,7 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 <span id="transpiler-preset-stage-translation-default" />
 
-<span id="id5" />
+<span id="id7" />
 
 #### Built-in `default` plugin
 
@@ -434,6 +434,8 @@ The optimization level has no effect on this plugin.
 
 Uses the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") algorithm to symbolically translate gates into the target basis. At a high level, this starts from the set of gates requested by the circuit, and uses rules from a given [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") (typically the [`SessionEquivalenceLibrary`](circuit#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary")) to move towards the ISA.
 
+For a Clifford+T basis set, the single-qubit rotation gates are approximated using the [`SolovayKitaevDecomposition`](qiskit.synthesis.SolovayKitaevDecomposition "qiskit.synthesis.SolovayKitaevDecomposition") algorithm.
+
 This is the default translation method.
 
 The optimization level has no effect on this plugin.
@@ -452,7 +454,7 @@ The optimization stage is for low-level hardware-aware optimizations. Unlike [th
 
 There are very few requirements on an optimization plugin, other than it takes in ISA-supported circuits, and returns ISA-supported circuits. An optimization plugin will often contain a loop, such as the [`DoWhileController`](qiskit.passmanager.DoWhileController "qiskit.passmanager.DoWhileController"), and might include the configured translation stage as a fix-up pipeline.
 
-Qiskit’s built-in optimization plugins are general, and apply well to most real-world ISAs for non-error-corrected devices. The built-in plugins are less well-suited to ISAs that have no continuously parametrized single-qubit gate, such as a Clifford+T basis set.
+Qiskit’s built-in optimization plugins are general, and apply well to most real-world ISAs for non-error-corrected devices. The built-in plugins are less well-suited to ISAs that have no continuously parametrized single-qubit gate.
 
 When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins), the entry point for `optimization` is `qiskit.transpiler.optimization`. The built-in plugins are:
 
@@ -462,13 +464,13 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 <span id="transpiler-preset-stage-optimization-default" />
 
-<span id="id7" />
+<span id="id9" />
 
 #### Built-in `default` plugin
 
-This varies significantly between optimization levels.
+This varies significantly depending on the optimization level and whether the basis set is of the form Clifford+T.
 
-The specifics of this pipeline are subject to change between Qiskit versions. The broad principles are described below.
+The specifics of this pipeline are subject to change between Qiskit versions. The broad principles are described below. First, consider the more common case that the basis set is not of the form Clifford+T.
 
 At optimization level 0, the stage is empty.
 
@@ -477,6 +479,8 @@ At optimization level 1, the stage does matrix-based resynthesis of runs of sing
 At optimization level 2, in addition the optimizations of level 1, the loop contains commutation analysis of sets of gates to widen the range of gates that can be considered for cancellation. Before the loop, runs of both one- and two-qubit gates undergo a single matrix-based resynthesis.
 
 At optimization level 3, the two-qubit matrix-based resynthesis runs inside the optimization loop. The optimization loop condition also tries multiple runs and chooses the minimum point in the case of fluctuating output; this is necessary because matrix-based resynthesis is relatively unstable in terms of concrete gates.
+
+For a Clifford+T basis set, two-qubit matrix based resynthesis is not applied.
 
 Optimization level 3 is typically very expensive for large circuits.
 
@@ -506,7 +510,7 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 <span id="transpiler-preset-stage-scheduling-default" />
 
-<span id="id8" />
+<span id="id10" />
 
 #### Built-in `default` plugin
 
@@ -926,7 +930,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### TranspilerError
 
-<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
   Bases: [`TranspilerAccessError`](#qiskit.transpiler.TranspilerAccessError "qiskit.transpiler.exceptions.TranspilerAccessError")
 
   Exceptions raised during transpilation.
@@ -936,7 +940,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### TranspilerAccessError
 
-<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
   Bases: [`PassManagerError`](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.exceptions.PassManagerError")
 
   DEPRECATED: Exception of access error in the transpiler passes.
@@ -946,7 +950,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### CouplingError
 
-<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Base class for errors raised by the coupling graph object.
@@ -956,7 +960,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### LayoutError
 
-<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Errors raised by the layout object.
@@ -966,7 +970,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### CircuitTooWideForTarget
 
-<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
   Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
 
   Error raised if the circuit is too wide for the target.
@@ -976,7 +980,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### InvalidLayoutError
 
-<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
   Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
 
   Error raised when a user provided layout is invalid.
