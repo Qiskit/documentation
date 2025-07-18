@@ -1,0 +1,111 @@
+---
+title: QkVF2LayoutResult (dev version)
+description: API reference for QkVF2LayoutResult in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QkVF2LayoutResult
+---
+
+# QkVF2LayoutResult
+
+```c
+typedef struct QkVF2LayoutResult QkVF2LayoutResult
+```
+
+When running the `qk_transpiler_pass_standalone_vf2_layout` function it returns its analysis result as a `QkVF2LayoutResult` object. This object contains the outcome of the transpiler pass, whether the pass was able to find a layout or not, and what the layout selected by the pass was.
+
+## Functions
+
+### qk\_vf2\_layout\_result\_has\_match
+
+<Function id="qk_vf2_layout_result_has_match" signature="bool qk_vf2_layout_result_has_match(const QkVF2LayoutResult *layout)">
+  Check whether a result was found.
+
+  <span id="group__QkVF2LayoutResult_1autotoc_md94" />
+
+  #### Safety
+
+  <span id="group__QkVF2LayoutResult_1autotoc_md94" />
+
+  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`.
+
+  **Parameters**
+
+  **layout** – a pointer to the layout
+
+  **Returns**
+
+  `true` if the `qk_transpiler_pass_standalone_vf2_layout()` run found a layout
+</Function>
+
+### qk\_vf2\_layout\_result\_num\_qubits
+
+<Function id="qk_vf2_layout_result_num_qubits" signature="uint32_t qk_vf2_layout_result_num_qubits(const QkVF2LayoutResult *layout)">
+  Get the number of virtual qubits in the layout.
+
+  <span id="group__QkVF2LayoutResult_1autotoc_md95" />
+
+  #### Safety
+
+  <span id="group__QkVF2LayoutResult_1autotoc_md95" />
+
+  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`. The result must have a layout found.
+
+  **Parameters**
+
+  **layout** – a pointer to the layout
+
+  **Returns**
+
+  The number of virtual qubits in the layout
+</Function>
+
+### qk\_vf2\_layout\_result\_map\_virtual\_qubit
+
+<Function id="qk_vf2_layout_result_map_virtual_qubit" signature="uint32_t qk_vf2_layout_result_map_virtual_qubit(const QkVF2LayoutResult *layout, uint32_t qubit)">
+  Get the physical qubit for a given virtual qubit
+
+  <span id="group__QkVF2LayoutResult_1autotoc_md96" />
+
+  #### Safety
+
+  <span id="group__QkVF2LayoutResult_1autotoc_md96" />
+
+  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`. Also qubit must be a valid qubit for the circuit and there must be a result found.
+
+  **Parameters**
+
+  *   **layout** – a pointer to the layout
+  *   **qubit** – the virtual qubit to get the physical qubit of
+
+  **Returns**
+
+  The physical qubit mapped to by the specified virtual qubit
+</Function>
+
+### qk\_vf2\_layout\_result\_free
+
+<Function id="qk_vf2_layout_result_free" signature="void qk_vf2_layout_result_free(QkVF2LayoutResult *layout)">
+  Free a `QkVF2LayoutResult` object
+
+  <span id="group__QkVF2LayoutResult_1autotoc_md97" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(1, 0);
+  ```
+
+  <span id="group__QkVF2LayoutResult_1autotoc_md98" />
+
+  #### Safety
+
+  <span id="group__QkVF2LayoutResult_1autotoc_md98" />
+
+  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2Layout`.
+
+  **Parameters**
+
+  **layout** – a pointer to the layout to free
+</Function>
+
