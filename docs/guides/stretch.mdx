@@ -90,7 +90,7 @@ qc.barrier()
     Stretch resolution equation:  $a + 8 + a + 8 + a + 8 = 100   =   3*a + 24$
 </Admonition>
 
-## Limitations
+## Qiskit Runtime Limitations
 
 The following constraints apply when using `stretch` in Qiskit Runtime:
 
@@ -146,18 +146,24 @@ The following constraints apply when using `stretch` in Qiskit Runtime:
      </TabItem>
     </Tabs>
 
-- Stretch expressions are limited to those of the form `A*stretch + B` where `A` and `B` are floating point or integer constants.
+- Stretch expressions are limited to those of the form `X*stretch + Y` where `X` and `Y` are floating point or integer constants.
     <Tabs>
          <TabItem value="Invalid" label="Invalid">
         ```python
-        delay[2 * a * a] $0;
+        a = circuit.add_stretch("a")
+        b = circuit.add_stretch("b")
+        c = circuit.add_stretch("c")
+
+        # (a /  b) * c is not supported
+        circuit.delay(expr.mul(expr.div(a, b), c), q1)        
          ```
      </TabItem>
      <TabItem value="Valid" label="Valid">
         ```python
-        qubit[1] q;
-        stretch a;
-        delay[a * 2 + 3dt] q[0];
+        from qiskit.circuit import Duration
+       
+        a = circuit.add_stretch("a")
+        circuit.delay(expr.add(expr.mul(a, 2), Duration.dt(3)), 0)        
         ```
      </TabItem>
     </Tabs>
@@ -166,15 +172,15 @@ The following constraints apply when using `stretch` in Qiskit Runtime:
     <Tabs>
         <TabItem value="Invalid" label="Invalid">
         ```python
-        qubit[1] q;
-        stretch a;
-        stretch b;
-        delay[a * (b / 1dt)] q[0];
+        a = circuit.add_stretch("a")
+        b = circuit.add_stretch("b")
+        circuit.delay(expr.add(a, b), 0)
          ```
      </TabItem>
          <TabItem value="Valid" label="Valid">
         ```python
-        xxxxxx
+        a = circuit.add_stretch("a")
+        circuit.delay(expr.add(a, a), 0)
         ```
      </TabItem>
 
@@ -185,11 +191,22 @@ The following constraints apply when using `stretch` in Qiskit Runtime:
          <TabItem value="Invalid" label="Invalid">
         ```python
         delay[a  - 40.0] $0; #if "a" resolves to a value <= 40.0
+        from qiskit.circuit import Duration
+
+        circuit.barrier((q0, q1))
+        circuit.delay(20, q1)
+        # The length of this barrier region is 20dt, meaning the
+        # equation for solving stretch 'a' is a + 40dt = 20dt, giving a = -20dt. 
+        circuit.delay(expr.add(a, Duration.dt(40)), q0)
+        circuit.barrier((q0, q1))        
          ```
      </TabItem>
      <TabItem value="Valid" label="Valid">
         ```python
-        xxxxxx
+        circuit.barrier((q0, q1))
+        circuit.delay(20, q1)
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))             
         ```
      </TabItem>
     </Tabs>
