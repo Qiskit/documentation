@@ -3,7 +3,7 @@ title: Use Qiskit Code Assistant in local mode
 description: Learn how to deploy and use the Qiskit Code Assistant model locally.
 ---
 
-{/* cspell:ignore ollama, gguf, modelfile, safetensors */}
+{/* cspell:ignore ollama, gguf, modelfile, safetensors, winget */}
 
 # Use Qiskit Code Assistant in local mode
 
@@ -158,7 +158,7 @@ Some useful commands:
 An alternative to the Ollama application is the `llama-cpp-python` package, which is a Python binding for `llama.cpp`. It gives you more control and flexibility to run the GGUF model locally, and is ideal for users who wish to integrate the local model in their workflows and Python applications.
 
 1. Install [`llama-cpp-python`](https://pypi.org/project/llama-cpp-python/)
-1. Interact with the model from within your application using `llama_cpp`. For example:
+2. Interact with the model from within your application using `llama_cpp`. For example:
 
 ```python
 from llama_cpp import Llama
@@ -187,6 +187,47 @@ generation_kwargs = {
 
 raw_pred = model(input, **generation_kwargs)["choices"][0]["text"]
 ```
+
+### Use the `llama.cpp` library
+
+Another alternative is to use `llama.cpp`, an open-source library for performing LLM inference on a CPU with minimal setup.
+It provides low-level control over the model execution and is typically run from the command line, pointing to a local GGUF model file.
+
+There are several ways to install `llama.cpp` on your machine:
+
+- Install llama.cpp using [brew, nix, or winget](https://github.com/ggml-org/llama.cpp/blob/master/docs/install.md)
+- Run with Docker: See out the [Docker documentation by `llama.cpp` team](https://github.com/ggml-org/llama.cpp/blob/master/docs/docker.md)
+- Download pre-built binaries from the [releases page](https://github.com/ggml-org/llama.cpp/releases)
+- Build from source by [cloning this repository](https://github.com/ggml-org/llama.cpp/blob/master/docs/build.md)
+
+Once installed, you can use `llama.cpp` to interact with GGUF models in conversation mode as follows:
+```bash
+# Use a local model file
+llama-cli -m my_model.gguf -cnv
+
+# Or download and run a model directly from Hugging Face
+llama-cli -hf Qiskit/granite-3.3-8b-qiskit-GGUF -cnv
+```
+
+You can also launch an OpenAI-compatible API server for the model in the following way:
+```bash
+llama-server -hf Qiskit/granite-3.3-8b-qiskit-GGUF
+```
+
+#### Advanced parameters
+With the `llama-cli` program, you can control the model generation using command-line options. For example, you can provide an initial “system” prompt using the `-p/--prompt` flag. In conversation mode (`-cnv`), this initial prompt acts as the system message. Otherwise, you can simply prepend any desired instruction to your prompt text. You can also adjust sampling parameters - for instance: temperature (`--temp`), top-k (`--top-k`), top-p (`--top-p`), repetition penalty (`--repeat-penalty`), and the seed to use (`--seed`). The following is an example invocation using these options:
+
+```bash
+llama-cli -hf Qiskit/granite-3.3-8b-qiskit-GGUF \
+  -p "You are a friendly assistant." -cnv \
+  --temp 0.7 \
+  --top-k 50 \
+  --top-p 0.95 \
+  --repeat-penalty 1.1 \
+  --seed 42
+```
+
+To ensure proper functionality of our Qiskit models, we recommend using the system prompt provided in our HF GGUF repositories: system prompt for [granite-3.3-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF/blob/main/system), [Qwen2.5-Coder-14B-Qiskit-GGUF](https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF/blob/main/system), and [granite-3.2-8b-qiskit-GGUF.](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF/blob/main/system)
 
 ### Use the Qiskit Code Assistant extensions
 
