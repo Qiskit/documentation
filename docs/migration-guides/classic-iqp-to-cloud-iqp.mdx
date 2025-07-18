@@ -115,8 +115,7 @@ Setup details:
    `region` allows you to set a region preference (`us-east` or `eu-de`), For example, if `us-east` is specified,
    then only instances from `us-east` will be checked. `plans_preference` takes a list of plans where instances will be prioritized in the order of plans given. For example, `['Open', 'Premium']` would prioritize all Open Plan instances, then all Premium Plan instances, and then the rest.
    * In addition to the IBM Cloud Resource Name (CRN), the instance name can also be passed in as the instance value.
-   * If you have access to multiple accounts, only one account per API token can be used. The
-   IBM Cloud API Token is treated as the account identifier and will unlock the resources associated with the account the token was created in. A list of your tokens per account can be found on the [API keys](https://cloud.ibm.com/iam/apikeys) page.
+   * If you have access to multiple accounts, only one account per API token can be used. The IBM Cloud API Token is treated as the account identifier and will unlock the resources associated with the account the token was created in. A list of your tokens per account can be found on the [API keys](https://cloud.ibm.com/iam/apikeys) page.
 
 #### Trusted Machine
 <span id="save-account"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#untrusted-machine) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Quantum Platform.) To use `save_account()`, run `python` in your shell, then enter the following:
@@ -129,13 +128,13 @@ token = "<your-API-token>"
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 QiskitRuntimeService.save_account(
-token=token,
-channel="ibm_quantum_platform", # `channel` distinguishes between different account types.
-instance="instance-CRN or instance-name", # Optionally copy the instance CRN or name from the Instance section on the dashboard.
-name="account-name", # Optionally name this set of credentials.
-overwrite=True # Only needed if you already have Cloud credentials.
-set_as_default=True # Only needed if you want these credentials to be used as the default account. 
-# This is recommended if you have an IQP classic account set as the default. 
+   token=token,
+   channel="ibm_quantum_platform", # `channel` distinguishes between different account types.
+   instance="instance-CRN or instance-name", # Optionally copy the instance CRN or name from the Instance section on the dashboard.
+   name="account-name", # Optionally name this set of credentials.
+   overwrite=True # Only needed if you already have Cloud credentials.
+   set_as_default=True # Only needed if you want these credentials to be used as the default account. 
+   # This is recommended if you have an IQP classic account set as the default. 
 )
 ```
 
