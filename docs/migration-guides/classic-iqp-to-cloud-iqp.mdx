@@ -105,7 +105,7 @@ Once the onboarding steps are complete, you can now use your API key (`token` pa
 To copy the instance CRN, go to your [dashboard,](https://quantum.cloud.ibm.com/) go to [Instances,](https://quantum.cloud.ibm.com/instances) and click the copy icon at the end of the instance's row. The instance name listed in the first column can also be used. If an instance is not specified, all instances in your account will be available.
 
 Setup details:
-   <Admonition type="note">
+   <Admonition type="note" title="Notes">
    * The new channel name is `ibm_quantum_platform`. If you previously set your default channel to `ibm_quantum` in your saved credentials, you need to update that setting. If you were previously working with Qiskit Runtime on IBM Cloud, you can skip this.
 
    * It is not required to pass in an instance when saving an account or initializing the `QiskitRuntimeService()`. If an instance is not passed in, all instances will be checked when a backend is retrieved (`service.backend("backend_name")`). If an instance is passed into `save_account()`, or passed in during initialization, it is used as the default instance when retrieving backends. An instance passed in at initialization takes precedence over the one saved in the account. To copy the instance CRN, go to [Instances](https://quantum.cloud.ibm.com/instances) and click the copy icon at the end of the instance's row.
@@ -117,7 +117,7 @@ Setup details:
    * In addition to the IBM Cloud Resource Name (CRN), the instance name can also be passed in as the instance value.
    * If you have access to multiple accounts, only one account per API token can be used. The IBM Cloud API Token is treated as the account identifier and will unlock the resources associated with the account the token was created in. A list of your tokens per account can be found on the [API keys](https://cloud.ibm.com/iam/apikeys) page.
 
-#### Trusted Machine
+#### Trusted machines
 <span id="save-account"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#untrusted-machine) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Quantum Platform.) To use `save_account()`, run `python` in your shell, then enter the following:
 
 ```python
@@ -155,7 +155,7 @@ service = QiskitRuntimeService(name="account-name")
 * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
 
 <span id="untrusted-machine"></span>
-#### Untrusted Machine
+#### Untrusted machines
 **Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (for example, a public computer), change your API key after each use by following the instructions in the [Delete an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) section to reduce risk. To initialize the service in this situation, you can use code like the following:
 
 ```python
