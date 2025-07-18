@@ -7,7 +7,9 @@ description: How to use stretch to defer timing resolution with dynamic circuits
 
 The OpenQASM 3 language specification contains a `stretch` type that lets you specify relative timing of operations instead of absolute timing. Support for `stretch` as durations for [`Delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay) instructions was added in [Qiskit v2.0.0.](/docs/api/qiskit/release-notes/2.0#200) The concrete value of a stretch duration is resolved at compile time, after the exact duration of calibrated gates are known.  The compiler tries to minimize the stretch duration, subject to timing constraints on one or more qubits. This lets you express gate designs such as evenly spacing gates (for example, to implement a higher-order echo decoupling sequence), left-aligning a sequence of gates, or applying a gate for the duration of some sub-circuit, without knowing the exact timing.
 
-## Example
+## Examples
+
+### Dynamical decoupling
 
 A common use case of `stretch` is to apply dynamical decoupling to an idling qubit while another qubit is undergoing conditional operations.
 
@@ -45,7 +47,10 @@ circuit.delay(s, q1)
 circuit.barrier()
 ```
 
-Here is another example of using `stretch` to ensure a sequence of gates between two barriers are left-aligned, whatever their actual durations are:
+### Scheduling alignment
+
+This example uses `stretch` to ensure a sequence of gates between two barriers are left-aligned, whatever their actual durations are:
+
 ```python
 from qiskit import QuantumCircuit
 from numpy import pi
@@ -186,7 +191,7 @@ The following constraints apply when using `stretch` in Qiskit Runtime:
 
     </Tabs>
 
-- Stretch expressions cannot resolve to negative delay values.
+- Stretch expressions cannot resolve to negative delay values. The current solver doesn't infer non-negativity constraints.
     <Tabs>
          <TabItem value="Invalid" label="Invalid">
         ```python
