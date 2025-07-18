@@ -101,30 +101,8 @@ Follow these steps to set up the new version of IBM Quantum Platform.
 
 <span id="access"></span>
 ### Access
-
-#### Trusted Machine
 Once the onboarding steps are complete, you can now use your API key (`token` parameter) and, optionally, instance CRN (`instance` parameter) to instantiate a `QiskitRuntimeService` in your Python virtual environment.  See the [installation instructions](/docs/guides/install-qiskit#local) if you do not already have a virtual environment set up.
 To copy the instance CRN, go to your [dashboard,](https://quantum.cloud.ibm.com/) go to [Instances,](https://quantum.cloud.ibm.com/instances) and click the copy icon at the end of the instance's row. The instance name listed in the first column can also be used. If an instance is not specified, all instances in your account will be available.
-
-    <span id="save-account"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#untrusted-machine) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Quantum Platform.) To use `save_account()`, run `python` in your shell, then enter the following:
-
-    ```python
-    token = "<your-API-token>"
-    ```
-
-    ```python
-    from qiskit_ibm_runtime import QiskitRuntimeService
-
-    QiskitRuntimeService.save_account(
-      token=token,
-      channel="ibm_quantum_platform", # `channel` distinguishes between different account types.
-      instance="instance-CRN or instance-name", # Optionally copy the instance CRN or name from the Instance section on the dashboard.
-      name="account-name", # Optionally name this set of credentials.
-      overwrite=True # Only needed if you already have Cloud credentials.
-      set_as_default=True # Only needed if you want these credentials to be used as the default account. 
-      # This is recommended if you have an IQP classic account set as the default. 
-    )
-    ```
 
 Setup details:
    <Admonition type="note">
@@ -140,21 +118,42 @@ Setup details:
    * If you have access to multiple accounts, only one account per API token can be used. The
    IBM Cloud API Token is treated as the account identifier and will unlock the resources associated with the account the token was created in. A list of your tokens per account can be found on the [API keys](https://cloud.ibm.com/iam/apikeys) page.
 
-   Run `exit()` to close the Python shell. From now on, whenever you need to authenticate to the service, you can load your credentials with `QiskitRuntimeService()`.
+#### Trusted Machine
+<span id="save-account"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#untrusted-machine) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Quantum Platform.) To use `save_account()`, run `python` in your shell, then enter the following:
 
-   ```python
-   # Load default saved credentials
-   service = QiskitRuntimeService()
-   ```
-   ```python
-   # Load saved credentials if you specified a name
-   service = QiskitRuntimeService(name="account-name")
-   ```
+```python
+token = "<your-API-token>"
+```
 
-   * If you previously saved an IBM Quantum Platform Classic account as the default, specify `set_as_default=True` for your new account when you use the `save_account()` method.
-   * If no accounts are saved as the default, an account saved on the new IBM Quantum Platform with `ibm_quantum_platform` as the channel name will be used as the default when initializing your account. `set_as_default=True` can still be used to set an account with a certain configuration of credentials as the default.
-   * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
-   * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+QiskitRuntimeService.save_account(
+token=token,
+channel="ibm_quantum_platform", # `channel` distinguishes between different account types.
+instance="instance-CRN or instance-name", # Optionally copy the instance CRN or name from the Instance section on the dashboard.
+name="account-name", # Optionally name this set of credentials.
+overwrite=True # Only needed if you already have Cloud credentials.
+set_as_default=True # Only needed if you want these credentials to be used as the default account. 
+# This is recommended if you have an IQP classic account set as the default. 
+)
+```
+
+Run `exit()` to close the Python shell. From now on, whenever you need to authenticate to the service, you can load your credentials with `QiskitRuntimeService()`.
+
+```python
+# Load default saved credentials
+service = QiskitRuntimeService()
+```
+```python
+# Load saved credentials if you specified a name
+service = QiskitRuntimeService(name="account-name")
+```
+
+* If you previously saved an IBM Quantum Platform Classic account as the default, specify `set_as_default=True` for your new account when you use the `save_account()` method.
+* If no accounts are saved as the default, an account saved on the new IBM Quantum Platform with `ibm_quantum_platform` as the channel name will be used as the default when initializing your account. `set_as_default=True` can still be used to set an account with a certain configuration of credentials as the default.
+* If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
+* Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
 
 <span id="untrusted-machine"></span>
 #### Untrusted Machine
