@@ -68,7 +68,7 @@ qc.barrier()
 ```
 
 <Admonition type="note">
- Any remainder resulting from a stretch resolution is added to the first delay that uses the stretch.
+ When using `stretch` with Qiskit Runtime, any remainder resulting from a stretch resolution is added to the first delay that uses the stretch.
 
     Example:
 
@@ -155,15 +155,15 @@ The following constraints apply when using `stretch` in Qiskit Runtime:
         c = circuit.add_stretch("c")
 
         # (a /  b) * c is not supported
-        circuit.delay(expr.mul(expr.div(a, b), c), q1)        
+        circuit.delay(expr.mul(expr.div(a, b), c), q1)
          ```
      </TabItem>
      <TabItem value="Valid" label="Valid">
         ```python
         from qiskit.circuit import Duration
-       
+
         a = circuit.add_stretch("a")
-        circuit.delay(expr.add(expr.mul(a, 2), Duration.dt(3)), 0)        
+        circuit.delay(expr.add(expr.mul(a, 2), Duration.dt(3)), 0)
         ```
      </TabItem>
     </Tabs>
@@ -196,9 +196,9 @@ The following constraints apply when using `stretch` in Qiskit Runtime:
         circuit.barrier((q0, q1))
         circuit.delay(20, q1)
         # The length of this barrier region is 20dt, meaning the
-        # equation for solving stretch 'a' is a + 40dt = 20dt, giving a = -20dt. 
+        # equation for solving stretch 'a' is a + 40dt = 20dt, giving a = -20dt.
         circuit.delay(expr.add(a, Duration.dt(40)), q0)
-        circuit.barrier((q0, q1))        
+        circuit.barrier((q0, q1))
          ```
      </TabItem>
      <TabItem value="Valid" label="Valid">
@@ -206,7 +206,7 @@ The following constraints apply when using `stretch` in Qiskit Runtime:
         circuit.barrier((q0, q1))
         circuit.delay(20, q1)
         circuit.delay(a, q0)
-        circuit.barrier((q0, q1))             
+        circuit.barrier((q0, q1))
         ```
      </TabItem>
     </Tabs>
