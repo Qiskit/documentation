@@ -47,15 +47,10 @@ Benchmarking is important for comparing the relative performance of quantum soft
 
 Qiskit Runtime is a cloud-based service for executing quantum computations on IBM Quantum&reg; hardware. The `qiskit-ibm-runtime` package is a client for that service, and is the successor to the Qiskit IBM Provider. The Qiskit Runtime service streamlines quantum computations and provides optimal implementations of the Qiskit primitives for IBM Quantum hardware. To get started with Qiskit Runtime primitives, visit the [documentation](./get-started-with-primitives).
 
-<LegacyContent>
-With Qiskit Runtime you can choose to run your quantum programs on IBM Quantum hardware through the IBM Quantum Platform or IBM Cloud&reg;. See more information on selecting an IBM Quantum channel [in the documentation](./setup-channel).
-</LegacyContent>
-
 Qiskit Runtime is designed to use additional classical and quantum compute resources, including techniques such as error suppression and error mitigation, to return a higher-quality result from executing quantum circuits on quantum processors. Examples include dynamical decoupling for error suppression, and readout mitigation and zero-noise extrapolation (ZNE) for error mitigation. Learn how to configure these options on the [Configure error mitigation](./configure-error-mitigation) page.
 
 
-Qiskit Runtime also includes three types of execution modes for running your quantum program on IBM hardware: [_Job_, _Session_, and _Batch_,](/docs/guides/execution-modes) each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. <CloudContent>Note that Open Plan users cannot submit session jobs.</CloudContent>
-
+Qiskit Runtime also includes three types of execution modes for running your quantum program on IBM hardware: [_Job_, _Session_, and _Batch_,](/docs/guides/execution-modes) each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. Note that Open Plan users cannot submit session jobs.
 
 To quickly install Qiskit Runtime, run the following command:
 ```bash
@@ -83,7 +78,7 @@ pip install qiskit_serverless
 
 ## Qiskit Functions
 
-Qiskit Functions (`qiskit-ibm-catalog.QiskitFunctionsCatalog`) are abstracted services designed to accelerate algorithm discovery and application prototyping. Explore the [Qiskit Functions Catalog](https://quantum.ibm.com/functions), including:
+Qiskit Functions (`qiskit-ibm-catalog.QiskitFunctionsCatalog`) are abstracted services designed to accelerate algorithm discovery and application prototyping. Explore the [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions), including:
 
 - **Circuit functions**: Services that include transpilation, error suppression, error mitigation, and post-processing techniques that take abstract circuits and desired measurement observables as input. With Circuit functions, users can discover new algorithms and applications without needing to manage transpilation or quantum hardware performance.
 - **Application functions**: Services that include entire quantum workflows, from mapping classical to quantum, optimizing for hardware, execution on hardware, and post-processing. Users can prototype industry applications with domain-familiar inputs and outputs.

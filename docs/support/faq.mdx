@@ -1,0 +1,74 @@
+---
+title: Frequently-asked questions (FAQ)
+description: Frequently-asked questions about IBM Quantum (Platform, or on IBM Cloud) or Qiskit Runtime
+
+---
+# Frequently-asked questions (FAQ)
+
+For FAQs specific to the execution modes, see the [Qiskit Runtime execution modes FAQ](/docs/support/execution-modes-faq) guide.
+
+## How do I cite Qiskit in my research?
+
+Cite Qiskit by using the included [BibTeX file](https://github.com/Qiskit/qiskit/blob/main/CITATION.bib).
+
+## How do I cite an IBM Quantum computer in my research?
+
+For research papers, we encourage authors to acknowledge IBM Quantum&reg; by using:
+
+>    We acknowledge the use of IBM Quantum services for this work. The views expressed are those of the authors, and do not reflect the official policy or position of IBM or the IBM Quantum team.
+
+Paper references should be cited as follows:
+
+> IBM Quantum. https://<span>quantum.cloud.ibm.com</span>/, YYYY
+
+Quantum processing units in the paper should be referenced by their unique name (for example, `ibmq_vigo`) and optionally
+adding the version (for example, `ibmq_vigo` v1.0.2).  We also encourage referencing the processor.
+For example:
+
+> In this paper we used `ibmq_vigo`, which is one of the IBM Quantum Canary processors.
+
+Example of citing an IBM Quantum program:
+
+> IBM Quantum (2025). Estimator primitive (Version x.y.z) [computer software]. https://<span>quantum.cloud.ibm.com</span>/
+
+## How do I cite IBM Quantum Composer in my research?
+
+Example of citing IBM Quantum Composer:
+
+> IBM Quantum Composer. 2025. url: https://<span>quantum.cloud.ibm.com/composer</span>
+
+
+## I don't see something in the user interface, such as my administration tasks.
+
+Try choosing a different account from the account switcher in the header of the [IBM Quantum Platform](https://quantum.cloud.ibm.com) interface.
+
+## I'm just using the Open Plan, but I had to put in my credit card.  Will I be charged?
+
+You will not be charged unless you create a Pay-As-You-Go [instance](/docs/guides/instances) and use it to send workloads to QPUs. See [Manage cost](/docs/guides/manage-cost) for instructions to set a cost limit and to learn about other ways to manage costs.
+
+
+## What's the difference between an API key and an API token?
+
+There's no difference.  The terms API key and API token are used interchangeably. You'll see both terms in the documentation because different interfaces use different terms.
+
+## Do I have to choose the region that I live in?
+
+No. You can use either region.  The region determines where jobs are run and where the data is kept.  Additionally, you can only see and use instances that were created in the instance that you are logged in to. Note that only the us-east region supports the Open Plan.
+
+## What is the data retention policy?
+
+IBM retains your (undeleted) job and usage data for three years while you continue to use the Qiskit Runtime service.
+
+## What happened to Python distributions such as Qiskit Aer, Qiskit Nature, and Qiskit Experiments?
+
+Since the release of the Qiskit SDK v1.0, the command `pip install qiskit` will **only** install the [Qiskit SDK](https://github.com/Qiskit/qiskit). This means that some modules that you have used in the past, such as `qiskit-aer` or `qiskit-nature`, now have to be installed separately.
+
+Before the release of the Qiskit SDK v1.0, Qiskit was comprised of many different Python distributions, such as `qiskit-terra`, the compiler core; `qiskit-aer`, the high-performance simulator; the original IBM Quantum&reg; provider; and several now-obsolete packages providing particular exploratory algorithmic or experiment-running features.
+
+These separate software packages were combined into what was called the Qiskit *metapackage*, which allowed users to install all of these components together through `pip install qiskit`. This metapackage architecture was removed with the release of the Qiskit SDK v1.0, and now each of the individual software distributions needs to be installed separately.
+
+If you want to install the packages that were previously included in the Qiskit metapackage, visit the [Qiskit ecosystem](https://www.ibm.com/quantum/ecosystem) to find a range of packages to suit your needs. You can also read the [v1.0 migration guide](/docs/migration-guides/metapackage-migration) for more information about this change.
+
+## How do I close my IBM Cloud account?
+
+Find instructions on the [Closing an account](https://cloud.ibm.com/docs/account?topic=account-account-close) page.
