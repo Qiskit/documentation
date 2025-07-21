@@ -22,7 +22,6 @@ A multi-job manager for efficiently running experiments comprising multi-job wor
 <Admonition type="note" title="Notes">
     - When batching, jobs are not guaranteed to run in the order they are submitted. Also, while your batch jobs will run as closely together as possible, they don't get exclusive access to the backend. Therefore, your batch jobs might run in parallel with other users' jobs if there is enough processing capacity on the QPU. Additionally, QPU calibration jobs could run between the batched jobs.
     - The queuing time does not decrease for the first job submitted within a batch. Therefore, batches do not provide any benefits when running a single job.
-    - Batches do not work on simulators because simulators do not have a queue.
 </Admonition>
 
 To run in batch mode, specify `mode=batch` when instantiating a primitive or run the job in a batch context manager. See [Run jobs in a batch](/docs/guides/run-jobs-batch) for examples.
@@ -39,13 +38,7 @@ To run in session mode, specify `mode=session` when instantiating a primitive, o
 
 <Admonition type="note" title="Notes">
 - The queuing time does not decrease for the first job submitted within a session. Therefore, sessions do not provide any benefits when running a single job.
-- Sessions do not work on simulators because simulators do not have a queue.
-<LegacyContent>
-- Session execution mode is not supported in the Open Plan. Jobs will run in job mode instead.
-</LegacyContent>
-<CloudContent>
 - Open Plan users cannot submit session jobs.
-</CloudContent>
 </Admonition>
 
 ## Basic workflow
@@ -58,18 +51,12 @@ The basic workflow for batches and sessions is similar:
    <Admonition type="note">
    The job must go through the normal queue to reactivate the workload.
    </Admonition>
-<LegacyContent>
-4. If the maximum TTL value is reached, the workload ends and any remaining queued jobs fail. In IBM Quantum&reg; Platform, any jobs already running will run to completion.  However, if you are using Qiskit Runtime on IBM Cloud&reg;, jobs won't run to completion if doing so would exceed the instance's cost limit.
-</LegacyContent>
-<CloudContent>
 4. If the maximum TTL value is reached, the workload ends and any remaining queued jobs fail. Any job currently running won't run to completion if doing so would exceed the instance's cost limit.
-</CloudContent>
+
 
 The following video illustrates the basic workflow, using sessions as an example:
 
-<video title="A user starts a session job and becomes the priority user.  They submit jobs to the QPU while other users wait. After the prioritized user's session finishes, the next person's jobs can begin processing." className="max-w-auto h-auto" controls>
-  <source src="/docs/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
-</video>
+<IBMVideo id="134371940" title="A user starts a session job and becomes the priority user.  They submit jobs to the QPU while other users wait. After the prioritized user's session finishes, the next person's jobs can begin processing."/>
 
 For full details about the TTL timers, see the [Maximum execution time](/docs/guides/max-execution-time) guide.
 
