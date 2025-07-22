@@ -1,14 +1,10 @@
 ---
-title: Manage cost
-description: How to manage costs of running jobs on QPUs when using the Premium, Flex, or Pay-As-You-Go Plan on IBM Quantum Platform.
+title: Manage cost on the Pay-As-You-Go Plan
+description: How to manage costs of running jobs on QPUs when using the Pay-As-You-Go Plan on IBM Quantum Platform.
 
 ---
 
 # Manage cost
-
-<Admonition type="note" title="The Open Plan is free">
-This guide only pertains to plans with associated costs: Premium, Flex, and Pay-As-You-Go Plans. There is no cost associated with the Open Plan.
-</Admonition>
 
 This guide describes how to set a cost limit or instance limit.  You can also manage cost by [minimizing a workload's quantum time.](minimize-time)
 
@@ -25,12 +21,11 @@ An instance administrator can limit how much is spent. There are several ways to
 
 * **IBM Quantum Platform**: Open the [Instances & allocation tab.](https://quantum.cloud.ibm.com/instances) Find the instance you want to limit, click the overflow menu at the end of the row, and then click **Edit details**. Set the total cost limit or the usage limit, then click **Save changes**.
    <Admonition type="note">
-   You can also set the cost or usage limit when creating a new instance.
+   You can also set the cost or usage limit when creating a new instance under the Pay-As-You-Go Plan. When you select the Pay-As-You-Go tile, a field appears with the label "Total cost limit (Optional). You can enter a total cost limit in this field.
    </Admonition>
 
 * **API**: Set the instance limit in seconds.
-   * New IBM Quantum Platform users: [`PUT /v1/instances/configuration "instance_limit":<seconds>`](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__replace_instance_data).
-   * Classic Qiskit Runtime on IBM Cloud users: [`PUT /instances/configuration  "instance_limit":<seconds>`](https://cloud.ibm.com/apidocs/quantum-computing#replace-instance-data)
+   [`PUT /v1/instances/configuration "instance_limit":<seconds>`](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__replace_instance_data).
 
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
    1. Log in to the CLI: `ibmcloud login --sso`.
@@ -80,11 +75,9 @@ An instance administrator can limit how much is spent. There are several ways to
 
 There are several ways to view the current cost limit:
 
-* **IBM Quantum Platform**: The Max cost limit is shown on the Pay-As-You-Go tab of the [Instances & allocation](https://quantum.cloud.ibm.com/instances) tab.
+* **IBM Quantum Platform**: The Max cost limit is shown on the Pay-As-You-Go tab of the [Instances](https://quantum.cloud.ibm.com/instances) table.
 
-* **API**:
-   * IBM Quantum Platform users: [`GET /v1/instances/configuration`](/docs/api/qiskit-runtime-rest/tags/instances).
-   * Classic Qiskit Runtime on IBM Cloud users: [`GET /instances/configuration`](https://cloud.ibm.com/apidocs/quantum-computing#get-instance)
+* **API**: [`GET /v1/instances/configuration`](/docs/api/qiskit-runtime-rest/tags/instances).
 
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
 
@@ -93,18 +86,14 @@ There are several ways to view the current cost limit:
    '{"instance_limit_seconds":null}'
    ```
 
-{/** **User interface**: Navigate to the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, then open the instance and click the edit button by the Cost limit. Delete the value and click **Save**. */}
-
-
 ## Remove a cost limit or instance limit
 
-An instance administrator can remove the cost limit in several ways:
+You can remove the cost limit in several ways:
 
-* **IBM Quantum Platform**: Open the [Instances & allocation tab.](https://quantum.cloud.ibm.com/instances) Find the instance you want to update, click the overflow menu at the end of the row, and then click **Edit details**. Delete the total cost limit or the usage, then click **Save changes**.
+* **IBM Quantum Platform**: Open the [Instances](https://quantum.cloud.ibm.com/instances) table. Find the instance you want to update, click the overflow menu at the end of the row, and then click **Edit details**. Delete the total cost limit or the usage, then click **Save changes**.
 
 * **API**: Set the instance limit to `null`.
-   * IBM Quantum Platform users: [`PUT /v1/instances/configuration "instance_limit":null`](/docs/api/qiskit-runtime-rest/tags/instances).
-   * Classic Qiskit Runtime on IBM Cloud users: [`PUT /instances/configuration  "instance_limit":null`](https://cloud.ibm.com/apidocs/quantum-computing#replace-instance-data)
+   IBM Quantum Platform users: [`PUT /v1/instances/configuration "instance_limit":null`](/docs/api/qiskit-runtime-rest/tags/instances).
 
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
 
@@ -123,7 +112,7 @@ No further jobs can be submitted by using this instance until the cost limit is 
 
 ## How to see what you’re being charged
 
-You or your account owner will receive a monthly invoice that provides details about your resource charges. You can check how much has been spent at any time on the [IBM Cloud Billing and usage page](https://cloud.ibm.com/billing).
+You will receive a monthly invoice that provides details about your resource charges. You can check how much has been spent at any time on the [IBM Cloud Billing and usage](https://cloud.ibm.com/billing) page.
 
 Additionally, you can determine cost per instance or per job at any time.
 
@@ -155,7 +144,7 @@ These are the columns relevant to cost:
 
 ## Set up spending notifications
 
-You or your account owner can set up spending notifications to get notified when your account or a particular service reaches a specific spending threshold that you set. For information, see the [IBM Cloud account Type description](https://cloud.ibm.com/docs/account?topic=account-accounts). IBM Cloud spending notifications must be used with other methods of cost management for several reasons:
+You can set up spending notifications to get notified when your account or a particular service reaches a specific spending threshold that you set. For information, see the [IBM Cloud Account types](https://cloud.ibm.com/docs/account?topic=account-accounts) page. IBM Cloud spending notifications must be used with other methods of cost management for several reasons:
 
 *   The notifications trigger only *after* cost surpasses the specified limit.
 *   Cost is submitted to the billing system hourly. Therefore, a long delay might occur between the job submission and the spending notification being sent.
