@@ -17,7 +17,7 @@ Key:
 *   🟡 Partial support
 *   ✅ Supported
 
-The a marking of "support" in the two columns means:
+The "supported" mark meaning depends on the column:
 
 * *Qiskit SDK*: The feature can be parsed by [`qiskit.qasm3.loads`](/docs/api/qiskit/qasm3) (by using the `qiskit-qasm3-import` extension) and represented in a [`QuantumCircuit`.](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)
 
@@ -27,21 +27,21 @@ The a marking of "support" in the two columns means:
 | OpenQASM 3 Feature            | Qiskit SDK feature                   | Qiskit SDK | IBM Qiskit Runtime | Notes |
 |:------------------------------|:-------------------------------------|:----------:|:------------------:|:----- |
 | comments                      |                                      | ✅         | ✅                 | [1](#1)     |
-| QASM vstring           |                                      | ✅         | ✅                 | [1](#1)     |
+| QASM vstring                  |                                      | ✅         | ✅                 | [1](#1)     |
 | `include`                     |                                      | 🟡         | ❌                 | [1](#1), [7](#7)  |
 | unicode names                 |                                      | ✅         | ✅                 |       |
 | `qubit`                       | `Qubit` and `QuantumRegister`        | ✅         | 🟡                 | [2](#2)     |
 | `bit`                         | `Clbit` and `ClassicalRegister`      | ✅         | ✅                 | [3](#3)     |
 | `bool`                        | `expr.Var` and classical expressions | 🟡         | ✅                 | [4](#4)     |
 | `int`                         |                                      | ❌         | ✅                 | [4](#4)     |
-| `uint`                        | ""                                   | 🟡         | ✅                 | [4](#4)     |
-| `float`                       | ""                                   | 🟡         | 🟡                 | [4](#4)     |
+| `uint`                        | `expr.Var` and classical expressions | 🟡         | ✅                 | [4](#4)     |
+| `float`                       | `expr.Var` and classical expressions | 🟡         | 🟡                 | [4](#4)     |
 | `angle`                       | Implicit, as gate parameters         | ❌         | 🟡                 | [4](#4)     |
 | `complex`                     |                                      | ❌         | ❌                 | [4](#4)     |
 | `const`                       |                                      | ❌         | ❌                 | [4](#4)     |
 | `pi`/`π`/`tau`/`τ`/`euler`/`ℇ`| Constant-folded into gate parameters | ✅         | ✅                 |       |
 | Aliasing: let                 | Quantum and classical registers      | 🟡         | ❌                 | [5](#5)     |
-| register concatenation        | ""                                   | 🟡         | ❌                 | [5](#5)     |
+| register concatenation        | Quantum and classical registers      | 🟡         | ❌                 | [5](#5)     |
 | casting                       | `expr.Cast` classical expressions    | 🟡         | 🟡                 | [4](#4)     |
 | `duration`                    |                                      | ❌         | ❌                 |       |
 | `durationof`                  |                                      | ❌         | ❌                 |       |
@@ -60,7 +60,7 @@ The a marking of "support" in the two columns means:
 | `measure`                     | `Measure`/`QuantumCircuit.measure`   | ✅         | ✅                 |       |
 | bit operations                |                                      | ✅         | ✅                 | [4](#4)     |
 | boolean operations            |                                      | ✅         | ✅                 | [4](#4)     |
-| arithmetic expressions        |                                      | 🟡         | 🟡                 | [4](#4), [10](#10) |
+| arithmetic expressions        |                                      | 🟡         | 🟡                 | [4](#4) |
 | comparisons                   |                                      | ✅         | ✅                 | [4](#4)     |
 | `if`                          | `QuantumCircuit.if_test`             | ✅         | ✅                 | [8](#8)     |
 | `else`                        | `QuantumCircuit.if_test`             | ✅         | ✅                 | [8](#8)     |
@@ -140,10 +140,6 @@ The a marking of "support" in the two columns means:
 9. Qiskit SDK supports declaring any supported classical type as an `input` variable on the circuit.
    Such variables are not currently eligible for execution on hardware, and cannot be loaded by
    the Qiskit OpenQASM 3 importer.  Unbound `Parameter` objects present in the `QuantumCircuit` are exported as `input float[64]` variables.  Certain runtime configuration options can enable executing such circuits on some backends.
-
-<span id="10"></span>
-10. Qiskit Runtime supports arithmetic expressions that can be computed at run
-    time. It does not support arithmetic expressions computed during program execution.
 
 ## Next steps
 
