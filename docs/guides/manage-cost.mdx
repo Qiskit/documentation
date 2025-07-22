@@ -24,9 +24,11 @@ There are several ways to set or change a limit on how much is spent:
    You can also set the cost or usage limit when creating a new instance under the Pay-As-You-Go Plan. When you select the Pay-As-You-Go tile, a field appears with the label "Total cost limit (Optional)". You can enter a total cost limit in this field.
    </Admonition>
 
-* **API**: Set the instance limit in seconds.
+* **API**: [Set the instance limit in seconds.](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__replace_instance_data)
 
-[`PUT /v1/instances/configuration "instance_limit":<seconds>`](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__replace_instance_data).
+   ```api
+   PUT /v1/instances/configuration "instance_limit":<seconds>
+   ```
 
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
    1. Log in to the CLI: `ibmcloud login --sso`.
@@ -72,7 +74,7 @@ There are several ways to set or change a limit on how much is spent:
           ]
       ```
 
-## View the cost limit or instance limit
+## View the cost limit
 
 There are several ways to view the current cost limit:
 
@@ -80,7 +82,10 @@ There are several ways to view the current cost limit:
 
 * **API**:
 
-[`GET /v1/instances/configuration`](/docs/api/qiskit-runtime-rest/tags/instances).
+   ```api
+   GET /v1/instances/configuration
+   ```
+   See the [REST API documentation](/docs/api/qiskit-runtime-rest/tags/instances).
 
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
 
@@ -89,15 +94,17 @@ There are several ways to view the current cost limit:
    '{"instance_limit_seconds":null}'
    ```
 
-## Remove a cost limit or instance limit
+## Remove a cost limit
 
 You can remove the cost limit in several ways:
 
 * **IBM Quantum Platform**: Open the [Instances](https://quantum.cloud.ibm.com/instances) table. Find the instance you want to update, click the overflow menu at the end of the row, and then click **Edit details**. Delete the total cost limit or the usage, then click **Save changes**.
 
-* **API**: Set the instance limit to `null`.
+* **API**: [Set the instance limit to `null`.](/docs/api/qiskit-runtime-rest/tags/instances)
 
-[`PUT /v1/instances/configuration "instance_limit":null`](/docs/api/qiskit-runtime-rest/tags/instances).
+   ```api
+   PUT /v1/instances/configuration "instance_limit":null
+   ```
 
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
 
