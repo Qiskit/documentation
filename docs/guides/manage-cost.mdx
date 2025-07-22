@@ -6,7 +6,7 @@ description: How to manage costs of running jobs on QPUs when using the Pay-As-Y
 
 # Manage cost
 
-This guide describes how to set a cost limit or instance limit.  You can also manage cost by [minimizing a workload's quantum time.](minimize-time)
+This guide describes how to set a cost limit or instance limit.  You can also manage cost by [minimizing a workload's quantum time.](/docs/guides/minimize-time)
 
 The _cost limit_ or _instance limit_ refers to the total cost of all jobs run with this instance since it was created, and it will always be greater than or equal to the total cost. After the instance reaches the specified number of total seconds, no further jobs can be run and no more cost is incurred.
 
@@ -21,11 +21,12 @@ An instance administrator can limit how much is spent. There are several ways to
 
 * **IBM Quantum Platform**: Open the [Instances](https://quantum.cloud.ibm.com/instances) table. Find the instance you want to limit, click the overflow menu at the end of the row, and then click **Edit details**. Set the total cost limit or the usage limit, then click **Save changes**.
    <Admonition type="note">
-   You can also set the cost or usage limit when creating a new instance under the Pay-As-You-Go Plan. When you select the Pay-As-You-Go tile, a field appears with the label "Total cost limit (Optional). You can enter a total cost limit in this field.
+   You can also set the cost or usage limit when creating a new instance under the Pay-As-You-Go Plan. When you select the Pay-As-You-Go tile, a field appears with the label "Total cost limit (Optional)". You can enter a total cost limit in this field.
    </Admonition>
 
 * **API**: Set the instance limit in seconds.
-   [`PUT /v1/instances/configuration "instance_limit":<seconds>`](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__replace_instance_data).
+
+[`PUT /v1/instances/configuration "instance_limit":<seconds>`](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__replace_instance_data).
 
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
    1. Log in to the CLI: `ibmcloud login --sso`.
@@ -119,9 +120,10 @@ Additionally, you can determine cost per instance or per job at any time.
 ### View usage
 
 View the instance's usage on the [Analytics](https://quantum.cloud.ibm.com/analytics) page.
-{/* ### View instance cost
 
-To determine how much has been billed to an instance during the current billing cycle, from the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, click the instance to open its details page.
+### View instance cost
+
+To determine how much has been billed to an instance during the current billing cycle, from the [Instances](https://quantum.cloud.ibm.com/instances) page, click the instance to open its details page.
 
 These are the fields relevant to cost:
 
@@ -134,13 +136,12 @@ You can view your billing cycle on the [Billing and usage page](https://cloud.ib
 
 ### View job cost
 
-To determine how much has been billed to each job associated with an instance, from the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, click the instance to open its details page. Next, on the left side, click Jobs.
+To determine how much has been billed to each job associated with an instance, from the [Instances](https://quantum.cloud.ibm.com/instances) page, click the instance to open its details page. Next, on the left side, click Jobs.
 
 These are the columns relevant to cost:
 
 - **Usage**: The amount of quantum time used by this job. Quantum time is the duration a QPU is committed to fulfilling a user request.
 - **Cost**: The total cost of running this job.
-*/}
 
 ## Set up spending notifications
 
