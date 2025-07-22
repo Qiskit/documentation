@@ -6,18 +6,18 @@ description: How to manage costs of running jobs on QPUs when using the Pay-As-Y
 
 # Manage cost
 
-This guide describes how to set a cost limit or instance limit.  You can also manage cost by [minimizing a workload's quantum time.](/docs/guides/minimize-time)
+This guide describes how to set a cost limit on your Pay-As-You-Go Plan instance.  You can also manage cost by [minimizing a workload's quantum time](/docs/guides/minimize-time), and setting a [maximum execution time](/docs/guides/max-execution-time) on your jobs.
 
-The _cost limit_ or _instance limit_ refers to the total cost of all jobs run with this instance since it was created, and it will always be greater than or equal to the total cost. After the instance reaches the specified number of total seconds, no further jobs can be run and no more cost is incurred.
+The _cost limit_ refers to the total cost of all jobs run with this instance since it was created, and it will always be greater than or equal to the total cost. After the instance reaches the specified number of total seconds, no further jobs can be run and no more cost is incurred.
 
     <Admonition type="note">
       The cost limit is always specified in US dollars (USD), then converted to runtime seconds. However, for monthly billing purposes, you are charged in your local currency, specified on your IBM Cloud&reg; account. Because currency exchange rates can fluctuate, the cost for X runtime seconds might be different when initially calculated in USD than when you’re actually charged in your local currency. As a result, if your local currency is not USD, the total amount charged for the number of seconds specified in this field could vary from the dollar amount you specify.
     </Admonition>
 
 <span id="cost-limit"></span>
-## Set or change a cost limit or instance limit
+## Set or change a cost limit
 
-An instance administrator can limit how much is spent. There are several ways to set or change this limit:
+There are several ways to set or change a limit on how much is spent:
 
 * **IBM Quantum Platform**: Open the [Instances](https://quantum.cloud.ibm.com/instances) table. Find the instance you want to limit, click the overflow menu at the end of the row, and then click **Edit details**. Set the total cost limit or the usage limit, then click **Save changes**.
    <Admonition type="note">
@@ -78,7 +78,9 @@ There are several ways to view the current cost limit:
 
 * **IBM Quantum Platform**: The Max cost limit is shown on the Pay-As-You-Go tab of the [Instances](https://quantum.cloud.ibm.com/instances) table.
 
-* **API**: [`GET /v1/instances/configuration`](/docs/api/qiskit-runtime-rest/tags/instances).
+* **API**:
+
+[`GET /v1/instances/configuration`](/docs/api/qiskit-runtime-rest/tags/instances).
 
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
 
@@ -94,7 +96,8 @@ You can remove the cost limit in several ways:
 * **IBM Quantum Platform**: Open the [Instances](https://quantum.cloud.ibm.com/instances) table. Find the instance you want to update, click the overflow menu at the end of the row, and then click **Edit details**. Delete the total cost limit or the usage, then click **Save changes**.
 
 * **API**: Set the instance limit to `null`.
-   IBM Quantum Platform users: [`PUT /v1/instances/configuration "instance_limit":null`](/docs/api/qiskit-runtime-rest/tags/instances).
+
+[`PUT /v1/instances/configuration "instance_limit":null`](/docs/api/qiskit-runtime-rest/tags/instances).
 
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
 
@@ -102,8 +105,6 @@ You can remove the cost limit in several ways:
    ibmcloud resource service-instance-update <instance_CRN> -p
    '{"instance_limit_seconds":null}'
    ```
-
-{/* * **User interface**: Navigate to the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, then open the instance and click the edit button by the Cost limit. Delete the value and click **Save**. */}
 
 ### What happens when the cost limit is reached
 
@@ -156,4 +157,5 @@ You can set up spending notifications to get notified when your account or a par
 <Admonition type="tip" title="Recommendations">
     - Review the [plans](plans-overview) available to IBM Quantum users.
     - Review suggestions to [minimize job quantum time.](minimize-time)
+    - Learn how to set a [maximum execution time](/docs/guides/max-execution-time) on jobs.
 </Admonition>
