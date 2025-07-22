@@ -161,7 +161,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://ibm.box.com/s/bipgoms7gr6b6vhkoc1uw6oi4wsanfoq",
   "https://ibm.box.com/shared/static/fw1538dogvyv0qbfqg8tan1k2fs27mfv.zip",
   "https://ibm.box.com/s/blnffu0pd7yzxarq3zc3w0jv90365ny2",
-  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.85.441"
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.85.441",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
