@@ -5,7 +5,7 @@ description: How to use stretch to defer timing resolution with dynamic circuits
 
 # Deferred timing resolution using stretch
 
-The OpenQASM 3 language specification contains a `stretch` type that lets you specify relative timing of operations instead of absolute timing. Support for `stretch` as durations for [`Delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay) instructions was added in [Qiskit v2.0.0.](/docs/api/qiskit/release-notes/2.0#200) The concrete value of a stretch duration is resolved at compile time, after the exact duration of calibrated gates are known.  The compiler tries to minimize the stretch duration, subject to timing constraints on one or more qubits. This lets you express gate designs such as evenly spacing gates (for example, to implement a higher-order echo decoupling sequence), left-aligning a sequence of gates, or applying a gate for the duration of some sub-circuit, without knowing the exact timing.
+The OpenQASM 3 language specification contains a `stretch` type with which you can specify relative timing of operations instead of absolute timing. Support for `stretch` as durations for [`Delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay) instructions was added in [Qiskit v2.0.0.](/docs/api/qiskit/release-notes/2.0#200) The concrete value of a stretch duration is resolved at compile time, after the exact duration of calibrated gates are known.  The compiler tries to minimize the stretch duration, subject to timing constraints on one or more qubits. You can then express gate designs such as evenly spacing gates (for example, to implement a higher-order echo decoupling sequence), left-aligning a sequence of gates, or applying a gate for the duration of some sub-circuit, without knowing the exact timing.
 
 ## Examples
 
@@ -95,9 +95,9 @@ qc.barrier()
     Stretch resolution equation:  $a + 8 + a + 8 + a + 8 = 100   =   3*a + 24$
 </Admonition>
 
-## Qiskit Runtime Limitations
+## Qiskit Runtime limitations
 
-The following constraints apply when using `stretch` in Qiskit Runtime:
+Support for `stretch` in Qiskit Runtime is currently experimental and has the following constraints:
 
 - At most one stretch variable per _qubit set_ between barriers (implicit and explicit). A qubit set is one or more qubits; these sets must be mutually exclusive.
     <Tabs>

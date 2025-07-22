@@ -7,9 +7,9 @@ description: Hardware considerations and limitations.  Circuits with mid-circuit
 
 Running circuits on quantum processors involves not only the qubits themselves, but also a system of classical electronics and computers to generate and receive waveforms and orchestrate the control logic. There are physical limitations on these classical hardware components that, when exceeded, would cause the job to fail. Jobs that contain a large number of classical control flows or measurements are most susceptible to these limitations due to the amount of data that needs to be fetched and transferred.
 
-A Qiskit Runtime primitive job goes through many transformations before reaching these control electronics, and therefore it is difficult to give simple statement on the limitations, such as a maximum number of resets or measurements you can use. This guide aims to provide you with some insights into how various parts of your job could stress the limits of the classical control electronics.
+A Qiskit Runtime primitive job goes through many transformations before reaching these control electronics, and therefore it is difficult to give a simple statement on the limitations, such as a maximum number of resets or measurements you can use. This guide aims to provide you with some insights into how various parts of your job could stress the limits of the classical control electronics.
 
-Many of these limitations exist because the underlying technology supporting these features is in an early stage of development, and we hope to be able to address them in the future.
+Many of these limitations exist because the underlying technology supporting these features is in an early stage of development. As the technology matures over time, the limitations might no longer apply.
 
 
 ## Memory limits and latency in control hardware
@@ -23,7 +23,7 @@ When a job is submitted to the IBM Quantum&reg; service, it is processed into mu
 
 The memory requirements and classical latencies of a job are affected by the following factors:
 
-- **Number of circuits**: When multiple circuits are submitted in a single job, they become concatenated into a single large circuit, with qubit initialization operations between them. Qubit initialization is implemented as a conditional reset on all qubits used in the large circuit.
+- **Number of circuits**: When multiple circuits are submitted in a single job, they become concatenated into a single large circuit, with qubit initialization operations between them. 
   - Central controller: Memory usage scales proportionally with the number of circuits.
 - **Amount of control flow**:
   - Central controller: Memory usage scales proportionally with the number of control flow decisions.
