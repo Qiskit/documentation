@@ -25,6 +25,7 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/docs/guides/function-template-hamiltonian-simulation",
   "/docs/guides/qiskit-addons-utils",
   "/docs/guides/qiskit-code-assistant-openai-api",
+  "/docs/guides/manage-cost",
   "/docs/guides/execution-modes-faq",
 ]);
 
@@ -41,6 +42,7 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/docs/guides/global-data-quantum-optimizer",
   "/docs/guides/colibritd-pde",
   "/docs/guides/qunova-chemistry",
+  "/docs/guides/manage-cost",
   "/docs/guides/instances",
   "/docs/guides/cloud-setup",
   "/docs/guides/cloud-setup-untrusted",
