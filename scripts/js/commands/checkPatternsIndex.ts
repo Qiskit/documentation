@@ -51,20 +51,8 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/docs/support/execution-modes-faq",
 ]);
 
-// URLs that show up in the INDEX_PAGES >1 time. This can happen when we
-// have distinct <CloudContent> and <LegacyContent> lists with some shared entries.
-const ALLOWLIST_DUPLICATE_ENTRIES: Set<string> = new Set([
-  "/docs/guides/processor-types",
-  "/docs/guides/qpu-information",
-  "/docs/guides/get-qpu-information",
-  "/docs/guides/native-gates",
-  "/docs/guides/repetition-rate-execution",
-  "/docs/guides/retired-qpus",
-  "/docs/guides/dynamic-circuits-considerations",
-  "/docs/guides/instances",
-  "/docs/guides/fair-share-scheduler",
-  "/docs/guides/manage-cost",
-]);
+// URLs that show up in the INDEX_PAGES >1 time.
+const ALLOWLIST_DUPLICATE_ENTRIES: Set<string> = new Set([]);
 
 const INDEX_PAGE_URLS: Set<string> = new Set([
   "/docs/guides/map-problem-to-circuits",
