@@ -15,13 +15,11 @@ import { globby } from "globby";
 
 import { TocEntry } from "../lib/api/generateToc.js";
 
+import {collectNewPills,NewPillEntry} from "../lib/newPills"
+
 const TODAY = new Date();
 
-interface NewPillEntry {
-  toc: string;
-  url: string;
-  date: string | null;
-}
+
 
 // Grab the toc and grab each url with a newpill
 async function main() {
@@ -83,25 +81,6 @@ async function findNewPills(tocFilePath: string): Promise<NewPillEntry[]> {
   return collectNewPills(rootEntries, tocFilePath);
 }
 
-function collectNewPills(entries: TocEntry[], tocPath: string): NewPillEntry[] {
-  const newPillEntries = [];
-  for (const entry of entries) {
-    if ("children" in entry) {
-      const childEntries = collectNewPills(entry.children || [], tocPath);
-      newPillEntries.push(...childEntries);
-    } else if (entry.isNew && entry.url) {
-      if (entry.isNewDate) {
-        newPillEntries.push({
-          toc: tocPath,
-          url: entry.url,
-          date: entry.isNewDate,
-        });
-      } else {
-        newPillEntries.push({ toc: tocPath, url: entry.url, date: null });
-      }
-    }
-  }
-  return newPillEntries;
-}
+
 
 main().then(() => process.exit());
