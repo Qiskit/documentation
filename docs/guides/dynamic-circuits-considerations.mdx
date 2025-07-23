@@ -1,0 +1,53 @@
+---
+title: Hardware considerations and limitations
+description: Hardware considerations and limitations.  Circuits with mid-circuit measurements and dynamic circuits are most likely to hit these limits.
+
+---
+# Hardware considerations and limitations
+
+Running circuits on quantum processors involves not only the qubits themselves, but also a system of classical electronics and computers to generate and receive waveforms and orchestrate the control logic. There are physical limitations on these classical hardware components that, if exceeded, would cause the job to fail. Jobs that contain a large number of classical control flows or measurements are most susceptible to these limitations due to the amount of data that needs to be fetched and transferred.
+
+A Qiskit Runtime primitive job goes through many transformations before reaching these control electronics, and therefore it is difficult to give a simple statement on the limitations, such as a maximum number of resets or measurements you can use. This guide aims to provide you with some insights into how various parts of your job could stress the limits of the classical control electronics.
+
+Many of these limitations exist because the underlying technology supporting these features is in an early stage of development. As the technology matures over time, the limitations might no longer apply.
+
+
+## Memory limits and latency in control hardware
+
+![Diagram showing control hardware architecture](/docs/images/guides/dynamic-circuits-considerations/rta-architecture.avif)
+
+When a job is submitted to the IBM Quantum&reg; service, it is processed into multiple classical programs that must be distributed between two kinds of units: central controllers and qubit controllers (see the previous diagram). A job might fail if it exceeds certain limitations of these controllers. There are two kinds of limitations to be aware of:
+
+- **Limited working memory**: This primarily affects the central controllers, and jobs will fail if they cause this memory limit to be exceeded.
+- **Latency caused by classical computation**: Running circuits that use classical feedforward and control flow involves performing classical computation during the course of the circuit execution. Due to the limited coherence time of qubits, there is a limited time budget for performing these computations. A job may fail at compile time if the compilation detects that the classical computation overhead is too large.
+
+The memory requirements and classical latencies of a job are affected by the following factors:
+
+- **Number of circuits**: When multiple circuits are submitted in a single job, they become concatenated into a single large circuit, with qubit initialization operations between them. 
+  - Central controller: Memory usage scales proportionally with the number of circuits.
+- **Amount of control flow**:
+  - Central controller: Memory usage scales proportionally with the number of control flow decisions.
+  - Qubit controller: A control flow construct with too many or too large logic branches may not be realizable.
+- **Resets**:
+  - Central controller: Memory usage scales proportionally with the number of resets.
+- **Measurements**:
+  - Central controller: Memory usage scales proportionally with the number of measurements used by the central controller for control flow.
+
+<span id="buffer-overflow"></span>
+- **Buffer overflow error**: The measurement buffer on the control system can only store a limited number of measurement results. If the circuit performs many measurements in rapid succession, the buffer might fill before the control system has time to stream the results to the host, causing a job failure.
+
+  If you encounter the error `"RuntimeJobFailureError: unable to retrieve job result. A buffer overflow occurred during result collection..."`, try these strategies to mitigate this issue:
+  - Use fewer unique gates.
+  - Increase `rep_delay` (delay between shots): This adds time between shots, giving the control system more time to offload measurement results to the host and clear the buffer. This is the most direct fix and does not impact shot quality, though it will increase total job execution time.
+  - Insert `qc.delay()` after measurements: Add a delay instruction between measurements within a circuit to give the system time to stream results and prevent the buffer from filling.
+     <Admonition type="note">
+      This approach increases the circuit duration, which might reduce shot quality due to qubit decoherence.
+     </Admonition>
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+ Learn about [classical feedforward and control flow (dynamic circuits).](/docs/guides/classical-feedforward-and-control-flow)
+</Admonition>
+
+
