@@ -5,17 +5,6 @@ description: How to migrate `backend.run()` from qiskit-ibmq-provider to Qiskit 
 
 # Migrate from `qiskit_ibmq_provider`
 
-<LegacyContent>
-<Admonition type="note">
-This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.]( https://quantum.cloud.ibm.com/docs/migration-guides/qiskit-runtime-from-ibmq-provider)
-</Admonition>
-</LegacyContent>
-<CloudContent>
-<Admonition type="note">
-This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/migration-guides/qiskit-runtime-from-ibmq-provider)
-</Admonition>
-</CloudContent>
-
 This topic describes how to migrate code from the legacy IBMQ provider
 `qiskit-ibmq-provider` package to use Qiskit Runtime
 `qiskit-ibm-runtime`.
@@ -70,39 +59,13 @@ Use the updated code to work save accounts.
 
 <Tabs>
   <TabItem value="updated" label="Runtime primitives">
-<LegacyContent>
-The new syntax accepts credentials for
-Qiskit Runtime on IBM Cloud&reg; or IBM Quantum Platform. For more
-information about retrieving account credentials, see [Select and set up an IBM Quantum channel](/docs/guides/setup-channel).
-
-```python
-# IBM Quantum channel; set to default
-
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, set_as_default=True)
-```
-</LegacyContent>
-<CloudContent>
 For information about retrieving account credentials, see [Set up your IBM Cloud account](/docs/guides/cloud-setup).
 ```python
 QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>", overwrite=True, set_as_default=True)
 ```
-</CloudContent>
 
 Additionally, you can now name your saved credentials and load the credentials by name.
 
-<LegacyContent>
-```python
-# Save different accounts for open and premium access
-
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h1/g1/p1", name="premium")
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h2/g2/p2", name="open")
-
-# Load the "open" credentials
-
-service = QiskitRuntimeService(name="open")
-```
-</LegacyContent>
-<CloudContent>
 ```python
 # Save different accounts for open and premium access
 
@@ -113,7 +76,6 @@ QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TO
 
 service = QiskitRuntimeService(name="open")
 ```
-</CloudContent>
   </TabItem>
 
   <TabItem value="legacy" label="backend.run">
@@ -123,59 +85,8 @@ IBMQ.save_account("<IQX_TOKEN>", overwrite=True)
   </TabItem>
 </Tabs>
 
-<LegacyContent>
-## Load accounts
-
-Use the updated code to load accounts.
-
-<Tabs>
-  <TabItem value="updated" label="Runtime primitives">
-The `channel` input parameter is
-optional. If multiple accounts have been saved in one device and no
-`channel` is provided, the default is `"ibm_cloud"`.
-
-```python
-# To access saved credentials for the IBM cloud channel
-service = QiskitRuntimeService(channel="ibm_quantum_platform")
-
-# To access saved credentials for the IBM quantum channel
-service = QiskitRuntimeService(channel="ibm_quantum")
-```
-  </TabItem>
-
-  <TabItem value="legacy" label="backend.run">
-```python
-IBMQ.load_account()
-```
-  </TabItem>
-</Tabs>
-</LegacyContent>
-
 ## Instance selection (get a provider)
-<LegacyContent>
-Use the updated code to select a hub, group, and project.
 
-<Tabs>
-  <TabItem value="updated" label="Runtime primitives">
-The new syntax combines the functionality from `load_account()` and
-`get_provider()` in one statement. When using the `ibm_quantum` channel,
-the `hub`, `group`, and `project` are specified through the new
-`instance` keyword.
-
-```python
-# To access saved credentials for the IBM quantum channel and select an instance
-service = QiskitRuntimeService(channel="ibm_quantum", instance="my_hub/my_group/my_project")
-```
-  </TabItem>
-
-  <TabItem value="legacy" label="backend.run">
-```python
-provider = IBMQ.get_provider(project="my_project", group="my_group", hub="my_hub")
-```
-  </TabItem>
-</Tabs>
-</LegacyContent>
-<CloudContent>
 Use the updated code to select an instance.
 
 The new syntax combines the functionality from `load_account()` and
@@ -185,13 +96,12 @@ The new syntax combines the functionality from `load_account()` and
 # To access saved credentials for the IBM quantum channel and select an instance
 service = QiskitRuntimeService(channel="ibm_quantum_platform", instance="<CRN>")
 ```
-</CloudContent>
+
 ## Get a backend
 
 Use the updated code to specify a backend.
 
 <Tabs>
-<CloudContent>
   <TabItem value="updated" label="Runtime primitives">
 ```python
 service = QiskitRuntimeService(instance="<CRN>")
@@ -211,36 +121,6 @@ backend = FakeManilaV2()
 ```
 
   </TabItem>
-  </CloudContent>
-
-<LegacyContent>
-  <TabItem value="updated" label="Runtime primitives">
-```python
-# You can specify the instance in service.backend() instead of initializing a new service
-backend = service.backend("ibm_backend", instance="h1/g1/p1")
-```
-If you don't know what backend you want to use, you can instead use code such as the following:
-
-```python
-from qiskit_ibm_runtime import QiskitRuntimeService
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=<num_qubits>)
-```
-With Qiskit Runtime, you can also run in local testing mode.
-
-```python
-# Define a local backend
-from qiskit_ibm_runtime.fake_provider import FakeManilaV2
-backend = FakeManilaV2()
-
-# You could use an Aer simulator instead by using the following code:
-# from qiskit_aer import AerSimulator
-# backend = AerSimulator()
-```
-
-  </TabItem>
-  </LegacyContent>
 
   <TabItem value="legacy" label="backend.run">
 ```python

@@ -54,6 +54,7 @@ notebooks = [
     "docs/guides/native-gates.ipynb",
     "docs/guides/primitives-rest-api.ipynb",
     "docs/guides/repetition-rate-execution.ipynb",
+    "docs/guides/save-jobs.ipynb",
     "docs/guides/simulate-with-qiskit-sdk-primitives.ipynb",
     "docs/guides/synthesize-unitary-operators.ipynb",
     "docs/guides/DAG-representation.ipynb",
@@ -89,7 +90,6 @@ notebooks = [
     "docs/guides/multiverse-computing-singularity.ipynb",
     "docs/guides/qunova-chemistry.ipynb",
     "docs/guides/ai-transpiler-passes.ipynb",
-    "docs/guides/qiskit-transpiler-service.ipynb",
     "docs/guides/primitives.ipynb",
     "docs/guides/run-jobs-batch.ipynb",
     "docs/guides/run-jobs-session.ipynb",
@@ -101,7 +101,7 @@ notebooks = [
 [groups.cron-job-only]
 test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
-    "docs/guides/hello-world.ipynb",
+    "docs/tutorials/hello-world.ipynb",
     # The following notebook takes >300s to run and should be executed in the
     # cron job. Even though it does not use real hardware
     "docs/guides/qiskit-addons-cutting-gates.ipynb",
@@ -117,10 +117,6 @@ notebooks = [
     #   This timed out with no jobs submitted. Adding to the cron to see if it
     #   needs longer.
     "docs/guides/qedma-qesem.ipynb",
-
-    #   Got `KeyError: 'qsci_energy'`; might be due to nonsense results from
-    #   test-eagle? Running in cron job to test on a real backend.
-    "docs/guides/qunasys-quri-chemistry.ipynb",
 
     #   Got: `QiskitServerlessException: "Q-CTRL: Failed to execute Qiskit
     #   Function. Failed to compile the circuit.
@@ -138,11 +134,9 @@ notebooks = [
 # Don't ever test the following notebooks
 [groups.exclude]
 notebooks = [
-    # TODO: See if this works again after migrating to cloud
-    "docs/guides/save-jobs.ipynb",
-
     # This notebook contains undefined variables so can't run at all.
     "docs/guides/function-template-hamiltonian-simulation.ipynb",
+    "docs/guides/function-template-chemistry-workflow.ipynb",
 
     # These notebooks are failing with auth errors and need investigating
     "docs/guides/serverless-first-program.ipynb",
@@ -164,9 +158,11 @@ notebooks = [
     "docs/guides/estimate-job-run-time.ipynb",
     "docs/guides/serverless-port-code.ipynb",
 
-
+    # This is temporarily broken while the transpiler service migrates to cloud
+    "docs/guides/qiskit-transpiler-service.ipynb",
 
     # We never run tutorials notebooks
+    "docs/tutorials/multi-product-formula.ipynb",
     "docs/tutorials/advanced-techniques-for-qaoa.ipynb",
     "docs/tutorials/ai-transpiler-introduction.ipynb",
     "docs/tutorials/circuit-transpilation-settings.ipynb",
@@ -174,13 +170,11 @@ notebooks = [
     "docs/tutorials/spin-chain-vqe.ipynb",
     "docs/tutorials/quantum-approximate-optimization-algorithm.ipynb",
     "docs/tutorials/quantum-kernel-training.ipynb",
-    "docs/tutorials/repeat-until-success.ipynb",
     "docs/tutorials/transpilation-optimizations-with-sabre.ipynb",
     "docs/tutorials/variational-quantum-eigensolver.ipynb",
     "docs/tutorials/qunova-hivqe.ipynb",
     "docs/tutorials/real-time-benchmarking-for-qubit-selection.ipynb",
     "docs/tutorials/sample-based-krylov-quantum-diagonalization.ipynb",
-    "docs/tutorials/compute-dissociation-curves-for-strong-coupling-systems-with-quna-sys-qsci.ipynb",
     "docs/tutorials/solve-higher-order-binary-optimization-problems-with-q-ctrls-optimization-solver.ipynb",
     "docs/tutorials/chsh-inequality.ipynb",
     "docs/tutorials/approximate-quantum-compilation-for-time-evolution.ipynb",

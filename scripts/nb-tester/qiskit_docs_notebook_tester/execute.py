@@ -28,7 +28,8 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 from .config import NotebookJob, Result
 from .post_process import post_process_notebook
 
-
+# Keep this in sync with `OPEN_BACKENDS` in
+# scripts/nb-tester/qiskit_docs_notebook_tester/patches/qiskit-ibm-runtime-open
 OPEN_BACKENDS_TO_INTERNAL = {
     "ibm_brisbane": "alt_brisbane",
     "ibm_torino": "alt_torino",
@@ -155,7 +156,12 @@ async def _execute_notebook(
 
     def log_cell_output(cell, cell_index: int, execute_reply) -> None:
         if job.log_cell_outputs:
-            print(f"ℹ️ Cell {cell_index} output:\n", "\n".join(get_text_output(cell)))
+            outputs = list(get_text_output(cell))
+            if len(outputs) == 0:
+                message = f"ℹ️ Cell {cell_index} completed"
+            else:
+                message = f"ℹ️ Cell {cell_index} completed with output:\n" + "\n".join(outputs)
+            print(message, flush=True)
 
     # Our instance gives us high-priority access to open backends through different names.
     # E.g. 'ibm_brisbane' through 'alt_brisbane'. However, these names won't work for users.

@@ -34,6 +34,7 @@ export type ParsedFile = {
   externalLinks: Set<string>;
 };
 
+// Keep in sync with the function `getHeadingAnchorId` in closed source"
 export function parseAnchors(markdown: string): Set<string> {
   const lines = markdown.split("\n");
   const anchors = new Set<string>();
@@ -44,7 +45,7 @@ export function parseAnchors(markdown: string): Set<string> {
         .toLowerCase()
         .trim()
         .replaceAll(" ", "-")
-        .replaceAll(/[\.,;:!?`\\\(\)]/g, "");
+        .replaceAll(/[\.,;:!?`\\\(\)"']/g, "");
       let deduplicated = normalized;
       let i = 1;
       while (anchors.has(`#${deduplicated}`)) {

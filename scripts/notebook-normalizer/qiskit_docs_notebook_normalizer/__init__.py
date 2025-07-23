@@ -11,15 +11,14 @@
 # that they have been altered from the originals.
 
 import argparse
-import shutil
 from dataclasses import dataclass
 from itertools import chain
 from pathlib import Path
-from typing import TypeGuard, ClassVar
+from typing import TypeGuard, ClassVar, Iterator
 
 import nbformat
 
-from .cell_output_data import remove_circuit_drawing_html, extract_image_output, Image
+from .cell_output_data import remove_circuit_drawing_html, remove_inline_katex_expression, extract_image_output, Image
 
 NOTEBOOK_PATHS = chain(
     Path("docs").rglob("*.ipynb"),
@@ -71,9 +70,11 @@ def main():
         if args.check:
             continue
 
-        ensure_exists_and_empty(images_folder)
+        images_folder.mkdir(exist_ok=True, parents=True)
         for image in result.images:
             image.write()
+        for image in get_unused_images(images_folder, nb):
+            image.unlink()
         nbformat.write(result.nb, nb_path)
         print(f"✍️ Written '{nb_path}' and {len(result.images)} image(s)")
 
@@ -108,6 +109,10 @@ def normalize_notebook(
             if html_removed:
                 change_made = True
 
+            katex_modified = remove_inline_katex_expression(data)
+            if katex_modified:
+                change_made = True
+
             # 2. Extract image outputs
             filestem = Path(image_folder, f"{cell.id}-{index}")
             if image := extract_image_output(
@@ -121,14 +126,16 @@ def normalize_notebook(
                 # keep looking at other cells
                 return NormalizationNeeded(nb=nb, images=[])
 
-    if change_made:
+    has_unused_images = any(image for image in get_unused_images(image_folder, nb))
+
+    if change_made or has_unused_images:
         return NormalizationNeeded(nb=nb, images=images)
     return AlreadyNormalized()
 
 
 def determine_image_folder(nb_path: Path) -> Path:
     """
-    Determine the appropriate output folder for the extracted images, and ensure it exists and is empty.
+    Determine the appropriate output folder for the extracted images.
 
     For example, the following notebook path:
         docs/guides/my-notebook.ipynb
@@ -144,11 +151,19 @@ def determine_image_folder(nb_path: Path) -> Path:
     )
 
 
-def ensure_exists_and_empty(folder: Path) -> None:
-    if folder.exists():
-        shutil.rmtree(folder)
-    folder.mkdir(parents=True)
-
-
 def is_hidden(path: Path) -> bool:
     return any(part.startswith(".") for part in path.parts)
+
+def get_unused_images(images_folder: Path, nb: nbformat.NotebookNode) -> Iterator[Path]:
+    """Return images whose filenames do not appear in a cell output"""
+    def output_includes(cell: nbformat.NotebookNode, search: str) -> bool:
+        return any(
+          search in output.get('data', {}).get('text/plain', [])
+          for output in cell.get("outputs", [])
+        )
+    def origin_cell_exists(image: Path) -> bool:
+        return any(output_includes(cell, image.name) for cell in nb.cells)
+
+    for image in images_folder.glob("*"):
+        if not origin_cell_exists(image):
+            yield image
