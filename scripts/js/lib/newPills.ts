@@ -10,7 +10,8 @@ export function collectNewPills(entries: TocEntry[], tocPath: string): NewPillEn
     if ("children" in entry) {
       const childEntries = collectNewPills(entry.children || [], tocPath);
       newPillEntries.push(...childEntries);
-    } else if (entry.isNew && entry.url) {
+    } 
+    if (entry.isNew && entry.url) {
       if (entry.isNewDate) {
         newPillEntries.push({
           toc: tocPath,
