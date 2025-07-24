@@ -15,11 +15,9 @@ import { globby } from "globby";
 
 import { TocEntry } from "../lib/api/generateToc.js";
 
-import {collectNewPills,NewPillEntry} from "../lib/newPills"
+import { collectNewPills, NewPillEntry } from "../lib/newPills";
 
 const TODAY = new Date();
-
-
 
 // Grab the toc and grab each url with a newpill
 async function main() {
@@ -80,7 +78,5 @@ async function findNewPills(tocFilePath: string): Promise<NewPillEntry[]> {
   const rootEntries = JSON.parse(raw).children;
   return collectNewPills(rootEntries, tocFilePath);
 }
-
-
 
 main().then(() => process.exit());
