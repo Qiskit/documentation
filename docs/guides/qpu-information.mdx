@@ -47,13 +47,11 @@ These values are shown on both the [Compute resources page](https://quantum.clou
 *   **Qubits** - The number of physical qubits in a QPU. 
 *   **2Q error (best)** - The lowest two-qubit (2Q) error on any edge of the device as measured from isolated 2Q randomized benchmarking.
 *   **2Q error (layered)** - Average error per layered gate (EPLG) in a chain of 100 qubits. Average EPLG measures the average gate error in a layered chain of $N$ qubits ($N$=100 here). It is derived from a similar quantity known as the layer fidelity (LF) where EPLG$_{100}$ = 4/5(1-LF$^{\frac{1}{99}}$) and layer fidelity is the process fidelity of the layered chain of $N$ qubits. For details, see the paper [Benchmarking quantum processor performance at scale](https://arxiv.org/abs/2311.05933). Note that in the paper EPLG is defined for process error, but for consistency with the individually reported gate errors here it is quoted for average gate error, thus the factor of 4/5.
-*   **CLOPS** - Circuit layer operations per second, and also known as CLOPS_v, is a measure of how many layers of a Quantum volume circuit (virtual circuit) a QPU (quantum processing unit) can execute per unit of time. Find more information about this metric in the paper [Quality, Speed, and Scale: three key attributes to measure the performance of near-term quantum computers](https://arxiv.org/abs/2110.14108).
-* **CLOPS_h** -- A measure of how many layers of a 100x100 circuit (hardware-aware circuit) a QPU (quantum processing unit) can execute per unit of time.
-*   **QV** - Quantum volume. This value is another metric for QPU quality based on passing a fidelity threshold for a set of random, square all-to-all connected circuits. Provided as the peak value measured on a system of devices. For details, see the paper [Validating quantum computers using randomized model circuits](https://arxiv.org/abs/1811.12926).
+*   **CLOPS** (or CLOPS_h) - Circuit layer operations per second, is a measure of how many layers of a 100x100 circuit (hardware-aware circuit) a QPU (quantum processing unit) can execute per unit of time.
 *   **Status** - The QPU status.
+*   **Region** - Location of the datacenter where your data and experiments will be hosted and processed.
 *   **Total pending jobs** - The total number of jobs that you have submitted to this QPU.
 *   **Processor type** - Reflects the topology and indicates the approximate qubit count.
-*   **Features** - Additional information about the QPU, such as whether it supports pulse inputs.
 
 <Admonition type="note" title="Average gate fidelity">
 Note that the metric for median ECR error (for Eagle processors) and median CZ error (for Heron processors) is the [average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity), which is the average over all possible input states of the fidelity between the state produced by the actual operation and the state produced by the ideal operation.
