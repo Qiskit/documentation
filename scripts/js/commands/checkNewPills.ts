@@ -36,12 +36,12 @@ async function main() {
   if (allOutdatedPills.length > 0 || allMissingDates.length > 0) {
     allOutdatedPills.forEach((outdatedPill: NewPillEntry) =>
       console.error(
-        `\n❌ The new pill should be removed for the url: '${outdatedPill.url}' in '${outdatedPill.toc}'`,
+        `\n❌ The new pill should be removed for the identifier: '${outdatedPill.identifier}' in '${outdatedPill.toc}'`,
       ),
     );
     allMissingDates.forEach((missingDatePill: NewPillEntry) =>
       console.error(
-        `\n❌ There is a missing 'isNewDate' entry for the url: '${missingDatePill.url}' in '${missingDatePill.toc}'`,
+        `\n❌ There is a missing 'isNewDate' entry for the identifier: '${missingDatePill.identifier}' in '${missingDatePill.toc}'`,
       ),
     );
     process.exit(1);

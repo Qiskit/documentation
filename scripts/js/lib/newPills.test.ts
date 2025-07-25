@@ -71,38 +71,38 @@ test("collectNewPills()", () => {
   const mockPath = "/fake/path/to/toc.json";
   expect(collectNewPills(input, mockPath)).toEqual([
     {
-      url: "/page-1",
+      identifier: "/page-1",
       toc: mockPath,
       date: "2025-07-20",
     },
     {
-      url: "/folder-1/page-2",
+      identifier: "/folder-1/page-2",
       toc: mockPath,
       date: "2025-07-21",
     },
-    { toc: mockPath, date: "2025-06-18", url: "Root-level folder 1" },
+    { toc: mockPath, date: "2025-06-18", identifier: "Root-level folder 1" },
   ]);
   expect(collectNewPills(input2, mockPath)).toEqual([
     {
       toc: mockPath,
-      url: "input2/page-1",
+      identifier: "input2/page-1",
       date: null,
     },
   ]);
   expect(collectNewPills(input3, mockPath)).toEqual([
     {
       toc: mockPath,
-      url: "/child-1.1",
+      identifier: "/child-1.1",
       date: null,
     },
     {
       toc: mockPath,
-      url: "child-1",
+      identifier: "child-1",
       date: "2025-07-21",
     },
     {
       toc: mockPath,
-      url: "folder-parent-1",
+      identifier: "folder-parent-1",
       date: "2025-07-21",
     },
   ]);

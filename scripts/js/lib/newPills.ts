@@ -1,7 +1,7 @@
 import { TocEntry } from "./api/generateToc.js";
 export interface NewPillEntry {
   toc: string;
-  url: string;
+  identifier: string;
   date: string | null;
 }
 export function collectNewPills(
@@ -17,7 +17,7 @@ export function collectNewPills(
     if (entry.isNew) {
       newPillEntries.push({
         toc: tocPath,
-        url: entry.url ?? entry.title,
+        identifier: entry.url ?? entry.title,
         date: entry.isNewDate ?? null,
       });
     }
