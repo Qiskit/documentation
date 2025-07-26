@@ -44,7 +44,7 @@ The following is a subset of QPU configuration values available in IBM Quantum P
 These values are shown on both the [Compute resources page](https://quantum.cloud.ibm.com/computers) and the details page for each QPU.
 
 *   **Name** - The unique name assigned to a specific QPU. QPUs hosted on IBM Cloud® have names that begin with `ibmq_*` (older QPUs) or `ibm_*` (newer QPUs). All QPUs are given a city name, e.g., `ibmq_johannesburg`. This name does not indicate where the actual QPU is hosted. They are named after IBM&reg; locations around the world.
-*   **Qubits** - The number of physical qubits in a QPU. 
+*   **Qubits** - The number of physical qubits in a QPU.
 *   **2Q error (best)** - The lowest two-qubit (2Q) error on any edge of the device as measured from isolated 2Q randomized benchmarking.
 *   **2Q error (layered)** - Average error per layered gate (EPLG) in a chain of 100 qubits. Average EPLG measures the average gate error in a layered chain of $N$ qubits ($N$=100 here). It is derived from a similar quantity known as the layer fidelity (LF) where EPLG$_{100}$ = 4/5(1-LF$^{\frac{1}{99}}$) and layer fidelity is the process fidelity of the layered chain of $N$ qubits. For details, see the paper [Benchmarking quantum processor performance at scale](https://arxiv.org/abs/2311.05933). Note that in the paper EPLG is defined for process error, but for consistency with the individually reported gate errors here it is quoted for average gate error, thus the factor of 4/5.
 *   **CLOPS** - Circuit layer operations per second, and also known as CLOPS_v, is a measure of how many layers of a Quantum volume circuit (virtual circuit) a QPU (quantum processing unit) can execute per unit of time. Find more information about this metric in the paper [Quality, Speed, and Scale: three key attributes to measure the performance of near-term quantum computers](https://arxiv.org/abs/2110.14108).
@@ -86,9 +86,12 @@ To access the details page, click the **Compute resources** tab, then click the 
     *   **Max channels per pulse gate** - The maximum number of channels you can refer to within a pulse schedule. Typically each qubit is associated with a drive channel, a measure channel, an acquisition channel, and then auxiliary control channels for things like cross resonance.
     *   **Usage** - Click the link to see the jobs that you have run on this QPU.
 
-## View your resources
+<span id="available"></span>
+## View your QPUs
 
-To find your available QPUs, open the [Compute resources](https://quantum.cloud.ibm.com/computers) page.  Click a QPU to view its details.
+To find your available QPUs, open the [Compute resources](https://quantum.cloud.ibm.com/computers) page (make sure you are signed in).  Note that your selected region might impact the QPUs listed. Click a QPU to view its details.
+
+Alternatively, ****************************************
 
 You can also view your available QPUs by using the [backends API.](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backends)
 
