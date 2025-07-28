@@ -15,13 +15,9 @@ import { globby } from "globby";
 
 import { TocEntry } from "../lib/api/generateToc.js";
 
-const TODAY = new Date();
+import { collectNewPills, NewPillEntry } from "../lib/newPills";
 
-interface NewPillEntry {
-  toc: string;
-  url: string;
-  date: string | null;
-}
+const TODAY = new Date();
 
 // Grab the toc and grab each url with a newpill
 async function main() {
@@ -40,12 +36,12 @@ async function main() {
   if (allOutdatedPills.length > 0 || allMissingDates.length > 0) {
     allOutdatedPills.forEach((outdatedPill: NewPillEntry) =>
       console.error(
-        `\n❌ The new pill should be removed for the url: '${outdatedPill.url}' in '${outdatedPill.toc}'`,
+        `\n❌ The new pill should be removed for the identifier: '${outdatedPill.identifier}' in '${outdatedPill.toc}'`,
       ),
     );
     allMissingDates.forEach((missingDatePill: NewPillEntry) =>
       console.error(
-        `\n❌ There is a missing 'isNewDate' entry for the url: '${missingDatePill.url}' in '${missingDatePill.toc}'`,
+        `\n❌ There is a missing 'isNewDate' entry for the identifier: '${missingDatePill.identifier}' in '${missingDatePill.toc}'`,
       ),
     );
     process.exit(1);
@@ -81,27 +77,6 @@ async function findNewPills(tocFilePath: string): Promise<NewPillEntry[]> {
   const raw = await fs.readFile(tocFilePath, "utf-8");
   const rootEntries = JSON.parse(raw).children;
   return collectNewPills(rootEntries, tocFilePath);
-}
-
-function collectNewPills(entries: TocEntry[], tocPath: string): NewPillEntry[] {
-  const newPillEntries = [];
-  for (const entry of entries) {
-    if ("children" in entry) {
-      const childEntries = collectNewPills(entry.children || [], tocPath);
-      newPillEntries.push(...childEntries);
-    } else if (entry.isNew && entry.url) {
-      if (entry.isNewDate) {
-        newPillEntries.push({
-          toc: tocPath,
-          url: entry.url,
-          date: entry.isNewDate,
-        });
-      } else {
-        newPillEntries.push({ toc: tocPath, url: entry.url, date: null });
-      }
-    }
-  }
-  return newPillEntries;
 }
 
 main().then(() => process.exit());

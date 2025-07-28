@@ -674,11 +674,11 @@ The circuit C API currently only supports creating circuits that contain operati
   #### Example
 
   ```c
-  QkCircuitInstruction *inst = malloc(sizeof(QkCircuitInstruction));
+  QkCircuitInstruction inst;
   QkCircuit *qc = qk_circuit_new(100);
   uint32_t qubit[1] = {0};
   qk_circuit_gate(qc, QkGate_H, qubit, NULL);
-  QkCircuitInstruction inst = qk_circuit_get_instruction(qc, 0);
+  qk_circuit_get_instruction(qc, 0, &inst);
   ```
 
   <span id="group__QkCircuit_1autotoc_md41" />

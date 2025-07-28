@@ -51,6 +51,8 @@ Performing actions often requires a combination of platform management and servi
 
 When creating an access policy (either on an access group or for a user), you can check which actions are part of the role by reviewing the description. For example `quantum-computing.job.create - Create a job to run a program`.
 
+You can also determine the actions allowed by each role from the [IAM Roles](https://cloud.ibm.com/iam/roles) page.  Select Qiskit Runtime in the dropdown menu at the top of the page.  Then, for a more detailed list, click the number in the column next to the role name.  For example, by visiting that page and clicking the number by the Manager role, you can see that this role includes the ability to delete a job (`quantum-computing.job.delete`).
+
 The following table provides examples for some of the platform management actions that users can take within the context of the Qiskit Runtime service.
 
 | Platform management role | Qiskit Runtime service                                       |
@@ -65,12 +67,13 @@ The following table provides examples for some of the platform management action
 | Service access role | Qiskit Runtime actions                                               |
 |---------------------|----------------------------------------------------------------------|
 | Reader              | Perform read-only actions, such as viewing jobs                      |
-| Writer              | Permissions beyond the reader role, including running, updating, and canceling jobs           |
-| Manager             | Permissions beyond the writer role, including provisioning instances and setting the instance cost limit |
+| Writer              | Permissions beyond the reader role, including running jobs           |
+| Manager             | Permissions beyond the writer role, including provisioning instances, setting the instance cost limit, and deleting or canceling a job |
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
   -  Create [instances.](instances)
   -  [Upgrade from the Open Plan.](upgrade-from-open)
+  -  Understand the the [IAM Roles](https://cloud.ibm.com/iam/roles) (select Qiskit Runtime from the dropdown at the top of the page).
 </Admonition>
