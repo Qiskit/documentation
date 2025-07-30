@@ -125,7 +125,10 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
       }
 
       if (nodeClasses.includes("deprecated")) {
-        return buildDeprecatedAdmonition(node, handlers);
+        return buildApiVersionAdmonition(node, handlers);
+      }
+      if (nodeClasses.includes("versionAdded")) {
+        return buildApiVersionAdmonition(node, handlers);
       }
 
       return node.properties.id && nodeClasses.includes("section")
@@ -257,7 +260,8 @@ function buildAdmonition(
   };
 }
 
-function buildDeprecatedAdmonition(
+
+function buildApiVersionAdmonition(
   node: any,
   handlers: Record<string, Handle>,
 ): MdxJsxFlowElement {
@@ -266,6 +270,13 @@ function buildDeprecatedAdmonition(
     "versionmodified",
   );
   const title = toText(titleNode).trim().replace(/:$/, "");
+
+  //  Determine type based on title content
+  let type = "info"; // default for versionadded
+  if (title.toLowerCase().includes("deprecated")) {
+    type = "danger";
+  }
+
   const otherChildren: Array<any> = without(
     node.children[0].children,
     titleNode,
@@ -283,7 +294,7 @@ function buildDeprecatedAdmonition(
       {
         type: "mdxJsxAttribute",
         name: "type",
-        value: "danger",
+        value: type,
       },
     ],
     children: [
