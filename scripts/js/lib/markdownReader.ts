@@ -19,10 +19,10 @@ export async function readMarkdown(
   filePath: string,
   options: { includeCodeCellSourceCode?: boolean } = {},
 ): Promise<string> {
-  if(path.extname(filePath) === ".ipynb"){
+  if (path.extname(filePath) === ".ipynb") {
     const notebook = await readJsonFile(filePath);
-    return markdownFromNotebook(notebook, options)
-  }  
+    return markdownFromNotebook(notebook, options);
+  }
   return await readFile(filePath, { encoding: "utf8" });
 }
 
@@ -31,8 +31,8 @@ interface JupyterCell {
   source: string[];
 }
 type Notebook = {
-  cells: JupyterCell[]
-}
+  cells: JupyterCell[];
+};
 export function markdownFromNotebook(
   notebook: Notebook,
   options: { includeCodeCellSourceCode?: boolean },

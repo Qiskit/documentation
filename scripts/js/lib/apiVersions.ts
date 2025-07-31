@@ -10,13 +10,12 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-
-import {readJsonFile} from "./fs"
+import { readJsonFile } from "./fs";
 
 export async function readApiFullVersion(
   versionFolder: string,
 ): Promise<string> {
-  const json = await readJsonFile(`${versionFolder}/_package.json`)
+  const json = await readJsonFile(`${versionFolder}/_package.json`);
   return json.version;
 }
 

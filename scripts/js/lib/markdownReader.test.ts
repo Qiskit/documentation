@@ -48,7 +48,7 @@ test("markdownFromNotebook()", () => {
         "metadata": {}
     }
   `;
-  const parseddata = JSON.parse(notebook)
+  const parseddata = JSON.parse(notebook);
   const result1 = markdownFromNotebook(parseddata, {
     includeCodeCellSourceCode: false,
   });

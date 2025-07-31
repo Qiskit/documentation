@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import {readJsonFile} from "../lib/fs"
+import { readJsonFile } from "../lib/fs";
 import { globby } from "globby";
 
 import { TocEntry } from "../lib/api/generateToc.js";

@@ -16,7 +16,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import grayMatter from "gray-matter";
 import { globby } from "globby";
-import {readJsonFile} from "../lib/fs"
+import { readJsonFile } from "../lib/fs";
 
 const ALLOWED_VIOLATIONS: Set<string> = new Set([...qiskitLegacyIgnores()]);
 
