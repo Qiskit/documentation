@@ -1,0 +1,62 @@
+---
+title: CircuitState (v0.2)
+description: API reference for qiskit_addon_mpf.backends.quimb_circuit.CircuitState in qiskit-addon-mpf v0.2
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_mpf.backends.quimb_circuit.CircuitState
+---
+
+# CircuitState
+
+<Class id="qiskit_addon_mpf.backends.quimb_circuit.CircuitState" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_circuit/state.py#L27-L78" signature="CircuitState" modifiers="class">
+  Bases: [`State`](backends#state "qiskit_addon_mpf.backends.interface.State")
+
+  An MPO-like representation of a time-evolution state based on quantum circuits.
+
+  This time-evolution state can be evolved on its left- and right-hand side as required by the [`DynamicMPF`](dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm.
+
+  Initialize a [`CircuitState`](#qiskit_addon_mpf.backends.quimb_circuit.CircuitState "qiskit_addon_mpf.backends.quimb_circuit.CircuitState") instance.
+
+  ## Attributes
+
+  ### lhs
+
+  <Attribute id="qiskit_addon_mpf.backends.quimb_circuit.CircuitState.lhs" attributeTypeHint="Circuit | None">
+    The left-hand side circuit in form of a tensor network.
+  </Attribute>
+
+  ### rhs
+
+  <Attribute id="qiskit_addon_mpf.backends.quimb_circuit.CircuitState.rhs" attributeTypeHint="Circuit | None">
+    The right-hand side circuit in form of a tensor network.
+  </Attribute>
+
+  ## Methods
+
+  ### overlap
+
+  <Function id="qiskit_addon_mpf.backends.quimb_circuit.CircuitState.overlap" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_circuit/state.py#L41-L78" signature="overlap(initial_state)">
+    Compute the overlap of this state with the provided initial state.
+
+    <Admonition title="Warning" type="caution">
+      This implementation only supports instances of [`qiskit.circuit.QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") for `initial_state`.
+    </Admonition>
+
+    **Parameters**
+
+    **initial\_state** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – the initial state with which to compute the overlap.
+
+    **Raises**
+
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – if the provided initial state has an incompatible type.
+
+    **Returns**
+
+    The overlap of this state with the provided one.
+
+    **Return type**
+
+    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+  </Function>
+</Class>
+

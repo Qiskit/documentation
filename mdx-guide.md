@@ -21,9 +21,9 @@ Add the file to these places:
 
 - The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits` AND the Tools section in the `_toc.json` file. Or, in the rare case that it doesn't belong on any of these pages, list it in `scripts/js/commands/checkPatternsIndex.ts` in the ALLOWLIST_MISSING_FROM_INDEX or the ALLOWLIST_MISSING_FROM_TOC section. For example, `"/guides/qiskit-code-assistant"`.
 - qiskit_bot.yaml. Everyone listed under the file name is notified any time the file is updated. If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes. For example, - "`@NoNotifications`"
-- The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension. If you want a "New" pill to appear next to the page in the side bar, add `"isNew": true` to that page's entry.
+- The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension. If you want a "New" pill to appear next to the page in the side bar, add `"isNew": true` and `"isNewDate:"YYYY-MM-DD"`with the page's publish date to that page's entry.
   > [!NOTE]
-  > The New pill should be used to label a brand new page (or a page with significant updates to it) for about a month before removing the pill (by deleting `"isNew": true` in its toc entry).
+  > The New pill should be used to label a brand new page (or a page with significant updates to it) for about two weeks before removing the pill (by deleting `"isNew": true` and `"isNewDate": "YYY-MM-DD"`in its toc entry).
 
 ## Page metadata
 
@@ -58,48 +58,48 @@ In Jupyter notebooks, set `title` and `description` in the `metadata` section fo
 
 ## Links
 
-Internal URLs referring to other docs pages should start with `/` and not include the file extension. For example:
+Internal URLs referring to other docs pages should start with `/docs` and not include the file extension. For example:
 
-- `[Qiskit SDK](/api/qiskit)`
-- `[Bit ordering in the Qiskit SDK](/guides/bit-ordering)`
+- `[Qiskit SDK](/docs/api/qiskit)`
+- `[Bit ordering in the Qiskit SDK](/docs/guides/bit-ordering)`
 
 External URLs should use the entire URL, such as `[GitHub](https://github.com)`.
 
 ## Images
 
-Images are stored in the `public/images` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/images/guides/my-file/img1.png`.
+Images are stored in the `public/docs/images` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/docs/images/guides/my-file/img1.png`.
 
 To use the image:
 
 ```markdown
-![Alt text for the image](/images/guides/your-file/your_image.png)
+![Alt text for the image](/docs/images/guides/your-file/your_image.png)
 ```
 
 To add an inline images:
 
 ```markdown
-Inline ![Alt text for the image](/images/guides/your-file/your_image.png) image
+Inline ![Alt text for the image](/docs/images/guides/your-file/your_image.png) image
 ```
 
 To include a caption:
 
 ```markdown
-![Alt text for the image](/images/guides/your-file/your_image.png "Image caption")
+![Alt text for the image](/docs/images/guides/your-file/your_image.png "Image caption")
 ```
 
 You can include a version of the image to be with the dark theme. You only need to create an image with the same name ending in `@dark`. So for example, if you have a `sampler.png` image, the dark version would be `sampler@dark.png`. This is important for images that have a white background.
 
-## Videos
+## IBM Videos
 
-Videos are stored in the `public/videos` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/videos/guides/my-file/video1.mp4`.
+The `IBMVideo` component allows you to add embedded videos from [video.ibm.com](https://video.ibm.com).
 
-To add a video:
+To use the component, you only need the video's `id` and a descriptive `title` that will be used for accessibility purposes:
 
 ```markdown
-<video title="Write a description of the video here as 'alt text' for accessibility." className="max-w-auto h-auto" controls>
-    <source src="/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
-</video>
+<IBMVideo id="134056207" title="This is an example"/>
 ```
+
+Ensure that the video is allowed to be embedded on `*.cloud.ibm.com` and `qiskit.github.io`. This is set as metadata in IBM Video Streaming. This should work automatically as long as the video is uploaded to the same group as our other videos.
 
 ## Math
 
@@ -156,24 +156,6 @@ Use `&reg;` to get &reg; for registered trademarks.
 use `&trade;` to get &trade; for nonregistered trademarks.
 
 ⚠️ **Note**: Do not include trademarks in headings. The code will display rather than the symbol.
-
-## Platform-specific pages
-
-You can restrict pages to only appear on a specific platform (IQP Cloud or IQP Classic).
-
-1. Add `"platform": "cloud"` or `"platform": "legacy"` to the pages' entry in `_toc.json`. This will stop the page from appearing in the left table of contents in the other platform.
-
-   ```json
-   {
-     "title": "Connecting to IBM Cloud",
-     "url": "/cloud/connect-to-ibm-cloud",
-     "platform": "cloud"
-   }
-   ```
-
-   **Note:** If every page in a section is platform-specific, you must also add the `"platform"` attribute to the section too. Otherwise, users will see an empty section on the other platform.
-
-2. Add `platform: cloud` to the page's metadata. This will make the page 404 if a user tries to access that page's URL. See [Page metadata](#page-metadata) for how to set this.
 
 ## Custom components
 

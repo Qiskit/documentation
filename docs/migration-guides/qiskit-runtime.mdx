@@ -17,24 +17,13 @@ examples to help you migrate code from the legacy `backend.run` interface to use
 - Because both `backend.run` and the "version 1" primitives are being deprecated, this guide uses only the V2 primitives.
 </Admonition>
 
-The `qiskit-ibm-runtime` package provides cloud access to the IBM&reg; QPUs (quantum processing units) through the primitives interface. The `backend.run` interface coexisted with the original (V1) primitives model as the dedicated “direct hardware access” entry point.  With the introduction of the V2 primitives interface, the new `SamplerV2` class now fulfills that role. Consequentially, `backend.run` and `qiskit-ibm-provider`, which only exposed the `backend.run` interface, are no longer supported.
+The `qiskit-ibm-runtime` package provides cloud access to the IBM&reg; quantum processing units  (QPUs) through the primitives interface. The `backend.run` interface coexisted with the original (V1) primitives model as the dedicated “direct hardware access” entry point.  With the introduction of the V2 primitives interface, the new `SamplerV2` class fulfills that role. Consequentially, `backend.run` and `qiskit-ibm-provider`, which only exposed the `backend.run` interface, are no longer supported.
 
 The Qiskit Runtime primitives implement the reference Sampler V2 and Estimator V2 interfaces found in `qiskit.primitives`, and enable capabilities not available with the legacy `backend.run` interface. These capabilities include application of advanced processing techniques for error suppression and mitigation in Estimator, the ability to efficiently sweep between arrays of parameter value sets or observables in both Sampler and Estimator, and access to the new local testing mode. Additionally, Qiskit Runtime lets users run iterative algorithm circuits back to back (session mode) or in collections of circuits without having to re-queue each job (batch mode). This results in more efficient quantum processor use and reduces the time spent running complex computations.
 
 ## Why migrate to Qiskit Runtime primitives?
 
-Similar to the early days of classical computers, when developers had to manipulate CPU registers directly,
-the early interface to QPUs simply returned the raw data coming out of the control electronics.
-This was not a huge issue when QPUs lived in labs and only allowed direct access by researchers.
-Acknowledging that most developers would not and should not be familiar with distilling such raw data into
-0s and 1s, IBM introduced `backend.run`, a first abstraction for accessing QPUs in the cloud. This allowed developers
-to operate on a familiar data format and focus on the bigger picture.
-
-As access to QPUs became more widespread, and with more quantum algorithms being developed,
-again the need for a higher-level abstraction emerged. In response, IBM introduced
-the Qiskit [primitives interface](/guides/primitives), which are optimized for two core tasks in quantum algorithm development:
-expectation value estimation (`Estimator`) and circuit sampling (`Sampler`). The goal is once
-again to help developers to focus more on innovation and less on data conversion.
+The `backend.run` interface was the primary access point to quantum hardware and simulators offered by IBM, as well as third-party providers that integrate with Qiskit. The [evolution of user access patterns](/docs/guides/primitives#qpu-access-patterns) for quantum processing units (QPUs) led to the Qiskit primitives (`Sampler` and `Estimator`) superseding this interface.
 
 For backward compatibility, the `backend.run` interface continues to exist in Qiskit. However, it is no longer supported
 in Qiskit Runtime after the deprecation period, as most IBM Quantum&reg; users have migrated to V2 primitives due to their improved
@@ -82,17 +71,17 @@ See the following topic for instructions if you are using a third-party provider
 
 The following migration guides can help users with the following tasks:
 
-- [Transition from `backend.run` to primitives](/migration-guides/qiskit-runtime)
-- [Update user code to the V2 primitives interface](/migration-guides/v2-primitives)
+- [Transition from `backend.run` to primitives](/docs/migration-guides/qiskit-runtime)
+- [Update user code to the V2 primitives interface](/docs/migration-guides/v2-primitives)
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - [Get started with Estimator](/guides/get-started-with-primitives#start-estimator)
-    - [Get started with Sampler](/guides/get-started-with-primitives#start-sampler)
-    - Explore [execution modes](/guides/execution-modes)
-    - [Run a primitive in a session](/guides/run-jobs-session)
-    - [Run a primitive in a batch](/guides/run-jobs-batch)
-    - Experiment with the [Submit pre-transpiled circuits tutorial](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives)
+    - [Get started with Estimator](/docs/guides/get-started-with-primitives#start-estimator)
+    - [Get started with Sampler](/docs/guides/get-started-with-primitives#start-sampler)
+    - Explore [execution modes](/docs/guides/execution-modes)
+    - [Run a primitive in a session](/docs/guides/run-jobs-session)
+    - [Run a primitive in a batch](/docs/guides/run-jobs-batch)
+    - Experiment with the [Compare transpiler settings tutorial](/docs/tutorials/circuit-transpilation-settings#compare-transpiler-settings)
 
 </Admonition>

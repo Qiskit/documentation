@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 # Get the latest digest by running `docker pull icr.io/qc-open-source-docs-public/preview:latest`.
-IMAGE_DIGEST = "sha256:c93a25a2473e180c4fd04d2f520d8745f9ad861ce1ce33389d7038c0b9567eef"
+IMAGE_DIGEST = "sha256:3f0ce2e317aa90b2a20deb14210d7b2ac5fba6f7a41b1dcef50d985925054bc7"
 
 # Docker on Windows uses `/` rather than `\`, so we need to call `.as_posix()`:
 # https://medium.com/@kale.miller96/how-to-mount-your-current-working-directory-to-your-docker-container-in-windows-74e47fa104d7
@@ -37,21 +37,19 @@ def main() -> None:
         subprocess.run(["docker", "pull", IMAGE], check=True)
         sys.exit(0)
 
-    platform = "legacy" if "--legacy" in sys.argv else "cloud"
-
     # Keep this aligned with the Dockerfile at the root of the repository.
     cmd = [
         "docker",
         "run",
         "-v",
-        f"{PWD}/docs:/home/node/app/docs/en",
+        f"{PWD}/docs:/home/node/app/content/docs",
+        "-v",
+        f"{PWD}/learning:/home/node/app/content/learning",
         *skip_apis(),
         "-v",
         f"{PWD}/public:/home/node/app/packages/preview/public",
         "-p",
         "3000:3000",
-        "-e",
-        f"DOCS_PLATFORM={platform}",
         # Needed for ctrl-c to shut down the container.
         "--init",
         "--rm",
@@ -64,4 +62,4 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        pass
+        raise SystemExit(1)

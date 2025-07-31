@@ -31,6 +31,10 @@ function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
   // the image files stored.
   if (pkg.isProblematicLegacyQiskit()) return true;
 
+  // If we're linking to another package's release notes, we skip generating the
+  // release notes.
+  if (pkg.releaseNotesConfig.linkToPackage) return true;
+
   if (pkg.hasSeparateReleaseNotes()) {
     // If the pkg has dedicated release notes per release, we should copy its images
     // unless it's the dev version. We don't (yet) support release notes for dev versions:
@@ -48,7 +52,7 @@ export async function saveImages(
   publicBaseFolder: string,
   pkg: Pkg,
 ) {
-  const destFolder = pkg.outputDir(`${publicBaseFolder}/images`);
+  const destFolder = pkg.outputDir(`${publicBaseFolder}/docs/images`);
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
   }

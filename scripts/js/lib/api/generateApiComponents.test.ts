@@ -18,8 +18,10 @@ import {
   htmlSignatureToMd,
   addExtraSignatures,
   createOpeningTag,
+  setMinimumHeadingLevel,
 } from "./generateApiComponents.js";
 import { CheerioDoc } from "../testUtils.js";
+import { load } from "cheerio";
 
 const RAW_SIGNATURE_EXAMPLE = `<span class='sig-prename descclassname'><span class='pre'>Estimator.</span></span><span class='sig-name descname'><span class='pre'>run</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>circuits</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>observables</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>parameter_values</span></span><span class='o'><span class='pre'>=</span></span><span class='default_value'><span class='pre'>None</span></span></em>, <em class='sig-param'><span class='o'><span class='pre'>**</span></span><span class='n'><span class='pre'>kwargs</span></span></em><span class='sig-paren'>)</span></dt>`;
 
@@ -198,5 +200,38 @@ test.describe("prepareGitHubLink()", () => {
     const strippedHtml = `<span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay.run" title="Link to this definition">¶</a>`;
     withLinesDoc.expectHtml(strippedHtml);
     withoutLinesDoc.expectHtml(strippedHtml);
+  });
+});
+
+test.describe("setMinimumHeadingLevel()", () => {
+  function setMinLevel(input: string, level: number): string | null {
+    const $ = load(`<dl>${input}</dl>`);
+    const $dl = $("dl").first();
+    setMinimumHeadingLevel($, $dl, level);
+    return $dl.html();
+  }
+
+  test("increase h1 -> h4", () => {
+    const input = `<h1>Heading!</h1>`;
+    const expected = `<h4>Heading!</h4>`;
+    expect(setMinLevel(input, 4)).toEqual(expected);
+  });
+
+  test("increase nested headings", () => {
+    const input = `<dl><dd><h1>Heading!</h1></dd></dl>`;
+    const expected = `<dl><dd><h4>Heading!</h4></dd></dl>`;
+    expect(setMinLevel(input, 4)).toEqual(expected);
+  });
+
+  test("preserve relative hierarchy", () => {
+    const input = `<h1>Hello</h1><h2>world</h2><h3>!</h3>`;
+    const expected = `<h4>Hello</h4><h5>world</h5><h6>!</h6>`;
+    expect(setMinLevel(input, 4)).toEqual(expected);
+  });
+
+  test("reduce if needed", () => {
+    const input = `<h5>Hello</h5>`;
+    const expected = `<h2>Hello</h2>`;
+    expect(setMinLevel(input, 2)).toEqual(expected);
   });
 });

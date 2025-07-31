@@ -100,7 +100,7 @@ No change
 
 #### Prelude
 
-*   `qiskit.providers.ibmq.IBMQBackend.run()` method now takes one or more [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`Schedule`](/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule"). Use of [`QasmQobj`](/api/qiskit/0.45/qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") and [`PulseQobj`](/api/qiskit/0.45/qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") is now deprecated. Runtime configuration options, such as the number of shots, can be set via either the `run()` method, or the `qiskit.providers.ibmq.IBMQBackend.set_options()` method. The former is used as a one-time setting for the job, and the latter for all jobs sent to the backend. If an option is set in both places, the value set in `run()` takes precedence.
+*   `qiskit.providers.ibmq.IBMQBackend.run()` method now takes one or more [`QuantumCircuit`](/docs/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`Schedule`](/docs/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule"). Use of [`QasmQobj`](/docs/api/qiskit/0.45/qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") and [`PulseQobj`](/docs/api/qiskit/0.45/qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") is now deprecated. Runtime configuration options, such as the number of shots, can be set via either the `run()` method, or the `qiskit.providers.ibmq.IBMQBackend.set_options()` method. The former is used as a one-time setting for the job, and the latter for all jobs sent to the backend. If an option is set in both places, the value set in `run()` takes precedence.
 *   IBM Quantum credentials are now loaded only from sections of the `qiskitrc` file that start with ‘ibmq’.
 
 <span id="release-notes-ibmq-0-12-0-new-features" />
@@ -113,7 +113,7 @@ No change
 
 *   `qiskit.providers.ibmq.AccountProvider.backends()` now has a new parameter min\_num\_qubits that allows you to filter by the minimum number of qubits.
 
-*   `qiskit.providers.ibmq.IBMQBackend.run()` method now takes one or more [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`Schedule`](/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule"). Runtime configuration options, such as the number of shots, can be set via either the `run()` method, or the `qiskit.providers.ibmq.IBMQBackend.set_options()` method. The former is used as a one-time setting for the job, and the latter for all jobs sent to the backend. If an option is set in both places, the value set in `run()` takes precedence. For example:
+*   `qiskit.providers.ibmq.IBMQBackend.run()` method now takes one or more [`QuantumCircuit`](/docs/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`Schedule`](/docs/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule"). Runtime configuration options, such as the number of shots, can be set via either the `run()` method, or the `qiskit.providers.ibmq.IBMQBackend.set_options()` method. The former is used as a one-time setting for the job, and the latter for all jobs sent to the backend. If an option is set in both places, the value set in `run()` takes precedence. For example:
 
     ```python
     from qiskit import IBMQ, transpile
@@ -146,7 +146,7 @@ No change
 
 *   The method `qiskit.providers.ibmq.experimentservice.ExperimentService.experiments()` now accepts `exclude_public` and `public_only` as filtering keywords.
 
-*   `qiskit.providers.ibmq.managed.IBMQJobManager.run()` now accepts a single [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`Schedule`](/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule") in addition to a list of them.
+*   `qiskit.providers.ibmq.managed.IBMQJobManager.run()` now accepts a single [`QuantumCircuit`](/docs/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`Schedule`](/docs/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule") in addition to a list of them.
 
 *   The `least_busy()` function now skips backends that are operational but paused, meaning they are accepting but not processing jobs.
 
@@ -179,7 +179,7 @@ No change
 
 #### Deprecation Notes
 
-*   Use of [`QasmQobj`](/api/qiskit/0.45/qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") and [`PulseQobj`](/api/qiskit/0.45/qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") in the `qiskit.providers.ibmq.IBMQBackend.run()` method is now deprecated. [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`Schedule`](/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule") should now be used instead.
+*   Use of [`QasmQobj`](/docs/api/qiskit/0.45/qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") and [`PulseQobj`](/docs/api/qiskit/0.45/qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") in the `qiskit.providers.ibmq.IBMQBackend.run()` method is now deprecated. [`QuantumCircuit`](/docs/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`Schedule`](/docs/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule") should now be used instead.
 
 *   The `backends` attribute of `qiskit.providers.ibmq.AccountProvider` has been renamed to `backend` (sigular). For backward compatibility, you can continue to use `backends`, but it is deprecated and will be removed in a future release. The `qiskit.providers.ibmq.AccountProvider.backends()` method remains unchanged. For example:
 

@@ -1,0 +1,115 @@
+---
+title: SliceMetadata (v0.2)
+description: API reference for qiskit_addon_obp.utils.metadata.SliceMetadata in qiskit-addon-obp v0.2
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_obp.utils.metadata.SliceMetadata
+---
+
+# SliceMetadata
+
+<Class id="qiskit_addon_obp.utils.metadata.SliceMetadata" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/metadata.py#L25-L90" signature="SliceMetadata(slice_errors, raw_num_paulis, num_unique_paulis, num_duplicate_paulis, num_trimmed_paulis, sum_trimmed_coeffs, num_truncated_paulis, num_paulis, sum_paulis, num_qwc_groups)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A container for metadata generated during the backpropagation of a single slice.
+
+  ## Attributes
+
+  **Parameters**
+
+  *   **slice\_errors** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*)
+  *   **raw\_num\_paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*)
+  *   **num\_unique\_paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*)
+  *   **num\_duplicate\_paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*)
+  *   **num\_trimmed\_paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*)
+  *   **sum\_trimmed\_coeffs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | None*)
+  *   **num\_truncated\_paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*)
+  *   **num\_paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*)
+  *   **sum\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*)
+  *   **num\_qwc\_groups** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*)
+
+  ### slice\_errors
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.SliceMetadata.slice_errors" attributeTypeHint="list[float]">
+    The truncation error incurred for each observable that is being backpropagated.
+  </Attribute>
+
+  ### raw\_num\_paulis
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.SliceMetadata.raw_num_paulis" attributeTypeHint="list[int]">
+    The “raw” number of Pauli terms for each observable that is being backpropagated. This indicates the number of Pauli terms before any simplification or truncation operations.
+  </Attribute>
+
+  ### num\_unique\_paulis
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.SliceMetadata.num_unique_paulis" attributeTypeHint="list[int] | None">
+    The number of unique Pauli terms for each observable. This attribute only tracks those Pauli terms whose coefficients were not already below the trimming threshold at the beginning of the operator simplification procedure.
+
+    <Admonition title="Note" type="note">
+      This value will be `None` if `simplify=False` during the backpropagation.
+    </Admonition>
+  </Attribute>
+
+  ### num\_duplicate\_paulis
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.SliceMetadata.num_duplicate_paulis" attributeTypeHint="list[int] | None">
+    The number of duplicate Pauli terms for each observable whose coefficients have been summed up to trim excess memory usage during the operator simplification.
+
+    <Admonition title="Note" type="note">
+      This value will be `None` if `simplify=False` during the backpropagation.
+    </Admonition>
+  </Attribute>
+
+  ### num\_trimmed\_paulis
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.SliceMetadata.num_trimmed_paulis" attributeTypeHint="list[int] | None">
+    The number of Pauli terms for each observable that were trimmed during operator simplification because their total coefficient was below the trimming threshold.
+
+    <Admonition title="Note" type="note">
+      This value will be `None` if `simplify=False` during the backpropagation.
+    </Admonition>
+  </Attribute>
+
+  ### sum\_trimmed\_coeffs
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.SliceMetadata.sum_trimmed_coeffs" attributeTypeHint="list[float] | None">
+    The sum of the coefficients for each observable that were trimmed during operator simplification because each individual coefficient was below the trimming threshold.
+
+    <Admonition title="Warning" type="caution">
+      This sum is *not* affected by the value of [`p_norm`](utils-truncating#p_norm "qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm")!
+    </Admonition>
+
+    <Admonition title="Note" type="note">
+      This value will be `None` if `simplify=False` during the backpropagation.
+    </Admonition>
+  </Attribute>
+
+  ### num\_truncated\_paulis
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.SliceMetadata.num_truncated_paulis" attributeTypeHint="list[int]">
+    The number of Pauli terms which were truncated from each observable that is being backpropagated.
+  </Attribute>
+
+  ### num\_paulis
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.SliceMetadata.num_paulis" attributeTypeHint="list[int]">
+    The number of Pauli terms for each observable that is being backpropagated.
+  </Attribute>
+
+  ### sum\_paulis
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.SliceMetadata.sum_paulis" attributeTypeHint="int | None">
+    The number of Pauli terms across all observables. This value is `None` if it is not bounded during the backpropagation.
+
+    <Admonition title="Note" type="note">
+      This value can differ from `sum(num_paulis)` because identical Pauli terms will not be counted multiple times.
+    </Admonition>
+  </Attribute>
+
+  ### num\_qwc\_groups
+
+  <Attribute id="qiskit_addon_obp.utils.metadata.SliceMetadata.num_qwc_groups" attributeTypeHint="int | None">
+    The number of qubit-wise commuting groups of Pauli terms across all observables. This value is `None` if it is not bounded during the backpropagation.
+  </Attribute>
+</Class>
+

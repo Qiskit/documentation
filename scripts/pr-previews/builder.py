@@ -84,7 +84,7 @@ def yarn_build(root_dir: Path, base_path: str) -> None:
     # dependencies, like the first-party deps, will already have been installed.
     run_subprocess(["yarn", "install"], cwd=root_dir, stream_output=True)
     run_subprocess(
-        ["yarn", "build"],
+        ["yarn", "build:preview"],
         cwd=root_dir,
         env={**os.environ, "NEXT_PUBLIC_BASE_PATH": base_path},
         stream_output=True,
@@ -118,26 +118,29 @@ def _copy_local_content(root_dir: Path) -> None:
     # We intentionally don't copy over API docs to speed up the build.
     for dir in [
         "docs/guides",
+        "docs/tutorials",
+        "public/docs/images/tutorials",
         "docs/migration-guides",
+        "docs/security",
+        "docs/support",
         "docs/open-source",
-        "public/videos",
-        "public/images/guides",
-        "public/images/optimize",
-        "public/images/qiskit-patterns",
+        "learning",
+        "public/docs/images/guides",
+        "public/docs/images/qiskit-patterns",
+        "public/learning",
     ]:
         dest = (
             root_dir / "packages/preview" / dir
             if dir.startswith("public")
-            else root_dir / _add_locale_to_docs(dir)
+            else root_dir / f"content/{dir}"
         )
         shutil.copytree(dir, dest)
 
     for fp in [
-        "docs/support.mdx",
         "docs/responsible-quantum-computing.mdx",
-        "docs/faq.mdx",
+        "docs/accessibility.mdx",
     ]:
-        shutil.copy2(fp, root_dir / _add_locale_to_docs(fp))
+        shutil.copy2(fp, root_dir / f"content/{fp}")
 
     logger.info("local content files copied")
 
@@ -150,8 +153,6 @@ def _extract_docker_files(root_dir: Path) -> None:
         run_subprocess(["docker", "rm", container_id])
     logger.info("Docker contents extracted")
 
-def _add_locale_to_docs(dir: str) -> str:
-    return dir.replace("docs/", "docs/en/")
 
 if __name__ == "__main__":
     configure_logging()

@@ -1,0 +1,72 @@
+---
+title: Overview of plans
+description: Overview of the available plans; Pay-As-You-Go, Premium, and Open
+
+---
+
+<span id="cloud-plans"></span>
+# Overview of available plans
+
+IBM Quantum Platform has Open (free access), and paid plans, as described below. See [IBM Quantum access plans](https://www.ibm.com/quantum/pricing) for full details.
+
+If you want access to multiple plans, you can create multiple instances and assign different plans to them.  For example, you can have an Open Plan instance and a Pay-As-You-Go Plan instance.  You can set preferred instances to use in the `QiskitRuntimeService` initializer or `QiskitRuntimeService.save_account()` method.  Example:
+
+```python
+  from qiskit_ibm_runtime import QiskitRuntimeService
+  service = QiskitRuntimeService.save_account(
+    token=token, # Your token is confidential.
+    # Do not share your key in public code.
+    instance="<IBM Cloud CRN or instance name>", # Optionally specify the instance to use.
+    plans_preference="['plan-type1', 'plan-type2']", # Optionally set the types of plans to prioritize.  This is ignored if the instance is specified.
+    region="<region>", # Optionally set the region to prioritize.
+    name="<account-name>", # Optionally name this set of account credentials.
+    set_as_default=True, # Optionally set these as your default credentials.
+  )
+```
+
+## Open Plan
+
+Run your quantum circuits on the world's best QPUs for free (up to 10 minutes quantum time per 28-day rolling window). You can track your usage on the [Platform dashboard](https://quantum.cloud.ibm.com/) and the [Workloads](https://quantum.cloud.ibm.com/workloads) pages.  The Open Plan is only available in the us-east region.
+
+This plan is recommended for those who are learning quantum computing and exploring IBM quantum technology.
+
+## Flex Plan
+
+Pre-purchase a certain number of minutes (at least 400) for running quantum jobs, to be used within one year of purchase.  You can purchase more minutes at any time.
+
+After purchasing time, you must allocate the minutes to existing or new instances on the Flex Plan for your account.  Set or update allocation limits on the [Instances page](https://quantum.cloud.ibm.com/instances) or set the allocation when you [create a new Flex Plan instance.](/docs/guides/instances)  If you allocate all of the minutes to existing instances, you can't create a new instance for the Flex Plan until you purchase more minutes or remove some minutes from another instance's allocation. See [Set instance allocation limits](allocation-limits) to learn more.
+
+If you need more than 10,000 minutes, you should consider a Premium Plan subscription instead. If you don't want to purchase 400 minutes, consider the Pay-As-You-Go Plan instead.
+
+[Contact IBM](https://www.ibm.com/account/reg/us-en/signup?formid=MAIL-quantum) to sign up for a Flex Plan.
+
+
+## Pay-As-You-Go Plan
+
+Run quantum circuits on the world's best QPUs and pay only for the quantum time you use.
+
+This plan is recommended for those who are performing quantum utility research projects and testing business models with flexible access. If you will be using at least 400 minutes in the next year, it is recommended that you use the Flex Plan instead.
+
+## Premium Plan
+
+Run quantum circuits on the world's best QPUs using an enterprise quantum time subscription. Additionally, some functionality, such as [Qiskit Functions](functions) and [Qiskit Transpiler as a Service](qiskit-transpiler-service),  is available only to Premium Plan users.
+
+This plan is recommended for those who want to execute a strategic quantum roadmap and develop quantum algorithms and applications at scale. [Contact IBM](https://www.ibm.com/account/reg/us-en/signup?formid=MAIL-quantum) to learn more.
+
+## On-Prem Plan
+
+Access an entirely dedicated on-premises quantum system that is serviced and maintained by IBM Quantum.
+
+This service is recommended for those who are exploring classical quantum algorithms and applications and need high control over their resources and data. [Contact IBM](https://www.ibm.com/account/reg/us-en/signup?formid=MAIL-quantum) to learn more.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  -  [Compare available plans.](https://www.ibm.com/quantum/pricing)
+  -  Understand what counts as [usage.](estimate-job-run-time)
+  -  Learn about the [fair-share scheduler](fair-share-scheduler)
+  -  Access plans by creating [instances.](instances)
+  -  [Upgrade from the Open Plan.](upgrade-from-open)
+</Admonition>
+
+

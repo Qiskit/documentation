@@ -17,14 +17,16 @@ import type { TocEntry } from "../lib/api/generateToc.js";
 // URLs that show up in the left ToC under the `Tools` section, but are not in
 // any of the INDEX_PAGES.
 const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
-  "/guides/qiskit-code-assistant",
-  "/guides/qiskit-code-assistant-jupyterlab",
-  "/guides/qiskit-code-assistant-vscode",
-  "/guides/qiskit-code-assistant-local",
-  "/guides/addons",
-  "/guides/function-template-hamiltonian-simulation",
-  "/guides/qiskit-addons-utils",
-  "/guides/qiskit-code-assistant-openai-api",
+  "/docs/guides/qiskit-code-assistant",
+  "/docs/guides/qiskit-code-assistant-jupyterlab",
+  "/docs/guides/qiskit-code-assistant-vscode",
+  "/docs/guides/qiskit-code-assistant-local",
+  "/docs/guides/addons",
+  "/docs/guides/function-template-hamiltonian-simulation",
+  "/docs/guides/qiskit-addons-utils",
+  "/docs/guides/qiskit-code-assistant-openai-api",
+  "/docs/guides/manage-cost",
+  "/docs/guides/execution-modes-faq",
 ]);
 
 // URLs that show up in the INDEX_PAGES, but are not in the left ToC under
@@ -34,35 +36,35 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
 // pages do show up somewhere in the ToC, they only might be in a different
 // section than `Tools.`
 const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
-  "/guides/q-ctrl-optimization-solver",
-  "/guides/qunasys-quri-chemistry",
+  "/docs/guides/q-ctrl-optimization-solver",
+  "/docs/guides/kipu-optimization",
+  "/docs/guides/multiverse-computing-singularity",
+  "/docs/guides/global-data-quantum-optimizer",
+  "/docs/guides/colibritd-pde",
+  "/docs/guides/qunova-chemistry",
+  "/docs/guides/manage-cost",
+  "/docs/guides/instances",
+  "/docs/guides/cloud-setup",
+  "/docs/guides/cloud-setup-untrusted",
+  "/docs/guides/cloud-setup-invited",
+  "/docs/guides/cloud-setup-rest-api",
+  "/docs/support/execution-modes-faq",
 ]);
 
-// URLs that show up in the INDEX_PAGES >1 time. This can happen when we
-// have distinct <CloudContent> and <LegacyContent> lists with some shared entries.
-const ALLOWLIST_DUPLICATE_ENTRIES: Set<string> = new Set([
-  "/guides/processor-types",
-  "/guides/qpu-information",
-  "/guides/get-qpu-information",
-  "/guides/native-gates",
-  "/guides/repetition-rate-execution",
-  "/guides/retired-qpus",
-  "/guides/dynamic-circuits-considerations",
-  "/guides/instances",
-  "/guides/fair-share-scheduler",
-  "/guides/manage-cost",
-]);
+// URLs that show up in the INDEX_PAGES >1 time.
+const ALLOWLIST_DUPLICATE_ENTRIES: Set<string> = new Set([]);
 
 const INDEX_PAGE_URLS: Set<string> = new Set([
-  "/guides/map-problem-to-circuits",
-  "/guides/optimize-for-hardware",
-  "/guides/execute-on-hardware",
-  "/guides/post-process-results",
-  "/guides/intro-to-patterns",
+  "/docs/guides/map-problem-to-circuits",
+  "/docs/guides/optimize-for-hardware",
+  "/docs/guides/execute-on-hardware",
+  "/docs/guides/post-process-results",
+  "/docs/guides/intro-to-patterns",
 ]);
 
 const INDEX_PAGE_FILES = Array.from(INDEX_PAGE_URLS).map(
-  (page) => `docs${page}.mdx`,
+  // We remove the initial `/` to make the path relative
+  (page) => `${page.substring(1)}.mdx`,
 );
 const TOC_PATH = "docs/guides/_toc.json";
 
@@ -99,7 +101,7 @@ function extractPageSlug(text: string): string | undefined {
     return pageSlug;
   }
   const page = pageSlug.split("/").pop();
-  return `/guides/${page}`;
+  return `/docs/guides/${page}`;
 }
 
 function getTocSectionPageNames(sectionNode: TocEntry): string[] {

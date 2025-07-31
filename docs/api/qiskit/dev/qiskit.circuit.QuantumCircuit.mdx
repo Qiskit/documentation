@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 # [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class
 
-<Class id="qiskit.circuit.QuantumCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L127-L7082" signature="qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None, inputs=(), captures=(), declarations=())" modifiers="class">
+<Class id="qiskit.circuit.QuantumCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L129-L7479" signature="qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None, inputs=(), captures=(), declarations=())" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   Core Qiskit representation of a quantum circuit.
@@ -20,6 +20,32 @@ python_api_name: qiskit.circuit.QuantumCircuit
   <Admonition title="Note" type="note">
     For more details setting the [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") in context of all of the data structures that go with it, how it fits into the rest of the [`qiskit`](index#module-qiskit "qiskit") package, and the different regimes of quantum-circuit descriptions in Qiskit, see the module-level documentation of [`qiskit.circuit`](circuit#module-qiskit.circuit "qiskit.circuit").
   </Admonition>
+
+  Example:
+
+  ```python
+  from qiskit import QuantumCircuit
+
+  # Create a new circuit with two qubits
+  qc = QuantumCircuit(2)
+
+  # Add a Hadamard gate to qubit 0
+  qc.h(0)
+
+  # Perform a controlled-X gate on qubit 1, controlled by qubit 0
+  qc.cx(0, 1)
+
+  # Return a text drawing of the circuit.
+  qc.draw()
+  ```
+
+  ```text
+       ┌───┐
+  q_0: ┤ H ├──■──
+       └───┘┌─┴─┐
+  q_1: ─────┤ X ├
+            └───┘
+  ```
 
   ## Circuit attributes
 
@@ -33,27 +59,31 @@ python_api_name: qiskit.circuit.QuantumCircuit
   | [`metadata`](#qiskit.circuit.QuantumCircuit.metadata "qiskit.circuit.QuantumCircuit.metadata")             | Arbitrary user mapping, which Qiskit will preserve through the transpiler, but otherwise completely ignore. |
   | [`name`](#qiskit.circuit.QuantumCircuit.name "qiskit.circuit.QuantumCircuit.name")                         | An optional string name for the circuit.                                                                    |
 
-  | Immutable data attribute                                                                                                  | Summary                                                                                                                                                                                                                                                    |
-  | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | [`ancillas`](#qiskit.circuit.QuantumCircuit.ancillas "qiskit.circuit.QuantumCircuit.ancillas")                            | List of [`AncillaQubit`](circuit#qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit")s tracked by the circuit.                                                                                                                                       |
-  | [`cregs`](#qiskit.circuit.QuantumCircuit.cregs "qiskit.circuit.QuantumCircuit.cregs")                                     | List of [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s tracked by the circuit.                                                                                                                        |
-  | [`clbits`](#qiskit.circuit.QuantumCircuit.clbits "qiskit.circuit.QuantumCircuit.clbits")                                  | List of [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")s tracked by the circuit.                                                                                                                                                            |
-  | [`data`](#qiskit.circuit.QuantumCircuit.data "qiskit.circuit.QuantumCircuit.data")                                        | List of individual [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s that make up the circuit.                                                                                                                |
-  | [`duration`](#qiskit.circuit.QuantumCircuit.duration "qiskit.circuit.QuantumCircuit.duration")                            | Total duration of the circuit, added by scheduling transpiler passes. This attribute is deprecated and [`estimate_duration()`](#qiskit.circuit.QuantumCircuit.estimate_duration "qiskit.circuit.QuantumCircuit.estimate_duration") should be used instead. |
-  | [`layout`](#qiskit.circuit.QuantumCircuit.layout "qiskit.circuit.QuantumCircuit.layout")                                  | Hardware layout and routing information added by the transpiler.                                                                                                                                                                                           |
-  | [`num_ancillas`](#qiskit.circuit.QuantumCircuit.num_ancillas "qiskit.circuit.QuantumCircuit.num_ancillas")                | The number of ancilla qubits in the circuit.                                                                                                                                                                                                               |
-  | [`num_clbits`](#qiskit.circuit.QuantumCircuit.num_clbits "qiskit.circuit.QuantumCircuit.num_clbits")                      | The number of clbits in the circuit.                                                                                                                                                                                                                       |
-  | [`num_captured_vars`](#qiskit.circuit.QuantumCircuit.num_captured_vars "qiskit.circuit.QuantumCircuit.num_captured_vars") | Number of captured real-time classical variables.                                                                                                                                                                                                          |
-  | [`num_declared_vars`](#qiskit.circuit.QuantumCircuit.num_declared_vars "qiskit.circuit.QuantumCircuit.num_declared_vars") | Number of locally declared real-time classical variables in the outer circuit scope.                                                                                                                                                                       |
-  | [`num_input_vars`](#qiskit.circuit.QuantumCircuit.num_input_vars "qiskit.circuit.QuantumCircuit.num_input_vars")          | Number of input real-time classical variables.                                                                                                                                                                                                             |
-  | [`num_parameters`](#qiskit.circuit.QuantumCircuit.num_parameters "qiskit.circuit.QuantumCircuit.num_parameters")          | Number of compile-time [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s in the circuit.                                                                                                                                                 |
-  | [`num_qubits`](#qiskit.circuit.QuantumCircuit.num_qubits "qiskit.circuit.QuantumCircuit.num_qubits")                      | Number of qubits in the circuit.                                                                                                                                                                                                                           |
-  | [`num_vars`](#qiskit.circuit.QuantumCircuit.num_vars "qiskit.circuit.QuantumCircuit.num_vars")                            | Total number of real-time classical variables in the outer circuit scope.                                                                                                                                                                                  |
-  | [`op_start_times`](#qiskit.circuit.QuantumCircuit.op_start_times "qiskit.circuit.QuantumCircuit.op_start_times")          | Start times of scheduled operations, added by scheduling transpiler passes.                                                                                                                                                                                |
-  | [`parameters`](#qiskit.circuit.QuantumCircuit.parameters "qiskit.circuit.QuantumCircuit.parameters")                      | Ordered set-like view of the compile-time [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s tracked by the circuit.                                                                                                                      |
-  | [`qregs`](#qiskit.circuit.QuantumCircuit.qregs "qiskit.circuit.QuantumCircuit.qregs")                                     | List of [`QuantumRegister`](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")s tracked by the circuit.                                                                                                                              |
-  | [`qubits`](#qiskit.circuit.QuantumCircuit.qubits "qiskit.circuit.QuantumCircuit.qubits")                                  | List of [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s tracked by the circuit.                                                                                                                                                            |
-  | [`unit`](#qiskit.circuit.QuantumCircuit.unit "qiskit.circuit.QuantumCircuit.unit")                                        | The unit of the [`duration`](#qiskit.circuit.QuantumCircuit.duration "qiskit.circuit.QuantumCircuit.duration") field.                                                                                                                                      |
+  | Immutable data attribute                                                                                                                 | Summary                                                                                                                                                                                                                                                    |
+  | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`ancillas`](#qiskit.circuit.QuantumCircuit.ancillas "qiskit.circuit.QuantumCircuit.ancillas")                                           | List of [`AncillaQubit`](circuit#qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit")s tracked by the circuit.                                                                                                                                       |
+  | [`cregs`](#qiskit.circuit.QuantumCircuit.cregs "qiskit.circuit.QuantumCircuit.cregs")                                                    | List of [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s tracked by the circuit.                                                                                                                        |
+  | [`clbits`](#qiskit.circuit.QuantumCircuit.clbits "qiskit.circuit.QuantumCircuit.clbits")                                                 | List of [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")s tracked by the circuit.                                                                                                                                                            |
+  | [`data`](#qiskit.circuit.QuantumCircuit.data "qiskit.circuit.QuantumCircuit.data")                                                       | List of individual [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s that make up the circuit.                                                                                                                |
+  | [`duration`](#qiskit.circuit.QuantumCircuit.duration "qiskit.circuit.QuantumCircuit.duration")                                           | Total duration of the circuit, added by scheduling transpiler passes. This attribute is deprecated and [`estimate_duration()`](#qiskit.circuit.QuantumCircuit.estimate_duration "qiskit.circuit.QuantumCircuit.estimate_duration") should be used instead. |
+  | [`layout`](#qiskit.circuit.QuantumCircuit.layout "qiskit.circuit.QuantumCircuit.layout")                                                 | Hardware layout and routing information added by the transpiler.                                                                                                                                                                                           |
+  | [`num_ancillas`](#qiskit.circuit.QuantumCircuit.num_ancillas "qiskit.circuit.QuantumCircuit.num_ancillas")                               | The number of ancilla qubits in the circuit.                                                                                                                                                                                                               |
+  | [`num_clbits`](#qiskit.circuit.QuantumCircuit.num_clbits "qiskit.circuit.QuantumCircuit.num_clbits")                                     | The number of clbits in the circuit.                                                                                                                                                                                                                       |
+  | [`num_captured_vars`](#qiskit.circuit.QuantumCircuit.num_captured_vars "qiskit.circuit.QuantumCircuit.num_captured_vars")                | Number of captured real-time classical variables.                                                                                                                                                                                                          |
+  | [`num_captured_stretches`](#qiskit.circuit.QuantumCircuit.num_captured_stretches "qiskit.circuit.QuantumCircuit.num_captured_stretches") | Number of captured stretches.                                                                                                                                                                                                                              |
+  | [`num_declared_vars`](#qiskit.circuit.QuantumCircuit.num_declared_vars "qiskit.circuit.QuantumCircuit.num_declared_vars")                | Number of locally declared real-time classical variables in the outer circuit scope.                                                                                                                                                                       |
+  | [`num_declared_stretches`](#qiskit.circuit.QuantumCircuit.num_declared_stretches "qiskit.circuit.QuantumCircuit.num_declared_stretches") | Number of locally declared stretches in the outer circuit scope.                                                                                                                                                                                           |
+  | [`num_input_vars`](#qiskit.circuit.QuantumCircuit.num_input_vars "qiskit.circuit.QuantumCircuit.num_input_vars")                         | Number of input real-time classical variables.                                                                                                                                                                                                             |
+  | [`num_parameters`](#qiskit.circuit.QuantumCircuit.num_parameters "qiskit.circuit.QuantumCircuit.num_parameters")                         | Number of compile-time [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s in the circuit.                                                                                                                                                 |
+  | [`num_qubits`](#qiskit.circuit.QuantumCircuit.num_qubits "qiskit.circuit.QuantumCircuit.num_qubits")                                     | Number of qubits in the circuit.                                                                                                                                                                                                                           |
+  | [`num_vars`](#qiskit.circuit.QuantumCircuit.num_vars "qiskit.circuit.QuantumCircuit.num_vars")                                           | Total number of real-time classical variables in the outer circuit scope.                                                                                                                                                                                  |
+  | [`num_stretches`](#qiskit.circuit.QuantumCircuit.num_stretches "qiskit.circuit.QuantumCircuit.num_stretches")                            | Total number of stretches in the outer circuit scope.                                                                                                                                                                                                      |
+  | [`num_identifiers`](#qiskit.circuit.QuantumCircuit.num_identifiers "qiskit.circuit.QuantumCircuit.num_identifiers")                      | Total number of both variables and stretches in the outer circuit.                                                                                                                                                                                         |
+  | [`op_start_times`](#qiskit.circuit.QuantumCircuit.op_start_times "qiskit.circuit.QuantumCircuit.op_start_times")                         | Start times of scheduled operations, added by scheduling transpiler passes.                                                                                                                                                                                |
+  | [`parameters`](#qiskit.circuit.QuantumCircuit.parameters "qiskit.circuit.QuantumCircuit.parameters")                                     | Ordered set-like view of the compile-time [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s tracked by the circuit.                                                                                                                      |
+  | [`qregs`](#qiskit.circuit.QuantumCircuit.qregs "qiskit.circuit.QuantumCircuit.qregs")                                                    | List of [`QuantumRegister`](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")s tracked by the circuit.                                                                                                                              |
+  | [`qubits`](#qiskit.circuit.QuantumCircuit.qubits "qiskit.circuit.QuantumCircuit.qubits")                                                 | List of [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s tracked by the circuit.                                                                                                                                                            |
+  | [`unit`](#qiskit.circuit.QuantumCircuit.unit "qiskit.circuit.QuantumCircuit.unit")                                                       | The unit of the [`duration`](#qiskit.circuit.QuantumCircuit.duration "qiskit.circuit.QuantumCircuit.duration") field.                                                                                                                                      |
 
   The core attribute is [`data`](#qiskit.circuit.QuantumCircuit.data "qiskit.circuit.QuantumCircuit.data"). This is a sequence-like object that exposes the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s contained in an ordered form. You generally should not mutate this object directly; [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") is only designed for append-only operations (which should use [`append()`](#qiskit.circuit.QuantumCircuit.append "qiskit.circuit.QuantumCircuit.append")). Most operations that mutate circuits in place should be written as transpiler passes ([`qiskit.transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler")).
 
@@ -62,13 +92,25 @@ python_api_name: qiskit.circuit.QuantumCircuit
   <Attribute id="qiskit.circuit.QuantumCircuit.data">
     The circuit data (instructions and context).
 
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2)
+    qc.measure([0], [1])
+    print(qc.data)
+    ```
+
+    ```text
+    [CircuitInstruction(operation=Instruction(name='measure', num_qubits=1,
+    num_clbits=1, params=[]), qubits=(Qubit(QuantumRegister(2, 'q'), 0),),
+    clbits=(Clbit(ClassicalRegister(2, 'c'), 1),))]
+    ```
+
     **Returns**
 
-    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
-
-    **Return type**
-
-    QuantumCircuitData
+    A list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") instances in the circuit.
   </Attribute>
 
   Alongside the [`data`](#qiskit.circuit.QuantumCircuit.data "qiskit.circuit.QuantumCircuit.data"), the [`global_phase`](#qiskit.circuit.QuantumCircuit.global_phase "qiskit.circuit.QuantumCircuit.global_phase") of a circuit can have some impact on its output, if the circuit is used to describe a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") that may be controlled. This is measured in radians and is directly settable.
@@ -77,6 +119,32 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   <Attribute id="qiskit.circuit.QuantumCircuit.global_phase">
     The global phase of the current circuit scope in radians.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    circuit = QuantumCircuit(2)
+    circuit.h(0)
+    circuit.cx(0, 1)
+    print(circuit.global_phase)
+    ```
+
+    ```text
+    0.0
+    ```
+
+    ```python
+    from numpy import pi
+
+    circuit.global_phase = pi/4
+    print(circuit.global_phase)
+    ```
+
+    ```text
+    0.7853981633974483
+    ```
   </Attribute>
 
   The [`name`](#qiskit.circuit.QuantumCircuit.name "qiskit.circuit.QuantumCircuit.name") of a circuit becomes the name of the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") or [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") resulting from [`to_instruction()`](#qiskit.circuit.QuantumCircuit.to_instruction "qiskit.circuit.QuantumCircuit.to_instruction") and [`to_gate()`](#qiskit.circuit.QuantumCircuit.to_gate "qiskit.circuit.QuantumCircuit.to_gate") calls, which can be handy for visualizations.
@@ -85,6 +153,19 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   <Attribute id="qiskit.circuit.QuantumCircuit.name" attributeTypeHint="str">
     A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
   </Attribute>
 
   You can attach arbitrary [`metadata`](#qiskit.circuit.QuantumCircuit.metadata "qiskit.circuit.QuantumCircuit.metadata") to a circuit. No part of core Qiskit will inspect this or change its behavior based on metadata, but it will be faithfully passed through the transpiler, so you can tag your circuits yourself. When serializing a circuit with QPY (see [`qiskit.qpy`](qpy#module-qiskit.qpy "qiskit.qpy")), the metadata will be JSON-serialized and you may need to pass a custom serializer to handle non-JSON-compatible objects within it (see [`qpy.dump()`](qpy#qiskit.qpy.dump "qiskit.qpy.dump") for more detail). This field is ignored during export to OpenQASM 2 or 3.
@@ -92,9 +173,23 @@ python_api_name: qiskit.circuit.QuantumCircuit
   ### metadata
 
   <Attribute id="qiskit.circuit.QuantumCircuit.metadata">
-    Arbitrary user-defined metadata for the circuit.
+    Arbitrary user-defined dictionary of metadata for the circuit.
 
     Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, metadata={'experiment_type': 'Bell state experiment'})
+
+    print(qc.metadata)
+    ```
+
+    ```text
+    {'experiment_type': 'Bell state experiment'}
+    ```
   </Attribute>
 
   [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") exposes data attributes tracking its internal quantum and classical bits and registers. These appear as Python [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")s, but you should treat them as immutable; changing them will *at best* have no effect, and more likely will simply corrupt the internal data of the [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
@@ -127,6 +222,28 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   <Attribute id="qiskit.circuit.QuantumCircuit.clbits">
     A list of [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")s in the order that they were added. You should not mutate this.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+
+    qr1 = QuantumRegister(2)
+    qr2 = QuantumRegister(1)
+    cr1 = ClassicalRegister(2)
+    cr2 = ClassicalRegister(1)
+    qc = QuantumCircuit(qr1, qr2, cr1, cr2)
+
+    print("List the qubits in this circuit:", qc.qubits)
+    print("List the classical bits in this circuit:", qc.clbits)
+    ```
+
+    ```text
+    List the qubits in this circuit: [Qubit(QuantumRegister(2, 'q0'), 0),
+    Qubit(QuantumRegister(2, 'q0'), 1), Qubit(QuantumRegister(1, 'q1'), 0)]
+    List the classical bits in this circuit: [Clbit(ClassicalRegister(2, 'c0'), 0),
+    Clbit(ClassicalRegister(2, 'c0'), 1), Clbit(ClassicalRegister(1, 'c1'), 0)]
+    ```
   </Attribute>
 
   The [compile-time parameters](circuit#circuit-compile-time-parameters) present in instructions on the circuit are available in [`parameters`](#qiskit.circuit.QuantumCircuit.parameters "qiskit.circuit.QuantumCircuit.parameters"). This has a canonical order (mostly lexical, except in the case of [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")), which matches the order that parameters will be assigned when using the list forms of [`assign_parameters()`](#qiskit.circuit.QuantumCircuit.assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters"), but also supports [`set`](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.13)")-like constant-time membership testing.
@@ -194,11 +311,45 @@ python_api_name: qiskit.circuit.QuantumCircuit
   ### layout
 
   <Attribute id="qiskit.circuit.QuantumCircuit.layout">
-    Return any associated layout information about the circuit
+    Return any associated layout information about the circuit.
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function: an initial layout that permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout, which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+    from qiskit.providers.fake_provider import GenericBackendV2
+    from qiskit.transpiler import generate_preset_pass_manager
+
+    # Create circuit to test transpiler on
+    qc = QuantumCircuit(3, 3)
+    qc.h(0)
+    qc.cx(0, 1)
+    qc.swap(1, 2)
+    qc.cx(0, 1)
+
+    # Add measurements to the circuit
+    qc.measure([0, 1, 2], [0, 1, 2])
+
+    # Specify the QPU to target
+    backend = GenericBackendV2(3)
+
+    # Transpile the circuit
+    pass_manager = generate_preset_pass_manager(
+    optimization_level=1, backend=backend
+    )
+    transpiled = pass_manager.run(qc)
+
+    # Print the layout after transpilation
+    print(transpiled.layout.routing_permutation())
+    ```
+
+    ```text
+    [0, 1, 2]
+    ```
   </Attribute>
 
   If your circuit was also *scheduled* as part of a transpilation, it will expose the individual timings of each instruction, along with the total [`duration`](#qiskit.circuit.QuantumCircuit.duration "qiskit.circuit.QuantumCircuit.duration") of the circuit.
@@ -234,6 +385,66 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+    from qiskit.providers.fake_provider import GenericBackendV2
+    from qiskit.transpiler import generate_preset_pass_manager
+
+    qc = QuantumCircuit(2)
+    qc.h(0)
+    qc.cx(0, 1)
+    qc.measure_all()
+
+    # Print the original circuit
+    print("Original circuit:")
+    print(qc)
+
+    # Transpile the circuit with a specific basis gates list and print the resulting circuit
+    backend = GenericBackendV2(2, basis_gates=['u1', 'u2', 'u3', 'cx'])
+    pm = generate_preset_pass_manager(
+        optimization_level=1, backend=backend, scheduling_method="alap"
+    )
+    transpiled_qc = pm.run(qc)
+    print("Transpiled circuit with basis gates ['u1', 'u2', 'u3', 'cx']:")
+    print(transpiled_qc)
+
+    # Print the start times of each instruction in the transpiled circuit
+    print("Start times of instructions in the transpiled circuit:")
+    for instruction, start_time in zip(transpiled_qc.data, transpiled_qc.op_start_times):
+        print(f"{instruction.operation.name}: {start_time}")
+    ```
+
+    ```text
+    Original circuit:
+            ┌───┐      ░ ┌─┐
+    q_0: ┤ H ├──■───░─┤M├───
+            └───┘┌─┴─┐ ░ └╥┘┌─┐
+    q_1: ─────┤ X ├─░──╫─┤M├
+                └───┘ ░  ║ └╥┘
+    meas: 2/══════════════╩══╩═
+                        0  1
+
+    Transpiled circuit with basis gates ['u1', 'u2', 'u3', 'cx']:
+                ┌─────────┐          ░ ┌─────────────────┐┌─┐
+    q_0 -> 0 ───┤ U2(0,π) ├──────■───░─┤ Delay(1255[dt]) ├┤M├
+            ┌──┴─────────┴───┐┌─┴─┐ ░ └───────┬─┬───────┘└╥┘
+    q_1 -> 1 ┤ Delay(196[dt]) ├┤ X ├─░─────────┤M├─────────╫─
+            └────────────────┘└───┘ ░         └╥┘         ║
+    meas: 2/═══════════════════════════════════╩══════════╩═
+                                                1          0
+
+    Start times of instructions in the transpiled circuit:
+    u2: 0
+    delay: 0
+    cx: 196
+    barrier: 2098
+    delay: 2098
+    measure: 3353
+    measure: 2098
+    ```
+
     **Returns**
 
     List of integers representing instruction estimated start times. The index corresponds to the index of instruction in [`QuantumCircuit.data`](#qiskit.circuit.QuantumCircuit.data "qiskit.circuit.QuantumCircuit.data").
@@ -249,12 +460,46 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   <Attribute id="qiskit.circuit.QuantumCircuit.num_ancillas">
     Return the number of ancilla qubits.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit, QuantumRegister, AncillaRegister
+
+    # Create a 2-qubit quantum circuit
+    reg = QuantumRegister(2)
+    qc = QuantumCircuit(reg)
+
+    # Create an ancilla register with 1 qubit
+    anc = AncillaRegister(1)
+    qc.add_register(anc)  # Add the ancilla register to the circuit
+
+    print("Number of ancilla qubits:", qc.num_ancillas)
+    ```
+
+    ```text
+    Number of ancilla qubits: 1
+    ```
   </Attribute>
 
   ### num\_clbits
 
   <Attribute id="qiskit.circuit.QuantumCircuit.num_clbits">
     Return number of classical bits.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    # Create a new circuit with two qubits and one classical bit
+    qc = QuantumCircuit(2, 1)
+    print("Number of classical bits:", qc.num_clbits)
+    ```
+
+    ```text
+    Number of classical bits: 1
+    ```
   </Attribute>
 
   ### num\_captured\_vars
@@ -265,6 +510,14 @@ python_api_name: qiskit.circuit.QuantumCircuit
     This is the length of the [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars") iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.QuantumCircuit.num_input_vars "qiskit.circuit.QuantumCircuit.num_input_vars") must be zero.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.QuantumCircuit.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the [`iter_captured_stretches()`](#qiskit.circuit.QuantumCircuit.iter_captured_stretches "qiskit.circuit.QuantumCircuit.iter_captured_stretches") iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.QuantumCircuit.num_input_vars "qiskit.circuit.QuantumCircuit.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.QuantumCircuit.num_declared_vars">
@@ -273,12 +526,28 @@ python_api_name: qiskit.circuit.QuantumCircuit
     This is the length of the [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars") iterable.
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.QuantumCircuit.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the [`iter_declared_stretches()`](#qiskit.circuit.QuantumCircuit.iter_declared_stretches "qiskit.circuit.QuantumCircuit.iter_declared_stretches") iterable.
+  </Attribute>
+
   ### num\_input\_vars
 
   <Attribute id="qiskit.circuit.QuantumCircuit.num_input_vars">
     The number of real-time classical variables in the circuit marked as circuit inputs.
 
     This is the length of the [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars") iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.QuantumCircuit.num_captured_vars "qiskit.circuit.QuantumCircuit.num_captured_vars") must be zero.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.QuantumCircuit.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.QuantumCircuit.num_vars "qiskit.circuit.QuantumCircuit.num_vars") + [`num_stretches()`](#qiskit.circuit.QuantumCircuit.num_stretches "qiskit.circuit.QuantumCircuit.num_stretches").
   </Attribute>
 
   ### num\_parameters
@@ -291,6 +560,14 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   <Attribute id="qiskit.circuit.QuantumCircuit.num_qubits">
     Return number of qubits.
+  </Attribute>
+
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.QuantumCircuit.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the [`iter_stretches()`](#qiskit.circuit.QuantumCircuit.iter_stretches "qiskit.circuit.QuantumCircuit.iter_stretches") iterable.
   </Attribute>
 
   ### num\_vars
@@ -316,7 +593,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.circuit.QuantumCircuit.__init__" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L958-L1110" signature="__init__(*regs, name=None, global_phase=0, metadata=None, inputs=(), captures=(), declarations=())">
+  <Function id="qiskit.circuit.QuantumCircuit.__init__" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L1016-L1197" signature="__init__(*regs, name=None, global_phase=0, metadata=None, inputs=(), captures=(), declarations=())">
     Default constructor of [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
     **Parameters**
@@ -368,7 +645,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### copy
 
-  <Function id="qiskit.circuit.QuantumCircuit.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3803-L3814" signature="copy(name=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4095-L4109" signature="copy(name=None)">
     Copy the circuit.
 
     **Parameters**
@@ -388,7 +665,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### copy\_empty\_like
 
-  <Function id="qiskit.circuit.QuantumCircuit.copy_empty_like" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3816-L3873" signature="copy_empty_like(name=None, *, vars_mode='alike')">
+  <Function id="qiskit.circuit.QuantumCircuit.copy_empty_like" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4111-L4171" signature="copy_empty_like(name=None, *, vars_mode='alike')">
     Return a copy of self with the same structure but empty.
 
     That structure includes:
@@ -412,7 +689,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
         **alike**
 
-        The variables in the output circuit will have the same declaration semantics as in the original circuit. For example, `input` variables in the source will be `input` variables in the output circuit.
+        The variables in the output circuit will have the same declaration semantics as in the original circuit. For example, `input` variables in the source will be `input` variables in the output circuit. Note that this causes the local variables to be uninitialised, because the stores are not copied. This can leave the circuit in a potentially dangerous state for users if they don’t re-add initializer stores.
 
         **captures**
 
@@ -435,7 +712,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### from\_instructions
 
-  <Function id="qiskit.circuit.QuantumCircuit.from_instructions" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L1152-L1203" signature="from_instructions(instructions, *, qubits=(), clbits=(), name=None, global_phase=0, metadata=None)" modifiers="static">
+  <Function id="qiskit.circuit.QuantumCircuit.from_instructions" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L1239-L1290" signature="from_instructions(instructions, *, qubits=(), clbits=(), name=None, global_phase=0, metadata=None)" modifiers="static">
     Construct a circuit from an iterable of [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s.
 
     **Parameters**
@@ -460,7 +737,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### from\_qasm\_file
 
-  <Function id="qiskit.circuit.QuantumCircuit.from_qasm_file" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4204-L4227" signature="from_qasm_file(path)" modifiers="static">
+  <Function id="qiskit.circuit.QuantumCircuit.from_qasm_file" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4502-L4525" signature="from_qasm_file(path)" modifiers="static">
     Read an OpenQASM 2.0 program from a file and convert to an instance of [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
     **Parameters**
@@ -482,7 +759,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### from\_qasm\_str
 
-  <Function id="qiskit.circuit.QuantumCircuit.from_qasm_str" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4229-L4250" signature="from_qasm_str(qasm_str)" modifiers="static">
+  <Function id="qiskit.circuit.QuantumCircuit.from_qasm_str" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4527-L4548" signature="from_qasm_str(qasm_str)" modifiers="static">
     Convert a string containing an OpenQASM 2.0 program to a [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
     **Parameters**
@@ -508,14 +785,15 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### Adding data objects
 
-  | Method                                                                                                                                  | Adds this kind of data                                                                                                                                                                               |
-  | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | [`add_bits()`](#qiskit.circuit.QuantumCircuit.add_bits "qiskit.circuit.QuantumCircuit.add_bits")                                        | [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s and [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")s.                                                                 |
-  | [`add_register()`](#qiskit.circuit.QuantumCircuit.add_register "qiskit.circuit.QuantumCircuit.add_register")                            | [`QuantumRegister`](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") and [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"). |
-  | [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var")                                           | [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes with local scope and initializers.                                                            |
-  | [`add_input()`](#qiskit.circuit.QuantumCircuit.add_input "qiskit.circuit.QuantumCircuit.add_input")                                     | [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes that are treated as circuit inputs.                                                           |
-  | [`add_capture()`](#qiskit.circuit.QuantumCircuit.add_capture "qiskit.circuit.QuantumCircuit.add_capture")                               | [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes captured from containing scopes.                                                              |
-  | [`add_uninitialized_var()`](#qiskit.circuit.QuantumCircuit.add_uninitialized_var "qiskit.circuit.QuantumCircuit.add_uninitialized_var") | [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes with local scope and undefined state.                                                         |
+  | Method                                                                                                                                  | Adds this kind of data                                                                                                                                                                                                                                  |
+  | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`add_bits()`](#qiskit.circuit.QuantumCircuit.add_bits "qiskit.circuit.QuantumCircuit.add_bits")                                        | [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s and [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")s.                                                                                                                    |
+  | [`add_register()`](#qiskit.circuit.QuantumCircuit.add_register "qiskit.circuit.QuantumCircuit.add_register")                            | [`QuantumRegister`](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") and [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister").                                                    |
+  | [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var")                                           | [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes with local scope and initializers.                                                                                                               |
+  | [`add_stretch()`](#qiskit.circuit.QuantumCircuit.add_stretch "qiskit.circuit.QuantumCircuit.add_stretch")                               | [`Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") nodes with local scope.                                                                                                                    |
+  | [`add_input()`](#qiskit.circuit.QuantumCircuit.add_input "qiskit.circuit.QuantumCircuit.add_input")                                     | [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes that are treated as circuit inputs.                                                                                                              |
+  | [`add_capture()`](#qiskit.circuit.QuantumCircuit.add_capture "qiskit.circuit.QuantumCircuit.add_capture")                               | [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") or [`Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") nodes captured from containing scopes. |
+  | [`add_uninitialized_var()`](#qiskit.circuit.QuantumCircuit.add_uninitialized_var "qiskit.circuit.QuantumCircuit.add_uninitialized_var") | [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes with local scope and undefined state.                                                                                                            |
 
   Typically you add most of the data objects ([`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit"), [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit"), [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"), etc) to the circuit as part of using the [`__init__()`](#qiskit.circuit.QuantumCircuit.__init__ "qiskit.circuit.QuantumCircuit.__init__") default constructor, or [`copy_empty_like()`](#qiskit.circuit.QuantumCircuit.copy_empty_like "qiskit.circuit.QuantumCircuit.copy_empty_like"). However, it is also possible to add these afterwards. Typed classical data, such as standalone [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes (see [Real-time classical computation](circuit#circuit-repr-real-time-classical)), can be both constructed and added with separate methods.
 
@@ -523,7 +801,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### add\_bits
 
-  <Function id="qiskit.circuit.QuantumCircuit.add_bits" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3225-L3244" signature="add_bits(bits)">
+  <Function id="qiskit.circuit.QuantumCircuit.add_bits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3475-L3494" signature="add_bits(bits)">
     Add Bits to the circuit.
 
     **Parameters**
@@ -539,7 +817,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### add\_register
 
-  <Function id="qiskit.circuit.QuantumCircuit.add_register" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3172-L3223" signature="add_register(*regs)">
+  <Function id="qiskit.circuit.QuantumCircuit.add_register" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3422-L3473" signature="add_register(*regs)">
     Add registers.
 
     **Parameters**
@@ -551,11 +829,11 @@ python_api_name: qiskit.circuit.QuantumCircuit
     None
   </Function>
 
-  [Real-time, typed classical data](circuit#circuit-repr-real-time-classical) is represented on the circuit by [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes with a well-defined [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type"). It is possible to instantiate these separately to a circuit (see [`Var.new()`](circuit_classical#qiskit.circuit.classical.expr.Var.new "qiskit.circuit.classical.expr.Var.new")), but it is often more convenient to use circuit methods that will automatically manage the types and expression initialization for you. The two most common methods are [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var") (locally scoped variables) and [`add_input()`](#qiskit.circuit.QuantumCircuit.add_input "qiskit.circuit.QuantumCircuit.add_input") (inputs to the circuit).
+  [Real-time, typed classical data](circuit#circuit-repr-real-time-classical) is represented on the circuit by [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes with a well-defined [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type"). It is possible to instantiate these separately to a circuit (see [`Var.new()`](circuit_classical#qiskit.circuit.classical.expr.Var.new "qiskit.circuit.classical.expr.Var.new")), but it is often more convenient to use circuit methods that will automatically manage the types and expression initialization for you. The two most common methods are [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var") (locally scoped variables) and [`add_input()`](#qiskit.circuit.QuantumCircuit.add_input "qiskit.circuit.QuantumCircuit.add_input") (inputs to the circuit). Additionally, the method [`add_stretch()`](#qiskit.circuit.QuantumCircuit.add_stretch "qiskit.circuit.QuantumCircuit.add_stretch") can be used to add stretches to the circuit.
 
   #### add\_var
 
-  <Function id="qiskit.circuit.QuantumCircuit.add_var" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2963-L3057" signature="add_var(name_or_var, /, initial)">
+  <Function id="qiskit.circuit.QuantumCircuit.add_var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3214-L3306" signature="add_var(name_or_var, /, initial)">
     Add a classical variable with automatic storage and scope to this circuit.
 
     The variable is considered to have been “declared” at the beginning of the circuit, but it only becomes initialized at the point of the circuit that you call this method, so it can depend on variables defined before it.
@@ -625,7 +903,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### add\_input
 
-  <Function id="qiskit.circuit.QuantumCircuit.add_input" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3144-L3170" signature="add_input(name_or_var: str, type_: Type, /) → Var" extraSignatures={["add_input(name_or_var: Var, type_: None = None, /) → Var"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.add_input" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3393-L3420" signature="add_input(name_or_var: str, type_: Type, /) → Var" extraSignatures={["add_input(name_or_var: Var, type_: None = None, /) → Var"]}>
     Register a variable as an input to the circuit.
 
     **Parameters**
@@ -642,11 +920,47 @@ python_api_name: qiskit.circuit.QuantumCircuit
     [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the variable cannot be created due to shadowing an existing variable.
   </Function>
 
+  #### add\_stretch
+
+  <Function id="qiskit.circuit.QuantumCircuit.add_stretch" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3180-L3212" signature="add_stretch(name_or_stretch)">
+    Declares a new stretch scoped to this circuit.
+
+    **Parameters**
+
+    **name\_or\_stretch** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*expr.Stretch*](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")) – either a string of the stretch name, or an existing instance of [`Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") to re-use. Stretches cannot shadow names that are already in use within the circuit.
+
+    **Returns**
+
+    The created stretch. If a [`Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") instance was given, the exact same object will be returned.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the stretch cannot be created due to shadowing an existing identifier.
+
+    **Return type**
+
+    [expr.Stretch](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")
+
+    **Examples**
+
+    Define and use a new stretch given just a name:
+
+    ```python
+    from qiskit.circuit import QuantumCircuit, Duration
+    from qiskit.circuit.classical import expr
+
+    qc = QuantumCircuit(2)
+    my_stretch = qc.add_stretch("my_stretch")
+
+    qc.delay(expr.add(Duration.dt(200), my_stretch), 1)
+    ```
+  </Function>
+
   In addition, there are two lower-level methods that can be useful for programmatic generation of circuits. When working interactively, you will most likely not need these; most uses of [`add_uninitialized_var()`](#qiskit.circuit.QuantumCircuit.add_uninitialized_var "qiskit.circuit.QuantumCircuit.add_uninitialized_var") are part of [`copy_empty_like()`](#qiskit.circuit.QuantumCircuit.copy_empty_like "qiskit.circuit.QuantumCircuit.copy_empty_like"), and most uses of [`add_capture()`](#qiskit.circuit.QuantumCircuit.add_capture "qiskit.circuit.QuantumCircuit.add_capture") would be better off using [the control-flow builder interface](#circuit-control-flow-methods).
 
   #### add\_uninitialized\_var
 
-  <Function id="qiskit.circuit.QuantumCircuit.add_uninitialized_var" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3059-L3090" signature="add_uninitialized_var(var, /)">
+  <Function id="qiskit.circuit.QuantumCircuit.add_uninitialized_var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3308-L3339" signature="add_uninitialized_var(var, /)">
     Add a variable with no initializer.
 
     In most cases, you should use [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var") to initialize the variable. To use this function, you must already hold a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance, as the use of the function typically only makes sense in copying contexts.
@@ -659,12 +973,12 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    **var** ([*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")) – the variable to add.
+    **var** ([*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var")) – the variable to add.
   </Function>
 
   #### add\_capture
 
-  <Function id="qiskit.circuit.QuantumCircuit.add_capture" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3098-L3136" signature="add_capture(var: Var)" extraSignatures={["add_capture(stretch: Stretch)"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.add_capture" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3347-L3385" signature="add_capture(var: Var)" extraSignatures={["add_capture(stretch: Stretch)"]}>
     Add an identifier to the circuit that it should capture from a scope it will be contained within.
 
     This method requires a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") or [`Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") node to enforce that you’ve got a handle to an identifier, because you will need to declare the same identifier using the same object in the outer circuit.
@@ -686,7 +1000,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### find\_bit
 
-  <Function id="qiskit.circuit.QuantumCircuit.find_bit" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3246-L3307" signature="find_bit(bit)">
+  <Function id="qiskit.circuit.QuantumCircuit.find_bit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3496-L3557" signature="find_bit(bit)">
     Find locations in the circuit which can be used to reference a given [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit").
 
     In particular, this function can find the integer index of a qubit, which corresponds to its hardware index for a transpiled circuit.
@@ -745,7 +1059,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### has\_register
 
-  <Function id="qiskit.circuit.QuantumCircuit.has_register" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L1370-L1385" signature="has_register(register)">
+  <Function id="qiskit.circuit.QuantumCircuit.has_register" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L1594-L1609" signature="has_register(register)">
     Test if this circuit has the register r.
 
     **Parameters**
@@ -775,7 +1089,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### assign\_parameters
 
-  <Function id="qiskit.circuit.QuantumCircuit.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4377-L4495" signature="assign_parameters(parameters: Mapping[Parameter, ParameterExpression | float] | Iterable[ParameterExpression | float], inplace: Literal[False] = False, *, flat_input: bool = False, strict: bool = True) → QuantumCircuit" extraSignatures={["assign_parameters(parameters: Mapping[Parameter, ParameterExpression | float] | Iterable[ParameterExpression | float], inplace: Literal[True] = False, *, flat_input: bool = False, strict: bool = True) → None"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4709-L4827" signature="assign_parameters(parameters: Mapping[Parameter, ParameterExpression | float] | Iterable[ParameterExpression | float], inplace: Literal[False] = False, *, flat_input: bool = False, strict: bool = True) → QuantumCircuit" extraSignatures={["assign_parameters(parameters: Mapping[Parameter, ParameterExpression | float] | Iterable[ParameterExpression | float], inplace: Literal[True] = False, *, flat_input: bool = False, strict: bool = True) → None"]}>
     Assign parameters to new parameters or values.
 
     If `parameters` is passed as a dictionary, the keys should be [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects.
@@ -822,9 +1136,9 @@ python_api_name: qiskit.circuit.QuantumCircuit
     circuit.draw('mpl')
     ```
 
-    ![Circuit diagram output by the previous code.](/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-4_00.avif)
+    ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-15_00.avif)
 
-    ![Circuit diagram output by the previous code.](/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-4_01.avif)
+    ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-15_01.avif)
 
     Bind the values out-of-place by list and get a copy of the original circuit.
 
@@ -842,16 +1156,16 @@ python_api_name: qiskit.circuit.QuantumCircuit
     circuit.draw('mpl')
     ```
 
-    ![Circuit diagram output by the previous code.](/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-5_00.avif)
+    ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-16_00.avif)
 
-    ![Circuit diagram output by the previous code.](/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-5_01.avif)
+    ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-16_01.avif)
   </Function>
 
   The circuit tracks parameters by [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances themselves, and forbids having multiple parameters of the same name to avoid some problems when interoperating with OpenQASM or other external formats. You can use [`has_parameter()`](#qiskit.circuit.QuantumCircuit.has_parameter "qiskit.circuit.QuantumCircuit.has_parameter") and [`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter") to query the circuit for a parameter with the given string name.
 
   #### has\_parameter
 
-  <Function id="qiskit.circuit.QuantumCircuit.has_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2644-L2667" signature="has_parameter(name_or_param, /)">
+  <Function id="qiskit.circuit.QuantumCircuit.has_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2895-L2918" signature="has_parameter(name_or_param, /)">
     Check whether a parameter object exists in this circuit.
 
     **Parameters**
@@ -879,7 +1193,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### get\_parameter
 
-  <Function id="qiskit.circuit.QuantumCircuit.get_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2597-L2642" signature="get_parameter(name: str, default: T) → Parameter | T" extraSignatures={["get_parameter(name: str, default: ellipsis = Ellipsis) → Parameter"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.get_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2848-L2893" signature="get_parameter(name: str, default: T) → Parameter | T" extraSignatures={["get_parameter(name: str, default: ellipsis = Ellipsis) → Parameter"]}>
     Retrieve a compile-time parameter that is accessible in this circuit scope by name.
 
     **Parameters**
@@ -944,14 +1258,14 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **[Adding data objects](#circuit-adding-data-objects)**
 
-    The methods for adding new [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") variables to a circuit after initialization.
+    The methods for adding new [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") or [`Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") identifiers to a circuit after initialization.
   </Admonition>
 
-  You can retrive a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance attached to a circuit by using its variable name using [`get_var()`](#qiskit.circuit.QuantumCircuit.get_var "qiskit.circuit.QuantumCircuit.get_var"), or check if a circuit contains a given variable with [`has_var()`](#qiskit.circuit.QuantumCircuit.has_var "qiskit.circuit.QuantumCircuit.has_var").
+  You can retrieve identifiers attached to a circuit (e.g. a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") or [`Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")) by name with methods [`get_var()`](#qiskit.circuit.QuantumCircuit.get_var "qiskit.circuit.QuantumCircuit.get_var"), [`get_stretch()`](#qiskit.circuit.QuantumCircuit.get_stretch "qiskit.circuit.QuantumCircuit.get_stretch"), or [`get_identifier()`](#qiskit.circuit.QuantumCircuit.get_identifier "qiskit.circuit.QuantumCircuit.get_identifier"). You can also check if a circuit contains a given identifier with [`has_var()`](#qiskit.circuit.QuantumCircuit.has_var "qiskit.circuit.QuantumCircuit.has_var"), [`has_stretch()`](#qiskit.circuit.QuantumCircuit.has_stretch "qiskit.circuit.QuantumCircuit.has_stretch"), or [`has_identifier()`](#qiskit.circuit.QuantumCircuit.has_identifier "qiskit.circuit.QuantumCircuit.has_identifier").
 
   #### get\_var
 
-  <Function id="qiskit.circuit.QuantumCircuit.get_var" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2677-L2720" signature="get_var(name: str, default: T) → Var | T" extraSignatures={["get_var(name: str, default: ellipsis = Ellipsis) → Var"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.get_var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2928-L2971" signature="get_var(name: str, default: T) → Var | T" extraSignatures={["get_var(name: str, default: ellipsis = Ellipsis) → Var"]}>
     Retrieve a variable that is accessible in this circuit scope by name.
 
     **Parameters**
@@ -999,9 +1313,88 @@ python_api_name: qiskit.circuit.QuantumCircuit
     </Admonition>
   </Function>
 
+  #### get\_stretch
+
+  <Function id="qiskit.circuit.QuantumCircuit.get_stretch" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3002-L3040" signature="get_stretch(name: str, default: T) → Stretch | T" extraSignatures={["get_stretch(name: str, default: ellipsis = Ellipsis) → Stretch"]}>
+    Retrieve a stretch that is accessible in this circuit scope by name.
+
+    **Parameters**
+
+    *   **name** – the name of the stretch to retrieve.
+    *   **default** – if given, this value will be returned if the variable is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.13)") is raised instead.
+
+    **Returns**
+
+    The corresponding stretch.
+
+    **Raises**
+
+    [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.13)") – if no default is given, but the variable does not exist.
+
+    **Examples**
+
+    Retrieve a stretch by name from a circuit:
+
+    ```python
+    from qiskit.circuit import QuantumCircuit
+
+    # Create a circuit and create a variable in it.
+    qc = QuantumCircuit()
+    my_stretch = qc.add_stretch("my_stretch")
+
+    # We can use 'my_stretch' as a variable, but let's say we've lost the Python object and
+    # need to retrieve it.
+    my_stretch_again = qc.get_stretch("my_stretch")
+
+    assert my_stretch is my_stretch_again
+    ```
+
+    Get a variable from a circuit by name, returning some default if it is not present:
+
+    ```python
+    assert qc.get_stretch("my_stretch", None) is my_stretch
+    assert qc.get_stretch("unknown_stretch", None) is None
+    ```
+  </Function>
+
+  #### get\_identifier
+
+  <Function id="qiskit.circuit.QuantumCircuit.get_identifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3071-L3102" signature="get_identifier(name: str, default: T) → expr.Var | expr.Stretch | T" extraSignatures={["get_identifier(name: str, default: ellipsis = Ellipsis) → Var | Stretch"]}>
+    Retrieve an identifier that is accessible in this circuit scope by name.
+
+    This currently includes both real-time classical variables and stretches.
+
+    **Parameters**
+
+    *   **name** – the name of the identifier to retrieve.
+    *   **default** – if given, this value will be returned if the variable is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.13)") is raised instead.
+
+    **Returns**
+
+    The corresponding variable.
+
+    **Raises**
+
+    [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.13)") – if no default is given, but the identifier does not exist.
+
+    <Admonition title="See also" type="note">
+      **[`get_var()`](#qiskit.circuit.QuantumCircuit.get_var "qiskit.circuit.QuantumCircuit.get_var")**
+
+      Gets an identifier known to be a [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance.
+
+      **[`get_stretch()`](#qiskit.circuit.QuantumCircuit.get_stretch "qiskit.circuit.QuantumCircuit.get_stretch")**
+
+      Gets an identifier known to be a [`expr.Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") instance.
+
+      **[`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter")**
+
+      A similar method, but for [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") compile-time parameters instead of [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") run-time variables.
+    </Admonition>
+  </Function>
+
   #### has\_var
 
-  <Function id="qiskit.circuit.QuantumCircuit.has_var" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2722-L2742" signature="has_var(name_or_var, /)">
+  <Function id="qiskit.circuit.QuantumCircuit.has_var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2973-L2993" signature="has_var(name_or_var, /)">
     Check whether a variable is accessible in this scope.
 
     **Parameters**
@@ -1027,48 +1420,140 @@ python_api_name: qiskit.circuit.QuantumCircuit
     </Admonition>
   </Function>
 
-  There are also several iterator methods that you can use to get the full set of variables tracked by a circuit. At least one of [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars") and [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars") will be empty, as inputs and captures are mutually exclusive. All of the iterators have corresponding dynamic properties on [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that contain their length: [`num_vars`](#qiskit.circuit.QuantumCircuit.num_vars "qiskit.circuit.QuantumCircuit.num_vars"), [`num_input_vars`](#qiskit.circuit.QuantumCircuit.num_input_vars "qiskit.circuit.QuantumCircuit.num_input_vars"), [`num_captured_vars`](#qiskit.circuit.QuantumCircuit.num_captured_vars "qiskit.circuit.QuantumCircuit.num_captured_vars") and [`num_declared_vars`](#qiskit.circuit.QuantumCircuit.num_declared_vars "qiskit.circuit.QuantumCircuit.num_declared_vars").
+  #### has\_stretch
+
+  <Function id="qiskit.circuit.QuantumCircuit.has_stretch" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3042-L3059" signature="has_stretch(name_or_stretch, /)">
+    Check whether a stretch is accessible in this scope.
+
+    **Parameters**
+
+    **name\_or\_stretch** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*expr.Stretch*](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")) – the stretch, or name of a stretch to check. If this is a [`expr.Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") node, the stretch must be exactly the given one for this function to return `True`.
+
+    **Returns**
+
+    whether a matching stretch is accessible.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+
+    <Admonition title="See also" type="note">
+      **[`QuantumCircuit.get_stretch()`](#qiskit.circuit.QuantumCircuit.get_stretch "qiskit.circuit.QuantumCircuit.get_stretch")**
+
+      Retrieve the [`expr.Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") instance from this circuit by name.
+    </Admonition>
+  </Function>
+
+  #### has\_identifier
+
+  <Function id="qiskit.circuit.QuantumCircuit.has_identifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3104-L3131" signature="has_identifier(name_or_ident, /)">
+    Check whether an identifier is accessible in this scope.
+
+    **Parameters**
+
+    **name\_or\_ident** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")  *|*[*expr.Stretch*](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")) – the instance, or name of the identifier to check. If this is a [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") or [`expr.Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") node, the matched instance must be exactly the given one for this function to return `True`.
+
+    **Returns**
+
+    whether a matching identifier is accessible.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+
+    <Admonition title="See also" type="note">
+      **[`QuantumCircuit.get_identifier()`](#qiskit.circuit.QuantumCircuit.get_identifier "qiskit.circuit.QuantumCircuit.get_identifier")**
+
+      Retrieve the [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") or [`expr.Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") instance from this circuit by name.
+
+      **[`QuantumCircuit.has_var()`](#qiskit.circuit.QuantumCircuit.has_var "qiskit.circuit.QuantumCircuit.has_var")**
+
+      The same as this method, but ignoring anything that isn’t a run-time `expr.Var` variable.
+
+      **[`QuantumCircuit.has_stretch()`](#qiskit.circuit.QuantumCircuit.has_stretch "qiskit.circuit.QuantumCircuit.has_stretch")**
+
+      The same as this method, but ignoring anything that isn’t a run-time `expr.Stretch` variable.
+
+      **[`QuantumCircuit.has_parameter()`](#qiskit.circuit.QuantumCircuit.has_parameter "qiskit.circuit.QuantumCircuit.has_parameter")**
+
+      A similar method to this, but for compile-time [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s instead of run-time [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") variables.
+    </Admonition>
+  </Function>
+
+  There are also several iterator methods that you can use to get the full set of identifiers tracked by a circuit. At least one of [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars") and [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars") will be empty, as inputs and captures are mutually exclusive. All of the iterators have corresponding dynamic properties on [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that contain their length: [`num_vars`](#qiskit.circuit.QuantumCircuit.num_vars "qiskit.circuit.QuantumCircuit.num_vars"), [`num_stretches`](#qiskit.circuit.QuantumCircuit.num_stretches "qiskit.circuit.QuantumCircuit.num_stretches"), [`num_input_vars`](#qiskit.circuit.QuantumCircuit.num_input_vars "qiskit.circuit.QuantumCircuit.num_input_vars"), [`num_captured_vars`](#qiskit.circuit.QuantumCircuit.num_captured_vars "qiskit.circuit.QuantumCircuit.num_captured_vars"), [`num_captured_stretches`](#qiskit.circuit.QuantumCircuit.num_captured_stretches "qiskit.circuit.QuantumCircuit.num_captured_stretches"), [`num_declared_vars`](#qiskit.circuit.QuantumCircuit.num_declared_vars "qiskit.circuit.QuantumCircuit.num_declared_vars"), or [`num_declared_stretches`](#qiskit.circuit.QuantumCircuit.num_declared_stretches "qiskit.circuit.QuantumCircuit.num_declared_stretches").
 
   #### iter\_vars
 
-  <Function id="qiskit.circuit.QuantumCircuit.iter_vars" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2233-L2243" signature="iter_vars()">
+  <Function id="qiskit.circuit.QuantumCircuit.iter_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2478-L2490" signature="iter_vars()">
     Get an iterable over all real-time classical variables in scope within this circuit.
 
     This method will iterate over all variables in scope. For more fine-grained iterators, see [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars"), [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars") and [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars").
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var")]
+  </Function>
+
+  #### iter\_stretches
+
+  <Function id="qiskit.circuit.QuantumCircuit.iter_stretches" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2492-L2504" signature="iter_stretches()">
+    Get an iterable over all stretches in scope within this circuit.
+
+    This method will iterate over all stretches in scope. For more fine-grained iterators, see [`iter_declared_stretches()`](#qiskit.circuit.QuantumCircuit.iter_declared_stretches "qiskit.circuit.QuantumCircuit.iter_declared_stretches") and [`iter_captured_stretches()`](#qiskit.circuit.QuantumCircuit.iter_captured_stretches "qiskit.circuit.QuantumCircuit.iter_captured_stretches").
+
+    **Return type**
+
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Stretch*](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit._accelerate.circuit.classical.expr.Stretch")]
   </Function>
 
   #### iter\_input\_vars
 
-  <Function id="qiskit.circuit.QuantumCircuit.iter_input_vars" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2272-L2278" signature="iter_input_vars()">
+  <Function id="qiskit.circuit.QuantumCircuit.iter_input_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2521-L2527" signature="iter_input_vars()">
     Get an iterable over all real-time classical variables that are declared as inputs to this circuit scope. This excludes locally declared variables (see [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars")) and captured variables (see [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars")).
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var")]
   </Function>
 
   #### iter\_captured\_vars
 
-  <Function id="qiskit.circuit.QuantumCircuit.iter_captured_vars" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2292-L2298" signature="iter_captured_vars()">
+  <Function id="qiskit.circuit.QuantumCircuit.iter_captured_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2541-L2547" signature="iter_captured_vars()">
     Get an iterable over all real-time classical variables that are captured by this circuit scope from a containing scope. This excludes input variables (see [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars")) and locally declared variables (see [`iter_declared_vars()`](#qiskit.circuit.QuantumCircuit.iter_declared_vars "qiskit.circuit.QuantumCircuit.iter_declared_vars")).
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var")]
+  </Function>
+
+  #### iter\_captured\_stretches
+
+  <Function id="qiskit.circuit.QuantumCircuit.iter_captured_stretches" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2549-L2555" signature="iter_captured_stretches()">
+    Get an iterable over stretches that are captured by this circuit scope from a containing scope. This excludes locally declared stretches (see [`iter_declared_stretches()`](#qiskit.circuit.QuantumCircuit.iter_declared_stretches "qiskit.circuit.QuantumCircuit.iter_declared_stretches")).
+
+    **Return type**
+
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Stretch*](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit._accelerate.circuit.classical.expr.Stretch")]
   </Function>
 
   #### iter\_declared\_vars
 
-  <Function id="qiskit.circuit.QuantumCircuit.iter_declared_vars" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2257-L2263" signature="iter_declared_vars()">
+  <Function id="qiskit.circuit.QuantumCircuit.iter_declared_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2506-L2512" signature="iter_declared_vars()">
     Get an iterable over all real-time classical variables that are declared with automatic storage duration in this scope. This excludes input variables (see [`iter_input_vars()`](#qiskit.circuit.QuantumCircuit.iter_input_vars "qiskit.circuit.QuantumCircuit.iter_input_vars")) and captured variables (see [`iter_captured_vars()`](#qiskit.circuit.QuantumCircuit.iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars")).
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var")]
+  </Function>
+
+  #### iter\_declared\_stretches
+
+  <Function id="qiskit.circuit.QuantumCircuit.iter_declared_stretches" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2514-L2519" signature="iter_declared_stretches()">
+    Get an iterable over all stretches that are declared in this scope. This excludes captured stretches (see [`iter_captured_stretches()`](#qiskit.circuit.QuantumCircuit.iter_captured_stretches "qiskit.circuit.QuantumCircuit.iter_captured_stretches")).
+
+    **Return type**
+
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[*Stretch*](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit._accelerate.circuit.classical.expr.Stretch")]
   </Function>
 
   <span id="circuit-adding-operations" />
@@ -1106,7 +1591,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### append
 
-  <Function id="qiskit.circuit.QuantumCircuit.append" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2399-L2502" signature="append(instruction, qargs=None, cargs=None, *, copy=True)">
+  <Function id="qiskit.circuit.QuantumCircuit.append" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2648-L2753" signature="append(instruction, qargs=None, cargs=None, *, copy=True)">
     Append one or more instructions to the end of the circuit, modifying the circuit in place.
 
     The `qargs` and `cargs` will be expanded and broadcast according to the rules of the given [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), and any non-[`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") specifiers (such as integer indices) will be resolved into the relevant instances.
@@ -1137,7 +1622,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### \_append
 
-  <Function id="qiskit.circuit.QuantumCircuit._append" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2519-L2587" signature="_append(instruction: CircuitInstruction, *, _standard_gate: bool) → CircuitInstruction" extraSignatures={["_append(instruction: Operation, qargs: Sequence[Qubit], cargs: Sequence[Clbit]) → Operation"]}>
+  <Function id="qiskit.circuit.QuantumCircuit._append" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2770-L2838" signature="_append(instruction: CircuitInstruction, *, _standard_gate: bool) → CircuitInstruction" extraSignatures={["_append(instruction: Operation, qargs: Sequence[Qubit], cargs: Sequence[Clbit]) → Operation"]}>
     Append an instruction to the end of the circuit, modifying the circuit in place.
 
     <Admonition title="Warning" type="caution">
@@ -1179,14 +1664,14 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### compose
 
-  <Function id="qiskit.circuit.QuantumCircuit.compose" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L1671-L2021" signature="compose(other, qubits=None, clbits=None, front=False, inplace=False, wrap=False, *, copy=True, var_remap=None, inline_captures=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.compose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L1895-L2240" signature="compose(other, qubits=None, clbits=None, front=False, inplace=False, wrap=False, *, copy=True, var_remap=None, inline_captures=False)">
     Apply the instructions from one circuit onto specified qubits and/or clbits on another.
 
     <Admonition title="Note" type="note">
       By default, this creates a new circuit object, leaving `self` untouched. For most uses of this function, it is far more efficient to set `inplace=True` and modify the base circuit in-place.
     </Admonition>
 
-    When dealing with realtime variables ([`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instances), there are two principal strategies for using [`compose()`](#qiskit.circuit.QuantumCircuit.compose "qiskit.circuit.QuantumCircuit.compose"):
+    When dealing with realtime variables ([`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") and [`expr.Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") instances), there are two principal strategies for using [`compose()`](#qiskit.circuit.QuantumCircuit.compose "qiskit.circuit.QuantumCircuit.compose"):
 
     1.  The `other` circuit is treated as entirely additive, including its variables. The variables in `other` must be entirely distinct from those in `self` (use `var_remap` to help with this), and all variables in `other` will be declared anew in the output with matching input/capture/local scoping to how they are in `other`. This is generally what you want if you’re joining two unrelated circuits.
     2.  The `other` circuit was created as an exact extension to `self` to be inlined onto it, including acting on the existing variables in their states at the end of `self`. In this case, `other` should be created with all these variables to be inlined declared as “captures”, and then you can use `inline_captures=True` in this method to link them. This is generally what you want if you’re building up a circuit by defining layers on-the-fly, or rebuilding a circuit using layers taken from itself. You might find the `vars_mode="captures"` argument to [`copy_empty_like()`](#qiskit.circuit.QuantumCircuit.copy_empty_like "qiskit.circuit.QuantumCircuit.copy_empty_like") useful to create each layer’s base, in this case.
@@ -1261,10 +1746,10 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### tensor
 
-  <Function id="qiskit.circuit.QuantumCircuit.tensor" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L2023-L2112" signature="tensor(other, inplace=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.tensor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L2242-L2331" signature="tensor(other, inplace=False)">
     Tensor `self` with `other`.
 
-    Remember that in the little-endian convention the leftmost operation will be at the bottom of the circuit. See also [the docs](/guides/construct-circuits) for more information.
+    Remember that in the little-endian convention the leftmost operation will be at the bottom of the circuit. See also [the docs](/docs/guides/construct-circuits) for more information.
 
     ```text
          ┌────────┐        ┌─────┐          ┌─────┐
@@ -1295,7 +1780,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
     tensored.draw('mpl')
     ```
 
-    ![Circuit diagram output by the previous code.](/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-6.avif)
+    ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-17.avif)
 
     **Returns**
 
@@ -1410,7 +1895,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### barrier
 
-  <Function id="qiskit.circuit.QuantumCircuit.barrier" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4515-L4540" signature="barrier(*qargs, label=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.barrier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4855-L4880" signature="barrier(*qargs, label=None)">
     Apply `Barrier`. If `qargs` is empty, applies to all qubits in the circuit.
 
     **Parameters**
@@ -1429,7 +1914,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### ccx
 
-  <Function id="qiskit.circuit.QuantumCircuit.ccx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5665-L5702" signature="ccx(control_qubit1, control_qubit2, target_qubit, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.ccx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6020-L6057" signature="ccx(control_qubit1, control_qubit2, target_qubit, ctrl_state=None)">
     Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1452,7 +1937,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### ccz
 
-  <Function id="qiskit.circuit.QuantumCircuit.ccz" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5891-L5931" signature="ccz(control_qubit1, control_qubit2, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.ccz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6271-L6311" signature="ccz(control_qubit1, control_qubit2, target_qubit, label=None, ctrl_state=None)">
     Apply [`CCZGate`](qiskit.circuit.library.CCZGate "qiskit.circuit.library.CCZGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1476,7 +1961,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### ch
 
-  <Function id="qiskit.circuit.QuantumCircuit.ch" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4584-L4619" signature="ch(control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.ch" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4924-L4959" signature="ch(control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1499,7 +1984,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### cp
 
-  <Function id="qiskit.circuit.QuantumCircuit.cp" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4665-L4702" signature="cp(theta, control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.cp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5005-L5042" signature="cp(theta, control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1523,7 +2008,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### crx
 
-  <Function id="qiskit.circuit.QuantumCircuit.crx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5037-L5074" signature="crx(theta, control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.crx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5392-L5429" signature="crx(theta, control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1547,7 +2032,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### cry
 
-  <Function id="qiskit.circuit.QuantumCircuit.cry" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5110-L5147" signature="cry(theta, control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.cry" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5465-L5502" signature="cry(theta, control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1571,7 +2056,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### crz
 
-  <Function id="qiskit.circuit.QuantumCircuit.crz" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5180-L5217" signature="crz(theta, control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.crz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5535-L5572" signature="crz(theta, control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1595,7 +2080,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### cs
 
-  <Function id="qiskit.circuit.QuantumCircuit.cs" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5292-L5327" signature="cs(control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.cs" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5647-L5682" signature="cs(control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CSGate`](qiskit.circuit.library.CSGate "qiskit.circuit.library.CSGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1618,7 +2103,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### csdg
 
-  <Function id="qiskit.circuit.QuantumCircuit.csdg" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5329-L5364" signature="csdg(control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.csdg" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5684-L5719" signature="csdg(control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CSdgGate`](qiskit.circuit.library.CSdgGate "qiskit.circuit.library.CSdgGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1641,7 +2126,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### cswap
 
-  <Function id="qiskit.circuit.QuantumCircuit.cswap" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5396-L5436" signature="cswap(control_qubit, target_qubit1, target_qubit2, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.cswap" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5751-L5791" signature="cswap(control_qubit, target_qubit1, target_qubit2, label=None, ctrl_state=None)">
     Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1665,7 +2150,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### csx
 
-  <Function id="qiskit.circuit.QuantumCircuit.csx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5464-L5499" signature="csx(control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.csx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5819-L5854" signature="csx(control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CSXGate`](qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1688,7 +2173,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### cu
 
-  <Function id="qiskit.circuit.QuantumCircuit.cu" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5549-L5595" signature="cu(theta, phi, lam, gamma, control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.cu" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5904-L5950" signature="cu(theta, phi, lam, gamma, control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CUGate`](qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1715,7 +2200,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### cx
 
-  <Function id="qiskit.circuit.QuantumCircuit.cx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5611-L5649" signature="cx(control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.cx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5966-L6004" signature="cx(control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1738,7 +2223,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### cy
 
-  <Function id="qiskit.circuit.QuantumCircuit.cy" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5801-L5839" signature="cy(control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.cy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6181-L6219" signature="cy(control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1761,7 +2246,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### cz
 
-  <Function id="qiskit.circuit.QuantumCircuit.cz" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5854-L5889" signature="cz(control_qubit, target_qubit, label=None, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.cz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6234-L6269" signature="cz(control_qubit, target_qubit, label=None, ctrl_state=None)">
     Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1784,7 +2269,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### dcx
 
-  <Function id="qiskit.circuit.QuantumCircuit.dcx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5651-L5663" signature="dcx(qubit1, qubit2)">
+  <Function id="qiskit.circuit.QuantumCircuit.dcx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6006-L6018" signature="dcx(qubit1, qubit2)">
     Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1805,7 +2290,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### delay
 
-  <Function id="qiskit.circuit.QuantumCircuit.delay" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4542-L4569" signature="delay(duration, qarg=None, unit=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4882-L4909" signature="delay(duration, qarg=None, unit=None)">
     Apply [`Delay`](circuit#qiskit.circuit.Delay "qiskit.circuit.Delay"). If qarg is `None`, applies to all qubits. When applying to multiple qubits, delays with the same duration will be created.
 
     **Parameters**
@@ -1829,7 +2314,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### ecr
 
-  <Function id="qiskit.circuit.QuantumCircuit.ecr" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5253-L5264" signature="ecr(qubit1, qubit2)">
+  <Function id="qiskit.circuit.QuantumCircuit.ecr" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5608-L5619" signature="ecr(qubit1, qubit2)">
     Apply [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1850,7 +2335,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### h
 
-  <Function id="qiskit.circuit.QuantumCircuit.h" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4571-L4582" signature="h(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.h" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4911-L4922" signature="h(qubit)">
     Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1870,7 +2355,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### id
 
-  <Function id="qiskit.circuit.QuantumCircuit.id" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4621-L4632" signature="id(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.id" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4961-L4972" signature="id(qubit)">
     Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -1890,7 +2375,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### initialize
 
-  <Function id="qiskit.circuit.QuantumCircuit.initialize" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6072-L6187" signature="initialize(params, qubits=None, normalize=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.initialize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6452-L6567" signature="initialize(params, qubits=None, normalize=False)">
     Initialize qubits in a specific state.
 
     Qubit initialization is done by first resetting the qubits to $|0\rangle$ followed by calling [`StatePreparation`](qiskit.circuit.library.StatePreparation "qiskit.circuit.library.StatePreparation") class to prepare the qubits in a specified state. Both these steps are included in the [`Initialize`](qiskit.circuit.library.Initialize "qiskit.circuit.library.Initialize") instruction.
@@ -1979,7 +2464,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### iswap
 
-  <Function id="qiskit.circuit.QuantumCircuit.iswap" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5383-L5394" signature="iswap(qubit1, qubit2)">
+  <Function id="qiskit.circuit.QuantumCircuit.iswap" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5738-L5749" signature="iswap(qubit1, qubit2)">
     Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2000,7 +2485,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### mcp
 
-  <Function id="qiskit.circuit.QuantumCircuit.mcp" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4704-L4734" signature="mcp(lam, control_qubits, target_qubit, ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.mcp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5044-L5074" signature="mcp(lam, control_qubits, target_qubit, ctrl_state=None)">
     Apply [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2023,7 +2508,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### mcrx
 
-  <Function id="qiskit.circuit.QuantumCircuit.mcrx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4736-L4796" signature="mcrx(theta, q_controls, q_target, use_basis_gates=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.mcrx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5076-L5136" signature="mcrx(theta, q_controls, q_target, use_basis_gates=False)">
     Apply Multiple-Controlled X rotation gate
 
     **Parameters**
@@ -2036,7 +2521,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### mcry
 
-  <Function id="qiskit.circuit.QuantumCircuit.mcry" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4798-L4881" signature="mcry(theta, q_controls, q_target, q_ancillae=None, mode=None, use_basis_gates=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.mcry" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5138-L5236" signature="mcry(theta, q_controls, q_target, q_ancillae=None, mode=None, use_basis_gates=False)">
     Apply Multiple-Controlled Y rotation gate
 
     **Parameters**
@@ -2051,7 +2536,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### mcrz
 
-  <Function id="qiskit.circuit.QuantumCircuit.mcrz" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4883-L4926" signature="mcrz(lam, q_controls, q_target, use_basis_gates=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.mcrz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5238-L5281" signature="mcrz(lam, q_controls, q_target, use_basis_gates=False)">
     Apply Multiple-Controlled Z rotation gate
 
     **Parameters**
@@ -2064,7 +2549,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### mcx
 
-  <Function id="qiskit.circuit.QuantumCircuit.mcx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5704-L5786" signature="mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla', ctrl_state=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.mcx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6059-L6166" signature="mcx(control_qubits, target_qubit, ancilla_qubits=None, mode=None, ctrl_state=None)">
     Apply [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
 
     The multi-cX gate can be implemented using different techniques, which use different numbers of ancilla qubits and have varying circuit depth. These modes are:
@@ -2076,12 +2561,16 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     For the full matrix form of this gate, see the underlying gate documentation.
 
+    <Admonition title="Deprecated since version 2.1" type="danger">
+      `qiskit.circuit.quantumcircuit.QuantumCircuit.mcx()`’s argument `mode` is deprecated as of Qiskit 2.1. It will be removed no earlier than 3 months after the release date. Instead, add a generic MCXGate to the circuit and specify the synthesis method via the `hls_config` in the transpilation. Alternatively, specific decompositions are available at [https://qisk.it/mcx](https://qisk.it/mcx).
+    </Admonition>
+
     **Parameters**
 
     *   **control\_qubits** (*Sequence\[QubitSpecifier]*) – The qubits used as the controls.
     *   **target\_qubit** (*QubitSpecifier*) – The qubit(s) targeted by the gate.
     *   **ancilla\_qubits** (*QubitSpecifier | Sequence\[QubitSpecifier] | None*) – The qubits used as the ancillae, if the mode requires them.
-    *   **mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The choice of mode, explained further above.
+    *   **mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The choice of mode, explained further above.
     *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
     **Returns**
@@ -2100,7 +2589,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### measure
 
-  <Function id="qiskit.circuit.QuantumCircuit.measure" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3949-L4039" signature="measure(qubit, cbit)">
+  <Function id="qiskit.circuit.QuantumCircuit.measure" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4247-L4337" signature="measure(qubit, cbit)">
     Measure a quantum bit (`qubit`) in the Z basis into a classical bit (`cbit`).
 
     When a quantum state is measured, a qubit is projected in the computational (Pauli Z) basis to either $\lvert 0 \rangle$ or $\lvert 1 \rangle$. The classical bit `cbit` indicates the result of that projection as a `0` or a `1` respectively. This operation is non-reversible.
@@ -2176,7 +2665,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### ms
 
-  <Function id="qiskit.circuit.QuantumCircuit.ms" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4634-L4649" signature="ms(theta, qubits)">
+  <Function id="qiskit.circuit.QuantumCircuit.ms" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4974-L4989" signature="ms(theta, qubits)">
     Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2197,7 +2686,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### p
 
-  <Function id="qiskit.circuit.QuantumCircuit.p" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4651-L4663" signature="p(theta, qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.p" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4991-L5003" signature="p(theta, qubit)">
     Apply [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2218,7 +2707,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### pauli
 
-  <Function id="qiskit.circuit.QuantumCircuit.pauli" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5933-L5949" signature="pauli(pauli_string, qubits)">
+  <Function id="qiskit.circuit.QuantumCircuit.pauli" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6313-L6329" signature="pauli(pauli_string, qubits)">
     Apply [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate").
 
     **Parameters**
@@ -2237,7 +2726,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### prepare\_state
 
-  <Function id="qiskit.circuit.QuantumCircuit.prepare_state" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5951-L6070" signature="prepare_state(state, qubits=None, label=None, normalize=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.prepare_state" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6331-L6450" signature="prepare_state(state, qubits=None, label=None, normalize=False)">
     Prepare qubits in a specific state.
 
     This class implements a state preparing unitary. Unlike [`initialize()`](#qiskit.circuit.QuantumCircuit.initialize "qiskit.circuit.QuantumCircuit.initialize") it does not reset the qubits first.
@@ -2332,7 +2821,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### r
 
-  <Function id="qiskit.circuit.QuantumCircuit.r" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4928-L4943" signature="r(theta, phi, qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.r" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5283-L5298" signature="r(theta, phi, qubit)">
     Apply [`RGate`](qiskit.circuit.library.RGate "qiskit.circuit.library.RGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2354,7 +2843,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### rcccx
 
-  <Function id="qiskit.circuit.QuantumCircuit.rcccx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4994-L5018" signature="rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.rcccx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5349-L5373" signature="rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)">
     Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2377,7 +2866,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### rccx
 
-  <Function id="qiskit.circuit.QuantumCircuit.rccx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4972-L4992" signature="rccx(control_qubit1, control_qubit2, target_qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.rccx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5327-L5347" signature="rccx(control_qubit1, control_qubit2, target_qubit)">
     Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2399,7 +2888,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### reset
 
-  <Function id="qiskit.circuit.QuantumCircuit.reset" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3905-L3916" signature="reset(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.reset" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4203-L4214" signature="reset(qubit)">
     Reset the quantum bit(s) to their default state.
 
     **Parameters**
@@ -2417,7 +2906,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### rv
 
-  <Function id="qiskit.circuit.QuantumCircuit.rv" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4945-L4970" signature="rv(vx, vy, vz, qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.rv" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5300-L5325" signature="rv(vx, vy, vz, qubit)">
     Apply [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2442,7 +2931,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### rx
 
-  <Function id="qiskit.circuit.QuantumCircuit.rx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5020-L5035" signature="rx(theta, qubit, label=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.rx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5375-L5390" signature="rx(theta, qubit, label=None)">
     Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2464,7 +2953,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### rxx
 
-  <Function id="qiskit.circuit.QuantumCircuit.rxx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5076-L5091" signature="rxx(theta, qubit1, qubit2)">
+  <Function id="qiskit.circuit.QuantumCircuit.rxx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5431-L5446" signature="rxx(theta, qubit1, qubit2)">
     Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2486,7 +2975,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### ry
 
-  <Function id="qiskit.circuit.QuantumCircuit.ry" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5093-L5108" signature="ry(theta, qubit, label=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.ry" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5448-L5463" signature="ry(theta, qubit, label=None)">
     Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2508,7 +2997,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### ryy
 
-  <Function id="qiskit.circuit.QuantumCircuit.ryy" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5149-L5164" signature="ryy(theta, qubit1, qubit2)">
+  <Function id="qiskit.circuit.QuantumCircuit.ryy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5504-L5519" signature="ryy(theta, qubit1, qubit2)">
     Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2530,7 +3019,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### rz
 
-  <Function id="qiskit.circuit.QuantumCircuit.rz" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5166-L5178" signature="rz(phi, qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.rz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5521-L5533" signature="rz(phi, qubit)">
     Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2551,7 +3040,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### rzx
 
-  <Function id="qiskit.circuit.QuantumCircuit.rzx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5219-L5234" signature="rzx(theta, qubit1, qubit2)">
+  <Function id="qiskit.circuit.QuantumCircuit.rzx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5574-L5589" signature="rzx(theta, qubit1, qubit2)">
     Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2573,7 +3062,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### rzz
 
-  <Function id="qiskit.circuit.QuantumCircuit.rzz" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5236-L5251" signature="rzz(theta, qubit1, qubit2)">
+  <Function id="qiskit.circuit.QuantumCircuit.rzz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5591-L5606" signature="rzz(theta, qubit1, qubit2)">
     Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2595,7 +3084,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### s
 
-  <Function id="qiskit.circuit.QuantumCircuit.s" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5266-L5277" signature="s(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.s" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5621-L5632" signature="s(qubit)">
     Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2615,7 +3104,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### sdg
 
-  <Function id="qiskit.circuit.QuantumCircuit.sdg" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5279-L5290" signature="sdg(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.sdg" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5634-L5645" signature="sdg(qubit)">
     Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2635,7 +3124,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### store
 
-  <Function id="qiskit.circuit.QuantumCircuit.store" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3918-L3947" signature="store(lvalue, rvalue, /)">
+  <Function id="qiskit.circuit.QuantumCircuit.store" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4216-L4245" signature="store(lvalue, rvalue, /)">
     Store the result of the given real-time classical expression `rvalue` in the memory location defined by `lvalue`.
 
     Typically `lvalue` will be a [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node and `rvalue` will be some [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") to write into it, but anything that [`expr.lift()`](circuit_classical#qiskit.circuit.classical.expr.lift "qiskit.circuit.classical.expr.lift") can raise to an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is permissible in both places, and it will be called on them.
@@ -2662,7 +3151,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### swap
 
-  <Function id="qiskit.circuit.QuantumCircuit.swap" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5366-L5381" signature="swap(qubit1, qubit2)">
+  <Function id="qiskit.circuit.QuantumCircuit.swap" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5721-L5736" signature="swap(qubit1, qubit2)">
     Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2683,7 +3172,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### sx
 
-  <Function id="qiskit.circuit.QuantumCircuit.sx" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5438-L5449" signature="sx(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.sx" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5793-L5804" signature="sx(qubit)">
     Apply [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2703,7 +3192,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### sxdg
 
-  <Function id="qiskit.circuit.QuantumCircuit.sxdg" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5451-L5462" signature="sxdg(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.sxdg" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5806-L5817" signature="sxdg(qubit)">
     Apply [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2723,7 +3212,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### t
 
-  <Function id="qiskit.circuit.QuantumCircuit.t" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5501-L5512" signature="t(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.t" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5856-L5867" signature="t(qubit)">
     Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2743,7 +3232,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### tdg
 
-  <Function id="qiskit.circuit.QuantumCircuit.tdg" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5514-L5525" signature="tdg(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.tdg" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5869-L5880" signature="tdg(qubit)">
     Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2763,7 +3252,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### u
 
-  <Function id="qiskit.circuit.QuantumCircuit.u" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5527-L5547" signature="u(theta, phi, lam, qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.u" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5882-L5902" signature="u(theta, phi, lam, qubit)">
     Apply [`UGate`](qiskit.circuit.library.UGate "qiskit.circuit.library.UGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2786,7 +3275,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### unitary
 
-  <Function id="qiskit.circuit.QuantumCircuit.unitary" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6189-L6232" signature="unitary(obj, qubits, label=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.unitary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6569-L6612" signature="unitary(obj, qubits, label=None)">
     Apply unitary gate specified by `obj` to `qubits`.
 
     **Parameters**
@@ -2820,7 +3309,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### x
 
-  <Function id="qiskit.circuit.QuantumCircuit.x" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5597-L5609" signature="x(qubit, label=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L5952-L5964" signature="x(qubit, label=None)">
     Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2841,7 +3330,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### y
 
-  <Function id="qiskit.circuit.QuantumCircuit.y" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5788-L5799" signature="y(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.y" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6168-L6179" signature="y(qubit)">
     Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2861,7 +3350,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### z
 
-  <Function id="qiskit.circuit.QuantumCircuit.z" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L5841-L5852" signature="z(qubit)">
+  <Function id="qiskit.circuit.QuantumCircuit.z" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6221-L6232" signature="z(qubit)">
     Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
 
     For the full matrix form of this gate, see the underlying gate documentation.
@@ -2896,7 +3385,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
   | [`while_loop()`](#qiskit.circuit.QuantumCircuit.while_loop "qiskit.circuit.QuantumCircuit.while_loop")          | [`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp")                            |
   | [`switch()`](#qiskit.circuit.QuantumCircuit.switch "qiskit.circuit.QuantumCircuit.switch")                      | [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp")                         |
   | [`for_loop()`](#qiskit.circuit.QuantumCircuit.for_loop "qiskit.circuit.QuantumCircuit.for_loop")                | [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp")                                  |
-  | [`box()`](#qiskit.circuit.QuantumCircuit.box "qiskit.circuit.QuantumCircuit.box")                               | `BoxOp`                                                                                             |
+  | [`box()`](#qiskit.circuit.QuantumCircuit.box "qiskit.circuit.QuantumCircuit.box")                               | [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp")                                              |
   | [`break_loop()`](#qiskit.circuit.QuantumCircuit.break_loop "qiskit.circuit.QuantumCircuit.break_loop")          | [`BreakLoopOp`](qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp")                            |
   | [`continue_loop()`](#qiskit.circuit.QuantumCircuit.continue_loop "qiskit.circuit.QuantumCircuit.continue_loop") | [`ContinueLoopOp`](qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp")                   |
 
@@ -2906,16 +3395,18 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   When using the control-flow builder interface, you may sometimes want a qubit to be included in a block, even though it has no operations defined. In this case, you can use the [`noop()`](#qiskit.circuit.QuantumCircuit.noop "qiskit.circuit.QuantumCircuit.noop") method.
 
+  To check whether a circuit contains a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") you can use the helper method [`QuantumCircuit.has_control_flow_op()`](#qiskit.circuit.QuantumCircuit.has_control_flow_op "qiskit.circuit.QuantumCircuit.has_control_flow_op").
+
   #### box
 
-  <Function id="qiskit.circuit.QuantumCircuit.box" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6339-L6438" signature="box(body=None, /, qubits=None, clbits=None, *, label=None, duration=None, unit='dt')">
+  <Function id="qiskit.circuit.QuantumCircuit.box" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6719-L6835" signature="box(body_or_annotations=Ellipsis, /, qubits=None, clbits=None, *, label=None, duration=None, unit=None, annotations=Ellipsis)">
     Create a `box` of operations on this circuit that are treated atomically in the greater context.
 
     A “box” is a control-flow construct that is entered unconditionally. The contents of the box behave somewhat as if the start and end of the box were barriers (see [`barrier()`](#qiskit.circuit.QuantumCircuit.barrier "qiskit.circuit.QuantumCircuit.barrier")), except it is permissible to commute operations “all the way” through the box. The box is also an explicit scope for the purposes of variables, stretches and compiler passes.
 
     There are two forms for calling this function:
 
-    *   Pass a [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") positionally, and the `qubits` and `clbits` it acts on. In this form, a `BoxOp` is immediately created and appended using the circuit as the body.
+    *   Pass a [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") positionally, and the `qubits` and `clbits` it acts on. In this form, a [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") is immediately created and appended using the circuit as the body.
     *   Use in a `with` statement with no `body`, `qubits` or `clbits`. This is the “builder-interface form”, where you then use other [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") methods within the Python `with` scope to add instructions to the `box`. This is the preferred form, and much less error prone.
 
     **Examples**
@@ -2923,13 +3414,16 @@ python_api_name: qiskit.circuit.QuantumCircuit
     Using the builder interface to add two boxes in sequence. The two boxes in this circuit can execute concurrently, and the second explicitly inserts a data-flow dependency on qubit 8 for the duration of the box, even though the qubit is idle.
 
     ```python
-    from qiskit.circuit import QuantumCircuit
+    from qiskit.circuit import QuantumCircuit, Annotation
+
+    class MyAnnotation(Annotation):
+        namespace = "my.namespace"
 
     qc = QuantumCircuit(9)
     with qc.box():
         qc.cz(0, 1)
         qc.cz(2, 3)
-    with qc.box():
+    with qc.box([MyAnnotation()]):
         qc.cz(4, 5)
         qc.cz(6, 7)
         qc.noop(8)
@@ -2958,17 +3452,18 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **body** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – if given, the [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to use as the box’s body in the explicit construction. Not given in the context-manager form.
-    *   **qubits** (*Sequence\[QubitSpecifier] | None*) – the qubits to apply the `BoxOp` to, in the explicit form.
-    *   **clbits** (*Sequence\[ClbitSpecifier] | None*) – the qubits to apply the `BoxOp` to, in the explicit form.
+    *   **body\_or\_annotations** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*Annotation*](qiskit.circuit.Annotation "qiskit.circuit.Annotation")*]*) – the first positional argument is unnamed. If a [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") is passed positionally, it is immediately used as the body of the box, and `qubits` and `clbits` must also be specified. If not given, or if given an iterable of [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects, the context-manager form of this method is triggered.
+    *   **qubits** (*Sequence\[QubitSpecifier] | None*) – the qubits to apply the [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") to, in the explicit form.
+    *   **clbits** (*Sequence\[ClbitSpecifier] | None*) – the qubits to apply the [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") to, in the explicit form.
     *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – an optional string label for the instruction.
-    *   **duration** (*None*) – an optional explicit duration for the `BoxOp`. Scheduling passes are constrained to schedule the contained scope to match a given duration, including delay insertion if required.
-    *   **unit** (*Literal\['dt', 's', 'ms', 'us', 'ns', 'ps']*) – the unit of the `duration`.
+    *   **duration** (*None*) – an optional explicit duration for the [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp"). Scheduling passes are constrained to schedule the contained scope to match a given duration, including delay insertion if required.
+    *   **unit** (*Literal\['dt', 's', 'ms', 'us', 'ns', 'ps', 'expr'] | None*) – the unit of the `duration`.
+    *   **annotations** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*Annotation*](qiskit.circuit.Annotation "qiskit.circuit.Annotation")*]*) – any [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects the box should have. When this method is used in context-manager form, this argument can instead be passed as the only positional argument.
   </Function>
 
   #### break\_loop
 
-  <Function id="qiskit.circuit.QuantumCircuit.break_loop" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6867-L6894" signature="break_loop()">
+  <Function id="qiskit.circuit.QuantumCircuit.break_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7264-L7291" signature="break_loop()">
     Apply [`BreakLoopOp`](qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp").
 
     <Admonition title="Warning" type="caution">
@@ -2990,7 +3485,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### continue\_loop
 
-  <Function id="qiskit.circuit.QuantumCircuit.continue_loop" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6896-L6923" signature="continue_loop()">
+  <Function id="qiskit.circuit.QuantumCircuit.continue_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7293-L7320" signature="continue_loop()">
     Apply [`ContinueLoopOp`](qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp").
 
     <Admonition title="Warning" type="caution">
@@ -3012,7 +3507,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### for\_loop
 
-  <Function id="qiskit.circuit.QuantumCircuit.for_loop" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6549-L6615" signature="for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: None, qubits: None, clbits: None, *, label: str | None) → ForLoopContext" extraSignatures={["for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.for_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6946-L7012" signature="for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: None, qubits: None, clbits: None, *, label: str | None) → ForLoopContext" extraSignatures={["for_loop(indexset: Iterable[int], loop_parameter: Parameter | None, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
     Create a `for` loop on this circuit.
 
     There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp") with the given `body`. If `body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which, when entered, provides a loop variable (unless one is given, in which case it will be reused) and will automatically build a [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp") when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
@@ -3064,7 +3559,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### if\_else
 
-  <Function id="qiskit.circuit.QuantumCircuit.if_else" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6719-L6774" signature="if_else(condition, true_body, false_body, qubits, clbits, label=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.if_else" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7116-L7171" signature="if_else(condition, true_body, false_body, qubits, clbits, label=None)">
     Apply [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp").
 
     <Admonition title="Note" type="note">
@@ -3108,7 +3603,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### if\_test
 
-  <Function id="qiskit.circuit.QuantumCircuit.if_test" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6631-L6717" signature="if_test(condition: tuple[ClassicalRegister | Clbit, int]) → IfContext" extraSignatures={["if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.if_test" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7028-L7114" signature="if_test(condition: tuple[ClassicalRegister | Clbit, int]) → IfContext" extraSignatures={["if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet"]}>
     Create an `if` statement on this circuit.
 
     There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp") with the given `true_body`, and there will be no branch for the `false` condition (see also the [`if_else()`](#qiskit.circuit.QuantumCircuit.if_else "qiskit.circuit.QuantumCircuit.if_else") method). However, if `true_body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which can be used to build `if` statements. The return value of the `with` statement is a chainable context manager, which can be used to create subsequent `else` blocks. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
@@ -3162,7 +3657,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### switch
 
-  <Function id="qiskit.circuit.QuantumCircuit.switch" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6798-L6865" signature="switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: None, qubits: None, clbits: None, *, label: str | None) → SwitchContext" extraSignatures={["switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: Iterable[Tuple[Any, QuantumCircuit]], qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.switch" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7195-L7262" signature="switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: None, qubits: None, clbits: None, *, label: str | None) → SwitchContext" extraSignatures={["switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: Iterable[Tuple[Any, QuantumCircuit]], qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
     Create a `switch`/`case` structure on this circuit.
 
     There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") with the given case structure. If `cases` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which will automatically build a [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
@@ -3209,7 +3704,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### while\_loop
 
-  <Function id="qiskit.circuit.QuantumCircuit.while_loop" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6462-L6523" signature="while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: None, qubits: None, clbits: None, *, label: str | None) → WhileLoopContext" extraSignatures={["while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.while_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6859-L6920" signature="while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: None, qubits: None, clbits: None, *, label: str | None) → WhileLoopContext" extraSignatures={["while_loop(condition: tuple[ClassicalRegister | Clbit, int] | expr.Expr, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
     Create a `while` loop on this circuit.
 
     There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a `WhileLoopOp` with the given `body`. If `body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which will automatically build a `WhileLoopOp` when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
@@ -3250,7 +3745,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### noop
 
-  <Function id="qiskit.circuit.QuantumCircuit.noop" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6234-L6268" signature="noop(*qargs)">
+  <Function id="qiskit.circuit.QuantumCircuit.noop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L6614-L6648" signature="noop(*qargs)">
     Mark the given qubit(s) as used within the current scope, without adding an operation.
 
     This has no effect (other than raising an exception on invalid input) when called in the top scope of a [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). Within a control-flow builder, this causes the qubit to be “used” by the control-flow block, if it wouldn’t already be used, without adding any additional operations on it.
@@ -3280,13 +3775,23 @@ python_api_name: qiskit.circuit.QuantumCircuit
     [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if any requested qubit is not valid for the circuit.
   </Function>
 
+  #### has\_control\_flow\_op
+
+  <Function id="qiskit.circuit.QuantumCircuit.has_control_flow_op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4829-L4832" signature="has_control_flow_op()">
+    Checks whether the circuit has an instance of [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") present amongst its operations.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
   ### Converting circuits to single objects
 
   As discussed in [Methods to add general operations](#circuit-append-compose), you can convert a circuit to either an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") or a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") using two helper methods.
 
   #### to\_instruction
 
-  <Function id="qiskit.circuit.QuantumCircuit.to_instruction" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3313-L3338" signature="to_instruction(parameter_map=None, label=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.to_instruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3563-L3588" signature="to_instruction(parameter_map=None, label=None)">
     Create an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") out of this circuit.
 
     <Admonition title="See also" type="note">
@@ -3313,8 +3818,8 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### to\_gate
 
-  <Function id="qiskit.circuit.QuantumCircuit.to_gate" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3340-L3364" signature="to_gate(parameter_map=None, label=None)">
-    Create a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") out of this circuit. The circuit must act only qubits and contain only unitary operations.
+  <Function id="qiskit.circuit.QuantumCircuit.to_gate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3590-L3614" signature="to_gate(parameter_map=None, label=None)">
+    Create a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") out of this circuit. The circuit must act only on qubits and contain only unitary operations.
 
     <Admonition title="See also" type="note">
       **`circuit_to_gate()`**
@@ -3342,7 +3847,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### measure\_active
 
-  <Function id="qiskit.circuit.QuantumCircuit.measure_active" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4041-L4070" signature="measure_active(inplace=True)">
+  <Function id="qiskit.circuit.QuantumCircuit.measure_active" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4339-L4368" signature="measure_active(inplace=True)">
     Adds measurement to all non-idle qubits. Creates a new ClassicalRegister with a size equal to the number of non-idle qubits being measured.
 
     Returns a new circuit with measurements if inplace=False.
@@ -3362,7 +3867,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### measure\_all
 
-  <Function id="qiskit.circuit.QuantumCircuit.measure_all" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4072-L4115" signature="measure_all(inplace=True, add_bits=True)">
+  <Function id="qiskit.circuit.QuantumCircuit.measure_all" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4370-L4413" signature="measure_all(inplace=True, add_bits=True)">
     Adds measurement to all qubits.
 
     By default, adds new classical bits in a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") to store these measurements. If `add_bits=False`, the results of the measurements will instead be stored in the already existing classical bits, with qubit `n` being measured into classical bit `n`.
@@ -3391,7 +3896,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### clear
 
-  <Function id="qiskit.circuit.QuantumCircuit.clear" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3875-L3887" signature="clear()">
+  <Function id="qiskit.circuit.QuantumCircuit.clear" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4173-L4185" signature="clear()">
     Clear all instructions in self.
 
     Clearing the circuits will keep the metadata.
@@ -3409,7 +3914,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### remove\_final\_measurements
 
-  <Function id="qiskit.circuit.QuantumCircuit.remove_final_measurements" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L4117-L4202" signature="remove_final_measurements(inplace=True)">
+  <Function id="qiskit.circuit.QuantumCircuit.remove_final_measurements" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4415-L4500" signature="remove_final_measurements(inplace=True)">
     Removes final measurements and barriers on all qubits if they are present. Deletes the classical registers that were used to store the values from these measurements that become idle as a result of this operation, and deletes classical bits that are referenced only by removed registers, or that aren’t referenced at all but have become idle as a result of this operation.
 
     Measurements and barriers are considered final if they are followed by no other operations (aside from other measurements or barriers.)
@@ -3478,7 +3983,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
   qc.draw('mpl')
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-19.avif)
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-30.avif)
 
   From the plot, it is easy to see that this circuit has 12 qubits, and a collection of Hadamard, CNOT, X, and SWAP gates. But how to quantify this programmatically? Because we can do single-qubit gates on all the qubits simultaneously, the number of qubits in this circuit is equal to the [`width()`](#qiskit.circuit.QuantumCircuit.width "qiskit.circuit.QuantumCircuit.width") of the circuit:
 
@@ -3514,7 +4019,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### count\_ops
 
-  <Function id="qiskit.circuit.QuantumCircuit.count_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3696-L3703" signature="count_ops()">
+  <Function id="qiskit.circuit.QuantumCircuit.count_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3988-L3995" signature="count_ops()">
     Count each operation kind in the circuit.
 
     **Returns**
@@ -3528,7 +4033,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### depth
 
-  <Function id="qiskit.circuit.QuantumCircuit.depth" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3590-L3667" signature="depth(filter_function=<function QuantumCircuit.<lambda>>)">
+  <Function id="qiskit.circuit.QuantumCircuit.depth" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3840-L3917" signature="depth(filter_function=<function QuantumCircuit.<lambda>>)">
     Return circuit depth (i.e., length of critical path).
 
     The depth of a quantum circuit is a measure of how many “layers” of quantum gates, executed in parallel, it takes to complete the computation defined by the circuit. Because quantum gates take time to implement, the depth of a circuit roughly corresponds to the amount of time it takes the quantum computer to execute the circuit.
@@ -3572,7 +4077,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### get\_instructions
 
-  <Function id="qiskit.circuit.QuantumCircuit.get_instructions" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3712-L3721" signature="get_instructions(name)">
+  <Function id="qiskit.circuit.QuantumCircuit.get_instructions" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4004-L4013" signature="get_instructions(name)">
     Get instructions matching name.
 
     **Parameters**
@@ -3590,7 +4095,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### num\_connected\_components
 
-  <Function id="qiskit.circuit.QuantumCircuit.num_connected_components" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3723-L3784" signature="num_connected_components(unitary_only=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.num_connected_components" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4015-L4076" signature="num_connected_components(unitary_only=False)">
     How many non-entangled subcircuits can the circuit be factored to.
 
     **Parameters**
@@ -3608,7 +4113,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### num\_nonlocal\_gates
 
-  <Function id="qiskit.circuit.QuantumCircuit.num_nonlocal_gates" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3705-L3710" signature="num_nonlocal_gates()">
+  <Function id="qiskit.circuit.QuantumCircuit.num_nonlocal_gates" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3997-L4002" signature="num_nonlocal_gates()">
     Return number of non-local gates (i.e. involving 2+ qubits).
 
     Conditional nonlocal gates are also included.
@@ -3620,7 +4125,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### num\_tensor\_factors
 
-  <Function id="qiskit.circuit.QuantumCircuit.num_tensor_factors" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3792-L3801" signature="num_tensor_factors()">
+  <Function id="qiskit.circuit.QuantumCircuit.num_tensor_factors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4084-L4093" signature="num_tensor_factors()">
     Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
     **Notes**
@@ -3634,7 +4139,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### num\_unitary\_factors
 
-  <Function id="qiskit.circuit.QuantumCircuit.num_unitary_factors" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3786-L3790" signature="num_unitary_factors()">
+  <Function id="qiskit.circuit.QuantumCircuit.num_unitary_factors" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L4078-L4082" signature="num_unitary_factors()">
     Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
     **Return type**
@@ -3644,7 +4149,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### size
 
-  <Function id="qiskit.circuit.QuantumCircuit.size" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3572-L3588" signature="size(filter_function=<function QuantumCircuit.<lambda>>)">
+  <Function id="qiskit.circuit.QuantumCircuit.size" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3822-L3838" signature="size(filter_function=<function QuantumCircuit.<lambda>>)">
     Returns total number of instructions in circuit.
 
     **Parameters**
@@ -3662,7 +4167,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### width
 
-  <Function id="qiskit.circuit.QuantumCircuit.width" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3669-L3676" signature="width()">
+  <Function id="qiskit.circuit.QuantumCircuit.width" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3919-L3926" signature="width()">
     Return number of qubits plus clbits in circuit.
 
     **Returns**
@@ -3680,7 +4185,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### estimate\_duration
 
-  <Function id="qiskit.circuit.QuantumCircuit.estimate_duration" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L7025-L7082" signature="estimate_duration(target, unit='s')">
+  <Function id="qiskit.circuit.QuantumCircuit.estimate_duration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7422-L7479" signature="estimate_duration(target, unit='s')">
     Estimate the duration of a scheduled circuit
 
     This method computes the estimate of the circuit duration by finding the longest duration path in the circuit based on the durations provided by a given target. This method only works for simple circuits that have no control flow or other classical feed-forward operations.
@@ -3705,7 +4210,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### qubit\_duration
 
-  <Function id="qiskit.circuit.QuantumCircuit.qubit_duration" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6926-L6936" signature="qubit_duration(*qubits)">
+  <Function id="qiskit.circuit.QuantumCircuit.qubit_duration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7323-L7333" signature="qubit_duration(*qubits)">
     Return the duration between the start and stop time of the first and last instructions, excluding delays, over the supplied qubits. Its time unit is `self.unit`.
 
     **Parameters**
@@ -3723,7 +4228,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### qubit\_start\_time
 
-  <Function id="qiskit.circuit.QuantumCircuit.qubit_start_time" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6938-L6978" signature="qubit_start_time(*qubits)">
+  <Function id="qiskit.circuit.QuantumCircuit.qubit_start_time" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7335-L7375" signature="qubit_start_time(*qubits)">
     Return the start time of the first instruction, excluding delays, over the supplied qubits. Its time unit is `self.unit`.
 
     Return 0 if there are no instructions over qubits
@@ -3748,7 +4253,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### qubit\_stop\_time
 
-  <Function id="qiskit.circuit.QuantumCircuit.qubit_stop_time" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L6980-L7023" signature="qubit_stop_time(*qubits)">
+  <Function id="qiskit.circuit.QuantumCircuit.qubit_stop_time" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7377-L7420" signature="qubit_stop_time(*qubits)">
     Return the stop time of the last instruction, excluding delays, over the supplied qubits. Its time unit is `self.unit`.
 
     Return 0 if there are no instructions over qubits
@@ -3777,7 +4282,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### control
 
-  <Function id="qiskit.circuit.QuantumCircuit.control" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L1630-L1669" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L1854-L1893" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
     Control this circuit on `num_ctrl_qubits` qubits.
 
     **Parameters**
@@ -3802,7 +4307,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### inverse
 
-  <Function id="qiskit.circuit.QuantumCircuit.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L1495-L1545" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L1719-L1769" signature="inverse(annotated=False)">
     Invert (take adjoint of) this circuit.
 
     This is done by recursively inverting all gates.
@@ -3848,7 +4353,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### power
 
-  <Function id="qiskit.circuit.QuantumCircuit.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L1575-L1628" signature="power(power, matrix_power=False, annotated=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L1799-L1852" signature="power(power, matrix_power=False, annotated=False)">
     Raise this circuit to the power of `power`.
 
     If `power` is a positive integer and both `matrix_power` and `annotated` are `False`, this implementation defaults to calling `repeat`. Otherwise, the circuit is converted into a gate, and a new circuit, containing this gate raised to the given power, is returned. The gate raised to the given power is implemented either as a unitary gate if `annotated` is `False` or as an annotated operation if `annotated` is `True`.
@@ -3874,7 +4379,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### repeat
 
-  <Function id="qiskit.circuit.QuantumCircuit.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L1547-L1573" signature="repeat(reps, *, insert_barriers=False)">
+  <Function id="qiskit.circuit.QuantumCircuit.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L1771-L1797" signature="repeat(reps, *, insert_barriers=False)">
     Repeat this circuit `reps` times.
 
     **Parameters**
@@ -3893,7 +4398,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.QuantumCircuit.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L1387-L1425" signature="reverse_ops()">
+  <Function id="qiskit.circuit.QuantumCircuit.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L1611-L1649" signature="reverse_ops()">
     Reverse the circuit by reversing the order of instructions.
 
     This is done by recursively reversing all instructions. It does not invert (adjoint) any gate.
@@ -3941,7 +4446,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### draw
 
-  <Function id="qiskit.circuit.QuantumCircuit.draw" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3401-L3570" signature="draw(output=None, scale=None, filename=None, style=None, interactive=False, plot_barriers=True, reverse_bits=None, justify=None, vertical_compression='medium', idle_wires=None, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None, expr_len=30)">
+  <Function id="qiskit.circuit.QuantumCircuit.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3651-L3820" signature="draw(output=None, scale=None, filename=None, style=None, interactive=False, plot_barriers=True, reverse_bits=None, justify=None, vertical_compression='medium', idle_wires=None, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None, expr_len=30)">
     Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
     **text**: ASCII art TextDrawing that can be printed in the console.
@@ -4034,14 +4539,14 @@ python_api_name: qiskit.circuit.QuantumCircuit
     qc.draw(output='mpl', style={'backgroundcolor': '#EEEEEE'})
     ```
 
-    ![Circuit diagram output by the previous code.](/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-20.avif)
+    ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/qiskit-circuit-QuantumCircuit-31.avif)
   </Function>
 
   In addition to the core [`draw()`](#qiskit.circuit.QuantumCircuit.draw "qiskit.circuit.QuantumCircuit.draw") driver, there are two visualization-related helper methods, which are mostly useful for quickly unwrapping some inner instructions or reversing the [qubit-labelling conventions](circuit#circuit-conventions) in the drawing. For more general mutation, including basis-gate rewriting, you should use the transpiler ([`qiskit.transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler")).
 
   ### decompose
 
-  <Function id="qiskit.circuit.QuantumCircuit.decompose" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L3366-L3399" signature="decompose(gates_to_decompose=None, reps=1)">
+  <Function id="qiskit.circuit.QuantumCircuit.decompose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L3616-L3649" signature="decompose(gates_to_decompose=None, reps=1)">
     Call a decomposition pass on this circuit, to decompose one level (shallow decompose).
 
     **Parameters**
@@ -4060,7 +4565,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### reverse\_bits
 
-  <Function id="qiskit.circuit.QuantumCircuit.reverse_bits" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/quantumcircuit.py#L1427-L1493" signature="reverse_bits()">
+  <Function id="qiskit.circuit.QuantumCircuit.reverse_bits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L1651-L1717" signature="reverse_bits()">
     Return a circuit with the opposite order of wires.
 
     The circuit is “vertically” flipped. If a circuit is defined over multiple registers, the resulting circuit will have the same registers but with their order flipped.

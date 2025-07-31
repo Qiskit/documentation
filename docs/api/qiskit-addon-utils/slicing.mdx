@@ -25,12 +25,12 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
   **Parameters**
 
-  *   **slices** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")*]*) – The N-qubit circuit slices.
+  *   **slices** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")*]*) – The N-qubit circuit slices.
   *   **include\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, place barriers between each slice.
 
   **Returns**
 
-  A [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") with the slices appended in sequential order.
+  A [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") with the slices appended in sequential order.
 
   **Raises**
 
@@ -38,7 +38,7 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
   **Return type**
 
-  [*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") | None
+  [*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") | None
 </Function>
 
 ### slice\_by\_barriers
@@ -50,15 +50,15 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
   **Parameters**
 
-  **circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")) – The circuit to be split.
+  **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – The circuit to be split.
 
   **Returns**
 
-  A sequence of [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") objects, one for each slice.
+  A sequence of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") objects, one for each slice.
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")]
 </Function>
 
 ### slice\_by\_coloring
@@ -118,12 +118,12 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
   **Parameters**
 
-  *   **circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")) – The circuit to be split.
+  *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – The circuit to be split.
   *   **coloring** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – A dictionary mapping edges (pairs of integers) to color values.
 
   **Returns**
 
-  A sequence of [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") objects, one for each slice.
+  A sequence of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") objects, one for each slice.
 
   **Raises**
 
@@ -132,7 +132,7 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")]
 </Function>
 
 ### slice\_by\_depth
@@ -140,20 +140,20 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 <Function id="qiskit_addon_utils.slicing.slice_by_depth" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.1/qiskit_addon_utils/slicing/slice_by_depth.py#L21-L57" signature="slice_by_depth(circuit, max_slice_depth)">
   Split a `QuantumCircuit` into slices based on depth.
 
-  This function transforms the input circuit into a [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.3)") and batches the sequence of depth-1 layers output from [`layers()`](/api/qiskit/qiskit.dagcircuit.DAGCircuit#layers "(in Qiskit v1.3)") into slices of depth not exceeding `max_slice_depth`. This is achieved by composing layers into slices until the max slice depth is reached and then starting a new slice with the next layer. The final slice may be composed of fewer than `max_slice_depth` layers.
+  This function transforms the input circuit into a [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.4)") and batches the sequence of depth-1 layers output from [`layers()`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#layers "(in Qiskit v1.4)") into slices of depth not exceeding `max_slice_depth`. This is achieved by composing layers into slices until the max slice depth is reached and then starting a new slice with the next layer. The final slice may be composed of fewer than `max_slice_depth` layers.
 
   **Parameters**
 
-  *   **circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")) – The circuit to be split.
+  *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – The circuit to be split.
   *   **max\_slice\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum depth of a given slice.
 
   **Returns**
 
-  A sequence of [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") objects, one for each slice.
+  A sequence of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") objects, one for each slice.
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")]
 </Function>
 
 ### slice\_by\_gate\_types
@@ -167,14 +167,14 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
   **Parameters**
 
-  **circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")) – The circuit to be split.
+  **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – The circuit to be split.
 
   **Returns**
 
-  A sequence of [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") objects, one for each slice.
+  A sequence of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") objects, one for each slice.
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")]
 </Function>
 

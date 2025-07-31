@@ -61,7 +61,7 @@ Let us now inspect the time-evolution circuit of this Hamiltonian using a second
 <Figure size 956...x869... with 1 Axes>
 ```
 
-![Output from the previous code.](/images/api/qiskit-addon-mpf/qiskit_addon_mpf-backends-quimb_layers-2.avif)
+![Output from the previous code.](/docs/images/api/qiskit-addon-mpf/qiskit_addon_mpf-backends-quimb_layers-2.avif)
 
 In the circuit above, we can clearly identify its layer-wise structure. We can emphasize this further, by splitting the circuit into multiple layers as shown below (we recombine the `layers` into a single circuit with barriers between them to ease the visualization).
 
@@ -72,10 +72,10 @@ In the circuit above, we can clearly identify its layer-wise structure. We can e
 <Figure size 1374...x869... with 1 Axes>
 ```
 
-![Output from the previous code.](/images/api/qiskit-addon-mpf/qiskit_addon_mpf-backends-quimb_layers-3.avif)
+![Output from the previous code.](/docs/images/api/qiskit-addon-mpf/qiskit_addon_mpf-backends-quimb_layers-3.avif)
 
 <Admonition title="Hint" type="note">
-  The asymmetry of the central layers is a result of the implementation of Qiskit’s [`SuzukiTrotter`](/api/qiskit/qiskit.synthesis.SuzukiTrotter "(in Qiskit v1.3)") formula. In its second-order form, it combines the two half-time evolutions of the final term in the Hamiltonian into a single one of twice the length. We could transpile this circuit to collapse all such subequent gates in the central two layers (just like the last one), but for the sake of simplicity of this example, we will not do that here.
+  The asymmetry of the central layers is a result of the implementation of Qiskit’s [`SuzukiTrotter`](/docs/api/qiskit/qiskit.synthesis.SuzukiTrotter "(in Qiskit v1.4)") formula. In its second-order form, it combines the two half-time evolutions of the final term in the Hamiltonian into a single one of twice the length. We could transpile this circuit to collapse all such subequent gates in the central two layers (just like the last one), but for the sake of simplicity of this example, we will not do that here.
 </Admonition>
 
 It is not possible to instruct Quimb’s TEBD algorithm to simulate the exact structure of the circuit shown above. The reason for that is a limitation in its interface, as it only accepts the full Hamiltonian to be provided which is then time-evolved using pre-defined Trotter formulas. However, in doing so it does not treat the order of the Pauli terms in a Hamiltonian with any significance (like we do here).
@@ -104,11 +104,11 @@ In the code above you can see how simple the conversion is for layers which cont
 
 However, we must be more careful with layers including single-qubit gates. The reason for that is that the TEBD algorithm underlying the [`LayerwiseEvolver`](backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") must update even and odd bonds in an alternating manner. And because single-qubit gates are not applied on a site, but instead are split in half and applied to the bonds on either side, a layer of single-qubit gates acting on all qubits would break this assumption.
 
-To circumvent this problem, we can take any layer consisting of only single-qubit gates, and apply twice (once on the even and once on the odd bonds) while scaling each one with a factor of `0.5`.
+To circumvent this problem, we can take any layer consisting of only single-qubit gates, and apply twice (once on the even and once on the odd bonds).
 
 ```python
->>> model1a = LayerModel.from_quantum_circuit(layers[1], keep_only_odd=True, scaling_factor=0.5)
->>> model1b = LayerModel.from_quantum_circuit(layers[1], keep_only_odd=False, scaling_factor=0.5)
+>>> model1a = LayerModel.from_quantum_circuit(layers[1], keep_only_odd=True)
+>>> model1b = LayerModel.from_quantum_circuit(layers[1], keep_only_odd=False)
 >>> layer_models.extend([model1a, model1b])
 ```
 
@@ -121,10 +121,10 @@ Now that we know how to treat layers consisting of two-qubit and single-qubit ga
 ...         layer_models.append(LayerModel.from_quantum_circuit(layer))
 ...     else:
 ...         layer_models.append(
-...             LayerModel.from_quantum_circuit(layer, keep_only_odd=True, scaling_factor=0.5)
+...             LayerModel.from_quantum_circuit(layer, keep_only_odd=True)
 ...         )
 ...         layer_models.append(
-...             LayerModel.from_quantum_circuit(layer, keep_only_odd=False, scaling_factor=0.5)
+...             LayerModel.from_quantum_circuit(layer, keep_only_odd=False)
 ...         )
 >>> assert len(layer_models) == 8
 ```

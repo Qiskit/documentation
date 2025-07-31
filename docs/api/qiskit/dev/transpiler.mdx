@@ -18,11 +18,11 @@ python_api_name: qiskit.transpiler
 
 ## Overview
 
-Transpilation is the process of rewriting a given input circuit to match the topology of a specific quantum device, and/or to optimize the circuit for execution on present day noisy quantum systems.
+Transpilation is the process of rewriting a given input circuit to match the topology of a specific quantum device, and/or to optimize the circuit for execution on quantum systems.
 
 Most circuits must undergo a series of transformations that make them compatible with a given target device, and optimize them to reduce the effects of noise on the resulting outcomes. Rewriting quantum circuits to match hardware constraints and optimizing for performance can be far from trivial. The flow of logic in the rewriting tool chain need not be linear, and can often have iterative sub-loops, conditional branches, and other complex behaviors. That being said, the standard compilation flow follows the structure given below:
 
-![The transpilation process takes the input circuit, applies the transpilation       passes, then produces the output circuit.](/images/api/qiskit/dev/transpiling_core_steps.avif)
+![The transpilation process takes the input circuit, applies the transpilation       passes, then produces the output circuit.](/docs/images/api/qiskit/dev/transpiling_core_steps.avif)
 
 Qiskit uses the graph-based [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") intermediate representation (IR) of a circuit throughout the transpiler stack, rather than the tree-based [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). A transpiler pipeline is a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") object, whose [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") method takes in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and converts it to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), then subjects the IR to a sequence of *passes*, finally returning a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") back. A pass is either an [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.AnalysisPass"), which calculates and stores properties about the circuit in the stateful [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet"), or a [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass"), which modifies the IR to achieve a particular singular goal. You can think of a pipeline as being split into “stages”, where each stage is responsible for one high-level transformation.
 
@@ -164,7 +164,7 @@ If you are constructing custom stages for the preset pass managers, you may find
 ### Initialization stage
 
 <Admonition title="See also" type="note">
-  **[Init stage explanation](/guides/transpiler-stages#init-stage)**
+  **[Init stage explanation](/docs/guides/transpiler-stages#init-stage)**
 
   Higher-level user-facing explanation of the init stage in the IBM Quantum guide.
 </Admonition>
@@ -201,7 +201,7 @@ At optimization levels 2 and 3, the default plugin enables a much wider range of
 ### Layout stage
 
 <Admonition title="See also" type="note">
-  **[Layout stage explanation](/guides/transpiler-stages#layout-stage)**
+  **[Layout stage explanation](/docs/guides/transpiler-stages#layout-stage)**
 
   Higher-level user-facing explanation of the layout stage in the IBM Quantum guide.
 </Admonition>
@@ -216,7 +216,7 @@ The layout stage must set the properties `layout` and `original_qubit_indices` i
 
 At any given point in a circuit, we can identify a mapping between currently active “virtual” qubits of the input circuit to hardware qubits of the backend. A hardware qubit can only ever represent a single virtual qubit at a given point, but the mapping might vary over the course of the circuit. In principle, some virtual qubits might not be mapped at all points in the circuit execution, if the lifetime of a virtual qubit state can be shortened, though Qiskit’s built-in pipelines do not use this currently.
 
-![Illustration of how virtual qubits from an input circuit could be mapped to hardware qubits on a backend device's connectivity map.](/images/api/qiskit/dev/mapping.avif)
+![Illustration of how virtual qubits from an input circuit could be mapped to hardware qubits on a backend device's connectivity map.](/docs/images/api/qiskit/dev/mapping.avif)
 
 The layout stage is not responsible for ensuring that the connectivity of the target is respected all the way through the circuit, nor that all operations are valid for direct execution on the target; these are the responsibilities of the [routing](#transpiler-preset-stage-routing) and [translation](#transpiler-preset-stage-translation) stages, respectively.
 
@@ -241,7 +241,7 @@ At all optimization levels, the default layout method is `default`, though the s
 
 <span id="transpiler-preset-stage-layout-default" />
 
-<span id="id1" />
+<span id="id2" />
 
 #### Built-in `default` plugin
 
@@ -293,7 +293,7 @@ The principal difference to the [default stage](#transpiler-preset-stage-layout-
 ### Routing stage
 
 <Admonition title="See also" type="note">
-  **[Routing stage explanation](/guides/transpiler-stages#routing-stage)**
+  **[Routing stage explanation](/docs/guides/transpiler-stages#routing-stage)**
 
   Higher-level user-facing explanation of the routing stage in the IBM Quantum guide.
 </Admonition>
@@ -328,7 +328,7 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 <span id="transpiler-preset-stage-routing-default" />
 
-<span id="id2" />
+<span id="id4" />
 
 #### Built-in `default` plugin
 
@@ -370,7 +370,7 @@ In practice, [the “sabre” plugin](#transpiler-preset-stage-routing-sabre) ru
 
 <span id="transpiler-preset-stage-routing-sabre" />
 
-<span id="id3" />
+<span id="id5" />
 
 #### Built-in `sabre` plugin
 
@@ -387,7 +387,7 @@ This is almost invariably the best-performing built-in plugin, and the one Qiski
 ### Translation stage
 
 <Admonition title="See also" type="note">
-  **[Translation stage explanation](/guides/transpiler-stages#translation-stage)**
+  **[Translation stage explanation](/docs/guides/transpiler-stages#translation-stage)**
 
   Higher-level user-facing explanation of the translation stage in the IBM Quantum guide.
 </Admonition>
@@ -406,7 +406,7 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 <span id="transpiler-preset-stage-translation-default" />
 
-<span id="id5" />
+<span id="id7" />
 
 #### Built-in `default` plugin
 
@@ -434,6 +434,8 @@ The optimization level has no effect on this plugin.
 
 Uses the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") algorithm to symbolically translate gates into the target basis. At a high level, this starts from the set of gates requested by the circuit, and uses rules from a given [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") (typically the [`SessionEquivalenceLibrary`](circuit#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary")) to move towards the ISA.
 
+For a Clifford+T basis set, the single-qubit rotation gates are approximated using the [`SolovayKitaevDecomposition`](qiskit.synthesis.SolovayKitaevDecomposition "qiskit.synthesis.SolovayKitaevDecomposition") algorithm.
+
 This is the default translation method.
 
 The optimization level has no effect on this plugin.
@@ -443,7 +445,7 @@ The optimization level has no effect on this plugin.
 ### Optimization stage
 
 <Admonition title="See also" type="note">
-  **[Optimization stage explanation](/guides/transpiler-stages#optimization-stage)**
+  **[Optimization stage explanation](/docs/guides/transpiler-stages#optimization-stage)**
 
   Higher-level user-facing explanation of the optimization stage in the IBM Quantum guide.
 </Admonition>
@@ -452,7 +454,7 @@ The optimization stage is for low-level hardware-aware optimizations. Unlike [th
 
 There are very few requirements on an optimization plugin, other than it takes in ISA-supported circuits, and returns ISA-supported circuits. An optimization plugin will often contain a loop, such as the [`DoWhileController`](qiskit.passmanager.DoWhileController "qiskit.passmanager.DoWhileController"), and might include the configured translation stage as a fix-up pipeline.
 
-Qiskit’s built-in optimization plugins are general, and apply well to most real-world ISAs for non-error-corrected devices. The built-in plugins are less well-suited to ISAs that have no continuously parametrized single-qubit gate, such as a Clifford+T basis set.
+Qiskit’s built-in optimization plugins are general, and apply well to most real-world ISAs for non-error-corrected devices. The built-in plugins are less well-suited to ISAs that have no continuously parametrized single-qubit gate.
 
 When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins), the entry point for `optimization` is `qiskit.transpiler.optimization`. The built-in plugins are:
 
@@ -462,13 +464,13 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 <span id="transpiler-preset-stage-optimization-default" />
 
-<span id="id7" />
+<span id="id9" />
 
 #### Built-in `default` plugin
 
-This varies significantly between optimization levels.
+This varies significantly depending on the optimization level and whether the basis set is of the form Clifford+T.
 
-The specifics of this pipeline are subject to change between Qiskit versions. The broad principles are described below.
+The specifics of this pipeline are subject to change between Qiskit versions. The broad principles are described below. First, consider the more common case that the basis set is not of the form Clifford+T.
 
 At optimization level 0, the stage is empty.
 
@@ -477,6 +479,8 @@ At optimization level 1, the stage does matrix-based resynthesis of runs of sing
 At optimization level 2, in addition the optimizations of level 1, the loop contains commutation analysis of sets of gates to widen the range of gates that can be considered for cancellation. Before the loop, runs of both one- and two-qubit gates undergo a single matrix-based resynthesis.
 
 At optimization level 3, the two-qubit matrix-based resynthesis runs inside the optimization loop. The optimization loop condition also tries multiple runs and chooses the minimum point in the case of fluctuating output; this is necessary because matrix-based resynthesis is relatively unstable in terms of concrete gates.
+
+For a Clifford+T basis set, two-qubit matrix based resynthesis is not applied.
 
 Optimization level 3 is typically very expensive for large circuits.
 
@@ -506,7 +510,7 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 <span id="transpiler-preset-stage-scheduling-default" />
 
-<span id="id8" />
+<span id="id10" />
 
 #### Built-in `default` plugin
 
@@ -857,7 +861,7 @@ target.build_coupling_map('cz').draw()
 
 After the circuit has been translated to the target basis, mapped to the device, and optimized, a scheduling phase can be applied to optionally account for all the idle time in the circuit. At a high level, the scheduling can be thought of as inserting delays into the circuit to account for idle time on the qubits between the execution of instructions. For example, if we start with a circuit such as:
 
-![Diagram illustrating the previously described circuit.](/images/api/qiskit/dev/transpiler-8.avif)
+![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/dev/transpiler-8.avif)
 
 we can then call [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") on it with `scheduling_method` set:
 
@@ -875,11 +879,11 @@ circ = transpile(ghz, backend, scheduling_method="asap")
 circ.draw(output='mpl')
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit/dev/transpiler-9.avif)
+![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/transpiler-9.avif)
 
 You can see here that the transpiler inserted [`Delay`](circuit#qiskit.circuit.Delay "qiskit.circuit.Delay") instructions to account for idle time on each qubit. To get a better idea of the timing of the circuit we can also look at it with the `timeline.draw()` function:
 
-![Output from circuit timeline drawer.](/images/api/qiskit/dev/transpiler-10.avif)
+![Output from circuit timeline drawer.](/docs/images/api/qiskit/dev/transpiler-10.avif)
 
 The scheduling of a circuit involves two parts: analysis and constraint mapping, followed by a padding pass. The first part requires running a scheduling analysis pass such as `ALAPSchedulingAnalysis` or `ASAPSchedulingAnalysis` which analyzes the circuit and records the start time of each instruction in the circuit using a scheduling algorithm (“as late as possible” for `ALAPSchedulingAnalysis` and “as soon as possible” for `ASAPSchedulingAnalysis`) in the property set. Once the circuit has an initial scheduling, additional passes can be run to account for any timing constraints on the target backend, such as alignment constraints. This is typically done with the [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule") pass which will adjust the scheduling set in the property set to the constraints of the target backend. Once all the scheduling and adjustments/rescheduling are finished, a padding pass, such as [`PadDelay`](qiskit.transpiler.passes.PadDelay "qiskit.transpiler.passes.PadDelay") or [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") is run to insert the instructions into the circuit, which completes the scheduling.
 
@@ -926,7 +930,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### TranspilerError
 
-<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
   Bases: [`TranspilerAccessError`](#qiskit.transpiler.TranspilerAccessError "qiskit.transpiler.exceptions.TranspilerAccessError")
 
   Exceptions raised during transpilation.
@@ -936,7 +940,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### TranspilerAccessError
 
-<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
   Bases: [`PassManagerError`](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.exceptions.PassManagerError")
 
   DEPRECATED: Exception of access error in the transpiler passes.
@@ -946,7 +950,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### CouplingError
 
-<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Base class for errors raised by the coupling graph object.
@@ -956,7 +960,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### LayoutError
 
-<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Errors raised by the layout object.
@@ -966,7 +970,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### CircuitTooWideForTarget
 
-<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
   Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
 
   Error raised if the circuit is too wide for the target.
@@ -976,7 +980,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### InvalidLayoutError
 
-<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
   Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
 
   Error raised when a user provided layout is invalid.

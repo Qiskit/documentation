@@ -8,47 +8,26 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 
 # LayerModel
 
-<Class id="qiskit_addon_mpf.backends.quimb_layers.LayerModel" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_layers/model.py#L25-L150" signature="LayerModel(L, H2, H1=None, cyclic=False, keep_only_odd=None)" modifiers="class">
+<Class id="qiskit_addon_mpf.backends.quimb_layers.LayerModel" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_layers/model.py#L25-L135" signature="LayerModel(L, H2, H1=None, cyclic=False)" modifiers="class">
   Bases: [`LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d_tebd/index.html#quimb.tensor.tensor_1d_tebd.LocalHam1D "(in quimb v1.10)")
 
   A model for representing a layer of time-evolution interactions.
 
   Essentially, this class is a simple wrapper of [`quimb.tensor.LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.LocalHam1D "(in quimb v1.10)"). Its main purpose is to provide a simple interface for constructing a Quimb-compatible Hamiltonian from Qiskit objects.
 
-  Initialize a [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") instance.
-
-  Most of the arguments below are simply forwarded to [`quimb.tensor.LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.LocalHam1D "(in quimb v1.10)") so check out its documentation for more details.
-
-  **Parameters**
-
-  *   **L** – the number of qubits.
-  *   **H2** – the two-site interactions.
-  *   **H1** – the optional on-site interactions.
-  *   **cyclic** – whether to apply periodic boundary conditions.
-  *   **keep\_only\_odd** – whether to keep only odd bond interactions. For more details see [`keep_only_odd`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd "qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd").
-
-  ## Attributes
-
-  ### keep\_only\_odd
-
-  <Attribute id="qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd">
-    Whether to keep only interactions on bonds with odd indices.
-  </Attribute>
-
   ## Methods
 
   ### from\_quantum\_circuit
 
-  <Function id="qiskit_addon_mpf.backends.quimb_layers.LayerModel.from_quantum_circuit" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_layers/model.py#L73-L150" signature="from_quantum_circuit(circuit, *, scaling_factor=1.0, keep_only_odd=None, **kwargs)" modifiers="classmethod">
-    Construct a [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") from a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)").
+  <Function id="qiskit_addon_mpf.backends.quimb_layers.LayerModel.from_quantum_circuit" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_layers/model.py#L50-L135" signature="from_quantum_circuit(circuit, *, keep_only_odd=None, **kwargs)" modifiers="classmethod">
+    Construct a [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") from a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)").
 
     You can see an example of this function in action in the docs of `quimb_layers`.
 
     **Parameters**
 
-    *   **circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")) – the quantum circuit to parse.
-    *   **scaling\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – a factor with which to scale the term strengths. This can be used to apply (for example) a time step scaling factor. It may also be used (e.g.) to split onsite terms into two layers (even and odd) with \$0.5\$ of the strength, each.
-    *   **keep\_only\_odd** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – the value to use for [`keep_only_odd`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd "qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd").
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – the quantum circuit to parse.
+    *   **keep\_only\_odd** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – whether to keep only interactions on bonds with odd indices.
     *   **kwargs** – any additional keyword arguments to pass to the [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") constructor.
 
     **Returns**
@@ -66,10 +45,8 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 
   ### get\_gate\_expm
 
-  <Function id="qiskit_addon_mpf.backends.quimb_layers.LayerModel.get_gate_expm" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_layers/model.py#L51-L71" signature="get_gate_expm(where, x)">
+  <Function id="qiskit_addon_mpf.backends.quimb_layers.LayerModel.get_gate_expm" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_layers/model.py#L33-L48" signature="get_gate_expm(where, x)">
     Get the local term at the sites `where`, matrix exponentiated by `x`.
-
-    If `where` applies to an even bond index and [`keep_only_odd`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd "qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd") is `True`, this method will return `None`.
 
     **Parameters**
 
@@ -78,7 +55,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 
     **Returns**
 
-    The interaction in terms of an array or `None` depending on [`keep_only_odd`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd "qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd") (see above).
+    The interaction in terms of an array or `None` if this layer has no interaction on this bond.
 
     **Return type**
 

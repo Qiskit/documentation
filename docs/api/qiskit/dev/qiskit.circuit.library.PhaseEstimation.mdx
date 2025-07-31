@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PhaseEstimation
 
 # PhaseEstimation
 
-<Class id="qiskit.circuit.library.PhaseEstimation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/phase_estimation.py#L22-L105" signature="qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')" modifiers="class">
+<Class id="qiskit.circuit.library.PhaseEstimation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/phase_estimation.py#L22-L105" signature="qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   Phase Estimation circuit.
@@ -35,8 +35,8 @@ $$
 
   [textbook](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/quantum-phase-estimation.ipynb)
 
-  <Admonition title="Deprecated since version 1.3_pending" type="danger">
-    The class `qiskit.circuit.library.phase_estimation.PhaseEstimation` is pending deprecation as of Qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use qiskit.circuit.library.phase\_estimation instead.
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.phase_estimation.PhaseEstimation` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use qiskit.circuit.library.phase\_estimation instead.
   </Admonition>
 
   **Parameters**
@@ -52,7 +52,7 @@ $$
 
   **Reference Circuit:**
 
-  ![Diagram illustrating the previously described circuit.](/images/api/qiskit/dev/qiskit-circuit-library-PhaseEstimation-1.avif)
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/dev/qiskit-circuit-library-PhaseEstimation-1.avif)
 
   ## Attributes
 
@@ -66,6 +66,28 @@ $$
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.clbits">
     A list of `Clbit`s in the order that they were added. You should not mutate this.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+
+    qr1 = QuantumRegister(2)
+    qr2 = QuantumRegister(1)
+    cr1 = ClassicalRegister(2)
+    cr2 = ClassicalRegister(1)
+    qc = QuantumCircuit(qr1, qr2, cr1, cr2)
+
+    print("List the qubits in this circuit:", qc.qubits)
+    print("List the classical bits in this circuit:", qc.clbits)
+    ```
+
+    ```text
+    List the qubits in this circuit: [Qubit(QuantumRegister(2, 'q0'), 0),
+    Qubit(QuantumRegister(2, 'q0'), 1), Qubit(QuantumRegister(1, 'q1'), 0)]
+    List the classical bits in this circuit: [Clbit(ClassicalRegister(2, 'c0'), 0),
+    Clbit(ClassicalRegister(2, 'c0'), 1), Clbit(ClassicalRegister(1, 'c1'), 0)]
+    ```
   </Attribute>
 
   ### cregs
@@ -79,13 +101,25 @@ $$
   <Attribute id="qiskit.circuit.library.PhaseEstimation.data">
     The circuit data (instructions and context).
 
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2)
+    qc.measure([0], [1])
+    print(qc.data)
+    ```
+
+    ```text
+    [CircuitInstruction(operation=Instruction(name='measure', num_qubits=1,
+    num_clbits=1, params=[]), qubits=(Qubit(QuantumRegister(2, 'q'), 0),),
+    clbits=(Clbit(ClassicalRegister(2, 'c'), 1),))]
+    ```
+
     **Returns**
 
-    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
-
-    **Return type**
-
-    QuantumCircuitData
+    A list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") instances in the circuit.
   </Attribute>
 
   ### duration
@@ -102,34 +136,128 @@ $$
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.global_phase">
     The global phase of the current circuit scope in radians.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    circuit = QuantumCircuit(2)
+    circuit.h(0)
+    circuit.cx(0, 1)
+    print(circuit.global_phase)
+    ```
+
+    ```text
+    0.0
+    ```
+
+    ```python
+    from numpy import pi
+
+    circuit.global_phase = pi/4
+    print(circuit.global_phase)
+    ```
+
+    ```text
+    0.7853981633974483
+    ```
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.PhaseEstimation.instances" attributeValue="195" />
+  <Attribute id="qiskit.circuit.library.PhaseEstimation.instances" attributeValue="302" />
 
   ### layout
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.layout">
-    Return any associated layout information about the circuit
+    Return any associated layout information about the circuit.
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function: an initial layout that permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout, which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+    from qiskit.providers.fake_provider import GenericBackendV2
+    from qiskit.transpiler import generate_preset_pass_manager
+
+    # Create circuit to test transpiler on
+    qc = QuantumCircuit(3, 3)
+    qc.h(0)
+    qc.cx(0, 1)
+    qc.swap(1, 2)
+    qc.cx(0, 1)
+
+    # Add measurements to the circuit
+    qc.measure([0, 1, 2], [0, 1, 2])
+
+    # Specify the QPU to target
+    backend = GenericBackendV2(3)
+
+    # Transpile the circuit
+    pass_manager = generate_preset_pass_manager(
+    optimization_level=1, backend=backend
+    )
+    transpiled = pass_manager.run(qc)
+
+    # Print the layout after transpilation
+    print(transpiled.layout.routing_permutation())
+    ```
+
+    ```text
+    [0, 1, 2]
+    ```
   </Attribute>
 
   ### metadata
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.metadata">
-    Arbitrary user-defined metadata for the circuit.
+    Arbitrary user-defined dictionary of metadata for the circuit.
 
     Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, metadata={'experiment_type': 'Bell state experiment'})
+
+    print(qc.metadata)
+    ```
+
+    ```text
+    {'experiment_type': 'Bell state experiment'}
+    ```
   </Attribute>
 
   ### num\_ancillas
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.num_ancillas">
     Return the number of ancilla qubits.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit, QuantumRegister, AncillaRegister
+
+    # Create a 2-qubit quantum circuit
+    reg = QuantumRegister(2)
+    qc = QuantumCircuit(reg)
+
+    # Create an ancilla register with 1 qubit
+    anc = AncillaRegister(1)
+    qc.add_register(anc)  # Add the ancilla register to the circuit
+
+    print("Number of ancilla qubits:", qc.num_ancillas)
+    ```
+
+    ```text
+    Number of ancilla qubits: 1
+    ```
   </Attribute>
 
   ### num\_captured\_stretches
@@ -152,6 +280,20 @@ $$
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.num_clbits">
     Return number of classical bits.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    # Create a new circuit with two qubits and one classical bit
+    qc = QuantumCircuit(2, 1)
+    print("Number of classical bits:", qc.num_clbits)
+    ```
+
+    ```text
+    Number of classical bits: 1
+    ```
   </Attribute>
 
   ### num\_declared\_stretches
@@ -224,6 +366,66 @@ $$
     </Admonition>
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+    from qiskit.providers.fake_provider import GenericBackendV2
+    from qiskit.transpiler import generate_preset_pass_manager
+
+    qc = QuantumCircuit(2)
+    qc.h(0)
+    qc.cx(0, 1)
+    qc.measure_all()
+
+    # Print the original circuit
+    print("Original circuit:")
+    print(qc)
+
+    # Transpile the circuit with a specific basis gates list and print the resulting circuit
+    backend = GenericBackendV2(2, basis_gates=['u1', 'u2', 'u3', 'cx'])
+    pm = generate_preset_pass_manager(
+        optimization_level=1, backend=backend, scheduling_method="alap"
+    )
+    transpiled_qc = pm.run(qc)
+    print("Transpiled circuit with basis gates ['u1', 'u2', 'u3', 'cx']:")
+    print(transpiled_qc)
+
+    # Print the start times of each instruction in the transpiled circuit
+    print("Start times of instructions in the transpiled circuit:")
+    for instruction, start_time in zip(transpiled_qc.data, transpiled_qc.op_start_times):
+        print(f"{instruction.operation.name}: {start_time}")
+    ```
+
+    ```text
+    Original circuit:
+            ┌───┐      ░ ┌─┐
+    q_0: ┤ H ├──■───░─┤M├───
+            └───┘┌─┴─┐ ░ └╥┘┌─┐
+    q_1: ─────┤ X ├─░──╫─┤M├
+                └───┘ ░  ║ └╥┘
+    meas: 2/══════════════╩══╩═
+                        0  1
+
+    Transpiled circuit with basis gates ['u1', 'u2', 'u3', 'cx']:
+                ┌─────────┐          ░ ┌─────────────────┐┌─┐
+    q_0 -> 0 ───┤ U2(0,π) ├──────■───░─┤ Delay(1255[dt]) ├┤M├
+            ┌──┴─────────┴───┐┌─┴─┐ ░ └───────┬─┬───────┘└╥┘
+    q_1 -> 1 ┤ Delay(196[dt]) ├┤ X ├─░─────────┤M├─────────╫─
+            └────────────────┘└───┘ ░         └╥┘         ║
+    meas: 2/═══════════════════════════════════╩══════════╩═
+                                                1          0
+
+    Start times of instructions in the transpiled circuit:
+    u2: 0
+    delay: 0
+    cx: 196
+    barrier: 2098
+    delay: 2098
+    measure: 3353
+    measure: 2098
+    ```
 
     **Returns**
 
@@ -322,6 +524,19 @@ $$
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.name" attributeTypeHint="str">
     A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
   </Attribute>
 </Class>
 

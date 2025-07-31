@@ -1,0 +1,128 @@
+---
+title: LayerwiseEvolver (v0.2)
+description: API reference for qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver in qiskit-addon-mpf v0.2
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver
+---
+
+# LayerwiseEvolver
+
+<Class id="qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_layers/evolver.py#L23-L171" signature="LayerwiseEvolver(evolution_state, layers, *args, **kwargs)" modifiers="class">
+  Bases: [`TEBDEvolver`](backends-tenpy-tebd-tebd-evolver "qiskit_addon_mpf.backends.tenpy_tebd.evolver.TEBDEvolver")
+
+  A special case of the [`TEBDEvolver`](backends-tenpy-tebd-tebd-evolver "qiskit_addon_mpf.backends.tenpy_tebd.TEBDEvolver") based on layer-wise evolution models.
+
+  As also explained in [`tenpy_layers`](backends-tenpy-layers#module-qiskit_addon_mpf.backends.tenpy_layers "qiskit_addon_mpf.backends.tenpy_layers"), this implementation extracts the alternating even/odd bond updates implemented inside of the original [`TEBDEngine`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.algorithms.tebd.TEBDEngine.html#tenpy.algorithms.tebd.TEBDEngine "(in TeNPy v1.0.4)") to become the end users responsibility. It does so, by replacing the single Hamiltonian provided to the [`TEBDEvolver`](backends-tenpy-tebd-tebd-evolver "qiskit_addon_mpf.backends.tenpy_tebd.TEBDEvolver") instance with a sequence of [`LayerModel`](backends-tenpy-layers-layer-model "qiskit_addon_mpf.backends.tenpy_layers.LayerModel") instances. Every single instance of these encodes a single **layer** of interactions. These should enforce the alternating updates of even and odd bonds of the underlying tensor network.
+
+  The motivation for this more complicated interface is that is provides a lot more flexbility and enables users to define custom Trotter product formulas rather than being limited to the ones implemented by TeNPy directly.
+
+  Initialize a [`LayerwiseEvolver`](#qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver "qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver") instance.
+
+  **Parameters**
+
+  *   **evolution\_state** ([*tenpy\_tebd.MPOState*](backends-tenpy-tebd-mpo-state "qiskit_addon_mpf.backends.tenpy_tebd.MPOState")) – forwarded to [`TEBDEvolver`](backends-tenpy-tebd-tebd-evolver "qiskit_addon_mpf.backends.tenpy_tebd.TEBDEvolver"). Please refer to its documentation for more details.
+  *   **layers** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*LayerModel*](backends-tenpy-layers-layer-model "qiskit_addon_mpf.backends.tenpy_layers.LayerModel")*]*) – the list of models describing single layers of interactions. See above as well as the explanations provided in [`tenpy_layers`](backends-tenpy-layers#module-qiskit_addon_mpf.backends.tenpy_layers "qiskit_addon_mpf.backends.tenpy_layers").
+  *   **args** – any further positional arguments will be forwarded to the [`TEBDEvolver`](backends-tenpy-tebd-tebd-evolver "qiskit_addon_mpf.backends.tenpy_tebd.TEBDEvolver") constructor.
+  *   **kwargs** – any further keyword arguments will be forwarded to the [`TEBDEvolver`](backends-tenpy-tebd-tebd-evolver "qiskit_addon_mpf.backends.tenpy_tebd.TEBDEvolver") constructor.
+
+  ## Attributes
+
+  ### layers
+
+  <Attribute id="qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver.layers">
+    The layers of interactions used to implement the time-evolution.
+  </Attribute>
+
+  ### dt
+
+  <Attribute id="qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver.dt">
+    The time step to be used by this time-evolution instance.
+  </Attribute>
+
+  ## Methods
+
+  ### calc\_U
+
+  <Function id="qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver.calc_U" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_layers/evolver.py#L136-L171" signature="calc_U(order, delta_t, type_evo='real', E_offset=None)">
+    Calculates the local bond updates.
+
+    This adapts [`calc_U()`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.algorithms.tebd.TEBDEngine.html#tenpy.algorithms.tebd.TEBDEngine.calc_U "(in TeNPy v1.0.4)") to work with the layer-wise implementation.
+
+    **Parameters**
+
+    *   **order** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – this is being ignored.
+    *   **delta\_t** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the time-step to use.
+    *   **type\_evo** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the type of time-evolution. Imaginary time-evolution is not supported at this time.
+    *   **E\_offset** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | None*) – a constant energy offset to be applied.
+
+    **Return type**
+
+    None
+  </Function>
+
+  ### evolve
+
+  <Function id="qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver.evolve" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_layers/evolver.py#L62-L96" signature="evolve(N_steps, dt)">
+    Perform a single time step of TEBD.
+
+    **Parameters**
+
+    *   **N\_steps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – should always be `1` in this case. See [`TEBDEngine`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.algorithms.tebd.TEBDEngine.html#tenpy.algorithms.tebd.TEBDEngine "(in TeNPy v1.0.4)") for more details.
+    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the time-step to use.
+
+    **Returns**
+
+    The truncation error.
+
+    **Return type**
+
+    [*TruncationError*](https://tenpy.readthedocs.io/en/latest/reference/tenpy.linalg.truncation.TruncationError.html#tenpy.linalg.truncation.TruncationError "(in TeNPy v1.0.4)")
+  </Function>
+
+  ### suzuki\_trotter\_decomposition
+
+  <Function id="qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver.suzuki_trotter_decomposition" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_layers/evolver.py#L115-L134" signature="suzuki_trotter_decomposition(order, N_steps)" modifiers="static">
+    Returns an empty list.
+
+    <Admonition title="Note" type="note">
+      This method is undefined for this subclass but we cannot raise an error upon calling it because of the internal algorithm flow. Instead, the Trotter decomposition in this class is encoded directly into the [`layers`](#qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver.layers "qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver.layers").
+    </Admonition>
+
+    **Parameters**
+
+    *   **order** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – is being ignored.
+    *   **N\_steps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – is being ignored.
+
+    **Returns**
+
+    An empty list.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]]
+  </Function>
+
+  ### suzuki\_trotter\_time\_steps
+
+  <Function id="qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver.suzuki_trotter_time_steps" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_layers/evolver.py#L98-L113" signature="suzuki_trotter_time_steps(order)" modifiers="static">
+    Returns an empty list.
+
+    <Admonition title="Note" type="note">
+      This method is undefined for this subclass but we cannot raise an error upon calling it because of the internal algorithm flow. Instead, the Trotter decomposition in this class is encoded directly into the [`layers`](#qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver.layers "qiskit_addon_mpf.backends.tenpy_layers.LayerwiseEvolver.layers").
+    </Admonition>
+
+    **Parameters**
+
+    **order** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – is being ignored.
+
+    **Returns**
+
+    An empty list.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
+  </Function>
+</Class>
+

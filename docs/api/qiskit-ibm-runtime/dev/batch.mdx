@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
 # Batch
 
-<Class id="qiskit_ibm_runtime.Batch" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/batch.py#L23-L117" signature="Batch(backend=None, max_time=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.Batch" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/batch.py#L23-L118" signature="Batch(backend, max_time=None, *, create_new=True)" modifiers="class">
   Bases: [`Session`](session "qiskit_ibm_runtime.session.Session")
 
   Class for running jobs in batch execution mode.
@@ -62,14 +62,15 @@ python_api_name: qiskit_ibm_runtime.Batch
           jobs.append(job)
   ```
 
-  For more details, check the “[Run jobs in a batch](/guides/run-jobs-batch)” page.
+  For more details, check the “[Run jobs in a batch](/docs/guides/run-jobs-batch)” page.
 
   Batch constructor.
 
   **Parameters**
 
-  *   **backend** ([*BackendV2*](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.4)") *| None*) – Instance of `Backend` class.
-  *   **max\_time** (*int | str | None*) – Maximum amount of time a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/guides/max-execution-time).
+  *   **backend** ([*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v2.1)")) – Instance of `Backend` class.
+  *   **max\_time** (*int | str | None*) – Maximum amount of time a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/docs/guides/max-execution-time).
+  *   **create\_new** (*bool | None*) – If True, the POST session API endpoint will be called to create a new session. Prevents creating a new session when `from_id()` is called.
 
   **Raises**
 
@@ -101,7 +102,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.Batch.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L204-L212" signature="backend()">
+  <Function id="qiskit_ibm_runtime.Batch.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L207-L215" signature="backend()">
     Return backend for this session.
 
     **Returns**
@@ -115,7 +116,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### cancel
 
-  <Function id="qiskit_ibm_runtime.Batch.cancel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L190-L194" signature="cancel()">
+  <Function id="qiskit_ibm_runtime.Batch.cancel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L193-L197" signature="cancel()">
     Cancel all pending jobs in a session.
 
     **Return type**
@@ -125,7 +126,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### close
 
-  <Function id="qiskit_ibm_runtime.Batch.close" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L196-L202" signature="close()">
+  <Function id="qiskit_ibm_runtime.Batch.close" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L199-L205" signature="close()">
     Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
     **Return type**
@@ -135,7 +136,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### details
 
-  <Function id="qiskit_ibm_runtime.Batch.details" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L255-L297" signature="details()">
+  <Function id="qiskit_ibm_runtime.Batch.details" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L260-L304" signature="details()">
     Return session details.
 
     **Returns**
@@ -164,7 +165,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### from\_id
 
-  <Function id="qiskit_ibm_runtime.Batch.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L317-L350" signature="from_id(session_id, service)" modifiers="classmethod">
+  <Function id="qiskit_ibm_runtime.Batch.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L324-L377" signature="from_id(session_id, service)" modifiers="classmethod">
     Construct a Session object with a given session\_id
 
     **Parameters**
@@ -177,7 +178,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
         **Raises:**
 
-        IBMInputValueError: If given session\_id does not exist.
+        IBMInputValueError: If given session\_id does not exist. IBMRuntimeError: If the backend of the session is unknown.
 
     **Returns**
 
@@ -190,7 +191,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### status
 
-  <Function id="qiskit_ibm_runtime.Batch.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L214-L239" signature="status()">
+  <Function id="qiskit_ibm_runtime.Batch.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L217-L242" signature="status()">
     Return current session status.
 
     **Returns**
@@ -210,7 +211,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### usage
 
-  <Function id="qiskit_ibm_runtime.Batch.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L241-L253" signature="usage()">
+  <Function id="qiskit_ibm_runtime.Batch.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L244-L258" signature="usage()">
     Return session usage in seconds.
 
     Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens last.

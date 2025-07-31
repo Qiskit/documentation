@@ -1,0 +1,127 @@
+---
+title: qpd (v0.9)
+description: API reference for qiskit_addon_cutting.qpd in qiskit-addon-cutting v0.9
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_cutting.qpd
+---
+
+<span id="module-qiskit_addon_cutting.qpd" />
+
+<span id="quasi-probability-decomposition-qpd-qiskit-addon-cutting-qpd" />
+
+# Quasi-Probability Decomposition (QPD)
+
+`qiskit_addon_cutting.qpd`
+
+Main quasiprobability decomposition functionality.
+
+|                                                                                                 |                                                                              |
+| ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis")                                 | Basis in which to decompose an operation.                                    |
+| [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate")                       | Base class for a gate to be decomposed using quasiprobability decomposition. |
+| [`SingleQubitQPDGate`](qpd-single-qubit-qpd-gate "qiskit_addon_cutting.qpd.SingleQubitQPDGate") | Single qubit gate to be decomposed using quasiprobability decomposition.     |
+| [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")          | Two qubit gate to be decomposed using quasiprobability decomposition.        |
+
+### WeightType
+
+<Class id="qiskit_addon_cutting.qpd.WeightType" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/weights.py" signature="WeightType(value)" modifiers="class">
+  Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.13)")
+
+  Type of weight associated with a QPD sample.
+
+  #### EXACT
+
+  <Attribute id="qiskit_addon_cutting.qpd.WeightType.EXACT" attributeValue="1">
+    A weight given in proportion to its exact weight
+  </Attribute>
+
+  #### SAMPLED
+
+  <Attribute id="qiskit_addon_cutting.qpd.WeightType.SAMPLED" attributeValue="2">
+    A weight that was determined through some sampling procedure
+  </Attribute>
+</Class>
+
+### generate\_qpd\_weights
+
+<Function id="qiskit_addon_cutting.qpd.generate_qpd_weights" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/weights.py" signature="generate_qpd_weights(qpd_bases, num_samples=1000)">
+  Generate weights from the joint quasiprobability distribution.
+
+  Each weight whose absolute value is above a threshold of `1 / num_samples` will be evaluated exactly. The remaining weights – those in the tail of the distribution – will then be sampled from, resulting in at most `num_samples` unique weights.
+
+  **Parameters**
+
+  *   **qpd\_bases** ([`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")\[[`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")]) – The [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") objects from which to generate weights
+  *   **num\_samples** ([`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Controls the number of weights to generate
+
+  **Return type**
+
+  [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"), [`...`](https://docs.python.org/3/library/constants.html#Ellipsis "(in Python v3.13)")], [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [`WeightType`](#qiskit_addon_cutting.qpd.WeightType "qiskit_addon_cutting.qpd.weights.WeightType")]]
+
+  **Returns**
+
+  A mapping from a given decomposition to its weight. Keys are tuples of indices – one index per input [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis"). The indices correspond to a specific decomposition mapping in the basis.
+
+  Values are tuples. The first element is a number corresponding to the weight of the contribution. The second element is the [`WeightType`](#qiskit_addon_cutting.qpd.WeightType "qiskit_addon_cutting.qpd.WeightType"), either `EXACT` or `SAMPLED`.
+</Function>
+
+### decompose\_qpd\_instructions
+
+<Function id="qiskit_addon_cutting.qpd.decompose_qpd_instructions" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/decompose.py" signature="decompose_qpd_instructions(circuit, instruction_ids, map_ids=None, *, inplace=False)">
+  Replace all QPD instructions in the circuit with local Qiskit operations and measurements.
+
+  **Parameters**
+
+  *   **circuit** (QuantumCircuit) – The circuit containing QPD instructions
+  *   **instruction\_ids** (Sequence\[Sequence\[int]]) – A 2D sequence, such that each inner sequence corresponds to indices of instructions comprising one decomposition in the circuit. The elements within a common sequence belong to a common decomposition and should be sampled together.
+  *   **map\_ids** (Sequence\[int] | None) – Indices to a specific linear mapping to be applied to the decompositions in the circuit. If no map IDs are provided, the circuit will be decomposed randomly according to the decompositions’ joint probability distribution.
+  *   **inplace** (bool) – If `True`, the `circuit` will be modified in place.
+
+  **Return type**
+
+  QuantumCircuit
+
+  **Returns**
+
+  Circuit which has had all its [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instances decomposed into local operations.
+
+  The circuit will contain a new, final classical register to contain the QPD measurement outcomes (accessible at `retval.cregs[-1]`).
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – An index in `instruction_ids` corresponds to a gate which is not a [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instance.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – A list within instruction\_ids is not length 1 or 2.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The total number of indices in `instruction_ids` does not equal the number of [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instances in the circuit.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Gates within the same decomposition hold different QPD bases.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Length of `map_ids` does not equal the number of decompositions in the circuit.
+</Function>
+
+### qpdbasis\_from\_instruction
+
+<Function id="qiskit_addon_cutting.qpd.qpdbasis_from_instruction" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/decompositions.py" signature="qpdbasis_from_instruction(gate, /)">
+  Generate a [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") object, given a supported operation.
+
+  All two-qubit gates which implement the [`to_matrix()`](/docs/api/qiskit/qiskit.circuit.Gate#to_matrix "(in Qiskit v1.3)") method are supported. This should include the vast majority of gates with no unbound parameters, but there are some special cases (see, e.g., [qiskit issue #10396](https://github.com/Qiskit/qiskit/issues/10396)).
+
+  The [`Move`](instructions-move "qiskit_addon_cutting.instructions.Move") operation, which can be used to specify a wire cut, is also supported.
+
+  **Return type**
+
+  [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")
+
+  **Returns**
+
+  The newly-instantiated [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") object
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Instruction not supported.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Cannot decompose instruction with unbound parameters.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `to_matrix` conversion of two-qubit gate failed.
+
+  **Parameters**
+
+  **gate** ([*Instruction*](/docs/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.3)"))
+</Function>
+

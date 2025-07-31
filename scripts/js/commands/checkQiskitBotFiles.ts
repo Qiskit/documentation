@@ -16,6 +16,7 @@ import { load } from "js-yaml";
 import { globby } from "globby";
 
 const ALLOWED_OWNERLESS_FILES = new Set([
+  "learning/index",
   "docs/guides/_toc",
   "docs/guides/bit-ordering",
   "docs/guides/operators-overview",
@@ -46,7 +47,7 @@ const ALLOWED_OWNERLESS_FILES = new Set([
 
 const ALLOWED_NONEXISTENT_FILES: Set<string> = new Set([]);
 
-const GLOBS = ["docs/guides/*", "docs/migration-guides/*"];
+const GLOBS = ["{docs,learning}/**/*.{ipynb,mdx}", "!docs/api/**/*"];
 
 async function main() {
   const qiskitBotFiles = await getQiskitBotFiles();

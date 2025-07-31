@@ -6,79 +6,40 @@ description: How the IBM Quantum fair-share scheduler determines order of worklo
 
 # Fair-share scheduler
 
-<CloudContent>
-<Admonition type="note">
-This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/fair-share-scheduler)
-</Admonition>
-</CloudContent>
-<LegacyContent>
-<Admonition type="note">
-This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.](https://quantum.cloud.ibm.com/docs/guides/fair-share-scheduler)
-</Admonition>
-</LegacyContent>
-
-When you submit a workload to a quantum processing unit (QPU), it enters the scheduler for the specific QPU, joining the pool of workloads (from all users) that are waiting to be executed on that QPU. The order in which these workloads are executed is, by default, determined by a fair-share formula. As discussed below, this formula attempts to balance the workload between different [instances](/guides/instances) according to the allocated QPU access amount over a given time window. In practice, this means that workloads from various instances are interweaved in such a way that the order in which workloads complete is not necessarily the order in which they were submitted. Because the order is calculated dynamically as new workloads arrive, it is generally impossible to guarantee when a workload will be executed from the fair-share scheduler.
+When you submit a workload to a quantum processing unit (QPU), it enters the scheduler for the specific QPU, joining the pool of workloads (from all users) that are waiting to be executed on that QPU. The order in which these workloads are executed is, by default, determined by a fair-share formula. As discussed below, this formula attempts to balance the workload between different [instances](/docs/guides/instances) according to the allocated QPU access amount over a given time window. In practice, this means that workloads from various instances are interweaved in such a way that the order in which workloads complete is not necessarily the order in which they were submitted. Because the order is calculated dynamically as new workloads arrive, it is generally impossible to guarantee when a workload will be executed from the fair-share scheduler.
 
 ## Fair-share terms
 
-<LegacyContent>
-*   **Channel:** An entity providing access to quantum computing. IBM QuantumPlatform and IBM Cloud&reg; are channels that provide access to Qiskit Runtime services.
-*   **Instance:** A combination of hub/group/project.
-*   **Hub:** Administrative hub, which represents the top level of an organization, such as an academic, industry, or research partner.
-*   **Group:** A mid-level structure to which access allocation can be allocated by the hub for one or more collections of users (projects).
-*   **Project:** The base-level construct to which time are allocated from the overarching group, and to which users are directly assigned.
-</LegacyContent>
-<CloudContent>
+
 * **Account:** Individuals and organizations use an IBM Cloud account to access IBM Quantum Platform and Qiskit Runtime.
-* **Instance:** The base-level construct to which time is allocated from the overarching account to a set of QPUs, and to which users are directly assigned. Instances are connected to a specific region and [plan](/guides/cloud-setup#cloud-plans).
-</CloudContent>
-*   **28-day rolling window:** The fair-share scheduler accounts for usage over a rolling time window. Only execution time accumulated within that window is accounted for the purpose of fairness. The length of that window is currently 28 days. When the fair-share scheduler is invoked, it takes into account usage starting 28 days ago.
-<LegacyContent>
-*   **Time used:** For every instance, during the 28-day rolling window, we account for all usage on all the QPUs of the IBM Quantum Premium Plan. These include all successful workloads, as well as workloads returning known select error codes.
-</LegacyContent>
-<CloudContent>
-*   **Time used:** For every instance, during the 28-day rolling window, all usage on all the QPUs is accounted for. These include all successful workloads, as well as workloads returning known select error codes.
-</CloudContent>
+* **Instance:** The base-level construct to which time is allocated from the overarching account to a set of QPUs, and to which users are directly assigned. Instances are connected to a specific region and [plan](/docs/guides/plans-overview). See the [Instances](/docs/guides/instances) guide for more information.
+
+*   **28-day rolling window:** The fair-share scheduler accounts for usage over a rolling time window. Only execution time accumulated within that window is accounted for the purpose of fairness. The length of that window is currently 28 days. When the fair-share scheduler is invoked, it takes into account usage starting 28 days ago. 
+
+(*Note:* The rolling time window does not apply to Flex Plan. The fair-share ratio for Flex Plan is total usage versus allocation.)
+
+
+*   **Time used:** For every instance, during the 28-day rolling window, all usage on all the QPUs is accounted for. These include all successful workloads, as well as workloads returning known select error codes. (*Note:* The rolling time window does not apply to Flex Plan. The fair-share ratio for Flex Plan is total usage versus allocation.)
+
 
 ## Allocation and administration
 
-<LegacyContent>
-IBM&reg; assigns allocation to each hub based on their allotted capacity contracted under the Premium Plan subscription. Hub administrators then decide what portion of this allocation to assign to each of their groups. Similarly, group administrators will decide what portion of allocation to assign to each of their projects.
 
-The hub administration user interface is used to assign allocation, in minutes, to groups. The entire hub allotted time can be distributed to the underlying groups, and the hub administrator can control the time distribution by specifying the allocation in minutes for each group.
-
-The fair-share scheduler takes into consideration how the allotted time is distributed across groups and projects to determine workload prioritization.
-
-The scheduler combines a group’s allocation with the allotted time of its hub, to determine the total fraction of computational power allocated to that group.
-
-For example, assume only two groups maintain workloads in one queue. With all else being equal, a group with twice the number of minutes will have twice the number of workloads execute.
-</LegacyContent>
-<CloudContent>
 IBM&reg; assigns allocation to each organization based on their allotted capacity contracted under their plan. The organization can choose to have one or more child accounts within their organization. Administrators then decide what portion of this allocation to assign to each account, and then to each instance.
 
 The fair-share scheduler takes into consideration how the allotted time is distributed across instances to determine workload prioritization. The scheduler combines an instance's allocation with the allotted time of its parent account, to determine the total fraction of computational power allocated to that instance.
 
 For example, assume only two instances maintain workloads in one queue. With all else being equal, an instance with twice the number of minutes will have twice the number of workloads execute.
-</CloudContent>
+
 
 ## How the fair-share scheduler works
 
-<LegacyContent>
-The fair-share scheduler selects workloads to execute on a QPU in a dynamic order so that no instance can monopolize the QPU. When a QPU is ready for additional work, it requests the next workload from the fair-share scheduler. The scheduler's default behavior is to select the next workload by first identifying the group that has used the least amount of their allocation within the current scheduling window. If the selected group has more than one project, and both have workloads waiting to be executed, then the scheduler identifies the project that has used the least of their allocation within the scheduling window. Finally, if the selected project has submitted more than one workload, the scheduler will select the oldest workload first. Thus, within a project, the scheduler works on a first-in-first-out (FIFO) basis.
-</LegacyContent>
-<CloudContent>
+
 The fair-share scheduler selects workloads to execute on a QPU in a dynamic order so that no instance can monopolize the QPU. When a QPU is ready for additional work, it requests the next workload from the fair-share scheduler. The scheduler's default behavior is to select the next workload by first identifying the instance that has used the least amount of their allocation within the current scheduling window. If the selected instance has submitted more than one workload, the scheduler will select the oldest workload first. Thus, within a instance, the scheduler works on a first-in-first-out (FIFO) basis.
-</CloudContent>
-<LegacyContent>
-## Wait-time estimate
 
-A wait-time estimate is provided through IBM Quantum Platform. The computed time is the result of a scheduling simulation that predicts one possible execution pattern, given the current fair-share ordering of all the workloads waiting for that QPU and the approximate runtime of each workload. The dynamic nature of the fair-share scheduler means that this estimated time is not fixed and can vary, sometimes dramatically. This wait time is also subject to limitations inherent in estimating the execution time for Qiskit Runtime workloads. For these workloads, where an accurate estimation of time is not feasible, the maximum allowed runtime is used as a proxy. In practice, this means that the duration for a Qiskit Runtime workload can be over-estimated by up to eight hours, the maximum allowed Qiskit Runtime workload duration for Premium Plan users.
-
-Your workload's position in the queue is listed in the **Queue position** column on the [Workloads page](https://quantum.ibm.com/workloads).
-</LegacyContent>
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
-    - Learn how to [Monitor a workload](/guides/monitor-job).
+    - Try the [Grover's algorithm](/docs/tutorials/grovers-algorithm) tutorial.
+    - Learn how to [Monitor a workload](/docs/guides/monitor-job).
 </Admonition>

@@ -6,18 +6,7 @@ description: Information about QPU calibration, properties, and versioning
 
 # QPU information
 
-<LegacyContent>
-<Admonition type="note">
-This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.](https://quantum.cloud.ibm.com/docs/guides/qpu-information)
-</Admonition>
-</LegacyContent>
-<CloudContent>
-<Admonition type="note">
-This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/qpu-information)
-</Admonition>
-</CloudContent>
-
-IBM&reg; offers both open and premium access to a wide variety of quantum processing units (QPUs). All QPUs deployed by IBM are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these QPUs. You can see the full details of all IBM QPUs on the [Quantum processing units page](https://quantum.ibm.com/services/resources).
+IBM&reg; offers both open and premium access to a wide variety of quantum processing units (QPUs). All QPUs deployed by IBM are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these QPUs. You can see the full details of all IBM QPUs on the [Quantum processing units page](https://quantum.cloud.ibm.com/computers).
 
 ## QPU versioning
 
@@ -50,16 +39,12 @@ The revision version number will increment for fixes that do not break the exist
 
 ## QPU configuration values
 
-The following is a subset of QPU configuration values available in IBM Quantum Platform and from [Qiskit](/api/qiskit/qiskit.providers.models.BackendConfiguration).
+The following is a subset of QPU configuration values available in IBM Quantum Platform and from [Qiskit](/docs/api/qiskit/1.4/qiskit.providers.models.BackendConfiguration).
 
-<LegacyContent>
-These values are shown on both the [Compute resources tab](https://quantum.ibm.com/services/resources) and the details page for each QPU.
-</LegacyContent>
-<CloudContent>
 These values are shown on both the [Compute resources page](https://quantum.cloud.ibm.com/computers) and the details page for each QPU.
-</CloudContent>
+
 *   **Name** - The unique name assigned to a specific QPU. QPUs hosted on IBM Cloud® have names that begin with `ibmq_*` (older QPUs) or `ibm_*` (newer QPUs). All QPUs are given a city name, e.g., `ibmq_johannesburg`. This name does not indicate where the actual QPU is hosted. They are named after IBM&reg; locations around the world.
-*   **Qubits** - The number of qubits in a QPU. For physical QPUs, this is the number of physical qubits in the device. For simulators, this number need not be uniquely defined, and instead can depend on the simulation method and/or the amount of memory available.
+*   **Qubits** - The number of physical qubits in a QPU. 
 *   **2Q error (best)** - The lowest two-qubit (2Q) error on any edge of the device as measured from isolated 2Q randomized benchmarking.
 *   **2Q error (layered)** - Average error per layered gate (EPLG) in a chain of 100 qubits. Average EPLG measures the average gate error in a layered chain of $N$ qubits ($N$=100 here). It is derived from a similar quantity known as the layer fidelity (LF) where EPLG$_{100}$ = 4/5(1-LF$^{\frac{1}{99}}$) and layer fidelity is the process fidelity of the layered chain of $N$ qubits. For details, see the paper [Benchmarking quantum processor performance at scale](https://arxiv.org/abs/2311.05933). Note that in the paper EPLG is defined for process error, but for consistency with the individually reported gate errors here it is quoted for average gate error, thus the factor of 4/5.
 *   **CLOPS** - Circuit layer operations per second, and also known as CLOPS_v, is a measure of how many layers of a Quantum volume circuit (virtual circuit) a QPU (quantum processing unit) can execute per unit of time. Find more information about this metric in the paper [Quality, Speed, and Scale: three key attributes to measure the performance of near-term quantum computers](https://arxiv.org/abs/2110.14108).
@@ -71,7 +56,7 @@ These values are shown on both the [Compute resources page](https://quantum.clou
 *   **Features** - Additional information about the QPU, such as whether it supports pulse inputs.
 
 <Admonition type="note" title="Average gate fidelity">
-Note that the metric for median ECR error (for Eagle processors) and median CZ error (for Heron processors) is the [average gate fidelity](/api/qiskit/quantum_info#average_gate_fidelity), which is the average over all possible input states of the fidelity between the state produced by the actual operation and the state produced by the ideal operation.
+Note that the metric for median ECR error (for Eagle processors) and median CZ error (for Heron processors) is the [average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity), which is the average over all possible input states of the fidelity between the state produced by the actual operation and the state produced by the ideal operation.
 </Admonition>
 
 **Additional information available on the details page for each QPU**
@@ -83,7 +68,15 @@ To access the details page, click the **Compute resources** tab, then click the 
 *   **Calibration data** - Download the calibration data as a CSV file or click the arrow to display the Topology diagram, Individual qubit readout graph, or the Calibration data table. You can customize the data that is shown, depending on the view you have open. For example, on the Topology diagram, you can choose the data you want to see for connections and qubits. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
 
     > *   <span id="coupling-map">**Topology diagram** or **coupling map** </span> - A diagram that indicates the pairs of qubits that support two-qubit gate operations between them. This is also called the coupling map or connectivity. Qubits are represented as circles and the supported two-qubit gate operations are displayed as lines connecting the qubits.
-    > *   **Individual qubit properties** - Shows the selected property for each qubit on the QPU. You can view the frequency, T1, T2, Anharmonicity, probability measurements, error rates, and so on.
+    > - **Individual qubit properties** - Shows the selected property for each qubit on the QPU. You can view properties such as:
+    >   - **T1 (Relaxation Time)**: The T1 time represents the average duration a qubit remains in its excited state $|1\rangle$ before decaying to its ground state $|0\rangle$ due to energy relaxation. This parameter is used to characterize the qubit's energy relaxation behavior, and is expressed in units of seconds (s).
+    >   - **T2 (Dephasing Time)**: The T2 time denotes the timescale over which a qubit maintains phase coherence of a superposition between the $|0\rangle$ and $|1\rangle$ states. It accounts for both energy relaxation and pure dephasing processes, providing insight into the qubit's coherence properties.
+    >   - **frequency**: This parameter specifies the resonant frequency of the qubit, indicating the energy difference between the $|0\rangle$ and $|1\rangle$ states, expressed in hertz (Hz).
+    >   - **anharmonicity**: Anharmonicity is the difference in energy between the first and second excited states of the qubit, also expressed in hertz (Hz).
+    >   - **readout_error**: The readout error quantifies the average probability of incorrectly measuring a qubit's state. It is commonly calculated as the mean of prob_meas0_prep1 and prob_meas1_prep0, providing a single metric for measurement fidelity.
+    >   - **prob_meas0_prep1**: This parameter indicates the probability of measuring a qubit in the $|0\rangle$ state when it was intended to be prepared in the $|1\rangle$ state, denoted as $P(0|1)$. It reflects errors in state preparation and measurement (SPAM), particularly measurement errors in superconducting qubits.
+    >   - **prob_meas1_prep0**: Similarly, this parameter represents the probability of measuring a qubit in the $|1\rangle$ state when it was intended to be prepared in the $|0\rangle$ state, denoted as $P(1|0)$. Like prob_meas0_prep1, it reflects SPAM errors, with measurement errors being the predominant contributor in superconducting qubits.
+    >   - **readout_length**: The readout_length specifies the duration of the readout operation for a qubit. It measures the time from the initiation of the measurement pulse to the completion of signal digitization, after which the system is ready for the next operation. Understanding this parameter is crucial for optimizing circuit execution, especially when incorporating mid-circuit measurements.
 
 *   **Your access instance** - Instances that you can use. Click the arrow on the right to expand or collapse this section. For each instance, you can see the following information:
 
@@ -94,25 +87,18 @@ To access the details page, click the **Compute resources** tab, then click the 
     *   **Usage** - Click the link to see the jobs that you have run on this QPU.
 
 ## View your resources
-<LegacyContent>
-To find your available QPUs, open the [Compute resources](https://quantum.ibm.com/services/resources) page.  Click a QPU to view its details.
-</LegacyContent>
-<CloudContent>
+
 To find your available QPUs, open the [Compute resources](https://quantum.cloud.ibm.com/computers) page.  Click a QPU to view its details.
-</CloudContent>
-You can also view your available QPUs by using the [backends API.](/api/qiskit-ibm-runtime/qiskit-runtime-service#backends)
+
+You can also view your available QPUs by using the [backends API.](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backends)
 
 ## View QPU configuration
-<LegacyContent>
-View QPU configuration values by selecting a QPU on the [Quantum processing units](https://quantum.ibm.com/services/resources) page from the Compute resources tab. The three tabs in the Calibration data section let you choose how to view the calibration data; the Map view tab is automatically selected.
-</LegacyContent>
-<CloudContent>
+
 View QPU configuration values by selecting a QPU on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. The three tabs in the Calibration data section let you choose how to view the calibration data; the Map view tab is automatically selected.
-</CloudContent>
 
 ### Expanded card for a sample QPU
 
-![An expanded card for a sample QPU.](/images/guides/exp-card.avif "Expanded card for a sample QPU")
+![An expanded card for a sample QPU.](/docs/images/guides/qpu-information/exp-card.avif "Expanded card for a sample QPU")
 
 ### QPU tabs
 
@@ -120,16 +106,8 @@ Click the download icon in the upper right of any tab to download a CSV file of 
 
 **Graph view tab.**
 
-![The graph view tab shows the calibration data as a graph.](/images/guides/graph-view1.avif "Graph view tab")
+![The graph view tab shows the calibration data as a graph.](/docs/images/guides/qpu-information/graph-view1.avif "Graph view tab")
 
 **Table view tab**
 
-![The table view tab shows the calibration information as numerical data.](/images/guides/table-view.avif "Table view tab")
-
-<LegacyContent>
-## Find QPU information from other channels
-
-To find your available QPUs on **IBM Cloud**, view the [IBM Cloud Compute resources page.](https://cloud.ibm.com/quantum/resources/your-resources) You must be logged in to see your available compute resources. You are shown a snapshot of each QPU. To see full details, click the QPU name. You can also search for QPU from this page.
-
-To see the QPUs available to you on **IBM Quantum Platform**, click the [Compute resources tab](https://quantum.ibm.com/services/resources) from your dashboard. You are shown a snapshot of each QPU. To see full details, click the QPU name. You can also sort, filter, and search from this page.
-</LegacyContent>
+![The table view tab shows the calibration information as numerical data.](/docs/images/guides/qpu-information/table-view.avif "Table view tab")

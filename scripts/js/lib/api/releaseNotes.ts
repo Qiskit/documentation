@@ -19,6 +19,9 @@ import transformLinks from "transform-markdown-links";
 import { pathExists } from "../fs.js";
 import type { Pkg } from "./Pkg.js";
 import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./conversionPipeline.js";
+import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
+import { removePrefix } from "../stringUtils.js";
 
 // ---------------------------------------------------------------------------
 // Generic release notes handling
@@ -39,6 +42,12 @@ export async function handleReleaseNotesFile(
     return false;
   }
 
+  // If we're linking to a different to a different package's release notes, we
+  // shouldn't create a new release notes file.
+  if (pkg.releaseNotesConfig.linkToPackage) {
+    return false;
+  }
+
   // When the release notes are a single file, only use them if this is the latest version rather
   // than a historical release.
   if (!pkg.hasSeparateReleaseNotes()) {
@@ -47,14 +56,35 @@ export async function handleReleaseNotesFile(
 
   // Else, there is a distinct release note per version. So, we use the release note but
   // have custom logic to handle it.
-  const baseUrl = pkg.isHistorical()
+  const apiBaseUrl = pkg.isHistorical()
     ? `/api/${pkg.name}/${pkg.versionWithoutPatch}`
     : `/api/${pkg.name}`;
-  result.markdown = transformLinks(result.markdown, (link, _) =>
-    link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
-      ? link
-      : `${baseUrl}/${link}`,
-  );
+  result.markdown = transformLinks(result.markdown, (link, _) => {
+    // The Qiskit release notes refer to the C API by using a relative path
+    // to `cdoc`.
+    // TODO (#3375): Investigate if we can make this case more generic.
+    if (pkg.name == "qiskit" && link.startsWith(C_API_BASE_PATH)) {
+      const qiskitCBasePath = apiBaseUrl.replace(pkg.name, `${pkg.name}-c`);
+      const linkWithoutPrefix = removePrefix(link, C_API_BASE_PATH + "/");
+      // The anchors do not exist on the final page, so we remove them from the link.
+      const [path, _anchor] = linkWithoutPrefix.split("#");
+      return `${DOCS_BASE_PATH}${qiskitCBasePath}/${kebabCaseAndShortenPage(path, `${pkg.name}-c`)}`;
+    }
+
+    const fullPathLink =
+      link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+        ? link
+        : `${apiBaseUrl}/${link}`;
+
+    // We check that the links does not start with the base path and does not end with the base path to include the docs home page.
+    if (
+      fullPathLink.startsWith("/") &&
+      !fullPathLink.startsWith(`${DOCS_BASE_PATH}/`) &&
+      !fullPathLink.endsWith(DOCS_BASE_PATH)
+    )
+      return `${DOCS_BASE_PATH}${fullPathLink}`;
+    return fullPathLink;
+  });
   await writeReleaseNoteForVersion(pkg, result.markdown);
   return false;
 }

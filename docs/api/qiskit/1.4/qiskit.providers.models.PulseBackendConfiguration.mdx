@@ -1,0 +1,288 @@
+---
+title: PulseBackendConfiguration (v1.4)
+description: API reference for qiskit.providers.models.PulseBackendConfiguration in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.PulseBackendConfiguration
+---
+
+# PulseBackendConfiguration
+
+<Class id="qiskit.providers.models.PulseBackendConfiguration" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/models/backendconfiguration.py#L536-L1040" signature="qiskit.providers.models.PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)" modifiers="class">
+  Bases: [`QasmBackendConfiguration`](qiskit.providers.models.QasmBackendConfiguration "qiskit.providers.models.backendconfiguration.QasmBackendConfiguration")
+
+  Static configuration state for an OpenPulse enabled backend. This contains information about the set up of the device which can be useful for building Pulse programs.
+
+  Initialize a backend configuration that contains all the extra configuration that is made available for OpenPulse backends.
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The class `qiskit.providers.models.backendconfiguration.PulseBackendConfiguration` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The models in `qiskit.providers.models` are part of the deprecated BackendV1 workflow and no longer necessary for BackendV2. If a user workflow requires these representations it likely relies on deprecated functionality and should be updated to use BackendV2.
+  </Admonition>
+
+  **Parameters**
+
+  *   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – backend name.
+  *   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – backend version in the form X.Y.Z.
+  *   **n\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of qubits.
+  *   **basis\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – list of basis gates names on the backend.
+  *   **gates** ([*GateConfig*](qiskit.providers.models.GateConfig "qiskit.providers.models.backendconfiguration.GateConfig")) – list of basis gates on the backend.
+  *   **local** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – backend is local or remote.
+  *   **simulator** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – backend is a simulator.
+  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – backend supports conditional operations.
+  *   **open\_pulse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – backend supports open pulse.
+  *   **memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – backend supports memory.
+  *   **max\_shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – maximum number of shots supported.
+  *   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – The coupling map for the device
+  *   **n\_uchannels** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of u-channels.
+  *   **u\_channel\_lo** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*UchannelLO*](qiskit.providers.models.UchannelLO "qiskit.providers.models.backendconfiguration.UchannelLO")*]]*) – U-channel relationship on device los.
+  *   **meas\_levels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – Supported measurement levels.
+  *   **qubit\_lo\_range** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]*) – Qubit lo ranges for each qubit with form (min, max) in GHz.
+  *   **meas\_lo\_range** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]*) – Measurement lo ranges for each qubit with form (min, max) in GHz.
+  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Qubit drive channel timestep in nanoseconds.
+  *   **dtm** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Measurement drive channel timestep in nanoseconds.
+  *   **rep\_times** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – Supported repetition times (program execution time) for backend in μs.
+  *   **meas\_kernels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – Supported measurement kernels.
+  *   **discriminators** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – Supported discriminators.
+  *   **hamiltonian** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*]*) – An optional dictionary with fields characterizing the system hamiltonian.
+  *   **channel\_bandwidth** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Bandwidth of all channels (qubit, measurement, and U)
+  *   **acquisition\_latency** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Array of dimension n\_qubits x n\_registers. Latency (in units of dt) to write a measurement result from qubit n into register slot m.
+  *   **conditional\_latency** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Array of dimension n\_channels \[d->u->m] x n\_registers. Latency (in units of dt) to do a conditional operation on channel n from register slot m
+  *   **meas\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Grouping of measurement which are multiplexed
+  *   **max\_experiments** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of experiments per job
+  *   **sample\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Sample name for the backend
+  *   **n\_registers** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of register slots available for feedback (if conditional is True)
+  *   **register\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
+  *   **configurable** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – True if the backend is configurable, if the backend is a simulator
+  *   **credits\_required** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – True if backend requires credits to run a job.
+  *   **online\_date** ([*datetime.datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.13)")) – The date that the device went online
+  *   **display\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Alternate name field for the backend
+  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – A description for the backend
+  *   **tags** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of string tags to describe the backend
+  *   **channels** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*]*) – An optional dictionary containing information of each channel – their purpose, type, and qubits operated on.
+  *   **\*\*kwargs** – Optional fields.
+
+  ## Attributes
+
+  ### control\_channels
+
+  <Attribute id="qiskit.providers.models.PulseBackendConfiguration.control_channels">
+    Return the control channels
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.providers.models.PulseBackendConfiguration.num_qubits">
+    Returns the number of qubits.
+
+    In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
+  </Attribute>
+
+  ### sample\_rate
+
+  <Attribute id="qiskit.providers.models.PulseBackendConfiguration.sample_rate">
+    Sample rate of the signal channels in Hz (1/dt).
+  </Attribute>
+
+  ## Methods
+
+  ### acquire
+
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.acquire" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/models/backendconfiguration.py#L865-L876" signature="acquire(qubit)">
+    Return the acquisition channel for the given qubit.
+
+    **Raises**
+
+    [**BackendConfigurationError**](providers#qiskit.providers.BackendConfigurationError "qiskit.providers.BackendConfigurationError") – If the qubit is not a part of the system.
+
+    **Returns**
+
+    Qubit measurement acquisition line.
+
+    **Parameters**
+
+    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
+    **Return type**
+
+    [*AcquireChannel*](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
+  </Function>
+
+  ### control
+
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/models/backendconfiguration.py#L878-L906" signature="control(qubits=None)">
+    Return the secondary drive channel for the given qubit – typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
+
+    **Parameters**
+
+    **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – Tuple or list of qubits of the form (control\_qubit, target\_qubit).
+
+    **Raises**
+
+    [**BackendConfigurationError**](providers#qiskit.providers.BackendConfigurationError "qiskit.providers.BackendConfigurationError") – If the `qubits` is not a part of the system or if the backend does not provide channels information in its configuration.
+
+    **Returns**
+
+    List of control channels.
+
+    **Return type**
+
+    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[*ControlChannel*](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+  </Function>
+
+  ### describe
+
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.describe" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/models/backendconfiguration.py#L959-L987" signature="describe(channel)">
+    Return a basic description of the channel dependency. Derived channels are given weights which describe how their frames are linked to other frames. For instance, the backend could be configured with this setting:
+
+    ```python
+    u_channel_lo = [
+        [UchannelLO(q=0, scale=1. + 0.j)],
+        [UchannelLO(q=0, scale=-1. + 0.j), UchannelLO(q=1, scale=1. + 0.j)]
+    ]
+    ```
+
+    Then, this method can be used as follows:
+
+    ```python
+    backend.configuration().describe(ControlChannel(1))
+    >>> {DriveChannel(0): -1, DriveChannel(1): 1}
+    ```
+
+    **Parameters**
+
+    **channel** ([*ControlChannel*](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")) – The derived channel to describe.
+
+    **Raises**
+
+    [**BackendConfigurationError**](providers#qiskit.providers.BackendConfigurationError "qiskit.providers.BackendConfigurationError") – If channel is not a ControlChannel.
+
+    **Returns**
+
+    Control channel derivations.
+
+    **Return type**
+
+    [*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")\[[*DriveChannel*](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")]
+  </Function>
+
+  ### drive
+
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.drive" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/models/backendconfiguration.py#L838-L850" signature="drive(qubit)">
+    Return the drive channel for the given qubit.
+
+    **Raises**
+
+    [**BackendConfigurationError**](providers#qiskit.providers.BackendConfigurationError "qiskit.providers.BackendConfigurationError") – If the qubit is not a part of the system.
+
+    **Returns**
+
+    Qubit drive channel.
+
+    **Parameters**
+
+    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
+    **Return type**
+
+    [*DriveChannel*](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
+  </Function>
+
+  ### from\_dict
+
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.from_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/models/backendconfiguration.py#L722-L741" signature="from_dict(data)" modifiers="classmethod">
+    Create a new GateConfig object from a dictionary.
+
+    **Parameters**
+
+    **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.PulseBackendConfiguration.to_dict "qiskit.providers.models.PulseBackendConfiguration.to_dict").
+
+    **Returns**
+
+    The GateConfig from the input dictionary.
+
+    **Return type**
+
+    [GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+  </Function>
+
+  ### get\_channel\_qubits
+
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.get_channel_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/models/backendconfiguration.py#L908-L926" signature="get_channel_qubits(channel)">
+    Return a list of indices for qubits which are operated on directly by the given `channel`.
+
+    **Raises**
+
+    [**BackendConfigurationError**](providers#qiskit.providers.BackendConfigurationError "qiskit.providers.BackendConfigurationError") – If `channel` is not a found or if the backend does not provide channels information in its configuration.
+
+    **Returns**
+
+    List of qubits operated on my the given `channel`.
+
+    **Parameters**
+
+    **channel** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) –
+
+    **Return type**
+
+    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
+  </Function>
+
+  ### get\_qubit\_channels
+
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.get_qubit_channels" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/models/backendconfiguration.py#L928-L957" signature="get_qubit_channels(qubit)">
+    Return a list of channels which operate on the given `qubit`.
+
+    **Raises**
+
+    [**BackendConfigurationError**](providers#qiskit.providers.BackendConfigurationError "qiskit.providers.BackendConfigurationError") – If `qubit` is not a found or if the backend does not provide channels information in its configuration.
+
+    **Returns**
+
+    List of `Channel`s operated on my the given `qubit`.
+
+    **Parameters**
+
+    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) –
+
+    **Return type**
+
+    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+  </Function>
+
+  ### measure
+
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.measure" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/models/backendconfiguration.py#L852-L863" signature="measure(qubit)">
+    Return the measure stimulus channel for the given qubit.
+
+    **Raises**
+
+    [**BackendConfigurationError**](providers#qiskit.providers.BackendConfigurationError "qiskit.providers.BackendConfigurationError") – If the qubit is not a part of the system.
+
+    **Returns**
+
+    Qubit measurement stimulus line.
+
+    **Parameters**
+
+    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
+    **Return type**
+
+    [*MeasureChannel*](qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
+  </Function>
+
+  ### to\_dict
+
+  <Function id="qiskit.providers.models.PulseBackendConfiguration.to_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/models/backendconfiguration.py#L743-L820" signature="to_dict()">
+    Return a dictionary format representation of the GateConfig.
+
+    **Returns**
+
+    The dictionary form of the GateConfig.
+
+    **Return type**
+
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+  </Function>
+</Class>
+

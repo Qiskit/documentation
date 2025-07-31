@@ -82,7 +82,11 @@ test.describe("updateLinks", () => {
   test("no kebab-case", async () => {
     await updateLinks(
       data,
-      { kebabCaseAndShorten: false, pkgName: "qiskit-ibm-runtime" },
+      {
+        kebabCaseAndShorten: false,
+        pkgName: "qiskit-ibm-runtime",
+        pkgOutputDir: "/docs/api/qiskit-ibm-runtime",
+      },
       objectsInv,
     );
     expect(data).toEqual([
@@ -98,8 +102,8 @@ test.describe("updateLinks", () => {
 [link6](qiskit_ibm_runtime.RuntimeJob#some_var)
 [link7](qiskit_ibm_runtime.RuntimeJob)
 [link8](#qiskit_ibm_runtime.RuntimeJob.job)
-[link9](/api/qiskit/algorithms)
-[link10](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)
+[link9](/docs/api/qiskit/algorithms)
+[link10](/docs/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)
 [link11](qiskit_ibm_runtime.RuntimeJob#a_method)
 [link12](qiskit_ibm_runtime.RuntimeJob#another_method)\n`,
         meta: {
@@ -136,7 +140,11 @@ test.describe("updateLinks", () => {
   test("kebab-case", async () => {
     await updateLinks(
       data,
-      { kebabCaseAndShorten: true, pkgName: "qiskit-ibm-runtime" },
+      {
+        kebabCaseAndShorten: true,
+        pkgName: "qiskit-ibm-runtime",
+        pkgOutputDir: "/docs/api/qiskit-ibm-runtime",
+      },
       objectsInv,
     );
     expect(data).toEqual([
@@ -152,8 +160,8 @@ test.describe("updateLinks", () => {
 [link6](runtime-job#some_var)
 [link7](runtime-job)
 [link8](#qiskit_ibm_runtime.RuntimeJob.job)
-[link9](/api/qiskit/algorithms)
-[link10](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)
+[link9](/docs/api/qiskit/algorithms)
+[link10](/docs/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)
 [link11](runtime-job#a_method)
 [link12](runtime-job#another_method)\n`,
         meta: {
@@ -229,6 +237,7 @@ test("normalizeUrl()", () => {
     normalizeUrl(url, resultsByName, itemNames, {
       kebabCaseAndShorten: false,
       pkgName: "qiskit-ibm-runtime",
+      pkgOutputDir: "/docs/api/qiskit-ibm-runtime",
     }),
   );
   expect(newUrls).toEqual([
@@ -248,6 +257,7 @@ test("normalizeUrl()", () => {
     normalizeUrl(url, resultsByName, itemNames, {
       kebabCaseAndShorten: true,
       pkgName: "qiskit-ibm-runtime",
+      pkgOutputDir: "/docs/api/qiskit-ibm-runtime",
     }),
   );
   expect(kebabResults).toEqual([
@@ -261,6 +271,46 @@ test("normalizeUrl()", () => {
     "#qiskit_ibm_runtime.RuntimeJob.job",
     "runtime-job#run",
     "runtime-job",
+  ]);
+});
+
+test("normalizeUrl() Qiskit C API", () => {
+  const urls = [
+    `my-page`,
+    `../my-page-2`,
+    `../stubs/qiskit-page-1`,
+    `../apidocs/qiskit-page-2`,
+    `../apidoc/qiskit-page-3`,
+    `#my-anchor`,
+  ];
+  const resultsByName: { [key: string]: HtmlToMdResultWithUrl } = {
+    "my-class": {
+      markdown: "",
+      meta: {
+        apiType: "class",
+        apiName: "my-class",
+      },
+      url: "/docs/api/qiskit-c/stubs/my-class",
+      images: [],
+      isReleaseNotes: false,
+    },
+  };
+  const itemNames = new Set(["my-class"]);
+
+  const CApiResults = urls.map((url) =>
+    normalizeUrl(url, resultsByName, itemNames, {
+      kebabCaseAndShorten: true,
+      pkgName: "qiskit-c",
+      pkgOutputDir: "/docs/api/qiskit-c",
+    }),
+  );
+  expect(CApiResults).toEqual([
+    "my-page",
+    "my-page-2",
+    "/docs/api/qiskit/qiskit-page-1",
+    "/docs/api/qiskit/qiskit-page-2",
+    "/docs/api/qiskit/qiskit-page-3",
+    "#my-anchor",
   ]);
 });
 
@@ -305,6 +355,23 @@ test.describe("relativizeLink()", () => {
     ["https://docs.quantum-computing.ibm.com/run", "/run"],
   ].forEach(([input, expected]) =>
     test(`relativize docs.quantum.ibm.com links - ${input}`, () => {
+      expect(relativizeLink({ url: input })).toEqual({ url: expected });
+    }),
+  );
+
+  [
+    ["https://quantum.cloud.ibm.com/docs", "/docs"],
+    [
+      "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap",
+      "/docs/api/qiskit/qiskit.transpiler.CouplingMap",
+    ],
+    ["https://quantum.cloud.ibm.com/learning", "/learning"],
+    [
+      "https://quantum.cloud.ibm.com/learning/courses/page",
+      "/learning/courses/page",
+    ],
+  ].forEach(([input, expected]) =>
+    test(`relativize quantum.cloud.ibm.com links - ${input}`, () => {
       expect(relativizeLink({ url: input })).toEqual({ url: expected });
     }),
   );

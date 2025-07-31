@@ -1,0 +1,66 @@
+---
+title: ParameterVector (v1.4)
+description: API reference for qiskit.circuit.ParameterVector in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.ParameterVector
+---
+
+# ParameterVector
+
+<Class id="qiskit.circuit.ParameterVector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parametervector.py#L55-L140" signature="qiskit.circuit.ParameterVector(name, length=0)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A container of many related [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects.
+
+  This class is faster to construct than constructing many [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects individually, and the individual names of the parameters will all share a common stem (the name of the vector). For a vector called `v` with length 3, the individual elements will have names `v[0]`, `v[1]` and `v[2]`.
+
+  The elements of a vector are sorted by the name of the vector, then the numeric value of their index.
+
+  This class fulfill the [`collections.abc.Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)") interface.
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.ParameterVector.name">
+    The name of the [`ParameterVector`](#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.ParameterVector.params">
+    A list of the contained [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") instances.
+
+    It is not safe to mutate this list.
+  </Attribute>
+
+  ## Methods
+
+  ### index
+
+  <Function id="qiskit.circuit.ParameterVector.index" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parametervector.py#L91-L95" signature="index(value)">
+    Find the index of a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") within the list.
+
+    It is typically much faster to use the [`ParameterVectorElement.index`](qiskit.circuit.ParameterVectorElement#index "qiskit.circuit.ParameterVectorElement.index") property.
+  </Function>
+
+  ### resize
+
+  <Function id="qiskit.circuit.ParameterVector.resize" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parametervector.py#L112-L140" signature="resize(length)">
+    Resize the parameter vector. If necessary, new elements are generated.
+
+    Note that the UUID of each [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") element will be generated deterministically given the root UUID of the `ParameterVector` and the index of the element. In particular, if a `ParameterVector` is resized to be smaller and then later resized to be larger, the UUID of the later generated element at a given index will be the same as the UUID of the previous element at that index. This is to ensure that the parameter instances do not change.
+
+    ```python
+    >>> from qiskit.circuit import ParameterVector
+    >>> pv = ParameterVector("theta", 20)
+    >>> elt_19 = pv[19]
+    >>> rv.resize(10)
+    >>> rv.resize(20)
+    >>> pv[19] == elt_19
+    True
+    ```
+  </Function>
+</Class>
+

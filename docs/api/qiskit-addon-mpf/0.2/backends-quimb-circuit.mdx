@@ -1,0 +1,87 @@
+---
+title: quimb_circuit (v0.2)
+description: API reference for qiskit_addon_mpf.backends.quimb_circuit in qiskit-addon-mpf v0.2
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_mpf.backends.quimb_circuit
+---
+
+<span id="module-qiskit_addon_mpf.backends.quimb_circuit" />
+
+<span id="quimb-circuit-based-backend-qiskit-addon-mpf-backends-quimb-circuit" />
+
+# Quimb circuit-based backend
+
+`qiskit_addon_mpf.backends.quimb_circuit`
+
+A circuit-based time-evolution backend using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)").
+
+<Admonition title="Warning" type="caution">
+  This backend is only available if the optional dependencies have been installed:
+
+  ```python
+  pip install "qiskit-addon-mpf[quimb]"
+  ```
+</Admonition>
+
+|                                                                                                                     |                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`CircuitEvolver`](backends-quimb-circuit-circuit-evolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") | A time-evolution engine based on quantum circuits.                              |
+| [`CircuitState`](backends-quimb-circuit-circuit-state "qiskit_addon_mpf.backends.quimb_circuit.CircuitState")       | An MPO-like representation of a time-evolution state based on quantum circuits. |
+
+## Underlying method
+
+Quimb boasts direct support for the simulation of quantum circuits in the form of its tensor-network based [`quimb.tensor.Circuit`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.Circuit "(in quimb v1.10)") representation. We can leverage this, to bypass any explicit time-evolution algorithm and instead directly encode the time-evolution in a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") and use [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)") to compute the overlap between two such circuits. For more information, check out their guide on [Quantum Circuits](https://quimb.readthedocs.io/en/latest/tensor-circuit.html "(in quimb v1.10)").
+
+## Code example
+
+This section shows a simple example to get you started with using this backend. The example shows how to create the three factory functions required for the [`setup_dynamic_lse()`](dynamic#setup_dynamic_lse "qiskit_addon_mpf.dynamic.setup_dynamic_lse").
+
+The [`IdentityStateFactory`](dynamic#identitystatefactory "qiskit_addon_mpf.dynamic.IdentityStateFactory") protocol is already fulfilled by the [`CircuitState`](backends-quimb-circuit-circuit-state "qiskit_addon_mpf.backends.quimb_circuit.CircuitState") constructor, rendering the `identity_factory` argument trivial:
+
+```python
+>>> from qiskit_addon_mpf.backends.quimb_circuit import CircuitState
+>>> identity_factory = CircuitState
+```
+
+The setup of the [`CircuitEvolver`](backends-quimb-circuit-circuit-evolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") is slightly more involved. It requires a **parameterized** [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") object as its input where the [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.3)") should take the place of the Trotter methods time step (`dt`).
+
+To show how such a parameterized Trotter circuit template is constructed, we reuse the same Hamiltonian and second-order Suzuki-Trotter formula as in [`quimb_layers`](backends-quimb-layers#module-qiskit_addon_mpf.backends.quimb_layers "qiskit_addon_mpf.backends.quimb_layers").
+
+```python
+>>> from qiskit.quantum_info import SparsePauliOp
+>>> hamil = SparsePauliOp.from_sparse_list(
+...     [("ZZ", (i, i+1), 1.0) for i in range(0, 9, 2)] +
+...     [("Z", (i,), 0.5) for i in range(10)] +
+...     [("ZZ", (i, i+1), 1.0) for i in range(1, 9, 2)] +
+...     [("X", (i,), 0.25) for i in range(10)],
+...     num_qubits=10,
+... )
+```
+
+But this time, we specify a [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.3)") as the `time` argument when constructing the actual circuits.
+
+```python
+>>> from functools import partial
+>>> from qiskit.circuit import Parameter
+>>> from qiskit.synthesis import SuzukiTrotter
+>>> from qiskit_addon_mpf.backends.quimb_circuit import CircuitEvolver
+>>> from qiskit_addon_utils.problem_generators import generate_time_evolution_circuit
+>>> dt = Parameter("dt")
+>>> suzuki_2 = generate_time_evolution_circuit(hamil, time=dt, synthesis=SuzukiTrotter(order=2))
+>>> approx_evolver_factory = partial(CircuitEvolver, circuit=suzuki_2)
+```
+
+<Admonition title="Caution" type="note">
+  It is **necessary** that the name of the [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.3)") is `dt`!
+</Admonition>
+
+We can choose a higher order Trotter formula for the `exact_evolver_factory`. But note, that we must once again use a parameterized circuit, even if we immediately bind its parameter when constructing the `partial` function.
+
+```python
+>>> suzuki_4 = generate_time_evolution_circuit(hamil, time=dt, synthesis=SuzukiTrotter(order=4))
+>>> exact_evolver_factory = partial(CircuitEvolver, circuit=suzuki_4, dt=0.05)
+```
+
+These factory functions may now be used to run the [`setup_dynamic_lse()`](dynamic#setup_dynamic_lse "qiskit_addon_mpf.dynamic.setup_dynamic_lse"). Refer to its documentation for more details on that.
+

@@ -1,0 +1,164 @@
+---
+title: aqc (v1.4)
+description: API reference for qiskit.synthesis.unitary.aqc in qiskit v1.4
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.synthesis.unitary.aqc
+---
+
+<span id="module-qiskit.synthesis.unitary.aqc" />
+
+<span id="qiskit-synthesis-unitary-aqc" />
+
+<span id="approximate-quantum-compiler-qiskit-synthesis-unitary-aqc" />
+
+# Approximate Quantum Compiler
+
+`qiskit.synthesis.unitary.aqc`
+
+Implementation of Approximate Quantum Compiler as described in the paper \[1].
+
+## Interface
+
+The main public interface of this module is reached by passing `unitary_synthesis_method='aqc'` to [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"). This will swap the synthesis method to use `AQCSynthesisPlugin`. The individual classes are:
+
+|                                                                                                                                                                 |                                                                                                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| [`AQC`](qiskit.synthesis.unitary.aqc.AQC "qiskit.synthesis.unitary.aqc.AQC")(\[optimizer, seed])                                                                | A generic implementation of the Approximate Quantum Compiler.                                                                          |
+| [`ApproximateCircuit`](qiskit.synthesis.unitary.aqc.ApproximateCircuit "qiskit.synthesis.unitary.aqc.ApproximateCircuit")(num\_qubits\[, name])                 | A base class that represents an approximate circuit.                                                                                   |
+| [`ApproximatingObjective`](qiskit.synthesis.unitary.aqc.ApproximatingObjective "qiskit.synthesis.unitary.aqc.ApproximatingObjective")()                         | A base class for an optimization problem definition.                                                                                   |
+| [`CNOTUnitCircuit`](qiskit.synthesis.unitary.aqc.CNOTUnitCircuit "qiskit.synthesis.unitary.aqc.CNOTUnitCircuit")(num\_qubits, cnots\[, tol, name])              | A class that represents an approximate circuit based on CNOT unit blocks.                                                              |
+| [`CNOTUnitObjective`](qiskit.synthesis.unitary.aqc.CNOTUnitObjective "qiskit.synthesis.unitary.aqc.CNOTUnitObjective")(num\_qubits, cnots)                      | A base class for a problem definition based on CNOT unit.                                                                              |
+| [`DefaultCNOTUnitObjective`](qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective "qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective")(num\_qubits, cnots) | A naive implementation of the objective function based on CNOT units.                                                                  |
+| [`FastCNOTUnitObjective`](qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective "qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective")(num\_qubits, cnots)          | Implementation of objective function and gradient calculator, which is similar to `DefaultCNOTUnitObjective` but several times faster. |
+
+## Mathematical Detail
+
+We are interested in compiling a quantum circuit, which we formalize as finding the best circuit representation in terms of an ordered gate sequence of a target unitary matrix $U\in U(d)$, with some additional hardware constraints. In particular, we look at representations that could be constrained in terms of hardware connectivity, as well as gate depth, and we choose a gate basis in terms of CNOT and rotation gates. We recall that the combination of CNOT and rotation gates is universal in $SU(d)$ and therefore it does not limit compilation.
+
+To properly define what we mean by best circuit representation, we define the metric as the Frobenius norm between the unitary matrix of the compiled circuit $V$ and the target unitary matrix $U$, i.e., $\|V - U\|_{\mathrm{F}}$. This choice is motivated by mathematical programming considerations, and it is related to other formulations that appear in the literature. Let’s take a look at the problem in more details.
+
+Let $n$ be the number of qubits and $d=2^n$. Given a CNOT structure $ct$ and a vector of rotation angles $\theta$, the parametric circuit forms a matrix $Vct(\theta)\in SU(d)$. If we are given a target circuit forming a matrix $U\in SU(d)$, then we would like to compute
+
+$$
+\mathrm{argmax}_{\theta}\frac{1}{d}|\langle Vct(\theta),U\rangle|
+$$
+
+where the inner product is the Frobenius inner product. Note that $|\langle V,U\rangle|\leq d$ for all unitaries $U$ and $V$, so the objective has range in $[0,1]$.
+
+Our strategy is to maximize
+
+$$
+\frac{1}{d}\Re \langle Vct(\theta),U\rangle
+$$
+
+using its gradient. We will now discuss the specifics by going through an example.
+
+While the range of $Vct$ is a subset of $SU(d)$ by construction, the target circuit may form a general unitary matrix. However, for any $U\in U(d)$,
+
+$$
+\frac{\exp(2\pi i k/d)}{\det(U)^{1/d}}U\in SU(d)\text{ for all }k\in\{0,\ldots,d-1\}.
+$$
+
+Thus, we should normalize the target circuit by its global phase and then approximately compile the normalized circuit. We can add the global phase back in afterwards.
+
+In the algorithm let $U'$ denote the un-normalized target matrix and $U$ the normalized target matrix. Now that we have $U$, we give the gradient function to the Nesterov’s method optimizer and compute $\theta$.
+
+To add the global phase back in, we can form the control circuit as
+
+$$
+\frac{\langle Vct(\theta),U'\rangle}{|\langle Vct(\theta),U'\rangle|}Vct(\theta).
+$$
+
+Note that while we optimized using Nesterov’s method in the paper, this was for its convergence guarantees, not its speed in practice. It is much faster to use L-BFGS which is used as a default optimizer in this implementation.
+
+A basic usage of the AQC algorithm should consist of the following steps:
+
+```python
+# Define a target circuit as a unitary matrix
+unitary = ...
+
+# Define a number of qubits for the algorithm, at least 3 qubits
+num_qubits = round(math.log2(unitary.shape[0]))
+
+# Choose a layout of the CNOT structure for the approximate circuit, e.g. ``spin`` for
+# a linear layout.
+layout = options.get("layout") or "spin"
+
+# Choose a connectivity type, e.g. ``full`` for full connectivity between qubits.
+connectivity = options.get("connectivity") or "full"
+
+# Define a targeted depth of the approximate circuit in the number of CNOT units.
+depth = int(options.get("depth") or 0)
+
+# Generate a network made of CNOT units
+cnots = make_cnot_network(
+    num_qubits=num_qubits,
+    network_layout=layout,
+    connectivity_type=connectivity,
+    depth=depth
+)
+
+# Create an optimizer to be used by AQC
+optimizer = partial(scipy.optimize.minimize, method="L-BFGS-B")
+
+# Create an instance
+aqc = AQC(optimizer)
+
+# Create a template circuit that will approximate our target circuit
+approximate_circuit = CNOTUnitCircuit(num_qubits=num_qubits, cnots=cnots)
+
+# Create an objective that defines our optimization problem
+approximating_objective = DefaultCNOTUnitObjective(num_qubits=num_qubits, cnots=cnots)
+
+# Run optimization process to compile the unitary
+aqc.compile_unitary(
+    target_matrix=unitary,
+    approximate_circuit=approximate_circuit,
+    approximating_objective=approximating_objective
+)
+```
+
+Now `approximate_circuit` is a circuit that approximates the target unitary to a certain degree and can be used instead of the original matrix.
+
+This uses a helper function, [`make_cnot_network`](#qiskit.synthesis.unitary.aqc.make_cnot_network "qiskit.synthesis.unitary.aqc.make_cnot_network").
+
+### make\_cnot\_network
+
+<Function id="qiskit.synthesis.unitary.aqc.make_cnot_network" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/synthesis/unitary/aqc/cnot_structures.py#L42-L111" signature="qiskit.synthesis.unitary.aqc.make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)">
+  Generates a network consisting of building blocks each containing a CNOT gate and possibly some single-qubit ones. This network models a quantum operator in question. Note, each building block has 2 input and outputs corresponding to a pair of qubits. What we actually return here is a chain of indices of qubit pairs shared by every building block in a row.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of qubits.
+  *   **network\_layout** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – type of network geometry, `{"sequ", "spin", "cart", "cyclic_spin", "cyclic_line"}`.
+  *   **connectivity\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – type of inter-qubit connectivity, `{"full", "line", "star"}`.
+  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – depth of the CNOT-network, i.e. the number of layers, where each layer consists of a single CNOT-block; default value will be selected, if `L <= 0`.
+
+  **Returns**
+
+  **A matrix of size `(2, N)` matrix that defines layers in cnot-network, where `N`**
+
+  is either equal `L`, or defined by a concrete type of the network.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – if unsupported type of CNOT-network layout or number of qubits or combination of parameters are passed.
+
+  **Return type**
+
+  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")
+</Function>
+
+One can take advantage of accelerated version of objective function. It implements the same mathematical algorithm as the default one `DefaultCNOTUnitObjective` but runs several times faster. Instantiation of accelerated objective function class is similar to the default case:
+
+> \# Create an objective that defines our optimization problem approximating\_objective = FastCNOTUnitObjective(num\_qubits=num\_qubits, cnots=cnots)
+
+The rest of the code in the above example does not change.
+
+**References**
+
+**\[1]: Liam Madden, Andrea Simonetto, Best Approximate Quantum Compiling Problems.**
+
+[arXiv:2106.05649](https://arxiv.org/abs/2106.05649)
+

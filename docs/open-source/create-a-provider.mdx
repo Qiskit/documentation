@@ -46,7 +46,7 @@ In addition to providing a service returning hardware configurations, a service 
 
 To handle job status and results, the Qiskit SDK provides a [`DataBin`](../api/qiskit/qiskit.primitives.DataBin), [`PubResult`](../api/qiskit/qiskit.primitives.PubResult), [`PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult), and [`BasePrimitiveJob`](../api/qiskit/qiskit.primitives.BasePrimitiveJob) objects should be used.
 
-See the `qiskit.primitives` [API documentation](../api/qiskit/primitives) as well as the reference implementations [`BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSampleV2`](../api/qiskit/qiskit.primitives.BackendSampler) for more information. If you created a provider that uses `backend.run`, see [Migrate provider interfaces from backend.run to primitives.](../migration-guides/external-providers-primitives-v2)
+See the `qiskit.primitives` [API documentation](../api/qiskit/primitives) as well as the reference implementations [`BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSampleV2`](../api/qiskit/qiskit.primitives.BackendSamplerV2) for more information. If you created a provider that uses `backend.run`, see [Migrate provider interfaces from backend.run to primitives.](../migration-guides/external-providers-primitives-v2)
 
 An example implementation of the Estimator primitive may look like:
 
@@ -92,7 +92,7 @@ class EstimatorImplementation(BaseEstimatorV2):
 And an implementation of the Sampler primitive may look like:
 
 ```python
-class SamplerImplentation(BaseSamplerV2):
+class SamplerImplementation(BaseSamplerV2):
     """ Class for interacting with the provider's Sampler service """
 
     def __init__(

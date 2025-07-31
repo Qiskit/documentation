@@ -8,25 +8,26 @@ python_api_name: qiskit_addon_mpf.backends.tenpy_tebd.MPOState
 
 # MPOState
 
-<Class id="qiskit_addon_mpf.backends.tenpy_tebd.MPOState" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_tebd/state.py#L27-L121" signature="MPOState(sites, Ws, bc='finite', IdL=None, IdR=None, max_range=None, explicit_plus_hc=False)" modifiers="class">
-  Bases: [`MPO`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.mpo.MPO.html#tenpy.networks.mpo.MPO "(in TeNPy v1.0.4)"), [`State`](backends#state "qiskit_addon_mpf.backends.interface.State")
+<Class id="qiskit_addon_mpf.backends.tenpy_tebd.MPOState" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/tenpy_tebd/state.py#L27-L122" signature="MPOState(sites, Ws, bc='finite', IdL=None, IdR=None, max_range=None, explicit_plus_hc=False)" modifiers="class">
+  Bases: [`MPO`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.mpo.MPO.html#tenpy.networks.mpo.MPO "(in TeNPy v1.0.5)"), [`State`](backends#state "qiskit_addon_mpf.backends.interface.State")
 
   A mediator class to make TeNPy’s MPO match the [`State`](backends#state "qiskit_addon_mpf.backends.State") interface.
 
-  This class simply ensures that a [`tenpy.networks.mpo.MPO`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.mpo.MPO.html#tenpy.networks.mpo.MPO "(in TeNPy v1.0.4)") object can work as a [`State`](backends#state "qiskit_addon_mpf.backends.State") instance.
+  This class simply ensures that a [`tenpy.networks.mpo.MPO`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.mpo.MPO.html#tenpy.networks.mpo.MPO "(in TeNPy v1.0.5)") object can work as a [`State`](backends#state "qiskit_addon_mpf.backends.State") instance.
 
   ## Methods
 
   ### initialize\_from\_lattice
 
-  <Function id="qiskit_addon_mpf.backends.tenpy_tebd.MPOState.initialize_from_lattice" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_tebd/state.py#L34-L88" signature="initialize_from_lattice(lat)" modifiers="classmethod">
+  <Function id="qiskit_addon_mpf.backends.tenpy_tebd.MPOState.initialize_from_lattice" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/tenpy_tebd/state.py#L34-L89" signature="initialize_from_lattice(lat, *, conserve=True)" modifiers="classmethod">
     Construct an identity [`MPOState`](#qiskit_addon_mpf.backends.tenpy_tebd.MPOState "qiskit_addon_mpf.backends.tenpy_tebd.MPOState") instance matching the provided lattice shape.
 
     Given a lattice, this method constructs a new MPO identity matching the shape of the lattice.
 
     **Parameters**
 
-    **lat** ([*Lattice*](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.lattice.Lattice.html#tenpy.models.lattice.Lattice "(in TeNPy v1.0.4)")) – the lattice describing the MPO sites.
+    *   **lat** ([*Lattice*](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.lattice.Lattice.html#tenpy.models.lattice.Lattice "(in TeNPy v1.0.5)")) – the lattice describing the MPO sites.
+    *   **conserve** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – whether to conserve `Sz`. This is a simplified version of the more elaborate `conserve` property of [`SpinHalfSite`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.site.SpinHalfSite.html#tenpy.networks.site.SpinHalfSite "(in TeNPy v1.0.5)"). The boolean value simply indicates `Sz` (`True`) or `None` conservation (`False`)
 
     **Returns**
 
@@ -39,11 +40,11 @@ python_api_name: qiskit_addon_mpf.backends.tenpy_tebd.MPOState
 
   ### overlap
 
-  <Function id="qiskit_addon_mpf.backends.tenpy_tebd.MPOState.overlap" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_tebd/state.py#L90-L121" signature="overlap(initial_state)">
+  <Function id="qiskit_addon_mpf.backends.tenpy_tebd.MPOState.overlap" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/tenpy_tebd/state.py#L91-L122" signature="overlap(initial_state)">
     Compute the overlap of this state with the provided initial state.
 
     <Admonition title="Warning" type="caution">
-      This implementation only supports instances of [`tenpy.networks.mps.MPS`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.mps.MPS.html#tenpy.networks.mps.MPS "(in TeNPy v1.0.4)") for `initial_state`.
+      This implementation only supports instances of [`tenpy.networks.mps.MPS`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.mps.MPS.html#tenpy.networks.mps.MPS "(in TeNPy v1.0.5)") for `initial_state`.
     </Admonition>
 
     **Parameters**
