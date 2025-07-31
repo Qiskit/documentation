@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import fs from "fs/promises";
+import {readJsonFile} from "../lib/fs"
 import { globby } from "globby";
 
 import { TocEntry } from "../lib/api/generateToc.js";
@@ -74,8 +74,8 @@ function detectOutdatedNewPills(newPills: NewPillEntry[]): {
 /** Parse _toc.json to extract urls and dicts containing 'isNew' entries */
 async function findNewPills(tocFilePath: string): Promise<NewPillEntry[]> {
   console.log("Checking new pills in toc:", tocFilePath);
-  const raw = await fs.readFile(tocFilePath, "utf-8");
-  const rootEntries = JSON.parse(raw).children;
+  const json = await readJsonFile(tocFilePath);
+  const rootEntries = json.children;
   return collectNewPills(rootEntries, tocFilePath);
 }
 

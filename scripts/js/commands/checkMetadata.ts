@@ -16,6 +16,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import grayMatter from "gray-matter";
 import { globby } from "globby";
+import {readJsonFile} from "../lib/fs"
 
 const ALLOWED_VIOLATIONS: Set<string> = new Set([...qiskitLegacyIgnores()]);
 
@@ -41,8 +42,8 @@ const readMetadata = async (filePath: string): Promise<Record<string, any>> => {
     const content = await fs.readFile(filePath, "utf-8");
     return grayMatter(content).data;
   } else if (ext === "ipynb") {
-    const content = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(content).metadata;
+    const json = await readJsonFile(filePath);
+    return json.metadata;
   } else {
     throw new Error(`Unknown extension for ${filePath}: ${ext}`);
   }

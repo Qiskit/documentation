@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import fs from "fs/promises";
+import {readJsonFile} from "../lib/fs"
 import path from "path";
 
 import { globby } from "globby";
@@ -66,13 +66,15 @@ async function findOrphans(tocFile: string): Promise<string[]> {
   );
 }
 
+
 async function readTocUrls(filePath: string): Promise<Set<string>> {
-  const raw = await fs.readFile(filePath, "utf-8");
-  const rootEntries = JSON.parse(raw).children;
+  const json = await readJsonFile(filePath);
+  const rootEntries = json.children;
   const urls = parseTocUrls(rootEntries);
   urls.push(`${urls[0]}/index`);
   return new Set(urls);
 }
+
 
 async function findExistentUrls(directory: string): Promise<string[]> {
   const fileList = await globby([`${directory}/*.{mdx,ipynb}`]);

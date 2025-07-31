@@ -19,6 +19,7 @@
  */
 
 import { readFile } from "fs/promises";
+import {readJsonFile} from "../lib/fs";
 
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
@@ -57,12 +58,11 @@ async function main() {
     (fp) => new File(fp, new Set()),
   );
 
-  const savedFilesContent = await readFile(args.savedLinks, {
-    encoding: "utf-8",
-  });
-  const savedFiles = JSON.parse(savedFilesContent).map(
-    (entry: any) => new File(entry.path, new Set(entry.anchors)),
-  );
+  
+const savedFiles = (await readJsonFile(args.savedLinks)).map(
+  (entry: any) => new File(entry.path, new Set(entry.anchors)),
+);
+
 
   const allValidLinks = await fileBatch.checkInternalLinks([
     ...publicFiles,
