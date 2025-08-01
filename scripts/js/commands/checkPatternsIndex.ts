@@ -13,7 +13,6 @@
 import { readFile } from "fs/promises";
 
 import type { TocEntry } from "../lib/api/generateToc.js";
-
 import { readJsonFile } from "../lib/fs";
 
 // URLs that show up in the left ToC under the `Tools` section, but are not in

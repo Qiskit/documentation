@@ -10,7 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readJsonFile } from "../lib/fs";
 import path from "path";
 
 import { globby } from "globby";
@@ -19,6 +18,7 @@ import { hideBin } from "yargs/helpers";
 import { flatten } from "lodash-es";
 
 import { TocEntry } from "../lib/api/generateToc.js";
+import { readJsonFile } from "../lib/fs";
 
 interface Arguments {
   [x: string]: unknown;

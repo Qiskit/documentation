@@ -11,9 +11,10 @@
 // that they have been altered from the originals.
 
 import { findSourceMap } from "node:module";
-import { readJsonFile } from "./fs";
 import path from "node:path";
 import { readFile } from "fs/promises";
+
+import { readJsonFile } from "./fs";
 
 export async function readMarkdown(
   filePath: string,
@@ -30,9 +31,11 @@ interface JupyterCell {
   cell_type: string;
   source: string[];
 }
+
 type Notebook = {
   cells: JupyterCell[];
 };
+
 export function markdownFromNotebook(
   notebook: Notebook,
   options: { includeCodeCellSourceCode?: boolean },

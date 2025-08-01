@@ -19,7 +19,6 @@
  */
 
 import { readFile } from "fs/promises";
-import { readJsonFile } from "../lib/fs";
 
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
@@ -27,6 +26,7 @@ import { globby } from "globby";
 
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
+import { readJsonFile } from "../lib/fs";
 
 interface Arguments {
   [x: string]: unknown;

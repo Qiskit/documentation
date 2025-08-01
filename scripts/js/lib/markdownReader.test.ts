@@ -48,12 +48,12 @@ test("markdownFromNotebook()", () => {
         "metadata": {}
     }
   `;
-  const parseddata = JSON.parse(notebook);
-  const result1 = markdownFromNotebook(parseddata, {
+  const parsedData = JSON.parse(notebook);
+  const result1 = markdownFromNotebook(parsedData, {
     includeCodeCellSourceCode: false,
   });
   expect(result1).toBe("Line 1.\nLine 2.\n\nLine 3.");
-  const result2 = markdownFromNotebook(parseddata, {
+  const result2 = markdownFromNotebook(parsedData, {
     includeCodeCellSourceCode: true,
   });
   expect(result2).toBe("Line 1.\nLine 2.\n\nmy_code_is_awesome\n\nLine 3.");

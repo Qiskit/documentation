@@ -14,8 +14,6 @@ import fs from "fs/promises";
 
 import { $ } from "zx/core";
 
-import { readFile } from "fs/promises";
-
 export async function pathExists(path: string) {
   try {
     await fs.stat(path);
@@ -37,7 +35,7 @@ export async function rmFilesInFolder(dir: string): Promise<void> {
 
 export async function readJsonFile(path: string): Promise<any> {
   try {
-    const content = await readFile(path, "utf-8");
+    const content = await fs.readFile(path, "utf-8");
     return JSON.parse(content);
   } catch (error: any) {
     throw new Error(
