@@ -18,6 +18,47 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
 
 ## Functions
 
+### qk\_transpiler\_pass\_standalone\_elide\_permutations
+
+<Function id="qk_transpiler_pass_standalone_elide_permutations" signature="QkElidePermutationsResult *qk_transpiler_pass_standalone_elide_permutations(const QkCircuit *circuit)">
+  Run the ElidePermutations transpiler pass on a circuit.
+
+  The ElidePermutations transpiler pass removes any permutation operations from a pre-layout circuit.
+
+  This pass is intended to be run before a layout (mapping virtual qubits to physical qubits) is set during the transpilation pipeline. This pass iterates over the circuit and when a Swap gate is encountered it permutes the virtual qubits in the circuit and removes the swap gate. This will effectively remove any swap gates in the cirucit prior to running layout. This optimization is not valid after a layout has been set and should not be run in this case.
+
+  <span id="group__QkTranspilerPasses_1autotoc_md98" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(4, 0);
+  for (uint32_t i = 0; i < qk_circuit_num_qubits(qc) - 1; i++) {
+      uint32_t qargs[2] = {i, i + 1};
+      for (uint32_t j = 0; j<i+1; j++) {
+          qk_circuit_gate(qc, QkGate_CX, qargs, NULL);
+      }
+  }
+  QkElidePermutationsResult *elide_result = qk_transpiler_pass_standalone_elide_permutations(qc);
+  ```
+
+  <span id="group__QkTranspilerPasses_1autotoc_md99" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPasses_1autotoc_md99" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  **circuit** – A pointer to the circuit to run ElidePermutations on
+
+  **Returns**
+
+  QkElidePermutationsResult object that contains the results of the pass
+</Function>
+
 ### qk\_transpiler\_pass\_standalone\_vf2\_layout
 
 <Function id="qk_transpiler_pass_standalone_vf2_layout" signature="QkVF2LayoutResult *qk_transpiler_pass_standalone_vf2_layout(const QkCircuit *circuit, const QkTarget *target, bool strict_direction, int64_t call_limit, double time_limit, intptr_t max_trials)">
@@ -29,7 +70,7 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
 
   By default, this pass will construct a heuristic scoring map based on the error rates in the provided `target` argument. The function will continue searching for layouts and use the heuristic scoring to return the layout which will run with the best estimated fidelity.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md99" />
+  <span id="group__QkTranspilerPasses_1autotoc_md105" />
 
   #### Example
 
@@ -54,11 +95,11 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
   qk_vf2_layout_result_free(layout_result);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md100" />
+  <span id="group__QkTranspilerPasses_1autotoc_md106" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md100" />
+  <span id="group__QkTranspilerPasses_1autotoc_md106" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`.
 

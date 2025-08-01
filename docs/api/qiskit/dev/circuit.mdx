@@ -583,10 +583,10 @@ A circuit can contain manual classical storage locations, represented internally
 
 Various parametric [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances in Qiskit can be parametrized in ways that are designed to be resolved at compile time. These are characterized by the use of the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") and [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") classes.
 
-|                                                                                                                                 |                                                                         |
-| ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")(name, \*\[, uuid])                                           | A compile-time symbolic parameter.                                      |
-| [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")(symbol\_map, expr, \*\[, ...]) | ParameterExpression class to enable creating expressions of Parameters. |
+|                                                                                                  |                                    |
+| ------------------------------------------------------------------------------------------------ | ---------------------------------- |
+| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")                               | A compile-time symbolic parameter. |
+| [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") | A parameter expression.            |
 
 The main way that this differs from the `expr.Var` variables used in real-time classical computation is that [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") is a symbolic representation of a mathematical expression. The semantics of the expression are those of regular mathematics over the continuous real numbers (and, in limited cases, over the complex numbers). In contrast, [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") is a handle to a variable stored on a classical computer, such as a floating-point value or an fixed-width integer, which are always discrete.
 
@@ -596,10 +596,10 @@ The “compile-time” part of these parameters means that you typically will wa
 
 You may want to use many parameters that are related to each other. To make this easier (and to avoid you needing to come up with many names), you can use the convenience constructor [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector"). The elements of the vector are all valid [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances, of a special subclass [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement").
 
-|                                                                                                                                   |                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length])                             | A container of many related [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects. |
-| [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement")(vector, index\[, uuid]) | An element of a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").   |
+|                                                                                                           |                                                                                                         |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length])     | A container of many related [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects. |
+| [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") | An element of a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").   |
 
 <span id="circuit-control-flow-repr" />
 
