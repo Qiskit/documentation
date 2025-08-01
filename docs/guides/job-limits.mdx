@@ -7,10 +7,11 @@ description: Job limits imposed by the job validation service for jobs sent to I
 
 When you send a job to an IBM&reg; QPU, it is first sent to the job validation service.  This service tries to ensure that the job will be able to run on the QPU so you don't have to wait for it to go through the queue and then have the job fail.  These checks include enforcing the described limits.
 
-<Admonition type="note">
-Certain primitive options increase the circuit size.  The described limits are checked _after_ the expected increase in circuit size. In particular, these options increase circuit size:
+<Admonition type="note" title="Notes">
+- Certain primitive options increase the circuit size.  The described limits are checked _after_ the expected increase in circuit size. In particular, these options increase circuit size:
   - Dynamical decoupling and gate-folding ZNE introduce additional gates that are included in the instructions for the [Maximum number of low-level instructions per qubit](#per-qubit) limit.
   - Gate-folding ZNE introduces additional two-qubit gates relevant to the [Maximum number of two-qubit gates per job](#2-qubit-limit) limit. The number of two-qubit gates is multiplied by the sum of noise factors requested in gate-folding ZNE.
+- The limits reported by the `backend.configuration()` fields `max_shots` and `max_experiments` are no longer relevant or enforced. These fields will be removed in the near future.
 </Admonition>
 
 <span id="max-shots"></span>
@@ -49,9 +50,4 @@ The maximum number of single-qubit gates are as follows:
 - 30 million RZ gates
 - 20 million SX gates
 
-The maximum number of two-qubit gates per circuit is 5 million for static circuits and 100,000 for dynamic circuits.
-This ensures that the job can be manipulated within the memory limits of the low-level software stack.
-
-## Considerations and limitations for dynamic circuits
-
-For considerations and limitations related to running [dynamic circuits](/docs/guides/classical-feedforward-and-control-flow) on quantum hardware, see the [Hardware considerations and limitations](/docs/guides/dynamic-circuits-considerations) guide.
+The maximum number of two-qubit gates per circuit is five million. This ensures that the job can be manipulated within the memory limits of the low-level software stack.

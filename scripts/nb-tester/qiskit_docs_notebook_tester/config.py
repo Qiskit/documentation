@@ -72,7 +72,6 @@ class NotebookJob:
     cell_timeout: int | None
     log_cell_outputs: bool | None
     write: Result
-    map_open_backends_to_internal: bool = False
 
 
 def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
@@ -115,7 +114,6 @@ def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
                 cell_timeout=config.cell_timeout,
                 log_cell_outputs=config.log_cell_outputs,
                 write=write,
-                map_open_backends_to_internal=config.map_open_backends_to_internal,
             )
 
 
@@ -128,7 +126,6 @@ class Config:
     write: bool
     groups: list[dict]
     log_cell_outputs: bool
-    map_open_backends_to_internal: bool
 
     @classmethod
     def from_args(cls, args: argparse.Namespace) -> Config:
@@ -168,7 +165,6 @@ class Config:
                 write=args.write,
                 groups=groups,
                 log_cell_outputs=args.log_cell_outputs,
-                map_open_backends_to_internal=args.map_open_backends_to_internal,
             )
 
         try:
@@ -195,7 +191,6 @@ class Config:
             write=args.write,
             groups=groups,
             log_cell_outputs=args.log_cell_outputs,
-            map_open_backends_to_internal=args.map_open_backends_to_internal,
         )
 
     def get_patch_for_group(self, group: dict) -> str | None:
@@ -307,16 +302,6 @@ def get_parser() -> argparse.ArgumentParser:
             "Print text outputs of cells to the console as they run.\n"
             "NOTE: This script runs notebooks in parallel. When running more than one "
             "notebook, cell outputs will appear as they're received, not grouped by notebook."
-        )
-    )
-    parser.add_argument(
-        "--map-open-backends-to-internal",
-        action="store_true",
-        help=(
-            "Temporary hack to map open backend names to internal before "
-            "execution, then back again after execution. This is to get round the "
-            "fact that our instance can't access open backends through their "
-            "usual names."
         )
     )
     return parser

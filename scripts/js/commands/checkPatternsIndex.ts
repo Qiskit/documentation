@@ -13,6 +13,7 @@
 import { readFile } from "fs/promises";
 
 import type { TocEntry } from "../lib/api/generateToc.js";
+import { readJsonFile } from "../lib/fs";
 
 // URLs that show up in the left ToC under the `Tools` section, but are not in
 // any of the INDEX_PAGES.
@@ -120,7 +121,7 @@ function getTocSectionPageNames(sectionNode: TocEntry): string[] {
 }
 
 async function getToolsTocEntriesToCheck(): Promise<string[]> {
-  const toc = JSON.parse(await readFile(TOC_PATH, "utf-8"));
+  const toc = await readJsonFile(TOC_PATH);
   const toolsNode = toc.children.find(
     (child: TocEntry) => child.title == "Tools",
   );
