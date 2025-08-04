@@ -39,7 +39,7 @@ The revision version number will increment for fixes that do not break the exist
 
 ## QPU configuration values
 
-The following is a subset of QPU configuration values available in IBM Quantum Platform and from [Qiskit](/docs/api/qiskit/1.4/qiskit.providers.models.BackendConfiguration).
+The following is a subset of QPU configuration values available in IBM Quantum Platform and from [Qiskit](/docs/api/qiskit-ibm-runtime/ibm-backend).
 
 These values are shown on both the [Compute resources page](https://quantum.cloud.ibm.com/computers) and the details page for each QPU.
 
@@ -47,13 +47,11 @@ These values are shown on both the [Compute resources page](https://quantum.clou
 *   **Qubits** - The number of physical qubits in a QPU.
 *   **2Q error (best)** - The lowest two-qubit (2Q) error on any edge of the device as measured from isolated 2Q randomized benchmarking.
 *   **2Q error (layered)** - Average error per layered gate (EPLG) in a chain of 100 qubits. Average EPLG measures the average gate error in a layered chain of $N$ qubits ($N$=100 here). It is derived from a similar quantity known as the layer fidelity (LF) where EPLG$_{100}$ = 4/5(1-LF$^{\frac{1}{99}}$) and layer fidelity is the process fidelity of the layered chain of $N$ qubits. For details, see the paper [Benchmarking quantum processor performance at scale](https://arxiv.org/abs/2311.05933). Note that in the paper EPLG is defined for process error, but for consistency with the individually reported gate errors here it is quoted for average gate error, thus the factor of 4/5.
-*   **CLOPS** - Circuit layer operations per second, and also known as CLOPS_v, is a measure of how many layers of a Quantum volume circuit (virtual circuit) a QPU (quantum processing unit) can execute per unit of time. Find more information about this metric in the paper [Quality, Speed, and Scale: three key attributes to measure the performance of near-term quantum computers](https://arxiv.org/abs/2110.14108).
-* **CLOPS_h** -- A measure of how many layers of a 100x100 circuit (hardware-aware circuit) a QPU (quantum processing unit) can execute per unit of time.
-*   **QV** - Quantum volume. This value is another metric for QPU quality based on passing a fidelity threshold for a set of random, square all-to-all connected circuits. Provided as the peak value measured on a system of devices. For details, see the paper [Validating quantum computers using randomized model circuits](https://arxiv.org/abs/1811.12926).
+*   **CLOPS** (or CLOPS_h) - Circuit layer operations per second, is a measure of how many layers of a 100x100 circuit (hardware-aware circuit) a QPU (quantum processing unit) can execute per unit of time.
 *   **Status** - The QPU status.
+*   **Region** - Location of the data center where your data and experiments will be hosted and processed.
 *   **Total pending jobs** - The total number of jobs that you have submitted to this QPU.
-*   **Processor type** - Reflects the topology and indicates the approximate qubit count.
-*   **Features** - Additional information about the QPU, such as whether it supports pulse inputs.
+*   **Processor type** - Reflects the [topology](/docs/guides/qpu-information) and indicates the approximate qubit count.
 
 <Admonition type="note" title="Average gate fidelity">
 Note that the metric for median ECR error (for Eagle processors) and median CZ error (for Heron processors) is the [average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity), which is the average over all possible input states of the fidelity between the state produced by the actual operation and the state produced by the ideal operation.
@@ -78,20 +76,10 @@ To access the details page, click the **Compute resources** tab, then click the 
     >   - **prob_meas1_prep0**: Similarly, this parameter represents the probability of measuring a qubit in the $|1\rangle$ state when it was intended to be prepared in the $|0\rangle$ state, denoted as $P(1|0)$. Like prob_meas0_prep1, it reflects SPAM errors, with measurement errors being the predominant contributor in superconducting qubits.
     >   - **readout_length**: The readout_length specifies the duration of the readout operation for a qubit. It measures the time from the initiation of the measurement pulse to the completion of signal digitization, after which the system is ready for the next operation. Understanding this parameter is crucial for optimizing circuit execution, especially when incorporating mid-circuit measurements.
 
-*   **Your access instance** - Instances that you can use. Click the arrow on the right to expand or collapse this section. For each instance, you can see the following information:
-
-    *   **Max shots** - The maximum number of times you can execute a single circuit on a QPU. The number of shots taken determines the precision of the output probability distribution over repeated executions.
-    *   **Max circuits** - The maximum number of quantum circuits that you can submit to this QPU at one time.
-    *   **Max qubits per pulse gate** - The maximum number of qubit arguments allowed to a gate.
-    *   **Max channels per pulse gate** - The maximum number of channels you can refer to within a pulse schedule. Typically each qubit is associated with a drive channel, a measure channel, an acquisition channel, and then auxiliary control channels for things like cross resonance.
-    *   **Usage** - Click the link to see the jobs that you have run on this QPU.
-
 <span id="available"></span>
-## View your QPUs
+## View your resources
 
 To find your available QPUs, open the [Compute resources](https://quantum.cloud.ibm.com/computers) page (make sure you are signed in).  Note that your selected region might impact the QPUs listed. Click a QPU to view its details.
-
-Alternatively, ****************************************
 
 You can also view your available QPUs by using the [backends API.](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backends)
 
