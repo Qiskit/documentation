@@ -35,6 +35,7 @@ jobs:
         run: tox -- --write --test-strategy hardware
 
       - name: Normalize notebooks
+        if: "!cancelled()"
         run: tox -e fix
 
       - name: Detect changed notebooks
