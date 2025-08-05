@@ -356,10 +356,15 @@ function _qiskitUtilsData(): FilesToIgnores {
       ],
     ]),
   );
+
+  const releaseNotesFile = Object.fromEntries(
+    ["1.0", "1.1"].map((vers) => [
+      `docs/api/qiskit/release-notes/${vers}.mdx`,
+      [`/docs/api/qiskit/${vers}/utils#qiskit.utils.optionals.HAS_SYMENGINE`],
+    ]),
+  );
   return {
-    "docs/api/qiskit/release-notes/1.0.mdx": [
-      "/docs/api/qiskit/1.0/utils#qiskit.utils.optionals.HAS_SYMENGINE",
-    ],
+    ...releaseNotesFile,
     ...objectsInv,
     ...utilsFile,
   };
