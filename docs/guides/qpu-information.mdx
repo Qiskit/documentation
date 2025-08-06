@@ -57,9 +57,16 @@ These values are shown on both the [Compute resources page](https://quantum.clou
 Note that the metric for median ECR error (for Eagle processors) and median CZ error (for Heron processors) is the [average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity), which is the average over all possible input states of the fidelity between the state produced by the actual operation and the state produced by the ideal operation.
 </Admonition>
 
-**Additional information available on the details page for each QPU**
+### Additional information available on the details page for each QPU
 
-To access the details page, click the **Compute resources** tab, then click the name of the QPU.
+To access the details page, select [Compute resources](https://quantum.cloud.ibm.com/computers) from the left-hand menu, then click the name of the QPU.
+
+<span id="native-gates-on-platform"></span>
+* **Native gates** - Select any QPU on the Compute resources page. The default gates for that QPU are listed under Details. Note that the non-unitary operations are not listed here; use the method in Qiskit to see all native gates and operations for a QPU.
+
+<Admonition type="note" title="Basis gates">
+The terms native gates and basis gates are often used interchangeably. The native gates are those that calibrations have been done for on the QPU, so the QPU can understand and execute them without further instruction. However, you can pass a subset of the native gates as the basis gates to the transpiler. For information about changing the basis gates, see the [Represent quantum computers](/docs/guides/represent-quantum-computers#basis-gates) topic.
+</Admonition>
 
 *   **Version** - The version number of a QPU in the form `major.minor.revision`. See [QPU versioning](#qpu-versioning) for details on how this number is assigned.
 
@@ -110,6 +117,8 @@ Click the download icon in the upper right of any tab to download a CSV file of 
 | :--- | :--- |
 | [CZ](/docs/api/qiskit/qiskit.circuit.library.CZGate) | two-qubit gate |
 | [ECR](/docs/api/qiskit/qiskit.circuit.library.ECRGate) | two-qubit gate |
+| [RZZ](/docs/api/qiskit/qiskit.circuit.library.RZZGate) | two-qubit gate |
+| [RX](/docs/api/qiskit/qiskit.circuit.library.RXGate) | single-qubit gate |
 | [RZ](/docs/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
 | [SX](/docs/api/qiskit/qiskit.circuit.library.SXGate)  |single-qubit gate |
 | [X](/docs/api/qiskit/qiskit.circuit.library.XGate)  | single-qubit gate |
@@ -117,4 +126,3 @@ Click the download icon in the upper right of any tab to download a CSV file of 
 | [reset](/docs/api/qiskit/circuit#qiskit.circuit.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
 | [measure](/docs/api/qiskit/circuit#qiskit.circuit.Measure) | |
 | [delay](/docs/api/qiskit/circuit#qiskit.circuit.Delay) |  |
-| Fractional gates | |
