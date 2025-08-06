@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePeekskill
 
 # FakePeekskill
 
-<Class id="qiskit_ibm_runtime.fake_provider.FakePeekskill" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/peekskill/fake_peekskill.py#L21-L28" signature="FakePeekskill" modifiers="class">
+<Class id="qiskit_ibm_runtime.fake_provider.FakePeekskill" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/peekskill/fake_peekskill.py#L21-L27" signature="FakePeekskill" modifiers="class">
   Bases: `FakeBackendV2`
 
   A fake 27 qubit backend.
@@ -30,10 +30,6 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePeekskill
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakePeekskill.coupling_map">
     Return the [`CouplingMap`](/docs/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v2.1)") object
   </Attribute>
-
-  ### defs\_filename
-
-  <Attribute id="qiskit_ibm_runtime.fake_provider.FakePeekskill.defs_filename" attributeValue="'defs_peekskill.json'" />
 
   ### dirname
 
@@ -181,7 +177,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePeekskill
 
   ### check\_faulty
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L209-L241" signature="check_faulty(circuit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L175-L207" signature="check_faulty(circuit)">
     Check if the input circuit uses faulty qubits or edges.
 
     **Parameters**
@@ -199,7 +195,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePeekskill
 
   ### configuration
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L205-L207" signature="configuration()">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L171-L173" signature="configuration()">
     Return the backend configuration.
 
     **Return type**
@@ -207,27 +203,9 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePeekskill
     *QasmBackendConfiguration*
   </Function>
 
-  ### defaults
-
-  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.defaults" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L182-L203" signature="defaults(refresh=False)">
-    (DEPRECATED)Return the pulse defaults for the backend
-
-    **Parameters**
-
-    **refresh** (*bool*) – If `True`, re-retrieve the backend defaults from the local file.
-
-    **Returns**
-
-    The backend pulse defaults or `None` if the backend does not support pulse.
-
-    **Return type**
-
-    *PulseDefaults*
-  </Function>
-
   ### properties
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L169-L180" signature="properties(refresh=False)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L158-L169" signature="properties(refresh=False)">
     Return the backend properties
 
     **Parameters**
@@ -269,7 +247,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePeekskill
 
   ### refresh
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L430-L506" signature="refresh(service)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L394-L465" signature="refresh(service, use_fractional_gates=False)">
     Update the data files from its real counterpart
 
     This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation:
@@ -282,7 +260,8 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePeekskill
 
     **Parameters**
 
-    **service** ([*QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – A `QiskitRuntimeService` instance
+    *   **service** ([*QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – A `QiskitRuntimeService` instance
+    *   **use\_fractional\_gates** (*bool*) – Set True to allow for the backends to include fractional gates.
 
     **Raises**
 
@@ -296,7 +275,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePeekskill
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L314-L345" signature="run(run_input, **options)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L278-L309" signature="run(run_input, **options)">
     Run on the fake backend using a simulator.
 
     This method runs circuit jobs (an individual or a list of QuantumCircuit) using BasicSimulator or Aer simulator and returns a [`Job`](/docs/api/qiskit/qiskit.providers.Job "(in Qiskit v2.1)") object.
@@ -337,7 +316,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakePeekskill
 
   ### status
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L151-L167" signature="status()">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakePeekskill.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L140-L156" signature="status()">
     Return the backend status.
 
     **Returns**
