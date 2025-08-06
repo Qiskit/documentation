@@ -22,7 +22,7 @@ title: My Awesome Guide
 
 # My Awesome Guide
     `;
-const markdown2 = `---
+  const markdown2 = `---
 title: Qiskit Doc
 author: John
 ---
@@ -31,9 +31,11 @@ author: John
 
 This guide will walk you through everything.`;
   const mismatched = await collectHeadingTitleMismatch(markdown1);
-  const mismatched2 = await collectHeadingTitleMismatch(markdown2)
+  const mismatched2 = await collectHeadingTitleMismatch(markdown2);
   const result: string[] = [];
-  const result2: string[] = [`Mismatch: frontmatter title "Qiskit Doc" does not match heading "Introduction"`];
-expect(mismatched).toEqual(result);
-expect(mismatched2).toEqual(result2);
+  const result2: string[] = [
+    `Mismatch: frontmatter title "Qiskit Doc" does not match heading "Introduction"`,
+  ];
+  expect(mismatched).toEqual(result);
+  expect(mismatched2).toEqual(result2);
 });

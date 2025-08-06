@@ -6,7 +6,9 @@ import { visit } from "unist-util-visit";
 import { Root } from "mdast";
 import yaml from "js-yaml";
 
-export async function collectHeadingTitleMismatch(markdown: string): Promise<string[]> {
+export async function collectHeadingTitleMismatch(
+  markdown: string,
+): Promise<string[]> {
   const mismatches: string[] = [];
   let frontmatterTitle: string | undefined;
   let headingText: string | undefined;
@@ -39,7 +41,7 @@ export async function collectHeadingTitleMismatch(markdown: string): Promise<str
 
   if (frontmatterTitle && headingText && frontmatterTitle !== headingText) {
     mismatches.push(
-      `Mismatch: frontmatter title "${frontmatterTitle}" does not match heading "${headingText}"`
+      `Mismatch: frontmatter title "${frontmatterTitle}" does not match heading "${headingText}"`,
     );
   }
 
