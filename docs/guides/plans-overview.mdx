@@ -14,8 +14,8 @@ If you want access to multiple plans, you can create multiple instances and assi
 ```python
   from qiskit_ibm_runtime import QiskitRuntimeService
   service = QiskitRuntimeService.save_account(
-    token=token, # Your token is confidential.
-    # Do not share your key in public code.
+    token="token", # IBM Cloud API key.
+    # Your token is confidential. Do not share your key in public code.
     instance="<IBM Cloud CRN or instance name>", # Optionally specify the instance to use.
     plans_preference="['open', 'premium']", # Optionally set the types of plans to prioritize.  This is ignored if the instance is specified.
     # Additionally, instances of a certain plan can be excluded if the plan name is not specified.

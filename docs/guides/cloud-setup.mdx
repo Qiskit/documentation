@@ -89,8 +89,8 @@ When an instance CRN or name is passed in, only backends and jobs from that inst
 ```python
   from qiskit_ibm_runtime import QiskitRuntimeService
   service = QiskitRuntimeService.save_account(
-    token=token, # Your token is confidential.
-    # Do not share your token in public code.
+    token="token", # IBM Cloud API key.
+    # Your token is confidential. Do not share your token in public code.
     instance="<IBM Cloud CRN or instance name>", # Optionally specify the instance to use.
     plans_preference="['open', 'premium']", # Optionally set the types of plans to prioritize.  This is ignored if the instance is specified.
     # Additionally, instances of a certain plan can be excluded if the plan name is not specified.
