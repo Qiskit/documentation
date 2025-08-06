@@ -62,11 +62,11 @@ Note that the metric for median ECR error (for Eagle processors) and median CZ e
 To access the details page, select [Compute resources](https://quantum.cloud.ibm.com/computers) from the left-hand menu, then click the name of the QPU.
 
 <span id="native-gates-on-platform"></span>
-* **Native gates** - Select any QPU on the Compute resources page. The default gates for that QPU are listed under Details. Note that the non-unitary operations are not listed here; use the method in Qiskit to see all native gates and operations for a QPU.
+* **Native gates** - Each [processor family](/docs/guides/processor-types) has a native gate set. By default, the QPUs in each family only support running the gates and operations in the native gate set. Thus, every gate in the circuit must be translated (by the transpiler) to the elements of this set. To find the native gates for a QPU, select its name on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. The default gates for that QPU are listed under Details. Note that the non-unitary operations are not listed here; use the [method in Qiskit](/docs/guides/get-qpu-information#native-gates-with-qiskit) to see all native gates and operations for a QPU.
 
-<Admonition type="note" title="Basis gates">
-The terms native gates and basis gates are often used interchangeably. The native gates are those that calibrations have been done for on the QPU, so the QPU can understand and execute them without further instruction. However, you can pass a subset of the native gates as the basis gates to the transpiler. For information about changing the basis gates, see the [Represent quantum computers](/docs/guides/represent-quantum-computers#basis-gates) topic.
-</Admonition>
+    <Admonition type="note" title="Basis gates">
+    The terms native gates and basis gates are often used interchangeably. The native gates are those that calibrations have been done for on the QPU, so the QPU can understand and execute them without further instruction. However, you can pass a subset of the native gates as the basis gates to the transpiler. For information about changing the basis gates, see the [Represent quantum computers](/docs/guides/represent-quantum-computers#basis-gates) topic.
+    </Admonition>
 
 *   **Version** - The version number of a QPU in the form `major.minor.revision`. See [QPU versioning](#qpu-versioning) for details on how this number is assigned.
 
