@@ -12,6 +12,11 @@ An _access group_ contains _policies_, which define the actions that access grou
 
 You can create additional access groups by using the IBM Cloud [console,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) [CLI,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=cli) [API,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=api) or [Terraform.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=terraform)
 
+
+<Admonition type="caution" title="Important">
+To determine the actions allowed by each role, from the [IAM Roles](https://cloud.ibm.com/iam/roles) page, select Qiskit Runtime in the dropdown menu at the top of the page.  For a more detailed list, click the number in the column next to the role name.  For example, by visiting that page and clicking the number by the Manager role, you can see that this role includes the ability to delete a job (`quantum-computing.job.delete`).
+</Admonition>
+
 ## Create an IBM Quantum Administrators access group
 After setting up an account for your organization, it's recommended that you create an  IBM Quantum Administrators access group. This access group lets other users create and manage instances, and manage user access for the Qiskit Runtime service.
 
@@ -219,5 +224,6 @@ You can only invite users who are already members of the account.  If you don't 
    - Understand the [IBM Cloud account structure,](/docs/guides/cloud-account-structure) including access policies, groups, and roles.
    - Read about [how IBM Cloud IAM works.](https://cloud.ibm.com/docs/account?topic=account-iamoverview)
    - Read more about how to [set up access groups.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui)
+   - Understand the the [IAM Roles](https://cloud.ibm.com/iam/roles) (select Qiskit Runtime from the dropdown at the top of the page).
    - Learn about [creating custom roles.](/docs/guides/custom-roles)
 </Admonition>

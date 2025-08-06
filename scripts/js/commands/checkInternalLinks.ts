@@ -229,6 +229,8 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.29/session.mdx",
     "docs/api/qiskit-ibm-runtime/0.30/runtime-job.mdx",
     "docs/api/qiskit-ibm-runtime/0.34/ibm-backend.mdx",
+    // Used by the latest updates page.
+    "docs/api/qiskit-ibm-runtime/0.40/ibm-backend.mdx",
     // These pages were removed in Qiskit 2.0.
     ...QISKIT_REMOVED_PAGES_TO_LOAD,
   ];
