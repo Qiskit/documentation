@@ -62,4 +62,3 @@ export async function collectHeadingTitleMismatch(
 
   return Array.from(mismatches);
 }
-

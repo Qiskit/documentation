@@ -21,13 +21,13 @@ title: My Awesome Guide
 
 # My Awesome Guide
     `;
-const mismatched = await collectHeadingTitleMismatch(markdown1);
-const result: string[] = [];
+  const mismatched = await collectHeadingTitleMismatch(markdown1);
+  const result: string[] = [];
   expect(mismatched).toEqual(result);
 });
 
 test("Test to find mismatched titles and headings", async () => {
-const markdown2 = `---
+  const markdown2 = `---
 title: Qiskit Doc
 author: John
 ---
@@ -35,30 +35,30 @@ author: John
 # Introduction
 
 This guide will walk you through everything.`;
-  
+
   const mismatched2 = await collectHeadingTitleMismatch(markdown2);
-  
+
   const result2: string[] = [
     `Mismatch: frontmatter title "Qiskit Doc" does not match heading "Introduction"`,
   ];
- 
+
   expect(mismatched2).toEqual(result2);
 });
 
 test("Test to mismatched and complex titles and headings", async () => {
-const markdown2 = `---
+  const markdown2 = `---
 title: My Awesome Guide
 ---
 
 # This is a *Heading*
 
 This guide will walk you through everything.`;
-  
+
   const mismatched2 = await collectHeadingTitleMismatch(markdown2);
-  
+
   const result2: string[] = [
     `Mismatch: frontmatter title "My Awesome Guide" does not match heading "This is a  Heading"`,
   ];
- 
+
   expect(mismatched2).toEqual(result2);
 });
