@@ -64,10 +64,6 @@ To access the details page, select [Compute resources](https://quantum.cloud.ibm
 <span id="native-gates-on-platform"></span>
 * **Basis gates** - Each [processor family](/docs/guides/processor-types) has a native gate set. By default, the QPUs in each family only support running the gates and operations in the native gate set. Thus, every gate in the circuit must be translated (by the transpiler) to the elements of this set. To find the native gates (also called basis gates) for a QPU, select its name on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. Note that the non-unitary operations are not listed here; use the [method in Qiskit](/docs/guides/get-qpu-information#native-gates-with-qiskit) to see all native gates and operations for a QPU. See a list of all native gates in [this table](#native-gates).
 
-    <Admonition type="note" title="Native gates and basis gates">
-    The terms native gates and basis gates are often used interchangeably. The native gates are those that calibrations have been done for on the QPU, so the QPU can understand and execute them without further instruction. However, you can pass a subset of the native gates as the basis gates to the transpiler. For information about changing the basis gates, see the [Represent quantum computers](/docs/guides/represent-quantum-computers#basis-gates) topic.
-    </Admonition>
-
 *   **Version** - The version number of a QPU in the form `major.minor.revision`. See [QPU versioning](#qpu-versioning) for details on how this number is assigned.
 
 *   **Calibration data** - Download the calibration data as a CSV file or click the arrow to display the Topology diagram, Individual qubit readout graph, or the Calibration data table. You can customize the data that is shown, depending on the view you have open. For example, on the Topology diagram, you can choose the data you want to see for connections and qubits. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
