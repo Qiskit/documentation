@@ -134,9 +134,9 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum Platform Classic and improving the user experience for the new IBM Quantum Platform. Among new features, improvements, and minor bug fixes, the release highlights are:
 
-> *   The `ibm_quantum` channel and IQP Classic are no longer supported.
-> *   [`QiskitRuntimeService.least_busy()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#least_busy "qiskit_ibm_runtime.QiskitRuntimeService.least_busy") is significantly faster.
-> *   [`QiskitRuntimeService.usage()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#usage "qiskit_ibm_runtime.QiskitRuntimeService.usage") has been updated to return information regarding the current instance usage limit, consumption, and time remaining.
+*   The `ibm_quantum` channel and IQP Classic are no longer supported.
+*   [`QiskitRuntimeService.least_busy()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#least_busy "qiskit_ibm_runtime.QiskitRuntimeService.least_busy") is significantly faster.
+*   [`QiskitRuntimeService.usage()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#usage "qiskit_ibm_runtime.QiskitRuntimeService.usage") has been updated to return information regarding the current instance usage limit, consumption, and time remaining.
 
 ### Upgrade Notes
 
@@ -144,7 +144,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### New Features
 
-*   A new parameter, `tags`, has been added to the [`QiskitRuntimeService`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") initializer and [`QiskitRuntimeService.save_account()`](qiskit-runtime-service#save_account "qiskit_ibm_runtime.QiskitRuntimeService.save_account") method. `tags` can be used to **filter** instances so only instances with the given tags are returned.
+*   A new parameter, `tags`, has been added to the [`QiskitRuntimeService`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") initializer and [`QiskitRuntimeService.save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account "qiskit_ibm_runtime.QiskitRuntimeService.save_account") method. `tags` can be used to **filter** instances so only instances with the given tags are returned.
 
     Additionally, if no valid instances are returned when using the `tags`, `region`, or `plans_preference` filters, an error will now be raised at initialization. Make sure the names of the `tags` and `region` passed in match the instance `tags` or `region` exactly (case-insensitive). For `plans_preference`, as long as a matching plan name is passed in, instances with the matching plan name will be prioritized. ([2277](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2277))
 
@@ -158,12 +158,12 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 *   [`QiskitRuntimeService.usage()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#usage "qiskit_ibm_runtime.QiskitRuntimeService.usage") has been updated to include a `usage_remaining_seconds` field. This field includes the difference between the reported `usage_limit_seconds` or `usage_allocation_seconds` (depending on how the instance is configured) and `usage_consumed_seconds`. Learn more about instance allocation limits [here](/docs/guides/allocation-limits). ([2329](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2329))
 
-*   The [`QiskitRuntimeService`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") has been updated to use a new API version. With the new version, the [`QiskitRuntimeService.least_busy()`](qiskit-runtime-service#least_busy "qiskit_ibm_runtime.QiskitRuntimeService.least_busy") method has been updated to take advantage of the updated `BackendsResponseV2` which makes it significantly faster. ([2323](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2323))
+*   The [`QiskitRuntimeService`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") has been updated to use a new API version. With the new version, the [`QiskitRuntimeService.least_busy()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#least_busy "qiskit_ibm_runtime.QiskitRuntimeService.least_busy") method has been updated to take advantage of the updated `BackendsResponseV2` which makes it significantly faster. ([2323](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2323))
 
 
 ### Bug Fixes
 
-*   Fixed a bug in `BasePrimitive` where primitives instantiated inside a [`Session`](/docs/api/qiskit-ibm-runtime/session "qiskit_ibm_runtime.Session") or [`Batch`](batch "qiskit_ibm_runtime.Batch") context manager without the `mode` parameter would fetch the backend from the service (by name) instead of using the backend passed to the [`Session`](session "qiskit_ibm_runtime.Session") or [`Batch`](batch "qiskit_ibm_runtime.Batch"). This could cause issues when the [`Session`](session "qiskit_ibm_runtime.Session") or [`Batch`](batch "qiskit_ibm_runtime.Batch") backend was modified by users (for example, by removing a gate), because the primitives would instead fetch the unmodified backend object from the service. After the fix, the [`Session`](session "qiskit_ibm_runtime.Session") or [`Batch`](batch "qiskit_ibm_runtime.Batch") backend object is used directly. ([2282](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2282))
+*   Fixed a bug in `BasePrimitive` where primitives instantiated inside a [`Session`](/docs/api/qiskit-ibm-runtime/session "qiskit_ibm_runtime.Session") or [`Batch`](/docs/api/qiskit-ibm-runtime/batch "qiskit_ibm_runtime.Batch") context manager without the `mode` parameter would fetch the backend from the service (by name) instead of using the backend passed to the [`Session`](/docs/api/qiskit-ibm-runtime/session  "qiskit_ibm_runtime.Session") or [`Batch`](/docs/api/qiskit-ibm-runtime/batch  "qiskit_ibm_runtime.Batch"). This could cause issues when the [`Session`](/docs/api/qiskit-ibm-runtime/session  "qiskit_ibm_runtime.Session") or [`Batch`](/docs/api/qiskit-ibm-runtime/batch  "qiskit_ibm_runtime.Batch") backend was modified by users (for example, by removing a gate), because the primitives would instead fetch the unmodified backend object from the service. After the fix, the [`Session`](/docs/api/qiskit-ibm-runtime/session  "qiskit_ibm_runtime.Session") or [`Batch`](/docs/api/qiskit-ibm-runtime/batch  "qiskit_ibm_runtime.Batch") backend object is used directly. ([2282](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2282))
 *   Fixed an issue in [`IBMBackend`](/docs/api/qiskit-ibm-runtime/ibm-backend "qiskit_ibm_runtime.IBMBackend") where property changes, such as modifications to `basis_gates`, persisted even after the backend object was renewed. ([2283](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2283))
 
 ### Other Notes
