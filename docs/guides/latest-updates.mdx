@@ -152,13 +152,13 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
     Additionally, `qiskit-ibm-runtime` now officially supports Python 3.13. ([2314](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2314))
 
-*   There is a new method, [`QiskitRuntimeService.active_instance()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#active_instance "qiskit_ibm_runtime.QiskitRuntimeService.active_instance") which returns the IBM Cloud CRN of the current active instance.
+*   There is a new method, [`QiskitRuntimeService.active_instance()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#active_instance "qiskit_ibm_runtime.QiskitRuntimeService.active_instance"), which returns the IBM Cloud CRN of the current active instance.
 
     The [`QiskitRuntimeService.jobs()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#jobs "qiskit_ibm_runtime.QiskitRuntimeService.jobs") method has been updated to properly accept the `instance` parameter, which can be used to filter jobs. ([2325](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2325))
 
-*   [`QiskitRuntimeService.usage()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#usage "qiskit_ibm_runtime.QiskitRuntimeService.usage") has been updated to include a `usage_remaining_seconds` field. This field includes the difference between the reported `usage_limit_seconds` or `usage_allocation_seconds` (depending on how the instance is configured) and `usage_consumed_seconds`. Learn more about instance allocation limits [here](/docs/guides/allocation-limits). ([2329](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2329))
+*   [`QiskitRuntimeService.usage()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#usage "qiskit_ibm_runtime.QiskitRuntimeService.usage") has been updated to include a `usage_remaining_seconds` field. This field includes the difference between the reported `usage_limit_seconds` or `usage_allocation_seconds` (depending on how the instance is configured) and `usage_consumed_seconds`. Learn more about instance allocation limits [in the documentation](/docs/guides/allocation-limits). ([2329](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2329))
 
-*   The [`QiskitRuntimeService`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") has been updated to use a new API version. With the new version, the [`QiskitRuntimeService.least_busy()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#least_busy "qiskit_ibm_runtime.QiskitRuntimeService.least_busy") method has been updated to take advantage of the updated `BackendsResponseV2` which makes it significantly faster. ([2323](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2323))
+*   The [`QiskitRuntimeService`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") has been updated to use a new API version. With the new version, the [`QiskitRuntimeService.least_busy()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#least_busy "qiskit_ibm_runtime.QiskitRuntimeService.least_busy") method has been updated to take advantage of the updated `BackendsResponseV2`, which makes it significantly faster. ([2323](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2323))
 
 
 ### Bug Fixes
