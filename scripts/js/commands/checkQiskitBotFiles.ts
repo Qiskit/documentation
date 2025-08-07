@@ -29,7 +29,6 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/using-ibm-quantum-simulators",
   "docs/guides/circuit-execution",
   "docs/guides/configure-runtime-compilation",
-  "docs/guides/native-gates",
   "docs/guides/save-jobs",
   "docs/guides/visualize-results",
   "docs/guides/create-transpiler-plugin",
