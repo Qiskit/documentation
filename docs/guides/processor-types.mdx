@@ -8,6 +8,10 @@ description: Information on IBM Quantum hardware and features of different proce
 
 Processor types are named for the general technology qualities that go into builds, consisting of the family and revision. Family (for example, Heron) refers to the size and scale of circuits possible on the chip. This is primarily determined by the number of qubits and the connectivity graph. Revisions (for example, r3) are design variants within a given family, often leading to performance improvements or tradeoffs.
 
+<Admonition type="tip" title="Native gates and operations">
+To find the native gates and operations of a backend, use [this code](/docs/guides/get-qpu-information#native-gates-with-qiskit). You can see all native gates and operations in [this table](/docs/guides/qpu-information#native-gates).
+</Admonition>
+
 ## Heron
 
 ![Heron processor icon](/docs/images/guides/processor-types/heron.svg)
@@ -17,8 +21,6 @@ Quantum volume: 512
 At 156 qubits, Heron is an [Eagle](#eagle)-sized upgrade to [Egret](#egret) that pulls in substantial innovations in signal delivery that were previously deployed in [Osprey](#osprey). The signals required to enable the fast, high-fidelity two-qubit and single-qubit control are delivered with high-density flex cabling.
 
 *   [View available Heron processors](https://quantum.cloud.ibm.com/computers?processorType=Heron)
-
-* [Native gates and operations](native-gates): `cz, id, delay, measure, reset, rz, sx, x, if_else, for_loop, switch_case`
 
 <Admonition type="info" title="Revisions">
   `r3` (July 2025) Heron r3 is the result of targeted manufacturing improvements that directly impact coherence, gate fidelity, and readout performance.
@@ -46,8 +48,6 @@ At 127 qubits, the Eagle processor family incorporates more scalable packaging t
 See [IBM Quantum breaks the 100‑qubit processor barrier](https://www.ibm.com/quantum/blog/127-qubit-quantum-processor-eagle) for more about the Eagle processor family.
 
 *   [View available Eagle processors](https://quantum.cloud.ibm.com/computers?processorType=Eagle)
-
-* [Native gates and operations](native-gates): `ecr, id, delay, measure, reset, rz, sx, x, if_else, for_loop, switch_case`
 
 <Admonition type="info" title="Revisions">
   `r3` (December 2022) Eagle r3 is a version of the 127-qubit processor with enhanced coherence properties but otherwise similar design parameters to Eagle r1.
@@ -91,7 +91,8 @@ Quantum volume: 128
 
 The Falcon family of devices offers a valuable platform for medium-scale circuits, and also serves as a valuable platform for demonstrating performance and scalability improvements before they’re pushed onto the larger devices.
 
-* [Native gates and operations](native-gates): `cx, id, delay, measure, reset, rz, sx, x, if_else, for_loop, switch_case`
+*   [View available Falcon processors](https://quantum.cloud.ibm.com/computers?processorType=Falcon)
+
 
 <Admonition type="info" title="Revisions">
   `r8` (September 2021) In addition to the features of r5.11, Falcon r8 has enhanced coherence properties.
