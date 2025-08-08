@@ -22,7 +22,7 @@ title: My Awesome Guide
 # My Awesome Guide
     `;
   const mismatched = await collectHeadingTitleMismatch(markdown1);
-  const result: string[] = [];
+  const result: Set<string> = new Set();
   expect(mismatched).toEqual(result);
 });
 
@@ -38,9 +38,9 @@ This guide will walk you through everything.`;
 
   const mismatched2 = await collectHeadingTitleMismatch(markdown2);
 
-  const result2: string[] = [
+  const result2: Set<string> = new Set([
     `Mismatch: frontmatter title "Qiskit Doc" does not match heading "Introduction"`,
-  ];
+  ]);
 
   expect(mismatched2).toEqual(result2);
 });
@@ -56,9 +56,9 @@ This guide will walk you through everything.`;
 
   const mismatched2 = await collectHeadingTitleMismatch(markdown2);
 
-  const result2: string[] = [
+  const result2: Set<string> = new Set([
     `Mismatch: frontmatter title "My Awesome Guide" does not match heading "This is a  Heading"`,
-  ];
+  ]);
 
   expect(mismatched2).toEqual(result2);
 });

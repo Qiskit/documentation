@@ -18,6 +18,10 @@ import { collectInvalidImageErrors } from "../lib/markdownImages.js";
 import { readMarkdown } from "../lib/markdownReader.js";
 import { collectHeadingTitleMismatch } from "../lib/markdownTitles.js";
 
+const IGNORE_TITLE_MISMATCHES: string[] = [];
+
+const allErrors: string[] = [];
+
 interface Arguments {
   [x: string]: unknown;
   apis: boolean;
@@ -38,43 +42,31 @@ const readArgs = (): Arguments => {
 async function main() {
   const args = readArgs();
   const files = await determineContentFiles(args);
-  const fileErrors: string[] = [];
 
   for (const file of files) {
     const markdown = await readMarkdown(file);
     const imageErrors = await collectInvalidImageErrors(markdown);
-    const mismatchedTitleHeadingErrors =
-      await collectHeadingTitleMismatch(markdown);
-
-    const errorsInFile: string[] = [];
-
-    // Handle image errors
-    if (imageErrors.size) {
-      errorsInFile.push(
-        ...[...imageErrors].map((err) => `Image error: ${err}`),
-      );
-    }
-
-    //Handle title/heading mismatch errors
-    if (mismatchedTitleHeadingErrors.length) {
-      errorsInFile.push(
-        ...mismatchedTitleHeadingErrors.map(
-          (err) => `Title/Heading mismatch: ${err}`,
-        ),
-      );
-    }
+    const mismatchedTitleHeadingErrors = IGNORE_TITLE_MISMATCHES.includes(file)
+      ? new Set<string>()
+      : await collectHeadingTitleMismatch(markdown);
 
     //Collect all errors for this file
+    const errorsInFile: string[] = [
+      ...imageErrors,
+      ...mismatchedTitleHeadingErrors,
+    ];
+
     if (errorsInFile.length) {
-      fileErrors.push(
+      allErrors.push(
+        // `Error in file '${file}':\n\t- ${[...imageErrors].join("\n\t- ")}\n`,
         `Error in file '${file}':\n\t- ${errorsInFile.join("\n\t- ")}\n`,
       );
     }
   }
 
   // Final error report
-  if (fileErrors.length) {
-    fileErrors.forEach((error) => console.log(error));
+  if (allErrors.length) {
+    allErrors.forEach((error) => console.log(error));
     console.error(
       "Some issues were found in your Markdown files. Please fix them before proceeding.\n" +
         "Image help: https://github.com/Qiskit/documentation#images\n" +

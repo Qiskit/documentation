@@ -2,7 +2,7 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
-import { visit } from "unist-util-visit";
+import { visit, EXIT } from "unist-util-visit";
 import { Root } from "mdast";
 import yaml from "js-yaml";
 
@@ -25,7 +25,7 @@ function extractText(node: any): string {
 
 export async function collectHeadingTitleMismatch(
   markdown: string,
-): Promise<string[]> {
+): Promise<Set<string>> {
   const mismatches = new Set<string>();
 
   let frontmatterTitle: string | undefined;
@@ -43,6 +43,7 @@ export async function collectHeadingTitleMismatch(
     const data = yaml.load(node.value);
     if (typeof data === "object" && data !== null && "title" in data) {
       frontmatterTitle = (data as any).title;
+      //return EXIT;
     }
   });
 
@@ -50,6 +51,7 @@ export async function collectHeadingTitleMismatch(
   visit(tree, "heading", (node: any) => {
     if (node.depth === 1 && !headingText) {
       headingText = extractText(node).trim();
+      //return EXIT;
     }
   });
 
@@ -60,5 +62,5 @@ export async function collectHeadingTitleMismatch(
     );
   }
 
-  return Array.from(mismatches);
+  return mismatches;
 }
