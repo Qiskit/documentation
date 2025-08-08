@@ -129,6 +129,10 @@ export async function parseFile(filePath: string): Promise<ParsedFile> {
     };
 
   const markdown = await readMarkdown(filePath);
-  const [internalLinks, externalLinks] = await parseLinks(markdown);
-  return { anchors: parseAnchors(markdown), internalLinks, externalLinks };
+  try {
+    const [internalLinks, externalLinks] = await parseLinks(markdown);
+    return { anchors: parseAnchors(markdown), internalLinks, externalLinks };
+  } catch (err) {
+    throw new Error(`Problem parsing '${filePath}':\n` + err.message);
+  }
 }
