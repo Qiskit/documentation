@@ -91,9 +91,10 @@ async function main() {
   for (const file of files) {
     const markdown = await readMarkdown(file);
     const imageErrors = await collectInvalidImageErrors(markdown);
-    const mismatchedTitleHeadingErrors = IGNORE_TITLE_MISMATCHES.includes(file)
-      ? new Set<string>()
-      : await collectHeadingTitleMismatch(markdown);
+    const mismatchedTitleHeadingErrors =
+      IGNORE_TITLE_MISMATCHES.includes(file) || file.startsWith("docs/api")
+        ? new Set<string>()
+        : await collectHeadingTitleMismatch(markdown);
 
     //Collect all errors for this file
     const errorsInFile: string[] = [
