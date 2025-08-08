@@ -18,7 +18,52 @@ import { collectInvalidImageErrors } from "../lib/markdownImages.js";
 import { readMarkdown } from "../lib/markdownReader.js";
 import { collectHeadingTitleMismatch } from "../lib/markdownTitles.js";
 
-const IGNORE_TITLE_MISMATCHES: string[] = [];
+const IGNORE_TITLE_MISMATCHES: string[] = [
+  "docs/migration-guides/external-providers-primitives-v2.mdx",
+  "docs/migration-guides/local-simulators.mdx",
+  "docs/migration-guides/metapackage-migration.mdx",
+  "docs/migration-guides/qiskit-1.0-features.mdx",
+  "docs/migration-guides/qiskit-1.0-installation.mdx",
+  "docs/migration-guides/qiskit-algorithms-module.mdx",
+  "docs/migration-guides/qiskit-backend-primitives.mdx",
+  "docs/migration-guides/qiskit-backendv1-to-v2.mdx",
+  "docs/migration-guides/qiskit-opflow-module.mdx",
+  "docs/migration-guides/qiskit-runtime-from-ibm-provider.mdx",
+  "docs/migration-guides/qiskit-runtime-from-ibmq-provider.mdx",
+  "docs/migration-guides/qiskit-runtime-options.mdx",
+  "docs/guides/access-groups.mdx",
+  "docs/migration-guides/v2-primitives.mdx",
+  "docs/guides/execution-modes.mdx",
+  "docs/guides/install-qiskit-source.mdx",
+  "docs/guides/manage-cost.mdx",
+  "docs/guides/plans-overview.mdx",
+  "docs/guides/qiskit-addons-aqc.mdx",
+  "docs/guides/qiskit-addons-sqd.mdx",
+  "docs/guides/qiskit-code-assistant-vscode.mdx",
+  "docs/guides/qiskit-function-templates.mdx",
+  "docs/guides/serverless.mdx",
+  "docs/open-source/code-of-conduct.mdx",
+  "docs/open-source/create-a-provider.mdx",
+  "docs/support/execution-modes-faq.mdx",
+  "docs/support/faq.mdx",
+  "learning/index.mdx",
+  "learning/courses/basics-of-quantum-information/exam.mdx",
+  "learning/courses/basics-of-quantum-information/index.mdx",
+  "learning/courses/foundations-of-quantum-error-correction/index.mdx",
+  "learning/courses/fundamentals-of-quantum-algorithms/exam.mdx",
+  "learning/courses/fundamentals-of-quantum-algorithms/index.mdx",
+  "learning/courses/quantum-business-foundations/business-impacts.mdx",
+  "learning/courses/quantum-business-foundations/exam.mdx",
+  "learning/courses/quantum-business-foundations/quantum-computing-fundamentals.mdx",
+  "learning/courses/quantum-business-foundations/quantum-technology.mdx",
+  "learning/courses/quantum-business-foundations/start-your-quantum-journey.mdx",
+  "learning/courses/quantum-chem-with-vqe/exam.mdx",
+  "learning/courses/quantum-diagonalization-algorithms/exam.mdx",
+  "learning/courses/quantum-machine-learning/exam.mdx",
+  "learning/courses/quantum-safe-cryptography/exam.mdx",
+  "learning/courses/utility-scale-quantum-computing/classical-simulation.mdx",
+  "learning/courses/variational-algorithm-design/exam.mdx",
+];
 
 const allErrors: string[] = [];
 

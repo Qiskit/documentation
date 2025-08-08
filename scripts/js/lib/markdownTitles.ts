@@ -43,7 +43,7 @@ export async function collectHeadingTitleMismatch(
     const data = yaml.load(node.value);
     if (typeof data === "object" && data !== null && "title" in data) {
       frontmatterTitle = (data as any).title;
-      //return EXIT;
+      return EXIT;
     }
   });
 
@@ -51,7 +51,7 @@ export async function collectHeadingTitleMismatch(
   visit(tree, "heading", (node: any) => {
     if (node.depth === 1 && !headingText) {
       headingText = extractText(node).trim();
-      //return EXIT;
+      return EXIT;
     }
   });
 
