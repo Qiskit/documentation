@@ -132,7 +132,8 @@ export async function parseFile(filePath: string): Promise<ParsedFile> {
   try {
     const [internalLinks, externalLinks] = await parseLinks(markdown);
     return { anchors: parseAnchors(markdown), internalLinks, externalLinks };
-  } catch (err) {
-    throw new Error(`Problem parsing '${filePath}':\n` + err.message);
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : `${err}`;
+    throw new Error(`Problem parsing '${filePath}':\n` + msg);
   }
 }
