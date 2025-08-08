@@ -84,7 +84,12 @@ To access the details page, select [Compute resources](https://quantum.cloud.ibm
 
 To find your available QPUs, open the [Compute resources](https://quantum.cloud.ibm.com/computers) page (make sure you are signed in).  Note that your selected region might impact the QPUs listed. Click a QPU to view its details.
 
-You can also view your available QPUs by using the [backends API.](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backends)
+You can also view your available QPUs by using the [backends API.](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backends) For example, the following code will return all of the backends that the specified instance (`my_instance`) can access:
+
+```python
+   QiskitRuntimeService(instance="my_instance_CRN")
+   service.backend()
+```
 
 ## View QPU configuration
 
