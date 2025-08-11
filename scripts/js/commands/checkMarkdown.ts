@@ -13,6 +13,10 @@
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkFrontmatter from "remark-frontmatter";
 
 import { collectInvalidImageErrors } from "../lib/markdownImages.js";
 import { readMarkdown } from "../lib/markdownReader.js";
@@ -90,11 +94,18 @@ async function main() {
 
   for (const file of files) {
     const markdown = await readMarkdown(file);
-    const imageErrors = await collectInvalidImageErrors(markdown);
+    const processor = unified()
+      .use(remarkParse)
+      .use(remarkGfm)
+      .use(remarkFrontmatter, ["yaml"]);
+
+    const tree = processor.parse(markdown);
+
+    const imageErrors = await collectInvalidImageErrors(tree);
     const mismatchedTitleHeadingErrors =
       IGNORE_TITLE_MISMATCHES.includes(file) || file.startsWith("docs/api")
         ? new Set<string>()
-        : await collectHeadingTitleMismatch(markdown);
+        : await collectHeadingTitleMismatch(tree);
 
     //Collect all errors for this file
     const errorsInFile: string[] = [
@@ -114,14 +125,14 @@ async function main() {
   if (allErrors.length) {
     allErrors.forEach((error) => console.log(error));
     console.error(
-      "Some issues were found in your Markdown files. Please fix them before proceeding.\n" +
+      "💔 Some issues were found in your Markdown files. Please fix them before proceeding.\n" +
         "Image help: https://github.com/Qiskit/documentation#images\n" +
         "Title/Heading help: https://github.com/Qiskit/documentation#titles-and-headings\n",
     );
     process.exit(1);
   }
 
-  console.log("All files passed validation.\n");
+  console.log("✅ All files passed validation.\n");
 }
 
 async function determineContentFiles(args: Arguments): Promise<string[]> {
