@@ -41,7 +41,6 @@ DOCS_FOLDERS = [
     "open-source",
 ]
 DOCS_FILES = ["responsible-quantum-computing.mdx", "accessibility.mdx"]
-LEARNING_FOLDERS = ["learning"]
 PUBLIC_FOLDERS = [
     "public/docs/images/guides",
     "public/docs/images/qiskit-patterns",
@@ -133,12 +132,11 @@ def setup_dir() -> Iterator[Path]:
 
 
 def _copy_local_content(root_dir: Path) -> None:
+    shutil.copytree(f"learning", root_dir / f"content/learning/en/")
     for dir in DOCS_FOLDERS:
         shutil.copytree(f"docs/{dir}", root_dir / f"content/docs/en/{dir}")
     for fp in DOCS_FILES:
         shutil.copy2(f"docs/{fp}", root_dir / f"content/docs/en/{fp}")
-    for dir in LEARNING_FOLDERS:
-        shutil.copytree(f"learning/{dir}", root_dir / f"content/learning/en/{dir}")
     for dir in PUBLIC_FOLDERS:
         shutil.copytree(dir, root_dir / f"packages/preview/{dir}")
     logger.info("local content files copied")
