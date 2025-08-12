@@ -31,6 +31,24 @@ IMAGE_NAME = "icr.io/qc-open-source-docs-prod/preview-builder:latest"
 
 logger = logging.getLogger(__name__)
 
+# We intentionally don't copy over API docs to speed up the build.
+DOCS_FOLDERS = [
+    "guides",
+    "tutorials",
+    "migration-guides",
+    "security",
+    "support",
+    "open-source",
+]
+DOCS_FILES = ["responsible-quantum-computing.mdx", "accessibility.mdx"]
+LEARNING_FOLDERS = ["learning"]
+PUBLIC_FOLDERS = [
+    "public/docs/images/guides",
+    "public/docs/images/qiskit-patterns",
+    "public/docs/images/tutorials",
+    "public/learning",
+]
+
 
 def create_parser() -> ArgumentParser:
     parser = ArgumentParser()
@@ -115,33 +133,14 @@ def setup_dir() -> Iterator[Path]:
 
 
 def _copy_local_content(root_dir: Path) -> None:
-    # We intentionally don't copy over API docs to speed up the build.
-    for dir in [
-        "docs/guides",
-        "docs/tutorials",
-        "public/docs/images/tutorials",
-        "docs/migration-guides",
-        "docs/security",
-        "docs/support",
-        "docs/open-source",
-        "learning",
-        "public/docs/images/guides",
-        "public/docs/images/qiskit-patterns",
-        "public/learning",
-    ]:
-        dest = (
-            root_dir / "packages/preview" / dir
-            if dir.startswith("public")
-            else root_dir / f"content/{dir}"
-        )
-        shutil.copytree(dir, dest)
-
-    for fp in [
-        "docs/responsible-quantum-computing.mdx",
-        "docs/accessibility.mdx",
-    ]:
-        shutil.copy2(fp, root_dir / f"content/{fp}")
-
+    for dir in DOCS_FOLDERS:
+        shutil.copytree(dir, root_dir / f"content/docs/en/{dir}")
+    for fp in DOCS_FILES:
+        shutil.copy2(fp, root_dir / f"content/docs/en/{fp}")
+    for dir in LEARNING_FOLDERS:
+        shutil.copytree(dir, root_dir / f"content/learning/en/{dir}")
+    for dir in PUBLIC_FOLDERS:
+        shutil.copytree(dir, root_dir / f"packages/preview/{dir}")
     logger.info("local content files copied")
 
 
