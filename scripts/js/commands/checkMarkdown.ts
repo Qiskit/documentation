@@ -13,14 +13,11 @@
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm";
-import remarkFrontmatter from "remark-frontmatter";
 
 import { collectInvalidImageErrors } from "../lib/markdownImages.js";
 import { readMarkdown } from "../lib/markdownReader.js";
 import { collectHeadingTitleMismatch } from "../lib/markdownTitles.js";
+import { parseMarkdown } from "../lib/markdownUtils";
 
 const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/migration-guides/external-providers-primitives-v2.mdx",
@@ -83,7 +80,7 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description:
-        "Check the images in the current and dev versions of the API docs have alt text.",
+        "Check files in the current and dev versions of the API docs have matching titles and metadata.",
     })
     .parseSync();
 };
@@ -94,13 +91,7 @@ async function main() {
 
   for (const file of files) {
     const markdown = await readMarkdown(file);
-    const processor = unified()
-      .use(remarkParse)
-      .use(remarkGfm)
-      .use(remarkFrontmatter, ["yaml"]);
-
-    const tree = processor.parse(markdown);
-
+    const tree = parseMarkdown(markdown);
     const imageErrors = await collectInvalidImageErrors(tree);
     const mismatchedTitleHeadingErrors =
       IGNORE_TITLE_MISMATCHES.includes(file) || file.startsWith("docs/api")
@@ -115,7 +106,6 @@ async function main() {
 
     if (errorsInFile.length) {
       allErrors.push(
-        // `Error in file '${file}':\n\t- ${[...imageErrors].join("\n\t- ")}\n`,
         `Error in file '${file}':\n\t- ${errorsInFile.join("\n\t- ")}\n`,
       );
     }

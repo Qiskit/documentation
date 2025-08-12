@@ -11,20 +11,9 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm";
-import remarkFrontmatter from "remark-frontmatter";
-import { collectHeadingTitleMismatch } from "./markdownTitles";
-import { Root } from "mdast";
 
-function parseMarkdown(markdown: string): Root {
-  return unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(remarkFrontmatter, ["yaml"])
-    .parse(markdown);
-}
+import { collectHeadingTitleMismatch } from "./markdownTitles";
+import { parseMarkdown } from "./markdownUtils";
 
 test("Test for matching titles and headings", async () => {
   const markdown1 = `---
