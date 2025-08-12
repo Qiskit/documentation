@@ -6,10 +6,11 @@ description: Information on IBM Quantum hardware and features of different proce
 
 # Processor types
 
-Processor types are named for the general technology qualities that go into builds, consisting of the family and revision. Family (for example, Falcon) refers to the size and scale of circuits possible on the chip. This is primarily determined by the number of qubits and the connectivity graph. Revisions (for example, r1) are design variants within a given family, often leading to performance improvements or tradeoffs. Segments are comprised of chip sub-sections, and are defined within a given family. For instance, segment H of a Falcon consists of seven qubits arranged as seen in the illustration below. Segment H on a Hummingbird, if implemented, could be entirely different.
+Processor types are named for the general technology qualities that go into builds, consisting of the family and revision. Family (for example, Heron) refers to the size and scale of circuits possible on the chip. This is primarily determined by the number of qubits and the connectivity graph. Revisions (for example, r3) are design variants within a given family, often leading to performance improvements or tradeoffs.
 
-![Illustration of segment H on a Falcon processor.](/docs/images/guides/processor-types/seg-h.avif "Illustration of segment H on a Falcon processor")
-
+<Admonition type="tip" title="Native gates and operations">
+To find the native gates and operations of a backend, use [this code](/docs/guides/get-qpu-information#native-gates-with-qiskit). You can see all native gates and operations in [this table](/docs/guides/qpu-information#native-gates).
+</Admonition>
 
 ## Heron
 
@@ -21,9 +22,9 @@ At 156 qubits, Heron is an [Eagle](#eagle)-sized upgrade to [Egret](#egret) that
 
 *   [View available Heron processors](https://quantum.cloud.ibm.com/computers?processorType=Heron)
 
-* [Native gates and operations](native-gates): `cz, id, delay, measure, reset, rz, sx, x, if_else, for_loop, switch_case`
-
 <Admonition type="info" title="Revisions">
+  `r3` (July 2025) Heron r3 is the result of targeted manufacturing improvements that directly impact coherence, gate fidelity, and readout performance.
+
   `r2` (July 2024) This is a revision of the original Heron processor. The chip has been redesigned to include 156 qubits in a heavy-hexagonal lattice. While continuing to make use of the innovations of the original Heron processors, it also introduces a new TLS mitigation feature that controls the TLS environment of the chip, thereby improving coherence and stability across the whole chip.
 
   `r1` (December 2023) The first version of Heron with 133 qubits.
@@ -48,8 +49,6 @@ See [IBM Quantum breaks the 100‑qubit processor barrier](https://www.ibm.com/q
 
 *   [View available Eagle processors](https://quantum.cloud.ibm.com/computers?processorType=Eagle)
 
-* [Native gates and operations](native-gates): `ecr, id, delay, measure, reset, rz, sx, x, if_else, for_loop, switch_case`
-
 <Admonition type="info" title="Revisions">
   `r3` (December 2022) Eagle r3 is a version of the 127-qubit processor with enhanced coherence properties but otherwise similar design parameters to Eagle r1.
 
@@ -67,7 +66,7 @@ Using a heavy-hexagonal qubit layout, the Hummingbird family allows up to 65 qub
 <Admonition type="info" title="Revisions">
   `r3` (December 2021) This version of Hummingbird with 65 qubits has enhanced coherence properties.
 
-  `r2` (August 2020) Released in 3Q 2020, this revision contains 65 qubits. Improvements previously demonstrated on Falcons, like readout multiplexing, space-efficient qubit-qubit couplers, and flip-chip technology enhanced the capabilities of the Hummingbird family and led to a scalable 65Q design.
+  `r2` (August 2020) This revision contains 65 qubits. Improvements previously demonstrated on Falcons, like readout multiplexing, space-efficient qubit-qubit couplers, and flip-chip technology enhanced the capabilities of the Hummingbird family and led to a scalable 65Q design.
 
   `r1` (October 2019) This revision is the first attempt at supporting a large (>50) number of qubits on a chip.
 </Admonition>
@@ -94,7 +93,6 @@ The Falcon family of devices offers a valuable platform for medium-scale circuit
 
 *   [View available Falcon processors](https://quantum.cloud.ibm.com/computers?processorType=Falcon)
 
-* [Native gates and operations](native-gates): `cx, id, delay, measure, reset, rz, sx, x, if_else, for_loop, switch_case`
 
 <Admonition type="info" title="Revisions">
   `r8` (September 2021) In addition to the features of r5.11, Falcon r8 has enhanced coherence properties.

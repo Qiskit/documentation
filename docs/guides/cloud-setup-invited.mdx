@@ -66,17 +66,17 @@ When an instance CRN or name is passed in, only backends and jobs from that inst
 
 
       ```python
-        from qiskit_ibm_runtime import QiskitRuntimeService
+    from qiskit_ibm_runtime import QiskitRuntimeService
 
     # If you named your credentials, optionally specify the name here, as follows:
     # QiskitRuntimeService(name='account-name')
     # If you don't specify a name, the default credentials are loaded.
     service = QiskitRuntimeService()
        ```
-      * If you have saved credentials for both an IBM Quantum Platform account and an IBM Cloud account, IBM Cloud is the default account used when you initialize your account, unless you specify `set_as_default=True` in your IBM Quantum Platform account when you use the `save_account()` method.
       * If you are saving multiple accounts, consider using the `name` parameter to differentiate them.
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
       * If you don't save your credentials, you must specify them every time you start a new session.
+      * If you specify your credentials, a saved account will not be used.
 
     <Admonition type="note" title="Notes">
       * Follow [these instructions](/docs/guides/cloud-setup-untrusted) to authenticate to IBM Cloud if you are not using a trusted environment. For example, if you are using a public comptuer.

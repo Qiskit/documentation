@@ -53,7 +53,7 @@ You can look through the open issues we have in this repo and address them with 
 
 Before getting started on an issue, remember to do the following:
 
-1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/en/open-source/code-of-conduct)
+1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/open-source/code-of-conduct)
 2. Check for open, unassigned issues with the "good first issue" label
 3. Select an issue that is not already assigned to someone and leave a comment to request to be assigned
 

@@ -28,14 +28,6 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 from .config import NotebookJob, Result
 from .post_process import post_process_notebook
 
-# Keep this in sync with `OPEN_BACKENDS` in
-# scripts/nb-tester/qiskit_docs_notebook_tester/patches/qiskit-ibm-runtime-open
-OPEN_BACKENDS_TO_INTERNAL = {
-    "ibm_brisbane": "alt_brisbane",
-    "ibm_torino": "alt_torino",
-}
-
-
 @dataclass(frozen=True)
 class NotebookWarning:
     cell_index: int
@@ -163,13 +155,6 @@ async def _execute_notebook(
                 message = f"ℹ️ Cell {cell_index} completed with output:\n" + "\n".join(outputs)
             print(message, flush=True)
 
-    # Our instance gives us high-priority access to open backends through different names.
-    # E.g. 'ibm_brisbane' through 'alt_brisbane'. However, these names won't work for users.
-    # We get round this by mapping between open and internal backend names before and after execution.
-    # This is a temporary hack while we wait for high-priority access to open backends
-    if job.map_open_backends_to_internal:
-        nb = open_backends_to_internal(nb)
-
     notebook_client = nbclient.NotebookClient(
         nb=nb,
         km=kernel_manager,
@@ -179,39 +164,8 @@ async def _execute_notebook(
         on_cell_executed=log_cell_output,
     )
     await notebook_client.async_execute()
-
-    if job.map_open_backends_to_internal:
-        nb = internal_backends_to_open(nb)
-
     return post_process_notebook(nb)
 
-def replace_string_literals(source: str, literal: str, replace: str) -> str:
-    return (source
-        .replace(f"\"{literal}\"", f"\"{replace}\"")
-        .replace(f"'{literal}'", f"'{replace}'")
-    )
-
-def open_backends_to_internal(nb: nbformat.NotebookNode) -> nbformat.NotebookNode:
-    for cell in nb.cells:
-        if cell.cell_type != 'code':
-            continue
-        for open, internal in OPEN_BACKENDS_TO_INTERNAL.items():
-            cell.source = replace_string_literals(cell.source, open, internal)
-    return nb
-
-def internal_backends_to_open(nb: nbformat.NotebookNode) -> nbformat.NotebookNode:
-    for cell in nb.cells:
-        if cell.cell_type != 'code':
-            continue
-        for open, internal in OPEN_BACKENDS_TO_INTERNAL.items():
-            cell.source = replace_string_literals(cell.source, internal, open)
-            for output in cell.outputs:
-                # We don't restrict to string literals (surrounded by quotes) in outputs
-                if 'text' in output:
-                    output['text'] = output['text'].replace(internal, open)
-                if text := output.get('data', {}).get('text/plain', None):
-                    output['data']['text/plain'] = text.replace(internal, open)
-    return nb
 
 def cancel_trailing_jobs(start_time: datetime) -> Result:
     """
