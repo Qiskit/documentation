@@ -243,8 +243,10 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
   }
 
   return filesWithMath.map((f) =>
-    // The pages must be accesses without the file extensions
-    removeFileExtension(f),
+    // The pages must be accessed without the file extensions
+    removeFileExtension(f)
+      .replace("/docs", "/docs/en")
+      .replace("/learning", "/learning/en"),
   );
 }
 

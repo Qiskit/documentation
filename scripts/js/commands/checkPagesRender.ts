@@ -144,7 +144,9 @@ async function canRender(fp: string): Promise<RenderSuccess | RenderFailure> {
 
 function pathToUrl(path: string): string {
   const strippedPath = path.replace(/\.(?:md|mdx|ipynb)$/g, "");
-  return `http://localhost:${PORT}/${strippedPath}`;
+  return `http://localhost:${PORT}/${strippedPath}`
+    .replace("/docs", "/docs/en")
+    .replace("/learning", "/learning/en");
 }
 
 async function validateDockerRunning(): Promise<void> {
