@@ -30,8 +30,8 @@ There are several ways to create a VPE gateway. If you use the [CLI](https://clo
 
 | Region | Plans   | Fully Qualified Domain Name (FDQN) | Cloud Resource Name (CRN) |
 |-----------------|-----------------|-----------------|-----------------|
-| `eu-de` | `Standard` | `private.eu-de.quantum-computing.cloud.ibm.com` | `crn:v1:bluemix:public:quantum-computing:eu-de:::endpoint:qiskit-runtime.private.eu-de.quantum-computing.cloud.ibm.com` |
-|  | `Channel Partner` | `qiskitruntime.private.eu-de.quantum-computing.cloud.ibm.com`, `scheduler.private.eu-de.quantum-computing.cloud.ibm.com` | `crn:v1:bluemix:public:quantum-computing:eu-de:::endpoint:qiskit-runtime.private.eu-de.quantum-computing.cloud.ibm.com` |
+| `eu-de` | `Standard` | `private.eu-de.quantum.cloud.ibm.com` | `crn:v1:bluemix:public:quantum:eu-de:::endpoint:qiskit-runtime.private.eu-de.quantum.cloud.ibm.com` |
+|  | `Channel Partner` | `qiskitruntime.private.eu-de.quantum.cloud.ibm.com`, `scheduler.private.eu-de.quantum.cloud.ibm.com` | `crn:v1:bluemix:public:quantum:eu-de:::endpoint:qiskit-runtime.private.eu-de.quantum.cloud.ibm.com` |
 
 ### Configuring an endpoint gateway
 
@@ -65,7 +65,7 @@ service = QiskitRuntimeService(token="APIKEY", instance="SERVICE_CRN", channel="
 After creating an endpoint gateway for IBM Quantum Platform, use the service endpoint's FQDN for the target region.
 
 ```bash
-  curl -X POST https://private.$REGION.quantum-computing.cloud.ibm.com/jobs -H "Authorization: Bearer $BEARER_TOKEN" -H "Service-CRN: $SERVICE_INSTANCE_CRN" -d '{
+  curl -X POST https://private.$REGION.quantum.cloud.ibm.com/jobs -H "Authorization: Bearer $BEARER_TOKEN" -H "Service-CRN: $SERVICE_INSTANCE_CRN" -d '{
     "backend": "backend",
     "program_id": "sampler"
   }'
