@@ -17,12 +17,22 @@ Key:
 *   🟡 Partial support
 *   ✅ Supported
 
-The meaning of the "supported" mark depends on the column:
+The meaning of the complete "supported" mark depends on the column:
 
-* *Qiskit SDK*: The feature can be parsed by [`qiskit.qasm3.loads`](/docs/api/qiskit/qasm3) (by using the `qiskit-qasm3-import` extension) and represented in a [`QuantumCircuit`.](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)
+* *Qiskit SDK*: The feature can be parsed by [`qiskit.qasm3.loads`](/docs/api/qiskit/qasm3) (by using the `qiskit-qasm3-import` extension), represented in a [`QuantumCircuit`,](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)
+  and exported to OpenQASM 3 by [`qiskit.qasm3.dumps`.](/docs/api/qiskit/qasm3#dumps)
 
-  The feature can be exported to OpenQASM 3 by [`qiskit.qasm3.dumps`.](/docs/api/qiskit/qasm3#dumps)
 * *IBM Qiskit Runtime*: A circuit containing the corresponding Qiskit feature can be successfully executed on hardware through IBM&reg; Qiskit Runtime.
+
+The meaning of "partial support" typically depends on the linked notes.
+
+<Admonition type="note">
+The most common method of submitting circuits to IBM Qiskit Runtime is to create the circuit in the Python-space interface to Qiskit SDK.
+Circuits constructed and submitted in this manner do not need to be loaded from OpenQASM 3 files into Qiskit SDK.
+
+If you do not use OpenQASM 3 directly yourself, you can safely use features that are supported for representation in Qiskit SDK, export to OpenQASM 3, and submission to IBM Qiskit Runtime.
+This includes features that cannot be loaded by Qiskit SDK from OpenQASM 3.
+</Admonition>
 
 | OpenQASM 3 Feature            | Qiskit SDK feature                   | Qiskit SDK | IBM Qiskit Runtime | Notes |
 |:------------------------------|:-------------------------------------|:----------:|:------------------:|:----- |
@@ -58,10 +68,10 @@ The meaning of the "supported" mark depends on the column:
 | `pow(k) @`                    | `AnnotatedOperation`                 | 🟡         | ❌                 | [7](#7)     |
 | `reset`                       | `Reset`/`QuantumCircuit.reset`       | ✅         | ✅                 |       |
 | `measure`                     | `Measure`/`QuantumCircuit.measure`   | ✅         | ✅                 |       |
-| bit operations                |                                      | ✅         | ✅                 | [4](#4)     |
-| boolean operations            |                                      | ✅         | ✅                 | [4](#4)     |
+| bit operations                |                                      | 🟡         | ✅                 | [4](#4)     |
+| boolean operations            |                                      | 🟡         | ✅                 | [4](#4)     |
 | arithmetic expressions        |                                      | 🟡         | 🟡                 | [4](#4) |
-| comparisons                   |                                      | ✅         | ✅                 | [4](#4)     |
+| comparisons                   |                                      | 🟡         | ✅                 | [4](#4)     |
 | `if`                          | `QuantumCircuit.if_test`             | ✅         | ✅                 | [8](#8)     |
 | `else`                        | `QuantumCircuit.if_test`             | ✅         | ✅                 | [8](#8)     |
 | `else if`                     | `QuantumCircuit.if_test`             | ✅         | ❌                 | [8](#8)     |
@@ -97,14 +107,14 @@ The meaning of the "supported" mark depends on the column:
    `ClassicalRegister` declarations.
 
 <span id="4"></span>
-4. As of July 2025, Qiskit SDK (through `qiskit-qasm3-import` v0.6.0) does not support parsing
-   OpenQASM 3 files that contain variable declarations, and has very limited support for parsing
-   variable expressions.  `QuantumCircuit`, however, can represent local variables of a
-   restricted set of types, can represent many different expressions on these types, and supports
-   outputting them to OpenQASM 3.  In general, most of what Qiskit can represent in its
-   expression system can be executed on suitable dynamic circuits hardware.  See [the Qiskit
-   documentation of the `qiskit.circuit.classical` module](/docs/api/qiskit/circuit_classical)
-   for the most up-to-date information.
+4. As of July 2025, Qiskit SDK can represent local variables of a restricted set of types, can
+   represent many runtime operations on these objects, and supports outputting them to OpenQASM 3.
+   However, Qiskit SDK (through `qiskit-qasm3-import` v0.6.0) does not support parsing OpenQASM 3
+   files that contain variable declarations, and has very limited support for parsing variable
+   expressions.  In general, most of what Qiskit can represent in its expression system can be
+   executed on suitable dynamic circuits hardware, even if the expression cannot yet be parsed by
+   Qiskit SDK.  See [the Qiskit documentation of the `qiskit.circuit.classical`
+   module](/docs/api/qiskit/circuit_classical) for the most up-to-date information.
 
 <span id="5"></span>
 5. Qiskit SDK can represent register aliasing for both quantum and classical registers, but it is
