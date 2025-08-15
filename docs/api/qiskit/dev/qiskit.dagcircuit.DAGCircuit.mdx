@@ -1039,6 +1039,28 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if an unknown [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") is present in a call with `recurse=True`, or any control flow is present in a non-recursive call.
   </Function>
 
+  ### structurally\_equal
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.structurally_equal" signature="structurally_equal(other)">
+    Are these two DAGs structurally equal?
+
+    This function returns true iff the graph structures are precisely the same as each other, including the valid node indices, edge orders, and so on. This is a much stricter check than graph equivalence, and is mostly useful for testing if two [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") instances have been constructed and manipulated in the exact same ways. For example, this method can be used to test whether a sequence of manipulations of a DAG is deterministic.
+
+    This method does not consider tracking metadata such as [`metadata`](#qiskit.dagcircuit.DAGCircuit.metadata "qiskit.dagcircuit.DAGCircuit.metadata") or [`name`](#qiskit.dagcircuit.DAGCircuit.name "qiskit.dagcircuit.DAGCircuit.name"), but does consider many low-level implementation details of the internal representation, many of which do not change the semantics of the circuit.
+
+    This method should, in general, be much faster than graph-equivalence checks, but will return `False` in many more situations. This method should never return `True` when a graph-equivalence check would return `False`.
+
+    <Admonition title="Note" type="note">
+      This currently does not handle control flow, because of technical limitations in the internal representation of control flow, and will return false if any control-flow operation is present, even if they are individually equal.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      **The `==` operator**
+
+      [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") implements `__eq__()` between itself and other [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") instances (this same method also powers [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")’s equality check). This implements a semantic data-flow equality check, which is less sensitive to the order operations were defined. This is typically what a user cares about with respect to equality.
+    </Admonition>
+  </Function>
+
   ### substitute\_node
 
   <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node" signature="substitute_node(node, op, inplace=False, propagate_condition=None)">

@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAu
 
 # MCXSynthesisNoAuxV24
 
-<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1383-L1415" signature="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24" modifiers="class">
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1398-L1431" signature="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24" modifiers="class">
   Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
 
   Synthesis plugin for a multi-controlled X gate based on the implementation for MCPhaseGate, which is in turn based on the paper by Vale et al. (2024).
@@ -17,7 +17,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAu
 
   This plugin name is :`mcx.noaux_v24` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
 
-  For a multi-controlled X gate with $k$ control qubits this synthesis method requires no additional clean auxiliary qubits. The synthesized circuit consists of $k + 1$ qubits.
+  For a multi-controlled X gate with $k$ control qubits this synthesis method requires no additional clean auxiliary qubits. The synthesized circuit consists of $k + 1$ qubits. The number of CX-gates is quadratic in $k$.
 
   **References**
 
@@ -27,7 +27,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAu
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1403-L1415" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1419-L1431" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
     Run synthesis for the given MCX gate.
   </Function>
 </Class>
