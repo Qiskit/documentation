@@ -11,6 +11,19 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkFrontmatter from "remark-frontmatter";
+import { Root } from "mdast";
+
+function parseMarkdown(markdown: string): Root {
+  return unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkFrontmatter, ["yaml"])
+    .parse(markdown);
+}
 
 import { collectInvalidImageErrors } from "./markdownImages.js";
 
@@ -45,8 +58,12 @@ test("Test the finding of invalid images", async () => {
 ![And a valid SVG](/learning/images/valid.svg)
 
 <img src="/learning/images/HTMLexample1.jpg" alt="" width="200"/>
+
     `;
-  const images = await collectInvalidImageErrors(markdown);
+
+  const tree = parseMarkdown(markdown);
+  const images = await collectInvalidImageErrors(tree);
+
   const correct_images = new Set([
     "Convert 'img1.png' to AVIF. You can use the command `magick <path/to/image>.png <path/to/image>.avif`. If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. Then delete the old file and update the markdown to point to the new file.",
     "Convert 'img2.png' to AVIF. You can use the command `magick <path/to/image>.png <path/to/image>.avif`. If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. Then delete the old file and update the markdown to point to the new file.",
