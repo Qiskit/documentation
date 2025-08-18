@@ -11,20 +11,8 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm";
-import remarkFrontmatter from "remark-frontmatter";
-import { Root } from "mdast";
 
-function parseMarkdown(markdown: string): Root {
-  return unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(remarkFrontmatter, ["yaml"])
-    .parse(markdown);
-}
-
+import { parseMarkdown } from "./markdownUtils";
 import { collectInvalidImageErrors } from "./markdownImages.js";
 
 test("Test the finding of invalid images", async () => {

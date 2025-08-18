@@ -1,6 +1,6 @@
 // This code is a Qiskit project.
 //
-// (C) Copyright IBM 2024.
+// (C) Copyright IBM 2025.
 //
 // This code is licensed under the Apache License, Version 2.0. You may
 // obtain a copy of this license in the LICENSE file in the root directory
@@ -80,7 +80,7 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description:
-        "Check files in the current and dev versions of the API docs have matching titles and metadata.",
+        "Check files in the current and dev versions of the API docs.",
     })
     .parseSync();
 };
