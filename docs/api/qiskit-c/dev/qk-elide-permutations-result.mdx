@@ -1,0 +1,102 @@
+---
+title: QkElidePermutationsResult (dev version)
+description: API reference for QkElidePermutationsResult in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QkElidePermutationsResult
+---
+
+# QkElidePermutationsResult
+
+```c
+typedef struct QkElidePermutationsResult QkElidePermutationsResult
+```
+
+When running the `qk_transpiler_pass_standalone_elide_permutations` function it returns a modified circuit and a permutation array as a QkElidePermutationsResult object. This object contains the outcome of the transpiler pass, whether the pass was able to elide any gates or not, and what the results of that elision were.
+
+## Functions
+
+### qk\_elide\_permutations\_result\_elided\_gates
+
+<Function id="qk_elide_permutations_result_elided_gates" signature="bool qk_elide_permutations_result_elided_gates(const QkElidePermutationsResult *result)">
+  Check whether the elide permutations was able to elide anything
+
+  <span id="group__QkElidePermutationsResult_1autotoc_md94" />
+
+  #### Safety
+
+  <span id="group__QkElidePermutationsResult_1autotoc_md94" />
+
+  Behavior is undefined if `result` is not a valid, non-null pointer to a `QkElidePermutationsResult`.
+
+  **Parameters**
+
+  **result** – a pointer to the result
+
+  **Returns**
+
+  `true` if the `qk_transpiler_pass_standalone_elide_permutations()` run elided any gates
+</Function>
+
+### qk\_elide\_permutations\_result\_circuit
+
+<Function id="qk_elide_permutations_result_circuit" signature="const QkCircuit *qk_elide_permutations_result_circuit(const QkElidePermutationsResult *result)">
+  Get the circuit from the elide permutations result
+
+  <span id="group__QkElidePermutationsResult_1autotoc_md95" />
+
+  #### Safety
+
+  <span id="group__QkElidePermutationsResult_1autotoc_md95" />
+
+  Behavior is undefined if `result` is not a valid, non-null pointer to a `QkElidePermutationsResult`. The pointer to the returned circuit is owned by the result object, it should not be passed to `qk_circuit_free()` as it will be freed by `qk_elide_permutations_result_free()`.
+
+  **Parameters**
+
+  **result** – a pointer to the result of the pass. It must have elided gates as checked by `qk_elide_permutations_result_elided_gates()`
+
+  **Returns**
+
+  A pointer to the circuit with the permutation gates elided
+</Function>
+
+### qk\_elide\_permutations\_result\_permutation
+
+<Function id="qk_elide_permutations_result_permutation" signature="const uintptr_t *qk_elide_permutations_result_permutation(const QkElidePermutationsResult *result)">
+  Get the permutation array for the elided gates
+
+  <span id="group__QkElidePermutationsResult_1autotoc_md96" />
+
+  #### Safety
+
+  <span id="group__QkElidePermutationsResult_1autotoc_md96" />
+
+  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkElidePermutationsResult`. Also qubit must be a valid qubit for the circuit and there must be a result found. The pointer to the permutation array is owned by the result object, it should not be passed to `free()` as it will be freed by `qk_elide_permutations_result_free()` when that is called.
+
+  **Parameters**
+
+  **result** – a pointer to the result of the pass. It must have elided gates as checked by `qk_elide_permutations_result_elided_gates()`
+
+  **Returns**
+
+  A pointer to the permutation array caused by the swap elision performed by the pass. This array has a length equal to the number of qubits of the circuit returned by `qk_elide_permutations_result_elided_gates()` (or the circuit passed into `qk_transpiler_pass_standalone_elide_permutations()`). The permutation array maps the virtual qubit in the original circuit at each index to its new output position after all the elision performed by the pass. For example, and array of `[2, 1, 0]` means that qubit 0 is now in qubit 2 on the output of the circuit and qubit 2’s is now at 0 (qubit 1 remains unchanged)
+</Function>
+
+### qk\_elide\_permutations\_result\_free
+
+<Function id="qk_elide_permutations_result_free" signature="void qk_elide_permutations_result_free(QkElidePermutationsResult *result)">
+  Free a `QkElidePermutationsResult` object
+
+  <span id="group__QkElidePermutationsResult_1autotoc_md97" />
+
+  #### Safety
+
+  <span id="group__QkElidePermutationsResult_1autotoc_md97" />
+
+  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkElidePermutationsResult`.
+
+  **Parameters**
+
+  **result** – a pointer to the result object to free
+</Function>
+
