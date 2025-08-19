@@ -61,42 +61,50 @@ Scroll to see the full table.
 
 <Tabs>
   <TabItem value="Estimator" label="Estimator">
-  #### [default_shots](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_shots)
+#### [`default_shots`](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_shots)
 
 The total number of shots to use per circuit per configuration.
 
-Choices: Integer >= 0
-Default: None
+**Choices**: Integer >= 0
+**Default**: None
 
+#### [`default_precision`](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_precision)
 
+The default precision to use for any PUB or `run()` call that does not specify one.
 
-xxxxx
+**Choices**: Float > 0
+**Default**: 0.015625 (1 / sqrt(4096))
+
 
 #### [`dynamical_decoupling`](/docs/api/qiskit-ibm-runtime/options-estimator-options#dynamical_decoupling)
 
-Description................
-
-
+Control dynamical decoupling error mitigation settings.
 
 ##### `dynamical_decoupling.enable`
 
+**Choices**: `True`, `False`
+**Default**: `False`
+
+##### `dynamical_decoupling.extra_slack_distribution`
+
+**Choices**: `middle`, `edges`
+**Default**: `middle`
+
+##### `dynamical_decoupling.scheduling_method`
+
+Choices: `asap`, `alap`
+Default: `alap`
+
+##### `dynamical_decoupling.sequence_type`
+
+Choices: `XX`, `XpXm`, `XY4`
+Default: `XX`
+
+##### `dynamical_decoupling.skip_reset_qubits`
+
 Choices: `True`, `False`
 Default: `False`
 
-##### Suboption: `enable`
-
-Choices: `True`, `False`
-Default: `False`
-
-##### Suboption: `enable`
-
-Choices: `True`, `False`
-Default: `False`
-
-##### Suboption: `enable`
-
-Choices: `True`, `False`
-Default: `False`
 
   </TabItem>
   <TabItem value="Sampler" label="Sampler">
