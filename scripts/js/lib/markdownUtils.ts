@@ -23,3 +23,19 @@ export function parseMarkdown(markdown: string): Root {
     .use(remarkFrontmatter, ["yaml"])
     .parse(markdown);
 }
+
+export function extractHeadingText(headingNode: any): string {
+  if (headingNode.type === "text" || headingNode.type === "inlineCode") {
+    return headingNode.value;
+  }
+
+  if (headingNode.type === "link" && headingNode.children) {
+    return headingNode.children.map(extractHeadingText).join(" ");
+  }
+
+  if (headingNode.children && Array.isArray(headingNode.children)) {
+    return headingNode.children.map(extractHeadingText).join(" ");
+  }
+
+  return "";
+}

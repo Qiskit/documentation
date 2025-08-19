@@ -15,20 +15,28 @@ import { expect, test } from "@playwright/test";
 import { collectHeadingTitleMismatch } from "./markdownTitles";
 import { parseMarkdown } from "./markdownUtils";
 
-test("Test for matching titles and headings", async () => {
-  const markdown1 = `---
+const assert = async (
+  markdown: string,
+  expected: Set<string>,
+): Promise<void> => {
+  const tree = parseMarkdown(markdown);
+  const result = await collectHeadingTitleMismatch(tree);
+  expect(result).toEqual(expected);
+};
+
+test.describe("collectHeadingTitleMismatch", () => {
+  test("valid", async () => {
+    const markdown1 = `---
 title: My Awesome Guide
 ---
 
 # My Awesome Guide
   `;
-  const tree = parseMarkdown(markdown1);
-  const mismatched = await collectHeadingTitleMismatch(tree);
-  expect(mismatched).toEqual(new Set());
-});
+    await assert(markdown1, new Set());
+  });
 
-test("Test to find mismatched titles and headings", async () => {
-  const markdown2 = `---
+  test("mismatched - simple h1", async () => {
+    const markdown2 = `---
 title: Qiskit Doc
 author: John
 ---
@@ -37,18 +45,15 @@ author: John
 
 This guide will walk you through everything.`;
 
-  const tree = parseMarkdown(markdown2);
-  const mismatched2 = await collectHeadingTitleMismatch(tree);
+    const expected = new Set([
+      `Mismatch: frontmatter title "Qiskit Doc" does not match heading "Introduction"`,
+    ]);
 
-  const result2 = new Set([
-    `Mismatch: frontmatter title "Qiskit Doc" does not match heading "Introduction"`,
-  ]);
+    await assert(markdown2, expected);
+  });
 
-  expect(mismatched2).toEqual(result2);
-});
-
-test("Test to mismatched and complex titles and headings", async () => {
-  const markdown3 = `---
+  test("mismatched - complex h1", async () => {
+    const markdown3 = `---
 title: My Awesome Guide
 ---
 
@@ -56,12 +61,10 @@ title: My Awesome Guide
 
 This guide will walk you through everything.`;
 
-  const tree = parseMarkdown(markdown3);
-  const mismatched3 = await collectHeadingTitleMismatch(tree);
+    const expected = new Set([
+      `Mismatch: frontmatter title "My Awesome Guide" does not match heading "This is a  Heading"`,
+    ]);
 
-  const result3 = new Set([
-    `Mismatch: frontmatter title "My Awesome Guide" does not match heading "This is a  Heading"`,
-  ]);
-
-  expect(mismatched3).toEqual(result3);
+    await assert(markdown3, expected);
+  });
 });

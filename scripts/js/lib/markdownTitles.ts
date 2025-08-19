@@ -14,22 +14,7 @@ import { visit, EXIT } from "unist-util-visit";
 import { Root } from "mdast";
 import yaml from "js-yaml";
 
-// Helper to recursively extract visible text from heading node
-function extractText(node: any): string {
-  if (node.type === "text" || node.type === "inlineCode") {
-    return node.value;
-  }
-
-  if (node.type === "link" && node.children) {
-    return node.children.map(extractText).join(" ");
-  }
-
-  if (node.children && Array.isArray(node.children)) {
-    return node.children.map(extractText).join(" ");
-  }
-
-  return "";
-}
+import { extractHeadingText } from "./markdownUtils";
 
 export async function collectHeadingTitleMismatch(
   tree: Root,
@@ -51,7 +36,7 @@ export async function collectHeadingTitleMismatch(
   // Extract first level-1 heading with full formatting
   visit(tree, "heading", (node: any) => {
     if (node.depth === 1 && !headingText) {
-      headingText = extractText(node).trim();
+      headingText = extractHeadingText(node).trim();
       return EXIT;
     }
   });
