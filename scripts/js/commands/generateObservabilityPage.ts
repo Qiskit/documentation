@@ -1,0 +1,92 @@
+// This code is a Qiskit project.
+//
+// (C) Copyright IBM 2025.
+//
+// This code is licensed under the Apache License, Version 2.0. You may
+// obtain a copy of this license in the LICENSE file in the root directory
+// of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+//
+// Any modifications or derivative works of this code must retain this
+// copyright notice, and modified files need to carry a notice indicating
+// that they have been altered from the originals.
+
+import { writeFile } from "fs/promises";
+
+const OPENAPI_URL = "https://quantum.cloud.ibm.com/api/openapi.json";
+
+const PROSE = `
+---
+title: Activity tracking events for Qiskit Runtime
+description: Learn about activity tracking events for Qiskit Runtime. 
+---
+
+# Activity tracking events for Qiskit Runtime
+
+IBM Cloud&reg; services, such as Qiskit Runtime, generate activity tracking events.
+
+Activity tracking events report on activities that change the state of a service in IBM Cloud. You can use the events to investigate abnormal activity and critical actions and to comply with regulatory audit requirements.
+
+You can use IBM Cloud Activity Tracker Event Routing, a platform service, to route auditing events in your account to destinations of your choice by configuring targets and routes that define where activity tracking events are sent. For more information, see [About IBM Cloud Activity Tracker Events Routing.](https://cloud.ibm.com/docs/atracker?topic=atracker-about)
+
+You can use IBM Cloud Logs to visualize and alert on events that are generated in your account and routed by IBM Cloud Activity Tracker Event Routing to an IBM Cloud Logs instance.
+
+## Locations where activity tracking events are generated
+
+Qiskit Runtime sends activity tracking events in the following regions:
+
+- Washington ("us-east")
+- Frankfurt ("eu-de")
+
+## Viewing activity tracking events for Qiskit Runtime
+
+You can use IBM Cloud Logs to visualize and alert on events that are generated in your account and routed by IBM Cloud Activity Tracker Event Routing to an IBM Cloud Logs instance.
+
+### Launching IBM Cloud Logs from the Observability page
+
+For information on launching the IBM Cloud Logs UI, see the [Launching the UI in the IBM Cloud Logs](https://test.cloud.ibm.com/docs/cloud-logs?topic=cloud-logs-instance-launch) documentation.
+`;
+
+export function extractEndpoints(json: string): Array<[string, string]> {
+  const result: Array<[string, string]> = [];
+  const data = JSON.parse(json);
+  const paths = data.paths || "";
+  for (const url in paths) {
+    const methods = paths[url];
+    for (const method in methods) {
+      const endpoint = methods[method];
+      const summary = endpoint.summary || "";
+      const ibmXEvents = endpoint["x-ibm-events"]?.events || [];
+      for (const event of ibmXEvents) {
+        const eventName = event.name || "";
+        const summaryText = `${summary} (\`${method.toUpperCase()} ${url}\`)`;
+        result.push([eventName, summaryText]);
+      }
+    }
+  }
+  return result;
+}
+
+export function generateObservabilityTable(
+  input: Array<[string, string]>,
+): string {
+  let markdown = `| Action | Description |\n| -- | -- |\n`;
+  for (const [action, description] of input) {
+    markdown += `| \`${action}\` | ${description} |\n`;
+  }
+  return markdown;
+}
+
+async function main() {
+  try {
+    const response = await fetch(OPENAPI_URL);
+    const jsonstr = await response.text();
+    const endpoints = extractEndpoints(jsonstr);
+    const markdown = generateObservabilityTable(endpoints);
+    const mdx = `${PROSE}\n${markdown}`;
+    await writeFile("docs/security/observability.mdx", PROSE, "utf8");
+  } catch (error) {
+    console.error("Error writing file:", error);
+  }
+}
+
+main().then(() => process.exit());
