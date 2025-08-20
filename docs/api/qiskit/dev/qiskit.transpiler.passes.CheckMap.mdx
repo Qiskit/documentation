@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.CheckMap
 
 # CheckMap
 
-<Class id="qiskit.transpiler.passes.CheckMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/check_map.py#L21-L78" signature="qiskit.transpiler.passes.CheckMap(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.CheckMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/check_map.py#L20-L78" signature="qiskit.transpiler.passes.CheckMap(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Check if a DAG circuit is already mapped to a coupling map.
@@ -20,7 +20,7 @@ python_api_name: qiskit.transpiler.passes.CheckMap
   **Parameters**
 
   *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph representing a coupling map.
-  *   **property\_set\_field** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – An optional string to specify the property set field to store the result of the check. If not default the result is stored in `"is_swap_mapped"`.
+  *   **property\_set\_field** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – An optional string to specify the property set field to store the result of the check. If not provided the result is stored in the property set field `"is_swap_mapped"`.
 
   ## Attributes
 
@@ -74,10 +74,10 @@ python_api_name: qiskit.transpiler.passes.CheckMap
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.CheckMap.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/check_map.py#L59-L78" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.CheckMap.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/check_map.py#L57-L78" signature="run(dag)">
     Run the CheckMap pass on dag.
 
-    If dag is mapped to coupling\_map, the property is\_swap\_mapped is set to True (or to False otherwise).
+    If `dag` is mapped to the configured [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), the property whose name is specified in `self.property_set_field` is set to `True` (or to `False` otherwise).
 
     **Parameters**
 
