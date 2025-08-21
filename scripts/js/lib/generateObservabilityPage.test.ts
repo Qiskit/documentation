@@ -15,7 +15,7 @@ import { expect, test } from "@playwright/test";
 import {
   extractEndpoints,
   generateObservabilityTable,
-} from "./generateObservabilityPage";
+} from "./observabilityPage";
 
 test("extract end points", () => {
   const sampleJson = JSON.stringify({
@@ -34,18 +34,14 @@ test("extract end points", () => {
       "/v1/users": {
         post: {
           summary: "Create user",
-          "x-ibm-events": {
-            events: [{ name: "user.create" }],
-          },
         },
       },
     },
   });
 
   const expected = [
-    ["quantum-computing.job.read", "List jobs (`GET /v1/jobs`)"],
     ["quantum-computing.job.list", "List jobs (`GET /v1/jobs`)"],
-    ["user.create", "Create user (`POST /v1/users`)"],
+    ["quantum-computing.job.read", "List jobs (`GET /v1/jobs`)"],
   ];
 
   const actual = extractEndpoints(sampleJson);

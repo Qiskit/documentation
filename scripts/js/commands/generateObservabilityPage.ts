@@ -12,10 +12,14 @@
 
 import { writeFile } from "fs/promises";
 
+import {
+  generateObservabilityTable,
+  extractEndpoints,
+} from "../lib/observabilityPage";
+
 const OPENAPI_URL = "https://quantum.cloud.ibm.com/api/openapi.json";
 
-const PROSE = `
----
+const PROSE = `---
 title: Activity tracking events for Qiskit Runtime
 description: Learn about activity tracking events for Qiskit Runtime. 
 ---
@@ -46,47 +50,13 @@ You can use IBM Cloud Logs to visualize and alert on events that are generated i
 For information on launching the IBM Cloud Logs UI, see the [Launching the UI in the IBM Cloud Logs](https://test.cloud.ibm.com/docs/cloud-logs?topic=cloud-logs-instance-launch) documentation.
 `;
 
-export function extractEndpoints(json: string): Array<[string, string]> {
-  const result: Array<[string, string]> = [];
-  const data = JSON.parse(json);
-  const paths = data.paths || "";
-  for (const url in paths) {
-    const methods = paths[url];
-    for (const method in methods) {
-      const endpoint = methods[method];
-      const summary = endpoint.summary || "";
-      const ibmXEvents = endpoint["x-ibm-events"]?.events || [];
-      for (const event of ibmXEvents) {
-        const eventName = event.name || "";
-        const summaryText = `${summary} (\`${method.toUpperCase()} ${url}\`)`;
-        result.push([eventName, summaryText]);
-      }
-    }
-  }
-  return result;
-}
-
-export function generateObservabilityTable(
-  input: Array<[string, string]>,
-): string {
-  let markdown = `| Action | Description |\n| -- | -- |\n`;
-  for (const [action, description] of input) {
-    markdown += `| \`${action}\` | ${description} |\n`;
-  }
-  return markdown;
-}
-
 async function main() {
-  try {
-    const response = await fetch(OPENAPI_URL);
-    const jsonstr = await response.text();
-    const endpoints = extractEndpoints(jsonstr);
-    const markdown = generateObservabilityTable(endpoints);
-    const mdx = `${PROSE}\n${markdown}`;
-    await writeFile("docs/security/observability.mdx", PROSE, "utf8");
-  } catch (error) {
-    console.error("Error writing file:", error);
-  }
+  const response = await fetch(OPENAPI_URL);
+  const jsonstr = await response.text();
+  const endpoints = extractEndpoints(jsonstr);
+  const table = generateObservabilityTable(endpoints);
+  const mdx = `${PROSE}\n${table}`;
+  await writeFile("docs/security/observability.mdx", mdx, "utf8");
 }
 
 main().then(() => process.exit());
