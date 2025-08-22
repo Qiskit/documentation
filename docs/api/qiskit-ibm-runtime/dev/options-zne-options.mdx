@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.options.ZneOptions
 
 # ZneOptions
 
-<Class id="qiskit_ibm_runtime.options.ZneOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/zne_options.py#L36-L187" signature="ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.ZneOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/zne_options.py#L36-L188" signature="ZneOptions(amplifier=Unset, noise_factors=Unset, extrapolator=Unset, extrapolated_noise_factors=Unset)" modifiers="class">
   Bases: `object`
 
   Zero noise extrapolation mitigation options. This is only used by the V2 Estimator.
@@ -22,7 +22,7 @@ python_api_name: qiskit_ibm_runtime.options.ZneOptions
 
         both with shape `(*shape, num_extrapolators, num_evaluation_points)`, where `num_extrapolators` is the length of the list of `options.resilience.zne.extrapolators`, and `num_evaluation_points` is the length of the list `options.resilience.extrapolated_noise_factors`. These values provide evaluations of every extrapolator at every specified noise extrapolation value.
 
-    2.  `pub_result.data.evs_noise_factors`, `pub_result.data.stds_noise_factors`, and `ensemble_stds_noise_factors` all have shape `(*shape, num_noise_factors)` where `num_noise_factors` is the length of `options.resilience.zne.noise_factors`. These values provide evaluations of the best-fit model at each of the noise amplifications. In the case of no twirling, both `*stds*` arrays will be equal, otherwise, `stds_noise_factors` is derived from the spread over twirling samples, whereas `ensemble_stds_noise_factors` assumes only shot noise and no drift.
+    2.  `pub_result.data.evs_noise_factors`, `pub_result.data.stds_noise_factors`, and `ensemble_stds_noise_factors` all have shape `(*shape, num_noise_factors)` where `num_noise_factors` is the length of `options.resilience.zne.noise_factors`. These values provide raw expectation values, averaged over twirling if applicable, at each of the noise amplifications; you can base your own fitting routines off of these values. In the case of no twirling, both `*stds*` arrays will be equal, otherwise, `stds_noise_factors` is derived from the spread over twirling samples, whereas `ensemble_stds_noise_factors` assumes only shot noise and no drift.
 
     Technical note: for single observables with multiple basis terms it might turn out that multiple extrapolation methods are used in *the same* expectation value, for example, `XX` gets linearly extrapolated but `XY` gets exponentially extrapolated in the observable `{"XX": 0.5, "XY": 0.5}`. Let’s call this a *heterogeneous fit*. The data from (2) is evaluated from heterogeneous fits by selecting the best fit for every individual distinct term, whereas data from (1) is evaluated from forced homogenous fits, one for each provided extrapolator. If your work requires a nuanced distinction in this regard, we presently recommend that you use single-term observables in addition to your multi-term observables.
   </Admonition>
