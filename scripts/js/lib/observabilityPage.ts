@@ -10,34 +10,29 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+const validMethods = ["get", "post", "delete", "patch"];
+
 export function extractEndpoints(json: string): Array<[string, string]> {
   const result: Array<[string, string]> = [];
   const data = JSON.parse(json);
   const paths = data.paths || "";
-
-  const validMethods = ["get", "post", "delete", "patch"];
-
   for (const url in paths) {
     const methods = paths[url];
     for (const method in methods) {
       if (!validMethods.includes(method.toLowerCase())) {
         continue;
       }
+      const operationObject = methods[method];
 
-      const endpoint = methods[method];
-      const summary = endpoint.summary;
-
+      const summary = operationObject.summary;
       const summaryText = `${summary} (\`${method.toUpperCase()} ${url}\`)`;
-
       if (!summary) {
         throw new Error(`Missing summary for endpoint: ${summaryText}`);
       }
 
-      const ibmXEvents = endpoint["x-ibm-events"]?.events || [];
-
+      const ibmXEvents = operationObject["x-ibm-events"]?.events || [];
       for (const event of ibmXEvents) {
         const eventName = event.name;
-
         if (!eventName) {
           throw new Error(`Missing event name for endpoint: ${summaryText}`);
         }
@@ -54,7 +49,7 @@ export function extractEndpoints(json: string): Array<[string, string]> {
 export function generateObservabilityTable(
   input: Array<[string, string]>,
 ): string {
-  let markdown = `| Action | Description |\n| -- | -- |\n`;
+  let markdown = `| Action | Triggered by |\n| -- | -- |\n`;
   for (const [action, description] of input) {
     markdown += `| \`${action}\` | ${description} |\n`;
   }

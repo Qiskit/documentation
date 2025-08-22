@@ -57,6 +57,7 @@ async function main() {
   const table = generateObservabilityTable(endpoints);
   const mdx = `${PROSE}\n${table}`;
   await writeFile("docs/security/observability.mdx", mdx, "utf8");
+  console.log("success")
 }
 
 main().then(() => process.exit());

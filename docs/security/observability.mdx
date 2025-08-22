@@ -1,4 +1,3 @@
-
 ---
 title: Activity tracking events for Qiskit Runtime
 description: Learn about activity tracking events for Qiskit Runtime. 
@@ -28,3 +27,35 @@ You can use IBM Cloud Logs to visualize and alert on events that are generated i
 ### Launching IBM Cloud Logs from the Observability page
 
 For information on launching the IBM Cloud Logs UI, see the [Launching the UI in the IBM Cloud Logs](https://test.cloud.ibm.com/docs/cloud-logs?topic=cloud-logs-instance-launch) documentation.
+
+| Action | Triggered by |
+| -- | -- |
+| `quantum-computing.account-analytics-filters.read` | Get analytics filters (`GET /v1/analytics/filters`) |
+| `quantum-computing.account-analytics-usage.read` | Get usage analytics (`GET /v1/analytics/usage`) |
+| `quantum-computing.account-analytics-usage.read` | Get usage analytics grouped (`GET /v1/analytics/usage_grouped`) |
+| `quantum-computing.account-analytics-usage.read` | Get usage analytics grouped by date (`GET /v1/analytics/usage_grouped_by_date`) |
+| `quantum-computing.account-configuration.read` | Get account configuration (`GET /v1/accounts/{id}`) |
+| `quantum-computing.device.read` | Get backend configuration (`GET /v1/backends/{id}/configuration`) |
+| `quantum-computing.device.read` | Get backend default settings (`GET /v1/backends/{id}/defaults`) |
+| `quantum-computing.device.read` | Get backend properties (`GET /v1/backends/{id}/properties`) |
+| `quantum-computing.device.read` | Get backend status (`GET /v1/backends/{id}/status`) |
+| `quantum-computing.device.read` | List your backends (`GET /v1/backends`) |
+| `quantum-computing.instance-usage.read` | Get instance usage (`GET /v1/instances/usage`) |
+| `quantum-computing.instance.configuration.read` | Get instance configuration (`GET /v1/instances/configuration`) |
+| `quantum-computing.instance.read` | Get current instance details (`GET /v1/instance`) |
+| `quantum-computing.job.cancel` | Cancel a job (`POST /v1/jobs/{id}/cancel`) |
+| `quantum-computing.job.create` | Run a job (`POST /v1/jobs`) |
+| `quantum-computing.job.delete` | Delete a job (`DELETE /v1/jobs/{id}`) |
+| `quantum-computing.job.read` | Get job metrics (`GET /v1/jobs/{id}/metrics`) |
+| `quantum-computing.job.read` | Get job transpiled circuits (`GET /v1/jobs/{id}/transpiled_circuits`) |
+| `quantum-computing.job.read` | List job details (`GET /v1/jobs/{id}`) |
+| `quantum-computing.job.read` | List job interim results (`GET /v1/jobs/{id}/interim_results`) |
+| `quantum-computing.job.read` | List job logs (`GET /v1/jobs/{id}/logs`) |
+| `quantum-computing.job.read` | List job results (`GET /v1/jobs/{id}/results`) |
+| `quantum-computing.job.read` | List jobs (`GET /v1/jobs`) |
+| `quantum-computing.job.read` | List tags (`GET /v1/tags`) |
+| `quantum-computing.session.create` | Create a session (`POST /v1/sessions`) |
+| `quantum-computing.session.read` | Get a session (`GET /v1/sessions/{id}`) |
+| `quantum-computing.session.update` | Close job session (`DELETE /v1/sessions/{id}/close`) |
+| `quantum-computing.session.update` | Update a session (`PATCH /v1/sessions/{id}`) |
+| `quantum-computing.workload.list` | List user instance workloads (`GET /v1/workloads`) |

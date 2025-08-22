@@ -18,7 +18,7 @@ import {
 } from "./observabilityPage";
 
 test("extract end points", () => {
-  const sampleJson = JSON.stringify({
+  const sampleJson1 = JSON.stringify({
     paths: {
       "/v1/jobs": {
         get: {
@@ -31,6 +31,11 @@ test("extract end points", () => {
           },
         },
       },
+    },
+  });
+
+  const sampleJson2 = JSON.stringify({
+    paths: {
       "/v1/users": {
         post: {
           summary: "Create user",
@@ -39,13 +44,17 @@ test("extract end points", () => {
     },
   });
 
-  const expected = [
+  const expected1 = [
     ["quantum-computing.job.list", "List jobs (`GET /v1/jobs`)"],
     ["quantum-computing.job.read", "List jobs (`GET /v1/jobs`)"],
   ];
 
-  const actual = extractEndpoints(sampleJson);
-  expect(expected).toEqual(actual);
+  const expected2: Array<[string, string]> = [];
+
+  const actual1 = extractEndpoints(sampleJson1);
+  const actual2 = extractEndpoints(sampleJson2);
+  expect(expected1).toEqual(actual1);
+  expect(expected2).toEqual(actual2);
 });
 
 test("generate observability table", () => {
@@ -62,7 +71,7 @@ test("generate observability table", () => {
   const actual = generateObservabilityTable(input);
 
   const expectedOutput =
-    "| Action | Description |\n" +
+    "| Action | Triggered by |\n" +
     "| -- | -- |\n" +
     "| `quantum-computing.job.read` | List jobs (`GET /v1/jobs`) |\n" +
     "| `quantum-computing.job.create` | Run a job (`POST /v1/jobs`) |\n" +
