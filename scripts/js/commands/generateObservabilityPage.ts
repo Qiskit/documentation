@@ -47,7 +47,7 @@ You can use IBM Cloud Logs to visualize and alert on events that are generated i
 
 ### Launching IBM Cloud Logs from the Observability page
 
-For information on launching the IBM Cloud Logs UI, see the [Launching the UI in the IBM Cloud Logs](https://test.cloud.ibm.com/docs/cloud-logs?topic=cloud-logs-instance-launch) documentation.
+For information on launching the IBM Cloud Logs UI, see the [Launching the UI](https://cloud.ibm.com/docs/cloud-logs?topic=cloud-logs-instance-launch#instance-launch-cloud-ui) in the IBM Cloud Logs documentation.
 `;
 
 async function main() {
