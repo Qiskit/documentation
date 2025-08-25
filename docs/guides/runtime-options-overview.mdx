@@ -188,13 +188,13 @@ List of tags.
 <summary>
 ### [`execution`](/docs/api/qiskit-ibm-runtime/options-estimator-options#execution)
 </summary>
-----------------description-----------------
 </details>
 
 <details>
 <summary>
 #### `execution.init_qubits`
 </summary>
+Whether to reset the qubits to the ground state for each shot.
 
 **Choices**: `True`, `False`
 **Default**: `True`
@@ -204,6 +204,7 @@ List of tags.
 <summary>
 #### `execution.rep_delay`
 </summary>
+The delay between a measurement and the subsequent quantum circuit.
 
 **Choices**: Value in the range supplied by `backend.rep_delay_range`
 **Default**: Given by `backend.default_rep_delay`
@@ -213,7 +214,6 @@ List of tags.
 <summary>
 ### [`max_execution_time`](/docs/api/qiskit-ibm-runtime/options-estimator-options#max_execution_time)
 </summary>
-----------------description-----------------
 **Choices**: Integer number of seconds in the range [1, 10800]
 **Default**: 10800 (3 hours)
 </details>
@@ -222,7 +222,7 @@ List of tags.
 <summary>
 ### [`resilience`](/docs/api/qiskit-ibm-runtime/options-estimator-options#resilience)
 </summary>
-----------------description-----------------
+Advanced resilience options to fine tune the resilience strategy.
 </details>
 
 <details>
@@ -230,7 +230,7 @@ List of tags.
 #### [`resilience.layer_noise_learning`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)
 </summary>
 
-----------------description-----------------
+Options for learning layer noise.
 
 </details>
 
@@ -299,7 +299,7 @@ List of tags.
 #### [`resilience.measure_noise_learning`](/docs/api/qiskit-ibm-runtime/options-measure-noise-learning-options)
 </summary>
 
------------description----------------
+Options for measurement noise learning.
 
 </details>
 
@@ -331,6 +331,251 @@ List of tags.
 **Choices**: `True`, `False`
 **Default**: `False`
 
+</details>
+
+<details>
+<summary>
+#### [`resilience.measure_noise_learning.pec`](/docs/api/qiskit-ibm-runtime/options-pec-options)
+</summary>
+
+Probabalistic error cancellation mitigation options.
+
+</details>
+
+<details>
+<summary>
+##### `resilience.measure_noise_learning.pec.max_overhead`
+</summary>
+
+**Choices**: `None`, Integer >= 1
+**Default**: `100`
+
+</details>
+
+<details>
+<summary>
+##### `resilience.measure_noise_learning.pec.max_overhead`
+</summary>
+
+**Choices**: `None`, Integer >= 1
+**Default**: `100`
+
+</details>
+
+<details>
+<summary>
+##### `resilience.measure_noise_learning.pec.noise_gain`
+</summary>
+
+**Choices**: `auto`, float in the range [0, 1]
+**Default**: `auto`
+
+</details>
+
+<details>
+<summary>
+#### `resilience.measure_noise_learning.zne_mitigation`
+</summary>
+
+**Choices**: `True`, `False`
+**Default**: `False`
+
+</details>
+
+<details>
+<summary>
+#### [`resilience.measure_noise_learning.zne`](/docs/api/qiskit-ibm-runtime/options-zne-options)
+</summary>
+
+**Choices**: `True`, `False`
+**Default**: `False`
+
+</details>
+
+<details>
+<summary>
+##### `resilience.measure_noise_learning.zne.amplifier`
+</summary>
+
+**Choices**: `gate_folding`, `gate_folding_front`, `gate_folding_back`, `pea`
+**Default**: `gate_folding`
+
+</details>
+<details>
+<summary>
+##### `resilience.measure_noise_learning.zne.extrapolated_noise_factors`
+</summary>
+
+**Choices**: List of floats
+**Default**: `[0, *noise_factors]`
+
+</details>
+
+<details>
+<summary>
+##### `resilience.measure_noise_learning.zne.extrapolator`
+</summary>
+
+**Choices**: One or more of: `exponential`, `linear`, `double_exponential`, `polynomial_degree_(1 <= k <= 7)`, `fallback`
+**Default**: `(exponential, linear)`
+
+</details>
+
+<details>
+<summary>
+##### `resilience.measure_noise_learning.zne.noise_factors`
+</summary>
+
+**Choices**: List of floats; each float >= 1
+**Default**: `(1, 1.5, 2)` for `PEA`, and `(1, 3, 5)` otherwise
+
+</details>
+
+<details>
+<summary>
+### [`resilience_level`](/docs/api/qiskit-ibm-runtime/options-estimator-options#resilience_level)
+</summary>
+
+How much resilience to build against errors. Higher levels generate more accurate results at the expense of longer processing times.
+
+**Choices**: `0`, `1`, `2`
+**Default**: `1`
+
+</details>
+
+<details>
+<summary>
+### [`seed_estimator`](/docs/api/qiskit-ibm-runtime/options-estimator-options#seed_estimator)
+</summary>
+
+**Choices**: Integer
+**Default**: None
+
+</details>
+<details>
+<summary>
+### [`simulator`](/docs/api/qiskit-ibm-runtime/options-simulator-options)
+</summary>
+
+Options to pass when simulating a backend
+
+</details>
+
+<details>
+<summary>
+#### `simulator.basis_gates`
+</summary>
+
+**Choices**: List of basis gate names to unroll to
+**Default**: The set of all basis gates supported by [Qiskit Aer simulator](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html)
+
+</details>
+
+<details>
+<summary>
+#### `simulator.coupling_map`
+</summary>
+
+**Choices**: List of directed two-qubit interactions
+**Default**: Full connectivity
+
+</details>
+
+<details>
+<summary>
+#### `simulator.noise_model`
+</summary>
+
+**Choices**: [Qiskit Aer NoiseModel](/docs/guides/build-noise-models), or its representation
+**Default**: None
+
+</details>
+
+<details>
+<summary>
+#### `simulator.seed_simulator`
+</summary>
+
+**Choices**: Integer
+**Default**: None
+
+</details>
+
+<details>
+<summary>
+### [`twirling`](/docs/api/qiskit-ibm-runtime/options-twirling-options)
+</summary>
+
+Twirling options
+
+</details>
+
+<details>
+<summary>
+#### `twirling.enable_gates`
+</summary>
+
+**Choices**: True, False
+**Default**: False
+
+</details>
+
+<details>
+<summary>
+#### `twirling.enable_measure`
+</summary>
+
+**Choices**: True, False
+**Default**: True
+
+</details>
+
+<details>
+<summary>
+#### `twirling.num_randomizations`
+</summary>
+
+**Choices**: `auto`, Integer >= 1
+**Default**: `auto`
+
+</details>
+
+<details>
+<summary>
+#### `twirling.shots_per_randomization`
+</summary>
+
+**Choices**: `auto`, Integer >= 1
+**Default**: `auto`
+
+</details>
+
+<details>
+<summary>
+#### `twirling.strategy`
+</summary>
+
+**Choices**: `active`, `active-circuit`, `active-accum`, `all`
+**Default**: `active-accum`
+
+</details>
+
+<details>
+<summary>
+### `experimental`
+</summary>
+
+Experimental options, when available.
+</details>
+
+<details>
+<summary>
+#### `experimental.execution_path`
+
+**Choices**: `active`, `active-circuit`, `active-accum`, `all`
+**Default**: None
+
+</summary>
 </details>
 
 
