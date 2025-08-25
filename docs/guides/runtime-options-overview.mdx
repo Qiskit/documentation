@@ -52,7 +52,7 @@ Options can be defined before a primitive is constructed and passed to the primi
 </Tabs>
 
 <span id="options-table"></span>
-### Available options
+## Available options
 
 The following table documents options from the latest version of `qiskit-ibm-runtime`. To see older option versions, visit the [`qiskit-ibm-runtime` API reference](/docs/api/qiskit-ibm-runtime) and select a previous version.
 
@@ -64,7 +64,7 @@ Scroll to see the full table.
   <TabItem value="Estimator" label="Estimator">
 <details>
 <summary>
-#### [`default_shots`](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_shots)
+### [`default_shots`](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_shots)
 </summary>
 
 The total number of shots to use per circuit per configuration.
@@ -75,7 +75,7 @@ The total number of shots to use per circuit per configuration.
 
 <details>
 <summary>
-#### [`default_precision`](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_precision)
+### [`default_precision`](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_precision)
 </summary>
 
 The default precision to use for any PUB or `run()` call that does not specify one.
@@ -86,7 +86,7 @@ The default precision to use for any PUB or `run()` call that does not specify o
 
 <details>
 <summary>
-#### [`dynamical_decoupling`](/docs/api/qiskit-ibm-runtime/options-estimator-options#dynamical_decoupling)
+### [`dynamical_decoupling`](/docs/api/qiskit-ibm-runtime/options-estimator-options#dynamical_decoupling)
 </summary>
 
 Control dynamical decoupling error mitigation settings.
@@ -95,7 +95,7 @@ Control dynamical decoupling error mitigation settings.
 
 <details>
 <summary>
-##### `dynamical_decoupling.enable`
+#### `dynamical_decoupling.enable`
 </summary>
 
 **Choices**: `True`, `False`
@@ -104,7 +104,7 @@ Control dynamical decoupling error mitigation settings.
 
 <details>
 <summary>
-##### `dynamical_decoupling.extra_slack_distribution`
+#### `dynamical_decoupling.extra_slack_distribution`
 </summary>
 
 **Choices**: `middle`, `edges`
@@ -113,7 +113,7 @@ Control dynamical decoupling error mitigation settings.
 
 <details>
 <summary>
-##### `dynamical_decoupling.scheduling_method`
+#### `dynamical_decoupling.scheduling_method`
 </summary>
 
 Choices: `asap`, `alap`
@@ -122,7 +122,7 @@ Default: `alap`
 
 <details>
 <summary>
-##### `dynamical_decoupling.sequence_type`
+#### `dynamical_decoupling.sequence_type`
 </summary>
 
 Choices: `XX`, `XpXm`, `XY4`
@@ -131,18 +131,214 @@ Default: `XX`
 
 <details>
 <summary>
-##### `dynamical_decoupling.skip_reset_qubits`
+#### `dynamical_decoupling.skip_reset_qubits`
 </summary>
 
 Choices: `True`, `False`
 Default: `False`
 </details>
 
+<details>
+<summary>
+### [`environment`](/docs/api/qiskit-ibm-runtime/options-estimator-options#environment)
+</summary>
+</details>
+
+<details>
+<summary>
+#### `environment.callback`
+</summary>
+
+Callable function that receives the `Job ID` and `Job result`.
+
+**Choices**: None
+**Default**: None
+</details>
+
+<details>
+<summary>
+#### `environment.job_tags`
+</summary>
+
+List of tags.
+
+**Choices**: None
+**Default**: None
+</details>
+
+<details>
+<summary>
+#### `environment.log_level`
+</summary>
+
+**Choices**: DEBUG, INFO, WARNING, ERROR, CRITICAL
+**Default**: WARNING
+</details>
+
+<details>
+<summary>
+#### `environment.private`
+</summary>
+
+**Choices**: `True`, `False`
+**Default**: `False`
+</details>
+
+<details>
+<summary>
+### [`execution`](/docs/api/qiskit-ibm-runtime/options-estimator-options#execution)
+</summary>
+----------------description-----------------
+</details>
+
+<details>
+<summary>
+#### `execution.init_qubits`
+</summary>
+
+**Choices**: `True`, `False`
+**Default**: `True`
+</details>
+
+<details>
+<summary>
+#### `execution.rep_delay`
+</summary>
+
+**Choices**: Value in the range supplied by `backend.rep_delay_range`
+**Default**: Given by `backend.default_rep_delay`
+</details>
+
+<details>
+<summary>
+### [`max_execution_time`](/docs/api/qiskit-ibm-runtime/options-estimator-options#max_execution_time)
+</summary>
+----------------description-----------------
+**Choices**: Integer number of seconds in the range [1, 10800]
+**Default**: 10800 (3 hours)
+</details>
+
+<details>
+<summary>
+### [`resilience`](/docs/api/qiskit-ibm-runtime/options-estimator-options#resilience)
+</summary>
+----------------description-----------------
+</details>
+
+<details>
+<summary>
+#### [`resilience.layer_noise_learning`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)
+</summary>
+
+----------------description-----------------
+
+</details>
+
+<details>
+<summary>
+##### `resilience.layer_noise_learning.layer_pair_depths`
+</summary>
+
+**Choices**: list[int] of 2-10 values in the range [0, 200]
+**Default**: `(0, 1, 2, 4, 16, 32)`
+
+</details>
+
+<details>
+<summary>
+##### `resilience.layer_noise_learning.max_layers_to_learn`
+</summary>
+
+**Choices**: None, Integer >= 1
+**Default**: `4`
+
+</details>
+
+<details>
+<summary>
+##### `resilience.layer_noise_learning.num_randomizations`
+</summary>
+
+**Choices**: Integer >= 1
+**Default**: `32`
+
+</details>
+
+<details>
+<summary>
+##### `resilience.layer_noise_learning.shots_per_randomization`
+</summary>
+
+**Choices**: Integer >= 1
+**Default**: `128`
+
+</details>
+
+<details>
+<summary>
+#### `resilience.layer_noise_model`
+</summary>
+
+**Choices**: `NoiseLearnerResult`, `Sequence[LayerError]`
+**Default**: None
+
+</details>
+
+<details>
+<summary>
+#### `resilience.measure_mitigation`
+</summary>
+
+**Choices**: `True`, `False`
+**Default**: `True`
+
+</details>
+
+<details>
+<summary>
+#### [`resilience.measure_noise_learning`](/docs/api/qiskit-ibm-runtime/options-measure-noise-learning-options)
+</summary>
+
+-----------description----------------
+
+</details>
+
+<details>
+<summary>
+##### `resilience.measure_noise_learning.num_randomizations`
+</summary>
+
+**Choices**: Integer >= 1
+**Default**: `32`
+
+</details>
+
+<details>
+<summary>
+##### `resilience.measure_noise_learning.shots_per_randomization`
+</summary>
+
+**Choices**: Integer, `auto`
+**Default**: `auto`
+
+</details>
+
+<details>
+<summary>
+#### `resilience.measure_noise_learning.pec_mitigation`
+</summary>
+
+**Choices**: `True`, `False`
+**Default**: `False`
+
+</details>
+
+
   </TabItem>
   <TabItem value="Sampler" label="Sampler">
 <details>
 <summary>
-#### [`dynamical_decoupling`](/docs/api/qiskit-ibm-runtime/options-estimator-options#dynamical_decoupling)
+### [`dynamical_decoupling`](/docs/api/qiskit-ibm-runtime/options-estimator-options#dynamical_decoupling)
 </summary>
 
 Control dynamical decoupling error mitigation settings.
@@ -245,7 +441,7 @@ Control dynamical decoupling error mitigation settings.
 </Tabs>
 
 <span id="options-compatibility-table"></span>
-### Feature compatibility
+## Feature compatibility
 
 Due to differences in the device compilation process, certain runtime features cannot be used together in a single job. Click the appropriate tab for a list of features that are incompatible with the selected feature:
 
