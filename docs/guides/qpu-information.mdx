@@ -52,6 +52,9 @@ These values are shown on both the [Compute resources page](https://quantum.clou
 *   **Region** - Location of the data center where your data and experiments will be hosted and processed.
 *   **Total pending jobs** - The total number of jobs that you have submitted to this QPU.
 *   **Processor type** - Reflects the [topology](/docs/guides/qpu-information) and indicates the approximate qubit count.
+* **Basis gates** <span id="native-gates-on-platform"></span> - Each [processor family](/docs/guides/processor-types) has a native gate set. By default, the QPUs in each family only support running the gates and operations in the native gate set. Thus, every gate in the circuit must be translated (by the transpiler) to the elements of this set. To find the native gates (also called basis gates) for a QPU, select its name on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. Note that the non-unitary operations are not listed here; use the [method in Qiskit](/docs/guides/get-qpu-information#native-gates-with-qiskit) to see all native gates and operations for a QPU. See a list of all native gates in [this table](#native-gates).
+
+* **Version** - The version number of a QPU in the form `major.minor.revision`. See [QPU versioning](#qpu-versioning) for details on how this number is assigned.
 
 <Admonition type="note" title="Average gate fidelity">
 Note that the metric for median ECR error (for Eagle processors) and median CZ error (for Heron processors) is the [average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity), which is the average over all possible input states of the fidelity between the state produced by the actual operation and the state produced by the ideal operation.
@@ -60,11 +63,6 @@ Note that the metric for median ECR error (for Eagle processors) and median CZ e
 ## Additional information available on the details page for each QPU
 
 To access the details page, select [Compute resources](https://quantum.cloud.ibm.com/computers) from the left-hand menu, then click the name of the QPU.
-
-<span id="native-gates-on-platform"></span>
-* **Basis gates** - Each [processor family](/docs/guides/processor-types) has a native gate set. By default, the QPUs in each family only support running the gates and operations in the native gate set. Thus, every gate in the circuit must be translated (by the transpiler) to the elements of this set. To find the native gates (also called basis gates) for a QPU, select its name on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. Note that the non-unitary operations are not listed here; use the [method in Qiskit](/docs/guides/get-qpu-information#native-gates-with-qiskit) to see all native gates and operations for a QPU. See a list of all native gates in [this table](#native-gates).
-
-* **Version** - The version number of a QPU in the form `major.minor.revision`. See [QPU versioning](#qpu-versioning) for details on how this number is assigned.
 
 * **Calibration data** - Download the calibration data as a CSV file or click the arrow to display the Topology diagram, Individual qubit readout graph, or the Calibration data table. You can customize the data that is shown, depending on the view you have open. For example, on the Topology diagram, you can choose the data you want to see for connections and qubits. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
 
