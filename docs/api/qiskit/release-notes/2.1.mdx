@@ -14,15 +14,64 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 2.1.2
+
+<span id="relnotes-2-1-2-prelude" />
+
+### Prelude
+
+Qiskit 2.1.2 is a small patch release, fixing several bugs found in the 2.1 series.
+
+<span id="relnotes-2-1-2-bug-fixes" />
+
+### Bug Fixes
+
+*   In Qiskit 2.1.0 the [`VF2PostLayout`](/docs/api/qiskit/qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") transpiler pass was added to the `optimization` stage of the preset pass manager when `optimization_level=3`. However, the output of the pass was not ever applied to the circuit. This release removes the pass from the preset pass manager’s `optimization` stage to save the runtime cost. In Qiskit 2.2.0 the pass will be part of the `optimization` stage and the output will be applied if the pass finds a better layout.
+
+*   Fixed an issue in the [`VF2Layout`](/docs/api/qiskit/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") transpiler pass where even with a fixed seed set the output from the pass was potentially non-deterministic; specifically if the input circuit had any active qubits that only contained single qubit operations. Fixed [#14729](https://github.com/Qiskit/qiskit/issues/14729)
+
+*   Fixed a bug in [`PassManager.run()`](/docs/api/qiskit/qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") where the `callback` function was not invoked when running with multiple circuits. The callback is now correctly triggered for each pass on each circuit, including in parallel execution.
+
+*   Built-in transpiler passes that set the `final_layout` property will now correctly handle updating this field if it was already set. This can be observed as the method [`TranspileLayout.routing_permutation`](/docs/api/qiskit/qiskit.transpiler.TranspileLayout#routing_permutation "qiskit.transpiler.TranspileLayout.routing_permutation") now returning a correct permutation after running more than one pass that sets `final_layout`.
+
+    This did not affect any normal calls to [`transpile()`](/docs/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`generate_preset_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") using Qiskit’s built-in plugins; no pipeline constructed in this form would attempt to set `final_layout` more than once.
+
+*   Fixed a bug in [`Target.instruction_supported()`](/docs/api/qiskit/qiskit.transpiler.Target#instruction_supported "qiskit.transpiler.Target.instruction_supported") where the check of instruction’s qubit order was skipped when the method was called with `operation_name` and `parameters` arguments that matched an existing instruction.
+
+*   Fixed a correctness bug when exporting circuits with delay instructions using `ps` units to QASM3.
+
+*   Fixed an edge case in the display of the [`QFT`](/docs/api/qiskit/qiskit.circuit.library.QFT "qiskit.circuit.library.QFT") circuit. Previously, when [`QFT.inverse()`](/docs/api/qiskit/qiskit.circuit.library.QFT#inverse "qiskit.circuit.library.QFT.inverse") was called and then the attributes of the QFT circuit were modified, the QFT’s name was displayed as `"IQFT_dg"`. This was incorrect, and now it correctly shows `"IQFT"`. Fixed [#14758](https://github.com/Qiskit/qiskit/issues/14758).
+
+*   Fixed a memory leak in the coordination of using `qk_circuit_get_instruction` and `qk_circuit_instruction_clear`.
+
+*   Clarified the error message for invalid specified versions in [`qpy.dump()`](/docs/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump") to make it easier to act on.
+
+*   Fixed an issue with the [`generate_preset_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") function where it would incorrectly ignore the timing constraints data contained in a [`Target`](/docs/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") object provided when the `backend` argument was not set. Fixed [#14329](https://github.com/Qiskit/qiskit/issues/14329)
+
+*   Fixed a bug in [`SparsePauliOp.simplify()`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp#simplify "qiskit.quantum_info.SparsePauliOp.simplify") where the method removed Pauli terms based on their coefficients’ magnitudes before combining duplicates. This caused incorrect behavior in two key edge cases:
+
+    1.  When multiple identical Pauli terms had small coefficients that were individually below the simplification threshold but whose sum exceeded the threshold, those terms were incorrectly removed.
+    2.  When multiple identical Pauli terms had coefficients above the threshold but summed to near-zero, they were incorrectly kept.
+
+    See [#14194](https://github.com/Qiskit/qiskit/issues/14194) for more detail.
+
+<span id="relnotes-2-1-1" />
+
+<span id="id2" />
+
 ## 2.1.1
 
 <span id="relnotes-2-1-1-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
 Qiskit 2.1.1 is a small patch release, fixing several bugs found in the 2.1 series.
 
 <span id="relnotes-2-1-1-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
@@ -38,13 +87,13 @@ Qiskit 2.1.1 is a small patch release, fixing several bugs found in the 2.1 seri
 
 <span id="relnotes-2-1-0" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 2.1.0
 
 <span id="relnotes-2-1-0-prelude" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### Prelude
 
@@ -676,7 +725,7 @@ For more details about the above and much more, please see the release notes bel
 
 <span id="relnotes-2-1-0-bug-fixes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Bug Fixes
 

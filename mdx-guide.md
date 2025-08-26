@@ -195,6 +195,20 @@ We also have a specialized admonition for Qiskit Code Assistant prompt suggestio
 />
 ```
 
+### Figures
+
+Use this component for proofs, theorems, definitions, or anything that is
+referenced in the main flow of the document, but could be moved to another part
+of the document without affecting the main flow.
+
+To insert a figure, use the following syntax.
+
+```mdx
+<Figure title="Proof">
+  You can use any MDX inside a figure.
+</Figure>
+```
+
 ### Definition Tooltip
 
 To use a `DefinitionTooltip`, use the following syntax:

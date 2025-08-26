@@ -72,26 +72,26 @@ These cases are not special, they’re fully consistent with the rules and shoul
 
 For any given mathematical observable, there are several ways of representing it with `QkObs`. For example, the same set of single-bit terms and their corresponding indices might appear multiple times in the observable. Mathematically, this is equivalent to having only a single term with all the coefficients summed. Similarly, the terms of the sum in a `QkObs` can be in any order while representing the same observable, since addition is commutative (although while floating-point addition is not associative, `QkObs` makes no guarantees about the summation order).
 
-These two categories of representation degeneracy can cause the operator equality, `qk_obs_equal`, to claim that two observables are not equal, despite representating the same object. In these cases, it can be convenient to define some *canonical form*, which allows observables to be compared structurally. You can put a `QkObs` in canonical form by using the `qk_obs_canonicalize` function. The precise ordering of terms in canonical ordering is not specified, and may change between versions of Qiskit. Within the same version of Qiskit, however, you can compare two observables structurally by comparing their simplified forms.
+These two categories of representation degeneracy can cause the operator equality, `qk_obs_equal`, to claim that two observables are not equal, despite representing the same object. In these cases, it can be convenient to define some *canonical form*, which allows observables to be compared structurally. You can put a `QkObs` in canonical form by using the `qk_obs_canonicalize` function. The precise ordering of terms in canonical ordering is not specified, and may change between versions of Qiskit. Within the same version of Qiskit, however, you can compare two observables structurally by comparing their simplified forms.
 
 <Admonition title="Note" type="note">
   If you wish to account for floating-point tolerance in the comparison, it is safest to use a recipe such as:
 
   ```c
   bool equivalent(QkObs *left, QkObs *right, double tol) {
-      // compare a canonicalized version of left - right to the zero observable
-      QkObs *neg_right = qk_obs_mul(right, -1);
-      QkObs *diff = qk_obs_add(left, neg_right);
-      QkObs *canonical = qk_obs_canonicalize(diff, tol);
+    // compare a canonicalized version of left - right to the zero observable
+    QkObs *neg_right = qk_obs_multiply(right, &(QkComplex64){-1, 0});
+    QkObs *diff = qk_obs_add(left, neg_right);
+    QkObs *canonical = qk_obs_canonicalize(diff, tol);
 
-      QkObs *zero = qk_obs_zero(qk_obs_num_qubits(left));
-      bool equiv = qk_obs_equal(diff, zero);
-      // free all temporary variables
-      qk_obs_free(neg_right);
-      qk_obs_free(diff);
-      qk_obs_free(canonical);
-      qk_obs_free(zero);
-      return equiv;
+    QkObs *zero = qk_obs_zero(qk_obs_num_qubits(left));
+    bool equiv = qk_obs_equal(diff, zero);
+    // free all temporary variables
+    qk_obs_free(neg_right);
+    qk_obs_free(diff);
+    qk_obs_free(canonical);
+    qk_obs_free(zero);
+    return equiv;
   }
   ```
 </Admonition>
@@ -197,14 +197,13 @@ for (size_t i = 0; i < num_terms; i++) {
   uint32_t num_qubits = 100;
   uint64_t num_terms = 2;  // we have 2 terms: |01><01|, -1 * |+-><+-|
   uint64_t num_bits = 4; // we have 4 non-identity bits: 0, 1, +, -
-
-  complex double coeffs[2] = {1, -1};
+  QkComplex64 coeffs = {1, -1};
   QkBitTerm bits[4] = {QkBitTerm_Zero, QkBitTerm_One, QkBitTerm_Plus, QkBitTerm_Minus};
+
   uint32_t indices[4] = {0, 1, 98, 99};  // <-- e.g. {1, 0, 99, 98} would be invalid
   size_t boundaries[3] = {0, 2, 4};
-
   QkObs *obs = qk_obs_new(
-      num_qubits, num_terms, num_bits, coeffs, bits, indices, boundaries
+      num_qubits, num_terms, num_bits, &coeffs, bits, indices, boundaries
   );
   ```
 
@@ -216,7 +215,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
   Behavior is undefined if any of the following conditions are violated:
 
-  *   `coeffs` is a pointer to a `complex double` array of length `num_terms`
+  *   `coeffs` is a pointer to a `QkComplex64` array of length `num_terms`
   *   `bit_terms` is a pointer to an array of valid `QkBitTerm` elements of length `num_bits`
   *   `indices` is a pointer to a `uint32_t` array of length `num_bits`, which is term-wise sorted in strict ascending order, and every element is smaller than `num_qubits`
   *   `boundaries` is a pointer to a `size_t` array of length `num_terms + 1`, which is sorted in ascending order, the first element is 0 and the last element is smaller than `num_terms`
@@ -276,10 +275,10 @@ for (size_t i = 0; i < num_terms; i++) {
   uint32_t num_qubits = 100;
   QkObs *obs = qk_obs_zero(num_qubits);
 
-  complex double coeff = 1;
+  QkComplex64 coeff = {1, 0};
   QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};
   uint32_t indices[3] = {0, 1, 2};
-  QkObsTerm term = {&coeff, 3, bit_terms, indices, num_qubits};
+  QkObsTerm term = {coeff, 3, bit_terms, indices, num_qubits};
 
   int exit_code = qk_obs_add_term(obs, &term);
   ```
@@ -444,7 +443,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_coeffs" signature="QkComplex64 *qk_obs_coeffs(QkObs *obs)">
   Get a pointer to the coefficients.
 
-  This can be used to read and modify the observable’s coefficients. The resulting pointer is valid to read for `qk_obs_num_terms(obs)` elements of `complex double`.
+  This can be used to read and modify the observable’s coefficients. The resulting pointer is valid to read for `qk_obs_num_terms(obs)` elements of `QkComplex64`.
 
   <span id="group__QkObs_1autotoc_md64" />
 
@@ -453,10 +452,10 @@ for (size_t i = 0; i < num_terms; i++) {
   ```c
   QkObs *obs = qk_obs_identity(100);
   size_t num_terms = qk_obs_num_terms(obs);
-  complex double *coeffs = qk_obs_coeffs(obs);
+  QkComplex64 *coeffs = qk_obs_coeffs(obs);
 
   for (size_t i = 0; i < num_terms; i++) {
-      printf("%f + i%f\n", creal(coeffs[i]), cimag(coeffs[i]));
+      printf("%f + i%f\n", coeffs[i].re, coeffs[i].im);
   }
   ```
 
@@ -488,14 +487,16 @@ for (size_t i = 0; i < num_terms; i++) {
 
   #### Example
 
+  <span id="group__QkObs_1autotoc_md66" />
+
   ```c
   uint32_t num_qubits = 100;
   QkObs *obs = qk_obs_zero(num_qubits);
 
-  complex double coeff = 1;
+  QkComplex64 coeff = {1, 0};
   QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};
-  uint32_t indices[3] = {0, 1, 2};
-  QkObsTerm term = {&coeff, 3, bit_terms, indices, num_qubits};
+  uint32_t term_indices[3] = {0, 1, 2};
+  QkObsTerm term = {coeff, 3, bit_terms, term_indices, num_qubits};
   qk_obs_add_term(obs, &term);
 
   size_t len = qk_obs_len(obs);
@@ -504,7 +505,9 @@ for (size_t i = 0; i < num_terms; i++) {
   for (size_t i = 0; i < len; i++) {
       printf("index %i: %i\n", i, indices[i]);
   }
+  ```
 
+  ```c
   qk_obs_free(obs);
   ```
 
@@ -540,14 +543,14 @@ for (size_t i = 0; i < num_terms; i++) {
   uint32_t num_qubits = 100;
   QkObs *obs = qk_obs_zero(num_qubits);
 
-  complex double coeff = 1;
+  QkComplex64 coeff = {1, 0};
   QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};
   uint32_t indices[3] = {0, 1, 2};
-  QkObsTerm term = {&coeff, 3, bit_terms, indices, num_qubits};
+  QkObsTerm term = {coeff, 3, bit_terms, indices, num_qubits};
   qk_obs_add_term(obs, &term);
 
   size_t num_terms = qk_obs_num_terms(obs);
-  uint32_t *boundaries = qk_obs_boundaries(obs);
+  uintptr_t *boundaries = qk_obs_boundaries(obs);
 
   for (size_t i = 0; i < num_terms + 1; i++) {
       printf("boundary %i: %i\n", i, boundaries[i]);
@@ -586,10 +589,10 @@ for (size_t i = 0; i < num_terms; i++) {
   uint32_t num_qubits = 100;
   QkObs *obs = qk_obs_zero(num_qubits);
 
-  complex double coeff = 1;
+  QkComplex64 coeff = {1, 0};
   QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};
   uint32_t indices[3] = {0, 1, 2};
-  QkObsTerm term = {&coeff, 3, bit_terms, indices, num_qubits};
+  QkObsTerm term = {coeff, 3, bit_terms, indices, num_qubits};
   qk_obs_add_term(obs, &term);
 
   size_t len = qk_obs_len(obs);
@@ -630,7 +633,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
   ```c
   QkObs *obs = qk_obs_identity(100);
-  complex double coeff = 2;
+  QkComplex64 coeff = {2, 0};
   QkObs *result = qk_obs_multiply(obs, &coeff);
   ```
 
@@ -643,7 +646,7 @@ for (size_t i = 0; i < num_terms; i++) {
   Behavior is undefined if any of the following is violated
 
   *   `obs` is a valid, non-null pointer to a `QkObs`
-  *   `coeff` is a valid, non-null pointer to a `complex double`
+  *   `coeff` is a valid, non-null pointer to a `QkComplex64`
 
   **Parameters**
 
@@ -770,7 +773,7 @@ for (size_t i = 0; i < num_terms; i++) {
   QkObs *two = qk_obs_add(iden, iden);
 
   double tol = 1e-6;
-  QkObs *canonical = qk_obs_canonicalize(two);
+  QkObs *canonical = qk_obs_canonicalize(two, tol);
   ```
 
   <span id="group__QkObs_1autotoc_md81" />

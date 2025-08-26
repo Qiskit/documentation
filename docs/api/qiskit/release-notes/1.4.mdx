@@ -14,15 +14,55 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 1.4.4
+
+<span id="relnotes-1-4-4-prelude" />
+
+### Prelude
+
+Qiskit v1.4.4 is a minor bugfix release for the v1.4.x release series.
+
+<span id="relnotes-1-4-4-bug-fixes" />
+
+### Bug Fixes
+
+*   [`ApplyLayout`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.ApplyLayout "qiskit.transpiler.passes.ApplyLayout") will now correctly handle the case of applying a zero-qubit [`Layout`](/docs/api/qiskit/1.4/qiskit.transpiler.Layout "qiskit.transpiler.Layout"). Previously, it would claim that no layout had been set, even if the `"layout"` field of the [`PropertySet`](/docs/api/qiskit/1.4/qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") was equal to `Layout()`.
+
+*   Fixed a bug in method [`QuantumCircuit.assign_parameters()`](/docs/api/qiskit/1.4/qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters") that resulted in an error with string inputs and argument `strict=False`. Refer to [#13933](https://github.com/Qiskit/qiskit/issues/13933) for more details.
+
+*   Fixed the [`name`](/docs/api/qiskit/1.4/qiskit.circuit.Gate#name "qiskit.circuit.Gate.name") attribute of the [`OrGate`](/docs/api/qiskit/1.4/qiskit.circuit.library.OrGate "qiskit.circuit.library.OrGate") class so that it now is set to `"or"` to uniquely identify this gate. It was previously incorrectly set to `"and"` which made it impossible to distinguish it from [`AndGate`](/docs/api/qiskit/1.4/qiskit.circuit.library.AndGate "qiskit.circuit.library.AndGate") or have synthesis plugins to synthesize an [`OrGate`](/docs/api/qiskit/1.4/qiskit.circuit.library.OrGate "qiskit.circuit.library.OrGate"). Fixed [#14434](https://github.com/Qiskit/qiskit/issues/14434)
+
+*   Fixed a bug in the [`ElidePermutations`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.ElidePermutations "qiskit.transpiler.passes.ElidePermutations") transpiler pass, where the qubit mapping was not updated correctly in the presence of [`PermutationGate`](/docs/api/qiskit/1.4/qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate")s, leading to incorrect circuits and updates to the pass manager’s property set.
+
+*   Fixed a bug in the [`PauliEvolutionSynthesisDefault`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault") and [`PauliEvolutionSynthesisRustiq`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq") plugins that modified the `.synthesis` attribute of the original circuit when setting `preserve_order=False`. The behavior of the plugins has been restored and the original circuit is now preserved throughout the transpilation pipeline.
+
+*   Fixed a correctness bug when exporting circuits with delay instructions using `'ps'` units to QASM3.
+
+*   Fixed a compatibility issue with the minimum supported version of rustworkx, 0.15. With certain inputs the [`VF2Layout`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") and [`VF2PostLayout`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") were previously using a rustworkx method that was added in rustworkx 0.16.0 which would cause an error when using an older rustworkx release which is listed as supported.
+
+*   [`SabreLayout`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") and [`SabreSwap`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") will no longer panic when applying the routing result to a circuit that uses [`expr.Var`](/docs/api/qiskit/1.4/circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") objects in a nested control-flow scope.
+
+*   The circuit library function [`quantum_volume()`](/docs/api/qiskit/1.4/qiskit.circuit.library.quantum_volume "qiskit.circuit.library.quantum_volume") was updated to handle a [`numpy.random.Generator`](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.3)") as input for its `seed` argument. Previously, such a generator argument would result in a `TypeError`.
+
+*   Fixed a bug in circuit library functions [`evolved_operator_ansatz()`](/docs/api/qiskit/1.4/qiskit.circuit.library.evolved_operator_ansatz "qiskit.circuit.library.evolved_operator_ansatz"), [`qaoa_ansatz()`](/docs/api/qiskit/1.4/qiskit.circuit.library.qaoa_ansatz "qiskit.circuit.library.qaoa_ansatz") and [`hamiltonian_variational_ansatz()`](/docs/api/qiskit/1.4/qiskit.circuit.library.hamiltonian_variational_ansatz "qiskit.circuit.library.hamiltonian_variational_ansatz"), where the parameters had a zero complex component. This mostly was no issue, unless translated to SymPy using the [`ParameterExpression.sympify()`](/docs/api/qiskit/1.4/qiskit.circuit.ParameterExpression#sympify "qiskit.circuit.ParameterExpression.sympify") method, which would then raise an error.
+
+<span id="relnotes-1-4-3" />
+
+<span id="id2" />
+
 ## 1.4.3
 
 <span id="relnotes-1-4-3-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
 Qiskit v1.4.3 is a minor bugfix release for the v1.4.x release series.
 
 <span id="relnotes-1-4-3-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
@@ -44,13 +84,13 @@ Qiskit v1.4.3 is a minor bugfix release for the v1.4.x release series.
 
 <span id="relnotes-1-4-2" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 1.4.2
 
 <span id="relnotes-1-4-2-prelude" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### Prelude
 
@@ -76,7 +116,7 @@ Qiskit 1.4.2 is a patch release that fixes bugs found in the 1.4 release series.
 
 <span id="relnotes-1-4-2-bug-fixes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Bug Fixes
 
@@ -84,13 +124,13 @@ Qiskit 1.4.2 is a patch release that fixes bugs found in the 1.4 release series.
 
 <span id="relnotes-1-4-1" />
 
-<span id="id5" />
+<span id="id8" />
 
 ## 1.4.1
 
 <span id="relnotes-1-4-1-prelude" />
 
-<span id="id6" />
+<span id="id9" />
 
 ### Prelude
 
@@ -98,7 +138,7 @@ Qiskit 1.4.1 is a small patch release, fixing some bugs found in the 1.4 extende
 
 <span id="relnotes-1-4-1-bug-fixes" />
 
-<span id="id7" />
+<span id="id10" />
 
 ### Bug Fixes
 
@@ -121,13 +161,13 @@ Qiskit 1.4.1 is a small patch release, fixing some bugs found in the 1.4 extende
 
 <span id="relnotes-1-4-0" />
 
-<span id="id8" />
+<span id="id11" />
 
 ## 1.4.0
 
 <span id="relnotes-1-4-0-prelude" />
 
-<span id="id9" />
+<span id="id12" />
 
 ### Prelude
 
@@ -267,7 +307,7 @@ The Qiskit v1.4 release is the final minor version release for the v1.x series. 
 
 <span id="relnotes-1-4-0-bug-fixes" />
 
-<span id="id10" />
+<span id="id13" />
 
 ### Bug Fixes
 
