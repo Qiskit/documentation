@@ -6,7 +6,11 @@ description: Information about QPU calibration, properties, and versioning
 
 # QPU information
 
-IBM&reg; offers both open and premium access to a wide variety of quantum processing units (QPUs). All QPUs deployed by IBM are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these QPUs. You can see the full details of all IBM QPUs on the [Compute resources](https://quantum.cloud.ibm.com/computers) page.
+IBM&reg; offers access to a wide variety of quantum processing units (QPUs). All QPUs deployed by IBM are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these QPUs.
+
+Explore all public IBM QPUs by navigating to the [Compute resources](https://quantum.cloud.ibm.com/computers) page on IBM Quantum&reg; Platform. Click any QPU to open its detailed information card.
+
+This page describes the detailed information you will find on the QPU information card.
 
 ## QPU versioning
 
@@ -39,7 +43,7 @@ The revision version number will increment for fixes that do not break the exist
 
 ## QPU details
 
-Find details about a specific QPU on the [Compute resources](https://quantum.cloud.ibm.com/computers) page by selecting the QPU. The card that opens up displays the following details: 
+The first section of the QPU information card provides the following QPU details: 
 
 *   **Name** - The unique name assigned to a specific QPU. QPUs hosted on IBM Cloud® have names that begin with `ibmq_*` (older QPUs) or `ibm_*` (newer QPUs). All QPUs are given a city name, e.g., `ibmq_johannesburg`. This name does not indicate where the actual QPU is hosted. They are named after IBM&reg; locations around the world.
 *   **Qubits** - The number of physical qubits in a QPU.
@@ -58,7 +62,6 @@ Find details about a specific QPU on the [Compute resources](https://quantum.clo
 * **Median readout error**
 * **Median T1** (Relaxation Time) - The T1 time represents the average duration a qubit remains in its excited state $|1\rangle$ before decaying to its ground state $|0\rangle$ due to energy relaxation. This parameter is used to characterize the qubit's energy relaxation behavior, and is expressed in units of seconds (s).
 * **Median T2** (Dephasing Time) - The T2 time denotes the timescale over which a qubit maintains phase coherence of a superposition between the $|0\rangle$ and $|1\rangle$ states. It accounts for both energy relaxation and pure dephasing processes, providing insight into the qubit's coherence properties.
-* <span id="coupling-map">**Topology diagram** or **coupling map** </span> - A diagram that indicates the pairs of qubits that support two-qubit gate operations between them. This is also called the coupling map or connectivity. Qubits are represented as circles and the supported two-qubit gate operations are displayed as lines connecting the qubits.
 
 <Admonition type="note" title="Average gate fidelity">
 Note that the metric for median ECR error (for Eagle processors) and median CZ error (for Heron processors) is the [average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity), which is the average over all possible input states of the fidelity between the state produced by the actual operation and the state produced by the ideal operation.
@@ -66,13 +69,15 @@ Note that the metric for median ECR error (for Eagle processors) and median CZ e
 
 ## Calibration data
 
-The calibration data is located below the Details section of the QPU's card (display a card by selecting a QPU on the [Compute resources](https://quantum.cloud.ibm.com/computers) page). Click the arrow to display the view options: map, graph, or table view. 
+The second section, Calibration data, provides qubit, connectivity, and gate data. You can choose to visualize the information as a map, graph, or table.
 
-You can customize the data that is shown, depending on the view you have open. For example, in the map view, you can choose the data you want to see for qubits and connections. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
+You can customize the data that is shown in each view, using the drop-down menus. For example, in the map view, you can choose the data you want to see for qubits and connections. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
 
 To download calibration data as a CSV file, click the download icon in the upper right corner of the Calibration data section.
 
-In addition to the data shown in the details section for each QPU, calibration data also includes: 
+In addition to the information provided in the Details section of the card, the Calibration data section also includes:
+
+* <span id="coupling-map">**Topology diagram** or **coupling map** </span> - A diagram that indicates the pairs of qubits that support two-qubit gate operations between them. This is also called the coupling map or connectivity. Qubits are represented as circles and the supported two-qubit gate operations are displayed as lines connecting the qubits.
 
 * **Readout assignment error**: The readout error quantifies the average probability of incorrectly measuring a qubit's state. It is commonly calculated as the mean of prob_meas0_prep1 and prob_meas1_prep0, providing a single metric for measurement fidelity.
 * **Prob meas0 prep1**: This parameter indicates the probability of measuring a qubit in the $|0\rangle$ state when it was intended to be prepared in the $|1\rangle$ state, denoted as $P(0|1)$. It reflects errors in state preparation and measurement (SPAM), particularly measurement errors in superconducting qubits.
@@ -88,6 +93,9 @@ In addition to the data shown in the details section for each QPU, calibration d
 * **RZZ error**:
 * **Operational** (Yes/No)
 
+## Two-qubit gate error (layered)
+
+The third section provides the `Two-qubit gate error (layered)` value measure for any number of qubits, up to 100, which is the value presented in the `details` section.
 <span id="available"></span>
 ## View your resources
 
