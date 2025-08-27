@@ -50,7 +50,7 @@ The circuit C API currently only supports creating circuits that contain operati
     A nul terminated string representing the operation name
   </Attribute>
 
-  #### uintptr\_t count
+  #### size\_t count
 
   <Attribute id="count">
     The number of instances of this operation in the circuit
@@ -68,7 +68,7 @@ The circuit C API currently only supports creating circuits that contain operati
     A array of size `len` containing `OpCount` objects for each type of operation in the circuit
   </Attribute>
 
-  #### uintptr\_t len
+  #### size\_t len
 
   <Attribute id="len">
     The number of elements in `data`
@@ -630,7 +630,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
 ### qk\_circuit\_num\_instructions
 
-<Function id="qk_circuit_num_instructions" signature="uintptr_t qk_circuit_num_instructions(const QkCircuit *circuit)">
+<Function id="qk_circuit_num_instructions" signature="size_t qk_circuit_num_instructions(const QkCircuit *circuit)">
   Return the total number of instructions in the circuit.
 
   <span id="group__QkCircuit_1autotoc_md38" />
@@ -663,7 +663,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
 ### qk\_circuit\_get\_instruction
 
-<Function id="qk_circuit_get_instruction" signature="void qk_circuit_get_instruction(const QkCircuit *circuit, uintptr_t index, QkCircuitInstruction *instruction)">
+<Function id="qk_circuit_get_instruction" signature="void qk_circuit_get_instruction(const QkCircuit *circuit, size_t index, QkCircuitInstruction *instruction)">
   Return the instruction details for an instruction in the circuit.
 
   This function is used to get the instruction details for a given instruction in the circuit.
