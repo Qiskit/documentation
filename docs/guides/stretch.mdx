@@ -1,0 +1,218 @@
+---
+title: Deferred timing resolution using stretch
+description: How to use stretch to defer timing resolution with dynamic circuits
+---
+
+# Deferred timing resolution using stretch
+
+The OpenQASM 3 language specification contains a `stretch` type with which you can specify relative timing of operations instead of absolute timing. Support for `stretch` as durations for [`Delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay) instructions was added in [Qiskit v2.0.0.](/docs/api/qiskit/release-notes/2.0#200) The concrete value of a stretch duration is resolved at compile time, after the exact duration of calibrated gates are known.  The compiler tries to minimize the stretch duration, subject to timing constraints on one or more qubits. You can then express gate designs such as evenly spacing gates (for example, to implement a higher-order echo decoupling sequence), left-aligning a sequence of gates, or applying a gate for the duration of some sub-circuit, without knowing the exact timing.
+
+## Examples
+
+### Dynamical decoupling
+
+A common use case of `stretch` is to apply dynamical decoupling to an idling qubit while another qubit is undergoing conditional operations.
+
+For example, we can use `stretch` to apply an XX dynamical decoupling sequence to qubit 1, for the duration of the conditional block applied to qubit 0, as illustrated by the following diagram:
+
+![Image illustrating the following circuit](/docs/images/guides/stretch/stretch.avif)
+
+The corresponding circuit would look like the following. Note that a pair of barriers is needed to define the boundaries of this relative timing.
+
+```python
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+
+qubits = QuantumRegister(2)
+clbits = ClassicalRegister(2)
+circuit = QuantumCircuit(qubits, clbits)
+(q0, q1) = qubits
+(c0, c1) = clbits
+
+# Add barriers to define the boundaries
+circuit.barrier()
+circuit.h(q0)
+circuit.measure(q0, c0)
+with circuit.if_test((c0, 1)) as else_:
+    circuit.h(q0)
+with else_:
+    circuit.x(q0)
+
+# Apply an XX DD sequence with stretch on qubit 1
+s = circuit.add_stretch("s")
+circuit.delay(s, q1)
+circuit.x(q1)
+circuit.delay(expr.mul(s, 2), q1)
+circuit.x(q1)
+circuit.delay(s, q1)
+circuit.barrier()
+```
+
+### Scheduling alignment
+
+This example uses `stretch` to ensure a sequence of gates between two barriers are left-aligned, whatever their actual durations are:
+
+```python
+from qiskit import QuantumCircuit
+from numpy import pi
+
+qc = QuantumCircuit(5)
+qc.barrier()
+qc.cx(0, 1)
+qc.u(pi/4, 0, pi/2, 2)
+qc.cx(3, 4)
+
+a = qc.add_stretch("a")
+b = qc.add_stretch("b")
+c = qc.add_stretch("c")
+
+# Use the stretches as Delay duration.
+qc.delay(a, [0, 1])
+qc.delay(b, 2)
+qc.delay(c, [3, 4])
+qc.barrier()
+```
+
+<Admonition type="note">
+ When using `stretch` with Qiskit Runtime, any remainder resulting from a stretch resolution is added to the first delay that uses the stretch.
+
+    Example:
+
+        ```python
+        a = circuit.add_stretch("a")
+        circuit.barrier(q0, q1)
+        circuit.delay(100, q0)
+        circuit.delay(a, q1)  # resolve to 26
+        circuit.x(q1)  # duration: 8
+        circuit.delay(a, q1)  # resolve to 25
+        circuit.x(q1)  # duration: 8
+        circuit.delay(a, q1)  # resolve to 25
+        circuit.x(q1)  # duration: 8
+        circuit.barrier(q0, q1)
+         ```
+
+    The above code resolves to a value of 25 with a remainder of 1. The first delay`[a]` will have the remainder added.
+
+    Stretch resolution equation:  $a + 8 + a + 8 + a + 8 = 100   =   3*a + 24$
+</Admonition>
+
+## Qiskit Runtime limitations
+
+Support for `stretch` in Qiskit Runtime is currently experimental and has the following constraints:
+
+- At most one stretch variable per _qubit set_ between barriers (implicit and explicit). A qubit set is one or more qubits; these sets must be mutually exclusive.
+    <Tabs>
+    <TabItem value="Invalid" label="Invalid">
+        ```python
+        a = circuit.add_stretch("a")
+        b = circuit.add_stretch("b")
+        circuit.delay(a, (q0, q1))
+        circuit.delay(b, q0)  # Invalid because 2 stretches are applied on q0
+        ```
+     </TabItem>
+     <TabItem value="Valid" label="Valid">
+        ```python
+        a = circuit.add_stretch("a")
+        b = circuit.add_stretch("b")
+        circuit.delay(a, (q0, q1))
+        circuit.delay(b, q2)
+        ```
+     </TabItem>
+    </Tabs>
+
+- The area surrounded by a set of barriers is called a _barrier region_. A stretch variable cannot be used in multiple barrier regions.
+    <Tabs>
+         <TabItem value="Invalid" label="Invalid">
+        ```python
+        # Stretch a is used in two barrier regions
+        a = circuit.add_stretch("a")
+        circuit.barrier((q0, q1))
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))
+         ```
+
+        ![Illustration of the previous code output](/docs/images/guides/stretch/bad-barrier-region.png 'Invalid use of stretch in barrier regions')
+
+     </TabItem>
+     <TabItem value="Valid" label="Valid">
+        ```python
+        # Stretch a is used inside a barrier region that is on q0 and q1
+        a = circuit.add_stretch("a")
+        circuit.barrier((q0, q1))
+        circuit.delay(a, q0)
+        circuit.barrier(q2)
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))
+        ```
+
+        ![Illustration of the previous code output](/docs/images/guides/stretch/good-barrier-region.png 'Valid use of stretch in a barrier region')
+
+     </TabItem>
+    </Tabs>
+
+- Stretch expressions are limited to those of the form `X*stretch + Y` where `X` and `Y` are floating point or integer constants.
+    <Tabs>
+         <TabItem value="Invalid" label="Invalid">
+        ```python
+        a = circuit.add_stretch("a")
+        b = circuit.add_stretch("b")
+        c = circuit.add_stretch("c")
+
+        # (a /  b) * c is not supported
+        circuit.delay(expr.mul(expr.div(a, b), c), q1)
+         ```
+     </TabItem>
+     <TabItem value="Valid" label="Valid">
+        ```python
+        from qiskit.circuit import Duration
+
+        a = circuit.add_stretch("a")
+        circuit.delay(expr.add(expr.mul(a, 2), Duration.dt(3)), 0)
+        ```
+     </TabItem>
+    </Tabs>
+
+- Stretch expressions can only include a single stretch variable.
+    <Tabs>
+        <TabItem value="Invalid" label="Invalid">
+        ```python
+        a = circuit.add_stretch("a")
+        b = circuit.add_stretch("b")
+        circuit.delay(expr.add(a, b), 0)
+         ```
+     </TabItem>
+         <TabItem value="Valid" label="Valid">
+        ```python
+        a = circuit.add_stretch("a")
+        circuit.delay(expr.add(a, a), 0)
+        ```
+     </TabItem>
+
+    </Tabs>
+
+- Stretch expressions cannot resolve to negative delay values. The current solver doesn't infer non-negativity constraints.
+    <Tabs>
+         <TabItem value="Invalid" label="Invalid">
+        ```python
+        from qiskit.circuit import Duration
+
+        circuit.barrier((q0, q1))
+        circuit.delay(20, q1)
+        # The length of this barrier region is 20dt, meaning the
+        # equation for solving stretch 'a' is a + 40dt = 20dt, giving a = -20dt.
+        circuit.delay(expr.add(a, Duration.dt(40)), q0)
+        circuit.barrier((q0, q1))
+         ```
+     </TabItem>
+     <TabItem value="Valid" label="Valid">
+        ```python
+        circuit.barrier((q0, q1))
+        circuit.delay(20, q1)
+        circuit.delay(a, q0)
+        circuit.barrier((q0, q1))
+        ```
+     </TabItem>
+    </Tabs>
+
+

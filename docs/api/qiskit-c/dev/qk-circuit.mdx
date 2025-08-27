@@ -26,11 +26,11 @@ $$
 // Create a circuit with three qubits and 3 classical bits
 QkCircuit *qc = qk_circuit_new(3, 0);
 // H gate on qubit 0, putting this qubit in a superposition of |0> + |1>.
-qk_circuit_gate(qc, QkGate_H, {0}, NULL);
+qk_circuit_gate(qc, QkGate_H, (uint32_t[]){0}, NULL);
 // A CX (CNOT) gate on control qubit 0 and target qubit 1 generating a Bell state.
-qk_circuit_gate(qc, QkGate_CX, {0, 1}, NULL);
+qk_circuit_gate(qc, QkGate_CX, (uint32_t[]){0, 1}, NULL);
 // A CX (CNOT) gate on control qubit 0 and target qubit 2 generating a GHZ state.
-qk_circuit_gate(qc, QkGate_CX, {0, 2}, NULL);
+qk_circuit_gate(qc, QkGate_CX, (uint32_t[]){0, 2}, NULL);
 // Free the created circuit.
 qk_circuit_free(qc);
 ```
@@ -82,7 +82,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   This struct represents the data contained in an individual instruction in a `QkCircuit`. It is not a pointer to the underlying object, but contains a copy of the properties of the instruction for inspection.
 
-  #### const char \*name
+  #### char \*name
 
   <Attribute id="name">
     The instruction name
@@ -202,7 +202,7 @@ The circuit C API currently only supports creating circuits that contain operati
   QkQuantumRegister *qr = qk_quantum_register_new(1024, "my_little_register");
   qk_circuit_add_quantum_register(qc, qr);
   qk_quantum_register_free(qr);
-  qk_circuit_free(qc)
+  qk_circuit_free(qc);
   ```
 
   <span id="group__QkCircuit_1autotoc_md13" />
@@ -233,7 +233,7 @@ The circuit C API currently only supports creating circuits that contain operati
   QkClassicalRegister *cr = qk_classical_register_new(24, "my_big_register");
   qk_circuit_add_classical_register(qc, cr);
   qk_classical_register_free(cr);
-  qk_circuit_free(qc)
+  qk_circuit_free(qc);
   ```
 
   <span id="group__QkCircuit_1autotoc_md15" />
@@ -391,7 +391,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   <span id="group__QkCircuit_1autotoc_md25" />
 
-  The `qubits` and `params` types are expected to be a pointer to an array of `uint32_t` and `double` respectively where the length is matching the expectations for the standard gate. If the array is insufficently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given gate. You can check `qk_gate_num_qubits` and `qk_gate_num_params` to determine how many qubits and params are required for a given gate.
+  The `qubits` and `params` types are expected to be a pointer to an array of `uint32_t` and `double` respectively where the length is matching the expectations for the standard gate. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given gate. You can check `qk_gate_num_qubits` and `qk_gate_num_params` to determine how many qubits and params are required for a given gate.
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -562,17 +562,16 @@ The circuit C API currently only supports creating circuits that contain operati
   #### Example
 
   ```c
-  QkComplex64 c0 = qk_complex64_from_native(0);  // 0+0i
-  QkComplex64 c1 = qk_complex64_from_native(1);  // 1+0i
+  QkComplex64 c0 = {0, 0};  // 0+0i
+  QkComplex64 c1 = {1, 0};  // 1+0i
 
   const uint32_t num_qubits = 1;
-  const uint32_t dim = 2;
-  QkComplex64[dim * dim] unitary = {c0, c1,  // row 0
+  QkComplex64 unitary[2*2] = {c0, c1,  // row 0
                                     c1, c0}; // row 1
 
   QkCircuit *circuit = qk_circuit_new(1, 0);  // 1 qubit circuit
-  uint32_t qubit = {0};  // qubit to apply the unitary on
-  qk_circuit_unitary(circuit, unitary, qubit, num_qubits);
+  uint32_t qubit[1] = {0};  // qubit to apply the unitary on
+  qk_circuit_unitary(circuit, unitary, qubit, num_qubits, true);
   ```
 
   <span id="group__QkCircuit_1autotoc_md35" />
@@ -607,7 +606,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   ```c
   QkCircuit *qc = qk_circuit_new(100, 0);
-  uint32_t qubit[1] = {0};
+  uint32_t qubits[1] = {0};
   qk_circuit_gate(qc, QkGate_H, qubits, NULL);
   QkOpCounts counts = qk_circuit_count_ops(qc);
   ```
@@ -669,16 +668,19 @@ The circuit C API currently only supports creating circuits that contain operati
 
   This function is used to get the instruction details for a given instruction in the circuit.
 
+  This function allocates memory internally for the provided `QkCircuitInstruction` and thus you are responsible for calling `qk_circuit_instruction_clear` to free it.
+
   <span id="group__QkCircuit_1autotoc_md40" />
 
   #### Example
 
   ```c
-  QkCircuitInstruction *inst = malloc(sizeof(QkCircuitInstruction));
-  QkCircuit *qc = qk_circuit_new(100);
+  QkCircuitInstruction inst;
+  QkCircuit *qc = qk_circuit_new(100, 0);
   uint32_t qubit[1] = {0};
   qk_circuit_gate(qc, QkGate_H, qubit, NULL);
-  QkCircuitInstruction inst = qk_circuit_get_instruction(qc, 0);
+  qk_circuit_get_instruction(qc, 0, &inst);
+  qk_circuit_instruction_clear(&inst);
   ```
 
   <span id="group__QkCircuit_1autotoc_md41" />
@@ -698,7 +700,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
 ### qk\_circuit\_instruction\_clear
 
-<Function id="qk_circuit_instruction_clear" signature="void qk_circuit_instruction_clear(const QkCircuitInstruction *inst)">
+<Function id="qk_circuit_instruction_clear" signature="void qk_circuit_instruction_clear(QkCircuitInstruction *inst)">
   Clear the data in circuit instruction object.
 
   This function doesn’t free the allocation for the provided `QkCircuitInstruction` pointer, it only frees the internal allocations for the data contained in the instruction. You are responsible for allocating and freeing the actual allocation used to store a `QkCircuitInstruction`.
@@ -709,12 +711,12 @@ The circuit C API currently only supports creating circuits that contain operati
 
   ```c
   QkCircuitInstruction *inst = malloc(sizeof(QkCircuitInstruction));
-  QkCircuit *qc = qk_circuit_new(100);
-  uint32_t q0 = {0};
+  QkCircuit *qc = qk_circuit_new(100, 0);
+  uint32_t q0[1] = {0};
   qk_circuit_gate(qc, QkGate_H, q0, NULL);
   qk_circuit_get_instruction(qc, 0, inst);
-  qk_circuit_instruction_clear(inst); // free the data
-  free(inst); // free the pointer
+  qk_circuit_instruction_clear(inst); // clear internal allocations
+  free(inst); // free struct
   qk_circuit_free(qc); // free the circuit
   ```
 

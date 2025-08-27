@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.MCXGate
 
 # MCXGate
 
-<Class id="qiskit.circuit.library.MCXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L835-L1045" signature="qiskit.circuit.library.MCXGate(num_ctrl_qubits=None, label=None, ctrl_state=None, *, _base_label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.MCXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L805-L1016" signature="qiskit.circuit.library.MCXGate(num_ctrl_qubits=None, label=None, ctrl_state=None, *, _base_label=None)" modifiers="class">
   Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
   The general, multi-controlled X gate.
@@ -201,7 +201,7 @@ python_api_name: qiskit.circuit.library.MCXGate
 
   ### control
 
-  <Function id="qiskit.circuit.library.MCXGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L966-L1015" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+  <Function id="qiskit.circuit.library.MCXGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L936-L986" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
     Return a multi-controlled-X gate with more control lines.
 
     **Parameters**
@@ -209,7 +209,7 @@ python_api_name: qiskit.circuit.library.MCXGate
     *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of control qubits.
     *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – An optional label for the gate \[Default: `None`]
     *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – control state expressed as integer, string (e.g. `'110'`), or `None`. If `None`, use all 1s.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the controlled gate should be implemented as an annotated gate.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with a control modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as a controlled multi-controlled X gate is another multi-controlled X-gate.
 
     **Returns**
 
@@ -222,7 +222,7 @@ python_api_name: qiskit.circuit.library.MCXGate
 
   ### copy
 
-  <Function id="qiskit.circuit.library.MCXGate.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1017-L1036" signature="copy(name=None)">
+  <Function id="qiskit.circuit.library.MCXGate.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L988-L1007" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -240,7 +240,7 @@ python_api_name: qiskit.circuit.library.MCXGate
 
   ### get\_num\_ancilla\_qubits
 
-  <Function id="qiskit.circuit.library.MCXGate.get_num_ancilla_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L925-L951" signature="get_num_ancilla_qubits(num_ctrl_qubits, mode='noancilla')" modifiers="static">
+  <Function id="qiskit.circuit.library.MCXGate.get_num_ancilla_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L895-L921" signature="get_num_ancilla_qubits(num_ctrl_qubits, mode='noancilla')" modifiers="static">
     Get the number of required ancilla qubits without instantiating the class.
 
     This staticmethod might be necessary to check the number of ancillas before creating the gate, or to use the number of ancillas in the initialization.
@@ -261,7 +261,7 @@ python_api_name: qiskit.circuit.library.MCXGate
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.MCXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L911-L923" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.MCXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L881-L893" signature="inverse(annotated=False)">
     Invert this gate. The MCX is its own inverse.
 
     **Parameters**

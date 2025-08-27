@@ -28,12 +28,13 @@ const SYNTHETIC_FILES: string[] = [
   "docs/index.mdx",
   "docs/admin/analytics.mdx",
   "docs/errors.mdx",
-  "docs/api/runtime/index.mdx",
-  "docs/api/runtime/tags/jobs.mdx",
+  "docs/api/qiskit-ibm-runtime/index.mdx",
+  "docs/api/qiskit-ibm-runtime/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
-  "docs/api/runtime/tags/usage.mdx",
-  "docs/api/runtime/tags/sessions.mdx",
+  "docs/api/qiskit-ibm-runtime/tags/usage.mdx",
+  "docs/api/qiskit-ibm-runtime/tags/sessions.mdx",
   "docs/api/qiskit-runtime-rest/tags/instances.mdx",
+  "docs/api/qiskit-runtime-rest/index.mdx",
   "announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update.mdx",
   "announcements/product-updates.mdx",
   "announcements/index.mdx",
@@ -229,6 +230,8 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.29/session.mdx",
     "docs/api/qiskit-ibm-runtime/0.30/runtime-job.mdx",
     "docs/api/qiskit-ibm-runtime/0.34/ibm-backend.mdx",
+    // Used by the latest updates page.
+    "docs/api/qiskit-ibm-runtime/0.40/ibm-backend.mdx",
     // These pages were removed in Qiskit 2.0.
     ...QISKIT_REMOVED_PAGES_TO_LOAD,
   ];

@@ -13,6 +13,7 @@
 import { readFile } from "fs/promises";
 
 import type { TocEntry } from "../lib/api/generateToc.js";
+import { readJsonFile } from "../lib/fs";
 
 // URLs that show up in the left ToC under the `Tools` section, but are not in
 // any of the INDEX_PAGES.
@@ -25,6 +26,7 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/docs/guides/function-template-hamiltonian-simulation",
   "/docs/guides/qiskit-addons-utils",
   "/docs/guides/qiskit-code-assistant-openai-api",
+  "/docs/guides/manage-cost",
   "/docs/guides/execution-modes-faq",
 ]);
 
@@ -41,6 +43,7 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/docs/guides/global-data-quantum-optimizer",
   "/docs/guides/colibritd-pde",
   "/docs/guides/qunova-chemistry",
+  "/docs/guides/manage-cost",
   "/docs/guides/instances",
   "/docs/guides/cloud-setup",
   "/docs/guides/cloud-setup-untrusted",
@@ -49,20 +52,8 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/docs/support/execution-modes-faq",
 ]);
 
-// URLs that show up in the INDEX_PAGES >1 time. This can happen when we
-// have distinct <CloudContent> and <LegacyContent> lists with some shared entries.
-const ALLOWLIST_DUPLICATE_ENTRIES: Set<string> = new Set([
-  "/docs/guides/processor-types",
-  "/docs/guides/qpu-information",
-  "/docs/guides/get-qpu-information",
-  "/docs/guides/native-gates",
-  "/docs/guides/repetition-rate-execution",
-  "/docs/guides/retired-qpus",
-  "/docs/guides/dynamic-circuits-considerations",
-  "/docs/guides/instances",
-  "/docs/guides/fair-share-scheduler",
-  "/docs/guides/manage-cost",
-]);
+// URLs that show up in the INDEX_PAGES >1 time.
+const ALLOWLIST_DUPLICATE_ENTRIES: Set<string> = new Set([]);
 
 const INDEX_PAGE_URLS: Set<string> = new Set([
   "/docs/guides/map-problem-to-circuits",
@@ -130,7 +121,7 @@ function getTocSectionPageNames(sectionNode: TocEntry): string[] {
 }
 
 async function getToolsTocEntriesToCheck(): Promise<string[]> {
-  const toc = JSON.parse(await readFile(TOC_PATH, "utf-8"));
+  const toc = await readJsonFile(TOC_PATH);
   const toolsNode = toc.children.find(
     (child: TocEntry) => child.title == "Tools",
   );

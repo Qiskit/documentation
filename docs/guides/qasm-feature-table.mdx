@@ -3,13 +3,13 @@ title: OpenQASM 3 feature table
 description: A table of the language features included in OpenQASM 3.
 ---
 
-{/* cspell:ignore negctrl, durationof */}
+{/* cspell:ignore negctrl, durationof, vstring */}
 
 # OpenQASM 3 feature table
 
-Below is a list of the `OpenQASM 3` language features.
+Below is a list of the `OpenQASM 3` language features.
 
-For more details on these capabilities, see the [OpenQASM 3.X Live Specification](https://openqasm.com/) .
+For more details on these capabilities, see the [OpenQASM 3.X Live Specification](https://openqasm.com/).
 
 Key:
 
@@ -17,57 +17,139 @@ Key:
 *   🟡 Partial support
 *   ✅ Supported
 
-| Feature                        | Support | Comments                                                                                                                  |
-| ------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------- |
-| comments                       | ✅       |                                                                                                                           |
-| QASM version string            | ✅       |                                                                                                                           |
-| `include`                      | ✅       |                                                                                                                           |
-| unicode names                  | ✅       |                                                                                                                           |
-| `qubit`                        | 🟡      | Only supports physical qubits, and no arrays.                                                                             |
-| `bit`                          | ✅       |                                                                                                                           |
-| `bool`                         | ✅       |                                                                                                                           |
-| `int`                          | ✅       | Some support for comparisons against integers and casting.                                                                |
-| `uint`                         | ❌       |                                                                                                                           |
-| `float`                        | ❌       |                                                                                                                           |
-| `angle`                        | ❌       |                                                                                                                           |
-| `complex`                      | ❌       |                                                                                                                           |
-| `const`                        | ❌       |                                                                                                                           |
-| `pi`/`π`/`tau`/`τ`/`euler`/`ℇ` | ❌       |                                                                                                                           |
-| Aliasing: let                  | ❌       |                                                                                                                           |
-| register concatenation         | ❌       |                                                                                                                           |
-| casting                        | 🟡      | Casting between arrays of bits, int, and bool is supported                                                                |
-| `duration`                     | ✅       |                                                                                                                           |
-| `durationof`                   | ❌       |                                                                                                                           |
-| `ns`/`µs`/`us`/`ms`/`s`/`dt`   | ✅       |                                                                                                                           |
-| `stretch`                      | ❌       |                                                                                                                           |
-| `delay`                        | ✅       |                                                                                                                           |
-| `barrier`                      | ✅       |                                                                                                                           |
-| `box`                          | ❌       |                                                                                                                           |
-| Built-in `U`                   | ✅       |                                                                                                                           |
-| `gate`                         | ✅       | No support for non-basis gates                                                                                            |
-| `gphase`                       | ❌       |                                                                                                                           |
-| `ctrl @`/ `negctrl @`          | ❌       |                                                                                                                           |
-| `inv @`                        | ❌       |                                                                                                                           |
-| `pow(k) @`                     | ❌       |                                                                                                                           |
-| `reset`                        | ✅       |                                                                                                                           |
-| `measure`                      | ✅       |                                                                                                                           |
-| bit operations                 | ✅       |                                                                                                                           |
-| boolean operations             | ✅       |                                                                                                                           |
-| arithmetic expressions         | ❌       |                                                                                                                           |
-| comparisons                    | ✅       |                                                                                                                           |
-| `if`                           | ✅       |                                                                                                                           |
-| `else`                         | ✅       |                                                                                                                           |
-| `else if`                      | ❌       |                                                                                                                           |
-| `for` loops                    | 🟡      | Discrete sets and negative stepping is not supported.                                                                     |
-| `while` loops                  | ❌       |                                                                                                                           |
-| `continue`                     | ❌       |                                                                                                                           |
-| `break`                        | ❌       |                                                                                                                           |
-| `return`                       | ❌       |                                                                                                                           |
-| `extern`                       | 🟡      | Only for certain extern subroutines exposed by systems. It is currently not possible for clients to submit these. |
-| `def` subroutines (classical)  | ❌       |                                                                                                                           |
-| `def` subroutines (quantum)    | ❌       |                                                                                                                           |
-| `input`                        | ❌       |                                                                                                                           |
-| `output`                       | ❌       |                                                                                                                           |
+The meaning of the complete "supported" mark depends on the column:
+
+* *Qiskit SDK*: The feature can be parsed by [`qiskit.qasm3.loads`](/docs/api/qiskit/qasm3) (by using the `qiskit-qasm3-import` extension), represented in a [`QuantumCircuit`,](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)
+  and exported to OpenQASM 3 by [`qiskit.qasm3.dumps`.](/docs/api/qiskit/qasm3#dumps)
+
+* *IBM Qiskit Runtime*: A circuit containing the corresponding Qiskit feature can be successfully executed on hardware through IBM&reg; Qiskit Runtime.
+
+The meaning of "partial support" typically depends on the linked notes.
+
+<Admonition type="note">
+The most common method of submitting circuits to IBM Qiskit Runtime is to create the circuit in the Python-space interface to Qiskit SDK.
+Circuits constructed and submitted in this manner do not need to be loaded from OpenQASM 3 files into Qiskit SDK.
+
+If you do not use OpenQASM 3 directly yourself, you can safely use features that are supported for representation in Qiskit SDK, export to OpenQASM 3, and submission to IBM Qiskit Runtime.
+This includes features that cannot be loaded by Qiskit SDK from OpenQASM 3.
+</Admonition>
+
+| OpenQASM 3 Feature            | Qiskit SDK feature                   | Qiskit SDK | IBM Qiskit Runtime | Notes |
+|:------------------------------|:-------------------------------------|:----------:|:------------------:|:----- |
+| comments                      |                                      | ✅         | ✅                 | [1](#1)     |
+| QASM vstring                  |                                      | ✅         | ✅                 | [1](#1)     |
+| `include`                     |                                      | 🟡         | ❌                 | [1](#1), [7](#7)  |
+| unicode names                 |                                      | ✅         | ✅                 |       |
+| `qubit`                       | `Qubit` and `QuantumRegister`        | ✅         | 🟡                 | [2](#2)     |
+| `bit`                         | `Clbit` and `ClassicalRegister`      | ✅         | ✅                 | [3](#3)     |
+| `bool`                        | `expr.Var` and classical expressions | 🟡         | ✅                 | [4](#4)     |
+| `int`                         |                                      | ❌         | ✅                 | [4](#4)     |
+| `uint`                        | `expr.Var` and classical expressions | 🟡         | ✅                 | [4](#4)     |
+| `float`                       | `expr.Var` and classical expressions | 🟡         | 🟡                 | [4](#4)     |
+| `angle`                       | Implicit, as gate parameters         | ❌         | 🟡                 | [4](#4)     |
+| `complex`                     |                                      | ❌         | ❌                 | [4](#4)     |
+| `const`                       |                                      | ❌         | ❌                 | [4](#4)     |
+| `pi`/`π`/`tau`/`τ`/`euler`/`ℇ`| Constant-folded into gate parameters | ✅         | ✅                 |       |
+| Aliasing: let                 | Quantum and classical registers      | 🟡         | ❌                 | [5](#5)     |
+| register concatenation        | Quantum and classical registers      | 🟡         | ❌                 | [5](#5)     |
+| casting                       | `expr.Cast` classical expressions    | 🟡         | 🟡                 | [4](#4)     |
+| `duration`                    |                                      | ❌         | ❌                 |       |
+| `durationof`                  |                                      | ❌         | ❌                 |       |
+| `ns`/`µs`/`us`/`ms`/`s`/`dt`  | Durations of `delay` and `box`       | ✅         | ✅                 | [6](#6)     |
+| `stretch`                     | `expr.Stretch`                       | 🟡         | 🟡                 | [4](#4), [6](#6)  |
+| `delay`                       | `Delay`/`QuantumCircuit.delay`       | ✅         | ✅                 | [6](#6)     |
+| `barrier`                     | `Barrier`/`QuantumCircuit.barrier`   | ✅         | ✅                 |       |
+| `box`                         | `BoxOp`/`QuantumCircuit.box`         | ✅         | ❌                 | [6](#6)     |
+| Built-in `U`                  | `UGate`/`QuantumCircuit.u`           | ✅         | ✅                 |       |
+| `gate`                        |                                      | 🟡         | 🟡                 | [7](#7)     |
+| `gphase`                      | `QuantumCircuit.global_phase`        | 🟡         | ❌                 | [7](#7)     |
+| `ctrl @`/ `negctrl @`         | `AnnotatedOperation`                 | 🟡         | ❌                 | [7](#7)     |
+| `inv @`                       | `AnnotatedOperation`                 | 🟡         | ❌                 | [7](#7)     |
+| `pow(k) @`                    | `AnnotatedOperation`                 | 🟡         | ❌                 | [7](#7)     |
+| `reset`                       | `Reset`/`QuantumCircuit.reset`       | ✅         | ✅                 |       |
+| `measure`                     | `Measure`/`QuantumCircuit.measure`   | ✅         | ✅                 |       |
+| bit operations                |                                      | 🟡         | ✅                 | [4](#4)     |
+| boolean operations            |                                      | 🟡         | ✅                 | [4](#4)     |
+| arithmetic expressions        |                                      | 🟡         | 🟡                 | [4](#4) |
+| comparisons                   |                                      | 🟡         | ✅                 | [4](#4)     |
+| `if`                          | `QuantumCircuit.if_test`             | ✅         | ✅                 | [8](#8)     |
+| `else`                        | `QuantumCircuit.if_test`             | ✅         | ✅                 | [8](#8)     |
+| `else if`                     | `QuantumCircuit.if_test`             | ✅         | ❌                 | [8](#8)     |
+| `for` loops                   | `QuantumCircuit.for_loop`            | 🟡         | ❌                 | [8](#8)     |
+| `while` loops                 | `QuantumCircuit.while_loop`          | ✅         | ❌                 | [8](#8)     |
+| `continue`                    | `QuantumCircuit.continue_loop`       | 🟡         | ❌                 | [8](#8)     |
+| `break`                       | `QuantumCircuit.break_loop`          | 🟡         | ❌                 | [8](#8)     |
+| `return`                      |                                      | ❌         | ❌                 |       |
+| `extern`                      |                                      | ❌         | ❌                 |       |
+| `def` subroutines (classical) |                                      | ❌         | ❌                 |       |
+| `def` subroutines (quantum)   |                                      | ❌         | ❌                 |       |
+| `input`                       | `QuantumCircuit.add_input`           | ✅         | 🟡                 | [4](#4), [9](#9)  |
+| `output`                      |                                      | ❌         | ❌                 |       |
+
+
+## Notes
+
+<span id="1"></span>
+1.  These OpenQASM 3 program features have no impact on the execution and Qiskit strips them
+    out as part of parsing the files.  Files that use them can be submitted but they will have
+    no effect. For `include` files, `stdgates.inc` is currently supported as input to Qiskit,
+    and backend execution always requires circuits to have been compiled to the backend Instruction Set Architecture (ISA), where
+    `include` files are irrelevant.
+
+<span id="2"></span>
+2. Qiskit SDK supports parsing and dumping OpenQASM 3 files with any ``qubit`` declarations.  For
+   execution on hardware, only circuits defined in terms of hardware qubits (for example, `$0`) are valid.
+   Qiskit SDK automatically outputs OpenQASM 3 in terms of the supported hardware-qubit
+   identifiers if the circuit was transpiled for a backend with layout information.
+
+<span id="3"></span>
+3. `bit`- and `bit[n]`-typed variable declarations in Qiskit SDK correspond to `Clbit` and
+   `ClassicalRegister` declarations.
+
+<span id="4"></span>
+4. As of July 2025, Qiskit SDK can represent local variables of a restricted set of types, can
+   represent many runtime operations on these objects, and supports outputting them to OpenQASM 3.
+   However, Qiskit SDK (through `qiskit-qasm3-import` v0.6.0) does not support parsing OpenQASM 3
+   files that contain variable declarations, and has very limited support for parsing variable
+   expressions.  In general, most of what Qiskit can represent in its expression system can be
+   executed on suitable dynamic circuits hardware, even if the expression cannot yet be parsed by
+   Qiskit SDK.  See [the Qiskit documentation of the `qiskit.circuit.classical`
+   module](/docs/api/qiskit/circuit_classical) for the most up-to-date information.
+
+<span id="5"></span>
+5. Qiskit SDK can represent register aliasing for both quantum and classical registers, but it is
+   strongly discouraged to use aliasing of classical registers.  Most expressions on classical
+   registers do not work with aliases, and aliased classical registers are not supported for
+   execution on hardware.  The Qiskit OpenQASM 3 parser can resolve `let` alias statements that bind
+   the result of register concantenation.
+
+<span id="6"></span>
+6. Qiskit SDK supports explicit delays via `QuantumCircuit.delay`, and circuit boxes
+   (`QuantumCircuit.box`) can also have explicit durations.  These durations can include classical
+   expressions of `stretch` variables.  Qiskit SDK (as of July 2025 through `qiskit-qasm3-import`
+   v0.6.0) does not support parsing declarations of type `duration` or type `stretch` from
+   OpenQASM 3 files.  Hardware has limited support for durations including `stretch`.
+
+<span id="7"></span>
+7. Circuits must be transpiled to the backend ISA to run on IBM hardware.  This precludes
+   custom `gate` definitions and higher-level constructs like gate modifiers (such as `inv @`) from
+   being valid for execution on hardware verbatim, but the `transpile` process resolves them
+   into valid ISA circuits.  Qiskit SDK (as of July 2025, through `qiskit-qasm3-import`
+   v0.6.0) will eagerly evaluate gate modifiers during the parse, so these will not be
+   evident in the resulting `QuantumCircuit`, potentially at a runtime cost.
+
+<span id="8"></span>
+8. Qiskit SDK can represent structured control flow and export this to OpenQASM 3.  The `continue`
+   and `break` statements can technically be represented by Qiskit, but are not well supported even
+   within Qiskit SDK.  `for` loops in Qiskit v2.1.0
+   are not well supported.  Nested control
+   flow (such as an `if` inside another `if`, or an `else if` statement) is not eligible for execution
+   on hardware.
+
+<span id="9"></span>
+9. Qiskit SDK supports declaring any supported classical type as an `input` variable on the circuit.
+   Such variables are not currently eligible for execution on hardware, and cannot be loaded by
+   the Qiskit OpenQASM 3 importer.  Unbound `Parameter` objects present in the `QuantumCircuit` are exported as `input float[64]` variables.  Certain runtime configuration options can enable executing such circuits on some backends.
 
 ## Next steps
 

@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
 
 # FakeHanoiV2
 
-<Class id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/backends/hanoi/fake_hanoi.py#L21-L28" signature="FakeHanoiV2" modifiers="class">
+<Class id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.41/qiskit_ibm_runtime/fake_provider/backends/hanoi/fake_hanoi.py#L21-L27" signature="FakeHanoiV2" modifiers="class">
   Bases: `FakeBackendV2`
 
   A fake 27 qubit backend.
@@ -28,12 +28,8 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
   ### coupling\_map
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.coupling_map">
-    Return the [`CouplingMap`](/docs/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v2.0)") object
+    Return the [`CouplingMap`](/docs/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v2.1)") object
   </Attribute>
-
-  ### defs\_filename
-
-  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.defs_filename" attributeValue="'defs_hanoi.json'" />
 
   ### dirname
 
@@ -64,7 +60,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
   ### instruction\_durations
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.instruction_durations">
-    Return the [`InstructionDurations`](/docs/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v2.0)") object.
+    Return the [`InstructionDurations`](/docs/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v2.1)") object.
   </Attribute>
 
   ### instructions
@@ -76,9 +72,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
   ### max\_circuits
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.max_circuits">
-    (DEPRECATED) The maximum number of circuits
-
-    The maximum number of circuits that the backend supports in a single execution. Note that the actual number of circuits the service allows may be different.
+    This property used to return the max\_experiments value from the backend configuration but this value is no longer an accurate representation of backend circuit limits. New fields will be added to indicate new limits.
   </Attribute>
 
   ### meas\_map
@@ -112,7 +106,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
   ### operations
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.operations">
-    A list of [`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v2.0)") instances that the backend supports.
+    A list of [`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v2.1)") instances that the backend supports.
   </Attribute>
 
   ### options
@@ -144,7 +138,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
   ### target
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.target">
-    A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.0)") object for the backend.
+    A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.1)") object for the backend.
 
     **Return type**
 
@@ -183,12 +177,12 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
 
   ### check\_faulty
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L218-L250" signature="check_faulty(circuit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.41/qiskit_ibm_runtime/fake_provider/fake_backend.py#L175-L207" signature="check_faulty(circuit)">
     Check if the input circuit uses faulty qubits or edges.
 
     **Parameters**
 
-    **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.0)")) – Circuit to check.
+    **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.1)")) – Circuit to check.
 
     **Raises**
 
@@ -201,7 +195,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
 
   ### configuration
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L214-L216" signature="configuration()">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.41/qiskit_ibm_runtime/fake_provider/fake_backend.py#L171-L173" signature="configuration()">
     Return the backend configuration.
 
     **Return type**
@@ -209,27 +203,9 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
     *QasmBackendConfiguration*
   </Function>
 
-  ### defaults
-
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.defaults" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L191-L212" signature="defaults(refresh=False)">
-    (DEPRECATED)Return the pulse defaults for the backend
-
-    **Parameters**
-
-    **refresh** (*bool*) – If `True`, re-retrieve the backend defaults from the local file.
-
-    **Returns**
-
-    The backend pulse defaults or `None` if the backend does not support pulse.
-
-    **Return type**
-
-    *PulseDefaults*
-  </Function>
-
   ### properties
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L178-L189" signature="properties(refresh=False)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.41/qiskit_ibm_runtime/fake_provider/fake_backend.py#L158-L169" signature="properties(refresh=False)">
     Return the backend properties
 
     **Parameters**
@@ -266,12 +242,12 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
 
     **Return type**
 
-    [*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.0)") | *List*\[[*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.0)")]
+    [*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.1)") | *List*\[[*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.1)")]
   </Function>
 
   ### refresh
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L446-L522" signature="refresh(service)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.41/qiskit_ibm_runtime/fake_provider/fake_backend.py#L394-L465" signature="refresh(service, use_fractional_gates=False)">
     Update the data files from its real counterpart
 
     This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation:
@@ -284,7 +260,8 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
 
     **Parameters**
 
-    **service** ([*QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – A `QiskitRuntimeService` instance
+    *   **service** ([*QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – A `QiskitRuntimeService` instance
+    *   **use\_fractional\_gates** (*bool*) – Set True to allow for the backends to include fractional gates.
 
     **Raises**
 
@@ -298,10 +275,10 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L330-L361" signature="run(run_input, **options)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.41/qiskit_ibm_runtime/fake_provider/fake_backend.py#L278-L309" signature="run(run_input, **options)">
     Run on the fake backend using a simulator.
 
-    This method runs circuit jobs (an individual or a list of QuantumCircuit) using BasicSimulator or Aer simulator and returns a [`Job`](/docs/api/qiskit/qiskit.providers.Job "(in Qiskit v2.0)") object.
+    This method runs circuit jobs (an individual or a list of QuantumCircuit) using BasicSimulator or Aer simulator and returns a [`Job`](/docs/api/qiskit/qiskit.providers.Job "(in Qiskit v2.1)") object.
 
     If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicSimulator without noise.
 
@@ -309,7 +286,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
 
     **Parameters**
 
-    *   **run\_input** (*QuantumCircuit or list*) – An individual or a list of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.0)")
+    *   **run\_input** (*QuantumCircuit or list*) – An individual or a list of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.1)")
     *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
     **Returns**
@@ -339,7 +316,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeHanoiV2
 
   ### status
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/fake_provider/fake_backend.py#L160-L176" signature="status()">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeHanoiV2.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.41/qiskit_ibm_runtime/fake_provider/fake_backend.py#L140-L156" signature="status()">
     Return the backend status.
 
     **Returns**

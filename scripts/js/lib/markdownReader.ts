@@ -10,17 +10,21 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile } from "fs/promises";
+import { findSourceMap } from "node:module";
 import path from "node:path";
+import { readFile } from "fs/promises";
+
+import { readJsonFile } from "./fs";
 
 export async function readMarkdown(
   filePath: string,
   options: { includeCodeCellSourceCode?: boolean } = {},
 ): Promise<string> {
-  const source = await readFile(filePath, { encoding: "utf8" });
-  return path.extname(filePath) === ".ipynb"
-    ? markdownFromNotebook(source, options)
-    : source;
+  if (path.extname(filePath) === ".ipynb") {
+    const notebook = await readJsonFile(filePath);
+    return markdownFromNotebook(notebook, options);
+  }
+  return await readFile(filePath, { encoding: "utf8" });
 }
 
 interface JupyterCell {
@@ -28,11 +32,15 @@ interface JupyterCell {
   source: string[];
 }
 
+type Notebook = {
+  cells: JupyterCell[];
+};
+
 export function markdownFromNotebook(
-  rawContent: string,
+  notebook: Notebook,
   options: { includeCodeCellSourceCode?: boolean },
 ): string {
-  const cells = JSON.parse(rawContent).cells as JupyterCell[];
+  const cells = notebook.cells as JupyterCell[];
   return cells
     .filter(
       (cell) =>
