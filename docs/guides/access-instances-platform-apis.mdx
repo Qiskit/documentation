@@ -26,7 +26,6 @@ Some relevant pages:
 
 In the body when provisioning an instance:
 
-> Configuration options for the service instance. An opaque object, the controller treats this as a blob. Brokers should ensure that the client has provided valid configuration parameters and values for the operation. If this field is not present in the request message, then the broker must not change the parameters of the instance as a result of this request.
 
 - **instance_limit_seconds** (string or null, `^[0-9]+$`): The limit to set on the instance. For Open Plan: if omitted, this defaults to 10 minutes.
 .
@@ -37,7 +36,7 @@ In the body when provisioning an instance:
 
 In the response when provisioning or when getting the details of an instance:
 
-> Additional instance properties contributed by the service that are represented as key-value pairs. These properties are persisted with the instance under the extensions property.
+> Additional instance properties contributed by the service that are represented as key-value pairs. These properties persist with the instance under the extensions property.
 
 - **instance_limit_seconds** (integer or null, `>= 0`): The limit to set on the instance.
 - **usage_allocation_seconds** (integer or null, `>= 0`): Allotted time for the instance, used by the fair-share scheduler to determine the priority in the queue, based on usage of all QPUs.
