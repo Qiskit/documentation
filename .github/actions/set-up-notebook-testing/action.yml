@@ -57,7 +57,8 @@ runs:
       shell: bash
       run: |
         sudo apt-get update
-        sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz
+        sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz imagemagick
+        sudo ln -s /usr/bin/convert /usr/bin/magick
 
     - name: Set ulimit
       # https://github.com/Qiskit/documentation/issues/2387#issuecomment-2523753374

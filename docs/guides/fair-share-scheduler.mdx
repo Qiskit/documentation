@@ -10,27 +10,20 @@ When you submit a workload to a quantum processing unit (QPU), it enters the sch
 
 ## Fair-share terms
 
-
-* **Account:** Individuals and organizations use an IBM Cloud account to access IBM Quantum Platform and Qiskit Runtime.
+* **Account:** Individuals and organizations use an IBM Cloud&reg; account to access IBM Quantum&reg; Platform and Qiskit Runtime.
 * **Instance:** The base-level construct to which time is allocated from the overarching account to a set of QPUs, and to which users are directly assigned. Instances are connected to a specific region and [plan](/docs/guides/plans-overview). See the [Instances](/docs/guides/instances) guide for more information.
-
-*   **28-day rolling window:** The fair-share scheduler accounts for usage over a rolling time window. Only execution time accumulated within that window is accounted for the purpose of fairness. The length of that window is currently 28 days. When the fair-share scheduler is invoked, it takes into account usage starting 28 days ago. 
-
-(*Note:* The rolling time window does not apply to Flex Plan. The fair-share ratio for Flex Plan is total usage versus allocation.)
-
+*   **28-day rolling window:** The fair-share scheduler accounts for usage over a rolling time window. Only execution time accumulated within that window is accounted for the purpose of fairness. The length of that window is currently 28 days. When the fair-share scheduler is invoked, it takes into account usage starting 28 days ago. (*Note:* The rolling time window does not apply to Flex Plan. The fair-share ratio for Flex Plan is total usage versus allocation.)
 
 *   **Time used:** For every instance, during the 28-day rolling window, all usage on all the QPUs is accounted for. These include all successful workloads, as well as workloads returning known select error codes. (*Note:* The rolling time window does not apply to Flex Plan. The fair-share ratio for Flex Plan is total usage versus allocation.)
 
 
 ## Allocation and administration
 
+IBM&reg; assigns an allocation of quantum computing capacity to the IBM Cloud account of each organization, based on the capacity contracted under their plan. Account administrators then decide what portion of this allocation to assign to each instance. The fair-share scheduler uses the instances' allocation and current usage to schedule workloads in a manner that fairly distributes resources to each instance.
 
-IBM&reg; assigns allocation to each organization based on their allotted capacity contracted under their plan. The organization can choose to have one or more child accounts within their organization. Administrators then decide what portion of this allocation to assign to each account, and then to each instance.
+For example, assume only two instances maintain workloads in the queue of one quantum computer. With all else being equal, an instance with twice the number of minutes can execute twice the number of workloads.
 
-The fair-share scheduler takes into consideration how the allotted time is distributed across instances to determine workload prioritization. The scheduler combines an instance's allocation with the allotted time of its parent account, to determine the total fraction of computational power allocated to that instance.
-
-For example, assume only two instances maintain workloads in one queue. With all else being equal, an instance with twice the number of minutes will have twice the number of workloads execute.
-
+If the organization account is an enterprise account, account administrators will first need to distribute their allocations to the account's child accounts, and the child account's administrator will then distribute their portion of the allocation to the child account's instances.
 
 ## How the fair-share scheduler works
 

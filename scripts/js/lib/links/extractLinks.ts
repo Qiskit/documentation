@@ -12,14 +12,14 @@
 
 import path from "node:path";
 
-import markdownLinkExtractor from "markdown-link-extractor";
 import { visit } from "unist-util-visit";
 import { unified } from "unified";
 import remarkStringify from "remark-stringify";
-import { Root } from "remark-mdx";
-import rehypeRemark from "rehype-remark";
-import rehypeParse from "rehype-parse";
+import remarkMdx, { Root } from "remark-mdx";
 import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
+import frontmatter from "remark-frontmatter";
+import remarkMath from "remark-math";
 
 import { ObjectsInv } from "../api/objectsInv.js";
 import { readMarkdown } from "../markdownReader.js";
@@ -78,14 +78,19 @@ export async function parseLinks(
   };
 
   await unified()
-    .use(rehypeParse)
+    .use(remarkParse)
     .use(remarkGfm)
-    .use(rehypeRemark)
+    .use(remarkMath)
+    .use(remarkMdx)
+    .use(frontmatter)
     .use(() => (tree: Root) => {
-      visit(tree, "text", (TreeNode) => {
-        markdownLinkExtractor(String(TreeNode.value)).links.forEach((url) =>
-          addLink(url),
+      visit(tree, { type: "mdxJsxTextElement", name: "a" }, (TreeNode: any) => {
+        const href = TreeNode.attributes.find(
+          (attr: any) => attr.name == "href",
         );
+        if (href) {
+          addLink(href.value);
+        }
       });
       visit(tree, "link", (TreeNode) => addLink(TreeNode.url));
       visit(tree, "image", (TreeNode) => addLink(TreeNode.url));
@@ -116,7 +121,19 @@ export async function parseFile(filePath: string): Promise<ParsedFile> {
     };
   }
 
+  if (filePath.endsWith(".json"))
+    return {
+      anchors: new Set(),
+      internalLinks: new Set(),
+      externalLinks: new Set(),
+    };
+
   const markdown = await readMarkdown(filePath);
-  const [internalLinks, externalLinks] = await parseLinks(markdown);
-  return { anchors: parseAnchors(markdown), internalLinks, externalLinks };
+  try {
+    const [internalLinks, externalLinks] = await parseLinks(markdown);
+    return { anchors: parseAnchors(markdown), internalLinks, externalLinks };
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : `${err}`;
+    throw new Error(`Problem parsing '${filePath}':\n` + msg);
+  }
 }

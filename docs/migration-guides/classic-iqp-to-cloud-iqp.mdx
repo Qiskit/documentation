@@ -24,7 +24,7 @@ Find the recent changes to the new platform on the [Latest updates page,](/docs/
 
 ## When should I make the transition?
 
-Open and Pay-as-you-go Standard Plan users are encouraged to create an account and start using the new platform as soon as possible.
+Open and Pay-As-You-Go Plan users are encouraged to create an account and start using the new platform as soon as possible.
 
 Premium Plan, On-Prem Plan, and Startup Program users should not create a new account yet and should wait to receive migration guidance from their administrators in the coming weeks.
 
@@ -54,7 +54,7 @@ You can see the instances you have access to on the dashboard or by clicking the
 The following plans are available to non-Premium users:
 
 * **Open** - Free plan with 10 minutes of access to quantum computers per 28-day period.
-* **Standard** - Pay only for your actual [usage](/docs/guides/estimate-job-run-time).
+* **Pay-As-You-Go** - Pay only for your actual [usage](/docs/guides/estimate-job-run-time).
 
 <Admonition>
 The Lite Plan is deprecated and will be removed on 14 March 2025.
@@ -88,7 +88,7 @@ Follow these steps to set up the new version of IBM Quantum Platform.
    1. Specify a name and choose the type of plan you want. Scroll down to see the **Terms** link.  After reading the terms, select the **agree** checkbox and click **Next**.
    1. On the Plan inheritance page, leave the default setting (toggle is not enabled) and click **Next** if you're setting up an Open instance.  If you are not setting up an Open instance and you want a fixed set of QPUs to be available to this plan, enable the "Customize allocated compute resources" toggle, choose the QPUs you want this instance to be able to access, then click **Next**.
       <Admonition type="note">
-      If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later. If you do not customize them, you will always have access to any QPU the account has access on the plan. So if in the future there is a new system added to the plan, the instance automatically has access to it.
+      If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later. If you do not customize them, you will always have access to any QPU the account has access on the plan. So if in the future there is a new QPU added to the plan, the instance automatically has access to it.
       </Admonition>
    1. Choose whether you want an access group to be created for this instance and click **Create instance**.  For an Open instance, you probably don't need an access group, although creating one won't impact your usage unless you add another user to the group. You can add or remove access groups at any time from IBM Cloud. To learn more, see the [Setting up access groups](https://cloud.ibm.com/docs/account?topic=account-groups)  topic.
 
@@ -113,7 +113,7 @@ Setup details:
 
    * New parameters, `region`, and `plans_preference`, have been added to the `QiskitRuntimeService()` initializer and the `save_account()` method. These can be used to prioritize certain instances on the new platform (`ibm_quantum_platform`, and temporarily, `ibm_cloud` channels) without explicitly providing the CRN.
    `region` allows you to set a region preference (`us-east` or `eu-de`), For example, if `us-east` is specified,
-   then only instances from `us-east` will be checked. `plans_preference` takes a list of plans where instances will be prioritized in the order of plans given. For example, `['Open', 'Premium']` would prioritize all Open Plan instances, then all Premium Plan instances, and then the rest.
+   then only instances from `us-east` will be checked. `plans_preference` takes a list of plans where instances will be prioritized in the order of plans given. For example, `['Open', 'Premium']` would prioritize all Open Plan instances, then all Premium Plan instances, and then the rest. You can also exclude instances of a certain plan by not specifying the plan name. Passing in `['Open']` would exclude all Premium Plan instances.
    * In addition to the IBM Cloud Resource Name (CRN), the instance name can also be passed in as the instance value.
    * If you have access to multiple accounts, only one account per API token can be used. The IBM Cloud API Token is treated as the account identifier and will unlock the resources associated with the account the token was created in. A list of your tokens per account can be found on the [API keys](https://cloud.ibm.com/iam/apikeys) page.
 
@@ -190,7 +190,7 @@ This transition enhances security, scalability, and user experience while keepin
 
 ### Steps to migrate
 
-* If you currently use the Standard Plan, you don't have to do anything.  You'll just use the new [IBM Quantum Platform](https://quantum.cloud.ibm.com/) interface.
+* If you currently use the Pay-As-You-Go Plan, you don't have to do anything.  You'll just use the new [IBM Quantum Platform](https://quantum.cloud.ibm.com/) interface.
 * If you currently use the Lite Plan (deprecated), you can switch to [using simulators locally](https://quantum.cloud.ibm.com/docs/migration-guides/local-simulators). Optionally, you can [create instances in the Open Plan,](#onboard) which lets you run jobs on quantum hardware.
 
 <Admonition type="important">
