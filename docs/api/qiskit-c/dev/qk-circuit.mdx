@@ -50,7 +50,7 @@ The circuit C API currently only supports creating circuits that contain operati
     A nul terminated string representing the operation name
   </Attribute>
 
-  #### uintptr\_t count
+  #### size\_t count
 
   <Attribute id="count">
     The number of instances of this operation in the circuit
@@ -68,7 +68,7 @@ The circuit C API currently only supports creating circuits that contain operati
     A array of size `len` containing `OpCount` objects for each type of operation in the circuit
   </Attribute>
 
-  #### uintptr\_t len
+  #### size\_t len
 
   <Attribute id="len">
     The number of elements in `data`
@@ -600,6 +600,8 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_count_ops" signature="QkOpCounts qk_circuit_count_ops(const QkCircuit *circuit)">
   Return a list of string names for instructions in a circuit and their counts.
 
+  To properly free the memory allocated by the struct, you should call `qk_opcounts_clear`. Dropping the `QkOpCounts` struct without doing so will leave the stored array of `QkOpCount` allocated and produce a memory leak.
+
   <span id="group__QkCircuit_1autotoc_md36" />
 
   #### Example
@@ -609,6 +611,8 @@ The circuit C API currently only supports creating circuits that contain operati
   uint32_t qubits[1] = {0};
   qk_circuit_gate(qc, QkGate_H, qubits, NULL);
   QkOpCounts counts = qk_circuit_count_ops(qc);
+  // .. once done
+  qk_opcounts_clear(&counts);
   ```
 
   <span id="group__QkCircuit_1autotoc_md37" />
@@ -625,12 +629,12 @@ The circuit C API currently only supports creating circuits that contain operati
 
   **Returns**
 
-  An `OpCounts` struct containing the circuit operation counts.
+  An `QkOpCounts` struct containing the circuit operation counts.
 </Function>
 
 ### qk\_circuit\_num\_instructions
 
-<Function id="qk_circuit_num_instructions" signature="uintptr_t qk_circuit_num_instructions(const QkCircuit *circuit)">
+<Function id="qk_circuit_num_instructions" signature="size_t qk_circuit_num_instructions(const QkCircuit *circuit)">
   Return the total number of instructions in the circuit.
 
   <span id="group__QkCircuit_1autotoc_md38" />
@@ -663,7 +667,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
 ### qk\_circuit\_get\_instruction
 
-<Function id="qk_circuit_get_instruction" signature="void qk_circuit_get_instruction(const QkCircuit *circuit, uintptr_t index, QkCircuitInstruction *instruction)">
+<Function id="qk_circuit_get_instruction" signature="void qk_circuit_get_instruction(const QkCircuit *circuit, size_t index, QkCircuitInstruction *instruction)">
   Return the instruction details for an instruction in the circuit.
 
   This function is used to get the instruction details for a given instruction in the circuit.
@@ -733,10 +737,10 @@ The circuit C API currently only supports creating circuits that contain operati
   **inst** – A pointer to the instruction to free.
 </Function>
 
-### qk\_opcounts\_free
+### qk\_opcounts\_clear
 
-<Function id="qk_opcounts_free" signature="void qk_opcounts_free(QkOpCounts op_counts)">
-  Free a circuit op count list.
+<Function id="qk_opcounts_clear" signature="void qk_opcounts_clear(QkOpCounts *op_counts)">
+  Clear the content in a circuit operation count list.
 
   <span id="group__QkCircuit_1autotoc_md44" />
 
