@@ -7,18 +7,19 @@ description: Overview of the available plans; Pay-As-You-Go, Premium, and Open
 <span id="cloud-plans"></span>
 # Overview of available plans
 
-IBM Quantum Platform has Open (free access), and paid plans, as described below. See [IBM Quantum access plans](https://www.ibm.com/quantum/pricing) for full details.
+IBM Quantum Platform has Open (free access) and paid plans, as described below. See [IBM Quantum access plans](https://www.ibm.com/quantum/pricing) for full details.
 
 If you want access to multiple plans, you can create multiple instances and assign different plans to them.  For example, you can have an Open Plan instance and a Pay-As-You-Go Plan instance.  You can set preferred instances to use in the `QiskitRuntimeService` initializer or `QiskitRuntimeService.save_account()` method.  Example:
 
 ```python
   from qiskit_ibm_runtime import QiskitRuntimeService
   service = QiskitRuntimeService.save_account(
-    token=token, # Your token is confidential.
-    # Do not share your key in public code.
+    token="token", # IBM Cloud API key.
+    # Your token is confidential. Do not share your key in public code.
     instance="<IBM Cloud CRN or instance name>", # Optionally specify the instance to use.
-    plans_preference="['plan-type1', 'plan-type2']", # Optionally set the types of plans to prioritize.  This is ignored if the instance is specified.
-    region="<region>", # Optionally set the region to prioritize.
+    plans_preference="['open', 'premium']", # Optionally set the types of plans to prioritize.  This is ignored if the instance is specified.
+    # Additionally, instances of a certain plan type are excluded if the plan name is not specified.
+    region="us-east", # Optionally set the region to prioritize. Accepted values are 'us-east' or 'eu-de'. This is ignored if the instance is specified.
     name="<account-name>", # Optionally name this set of account credentials.
     set_as_default=True, # Optionally set these as your default credentials.
   )
@@ -49,7 +50,7 @@ This plan is recommended for those who are performing quantum utility research p
 
 ## Premium Plan
 
-Run quantum circuits on the world's best QPUs using an enterprise quantum time subscription. Additionally, some functionality, such as [Qiskit Functions](functions) and [Qiskit Transpiler as a Service](qiskit-transpiler-service),  is available only to Premium Plan users.
+Run quantum circuits on the world's best QPUs using an enterprise quantum time subscription. Additionally, some functionality, such as [Qiskit Functions](functions) and [Qiskit Transpiler as a Service](qiskit-transpiler-service), is available to Premium Plan users.
 
 This plan is recommended for those who want to execute a strategic quantum roadmap and develop quantum algorithms and applications at scale. [Contact IBM](https://www.ibm.com/account/reg/us-en/signup?formid=MAIL-quantum) to learn more.
 
