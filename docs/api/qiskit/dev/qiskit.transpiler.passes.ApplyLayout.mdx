@@ -8,14 +8,20 @@ python_api_name: qiskit.transpiler.passes.ApplyLayout
 
 # ApplyLayout
 
-<Class id="qiskit.transpiler.passes.ApplyLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/apply_layout.py#L22-L128" signature="qiskit.transpiler.passes.ApplyLayout(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.ApplyLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/apply_layout.py#L28-L107" signature="qiskit.transpiler.passes.ApplyLayout(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-  Transform a circuit with virtual qubits into a circuit with physical qubits.
+  Apply or update the mapping of virtual qubits to physical qubits in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit").
 
-  Transforms a DAGCircuit with virtual qubits into a DAGCircuit with physical qubits by applying the Layout given in property\_set. Requires either of passes to set/select Layout, e.g. SetLayout, TrivialLayout. Assumes the Layout has full physical qubits.
+  A “layout” in Qiskit is a mapping of virtual qubits (as the user typically creates circuits in terms of) to the physical qubits used to represent them on hardware.
 
-  If a post layout pass is run and sets the `post_layout` property set field with a new layout to use after `ApplyLayout` has already run once this pass will compact the layouts so that we apply `original_virtual` -> `existing_layout` -> `new_layout` -> `new_physical` so that the output circuit and layout combination become: `original_virtual` -> `new_physical`
+  This pass has two modes of operation, depending on the state of the `layout` and `post_layout` keys in the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet"):
+
+  1.  Standard operation: `post_layout` is not set. This takes in a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") defined over virtual qubits, and rewrites it in terms of physical qubits. In this case, the `layout` field must have been chosen by a layout pass (for example [`SetLayout`](qiskit.transpiler.passes.SetLayout "qiskit.transpiler.passes.SetLayout") or [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout")), and both it and the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") must have been expanded with ancillas (see [`EnlargeWithAncilla`](qiskit.transpiler.passes.EnlargeWithAncilla "qiskit.transpiler.passes.EnlargeWithAncilla") and [`FullAncillaAllocation`](qiskit.transpiler.passes.FullAncillaAllocation "qiskit.transpiler.passes.FullAncillaAllocation")).
+
+  2.  Improving a layout: `post_layout` is set (such as by [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout")). In this case, the `post_layout` must already be the correct size. It is interpreted as an \_additional\_ relabelling on top of the relabelling that is already applied to the input [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit").
+
+      After the pass runs, the `layout` field will be updated to represent the composition of the two relabellings, as will the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") and any final permutation. The `post_layout` field will be removed.
 
   ## Attributes
 
@@ -69,7 +75,7 @@ python_api_name: qiskit.transpiler.passes.ApplyLayout
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.ApplyLayout.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/apply_layout.py#L38-L128" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.ApplyLayout.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/apply_layout.py#L53-L67" signature="run(dag)">
     Run the ApplyLayout pass on `dag`.
 
     **Parameters**

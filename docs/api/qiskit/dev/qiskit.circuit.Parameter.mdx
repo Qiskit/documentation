@@ -134,6 +134,22 @@ python_api_name: qiskit.circuit.Parameter
     A new expression parameterized by any parameters which were not bound by `parameter_values`.
   </Function>
 
+  ### bind\_all
+
+  <Function id="qiskit.circuit.Parameter.bind_all" signature="bind_all(values)">
+    Bind all of the parameters in `self` to numeric values in the dictionary, returning a numeric value.
+
+    This is a special case of [`bind()`](#qiskit.circuit.Parameter.bind "qiskit.circuit.Parameter.bind") which can reach higher performance. It is no problem for the `values` dictionary to contain parameters that are not used in this expression; the expectation is that the same bindings dictionary will be fed to other expressions as well.
+
+    It is an error to call this method with a `values` dictionary that does not bind all of the values, or to call this method with non-numeric values, but this is not explicitly checked, since this method is intended for performance-sensitive use. Passing an incorrect dictionary may result in unexpected behavior.
+
+    Unlike [`bind()`](#qiskit.circuit.Parameter.bind "qiskit.circuit.Parameter.bind"), this method will not raise an exception if non-finite floating-point values are encountered.
+
+    **Parameters**
+
+    **values** – mapping of parameters to numeric values.
+  </Function>
+
   ### conjugate
 
   <Function id="qiskit.circuit.Parameter.conjugate" signature="conjugate()">
@@ -163,7 +179,7 @@ python_api_name: qiskit.circuit.Parameter
 
     **Returns**
 
-    The derivative.
+    The derivative as either a constant numeric value or a symbolic [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression").
   </Function>
 
   ### is\_real
