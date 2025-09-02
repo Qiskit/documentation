@@ -45,6 +45,7 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/docs/guides/qunova-chemistry",
   "/docs/guides/manage-cost",
   "/docs/guides/instances",
+  "/docs/guides/access-instances-platform-apis",
   "/docs/guides/cloud-setup",
   "/docs/guides/cloud-setup-untrusted",
   "/docs/guides/cloud-setup-invited",
