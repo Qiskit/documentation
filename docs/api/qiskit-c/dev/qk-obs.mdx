@@ -185,7 +185,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
 ### qk\_obs\_new
 
-<Function id="qk_obs_new" signature="QkObs *qk_obs_new(uint32_t num_qubits, uint64_t num_terms, uint64_t num_bits, QkComplex64 *coeffs, QkBitTerm *bit_terms, uint32_t *indices, uintptr_t *boundaries)">
+<Function id="qk_obs_new" signature="QkObs *qk_obs_new(uint32_t num_qubits, uint64_t num_terms, uint64_t num_bits, QkComplex64 *coeffs, QkBitTerm *bit_terms, uint32_t *indices, size_t *boundaries)">
   Construct a new observable from raw data.
 
   <span id="group__QkObs_1autotoc_md50" />
@@ -347,7 +347,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
 ### qk\_obs\_num\_terms
 
-<Function id="qk_obs_num_terms" signature="uintptr_t qk_obs_num_terms(const QkObs *obs)">
+<Function id="qk_obs_num_terms" signature="size_t qk_obs_num_terms(const QkObs *obs)">
   Get the number of terms in the observable.
 
   <span id="group__QkObs_1autotoc_md58" />
@@ -409,7 +409,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
 ### qk\_obs\_len
 
-<Function id="qk_obs_len" signature="uintptr_t qk_obs_len(const QkObs *obs)">
+<Function id="qk_obs_len" signature="size_t qk_obs_len(const QkObs *obs)">
   Get the number of bit terms/indices in the observable.
 
   <span id="group__QkObs_1autotoc_md62" />
@@ -530,7 +530,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
 ### qk\_obs\_boundaries
 
-<Function id="qk_obs_boundaries" signature="uintptr_t *qk_obs_boundaries(QkObs *obs)">
+<Function id="qk_obs_boundaries" signature="size_t *qk_obs_boundaries(QkObs *obs)">
   Get a pointer to the term boundaries.
 
   This can be used to read and modify the observable’s term boundaries. The resulting pointer is valid to read for `qk_obs_num_terms(obs) + 1` elements of size `size_t`.
@@ -550,7 +550,7 @@ for (size_t i = 0; i < num_terms; i++) {
   qk_obs_add_term(obs, &term);
 
   size_t num_terms = qk_obs_num_terms(obs);
-  uintptr_t *boundaries = qk_obs_boundaries(obs);
+  size_t *boundaries = qk_obs_boundaries(obs);
 
   for (size_t i = 0; i < num_terms + 1; i++) {
       printf("boundary %i: %i\n", i, boundaries[i]);
