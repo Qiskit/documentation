@@ -13,14 +13,15 @@
 import { expect, test } from "@playwright/test";
 
 import { collectHeadingTitleMismatch } from "./markdownTitles";
-import { parseMarkdown } from "./markdownUtils";
+import { readMarkdownAndMetadata } from "./markdownReader"
+
 
 const assert = async (
   markdown: string,
   expected: Set<string>,
 ): Promise<void> => {
-  const tree = parseMarkdown(markdown);
-  const result = await collectHeadingTitleMismatch(tree);
+  const { tree, metadata } = await readMarkdownAndMetadata(markdown);
+  const result = await collectHeadingTitleMismatch(tree, metadata);
   expect(result).toEqual(expected);
 };
 
@@ -31,7 +32,7 @@ title: My Awesome Guide
 ---
 
 # My Awesome Guide
-  `;
+    `;
     await assert(markdown1, new Set());
   });
 

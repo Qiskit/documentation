@@ -10,22 +10,21 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { findSourceMap } from "node:module";
 import path from "node:path";
 import { readFile } from "fs/promises";
-
 import { readJsonFile } from "./fs";
+import grayMatter from "gray-matter";
 
-export async function readMarkdown(
-  filePath: string,
-  options: { includeCodeCellSourceCode?: boolean } = {},
-): Promise<string> {
-  if (path.extname(filePath) === ".ipynb") {
-    const notebook = await readJsonFile(filePath);
-    return markdownFromNotebook(notebook, options);
-  }
-  return await readFile(filePath, { encoding: "utf8" });
-}
+// export async function readMarkdown(
+//   filePath: string,
+//   options: { includeCodeCellSourceCode?: boolean } = {},
+// ): Promise<string> {
+//   if (path.extname(filePath) === ".ipynb") {
+//     const notebook = await readJsonFile(filePath);
+//     return markdownFromNotebook(notebook, options);
+//   }
+//   return await readFile(filePath, { encoding: "utf8" });
+// }
 
 interface JupyterCell {
   cell_type: string;
@@ -49,4 +48,28 @@ export function markdownFromNotebook(
     )
     .map((cell) => cell.source.join(""))
     .join("\n\n");
+}
+
+export async function readMarkdownAndMetadata(
+  filePath: string,
+  options: { includeCodeCellSourceCode?: boolean } = {},
+): Promise<{ content: string; metadata: Record<string, any> }> {
+  const ext = path.extname(filePath);
+
+  if (ext === ".ipynb") {
+    const notebook = await readJsonFile(filePath);
+    const content = await markdownFromNotebook(notebook, options);
+    const metadata = notebook.metadata || {};
+    return { content, metadata };
+  }
+
+  const rawContent = await readFile(filePath, "utf8");
+
+  if (ext === ".md" || ext === ".mdx") {
+    const parsed = grayMatter(rawContent);
+    return { content: parsed.content, metadata: parsed.data };
+  }
+
+  // For other file types, return raw content with empty metadata
+  return { content: rawContent, metadata: {} };
 }

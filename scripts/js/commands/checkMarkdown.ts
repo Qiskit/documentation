@@ -15,7 +15,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import { collectInvalidImageErrors } from "../lib/markdownImages.js";
-import { readMarkdown } from "../lib/markdownReader.js";
+import { readMarkdownAndMetadata } from "../lib/markdownReader.js";
 import { collectHeadingTitleMismatch } from "../lib/markdownTitles.js";
 import { parseMarkdown } from "../lib/markdownUtils";
 
@@ -90,13 +90,13 @@ async function main() {
   const files = await determineContentFiles(args);
 
   for (const file of files) {
-    const markdown = await readMarkdown(file);
-    const tree = parseMarkdown(markdown);
+    const {content,metadata} = await readMarkdownAndMetadata(file);
+    const tree = parseMarkdown(content);
     const imageErrors = await collectInvalidImageErrors(tree);
     const mismatchedTitleHeadingErrors =
       IGNORE_TITLE_MISMATCHES.includes(file) || file.startsWith("docs/api")
         ? new Set<string>()
-        : await collectHeadingTitleMismatch(tree);
+        : await collectHeadingTitleMismatch(tree,metadata);
 
     //Collect all errors for this file
     const errorsInFile: string[] = [

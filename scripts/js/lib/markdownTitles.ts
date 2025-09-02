@@ -12,26 +12,17 @@
 
 import { visit, EXIT } from "unist-util-visit";
 import { Root } from "mdast";
-import yaml from "js-yaml";
 
 import { extractHeadingText } from "./markdownUtils";
 
 export async function collectHeadingTitleMismatch(
   tree: Root,
+  metadata: Record<string, any>,
 ): Promise<Set<string>> {
   const mismatches = new Set<string>();
 
-  let frontmatterTitle: string | undefined;
+  const frontmatterTitle: string | undefined = metadata.title;
   let headingText: string | undefined;
-
-  // Extract frontmatter title
-  visit(tree, "yaml", (node: any) => {
-    const data = yaml.load(node.value);
-    if (typeof data === "object" && data !== null && "title" in data) {
-      frontmatterTitle = (data as any).title;
-      return EXIT;
-    }
-  });
 
   // Extract first level-1 heading with full formatting
   visit(tree, "heading", (node: any) => {
@@ -44,7 +35,7 @@ export async function collectHeadingTitleMismatch(
   // Compare and collect mismatch
   if (frontmatterTitle && headingText && frontmatterTitle !== headingText) {
     mismatches.add(
-      `Mismatch: frontmatter title "${frontmatterTitle}" does not match heading "${headingText}"`,
+      `Mismatch: frontmatter title "${frontmatterTitle}" does not match heading "${headingText}"`
     );
   }
 

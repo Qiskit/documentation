@@ -19,6 +19,8 @@ import { globby } from "globby";
 
 import { readJsonFile } from "../lib/fs";
 
+import {readMarkdownAndMetadata} from "../lib/markdownReader";
+
 const ALLOWED_VIOLATIONS: Set<string> = new Set([...qiskitLegacyIgnores()]);
 
 interface Arguments {
@@ -37,18 +39,18 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
-const readMetadata = async (filePath: string): Promise<Record<string, any>> => {
-  const ext = filePath.split(".").pop();
-  if (ext === "md" || ext === "mdx") {
-    const content = await fs.readFile(filePath, "utf-8");
-    return grayMatter(content).data;
-  } else if (ext === "ipynb") {
-    const json = await readJsonFile(filePath);
-    return json.metadata;
-  } else {
-    throw new Error(`Unknown extension for ${filePath}: ${ext}`);
-  }
-};
+// const readMetadata = async (filePath: string): Promise<Record<string, any>> => {
+//   const ext = filePath.split(".").pop();
+//   if (ext === "md" || ext === "mdx") {
+//     const content = await fs.readFile(filePath, "utf-8");
+//     return grayMatter(content).data;
+//   } else if (ext === "ipynb") {
+//     const json = await readJsonFile(filePath);
+//     return json.metadata;
+//   } else {
+//     throw new Error(`Unknown extension for ${filePath}: ${ext}`);
+//   }
+// };
 
 const isValidMetadata = (
   metadata: Record<string, any>,
@@ -69,7 +71,7 @@ const main = async (): Promise<void> => {
   for (const file of mdFiles) {
     if (ALLOWED_VIOLATIONS.has(file)) continue;
 
-    const metadata = await readMetadata(file);
+    const { content, metadata } = await readMarkdownAndMetadata(file);
     if (!isValidMetadata(metadata, file)) {
       mdErrors.push(file);
     }
@@ -79,7 +81,7 @@ const main = async (): Promise<void> => {
   for (const file of notebookFiles) {
     if (ALLOWED_VIOLATIONS.has(file)) continue;
 
-    const metadata = await readMetadata(file);
+    const { content, metadata } = await readMarkdownAndMetadata(file);
     if (!isValidMetadata(metadata, file)) {
       notebookErrors.push(file);
     }
