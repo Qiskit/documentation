@@ -1,0 +1,117 @@
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: 0 6 * * *
+  push:
+    tags:
+    - '*'
+  pull_request:
+    branches:
+    - main
+
+permissions:
+  contents: write
+
+name: app image
+jobs:
+  create_app_image:
+    name: 'Create AppImage'
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:18.04
+      options: --device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined
+
+    strategy:
+      matrix:
+        compiler: [ gcc, clang ]
+        include:
+          - compiler: gcc
+            cxx_compiler: g++
+          - compiler: clang
+            cxx_compiler: clang++
+
+    steps:
+    - name: Install dependencies
+      run: |
+        set -e
+        apt-get update -y
+        apt-get install -y autoconf curl fuse git kmod libbz2-dev libdjvulibre-dev libfontconfig-dev libfreetype6-dev libfribidi-dev libharfbuzz-dev liblcms-dev libopenexr-dev libopenjp2-7-dev libturbojpeg0-dev liblqr-dev libraqm-dev libtiff-dev libwebp-dev libx11-dev libxml2-dev liblzma-dev software-properties-common wget
+        add-apt-repository ppa:git-core/ppa -y
+        apt-get install -y git
+        add-apt-repository ppa:strukturag/libheif -y
+        add-apt-repository ppa:strukturag/libde265 -y
+        apt-get install libheif-dev -y
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install ${{ matrix.compiler }}
+      if: matrix.compiler == 'clang'
+      run: apt-get install -y ${{ matrix.compiler }}
+
+    - name: Download AppImage
+      run: |
+        mkdir /app-image
+        cd /app-image
+        wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
+        chmod a+x linuxdeployqt-continuous-x86_64.AppImage
+        ./linuxdeployqt-continuous-x86_64.AppImage --appimage-extract
+
+    - name: Build ImageMagick
+      env:
+        CFLAGS: -Wno-deprecated-declarations -Wdeclaration-after-statement -Wno-error=unused-variable
+        CC: ${{ matrix.compiler }}
+        CXX: ${{ matrix.cxx_compiler }}
+      run: |
+        set -e
+        ./configure --with-quantum-depth=16 --without-magick-plus-plus --without-perl --prefix=/usr
+        make
+        make install DESTDIR=$(readlink -f /appdir)
+
+    - name: Create ImageMagick AppImage
+      run: |
+        set -e
+        mkdir -p /appdir/usr/share/applications/
+        cp ./app-image/imagemagick.desktop /appdir/usr/share/applications/
+        mkdir -p /appdir/usr/share/icons/hicolor/128x128/apps/
+        cp ./app-image/icon.png /appdir/usr/share/icons/hicolor/128x128/apps/imagemagick.png
+        unset QTDIR
+        unset QT_PLUGIN_PATH
+        unset LD_LIBRARY_PATH
+        export VERSION=$(git rev-parse --short HEAD)-${{ matrix.compiler }}
+        /app-image/linuxdeployqt-continuous-x86_64.AppImage /appdir/usr/share/applications/imagemagick.desktop -bundle-non-qt-libs
+        rm /appdir/AppRun
+        cp ./app-image/AppRun /appdir
+        chmod a+x /appdir/AppRun
+        PATH=/app-image/squashfs-root/usr/bin:$PATH
+        /app-image/squashfs-root/usr/bin/appimagetool -g /appdir/
+        mkdir artifacts
+        cp ImageMagick-$VERSION-x86_64.AppImage artifacts
+        find /appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
+
+    - name: Upload ImageMagick AppImage
+      uses: actions/upload-artifact@v3
+      with:
+        name: AppImage-${{ matrix.compiler }}
+        path: artifacts
+
+  create_release:
+    name: 'Create release'
+    if: startsWith(github.ref, 'refs/tags/')
+    needs:
+      - create_app_image
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+        path: artifacts
+
+    - name: Publish release
+      uses: softprops/action-gh-release@v1
+      with:
+        generate_release_notes: true
+        files: |
+          artifacts/AppImage-clang/ImageMagick--clang-x86_64.AppImage
+          artifacts/AppImage-gcc/ImageMagick--gcc-x86_64.AppImage
