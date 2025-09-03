@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
 # TranspileLayout
 
-<Class id="qiskit.transpiler.TranspileLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L442-L740" signature="qiskit.transpiler.TranspileLayout(initial_layout, input_qubit_mapping, final_layout=None, _input_qubit_count=None, _output_qubit_list=None)" modifiers="class">
+<Class id="qiskit.transpiler.TranspileLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L447-L975" signature="qiskit.transpiler.TranspileLayout(initial_layout, input_qubit_mapping, final_layout=None, _input_qubit_count=None, _output_qubit_list=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   Layout attributes for the output circuit from transpiler.
@@ -111,7 +111,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
   ### final\_index\_layout
 
-  <Function id="qiskit.transpiler.TranspileLayout.final_index_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L624-L692" signature="final_index_layout(filter_ancillas=True)">
+  <Function id="qiskit.transpiler.TranspileLayout.final_index_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L629-L697" signature="final_index_layout(filter_ancillas=True)">
     Generate the final layout as an array of integers.
 
     This method will generate an array of final positions for each qubit in the input circuit. For example, if you had an input circuit like:
@@ -156,7 +156,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
   ### final\_virtual\_layout
 
-  <Function id="qiskit.transpiler.TranspileLayout.final_virtual_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L694-L740" signature="final_virtual_layout(filter_ancillas=True)">
+  <Function id="qiskit.transpiler.TranspileLayout.final_virtual_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L699-L745" signature="final_virtual_layout(filter_ancillas=True)">
     Generate the final layout as a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object.
 
     This method will generate an array of final positions for each qubit in the input circuit. For example, if you had an input circuit like:
@@ -203,9 +203,58 @@ python_api_name: qiskit.transpiler.TranspileLayout
     [*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout")
   </Function>
 
+  ### from\_property\_set
+
+  <Function id="qiskit.transpiler.TranspileLayout.from_property_set" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L747-L927" signature="from_property_set(dag, property_set)" modifiers="classmethod">
+    Construct the [`TranspileLayout`](#qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") by reading out the fields from the given [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet"). Returns `None` if there are no layout-setting keys present.
+
+    This includes combining the different keys of the property set into the full set of initial and final layouts, including virtual permutations.
+
+    This does not invalidate or in any way mutate the given property set. In order to “canonicalize” the property set afterwards, call [`write_into_property_set()`](#qiskit.transpiler.TranspileLayout.write_into_property_set "qiskit.transpiler.TranspileLayout.write_into_property_set").
+
+    This reads the following property-set keys:
+
+    **`layout`**
+
+    **Required**. The [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object mapping virtual qubits (potentially expanded with ancillas) to physical-qubit indices. This corresponds directly to [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout").
+
+    <Admonition title="Note" type="note">
+      In all standard use, this is a required field. However, if `virtual_permutation_layout` is set, then a “trivial” layout will be inferred, even if the circuit is not actually laid out to hardware. This is an unfortunate limitation of this class’s data model, where it is not possible to specify a final permutation without also having an initial layout. This deficiency will be corrected in Qiskit 3.0.
+    </Admonition>
+
+    **`original_qubit_indices`**
+
+    **Required** (but automatically set by the [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")). The mapping `{virtual: index}` that indicates which relative index each incoming virtual qubit was, in the input circuit. This can be expanded with ancillas too (in which case the ancilla indices don’t mean much, since they weren’t in the incoming circuit).
+
+    **`num_input_qubits`**
+
+    **Required** (but automatically set by the [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")). The number of explicit virtual qubits in the input circuit (i.e. not including implicit ancillas).
+
+    **`final_layout`**
+
+    **Optional**. The effective final permutation, in terms of the current qubits of the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"). This corresponds directly to [`final_layout`](#qiskit.transpiler.TranspileLayout.final_layout "qiskit.transpiler.TranspileLayout.final_layout").
+
+    **`virtual_permutation_layout`**
+
+    **Optional**. This is set by certain optimization passes that run before layout selection, such as [`ElidePermutations`](qiskit.transpiler.passes.ElidePermutations "qiskit.transpiler.passes.ElidePermutations"). It is similar in spirit to `final_layout`, but typically only applies to the input virtual qubits.
+
+    <Admonition title="Warning" type="caution">
+      This object uses the opposite permutation convention to `final_layout` due to an oversight in Qiskit during its introduction. In other words, `virtual_permutation_layout` maps a [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") instance at the end of the circuit to its integer index at the start of the circuit.
+    </Admonition>
+
+    **Parameters**
+
+    *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the current state of the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit").
+    *   **property\_set** ([*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet")) – the current transpiler’s property set. This must at least have the `layout` key set.
+
+    **Return type**
+
+    [TranspileLayout](#qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") | None
+  </Function>
+
   ### initial\_index\_layout
 
-  <Function id="qiskit.transpiler.TranspileLayout.initial_index_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L584-L606" signature="initial_index_layout(filter_ancillas=False)">
+  <Function id="qiskit.transpiler.TranspileLayout.initial_index_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L589-L611" signature="initial_index_layout(filter_ancillas=False)">
     Generate an initial layout as an array of integers.
 
     **Parameters**
@@ -223,7 +272,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
   ### initial\_virtual\_layout
 
-  <Function id="qiskit.transpiler.TranspileLayout.initial_virtual_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L559-L582" signature="initial_virtual_layout(filter_ancillas=False)">
+  <Function id="qiskit.transpiler.TranspileLayout.initial_virtual_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L564-L587" signature="initial_virtual_layout(filter_ancillas=False)">
     Return a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object for the initial layout.
 
     This returns a mapping of virtual [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects in the input circuit to the positions of the physical qubits selected during layout. This is analogous to the [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout") attribute.
@@ -243,7 +292,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
   ### routing\_permutation
 
-  <Function id="qiskit.transpiler.TranspileLayout.routing_permutation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L608-L622" signature="routing_permutation()">
+  <Function id="qiskit.transpiler.TranspileLayout.routing_permutation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L613-L627" signature="routing_permutation()">
     Generate a final layout as an array of integers.
 
     If there is no [`final_layout`](#qiskit.transpiler.TranspileLayout.final_layout "qiskit.transpiler.TranspileLayout.final_layout") attribute present then that indicates there was no output permutation caused by routing or other transpiler transforms. In this case the function will return a list of `[0, 1, 2, .., n]`.
@@ -255,6 +304,42 @@ python_api_name: qiskit.transpiler.TranspileLayout
     **Return type**
 
     [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
+  </Function>
+
+  ### write\_into\_property\_set
+
+  <Function id="qiskit.transpiler.TranspileLayout.write_into_property_set" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L929-L975" signature="write_into_property_set(property_set)">
+    ‘Unpack’ this layout into the loose-constraints form of the `property_set`.
+
+    This is the inverse method of [`from_property_set()`](#qiskit.transpiler.TranspileLayout.from_property_set "qiskit.transpiler.TranspileLayout.from_property_set").
+
+    This always writes the follow property-set keys, overwriting them if they were already set:
+
+    **`layout`**
+
+    Directly corresponds to [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout").
+
+    **`original_qubit_indices`**
+
+    Directly corresponds to [`input_qubit_mapping`](#qiskit.transpiler.TranspileLayout.input_qubit_mapping "qiskit.transpiler.TranspileLayout.input_qubit_mapping").
+
+    **`final_layout`**
+
+    Directly corresponds to [`final_layout`](#qiskit.transpiler.TranspileLayout.final_layout "qiskit.transpiler.TranspileLayout.final_layout"). Note that this might not be identical to the `final_layout` from before a call to [`from_property_set()`](#qiskit.transpiler.TranspileLayout.from_property_set "qiskit.transpiler.TranspileLayout.from_property_set"), because the effects of `virtual_permutation_layout` will have been combined into it.
+
+    **`virtual_permutation_layout`**
+
+    Deleted from the property set; [`TranspileLayout`](#qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") “finalizes” the multiple separate permutations into one single permutation, to retain the canonical form.
+
+    In addition, the following keys are updated, if this [`TranspileLayout`](#qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") has a known value for them. They are left as-is if not, to handle cases where this class was manually constructed without setting certain optional fields.
+
+    **`num_input_qubits`**
+
+    The number of non-ancilla virtual qubits in the input circuit.
+
+    **Parameters**
+
+    **property\_set** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*object*](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")*]*) – the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") (or general [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) that the output should be written into. This mutates the input in place.
   </Function>
 </Class>
 

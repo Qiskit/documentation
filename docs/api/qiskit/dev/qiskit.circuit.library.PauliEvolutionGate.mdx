@@ -8,24 +8,28 @@ python_api_name: qiskit.circuit.library.PauliEvolutionGate
 
 # PauliEvolutionGate
 
-<Class id="qiskit.circuit.library.PauliEvolutionGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L30-L176" signature="qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)" modifiers="class">
+<Class id="qiskit.circuit.library.PauliEvolutionGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L31-L313" signature="qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Time-evolution of an operator consisting of Paulis.
 
-  For an operator $H$ consisting of Pauli terms and (real) evolution time $t$ this gate implements
+  For an Hermitian operator $H$ consisting of Pauli terms and (real) evolution time $t$ this gate represents the unitary
 
 $$
 U(t) = e^{-itH}.
 $$
-
-  This gate serves as a high-level definition of the evolution and can be synthesized into a circuit using different algorithms.
 
   The evolution gates are related to the Pauli rotation gates by a factor of 2. For example the time evolution of the Pauli $X$ operator is connected to the Pauli $X$ rotation $R_X$ by
 
 $$
 U(t) = e^{-itX} = R_X(2t).
 $$
+
+  Compilation:
+
+  This gate represents the exact evolution $U(t)$. Implementing this operation exactly, however, generally requires an exponential number of gates. The compiler therefore typically implements an *approximation* of the unitary $U(t)$, e.g. using a product formula such as defined by [`LieTrotter`](qiskit.synthesis.LieTrotter "qiskit.synthesis.LieTrotter"). By passing the `synthesis` argument, you can specify which method the compiler should use, see [`qiskit.synthesis`](synthesis#module-qiskit.synthesis "qiskit.synthesis") for the available options.
+
+  Note that the order in which the approximation and methods like [`control()`](#qiskit.circuit.library.PauliEvolutionGate.control "qiskit.circuit.library.PauliEvolutionGate.control") and [`power()`](#qiskit.circuit.library.PauliEvolutionGate.power "qiskit.circuit.library.PauliEvolutionGate.power") are called matters. Changing the order can lead to different unitaries.
 
   **Examples:**
 
@@ -215,25 +219,25 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L105-L145" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L242-L302" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return the controlled version of itself.
 
-    Implemented either as a controlled gate (ref. [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")).
+    The outcome is the specified controlled version of $e^{-itH}$. The returned gate represents $e^{-it H_C}$, where $H_C$ is the original operator $H$, tensored with $|0\rangle\langle 0|$ and $|1\rangle\langle 1|$ projectors (depending on the control state).
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of controls to add to gate (default: `1`)
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – optional gate label. Ignored if implemented as an annotated operation.
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – the control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – indicates whether the controlled gate is implemented as an annotated gate. If `None`, this is set to `False` if the controlled gate can directly be constructed, and otherwise set to `True`. This allows defering the construction process in case the synthesis of the controlled gate requires more information (e.g. values of unbound parameters).
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of controls to add to gate (default: `1`).
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Optional gate label. Ignored if implemented as an annotated operation.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The control state in decimal or as a bitstring (e.g. `"111"`). If `None`, use `2**num_ctrl_qubits - 1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Not applicable to this class. Usually, when this is `True` we return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with a control modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, we can efficiently represent controlled Pauli evolutions as [`PauliEvolutionGate`](#qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"), which is used here.
 
     **Returns**
 
     Controlled version of the given operation.
 
-    **Raises**
+    **Return type**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – unrecognized mode or invalid ctrl\_state
+    [Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
   </Function>
 
   ### copy
@@ -256,26 +260,12 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L374-L429" signature="inverse(annotated=False)">
-    Invert this instruction.
-
-    If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
-
-    If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
-
-    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L216-L218" signature="inverse(annotated=False)">
+    Return the inverse, which is obtained by flipping the sign of the evolution time.
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
-
-    **Returns**
-
-    The inverse operation.
-
-    **Raises**
-
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
   </Function>
 
   ### is\_parameterized
@@ -286,23 +276,23 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L63-L94" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L221-L236" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
-    Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
+    The outcome represents $e^{-i tp H}$ where $p$ equals `exponent`.
 
     **Parameters**
 
-    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the power to raise the gate to
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The power to raise the gate to.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Not applicable to this class. Usually, when this is `True` we return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with a power modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, we can efficiently represent powers of Pauli evolutions as [`PauliEvolutionGate`](#qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"), which is used here.
 
     **Returns**
 
-    An operation implementing `gate^exponent`
+    An operation implementing `gate^exponent`.
 
-    **Raises**
+    **Return type**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
+    [*Gate*](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
   </Function>
 
   ### repeat
@@ -365,20 +355,20 @@ $$
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
-    Return a Numpy.array for the gate unitary matrix.
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L176-L213" signature="to_matrix()">
+    Return the matrix $e^{-it H}$ as `numpy.ndarray`.
 
     **Returns**
 
-    if the Gate subclass has a matrix definition.
-
-    **Return type**
-
-    np.ndarray
+    The matrix this gate represents.
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the `time` parameters is not numeric.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")
   </Function>
 
   ### to\_mutable
@@ -391,16 +381,16 @@ $$
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L171-L176" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L308-L313" signature="validate_parameter(parameter)">
     Gate parameters should be int, float, or ParameterExpression
 
     **Parameters**
 
-    **parameter** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
+    **parameter** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
 
     **Return type**
 
-    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
   </Function>
 </Class>
 

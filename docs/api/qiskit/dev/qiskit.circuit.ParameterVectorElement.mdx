@@ -8,19 +8,14 @@ python_api_name: qiskit.circuit.ParameterVectorElement
 
 # ParameterVectorElement
 
-<Class id="qiskit.circuit.ParameterVectorElement" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parametervector.py#L20-L52" signature="qiskit.circuit.ParameterVectorElement(vector, index, uuid=None)" modifiers="class">
-  Bases: [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")
+<Class id="qiskit.circuit.ParameterVectorElement" isDedicatedPage={true} signature="qiskit.circuit.ParameterVectorElement" modifiers="class">
+  Bases: [`Parameter`](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")
 
   An element of a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
 
   <Admonition title="Note" type="note">
     There is very little reason to ever construct this class directly. Objects of this type are automatically constructed efficiently as part of creating a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
   </Admonition>
-
-  **Parameters**
-
-  *   **name** – name of the `Parameter`, used for visual representation. This can be any Unicode string, e.g. “ϕ”.
-  *   **uuid** – For advanced usage only. Override the UUID of this parameter, in order to make it compare equal to some other parameter object. By default, two parameters with the same name do not compare equal to help catch shadowing bugs when two circuits containing the same named parameters are spurious combined. Setting the `uuid` field when creating two parameters to the same thing (along with the same name) allows them to be equal. This is useful during serialization and deserialization.
 
   ## Attributes
 
@@ -39,7 +34,11 @@ python_api_name: qiskit.circuit.ParameterVectorElement
   ### parameters
 
   <Attribute id="qiskit.circuit.ParameterVectorElement.parameters">
-    Returns a set of the unbound Parameters in the expression.
+    Get the parameters present in the expression.
+
+    <Admonition title="Note" type="note">
+      Qiskit guarantees equality (via `==`) of parameters retrieved from an expression with the original [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects used to create this expression, but does **not guarantee** `is` comparisons to succeed.
+    </Admonition>
   </Attribute>
 
   ### uuid
@@ -60,36 +59,36 @@ python_api_name: qiskit.circuit.ParameterVectorElement
 
   ### abs
 
-  <Function id="qiskit.circuit.ParameterVectorElement.abs" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L605-L607" signature="abs()">
-    Absolute of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterVectorElement.abs" signature="abs()">
+    Take the absolute value of the expression.
   </Function>
 
   ### arccos
 
-  <Function id="qiskit.circuit.ParameterVectorElement.arccos" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L519-L521" signature="arccos()">
-    Arccos of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterVectorElement.arccos" signature="arccos()">
+    Arccosine of the expression.
   </Function>
 
   ### arcsin
 
-  <Function id="qiskit.circuit.ParameterVectorElement.arcsin" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L515-L517" signature="arcsin()">
-    Arcsin of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterVectorElement.arcsin" signature="arcsin()">
+    Arcsine of the expression.
   </Function>
 
   ### arctan
 
-  <Function id="qiskit.circuit.ParameterVectorElement.arctan" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L523-L525" signature="arctan()">
-    Arctan of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterVectorElement.arctan" signature="arctan()">
+    Arctangent of the expression.
   </Function>
 
   ### assign
 
-  <Function id="qiskit.circuit.ParameterVectorElement.assign" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameter.py#L97-L109" signature="assign(parameter, value)">
+  <Function id="qiskit.circuit.ParameterVectorElement.assign" signature="assign(parameter, value)">
     Assign one parameter to a value, which can either be numeric or another parameter expression.
 
     **Parameters**
 
-    *   **parameter** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – A parameter in this expression whose value will be updated.
+    *   **parameter** – A parameter in this expression whose value will be updated.
     *   **value** – The new value to bind to.
 
     **Returns**
@@ -99,19 +98,19 @@ python_api_name: qiskit.circuit.ParameterVectorElement
 
   ### bind
 
-  <Function id="qiskit.circuit.ParameterVectorElement.bind" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L193-L252" signature="bind(parameter_values, allow_unknown_parameters=False)">
+  <Function id="qiskit.circuit.ParameterVectorElement.bind" signature="bind(parameter_values, allow_unknown_parameters=False)">
     Binds the provided set of parameters to their corresponding values.
 
     **Parameters**
 
-    *   **parameter\_values** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – Mapping of Parameter instances to the numeric value to which they will be bound.
-    *   **allow\_unknown\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `False`, raises an error if `parameter_values` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
+    *   **parameter\_values** – Mapping of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances to the numeric value to which they will be bound.
+    *   **allow\_unknown\_parameters** – If `False`, raises an error if `parameter_values` contains [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
 
     **Raises**
 
     *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") –
 
-        *   If parameter\_values contains Parameters outside those in self. - If a non-numeric value is passed in parameter\_values.
+        *   If parameter\_values contains parameters outside those in self. - If a non-numeric value is passed in `parameter_values`.
 
     *   [**ZeroDivisionError**](https://docs.python.org/3/library/exceptions.html#ZeroDivisionError "(in Python v3.13)") –
 
@@ -119,128 +118,138 @@ python_api_name: qiskit.circuit.ParameterVectorElement
 
     **Returns**
 
-    A new expression parameterized by any parameters which were not bound by parameter\_values.
+    A new expression parameterized by any parameters which were not bound by `parameter_values`.
+  </Function>
 
-    **Return type**
+  ### bind\_all
 
-    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
+  <Function id="qiskit.circuit.ParameterVectorElement.bind_all" signature="bind_all(values)">
+    Bind all of the parameters in `self` to numeric values in the dictionary, returning a numeric value.
+
+    This is a special case of [`bind()`](#qiskit.circuit.ParameterVectorElement.bind "qiskit.circuit.ParameterVectorElement.bind") which can reach higher performance. It is no problem for the `values` dictionary to contain parameters that are not used in this expression; the expectation is that the same bindings dictionary will be fed to other expressions as well.
+
+    It is an error to call this method with a `values` dictionary that does not bind all of the values, or to call this method with non-numeric values, but this is not explicitly checked, since this method is intended for performance-sensitive use. Passing an incorrect dictionary may result in unexpected behavior.
+
+    Unlike [`bind()`](#qiskit.circuit.ParameterVectorElement.bind "qiskit.circuit.ParameterVectorElement.bind"), this method will not raise an exception if non-finite floating-point values are encountered.
+
+    **Parameters**
+
+    **values** – mapping of parameters to numeric values.
   </Function>
 
   ### conjugate
 
-  <Function id="qiskit.circuit.ParameterVectorElement.conjugate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L164-L175" signature="conjugate()">
-    Return the conjugate.
-
-    **Return type**
-
-    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
+  <Function id="qiskit.circuit.ParameterVectorElement.conjugate" signature="conjugate()">
+    Return the complex conjugate of the expression.
   </Function>
 
   ### cos
 
-  <Function id="qiskit.circuit.ParameterVectorElement.cos" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L507-L509" signature="cos()">
-    Cosine of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterVectorElement.cos" signature="cos()">
+    Cosine of the expression.
   </Function>
 
   ### exp
 
-  <Function id="qiskit.circuit.ParameterVectorElement.exp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L527-L529" signature="exp()">
-    Exponential of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterVectorElement.exp" signature="exp()">
+    Exponentiate the expression.
   </Function>
 
   ### gradient
 
-  <Function id="qiskit.circuit.ParameterVectorElement.gradient" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L409-L452" signature="gradient(param)">
-    Get the derivative of a real parameter expression w\.r.t. a specified parameter.
-
-    <Admonition title="Note" type="note">
-      This method assumes that the parameter expression represents a **real expression only**. Calling this method on a parameter expression that contains complex values, or binding complex values to parameters in the expression is undefined behavior.
-    </Admonition>
+  <Function id="qiskit.circuit.ParameterVectorElement.gradient" signature="gradient(param)">
+    Return derivative of this expression with respect to the input parameter.
 
     **Parameters**
 
-    **param** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – Parameter w\.r.t. which we want to take the derivative
+    **param** – The parameter with respect to which the derivative is calculated.
 
     **Returns**
 
-    ParameterExpression representing the gradient of param\_expr w\.r.t. param or complex or float number
-
-    **Return type**
-
-    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+    The derivative as either a constant numeric value or a symbolic [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression").
   </Function>
 
   ### is\_real
 
-  <Function id="qiskit.circuit.ParameterVectorElement.is_real" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L627-L633" signature="is_real()">
-    Return whether the expression is real
+  <Function id="qiskit.circuit.ParameterVectorElement.is_real" signature="is_real()">
+    Check whether the expression represents a real number.
+
+    Note that this will return `None` if there are unbound parameters, in which case it cannot be determined whether the expression is real.
+  </Function>
+
+  ### is\_symbol
+
+  <Function id="qiskit.circuit.ParameterVectorElement.is_symbol" signature="is_symbol()">
+    Check if the expression corresponds to a plain symbol.
+
+    **Returns**
+
+    `True` is this expression corresponds to a symbol, `False` otherwise.
   </Function>
 
   ### log
 
-  <Function id="qiskit.circuit.ParameterVectorElement.log" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L531-L533" signature="log()">
-    Logarithm of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterVectorElement.log" signature="log()">
+    Take the natural logarithm of the expression.
   </Function>
 
   ### numeric
 
-  <Function id="qiskit.circuit.ParameterVectorElement.numeric" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L635-L666" signature="numeric()">
-    Return a Python number representing this object, using the most restrictive of [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"), [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") and [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)") that is valid for this object.
+  <Function id="qiskit.circuit.ParameterVectorElement.numeric" signature="numeric(strict=True)">
+    Cast this expression to a numeric value.
 
-    In general, an [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") is only returned if the expression only involved symbolic integers. If floating-point values were used during the evaluation, the return value will be a [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") regardless of whether the represented value is an integer. This is because floating-point values “infect” symbolic computations by their inexact nature, and symbolic libraries will use inexact floating-point semantics not exact real-number semantics when they are involved. If you want to assert that all floating-point calculations *were* carried out at infinite precision (i.e. [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") could represent every intermediate value exactly), you can use [`float.is_integer()`](https://docs.python.org/3/library/stdtypes.html#float.is_integer "(in Python v3.13)") to check if the return float represents an integer and cast it using [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") if so. This would be an unusual pattern; typically one requires this by only ever using explicitly [`Rational`](https://docs.python.org/3/library/numbers.html#numbers.Rational "(in Python v3.13)") objects while working with symbolic expressions.
+    **Parameters**
 
-    This is more reliable and performant than using [`is_real()`](#qiskit.circuit.ParameterVectorElement.is_real "qiskit.circuit.ParameterVectorElement.is_real") followed by calling [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") or [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)"), as in some cases [`is_real()`](#qiskit.circuit.ParameterVectorElement.is_real "qiskit.circuit.ParameterVectorElement.is_real") needs to force a floating-point evaluation to determine an accurate result to work around bugs in the upstream symbolic libraries.
-
-    **Returns**
-
-    A Python number representing the object.
-
-    **Raises**
-
-    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – if there are unbound parameters.
-
-    **Return type**
-
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+    **strict** – If `True` (default) this function raises an error if there are any unbound symbols in the expression. If `False`, this allows casting if the expression represents a numeric value, regardless of unbound symbols. For example `(0 * Parameter("x"))` is 0 but has the symbol `x` present.
   </Function>
 
   ### sign
 
-  <Function id="qiskit.circuit.ParameterVectorElement.sign" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L535-L537" signature="sign()">
-    Sign of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterVectorElement.sign" signature="sign()">
+    Return the sign of the expression.
   </Function>
 
   ### sin
 
-  <Function id="qiskit.circuit.ParameterVectorElement.sin" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L503-L505" signature="sin()">
-    Sine of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterVectorElement.sin" signature="sin()">
+    Sine of the expression.
   </Function>
 
   ### subs
 
-  <Function id="qiskit.circuit.ParameterVectorElement.subs" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameter.py#L111-L120" signature="subs(parameter_map, allow_unknown_parameters=False)">
-    Substitute self with the corresponding parameter in `parameter_map`.
+  <Function id="qiskit.circuit.ParameterVectorElement.subs" signature="subs(parameter_map, allow_unknown_parameters=False)">
+    Returns a new expression with replacement parameters.
 
     **Parameters**
 
-    *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) –
-    *   **allow\_unknown\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+    *   **parameter\_map** – Mapping from [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s in `self` to the [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") instances with which they should be replaced.
+    *   **allow\_unknown\_parameters** – If `False`, raises an error if `parameter_map` contains [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") –
+
+    *   If parameter\_map contains parameters outside those in self. - If the replacement parameters in `parameter_map` would result in a name conflict in the generated expression.
+
+    **Returns**
+
+    A new expression with the specified parameters replaced.
   </Function>
 
   ### sympify
 
-  <Function id="qiskit.circuit.ParameterVectorElement.sympify" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameter.py#L184-L188" signature="sympify()">
-    Return symbolic expression as a raw Sympy object.
+  <Function id="qiskit.circuit.ParameterVectorElement.sympify" signature="sympify()">
+    Return a SymPy equivalent of this expression.
 
-    <Admonition title="Note" type="note">
-      This is for interoperability only. Qiskit will not accept or work with raw Sympy or Symegine expressions in its parameters, because they do not contain the tracking information used in circuit-parameter binding and assignment.
-    </Admonition>
+    **Returns**
+
+    A SymPy equivalent of this expression.
   </Function>
 
   ### tan
 
-  <Function id="qiskit.circuit.ParameterVectorElement.tan" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parameterexpression.py#L511-L513" signature="tan()">
-    Tangent of a ParameterExpression
+  <Function id="qiskit.circuit.ParameterVectorElement.tan" signature="tan()">
+    Tangent of the expression.
   </Function>
 </Class>
 
