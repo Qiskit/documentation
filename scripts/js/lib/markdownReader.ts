@@ -15,16 +15,23 @@ import { readFile } from "fs/promises";
 import { readJsonFile } from "./fs";
 import grayMatter from "gray-matter";
 
-// export async function readMarkdown(
-//   filePath: string,
-//   options: { includeCodeCellSourceCode?: boolean } = {},
-// ): Promise<string> {
-//   if (path.extname(filePath) === ".ipynb") {
-//     const notebook = await readJsonFile(filePath);
-//     return markdownFromNotebook(notebook, options);
-//   }
-//   return await readFile(filePath, { encoding: "utf8" });
-// }
+export async function readMarkdown(
+  filePath: string,
+  options: { includeCodeCellSourceCode?: boolean } = {},
+): Promise<string> {
+  const ext = path.extname(filePath);
+
+  if (ext === ".ipynb") {
+    const notebook = await readJsonFile(filePath);
+    return markdownFromNotebook(notebook, options);
+  }
+
+  if (ext === ".md" || ext === ".mdx") {
+    return await readFile(filePath, { encoding: "utf8" });
+  }
+
+  throw new Error(`Unsupported file type: ${ext} at path "${filePath}"`);
+}
 
 interface JupyterCell {
   cell_type: string;
@@ -58,18 +65,16 @@ export async function readMarkdownAndMetadata(
 
   if (ext === ".ipynb") {
     const notebook = await readJsonFile(filePath);
-    const content = await markdownFromNotebook(notebook, options);
+    const content = markdownFromNotebook(notebook, options);
     const metadata = notebook.metadata || {};
     return { content, metadata };
   }
 
-  const rawContent = await readFile(filePath, "utf8");
-
   if (ext === ".md" || ext === ".mdx") {
+    const rawContent = await readFile(filePath, "utf8");
     const parsed = grayMatter(rawContent);
     return { content: parsed.content, metadata: parsed.data };
   }
 
-  // For other file types, return raw content with empty metadata
-  return { content: rawContent, metadata: {} };
+  throw new Error(`Unexpected file type: ${ext} at path "${filePath}"`);
 }

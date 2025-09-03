@@ -90,13 +90,13 @@ async function main() {
   const files = await determineContentFiles(args);
 
   for (const file of files) {
-    const {content,metadata} = await readMarkdownAndMetadata(file);
+    const { content, metadata } = await readMarkdownAndMetadata(file);
     const tree = parseMarkdown(content);
     const imageErrors = await collectInvalidImageErrors(tree);
     const mismatchedTitleHeadingErrors =
       IGNORE_TITLE_MISMATCHES.includes(file) || file.startsWith("docs/api")
         ? new Set<string>()
-        : await collectHeadingTitleMismatch(tree,metadata);
+        : await collectHeadingTitleMismatch(tree, metadata);
 
     //Collect all errors for this file
     const errorsInFile: string[] = [

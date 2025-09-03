@@ -35,7 +35,7 @@ export async function collectHeadingTitleMismatch(
   // Compare and collect mismatch
   if (frontmatterTitle && headingText && frontmatterTitle !== headingText) {
     mismatches.add(
-      `Mismatch: frontmatter title "${frontmatterTitle}" does not match heading "${headingText}"`
+      `Mismatch: frontmatter title "${frontmatterTitle}" does not match heading "${headingText}"`,
     );
   }
 

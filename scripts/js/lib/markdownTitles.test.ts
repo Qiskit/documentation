@@ -11,33 +11,34 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
+import { parseMarkdown } from "./markdownUtils";
 
 import { collectHeadingTitleMismatch } from "./markdownTitles";
-import { readMarkdownAndMetadata } from "./markdownReader"
-
+import { readMarkdownAndMetadata } from "./markdownReader";
 
 const assert = async (
   markdown: string,
+  metadata: Record<string, string>,
   expected: Set<string>,
 ): Promise<void> => {
-  const { tree, metadata } = await readMarkdownAndMetadata(markdown);
+  const tree = parseMarkdown(markdown);
   const result = await collectHeadingTitleMismatch(tree, metadata);
   expect(result).toEqual(expected);
 };
 
 test.describe("collectHeadingTitleMismatch", () => {
-  test("valid", async () => {
-    const markdown1 = `---
+  test("matches frontmatter title with H1 heading", async () => {
+    const markdown = `---
 title: My Awesome Guide
 ---
 
 # My Awesome Guide
     `;
-    await assert(markdown1, new Set());
+    await assert(markdown, { title: "My Awesome Guide" }, new Set());
   });
 
-  test("mismatched - simple h1", async () => {
-    const markdown2 = `---
+  test("detects mismatch with simple H1", async () => {
+    const markdown = `---
 title: Qiskit Doc
 author: John
 ---
@@ -50,11 +51,11 @@ This guide will walk you through everything.`;
       `Mismatch: frontmatter title "Qiskit Doc" does not match heading "Introduction"`,
     ]);
 
-    await assert(markdown2, expected);
+    await assert(markdown, { title: "Qiskit Doc" }, expected);
   });
 
-  test("mismatched - complex h1", async () => {
-    const markdown3 = `---
+  test("detects mismatch with formatted H1", async () => {
+    const markdown = `---
 title: My Awesome Guide
 ---
 
@@ -63,9 +64,9 @@ title: My Awesome Guide
 This guide will walk you through everything.`;
 
     const expected = new Set([
-      `Mismatch: frontmatter title "My Awesome Guide" does not match heading "This is a  Heading"`,
+      `Mismatch: frontmatter title \"My Awesome Guide\" does not match heading \"This is a  Heading\"`,
     ]);
 
-    await assert(markdown3, expected);
+    await assert(markdown, { title: "My Awesome Guide" }, expected);
   });
 });
