@@ -21,7 +21,7 @@ const assert = async (
   expected: Set<string>,
 ): Promise<void> => {
   const tree = parseMarkdown(markdown);
-  const result = await collectHeadingTitleMismatch(tree, metadata);
+  const result = collectHeadingTitleMismatch(tree, metadata);
   expect(result).toEqual(expected);
 };
 
@@ -38,13 +38,13 @@ test.describe("collectHeadingTitleMismatch", () => {
 
   test("detects mismatch with simple H1", async () => {
     const markdown = `---
-      title: Qiskit Doc
-      author: John
-      ---
+title: Qiskit Doc
+author: John
+---
 
-      # Introduction
+# Introduction
 
-      This guide will walk you through everything.`;
+This guide will walk you through everything.`;
 
     const expected = new Set([
       `Mismatch: frontmatter title "Qiskit Doc" does not match heading "Introduction"`,
@@ -55,12 +55,12 @@ test.describe("collectHeadingTitleMismatch", () => {
 
   test("detects mismatch with formatted H1", async () => {
     const markdown = `---
-      title: My Awesome Guide
-      ---
+title: My Awesome Guide
+---
 
-      # This is a *Heading*
+# This is a *Heading*
 
-      This guide will walk you through everything.`;
+This guide will walk you through everything.`;
 
     const expected = new Set([
       `Mismatch: frontmatter title \"My Awesome Guide\" does not match heading \"This is a  Heading\"`,
