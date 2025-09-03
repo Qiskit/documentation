@@ -141,6 +141,7 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "learning/courses/fundamentals-of-quantum-algorithms/phase-estimation-and-factoring/phase-estimation-procedure.ipynb",
   "learning/courses/fundamentals-of-quantum-algorithms/quantum-algorithmic-foundations/factoring-and-gcd.ipynb",
   "learning/courses/general-formulation-of-quantum-information/general-measurements/discrimination-and-tomography.ipynb",
+  "learning/modules/computer-science/vqe.ipynb",
 ];
 
 const allErrors: string[] = [];
