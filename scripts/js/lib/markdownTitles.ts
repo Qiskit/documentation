@@ -15,10 +15,10 @@ import { Root } from "mdast";
 
 import { extractHeadingText } from "./markdownUtils";
 
-export async function collectHeadingTitleMismatch(
+export function collectHeadingTitleMismatch(
   tree: Root,
   metadata: Record<string, any>,
-): Promise<Set<string>> {
+): Set<string> {
   const mismatches = new Set<string>();
 
   const frontmatterTitle: string | undefined = metadata.title;

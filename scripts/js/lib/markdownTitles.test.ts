@@ -14,7 +14,6 @@ import { expect, test } from "@playwright/test";
 import { parseMarkdown } from "./markdownUtils";
 
 import { collectHeadingTitleMismatch } from "./markdownTitles";
-import { readMarkdownAndMetadata } from "./markdownReader";
 
 const assert = async (
   markdown: string,
@@ -29,23 +28,23 @@ const assert = async (
 test.describe("collectHeadingTitleMismatch", () => {
   test("matches frontmatter title with H1 heading", async () => {
     const markdown = `---
-title: My Awesome Guide
----
+      title: My Awesome Guide
+      ---
 
-# My Awesome Guide
+      # My Awesome Guide
     `;
     await assert(markdown, { title: "My Awesome Guide" }, new Set());
   });
 
   test("detects mismatch with simple H1", async () => {
     const markdown = `---
-title: Qiskit Doc
-author: John
----
+      title: Qiskit Doc
+      author: John
+      ---
 
-# Introduction
+      # Introduction
 
-This guide will walk you through everything.`;
+      This guide will walk you through everything.`;
 
     const expected = new Set([
       `Mismatch: frontmatter title "Qiskit Doc" does not match heading "Introduction"`,
@@ -56,12 +55,12 @@ This guide will walk you through everything.`;
 
   test("detects mismatch with formatted H1", async () => {
     const markdown = `---
-title: My Awesome Guide
----
+      title: My Awesome Guide
+      ---
 
-# This is a *Heading*
+      # This is a *Heading*
 
-This guide will walk you through everything.`;
+      This guide will walk you through everything.`;
 
     const expected = new Set([
       `Mismatch: frontmatter title \"My Awesome Guide\" does not match heading \"This is a  Heading\"`,
