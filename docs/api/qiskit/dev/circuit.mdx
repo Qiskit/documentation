@@ -31,12 +31,12 @@ The fundamental element of quantum computing is the *quantum circuit*. This is a
 
 Circuits are at a low level of abstraction when building up quantum programs. They are the construct that is used to build up to higher levels of abstraction, such as the [primitives of quantum computation](primitives#qiskit-primitives), which accumulate data from many shots of quantum-circuit execution, along with advanced error-mitigation techniques and measurement optimizations, into well-typed classical data and error statistics.
 
-In Qiskit, circuits can be defined in one of two regimes:
+In Qiskit, circuits can be [defined in one of two regimes](qiskit.circuit.QuantumCircuit#circuit-abstract-physical):
 
 *   an *abstract* circuit, which is defined in terms of *virtual qubits* and arbitrary high-level operations, like encapsulated algorithms and user-defined gates.
 *   a *physical* circuit, which is defined in terms of the *hardware qubits* of one particular backend, and contains only operations that this backend natively supports. You might also see this concept referred to as an *ISA circuit*.
 
-You convert from an abstract circuit to a physical circuit by using [Qiskit’s transpilation package](transpiler#qiskit-transpiler), of which the top-level access point is [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile").
+You convert from an abstract circuit to a physical circuit by using [Qiskit’s transpilation package](transpiler#qiskit-transpiler), of which the top-level access point is [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"). If you define a circuit, where you intend the qubit indices to refer to physical qubits, you can use [`QuantumCircuit.ensure_physical()`](qiskit.circuit.QuantumCircuit#ensure_physical "qiskit.circuit.QuantumCircuit.ensure_physical") to rewrite the circuit’s metadata to ensure that Qiskit recognizes the circuit as a physical circuit, though unlike transpilation, this does not enforce that the basis-gates and hardware-coupling constraints will be respected.
 
 In Qiskit, a quantum circuit is represented by the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class. Below is an example of a quantum circuit that makes a three-qubit Greenberger–Horne–Zeilinger (GHZ) state defined as:
 
