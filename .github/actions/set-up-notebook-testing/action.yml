@@ -51,6 +51,11 @@ runs:
               token="${{ inputs.ibm-cloud-token }}",
               set_as_default=True
           )
+          QiskitRuntimeService.save_account(
+              channel="ibm_quantum_platform",
+              instance="${{ inputs.instance }}",
+              token="${{ inputs.ibm-cloud-token }}",
+          )
 
     - name: Install Linux dependencies
       if: ${{ inputs.install-linux-deps == 'true' }}
