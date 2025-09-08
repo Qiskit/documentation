@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
 # SparsePauliOp
 
-<Class id="qiskit.quantum_info.SparsePauliOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L51-L1225" signature="qiskit.quantum_info.SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)" modifiers="class">
+<Class id="qiskit.quantum_info.SparsePauliOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L51-L1234" signature="qiskit.quantum_info.SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)" modifiers="class">
   Bases: `LinearOp`
 
   Sparse N-qubit operator in a Pauli basis representation.
@@ -135,7 +135,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### apply\_layout
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.apply_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1180-L1225" signature="apply_layout(layout, num_qubits=None)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.apply_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1189-L1234" signature="apply_layout(layout, num_qubits=None)">
     Apply a transpiler layout to this [`SparsePauliOp`](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
 
     **Parameters**
@@ -222,8 +222,12 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### assign\_parameters
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1135-L1178" signature="assign_parameters(parameters, inplace=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1135-L1187" signature="assign_parameters(parameters, inplace=False)">
     Bind the free `Parameter`s in the coefficients to provided values.
+
+    <Admonition title="Note" type="note">
+      If all the parameters in the circuit are bound to numeric values, the coefficients array will be returned with a [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)") dtype.
+    </Admonition>
 
     **Parameters**
 
