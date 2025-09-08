@@ -18,8 +18,11 @@ import { collectInvalidImageErrors } from "../lib/markdownImages.js";
 import { readMarkdownAndMetadata } from "../lib/markdownReader.js";
 import { collectHeadingTitleMismatch } from "../lib/markdownTitles.js";
 import { parseMarkdown } from "../lib/markdownUtils";
-import { checkmetadata } from "../lib/metadataChecker.js";
-import { IGNORE_TITLE_MISMATCHES } from "../../config/allowLists.js";
+import { checkMetadata } from "../lib/metadataChecker.js";
+import {
+  IGNORE_TITLE_MISMATCHES,
+  METADATA_ALLOWLIST,
+} from "../../config/allowLists.js";
 
 const allErrors: string[] = [];
 
@@ -42,9 +45,9 @@ const readArgs = (): Arguments => {
 
 async function main() {
   const args = readArgs();
-  const [mdFiles] = await determineContentFiles(args);
+  const files = await determineContentFiles(args);
 
-  for (const file of mdFiles) {
+  for (const file of files) {
     const { content, metadata } = await readMarkdownAndMetadata(file);
     const tree = parseMarkdown(content);
     const imageErrors = collectInvalidImageErrors(tree);
@@ -53,10 +56,9 @@ async function main() {
         ? new Set<string>()
         : collectHeadingTitleMismatch(tree, metadata);
 
-    const metadataErrors =
-      IGNORE_TITLE_MISMATCHES.includes(file) || file.startsWith("docs/api")
-        ? new Set<string>()
-        : checkmetadata(metadata);
+    const metadataErrors = METADATA_ALLOWLIST.has(file)
+      ? new Set<string>()
+      : checkMetadata(metadata);
 
     // Collect all errors for this file
     const errorsInFile: string[] = [
@@ -78,7 +80,8 @@ async function main() {
     console.error(
       "💔 Some issues were found in your Markdown files. Please fix them before proceeding.\n" +
         "Image help: https://github.com/Qiskit/documentation#images\n" +
-        "Metadata issues: https://github.com/Qiskit/documentation/blob/main/mdx-guide.md#page-metadata",
+        "Metadata issues: https://github.com/Qiskit/documentation/blob/main/mdx-guide.md#page-metadata\n" +
+        "Title/Heading help: https://github.com/Qiskit/documentation#titles-and-headings\n",
     );
     process.exit(1);
   }

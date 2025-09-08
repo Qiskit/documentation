@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { checkmetadata } from "./metadataChecker";
+import { checkMetadata } from "./metadataChecker";
 
 test.describe("checkMarkdown", () => {
   test("should return no errors for valid metadata", () => {
@@ -21,16 +21,15 @@ test.describe("checkMarkdown", () => {
       description:
         "This is a well-written description that meets the length requirements perfectly.",
     };
-    expect(checkmetadata(metadata)).toEqual(new Set());
+    expect(checkMetadata(metadata)).toEqual(new Set());
   });
 
   test("should return error for missing title", () => {
     const metadata = {
-      title: "",
       description:
         "This is a valid description that is long enough to pass the check.",
     };
-    expect(checkmetadata(metadata)).toEqual(
+    expect(checkMetadata(metadata)).toEqual(
       new Set(["Missing title in the metadata"]),
     );
   });
@@ -38,9 +37,8 @@ test.describe("checkMarkdown", () => {
   test("should return error for missing description", () => {
     const metadata = {
       title: "Valid Title",
-      description: "",
     };
-    expect(checkmetadata(metadata)).toEqual(
+    expect(checkMetadata(metadata)).toEqual(
       new Set(["Missing description in the metadata"]),
     );
   });
@@ -50,7 +48,7 @@ test.describe("checkMarkdown", () => {
       title: "Valid Title",
       description: "Too short",
     };
-    expect(checkmetadata(metadata)).toEqual(
+    expect(checkMetadata(metadata)).toEqual(
       new Set([
         "The description in the metadata must be between 50 and 160 characters, but was 9",
       ]),
@@ -60,21 +58,21 @@ test.describe("checkMarkdown", () => {
   test("should return error for long description", () => {
     const metadata = {
       title: "Valid Title",
-      description: "L",
+      description:
+        "This platform empowers creators and developers to build, share, and collaborate on innovative projects with intuitive tools, seamless integration, and a vibrant global community that thrives on curiosity, creativity, and continuous learning.",
     };
-    expect(checkmetadata(metadata)).toEqual(
+    expect(checkMetadata(metadata)).toEqual(
       new Set([
-        "The description in the metadata must be between 50 and 160 characters, but was 1",
+        "The description in the metadata must be between 50 and 160 characters, but was 241",
       ]),
     );
   });
 
   test("should return both errors for missing title and invalid description", () => {
     const metadata = {
-      title: "",
       description: "Short",
     };
-    expect(checkmetadata(metadata)).toEqual(
+    expect(checkMetadata(metadata)).toEqual(
       new Set([
         "Missing title in the metadata",
         "The description in the metadata must be between 50 and 160 characters, but was 5",

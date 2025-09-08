@@ -10,7 +10,10 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-const ALLOWED_VIOLATIONS: Set<string> = new Set([...qiskitLegacyIgnores()]);
+export const METADATA_ALLOWLIST: Set<string> = new Set([
+  ...metadataIgnoresForLegacyQiskit(),
+]);
+
 export const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/migration-guides/external-providers-primitives-v2.mdx",
   "docs/migration-guides/local-simulators.mdx",
@@ -134,10 +137,9 @@ export const IGNORE_TITLE_MISMATCHES: string[] = [
   "learning/courses/fundamentals-of-quantum-algorithms/quantum-algorithmic-foundations/factoring-and-gcd.ipynb",
   "learning/courses/general-formulation-of-quantum-information/general-measurements/discrimination-and-tomography.ipynb",
   "learning/modules/computer-science/vqe.ipynb",
-  `${ALLOWED_VIOLATIONS}`,
 ];
 
-function qiskitLegacyIgnores(): string[] {
+function metadataIgnoresForLegacyQiskit(): string[] {
   const versions = [
     "0.19/",
     "0.24/",

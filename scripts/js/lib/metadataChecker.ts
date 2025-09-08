@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-export function checkmetadata(metadata: Record<string, string>): Set<string> {
+export function checkMetadata(metadata: Record<string, string>): Set<string> {
   const errors = new Set<string>();
 
   const title = metadata["title"];
