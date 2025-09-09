@@ -15,6 +15,8 @@ You can create additional access groups by using the IBM Cloud [console,](https:
 
 <Admonition type="caution" title="Important">
 To determine the actions allowed by each role, from the [IAM Roles](https://cloud.ibm.com/iam/roles) page, select Qiskit Runtime in the dropdown menu at the top of the page.  For a more detailed list, click the number in the column next to the role name.  For example, by visiting that page and clicking the number by the Manager role, you can see that this role includes the ability to delete a job (`quantum-computing.job.delete`).
+
+The [Compare pre-defined service role actions](#compare-actions) section provides a comparison of the pre-defined Manager, Editor, and Viewer roles.
 </Admonition>
 
 ## Create an IBM Quantum Administrators access group
@@ -217,6 +219,44 @@ Finally, add users to the access group.  You can do this from the access group's
 You can only invite users who are already members of the account.  If you don't see a user on the Add users page, follow the steps in [Invite and manage users](/docs/guides/invite-and-manage-users#invite) to add them to the account first.  After they accept the invitation, you can add them to the access group.
 </Admonition>
 
+## Compare permissions
+
+The following table displays which permissions are granted to account owners and access groups.
+
+| Permissions | Account owner | Qiskit Runtime administrator (access group) | Instance collaborator (access group) |
+| --- | --- | --- | --- |
+| Full access to all IBM Cloud resources | | | | 
+| Assign access to others | | | | 
+| Create service instances  | | | | 
+| View all users | | | | 
+| Set user visibility | | | | 
+| Invite users to the account | | | | 
+| Billing responsibility | | | | 
+| View billing information | | | | 
+| Owner notifications | | | | 
+| Submit quantum workloads | | | | 
+| View others' quantum workloads | | | | 
+| Cancel others' quantum workloads | | | | 
+| Delete others' quantum workloads | | | | 
+| Create support cases | | | | 
+| Configure Account Single Sign-on (SS0) using IBM Cloud App ID | | | | 
+
+<span id="compare-actions"></span>
+## Compare pre-defined service role actions
+
+The following table displays which actions can be taken by the pre-defined service role actions: Manager, Editor, and Viewer.
+
+| Action | Manager | Editor | Viewer | 
+| --- | --- | --- | --- |
+| Create a Session/Batch | | | | 
+| Submit a Job | | | | 
+| Read a result | | | | 
+| Cancel a Job | | | | 
+| Delete a Job | | | | 
+| Read QPU calibrations | | | | 
+| See account analytics | | | | 
+| See instance usage and remaining time | | | | 
+| Update instance allocation and limits | | | | 
 
 ## Next steps
 
