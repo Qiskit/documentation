@@ -56,10 +56,9 @@ async function main() {
         ? new Set<string>()
         : collectHeadingTitleMismatch(tree, metadata);
 
-    const metadataErrors =
-      METADATA_ALLOWLIST.has(file) || file.startsWith("docs/api")
-        ? new Set<string>()
-        : checkMetadata(metadata);
+    const metadataErrors = METADATA_ALLOWLIST.has(file)
+      ? new Set<string>()
+      : checkMetadata(metadata, file);
 
     // Collect all errors for this file
     const errorsInFile: string[] = [
