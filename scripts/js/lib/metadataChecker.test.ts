@@ -21,8 +21,9 @@ test.describe("checkMarkdown", () => {
       description:
         "This is a well-written description that meets the length requirements perfectly.",
     };
-    const filePath = "docs/tutorials/intro.md";
-    expect(checkMetadata(metadata, filePath)).toEqual(new Set());
+    expect(checkMetadata(metadata, "docs/tutorials/intro.md")).toEqual(
+      new Set(),
+    );
   });
 
   test("should return error for missing title", () => {
@@ -30,8 +31,7 @@ test.describe("checkMarkdown", () => {
       description:
         "This is a valid description that is long enough to pass the check.",
     };
-    const filePath = "docs/tutorials/intro.md";
-    expect(checkMetadata(metadata, filePath)).toEqual(
+    expect(checkMetadata(metadata, "docs/tutorials/intro.md")).toEqual(
       new Set(["Missing title in the metadata"]),
     );
   });
@@ -40,8 +40,7 @@ test.describe("checkMarkdown", () => {
     const metadata = {
       title: "Valid Title",
     };
-    const filePath = "docs/tutorials/intro.md";
-    expect(checkMetadata(metadata, filePath)).toEqual(
+    expect(checkMetadata(metadata, "docs/tutorials/intro.md")).toEqual(
       new Set(["Missing description in the metadata"]),
     );
   });
@@ -51,8 +50,7 @@ test.describe("checkMarkdown", () => {
       title: "Valid Title",
       description: "Too short",
     };
-    const filePath = "docs/tutorials/intro.md";
-    expect(checkMetadata(metadata, filePath)).toEqual(
+    expect(checkMetadata(metadata, "docs/tutorials/intro.md")).toEqual(
       new Set([
         "The description in the metadata must be between 50 and 160 characters, but was 9",
       ]),
@@ -65,8 +63,7 @@ test.describe("checkMarkdown", () => {
       description:
         "This platform empowers creators and developers to build, share, and collaborate on innovative projects with intuitive tools, seamless integration, and a vibrant global community that thrives on curiosity, creativity, and continuous learning.",
     };
-    const filePath = "docs/tutorials/intro.md";
-    expect(checkMetadata(metadata, filePath)).toEqual(
+    expect(checkMetadata(metadata, "docs/tutorials/intro.md")).toEqual(
       new Set([
         "The description in the metadata must be between 50 and 160 characters, but was 241",
       ]),
@@ -77,8 +74,7 @@ test.describe("checkMarkdown", () => {
     const metadata = {
       description: "Short",
     };
-    const filePath = "docs/tutorials/intro.md";
-    expect(checkMetadata(metadata, filePath)).toEqual(
+    expect(checkMetadata(metadata, "docs/tutorials/intro.md")).toEqual(
       new Set([
         "Missing title in the metadata",
         "The description in the metadata must be between 50 and 160 characters, but was 5",
@@ -91,7 +87,8 @@ test.describe("checkMarkdown", () => {
       title: "Valid Title",
       description: "Short",
     };
-    const filePath = "docs/api/someEndpoint.md";
-    expect(checkMetadata(metadata, filePath)).toEqual(new Set());
+    expect(checkMetadata(metadata, "docs/api/someEndpoint.md")).toEqual(
+      new Set(),
+    );
   });
 });

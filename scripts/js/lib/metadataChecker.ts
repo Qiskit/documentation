@@ -27,14 +27,12 @@ export function checkMetadata(
     errors.add("Missing description in the metadata");
   } else {
     const length = description.trim().length;
-    if (!filePath.startsWith("docs/api/")) {
-      if (length < 50 || length > 160) {
-        errors.add(
-          `The description in the metadata must be between 50 and 160 characters, but was ${length}`,
-        );
-      }
+
+    if (!filePath.startsWith("docs/api/") && (length < 50 || length > 160)) {
+      errors.add(
+        `The description in the metadata must be between 50 and 160 characters, but was ${length}`,
+      );
     }
   }
-
   return errors;
 }
