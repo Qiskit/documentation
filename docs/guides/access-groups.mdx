@@ -226,20 +226,20 @@ The following table displays which permissions are granted to three entities: ac
 
 | Permissions | Account owner | IBM Quantum Administrators (access group) | Instance collaborators (access group) |
 | --- | --- | --- | --- |
-| Full access to all IBM Cloud resources | ✅| ✅| ❌| 
-| Assign access to others | ✅| ✅| ❌| 
-| Create service instances  | ✅| ✅| ❌| 
-| View all users | ✅| ✅| ✴️| 
+| Full access to all IBM Cloud resources | ✅| ✅ (*Only to Qiskit Runtime instances*)| ❌ (*Only to a particular Qiskit Runtime instance*)| 
+| Assign access to others | ✅| ✅ (*Only to Qiskit Runtime service*)| ❌| 
+| Create service instances  | ✅ (*All IBM Cloud catalog*)| ✅ (*Only Qiskit Runtime service instances*)| ❌| 
+| View all users | ✅| ✅| ✴️ (*Depends on user visibility settings*)| 
 | Set user visibility | ✅| ❌| ❌| 
 | Invite users to the account | ✅| ✅| ❌| 
 | Billing responsibility | ✅| ❌| ❌| 
 | View billing information | ✅| ✅| ❌| 
 | Owner notifications | ✅| ❌| ❌| 
-| Submit quantum workloads | ✅| ✅| ✅| 
-| View others' quantum workloads | ✅| ✅| ✅| 
-| Cancel others' quantum workloads | ✅| ✅| ✅| 
-| Delete others' quantum workloads | ✅| ✅| ❌| 
-| Create support cases | ✅| ✅| ✅| 
+| Submit quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*)| ✅ (*Only on a particular Qiskit Runtime instance*) | 
+| View others' quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*)| ✅ (*Only on a particular Qiskit Runtime instance*)| 
+| Cancel others' quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*)| ✅ (*Only on a particular Qiskit Runtime instance*)| 
+| Delete others' quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*) | ❌| 
+| Create support cases | ✅| ✅ (*If the access policy is included in the access group*) | ✅ (*If the access group gives access to a Premium Plan instance*)| 
 | Configure an [identity provider](https://cloud.ibm.com/iam/identity-providers) to connect your external user repositories to your IBM Cloud account | ✅| ❌| ❌| 
 
 <span id="compare-actions"></span>
