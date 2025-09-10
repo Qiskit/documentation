@@ -10,13 +10,13 @@ When you create an instance in IBM Quantum&reg; Platform, an access group is aut
 
 An _access group_ contains _policies_, which define the actions that access group members can take on specific resources, such as services.  In this guide, the resource is generally an IBM Quantum _service instance_.
 
-You can create additional access groups by using the IBM Cloud [console,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) [CLI,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=cli) [API,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=api) or [Terraform.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=terraform)
+You can create additional access groups by using the IBM Cloud&reg; [console,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) [CLI,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=cli) [API,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=api) or [Terraform.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=terraform)
 
 
 <Admonition type="caution" title="Important">
 To determine the actions allowed by each role, from the [IAM Roles](https://cloud.ibm.com/iam/roles) page, select Qiskit Runtime in the dropdown menu at the top of the page.  For a more detailed list, click the number in the column next to the role name.  For example, by visiting that page and clicking the number by the Manager role, you can see that this role includes the ability to delete a job (`quantum-computing.job.delete`).
 
-The [Compare pre-defined service role actions](#compare-actions) section provides a comparison of the pre-defined Manager, Editor, and Viewer roles.
+The [Compare pre-defined service role actions](#compare-actions) section provides a comparison of the pre-defined Manager, Writer, and Reader roles.
 </Admonition>
 
 <span id="create-ibm-quantum-administrators"></span>
@@ -245,19 +245,18 @@ The following table displays which permissions are granted to three entities: ac
 <span id="compare-actions"></span>
 ## Compare pre-defined service role actions
 
-The following table displays examples of actions which can be taken by the pre-defined service role actions: Manager, Editor, and Viewer.
+The following table displays examples of actions that can be taken by the pre-defined service role actions: Manager, Writer, and Reader. To see a complete mapping of Quantum Service roles to actions, visit [this table](https://cloud.ibm.com/docs/account?topic=account-iam-service-roles-actions#quantum-computing-roles) in the IBM Cloud Product guide.
 
-| Action | Manager | Editor | Viewer | 
-| --- | --- | --- | --- |
-| Create a Session/Batch | | | | 
-| Submit a Job | | | | 
-| Read a result | | | | 
-| Cancel a Job | | | | 
-| Delete a Job | | | | 
-| Read QPU calibrations | | | | 
-| See account analytics | | | | 
-| See instance usage and remaining time | | | | 
-| Update instance allocation and limits | | | | 
+| Action | Description | Roles |
+| --- | --- | --- |
+| `quantum-computing.session.create` | Create a Session/Batch | Manager, Writer |
+| `quantum-computing.job.create` | Submit a Job | Manager, Writer |
+| `quantum-computing.job.read` | Read a result | Manager, Reader, Writer |
+| `quantum-computing.job.cancel` | Cancel a job | Manager, Writer |
+| `quantum-computing.job.delete` | Delete a job | Manager |
+| `quantum-computing.direct-access-backend-properties.read` | Read QPU calibrations | Manager, Reader, Writer |
+| `quantum-computing.account-analytics-usage.read` | See account analytics | Manager, Writer (*Only if role is set up for all resources*) |
+| `quantum-computing.instance-usage.read` | See instance usage and remaining time | Manager, Reader, Writer |
 
 ## Next steps
 
