@@ -13,10 +13,6 @@ Explore all public IBM QPUs by navigating to the [Compute resources](https://qua
 
 This page describes the detailed information you will find on the QPU information card.
 
-<Admonition type="note" title="Undefined error value">
-If the benchmarking of a qubit or edge does not succeed over the course of several days, whether due to poor data quality or other internal factors, the reported error value is considered stale and will be reported as 1. This is not an indication that the qubit or edge is necessarily non-working or that the error is 1; rather, the error is considered undefined and you should proceed with caution when operating that qubit or gate. 
-</Admonition>
-
 ## QPU versioning
 
 Each QPU has a version number in the form X.Y.Z (major.minor.revision). A circuit compiled for a given version number is guaranteed to run on that QPU. If the revision number changes, the circuit will continue to run. If the major or minor number changes, the circuit is not guaranteed to run, although it may do so. The conditions under which a version number may change are listed below:
@@ -119,6 +115,10 @@ The T1 time represents the average duration a qubit remains in its excited state
 The T2 time denotes the timescale over which a qubit maintains phase coherence of a superposition between the $|0\rangle$ and $|1\rangle$ states. It accounts for both energy relaxation and pure dephasing processes, providing insight into the qubit's coherence properties. T2 is reported from a Hahn echo sequence.
 
 ## Calibration data
+
+<Admonition type="note" title="What does `error = 1` mean?">
+If the benchmarking of a qubit or edge does not succeed over the course of several days, whether due to poor data quality or other internal factors, the reported error value is considered stale and will be reported as 1. This is not an indication that the qubit or edge is necessarily non-working or that the error is 1; rather, the error is considered undefined and you should proceed with caution when operating that qubit or gate. 
+</Admonition>
 
 The second section, Calibration data, provides qubit, connectivity, and gate data. You can choose to visualize the information as a map, graph, or table.
 
