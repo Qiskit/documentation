@@ -12,9 +12,11 @@ Before using Qiskit Runtime, you have to initialize your account by submitting c
 
 Ensure that you have completed these steps:
 
-1. If you do not already have one, set up an [IBM Cloud account.](https://quantum.cloud.ibm.com/registration)
-   <Admonition type="note">
-   You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
+1. Ensure that you are a member of an IBM Cloud account [set up your own IBM Cloud account.](https://quantum.cloud.ibm.com/registration)
+   <Admonition type="note" title="Notes">
+   - To avoid adding your credit card information, you can set up a 30-day trial account and optionally upgrade it later.
+   - You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
+   - If you are invited to join an IBM Cloud account, you will get an email invitation to join the account.  Follow the instructions in that email.
    </Admonition>
 
 2. Create (or have access to) at least one instance.
@@ -27,6 +29,48 @@ Ensure that you have completed these steps:
 
     1. Go to the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com) If you have one or more instances shown, you're done with this step. Otherwise, [create an instance.](/docs/guides/cloud-setup#create-instance)
 
+<span id="access-credentials"></span>
+## Find your access credentials
+
+1. Find your API key (also referred to as an  _API token_). From the [dashboard](https://quantum.cloud.ibm.com/), create your API key, then copy it to a secure location so you can use it for authentication. The token will not be visible again, so make sure it's copied somewhere. Note that you can use a single API key to connect to any region.
+2. Optional: Find the instance you want to use from the [Instances](https://quantum.cloud.ibm.com/instances) page. Click the icon to copy its CRN, then save it in a secure location so you can use it to identify the instance.
+
+
+## Connect Qiskit with your service instance
+
+<Admonition type="note">
+This guide is designed for `qiskit_ibm_runtime` v0.42 or later. If you are using an earlier version of `qiskit_ibm_runtime`, certain features will not be enabled. In these cases, we recommend always providing a value for channel, token, and instance, either explicitly or through a saved account.
+</Admonition>
+
+The basic code to connect Qiskit with your Qiskit Runtime service instance follows.  However, there are several different ways to customize the `QiskitRuntimeService` options, depending on your needs.  These options are described in the following sections.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService(channel=channel, token=token, instance=instance)
+```
+
+<span id="explicit"></span>
+### Quick start path: Specify credentials explicitly
+
+The fastest way to get a `QiskitRuntimeService` running is direct instantiation method: explicitly providing the API token (key) and CRN (instance identifier). See [Find  your access credentials](#access-credentials) section if necessary.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService(token=*API_key*, instance=*instance_CRN*)
+```
+
+This path is reliable but can be tedious if you need to load the same details repeatedly. To avoid loading your credentials multiple times, if you are working in a trusted Python environment (such as on a personal laptop or workstation), you can use saved account credentials, as described in the following section.
+
+Although the `instance` input parameter is optional, it is recommended that you always provide this information, unless you want to use a single service to work with several instances. In this situation, see the [automatic instance selection](#auto-select) section.
+
+<span id="saved"></span>
+### Quick start path: Specify saved credentials
+
+<span id="auto-select"></span>
+### Automatically select the instance
+Use the information in this section if you want Qiskit Runtime to automatically select the instance.
 
 ## Next steps
 
