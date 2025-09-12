@@ -23,6 +23,9 @@ import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./conversionPipeline.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import { removePrefix } from "../stringUtils.js";
 
+import _ from "lodash";
+import { versions } from "process";
+
 // ---------------------------------------------------------------------------
 // Generic release notes handling
 // ---------------------------------------------------------------------------
@@ -111,8 +114,8 @@ export async function maybeUpdateReleaseNotesFolder(
   addNewReleaseNotes(pkg);
   await updateHistoricalTocFiles(pkg);
   console.log("Generating release-notes/index");
-  const indexMarkdown = generateReleaseNotesIndex(pkg);
-  await writeFile(`${markdownPath}/release-notes/index.mdx`, indexMarkdown);
+  const html = generateReleaseNotesIndex(pkg);
+  await writeFile(`${markdownPath}/release-notes/index.mdx`, html);
 }
 
 /**
@@ -153,23 +156,36 @@ function addNewReleaseNotes(pkg: Pkg): void {
   pkg.releaseNotesConfig.separatePagesVersions.unshift(pkg.versionWithoutPatch);
 }
 
+// function generateReleaseNotesIndex(pkg: Pkg): string {
+//   let markdown = `---
+// title: ${pkg.title} release notes
+// description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.
+// ---
+
+// # ${pkg.title} release notes
+
+// New features, bug fixes, and other changes in previous versions of ${pkg.title}.
+
+// ## Release notes by version
+
+// `;
+//   for (const version of pkg.releaseNotesConfig.separatePagesVersions) {
+//     markdown += `* [${version}](./${version})\n`;
+//   }
+//   return markdown;
+// }
+
 function generateReleaseNotesIndex(pkg: Pkg): string {
-  let markdown = `---
-title: ${pkg.title} release notes
-description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.
----
+  const version = pkg.releaseNotesConfig.separatePagesVersions;
+  const grouped = groupByMajorVersion(version);
 
-# ${pkg.title} release notes
+  const htmlSections = Object.entries(grouped)
+    .map(([majorVersion, versionList]) =>
+      renderVersionGroup(majorVersion, versionList),
+    )
+    .join("\n\n");
 
-New features, bug fixes, and other changes in previous versions of ${pkg.title}.
-
-## Release notes by version
-
-`;
-  for (const version of pkg.releaseNotesConfig.separatePagesVersions) {
-    markdown += `* [${version}](./${version})\n`;
-  }
-  return markdown;
+  return htmlSections;
 }
 
 /**
@@ -256,4 +272,45 @@ async function writeReleaseNoteForVersion(
 
     await writeFile(versionPath, `${initialHeader}\n## ${versionsMarkdown}`);
   }
+}
+
+export function groupByMajorVersion(
+  versions: string[],
+): Record<string, string[]> {
+  const grouped = _.groupBy(versions, (v) => {
+    const match = v.match(/\[(\d+\.\d+)\]/);
+    if (!match) return "unknown";
+    const versionNumber = parseFloat(match[1]);
+    return Math.floor(versionNumber).toString();
+  });
+
+  const sortedKeys = Object.keys(grouped)
+    .map(Number)
+    .sort((a, b) => b - a)
+    .map(String);
+
+  const sortedRecord: Record<string, string[]> = {};
+  for (const key of sortedKeys) {
+    sortedRecord[key] = grouped[key].sort((a, b) => {
+      const aMatch = a.match(/\[(\d+\.\d+)\]/);
+      const bMatch = b.match(/\[(\d+\.\d+)\]/);
+      const aVersion = aMatch ? parseFloat(aMatch[1]) : 0;
+      const bVersion = bMatch ? parseFloat(bMatch[1]) : 0;
+      return bVersion - aVersion;
+    });
+  }
+
+  return sortedRecord;
+}
+
+function renderVersionGroup(majorVersion: string, versions: string[]): string {
+  const items = versions.map((v) => `<li>${v}</li>`).join("\n");
+  return `
+<details>
+  <summary>Major Version ${majorVersion}</summary>
+  <ul>
+    ${items}
+  </ul>
+</details>
+  `.trim();
 }
