@@ -15,7 +15,7 @@ Ensure that you have completed these steps:
 1. Ensure that you are a member of an IBM Cloud account [set up your own IBM Cloud account.](https://quantum.cloud.ibm.com/registration)
    <Admonition type="note" title="Notes">
    - To avoid adding your credit card information, you can set up a 30-day trial account and optionally upgrade it later.
-   - You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
+   - You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the header of the [IBM Quantum Platform interface.](https://quantum.cloud.ibm.com)
    - If you are invited to join an IBM Cloud account, you will get an email invitation to join the account.  Follow the instructions in that email.
    </Admonition>
 
@@ -28,6 +28,9 @@ Ensure that you have completed these steps:
         ![The IBM Quantum Platform header is shown.  The account switcher is to the right of the search bar.  The region switcher is to the right of the account switcher.](/docs/images/guides/cloud-setup/IQP-Header.svg 'IBM Quantum Platform header')
 
     1. Go to the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com) If you have one or more instances shown, you're done with this step. Otherwise, [create an instance.](/docs/guides/cloud-setup#create-instance)
+1. Ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed.](/docs/guides/install-qiskit#local)
+1. Activate the Python virtual environment and run Python in your virtual environment.
+
 
 <span id="access-credentials"></span>
 ## Find your access credentials
@@ -47,7 +50,7 @@ The basic code to connect Qiskit with your Qiskit Runtime service instance follo
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-service = QiskitRuntimeService(channel=channel, token=token, instance=instance)
+service = QiskitRuntimeService(channel=<channel>, token=<cloud_api_key>, instance=<instance_CRN>)
 ```
 
 <span id="explicit"></span>
@@ -58,7 +61,7 @@ The fastest way to get a `QiskitRuntimeService` running is direct instantiation 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-service = QiskitRuntimeService(token=*API_key*, instance=*instance_CRN*)
+service = QiskitRuntimeService(token=<cloud_api_key>, instance=<instance_CRN>)
 ```
 
 This path is reliable but can be tedious if you need to load the same details repeatedly. To avoid loading your credentials multiple times, if you are working in a trusted Python environment (such as on a personal laptop or workstation), you can use saved account credentials, as described in the following section.
@@ -68,12 +71,26 @@ Although the `instance` input parameter is optional, it is recommended that you 
 <span id="saved"></span>
 ### Quick start path: Specify saved credentials
 
+You can use the following snippet as a quick start reference as long as you instantiate the service precisely as indicated in this example. For more info on the mechanisms used to save and load accounts, and possible variations from this example, see section C:
+
 <span id="auto-select"></span>
 ### Automatically select the instance
 Use the information in this section if you want Qiskit Runtime to automatically select the instance.
 
+If you provide a token but don't provide an instance CRN when instantiating the service, the QiskitRuntimeService authenticates to the account identified by the token and relies on automatic instance selection to choose the most relevant instance for the requested task. If you have several instances available within your account, the service automatically switches between available instances, depending on the resource requested and these `QiskitRuntimeService` options (if set): `plans_preference`, `region`, `tags`.
+
+- **`plans_preference`**: The types of instance plans to prioritize. For example, if [`open`] is passed in, only open plan instances are available.
+
+region: Specify the instance region. Accepted values are `us-east` and `eu-de`.
+
+tags: Specify the instance tags. Accepts a list of tag name strings.
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-   - [Create and manage instances](/docs/guides/instances)
+   - [Create and manage instances.](/docs/guides/instances)
+   - [Initialize the service in an untrusted environment.](/docs/guides/cloud-setup-untrusted)
+   - [Set up to use IBM Quantum Platform with REST API.](/docs/guides/could-setup-rest-api)
+   - Follow the steps in [Hello world](/docs/tutorials/hello-world) to write and run a quantum program.
+
 </Admonition>
