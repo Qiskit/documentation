@@ -57,29 +57,30 @@ The `qk_transpile()` function exposes Qiskit’s tranpsiler ([`qiskit.transpiler
 ### qk\_transpile
 
 <Function id="qk_transpile" signature="QkExitCode qk_transpile(const QkCircuit *qc, const QkTarget *target, const QkTranspileOptions *options, QkTranspileResult *result, char **error)">
-  Transpile a single circuit
+  Transpile a single circuit.
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and/or optimize the circuit for execution. This function should only be used with circuit’s constructed solely using Qiskit’s C API, it makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 
-  This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with SMT. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
+  This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md165" />
+  <span id="group__QkTranspiler_1autotoc_md172" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md165" />
+  <span id="group__QkTranspiler_1autotoc_md172" />
 
-  Behavior is undefined if `circuit`, `target`, `options`, or `result`, are not valid, non-null pointers to a `QkCircuit`, `QkTarget`, `QkTranspileOptions`, or `QkTranspileResult` respectively. `error` must be a valid pointer to a `char` pointer or `NULL`.
+  Behavior is undefined if `circuit`, `target`, or `result`, are not valid, non-null pointers to a `QkCircuit`, `QkTarget`, or `QkTranspileResult` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or ``NULL`. ``error`must be a valid pointer to a`char`pointer or`NULL\`\`.
 
   **Parameters**
 
-  *   **circuit** – A pointer to the circuit to run the transpiler on
-  *   **target** – A pointer to the target to compile the circuit for @params options A pointer to an options object that defines user options. If this is a null pointer the default values will be used. See `qk_transpile_default_options` for more details on the default values.
+  *   **circuit** – A pointer to the circuit to run the transpiler on.
+  *   **target** – A pointer to the target to compile the circuit for.
+  *   **options** – A pointer to an options object that defines user options. If this is a null pointer the default values will be used. See `qk_transpile_default_options` for more details on the default values.
   *   **result** – A pointer to the memory location of the transpiler result. On a successful execution (return code 0) the output of the transpiler will be written to the pointer. The members of the result struct are owned by the caller and you are responsible for freeing the members using the respective free functions.
-  *   **error** – A pointer to a pointer with an nul terminated string with an error description. If the transpiler fails a pointer to the string with the error description will be written to this pointer. That pointer needs to be freed with `qk_str_free`. This can be a null pointer in which case the error will not be written out.
+  *   **error** – A pointer to a pointer with an nul terminated string with an error description. If the transpiler fails a pointer to the string with the error description will be written to this pointer. That pointer needs to be freed with `qk_str_free`\`. This can be a null pointer in which case the error will not be written out.
 
   **Returns**
 
-  the return code for the transpiler, 0 means success and all other values indicate an error
+  The return code for the transpiler, `QkExitCode_Success` means success and all other values indicate an error.
 </Function>
 
