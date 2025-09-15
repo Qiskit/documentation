@@ -1,0 +1,51 @@
+---
+title: EvolutionFactory (v0.26)
+description: API reference for qiskit.aqua.operators.evolutions.EvolutionFactory in qiskit v0.26
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.evolutions.EvolutionFactory
+---
+
+<span id="qiskit-aqua-operators-evolutions-evolutionfactory" />
+
+# qiskit.aqua.operators.evolutions.EvolutionFactory
+
+<Class id="qiskit.aqua.operators.evolutions.EvolutionFactory" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/evolution_factory.py" signature="EvolutionFactory" modifiers="class">
+  A factory class for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.aqua.operators.evolutions.EvolutionFactory.__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                            |                                                                                                                      |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.operators.evolutions.EvolutionFactory.__init__ "qiskit.aqua.operators.evolutions.EvolutionFactory.__init__")()   | Initialize self.                                                                                                     |
+  | [`build`](#qiskit.aqua.operators.evolutions.EvolutionFactory.build "qiskit.aqua.operators.evolutions.EvolutionFactory.build")(\[operator]) | A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted. |
+
+  ### build
+
+  <Function id="qiskit.aqua.operators.evolutions.EvolutionFactory.build" signature="build(operator=None)" modifiers="static">
+    A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
+
+    **Parameters**
+
+    **operator** (`Optional`\[`OperatorBase`]) – the Operator being evolved
+
+    **Returns**
+
+    the `EvolutionBase` best suited to evolve operator.
+
+    **Return type**
+
+    [EvolutionBase](qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")
+
+    **Raises**
+
+    **ValueError** – If operator is not of a composition for which we know the best Evolution method.
+  </Function>
+</Class>
+

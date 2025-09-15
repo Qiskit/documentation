@@ -1,0 +1,270 @@
+---
+title: SaveMatrixProductState (v0.40)
+description: API reference for qiskit_aer.library.SaveMatrixProductState in qiskit v0.40
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_aer.library.SaveMatrixProductState
+---
+
+# SaveMatrixProductState
+
+<Class id="qiskit_aer.library.SaveMatrixProductState" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/library/save_instructions/save_matrix_product_state.py" signature="SaveMatrixProductState(num_qubits, label='matrix_product_state', pershot=False, conditional=False)" modifiers="class">
+  Bases: `qiskit_aer.library.save_instructions.save_data.SaveSingleData`
+
+  Save matrix product state instruction
+
+  Create new instruction to save the matrix product state.
+
+  **Parameters**
+
+  *   **num\_qubits** (*int*) – the number of qubits
+  *   **label** (*str*) – the key for retrieving saved data from results.
+  *   **pershot** (*bool*) – if True save the mps for each shot of the simulation \[Default: False].
+  *   **conditional** (*bool*) – if True save data conditional on the current classical register values \[Default: False].
+
+  <Admonition title="Note" type="note">
+    This save instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
+  </Admonition>
+
+  ## Methods
+
+  <span id="qiskit-aer-library-savematrixproductstate-add-decomposition" />
+
+  ### add\_decomposition
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.add_decomposition" signature="SaveMatrixProductState.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-assemble" />
+
+  ### assemble
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.assemble" signature="SaveMatrixProductState.assemble()">
+    Return the QasmQobjInstruction for the intructions.
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-broadcast-arguments" />
+
+  ### broadcast\_arguments
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.broadcast_arguments" signature="SaveMatrixProductState.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
+
+    **Parameters**
+
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
+
+    **Yields**
+
+    *Tuple(List, List)* – A tuple with single arguments.
+
+    **Raises**
+
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-c-if" />
+
+  ### c\_if
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.c_if" signature="SaveMatrixProductState.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-copy" />
+
+  ### copy
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.copy" signature="SaveMatrixProductState.copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+
+    **Returns**
+
+    **a copy of the current instruction, with the name**
+
+    updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-inverse" />
+
+  ### inverse
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.inverse" signature="SaveMatrixProductState.inverse()">
+    Special case. Return self.
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-is-parameterized" />
+
+  ### is\_parameterized
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.is_parameterized" signature="SaveMatrixProductState.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-qasm" />
+
+  ### qasm
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.qasm" signature="SaveMatrixProductState.qasm()">
+    Return a default OpenQASM string for the instruction.
+
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-repeat" />
+
+  ### repeat
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.repeat" signature="SaveMatrixProductState.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
+
+    **Parameters**
+
+    **n** (*int*) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    **CircuitError** – If n \< 1.
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-reverse-ops" />
+
+  ### reverse\_ops
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.reverse_ops" signature="SaveMatrixProductState.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-soft-compare" />
+
+  ### soft\_compare
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.soft_compare" signature="SaveMatrixProductState.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    bool
+  </Function>
+
+  <span id="qiskit-aer-library-savematrixproductstate-validate-parameter" />
+
+  ### validate\_parameter
+
+  <Function id="qiskit_aer.library.SaveMatrixProductState.validate_parameter" signature="SaveMatrixProductState.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
+
+  ## Attributes
+
+  ### condition\_bits
+
+  <Attribute id="qiskit_aer.library.SaveMatrixProductState.condition_bits">
+    Get Clbits in condition.
+
+    **Return type**
+
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit_aer.library.SaveMatrixProductState.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit_aer.library.SaveMatrixProductState.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit_aer.library.SaveMatrixProductState.duration">
+    Get the duration.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit_aer.library.SaveMatrixProductState.label">
+    Return instruction label
+
+    **Return type**
+
+    `str`
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit_aer.library.SaveMatrixProductState.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit_aer.library.SaveMatrixProductState.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit_aer.library.SaveMatrixProductState.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit_aer.library.SaveMatrixProductState.params">
+    return instruction params.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit_aer.library.SaveMatrixProductState.unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
+

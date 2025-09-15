@@ -1,0 +1,111 @@
+---
+title: TensoredFilter (v0.24)
+description: API reference for qiskit.ignis.mitigation.TensoredFilter in qiskit v0.24
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.mitigation.TensoredFilter
+---
+
+<span id="qiskit-ignis-mitigation-tensoredfilter" />
+
+# qiskit.ignis.mitigation.TensoredFilter
+
+<Class id="qiskit.ignis.mitigation.TensoredFilter" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/measurement/filters.py" signature="TensoredFilter(cal_matrices, substate_labels_list)" modifiers="class">
+  Tensored measurement error mitigation filter.
+
+  Produced from a tensored measurement calibration fitter and can be applied to data.
+
+  Initialize a tensored measurement error mitigation filter using the cal\_matrices from a tensored measurement calibration fitter.
+
+  **Parameters**
+
+  *   **cal\_matrices** (`matrix`) – the calibration matrices for applying the correction.
+  *   **substate\_labels\_list** (`list`) – for each calibration matrix a list of the states (as strings, states in the subspace)
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.ignis.mitigation.TensoredFilter.__init__" signature="__init__(cal_matrices, substate_labels_list)">
+    Initialize a tensored measurement error mitigation filter using the cal\_matrices from a tensored measurement calibration fitter.
+
+    **Parameters**
+
+    *   **cal\_matrices** (`matrix`) – the calibration matrices for applying the correction.
+    *   **substate\_labels\_list** (`list`) – for each calibration matrix a list of the states (as strings, states in the subspace)
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                         |                                                                                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.mitigation.TensoredFilter.__init__ "qiskit.ignis.mitigation.TensoredFilter.__init__")(cal\_matrices, substate\_labels\_list) | Initialize a tensored measurement error mitigation filter using the cal\_matrices from a tensored measurement calibration fitter. |
+  | [`apply`](#qiskit.ignis.mitigation.TensoredFilter.apply "qiskit.ignis.mitigation.TensoredFilter.apply")(raw\_data\[, method])                           | Apply the calibration matrices to results.                                                                                        |
+
+  ## Attributes
+
+  |                                                                                                                                                      |                                 |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+  | [`cal_matrices`](#qiskit.ignis.mitigation.TensoredFilter.cal_matrices "qiskit.ignis.mitigation.TensoredFilter.cal_matrices")                         | Return cal\_matrices.           |
+  | [`nqubits`](#qiskit.ignis.mitigation.TensoredFilter.nqubits "qiskit.ignis.mitigation.TensoredFilter.nqubits")                                        | Return the number of qubits.    |
+  | [`qubit_list_sizes`](#qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes "qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes")             | Return \_qubit\_list\_sizes.    |
+  | [`substate_labels_list`](#qiskit.ignis.mitigation.TensoredFilter.substate_labels_list "qiskit.ignis.mitigation.TensoredFilter.substate_labels_list") | Return \_substate\_labels\_list |
+
+  ### apply
+
+  <Function id="qiskit.ignis.mitigation.TensoredFilter.apply" signature="apply(raw_data, method='least_squares')">
+    Apply the calibration matrices to results.
+
+    **Parameters**
+
+    *   **raw\_data** (*dict or* [*Result*](qiskit.result.Result "qiskit.result.Result")) –
+
+        The data to be corrected. Can be in one of two forms:
+
+        *   A counts dictionary from results.get\_counts
+        *   A Qiskit Result
+
+    *   **method** (*str*) –
+
+        fitting method. The following methods are supported:
+
+        *   ’pseudo\_inverse’: direct inversion of the cal matrices.
+        *   ’least\_squares’: constrained to have physical probabilities.
+        *   If None, ‘least\_squares’ is used.
+
+    **Returns**
+
+    The corrected data in the same form as raw\_data
+
+    **Return type**
+
+    dict or [Result](qiskit.result.Result "qiskit.result.Result")
+
+    **Raises**
+
+    **QiskitError** – if raw\_data is not in a one of the defined forms.
+  </Function>
+
+  ### cal\_matrices
+
+  <Attribute id="qiskit.ignis.mitigation.TensoredFilter.cal_matrices">
+    Return cal\_matrices.
+  </Attribute>
+
+  ### nqubits
+
+  <Attribute id="qiskit.ignis.mitigation.TensoredFilter.nqubits">
+    Return the number of qubits. See also MeasurementFilter.apply()
+  </Attribute>
+
+  ### qubit\_list\_sizes
+
+  <Attribute id="qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes">
+    Return \_qubit\_list\_sizes.
+  </Attribute>
+
+  ### substate\_labels\_list
+
+  <Attribute id="qiskit.ignis.mitigation.TensoredFilter.substate_labels_list">
+    Return \_substate\_labels\_list
+  </Attribute>
+</Class>
+

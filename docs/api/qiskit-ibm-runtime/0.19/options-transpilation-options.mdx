@@ -1,0 +1,56 @@
+---
+title: TranspilationOptions (v0.19)
+description: API reference for qiskit_ibm_runtime.options.TranspilationOptions in qiskit-ibm-runtime v0.19
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options.TranspilationOptions
+---
+
+# TranspilationOptions
+
+<Class id="qiskit_ibm_runtime.options.TranspilationOptions" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.19/qiskit_ibm_runtime/options/transpilation_options.py" signature="TranspilationOptions(skip_transpilation=False, initial_layout=None, layout_method=None, routing_method=None, approximation_degree=None)" modifiers="class">
+  Transpilation options.
+
+  **Parameters**
+
+  *   **skip\_transpilation** (`bool`) – Whether to skip transpilation.
+  *   **initial\_layout** (`Union`\[`dict`, `List`, `None`]) – Initial position of virtual qubits on physical qubits. See `qiskit.compiler.transpile` for more information.
+  *   **layout\_method** (`Optional`\[`str`]) – Name of layout selection pass. One of ‘trivial’, ‘dense’, ‘noise\_adaptive’, ‘sabre’.
+  *   **routing\_method** (`Optional`\[`str`]) – Name of routing pass. One of ‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’.
+  *   **approximation\_degree** (`Optional`\[`float`]) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
+
+  ## Attributes
+
+  ### approximation\_degree
+
+  <Attribute id="qiskit_ibm_runtime.options.TranspilationOptions.approximation_degree" attributeTypeHint="float | None" attributeValue="None" />
+
+  ### initial\_layout
+
+  <Attribute id="qiskit_ibm_runtime.options.TranspilationOptions.initial_layout" attributeTypeHint="dict | List | None" attributeValue="None" />
+
+  ### layout\_method
+
+  <Attribute id="qiskit_ibm_runtime.options.TranspilationOptions.layout_method" attributeTypeHint="str | None" attributeValue="None" />
+
+  ### routing\_method
+
+  <Attribute id="qiskit_ibm_runtime.options.TranspilationOptions.routing_method" attributeTypeHint="str | None" attributeValue="None" />
+
+  ### skip\_transpilation
+
+  <Attribute id="qiskit_ibm_runtime.options.TranspilationOptions.skip_transpilation" attributeTypeHint="bool" attributeValue="False" />
+
+  ## Methods
+
+  ### validate\_transpilation\_options
+
+  <Function id="qiskit_ibm_runtime.options.TranspilationOptions.validate_transpilation_options" signature="validate_transpilation_options(transpilation_options)" modifiers="static">
+    Validate that transpilation options are legal. :raises ValueError: if any transpilation option is not supported :raises ValueError: if layout\_method is not in LayoutMethodType or None. :raises ValueError: if routing\_method is not in RoutingMethodType or None. :raises ValueError: if approximation\_degree in not None or in the range 0.0 to 1.0.
+
+    **Return type**
+
+    `None`
+  </Function>
+</Class>
+

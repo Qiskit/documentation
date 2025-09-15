@@ -1,0 +1,164 @@
+---
+title: PhaseGate (v0.35)
+description: API reference for qiskit.circuit.library.PhaseGate in qiskit v0.35
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PhaseGate
+---
+
+# PhaseGate
+
+<Class id="qiskit.circuit.library.PhaseGate" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/p.py" signature="PhaseGate(theta, label=None)" modifiers="class">
+  Bases: `qiskit.circuit.gate.Gate`
+
+  Single-qubit rotation about the Z axis.
+
+  This is a diagonal gate. It can be implemented virtually in hardware via framechanges (i.e. at zero error and duration).
+
+  **Circuit symbol:**
+
+  ```python
+       ┌──────┐
+  q_0: ┤ P(λ) ├
+       └──────┘
+  ```
+
+  **Matrix Representation:**
+
+$$
+\begin{split}P(\lambda) =
+\begin{pmatrix}
+1 & 0 \\
+0 & e^{i\lambda}
+\end{pmatrix}\end{split}
+$$
+
+  **Examples:**
+
+  > $$
+  > P(\lambda = \pi) = Z
+  > $$
+  >
+  > $$
+  > P(\lambda = \pi/2) = S
+  > $$
+  >
+  > $$
+  > P(\lambda = \pi/4) = T
+  > $$
+
+  <Admonition title="See also" type="note">
+    `RZGate`: This gate is equivalent to RZ up to a phase factor.
+
+    > $$
+    > P(\lambda) = e^{i{\lambda}/2} RZ(\lambda)
+    > $$
+
+    Reference for virtual Z gate implementation: [1612.00858](https://arxiv.org/abs/1612.00858)
+  </Admonition>
+
+  Create new Phase gate.
+
+  ## Methods Defined Here
+
+  <span id="qiskit-circuit-library-phasegate-control" />
+
+  ### control
+
+  <Function id="qiskit.circuit.library.PhaseGate.control" signature="PhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-Phase gate.
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+    **Returns**
+
+    controlled version of this gate.
+
+    **Return type**
+
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
+
+  <span id="qiskit-circuit-library-phasegate-inverse" />
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.PhaseGate.inverse" signature="PhaseGate.inverse()">
+    Return inverted Phase gate ($Phase(\lambda){\dagger} = Phase(-\lambda)$)
+  </Function>
+
+  ## Attributes
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.condition_bits">
+    Get Clbits in condition.
+
+    **Return type**
+
+    `List`\[`Clbit`]
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.duration">
+    Get the duration.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.label">
+    Return instruction label
+
+    **Return type**
+
+    `str`
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.params">
+    return instruction params.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
+

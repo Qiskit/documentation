@@ -1,0 +1,232 @@
+---
+title: Optimizer (v0.19)
+description: API reference for qiskit.aqua.components.optimizers.Optimizer in qiskit v0.19
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.optimizers.Optimizer
+---
+
+# Optimizer
+
+<Class id="qiskit.aqua.components.optimizers.Optimizer" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/optimizers/optimizer.py" signature="Optimizer" modifiers="class">
+  Base class for optimization algorithm.
+
+  Initialize the optimization algorithm, setting the support level for \_gradient\_support\_level, \_bound\_support\_level, \_initial\_point\_support\_level, and empty options.
+
+  ## Attributes
+
+  <span id="optimizer-bounds-support-level" />
+
+  ### bounds\_support\_level
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.bounds_support_level">
+    Returns bounds support level
+  </Attribute>
+
+  <span id="optimizer-gradient-support-level" />
+
+  ### gradient\_support\_level
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.gradient_support_level">
+    Returns gradient support level
+  </Attribute>
+
+  <span id="optimizer-initial-point-support-level" />
+
+  ### initial\_point\_support\_level
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
+
+  <span id="optimizer-is-bounds-ignored" />
+
+  ### is\_bounds\_ignored
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
+
+  <span id="optimizer-is-bounds-required" />
+
+  ### is\_bounds\_required
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.is_bounds_required">
+    Returns is bounds required
+  </Attribute>
+
+  <span id="optimizer-is-bounds-supported" />
+
+  ### is\_bounds\_supported
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
+
+  <span id="optimizer-is-gradient-ignored" />
+
+  ### is\_gradient\_ignored
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
+
+  <span id="optimizer-is-gradient-required" />
+
+  ### is\_gradient\_required
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.is_gradient_required">
+    Returns is gradient required
+  </Attribute>
+
+  <span id="optimizer-is-gradient-supported" />
+
+  ### is\_gradient\_supported
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
+
+  <span id="optimizer-is-initial-point-ignored" />
+
+  ### is\_initial\_point\_ignored
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
+
+  <span id="optimizer-is-initial-point-required" />
+
+  ### is\_initial\_point\_required
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
+
+  <span id="optimizer-is-initial-point-supported" />
+
+  ### is\_initial\_point\_supported
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
+
+  <span id="optimizer-setting" />
+
+  ### setting
+
+  <Attribute id="qiskit.aqua.components.optimizers.Optimizer.setting">
+    Return setting
+  </Attribute>
+
+  ## Methods
+
+  <span id="optimizer-get-support-level" />
+
+  ### get\_support\_level
+
+  <Function id="qiskit.aqua.components.optimizers.Optimizer.get_support_level" signature="Optimizer.get_support_level()" modifiers="abstract">
+    Return support level dictionary
+  </Function>
+
+  <span id="optimizer-gradient-num-diff" />
+
+  ### gradient\_num\_diff
+
+  <Function id="qiskit.aqua.components.optimizers.Optimizer.gradient_num_diff" signature="Optimizer.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)" modifiers="static">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+
+    **Parameters**
+
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
+
+    **Returns**
+
+    the gradient computed
+
+    **Return type**
+
+    grad
+  </Function>
+
+  <span id="optimizer-optimize" />
+
+  ### optimize
+
+  <Function id="qiskit.aqua.components.optimizers.Optimizer.optimize" signature="Optimizer.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)" modifiers="abstract">
+    Perform optimization.
+
+    **Parameters**
+
+    *   **num\_vars** (*int*) – Number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – A function that computes the objective function.
+    *   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+    *   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+    *   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+
+    **Returns**
+
+    **point, value, nfev**
+
+    point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+
+    **Raises**
+
+    **ValueError** – invalid input
+  </Function>
+
+  <span id="optimizer-print-options" />
+
+  ### print\_options
+
+  <Function id="qiskit.aqua.components.optimizers.Optimizer.print_options" signature="Optimizer.print_options()">
+    Print algorithm-specific options.
+  </Function>
+
+  <span id="optimizer-set-max-evals-grouped" />
+
+  ### set\_max\_evals\_grouped
+
+  <Function id="qiskit.aqua.components.optimizers.Optimizer.set_max_evals_grouped" signature="Optimizer.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
+
+  <span id="optimizer-set-options" />
+
+  ### set\_options
+
+  <Function id="qiskit.aqua.components.optimizers.Optimizer.set_options" signature="Optimizer.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
+
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+
+    **Parameters**
+
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
+
+  <span id="optimizer-wrap-function" />
+
+  ### wrap\_function
+
+  <Function id="qiskit.aqua.components.optimizers.Optimizer.wrap_function" signature="Optimizer.wrap_function(function, args)" modifiers="static">
+    Wrap the function to implicitly inject the args at the call of the function.
+
+    **Parameters**
+
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
+
+    **Returns**
+
+    wrapper
+
+    **Return type**
+
+    function\_wrapper
+  </Function>
+</Class>
+

@@ -1,0 +1,105 @@
+---
+title: GroundStateSolver (v0.26)
+description: API reference for qiskit.chemistry.algorithms.GroundStateSolver in qiskit v0.26
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.GroundStateSolver
+---
+
+<span id="qiskit-chemistry-algorithms-groundstatesolver" />
+
+# qiskit.chemistry.algorithms.GroundStateSolver
+
+<Class id="qiskit.chemistry.algorithms.GroundStateSolver" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_solver.py" signature="GroundStateSolver(transformation)" modifiers="class">
+  The ground state calculation interface
+
+  **Parameters**
+
+  **transformation** (`Transformation`) – transformation from driver to qubit operator (and aux. operators)
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.chemistry.algorithms.GroundStateSolver.__init__" signature="__init__(transformation)">
+    **Parameters**
+
+    **transformation** (`Transformation`) – transformation from driver to qubit operator (and aux. operators)
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                                |                                                                                          |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.algorithms.GroundStateSolver.__init__ "qiskit.chemistry.algorithms.GroundStateSolver.__init__")(transformation)                                 | **type transformation**`Transformation`                                                  |
+  | [`evaluate_operators`](#qiskit.chemistry.algorithms.GroundStateSolver.evaluate_operators "qiskit.chemistry.algorithms.GroundStateSolver.evaluate_operators")(state, operators) | Evaluates additional operators at the given state.                                       |
+  | [`returns_groundstate`](#qiskit.chemistry.algorithms.GroundStateSolver.returns_groundstate "qiskit.chemistry.algorithms.GroundStateSolver.returns_groundstate")()              | Whether this class returns only the ground state energy or also the ground state itself. |
+  | [`solve`](#qiskit.chemistry.algorithms.GroundStateSolver.solve "qiskit.chemistry.algorithms.GroundStateSolver.solve")(driver\[, aux\_operators])                               | Compute the ground state energy of the molecule that was supplied via the driver.        |
+
+  ## Attributes
+
+  |                                                                                                                                                  |                                                                               |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+  | [`transformation`](#qiskit.chemistry.algorithms.GroundStateSolver.transformation "qiskit.chemistry.algorithms.GroundStateSolver.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
+
+  ### evaluate\_operators
+
+  <Function id="qiskit.chemistry.algorithms.GroundStateSolver.evaluate_operators" signature="evaluate_operators(state, operators)" modifiers="abstract">
+    Evaluates additional operators at the given state.
+
+    **Parameters**
+
+    *   **state** (`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]) – any kind of input that can be used to specify a state. See also `StateFn` for more details.
+    *   **operators** (`Union`\[`WeightedPauliOperator`, `OperatorBase`, `list`, `dict`]) – either a single, list or dictionary of `WeightedPauliOperator``s or any kind of operator implementing the ``OperatorBase`.
+
+    **Return type**
+
+    `Union`\[`float`, `List`\[`float`], `Dict`\[`str`, `List`\[`float`]]]
+
+    **Returns**
+
+    The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
+  </Function>
+
+  ### returns\_groundstate
+
+  <Function id="qiskit.chemistry.algorithms.GroundStateSolver.returns_groundstate" signature="returns_groundstate()" modifiers="abstract">
+    Whether this class returns only the ground state energy or also the ground state itself.
+
+    **Return type**
+
+    `bool`
+
+    **Returns**
+
+    True, if this class also returns the ground state in the results object. False otherwise.
+  </Function>
+
+  ### solve
+
+  <Function id="qiskit.chemistry.algorithms.GroundStateSolver.solve" signature="solve(driver, aux_operators=None)" modifiers="abstract">
+    Compute the ground state energy of the molecule that was supplied via the driver.
+
+    **Parameters**
+
+    *   **driver** (`BaseDriver`) – a chemistry driver object which defines the chemical problem that is to be solved by this calculation.
+    *   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
+
+    **Return type**
+
+    `Union`\[`ElectronicStructureResult`, `VibronicStructureResult`]
+
+    **Returns**
+
+    An eigenstate result.
+  </Function>
+
+  ### transformation
+
+  <Attribute id="qiskit.chemistry.algorithms.GroundStateSolver.transformation">
+    Returns the transformation used to obtain a qubit operator from the molecule.
+
+    **Return type**
+
+    `Transformation`
+  </Attribute>
+</Class>
+

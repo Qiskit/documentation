@@ -1,0 +1,95 @@
+---
+title: AncillaRegister (v0.26)
+description: API reference for qiskit.circuit.AncillaRegister in qiskit v0.26
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.AncillaRegister
+---
+
+<span id="qiskit-circuit-ancillaregister" />
+
+# qiskit.circuit.AncillaRegister
+
+<Class id="qiskit.circuit.AncillaRegister" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/circuit/quantumregister.py" signature="AncillaRegister(size=None, name=None, bits=None)" modifiers="class">
+  Implement an ancilla register.
+
+  Create a new generic register.
+
+  Either the `size` or the `bits` argument must be provided. If `size` is not None, the register will be pre-populated with bits of the correct type.
+
+  **Parameters**
+
+  *   **size** (*int*) – Optional. The number of bits to include in the register.
+  *   **name** (*str*) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
+  *   **bits** (*list\[Bit]*) – Optional. A list of Bit() instances to be used to populate the register.
+
+  **Raises**
+
+  *   **CircuitError** – if both the `size` and `bits` arguments are provided, or if neither are.
+  *   **CircuitError** – if `size` is not valid.
+  *   **CircuitError** – if `name` is not a valid name according to the OpenQASM spec.
+  *   **CircuitError** – if `bits` contained bits of an incorrect type.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.circuit.AncillaRegister.__init__" signature="__init__(size=None, name=None, bits=None)">
+    Create a new generic register.
+
+    Either the `size` or the `bits` argument must be provided. If `size` is not None, the register will be pre-populated with bits of the correct type.
+
+    **Parameters**
+
+    *   **size** (*int*) – Optional. The number of bits to include in the register.
+    *   **name** (*str*) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
+    *   **bits** (*list\[Bit]*) – Optional. A list of Bit() instances to be used to populate the register.
+
+    **Raises**
+
+    *   **CircuitError** – if both the `size` and `bits` arguments are provided, or if neither are.
+    *   **CircuitError** – if `size` is not valid.
+    *   **CircuitError** – if `name` is not a valid name according to the OpenQASM spec.
+    *   **CircuitError** – if `bits` contained bits of an incorrect type.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                       |                                           |
+  | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+  | [`__init__`](#qiskit.circuit.AncillaRegister.__init__ "qiskit.circuit.AncillaRegister.__init__")(\[size, name, bits]) | Create a new generic register.            |
+  | [`qasm`](#qiskit.circuit.AncillaRegister.qasm "qiskit.circuit.AncillaRegister.qasm")()                                | Return OPENQASM string for this register. |
+
+  ## Attributes
+
+  |                                                                                      |                        |
+  | ------------------------------------------------------------------------------------ | ---------------------- |
+  | `instances_counter`                                                                  |                        |
+  | [`name`](#qiskit.circuit.AncillaRegister.name "qiskit.circuit.AncillaRegister.name") | Get the register name. |
+  | `name_format`                                                                        |                        |
+  | `prefix`                                                                             |                        |
+  | [`size`](#qiskit.circuit.AncillaRegister.size "qiskit.circuit.AncillaRegister.size") | Get the register size. |
+
+  ### bit\_type
+
+  <Attribute id="qiskit.circuit.AncillaRegister.bit_type">
+    alias of [`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit")
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.AncillaRegister.name">
+    Get the register name.
+  </Attribute>
+
+  ### qasm
+
+  <Function id="qiskit.circuit.AncillaRegister.qasm" signature="qasm()">
+    Return OPENQASM string for this register.
+  </Function>
+
+  ### size
+
+  <Attribute id="qiskit.circuit.AncillaRegister.size">
+    Get the register size.
+  </Attribute>
+</Class>
+

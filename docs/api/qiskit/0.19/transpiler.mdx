@@ -1,0 +1,48 @@
+---
+title: transpiler (v0.19)
+description: API reference for qiskit.transpiler in qiskit v0.19
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.transpiler
+---
+
+<span id="module-qiskit.transpiler" />
+
+<span id="qiskit-transpiler" />
+
+<span id="transpiler-qiskit-transpiler" />
+
+# Transpiler
+
+`qiskit.transpiler`
+
+## Pass Management
+
+|                                                                                                                         |                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")(\[passes, max\_iteration, callback])     | Manager for a set of Passes and their scheduling during transpilation. |
+| [`PassManagerConfig`](qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig")(\[initial\_layout, …]) | Pass Manager Configuration.                                            |
+| [`PropertySet`](qiskit.transpiler.PropertySet "qiskit.transpiler.PropertySet")                                          | A default dictionary-like object                                       |
+| [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")(passes, options, …)             | Base class for multiple types of working list.                         |
+
+## Layout and Topology
+
+|                                                                                                              |                                           |
+| ------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
+| [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout")(\[input\_dict])                              | Two-ways dict to represent a Layout.      |
+| [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")(\[couplinglist, description]) | Directed graph specifying fixed coupling. |
+
+## Fenced Objects
+
+|                                                                                                                           |                                                              |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`FencedDAGCircuit`](qiskit.transpiler.FencedDAGCircuit "qiskit.transpiler.FencedDAGCircuit")(dag\_circuit\_instance)     | A dag circuit that cannot be modified (via remove\_op\_node) |
+| [`FencedPropertySet`](qiskit.transpiler.FencedPropertySet "qiskit.transpiler.FencedPropertySet")(property\_set\_instance) | A property set that cannot be written (via \_\_setitem\_\_)  |
+
+## Exceptions
+
+|                                                                                                                         |                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| [`TranspilerError`](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError")(\*message)                   | Exceptions raised during transpilation.                         |
+| [`TranspilerAccessError`](qiskit.transpiler.TranspilerAccessError "qiskit.transpiler.TranspilerAccessError")(\*message) | DEPRECATED: Exception of access error in the transpiler passes. |
+

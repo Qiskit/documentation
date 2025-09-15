@@ -1,0 +1,154 @@
+---
+title: library (v0.41)
+description: API reference for qiskit_aer.library in qiskit v0.41
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_aer.library
+---
+
+<span id="module-qiskit_aer.library" />
+
+<span id="aer-library" />
+
+<span id="instruction-library-qiskit-aer-library" />
+
+# Instruction Library
+
+`qiskit_aer.library`
+
+This library contains custom qiskit `QuantumCircuit` [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") subclasses that can be used with the Aer circuit simulator backends.
+
+## Setting a Custom Simulator State
+
+The following instruction classes can be used to set the specific simulator methods to a custom state. Note that these instructions are only valid when applied to all qubits in a circuit. Applying to a subset of qubits will raise an exception during execution.
+
+### Instruction Classes
+
+|                                                                                                                       |                                                    |
+| --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [`SetStatevector`](qiskit_aer.library.SetStatevector "qiskit_aer.library.SetStatevector")(state)                      | Set the statevector state of the simulator         |
+| [`SetDensityMatrix`](qiskit_aer.library.SetDensityMatrix "qiskit_aer.library.SetDensityMatrix")(state)                | Set density matrix state of the simulator          |
+| [`SetStabilizer`](qiskit_aer.library.SetStabilizer "qiskit_aer.library.SetStabilizer")(state)                         | Set the Clifford stabilizer state of the simulator |
+| [`SetSuperOp`](qiskit_aer.library.SetSuperOp "qiskit_aer.library.SetSuperOp")(state)                                  | Set superop state of the simulator                 |
+| [`SetUnitary`](qiskit_aer.library.SetUnitary "qiskit_aer.library.SetUnitary")(state)                                  | Set unitary state of the simulator                 |
+| [`SetMatrixProductState`](qiskit_aer.library.SetMatrixProductState "qiskit_aer.library.SetMatrixProductState")(state) | Set the matrix product state of the simulator      |
+
+### QuantumCircuit Methods
+
+The set instructions can also be added to circuits by using the following `QuantumCircuit` methods which are patched when importing Aer.
+
+|                                                                                                                                      |                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
+| [`set_statevector`](qiskit_aer.library.set_statevector "qiskit_aer.library.set_statevector")(self, state)                            | Set the statevector state of the simulator.         |
+| [`set_density_matrix`](qiskit_aer.library.set_density_matrix "qiskit_aer.library.set_density_matrix")(self, state)                   | Set the density matrix state of the simulator.      |
+| [`set_stabilizer`](qiskit_aer.library.set_stabilizer "qiskit_aer.library.set_stabilizer")(self, state)                               | Set the Clifford stabilizer state of the simulator. |
+| [`set_unitary`](qiskit_aer.library.set_unitary "qiskit_aer.library.set_unitary")(self, state)                                        | Set the state state of the simulator.               |
+| [`set_superop`](qiskit_aer.library.set_superop "qiskit_aer.library.set_superop")(self, state)                                        | Set the superop state of the simulator.             |
+| [`set_matrix_product_state`](qiskit_aer.library.set_matrix_product_state "qiskit_aer.library.set_matrix_product_state")(self, state) | Set the matrix product state of the simulator.      |
+
+## Saving Simulator Data
+
+### Simulator State Save Instruction Classes
+
+The following instructions can be used to save the state of the simulator into the returned result object. The [`SaveState`](qiskit_aer.library.SaveState "qiskit_aer.library.SaveState") instruction will automatically select the format based on the simulation method (eg. [`SaveStatevector`](qiskit_aer.library.SaveStatevector "qiskit_aer.library.SaveStatevector") for statevector method, [`SaveDensityMatrix`](qiskit_aer.library.SaveDensityMatrix "qiskit_aer.library.SaveDensityMatrix") for density matrix method etc.).
+
+|                                                                                                                                               |                                          |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| [`SaveState`](qiskit_aer.library.SaveState "qiskit_aer.library.SaveState")(num\_qubits\[, label, pershot, ...])                               | Save simulator state                     |
+| [`SaveStatevector`](qiskit_aer.library.SaveStatevector "qiskit_aer.library.SaveStatevector")(num\_qubits\[, label, ...])                      | Save statevector                         |
+| [`SaveStatevectorDict`](qiskit_aer.library.SaveStatevectorDict "qiskit_aer.library.SaveStatevectorDict")(num\_qubits\[, label, ...])          | Save statevector as ket-form dictionary. |
+| [`SaveDensityMatrix`](qiskit_aer.library.SaveDensityMatrix "qiskit_aer.library.SaveDensityMatrix")(num\_qubits\[, label, ...])                | Save a reduced density matrix.           |
+| [`SaveMatrixProductState`](qiskit_aer.library.SaveMatrixProductState "qiskit_aer.library.SaveMatrixProductState")(num\_qubits\[, label, ...]) | Save matrix product state instruction    |
+| [`SaveClifford`](qiskit_aer.library.SaveClifford "qiskit_aer.library.SaveClifford")(num\_qubits\[, label, pershot])                           | Save Clifford instruction                |
+| [`SaveStabilizer`](qiskit_aer.library.SaveStabilizer "qiskit_aer.library.SaveStabilizer")(num\_qubits\[, label, pershot, ...])                | Save Stabilizer instruction              |
+| [`SaveSuperOp`](qiskit_aer.library.SaveSuperOp "qiskit_aer.library.SaveSuperOp")(num\_qubits\[, label, pershot])                              | Save a SuperOp matrix.                   |
+| [`SaveUnitary`](qiskit_aer.library.SaveUnitary "qiskit_aer.library.SaveUnitary")(num\_qubits\[, label, pershot])                              | Save Unitary                             |
+
+<Admonition title="Note" type="note">
+  The [`SaveDensityMatrix`](qiskit_aer.library.SaveDensityMatrix "qiskit_aer.library.SaveDensityMatrix") instruction can be used to save the reduced densit matrix of a subset of qubits for supported simulation methods, however all other save state instructions must be applied to all qubits in a run circuit.
+</Admonition>
+
+<Admonition title="Note" type="note">
+  The [`StatevectorSimulator`](qiskit_aer.StatevectorSimulator "qiskit_aer.StatevectorSimulator") (and [`UnitarySimulator`](qiskit_aer.UnitarySimulator "qiskit_aer.UnitarySimulator")) backend automatically append every run circuit with the a ``SaveStatevector`()`` (``SaveUnitary`()``) instruction using the default label. Hence adding any additional save instructions of that type will require specifying a custom label for those instructions.
+</Admonition>
+
+### Simulator Derived Data Save Instruction Classes
+
+The following classes can be used to directly save data derived from the simulator state to the returned result object. One some are compatible with certain simulation methods.
+
+For convenience the save instructions can be accessed using custom `QuantumCircuit` methods
+
+|                                                                                                                                                       |                                                      |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`SaveExpectationValue`](qiskit_aer.library.SaveExpectationValue "qiskit_aer.library.SaveExpectationValue")(operator\[, label, ...])                  | Save expectation value of an operator.               |
+| [`SaveExpectationValueVariance`](qiskit_aer.library.SaveExpectationValueVariance "qiskit_aer.library.SaveExpectationValueVariance")(operator\[, ...]) | Save expectation value and variance of an operator.  |
+| [`SaveProbabilities`](qiskit_aer.library.SaveProbabilities "qiskit_aer.library.SaveProbabilities")(num\_qubits\[, label, ...])                        | Save measurement outcome probabilities vector.       |
+| [`SaveProbabilitiesDict`](qiskit_aer.library.SaveProbabilitiesDict "qiskit_aer.library.SaveProbabilitiesDict")(num\_qubits\[, label, ...])            | Save measurement outcome probabilities dict.         |
+| [`SaveAmplitudes`](qiskit_aer.library.SaveAmplitudes "qiskit_aer.library.SaveAmplitudes")(num\_qubits, params\[, label, ...])                         | Save complex statevector amplitudes.                 |
+| [`SaveAmplitudesSquared`](qiskit_aer.library.SaveAmplitudesSquared "qiskit_aer.library.SaveAmplitudesSquared")(num\_qubits, params\[, ...])           | Save squared statevector amplitudes (probabilities). |
+
+<Admonition title="Note" type="note">
+  When saving pershot data by using the `pershot=True` kwarg in the above instructions, the resulting list may only contain a single value rather than the number of shots. This happens when a run circuit supports measurement sampling because it is either
+
+  1.  An ideal simulation with all measurements at the end.
+
+  2\. A noisy simulation using the density matrix method with all measurements at the end.
+
+  In both these cases only a single shot is actually simulated and measurement samples for all shots are calculated from the final state.
+</Admonition>
+
+<span id="id1" />
+
+### QuantumCircuit Methods
+
+The save instructions can also be added to circuits by using the following `QuantumCircuit` methods which are patched when importing Aer.
+
+<Admonition title="Note" type="note">
+  Each save method has a default label for accessing from the circuit result data, however duplicate labels in results will result in an exception being raised. If you use more than 1 instance of a specific save instruction you must set a custom label for the additional instructions.
+</Admonition>
+
+|                                                                                                                                                                 |                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [`save_amplitudes`](qiskit_aer.library.save_amplitudes "qiskit_aer.library.save_amplitudes")(self, params\[, label, ...])                                       | Save complex statevector amplitudes.                                      |
+| [`save_amplitudes_squared`](qiskit_aer.library.save_amplitudes_squared "qiskit_aer.library.save_amplitudes_squared")(self, params\[, ...])                      | Save squared statevector amplitudes (probabilities).                      |
+| [`save_clifford`](qiskit_aer.library.save_clifford "qiskit_aer.library.save_clifford")(self\[, label, pershot])                                                 | Save the current stabilizer simulator quantum state as a Clifford.        |
+| [`save_density_matrix`](qiskit_aer.library.save_density_matrix "qiskit_aer.library.save_density_matrix")(self\[, qubits, label, ...])                           | Save the current simulator quantum state as a density matrix.             |
+| [`save_expectation_value`](qiskit_aer.library.save_expectation_value "qiskit_aer.library.save_expectation_value")(self, operator, qubits)                       | Save the expectation value of a Hermitian operator.                       |
+| [`save_expectation_value_variance`](qiskit_aer.library.save_expectation_value_variance "qiskit_aer.library.save_expectation_value_variance")(self, ...\[, ...]) | Save the expectation value of a Hermitian operator.                       |
+| [`save_matrix_product_state`](qiskit_aer.library.save_matrix_product_state "qiskit_aer.library.save_matrix_product_state")(self\[, label, ...])                 | Save the current simulator quantum state as a matrix product state.       |
+| [`save_probabilities`](qiskit_aer.library.save_probabilities "qiskit_aer.library.save_probabilities")(self\[, qubits, label, ...])                              | Save measurement outcome probabilities vector.                            |
+| [`save_probabilities_dict`](qiskit_aer.library.save_probabilities_dict "qiskit_aer.library.save_probabilities_dict")(self\[, qubits, ...])                      | Save measurement outcome probabilities vector.                            |
+| [`save_stabilizer`](qiskit_aer.library.save_stabilizer "qiskit_aer.library.save_stabilizer")(self\[, label, pershot, ...])                                      | Save the current stabilizer simulator quantum state as a StabilizerState. |
+| [`save_state`](qiskit_aer.library.save_state "qiskit_aer.library.save_state")(self\[, label, pershot, conditional])                                             | Save the current simulator quantum state.                                 |
+| [`save_statevector`](qiskit_aer.library.save_statevector "qiskit_aer.library.save_statevector")(self\[, label, pershot, ...])                                   | Save the current simulator quantum state as a statevector.                |
+| [`save_statevector_dict`](qiskit_aer.library.save_statevector_dict "qiskit_aer.library.save_statevector_dict")(self\[, label, ...])                             | Save the current simulator quantum state as a statevector as a dict.      |
+| [`save_superop`](qiskit_aer.library.save_superop "qiskit_aer.library.save_superop")(self\[, label, pershot])                                                    | Save the current state of the superop simulator.                          |
+| [`save_unitary`](qiskit_aer.library.save_unitary "qiskit_aer.library.save_unitary")(self\[, label, pershot])                                                    | Save the current state of the unitary simulator.                          |
+
+## Method Compatibility
+
+The following table summarizes which instructions are compatible with which simulation methods
+
+| Instruction                                                                                                                         | Automatic | Statevector | Density Matrix | MPS | Stabilizer | Ext. Stabilizer | Unitary | SuperOp |
+| ----------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- | -------------- | --- | ---------- | --------------- | ------- | ------- |
+| [`SaveAmplitudes`](qiskit_aer.library.SaveAmplitudes "qiskit_aer.library.SaveAmplitudes")                                           | ✔         | ✔           | ✘              | ✔   | ✘          | ✘               | ✘       | ✘       |
+| [`SaveAmplitudesSquared`](qiskit_aer.library.SaveAmplitudesSquared "qiskit_aer.library.SaveAmplitudesSquared")                      | ✔         | ✔           | ✔              | ✔   | ✔          | ✘               | ✘       | ✘       |
+| [`SaveClifford`](qiskit_aer.library.SaveClifford "qiskit_aer.library.SaveClifford")                                                 | ✔         | ✘           | ✘              | ✘   | ✔          | ✘               | ✘       | ✘       |
+| [`SaveDensityMatrix`](qiskit_aer.library.SaveDensityMatrix "qiskit_aer.library.SaveDensityMatrix")                                  | ✔         | ✔           | ✔              | ✔   | ✘          | ✘               | ✘       | ✘       |
+| [`SaveExpectationValue`](qiskit_aer.library.SaveExpectationValue "qiskit_aer.library.SaveExpectationValue")                         | ✔         | ✔           | ✔              | ✔   | ✔          | ✘               | ✘       | ✘       |
+| [`SaveExpectationValueVariance`](qiskit_aer.library.SaveExpectationValueVariance "qiskit_aer.library.SaveExpectationValueVariance") | ✔         | ✔           | ✔              | ✔   | ✔          | ✘               | ✘       | ✘       |
+| [`SaveMatrixProductState`](qiskit_aer.library.SaveMatrixProductState "qiskit_aer.library.SaveMatrixProductState")                   | ✘         | ✘           | ✘              | ✔   | ✘          | ✘               | ✘       | ✘       |
+| [`SaveProbabilities`](qiskit_aer.library.SaveProbabilities "qiskit_aer.library.SaveProbabilities")                                  | ✔         | ✔           | ✔              | ✔   | ✔          | ✘               | ✘       | ✘       |
+| [`SaveProbabilitiesDict`](qiskit_aer.library.SaveProbabilitiesDict "qiskit_aer.library.SaveProbabilitiesDict")                      | ✔         | ✔           | ✔              | ✔   | ✔          | ✘               | ✘       | ✘       |
+| [`SaveStabilizer`](qiskit_aer.library.SaveStabilizer "qiskit_aer.library.SaveStabilizer")                                           | ✔         | ✘           | ✘              | ✘   | ✔          | ✘               | ✘       | ✘       |
+| [`SaveState`](qiskit_aer.library.SaveState "qiskit_aer.library.SaveState")                                                          | ✔         | ✔           | ✔              | ✔   | ✔          | ✔               | ✔       | ✔       |
+| [`SaveStatevector`](qiskit_aer.library.SaveStatevector "qiskit_aer.library.SaveStatevector")                                        | ✔         | ✔           | ✘              | ✔   | ✘          | ✔               | ✘       | ✘       |
+| [`SaveStatevectorDict`](qiskit_aer.library.SaveStatevectorDict "qiskit_aer.library.SaveStatevectorDict")                            | ✔         | ✔           | ✘              | ✘   | ✘          | ✘               | ✘       | ✘       |
+| [`SaveSuperOp`](qiskit_aer.library.SaveSuperOp "qiskit_aer.library.SaveSuperOp")                                                    | ✘         | ✘           | ✘              | ✘   | ✘          | ✘               | ✘       | ✔       |
+| [`SaveUnitary`](qiskit_aer.library.SaveUnitary "qiskit_aer.library.SaveUnitary")                                                    | ✘         | ✘           | ✘              | ✘   | ✘          | ✘               | ✔       | ✘       |
+| [`SetDensityMatrix`](qiskit_aer.library.SetDensityMatrix "qiskit_aer.library.SetDensityMatrix")                                     | ✔         | ✘           | ✔              | ✘   | ✘          | ✘               | ✘       | ✘       |
+| [`SetStabilizer`](qiskit_aer.library.SetStabilizer "qiskit_aer.library.SetStabilizer")                                              | ✔         | ✘           | ✘              | ✘   | ✔          | ✘               | ✘       | ✘       |
+| [`SetStatevector`](qiskit_aer.library.SetStatevector "qiskit_aer.library.SetStatevector")                                           | ✔         | ✔           | ✘              | ✘   | ✘          | ✘               | ✘       | ✘       |
+| [`SetUnitary`](qiskit_aer.library.SetUnitary "qiskit_aer.library.SetUnitary")                                                       | ✘         | ✘           | ✘              | ✘   | ✘          | ✘               | ✔       | ✘       |
+|                                                                                                                                     |           |             |                |     |            |                 |         |         |
+

@@ -1,0 +1,50 @@
+---
+title: uncertainty_models (v0.26)
+description: API reference for qiskit.aqua.components.uncertainty_models in qiskit v0.26
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.aqua.components.uncertainty_models
+---
+
+<span id="module-qiskit.aqua.components.uncertainty_models" />
+
+<span id="qiskit-aqua-components-uncertainty-models" />
+
+<span id="uncertainty-models-qiskit-aqua-components-uncertainty-models" />
+
+# Uncertainty Models
+
+`qiskit.aqua.components.uncertainty_models`
+
+An uncertainty model is an implementation that provides a way to construct a quantum circuit to prepare a state which corresponds to a particular distribution. More precisely, the resulting state together with an affine map can be used to sample from the considered distribution. The qubits are measured and then mapped to the desired range using the affine map.
+
+# Uncertainty Model Base Classes
+
+[`UncertaintyModel`](qiskit.aqua.components.uncertainty_models.UncertaintyModel "qiskit.aqua.components.uncertainty_models.UncertaintyModel") is the base class from which further base classes for univariate and multivariate distributions are derived
+
+|                                                                                                                                                                       |                                                                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [`UncertaintyModel`](qiskit.aqua.components.uncertainty_models.UncertaintyModel "qiskit.aqua.components.uncertainty_models.UncertaintyModel")                         | The abstract Uncertainty Model                                                      |
+| [`UnivariateDistribution`](qiskit.aqua.components.uncertainty_models.UnivariateDistribution "qiskit.aqua.components.uncertainty_models.UnivariateDistribution")       | This module contains the definition of a base class for univariate distributions.   |
+| [`MultivariateDistribution`](qiskit.aqua.components.uncertainty_models.MultivariateDistribution "qiskit.aqua.components.uncertainty_models.MultivariateDistribution") | This module contains the definition of a base class for multivariate distributions. |
+
+# Univariate Distributions
+
+|                                                                                                                                                                                                  |                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
+| [`NormalDistribution`](qiskit.aqua.components.uncertainty_models.NormalDistribution "qiskit.aqua.components.uncertainty_models.NormalDistribution")                                              | The Univariate Normal Distribution.      |
+| [`LogNormalDistribution`](qiskit.aqua.components.uncertainty_models.LogNormalDistribution "qiskit.aqua.components.uncertainty_models.LogNormalDistribution")                                     | The Univariate Log-Normal Distribution.  |
+| [`BernoulliDistribution`](qiskit.aqua.components.uncertainty_models.BernoulliDistribution "qiskit.aqua.components.uncertainty_models.BernoulliDistribution")                                     | The Univariate Bernoulli Distribution.   |
+| [`UniformDistribution`](qiskit.aqua.components.uncertainty_models.UniformDistribution "qiskit.aqua.components.uncertainty_models.UniformDistribution")                                           | The Univariate Uniform Distribution.     |
+| [`UnivariateVariationalDistribution`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution") | The Univariate Variational Distribution. |
+
+# Multivariate Distributions
+
+|                                                                                                                                                                                                           |                                                              |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`MultivariateNormalDistribution`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution")                   | The Multivariate Normal Distribution.                        |
+| [`MultivariateLogNormalDistribution`](qiskit.aqua.components.uncertainty_models.MultivariateLogNormalDistribution "qiskit.aqua.components.uncertainty_models.MultivariateLogNormalDistribution")          | The Multivariate Log-Normal Distribution.                    |
+| [`MultivariateUniformDistribution`](qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution "qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution")                | The Multivariate Uniform Distribution.                       |
+| [`MultivariateVariationalDistribution`](qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution "qiskit.aqua.components.uncertainty_models.MultivariateVariationalDistribution")    | The Multivariate Variational Distribution.                   |
+| [`GaussianConditionalIndependenceModel`](qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel "qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel") | The Gaussian Conditional Independence Model for Credit Risk. |
+

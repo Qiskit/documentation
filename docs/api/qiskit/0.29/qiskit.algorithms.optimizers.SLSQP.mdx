@@ -1,0 +1,231 @@
+---
+title: SLSQP (v0.29)
+description: API reference for qiskit.algorithms.optimizers.SLSQP in qiskit v0.29
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.optimizers.SLSQP
+---
+
+# SLSQP
+
+<Class id="qiskit.algorithms.optimizers.SLSQP" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/optimizers/slsqp.py" signature="SLSQP(maxiter=100, disp=False, ftol=1e-06, tol=None, eps=1.4901161193847656e-08, options=None, max_evals_grouped=1, **kwargs)" modifiers="class">
+  Bases: `qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`
+
+  Sequential Least SQuares Programming optimizer.
+
+  SLSQP minimizes a function of several variables with any combination of bounds, equality and inequality constraints. The method wraps the SLSQP Optimization subroutine originally implemented by Dieter Kraft.
+
+  SLSQP is ideal for mathematical problems for which the objective function and the constraints are twice continuously differentiable. Note that the wrapper handles infinite values in bounds by converting them into large floating values.
+
+  Uses scipy.optimize.minimize SLSQP. For further detail, please refer to See [https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)
+
+  **Parameters**
+
+  *   **maxiter** (`int`) – Maximum number of iterations.
+  *   **disp** (`bool`) – Set to True to print convergence messages.
+  *   **ftol** (`float`) – Precision goal for the value of f in the stopping criterion.
+  *   **tol** (`Optional`\[`float`]) – Tolerance for termination.
+  *   **eps** (`float`) – Step size used for numerical approximation of the Jacobian.
+  *   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
+  *   **max\_evals\_grouped** (`int`) – Max number of default gradient evaluations performed simultaneously.
+  *   **kwargs** – additional kwargs for scipy.optimize.minimize.
+
+  ## Methods
+
+  <span id="qiskit-algorithms-optimizers-slsqp-get-support-level" />
+
+  ### get\_support\_level
+
+  <Function id="qiskit.algorithms.optimizers.SLSQP.get_support_level" signature="SLSQP.get_support_level()">
+    Return support level dictionary
+  </Function>
+
+  <span id="qiskit-algorithms-optimizers-slsqp-gradient-num-diff" />
+
+  ### gradient\_num\_diff
+
+  <Function id="qiskit.algorithms.optimizers.SLSQP.gradient_num_diff" signature="SLSQP.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)" modifiers="static">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+
+    **Parameters**
+
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
+
+    **Returns**
+
+    the gradient computed
+
+    **Return type**
+
+    grad
+  </Function>
+
+  <span id="qiskit-algorithms-optimizers-slsqp-optimize" />
+
+  ### optimize
+
+  <Function id="qiskit.algorithms.optimizers.SLSQP.optimize" signature="SLSQP.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Perform optimization.
+
+    **Parameters**
+
+    *   **num\_vars** (*int*) – Number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – A function that computes the objective function.
+    *   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+    *   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+    *   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+
+    **Returns**
+
+    **point, value, nfev**
+
+    point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+
+    **Raises**
+
+    **ValueError** – invalid input
+  </Function>
+
+  <span id="qiskit-algorithms-optimizers-slsqp-print-options" />
+
+  ### print\_options
+
+  <Function id="qiskit.algorithms.optimizers.SLSQP.print_options" signature="SLSQP.print_options()">
+    Print algorithm-specific options.
+  </Function>
+
+  <span id="qiskit-algorithms-optimizers-slsqp-set-max-evals-grouped" />
+
+  ### set\_max\_evals\_grouped
+
+  <Function id="qiskit.algorithms.optimizers.SLSQP.set_max_evals_grouped" signature="SLSQP.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
+
+  <span id="qiskit-algorithms-optimizers-slsqp-set-options" />
+
+  ### set\_options
+
+  <Function id="qiskit.algorithms.optimizers.SLSQP.set_options" signature="SLSQP.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
+
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+
+    **Parameters**
+
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
+
+  <span id="qiskit-algorithms-optimizers-slsqp-wrap-function" />
+
+  ### wrap\_function
+
+  <Function id="qiskit.algorithms.optimizers.SLSQP.wrap_function" signature="SLSQP.wrap_function(function, args)" modifiers="static">
+    Wrap the function to implicitly inject the args at the call of the function.
+
+    **Parameters**
+
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
+
+    **Returns**
+
+    wrapper
+
+    **Return type**
+
+    function\_wrapper
+  </Function>
+
+  ## Attributes
+
+  ### bounds\_support\_level
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.bounds_support_level">
+    Returns bounds support level
+  </Attribute>
+
+  ### gradient\_support\_level
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.gradient_support_level">
+    Returns gradient support level
+  </Attribute>
+
+  ### initial\_point\_support\_level
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
+
+  ### is\_bounds\_ignored
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
+
+  ### is\_bounds\_required
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.is_bounds_required">
+    Returns is bounds required
+  </Attribute>
+
+  ### is\_bounds\_supported
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
+
+  ### is\_gradient\_ignored
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
+
+  ### is\_gradient\_required
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.is_gradient_required">
+    Returns is gradient required
+  </Attribute>
+
+  ### is\_gradient\_supported
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
+
+  ### is\_initial\_point\_ignored
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
+
+  ### is\_initial\_point\_required
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
+
+  ### is\_initial\_point\_supported
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
+
+  ### setting
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.setting">
+    Return setting
+  </Attribute>
+
+  ### settings
+
+  <Attribute id="qiskit.algorithms.optimizers.SLSQP.settings">
+    **Return type**
+
+    `Dict`\[`str`, `Any`]
+  </Attribute>
+</Class>
+

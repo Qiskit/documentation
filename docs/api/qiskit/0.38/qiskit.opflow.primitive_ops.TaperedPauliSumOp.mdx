@@ -1,0 +1,148 @@
+---
+title: TaperedPauliSumOp (v0.38)
+description: API reference for qiskit.opflow.primitive_ops.TaperedPauliSumOp in qiskit v0.38
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.primitive_ops.TaperedPauliSumOp
+---
+
+# TaperedPauliSumOp
+
+<Class id="qiskit.opflow.primitive_ops.TaperedPauliSumOp" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py" signature="TaperedPauliSumOp(primitive, z2_symmetries, coeff=1.0)" modifiers="class">
+  Bases: [`qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")
+
+  Class for PauliSumOp after tapering
+
+  **Parameters**
+
+  *   **primitive** ([`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")) – The SparsePauliOp which defines the behavior of the underlying function.
+  *   **z2\_symmetries** ([`Z2Symmetries`](qiskit.opflow.primitive_ops.Z2Symmetries "qiskit.opflow.primitive_ops.tapered_pauli_sum_op.Z2Symmetries")) – Z2 symmetries which the Operator has.
+  *   **coeff** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – A coefficient multiplying the primitive.
+
+  **Raises**
+
+  **TypeError** – invalid parameters.
+
+  ## Methods Defined Here
+
+  <span id="qiskit-opflow-primitive-ops-taperedpaulisumop-assign-parameters" />
+
+  ### assign\_parameters
+
+  <Function id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.assign_parameters" signature="TaperedPauliSumOp.assign_parameters(param_dict)">
+    Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
+
+    **Parameters**
+
+    **param\_dict** (`dict`) – The dictionary of `Parameters` to replace, and values or lists of values by which to replace them.
+
+    **Return type**
+
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+
+    **Returns**
+
+    The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
+  </Function>
+
+  ## Attributes
+
+  ### INDENTATION
+
+  <Attribute id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.INDENTATION" attributeValue="'  '" />
+
+  ### coeff
+
+  <Attribute id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.coeff">
+    The scalar coefficient multiplying the Operator.
+
+    **Return type**
+
+    `Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+
+    **Returns**
+
+    The coefficient.
+  </Attribute>
+
+  ### coeffs
+
+  <Attribute id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.coeffs">
+    Return the Pauli coefficients.
+  </Attribute>
+
+  ### grouping\_type
+
+  <Attribute id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.grouping_type">
+    Type of Grouping
+
+    **Type**
+
+    Returns
+
+    **Return type**
+
+    `str`
+  </Attribute>
+
+  ### instance\_id
+
+  <Attribute id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.instance_id">
+    Return the unique instance id.
+
+    **Return type**
+
+    `int`
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.num_qubits">
+    **Return type**
+
+    `int`
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.parameters" />
+
+  ### primitive
+
+  <Attribute id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.primitive" attributeTypeHint="qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp">
+    The primitive defining the underlying function of the Operator.
+
+    **Return type**
+
+    `Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator"), [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli"), [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp"), [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]
+
+    **Returns**
+
+    The primitive object.
+  </Attribute>
+
+  ### settings
+
+  <Attribute id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.settings">
+    Return operator settings.
+
+    **Return type**
+
+    `Dict`
+  </Attribute>
+
+  ### z2\_symmetries
+
+  <Attribute id="qiskit.opflow.primitive_ops.TaperedPauliSumOp.z2_symmetries">
+    Z2 symmetries which the Operator has.
+
+    **Return type**
+
+    [`Z2Symmetries`](qiskit.opflow.primitive_ops.Z2Symmetries "qiskit.opflow.primitive_ops.tapered_pauli_sum_op.Z2Symmetries")
+
+    **Returns**
+
+    The Z2 Symmetries.
+  </Attribute>
+</Class>
+

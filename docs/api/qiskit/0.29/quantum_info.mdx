@@ -1,0 +1,107 @@
+---
+title: quantum_info (v0.29)
+description: API reference for qiskit.quantum_info in qiskit v0.29
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.quantum_info
+---
+
+<span id="module-qiskit.quantum_info" />
+
+<span id="qiskit-quantum-info" />
+
+<span id="quantum-information-qiskit-quantum-info" />
+
+# Quantum Information
+
+`qiskit.quantum_info`
+
+## Operators
+
+|                                                                                                                       |                                                            |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")(data\[, input\_dims, output\_dims])         | Matrix operator class                                      |
+| [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")(\[data, x, z, label])                                | N-qubit Pauli operator.                                    |
+| [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")(data\[, validate])                          | An N-qubit unitary operator from the Clifford group.       |
+| [`ScalarOp`](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")(\[dims, coeff])                             | Scalar identity operator class.                            |
+| [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")(data\[, coeffs])             | Sparse N-qubit operator in a Pauli basis representation.   |
+| [`CNOTDihedral`](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")(\[data, num\_qubits, validate]) | An N-qubit operator from the CNOT-Dihedral group.          |
+| [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")(data)                                    | List of N-qubit Pauli operators.                           |
+| [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")(data)                                 | Symplectic representation of a list Pauli matrices.        |
+| [`StabilizerTable`](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")(data\[, phase])        | Symplectic representation of a list Stabilizer matrices.   |
+| [`pauli_basis`](qiskit.quantum_info.pauli_basis "qiskit.quantum_info.pauli_basis")(num\_qubits\[, weight])            | Return the ordered PauliTable for the n-qubit Pauli basis. |
+| [`pauli_group`](qiskit.quantum_info.pauli_group "qiskit.quantum_info.pauli_group")(number\_of\_qubits\[, case])       | DEPRECATED: Return the Pauli group with 4^n elements.      |
+
+## States
+
+|                                                                                                                   |                        |
+| ----------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")(data\[, dims])                 | Statevector class      |
+| [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")(data\[, dims])           | DensityMatrix class    |
+| [`StabilizerState`](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")(data\[, validate]) | StabilizerState class. |
+
+## Channels
+
+|                                                                                                                        |                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [`Choi`](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi")(data\[, input\_dims, output\_dims])                      | Choi-matrix representation of a Quantum Channel.                 |
+| [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")(data\[, input\_dims, output\_dims])             | Superoperator representation of a quantum channel.               |
+| [`Kraus`](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")(data\[, input\_dims, output\_dims])                   | Kraus representation of a quantum channel.                       |
+| [`Stinespring`](qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")(data\[, input\_dims, output\_dims]) | Stinespring representation of a quantum channel.                 |
+| [`Chi`](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")(data\[, input\_dims, output\_dims])                         | Pauli basis Chi-matrix representation of a quantum channel.      |
+| [`PTM`](qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")(data\[, input\_dims, output\_dims])                         | Pauli Transfer Matrix (PTM) representation of a Quantum Channel. |
+
+## Measures
+
+|                                                                                                                                         |                                                              |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`average_gate_fidelity`](qiskit.quantum_info.average_gate_fidelity "qiskit.quantum_info.average_gate_fidelity")(channel\[, target, …]) | Return the average gate fidelity of a noisy quantum channel. |
+| [`process_fidelity`](qiskit.quantum_info.process_fidelity "qiskit.quantum_info.process_fidelity")(channel\[, target, …])                | Return the process fidelity of a noisy quantum channel.      |
+| [`gate_error`](qiskit.quantum_info.gate_error "qiskit.quantum_info.gate_error")(channel\[, target, require\_cp, …])                     | Return the gate error of a noisy quantum channel.            |
+| [`diamond_norm`](qiskit.quantum_info.diamond_norm "qiskit.quantum_info.diamond_norm")(choi, \*\*kwargs)                                 | Return the diamond norm of the input quantum channel object. |
+| [`state_fidelity`](qiskit.quantum_info.state_fidelity "qiskit.quantum_info.state_fidelity")(state1, state2\[, validate])                | Return the state fidelity between two quantum states.        |
+| [`purity`](qiskit.quantum_info.purity "qiskit.quantum_info.purity")(state\[, validate])                                                 | Calculate the purity of a quantum state.                     |
+| [`concurrence`](qiskit.quantum_info.concurrence "qiskit.quantum_info.concurrence")(state)                                               | Calculate the concurrence of a quantum state.                |
+| [`entropy`](qiskit.quantum_info.entropy "qiskit.quantum_info.entropy")(state\[, base])                                                  | Calculate the von-Neumann entropy of a quantum state.        |
+| [`entanglement_of_formation`](qiskit.quantum_info.entanglement_of_formation "qiskit.quantum_info.entanglement_of_formation")(state)     | Calculate the entanglement of formation of quantum state.    |
+| [`mutual_information`](qiskit.quantum_info.mutual_information "qiskit.quantum_info.mutual_information")(state\[, base])                 | Calculate the mutual information of a bipartite state.       |
+
+## Utility Functions
+
+|                                                                                                               |                                                                     |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`partial_trace`](qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace")(state, qargs)        | Return reduced density matrix by tracing out part of quantum state. |
+| [`shannon_entropy`](qiskit.quantum_info.shannon_entropy "qiskit.quantum_info.shannon_entropy")(pvec\[, base]) | Compute the Shannon entropy of a probability vector.                |
+
+## Random
+
+|                                                                                                                                                    |                                       |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [`random_statevector`](qiskit.quantum_info.random_statevector "qiskit.quantum_info.random_statevector")(dims\[, seed])                             | Generator a random Statevector.       |
+| [`random_density_matrix`](qiskit.quantum_info.random_density_matrix "qiskit.quantum_info.random_density_matrix")(dims\[, rank, method, seed])      | Generator a random DensityMatrix.     |
+| [`random_unitary`](qiskit.quantum_info.random_unitary "qiskit.quantum_info.random_unitary")(dims\[, seed])                                         | Return a random unitary Operator.     |
+| [`random_hermitian`](qiskit.quantum_info.random_hermitian "qiskit.quantum_info.random_hermitian")(dims\[, traceless, seed])                        | Return a random hermitian Operator.   |
+| [`random_pauli`](qiskit.quantum_info.random_pauli "qiskit.quantum_info.random_pauli")(num\_qubits\[, group\_phase, seed])                          | Return a random Pauli.                |
+| [`random_clifford`](qiskit.quantum_info.random_clifford "qiskit.quantum_info.random_clifford")(num\_qubits\[, seed])                               | Return a random Clifford operator.    |
+| [`random_quantum_channel`](qiskit.quantum_info.random_quantum_channel "qiskit.quantum_info.random_quantum_channel")(\[input\_dims, …])             | Return a random CPTP quantum channel. |
+| [`random_cnotdihedral`](qiskit.quantum_info.random_cnotdihedral "qiskit.quantum_info.random_cnotdihedral")(num\_qubits\[, seed])                   | Return a random CNOTDihedral element. |
+| [`random_pauli_table`](qiskit.quantum_info.random_pauli_table "qiskit.quantum_info.random_pauli_table")(num\_qubits\[, size, seed])                | Return a random PauliTable.           |
+| [`random_stabilizer_table`](qiskit.quantum_info.random_stabilizer_table "qiskit.quantum_info.random_stabilizer_table")(num\_qubits\[, size, seed]) | Return a random StabilizerTable.      |
+
+## Analysis
+
+|                                                                                                                           |                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [`hellinger_distance`](qiskit.quantum_info.hellinger_distance "qiskit.quantum_info.hellinger_distance")(dist\_p, dist\_q) | Computes the Hellinger distance between two counts distributions. |
+| [`hellinger_fidelity`](qiskit.quantum_info.hellinger_fidelity "qiskit.quantum_info.hellinger_fidelity")(dist\_p, dist\_q) | Computes the Hellinger fidelity between two counts distributions. |
+
+## Synthesis
+
+|                                                                                                                                    |                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.OneQubitEulerDecomposer")(\[basis])   | A class for decomposing 1-qubit unitaries into Euler angle rotations.                          |
+| [`TwoQubitBasisDecomposer`](qiskit.quantum_info.TwoQubitBasisDecomposer "qiskit.quantum_info.TwoQubitBasisDecomposer")(gate\[, …]) | A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qubit basis gate. |
+| [`two_qubit_cnot_decompose`](qiskit.quantum_info.two_qubit_cnot_decompose "qiskit.quantum_info.two_qubit_cnot_decompose")          | A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qubit basis gate. |
+| [`Quaternion`](qiskit.quantum_info.Quaternion "qiskit.quantum_info.Quaternion")(data)                                              | A class representing a Quaternion.                                                             |
+| [`decompose_clifford`](qiskit.quantum_info.decompose_clifford "qiskit.quantum_info.decompose_clifford")(clifford\[, method])       | Decompose a Clifford operator into a QuantumCircuit.                                           |
+

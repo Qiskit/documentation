@@ -1,0 +1,34 @@
+---
+title: insert_noise (v0.24)
+description: API reference for qiskit.providers.aer.utils.insert_noise in qiskit v0.24
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.utils.insert_noise
+---
+
+<span id="qiskit-providers-aer-utils-insert-noise" />
+
+# qiskit.providers.aer.utils.insert\_noise
+
+<Function id="qiskit.providers.aer.utils.insert_noise" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.7/qiskit/providers/aer/utils/noise_model_inserter.py" signature="insert_noise(circuits, noise_model, transpile=False)">
+  Return a noisy version of a QuantumCircuit.
+
+  **Parameters**
+
+  *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – Input noise-free circuits.
+  *   **noise\_model** ([*NoiseModel*](qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")) – The noise model containing the errors to add
+  *   **transpile** (*Boolean*) – Should the circuit be transpiled into the noise model basis gates
+
+  **Returns**
+
+  The new circuit with the Kraus noise instructions inserted.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+  ## Additional Information:
+
+  The noisy circuit return by this function will consist of the original circuit with `Kraus` instructions inserted after all instructions referenced in the `noise_model`. The resulting circuit cannot be ran on a quantum computer but can be executed on the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator").
+</Function>
+

@@ -1,0 +1,46 @@
+---
+title: BasicSynthesisPermutation (v0.42)
+description: API reference for qiskit.transpiler.passes.BasicSynthesisPermutation in qiskit v0.42
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.BasicSynthesisPermutation
+---
+
+# BasicSynthesisPermutation
+
+<Class id="qiskit.transpiler.passes.BasicSynthesisPermutation" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/high_level_synthesis.py" signature="BasicSynthesisPermutation" modifiers="class">
+  Bases: [`qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+
+  The permutation synthesis plugin based on sorting.
+
+  This plugin can be accessed by the `basic` method name in the `HLSConfig` for `permutation`. For example:
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import PermutationGate
+  from qiskit.transpiler import PassManager
+  from qiskit.transpiler.passes.synthesis.high_level_synthesis import HLSConfig, HighLevelSynthesis
+  from qiskit.transpiler.passes.synthesis.plugin import HighLevelSynthesisPluginManager
+
+  # Create a permutation and add it to a quantum circuit
+  perm = PermutationGate([4, 6, 3, 7, 1, 2, 0, 5])
+  qc = QuantumCircuit(8)
+  qc.append(perm, range(8))
+
+  # BasicSynthesisPermutation plugin for permutations
+  # Returns a quantum circuit with size 6 and depth 3
+  qct = PassManager(HighLevelSynthesis(HLSConfig(permutation=[("basic", {})]))).run(qc)
+  print(f"basic: {qct.size() = }, {qct.depth() = }")
+  ```
+
+  ## Methods
+
+  <span id="qiskit-transpiler-passes-basicsynthesispermutation-run" />
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.BasicSynthesisPermutation.run" signature="BasicSynthesisPermutation.run(high_level_object, **options)">
+    Run synthesis for the given Permutation.
+  </Function>
+</Class>
+

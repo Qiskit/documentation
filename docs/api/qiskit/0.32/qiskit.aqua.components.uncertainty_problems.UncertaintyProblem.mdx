@@ -1,0 +1,159 @@
+---
+title: UncertaintyProblem (v0.32)
+description: API reference for qiskit.aqua.components.uncertainty_problems.UncertaintyProblem in qiskit v0.32
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.uncertainty_problems.UncertaintyProblem
+---
+
+# UncertaintyProblem
+
+<Class id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/uncertainty_problems/uncertainty_problem.py" signature="UncertaintyProblem(num_qubits)" modifiers="class">
+  Bases: `qiskit.aqua.utils.circuit_factory.CircuitFactory`, `abc.ABC`
+
+  The abstract Uncertainty Problem component.
+
+  ## Methods
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-build" />
+
+  ### build
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.build" signature="UncertaintyProblem.build(qc, q, q_ancillas=None, params=None)" modifiers="abstract">
+    Adds corresponding sub-circuit to given circuit
+
+    **Parameters**
+
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **params** (*list*) – parameters for circuit
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-build-controlled" />
+
+  ### build\_controlled
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.build_controlled" signature="UncertaintyProblem.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds corresponding controlled sub-circuit to given circuit
+
+    **Parameters**
+
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-build-controlled-inverse" />
+
+  ### build\_controlled\_inverse
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.build_controlled_inverse" signature="UncertaintyProblem.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled inverse of corresponding sub-circuit to given circuit
+
+    **Parameters**
+
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+    *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-build-controlled-inverse-power" />
+
+  ### build\_controlled\_inverse\_power
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.build_controlled_inverse_power" signature="UncertaintyProblem.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-build-controlled-power" />
+
+  ### build\_controlled\_power
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.build_controlled_power" signature="UncertaintyProblem.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)">
+    Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-build-inverse" />
+
+  ### build\_inverse
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.build_inverse" signature="UncertaintyProblem.build_inverse(qc, q, q_ancillas=None)">
+    Adds inverse of corresponding sub-circuit to given circuit
+
+    **Parameters**
+
+    *   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+    *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+    *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-build-inverse-power" />
+
+  ### build\_inverse\_power
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.build_inverse_power" signature="UncertaintyProblem.build_inverse_power(qc, q, power, q_ancillas=None)">
+    Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-build-power" />
+
+  ### build\_power
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.build_power" signature="UncertaintyProblem.build_power(qc, q, power, q_ancillas=None)">
+    Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-get-num-qubits" />
+
+  ### get\_num\_qubits
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.get_num_qubits" signature="UncertaintyProblem.get_num_qubits()">
+    returns number of qubits
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-get-num-qubits-controlled" />
+
+  ### get\_num\_qubits\_controlled
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.get_num_qubits_controlled" signature="UncertaintyProblem.get_num_qubits_controlled()">
+    returns number of qubits controlled
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-required-ancillas" />
+
+  ### required\_ancillas
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.required_ancillas" signature="UncertaintyProblem.required_ancillas()">
+    returns required ancillas
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-required-ancillas-controlled" />
+
+  ### required\_ancillas\_controlled
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.required_ancillas_controlled" signature="UncertaintyProblem.required_ancillas_controlled()">
+    returns required ancillas controlled
+  </Function>
+
+  <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem-value-to-estimation" />
+
+  ### value\_to\_estimation
+
+  <Function id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.value_to_estimation" signature="UncertaintyProblem.value_to_estimation(value)">
+    value to estimate
+  </Function>
+
+  ## Attributes
+
+  ### num\_target\_qubits
+
+  <Attribute id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.num_target_qubits">
+    Returns the number of target qubits
+  </Attribute>
+</Class>
+

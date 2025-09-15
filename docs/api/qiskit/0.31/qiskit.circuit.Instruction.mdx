@@ -1,0 +1,275 @@
+---
+title: Instruction (v0.31)
+description: API reference for qiskit.circuit.Instruction in qiskit v0.31
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.Instruction
+---
+
+# Instruction
+
+<Class id="qiskit.circuit.Instruction" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/instruction.py" signature="Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)" modifiers="class">
+  Bases: `object`
+
+  Generic quantum instruction.
+
+  Create a new instruction.
+
+  **Parameters**
+
+  *   **name** (*str*) – instruction name
+  *   **num\_qubits** (*int*) – instruction’s qubit width
+  *   **num\_clbits** (*int*) – instruction’s clbit width
+  *   **params** (*list\[int|float|complex|str|ndarray|list|ParameterExpression]*) – list of parameters
+  *   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
+  *   **unit** (*str*) – time unit of duration
+  *   **label** (*str or None*) – An optional label for identifying the instruction.
+
+  **Raises**
+
+  **CircuitError** – when the register is not in the correct format.
+
+  ## Methods
+
+  <span id="qiskit-circuit-instruction-add-decomposition" />
+
+  ### add\_decomposition
+
+  <Function id="qiskit.circuit.Instruction.add_decomposition" signature="Instruction.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  <span id="qiskit-circuit-instruction-assemble" />
+
+  ### assemble
+
+  <Function id="qiskit.circuit.Instruction.assemble" signature="Instruction.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
+
+  <span id="qiskit-circuit-instruction-broadcast-arguments" />
+
+  ### broadcast\_arguments
+
+  <Function id="qiskit.circuit.Instruction.broadcast_arguments" signature="Instruction.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
+
+    **Parameters**
+
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
+
+    **Yields**
+
+    *Tuple(List, List)* – A tuple with single arguments.
+
+    **Raises**
+
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
+
+  <span id="qiskit-circuit-instruction-c-if" />
+
+  ### c\_if
+
+  <Function id="qiskit.circuit.Instruction.c_if" signature="Instruction.c_if(classical, val)">
+    Add classical condition on register or cbit classical and value val.
+  </Function>
+
+  <span id="qiskit-circuit-instruction-copy" />
+
+  ### copy
+
+  <Function id="qiskit.circuit.Instruction.copy" signature="Instruction.copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+
+    **Returns**
+
+    **a copy of the current instruction, with the name**
+
+    updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  <span id="qiskit-circuit-instruction-inverse" />
+
+  ### inverse
+
+  <Function id="qiskit.circuit.Instruction.inverse" signature="Instruction.inverse()">
+    Invert this instruction.
+
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+
+    **Returns**
+
+    a fresh instruction for the inverse
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
+
+  <span id="qiskit-circuit-instruction-is-parameterized" />
+
+  ### is\_parameterized
+
+  <Function id="qiskit.circuit.Instruction.is_parameterized" signature="Instruction.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
+
+  <span id="qiskit-circuit-instruction-mirror" />
+
+  ### mirror
+
+  <Function id="qiskit.circuit.Instruction.mirror" signature="Instruction.mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
+
+    **Returns**
+
+    **a new instruction with sub-instructions**
+
+    reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  <span id="qiskit-circuit-instruction-qasm" />
+
+  ### qasm
+
+  <Function id="qiskit.circuit.Instruction.qasm" signature="Instruction.qasm()">
+    Return a default OpenQASM string for the instruction.
+
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
+
+  <span id="qiskit-circuit-instruction-repeat" />
+
+  ### repeat
+
+  <Function id="qiskit.circuit.Instruction.repeat" signature="Instruction.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
+
+    **Parameters**
+
+    **n** (*int*) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    **CircuitError** – If n \< 1.
+  </Function>
+
+  <span id="qiskit-circuit-instruction-reverse-ops" />
+
+  ### reverse\_ops
+
+  <Function id="qiskit.circuit.Instruction.reverse_ops" signature="Instruction.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  <span id="qiskit-circuit-instruction-soft-compare" />
+
+  ### soft\_compare
+
+  <Function id="qiskit.circuit.Instruction.soft_compare" signature="Instruction.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    bool
+  </Function>
+
+  <span id="qiskit-circuit-instruction-validate-parameter" />
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.Instruction.validate_parameter" signature="Instruction.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
+
+  ## Attributes
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.Instruction.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.Instruction.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.Instruction.duration">
+    Get the duration.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.Instruction.label">
+    Return instruction label
+
+    **Return type**
+
+    `str`
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.Instruction.params">
+    return instruction params.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.Instruction.unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
+

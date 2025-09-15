@@ -1,0 +1,89 @@
+---
+title: Eigenvalues (v0.32)
+description: API reference for qiskit.aqua.components.eigs.Eigenvalues in qiskit v0.32
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.eigs.Eigenvalues
+---
+
+# Eigenvalues
+
+<Class id="qiskit.aqua.components.eigs.Eigenvalues" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/eigs/eigs.py" signature="Eigenvalues" modifiers="class">
+  Bases: `abc.ABC`
+
+  Base class for eigenvalue estimation.
+
+  This method should initialize the module and use an exception if a component of the module is not available.
+
+  ## Methods
+
+  <span id="qiskit-aqua-components-eigs-eigenvalues-construct-circuit" />
+
+  ### construct\_circuit
+
+  <Function id="qiskit.aqua.components.eigs.Eigenvalues.construct_circuit" signature="Eigenvalues.construct_circuit(mode, register=None)" modifiers="abstract">
+    Construct the eigenvalue estimation quantum circuit.
+
+    **Parameters**
+
+    *   **mode** (*str*) – ‘matrix’ or ‘circuit’
+    *   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – register for circuit construction where eigenvalues will be stored.
+
+    **Returns**
+
+    object for the eigenvalue estimation circuit.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+    **Raises**
+
+    **NotImplementedError** – not implemented
+  </Function>
+
+  <span id="qiskit-aqua-components-eigs-eigenvalues-construct-inverse" />
+
+  ### construct\_inverse
+
+  <Function id="qiskit.aqua.components.eigs.Eigenvalues.construct_inverse" signature="Eigenvalues.construct_inverse(mode, circuit)">
+    Construct the inverse eigenvalue estimation quantum circuit.
+
+    **Parameters**
+
+    *   **mode** (*str*) – construction mode, ‘matrix’ not supported
+    *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit to invert
+
+    **Returns**
+
+    **object for of the inverted eigenvalue estimation**
+
+    circuit.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+    **Raises**
+
+    *   **NotImplementedError** – not implemented for matrix mode
+    *   **ValueError** – Circuit was not constructed beforehand
+  </Function>
+
+  <span id="qiskit-aqua-components-eigs-eigenvalues-get-register-sizes" />
+
+  ### get\_register\_sizes
+
+  <Function id="qiskit.aqua.components.eigs.Eigenvalues.get_register_sizes" signature="Eigenvalues.get_register_sizes()" modifiers="abstract">
+    get register sizes
+  </Function>
+
+  <span id="qiskit-aqua-components-eigs-eigenvalues-get-scaling" />
+
+  ### get\_scaling
+
+  <Function id="qiskit.aqua.components.eigs.Eigenvalues.get_scaling" signature="Eigenvalues.get_scaling()" modifiers="abstract">
+    get scaling
+  </Function>
+</Class>
+

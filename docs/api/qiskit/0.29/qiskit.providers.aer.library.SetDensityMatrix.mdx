@@ -1,0 +1,273 @@
+---
+title: SetDensityMatrix (v0.29)
+description: API reference for qiskit.providers.aer.library.SetDensityMatrix in qiskit v0.29
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.library.SetDensityMatrix
+---
+
+# SetDensityMatrix
+
+<Class id="qiskit.providers.aer.library.SetDensityMatrix" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/set_instructions/set_density_matrix.py" signature="SetDensityMatrix(state)" modifiers="class">
+  Bases: `qiskit.circuit.instruction.Instruction`
+
+  Set density matrix state of the simulator
+
+  Create new instruction to set the density matrix state of the simulator.
+
+  **Parameters**
+
+  **state** ([*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a density matrix.
+
+  **Raises**
+
+  **ExtensionError** – if the input density matrix is not valid.
+
+  <Admonition title="Note" type="note">
+    This set instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
+  </Admonition>
+
+  ## Methods
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-add-decomposition" />
+
+  ### add\_decomposition
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.add_decomposition" signature="SetDensityMatrix.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-assemble" />
+
+  ### assemble
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.assemble" signature="SetDensityMatrix.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-broadcast-arguments" />
+
+  ### broadcast\_arguments
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.broadcast_arguments" signature="SetDensityMatrix.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
+
+    **Parameters**
+
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
+
+    **Yields**
+
+    *Tuple(List, List)* – A tuple with single arguments.
+
+    **Raises**
+
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-c-if" />
+
+  ### c\_if
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.c_if" signature="SetDensityMatrix.c_if(classical, val)">
+    Add classical condition on register or cbit classical and value val.
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-copy" />
+
+  ### copy
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.copy" signature="SetDensityMatrix.copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+
+    **Returns**
+
+    **a copy of the current instruction, with the name**
+
+    updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-inverse" />
+
+  ### inverse
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.inverse" signature="SetDensityMatrix.inverse()">
+    Invert this instruction.
+
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+
+    **Returns**
+
+    a fresh instruction for the inverse
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-is-parameterized" />
+
+  ### is\_parameterized
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.is_parameterized" signature="SetDensityMatrix.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-mirror" />
+
+  ### mirror
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.mirror" signature="SetDensityMatrix.mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
+
+    **Returns**
+
+    **a new instruction with sub-instructions**
+
+    reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-qasm" />
+
+  ### qasm
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.qasm" signature="SetDensityMatrix.qasm()">
+    Return a default OpenQASM string for the instruction.
+
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-repeat" />
+
+  ### repeat
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.repeat" signature="SetDensityMatrix.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
+
+    **Parameters**
+
+    **n** (*int*) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    **CircuitError** – If n \< 1.
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-reverse-ops" />
+
+  ### reverse\_ops
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.reverse_ops" signature="SetDensityMatrix.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-soft-compare" />
+
+  ### soft\_compare
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.soft_compare" signature="SetDensityMatrix.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    bool
+  </Function>
+
+  <span id="qiskit-providers-aer-library-setdensitymatrix-validate-parameter" />
+
+  ### validate\_parameter
+
+  <Function id="qiskit.providers.aer.library.SetDensityMatrix.validate_parameter" signature="SetDensityMatrix.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
+
+  ## Attributes
+
+  ### decompositions
+
+  <Attribute id="qiskit.providers.aer.library.SetDensityMatrix.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.providers.aer.library.SetDensityMatrix.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.providers.aer.library.SetDensityMatrix.duration">
+    Get the duration.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.providers.aer.library.SetDensityMatrix.label">
+    Return instruction label
+
+    **Return type**
+
+    `str`
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.providers.aer.library.SetDensityMatrix.params">
+    return instruction params.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.providers.aer.library.SetDensityMatrix.unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
+

@@ -1,0 +1,35 @@
+---
+title: t2star_circuits (v0.32)
+description: API reference for qiskit.ignis.characterization.t2star_circuits in qiskit v0.32
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.characterization.t2star_circuits
+---
+
+<span id="qiskit-ignis-characterization-t2star-circuits" />
+
+# qiskit.ignis.characterization.t2star\_circuits
+
+<Function id="qiskit.ignis.characterization.t2star_circuits" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/characterization/coherence/circuits.py" signature="t2star_circuits(num_of_gates, gate_time, qubits, nosc=0)">
+  Generate circuits for T2\* measurement.
+
+  Each circuit consists of a Hadamard gate, followed by a sequence of identity gates, a phase gate (with a linear phase), and an additional Hadamard gate.
+
+  **Parameters**
+
+  *   **num\_of\_gates** (`Union`\[`List`\[`int`], `array`]) – the number of identity gates in each circuit. Must be in an increasing order.
+  *   **gate\_time** (`float`) – time of running a single identity gate.
+  *   **qubits** (`List`\[`int`]) – indices of the qubits whose T2\*‘s are to be measured.
+  *   **nosc** (`int`) – number of oscillations to induce using the phase gate
+
+  **Return type**
+
+  `Tuple`\[`List`\[`QuantumCircuit`], `array`, `float`]
+
+  **Returns**
+
+  *   The generated circuits
+  *   Delay times, i.e., gate\_time multiplied by the numbers in num\_of\_gates
+  *   The induced oscillation frequency
+</Function>
+

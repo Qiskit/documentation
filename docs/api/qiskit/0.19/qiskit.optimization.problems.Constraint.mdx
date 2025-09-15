@@ -1,0 +1,111 @@
+---
+title: Constraint (v0.19)
+description: API reference for qiskit.optimization.problems.Constraint in qiskit v0.19
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.problems.Constraint
+---
+
+# Constraint
+
+<Class id="qiskit.optimization.problems.Constraint" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/constraint.py" signature="Constraint(quadratic_program, name, sense, rhs)" modifiers="class">
+  Abstract Constraint Class.
+
+  Initializes the constraint.
+
+  **Parameters**
+
+  *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
+  *   **name** (`str`) – The name of the constraint.
+  *   **sense** (`ConstraintSense`) – The sense of the constraint.
+  *   **rhs** (`float`) – The right-hand-side of the constraint.
+
+  ## Attributes
+
+  <span id="constraint-name" />
+
+  ### name
+
+  <Attribute id="qiskit.optimization.problems.Constraint.name" attributeTypeHint="str">
+    Returns the name of the constraint.
+
+    **Return type**
+
+    `str`
+
+    **Returns**
+
+    The name of the constraint.
+  </Attribute>
+
+  <span id="constraint-quadratic-program" />
+
+  ### quadratic\_program
+
+  <Attribute id="qiskit.optimization.problems.Constraint.quadratic_program" attributeTypeHint="Any">
+    Returns the parent QuadraticProgram.
+
+    **Return type**
+
+    `Any`
+
+    **Returns**
+
+    The parent QuadraticProgram.
+  </Attribute>
+
+  <span id="constraint-rhs" />
+
+  ### rhs
+
+  <Attribute id="qiskit.optimization.problems.Constraint.rhs" attributeTypeHint="float">
+    Returns the right-hand-side of the constraint.
+
+    **Return type**
+
+    `float`
+
+    **Returns**
+
+    The right-hand-side of the constraint.
+  </Attribute>
+
+  <span id="constraint-sense" />
+
+  ### sense
+
+  <Attribute id="qiskit.optimization.problems.Constraint.sense" attributeTypeHint="qiskit.optimization.problems.constraint.ConstraintSense">
+    Returns the sense of the constraint.
+
+    **Return type**
+
+    `ConstraintSense`
+
+    **Returns**
+
+    The sense of the constraint.
+  </Attribute>
+
+  ## Methods
+
+  <span id="constraint-evaluate" />
+
+  ### evaluate
+
+  <Function id="qiskit.optimization.problems.Constraint.evaluate" signature="Constraint.evaluate(x)" modifiers="abstract">
+    Evaluate left-hand-side of constraint for given values of variables.
+
+    **Parameters**
+
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values to be used for the variables.
+
+    **Return type**
+
+    `float`
+
+    **Returns**
+
+    The left-hand-side of the constraint.
+  </Function>
+</Class>
+

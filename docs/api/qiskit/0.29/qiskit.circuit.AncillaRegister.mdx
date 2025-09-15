@@ -1,0 +1,69 @@
+---
+title: AncillaRegister (v0.29)
+description: API reference for qiskit.circuit.AncillaRegister in qiskit v0.29
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.AncillaRegister
+---
+
+# AncillaRegister
+
+<Class id="qiskit.circuit.AncillaRegister" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/quantumregister.py" signature="AncillaRegister(size=None, name=None, bits=None)" modifiers="class">
+  Bases: `qiskit.circuit.quantumregister.QuantumRegister`
+
+  Implement an ancilla register.
+
+  Create a new generic register.
+
+  Either the `size` or the `bits` argument must be provided. If `size` is not None, the register will be pre-populated with bits of the correct type.
+
+  **Parameters**
+
+  *   **size** (*int*) – Optional. The number of bits to include in the register.
+  *   **name** (*str*) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
+  *   **bits** (*list\[Bit]*) – Optional. A list of Bit() instances to be used to populate the register.
+
+  **Raises**
+
+  *   **CircuitError** – if both the `size` and `bits` arguments are provided, or if neither are.
+  *   **CircuitError** – if `size` is not valid.
+  *   **CircuitError** – if `name` is not a valid name according to the OpenQASM spec.
+  *   **CircuitError** – if `bits` contained bits of an incorrect type.
+
+  ## Methods
+
+  <span id="qiskit-circuit-ancillaregister-qasm" />
+
+  ### qasm
+
+  <Function id="qiskit.circuit.AncillaRegister.qasm" signature="AncillaRegister.qasm()">
+    Return OPENQASM string for this register.
+  </Function>
+
+  ## Attributes
+
+  ### instances\_counter
+
+  <Attribute id="qiskit.circuit.AncillaRegister.instances_counter" attributeValue="count(0)" />
+
+  ### name
+
+  <Attribute id="qiskit.circuit.AncillaRegister.name">
+    Get the register name.
+  </Attribute>
+
+  ### name\_format
+
+  <Attribute id="qiskit.circuit.AncillaRegister.name_format" attributeValue="re.compile('[a-z][a-zA-Z0-9_]*')" />
+
+  ### prefix
+
+  <Attribute id="qiskit.circuit.AncillaRegister.prefix" attributeValue="'a'" />
+
+  ### size
+
+  <Attribute id="qiskit.circuit.AncillaRegister.size">
+    Get the register size.
+  </Attribute>
+</Class>
+

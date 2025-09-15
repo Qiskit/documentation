@@ -1,0 +1,94 @@
+---
+title: FiniteDiffSamplerGradient (v0.40)
+description: API reference for qiskit.algorithms.gradients.FiniteDiffSamplerGradient in qiskit v0.40
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.gradients.FiniteDiffSamplerGradient
+---
+
+# FiniteDiffSamplerGradient
+
+<Class id="qiskit.algorithms.gradients.FiniteDiffSamplerGradient" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/finite_diff_sampler_gradient.py" signature="FiniteDiffSamplerGradient(sampler, epsilon, options=None, *, method='central')" modifiers="class">
+  Bases: [`qiskit.algorithms.gradients.base_sampler_gradient.BaseSamplerGradient`](qiskit.algorithms.gradients.BaseSamplerGradient "qiskit.algorithms.gradients.base_sampler_gradient.BaseSamplerGradient")
+
+  Compute the gradients of the sampling probability by finite difference method \[1].
+
+  **Reference:** \[1] [Finite difference method](https://en.wikipedia.org/wiki/Finite_difference_method)
+
+  **Parameters**
+
+  *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")) – The sampler used to compute the gradients.
+
+  *   **epsilon** (*float*) – The offset size for the finite difference gradients.
+
+  *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+
+  *   **method** (*Literal\[('central', 'forward', 'backward')]*) –
+
+      The computation method of the gradients.
+
+      > *   `central` computes $\frac{f(x+e)-f(x-e)}{2e}$,
+      > *   `forward` computes $\frac{f(x+e) - f(x)}{e}$,
+      > *   `backward` computes $\frac{f(x)-f(x-e)}{e}$
+
+      where $e$ is epsilon.
+
+  **Raises**
+
+  *   **ValueError** – If `epsilon` is not positive.
+  *   **TypeError** – If `method` is invalid.
+
+  ## Methods
+
+  <span id="qiskit-algorithms-gradients-finitediffsamplergradient-run" />
+
+  ### run
+
+  <Function id="qiskit.algorithms.gradients.FiniteDiffSamplerGradient.run" signature="FiniteDiffSamplerGradient.run(circuits, parameter_values, parameters=None, **options)">
+    Run the job of the sampler gradient on the given circuits.
+
+    **Parameters**
+
+    *   **circuits** – The list of quantum circuits to compute the gradients.
+    *   **parameter\_values** – The list of parameter values to be bound to the circuit.
+    *   **parameters** – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+
+    **Returns**
+
+    The job object of the gradients of the sampling probability. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th quasi-probability distribution in the i-th result corresponds to the gradients of the sampling probability for the j-th parameter in `circuits[i]`.
+
+    **Raises**
+
+    **ValueError** – Invalid arguments are given.
+  </Function>
+
+  <span id="qiskit-algorithms-gradients-finitediffsamplergradient-update-default-options" />
+
+  ### update\_default\_options
+
+  <Function id="qiskit.algorithms.gradients.FiniteDiffSamplerGradient.update_default_options" signature="FiniteDiffSamplerGradient.update_default_options(**options)">
+    Update the gradient’s default options setting.
+
+    **Parameters**
+
+    **\*\*options** – The fields to update the default options.
+  </Function>
+
+  ## Attributes
+
+  ### options
+
+  <Attribute id="qiskit.algorithms.gradients.FiniteDiffSamplerGradient.options">
+    Return the union of sampler options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
+
+    **Return type**
+
+    [`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
+
+    **Returns**
+
+    The gradient default + sampler options.
+  </Attribute>
+</Class>
+

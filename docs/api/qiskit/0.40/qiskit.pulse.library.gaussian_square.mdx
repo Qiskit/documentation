@@ -1,0 +1,48 @@
+---
+title: gaussian_square (v0.40)
+description: API reference for qiskit.pulse.library.gaussian_square in qiskit v0.40
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.library.gaussian_square
+---
+
+<span id="qiskit-pulse-library-gaussian-square" />
+
+# qiskit.pulse.library.gaussian\_square
+
+<Function id="qiskit.pulse.library.gaussian_square" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/discrete.py" signature="gaussian_square(duration, amp, sigma, risefall=None, width=None, name=None, zero_ends=True)">
+  Generates gaussian square [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
+
+  For $d=$ `duration`, $A=$ `amp`, $\sigma=$ `sigma`, and $r=$ `risefall`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
+
+$$
+\begin{split}f(x) = \begin{cases}
+g(x - r) ) & x\leq r \\
+A & r\leq x\leq d-r \\
+g(x - (d - r)) & d-r\leq x
+\end{cases}\end{split}
+$$
+
+  where $g(x)$ is the Gaussian function sampled from in [`gaussian()`](qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian") with $A=$ `amp`, $\mu=1$, and $\sigma=$ `sigma`. I.e. $f(x)$ represents a square pulse with smooth Gaussian edges.
+
+  If `zero_ends == True`, the samples for the Gaussian ramps are remapped as in [`gaussian()`](qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
+
+  **Parameters**
+
+  *   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+  *   **amp** (`complex`) – Pulse amplitude.
+  *   **sigma** (`float`) – Width (standard deviation) of Gaussian rise/fall portion of the pulse.
+  *   **risefall** (`Optional`\[`float`]) – Number of samples over which pulse rise and fall happen. Width of square portion of pulse will be `duration-2*risefall`.
+  *   **width** (`Optional`\[`float`]) – The duration of the embedded square pulse. Only one of `width` or `risefall` should be specified as the functional form requires `width = duration - 2 * risefall`.
+  *   **name** (`Optional`\[`str`]) – Name of pulse.
+  *   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
+
+  **Raises**
+
+  [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `risefall` and `width` arguments are inconsistent or not enough info.
+
+  **Return type**
+
+  [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+</Function>
+

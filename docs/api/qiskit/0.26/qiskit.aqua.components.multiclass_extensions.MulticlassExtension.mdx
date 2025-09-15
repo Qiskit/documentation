@@ -1,0 +1,76 @@
+---
+title: MulticlassExtension (v0.26)
+description: API reference for qiskit.aqua.components.multiclass_extensions.MulticlassExtension in qiskit v0.26
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.multiclass_extensions.MulticlassExtension
+---
+
+<span id="qiskit-aqua-components-multiclass-extensions-multiclassextension" />
+
+# qiskit.aqua.components.multiclass\_extensions.MulticlassExtension
+
+<Class id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/multiclass_extensions/multiclass_extension.py" signature="MulticlassExtension" modifiers="class">
+  Base class for multiclass extension.
+
+  This method should initialize the module and use an exception if a component of the module is not available.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.__init__" signature="__init__()" modifiers="abstract">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                                                                |                                                                                                                                                                                                                                         |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.multiclass_extensions.MulticlassExtension.__init__ "qiskit.aqua.components.multiclass_extensions.MulticlassExtension.__init__")()                                         | Initialize self.                                                                                                                                                                                                                        |
+  | [`predict`](#qiskit.aqua.components.multiclass_extensions.MulticlassExtension.predict "qiskit.aqua.components.multiclass_extensions.MulticlassExtension.predict")(x)                                           | Applying multiple estimators for prediction.                                                                                                                                                                                            |
+  | [`set_estimator`](#qiskit.aqua.components.multiclass_extensions.MulticlassExtension.set_estimator "qiskit.aqua.components.multiclass_extensions.MulticlassExtension.set_estimator")(estimator\_cls\[, params]) | Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator |
+  | [`test`](#qiskit.aqua.components.multiclass_extensions.MulticlassExtension.test "qiskit.aqua.components.multiclass_extensions.MulticlassExtension.test")(x, y)                                                 | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
+  | [`train`](#qiskit.aqua.components.multiclass_extensions.MulticlassExtension.train "qiskit.aqua.components.multiclass_extensions.MulticlassExtension.train")(x, y)                                              | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
+
+  ### predict
+
+  <Function id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.predict" signature="predict(x)" modifiers="abstract">
+    Applying multiple estimators for prediction.
+
+    **Parameters**
+
+    **x** (*numpy.ndarray*) – input points
+  </Function>
+
+  ### set\_estimator
+
+  <Function id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.set_estimator" signature="set_estimator(estimator_cls, params=None)">
+    Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### test
+
+  <Function id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.test" signature="test(x, y)" modifiers="abstract">
+    Testing multiple estimators each for distinguishing a pair of classes.
+
+    **Parameters**
+
+    *   **x** (*numpy.ndarray*) – input points
+    *   **y** (*numpy.ndarray*) – input labels
+  </Function>
+
+  ### train
+
+  <Function id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.train" signature="train(x, y)" modifiers="abstract">
+    Training multiple estimators each for distinguishing a pair of classes.
+
+    **Parameters**
+
+    *   **x** (*numpy.ndarray*) – input points
+    *   **y** (*numpy.ndarray*) – input labels
+  </Function>
+</Class>
+

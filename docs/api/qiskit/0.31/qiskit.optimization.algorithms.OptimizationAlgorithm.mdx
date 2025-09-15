@@ -1,0 +1,84 @@
+---
+title: OptimizationAlgorithm (v0.31)
+description: API reference for qiskit.optimization.algorithms.OptimizationAlgorithm in qiskit v0.31
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.OptimizationAlgorithm
+---
+
+# OptimizationAlgorithm
+
+<Class id="qiskit.optimization.algorithms.OptimizationAlgorithm" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/algorithms/optimization_algorithm.py" signature="OptimizationAlgorithm" modifiers="class">
+  Bases: `abc.ABC`
+
+  An abstract class for optimization algorithms in Qiskit’s optimization module.
+
+  ## Methods
+
+  <span id="qiskit-optimization-algorithms-optimizationalgorithm-get-compatibility-msg" />
+
+  ### get\_compatibility\_msg
+
+  <Function id="qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg" signature="OptimizationAlgorithm.get_compatibility_msg(problem)" modifiers="abstract">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
+
+    **Parameters**
+
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+
+    **Return type**
+
+    `str`
+
+    **Returns**
+
+    Returns the incompatibility message. If the message is empty no issues were found.
+  </Function>
+
+  <span id="qiskit-optimization-algorithms-optimizationalgorithm-is-compatible" />
+
+  ### is\_compatible
+
+  <Function id="qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible" signature="OptimizationAlgorithm.is_compatible(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
+
+    **Parameters**
+
+    **problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+
+    **Return type**
+
+    `bool`
+
+    **Returns**
+
+    Returns True if the problem is compatible, False otherwise.
+  </Function>
+
+  <span id="qiskit-optimization-algorithms-optimizationalgorithm-solve" />
+
+  ### solve
+
+  <Function id="qiskit.optimization.algorithms.OptimizationAlgorithm.solve" signature="OptimizationAlgorithm.solve(problem)" modifiers="abstract">
+    Tries to solves the given problem using the optimizer.
+
+    Runs the optimizer to try to solve the optimization problem.
+
+    **Parameters**
+
+    **problem** (`QuadraticProgram`) – The problem to be solved.
+
+    **Return type**
+
+    `OptimizationResult`
+
+    **Returns**
+
+    The result of the optimizer applied to the problem.
+
+    **Raises**
+
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+  </Function>
+</Class>
+

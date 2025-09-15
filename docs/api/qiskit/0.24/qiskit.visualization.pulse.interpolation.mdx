@@ -1,0 +1,90 @@
+---
+title: interpolation (v0.24)
+description: API reference for qiskit.visualization.pulse.interpolation in qiskit v0.24
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.visualization.pulse.interpolation
+---
+
+<span id="module-qiskit.visualization.pulse.interpolation" />
+
+<span id="qiskit-visualization-pulse-interpolation" />
+
+# qiskit.visualization.pulse.interpolation
+
+interpolation module for pulse visualization.
+
+**Functions**
+
+|                                                                                                                                                   |                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [`interp1d`](#qiskit.visualization.pulse.interpolation.interp1d "qiskit.visualization.pulse.interpolation.interp1d")(time, samples, nop\[, kind]) | Scipy interpolation wrapper.                  |
+| [`step_wise`](#qiskit.visualization.pulse.interpolation.step_wise "qiskit.visualization.pulse.interpolation.step_wise")(time, samples, nop)       | Keep uniform variation between sample values. |
+
+### cubic\_spline
+
+<Function id="qiskit.visualization.pulse.interpolation.cubic_spline" signature="cubic_spline(time: numpy.ndarray, samples: numpy.ndarray, nop: int, *, kind: str = 'cubic') → Tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray]">
+  Apply cubic interpolation between sampling points.
+
+  **Parameters**
+
+  *   **time** – Time vector with length of `samples` + 1.
+  *   **samples** – Complex pulse envelope.
+  *   **nop** – Number of data points for interpolation.
+
+  **Returns**
+
+  Interpolated time vector and real and imaginary part of waveform.
+</Function>
+
+### interp1d
+
+<Function id="qiskit.visualization.pulse.interpolation.interp1d" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/pulse/interpolation.py" signature="interp1d(time, samples, nop, kind='linear')">
+  Scipy interpolation wrapper.
+
+  **Parameters**
+
+  *   **time** (`ndarray`) – Time vector with length of `samples` + 1.
+  *   **samples** (`ndarray`) – Complex pulse envelope.
+  *   **nop** (`int`) – Number of data points for interpolation.
+  *   **kind** (`str`) – Scipy interpolation type. See `scipy.interpolate.interp1d` documentation for more information.
+
+  **Return type**
+
+  `Tuple`\[`ndarray`, `ndarray`, `ndarray`]
+
+  **Returns**
+
+  Interpolated time vector and real and imaginary part of waveform.
+</Function>
+
+### linear
+
+<Function id="qiskit.visualization.pulse.interpolation.linear" signature="linear(time: numpy.ndarray, samples: numpy.ndarray, nop: int, *, kind: str = 'linear') → Tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray]">
+  Apply linear interpolation between sampling points.
+
+  **Parameters**
+
+  *   **time** – Time vector with length of `samples` + 1.
+  *   **samples** – Complex pulse envelope.
+  *   **nop** – Number of data points for interpolation.
+
+  **Returns**
+
+  Interpolated time vector and real and imaginary part of waveform.
+</Function>
+
+### step\_wise
+
+<Function id="qiskit.visualization.pulse.interpolation.step_wise" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/visualization/pulse/interpolation.py" signature="step_wise(time, samples, nop)">
+  Keep uniform variation between sample values. No interpolation is applied. :type time: `ndarray` :param time: Time vector with length of `samples` + 1. :type samples: `ndarray` :param samples: Complex pulse envelope. :type nop: `int` :param nop: This argument is not used.
+
+  **Return type**
+
+  `Tuple`\[`ndarray`, `ndarray`, `ndarray`]
+
+  **Returns**
+
+  Time vector and real and imaginary part of waveform.
+</Function>
+

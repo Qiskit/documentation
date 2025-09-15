@@ -1,0 +1,40 @@
+---
+title: active_circuit_scheduler_settings (v0.25)
+description: API reference for qiskit.pulse.builder.active_circuit_scheduler_settings in qiskit v0.25
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.active_circuit_scheduler_settings
+---
+
+<span id="qiskit-pulse-builder-active-circuit-scheduler-settings" />
+
+# qiskit.pulse.builder.active\_circuit\_scheduler\_settings
+
+<Function id="qiskit.pulse.builder.active_circuit_scheduler_settings" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py" signature="active_circuit_scheduler_settings()">
+  Return the current active builder context’s circuit scheduler settings.
+
+  Examples:
+
+  ```python
+  from qiskit import pulse
+  from qiskit.test.mock import FakeOpenPulse2Q
+
+  backend = FakeOpenPulse2Q()
+
+  circuit_scheduler_settings = {'method': 'alap'}
+
+  with pulse.build(
+          backend,
+          default_circuit_scheduler_settings=circuit_scheduler_settings):
+      print(pulse.active_circuit_scheduler_settings())
+  ```
+
+  ```
+  {'method': 'alap'}
+  ```
+
+  **Return type**
+
+  `Dict`\[`str`, `Any`]
+</Function>
+

@@ -1,0 +1,112 @@
+---
+title: MemorySlot (v0.27)
+description: API reference for qiskit.pulse.MemorySlot in qiskit v0.27
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.MemorySlot
+---
+
+<span id="qiskit-pulse-memoryslot" />
+
+# qiskit.pulse.MemorySlot
+
+<Class id="qiskit.pulse.MemorySlot" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="MemorySlot(index)" modifiers="class">
+  Memory slot channels represent classical memory storage.
+
+  Channel class.
+
+  **Parameters**
+
+  **index** (`int`) – Index of channel.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.pulse.MemorySlot.__init__" signature="__init__(index)">
+    Channel class.
+
+    **Parameters**
+
+    **index** (`int`) – Index of channel.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                              |                                                                  |
+  | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
+  | [`__init__`](#qiskit.pulse.MemorySlot.__init__ "qiskit.pulse.MemorySlot.__init__")(index)                    | Channel class.                                                   |
+  | [`assign`](#qiskit.pulse.MemorySlot.assign "qiskit.pulse.MemorySlot.assign")(parameter, value)               | Return a new channel with the input Parameter assigned to value. |
+  | [`is_parameterized`](#qiskit.pulse.MemorySlot.is_parameterized "qiskit.pulse.MemorySlot.is_parameterized")() | Return True iff the channel is parameterized.                    |
+
+  ## Attributes
+
+  |                                                                                          |                                                                                    |
+  | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+  | [`index`](#qiskit.pulse.MemorySlot.index "qiskit.pulse.MemorySlot.index")                | Return the index of this channel.                                                  |
+  | [`name`](#qiskit.pulse.MemorySlot.name "qiskit.pulse.MemorySlot.name")                   | Return the shorthand alias for this channel, which is based on its type and index. |
+  | [`parameters`](#qiskit.pulse.MemorySlot.parameters "qiskit.pulse.MemorySlot.parameters") | Parameters which determine the channel index.                                      |
+  | `prefix`                                                                                 |                                                                                    |
+
+  ### assign
+
+  <Function id="qiskit.pulse.MemorySlot.assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
+
+    **Parameters**
+
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
+
+    **Return type**
+
+    [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")
+
+    **Returns**
+
+    A new channel with updated parameters.
+
+    **Raises**
+
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
+
+  ### index
+
+  <Attribute id="qiskit.pulse.MemorySlot.index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
+
+    **Return type**
+
+    `Union`\[`int`, `ParameterExpression`]
+  </Attribute>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.pulse.MemorySlot.is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
+
+    **Return type**
+
+    `bool`
+  </Function>
+
+  ### name
+
+  <Attribute id="qiskit.pulse.MemorySlot.name">
+    Return the shorthand alias for this channel, which is based on its type and index.
+
+    **Return type**
+
+    `str`
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.pulse.MemorySlot.parameters">
+    Parameters which determine the channel index.
+
+    **Return type**
+
+    `Set`
+  </Attribute>
+</Class>
+

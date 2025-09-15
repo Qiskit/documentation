@@ -1,0 +1,44 @@
+---
+title: TwoQubitReduction (v0.33)
+description: API reference for qiskit.opflow.converters.TwoQubitReduction in qiskit v0.33
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.converters.TwoQubitReduction
+---
+
+# TwoQubitReduction
+
+<Class id="qiskit.opflow.converters.TwoQubitReduction" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/opflow/converters/two_qubit_reduction.py" signature="TwoQubitReduction(num_particles)" modifiers="class">
+  Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
+
+  Two qubit reduction converter which eliminates the central and last qubit in a list of Pauli that has diagonal operators (Z,I) at those positions.
+
+  Chemistry specific method: It can be used to taper two qubits in parity and binary-tree mapped fermionic Hamiltonians when the spin orbitals are ordered in two spin sectors, (block spin order) according to the number of particles in the system.
+
+  **Parameters**
+
+  **num\_particles** (`Union`\[`int`, `List`\[`int`], `Tuple`\[`int`, `int`]]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
+
+  ## Methods Defined Here
+
+  <span id="qiskit-opflow-converters-twoqubitreduction-convert" />
+
+  ### convert
+
+  <Function id="qiskit.opflow.converters.TwoQubitReduction.convert" signature="TwoQubitReduction.convert(operator)">
+    Converts the Operator to tapered one by Z2 symmetries.
+
+    **Parameters**
+
+    **operator** (`OperatorBase`) – the operator
+
+    **Return type**
+
+    `OperatorBase`
+
+    **Returns**
+
+    A new operator whose qubit number is reduced by 2.
+  </Function>
+</Class>
+

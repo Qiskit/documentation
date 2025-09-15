@@ -1,0 +1,39 @@
+---
+title: active_transpiler_settings (v0.38)
+description: API reference for qiskit.pulse.builder.active_transpiler_settings in qiskit v0.38
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.active_transpiler_settings
+---
+
+<span id="qiskit-pulse-builder-active-transpiler-settings" />
+
+# qiskit.pulse.builder.active\_transpiler\_settings
+
+<Function id="qiskit.pulse.builder.active_transpiler_settings" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/builder.py" signature="active_transpiler_settings()">
+  Return the current active builder context’s transpiler settings.
+
+  Examples:
+
+  ```python
+  from qiskit import pulse
+  from qiskit.providers.fake_provider import FakeOpenPulse2Q
+
+  backend = FakeOpenPulse2Q()
+
+  transpiler_settings = {'optimization_level': 3}
+
+  with pulse.build(backend,
+                   default_transpiler_settings=transpiler_settings):
+      print(pulse.active_transpiler_settings())
+  ```
+
+  ```
+  {'optimization_level': 3}
+  ```
+
+  **Return type**
+
+  `Dict`\[`str`, `Any`]
+</Function>
+

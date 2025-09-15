@@ -1,0 +1,283 @@
+---
+title: Barrier (v0.45)
+description: API reference for qiskit.circuit.library.Barrier in qiskit v0.45
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.Barrier
+---
+
+# Barrier
+
+<Class id="qiskit.circuit.library.Barrier" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/barrier.py" signature="qiskit.circuit.library.Barrier(num_qubits, label=None)" modifiers="class">
+  Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+
+  Barrier instruction.
+
+  A barrier is a visual indicator of the grouping of a circuit section. It also acts as a directive for circuit compilation to separate pieces of a circuit so that any optimizations or re-writes are constrained to only act between barriers.
+
+  Create new barrier instruction.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits for the barrier type \[Default: 0].
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the barrier label
+
+  **Raises**
+
+  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – if barrier label is invalid.
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.Barrier.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.Barrier.base_class "qiskit.circuit.library.Barrier.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.library.Barrier.condition">
+    The classical condition on the instruction.
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.library.Barrier.condition_bits">
+    Get Clbits in condition.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.Barrier.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.Barrier.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.Barrier.duration">
+    Get the duration.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.Barrier.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.Barrier.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.Barrier.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.Barrier.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.Barrier.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.Barrier.params">
+    return instruction params.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.Barrier.unit">
+    Get the time unit of duration.
+  </Attribute>
+
+  ## Methods
+
+  ### add\_decomposition
+
+  <Function id="qiskit.circuit.library.Barrier.add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  ### assemble
+
+  <Function id="qiskit.circuit.library.Barrier.assemble" signature="assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
+
+  ### broadcast\_arguments
+
+  <Function id="qiskit.circuit.library.Barrier.broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
+
+    **Parameters**
+
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
+
+    **Yields**
+
+    *Tuple(List, List)* – A tuple with single arguments.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
+
+  ### c\_if
+
+  <Function id="qiskit.circuit.library.Barrier.c_if" signature="c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.circuit.library.Barrier.copy" signature="copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+
+    **Returns**
+
+    a copy of the current instruction, with the name updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.Barrier.inverse" signature="inverse()">
+    Special case. Return self.
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.circuit.library.Barrier.is_parameterized" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
+
+  ### qasm
+
+  <Function id="qiskit.circuit.library.Barrier.qasm" signature="qasm()">
+    Return a default OpenQASM string for the instruction.
+
+    Derived instructions may override this to print in a different format (e.g. `measure q[0] -> c[0];`).
+
+    <Admonition title="Deprecated since version 0.25.0" type="danger">
+      The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
+    </Admonition>
+  </Function>
+
+  ### repeat
+
+  <Function id="qiskit.circuit.library.Barrier.repeat" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
+
+    **Parameters**
+
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+  </Function>
+
+  ### reverse\_ops
+
+  <Function id="qiskit.circuit.library.Barrier.reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### soft\_compare
+
+  <Function id="qiskit.circuit.library.Barrier.soft_compare" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
+
+  ### to\_mutable
+
+  <Function id="qiskit.circuit.library.Barrier.to_mutable" signature="to_mutable()">
+    Return a mutable copy of this gate.
+
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.library.Barrier.validate_parameter" signature="validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
+</Class>
+

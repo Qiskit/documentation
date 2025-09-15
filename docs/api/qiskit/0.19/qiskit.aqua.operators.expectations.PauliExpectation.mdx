@@ -1,0 +1,60 @@
+---
+title: PauliExpectation (v0.19)
+description: API reference for qiskit.aqua.operators.expectations.PauliExpectation in qiskit v0.19
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.expectations.PauliExpectation
+---
+
+# PauliExpectation
+
+<Class id="qiskit.aqua.operators.expectations.PauliExpectation" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/expectations/pauli_expectation.py" signature="PauliExpectation(group_paulis=True)" modifiers="class">
+  An Expectation converter for Pauli-basis observables by changing Pauli measurements to a diagonal (\{Z, I}^n) basis and appending circuit post-rotations to the measured state function. Optionally groups the Paulis with the same post-rotations (those that commute with one another, or form Abelian groups) into single measurements to reduce circuit execution overhead.
+
+  **Parameters**
+
+  **group\_paulis** (`bool`) – Whether to group the Pauli measurements into commuting sums, which all have the same diagonalizing circuit.
+
+  ## Methods
+
+  <span id="pauliexpectation-compute-variance" />
+
+  ### compute\_variance
+
+  <Function id="qiskit.aqua.operators.expectations.PauliExpectation.compute_variance" signature="PauliExpectation.compute_variance(exp_op)">
+    Compute the variance of the expectation estimator.
+
+    **Parameters**
+
+    **exp\_op** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The full expectation value Operator after sampling.
+
+    **Return type**
+
+    `Union`\[`list`, `float`, `ndarray`]
+
+    **Returns**
+
+    The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
+  </Function>
+
+  <span id="pauliexpectation-convert" />
+
+  ### convert
+
+  <Function id="qiskit.aqua.operators.expectations.PauliExpectation.convert" signature="PauliExpectation.convert(operator)">
+    Accepts an Operator and returns a new Operator with the Pauli measurements replaced by diagonal Pauli post-rotation based measurements so they can be evaluated by sampling and averaging.
+
+    **Parameters**
+
+    **operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The operator to convert.
+
+    **Return type**
+
+    [`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
+
+    **Returns**
+
+    The converted operator.
+  </Function>
+</Class>
+

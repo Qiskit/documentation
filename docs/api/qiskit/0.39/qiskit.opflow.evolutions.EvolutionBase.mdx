@@ -1,0 +1,38 @@
+---
+title: EvolutionBase (v0.39)
+description: API reference for qiskit.opflow.evolutions.EvolutionBase in qiskit v0.39
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.evolutions.EvolutionBase
+---
+
+# EvolutionBase
+
+<Class id="qiskit.opflow.evolutions.EvolutionBase" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/evolutions/evolution_base.py" signature="EvolutionBase" modifiers="class">
+  Bases: [`qiskit.opflow.converters.converter_base.ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase"), `abc.ABC`
+
+  A base for Evolution converters. Evolutions are converters which traverse an Operator tree, replacing any `EvolvedOp` e with a Schrodinger equation-style evolution `CircuitOp` equalling or approximating the matrix exponential of -i \* the Operator contained inside (e.primitive). The Evolutions are essentially implementations of Hamiltonian Simulation algorithms, including various methods for Trotterization.
+
+  ## Methods Defined Here
+
+  <span id="qiskit-opflow-evolutions-evolutionbase-convert" />
+
+  ### convert
+
+  <Function id="qiskit.opflow.evolutions.EvolutionBase.convert" signature="EvolutionBase.convert(operator)" modifiers="abstract">
+    Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`.
+
+    > #### Args:
+    >
+    > operator: The Operator to convert.
+
+    **Return type**
+
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+
+    **Returns**
+
+    The converted Operator, with `EvolutionOps` replaced by `CircuitOps`.
+  </Function>
+</Class>
+

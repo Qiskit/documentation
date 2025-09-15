@@ -1,0 +1,164 @@
+---
+title: AlgorithmJob (v0.41)
+description: API reference for qiskit.algorithms.AlgorithmJob in qiskit v0.41
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.AlgorithmJob
+---
+
+# AlgorithmJob
+
+<Class id="qiskit.algorithms.AlgorithmJob" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/algorithm_job.py" signature="AlgorithmJob(function, *args, **kwargs)" modifiers="class">
+  Bases: `qiskit.primitives.primitive_job.PrimitiveJob`
+
+  This empty class is introduced for typing purposes.
+
+  **Parameters**
+
+  **function** – a callable function to execute the job.
+
+  ## Methods
+
+  <span id="qiskit-algorithms-algorithmjob-backend" />
+
+  ### backend
+
+  <Function id="qiskit.algorithms.AlgorithmJob.backend" signature="AlgorithmJob.backend()">
+    Return the backend where this job was executed.
+
+    **Return type**
+
+    [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")
+  </Function>
+
+  <span id="qiskit-algorithms-algorithmjob-cancel" />
+
+  ### cancel
+
+  <Function id="qiskit.algorithms.AlgorithmJob.cancel" signature="AlgorithmJob.cancel()">
+    Attempt to cancel the job.
+  </Function>
+
+  <span id="qiskit-algorithms-algorithmjob-cancelled" />
+
+  ### cancelled
+
+  <Function id="qiskit.algorithms.AlgorithmJob.cancelled" signature="AlgorithmJob.cancelled()">
+    Return whether the job has been cancelled.
+
+    **Return type**
+
+    `bool`
+  </Function>
+
+  <span id="qiskit-algorithms-algorithmjob-done" />
+
+  ### done
+
+  <Function id="qiskit.algorithms.AlgorithmJob.done" signature="AlgorithmJob.done()">
+    Return whether the job has successfully run.
+
+    **Return type**
+
+    `bool`
+  </Function>
+
+  <span id="qiskit-algorithms-algorithmjob-in-final-state" />
+
+  ### in\_final\_state
+
+  <Function id="qiskit.algorithms.AlgorithmJob.in_final_state" signature="AlgorithmJob.in_final_state()">
+    Return whether the job is in a final job state such as `DONE` or `ERROR`.
+
+    **Return type**
+
+    `bool`
+  </Function>
+
+  <span id="qiskit-algorithms-algorithmjob-job-id" />
+
+  ### job\_id
+
+  <Function id="qiskit.algorithms.AlgorithmJob.job_id" signature="AlgorithmJob.job_id()">
+    Return a unique id identifying the job.
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  <span id="qiskit-algorithms-algorithmjob-result" />
+
+  ### result
+
+  <Function id="qiskit.algorithms.AlgorithmJob.result" signature="AlgorithmJob.result()">
+    Return the results of the job.
+  </Function>
+
+  <span id="qiskit-algorithms-algorithmjob-running" />
+
+  ### running
+
+  <Function id="qiskit.algorithms.AlgorithmJob.running" signature="AlgorithmJob.running()">
+    Return whether the job is actively running.
+
+    **Return type**
+
+    `bool`
+  </Function>
+
+  <span id="qiskit-algorithms-algorithmjob-status" />
+
+  ### status
+
+  <Function id="qiskit.algorithms.AlgorithmJob.status" signature="AlgorithmJob.status()">
+    Return the status of the job, among the values of `JobStatus`.
+  </Function>
+
+  <span id="qiskit-algorithms-algorithmjob-submit" />
+
+  ### submit
+
+  <Function id="qiskit.algorithms.AlgorithmJob.submit" signature="AlgorithmJob.submit()">
+    Submit the job to the backend for execution.
+  </Function>
+
+  <span id="qiskit-algorithms-algorithmjob-wait-for-final-state" />
+
+  ### wait\_for\_final\_state
+
+  <Function id="qiskit.algorithms.AlgorithmJob.wait_for_final_state" signature="AlgorithmJob.wait_for_final_state(timeout=None, wait=5, callback=None)">
+    Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
+
+    **Parameters**
+
+    *   **timeout** (`Optional`\[`float`]) – Seconds to wait for the job. If `None`, wait indefinitely.
+
+    *   **wait** (`float`) – Seconds between queries.
+
+    *   **callback** (`Optional`\[`Callable`]) –
+
+        Callback function invoked after each query. The following positional arguments are provided to the callback function:
+
+        *   job\_id: Job ID
+        *   job\_status: Status of the job from the last query
+        *   job: This BaseJob instance
+
+        Note: different subclass might provide different arguments to the callback function.
+
+    **Raises**
+
+    [**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ## Attributes
+
+  ### version
+
+  <Attribute id="qiskit.algorithms.AlgorithmJob.version" attributeValue="1" />
+</Class>
+

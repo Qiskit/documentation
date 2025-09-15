@@ -1,0 +1,178 @@
+---
+title: LocalReadoutMitigator (v0.37)
+description: API reference for qiskit.result.LocalReadoutMitigator in qiskit v0.37
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.result.LocalReadoutMitigator
+---
+
+# LocalReadoutMitigator
+
+<Class id="qiskit.result.LocalReadoutMitigator" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/result/mitigation/local_readout_mitigator.py" signature="LocalReadoutMitigator(assignment_matrices=None, qubits=None, backend=None)" modifiers="class">
+  Bases: [`qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator`](qiskit.result.BaseReadoutMitigator "qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator")
+
+  1-qubit tensor product readout error mitigator.
+
+  Mitigates [`expectation_value()`](qiskit.result.LocalReadoutMitigator#expectation_value "qiskit.result.LocalReadoutMitigator.expectation_value") and [`quasi_probabilities()`](qiskit.result.LocalReadoutMitigator#quasi_probabilities "qiskit.result.LocalReadoutMitigator.quasi_probabilities"). The mitigator should either be calibrated using qiskit experiments, or calculated directly from the backend properties. This mitigation method should be used in case the readout errors of the qubits are assumed to be uncorrelated. For *N* qubits there are *N* mitigation matrices, each of size $2 x 2$ and the mitigation complexity is $O(2^N)$, so it is more efficient than the [`CorrelatedReadoutMitigator`](qiskit.result.CorrelatedReadoutMitigator "qiskit.result.CorrelatedReadoutMitigator") class.
+
+  Initialize a LocalReadoutMitigator
+
+  **Parameters**
+
+  *   **assignment\_matrices** (`Optional`\[`List`\[`ndarray`]]) – Optional, list of single-qubit readout error assignment matrices.
+  *   **qubits** (`Optional`\[`Iterable`\[`int`]]) – Optional, the measured physical qubits for mitigation.
+  *   **backend** – Optional, backend name.
+
+  **Raises**
+
+  **QiskitError** – matrices sizes do not agree with number of qubits
+
+  ## Methods
+
+  <span id="qiskit-result-localreadoutmitigator-assignment-matrix" />
+
+  ### assignment\_matrix
+
+  <Function id="qiskit.result.LocalReadoutMitigator.assignment_matrix" signature="LocalReadoutMitigator.assignment_matrix(qubits=None)">
+    Return the measurement assignment matrix for specified qubits.
+
+    The assignment matrix is the stochastic matrix $A$ which assigns a noisy measurement probability distribution to an ideal input measurement distribution: $P(i|j) = \langle i | A | j \rangle$.
+
+    **Parameters**
+
+    **qubits** (`Optional`\[`List`\[`int`]]) – Optional, qubits being measured for operator expval.
+
+    **Returns**
+
+    the assignment matrix A.
+
+    **Return type**
+
+    np.ndarray
+  </Function>
+
+  <span id="qiskit-result-localreadoutmitigator-expectation-value" />
+
+  ### expectation\_value
+
+  <Function id="qiskit.result.LocalReadoutMitigator.expectation_value" signature="LocalReadoutMitigator.expectation_value(data, diagonal=None, qubits=None, clbits=None, shots=None)">
+    Compute the mitigated expectation value of a diagonal observable.
+
+    This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
+
+    **Parameters**
+
+    *   **data** ([`Counts`](qiskit.result.Counts "qiskit.result.counts.Counts")) – Counts object
+    *   **diagonal** (`Union`\[`Callable`, `dict`, `str`, `ndarray`, `None`]) – Optional, the vector of diagonal values for summing the expectation value. If `None` the the default value is $[1, -1]^\otimes n$.
+    *   **qubits** (`Optional`\[`Iterable`\[`int`]]) – Optional, the measured physical qubits the count bitstrings correspond to. If None qubits are assumed to be $[0, ..., n-1]$.
+    *   **clbits** (`Optional`\[`List`\[`int`]]) – Optional, if not None marginalize counts to the specified bits.
+    *   **shots** (`Optional`\[`int`]) – the number of shots.
+
+    **Returns**
+
+    the expectation value and an upper bound of the standard deviation.
+
+    **Return type**
+
+    (float, float)
+
+    #### Additional Information:
+
+    The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Numpy array $[O(0), ..., O(2^n -1)]$. If no diagonal is specified the diagonal of the Pauli operator :math\`O = mbox\{diag}(Z^\{otimes n}) = \[1, -1]^\{otimes n}\` is used. The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
+  </Function>
+
+  <span id="qiskit-result-localreadoutmitigator-mitigation-matrix" />
+
+  ### mitigation\_matrix
+
+  <Function id="qiskit.result.LocalReadoutMitigator.mitigation_matrix" signature="LocalReadoutMitigator.mitigation_matrix(qubits=None)">
+    Return the measurement mitigation matrix for the specified qubits.
+
+    The mitigation matrix $A^{-1}$ is defined as the inverse of the [`assignment_matrix()`](qiskit.result.LocalReadoutMitigator#assignment_matrix "qiskit.result.LocalReadoutMitigator.assignment_matrix") $A$.
+
+    **Parameters**
+
+    **qubits** (`Union`\[`List`\[`int`], `int`, `None`]) – Optional, qubits being measured for operator expval. if a single int is given, it is assumed to be the index of the qubit in self.\_qubits
+
+    **Returns**
+
+    the measurement error mitigation matrix $A^{-1}$.
+
+    **Return type**
+
+    np.ndarray
+  </Function>
+
+  <span id="qiskit-result-localreadoutmitigator-quasi-probabilities" />
+
+  ### quasi\_probabilities
+
+  <Function id="qiskit.result.LocalReadoutMitigator.quasi_probabilities" signature="LocalReadoutMitigator.quasi_probabilities(data, qubits=None, clbits=None, shots=False)">
+    Compute mitigated quasi probabilities value.
+
+    **Parameters**
+
+    *   **data** ([`Counts`](qiskit.result.Counts "qiskit.result.counts.Counts")) – counts object
+    *   **qubits** (`Optional`\[`List`\[`int`]]) – qubits the count bitstrings correspond to.
+    *   **clbits** (`Optional`\[`List`\[`int`]]) – Optional, marginalize counts to just these bits.
+    *   **shots** (`Optional`\[`bool`]) – the number of shots.
+
+    **Returns**
+
+    **A dictionary containing pairs of \[output, mean] where “output”**
+
+    is the key in the dictionaries, which is the length-N bitstring of a measured standard basis state, and “mean” is the mean of non-zero quasi-probability estimates.
+
+    **Return type**
+
+    QuasiDistibution
+
+    **Raises**
+
+    **QiskitError** – if qubit and clbit kwargs are not valid.
+  </Function>
+
+  <span id="qiskit-result-localreadoutmitigator-stddev-upper-bound" />
+
+  ### stddev\_upper\_bound
+
+  <Function id="qiskit.result.LocalReadoutMitigator.stddev_upper_bound" signature="LocalReadoutMitigator.stddev_upper_bound(shots, qubits=None)">
+    Return an upper bound on standard deviation of expval estimator.
+
+    **Parameters**
+
+    *   **shots** (`int`) – Number of shots used for expectation value measurement.
+    *   **qubits** (`Optional`\[`List`\[`int`]]) – qubits being measured for operator expval.
+
+    **Returns**
+
+    the standard deviation upper bound.
+
+    **Return type**
+
+    float
+  </Function>
+
+  ## Attributes
+
+  ### qubits
+
+  <Attribute id="qiskit.result.LocalReadoutMitigator.qubits">
+    The device qubits for this mitigator
+
+    **Return type**
+
+    `Tuple`\[`int`]
+  </Attribute>
+
+  ### settings
+
+  <Attribute id="qiskit.result.LocalReadoutMitigator.settings">
+    Return settings.
+
+    **Return type**
+
+    `Dict`
+  </Attribute>
+</Class>
+

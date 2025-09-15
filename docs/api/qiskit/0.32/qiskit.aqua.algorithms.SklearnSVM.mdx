@@ -1,0 +1,154 @@
+---
+title: SklearnSVM (v0.32)
+description: API reference for qiskit.aqua.algorithms.SklearnSVM in qiskit v0.32
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.SklearnSVM
+---
+
+# SklearnSVM
+
+<Class id="qiskit.aqua.algorithms.SklearnSVM" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classifiers/sklearn_svm/sklearn_svm.py" signature="SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)" modifiers="class">
+  Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`
+
+  The Sklearn SVM algorithm (classical).
+
+  This scikit-learn based SVM algorithm uses a classical approach to experiment with feature map classification problems. See also the quantum classifier [`QSVM`](qiskit.aqua.algorithms.QSVM "qiskit.aqua.algorithms.QSVM").
+
+  Internally, this algorithm will run the binary classification or multiclass classification based on how many classes the data has. If the data has more than 2 classes then a *multiclass\_extension* is required to be supplied. Aqua provides several [`multiclass_extensions`](qiskit.aqua.components.multiclass_extensions#module-qiskit.aqua.components.multiclass_extensions "qiskit.aqua.components.multiclass_extensions").
+
+  **Parameters**
+
+  *   **training\_dataset** (`Dict`\[`str`, `ndarray`]) – Training dataset.
+  *   **test\_dataset** (`Optional`\[`Dict`\[`str`, `ndarray`]]) – Testing dataset.
+  *   **datapoints** (`Optional`\[`ndarray`]) – Prediction dataset.
+  *   **gamma** (`Optional`\[`int`]) – Used as input for sklearn rbf\_kernel which is used internally. See [sklearn.metrics.pairwise.rbf\_kernel](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.rbf_kernel.html) for more information about gamma.
+  *   **multiclass\_extension** (`Optional`\[`MulticlassExtension`]) – If number of classes is greater than 2 then a multiclass scheme must be supplied, in the form of a multiclass extension.
+
+  **Raises**
+
+  [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
+
+  ## Methods
+
+  <span id="qiskit-aqua-algorithms-sklearnsvm-load-model" />
+
+  ### load\_model
+
+  <Function id="qiskit.aqua.algorithms.SklearnSVM.load_model" signature="SklearnSVM.load_model(file_path)">
+    Load a model from a file path.
+
+    **Parameters**
+
+    **file\_path** (*str*) – the path of the saved model.
+  </Function>
+
+  <span id="qiskit-aqua-algorithms-sklearnsvm-predict" />
+
+  ### predict
+
+  <Function id="qiskit.aqua.algorithms.SklearnSVM.predict" signature="SklearnSVM.predict(data)">
+    Predict using the SVM
+
+    **Parameters**
+
+    **data** (*numpy.ndarray*) – NxD array, where N is the number of data, D is the feature dimension.
+
+    **Returns**
+
+    predicted labels, Nx1 array
+
+    **Return type**
+
+    numpy.ndarray
+  </Function>
+
+  <span id="qiskit-aqua-algorithms-sklearnsvm-run" />
+
+  ### run
+
+  <Function id="qiskit.aqua.algorithms.SklearnSVM.run" signature="SklearnSVM.run()">
+    Execute the classical algorithm.
+
+    **Returns**
+
+    results of an algorithm.
+
+    **Return type**
+
+    dict
+  </Function>
+
+  <span id="qiskit-aqua-algorithms-sklearnsvm-save-model" />
+
+  ### save\_model
+
+  <Function id="qiskit.aqua.algorithms.SklearnSVM.save_model" signature="SklearnSVM.save_model(file_path)">
+    Save the model to a file path.
+
+    **Parameters**
+
+    **file\_path** (*str*) – a path to save the model.
+  </Function>
+
+  <span id="qiskit-aqua-algorithms-sklearnsvm-test" />
+
+  ### test
+
+  <Function id="qiskit.aqua.algorithms.SklearnSVM.test" signature="SklearnSVM.test(data, labels)">
+    Test the SVM
+
+    **Parameters**
+
+    *   **data** (*numpy.ndarray*) – NxD array, where N is the number of data, D is the feature dimension.
+    *   **labels** (*numpy.ndarray*) – Nx1 array, where N is the number of data
+
+    **Returns**
+
+    accuracy
+
+    **Return type**
+
+    float
+  </Function>
+
+  <span id="qiskit-aqua-algorithms-sklearnsvm-train" />
+
+  ### train
+
+  <Function id="qiskit.aqua.algorithms.SklearnSVM.train" signature="SklearnSVM.train(data, labels)">
+    Train the SVM
+
+    **Parameters**
+
+    *   **data** (*numpy.ndarray*) – NxD array, where N is the number of data, D is the feature dimension.
+    *   **labels** (*numpy.ndarray*) – Nx1 array, where N is the number of data
+  </Function>
+
+  ## Attributes
+
+  ### class\_to\_label
+
+  <Attribute id="qiskit.aqua.algorithms.SklearnSVM.class_to_label">
+    returns class to label
+  </Attribute>
+
+  ### label\_to\_class
+
+  <Attribute id="qiskit.aqua.algorithms.SklearnSVM.label_to_class">
+    returns label to class
+  </Attribute>
+
+  ### random
+
+  <Attribute id="qiskit.aqua.algorithms.SklearnSVM.random">
+    Return a numpy random.
+  </Attribute>
+
+  ### ret
+
+  <Attribute id="qiskit.aqua.algorithms.SklearnSVM.ret">
+    returns result
+  </Attribute>
+</Class>
+

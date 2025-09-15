@@ -1,0 +1,126 @@
+---
+title: BernsteinVazirani (v0.27)
+description: API reference for qiskit.aqua.algorithms.BernsteinVazirani in qiskit v0.27
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.BernsteinVazirani
+---
+
+<span id="qiskit-aqua-algorithms-bernsteinvazirani" />
+
+# qiskit.aqua.algorithms.BernsteinVazirani
+
+<Class id="qiskit.aqua.algorithms.BernsteinVazirani" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/education/bernstein_vazirani.py" signature="BernsteinVazirani(oracle, quantum_instance=None)" modifiers="class">
+  The Bernstein-Vazirani algorithm.
+
+  The Bernstein-Vazirani algorithm is an extension / restriction of the Deutsch-Jozsa algorithm. The goal of the algorithm is to determine a secret string $s \in \{0,1\}^n$, given a black box oracle function, that maps $f:\{0,1\}^n \rightarrow \{0,1\}$ such that $f(x)=s \cdot x (\bmod 2)$.
+
+  **Parameters**
+
+  *   **oracle** (`Oracle`) – The oracle component
+  *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.__init__" signature="__init__(oracle, quantum_instance=None)">
+    **Parameters**
+
+    *   **oracle** (`Oracle`) – The oracle component
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                 |                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.algorithms.BernsteinVazirani.__init__ "qiskit.aqua.algorithms.BernsteinVazirani.__init__")(oracle\[, quantum\_instance])              | **type oracle**`Oracle`                      |
+  | [`construct_circuit`](#qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit "qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit")(\[measurement]) | Construct the quantum circuit                |
+  | [`run`](#qiskit.aqua.algorithms.BernsteinVazirani.run "qiskit.aqua.algorithms.BernsteinVazirani.run")(\[quantum\_instance])                                     | Execute the algorithm with selected backend. |
+  | [`set_backend`](#qiskit.aqua.algorithms.BernsteinVazirani.set_backend "qiskit.aqua.algorithms.BernsteinVazirani.set_backend")(backend, \*\*kwargs)              | Sets backend with configuration.             |
+
+  ## Attributes
+
+  |                                                                                                                                              |                           |
+  | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+  | [`backend`](#qiskit.aqua.algorithms.BernsteinVazirani.backend "qiskit.aqua.algorithms.BernsteinVazirani.backend")                            | Returns backend.          |
+  | [`quantum_instance`](#qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance "qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance") | Returns quantum instance. |
+  | [`random`](#qiskit.aqua.algorithms.BernsteinVazirani.random "qiskit.aqua.algorithms.BernsteinVazirani.random")                               | Return a numpy random.    |
+
+  ### backend
+
+  <Attribute id="qiskit.aqua.algorithms.BernsteinVazirani.backend">
+    Returns backend.
+
+    **Return type**
+
+    `Union`\[`Backend`, `BaseBackend`]
+  </Attribute>
+
+  ### construct\_circuit
+
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit" signature="construct_circuit(measurement=False)">
+    Construct the quantum circuit
+
+    **Parameters**
+
+    **measurement** (*bool*) – Boolean flag to indicate if measurement should be included in the circuit.
+
+    **Returns**
+
+    the QuantumCircuit object for the constructed circuit
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+
+  ### quantum\_instance
+
+  <Attribute id="qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance">
+    Returns quantum instance.
+
+    **Return type**
+
+    `Optional`\[`QuantumInstance`]
+  </Attribute>
+
+  ### random
+
+  <Attribute id="qiskit.aqua.algorithms.BernsteinVazirani.random">
+    Return a numpy random.
+  </Attribute>
+
+  ### run
+
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.run" signature="run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
+
+    **Parameters**
+
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
+
+    **Returns**
+
+    results of an algorithm.
+
+    **Return type**
+
+    dict
+
+    **Raises**
+
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
+
+  ### set\_backend
+
+  <Function id="qiskit.aqua.algorithms.BernsteinVazirani.set_backend" signature="set_backend(backend, **kwargs)">
+    Sets backend with configuration.
+
+    **Return type**
+
+    `None`
+  </Function>
+</Class>
+

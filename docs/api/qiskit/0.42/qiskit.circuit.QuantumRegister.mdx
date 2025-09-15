@@ -1,0 +1,78 @@
+---
+title: QuantumRegister (v0.42)
+description: API reference for qiskit.circuit.QuantumRegister in qiskit v0.42
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.QuantumRegister
+---
+
+# QuantumRegister
+
+<Class id="qiskit.circuit.QuantumRegister" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/quantumregister.py" signature="QuantumRegister(size=None, name=None, bits=None)" modifiers="class">
+  Bases: `qiskit.circuit.register.Register`
+
+  Implement a quantum register.
+
+  Create a new generic register.
+
+  Either the `size` or the `bits` argument must be provided. If `size` is not None, the register will be pre-populated with bits of the correct type.
+
+  **Parameters**
+
+  *   **size** (*int*) – Optional. The number of bits to include in the register.
+  *   **name** (*str*) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
+  *   **bits** (*list\[Bit]*) – Optional. A list of Bit() instances to be used to populate the register.
+
+  **Raises**
+
+  *   **CircuitError** – if both the `size` and `bits` arguments are provided, or if neither are.
+  *   **CircuitError** – if `size` is not valid.
+  *   **CircuitError** – if `name` is not a valid name according to the OpenQASM spec.
+  *   **CircuitError** – if `bits` contained duplicated bits.
+  *   **CircuitError** – if `bits` contained bits of an incorrect type.
+
+  ## Methods
+
+  <span id="qiskit-circuit-quantumregister-index" />
+
+  ### index
+
+  <Function id="qiskit.circuit.QuantumRegister.index" signature="QuantumRegister.index(bit)">
+    Find the index of the provided bit within this register.
+  </Function>
+
+  <span id="qiskit-circuit-quantumregister-qasm" />
+
+  ### qasm
+
+  <Function id="qiskit.circuit.QuantumRegister.qasm" signature="QuantumRegister.qasm()">
+    Return OPENQASM string for this register.
+  </Function>
+
+  ## Attributes
+
+  ### instances\_counter
+
+  <Attribute id="qiskit.circuit.QuantumRegister.instances_counter" attributeValue="count(420)" />
+
+  ### name
+
+  <Attribute id="qiskit.circuit.QuantumRegister.name">
+    Get the register name.
+  </Attribute>
+
+  ### name\_format
+
+  <Attribute id="qiskit.circuit.QuantumRegister.name_format" attributeValue="re.compile('[a-z][a-zA-Z0-9_]*')" />
+
+  ### prefix
+
+  <Attribute id="qiskit.circuit.QuantumRegister.prefix" attributeValue="'q'" />
+
+  ### size
+
+  <Attribute id="qiskit.circuit.QuantumRegister.size">
+    Get the register size.
+  </Attribute>
+</Class>
+

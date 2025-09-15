@@ -1,0 +1,76 @@
+---
+title: TrivialLayout (v0.36)
+description: API reference for qiskit.transpiler.passes.TrivialLayout in qiskit v0.36
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.TrivialLayout
+---
+
+# TrivialLayout
+
+<Class id="qiskit.transpiler.passes.TrivialLayout" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/trivial_layout.py" signature="TrivialLayout(*args, **kwargs)" modifiers="class">
+  Bases: `qiskit.transpiler.basepasses.AnalysisPass`
+
+  Choose a Layout by assigning `n` circuit qubits to device qubits `0, .., n-1`.
+
+  A pass for choosing a Layout of a circuit onto a Coupling graph, using a simple round-robin order.
+
+  This pass associates a physical qubit (int) to each virtual qubit of the circuit (Qubit) in increasing order.
+
+  Does not assume any ancilla.
+
+  TrivialLayout initializer.
+
+  **Parameters**
+
+  **coupling\_map** (*Coupling*) – directed graph representing a coupling map.
+
+  **Raises**
+
+  [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if invalid options
+
+  ## Methods
+
+  <span id="qiskit-transpiler-passes-triviallayout-name" />
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.TrivialLayout.name" signature="TrivialLayout.name()">
+    Return the name of the pass.
+  </Function>
+
+  <span id="qiskit-transpiler-passes-triviallayout-run" />
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.TrivialLayout.run" signature="TrivialLayout.run(dag)">
+    Run the TrivialLayout pass on dag.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to find layout for.
+
+    **Raises**
+
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if dag wider than self.coupling\_map
+  </Function>
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.TrivialLayout.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.TrivialLayout.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
+

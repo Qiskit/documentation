@@ -1,0 +1,62 @@
+---
+title: docplex (v0.32)
+description: API reference for qiskit.optimization.applications.ising.docplex in qiskit v0.32
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.optimization.applications.ising.docplex
+---
+
+<span id="module-qiskit.optimization.applications.ising.docplex" />
+
+<span id="qiskit-optimization-applications-ising-docplex" />
+
+# qiskit.optimization.applications.ising.docplex
+
+Automatically generate Ising Hamiltonians from general models of optimization problems. This program converts general models of optimization problems into Ising Hamiltonian. To write models of optimization problems, DOcplex (Python library for optimization problems) is used in the program. ([https://cdn.rawgit.com/IBMDecisionOptimization/docplex-doc/master/docs/index.html](https://cdn.rawgit.com/IBMDecisionOptimization/docplex-doc/master/docs/index.html))
+
+It supports models that consist of the following elements now.
+
+*   Binary variables.
+
+*   Linear or quadratic object function.
+
+*   Equality constraints.
+
+    > *   Symbols in constraints have to be equal (==).
+    > *   Inequality constraints (e.g. x+y \<= 5) are not allowed.
+
+The following is an example of use.
+
+```python
+# Create an instance of a model and variables with DOcplex.
+mdl = Model(name='tsp')
+x = {(i,p): mdl.binary_var(name='x_{0}_{1}'.format(i,p)) for i in range(num_node)
+           for p in range(num_node)}
+
+# Object function
+tsp_func = mdl.sum(ins.w[i,j] * x[(i,p)] * x[(j,(p+1)%num_node)] for i in range(num_node)
+                        for j in range(num_node) for p in range(num_node))
+mdl.minimize(tsp_func)
+
+# Constraints
+for i in range(num_node):
+    mdl.add_constraint(mdl.sum(x[(i,p)] for p in range(num_node)) == 1)
+for p in range(num_node):
+    mdl.add_constraint(mdl.sum(x[(i,p)] for i in range(num_node)) == 1)
+
+# Call the method to convert the model into Ising Hamiltonian.
+qubitOp, offset = get_operator(mdl)
+
+# Calculate with the generated Ising Hamiltonian.
+ee = NumPyMinimumEigensolver(qubitOp)
+result = ee.run()
+print('get_operator')
+print('tsp objective:', result['energy'] + offset)
+```
+
+**Functions**
+
+|                                          |                                                     |
+| ---------------------------------------- | --------------------------------------------------- |
+| `get_operator`(mdl\[, auto\_penalty, …]) | Generate Ising Hamiltonian from a model of DOcplex. |
+

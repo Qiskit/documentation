@@ -1,0 +1,204 @@
+---
+title: IBMQBackendService (v0.25)
+description: API reference for qiskit.providers.ibmq.IBMQBackendService in qiskit v0.25
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.IBMQBackendService
+---
+
+<span id="qiskit-providers-ibmq-ibmqbackendservice" />
+
+# qiskit.providers.ibmq.IBMQBackendService
+
+<Class id="qiskit.providers.ibmq.IBMQBackendService" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/ibmqbackendservice.py" signature="IBMQBackendService(provider)" modifiers="class">
+  Backend namespace for an IBM Quantum Experience account provider.
+
+  Represent a namespace that provides backend related services for the IBM Quantum Experience backends available to this provider. An instance of this class is used as a callable attribute to the [`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider") class. This allows a convenient way to query for all backends or to access a specific backend:
+
+  ```python
+  backends = provider.backends()  # Invoke backends() to get the backends.
+  sim_backend = provider.backend.ibmq_qasm_simulator  # Get a specific backend instance.
+  ```
+
+  Also, you are able to retrieve jobs from a provider without specifying the backend name. For example, to retrieve the ten most recent jobs you have submitted, regardless of the backend they were submitted to, you could do:
+
+  ```python
+  most_recent_jobs = provider.backend.jobs(limit=10)
+  ```
+
+  It is also possible to retrieve a single job without specifying the backend name:
+
+  ```python
+  job = provider.backend.retrieve_job(<JOB_ID>)
+  ```
+
+  IBMQBackendService constructor.
+
+  **Parameters**
+
+  **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit.providers.ibmq.IBMQBackendService.__init__" signature="__init__(provider)">
+    IBMQBackendService constructor.
+
+    **Parameters**
+
+    **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                    |                                                                                  |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.providers.ibmq.IBMQBackendService.__init__ "qiskit.providers.ibmq.IBMQBackendService.__init__")(provider)                     | IBMQBackendService constructor.                                                  |
+  | [`backends`](#qiskit.providers.ibmq.IBMQBackendService.backends "qiskit.providers.ibmq.IBMQBackendService.backends")(\[name, filters, timeout, …]) | Return all backends accessible via this provider, subject to optional filtering. |
+  | [`jobs`](#qiskit.providers.ibmq.IBMQBackendService.jobs "qiskit.providers.ibmq.IBMQBackendService.jobs")(\[limit, skip, backend\_name, status, …]) | Return a list of jobs, subject to optional filtering.                            |
+  | [`my_reservations`](#qiskit.providers.ibmq.IBMQBackendService.my_reservations "qiskit.providers.ibmq.IBMQBackendService.my_reservations")()        | Return your upcoming reservations.                                               |
+  | [`retrieve_job`](#qiskit.providers.ibmq.IBMQBackendService.retrieve_job "qiskit.providers.ibmq.IBMQBackendService.retrieve_job")(job\_id)          | Return a single job.                                                             |
+
+  ### backends
+
+  <Function id="qiskit.providers.ibmq.IBMQBackendService.backends" signature="backends(name=None, filters=None, timeout=None, min_num_qubits=None, **kwargs)">
+    Return all backends accessible via this provider, subject to optional filtering.
+
+    **Parameters**
+
+    *   **name** (`Optional`\[`str`]) – Backend name to filter by.
+
+    *   **filters** (`Optional`\[`Callable`\[\[`List`\[`IBMQBackend`]], `bool`]]) –
+
+        More complex filters, such as lambda functions. For example:
+
+        ```python
+        AccountProvider.backends(
+            filters=lambda b: b.configuration().quantum_volume > 16)
+        ```
+
+    *   **timeout** (`Optional`\[`float`]) – Maximum number of seconds to wait for the discovery of remote backends.
+
+    *   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend has to have.
+
+    *   **kwargs** (`Any`) –
+
+        Simple filters that specify a `True`/`False` criteria in the backend configuration, backends status, or provider credentials. An example to get the operational backends with 5 qubits:
+
+        ```python
+        AccountProvider.backends(n_qubits=5, operational=True)
+        ```
+
+    **Return type**
+
+    `List`\[`IBMQBackend`]
+
+    **Returns**
+
+    The list of available backends that match the filter.
+  </Function>
+
+  ### jobs
+
+  <Function id="qiskit.providers.ibmq.IBMQBackendService.jobs" signature="jobs(limit=10, skip=0, backend_name=None, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', experiment_id=None, descending=True, db_filter=None)">
+    Return a list of jobs, subject to optional filtering.
+
+    Retrieve jobs that match the given filters and paginate the results if desired. Note that the server has a limit for the number of jobs returned in a single call. As a result, this function might involve making several calls to the server.
+
+    **Parameters**
+
+    *   **limit** (`int`) – Number of jobs to retrieve.
+
+    *   **skip** (`int`) – Starting index for the job retrieval.
+
+    *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
+
+    *   **status** (`Union`\[`JobStatus`, `str`, `List`\[`Union`\[`JobStatus`, `str`]], `None`]) – Only get jobs with this status or one of the statuses. For example, you can specify status=JobStatus.RUNNING or status=”RUNNING” or status=\[“RUNNING”, “ERROR”]
+
+    *   **job\_name** (`Optional`\[`str`]) – Filter by job name. The job\_name is matched partially and [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions) can be used.
+
+    *   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
+
+    *   **end\_datetime** (`Optional`\[`datetime`]) – Filter by the given end date, in local time. This is used to find jobs whose creation dates are before (less than or equal to) this local date/time.
+
+    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to jobs.
+
+    *   **job\_tags\_operator** (`Optional`\[`str`]) –
+
+        Logical operator to use when filtering by job tags. Valid values are “AND” and “OR”:
+
+        > *   If “AND” is specified, then a job must have all of the tags specified in `job_tags` to be included.
+        > *   If “OR” is specified, then a job only needs to have any of the tags specified in `job_tags` to be included.
+
+    *   **experiment\_id** (`Optional`\[`str`]) – Filter by job experiment ID.
+
+    *   **descending** (`bool`) – If `True`, return the jobs in descending order of the job creation date (i.e. newest first) until the limit is reached.
+
+    *   **db\_filter** (`Optional`\[`Dict`\[`str`, `Any`]]) –
+
+        A [loopback-based filter](https://loopback.io/doc/en/lb2/Querying-data.html). This is an interface to a database `where` filter. Some examples of its usage are:
+
+        Filter last five jobs with errors:
+
+        ```python
+        job_list = backend.jobs(limit=5, status=JobStatus.ERROR)
+        ```
+
+        Filter last five jobs with hub name `ibm-q`:
+
+        ```python
+        filter = {'hubInfo.hub.name': 'ibm-q'}
+        job_list = backend.jobs(limit=5, db_filter=filter)
+        ```
+
+    **Return type**
+
+    `List`\[`IBMQJob`]
+
+    **Returns**
+
+    A list of `IBMQJob` instances.
+
+    **Raises**
+
+    *   [**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If a keyword value is not recognized.
+    *   **TypeError** – If the input start\_datetime or end\_datetime parameter value is not valid.
+  </Function>
+
+  ### my\_reservations
+
+  <Function id="qiskit.providers.ibmq.IBMQBackendService.my_reservations" signature="my_reservations()">
+    Return your upcoming reservations.
+
+    **Return type**
+
+    `List`\[`BackendReservation`]
+
+    **Returns**
+
+    A list of your upcoming reservations.
+  </Function>
+
+  ### retrieve\_job
+
+  <Function id="qiskit.providers.ibmq.IBMQBackendService.retrieve_job" signature="retrieve_job(job_id)">
+    Return a single job.
+
+    **Parameters**
+
+    **job\_id** (`str`) – The ID of the job to retrieve.
+
+    **Return type**
+
+    `IBMQJob`
+
+    **Returns**
+
+    The job with the given id.
+
+    **Raises**
+
+    *   [**IBMQBackendApiError**](qiskit.providers.ibmq.IBMQBackendApiError "qiskit.providers.ibmq.IBMQBackendApiError") – If an unexpected error occurred when retrieving the job.
+    *   [**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If unexpected return value received from the server.
+  </Function>
+</Class>
+
