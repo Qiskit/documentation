@@ -128,7 +128,7 @@ To download calibration data as a CSV file, click the download icon in the upper
 
 In addition to the information provided in the Details section of the card, the Calibration data section also includes the following:
 
-[Topology diagram or coupling map](#coupling-map) | [Readout assignment error](#readout-assignment-error) | [Prob meas0 prep1](#prob-meas0-prep1) | [Prob meas1 prep0](#prob-meas1-prep0) | [Readout length (ns)](#readout-length-ns) | [ID error / √x (sx) error / Pauli-X error](#finite-duration-discrete) | [Single-qubit gate length (ns)](#single-qubit-gate-length-ns) | [RX error](#rx-error) | [Z-axis rotation (RZ) error](#z-axis-rotation-rz-error) | [Operational](#operational) | [Gate length (ns)](#gate-length-ns) | [2Q error](#2q-error) | [RZZ error](#rzz-error-heron)
+[Topology diagram or coupling map](#coupling-map) | [Readout assignment error](#readout-assignment-error) | [Prob meas0 prep1](#prob-meas0-prep1) | [Prob meas1 prep0](#prob-meas1-prep0) | [Readout length (ns)](#readout-length-ns) | [ID error / √x (sx) error / Pauli-X error / RX error](#finite-duration-discrete) | [Single-qubit gate length (ns)](#single-qubit-gate-length-ns)| [Z-axis rotation (RZ) error](#z-axis-rotation-rz-error) | [Operational](#operational) | [Gate length (ns)](#gate-length-ns) | [2Q error](#2q-error) | [RZZ error](#rzz-error-heron)
 
 <span id="coupling-map"></span>
 ### Topology diagram or coupling map
@@ -152,17 +152,13 @@ Similarly, this parameter represents the probability of measuring a qubit in the
 The readout_length specifies the duration of the readout operation for a qubit. It measures the time from the initiation of the measurement pulse to the completion of signal digitization, after which the system is ready for the next operation. Understanding this parameter is crucial for optimizing circuit execution, especially when incorporating mid-circuit measurements.
 
 <span id="finite-duration-discrete"></span>
-### ID error / √x (sx) error / Pauli-X error
+### ID error / √x (sx) error / Pauli-X error / RX error
 
-Error in the finite-duration discrete one-qubit gates, measured from randomized benchmarking. The randomized benchmarking sequence includes SX, ID, and X gates, and it is assumed their errors are the same. The ID gate is a delay of duration equal to the duration of the √X and X gates.
+Error in the finite-duration discrete one-qubit gates, measured from randomized benchmarking. The randomized benchmarking sequence includes SX, ID, X, and RX gates, and it is assumed their errors are the same. The ID gate is a delay of duration equal to the duration of the √X and X gates. The RX gate is also the same duration of the √X and X gates with variable amplitude, and so it is reported as having the same error as these gates.
 
 ### Single-qubit gate length (ns)
 
 Duration of a single-qubit gate operation.
-
-### RX error
-
-Error in the RX gate, averaged over the RX angles using a variant of randomized benchmarking.
 
 ### Z-axis rotation (RZ) error
 
