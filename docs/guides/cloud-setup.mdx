@@ -108,11 +108,13 @@ Options:
 
 -**`token`**: IBM Cloud API key. Your token is confidential. Do not share your token in public code.
 -**`instance`**: Optionally specify the instance to use.
--**`plans_preference`**: Optionally set the types of plans to prioritize. This is ignored if the instance is specified. Available options are 'open' and 'premium'. Instances of a certain plan type are excluded if the plan name is not specified. For example, if [`open`] is passed in, only open plan instances are available.
--**`region`**: Optionally set the region to use. Accepted values are 'us-east' and 'eu-de'. This is ignored if the instance is specified.
+-**`plans_preference`**: Optionally set the types of plans to prioritize. This is ignored if the instance is specified. Available options are `open` and `premium`. Instances of a certain plan type are excluded if the plan name is not specified. For example, if [`open`] is passed in, only open plan instances are available. This is ignored if `instance` is specified.
+-**`region`**: Optionally set the region to use. Accepted values are `us-east` and `eu-de`. This is ignored if `instance` is specified.
 -**`name`**: Optionally name this set of account credentials.
 -**`set_as_default`**: Set the value to `True` to save these as your default credentials. If you save only one account, it is automatically set as the default.
 -**`overwrite`**: Set this value to `True` to update your default credentials.
+-**`tags`**: Optionally specify the instance's tags. Accepts a list of tag name strings. This is ignored if `instance` is specified.
+
 
 #### Example
 
@@ -125,14 +127,12 @@ QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TO
                                   instance="<CRN_for_open_instance>", name="open")
  ```
 
-
 #### Considerations
 
 * If you are saving multiple accounts, consider using the `name` parameter to differentiate them.
 * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
 * If you don't save your credentials, you must specify them every time you start a new session.
 * If you manually specify your credentials, a saved account will not be used.
-
 
 ### 4. Initialize the service
 

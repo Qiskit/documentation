@@ -81,7 +81,7 @@ service = QiskitRuntimeService()
 ...
 ```
 
-If you saved multiple sets of credentials, for example, for Open and Premium access, use the following code to use a specific set of credentials.
+If you saved multiple sets of credentials, for example, for open and premium access, use the following code to use a specific set of credentials.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -91,19 +91,50 @@ service = QiskitRuntimeService(name="<name_of_saved_credentials>")
 ...
 ```
 
+<Admonition type="note">
+If you save multiple sets of credentials, but don't name one when initializing the service, the one whose name comes last alphabetically is used.
+</Admonition>
+
 For instructions to save credentials, see [save(/docs/guides/cloud-setup#cloud-save)]
 
 <span id="auto-select"></span>
 ### Automatically select the instance
 Use the information in this section if you want Qiskit Runtime to automatically select the instance.
 
-If you provide a token but don't provide an instance CRN when instantiating the service, the QiskitRuntimeService authenticates to the account identified by the token and relies on automatic instance selection to choose the most relevant instance for the requested task. If you have several instances available within your account, the service automatically switches between available instances, depending on the resource requested and these `QiskitRuntimeService` options (if set): `plans_preference`, `region`, `tags`.
+If you provide a token but **don't provide an instance CRN** when instantiating the service, the QiskitRuntimeService authenticates to the account identified by the token and relies on automatic instance selection to choose the most relevant instance for the requested task. If you have several instances available within your account, the service automatically chooses from the available instances, depending on the resource requested and these `QiskitRuntimeService` options (if set): `plans_preference`, `region`, `tags`.
 
-- **`plans_preference`**: The types of instance plans to prioritize. For example, if [`open`] is passed in, only open plan instances are available.
+- **`plans_preference`**: The types of instance plans to prioritize. For example, if [`open`] is passed in, only Open Plan instances are available. Accepted values are `open` and `premium`. If `plans_preference` is not specified, free plans are prioritized over paid plans.
+- **`region`**: The instance region. Accepted values are `us-east` and `eu-de`.
+- **`tags`**: The instance tags. Accepts a list of tag name strings.
 
-region: Specify the instance region. Accepted values are `us-east` and `eu-de`.
+#### Examples
 
-tags: Specify the instance tags. Accepts a list of tag name strings.
+In this example, the service searches all instances that are available to the account to find ones that can access the specified backend:
+
+```python
+service = QiskitRuntimeService(token=token)
+```
+
+In this example, the service searches all instances that are available to the account in the EU region to find ones that can access the specified backend:
+
+```python
+service = QiskitRuntimeService(token=token, region="eu-de")
+```
+
+In this example, the service searches all instances that are available to the account and are tagged as `service` to find ones that can access the specified backend:
+
+```python
+service = QiskitRuntimeService(token=token, tags=['services'])
+```
+
+In this example, the service searches all premium and open instances that are available to the account to find ones that can access the specified backend. If a backend is in both a premium and an open plan, the premium plan is prioritized because it is specified first in `plans_preference`.
+
+```python
+service = QiskitRuntimeService(token=token, plans_preference=['premium', 'open'])
+```
+
+#### Determine which instance was chosen
+The selected instance is returned as a warning. Additionally, you can run `service.active_instance()` to determine the active instance.
 
 ## Next steps
 
