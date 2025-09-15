@@ -71,7 +71,7 @@ Although the `instance` input parameter is optional, it is recommended that you 
 <span id="saved"></span>
 ### Quick start path: Specify saved credentials
 
-If you have already saved your credentials, use the following code to use your default credentials.
+If you have already saved your credentials, use the following code to use your default credentials. For instructions to save credentials, see [Save your access credentials.](/docs/guides/cloud-setup#cloud-save)
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -81,7 +81,7 @@ service = QiskitRuntimeService()
 ...
 ```
 
-If you saved multiple sets of credentials, for example, for open and premium access, use the following code to use a specific set of credentials.
+If you named one or more sets of credentials, for example, for open and premium access, use the following code to use a set of named credentials.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -91,11 +91,36 @@ service = QiskitRuntimeService(name="<name_of_saved_credentials>")
 ...
 ```
 
-<Admonition type="note">
-If you save multiple sets of credentials, but don't name one when initializing the service, the one whose name comes last alphabetically is used.
-</Admonition>
+#### Considerations when loading saved credentials
 
-For instructions to save credentials, see [save(/docs/guides/cloud-setup#cloud-save)]
+- If you save multiple sets of credentials but don't name one when initializing the service, the one whose name comes last alphabetically is used.
+    Example: The user saved accounts named "premium" and "open", then initialized the service by using the following code. In this case, the "premium" credentials are used.
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    service = QiskitRuntimeService()
+    ```
+- If you initialize a service with `token` and `name`, the `token` is ignored and the saved details from `name` are loaded.
+    Example: In the following example, the service loads the details from account_A and does not use token_B
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    service = QiskitRuntimeService(token="token_B", name="account_A")
+    ```
+- If you provide a `name` and an `instance` when initializing a service, the service tries to load the saved details from `name` and connect to the specified instance. If there is any conflict, a warning is raised.
+    Example: In the following example, the service tries to load the credentials for `account_A` and use the instance `CRN_B` - even if there is a different instance specified in `account_A`.
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    service = QiskitRuntimeService(instance="CRN_B", name="account_A")
+    ```
+- The service tries to load the default saved accoun only if you don't provide a `token` or `name` when initializing a service.  However, if an `instance` is provided explicitly, the service try to connect to that instance by using the default credentials. If there is any conflict, a warning is raised.
+    Example: In the following example, the service tries to load the default credentials use the instance `CRN_B` - even if there is a different instance specified in the default account.
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    service = QiskitRuntimeService(instance="CRN_B")
+    ```
 
 <span id="auto-select"></span>
 ### Automatically select the instance
@@ -135,6 +160,18 @@ service = QiskitRuntimeService(token=token, plans_preference=['premium', 'open']
 
 #### Determine which instance was chosen
 The selected instance is returned as a warning. Additionally, you can run `service.active_instance()` to determine the active instance.
+
+### Local testing with Qiskit Runtime
+
+The `QiskitRuntimeService` class can be initialized with `channel=local` to perform local simulation. In this case, authentication is not required and there is no need to provide values for `token` or `instance`. For this reason, it is not recommended that you save a local account.  Instead, you can simply do direct instantiation:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+# initialize for local testing
+
+service QiskitRuntimeService(channel="local")
+```
 
 ## Next steps
 
