@@ -71,7 +71,27 @@ Although the `instance` input parameter is optional, it is recommended that you 
 <span id="saved"></span>
 ### Quick start path: Specify saved credentials
 
-You can use the following snippet as a quick start reference as long as you instantiate the service precisely as indicated in this example. For more info on the mechanisms used to save and load accounts, and possible variations from this example, see section C:
+If you have already saved your credentials, use the following code to use your default credentials.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+# run every time you need the service
+service = QiskitRuntimeService()
+...
+```
+
+If you saved multiple sets of credentials, for example, for Open and Premium access, use the following code to use a specific set of credentials.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+# run every time you need the service
+service = QiskitRuntimeService(name="<name_of_saved_credentials>")
+...
+```
+
+For instructions to save credentials, see [save(/docs/guides/cloud-setup#cloud-save)]
 
 <span id="auto-select"></span>
 ### Automatically select the instance

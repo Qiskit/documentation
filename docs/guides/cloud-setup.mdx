@@ -114,6 +114,18 @@ Options:
 -**`set_as_default`**: Set the value to `True` to save these as your default credentials. If you save only one account, it is automatically set as the default.
 -**`overwrite`**: Set this value to `True` to update your default credentials.
 
+#### Example
+
+```python
+# Save different accounts for open and premium access (run only once)
+
+QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>",
+                                  instance="<CRN_for_premium_instance>", name="premium")
+QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>",
+                                  instance="<CRN_for_open_instance>", name="open")
+ ```
+
+
 #### Considerations
 
 * If you are saving multiple accounts, consider using the `name` parameter to differentiate them.
@@ -121,18 +133,10 @@ Options:
 * If you don't save your credentials, you must specify them every time you start a new session.
 * If you manually specify your credentials, a saved account will not be used.
 
+
 ### 4. Initialize the service
 
-Every time you need to instantiate a `QiskitRuntimeService` with the default saved account, run the following:
-
- ```python
-    from qiskit_ibm_runtime import QiskitRuntimeService
-
-    service = QiskitRuntimeService()
-    ...
-  ```
-
-See the [Initialize the service](/docs/guides/initialize-account) guide for more details about instantiating the `QiskitRuntimeService`.
+See the [Initialize the service](/docs/guides/initialize-account) guide for instructions.
 
 ## Next steps
 
