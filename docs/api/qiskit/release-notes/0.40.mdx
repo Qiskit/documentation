@@ -909,7 +909,7 @@ This release also deprecates support for running with Python 3.7. A `Deprecation
         results.append(transpile(qc, coupling_map=cmap))
     ```
 
-    You can also leverage [`parallel_map()`](/docs/api/qiskit/0.46/tools#qiskit.tools.parallel_map "qiskit.tools.parallel_map") or `multiprocessing` from the Python standard library if you want to run this in parallel.
+    You can also leverage [`parallel_map()`](/docs/api/qiskit/0.46/utils#qiskit.utils.parallel_map "qiskit.tools.parallel_map") or `multiprocessing` from the Python standard library if you want to run this in parallel.
 
 *   The legacy version of the pulse drawer present in the `qiskit.visualization.pulse` has been deprecated and will be removed in a future release. This includes the `ScheduleDrawer` and :class\`WaveformDrawer\` classes. This module has been superseded by the `qiskit.visualization.pulse_v2` drawer and the typical user API [`pulse_drawer()`](/docs/api/qiskit/0.46/qiskit.visualization.pulse_drawer "qiskit.visualization.pulse_drawer") and `PulseBlock.draw()` are already updated internally to use `qiskit.visualization.pulse_v2`.
 
@@ -984,7 +984,7 @@ This release also deprecates support for running with Python 3.7. A `Deprecation
 
 *   Fixed an issue with the `PauliOp.matmul()` method where it would return incorrect results with `iI`. Fixed [#8680](https://github.com/Qiskit/qiskit/issues/8680).
 
-*   Fixed an issue with the Approximate Quantum Compiler ([`AQC`](/docs/api/qiskit/0.46/qiskit.transpiler.synthesis.aqc.AQC "qiskit.transpiler.synthesis.aqc.AQC")) class which caused it to return an incorrect circuit when the input unitary had a determinant of -1. Fixed [#9327](https://github.com/Qiskit/qiskit/issues/9327)
+*   Fixed an issue with the Approximate Quantum Compiler ([`AQC`](/docs/api/qiskit/0.46/qiskit.synthesis.unitary.aqc.AQC "qiskit.transpiler.synthesis.aqc.AQC")) class which caused it to return an incorrect circuit when the input unitary had a determinant of -1. Fixed [#9327](https://github.com/Qiskit/qiskit/issues/9327)
 
 *   Fixed an issue with the [`QuantumCircuit.compose()`](/docs/api/qiskit/0.46/qiskit.circuit.QuantumCircuit#compose "qiskit.circuit.QuantumCircuit.compose") method where it would incorrectly reject valid qubit or clbit specifiers. This has been fixed so that the method now accepts the same set of qubit and clbit specifiers as other [`QuantumCircuit`](/docs/api/qiskit/0.46/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") methods, such as [`append()`](/docs/api/qiskit/0.46/qiskit.circuit.QuantumCircuit#append "qiskit.circuit.QuantumCircuit.append"). Fixed [#8691](https://github.com/Qiskit/qiskit/issues/8691).
 

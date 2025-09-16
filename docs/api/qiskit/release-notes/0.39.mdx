@@ -898,7 +898,7 @@ The Qiskit Terra 0.22.0 release is a major feature release that includes a myria
     qc_synthesized = PassManager(HighLevelSynthesis()).run(qc)
     ```
 
-    will synthesize the higher-level Clifford stored in `qc` using the default [`decompose_clifford()`](/docs/api/qiskit/0.46/quantum_info#qiskit.quantum_info.decompose_clifford "qiskit.quantum_info.decompose_clifford") function.
+    will synthesize the higher-level Clifford stored in `qc` using the default `decompose_clifford()` function.
 
     This new transpiler pass [`HighLevelSynthesis`](/docs/api/qiskit/0.46/qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") is integrated into the preset pass managers, running right after [`UnitarySynthesis`](/docs/api/qiskit/0.46/qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") pass. Thus, [`transpile()`](/docs/api/qiskit/0.46/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") will synthesize all higher-level Cliffords present in the circuit.
 

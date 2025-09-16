@@ -716,7 +716,7 @@ Qiskit Terra 0.25 has dropped support for Python 3.7 following deprecation warni
     results = [transpile(qc, coupling_map=cm) for cm in cmap]
     ```
 
-    You can also leverage [`parallel_map()`](/docs/api/qiskit/0.46/tools#qiskit.tools.parallel_map "qiskit.tools.parallel_map") or `multiprocessing` from the Python standard library if you want to run this in parallel.
+    You can also leverage [`parallel_map()`](/docs/api/qiskit/0.46/utils#qiskit.utils.parallel_map "qiskit.tools.parallel_map") or `multiprocessing` from the Python standard library if you want to run this in parallel.
 
 *   The Sabre family of transpiler passes (namely [`SabreLayout`](/docs/api/qiskit/0.46/qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") and [`SabreSwap`](/docs/api/qiskit/0.46/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")) are now used by default for all circuits when invoking the transpiler at optimization level 1 (e.g. calling [`transpile()`](/docs/api/qiskit/0.46/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`generate_preset_pass_manager()`](/docs/api/qiskit/0.46/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") with keyword argument `optimization_level=1`). Previously, circuits with control flow operations used [`DenseLayout`](/docs/api/qiskit/0.46/qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout") and [`StochasticSwap`](/docs/api/qiskit/0.46/qiskit.transpiler.passes.StochasticSwap "qiskit.transpiler.passes.StochasticSwap") with this profile.
 
