@@ -25,8 +25,9 @@ interface Arguments {
   apis: boolean;
 }
 
+// URLs must start by `/` and exclude the file extension
 const ALLOWED_ORPHAN_URLS: Set<string> = new Set([
-  "docs/api/qiskit/0.46/transpiler_builtin_plugins.mdx",
+  "/docs/api/qiskit/0.46/transpiler_builtin_plugins",
 ]);
 
 const readArgs = (): Arguments => {
