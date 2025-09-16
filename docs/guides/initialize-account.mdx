@@ -6,7 +6,7 @@ description: How to initialize your Qiskit Runtime account, with the option of s
 
 # Initialize your Qiskit Runtime service account
 
-Before using Qiskit Runtime, you have to initialize (instantiate) your account by submitting credentials.  These credentials can be submitted each time you initialize the Qiskit Runtime Service, or you can save them for reuse.
+Before using Qiskit Runtime, you have to initialize (instantiate) your account by submitting credentials.  These credentials can be manually submitted each time you initialize the Qiskit Runtime service, or you can save them for reuse.
 
 <Admonition type="note" title="Notes">
       * If you are not using a trusted environment, follow the instructions in [Initialize the service in an untrusted environment](/docs/guides/cloud-setup-untrusted) instead. For example, if you are using a public comptuer.
@@ -18,21 +18,10 @@ Before using Qiskit Runtime, you have to initialize (instantiate) your account b
 
 Ensure that you have completed these steps:
 
-1. Ensure that you are a member of an IBM Cloud account.  See [set up your own IBM Cloud account](https://quantum.cloud.ibm.com/registration) for instructions.
-   <Admonition type="note" title="Notes">
-   - To avoid adding your credit card information, you can set up a 30-day trial account and optionally upgrade it later.
-   - You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the header of the [IBM Quantum Platform interface.](https://quantum.cloud.ibm.com)
-   - If you are invited to join an IBM Cloud account, you will get an email invitation to join the account.  Follow the instructions in that email.
-   </Admonition>
-
-2. Create (or have access to) at least one instance.
+1. Ensure that you are a member of an IBM Cloud account.  See [Set up your IBM Cloud account](/docs/guides/cloud-setup) for instructions.
+2. Create (or have access to) at least one instance. Follow these steps to verify:
     1. Log in to [IBM Quantum Platform](https://quantum.cloud.ibm.com).
-    1. Make sure that the correct account and region are selected in the account switcher in the header, as shown in the following image.
-
-        The region controls where your jobs are run and where the job data is kept. You can access either region by using the same API key, but you can only see and access the instances that were created in the region that you're logged in to.
-
-        ![The IBM Quantum Platform header is shown.  The account switcher is to the right of the search bar.  The region switcher is to the right of the account switcher.](/docs/images/guides/cloud-setup/IQP-Header.svg 'IBM Quantum Platform header')
-
+    1. Make sure that the correct account and region are selected in the account switcher in the header.
     1. Go to the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com) If you have one or more instances shown, you're done with this step. Otherwise, [create an instance.](/docs/guides/cloud-setup#create-instance)
 1. Ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed.](/docs/guides/install-qiskit#local)
 1. Activate the Python virtual environment and run Python in your virtual environment.
@@ -45,10 +34,10 @@ Ensure that you have completed these steps:
 2. Optional: Find the instance you want to use from the [Instances](https://quantum.cloud.ibm.com/instances) page. Click the icon to copy its CRN, then save it in a secure location so you can use it to identify the instance.
 
 
-## Connect Qiskit with your service instance
+## Connect Qiskit with your Qiskit Runtime service instance
 
 <Admonition type="note">
-This guide is designed for `qiskit_ibm_runtime` v0.42 or later. If you are using an earlier version of `qiskit_ibm_runtime`, certain features will not be enabled. In these cases, we recommend always providing a value for channel, token, and instance, either explicitly or through a saved account.
+These instructions are designed for `qiskit_ibm_runtime` v0.42 or later. Some features are not enabled in earlier versions of `qiskit_ibm_runtime`. In these cases, you should always provide a value for `channel`, `token`, and `instance`, either explicitly or through a saved account.
 </Admonition>
 
 The basic code to connect Qiskit with your Qiskit Runtime service instance follows.  However, there are several different ways to customize the `QiskitRuntimeService` options, depending on your needs.  These options are described in the following sections.
@@ -56,7 +45,8 @@ The basic code to connect Qiskit with your Qiskit Runtime service instance follo
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-service = QiskitRuntimeService(channel=<channel>, token=<cloud_api_key>, instance=<instance_CRN>)
+service = QiskitRuntimeService(channel=<channel>, token=<cloud_api_key>,
+        instance=<instance_CRN>)
 ```
 
 <Admonition type="note">
@@ -66,7 +56,7 @@ The default channel is `ibm_quantum_platform`.  Because this is almost always th
 <span id="explicit"></span>
 ### Quick start path: Specify credentials explicitly
 
-The fastest way to get a `QiskitRuntimeService` running is the direct instantiation method: explicitly provide the API token (key) and CRN (instance identifier) every time you need to initialize the Qiskit Runtime service. See [Find  your access credentials](#access-credentials) section if necessary.
+The fastest way to get a `QiskitRuntimeService` instance running is the direct instantiation method: explicitly provide the API token (key) and CRN (instance identifier) every time you need to initialize the Qiskit Runtime service. See [Find your access credentials](#access-credentials) if necessary.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -105,23 +95,23 @@ service = QiskitRuntimeService(name="<name_of_saved_credentials>")
 
 - If you save multiple sets of credentials but don't specify one when initializing the service, the one whose name comes last alphabetically is used.
 
-    In the following example, the user saved accounts named "premium" and "open", then initialized the service by using the following code. In this case, the "premium" credentials are used.
+    In the following example, the user saved accounts named "premium" and "open", then initialized the service by using the following code. In this case, the "premium" credentials are used:
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     service = QiskitRuntimeService()
     ```
-- If you initialize a service with `token` and `name`, the `token` is ignored and the saved details from the account `name` are loaded.
+- If you initialize a service with `token` and `name`, the `token` is ignored and the saved details from the `name` account are loaded.
 
-    In the following example, the service loads the details from account_A and does not use token_B
+    In the following example, the service loads the details from account_A and does not use token_B:
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     service = QiskitRuntimeService(token="token_B", name="account_A")
     ```
-- If you provide a `name` and an `instance` when initializing a service, the service tries to load the saved details from `name` **and** connect to the specified instance. If there is any conflict, a warning is raised.
+- If you provide a `name` and an `instance` when initializing a service, the service tries to load the `name` account **and** connect to the specified `instance`. If there is any conflict, a warning is raised.
 
-    In the following example, the service tries to load the credentials for `account_A` and use instance `CRN_B` - even if there is a different instance specified in `account_A`.
+    In the following example, the service tries to load the credentials for `account_A` and use instance `CRN_B` - even if there is a different instance specified in `account_A`:
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
 
@@ -129,7 +119,7 @@ service = QiskitRuntimeService(name="<name_of_saved_credentials>")
     ```
 - The service tries to load the default saved account only if you don't provide a `token` or `name` when initializing a service.  However, if an `instance` is provided explicitly, the service tries to connect to that instance by using the default credentials. If there is any conflict, a warning is raised.
 
-    In the following example, the service tries to load the default credentials and use the instance `CRN_B` - even if there is a different instance specified in the default account.
+    In the following example, the service tries to load the default credentials and use the instance `CRN_B` - even if there is a different instance specified in the default account:
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
 
@@ -139,7 +129,7 @@ service = QiskitRuntimeService(name="<name_of_saved_credentials>")
 <span id="auto-select"></span>
 ### Automatically select the instance
 
-If you provide a token but **don't provide an instance CRN** when instantiating the service, `QiskitRuntimeService` authenticates to the account identified by the token and relies on automatic instance selection to choose the most relevant instance for the requested task. If you have several instances available within your account, the service automatically chooses from the available instances, depending on the resource requested and these `QiskitRuntimeService` options (if set): `plans_preference`, `region`, `tags`.
+If you provide a token but **don't provide an instance CRN** when instantiating the service, `QiskitRuntimeService` authenticates to the account identified by the token and uses automatic instance selection to choose the most relevant instance for the requested task. If you have several instances available within your account, the service automatically chooses from the available instances, depending on the resource requested and these `QiskitRuntimeService` options (if set): `plans_preference`, `region`, `tags`.
 
 - **`plans_preference`**: The types of instance plans to prioritize. For example, if [`open`] is passed in, only Open Plan instances are available. Accepted values are `open` and `premium`. If `plans_preference` is not specified, free plans are prioritized over paid plans.
 - **`region`**: The instance region. Accepted values are `us-east` and `eu-de`.
