@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 export const METADATA_ALLOWLIST: Set<string> = new Set([
-  ...metadataIgnoresForLegacyQiskit(),
+  "docs/api/qiskit/0.46/transpiler_builtin_plugins.mdx",
 ]);
 
 export const IGNORE_TITLE_MISMATCHES: string[] = [
@@ -138,42 +138,3 @@ export const IGNORE_TITLE_MISMATCHES: string[] = [
   "learning/courses/general-formulation-of-quantum-information/general-measurements/discrimination-and-tomography.ipynb",
   "learning/modules/computer-science/vqe.ipynb",
 ];
-
-function metadataIgnoresForLegacyQiskit(): string[] {
-  const versions = [
-    "0.19/",
-    "0.24/",
-    "0.25/",
-    "0.26/",
-    "0.27/",
-    "0.28/",
-    "0.29/",
-    "0.30/",
-    "0.31/",
-    "0.32/",
-    "0.33/",
-    "0.35/",
-    "0.36/",
-    "0.37/",
-    "0.38/",
-    "0.39/",
-    "0.40/",
-    "0.41/",
-    "0.42/",
-    "0.43/",
-    "0.44/",
-    "0.45/",
-    "0.46/",
-  ];
-  return [
-    ...versions.flatMap((vers) => [
-      `docs/api/qiskit/${vers}aer.mdx`,
-      `docs/api/qiskit/${vers}aqua.mdx`,
-      `docs/api/qiskit/${vers}ibmq-provider.mdx`,
-      `docs/api/qiskit/${vers}ibmq_jupyter.mdx`,
-      `docs/api/qiskit/${vers}ibmq_visualization.mdx`,
-      `docs/api/qiskit/${vers}parallel.mdx`,
-      `docs/api/qiskit/${vers}transpiler_builtin_plugins.mdx`,
-    ]),
-  ];
-}
