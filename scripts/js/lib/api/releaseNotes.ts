@@ -23,7 +23,7 @@ import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./conversionPipeline.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import { removePrefix } from "../stringUtils.js";
 
-import _ from "lodash";
+import { groupBy } from "lodash-es";
 
 // ---------------------------------------------------------------------------
 // Generic release notes handling
@@ -276,7 +276,7 @@ async function writeReleaseNoteForVersion(
 export function groupByMajorVersion(
   versions: string[],
 ): Record<string, string[]> {
-  const grouped = _.groupBy(versions, (v) => {
+  const grouped = groupBy(versions, (v) => {
     const match = v.match(/\[(\d+\.\d+)\]/);
     if (!match || !match[1]) return "unknown";
 
