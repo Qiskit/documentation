@@ -90,21 +90,36 @@ If you are working in a trusted Python environment (such as on a personal laptop
     ```
 2. Save your credentials. Run this once per account you want to save.
 
+Save credentials that access a specific instance:
+
 ```python
   from qiskit_ibm_runtime import QiskitRuntimeService
 
   QiskitRuntimeService.save_account(
     token="token",
     instance="<IBM Cloud CRN or instance name>", # Optional
-    plans_preference="['open', 'premium']", # Optional
-    region="<region>", # Optional
-    name="<account-name>", # Optional
     set_as_default=True, # Optional
     overwrite=True, # Optional
   )
 ```
 
-Parameters:
+Save credentials for automatic instance selection:
+
+```python
+  from qiskit_ibm_runtime import QiskitRuntimeService
+
+  QiskitRuntimeService.save_account(
+    token="token",
+    plans_preference="['open', 'premium']", # Optional
+    region="<region>", # Optional
+    name="<account-name>", # Optional
+    tags="<instance-tags>", # Optional
+    set_as_default=True, # Optional
+    overwrite=True, # Optional
+  )
+```
+
+Options:
 
 -**`token`**: IBM Cloud API key. Your token is confidential. Do not share your token in public code.
 -**`instance`**: Optionally specify the instance to use.
@@ -118,15 +133,15 @@ Parameters:
 
 #### Examples
 
-This example saves credentials for open and premium access.  The open credentials are set as the default.
+This example saves credentials for specific instances, which allow open and premium access.  The open credentials are set as the default.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>",
-                                  instance="<CRN_for_premium_instance>", name="premium")
-QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>",
-                                  instance="<CRN_for_open_instance>", name="open", set_as_default=True)
+QiskitRuntimeService.save_account(token="<API_TOKEN>", instance="<CRN_for_premium_instance>",
+                                  name="premium")
+QiskitRuntimeService.save_account(token="<API_TOKEN>", instance="<CRN_for_open_instance>",
+                                  name="open", set_as_default=True)
  ```
 
  This example saves credentials for automatic instance selection.  Qiskit Runtime will only look at premium instances in the EU region that are available to the account. These credentials become the new default.
@@ -137,7 +152,7 @@ QiskitRuntimeService.save_account(
     set_as_default=True,
     overwrite = True,
 
-    # Set instance "filters" instead of specifiying the instance:
+    # Set instance "filters" instead of specifying the instance:
     region="eu-de",
     plans_preference=["premium"]
   )
@@ -145,14 +160,14 @@ QiskitRuntimeService.save_account(
 
 #### Considerations
 
-* If you are saving multiple accounts, consider using the `name` parameter to differentiate them.
+* If you are saving multiple accounts, use the `name` parameter to differentiate them.
 * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
-* If you don't save your credentials, you must specify them every time you start a new session.
+* If you don't save your credentials, you must specify them every time you start a new session (instantiate the Qiskit Runtime Service).
 * If you manually specify your credentials, a saved account will not be used.
 
 ### 4. Initialize the service
 
-See the [Initialize the service](/docs/guides/initialize-account) guide for instructions.
+See [Initialize the service](/docs/guides/initialize-account) for instructions.
 
 ## Next steps
 
