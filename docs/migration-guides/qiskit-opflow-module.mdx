@@ -795,8 +795,8 @@ delayed synthesis of the gates or efficient transpilation of the circuits, so th
   In this context, the job of the [`qiskit.opflow.evolutions.PauliTrotterEvolution`](/docs/api/qiskit/0.46/qiskit.opflow.evolutions.PauliTrotterEvolution) class can now be handled directly by the algorithms, for example, [`qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE`](/docs/api/qiskit/0.46/qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE).
 
   Similarly, the [`qiskit.opflow.evolutions.MatrixEvolution`](/docs/api/qiskit/0.46/qiskit.opflow.evolutions.MatrixEvolution) class performs evolution by classical matrix exponentiation,
-  constructing a circuit with [`qiskit.extensions.UnitaryGate`s](/docs/api/qiskit/0.44/qiskit.extensions.UnitaryGate) or [`qiskit.extensions.HamiltonianGate`s](/docs/api/qiskit/0.44/qiskit.extensions.HamiltonianGate) that contain the exponentiation of the operator.
-  This class is no longer necessary, as the [`qiskit.extensions.HamiltonianGate`s](/docs/api/qiskit/0.44/qiskit.extensions.HamiltonianGate) can be directly handled by the algorithms.
+  constructing a circuit with `qiskit.extensions.UnitaryGate`s or `qiskit.extensions.HamiltonianGate`s that contain the exponentiation of the operator.
+  This class is no longer necessary, as the `qiskit.extensions.HamiltonianGate`s can be directly handled by the algorithms.
 </Admonition>
 
 ### Trotterizations
@@ -814,7 +814,7 @@ delayed synthesis of the gates or efficient transpilation of the circuits, so th
 | --- | --- |
 | [`qiskit.opflow.evolutions.EvolutionFactory`](/docs/api/qiskit/0.46/qiskit.opflow.evolutions.EvolutionFactory) | No direct replacement. This class was used to create instances of one of the classes listed below. |
 | [`qiskit.opflow.evolutions.EvolvedOp`](/docs/api/qiskit/0.46/qiskit.opflow.evolutions.EvolvedOp) | No direct replacement. The workflow no longer requires a specific operator for evolutions. |
-| [`qiskit.opflow.evolutions.MatrixEvolution`](/docs/api/qiskit/0.46/qiskit.opflow.evolutions.MatrixEvolution) | [`qiskit.extensions.HamiltonianGate`](/docs/api/qiskit/0.44/qiskit.extensions.HamiltonianGate) |
+| [`qiskit.opflow.evolutions.MatrixEvolution`](/docs/api/qiskit/0.46/qiskit.opflow.evolutions.MatrixEvolution) | `qiskit.extensions.HamiltonianGate` |
 | [`qiskit.opflow.evolutions.PauliTrotterEvolution`](/docs/api/qiskit/0.46/qiskit.opflow.evolutions.PauliTrotterEvolution) | [`qiskit.circuit.library.PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate) |
 
 #### Example 1: Trotter evolution
