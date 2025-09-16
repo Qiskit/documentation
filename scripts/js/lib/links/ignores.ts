@@ -401,10 +401,20 @@ function _patternsReorg(): FilesToIgnores {
   };
 }
 
+function _runtimeLegacyReleaseNotes(): FilesToIgnores {
+  return {
+    "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
+      "/docs/api/qiskit-ibm-runtime/0.21/qiskit-runtime-service#runtime",
+      "/docs/api/qiskit-ibm-runtime/0.20/sampler#run",
+    ],
+  };
+}
+
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
+  _runtimeLegacyReleaseNotes(),
 );
 
 function _qiskitCObjectsInvRegexes(): FilesToIgnores {
