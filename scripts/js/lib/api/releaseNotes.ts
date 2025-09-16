@@ -24,7 +24,6 @@ import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import { removePrefix } from "../stringUtils.js";
 
 import _ from "lodash";
-import { versions } from "process";
 
 // ---------------------------------------------------------------------------
 // Generic release notes handling
@@ -114,8 +113,8 @@ export async function maybeUpdateReleaseNotesFolder(
   addNewReleaseNotes(pkg);
   await updateHistoricalTocFiles(pkg);
   console.log("Generating release-notes/index");
-  const html = generateReleaseNotesIndex(pkg);
-  await writeFile(`${markdownPath}/release-notes/index.mdx`, html);
+  const indexMarkdown = generateReleaseNotesIndex(pkg);
+  await writeFile(`${markdownPath}/release-notes/index.mdx`, indexMarkdown);
 }
 
 /**
@@ -156,29 +155,29 @@ function addNewReleaseNotes(pkg: Pkg): void {
   pkg.releaseNotesConfig.separatePagesVersions.unshift(pkg.versionWithoutPatch);
 }
 
-// function generateReleaseNotesIndex(pkg: Pkg): string {
-//   let markdown = `---
-// title: ${pkg.title} release notes
-// description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.
-// ---
+function generateReleaseNotesIndexformarkdown(pkg: Pkg): string {
+  let markdown = `---
+title: ${pkg.title} release notes
+description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.
+---
 
-// # ${pkg.title} release notes
+# ${pkg.title} release notes
 
-// New features, bug fixes, and other changes in previous versions of ${pkg.title}.
+New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 
-// ## Release notes by version
+## Release notes by version
 
-// `;
-//   for (const version of pkg.releaseNotesConfig.separatePagesVersions) {
-//     markdown += `* [${version}](./${version})\n`;
-//   }
-//   return markdown;
-// }
+`;
+  for (const version of pkg.releaseNotesConfig.separatePagesVersions) {
+    markdown += `* [${version}](./${version})\n`;
+  }
+  return markdown;
+}
 
-function generateReleaseNotesIndex(pkg: Pkg): string {
-  const version = pkg.releaseNotesConfig.separatePagesVersions;
-  const grouped = groupByMajorVersion(version);
-
+export function generateReleaseNotesIndex(pkg: Pkg): string {
+  const grouped = groupByMajorVersion(
+    pkg.releaseNotesConfig.separatePagesVersions,
+  );
   const htmlSections = Object.entries(grouped)
     .map(([majorVersion, versionList]) =>
       renderVersionGroup(majorVersion, versionList),
@@ -279,38 +278,47 @@ export function groupByMajorVersion(
 ): Record<string, string[]> {
   const grouped = _.groupBy(versions, (v) => {
     const match = v.match(/\[(\d+\.\d+)\]/);
-    if (!match) return "unknown";
+    if (!match || !match[1]) return "unknown";
+
     const versionNumber = parseFloat(match[1]);
+    if (isNaN(versionNumber)) return "unknown";
+
     return Math.floor(versionNumber).toString();
   });
 
   const sortedKeys = Object.keys(grouped)
+    .filter((key) => key !== "unknown")
     .map(Number)
     .sort((a, b) => b - a)
     .map(String);
 
   const sortedRecord: Record<string, string[]> = {};
   for (const key of sortedKeys) {
-    sortedRecord[key] = grouped[key].sort((a, b) => {
-      const aMatch = a.match(/\[(\d+\.\d+)\]/);
-      const bMatch = b.match(/\[(\d+\.\d+)\]/);
-      const aVersion = aMatch ? parseFloat(aMatch[1]) : 0;
-      const bVersion = bMatch ? parseFloat(bMatch[1]) : 0;
-      return bVersion - aVersion;
-    });
+    const items = grouped[key];
+    if (Array.isArray(items)) {
+      sortedRecord[key] = items.sort((a, b) => {
+        const aMatch = a.match(/\[(\d+\.\d+)\]/);
+        const bMatch = b.match(/\[(\d+\.\d+)\]/);
+        const aVersion = aMatch ? parseFloat(aMatch[1]) : 0;
+        const bVersion = bMatch ? parseFloat(bMatch[1]) : 0;
+        return bVersion - aVersion;
+      });
+    } else {
+      sortedRecord[key] = [];
+    }
   }
 
   return sortedRecord;
 }
 
 function renderVersionGroup(majorVersion: string, versions: string[]): string {
-  const items = versions.map((v) => `<li>${v}</li>`).join("\n");
+  const items = versions.map((v) => `- ${v}`).join("\n");
   return `
 <details>
-  <summary>Major Version ${majorVersion}</summary>
-  <ul>
-    ${items}
-  </ul>
+  <summary> v${majorVersion}</summary>
+
+${items}
+
 </details>
   `.trim();
 }
