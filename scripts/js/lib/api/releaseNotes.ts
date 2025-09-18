@@ -112,7 +112,6 @@ export async function maybeUpdateReleaseNotesFolder(
   }
   addNewReleaseNotes(pkg);
   await updateHistoricalTocFiles(pkg);
-  console.log("Generating release-notes/index");
   const indexMarkdown = generateReleaseNotesIndex(pkg);
   await writeFile(`${markdownPath}/release-notes/index.mdx`, indexMarkdown);
 }
@@ -155,7 +154,7 @@ function addNewReleaseNotes(pkg: Pkg): void {
   pkg.releaseNotesConfig.separatePagesVersions.unshift(pkg.versionWithoutPatch);
 }
 
-function generateReleaseNotesIndexformarkdown(pkg: Pkg): string {
+export function generateReleaseNotesIndex(pkg: Pkg): string {
   let markdown = `---
 title: ${pkg.title} release notes
 description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.
@@ -168,23 +167,14 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 ## Release notes by version
 
 `;
-  for (const version of pkg.releaseNotesConfig.separatePagesVersions) {
-    markdown += `* [${version}](./${version})\n`;
-  }
-  return markdown;
-}
 
-export function generateReleaseNotesIndex(pkg: Pkg): string {
   const grouped = groupByMajorVersion(
     pkg.releaseNotesConfig.separatePagesVersions,
   );
-  const htmlSections = Object.entries(grouped)
-    .map(([majorVersion, versionList]) =>
-      renderVersionGroup(majorVersion, versionList),
-    )
-    .join("\n\n");
-
-  return htmlSections;
+  for (const [majorVersion, versionList] of grouped) {
+    markdown += renderVersionGroup(majorVersion, versionList) + "\n\n";
+  }
+  return markdown.trim();
 }
 
 /**
@@ -192,8 +182,6 @@ export function generateReleaseNotesIndex(pkg: Pkg): string {
  * of all historical API versions.
  */
 async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
-  console.log("Updating _toc.json files for the historical versions");
-
   const historicalFolders = (
     await readdir(`docs/api/${pkg.name}`, { withFileTypes: true })
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
@@ -273,52 +261,35 @@ async function writeReleaseNoteForVersion(
   }
 }
 
-export function groupByMajorVersion(
-  versions: string[],
-): Record<string, string[]> {
-  const grouped = groupBy(versions, (v) => {
-    const match = v.match(/\[(\d+\.\d+)\]/);
-    if (!match || !match[1]) return "unknown";
+export function groupByMajorVersion(versions: string[]): Map<string, string[]> {
+  // Group versions by major version
+  const grouped = groupBy(versions, (v) => v.split(".")[0]);
 
-    const versionNumber = parseFloat(match[1]);
-    if (isNaN(versionNumber)) return "unknown";
-
-    return Math.floor(versionNumber).toString();
-  });
-
+  // Sort major version keys in descending numeric order
   const sortedKeys = Object.keys(grouped)
     .filter((key) => key !== "unknown")
-    .map(Number)
-    .sort((a, b) => b - a)
-    .map(String);
+    .sort((a, b) => Number(b) - Number(a));
 
-  const sortedRecord: Record<string, string[]> = {};
+  // Create a Map to preserve insertion order
+  const sortedRecord = new Map<string, string[]>();
+
   for (const key of sortedKeys) {
     const items = grouped[key];
-    if (Array.isArray(items)) {
-      sortedRecord[key] = items.sort((a, b) => {
-        const aMatch = a.match(/\[(\d+\.\d+)\]/);
-        const bMatch = b.match(/\[(\d+\.\d+)\]/);
-        const aVersion = aMatch ? parseFloat(aMatch[1]) : 0;
-        const bVersion = bMatch ? parseFloat(bMatch[1]) : 0;
-        return bVersion - aVersion;
-      });
-    } else {
-      sortedRecord[key] = [];
-    }
+    // Sort each version group in descending order using numeric-aware comparison
+    const sortedItems = items.sort((a, b) =>
+      b.localeCompare(a, undefined, { numeric: true }),
+    );
+    sortedRecord.set(key, sortedItems);
   }
 
   return sortedRecord;
 }
 
 function renderVersionGroup(majorVersion: string, versions: string[]): string {
-  const items = versions.map((v) => `- ${v}`).join("\n");
-  return `
-<details>
-  <summary> v${majorVersion}</summary>
-
-${items}
-
+  const items = versions.map((v) => `- [${v}](./${v})`).join("\n");
+  return `<details>
+  <summary>v${majorVersion}</summary>
+  ${items}
 </details>
   `.trim();
 }
