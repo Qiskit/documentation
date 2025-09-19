@@ -1,0 +1,118 @@
+---
+title: EfficientSU2 (v2.1)
+description: API reference for qiskit.circuit.library.EfficientSU2 in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.EfficientSU2
+---
+
+# EfficientSU2
+
+<Class id="qiskit.circuit.library.EfficientSU2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/n_local/efficient_su2.py#L137-L282" signature="qiskit.circuit.library.EfficientSU2(num_qubits=None, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2', flatten=None)" modifiers="class">
+  Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
+
+  The hardware efficient SU(2) 2-local circuit.
+
+  The `EfficientSU2` circuit consists of layers of single qubit operations spanned by SU(2) and $CX$ entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuit for machine learning.
+
+  SU(2) stands for special unitary group of degree 2, its elements are $2 \times 2$ unitary matrices with determinant 1, such as the Pauli rotation gates.
+
+  On 3 qubits and using the Pauli $Y$ and $Z$ su2\_gates as single qubit gates, the hardware efficient SU(2) circuit is represented by:
+
+  ```text
+  ┌──────────┐┌──────────┐ ░            ░       ░ ┌───────────┐┌───────────┐
+  ┤ RY(θ[0]) ├┤ RZ(θ[3]) ├─░────────■───░─ ... ─░─┤ RY(θ[12]) ├┤ RZ(θ[15]) ├
+  ├──────────┤├──────────┤ ░      ┌─┴─┐ ░       ░ ├───────────┤├───────────┤
+  ┤ RY(θ[1]) ├┤ RZ(θ[4]) ├─░───■──┤ X ├─░─ ... ─░─┤ RY(θ[13]) ├┤ RZ(θ[16]) ├
+  ├──────────┤├──────────┤ ░ ┌─┴─┐└───┘ ░       ░ ├───────────┤├───────────┤
+  ┤ RY(θ[2]) ├┤ RZ(θ[5]) ├─░─┤ X ├──────░─ ... ─░─┤ RY(θ[14]) ├┤ RZ(θ[17]) ├
+  └──────────┘└──────────┘ ░ └───┘      ░       ░ └───────────┘└───────────┘
+  ```
+
+  See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.library.RealAmplitudes") for more detail on the possible arguments and options such as skipping unentanglement qubits, which apply here too.
+
+  **Examples**
+
+  ```python
+  >>> circuit = EfficientSU2(3, reps=1)
+  >>> print(circuit.decompose())
+       ┌──────────┐┌──────────┐          ┌──────────┐┌──────────┐
+  q_0: ┤ RY(θ[0]) ├┤ RZ(θ[3]) ├──■────■──┤ RY(θ[6]) ├┤ RZ(θ[9]) ├─────────────
+       ├──────────┤├──────────┤┌─┴─┐  │  └──────────┘├──────────┤┌───────────┐
+  q_1: ┤ RY(θ[1]) ├┤ RZ(θ[4]) ├┤ X ├──┼───────■──────┤ RY(θ[7]) ├┤ RZ(θ[10]) ├
+       ├──────────┤├──────────┤└───┘┌─┴─┐   ┌─┴─┐    ├──────────┤├───────────┤
+  q_2: ┤ RY(θ[2]) ├┤ RZ(θ[5]) ├─────┤ X ├───┤ X ├────┤ RY(θ[8]) ├┤ RZ(θ[11]) ├
+       └──────────┘└──────────┘     └───┘   └───┘    └──────────┘└───────────┘
+  ```
+
+  ```python
+  >>> ansatz = EfficientSU2(4, su2_gates=['rx', 'y'], entanglement='circular', reps=1,
+  ... flatten=True)
+  >>> qc = QuantumCircuit(4)  # create a circuit and append the RY variational form
+  >>> qc.compose(ansatz, inplace=True)
+  >>> qc.draw()
+       ┌──────────┐┌───┐┌───┐     ┌──────────┐   ┌───┐
+  q_0: ┤ RX(θ[0]) ├┤ Y ├┤ X ├──■──┤ RX(θ[4]) ├───┤ Y ├─────────────────────
+       ├──────────┤├───┤└─┬─┘┌─┴─┐└──────────┘┌──┴───┴───┐   ┌───┐
+  q_1: ┤ RX(θ[1]) ├┤ Y ├──┼──┤ X ├─────■──────┤ RX(θ[5]) ├───┤ Y ├─────────
+       ├──────────┤├───┤  │  └───┘   ┌─┴─┐    └──────────┘┌──┴───┴───┐┌───┐
+  q_2: ┤ RX(θ[2]) ├┤ Y ├──┼──────────┤ X ├─────────■──────┤ RX(θ[6]) ├┤ Y ├
+       ├──────────┤├───┤  │          └───┘       ┌─┴─┐    ├──────────┤├───┤
+  q_3: ┤ RX(θ[3]) ├┤ Y ├──■──────────────────────┤ X ├────┤ RX(θ[7]) ├┤ Y ├
+       └──────────┘└───┘                         └───┘    └──────────┘└───┘
+  ```
+
+  <Admonition title="See also" type="note">
+    The [`efficient_su2()`](qiskit.circuit.library.efficient_su2 "qiskit.circuit.library.efficient_su2") function constructs a functionally equivalent circuit, but faster.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.n_local.efficient_su2.EfficientSU2` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use the function qiskit.circuit.library.efficient\_su2 instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits of the EfficientSU2 circuit.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
+  *   **su2\_gates** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.13)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.13)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – The SU(2) single qubit gates to apply in single qubit gate layers. If only one gate is provided, the same gate is applied to each qubit. If a list of gates is provided, all gates are applied to each qubit in the provided order.
+  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’, ‘reverse\_linear’, ‘pairwise’, ‘circular’, or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. Defaults to ‘reverse\_linear’ entanglement. Note that ‘reverse\_linear’ entanglement provides the same unitary as ‘full’ with fewer entangling gates. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A QuantumCircuit object to prepend to the circuit.
+  *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
+  *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If False, a rotation layer is added at the end of the ansatz. If True, no rotation layer is added.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+
+  ## Attributes
+
+  ### parameter\_bounds
+
+  <Attribute id="qiskit.circuit.library.EfficientSU2.parameter_bounds">
+    Return the parameter bounds.
+
+    **Returns**
+
+    The parameter bounds.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.EfficientSU2.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

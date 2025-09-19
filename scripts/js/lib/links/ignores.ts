@@ -417,7 +417,7 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _runtimeLegacyReleaseNotes(),
 );
 
-function _qiskitCObjectsInvRegexes(): FilesToIgnores {
+function _qiskitCRegexes(): FilesToIgnores {
   return {
     "public/docs/api/qiskit-c/objects.inv": [
       "/docs/api/qiskit-c/qk-complex-64#qk_complex64_from_native",
@@ -433,13 +433,27 @@ function _qiskitCObjectsInvRegexes(): FilesToIgnores {
       "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64",
       "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1a1d0477d0d30b088dfd322e85b4be5464",
       "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1ae08ef5279f405357144d24ec1147b5f9",
+      "/docs/api/qiskit-c/version#qiskit_version_patch",
+      "/docs/api/qiskit-c/version#qiskit_version_minor",
+      "/docs/api/qiskit-c/version#qiskit_version_major",
+      "/docs/api/qiskit-c/version#qiskit_version_hex",
+      "/docs/api/qiskit-c/version#qiskit_version",
+      "/docs/api/qiskit-c/version#qiskit_release_serial",
+      "/docs/api/qiskit-c/version#qiskit_release_level",
+      "/docs/api/qiskit-c/version#qiskit_get_version_hex",
+    ],
+    "docs/api/qiskit-c/qk-transpiler.mdx": [
+      "#_cppv412qk_transpilepk9qkcircuitpk8qktargetpk18qktranspileoptionsp17qktranspileresultppc",
+      "#structqktranspileoptions",
+    ],
+    "docs/api/qiskit-c/qk-vf-2-layout-result.mdx": [
+      "qk-transpiler-passes#_cppv440qk_transpiler_pass_standalone_vf2_layoutpk9qkcircuitpk8qktargetb7int64_td7int64_t",
     ],
   };
 }
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
-  _qiskitCObjectsInvRegexes(),
-);
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores =
+  mergeFilesToIgnores(_qiskitCRegexes());
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,

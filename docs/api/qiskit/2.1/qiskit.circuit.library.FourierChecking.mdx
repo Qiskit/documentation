@@ -1,0 +1,70 @@
+---
+title: FourierChecking (v2.1)
+description: API reference for qiskit.circuit.library.FourierChecking in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.FourierChecking
+---
+
+# FourierChecking
+
+<Class id="qiskit.circuit.library.FourierChecking" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/fourier_checking.py#L25-L101" signature="qiskit.circuit.library.FourierChecking(f, g)" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  Fourier checking circuit.
+
+  The circuit for the Fourier checking algorithm, introduced in \[1], involves a layer of Hadamards, the function $f$, another layer of Hadamards, the function $g$, followed by a final layer of Hadamards. The functions $f$ and $g$ are classical functions realized as phase oracles (diagonal operators with \{-1, 1} on the diagonal).
+
+  The probability of observing the all-zeros string is $p(f,g)$. The algorithm solves the promise Fourier checking problem, which decides if f is correlated with the Fourier transform of g, by testing if $p(f,g) <= 0.01$ or $p(f,g) >= 0.05$, promised that one or the other of these is true.
+
+  The functions $f$ and $g$ are currently implemented from their truth tables but could be represented concisely and implemented efficiently for special classes of functions.
+
+  Fourier checking is a special case of $k$-fold forrelation \[2].
+
+  **Reference:**
+
+  \[1] S. Aaronson, BQP and the Polynomial Hierarchy, 2009 (Section 3.2). [arXiv:0910.4698](https://arxiv.org/abs/0910.4698)
+
+  \[2] S. Aaronson, A. Ambainis, Forrelation: a problem that optimally separates quantum from classical computing, 2014. [arXiv:1411.5729](https://arxiv.org/abs/1411.5729)
+
+  Create Fourier checking circuit.
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.fourier_checking.FourierChecking` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use qiskit.circuit.library.fourier\_checking instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **f** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – truth table for f, length 2\*\*n list of \{1,-1}.
+  *   **g** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – truth table for g, length 2\*\*n list of \{1,-1}.
+
+  **Raises**
+
+  [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the inputs f and g are not valid.
+
+  **Reference Circuit:**
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-FourierChecking-1.avif)
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.FourierChecking.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

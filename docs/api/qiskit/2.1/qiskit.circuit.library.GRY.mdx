@@ -1,0 +1,68 @@
+---
+title: GRY (v2.1)
+description: API reference for qiskit.circuit.library.GRY in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.GRY
+---
+
+# GRY
+
+<Class id="qiskit.circuit.library.GRY" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/gr.py#L123-L169" signature="qiskit.circuit.library.GRY(num_qubits, theta)" modifiers="class">
+  Bases: [`GR`](qiskit.circuit.library.GR "qiskit.circuit.library.generalized_gates.gr.GR")
+
+  Global RY gate.
+
+  **Circuit symbol:**
+
+  ```text
+       ┌──────────┐
+  q_0: ┤0         ├
+       │          │
+  q_1: ┤1  GRY(ϴ) ├
+       │          │
+  q_2: ┤2         ├
+       └──────────┘
+  ```
+
+  The global RY gate is native to atomic systems (ion traps, cold neutrals). The global RY can be applied to multiple qubits simultaneously.
+
+  In the one-qubit case, this is equivalent to an RY(theta) operation, and is thus reduced to the RYGate. The global RY gate is a direct sum of RY operations on all individual qubits.
+
+$$
+GRY(\theta) = \exp(-i \sum_{i=1}^{n} Y_i \theta/2)
+$$
+
+  **Expanded Circuit:**
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-GRY-1.avif)
+
+  Create a new Global RY (GRY) gate.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of qubits.
+  *   **theta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – rotation angle about y-axis
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.GRY.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

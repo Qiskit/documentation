@@ -1,0 +1,79 @@
+---
+title: HiddenLinearFunction (v2.1)
+description: API reference for qiskit.circuit.library.HiddenLinearFunction in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.HiddenLinearFunction
+---
+
+# HiddenLinearFunction
+
+<Class id="qiskit.circuit.library.HiddenLinearFunction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/hidden_linear_function.py#L23-L89" signature="qiskit.circuit.library.HiddenLinearFunction(adjacency_matrix)" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  Circuit to solve the hidden linear function problem.
+
+  The 2D Hidden Linear Function problem is determined by a 2D adjacency matrix A, where only elements that are nearest-neighbor on a grid have non-zero entries. Each row/column corresponds to one binary variable $x_i$.
+
+  The hidden linear function problem is as follows:
+
+  Consider the quadratic form
+
+$$
+q(x) = \sum_{i,j=1}^{n}{x_i x_j} ~(\mathrm{mod}~ 4)
+$$
+
+  and restrict $q(x)$ onto the nullspace of A. This results in a linear function.
+
+$$
+2 \sum_{i=1}^{n}{z_i x_i} ~(\mathrm{mod}~ 4)  \forall  x \in \mathrm{Ker}(A)
+$$
+
+  and the goal is to recover this linear function (equivalently a vector $[z_0, ..., z_{n-1}]$). There can be multiple solutions.
+
+  In \[1] it is shown that the present circuit solves this problem on a quantum computer in constant depth, whereas any corresponding solution on a classical computer would require circuits that grow logarithmically with $n$. Thus this circuit is an example of quantum advantage with shallow circuits.
+
+  **Reference Circuit:**
+
+  > ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-HiddenLinearFunction-1.avif)
+
+  **Reference:**
+
+  \[1] S. Bravyi, D. Gosset, R. Koenig, Quantum Advantage with Shallow Circuits, 2017. [arXiv:1704.00690](https://arxiv.org/abs/1704.00690)
+
+  Create new HLF circuit.
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.hidden_linear_function.HiddenLinearFunction` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use qiskit.circuit.library.hidden\_linear\_function instead.
+  </Admonition>
+
+  **Parameters**
+
+  **adjacency\_matrix** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *| np.ndarray*) – a symmetric n-by-n list of 0-1 lists. n will be the number of qubits.
+
+  **Raises**
+
+  [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If A is not symmetric.
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

@@ -1,0 +1,78 @@
+---
+title: PhaseEstimation (v2.1)
+description: API reference for qiskit.circuit.library.PhaseEstimation in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PhaseEstimation
+---
+
+# PhaseEstimation
+
+<Class id="qiskit.circuit.library.PhaseEstimation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/phase_estimation.py#L22-L105" signature="qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  Phase Estimation circuit.
+
+  In the Quantum Phase Estimation (QPE) algorithm \[1, 2, 3], the Phase Estimation circuit is used to estimate the phase $\phi$ of an eigenvalue $e^{2\pi i\phi}$ of a unitary operator $U$, provided with the corresponding eigenstate $|\psi\rangle$. That is
+
+$$
+U|\psi\rangle = e^{2\pi i\phi} |\psi\rangle
+$$
+
+  This estimation (and thereby this circuit) is a central routine to several well-known algorithms, such as Shor’s algorithm or Quantum Amplitude Estimation.
+
+  **References:**
+
+  **\[1]: Kitaev, A. Y. (1995). Quantum measurements and the Abelian Stabilizer Problem. 1–22.**
+
+  [quant-ph/9511026](http://arxiv.org/abs/quant-ph/9511026)
+
+  **\[2]: Michael A. Nielsen and Isaac L. Chuang. 2011.**
+
+  Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.). Cambridge University Press, New York, NY, USA.
+
+  **\[3]: Qiskit**
+
+  [textbook](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/quantum-phase-estimation.ipynb)
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.phase_estimation.PhaseEstimation` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use qiskit.circuit.library.phase\_estimation instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_evaluation\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of evaluation qubits.
+  *   **unitary** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The unitary operation $U$ which will be repeated and controlled.
+  *   **iqft** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A inverse Quantum Fourier Transform, per default the inverse of [`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.QFT") is used. Note that the QFT should not include the usual swaps!
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
+
+  <Admonition title="Note" type="note">
+    The inverse QFT should not include a swap of the qubit order.
+  </Admonition>
+
+  **Reference Circuit:**
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-PhaseEstimation-1.avif)
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PhaseEstimation.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

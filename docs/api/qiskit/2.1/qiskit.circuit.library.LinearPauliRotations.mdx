@@ -1,0 +1,92 @@
+---
+title: LinearPauliRotations (v2.1)
+description: API reference for qiskit.circuit.library.LinearPauliRotations in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.LinearPauliRotations
+---
+
+# LinearPauliRotations
+
+<Class id="qiskit.circuit.library.LinearPauliRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py#L25-L169" signature="qiskit.circuit.library.LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')" modifiers="class">
+  Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
+
+  Linearly-controlled X, Y or Z rotation.
+
+  For a register of state qubits $|x\rangle$, a target qubit $|0\rangle$ and the basis `'Y'` this circuit acts as:
+
+  ```text
+      q_0: ─────────────────────────■───────── ... ──────────────────────
+                                    │
+                                    .
+                                    │
+  q_(n-1): ─────────────────────────┼───────── ... ───────────■──────────
+            ┌────────────┐  ┌───────┴───────┐       ┌─────────┴─────────┐
+      q_n: ─┤ RY(offset) ├──┤ RY(2^0 slope) ├  ...  ┤ RY(2^(n-1) slope) ├
+            └────────────┘  └───────────────┘       └───────────────────┘
+  ```
+
+  This can for example be used to approximate linear functions, with $a =$ `slope`$/2$ and $b =$ `offset`$/2$ and the basis `'Y'`:
+
+$$
+|x\rangle |0\rangle \mapsto \cos(ax + b)|x\rangle|0\rangle + \sin(ax + b)|x\rangle |1\rangle
+$$
+
+  Since for small arguments $\sin(x) \approx x$ this operator can be used to approximate linear functions.
+
+  Create a new linear rotation circuit.
+
+  **Parameters**
+
+  *   **num\_state\_qubits** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The number of qubits representing the state $|x\rangle$.
+  *   **slope** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The slope of the controlled rotation.
+  *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The offset of the controlled rotation.
+  *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit object.
+
+  ## Attributes
+
+  ### offset
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.offset">
+    The angle of the single qubit offset rotation on the target qubit.
+
+    Before applying the controlled rotations, a single rotation of angle `offset` is applied to the target qubit.
+
+    **Returns**
+
+    The offset angle.
+  </Attribute>
+
+  ### slope
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.slope">
+    The multiplicative factor in the rotation angle of the controlled rotations.
+
+    The rotation angles are `slope * 2^0`, `slope * 2^1`, … , `slope * 2^(n-1)` where `n` is the number of state qubits.
+
+    **Returns**
+
+    The rotation angle common in all controlled rotations.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

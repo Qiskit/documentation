@@ -1,0 +1,136 @@
+---
+title: ExcitationPreserving (v2.1)
+description: API reference for qiskit.circuit.library.ExcitationPreserving in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.ExcitationPreserving
+---
+
+# ExcitationPreserving
+
+<Class id="qiskit.circuit.library.ExcitationPreserving" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/n_local/excitation_preserving.py#L142-L301" signature="qiskit.circuit.library.ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving', flatten=None)" modifiers="class">
+  Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
+
+  The heuristic excitation-preserving wave function ansatz.
+
+  The `ExcitationPreserving` circuit preserves the ratio of $|00\rangle$, $|01\rangle + |10\rangle$ and $|11\rangle$ states. To this end, this circuit uses two-qubit interactions of the form
+
+$$
+\newcommand{\rotationangle}{\theta/2}
+
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & \cos\left(\rotationangle\right) & -i\sin\left(\rotationangle\right) & 0 \\
+0 & -i\sin\left(\rotationangle\right) & \cos\left(\rotationangle\right) & 0 \\
+0 & 0 & 0 & e^{-i\phi}
+\end{pmatrix}
+$$
+
+  for the mode `'fsim'` or with $e^{-i\phi} = 1$ for the mode `'iswap'`.
+
+  Note that other wave functions, such as UCC-ansatzes, are also excitation preserving. However these can become complex quickly, while this heuristically motivated circuit follows a simpler pattern.
+
+  This trial wave function consists of layers of $Z$ rotations with 2-qubit entanglements. The entangling is creating using $XX+YY$ rotations and optionally a controlled-phase gate for the mode `'fsim'`.
+
+  See [`RealAmplitudes`](qiskit.circuit.library.RealAmplitudes "qiskit.circuit.library.RealAmplitudes") for more detail on the possible arguments and options such as skipping unentanglement qubits, which apply here too.
+
+  The rotations of the ExcitationPreserving ansatz can be written as
+
+  **Examples**
+
+  ```python
+  >>> ansatz = ExcitationPreserving(3, reps=1, insert_barriers=True, entanglement='linear')
+  >>> print(ansatz.decompose())  # show the circuit
+       ┌──────────┐ ░ ┌────────────┐┌────────────┐                             ░ ┌──────────┐
+  q_0: ┤ RZ(θ[0]) ├─░─┤0           ├┤0           ├─────────────────────────────░─┤ RZ(θ[5]) ├
+       ├──────────┤ ░ │  RXX(θ[3]) ││  RYY(θ[3]) │┌────────────┐┌────────────┐ ░ ├──────────┤
+  q_1: ┤ RZ(θ[1]) ├─░─┤1           ├┤1           ├┤0           ├┤0           ├─░─┤ RZ(θ[6]) ├
+       ├──────────┤ ░ └────────────┘└────────────┘│  RXX(θ[4]) ││  RYY(θ[4]) │ ░ ├──────────┤
+  q_2: ┤ RZ(θ[2]) ├─░─────────────────────────────┤1           ├┤1           ├─░─┤ RZ(θ[7]) ├
+       └──────────┘ ░                             └────────────┘└────────────┘ ░ └──────────┘
+  ```
+
+  ```python
+  >>> ansatz = ExcitationPreserving(2, reps=1, flatten=True)
+  >>> qc = QuantumCircuit(2)  # create a circuit and append the RY variational form
+  >>> qc.cry(0.2, 0, 1)  # do some previous operation
+  >>> qc.compose(ansatz, inplace=True)  # add the excitation-preserving
+  >>> qc.draw()
+                  ┌──────────┐┌────────────┐┌────────────┐┌──────────┐
+  q_0: ─────■─────┤ RZ(θ[0]) ├┤0           ├┤0           ├┤ RZ(θ[3]) ├
+       ┌────┴────┐├──────────┤│  RXX(θ[2]) ││  RYY(θ[2]) │├──────────┤
+  q_1: ┤ RY(0.2) ├┤ RZ(θ[1]) ├┤1           ├┤1           ├┤ RZ(θ[4]) ├
+       └─────────┘└──────────┘└────────────┘└────────────┘└──────────┘
+  ```
+
+  ```python
+  >>> ansatz = ExcitationPreserving(3, reps=1, mode='fsim', entanglement=[[0,2]],
+  ... insert_barriers=True, flatten=True)
+  >>> print(ansatz.decompose())
+       ┌──────────┐ ░ ┌────────────┐┌────────────┐        ░ ┌──────────┐
+  q_0: ┤ RZ(θ[0]) ├─░─┤0           ├┤0           ├─■──────░─┤ RZ(θ[5]) ├
+       ├──────────┤ ░ │            ││            │ │      ░ ├──────────┤
+  q_1: ┤ RZ(θ[1]) ├─░─┤  RXX(θ[3]) ├┤  RYY(θ[3]) ├─┼──────░─┤ RZ(θ[6]) ├
+       ├──────────┤ ░ │            ││            │ │θ[4]  ░ ├──────────┤
+  q_2: ┤ RZ(θ[2]) ├─░─┤1           ├┤1           ├─■──────░─┤ RZ(θ[7]) ├
+       └──────────┘ ░ └────────────┘└────────────┘        ░ └──────────┘
+  ```
+
+  <Admonition title="See also" type="note">
+    The [`excitation_preserving()`](qiskit.circuit.library.excitation_preserving "qiskit.circuit.library.excitation_preserving") function constructs a functionally equivalent circuit, but faster.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.n_local.excitation_preserving.ExcitationPreserving` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use the function qiskit.circuit.library.excitation\_preserving instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits of the ExcitationPreserving circuit.
+  *   **mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Choose the entangler mode, can be ‘iswap’ or ‘fsim’.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
+  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A QuantumCircuit object to prepend to the circuit.
+  *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
+  *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, a rotation layer is added at the end of the ansatz. If False, no rotation layer is added. Defaults to True.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the selected mode is not supported.
+
+  ## Attributes
+
+  ### parameter\_bounds
+
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.parameter_bounds">
+    Return the parameter bounds.
+
+    **Returns**
+
+    The parameter bounds.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.ExcitationPreserving.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+
