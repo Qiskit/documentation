@@ -1,0 +1,77 @@
+---
+title: GraphState (v2.1)
+description: API reference for qiskit.circuit.library.GraphState in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.GraphState
+---
+
+# GraphState
+
+<Class id="qiskit.circuit.library.GraphState" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/graph_state.py#L23-L86" signature="qiskit.circuit.library.GraphState(adjacency_matrix)" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  Circuit to prepare a graph state.
+
+  Given a graph G = (V, E), with the set of vertices V and the set of edges E, the corresponding graph state is defined as
+
+$$
+|G\rangle = \prod_{(a,b) \in E} CZ_{(a,b)} {|+\rangle}^{\otimes V}
+$$
+
+  Such a state can be prepared by first preparing all qubits in the $+$ state, then applying a $CZ$ gate for each corresponding graph edge.
+
+  Graph state preparation circuits are Clifford circuits, and thus easy to simulate classically. However, by adding a layer of measurements in a product basis at the end, there is evidence that the circuit becomes hard to simulate \[2].
+
+  **Reference Circuit:**
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-GraphState-1.avif)
+
+  **References:**
+
+  **\[1] M. Hein, J. Eisert, H.J. Briegel, Multi-party Entanglement in Graph States,**
+
+  [arXiv:0307130](https://arxiv.org/pdf/quant-ph/0307130.pdf)
+
+  **\[2] D. Koh, Further Extensions of Clifford Circuits & their Classical Simulation Complexities.**
+
+  [arXiv:1512.07892](https://arxiv.org/pdf/1512.07892.pdf)
+
+  Create graph state preparation circuit.
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.graph_state.GraphState` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use qiskit.circuit.library.GraphStateGate instead.
+  </Admonition>
+
+  **Parameters**
+
+  **adjacency\_matrix** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *| np.ndarray*) – input graph as n-by-n list of 0-1 lists
+
+  **Raises**
+
+  [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If adjacency\_matrix is not symmetric.
+
+  The circuit prepares a graph state with the given adjacency matrix.
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.GraphState.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

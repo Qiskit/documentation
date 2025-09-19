@@ -1,0 +1,52 @@
+---
+title: ExactReciprocal (v2.1)
+description: API reference for qiskit.circuit.library.ExactReciprocal in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.ExactReciprocal
+---
+
+# ExactReciprocal
+
+<Class id="qiskit.circuit.library.ExactReciprocal" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/arithmetic/exact_reciprocal.py#L20-L52" signature="qiskit.circuit.library.ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  Exact reciprocal
+
+$$
+|x\rangle |0\rangle \mapsto \cos(1/x)|x\rangle|0\rangle + \sin(1/x)|x\rangle |1\rangle
+$$
+
+  **Parameters**
+
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits representing the value to invert.
+  *   **scaling** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Scaling factor $s$ of the reciprocal function, i.e. to compute $s / x$.
+  *   **neg\_vals** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether $x$ might represent negative values. In this case the first qubit is the sign, with $|1\rangle$ for negative and $|0\rangle$ for positive. For the negative case it is assumed that the remaining string represents $1 - x$. This is because $e^{-2 \pi i x} = e^{2 \pi i (1 - x)}$ for $x \in [0,1)$.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the object.
+
+  <Admonition title="Note" type="note">
+    It is assumed that the binary string $x$ represents a number \< 1.
+  </Admonition>
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.ExactReciprocal.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+
