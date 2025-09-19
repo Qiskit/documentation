@@ -1,6 +1,6 @@
 ---
 title: Create and manage instances
-description: Create, update, and use instances to run jobs.
+description: Create, update, and use instances to run jobs with free or paid plans.
 ---
 # Create and manage instances
 
@@ -22,7 +22,6 @@ Open Plan users can run quantum circuits on the world's best QPUs for free (up t
 
 The Pay-As-You-Go Plan is a paid plan. To use this plan, you must create an instance and assign it to the plan. All workloads sent to QPUs by using this plan incur a charge.
 
-
 The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page, or, for those with the proper authority, the [Analytics](https://quantum.cloud.ibm.com/analytics) page.  Note that the pages might show different usage numbers because the Instance page shows usage in a 28-day rolling window prior to the current timestamp, while the Analytics page uses full-day boundaries.
 
 
@@ -32,7 +31,6 @@ An alert displays on an instance's usage when it has exceeded its allocation.
 
 <span id="connect-instance"></span>
 ## Specify an instance in your code
-
 
 You can use the CRN or instance name to specify an instance to use - either when initializing the service (for example, `service = QiskitRuntimeService(token="<IBM Cloud API key>", instance="<CRN or instance name>" )`), or when sending the workload to a QPU (for example, `service.backend(name="<backend_name>", instance="<CRN>")`).  When an instance is passed in, only backends and jobs from that instance are available (allowed in Qiskit Runtime v0.40.1 and later).
 
@@ -102,9 +100,6 @@ Follow these steps to create an instance and add it to your account. If you are 
 ## Edit an instance and its allocation
 
 Find the instance on the [Instances](https://quantum.cloud.ibm.com/instances) page. Click the overflow menu at the end the instance's row, and select Edit details.
-
-
-
 
 ## Next steps
 
