@@ -25,7 +25,10 @@ interface Arguments {
   apis: boolean;
 }
 
-const ALLOWED_ORPHAN_URLS: Set<string> = new Set([...qiskitLegacyIgnores()]);
+// URLs must start by `/` and exclude the file extension
+const ALLOWED_ORPHAN_URLS: Set<string> = new Set([
+  "/docs/api/qiskit/0.46/transpiler_builtin_plugins",
+]);
 
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
@@ -100,45 +103,6 @@ function parseTocUrls(entries: TocEntry[]): string[] {
     }
   }
   return urls;
-}
-
-function qiskitLegacyIgnores(): string[] {
-  const versions = [
-    "0.19/",
-    "0.24/",
-    "0.25/",
-    "0.26/",
-    "0.27/",
-    "0.28/",
-    "0.29/",
-    "0.30/",
-    "0.31/",
-    "0.32/",
-    "0.33/",
-    "0.35/",
-    "0.36/",
-    "0.37/",
-    "0.38/",
-    "0.39/",
-    "0.40/",
-    "0.41/",
-    "0.42/",
-    "0.43/",
-    "0.44/",
-    "0.45/",
-    "0.46/",
-  ];
-  return [
-    ...versions.flatMap((vers) => [
-      `/docs/api/qiskit/${vers}aer`,
-      `/docs/api/qiskit/${vers}aqua`,
-      `/docs/api/qiskit/${vers}ibmq-provider`,
-      `/docs/api/qiskit/${vers}ibmq_jupyter`,
-      `/docs/api/qiskit/${vers}ibmq_visualization`,
-      `/docs/api/qiskit/${vers}parallel`,
-      `/docs/api/qiskit/${vers}transpiler_builtin_plugins`,
-    ]),
-  ];
 }
 
 main().then(() => process.exit());

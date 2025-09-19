@@ -62,7 +62,6 @@ export async function readMarkdownAndMetadata(
   options: { includeCodeCellSourceCode?: boolean } = {},
 ): Promise<{ content: string; metadata: Record<string, any> }> {
   const ext = path.extname(filePath);
-
   if (ext === ".ipynb") {
     const notebook = await readJsonFile(filePath);
     const content = markdownFromNotebook(notebook, options);
@@ -76,5 +75,5 @@ export async function readMarkdownAndMetadata(
     return { content: parsed.content, metadata: parsed.data };
   }
 
-  throw new Error(`Unexpected file type: ${ext} at path "${filePath}"`);
+  throw new Error(`Unexpected file type: ${ext} at path ${filePath}`);
 }
