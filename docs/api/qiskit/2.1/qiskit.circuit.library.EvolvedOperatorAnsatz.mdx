@@ -1,0 +1,92 @@
+---
+title: EvolvedOperatorAnsatz (v2.1)
+description: API reference for qiskit.circuit.library.EvolvedOperatorAnsatz in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
+---
+
+# EvolvedOperatorAnsatz
+
+<Class id="qiskit.circuit.library.EvolvedOperatorAnsatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/n_local/evolved_operator_ansatz.py#L281-L476" signature="qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)" modifiers="class">
+  Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
+
+  The evolved operator ansatz.
+
+  **Parameters**
+
+  *   **operators** (*BaseOperator |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *| None*) – The operators to evolve. If a circuit is passed, we assume it implements an already evolved operator and thus the circuit is not evolved again. Can be a single operator (circuit) or a list of operators (and circuits).
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of times to repeat the evolved operators.
+  *   **evolution** (*EvolutionBase |* [*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – A specification of which evolution synthesis to use for the [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"). Defaults to first order Trotterization.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to insert barriers in between each evolution.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – Set the names of the circuit parameters. If a string, the same prefix will be used for each parameters. Can also be a list to specify a prefix per operator.
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object to prepend to the circuit.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
+
+  ## Attributes
+
+  ### evolution
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.evolution">
+    The evolution converter used to compute the evolution.
+
+    **Returns**
+
+    The evolution converter used to compute the evolution.
+
+    **Return type**
+
+    [EvolutionSynthesis](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_qubits">
+    Returns the number of qubits in this circuit.
+
+    **Returns**
+
+    The number of qubits.
+  </Attribute>
+
+  ### operators
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.operators">
+    The operators that are evolved in this circuit.
+
+    **Returns**
+
+    The operators to be evolved (and circuits) contained in this ansatz.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")
+  </Attribute>
+
+  ### preferred\_init\_points
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.preferred_init_points">
+    Getter of preferred initial points based on the given initial state.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+
