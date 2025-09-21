@@ -1,0 +1,84 @@
+---
+title: IntegerComparator (v2.1)
+description: API reference for qiskit.circuit.library.IntegerComparator in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.IntegerComparator
+---
+
+# IntegerComparator
+
+<Class id="qiskit.circuit.library.IntegerComparator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/arithmetic/integer_comparator.py#L27-L169" signature="qiskit.circuit.library.IntegerComparator(num_state_qubits=None, value=None, geq=True, name='cmp')" modifiers="class">
+  Bases: `BlueprintCircuit`
+
+  Integer Comparator.
+
+  Operator compares basis states $|i\rangle_n$ against a classically given integer $L$ of fixed value and flips a target qubit if $i \geq L$ (or $<$ depending on the parameter `geq`):
+
+$$
+|i\rangle_n |0\rangle \mapsto |i\rangle_n |i \geq L\rangle
+$$
+
+  This operation is based on two’s complement implementation of binary subtraction but only uses carry bits and no actual result bits. If the most significant carry bit (the results bit) is 1, the $\geq$ condition is `True` otherwise it is `False`.
+
+  Create a new fixed value comparator circuit.
+
+  **Parameters**
+
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Number of state qubits. If this is set it will determine the number of qubits required for the circuit.
+  *   **value** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The fixed value to compare with.
+  *   **geq** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, evaluate a `>=` condition, else `<`.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Name of the circuit.
+
+  ## Attributes
+
+  ### geq
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.geq">
+    Return whether the comparator compares greater or less equal.
+
+    **Returns**
+
+    True, if the comparator compares `>=`, False if `<`.
+  </Attribute>
+
+  ### num\_state\_qubits
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_state_qubits">
+    The number of qubits encoding the state for the comparison.
+
+    **Returns**
+
+    The number of state qubits.
+  </Attribute>
+
+  ### value
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.value">
+    The value to compare the qubit register to.
+
+    **Returns**
+
+    The value against which the value of the qubit register is compared.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+
