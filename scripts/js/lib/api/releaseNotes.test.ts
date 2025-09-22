@@ -27,7 +27,7 @@ test("groupByMajorVersion()", () => {
   };
   const actualOutputmap = groupByMajorVersion(input);
   const actualOutput = Object.fromEntries(actualOutputmap);
-  expect(JSON.stringify(actualOutput)).toEqual(JSON.stringify(expectedOutput));
+  expect(actualOutput).toEqual(expectedOutput);
 });
 
 test.describe("generateReleaseNotesIndex", () => {
