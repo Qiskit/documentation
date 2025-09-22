@@ -35,15 +35,21 @@ test.describe("generateReleaseNotesIndex", () => {
     const pkg = Pkg.mock({
       releaseNotesConfig: {
         enabled: true,
-        separatePagesVersions: ["1.2"],
+        separatePagesVersions: ["1.2", "1.3", "2.0"],
       },
     });
     const result = generateReleaseNotesIndex(pkg);
-    expect(result).toContain(` My Quantum Project release notes`);
+    expect(result).toContain(`# My Quantum Project release notes`);
     expect(result).toContain(`
 <details>
-  <summary>v1</summary>
-  - [1.2](./1.2)
+<summary>v2</summary>
+- [v2.0](./2.0)
+</details>
+
+<details>
+<summary>v1</summary>
+- [v1.3](./1.3)
+- [v1.2](./1.2)
 </details>`);
   });
 });

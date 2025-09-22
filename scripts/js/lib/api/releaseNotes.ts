@@ -112,6 +112,7 @@ export async function maybeUpdateReleaseNotesFolder(
   }
   addNewReleaseNotes(pkg);
   await updateHistoricalTocFiles(pkg);
+  console.log("Generating release-notes/index");
   const indexMarkdown = generateReleaseNotesIndex(pkg);
   await writeFile(`${markdownPath}/release-notes/index.mdx`, indexMarkdown);
 }
@@ -182,6 +183,8 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
  * of all historical API versions.
  */
 async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
+  console.log("Updating _toc.json files for the historical versions");
+
   const historicalFolders = (
     await readdir(`docs/api/${pkg.name}`, { withFileTypes: true })
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
@@ -266,9 +269,9 @@ export function groupByMajorVersion(versions: string[]): Map<string, string[]> {
   const grouped = groupBy(versions, (v) => v.split(".")[0]);
 
   // Sort major version keys in descending numeric order
-  const sortedKeys = Object.keys(grouped)
-    .filter((key) => key !== "unknown")
-    .sort((a, b) => Number(b) - Number(a));
+  const sortedKeys = Object.keys(grouped).sort((a, b) =>
+    b.localeCompare(a, undefined, { numeric: true }),
+  );
 
   // Create a Map to preserve insertion order
   const sortedRecord = new Map<string, string[]>();
@@ -286,10 +289,13 @@ export function groupByMajorVersion(versions: string[]): Map<string, string[]> {
 }
 
 function renderVersionGroup(majorVersion: string, versions: string[]): string {
-  const items = versions.map((v) => `- [${v}](./${v})`).join("\n");
-  return `<details>
-  <summary>v${majorVersion}</summary>
-  ${items}
+  const items = versions
+    .map((version) => `- [v${version}](./${version})`)
+    .join("\n");
+  return `
+<details>
+<summary>v${majorVersion}</summary>
+${items}
 </details>
   `.trim();
 }
