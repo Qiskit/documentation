@@ -8,51 +8,51 @@ python_api_name: qiskit.circuit.library.MCMTVChain
 
 # MCMTVChain
 
-<Class id="qiskit.circuit.library.MCMTVChain" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/mcmt.py#L123-L185" signature="qiskit.circuit.library.MCMTVChain(gate, num_ctrl_qubits, num_target_qubits)" modifiers="class">
+<Class id="qiskit.circuit.library.MCMTVChain" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/generalized_gates/mcmt.py#L123-L185" signature="qiskit.circuit.library.MCMTVChain(gate, num_ctrl_qubits, num_target_qubits)" modifiers="class">
   Bases: [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.generalized_gates.mcmt.MCMT")
 
   The MCMT implementation using the CCX V-chain.
 
   This implementation requires ancillas but is decomposed into a much shallower circuit than the default implementation in [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT").
 
-  **Expanded Circuit:**
+  Expanded circuit:
 
   ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/qiskit-circuit-library-MCMTVChain-1.avif)
 
-  **Examples:**
+  **Examples**
 
-  > ```python
-  > >>> from qiskit.circuit.library import HGate
-  > >>> MCMTVChain(HGate(), 3, 2).draw()
-  > ```
-  >
-  > **q\_0: ──■────────────────────────■──**
-  >
-  > │ │
-  >
-  > **q\_1: ──■────────────────────────■──**
-  >
-  > │ │
-  >
-  > **q\_2: ──┼────■──────────────■────┼──**
-  >
-  > │ │ ┌───┐ │ │
-  >
-  > **q\_3: ──┼────┼──┤ H ├───────┼────┼──**
-  >
-  > │ │ └─┬─┘┌───┐ │ │
-  >
-  > **q\_4: ──┼────┼────┼──┤ H ├──┼────┼──**
-  >
-  > ┌─┴─┐ │ │ └─┬─┘ │ ┌─┴─┐
-  >
-  > **q\_5: ┤ X ├──■────┼────┼────■──┤ X ├**
-  >
-  > └───┘┌─┴─┐ │ │ ┌─┴─┐└───┘
-  >
-  > **q\_6: ─────┤ X ├──■────■──┤ X ├─────**
-  >
-  > └───┘ └───┘
+  ```python
+  >>> from qiskit.circuit.library import HGate
+  >>> MCMTVChain(HGate(), 3, 2).draw()
+  ```
+
+  **q\_0: ──■────────────────────────■──**
+
+  │ │
+
+  **q\_1: ──■────────────────────────■──**
+
+  │ │
+
+  **q\_2: ──┼────■──────────────■────┼──**
+
+  │ │ ┌───┐ │ │
+
+  **q\_3: ──┼────┼──┤ H ├───────┼────┼──**
+
+  │ │ └─┬─┘┌───┐ │ │
+
+  **q\_4: ──┼────┼────┼──┤ H ├──┼────┼──**
+
+  ┌─┴─┐ │ │ └─┬─┘ │ ┌─┴─┐
+
+  **q\_5: ┤ X ├──■────┼────┼────■──┤ X ├**
+
+  └───┘┌─┴─┐ │ │ ┌─┴─┐└───┘
+
+  **q\_6: ─────┤ X ├──■────■──┤ X ├─────**
+
+  └───┘ └───┘
 
   <Admonition title="Deprecated since version 1.4" type="danger">
     The class `qiskit.circuit.library.generalized_gates.mcmt.MCMTVChain` is deprecated as of Qiskit 1.4. It will be removed no earlier than 3 months after the release date. Use MCMTGate with the V-chain synthesis plugin instead.
@@ -95,7 +95,7 @@ python_api_name: qiskit.circuit.library.MCMTVChain
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.MCMTVChain.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/mcmt.py#L184-L185" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.MCMTVChain.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/generalized_gates/mcmt.py#L184-L185" signature="inverse(annotated=False)">
     Return the inverse MCMT circuit, which is itself.
 
     **Parameters**

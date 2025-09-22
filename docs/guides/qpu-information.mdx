@@ -13,10 +13,6 @@ Explore all public IBM QPUs by navigating to the [Compute resources](https://qua
 
 This page describes the detailed information you will find on the QPU information card.
 
-<Admonition type="note" title="Undefined error value">
-If the benchmarking of a qubit or edge does not succeed over the course of several days, whether due to poor data quality or other internal factors, the reported error value is considered stale and will be reported as 1. This is not an indication that the qubit or edge is necessarily non-working or that the error is 1; rather, the error is considered undefined and you should proceed with caution when operating that qubit or gate. 
-</Admonition>
-
 ## QPU versioning
 
 Each QPU has a version number in the form X.Y.Z (major.minor.revision). A circuit compiled for a given version number is guaranteed to run on that QPU. If the revision number changes, the circuit will continue to run. If the major or minor number changes, the circuit is not guaranteed to run, although it may do so. The conditions under which a version number may change are listed below:
@@ -100,7 +96,7 @@ The total number of jobs that you have submitted to this QPU.
 
 ### Median 2Q error (Heron: CZ, Eagle: ECR)
 
-[Average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity) of the two-qubit operation from randomized benchmarking. Measured in "isolation": batches with a minimum separation of two qubits between edges. This randomized benchmarking uses alternating layers of single-qubit Cliffords and two-qubit gates, and thus the final 2Q error value includes the error of the layer of single-qubit Cliffords. Find an [example notebook](https://github.com/qiskit-community/qiskit-device-benchmarking/blob/main/notebooks/device_rb_w_lf.ipynb) in the Qiskit Community GitHub.
+[Average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity) of the two-qubit operation from randomized benchmarking. Measured in "isolation": batches with a minimum separation of two qubits between edges. This randomized benchmarking uses alternating layers of single-qubit Cliffords and two-qubit gates, and thus the final 2Q error value includes the error of the layer of single-qubit Cliffords. Find an [example notebook](https://github.com/qiskit-community/qiskit-device-benchmarking/blob/main/notebooks/device_rb_w_lf.ipynb) in the Qiskit Community GitHub. Find per-edge data in the [calibration data](#calibration-data) section of the QPU information card.
 
 ### Median SX error
 
@@ -120,6 +116,10 @@ The T2 time denotes the timescale over which a qubit maintains phase coherence o
 
 ## Calibration data
 
+<Admonition type="note" title="What does `error = 1` mean?">
+If the benchmarking of a qubit or edge does not succeed over the course of several days, whether due to poor data quality or other internal factors, the reported error value is considered stale and will be reported as 1. This is not an indication that the qubit or edge is necessarily non-working or that the error is 1; rather, the error is considered undefined and you should proceed with caution when operating that qubit or gate. 
+</Admonition>
+
 The second section, Calibration data, provides qubit, connectivity, and gate data. You can choose to visualize the information as a map, graph, or table.
 
 You can customize the data that is shown in each view, using the drop-down menus. For example, in the map view, you can choose the data you want to see for qubits and connections. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
@@ -128,7 +128,7 @@ To download calibration data as a CSV file, click the download icon in the upper
 
 In addition to the information provided in the Details section of the card, the Calibration data section also includes the following:
 
-[Topology diagram or coupling map](#coupling-map) | [Readout assignment error](#readout-assignment-error) | [Prob meas0 prep1](#prob-meas0-prep1) | [Prob meas1 prep0](#prob-meas1-prep0) | [Readout length (ns)](#readout-length-ns) | [ID error / √x (sx) error / Pauli-X error](#finite-duration-discrete) | [Single-qubit gate length (ns)](#single-qubit-gate-length-ns) | [RX error](#rx-error) | [Z-axis rotation (RZ) error](#z-axis-rotation-rz-error) | [Operational](#operational) | [Gate length (ns)](#gate-length-ns) | [2Q error](#2q-error) | [RZZ error](#rzz-error-heron)
+[Topology diagram or coupling map](#coupling-map) | [Readout assignment error](#readout-assignment-error) | [Prob meas0 prep1](#prob-meas0-prep1) | [Prob meas1 prep0](#prob-meas1-prep0) | [Readout length (ns)](#readout-length-ns) | [ID error / √x (sx) error / Pauli-X error / RX error](#finite-duration-discrete) | [Single-qubit gate length (ns)](#single-qubit-gate-length-ns)| [Z-axis rotation (RZ) error](#z-axis-rotation-rz-error) | [Operational](#operational) | [Gate length (ns)](#gate-length-ns) | [2Q error](#2q-error) | [RZZ error](#rzz-error-heron)
 
 <span id="coupling-map"></span>
 ### Topology diagram or coupling map
@@ -152,17 +152,13 @@ Similarly, this parameter represents the probability of measuring a qubit in the
 The readout_length specifies the duration of the readout operation for a qubit. It measures the time from the initiation of the measurement pulse to the completion of signal digitization, after which the system is ready for the next operation. Understanding this parameter is crucial for optimizing circuit execution, especially when incorporating mid-circuit measurements.
 
 <span id="finite-duration-discrete"></span>
-### ID error / √x (sx) error / Pauli-X error
+### ID error / √x (sx) error / Pauli-X error / RX error
 
-Error in the finite-duration discrete one-qubit gates, measured from randomized benchmarking. The randomized benchmarking sequence includes SX, ID, and X gates, and it is assumed their errors are the same. The ID gate is a delay of duration equal to the duration of the √X and X gates.
+Error in the finite-duration discrete one-qubit gates, measured from randomized benchmarking. The randomized benchmarking sequence includes SX, ID, and X gates, and it is assumed their errors are the same. The ID gate is a delay of duration equal to the duration of the √X and X gates. The RX gate is also the same duration as the √X and X gates with variable amplitude, and so it is reported as having the same error as these gates.
 
 ### Single-qubit gate length (ns)
 
 Duration of a single-qubit gate operation.
-
-### RX error
-
-Error in the RX gate, averaged over the RX angles using a variant of randomized benchmarking.
 
 ### Z-axis rotation (RZ) error
 
@@ -179,7 +175,7 @@ Duration of the two-qubit gate operation.
 <span id="2q-error"></span>
 ### 2Q error (Heron: CZ, Eagle: ECR)
 
-Error in the 2Q gate averaged over the 2Q angles using a variant of randomized benchmarking for arbitrary unitaries.
+The 2Q error per edge from the same batch of measurements used to calculate the [2Q median](#median-2q-error-heron-cz-eagle-ecr) and [2Q best](#2q-error-best) errors.
 
 ### RZZ error (Heron)
 

@@ -6,19 +6,22 @@ description: How to create and manage access groups for your organization's acco
 
 # Create access policies and access groups
 
-When you create an instance in IBM Quantum Platform, an access group is automatically generated for collaborators to use that instance. If you want to customize that access group or create other access groups, use the IBM&reg; Cloud console for [Access groups](https://cloud.ibm.com/iam/groups).
+When you create an instance in IBM Quantum&reg; Platform, an access group is automatically generated for collaborators to use that instance. If you want to customize that access group or create other access groups, use the IBM&reg; Cloud console for [Access groups](https://cloud.ibm.com/iam/groups).
 
 An _access group_ contains _policies_, which define the actions that access group members can take on specific resources, such as services.  In this guide, the resource is generally an IBM Quantum _service instance_.
 
-You can create additional access groups by using the IBM Cloud [console,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) [CLI,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=cli) [API,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=api) or [Terraform.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=terraform)
+You can create additional access groups by using the IBM Cloud&reg; [console,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) [CLI,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=cli) [API,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=api) or [Terraform.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=terraform)
 
 
 <Admonition type="caution" title="Important">
 To determine the actions allowed by each role, from the [IAM Roles](https://cloud.ibm.com/iam/roles) page, select Qiskit Runtime in the dropdown menu at the top of the page.  For a more detailed list, click the number in the column next to the role name.  For example, by visiting that page and clicking the number by the Manager role, you can see that this role includes the ability to delete a job (`quantum-computing.job.delete`).
+
+The [Compare pre-defined service role actions](#compare-actions) section provides a comparison of the pre-defined Manager, Writer, and Reader roles.
 </Admonition>
 
+<span id="create-ibm-quantum-administrators"></span>
 ## Create an IBM Quantum Administrators access group
-After setting up an account for your organization, it's recommended that you create an  IBM Quantum Administrators access group. This access group lets other users create and manage instances, and manage user access for the Qiskit Runtime service.
+After setting up an account for your organization, it's recommended that you create an IBM Quantum Administrators access group. This access group lets other users create and manage instances, and manage user access for the Qiskit Runtime service.
 
 When you create this access group, include the following policies:
 
@@ -217,6 +220,52 @@ Finally, add users to the access group.  You can do this from the access group's
 You can only invite users who are already members of the account.  If you don't see a user on the Add users page, follow the steps in [Invite and manage users](/docs/guides/invite-and-manage-users#invite) to add them to the account first.  After they accept the invitation, you can add them to the access group.
 </Admonition>
 
+## Compare permissions
+
+The following table displays which permissions are granted to three entities: account owners, IBM Quantum Administrators (see the [Create an IBM Quantum Administrators access group](#create-ibm-quantum-administrators) section), and instance collaborators (a "Collaborators" access group is automatically generated whenever you create an instance using IBM Quantum Platform).
+
+Key:
+
+✅ Has permission
+
+✴️ Involves a dependency
+
+❌ Does not have permission
+   
+
+| Permissions | Account owner | IBM Quantum Administrators (access group) | Instance collaborators (access group) |
+| --- | --- | --- | --- |
+| Full access to all IBM Cloud resources | ✅| ✅ (*Only to Qiskit Runtime instances*)| ❌ (*Only to a particular Qiskit Runtime instance*)| 
+| Assign access to others | ✅| ✅ (*Only to Qiskit Runtime service*)| ❌| 
+| Create service instances  | ✅ (*All IBM Cloud catalog*)| ✅ (*Only Qiskit Runtime service instances*)| ❌| 
+| View all users | ✅| ✅| ✴️ (*Depends on user visibility settings*)| 
+| Set user visibility | ✅| ❌| ❌| 
+| Invite users to the account | ✅| ✅| ❌| 
+| Billing responsibility | ✅| ❌| ❌| 
+| View billing information | ✅| ✅| ❌| 
+| Owner notifications | ✅| ❌| ❌| 
+| Submit quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*)| ✅ (*Only on a particular Qiskit Runtime instance*) | 
+| View quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*)| ✅ (*Only on a particular Qiskit Runtime instance*)| 
+| Cancel quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*)| ✅ (*Only on a particular Qiskit Runtime instance*)| 
+| Delete quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*) | ❌| 
+| Create support cases | ✅| ✅ (*If the access policy is included in the access group*) | ✅ (*If the access group gives access to a Premium Plan instance*)| 
+| Configure an [identity provider](https://cloud.ibm.com/iam/identity-providers) to connect your external user repositories to your IBM Cloud account | ✅| ❌| ❌| 
+
+<span id="compare-actions"></span>
+## Compare pre-defined service role actions
+
+The following table displays examples of actions that can be taken by the pre-defined service role actions: Manager, Writer, and Reader. To see a complete mapping of Quantum Service roles to actions, visit [this table](https://cloud.ibm.com/docs/account?topic=account-iam-service-roles-actions#quantum-computing-roles) in the IBM Cloud Product guide.
+
+| Action | Description | Roles |
+| --- | --- | --- |
+| `quantum-computing.session.create` | Create a Session/Batch | Manager, Writer |
+| `quantum-computing.job.create` | Submit a Job | Manager, Writer |
+| `quantum-computing.job.read` | Read a result | Manager, Reader, Writer |
+| `quantum-computing.job.cancel` | Cancel a job | Manager, Writer |
+| `quantum-computing.job.delete` | Delete a job | Manager |
+| `quantum-computing.direct-access-backend-properties.read` | Read QPU calibrations | Manager, Reader, Writer |
+| `quantum-computing.account-analytics-usage.read` | See account analytics | Manager, Writer (*Only if role is set up for all resources*) |
+| `quantum-computing.instance-usage.read` | See instance usage and remaining time | Manager, Reader, Writer |
 
 ## Next steps
 

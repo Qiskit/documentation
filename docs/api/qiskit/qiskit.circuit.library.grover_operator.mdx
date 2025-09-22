@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.grover_operator
 
 # qiskit.circuit.library.grover\_operator
 
-<Function id="qiskit.circuit.library.grover_operator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/grover_operator.py#L27-L282" signature="qiskit.circuit.library.grover_operator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, name='Q')">
+<Function id="qiskit.circuit.library.grover_operator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/grover_operator.py#L27-L285" signature="qiskit.circuit.library.grover_operator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, name='Q')">
   Construct the Grover operator.
 
   Grover’s search algorithm \[1, 2] consists of repeated applications of the so-called Grover operator used to amplify the amplitudes of the desired output states. This operator, $\mathcal{Q}$, consists of the phase oracle, $\mathcal{S}_f$, zero phase-shift or zero reflection, $\mathcal{S}_0$, and an input state preparation $\mathcal{A}$:
@@ -66,7 +66,7 @@ $$
 
   where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
 
-  **Examples**
+  Examples:
 
   We can construct a Grover operator just from the phase oracle:
 
@@ -155,18 +155,12 @@ $$
   *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether barriers should be inserted between the reflections and A.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
 
-  **References**
+  References:
 
-  ## \[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,
+  \[1] L. K. Grover (1996), A fast quantum mechanical algorithm for database search, [arXiv:quant-ph/9605043](https://arxiv.org/abs/quant-ph/9605043).
 
-  [arXiv:quant-ph/9605043](https://arxiv.org/abs/quant-ph/9605043).
+  \[2] I. Chuang & M. Nielsen, Quantum Computation and Quantum Information, Cambridge: Cambridge University Press, 2000. Chapter 6.1.2.
 
-  ## \[2]: I. Chuang & M. Nielsen, Quantum Computation and Quantum Information,
-
-  Cambridge: Cambridge University Press, 2000. Chapter 6.1.2.
-
-  ## \[3]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).
-
-  Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
+  \[3] Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000). Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
 </Function>
 
