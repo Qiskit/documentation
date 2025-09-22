@@ -7,15 +7,12 @@ description: Setup instructions for IBM Quantum on IBM Cloud to submit Qiskit SD
 
 # Set up your IBM Cloud account
 
-If you have an invitation to join an account, follow the steps in [Set up your IBM Cloud account - invited users](/docs/guides/cloud-setup-invited) instead.
+If you were emailed an invitation to join an account, follow the steps in [Set up your IBM Cloud account - invited users](/docs/guides/cloud-setup-invited) instead.
 
 You can run workloads on IBM&reg; quantum processing units (QPUs) by setting up an account on IBM Cloud&reg;. You will also need to [install and set up Qiskit and Qiskit Runtime](/docs/guides/install-qiskit#local).
 
 Your user account is associated with one or more [instances,](./instances) identified by _Cloud Resource Names_ (CRNs) that give access to IBM Quantum services. Additionally, a unique API token (also called a key) is assigned to each account, allowing for IBM Quantum access from Qiskit.  For instructions to choose a specific instance, see [Connect to an instance](./instances#connect-instance).
 
-    <Admonition type="note">
-      The [IBM Quantum Platform dashboard](https://quantum.cloud.ibm.com) and the [Instances page](https://quantum.cloud.ibm.com/instances) list the instances that you can access.
-    </Admonition>
 
 <span id="cloud"></span>
 ## Set up to use IBM Cloud
@@ -24,9 +21,9 @@ Your user account is associated with one or more [instances,](./instances) ident
 
 1. If you do not already have one, set up an [IBM Cloud account.](https://quantum.cloud.ibm.com/registration)
    <Admonition type="note">
-   You can be part of multiple IBM Cloud accounts (although you can only **own** one account).  You can access any of your IBM Cloud accounts at any time from the account switcher in the header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
+   You can be part of multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
    </Admonition>
-1. Log in to [IBM Quantum Platform](https://quantum.cloud.ibm.com) with an IBMid or Google account.  If you don't have one, you are guided through creating one.
+1. Log in to [IBM Quantum Platform](https://quantum.cloud.ibm.com) with an IBMid or Google account.  If you don't have one, you are guided through creating one. (These login credentials are not your IBM Cloud account credentials.)
 1. Make sure that the correct account and region are selected in the account switcher in the header, as shown in the following image.
 
     The region controls where your jobs are run and where the job data is kept. You can access either region by using the same API key, but you can only see and access the instances that were created in the region that you're logged in to.
@@ -38,14 +35,15 @@ Your user account is associated with one or more [instances,](./instances) ident
 
 You can create an instance from the IBM Quantum Platform [Instances](https://quantum.cloud.ibm.com/instances) page.  See [Create an instance](/docs/guides/instances#add-instance) for detailed instructions.
 
+### 2. Optional: Save your access credentials
+
+If you are using a trusted Python environment, such as a personal laptop, it is recommended that you use the `save_account()` method to [save your credentials locally.](/docs/guides/save-credentials)
+
 <span id="cloud-save"></span>
 ### 3. Connect Qiskit with your service instance
 
-- **Trusted Python environment** (such as on a personal laptop or workstation):
-    1. (Recommended) Use the `save_account()` method to [save your credentials locally.](/docs/guides/save-credentials)
-    1. Use your credentials to [initialize the service.](/docs/guides/initialize-account)
-- **Untrusted environment** (such as a public computer)
-    See [Initialize the service in an untrusted environment](/docs/guides/cloud-setup-untrusted) for instructions.
+- [Initialize the service](/docs/guides/initialize-account) in a **trusted Python environment**
+- [Initialize the service in an **untrusted environment**](/docs/guides/cloud-setup-untrusted) (such as a public computer)
 
 <Admonition type="note" title="Notes">
    * Follow [these instructions](/docs/guides/cloud-setup-rest-api) if you want to connect by using the REST API instead of using Qiskit.
