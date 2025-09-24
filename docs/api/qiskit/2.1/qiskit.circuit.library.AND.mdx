@@ -1,0 +1,59 @@
+---
+title: AND (v2.1)
+description: API reference for qiskit.circuit.library.AND in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.AND
+---
+
+# AND
+
+<Class id="qiskit.circuit.library.AND" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/boolean_logic/quantum_and.py#L23-L106" signature="qiskit.circuit.library.AND(num_variable_qubits, flags=None, mcx_mode='noancilla')" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  A circuit implementing the logical AND operation on a number of qubits.
+
+  For the AND operation the state $|1\rangle$ is interpreted as `True`. The result qubit is flipped, if the state of all variable qubits is `True`. In this format, the AND operation equals a multi-controlled X gate, which is controlled on all variable qubits. Using a list of flags however, qubits can be skipped or negated. Practically, the flags allow to skip controls or to apply pre- and post-X gates to the negated qubits.
+
+  The AND gate without special flags equals the multi-controlled-X gate:
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-AND-1.avif)
+
+  Using flags we can negate qubits or skip them. For instance, if we have 5 qubits and want to return `True` if the first qubit is `False` and the last two are `True` we use the flags `[-1, 0, 0, 1, 1]`.
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-AND-2.avif)
+
+  Create a new logical AND circuit.
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.boolean_logic.quantum_and.AND` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use qiskit.circuit.library.AndGate instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_variable\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The qubits of which the AND is computed. The result will be written into an additional result qubit.
+  *   **flags** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – A list of +1/0/-1 marking negations or omissions of qubits.
+  *   **mcx\_mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The mode to be used to implement the multi-controlled X gate.
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.AND.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

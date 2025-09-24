@@ -1,0 +1,125 @@
+---
+title: CliffordUnitarySynthesis (v2.1)
+description: API reference for qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis
+---
+
+# CliffordUnitarySynthesis
+
+<Class id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/transpiler/passes/synthesis/clifford_unitary_synth_plugin.py#L36-L123" signature="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis" modifiers="class">
+  Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
+
+  A Clifford unitary synthesis plugin.
+
+  The plugin is invoked by the [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") transpiler pass when the parameter `method` is set to `"clifford"`.
+
+  The plugin checks if the given unitary can be represented by a Clifford, in which case it returns a circuit implementing this unitary and consisting only of Clifford gates.
+
+  In addition, the parameter `plugin_config` of [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") can be used to pass the following plugin-specific parameters:
+
+  *   min\_qubits: the minumum number of qubits to consider (the default value is 1).
+  *   max\_qubits: the maximum number of qubits to consider (the default value is 3).
+
+  ## Attributes
+
+  ### max\_qubits
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.max_qubits" />
+
+  ### min\_qubits
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.min_qubits" />
+
+  ### supported\_bases
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.supported_bases" />
+
+  ### supports\_basis\_gates
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.supports_basis_gates" />
+
+  ### supports\_coupling\_map
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.supports_coupling_map" />
+
+  ### supports\_gate\_errors
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.supports_gate_errors" />
+
+  ### supports\_gate\_errors\_by\_qubit
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.supports_gate_errors_by_qubit">
+    Return whether the plugin supports taking `gate_errors_by_qubit`
+
+    This differs from `supports_gate_errors`/`gate_errors` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names).
+
+    `gate_errors_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, error]}`. For example:
+
+    ```python
+    {
+    (0,): [SXGate(): 0.0006149355812506126, RZGate(): 0.0],
+    (0, 1): [CXGate(): 0.012012477900732316]
+    }
+    ```
+
+    Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate errors on every gate for each qubit. The gate error rates reported in `gate_errors` are provided by the target device `Backend` object and the exact meaning might be different depending on the backend.
+
+    This defaults to False
+  </Attribute>
+
+  ### supports\_gate\_lengths
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.supports_gate_lengths" />
+
+  ### supports\_gate\_lengths\_by\_qubit
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.supports_gate_lengths_by_qubit">
+    Return whether the plugin supports taking `gate_lengths_by_qubit`
+
+    This differs from `supports_gate_lengths`/`gate_lengths` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names)
+
+    `gate_lengths_by_qubit` will be a dictionary in the form of `{(qubits,): [Gate, length]}`. For example:
+
+    ```python
+    {
+    (0,): [SXGate(): 0.0006149355812506126, RZGate(): 0.0],
+    (0, 1): [CXGate(): 0.012012477900732316]
+    }
+    ```
+
+    where the `length` value is in units of seconds.
+
+    Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate lengths on every gate for each qubit.
+
+    This defaults to False
+  </Attribute>
+
+  ### supports\_natural\_direction
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.supports_natural_direction" />
+
+  ### supports\_pulse\_optimize
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.supports_pulse_optimize" />
+
+  ### supports\_target
+
+  <Attribute id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.supports_target">
+    Whether the plugin supports taking `target` as an option
+
+    `target` will be a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the target device for the output of the synthesis pass.
+
+    By default this will be `False` since the plugin interface predates the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") class. If a plugin returns `True` for this attribute, it is expected that the plugin will use the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instead of the values passed if any of `supports_gate_lengths`, `supports_gate_errors`, `supports_coupling_map`, and `supports_basis_gates` are set (although ideally all those parameters should contain duplicate information).
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/transpiler/passes/synthesis/clifford_unitary_synth_plugin.py#L91-L123" signature="run(unitary, **options)">
+    Run the CliffordUnitarySynthesis plugin on the given unitary.
+  </Function>
+</Class>
+
