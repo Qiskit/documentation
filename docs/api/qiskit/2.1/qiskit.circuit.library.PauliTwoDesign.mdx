@@ -1,0 +1,101 @@
+---
+title: PauliTwoDesign (v2.1)
+description: API reference for qiskit.circuit.library.PauliTwoDesign in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PauliTwoDesign
+---
+
+# PauliTwoDesign
+
+<Class id="qiskit.circuit.library.PauliTwoDesign" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/n_local/pauli_two_design.py#L121-L246" signature="qiskit.circuit.library.PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')" modifiers="class">
+  Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
+
+  The Pauli Two-Design ansatz.
+
+  This class implements a particular form of a 2-design circuit \[1], which is frequently studied in quantum machine learning literature, such as e.g. the investigating of Barren plateaus in variational algorithms \[2].
+
+  The circuit consists of alternating rotation and entanglement layers with an initial layer of $\sqrt{H} = RY(\pi/4)$ gates. The rotation layers contain single qubit Pauli rotations, where the axis is chosen uniformly at random to be X, Y or Z. The entanglement layers is compromised of pairwise CZ gates with a total depth of 2.
+
+  For instance, the circuit could look like this (but note that choosing a different seed yields different Pauli rotations).
+
+  ```text
+       ┌─────────┐┌──────────┐       ░ ┌──────────┐       ░  ┌──────────┐
+  q_0: ┤ RY(π/4) ├┤ RZ(θ[0]) ├─■─────░─┤ RY(θ[4]) ├─■─────░──┤ RZ(θ[8]) ├
+       ├─────────┤├──────────┤ │     ░ ├──────────┤ │     ░  ├──────────┤
+  q_1: ┤ RY(π/4) ├┤ RZ(θ[1]) ├─■──■──░─┤ RY(θ[5]) ├─■──■──░──┤ RX(θ[9]) ├
+       ├─────────┤├──────────┤    │  ░ ├──────────┤    │  ░ ┌┴──────────┤
+  q_2: ┤ RY(π/4) ├┤ RX(θ[2]) ├─■──■──░─┤ RY(θ[6]) ├─■──■──░─┤ RX(θ[10]) ├
+       ├─────────┤├──────────┤ │     ░ ├──────────┤ │     ░ ├───────────┤
+  q_3: ┤ RY(π/4) ├┤ RZ(θ[3]) ├─■─────░─┤ RX(θ[7]) ├─■─────░─┤ RY(θ[11]) ├
+       └─────────┘└──────────┘       ░ └──────────┘       ░ └───────────┘
+  ```
+
+  **Examples**
+
+  ```python
+  from qiskit.circuit.library import PauliTwoDesign
+  circuit = PauliTwoDesign(4, reps=2, seed=5, insert_barriers=True)
+  circuit.draw('mpl')
+  ```
+
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-PauliTwoDesign-1.avif)
+
+  <Admonition title="See also" type="note">
+    The [`pauli_two_design()`](qiskit.circuit.library.pauli_two_design "qiskit.circuit.library.pauli_two_design") function constructs the functionally same circuit, but faster.
+  </Admonition>
+
+  **References**
+
+  **\[1]: Nakata et al., Unitary 2-designs from random X- and Z-diagonal unitaries.**
+
+  [arXiv:1502.07514](https://arxiv.org/pdf/1502.07514.pdf)
+
+  **\[2]: McClean et al., Barren plateaus in quantum neural network training landscapes.**
+
+  [arXiv:1803.11173](https://arxiv.org/pdf/1803.11173.pdf)
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.n_local.pauli_two_design.PauliTwoDesign` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use the function qiskit.circuit.library.pauli\_two\_design instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits of the Pauli Two-Design circuit.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Specifies how often a block consisting of a rotation layer and entanglement layer is repeated.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The seed for randomly choosing the axes of the Pauli rotations.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted. Defaults to `False`.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+
+  ## Attributes
+
+  ### num\_parameters\_settable
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_parameters_settable">
+    Return the number of settable parameters.
+
+    **Returns**
+
+    The number of possibly distinct parameters.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

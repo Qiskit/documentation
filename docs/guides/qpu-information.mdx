@@ -1,12 +1,17 @@
 ---
 title: QPU information
 description: Information about QPU calibration, properties, and versioning
-
+in_page_toc_min_heading_level: 2
+in_page_toc_max_heading_level: 2
 ---
 
 # QPU information
 
-IBM&reg; offers both open and premium access to a wide variety of quantum processing units (QPUs). All QPUs deployed by IBM are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these QPUs. You can see the full details of all IBM QPUs on the [Quantum processing units page](https://quantum.cloud.ibm.com/computers).
+IBM&reg; offers access to a wide variety of quantum processing units (QPUs). All QPUs deployed by IBM are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these QPUs.
+
+Explore all public IBM QPUs by navigating to the [Compute resources](https://quantum.cloud.ibm.com/computers) page on IBM Quantum&reg; Platform. Click any QPU to open its detailed information card.
+
+This page describes the detailed information you will find on the QPU information card.
 
 ## QPU versioning
 
@@ -37,47 +42,149 @@ The revision version number will increment for fixes that do not break the exist
 *   Small electronics changes that don’t affect operation.
 *   QPU software updates.
 
-## QPU configuration values
+## QPU details
 
-The following is a subset of QPU configuration values available in IBM Quantum Platform and from [Qiskit](/docs/api/qiskit-ibm-runtime/ibm-backend).
+The first section of the QPU information card provides the following QPU details: 
 
-These values are shown on both the [Compute resources page](https://quantum.cloud.ibm.com/computers) and the details page for each QPU.
+[Name](#name) | [Qubits](#qubits) | [2Q error (best)](#2q-error-best) | [2Q error (layered)](#2q-error-layered) | [CLOPS (or CLOPS_h)](#clops-or-clops_h) | [Status](#status) | [Region](#region) | [QPU version](#qpu-version) | [Processor type](#processor-type) | [Basis gates](#native-gates-on-platform) | [Total pending jobs](#total-pending-jobs) | [Median 2Q error](#median-2q-error-heron-cz-eagle-ecr) |
+[Median SX error](#median-sx-error) | [Median readout error](#median-readout-error) | [Median T1 (relaxation time)](#median-t1-relaxation-time) | [Median T2 (dephasing time)](#median-t2-dephasing-time)
 
-*   **Name** - The unique name assigned to a specific QPU. QPUs hosted on IBM Cloud® have names that begin with `ibmq_*` (older QPUs) or `ibm_*` (newer QPUs). All QPUs are given a city name, e.g., `ibmq_johannesburg`. This name does not indicate where the actual QPU is hosted. They are named after IBM&reg; locations around the world.
-*   **Qubits** - The number of physical qubits in a QPU.
-*   **2Q error (best)** - The lowest two-qubit (2Q) error on any edge of the device as measured from isolated 2Q randomized benchmarking.
-*   **2Q error (layered)** - Average error per layered gate (EPLG) in a chain of 100 qubits. Average EPLG measures the average gate error in a layered chain of $N$ qubits ($N$=100 here). It is derived from a similar quantity known as the layer fidelity (LF) where EPLG$_{100}$ = 4/5(1-LF$^{\frac{1}{99}}$) and layer fidelity is the process fidelity of the layered chain of $N$ qubits. For details, see the paper [Benchmarking quantum processor performance at scale](https://arxiv.org/abs/2311.05933). Note that in the paper EPLG is defined for process error, but for consistency with the individually reported gate errors here it is quoted for average gate error, thus the factor of 4/5.
-*   **CLOPS** (or CLOPS_h) - Circuit layer operations per second, is a measure of how many layers of a 100x100 circuit (hardware-aware circuit) a QPU (quantum processing unit) can execute per unit of time.
-*   **Status** - The QPU status.
-*   **Region** - Location of the data center where your data and experiments will be hosted and processed.
-*   **Total pending jobs** - The total number of jobs that you have submitted to this QPU.
-*   **Processor type** - Reflects the [topology](/docs/guides/qpu-information) and indicates the approximate qubit count.
+### Name
 
-<Admonition type="note" title="Average gate fidelity">
-Note that the metric for median ECR error (for Eagle processors) and median CZ error (for Heron processors) is the [average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity), which is the average over all possible input states of the fidelity between the state produced by the actual operation and the state produced by the ideal operation.
-</Admonition>
+The unique name assigned to a specific QPU. QPUs hosted on IBM Cloud® have names that begin with `ibm_*`. All QPUs are given a city name, e.g., `ibm_kingston`. This name does not indicate where the actual QPU is hosted. They are named after IBM&reg; locations around the world.
 
-## Additional information available on the details page for each QPU
+### Qubits
 
-To access the details page, select [Compute resources](https://quantum.cloud.ibm.com/computers) from the left-hand menu, then click the name of the QPU.
+The number of physical qubits in a QPU.
+
+### 2Q error (best)
+
+The lowest two-qubit (2Q) error on any edge of the device from the same batch of measurements used to calculate the median (see [Median 2Q error](#median-2q-error-heron-cz-eagle-ecr)).
+
+### 2Q error (layered) 
+
+Average error per layered gate (EPLG) in a chain of 100 qubits. Average EPLG measures the average gate error in a layered chain of $N$ qubits ($N$=100 here). It is derived from a similar quantity known as the layer fidelity (LF) where EPLG$_{100}$ = 4/5(1-LF$^{\frac{1}{99}}$) and layer fidelity is the process fidelity of the layered chain of $N$ qubits. For details, see the paper [Benchmarking quantum processor performance at scale](https://arxiv.org/abs/2311.05933). Note that in the paper EPLG is defined for process error, but for consistency with the individually reported gate errors here it is quoted for average gate error, thus the factor of 4/5. Find an [example notebook](https://github.com/qiskit-community/qiskit-device-benchmarking/blob/main/notebooks/layer_fidelity_single_chain.ipynb) in the Qiskit Community GitHub.
+
+### CLOPS (or CLOPS_h) 
+
+Circuit layer operations per second, is a measure of how many layers of a 100x100 circuit (hardware-aware circuit) a QPU (quantum processing unit) can execute per unit of time. Find the [CLOPS code](https://github.com/qiskit-community/qiskit-device-benchmarking/tree/main/qiskit_device_benchmarking/clops#readme) in the Qiskit Community GitHub.
+
+### Status
+
+The QPU status; for example, `Online`, `Paused`, `Offline`, and so on.
+
+### Region
+
+Location of the data center where your data and experiments will be hosted and processed.
+
+### QPU version
+
+The version number of a QPU in the form `major.minor.revision`. See [QPU versioning](#qpu-versioning) for details on how this number is assigned.
+
+### Processor type
+
+Reflects the [topology](#coupling-map) and indicates the approximate qubit count.
 
 <span id="native-gates-on-platform"></span>
-* **Basis gates** - Each [processor family](/docs/guides/processor-types) has a native gate set. By default, the QPUs in each family only support running the gates and operations in the native gate set. Thus, every gate in the circuit must be translated (by the transpiler) to the elements of this set. To find the native gates (also called basis gates) for a QPU, select its name on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. Note that the non-unitary operations are not listed here; use the [method in Qiskit](/docs/guides/get-qpu-information#native-gates-with-qiskit) to see all native gates and operations for a QPU. See a list of all native gates in [this table](#native-gates).
+### Basis gates
 
-* **Version** - The version number of a QPU in the form `major.minor.revision`. See [QPU versioning](#qpu-versioning) for details on how this number is assigned.
+Each [processor family](/docs/guides/processor-types) has a native gate set. By default, the QPUs in each family only support running the gates and operations in the native gate set. Thus, every gate in the circuit must be translated (by the transpiler) to the elements of this set. Note that the non-unitary operations are not listed here; use the [method in Qiskit](/docs/guides/get-qpu-information#native-gates-with-qiskit) to see all native gates and operations for a QPU. See a list of all native gates in [this table](#native-gates).
 
-* **Calibration data** - Download the calibration data as a CSV file or click the arrow to display the Topology diagram, Individual qubit readout graph, or the Calibration data table. You can customize the data that is shown, depending on the view you have open. For example, on the Topology diagram, you can choose the data you want to see for connections and qubits. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
+### Total pending jobs
 
-    * <span id="coupling-map">**Topology diagram** or **coupling map** </span> - A diagram that indicates the pairs of qubits that support two-qubit gate operations between them. This is also called the coupling map or connectivity. Qubits are represented as circles and the supported two-qubit gate operations are displayed as lines connecting the qubits.
-    * **Individual qubit properties** - Shows the selected property for each qubit on the QPU. You can view properties such as:
-       - **T1 (Relaxation Time)**: The T1 time represents the average duration a qubit remains in its excited state $|1\rangle$ before decaying to its ground state $|0\rangle$ due to energy relaxation. This parameter is used to characterize the qubit's energy relaxation behavior, and is expressed in units of seconds (s).
-       - **T2 (Dephasing Time)**: The T2 time denotes the timescale over which a qubit maintains phase coherence of a superposition between the $|0\rangle$ and $|1\rangle$ states. It accounts for both energy relaxation and pure dephasing processes, providing insight into the qubit's coherence properties.
-       - **frequency**: This parameter specifies the resonant frequency of the qubit, indicating the energy difference between the $|0\rangle$ and $|1\rangle$ states, expressed in hertz (Hz).
-       - **anharmonicity**: Anharmonicity is the difference in energy between the first and second excited states of the qubit, also expressed in hertz (Hz).
-       - **readout_error**: The readout error quantifies the average probability of incorrectly measuring a qubit's state. It is commonly calculated as the mean of prob_meas0_prep1 and prob_meas1_prep0, providing a single metric for measurement fidelity.
-       - **prob_meas0_prep1**: This parameter indicates the probability of measuring a qubit in the $|0\rangle$ state when it was intended to be prepared in the $|1\rangle$ state, denoted as $P(0|1)$. It reflects errors in state preparation and measurement (SPAM), particularly measurement errors in superconducting qubits.
-       - **prob_meas1_prep0**: Similarly, this parameter represents the probability of measuring a qubit in the $|1\rangle$ state when it was intended to be prepared in the $|0\rangle$ state, denoted as $P(1|0)$. Like prob_meas0_prep1, it reflects SPAM errors, with measurement errors being the predominant contributor in superconducting qubits.
-       - **readout_length**: The readout_length specifies the duration of the readout operation for a qubit. It measures the time from the initiation of the measurement pulse to the completion of signal digitization, after which the system is ready for the next operation. Understanding this parameter is crucial for optimizing circuit execution, especially when incorporating mid-circuit measurements.
+The total number of jobs that you have submitted to this QPU.
+
+### Median 2Q error (Heron: CZ, Eagle: ECR)
+
+[Average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity) of the two-qubit operation from randomized benchmarking. Measured in "isolation": batches with a minimum separation of two qubits between edges. This randomized benchmarking uses alternating layers of single-qubit Cliffords and two-qubit gates, and thus the final 2Q error value includes the error of the layer of single-qubit Cliffords. Find an [example notebook](https://github.com/qiskit-community/qiskit-device-benchmarking/blob/main/notebooks/device_rb_w_lf.ipynb) in the Qiskit Community GitHub. Find per-edge data in the [calibration data](#calibration-data) section of the QPU information card.
+
+### Median SX error
+
+[Average gate fidelity](/docs/api/qiskit/quantum_info#average_gate_fidelity) of the √X (SX) gate from randomized benchmarking, measured simultaneously on all qubits. The randomized benchmarking sequence includes SX, ID, and X gates, and it is assumed their errors are the same.
+
+### Median readout error
+
+Fidelity of the readout operation. Readout error is measured by preparing the qubit in the 0 (1) state and measuring the probability of an output in the 1 (0) state. The reported value is the average of these two errors. The median is taken over all qubits.
+
+### Median T1 (relaxation time)
+
+The T1 time represents the average duration a qubit remains in its excited state $|1\rangle$ before decaying to its ground state $|0\rangle$ due to energy relaxation. This parameter is used to characterize the qubit's energy relaxation behavior, and is expressed in units of seconds (s).
+
+### Median T2 (dephasing time)
+
+The T2 time denotes the timescale over which a qubit maintains phase coherence of a superposition between the $|0\rangle$ and $|1\rangle$ states. It accounts for both energy relaxation and pure dephasing processes, providing insight into the qubit's coherence properties. T2 is reported from a Hahn echo sequence.
+
+## Calibration data
+
+<Admonition type="note" title="What does `error = 1` mean?">
+If the benchmarking of a qubit or edge does not succeed over the course of several days, whether due to poor data quality or other internal factors, the reported error value is considered stale and will be reported as 1. This is not an indication that the qubit or edge is necessarily non-working or that the error is 1; rather, the error is considered undefined and you should proceed with caution when operating that qubit or gate. 
+</Admonition>
+
+The second section, Calibration data, provides qubit, connectivity, and gate data. You can choose to visualize the information as a map, graph, or table.
+
+You can customize the data that is shown in each view, using the drop-down menus. For example, in the map view, you can choose the data you want to see for qubits and connections. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
+
+To download calibration data as a CSV file, click the download icon in the upper right corner of the Calibration data section.
+
+In addition to the information provided in the Details section of the card, the Calibration data section also includes the following:
+
+[Topology diagram or coupling map](#coupling-map) | [Readout assignment error](#readout-assignment-error) | [Prob meas0 prep1](#prob-meas0-prep1) | [Prob meas1 prep0](#prob-meas1-prep0) | [Readout length (ns)](#readout-length-ns) | [ID error / √x (sx) error / Pauli-X error / RX error](#finite-duration-discrete) | [Single-qubit gate length (ns)](#single-qubit-gate-length-ns)| [Z-axis rotation (RZ) error](#z-axis-rotation-rz-error) | [Operational](#operational) | [Gate length (ns)](#gate-length-ns) | [2Q error](#2q-error) | [RZZ error](#rzz-error-heron)
+
+<span id="coupling-map"></span>
+### Topology diagram or coupling map
+
+A diagram that indicates the pairs of qubits that support two-qubit gate operations between them. This is also called the coupling map or connectivity. Qubits are represented as circles and the supported two-qubit gate operations are displayed as lines connecting the qubits.
+
+### Readout assignment error
+
+The readout error quantifies the average probability of incorrectly measuring a qubit's state. It is commonly calculated as the mean of prob_meas0_prep1 and prob_meas1_prep0, providing a single metric for measurement fidelity.
+
+### Prob meas0 prep1
+
+This parameter indicates the probability of measuring a qubit in the $|0\rangle$ state when it was intended to be prepared in the $|1\rangle$ state, denoted as $P(0|1)$. It reflects errors in state preparation and measurement (SPAM), particularly measurement errors in superconducting qubits.
+
+### Prob meas1 prep0
+
+Similarly, this parameter represents the probability of measuring a qubit in the $|1\rangle$ state when it was intended to be prepared in the $|0\rangle$ state, denoted as $P(1|0)$. Like prob_meas0_prep1, it reflects SPAM errors, with measurement errors being the predominant contributor in superconducting qubits.
+
+### Readout length (ns)
+
+The readout_length specifies the duration of the readout operation for a qubit. It measures the time from the initiation of the measurement pulse to the completion of signal digitization, after which the system is ready for the next operation. Understanding this parameter is crucial for optimizing circuit execution, especially when incorporating mid-circuit measurements.
+
+<span id="finite-duration-discrete"></span>
+### ID error / √x (sx) error / Pauli-X error / RX error
+
+Error in the finite-duration discrete one-qubit gates, measured from randomized benchmarking. The randomized benchmarking sequence includes SX, ID, and X gates, and it is assumed their errors are the same. The ID gate is a delay of duration equal to the duration of the √X and X gates. The RX gate is also the same duration as the √X and X gates with variable amplitude, and so it is reported as having the same error as these gates.
+
+### Single-qubit gate length (ns)
+
+Duration of a single-qubit gate operation.
+
+### Z-axis rotation (RZ) error
+
+Error in the virtual RZ gate. Reported as all 0 since these are performed in software.
+
+### Operational
+
+Indicates whether the qubit can be utilized in circuits.
+
+### Gate length (ns)
+
+Duration of the two-qubit gate operation.
+
+<span id="2q-error"></span>
+### 2Q error (Heron: CZ, Eagle: ECR)
+
+The 2Q error per edge from the same batch of measurements used to calculate the [2Q median](#median-2q-error-heron-cz-eagle-ecr) and [2Q best](#2q-error-best) errors.
+
+### RZZ error (Heron)
+
+Error in the RZZ gate averaged over the RZZ angles using a variant of randomized benchmarking for arbitrary unitaries.
+
+
+## Two-qubit gate error (layered)
+
+The third section provides the expanded view of the lowest `two-qubit gate error (layered)` measured as a function of the number of qubits in the chain. The final value, at chain length 100, is the value presented in the Details section. In practice, six 100-qubit chains (pre-selected based on expected optimal performance) are measured, and the value reported for number of qubits `N` is the lowest error found in a subset length `N` chain searching over the six 100-qubit chains.
 
 <span id="available"></span>
 ## View your resources
@@ -91,40 +198,13 @@ You can also view your available QPUs by using the [backends API.](/docs/api/qis
    service.backend()
 ```
 
-## View QPU configuration
-
-View QPU configuration values by selecting a QPU on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. The three tabs in the Calibration data section let you choose how to view the calibration data; the Map view tab is automatically selected.
-
-### Expanded card for a sample QPU
-
-![An expanded card for a sample QPU.](/docs/images/guides/qpu-information/exp-card.avif "Expanded card for a sample QPU")
-
-### QPU tabs
-
-Click the download icon in the upper right of any tab to download a CSV file of calibration data.
-
-**Graph view tab.**
-
-![The graph view tab shows the calibration data as a graph.](/docs/images/guides/qpu-information/graph-view1.avif "Graph view tab")
-
-**Table view tab**
-
-![The table view tab shows the calibration information as numerical data.](/docs/images/guides/qpu-information/table-view.avif "Table view tab")
-
 <span id="native-gates"></span>
-## List of native gates and operations
+## Table of native gates and operations
 
-| Name |  Notes |
+| Operation category |  Name |
 | :--- | :--- |
-| [CZ](/docs/api/qiskit/qiskit.circuit.library.CZGate) | two-qubit gate |
-| [ECR](/docs/api/qiskit/qiskit.circuit.library.ECRGate) | two-qubit gate |
-| [RZZ](/docs/api/qiskit/qiskit.circuit.library.RZZGate) | two-qubit fractional gate |
-| [RX](/docs/api/qiskit/qiskit.circuit.library.RXGate) | single-qubit fractional gate |
-| [RZ](/docs/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
-| [SX](/docs/api/qiskit/qiskit.circuit.library.SXGate)  |single-qubit gate |
-| [X](/docs/api/qiskit/qiskit.circuit.library.XGate)  | single-qubit gate |
-| [ID](/docs/api/qiskit/qiskit.circuit.library.IGate) | single-qubit gate wait cycle |
-| [reset](/docs/api/qiskit/circuit#qiskit.circuit.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
-| [measure](/docs/api/qiskit/circuit#qiskit.circuit.Measure) | |
-| [delay](/docs/api/qiskit/circuit#qiskit.circuit.Delay) |  |
-| [if_else](/docs/api/qiskit/qiskit.circuit.IfElseOp) | control flow for classical feedforward |
+| Single-qubit gates | [`RZ`](/docs/api/qiskit/qiskit.circuit.library.RZGate), [`SX`](/docs/api/qiskit/qiskit.circuit.library.SXGate), [`X`](/docs/api/qiskit/qiskit.circuit.library.XGate), [`ID`](/docs/api/qiskit/qiskit.circuit.library.IGate), [`delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay) |
+| Two-qubit gates | [`CZ`](/docs/api/qiskit/qiskit.circuit.library.CZGate), [`ECR`](/docs/api/qiskit/qiskit.circuit.library.ECRGate)|
+| Fractional gates | [`RX`](/docs/api/qiskit/qiskit.circuit.library.RXGate) (single-qubit), [`RZZ`](/docs/api/qiskit/qiskit.circuit.library.RZZGate) (two-qubit) |
+| Non-unitary instructions | [`measure`](/docs/api/qiskit/circuit#qiskit.circuit.Measure), [`reset`](/docs/api/qiskit/circuit#qiskit.circuit.Reset) |
+| Control flow | [`if_else`](/docs/api/qiskit/qiskit.circuit.IfElseOp) (classical feedforward) |

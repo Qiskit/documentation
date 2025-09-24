@@ -1,0 +1,64 @@
+---
+title: MCXRecursive (v2.1)
+description: API reference for qiskit.circuit.library.MCXRecursive in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.MCXRecursive
+---
+
+# MCXRecursive
+
+<Class id="qiskit.circuit.library.MCXRecursive" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/standard_gates/x.py#L1126-L1205" signature="qiskit.circuit.library.MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None, *, _base_label=None)" modifiers="class">
+  Bases: [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.standard_gates.x.MCXGate")
+
+  Implement the multi-controlled X gate using recursion.
+
+  Using a single clean ancilla qubit, the multi-controlled X gate is split into four sub-registers, each one of them uses the V-chain method.
+
+  The method is based on Lemma 9 of \[2], first shown in Lemma 7.3 of \[1].
+
+  **References**
+
+  1.  Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf)
+  2.  Iten et al., 2015. [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911)
+
+  Create new MCX gate.
+
+  ## Methods
+
+  **Parameters**
+
+  *   **num\_ctrl\_qubits** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) –
+  *   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) –
+  *   **ctrl\_state** (*Optional\[Union\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) –
+
+  ### get\_num\_ancilla\_qubits
+
+  <Function id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/standard_gates/x.py#L1176-L1179" signature="get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')" modifiers="static">
+    Get the number of required ancilla qubits.
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+    *   **mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.MCXRecursive.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/standard_gates/x.py#L1181-L1196" signature="inverse(annotated=False)">
+    Invert this gate. The MCX is its own inverse.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+    **Returns**
+
+    inverse gate (self-inverse).
+
+    **Return type**
+
+    [MCXRecursive](#qiskit.circuit.library.MCXRecursive "qiskit.circuit.library.MCXRecursive")
+  </Function>
+</Class>
+

@@ -1,0 +1,67 @@
+---
+title: IQP (v2.1)
+description: API reference for qiskit.circuit.library.IQP in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.IQP
+---
+
+# IQP
+
+<Class id="qiskit.circuit.library.IQP" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/iqp.py#L24-L83" signature="qiskit.circuit.library.IQP(interactions)" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  Instantaneous quantum polynomial (IQP) circuit.
+
+  The circuit consists of a column of Hadamard gates, a column of powers of T gates, a sequence of powers of CS gates (up to $\frac{n^2-n}{2}$ of them), and a final column of Hadamard gates, as introduced in \[1].
+
+  The circuit is parameterized by an n x n interactions matrix. The powers of each T gate are given by the diagonal elements of the interactions matrix. The powers of the CS gates are given by the upper triangle of the interactions matrix.
+
+  **Reference Circuit:**
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-IQP-1.avif)
+
+  **Expanded Circuit:**
+
+  > ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-IQP-2.avif)
+
+  **References:**
+
+  \[1] M. J. Bremner et al. Average-case complexity versus approximate simulation of commuting quantum computations, Phys. Rev. Lett. 117, 080501 (2016). [arXiv:1504.07999](https://arxiv.org/abs/1504.07999)
+
+  Create IQP circuit.
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.iqp.IQP` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use the qiskit.circuit.library.iqp function instead.
+  </Admonition>
+
+  **Parameters**
+
+  **interactions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *| np.ndarray*) – input n-by-n symmetric matrix.
+
+  **Raises**
+
+  [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the inputs is not as symmetric matrix.
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.IQP.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+
