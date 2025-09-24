@@ -22,7 +22,7 @@ Ensure that you have completed these steps:
 2. Create (or have access to) at least one instance. Follow these steps to verify:
     1. Log in to [IBM Quantum Platform](https://quantum.cloud.ibm.com).
     1. Make sure that the correct account and region are selected in the account switcher in the header.
-    1. Go to the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com) If you have one or more instances shown, you're done with this step. Otherwise, [create an instance.](/docs/guides/instances#add-instance)
+    1. If you have one or more instances shown, you're done with this step. Otherwise, [create an instance.](/docs/guides/instances#add-instance)
 1. Ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed.](/docs/guides/install-qiskit#local)
 1. Activate the Python virtual environment and run Python in your virtual environment.
 
@@ -31,7 +31,7 @@ Ensure that you have completed these steps:
 ## Find your access credentials
 
 1. Find your API key (also referred to as an  _API token_). From the [dashboard](https://quantum.cloud.ibm.com/), create your API key, then copy it to a secure location so you can use it for authentication. The token will not be visible again. Note that you can use a single API key to connect to any region.
-2. Optional: Find the instance you want to use from the [Instances](https://quantum.cloud.ibm.com/instances) page. Click the icon to copy its CRN, then save it in a secure location so you can use it to identify the instance.
+2. Optional: Find the instance you want to use from the [Instances](https://quantum.cloud.ibm.com/instances) page. Hover over its CRN, click the icon to copy it, then save it in a secure location so you can use it to identify the instance.
 
 
 ## Connect Qiskit with your Qiskit Runtime service instance
@@ -93,14 +93,6 @@ service = QiskitRuntimeService(name="<name_of_saved_credentials>")
 
 #### Considerations when loading saved credentials
 
-- If you save multiple sets of credentials but don't specify one when initializing the service, the one whose name comes last alphabetically is used.
-
-    In the following example, the user saved accounts named "premium" and "open", then initialized the service by using the following code. In this case, the "premium" credentials are used:
-    ```python
-    from qiskit_ibm_runtime import QiskitRuntimeService
-
-    service = QiskitRuntimeService()
-    ```
 - If you initialize a service with `token` and `name`, the `token` is ignored and the saved details from the `name` account are loaded.
 
     In the following example, the service loads the details from account_A and does not use token_B:
@@ -124,6 +116,14 @@ service = QiskitRuntimeService(name="<name_of_saved_credentials>")
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     service = QiskitRuntimeService(instance="CRN_B")
+    ```
+- If you save multiple sets of credentials but don't specify one when initializing the service and there is no default saved account, the one whose name comes last alphabetically is used.
+
+    In the following example, the user saved accounts named "premium" and "open" but didn't mark either as the dfault.  They then initialized the service by using the following code. In this case, the "premium" credentials are used:
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    service = QiskitRuntimeService()
     ```
 
 <span id="auto-select"></span>
