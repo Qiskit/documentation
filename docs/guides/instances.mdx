@@ -37,9 +37,10 @@ You can use the CRN or instance name to specify an instance to use - either when
 If an instance is not included when initializing the service, all backends and jobs across all instances in your account are available. In this case, when a backend is specified, an instance that can access the backend is found and used in the following order:
 
 1. If your account only has access to one instance, it is selected by default.
-1. If an instance was passed into [`save_account()`,](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account) it is used.
-2. If your account has access to multiple instances but only one can access the requested QPU, the instance with access is selected. If this instance is not associated with a free plan, a cost will be incurred.
-3. If your account has access to multiple instances that can access the requested QPU, the system uses your specified plan preferences (set on the [`QiskitRuntimeService()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#qiskitruntimeservice) initializer or the [`save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account) method) to choose a plan and instance.
+1. If an instance was passed into [`save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account), it will be used when the corresponding account is loaded (see [considerations when loading saved credentials](/docs/guides/initialize-account#considerations-when-loading-saved-credentials) section).
+3. If your account has access to multiple instances that can access the requested QPU, and no instance has been specified through [`save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account), the system uses your specified plan preferences (set on the [`QiskitRuntimeService()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#qiskitruntimeservice) initializer or the [`save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account) method) to choose a plan and instance. By default, free plans will be selected unless user-specified preferences indicate otherwise.
+2. If your account has access to multiple instances but only one can access the requested QPU, and no instance has been specified through [`save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account), the instance with access is selected. If this instance is not associated with a free plan, a cost will be incurred.
+
 
 <Admonition type="important">
 Qiskit Runtime v0.40.1 and later is required for the following:
@@ -80,19 +81,19 @@ Follow these steps to create an instance and add it to your account. If you are 
 
     The workflow data includes the input circuits, circuit parameters, and quantum computation results.  It does not include metadata, such as number of shots, size of circuits, or other job statistics.
 
-   To avoid exposure of the user's workflow data to a global Distributed Denial of Service protection layer, you can use [Virtual Private Endpoints](https://cloud.ibm.com/docs/overview?topic=overview-endpoints-support). `qiskit-ibm-runtime` supports this through the [private_endpoint parameter](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service).
+   To avoid exposure of the user's workflow data to a global Distributed Denial of Service protection layer, you can use [Virtual Private Endpoints](https://cloud.ibm.com/docs/overview?topic=overview-endpoints-support). `qiskit-ibm-runtime` supports this through the [`private_endpoint` parameter](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service).
    </Admonition>
 
 1. From the dashboard Instances pane, click **View all**, or go to the [Instances](https://quantum.cloud.ibm.com/instances) page from the main menu.
 1. From the Instances page, click **Create instance**.
     * Enter a name and optionally add tags.
     * If you have access to more than one resource group in IBM Cloud&reg;, you can choose to change the resource group this instance belongs to. See [Managing resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs&interface=ui) and [Giving access to resources in resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs_manage_access) for more information.
-1. Select the pricing plan this instance is associated with (for example, Pay-as-you-go). Depending on the pricing plan selected, you can specify other options, such as the cost limit or the number of minutes to allocate to this instance. Note that If this instance is not associated with a free plan, a cost will be incurred when this instance is used to run workloads.
+1. Select the pricing plan this instance is associated with (for example, Pay-As-You-Go). Depending on the pricing plan selected, you can specify other options, such as the cost limit or the number of minutes to allocate to this instance. Note that If this instance is not associated with a free plan, a cost will be incurred when this instance is used to run workloads.
 1. Click **Next**. A list of the QPUs the instance can access is shown.
     - If you want the instance to have access to all the QPUs listed (and all QPUs added to this plan in the future), click **Next**.
     - If you are not setting up an open instance, you can customize which QPUs can be accessed with this instance. Click the "Customize allocated compute resources" toggle. Select specific QPUs that this instance can access, then click **Next**.
         <Admonition type="note">
-      If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later. If you do not customize them, you will always have access to any QPU the account has access on the plan. So if in the future there is a new QPU added to the plan, the instance automatically has access to it.
+      If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later. If you do not customize them, you will always have access to any QPU to which the account has access on the plan. So if in the future there is a new QPU added to the plan, the instance automatically has access to it.
         </Admonition>
 1. The Access group pane opens. A "collaborators" access group is automatically created for this instance. Users added to this access group can use the time allocated to this instance. You can [modify or create additional access groups](/docs/guides/access-groups) by using the [IBM Cloud console.](https://cloud.ibm.com/iam/groups) See [Setting up access groups](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) for instructions.
 1. Click **Create instance**. You can now view the instance on the [Instances](https://quantum.cloud.ibm.com/instances) page. If you have set up multiple plans on your account, each plan type has its own tab on the Instances table.
