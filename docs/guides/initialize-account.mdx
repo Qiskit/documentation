@@ -1,12 +1,12 @@
 ---
 title: Initialize your Qiskit Runtime service account
-description: How to initialize your Qiskit Runtime account, with the option of saving credentials for easy use.
+description: How to initialize your Qiskit Runtime account, instiantiate your account, and load saved credentials.
 
 ---
 
 # Initialize your Qiskit Runtime service account
 
-Before using Qiskit Runtime, you have to initialize (instantiate) your account by submitting credentials.  These credentials can be manually submitted each time you initialize the Qiskit Runtime service, or you can save them for reuse.
+Before using Qiskit Runtime, you have to initialize (instantiate) your account by submitting (loading) credentials.  These credentials can be manually submitted each time you initialize the Qiskit Runtime service, or you can save them for reuse.
 
 <Admonition type="note" title="Notes">
       * If you are using a public computer or other untrusted environment, follow the instructions in [Initialize the service in an untrusted environment](/docs/guides/cloud-setup-untrusted) instead.
@@ -81,7 +81,7 @@ service = QiskitRuntimeService()
 ...
 ```
 
-If you named one or more sets of credentials, for example, for open and premium access, use the following code to use a set of named credentials.
+If you named one or more sets of credentials - for example, for open and premium access - use the following code to use a set of named credentials.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -136,8 +136,16 @@ If you provide a token but **don't provide an instance CRN** when instantiating 
 - **`tags`**: The instance tags. Accepts a list of tag name strings.
 
 <Admonition type="note">
-You can set up your saved credentials to automatically select an instance.
+You can set up your [saved credentials](/docs/guides/save-credentials) to automatically select an instance.
 </Admonition>
+
+The instance is found and used in this order:
+
+1. If your account only has access to one instance, it is selected by default.
+1. If saved credentials are being used and an instance was specified with the credentials, that instance is used. See [Considerations when loading saved credentials.](#considerations-when-loading-saved-credentials)
+3. If your account has multiple instances that can access the requested QPU, the system uses your specified plan preferences to choose a plan and instance. For Qiskit Runtime v0.42 and later, free plans are prioritized by default.
+2. If your account has access to multiple instances but only one can access the requested QPU, the instance with access is selected. If this instance is not associated with a free plan, a cost will be incurred.
+
 
 #### Examples
 
