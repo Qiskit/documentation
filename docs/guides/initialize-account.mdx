@@ -9,7 +9,7 @@ description: How to initialize your Qiskit Runtime account, with the option of s
 Before using Qiskit Runtime, you have to initialize (instantiate) your account by submitting credentials.  These credentials can be manually submitted each time you initialize the Qiskit Runtime service, or you can save them for reuse.
 
 <Admonition type="note" title="Notes">
-      * If you are not using a trusted environment, follow the instructions in [Initialize the service in an untrusted environment](/docs/guides/cloud-setup-untrusted) instead. For example, if you are using a public comptuer.
+      * If you are using a public computer or other untrusted environment, follow the instructions in [Initialize the service in an untrusted environment](/docs/guides/cloud-setup-untrusted) instead.
       * Follow [these instructions](/docs/guides/cloud-setup-rest-api) if you want to connect by using the REST API instead of using Qiskit.
       * If necessary, use [this information](/docs/guides/quickstart-steps-org#firewall) to configure your firewall to enable access to the IBM Quantum API endpoints.
 </Admonition>
@@ -71,7 +71,7 @@ Although the `instance` input parameter is optional, it is recommended that you 
 <span id="saved"></span>
 ### Quick start path: Specify saved credentials
 
-If you have already saved your credentials, use the following code to use your default credentials. For instructions to save credentials, see [Save your access credentials.](/docs/guides/save-credentials)
+If you have already saved your credentials, use the following code to apply your default credentials. For instructions to save credentials, see [Save your access credentials.](/docs/guides/save-credentials)
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -103,7 +103,7 @@ service = QiskitRuntimeService(name="<name_of_saved_credentials>")
     ```
 - If you initialize a service with `token` and `name`, the `token` is ignored and the saved details from the `name` account are loaded.
 
-    In the following example, the service loads the details from account_A and does not use token_B:
+    In the following example, the service loads the details from `account_A` and does not use `token_B`:
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
 
@@ -153,13 +153,13 @@ In this example, the service searches all instances that are available to the ac
 service = QiskitRuntimeService(token=token, region="eu-de")
 ```
 
-In this example, the service searches all instances that are available to the account and are tagged as `service` to find ones that can access the specified backend:
+In this example, the service searches all instances that are available to the account and are tagged as `services` to find ones that can access the specified backend:
 
 ```python
 service = QiskitRuntimeService(token=token, tags=['services'])
 ```
 
-In this example, the service searches all premium and open instances that are available to the account to find ones that can access the specified backend. If a backend is in both a premium and an open plan instance, the premium plan instance is prioritized because `premium` is specified first in `plans_preference`.
+In this example, the service searches all premium and open instances that are available to the account to find ones that can access the specified backend. If a backend is in both a Premium and an Open Plan instance, the Premium Plan instance is prioritized because `premium` is specified first in `plans_preference`.
 
 ```python
 service = QiskitRuntimeService(token=token, plans_preference=['premium', 'open'])
