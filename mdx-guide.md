@@ -56,6 +56,8 @@ In Jupyter notebooks, set `title` and `description` in the `metadata` section fo
 }
 ```
 
+Warning: In any case, try to avoid using hyphens, colons, semicolons, backticks, and pipes when writing the `title` and `description`. These characters might be used differently in other languages, and their use might complicate the translation process. The Globalization Pipeline could replace them with other symbols that could change their meaning or even break the page.
+
 ## Links
 
 Internal URLs referring to other docs pages should start with `/docs` and not include the file extension. For example:
@@ -219,7 +221,10 @@ To use a `DefinitionTooltip`, use the following syntax:
 
 For full list of props, please check [here](https://react.carbondesignsystem.com/?path=/docs/components-definitiontooltip--playground#component-api).
 
-Warning: do not use LaTeX/math expressions in the same paragraph as a definition tooltip because it will break the styling. Use a new line to separate out the two into separate paragraphs.
+Caveats:
+
+1. Do not use any interactive content (e.g. links) as a definition tooltip child nor into the `definition` prop. If you use such content, it will not be available to users of screen reader software.
+2. Avoid using single and double quotes in the `definition` prop when possible. Even if they are escaped, they could be a problem when translating the files.
 
 ### Tabs
 
