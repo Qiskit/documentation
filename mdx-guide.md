@@ -56,7 +56,7 @@ In Jupyter notebooks, set `title` and `description` in the `metadata` section fo
 }
 ```
 
-Warning: In any case, try to avoid using hyphens, colons, semicolons, backticks, and pipes when writing the `title` and `description`. These characters might be used differently in other languages, and their use might complicate the translation process. The Globalization Pipeline could replace them with other symbols that could change their meaning or even break the page.
+Avoid using hyphens, colons, semicolons, backticks, and pipes when writing the `title` and `description`. These characters might be used differently in other languages, and their use might complicate the translation process. Our translation tooling often replaces them with other symbols that could change their meaning or even break the page.
 
 ## Links
 
