@@ -224,7 +224,7 @@ For full list of props, please check [here](https://react.carbondesignsystem.com
 Caveats:
 
 1. Do not use any interactive content (e.g. links) as a definition tooltip child nor into the `definition` prop. If you use such content, it will not be available to users of screen reader software.
-2. Avoid using single and double quotes in the `definition` prop when possible. Even if they are escaped, they could be a problem when translating the files.
+2. Do not use single and double quotes in the `definition` prop. Even if they are escaped, they cause problems when translating the files.
 
 ### Tabs
 
