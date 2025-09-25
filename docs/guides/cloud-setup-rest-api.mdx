@@ -68,7 +68,7 @@ Choose the appropriate authentication method, depending on your working environm
 1. To set the IQP_API_TOKEN environment variable in your system, you can add the following line to your shell profile (for example, .bashrc or .zshrc) or by setting it directly in your terminal:
 
     ```shell
-    export IQP_API_TOKEN=<your-token>
+    export IQP_API_TOKEN=<your-API_KEY> # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
     ```
     When you invoke the environment variable in your code, include `import os`, as in this example:
 
@@ -84,7 +84,7 @@ curl -X 'GET' \
    'https://quantum.cloud.ibm.com/api/v1/usage' \
    '-H accept: application/json' \
    '-H authorization: Bearer <BEARER_TOKEN>' \
-   '-H Service-CRN: crn:v1:bluemix:public:quantum-computing:us-east:a/b947c1c5a9378d64aed96696e4d76e8e:a3a7f181-35aa-42c8-94d6-7c8ed6e1a94b::'
+   '-H Service-CRN: <INSTANCE_CRN>'
 ```
 
 ### 3. Optional: Configure your firewall

@@ -28,8 +28,14 @@ Additionally, you can now name your saved credentials and load the credentials b
 ```python
 # Save different accounts for open and premium access
 
-QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>", instance="<CRN for premium instance>", name="premium")
-QiskitRuntimeService.save_account(channel="ibm_quantum_platform", token="<API_TOKEN>", instance="<CRN for open instance>", name="open")
+QiskitRuntimeService.save_account(channel="ibm_quantum_platform",
+                                  token="<API_TOKEN>", # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
+                                  instance="<CRN for premium instance>",
+                                  name="premium")
+QiskitRuntimeService.save_account(channel="ibm_quantum_platform",
+                                  token="<API_TOKEN>", # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
+                                  instance="<CRN for open instance>",
+                                  name="open")
 
 # Load the "open" credentials
 
@@ -39,7 +45,7 @@ service = QiskitRuntimeService(name="open")
 
   <TabItem value="legacy" label="backend.run">
 ```python
-IBMProvider.save_account(token='MY_API_TOKEN')
+IBMProvider.save_account(token='your_API_TOKEN')
 ```
   </TabItem>
 </Tabs>
