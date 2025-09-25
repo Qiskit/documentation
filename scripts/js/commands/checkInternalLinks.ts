@@ -39,6 +39,7 @@ const SYNTHETIC_FILES: string[] = [
   "announcements/product-updates.mdx",
   "announcements/index.mdx",
   "announcements/product-updates/2025-03-03-new-version-dynamic-circuits.mdx",
+  "announcements/product-updates/2025-09-25-new-dynamic-circuits.mdx",
 ];
 
 interface Arguments {
