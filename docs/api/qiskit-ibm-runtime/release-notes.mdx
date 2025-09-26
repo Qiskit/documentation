@@ -994,7 +994,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### Bug Fixes
 
-*   Many methods in [RuntimeJob](/docs/api/qiskit-ibm-runtime/runtime-job) require retrieving the job data from the API with `job_get()`. This API call will now exclude the `params` field by default because they are only necessary in [qiskit\_ibm\_runtime.RuntimeJob.inputs()](/docs/api/qiskit-ibm-runtime/runtime-job#inputs).
+*   Many methods in [RuntimeJob](/docs/api/qiskit-ibm-runtime/0.41/runtime-job) require retrieving the job data from the API with `job_get()`. This API call will now exclude the `params` field by default because they are only necessary in [qiskit\_ibm\_runtime.RuntimeJob.inputs()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#inputs).
 
 <span id="id116" />
 
@@ -1004,7 +1004,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### New Features
 
-*   Added a new method [properties()](/docs/api/qiskit-ibm-runtime/runtime-job#properties) which returns the backend properties of the job at the time the job was run.
+*   Added a new method [properties()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#properties) which returns the backend properties of the job at the time the job was run.
 *   [details()](/docs/api/qiskit-ibm-runtime/session#details) has a new field, activated\_at, which is the timestamp of when the session was changed to active.
 
 <span id="id118" />
@@ -1238,7 +1238,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 ### Upgrade Notes
 
-*   Circuits and other input parameters will no longer be automatically stored in runtime jobs. They can still be retrieved with [qiskit\_ibm\_runtime.RuntimeJob.inputs()](/docs/api/qiskit-ibm-runtime/runtime-job#inputs).
+*   Circuits and other input parameters will no longer be automatically stored in runtime jobs. They can still be retrieved with [qiskit\_ibm\_runtime.RuntimeJob.inputs()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#inputs).
 
 <span id="id147" />
 
@@ -1262,10 +1262,10 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 ### New Features
 
-*   Added reason for failure when invoking the method [error\_message()](/docs/api/qiskit-ibm-runtime/runtime-job#error_message).
-*   Added a new property, [usage\_estimation()](/docs/api/qiskit-ibm-runtime/runtime-job#usage_estimation) that returns the estimated system execution time, `quantum_seconds`. System execution time represents the amount of time that the system is dedicated to processing your job.
+*   Added reason for failure when invoking the method [error\_message()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#error_message).
+*   Added a new property, [usage\_estimation()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#usage_estimation) that returns the estimated system execution time, `quantum_seconds`. System execution time represents the amount of time that the system is dedicated to processing your job.
 *   Raise an exception if the number of circuits passed to `_run_primitive()` exceeds the number of circuits supported on the backend.
-*   There is a new method [update\_tags()](/docs/api/qiskit-ibm-runtime/runtime-job#update_tags) that can be used to update the `job_tags` of a job.
+*   There is a new method [update\_tags()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#update_tags) that can be used to update the `job_tags` of a job.
 *   If `instance` is provided as parameter to [qiskit\_ibm\_runtime.QiskitRuntimeService](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service), then this is used as a filter in `QiskitRuntimeService.backends()`. If `instance` is not recognized as one of the provider instances, an exception will be raised. Previously, we only issued a warning.
 
 <span id="id151" />
@@ -1308,7 +1308,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 ### Deprecation Notes
 
-*   In [qiskit\_ibm\_runtime.RuntimeJob.metrics()](/docs/api/qiskit-ibm-runtime/runtime-job#metrics), the bss field will be replaced by usage.
+*   In [qiskit\_ibm\_runtime.RuntimeJob.metrics()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#metrics), the bss field will be replaced by usage.
 
 <span id="id156" />
 
@@ -1318,7 +1318,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 ### New Features
 
-*   When retrieving a job with `qiskit_ibm_runtime.IBMRuntimeService.job()` the `params` will no longer be returned from the API. They will instead be loaded loazily when they are actually needed in [qiskit\_ibm\_runtime.RuntimeJob.inputs()](/docs/api/qiskit-ibm-runtime/runtime-job#inputs).
+*   When retrieving a job with `qiskit_ibm_runtime.IBMRuntimeService.job()` the `params` will no longer be returned from the API. They will instead be loaded loazily when they are actually needed in [qiskit\_ibm\_runtime.RuntimeJob.inputs()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#inputs).
 
 *   Added warning when the backend is not active in QiskitRuntimeService.run.
 
@@ -1437,7 +1437,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 ### Upgrade Notes
 
 *   Accept all options on given on level 1 and assign them to the appropriate hierarchical option type. For example, if the user provides `options = {"shots": 10}` as input to Sampler/Estimator, this will be interpreted as `options = {"execution: {"shots": 10}}`.
-*   If a job is returned without a backend, retrieving the backend through [qiskit\_ibm\_runtime.RuntimeJob.backend()](/docs/api/qiskit-ibm-runtime/runtime-job#backend) will re-retrieve data from the server and attempt to update the backend. Additionally, `job_id` and `backend`, which were deprecated attributes of [qiskit\_ibm\_runtime.RuntimeJob](/docs/api/qiskit-ibm-runtime/runtime-job) have now been removed.
+*   If a job is returned without a backend, retrieving the backend through [qiskit\_ibm\_runtime.RuntimeJob.backend()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#backend) will re-retrieve data from the server and attempt to update the backend. Additionally, `job_id` and `backend`, which were deprecated attributes of [qiskit\_ibm\_runtime.RuntimeJob](/docs/api/qiskit-ibm-runtime/0.41/runtime-job) have now been removed.
 *   Added a user warning when the user passes an option that is not supported in Options.
 
 <span id="id175" />
@@ -1498,7 +1498,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 ### Upgrade Notes
 
 *   Changed the default values for `optimization_level` and for `resilience_level` in `qiskit_ibm_runtime.Options`. If their values are defined by the user, they are not modified. If not set, if the backend is a noiseless simulator then `optimization_level` is set to 1 and `resilience_level` is set to 0; Otherwise, they are be set to 3 and 1 respectively.
-*   [session\_id()](/docs/api/qiskit-ibm-runtime/runtime-job#session_id) and [tags()](/docs/api/qiskit-ibm-runtime/runtime-job#tags) were added for an easy way to return the session\_id and job\_tags of a job.
+*   [session\_id()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#session_id) and [tags()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#tags) were added for an easy way to return the session\_id and job\_tags of a job.
 
 <span id="id183" />
 
@@ -1579,13 +1579,13 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 *   Added a validation check to `Sampler.run()`. It raises an error if there is no classical bit.
 *   [Sampler](/docs/api/qiskit-ibm-runtime/sampler) is updated to return `SamplerResult` with `SamplerResult.quasi_dists` as a list of `QuasiDistrbution`. It used to set a list of `dict` as `SamplerResult.quasi_dists`, but it did not follow the design of `SamplerResult`.
-*   The [RuntimeJob](/docs/api/qiskit-ibm-runtime/runtime-job) class is now a subclass of `qiskit.providers.Job`.
+*   The [RuntimeJob](/docs/api/qiskit-ibm-runtime/0.41/runtime-job) class is now a subclass of `qiskit.providers.Job`.
 
 <span id="id195" />
 
 ### Deprecation Notes
 
-*   `job_id` and `backend` attributes of [qiskit\_ibm\_runtime.RuntimeJob](/docs/api/qiskit-ibm-runtime/runtime-job) have been deprecated. Please use [qiskit\_ibm\_runtime.RuntimeJob.job\_id()](/docs/api/qiskit-ibm-runtime/runtime-job#job_id) and [qiskit\_ibm\_runtime.RuntimeJob.backend()](/docs/api/qiskit-ibm-runtime/runtime-job#backend) methods instead.
+*   `job_id` and `backend` attributes of [qiskit\_ibm\_runtime.RuntimeJob](/docs/api/qiskit-ibm-runtime/0.41/runtime-job) have been deprecated. Please use [qiskit\_ibm\_runtime.RuntimeJob.job\_id()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#job_id) and [qiskit\_ibm\_runtime.RuntimeJob.backend()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#backend) methods instead.
 *   The `backend_name` attribute in `qiskit_ibm_runtime.RuntimeOptions` is deprecated and replaced by `backend`.
 
 <span id="rc1" />
@@ -1653,7 +1653,7 @@ There are significant changes to how primitives are invoked within a session, an
       job = sampler.run(circuits=ReferenceCircuits.bell(), shots=4000)
     ```
 
-*   [qiskit\_ibm\_runtime.RuntimeJob](/docs/api/qiskit-ibm-runtime/runtime-job) has a new method [metrics()](/docs/api/qiskit-ibm-runtime/runtime-job#metrics). This method returns the metrics of a job, which includes timestamp information.
+*   [qiskit\_ibm\_runtime.RuntimeJob](/docs/api/qiskit-ibm-runtime/0.41/runtime-job) has a new method [metrics()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#metrics). This method returns the metrics of a job, which includes timestamp information.
 
 *   The [qiskit\_ibm\_runtime.QiskitRuntimeService](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service) `channel` can now be stored as an environment variable, `QISKIT_IBM_CHANNEL`. This way, when using Runtime Primitives, the service does not have to be instantiated manually and can instead be created directly from environment variables.
 
@@ -1797,7 +1797,7 @@ This release leverages the API and Queue enhancements to become more runtime ses
 
 *   [jobs()](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#jobs) has a new parameter, `descending`. This parameter defaults to `True`, where jobs will be returned in descending order based on creation date.
 
-*   `RuntimeJobTimeoutError` is now raised when the `timeout` set in [result()](/docs/api/qiskit-ibm-runtime/runtime-job#result) or [wait\_for\_final\_state()](/docs/api/qiskit-ibm-runtime/runtime-job#wait_for_final_state) expires.
+*   `RuntimeJobTimeoutError` is now raised when the `timeout` set in [result()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#result) or [wait\_for\_final\_state()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#wait_for_final_state) expires.
 
 *   When initializing [QiskitRuntimeService](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service) and an invalid token is used, `IBMNotAuthorizedError` will be raised instead of `RequestsApiError`.
 
@@ -1936,7 +1936,7 @@ This release leverages the API and Queue enhancements to become more runtime ses
 
 ### Bug Fixes
 
-*   Fixed a bug where [qiskit\_ibm\_runtime.RuntimeJob.wait\_for\_final\_state()](/docs/api/qiskit-ibm-runtime/runtime-job#wait_for_final_state) would result in a NoneType error if the job already completed and [qiskit\_ibm\_runtime.RuntimeJob.status()](/docs/api/qiskit-ibm-runtime/runtime-job#status) was called beforehand.
+*   Fixed a bug where [qiskit\_ibm\_runtime.RuntimeJob.wait\_for\_final\_state()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#wait_for_final_state) would result in a NoneType error if the job already completed and [qiskit\_ibm\_runtime.RuntimeJob.status()](/docs/api/qiskit-ibm-runtime/0.41/runtime-job#status) was called beforehand.
 
 <span id="id217" />
 
@@ -2051,7 +2051,7 @@ qiskit-ibm-runtime is not included as part of Qiskit meta package and thereby yo
 
 ### Upgrade Notes
 
-*   In order to be consistent with other properties in [qiskit\_ibm\_runtime.RuntimeJob](/docs/api/qiskit-ibm-runtime/runtime-job) class the job\_id and backend methods have been converted to properties.
+*   In order to be consistent with other properties in [qiskit\_ibm\_runtime.RuntimeJob](/docs/api/qiskit-ibm-runtime/0.41/runtime-job) class the job\_id and backend methods have been converted to properties.
 *   When uploading a program with `qiskit_ibm_runtime.IBMRuntimeService.upload_program()`, the program description is now optional.
 *   When printing programs with `qiskit_ibm_runtime.IBMRuntimeService.pprint_programs()`, `backend_requirements` will now be listed.
 
