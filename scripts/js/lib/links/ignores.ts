@@ -247,6 +247,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
       "0.38/",
       "0.39/",
       "0.40/",
+      "0.41/",
     ].map((vers) => [
       `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [

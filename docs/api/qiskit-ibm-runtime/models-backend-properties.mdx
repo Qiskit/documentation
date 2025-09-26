@@ -1,0 +1,296 @@
+---
+title: BackendProperties (latest version)
+description: API reference for qiskit_ibm_runtime.models.BackendProperties in the latest version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.models.BackendProperties
+---
+
+# BackendProperties
+
+<Class id="qiskit_ibm_runtime.models.BackendProperties" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L170-L518" signature="BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)" modifiers="class">
+  Bases: `object`
+
+  Class representing backend properties
+
+  This holds backend properties measured by the provider. All properties which are provided optionally. These properties may describe qubits, gates, or other general properties of the backend.
+
+  Initialize a BackendProperties instance.
+
+  **Parameters**
+
+  *   **backend\_name** (*str*) – Backend name.
+  *   **backend\_version** (*str*) – Backend version in the form X.Y.Z.
+  *   **last\_update\_date** (*datetime.datetime or str*) – Last date/time that a property was updated. If specified as a `str`, it must be in ISO format.
+  *   **qubits** (*list*) – System qubit parameters as a list of lists of [`Nduv`](models-nduv "qiskit_ibm_runtime.models.Nduv") objects
+  *   **gates** (*list*) – System gate parameters as a list of [`GateProperties`](models-gate-properties "qiskit_ibm_runtime.models.GateProperties") objects
+  *   **general** (*list*) – General parameters as a list of [`Nduv`](models-nduv "qiskit_ibm_runtime.models.Nduv") objects
+  *   **kwargs** (*Any*) – optional additional fields
+
+  ## Methods
+
+  ### faulty\_gates
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.faulty_gates" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L342-L348" signature="faulty_gates()">
+    Return a list of faulty gates.
+
+    **Return type**
+
+    list
+  </Function>
+
+  ### faulty\_qubits
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.faulty_qubits" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L334-L340" signature="faulty_qubits()">
+    Return a list of faulty qubits.
+
+    **Return type**
+
+    list
+  </Function>
+
+  ### frequency
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.frequency" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L449-L459" signature="frequency(qubit)">
+    Return the frequency of the given qubit.
+
+    **Parameters**
+
+    **qubit** (*int*) – Qubit for which to return frequency of.
+
+    **Returns**
+
+    Frequency of the given qubit.
+
+    **Return type**
+
+    float
+  </Function>
+
+  ### from\_dict
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.from_dict" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L240-L265" signature="from_dict(data)" modifiers="classmethod">
+    Create a new BackendProperties object from a dictionary.
+
+    **Parameters**
+
+    **data** (*dict*) – A dictionary representing the BackendProperties to create. It will be in the same format as output by [`to_dict()`](#qiskit_ibm_runtime.models.BackendProperties.to_dict "qiskit_ibm_runtime.models.BackendProperties.to_dict").
+
+    **Returns**
+
+    The BackendProperties from the input dictionary.
+
+    **Return type**
+
+    [BackendProperties](#qiskit_ibm_runtime.models.BackendProperties "qiskit_ibm_runtime.models.BackendProperties")
+  </Function>
+
+  ### gate\_error
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.gate_error" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L367-L378" signature="gate_error(gate, qubits)">
+    Return gate error estimates from backend properties.
+
+    **Parameters**
+
+    *   **gate** (*str*) – The gate for which to get the error.
+    *   **qubits** (*int | Iterable\[int]*) – The specific qubits for the gate.
+
+    **Returns**
+
+    Gate error of the given gate and qubit(s).
+
+    **Return type**
+
+    float
+  </Function>
+
+  ### gate\_length
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.gate_length" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L380-L391" signature="gate_length(gate, qubits)">
+    Return the duration of the gate in units of seconds.
+
+    **Parameters**
+
+    *   **gate** (*str*) – The gate for which to get the duration.
+    *   **qubits** (*int | Iterable\[int]*) – The specific qubits for the gate.
+
+    **Returns**
+
+    Gate length of the given gate and qubit(s).
+
+    **Return type**
+
+    float
+  </Function>
+
+  ### gate\_property
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.gate_property" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L295-L332" signature="gate_property(gate, qubits=None, name=None)">
+    Return the property of the given gate.
+
+    **Parameters**
+
+    *   **gate** (*str*) – Name of the gate.
+    *   **qubits** (*int | Iterable\[int] | None*) – The qubit to find the property for.
+    *   **name** (*str | None*) – Optionally used to specify which gate property to return.
+
+    **Returns**
+
+    Gate property as a tuple of the value and the time it was measured.
+
+    **Raises**
+
+    **BackendPropertyError** – If the property is not found or name is specified but qubit is not.
+
+    **Return type**
+
+    *Dict*\[*Tuple*\[int, …], *Dict*\[str, *Tuple*\[*Any*, *datetime*]]] | *Dict*\[str, *Tuple*\[*Any*, *datetime*]] | *Tuple*\[*Any*, *datetime*]
+  </Function>
+
+  ### is\_gate\_operational
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.is_gate_operational" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L350-L365" signature="is_gate_operational(gate, qubits=None)">
+    Return the operational status of the given gate.
+
+    **Parameters**
+
+    *   **gate** (*str*) – Name of the gate.
+    *   **qubits** (*int | Iterable\[int] | None*) – The qubit to find the operational status for.
+
+    **Returns**
+
+    Operational status of the given gate. True if the gate is operational, False otherwise.
+
+    **Return type**
+
+    bool
+  </Function>
+
+  ### is\_qubit\_operational
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.is_qubit_operational" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L485-L498" signature="is_qubit_operational(qubit)">
+    Return the operational status of the given qubit.
+
+    **Parameters**
+
+    **qubit** (*int*) – Qubit for which to return operational status of.
+
+    **Returns**
+
+    Operational status of the given qubit.
+
+    **Return type**
+
+    bool
+  </Function>
+
+  ### qubit\_property
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.qubit_property" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L393-L423" signature="qubit_property(qubit, name=None)">
+    Return the property of the given qubit.
+
+    **Parameters**
+
+    *   **qubit** (*int*) – The property to look for.
+    *   **name** (*str | None*) – Optionally used to specify within the hierarchy which property to return.
+
+    **Returns**
+
+    Qubit property as a tuple of the value and the time it was measured.
+
+    **Raises**
+
+    **BackendPropertyError** – If the property is not found.
+
+    **Return type**
+
+    *Dict*\[str, *Tuple*\[*Any*, *datetime*]] | *Tuple*\[*Any*, *datetime*]
+  </Function>
+
+  ### readout\_error
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.readout_error" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L461-L471" signature="readout_error(qubit)">
+    Return the readout error of the given qubit.
+
+    **Parameters**
+
+    **qubit** (*int*) – Qubit for which to return the readout error of.
+
+    **Returns**
+
+    Readout error of the given qubit.
+
+    **Return type**
+
+    float
+  </Function>
+
+  ### readout\_length
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.readout_length" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L473-L483" signature="readout_length(qubit)">
+    Return the readout length \[sec] of the given qubit.
+
+    **Parameters**
+
+    **qubit** (*int*) – Qubit for which to return the readout length of.
+
+    **Returns**
+
+    Readout length of the given qubit.
+
+    **Return type**
+
+    float
+  </Function>
+
+  ### t1
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.t1" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L425-L435" signature="t1(qubit)">
+    Return the T1 time of the given qubit.
+
+    **Parameters**
+
+    **qubit** (*int*) – Qubit for which to return the T1 time of.
+
+    **Returns**
+
+    T1 time of the given qubit.
+
+    **Return type**
+
+    float
+  </Function>
+
+  ### t2
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.t2" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L437-L447" signature="t2(qubit)">
+    Return the T2 time of the given qubit.
+
+    **Parameters**
+
+    **qubit** (*int*) – Qubit for which to return the T2 time of.
+
+    **Returns**
+
+    T2 time of the given qubit.
+
+    **Return type**
+
+    float
+  </Function>
+
+  ### to\_dict
+
+  <Function id="qiskit_ibm_runtime.models.BackendProperties.to_dict" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.42/qiskit_ibm_runtime/models/backend_properties.py#L267-L287" signature="to_dict()">
+    Return a dictionary format representation of the BackendProperties.
+
+    **Returns**
+
+    The dictionary form of the BackendProperties.
+
+    **Return type**
+
+    dict
+  </Function>
+</Class>
+
