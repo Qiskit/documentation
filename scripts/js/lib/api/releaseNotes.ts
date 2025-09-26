@@ -12,7 +12,7 @@
 
 import { parse } from "path";
 import { readFile, writeFile, readdir } from "fs/promises";
-
+import { groupBy } from "lodash-es";
 import { $ } from "zx";
 import transformLinks from "transform-markdown-links";
 
@@ -22,8 +22,6 @@ import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./conversionPipeline.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import { removePrefix } from "../stringUtils.js";
-
-import { groupBy } from "lodash-es";
 
 // ---------------------------------------------------------------------------
 // Generic release notes handling
@@ -221,7 +219,7 @@ function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
   if (releaseNotesNode.children[0].title != newVersion) {
     releaseNotesNode.children.unshift({
       title: newVersion,
-      url: `/api/qiskit/release-notes/${newVersion}`,
+      url: `${DOCS_BASE_PATH}/api/qiskit/release-notes/${newVersion}`,
     });
   }
 }
