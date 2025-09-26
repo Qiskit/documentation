@@ -110,7 +110,6 @@ export async function maybeUpdateReleaseNotesFolder(
   ) {
     return;
   }
-  addNewReleaseNotes(pkg);
   await updateHistoricalTocFiles(pkg);
   console.log("Generating release-notes/index");
   const indexMarkdown = generateReleaseNotesIndex(pkg);
@@ -118,17 +117,27 @@ export async function maybeUpdateReleaseNotesFolder(
 }
 
 /**
- * Check for markdown files in `docs/api/<pkg-name>/release-notes/,
- * then sort them and return the list of versions.
+ * For packages with separate release note pages, determine all the versions.
+ *
+ * This works by reading from the file-system and also considering the current
+ * version being generated. The file-system is how we determine the versions that
+ * are not being actively generated.
+ *
+ * Returns versions in descending order.
  */
-export const findSeparateReleaseNotesVersions = async (
+export async function determineReleaseNotesSeparetePagesVersions(
   pkgName: string,
-): Promise<string[]> => {
-  return (await $`ls docs/api/${pkgName}/release-notes`.quiet()).stdout
-    .trim()
-    .split("\n")
-    .map((x) => parse(x).name)
-    .filter((x) => x.match(/^\d/)) // remove index
+  versionWithoutPatch: string,
+): Promise<string[]> {
+  const versions = new Set(
+    (await $`ls docs/api/${pkgName}/release-notes`.quiet()).stdout
+      .trim()
+      .split("\n")
+      .map((x) => parse(x).name)
+      .filter((x) => x.match(/^\d/)), // remove index
+  );
+  versions.add(versionWithoutPatch);
+  return Array.from(versions)
     .sort((a: string, b: string) => {
       const aParts = a.split(".").map((x) => Number(x));
       const bParts = b.split(".").map((x) => Number(x));
@@ -143,16 +152,6 @@ export const findSeparateReleaseNotesVersions = async (
       return 0;
     })
     .reverse();
-};
-
-function addNewReleaseNotes(pkg: Pkg): void {
-  if (
-    pkg.releaseNotesConfig.separatePagesVersions[0] === pkg.versionWithoutPatch
-  ) {
-    // Entries already includes most recent release notes
-    return;
-  }
-  pkg.releaseNotesConfig.separatePagesVersions.unshift(pkg.versionWithoutPatch);
 }
 
 export function generateReleaseNotesIndex(pkg: Pkg): string {
