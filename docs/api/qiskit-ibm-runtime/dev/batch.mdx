@@ -165,8 +165,17 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### from\_id
 
-  <Function id="qiskit_ibm_runtime.Batch.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L320-L373" signature="from_id(session_id, service)" modifiers="classmethod">
-    Construct a Session object with a given session\_id
+  <Function id="qiskit_ibm_runtime.Batch.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L320-L382" signature="from_id(session_id, service)" modifiers="classmethod">
+    Construct a Session object with a given `session_id`. For example:
+
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService, Session
+    service = QiskitRuntimeService()
+    job = service.job(<job_id>)
+    existing_session_id = job.session_id
+
+    new_session = Session.from_id(existing_session_id, service)
+    ```
 
     **Parameters**
 
