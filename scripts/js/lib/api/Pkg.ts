@@ -12,7 +12,7 @@
 
 import { join } from "path/posix";
 
-import { findSeparateReleaseNotesVersions } from "./releaseNotes.js";
+import { determineReleaseNotesSeparetePagesVersions } from "./releaseNotes.js";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage.js";
 import {
   TocGrouping,
@@ -22,6 +22,7 @@ import {
 
 export class ReleaseNotesConfig {
   readonly enabled: boolean;
+  /** A list of the release note versions in descending order. */
   readonly separatePagesVersions: string[];
   readonly linkToPackage?: string;
 
@@ -110,7 +111,11 @@ export class Pkg {
     };
 
     if (name === "qiskit") {
-      const releaseNoteEntries = await findSeparateReleaseNotesVersions(name);
+      const releaseNoteEntries =
+        await determineReleaseNotesSeparetePagesVersions(
+          name,
+          versionWithoutPatch,
+        );
       return new Pkg({
         ...args,
         title: "Qiskit SDK",
