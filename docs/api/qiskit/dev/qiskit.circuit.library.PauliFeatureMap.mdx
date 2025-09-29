@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 # PauliFeatureMap
 
-<Class id="qiskit.circuit.library.PauliFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L326-L644" signature="qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')" modifiers="class">
+<Class id="qiskit.circuit.library.PauliFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L326-L643" signature="qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')" modifiers="class">
   Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
   The Pauli Expansion circuit.
@@ -96,8 +96,6 @@ $$
 
   \[1] Havlicek et al. Supervised learning with quantum enhanced feature spaces, [Nature 567, 209-212 (2019)](https://www.nature.com/articles/s41586-019-0980-2).
 
-  Create a new Pauli expansion circuit.
-
   <Admonition title="Deprecated since version 2.1" type="danger">
     The class `qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use the pauli\_feature\_map function as a replacement. Note that this will no longer return a BlueprintCircuit, but just a plain QuantumCircuit.
   </Admonition>
@@ -111,7 +109,7 @@ $$
   *   **paulis** (*Optional\[List\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]]*) – A list of strings for to-be-used paulis. If None are provided, `['Z', 'ZZ']` will be used.
   *   **data\_map\_func** (*Optional\[Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]*) – A mapping function for data x which can be supplied to override the default mapping from `self_product()`.
   *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The prefix used if default parameters are generated.
-  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, barriers are inserted in between the evolution instructions and hadamard layers.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, barriers are inserted in between the evolution instructions and Hadamard layers.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
 
   ## Attributes
@@ -185,7 +183,7 @@ $$
 
   ### get\_entangler\_map
 
-  <Function id="qiskit.circuit.library.PauliFeatureMap.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L607-L644" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
+  <Function id="qiskit.circuit.library.PauliFeatureMap.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L606-L643" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
     Get the entangler map for in the repetition `rep_num` and the block `block_num`.
 
     The entangler map for the current block is derived from the value of `self.entanglement`. Below the different cases are listed, where `i` and `j` denote the repetition number and the block number, respectively, and `n` the number of qubits in the block.
@@ -226,13 +224,13 @@ $$
 
   ### pauli\_block
 
-  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_block" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L561-L565" signature="pauli_block(pauli_string)">
+  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_block" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L560-L564" signature="pauli_block(pauli_string)">
     Get the Pauli block for the feature map circuit.
   </Function>
 
   ### pauli\_evolution
 
-  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L567-L605" signature="pauli_evolution(pauli_string, time)">
+  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L566-L604" signature="pauli_evolution(pauli_string, time)">
     Get the evolution block for the given pauli string.
   </Function>
 </Class>

@@ -47,6 +47,8 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/docs/guides/instances",
   "/docs/guides/access-instances-platform-apis",
   "/docs/guides/cloud-setup",
+  "/docs/guides/initialize-account",
+  "/docs/guides/save-credentials",
   "/docs/guides/cloud-setup-untrusted",
   "/docs/guides/cloud-setup-invited",
   "/docs/guides/cloud-setup-rest-api",

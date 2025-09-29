@@ -56,7 +56,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L237-L401" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L266-L430" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
@@ -104,7 +104,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L79-L234" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=16, annotation_factories=None)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L81-L263" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=16, annotation_factories=None)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -171,7 +171,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### get\_qpy\_version
 
-<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L404-L431" signature="qiskit.qpy.get_qpy_version(file_obj)">
+<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L433-L460" signature="qiskit.qpy.get_qpy_version(file_obj)">
   This function identifies the QPY version of the file.
 
   This function will read the header of `file_obj` and will return the QPY format version. It will **not** advance the cursor of `file_obj`. If you are using this for a subsequent read, such as to call [`load()`](#qiskit.qpy.load "qiskit.qpy.load"), you can pass `file_obj` directly. For example:

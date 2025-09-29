@@ -1,0 +1,148 @@
+---
+title: QFT (v2.1)
+description: API reference for qiskit.circuit.library.QFT in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QFT
+---
+
+# QFT
+
+<Class id="qiskit.circuit.library.QFT" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/basis_change/qft.py#L23-L279" signature="qiskit.circuit.library.QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)" modifiers="class">
+  Bases: `BlueprintCircuit`
+
+  Quantum Fourier Transform Circuit.
+
+  The Quantum Fourier Transform (QFT) on $n$ qubits is the operation
+
+$$
+|j\rangle \mapsto \frac{1}{2^{n/2}} \sum_{k=0}^{2^n - 1} e^{2\pi ijk / 2^n} |k\rangle
+$$
+
+  The circuit that implements this transformation can be implemented using Hadamard gates on each qubit, a series of controlled-U1 (or Z, depending on the phase) gates and a layer of Swap gates. The layer of Swap gates can in principle be dropped if the QFT appears at the end of the circuit, since then the re-ordering can be done classically. They can be turned off using the `do_swaps` attribute.
+
+  For 4 qubits, the circuit that implements this transformation is:
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-QFT-1.avif)
+
+  The inverse QFT can be obtained by calling the `inverse` method on this class. The respective circuit diagram is:
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-QFT-2.avif)
+
+  One method to reduce circuit depth is to implement the QFT approximately by ignoring controlled-phase rotations where the angle is beneath a threshold. This is discussed in more detail in [https://arxiv.org/abs/quant-ph/9601018](https://arxiv.org/abs/quant-ph/9601018) or [https://arxiv.org/abs/quant-ph/0403071](https://arxiv.org/abs/quant-ph/0403071).
+
+  Here, this can be adjusted using the `approximation_degree` attribute: the smallest `approximation_degree` rotation angles are dropped from the QFT. For instance, a QFT on 5 qubits with approximation degree 2 yields (the barriers are dropped in this example):
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-QFT-3.avif)
+
+  Construct a new QFT circuit.
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.basis_change.qft.QFT` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. (‘Use qiskit.circuit.library.QFTGate or qiskit.synthesis.qft.synth\_qft\_full instead, for access to all previous arguments.’,)
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits on which the QFT acts.
+  *   **approximation\_degree** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The degree of approximation (0 for no approximation).
+  *   **do\_swaps** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to include the final swaps in the QFT.
+  *   **inverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, the inverse Fourier transform is constructed.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, barriers are inserted as visualization improvement.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The name of the circuit.
+
+  ## Attributes
+
+  ### approximation\_degree
+
+  <Attribute id="qiskit.circuit.library.QFT.approximation_degree">
+    The approximation degree of the QFT.
+
+    **Returns**
+
+    The currently set approximation degree.
+  </Attribute>
+
+  ### do\_swaps
+
+  <Attribute id="qiskit.circuit.library.QFT.do_swaps">
+    Whether the final swaps of the QFT are applied or not.
+
+    **Returns**
+
+    True, if the final swaps are applied, False if not.
+  </Attribute>
+
+  ### insert\_barriers
+
+  <Attribute id="qiskit.circuit.library.QFT.insert_barriers">
+    Whether barriers are inserted for better visualization or not.
+
+    **Returns**
+
+    True, if barriers are inserted, False if not.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.QFT.num_qubits">
+    The number of qubits in the QFT circuit.
+
+    **Returns**
+
+    The number of qubits in the circuit.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.QFT.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+
+  ## Methods
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.QFT.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/basis_change/qft.py#L216-L244" signature="inverse(annotated=False)">
+    Invert this circuit.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the inverse gate can be implemented as an annotated gate. The value of this argument is ignored as the inverse of a QFT is an IQFT which is just another instance of [`QFT`](#qiskit.circuit.library.QFT "qiskit.circuit.library.QFT").
+
+    **Returns**
+
+    The inverted circuit.
+
+    **Return type**
+
+    [*QFT*](#qiskit.circuit.library.QFT "qiskit.circuit.library.basis_change.qft.QFT")
+  </Function>
+
+  ### is\_inverse
+
+  <Function id="qiskit.circuit.library.QFT.is_inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/basis_change/qft.py#L208-L214" signature="is_inverse()">
+    Whether the inverse Fourier transform is implemented.
+
+    **Returns**
+
+    True, if the inverse Fourier transform is implemented, False otherwise.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+</Class>
+

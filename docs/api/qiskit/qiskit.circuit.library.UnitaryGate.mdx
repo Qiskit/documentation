@@ -8,12 +8,12 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
 # UnitaryGate
 
-<Class id="qiskit.circuit.library.UnitaryGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/unitary.py#L39-L236" signature="qiskit.circuit.library.UnitaryGate(data, label=None, check_input=True, *, num_qubits=None)" modifiers="class">
+<Class id="qiskit.circuit.library.UnitaryGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/generalized_gates/unitary.py#L39-L235" signature="qiskit.circuit.library.UnitaryGate(data, label=None, check_input=True, *, num_qubits=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Class quantum gates specified by a unitary matrix.
 
-  **Example**
+  Example:
 
   We can create a unitary gate from a unitary matrix then add it to a quantum circuit. The matrix can also be directly applied to the quantum circuit, see [`QuantumCircuit.unitary()`](qiskit.circuit.QuantumCircuit#unitary "qiskit.circuit.QuantumCircuit.unitary").
 
@@ -22,16 +22,14 @@ python_api_name: qiskit.circuit.library.UnitaryGate
   from qiskit.circuit.library import UnitaryGate
 
   matrix = [[0, 0, 0, 1],
-            [0, 0, 1, 0],
-            [1, 0, 0, 0],
-            [0, 1, 0, 0]]
+              [0, 0, 1, 0],
+              [1, 0, 0, 0],
+              [0, 1, 0, 0]]
   gate = UnitaryGate(matrix)
 
   circuit = QuantumCircuit(2)
   circuit.append(gate, [0, 1])
   ```
-
-  Create a gate from a numeric unitary matrix.
 
   **Parameters**
 
@@ -121,19 +119,19 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.library.UnitaryGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/instruction.py#L321-L326" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.library.UnitaryGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L320-L325" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### adjoint
 
-  <Function id="qiskit.circuit.library.UnitaryGate.adjoint" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/unitary.py#L131-L133" signature="adjoint()">
+  <Function id="qiskit.circuit.library.UnitaryGate.adjoint" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/generalized_gates/unitary.py#L130-L132" signature="adjoint()">
     Return the adjoint of the unitary.
   </Function>
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.UnitaryGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/gate.py#L188-L245" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.UnitaryGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/gate.py#L187-L244" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -186,13 +184,13 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### conjugate
 
-  <Function id="qiskit.circuit.library.UnitaryGate.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/unitary.py#L127-L129" signature="conjugate()">
+  <Function id="qiskit.circuit.library.UnitaryGate.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/generalized_gates/unitary.py#L126-L128" signature="conjugate()">
     Return the conjugate of the unitary.
   </Function>
 
   ### control
 
-  <Function id="qiskit.circuit.library.UnitaryGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/unitary.py#L174-L222" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.UnitaryGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/generalized_gates/unitary.py#L173-L221" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return controlled version of gate.
 
     **Parameters**
@@ -213,7 +211,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### copy
 
-  <Function id="qiskit.circuit.library.UnitaryGate.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/instruction.py#L431-L446" signature="copy(name=None)">
+  <Function id="qiskit.circuit.library.UnitaryGate.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L430-L445" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -231,7 +229,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.UnitaryGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/unitary.py#L123-L125" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.UnitaryGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/generalized_gates/unitary.py#L122-L124" signature="inverse(annotated=False)">
     Return the adjoint of the unitary.
 
     **Parameters**
@@ -241,13 +239,13 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.library.UnitaryGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/instruction.py#L286-L291" signature="is_parameterized()">
+  <Function id="qiskit.circuit.library.UnitaryGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L285-L290" signature="is_parameterized()">
     Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
   </Function>
 
   ### power
 
-  <Function id="qiskit.circuit.library.UnitaryGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/gate.py#L63-L94" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.UnitaryGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/gate.py#L62-L93" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](#qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
@@ -268,7 +266,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### repeat
 
-  <Function id="qiskit.circuit.library.UnitaryGate.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/instruction.py#L494-L524" signature="repeat(n)">
+  <Function id="qiskit.circuit.library.UnitaryGate.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L493-L523" signature="repeat(n)">
     Creates an instruction with `self` repeated :math\`n\` times.
 
     **Parameters**
@@ -290,7 +288,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.library.UnitaryGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/instruction.py#L348-L372" signature="reverse_ops()">
+  <Function id="qiskit.circuit.library.UnitaryGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L347-L371" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -308,7 +306,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.library.UnitaryGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/instruction.py#L217-L257" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.library.UnitaryGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L216-L256" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -326,7 +324,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.library.UnitaryGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
+  <Function id="qiskit.circuit.library.UnitaryGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/gate.py#L48-L60" signature="to_matrix()">
     Return a Numpy.array for the gate unitary matrix.
 
     **Returns**
@@ -344,7 +342,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.library.UnitaryGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/instruction.py#L146-L154" signature="to_mutable()">
+  <Function id="qiskit.circuit.library.UnitaryGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L145-L153" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -352,13 +350,13 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### transpose
 
-  <Function id="qiskit.circuit.library.UnitaryGate.transpose" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/unitary.py#L135-L137" signature="transpose()">
+  <Function id="qiskit.circuit.library.UnitaryGate.transpose" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/generalized_gates/unitary.py#L134-L136" signature="transpose()">
     Return the transpose of the unitary.
   </Function>
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.UnitaryGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/unitary.py#L231-L236" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.UnitaryGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/generalized_gates/unitary.py#L230-L235" signature="validate_parameter(parameter)">
     Unitary gate parameter has to be an ndarray.
   </Function>
 </Class>

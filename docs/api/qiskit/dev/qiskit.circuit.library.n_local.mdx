@@ -39,33 +39,48 @@ python_api_name: qiskit.circuit.library.n_local
 
   Entanglement:
 
-  > The entanglement describes the connections of the gates in the entanglement layer. For a two-qubit gate for example, the entanglement contains pairs of qubits on which the gate should acts, e.g. `[[ctrl0, target0], [ctrl1, target1], ...]`. A set of default entanglement strategies is provided and can be selected by name:
-  >
-  > *   `"full"` entanglement is each qubit is entangled with all the others.
-  > *   `"linear"` entanglement is qubit $i$ entangled with qubit $i + 1$, for all $i \in \{0, 1, ... , n - 2\}$, where $n$ is the total number of qubits.
-  > *   `"reverse_linear"` entanglement is qubit $i$ entangled with qubit $i + 1$, for all $i \in \{n-2, n-3, ... , 1, 0\}$, where $n$ is the total number of qubits. Note that if `entanglement_blocks=="cx"` then this option provides the same unitary as `"full"` with fewer entangling gates.
-  > *   `"pairwise"` entanglement is one layer where qubit $i$ is entangled with qubit $i + 1$, for all even values of $i$, and then a second layer where qubit $i$ is entangled with qubit $i + 1$, for all odd values of $i$.
-  > *   `"circular"` entanglement is linear entanglement but with an additional entanglement of the first and last qubit before the linear part.
-  > *   `"sca"` (shifted-circular-alternating) entanglement is a generalized and modified version of the proposed circuit 14 in [Sim et al.](https://arxiv.org/abs/1905.10876). It consists of circular entanglement where the “long” entanglement connecting the first with the last qubit is shifted by one each block. Furthermore the role of control and target qubits are swapped every block (therefore alternating).
-  >
-  > If an entanglement layer contains multiple blocks, then the entanglement should be given as list of entanglements for each block. For example:
-  >
-  > ```python
-  > entanglement_blocks = ["rxx", "ryy"]
-  > entanglement = ["full", "linear"]  # full for rxx and linear for ryy
-  > ```
-  >
-  > or:
-  >
-  > ```python
-  > structure_rxx = [[0, 1], [2, 3]]
-  > structure_ryy = [[0, 2]]
-  > entanglement = [structure_rxx, structure_ryy]
-  > ```
-  >
-  > Finally, the entanglement can vary in each repetition of the circuit. For this, we support passing a callable that takes as input the layer index and returns the entanglement for the layer in the above format. See the examples below for a concrete example.
+  The entanglement describes the connections of the gates in the entanglement layer. For a two-qubit gate for example, the entanglement contains pairs of qubits on which the gate should acts, e.g. `[[ctrl0, target0], [ctrl1, target1], ...]`. A set of default entanglement strategies is provided and can be selected by name:
 
-  **Examples**
+  *   `"full"` entanglement is each qubit is entangled with all the others.
+
+  *   ## `"linear"` entanglement is qubit $i$ entangled with qubit $i + 1$,
+
+      for all $i \in \{0, 1, ... , n - 2\}$, where $n$ is the total number of qubits.
+
+  *   ## `"reverse_linear"` entanglement is qubit $i$ entangled with qubit $i + 1$,
+
+      for all $i \in \{n-2, n-3, ... , 1, 0\}$, where $n$ is the total number of qubits. Note that if `entanglement_blocks=="cx"` then this option provides the same unitary as `"full"` with fewer entangling gates.
+
+  *   ## `"pairwise"` entanglement is one layer where qubit $i$ is entangled with qubit
+
+      $i + 1$, for all even values of $i$, and then a second layer where qubit $i$ is entangled with qubit $i + 1$, for all odd values of $i$.
+
+  *   ## `"circular"` entanglement is linear entanglement but with an additional entanglement of the
+
+      first and last qubit before the linear part.
+
+  *   ## `"sca"` (shifted-circular-alternating) entanglement is a generalized and modified version
+
+      of the proposed circuit 14 in [Sim et al.](https://arxiv.org/abs/1905.10876). It consists of circular entanglement where the “long” entanglement connecting the first with the last qubit is shifted by one each block. Furthermore the role of control and target qubits are swapped every block (therefore alternating).
+
+  If an entanglement layer contains multiple blocks, then the entanglement should be given as list of entanglements for each block. For example:
+
+  ```python
+  entanglement_blocks = ["rxx", "ryy"]
+  entanglement = ["full", "linear"]  # full for rxx and linear for ryy
+  ```
+
+  or:
+
+  ```python
+  structure_rxx = [[0, 1], [2, 3]]
+  structure_ryy = [[0, 2]]
+  entanglement = [structure_rxx, structure_ryy]
+  ```
+
+  Finally, the entanglement can vary in each repetition of the circuit. For this, we support passing a callable that takes as input the layer index and returns the entanglement for the layer in the above format. See the examples below for a concrete example.
+
+  Examples:
 
   The rotation and entanglement gates can be specified via single strings, if they are made up of a single block per layer:
 

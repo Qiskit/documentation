@@ -229,7 +229,7 @@ function generateOverviewPage(tocModules: TocEntry[]): void {
   }
 }
 
-function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
+export function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
   if (!pkg.releaseNotesConfig.enabled) return;
   const releaseNotesUrl = `${DOCS_BASE_PATH}/api/${pkg.releaseNotesPackageName()}/release-notes`;
   const releaseNotesEntry: TocEntry = {

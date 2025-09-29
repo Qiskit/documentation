@@ -21,31 +21,7 @@ import { hasInlineMath, removeFileExtension } from "../lib/katexRenderUtils";
 
 // This list contains files with inline math expressions that should be
 // fixed to avoid any possible overflow.
-const IGNORED_FILES_SHOULD_FIX: string[] = [
-  ...[
-    "0.19",
-    "0.24",
-    "0.25",
-    "0.26",
-    "0.27",
-    "0.28",
-    "0.29",
-    "0.30",
-    "0.31",
-    "0.32",
-    "0.33",
-    "0.35",
-    "0.36",
-    "0.37",
-    "0.38",
-    "0.39",
-    "0.40",
-    "0.41",
-  ].map(
-    (version) =>
-      `docs/api/qiskit/${version}/qiskit.providers.aer.utils.NoiseTransformer.mdx`,
-  ),
-];
+const IGNORED_FILES_SHOULD_FIX: string[] = [];
 
 // Minimum width supported by our app
 const MIN_WIDTH = 380;

@@ -10,13 +10,53 @@ in_page_toc_max_heading_level: 2
 
 # Sample-based quantum diagonalization (SQD) release notes
 
-<span id="release-notes-0-11-0" />
+<span id="release-notes-0-12-0" />
 
 <span id="id2" />
+
+## 0.12.0
+
+<span id="release-notes-0-12-0-new-features" />
+
+### New Features
+
+*   Added the `max_dim` argument to the [`qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian()`](fermion#diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") function. This argument is used to limit the dimension of the SCI subspace.
+
+*   Introduced the [`qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left()`](subsampling#postselect_by_hamming_right_and_left "qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left") function.
+
+<span id="release-notes-0-12-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   [`qiskit_addon_sqd.fermion.SCIState`](fermion#scistate "qiskit_addon_sqd.fermion.SCIState") now takes two additional required arguments, `norb` and `nelec`. This is a breaking change.
+
+<span id="release-notes-0-12-0-deprecation-notes" />
+
+### Deprecation Notes
+
+*   [`qiskit_addon_sqd.configuration_recovery.post_select_by_hamming_weight()`](configuration-recovery#post_select_by_hamming_weight "qiskit_addon_sqd.configuration_recovery.post_select_by_hamming_weight") is now deprecated. Instead, use [`qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left()`](subsampling#postselect_by_hamming_right_and_left "qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left").
+
+*   [`qiskit_addon_sqd.subsampling.postselect_and_subsample()`](subsampling#postselect_and_subsample "qiskit_addon_sqd.subsampling.postselect_and_subsample") is now deprecated. Instead, use [`qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left()`](subsampling#postselect_by_hamming_right_and_left "qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left") and [`qiskit_addon_sqd.subsampling.subsample()`](subsampling#subsample "qiskit_addon_sqd.subsampling.subsample").
+
+<span id="release-notes-0-12-0-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a bug in [`qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs()`](fermion#bitstring_matrix_to_ci_strs "qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs") in which the conversion of bitstrings to CI strings could be incorrect when the number of orbitals is greater than 53.
+
+*   Fixed a bug in which saving and loading [`qiskit_addon_sqd.fermion.SCIState`](fermion#scistate "qiskit_addon_sqd.fermion.SCIState") objects resulted in an error.
+
+*   Added a release note to version 0.11 for a breaking change involving [`qiskit_addon_sqd.fermion.SCIState`](fermion#scistate "qiskit_addon_sqd.fermion.SCIState").
+
+<span id="release-notes-0-11-0" />
+
+<span id="id3" />
 
 ## 0.11.0
 
 <span id="release-notes-0-11-0-new-features" />
+
+<span id="id4" />
 
 ### New Features
 
@@ -26,11 +66,15 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-0-upgrade-notes" />
 
+<span id="id5" />
+
 ### Upgrade Notes
 
 *   [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") and [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals") now accept trailing `kwargs`, which will be passed directly to [pyscf.fci.selected\_ci.kernel\_fixed\_space](https://pyscf.org/pyscf_api_docs/pyscf.fci.html#pyscf.fci.selected_ci.kernel_fixed_space) under the hood to calculate the target state. The `max_davidson` argument should now be passed as `max_cycle` in both functions.
 
 <span id="release-notes-0-11-0-bug-fixes" />
+
+<span id="id6" />
 
 ### Bug Fixes
 
@@ -38,19 +82,21 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0" />
 
-<span id="id3" />
+<span id="id7" />
 
 ## 0.10.0
 
 <span id="release-notes-0-10-0-upgrade-notes" />
 
-<span id="id4" />
+<span id="id8" />
 
 ### Upgrade Notes
 
 *   Removed `qiskit_addon_sqd.fermion.flip_orbital_occupancies()`. Users no longer need to flip the orbital occupancies output from [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") and [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals"); they will be output in the order expected by [`qiskit_addon_sqd.configuration_recovery.recover_configurations()`](configuration-recovery#recover_configurations "qiskit_addon_sqd.configuration_recovery.recover_configurations"): `tuple(array([occ_a_0, ..., occ_a_N]), array([occ_b_0, ..., occ_b_N]))`.
 
 <span id="release-notes-0-10-0-deprecation-notes" />
+
+<span id="id9" />
 
 ### Deprecation Notes
 
@@ -62,7 +108,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0-bug-fixes" />
 
-<span id="id5" />
+<span id="id10" />
 
 ### Bug Fixes
 
@@ -70,13 +116,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-0" />
 
-<span id="id6" />
+<span id="id11" />
 
 ## 0.9.0
 
 <span id="release-notes-0-9-0-upgrade-notes" />
 
-<span id="id7" />
+<span id="id12" />
 
 ### Upgrade Notes
 
@@ -84,7 +130,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-0-bug-fixes" />
 
-<span id="id8" />
+<span id="id13" />
 
 ### Bug Fixes
 
@@ -94,13 +140,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-8-0" />
 
-<span id="id9" />
+<span id="id14" />
 
 ## 0.8.0
 
 <span id="release-notes-0-8-0-new-features" />
 
-<span id="id10" />
+<span id="id15" />
 
 ### New Features
 
@@ -110,7 +156,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-8-0-upgrade-notes" />
 
-<span id="id11" />
+<span id="id16" />
 
 ### Upgrade Notes
 
@@ -118,13 +164,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-7-0" />
 
-<span id="id12" />
+<span id="id17" />
 
 ## 0.7.0
 
 <span id="release-notes-0-7-0-bug-fixes" />
 
-<span id="id13" />
+<span id="id18" />
 
 ### Bug Fixes
 
@@ -134,13 +180,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0" />
 
-<span id="id14" />
+<span id="id19" />
 
 ## 0.6.0
 
 <span id="release-notes-0-6-0-upgrade-notes" />
 
-<span id="id15" />
+<span id="id20" />
 
 ### Upgrade Notes
 
@@ -191,7 +237,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0-deprecation-notes" />
 
-<span id="id16" />
+<span id="id21" />
 
 ### Deprecation Notes
 
@@ -220,7 +266,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0-bug-fixes" />
 
-<span id="id17" />
+<span id="id22" />
 
 ### Bug Fixes
 
@@ -230,13 +276,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-0" />
 
-<span id="id18" />
+<span id="id23" />
 
 ## 0.5.0
 
 <span id="release-notes-0-5-0-upgrade-notes" />
 
-<span id="id19" />
+<span id="id24" />
 
 ### Upgrade Notes
 
@@ -294,7 +340,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-4-0" />
 
-<span id="id20" />
+<span id="id25" />
 
 ## 0.4.0
 
@@ -306,7 +352,7 @@ This is a minor release which introduces a couple of small, but important, break
 
 <span id="release-notes-0-4-0-upgrade-notes" />
 
-<span id="id21" />
+<span id="id26" />
 
 ### Upgrade Notes
 

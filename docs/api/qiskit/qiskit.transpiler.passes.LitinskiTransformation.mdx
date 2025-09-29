@@ -1,0 +1,127 @@
+---
+title: LitinskiTransformation (latest version)
+description: API reference for qiskit.transpiler.passes.LitinskiTransformation in the latest version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.LitinskiTransformation
+---
+
+# LitinskiTransformation
+
+<Class id="qiskit.transpiler.passes.LitinskiTransformation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/optimization/litinski_transformation.py#L21-L77" signature="qiskit.transpiler.passes.LitinskiTransformation(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Applies Litinski transform to a circuit.
+
+  The transform applies to a circuit containing Clifford + RZ-rotation gates (including T and Tdg), and moves Clifford gates to the end of the circuit, while changing rotation gates to multi-qubit rotations (represented using PauliEvolution gates).
+
+  The pass supports all of the Clifford gates in the list returned by [`get_clifford_gate_names()`](qiskit.quantum_info.get_clifford_gate_names "qiskit.quantum_info.get_clifford_gate_names"):
+
+  `["id", "x", "y", "z", "h", "s", "sdg", "sx", "sxdg", "cx", "cz", "cy", "swap","iswap", "ecr", "dcx"]`
+
+  The list of supported RZ-rotations is:
+
+  `["t", "tdg", "rz"]`
+
+  **References**
+
+  **\[1]: Litinski. A Game of Surface Codes.**
+
+  [Quantum 3, 128 (2019)](https://quantum-journal.org/papers/q-2019-03-05-128)
+
+  **Parameters**
+
+  **fix\_clifford** – if `False` (non-default), the returned circuit contains only PauliEvolution gates, with the final Clifford gates omitted. Note that in this case the operators of the original and synthesized circuits will generally not be equivalent.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.LitinskiTransformation.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.LitinskiTransformation.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.LitinskiTransformation.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.LitinskiTransformation.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.LitinskiTransformation.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/optimization/litinski_transformation.py#L58-L77" signature="run(dag)">
+    Run the LitiskiTransformation pass on `dag`.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – the input DAG.
+
+    **Returns**
+
+    The output DAG.
+
+    **Raises**
+
+    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit contains gates not supported by the pass.
+
+    **Return type**
+
+    [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.LitinskiTransformation.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

@@ -161,7 +161,7 @@ You may find it convenient to install the following VSCode extensions to automat
 
 We offer some tools that are not included in `./check` and `./fix`. Likewise, many of the checks skip API docs by default.
 
-Run `npm run` to see a list of all our checks. For any particular check, run `npm run my-check -- --help` for more information and advanced arguments, such as `npm run check:metadata -- --help`.
+Run `npm run` to see a list of all our checks. For any particular check, run `npm run my-check -- --help` for more information and advanced arguments, such as `npm run check:markdown -- --help`.
 
 ## Jupyter notebooks
 

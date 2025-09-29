@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.circuit_drawer
 
 # qiskit.visualization.circuit\_drawer
 
-<Function id="qiskit.visualization.circuit_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/visualization/circuit/circuit_visualization.py#L56-L363" signature="qiskit.visualization.circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=None, justify=None, vertical_compression='medium', idle_wires=None, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None, expr_len=30)">
+<Function id="qiskit.visualization.circuit_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/visualization/circuit/circuit_visualization.py#L56-L375" signature="qiskit.visualization.circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=None, justify=None, vertical_compression='medium', idle_wires=None, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None, expr_len=30, measure_arrows=None)">
   Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
   **text**: ASCII art TextDrawing that can be printed in the console.
@@ -80,6 +80,8 @@ python_api_name: qiskit.visualization.circuit_drawer
   *   **wire\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – A list of integers used to reorder the display of the bits. The list must have an entry for every bit with the bits in the range 0 to (`num_qubits` + `num_clbits`).
 
   *   **expr\_len** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of characters to display if an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is used for the condition in a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"). If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
+
+  *   **measure\_arrows** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – If True, draw an arrow from each measure box down the the classical bit or register where the measure value is placed. If False, do not draw arrow, but instead place the name of the bit or register in the measure box. Default is `True` unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative value set. For example, `circuit_measure_arrows = False`.
 
   **Returns**
 
