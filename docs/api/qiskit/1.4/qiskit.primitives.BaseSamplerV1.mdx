@@ -1,0 +1,116 @@
+---
+title: BaseSamplerV1 (v1.4)
+description: API reference for qiskit.primitives.BaseSamplerV1 in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.BaseSamplerV1
+---
+
+# BaseSamplerV1
+
+<Class id="qiskit.primitives.BaseSamplerV1" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_sampler.py#L36-L151" signature="qiskit.primitives.BaseSamplerV1(*, options=None)" modifiers="class">
+  Bases: `BasePrimitive`, [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.13)")\[`T`]
+
+  Sampler V1 base class
+
+  Base class of Sampler that calculates quasi-probabilities of bitstrings from quantum circuits.
+
+  A sampler is initialized with an empty parameter set. The sampler is used to create a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1"), via the [`qiskit.primitives.Sampler.run()`](qiskit.primitives.Sampler#run "qiskit.primitives.Sampler.run") method. This method is called with the following parameters
+
+  *   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits. (a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects)
+  *   parameter values ($\theta_k$): list of sets of parameter values to be bound to the parameters of the quantum circuits. (list of list of float)
+
+  The method returns a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") object, calling [`qiskit.providers.JobV1.result()`](qiskit.providers.JobV1#result "qiskit.providers.JobV1.result") yields a [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult") object, which contains probabilities or quasi-probabilities of bitstrings, plus optional metadata like error bars in the samples.
+
+  Here is an example of how sampler is used.
+
+  ```python
+  from qiskit.primitives import Sampler
+  from qiskit import QuantumCircuit
+  from qiskit.circuit.library import RealAmplitudes
+
+  # a Bell circuit
+  bell = QuantumCircuit(2)
+  bell.h(0)
+  bell.cx(0, 1)
+  bell.measure_all()
+
+  # two parameterized circuits
+  pqc = RealAmplitudes(num_qubits=2, reps=2)
+  pqc.measure_all()
+  pqc2 = RealAmplitudes(num_qubits=2, reps=3)
+  pqc2.measure_all()
+
+  theta1 = [0, 1, 1, 2, 3, 5]
+  theta2 = [0, 1, 2, 3, 4, 5, 6, 7]
+
+  # initialization of the sampler
+  sampler = Sampler()
+
+  # Sampler runs a job on the Bell circuit
+  job = sampler.run(circuits=[bell], parameter_values=[[]], parameters=[[]])
+  job_result = job.result()
+  print([q.binary_probabilities() for q in job_result.quasi_dists])
+
+  # Sampler runs a job on the parameterized circuits
+  job2 = sampler.run(
+      circuits=[pqc, pqc2],
+      parameter_values=[theta1, theta2],
+      parameters=[pqc.parameters, pqc2.parameters])
+  job_result = job2.result()
+  print([q.binary_probabilities() for q in job_result.quasi_dists])
+  ```
+
+  **Parameters**
+
+  **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)") *| None*) – Default options.
+
+  ## Attributes
+
+  ### options
+
+  <Attribute id="qiskit.primitives.BaseSamplerV1.options">
+    Return options values for the estimator.
+
+    **Returns**
+
+    options
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.primitives.BaseSamplerV1.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_sampler.py#L111-L142" signature="run(circuits, parameter_values=None, **run_options)">
+    Run the job of the sampling of bitstrings.
+
+    **Parameters**
+
+    *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – One of more circuit objects.
+    *   **parameter\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | None*) – Parameters to be bound to the circuit.
+    *   **run\_options** – Backend runtime options used for circuit execution.
+
+    **Returns**
+
+    The job object of the result of the sampler. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Invalid arguments are given.
+
+    **Return type**
+
+    T
+  </Function>
+
+  ### set\_options
+
+  <Function id="qiskit.primitives.BaseSamplerV1.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive.py#L39-L45" signature="set_options(**fields)">
+    Set options values for the estimator.
+
+    **Parameters**
+
+    **\*\*fields** – The fields to update the options
+  </Function>
+</Class>
+

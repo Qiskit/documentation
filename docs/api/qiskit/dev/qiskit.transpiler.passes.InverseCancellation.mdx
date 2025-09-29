@@ -1,6 +1,6 @@
 ---
-title: InverseCancellation
-description: API reference for qiskit.transpiler.passes.InverseCancellation
+title: InverseCancellation (dev version)
+description: API reference for qiskit.transpiler.passes.InverseCancellation in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.transpiler.passes.InverseCancellation
@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.InverseCancellation
 
 # InverseCancellation
 
-<Class id="qiskit.transpiler.passes.InverseCancellation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passes/optimization/inverse_cancellation.py#L24-L176" signature="qiskit.transpiler.passes.InverseCancellation(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.InverseCancellation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/inverse_cancellation.py#L32-L143" signature="qiskit.transpiler.passes.InverseCancellation(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Cancel specific Gates which are inverses of each other when they occur back-to- back.
@@ -17,7 +17,34 @@ python_api_name: qiskit.transpiler.passes.InverseCancellation
 
   **Parameters**
 
-  **gates\_to\_cancel** – List describing the gates to cancel. Each element of the list is either a single gate or a pair of gates. If a single gate, then it should be self-inverse. If a pair of gates, then the gates in the pair should be inverses of each other.
+  *   **gates\_to\_cancel** –
+
+      List describing the gates to cancel. Each element of the list is either a single gate or a pair of gates. If a single gate, then it should be self-inverse. If a pair of gates, then the gates in the pair should be inverses of each other. If `None` a default list of self-inverse gates and a default list of inverse gate pairs will be used. The current default list of self-inverse gates is:
+
+      > *   [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")
+      > *   [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate")
+      > *   [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate")
+      > *   [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate")
+      > *   [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate")
+      > *   [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate")
+      > *   [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")
+      > *   [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")
+      > *   [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")
+      > *   [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate")
+      > *   [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate")
+      > *   [`CCZGate`](qiskit.circuit.library.CCZGate "qiskit.circuit.library.CCZGate")
+      > *   [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate")
+      > *   [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate")
+      > *   [`C3XGate`](qiskit.circuit.library.C3XGate "qiskit.circuit.library.C3XGate")
+
+      and the default list of inverse gate pairs is:
+
+      > *   [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate") and [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate")
+      > *   [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate") and [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate")
+      > *   [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate") and [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate")
+      > *   [`CSGate`](qiskit.circuit.library.CSGate "qiskit.circuit.library.CSGate") and [`CSdgGate`](qiskit.circuit.library.CSdgGate "qiskit.circuit.library.CSdgGate")
+
+  *   **run\_default** – If set to true and `gates_to_cancel` is set to a list then in addition to the gates listed in `gates_to_cancel` the default list of gate inverses (the same as when `gates_to_cancel` is set to `None`) will be run. The order of evaluation is significant in how sequences of gates are cancelled and the default gates will be evaluated after the provided gates in `gates_to_cancel`. If `gates_to_cancel` is `None` this option has no impact.
 
   **Raises**
 
@@ -45,14 +72,14 @@ python_api_name: qiskit.transpiler.passes.InverseCancellation
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.InverseCancellation.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.InverseCancellation.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -60,27 +87,27 @@ python_api_name: qiskit.transpiler.passes.InverseCancellation
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.InverseCancellation.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.InverseCancellation.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.InverseCancellation.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passes/optimization/inverse_cancellation.py#L75-L88" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.InverseCancellation.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/inverse_cancellation.py#L122-L143" signature="run(dag)">
     Run the InverseCancellation pass on dag.
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – the directed acyclic graph to run on.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – the directed acyclic graph to run on.
 
     **Returns**
 
@@ -93,7 +120,7 @@ python_api_name: qiskit.transpiler.passes.InverseCancellation
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.InverseCancellation.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.InverseCancellation.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

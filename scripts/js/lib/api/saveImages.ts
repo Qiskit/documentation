@@ -10,13 +10,41 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { mkdirp } from "mkdirp";
-import pMap from "p-map";
 import { copyFile } from "fs/promises";
+import { extname } from "node:path";
 
-import { Pkg } from "./Pkg.js";
+import pMap from "p-map";
+import { $ } from "zx";
+import { mkdirp } from "mkdirp";
+
 import { Image } from "./HtmlToMdResult.js";
-import { pathExists, rmFilesInFolder } from "../fs.js";
+import { Pkg } from "./Pkg.js";
+import { pathExists } from "../fs.js";
+
+function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
+  const isReleaseNote =
+    imgFileName.includes("release_notes") ||
+    imgFileName.includes("release-notes");
+  if (!isReleaseNote) return false;
+
+  // Release note images before Qiskit 0.45 were not actually used and we don't have
+  // the image files stored.
+  if (pkg.isProblematicLegacyQiskit()) return true;
+
+  // If we're linking to another package's release notes, we skip generating the
+  // release notes.
+  if (pkg.releaseNotesConfig.linkToPackage) return true;
+
+  if (pkg.hasSeparateReleaseNotes()) {
+    // If the pkg has dedicated release notes per release, we should copy its images
+    // unless it's the dev version. We don't (yet) support release notes for dev versions:
+    // https://github.com/Qiskit/documentation/issues/1296
+    return pkg.isDev();
+  } else {
+    // Else, if the pkg has only a single release note file, only 'latest' should copy images.
+    return !pkg.isLatest();
+  }
+}
 
 export async function saveImages(
   images: Image[],
@@ -24,25 +52,29 @@ export async function saveImages(
   publicBaseFolder: string,
   pkg: Pkg,
 ) {
-  const destFolder = pkg.outputDir(`${publicBaseFolder}/images`);
+  const destFolder = pkg.outputDir(`${publicBaseFolder}/docs/images`);
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
-  } else if (pkg.isDev()) {
-    // We don't want to store images from other versions when we generate a
-    // different dev version
-    await rmFilesInFolder(destFolder);
   }
 
   await pMap(images, async (img) => {
-    // The release notes images are only saved in the current version to
-    // avoid having duplicate files.
-    if (pkg.isHistorical() && img.fileName.includes("release_notes")) {
+    if (skipReleaseNote(img.fileName, pkg)) {
       return;
     }
+    const source = `${originalImagesFolderPath}/${img.fileName}`;
+    const dest = `${publicBaseFolder}/${img.dest}`;
 
-    await copyFile(
-      `${originalImagesFolderPath}/${img.fileName}`,
-      `${publicBaseFolder}/${img.dest}`,
-    );
+    if (extname(source) === extname(dest)) {
+      await copyFile(source, dest);
+    } else {
+      try {
+        await $`magick ${source} ${dest}`;
+      } catch (err) {
+        console.error(
+          "Image conversion failed, make sure you have ImageMagick installed (https://imagemagick.org/index.php)",
+        );
+        throw err;
+      }
+    }
   });
 }

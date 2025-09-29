@@ -1,0 +1,128 @@
+---
+title: Create a provider
+description: A short guide on integrating Qiskit into an external provider's quantum resources.
+---
+# Integrate external quantum resources with Qiskit
+
+The Qiskit SDK is built to support third parties in creating external providers of quantum resources.
+
+This means that any organization that develops or deploys quantum compute resources can integrate their services into Qiskit and tap into its userbase.
+
+Doing so requires creating a package that supports requests for quantum compute resources and returns them to the user.
+
+Additionally, the package must allow users to submit jobs and retrieve their results through an implementation of the `qiskit.primitives` objects.
+
+## Providing access to backends
+In order for users to transpile and execute `QuantumCircuit` objects using external resources, they need to instantiate an object containing a [`Target`](../api/qiskit/qiskit.transpiler.Target) which provides information about a QPU's constraints such as its connectivity, basis gates, and number of qubits. This can be provided through an interface similar to the [`QiskitRuntimeService`](../api/qiskit-ibm-runtime/qiskit-runtime-service) through which a user can make requests for a QPU. This object should, at minimum, contain a `Target`, but a simpler approach would be to return a [`BackendV2`](../api/qiskit/qiskit.providers.BackendV2) instance.
+
+An example implementation may look something like:
+
+```python
+from qiskit.transpiler import Target
+from qsikit.providers import BackendV2
+
+class ProviderService:
+    """ Class for interacting with a provider's service"""
+
+    def __init__(
+        self,
+        #Receive arguments for authentication/instantiation
+    ):
+        """ Initiate a connection with the provider service, given some method 
+                of authentication """
+
+    def return_target(name: Str) -> Target:
+        """ Interact with the service and return a Target object """
+        return target
+
+    def return_backend(name: Str) -> BackendV2:
+        """ Interact with the service and return a BackendV2 object """
+        return backend
+
+```
+
+## Providing an interface for execution
+In addition to providing a service returning hardware configurations, a service providing access to external QPU resources also might also support the execution of quantum workloads. Exposing that capability can be done by creating implementations of the Qiskit primitives interfaces; for example the [`BasePrimitiveJob`](../api/qiskit/qiskit.primitives.BasePrimitiveJob), [`BaseEstimatorV2`](../api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](../api/qiskit/qiskit.primitives.BaseSamplerV2) among others. At minimum, these interfaces should be able to provide a method for execution, querying job status, and returning the job results.
+
+To handle job status and results, the Qiskit SDK provides a [`DataBin`](../api/qiskit/qiskit.primitives.DataBin), [`PubResult`](../api/qiskit/qiskit.primitives.PubResult), [`PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult), and [`BasePrimitiveJob`](../api/qiskit/qiskit.primitives.BasePrimitiveJob) objects should be used.
+
+See the `qiskit.primitives` [API documentation](../api/qiskit/primitives) as well as the reference implementations [`BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSampleV2`](../api/qiskit/qiskit.primitives.BackendSamplerV2) for more information. If you created a provider that uses `backend.run`, see [Migrate provider interfaces from backend.run to primitives.](../migration-guides/external-providers-primitives-v2)
+
+An example implementation of the Estimator primitive may look like:
+
+```python
+from qiskit.primitives import BaseEstimatorV2, BaseSamplerV2, EstimatorPubLike
+from qiskit.primitives import DataBin, PubResult, PrimitiveResult, BasePrimitiveJob
+from qiskit.providers import BackendV2
+
+class EstimatorImplementation(BaseEstimatorV2):
+    """ Class for interacting with the provider's Estimator service """
+
+    def __init__(
+        self,
+        *,
+        backend: BackendV2,
+        options: dict
+        # Receive other arguments to instantiate an Estimator primitive with the service
+    ):
+        self._backend = backend
+        self._options = options
+        self._default_precision = 0.01
+
+    @property
+    def backend(self) -> BackendV2:
+        """ Return the backend """
+        return self._backend
+
+    def run(
+        self, pubs: Iterable[EstimatorPubLike], *, precision: float | None = None
+    ) -> BasePrimitiveJob[PrimitiveResult[PubResult]]:
+    """ Steps to implement: 
+            1. Define a default precision if none is given 
+            2. Validate pub format
+            3. Instantiate an object which inherits from BasePrimitiveJob 
+                containing pub and runtime information
+            4. Send the job to the execution service of the provider
+    """
+    job = BasePrimitiveJob(pubs, precision)
+    job_with_results = job.submit()
+    return job_with_results
+```
+
+And an implementation of the Sampler primitive may look like:
+
+```python
+class SamplerImplementation(BaseSamplerV2):
+    """ Class for interacting with the provider's Sampler service """
+
+    def __init__(
+        self,
+        *,
+        backend: BackendV2,
+        options: dict
+        # Receive other arguments to instantiate an Estimator primitive with the service
+    ):
+        self._backend = backend
+        self._options = options
+        self._default_shots = 1024
+
+    @property
+    def backend(self) -> BackendV2:
+        """ Return the Sampler's backend """
+        return self._backend
+
+    def run(
+        self, pubs: Iterable[SamplerPubLike], *, shots: int | None = None
+    ) -> BasePrimitiveJob[PrimitiveResult[SamplerPubResult]]:
+    """ Steps to implement: 
+            1. Define a default number of shots if none is given 
+            2. Validate pub format
+            3. Instantiate an object which inherits from BasePrimitiveJob 
+                containing pub and runtime information
+            4. Send the job to the execution service of the provider
+            5. Return the data in some format
+    """
+    job = BasePrimitiveJob(pubs, shots)
+    job_with_results = job.submit()
+    return job_with_results
+```

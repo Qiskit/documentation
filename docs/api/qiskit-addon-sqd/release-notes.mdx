@@ -1,0 +1,408 @@
+---
+title: Sample-based quantum diagonalization (SQD) release notes
+description: Changes made to Sample-based quantum diagonalization (SQD)
+in_page_toc_max_heading_level: 2
+---
+
+<span id="release-notes" />
+
+<span id="id1" />
+
+# Sample-based quantum diagonalization (SQD) release notes
+
+<span id="release-notes-0-12-0" />
+
+<span id="id2" />
+
+## 0.12.0
+
+<span id="release-notes-0-12-0-new-features" />
+
+### New Features
+
+*   Added the `max_dim` argument to the [`qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian()`](fermion#diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") function. This argument is used to limit the dimension of the SCI subspace.
+
+*   Introduced the [`qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left()`](subsampling#postselect_by_hamming_right_and_left "qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left") function.
+
+<span id="release-notes-0-12-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   [`qiskit_addon_sqd.fermion.SCIState`](fermion#scistate "qiskit_addon_sqd.fermion.SCIState") now takes two additional required arguments, `norb` and `nelec`. This is a breaking change.
+
+<span id="release-notes-0-12-0-deprecation-notes" />
+
+### Deprecation Notes
+
+*   [`qiskit_addon_sqd.configuration_recovery.post_select_by_hamming_weight()`](configuration-recovery#post_select_by_hamming_weight "qiskit_addon_sqd.configuration_recovery.post_select_by_hamming_weight") is now deprecated. Instead, use [`qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left()`](subsampling#postselect_by_hamming_right_and_left "qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left").
+
+*   [`qiskit_addon_sqd.subsampling.postselect_and_subsample()`](subsampling#postselect_and_subsample "qiskit_addon_sqd.subsampling.postselect_and_subsample") is now deprecated. Instead, use [`qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left()`](subsampling#postselect_by_hamming_right_and_left "qiskit_addon_sqd.subsampling.postselect_by_hamming_right_and_left") and [`qiskit_addon_sqd.subsampling.subsample()`](subsampling#subsample "qiskit_addon_sqd.subsampling.subsample").
+
+<span id="release-notes-0-12-0-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a bug in [`qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs()`](fermion#bitstring_matrix_to_ci_strs "qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs") in which the conversion of bitstrings to CI strings could be incorrect when the number of orbitals is greater than 53.
+
+*   Fixed a bug in which saving and loading [`qiskit_addon_sqd.fermion.SCIState`](fermion#scistate "qiskit_addon_sqd.fermion.SCIState") objects resulted in an error.
+
+*   Added a release note to version 0.11 for a breaking change involving [`qiskit_addon_sqd.fermion.SCIState`](fermion#scistate "qiskit_addon_sqd.fermion.SCIState").
+
+<span id="release-notes-0-11-0" />
+
+<span id="id3" />
+
+## 0.11.0
+
+<span id="release-notes-0-11-0-new-features" />
+
+<span id="id4" />
+
+### New Features
+
+*   Added a new function [`qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian()`](fermion#diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") to serve as the main entrypoint to the SQD algorithm. See the updated [tutorials](https://qiskit.github.io/qiskit-addon-sqd/tutorials/index.html) for a demonstration of how to use this function.
+
+*   [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") now accepts a `shift` argument used to shift states which have the wrong spin, $(H + shift * S^2)|ψ> = E|ψ>$.
+
+<span id="release-notes-0-11-0-upgrade-notes" />
+
+<span id="id5" />
+
+### Upgrade Notes
+
+*   [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") and [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals") now accept trailing `kwargs`, which will be passed directly to [pyscf.fci.selected\_ci.kernel\_fixed\_space](https://pyscf.org/pyscf_api_docs/pyscf.fci.html#pyscf.fci.selected_ci.kernel_fixed_space) under the hood to calculate the target state. The `max_davidson` argument should now be passed as `max_cycle` in both functions.
+
+<span id="release-notes-0-11-0-bug-fixes" />
+
+<span id="id6" />
+
+### Bug Fixes
+
+*   Fixed a float to integer type conversion affecting the `qubit` module
+
+<span id="release-notes-0-10-0" />
+
+<span id="id7" />
+
+## 0.10.0
+
+<span id="release-notes-0-10-0-upgrade-notes" />
+
+<span id="id8" />
+
+### Upgrade Notes
+
+*   Removed `qiskit_addon_sqd.fermion.flip_orbital_occupancies()`. Users no longer need to flip the orbital occupancies output from [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") and [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals"); they will be output in the order expected by [`qiskit_addon_sqd.configuration_recovery.recover_configurations()`](configuration-recovery#recover_configurations "qiskit_addon_sqd.configuration_recovery.recover_configurations"): `tuple(array([occ_a_0, ..., occ_a_N]), array([occ_b_0, ..., occ_b_N]))`.
+
+<span id="release-notes-0-10-0-deprecation-notes" />
+
+<span id="id9" />
+
+### Deprecation Notes
+
+*   The `avg_occupancies` argument to [`qiskit_addon_sqd.configuration_recovery.recover_configurations()`](configuration-recovery#recover_configurations "qiskit_addon_sqd.configuration_recovery.recover_configurations") should now be a length-2 tuple containing the spin-up and spin-down occupancies, respectively.
+
+    Old format: `array([occ_b_N, ..., occ_b_0, occ_a_N, ..., occ_a_0])`
+
+    New format: `tuple(array([occ_a_0, ..., occ_a_N]), array([occ_b_0, ..., occ_b_N]))`
+
+<span id="release-notes-0-10-0-bug-fixes" />
+
+<span id="id10" />
+
+### Bug Fixes
+
+*   Fixed a bug which would cause the energy output from [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") to be incorrect when the input `spin_sq` deviates from the spin^2 of the output wavefunction.
+
+<span id="release-notes-0-9-0" />
+
+<span id="id11" />
+
+## 0.9.0
+
+<span id="release-notes-0-9-0-upgrade-notes" />
+
+<span id="id12" />
+
+### Upgrade Notes
+
+*   [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals") and [`qiskit_addon_sqd.fermion.rotate_integrals()`](fermion#rotate_integrals "qiskit_addon_sqd.fermion.rotate_integrals") now require `k_flat` to specify the upper triangle (not including diagonal) of the rotation matrix, rather than the entire matrix.
+
+<span id="release-notes-0-9-0-bug-fixes" />
+
+<span id="id13" />
+
+### Bug Fixes
+
+*   Fixed an indexing error in [`qiskit_addon_sqd.configuration_recovery()`](configuration-recovery#module-qiskit_addon_sqd.configuration_recovery "qiskit_addon_sqd.configuration_recovery") which caused bits in the right half of the bitstring to be flipped with respect to the occupancies of the oritals associated with the left half of the bitstring.
+
+*   pyscf is no longer considered a dependency on Windows, where it fails to install. However, Windows remains an unsupported platform.
+
+<span id="release-notes-0-8-0" />
+
+<span id="id14" />
+
+## 0.8.0
+
+<span id="release-notes-0-8-0-new-features" />
+
+<span id="id15" />
+
+### New Features
+
+*   Added support for Python 3.9.
+
+*   All functions which take a `rand_seed` argument now also accept a `numpy.random.Generator` instance as the `rand_seed`.
+
+<span id="release-notes-0-8-0-upgrade-notes" />
+
+<span id="id16" />
+
+### Upgrade Notes
+
+*   The ground state returned by [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") will now be an instance of [`qiskit_addon_sqd.fermion.SCIState`](fermion#scistate "qiskit_addon_sqd.fermion.SCIState"), rather than a PySCF `SCIVector` instance.
+
+<span id="release-notes-0-7-0" />
+
+<span id="id17" />
+
+## 0.7.0
+
+<span id="release-notes-0-7-0-bug-fixes" />
+
+<span id="id18" />
+
+### Bug Fixes
+
+*   Fixed a bug in [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") and [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals") which causes the determinants for spin-up and spin-down to be incorrectly flipped before solving.
+
+*   Fixed a bug in open-shell workflows which would cause [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals") to crash with a `malloc` error.
+
+<span id="release-notes-0-6-0" />
+
+<span id="id19" />
+
+## 0.6.0
+
+<span id="release-notes-0-6-0-upgrade-notes" />
+
+<span id="id20" />
+
+### Upgrade Notes
+
+*   Specifying `addresses` as a keyword argument to [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") and [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals") is no longer supported. Users may still pass `addresses` as the first positional argument; however, this usage is deprecated. Users are encouraged to pass the bitstring matrix defining the subspace as the first positional arguments to these functions, as shown below.
+
+    To upgrade, change this code
+
+    ```python
+    # DEPRECATED CODE
+    from qiskit_addon_sqd.fermion import (
+        bitstring_matrix_to_sorted_addresses,
+        solve_fermion,
+        optimize_orbitals,
+    )
+
+    bitstring_matrix = ...
+    addresses = bitstring_matrix_to_sorted_addresses(bitstring_matrix, open_shell=open_shell)
+    energy, coeffs, occs, spin = solve_fermion(
+                                     addresses=addresses,
+                                     hcore=hcore,
+                                     eri=eri,
+                                 )
+    ...
+    e_oo, rotation, occs_oo = optimize_orbitals(
+                                  addresses=addresses,
+                                  hcore=hcore,
+                                  eri=eri,
+                              )
+
+    ### SHOULD BECOME ###
+
+    # NEW CODE
+    from qiskit_addon_sqd.fermion import solve_fermion, optimize_orbitals
+
+    bitstring_matrix = ...
+    energy, coeffs, occs, spin = solve_fermion(
+                                     bitstring_matrix,
+                                     hcore=hcore,
+                                     eri=eri,
+                                 )
+    ...
+    e_oo, rotation, occs_oo = optimize_orbitals(
+                                  bitstring_matrix,
+                                  hcore=hcore,
+                                  eri=eri,
+                              )
+    ```
+
+<span id="release-notes-0-6-0-deprecation-notes" />
+
+<span id="id21" />
+
+### Deprecation Notes
+
+*   The `qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()` function has been deprecated in favor of [`qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs()`](fermion#bitstring_matrix_to_ci_strs "qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs"). These two functions behave the same with one key exception – `qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()` returns the configurations as `tuple(spin_dn, spin_up)`; whereas, [`qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs()`](fermion#bitstring_matrix_to_ci_strs "qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs") returns the configurations as `tuple(spin_up, spin_dn)`.
+
+    To migrate
+
+    ```python
+    from qiskit_addon_sqd.fermion import (
+        bitstring_matrix_to_sorted_addresses,
+        bitstring_matrix_to_ci_strs,
+    )
+
+    # DEPRECATED CODE
+    bs_matrix = ...
+    addr_dn, addr_up = bitstring_matrix_to_sorted_addresses(bs_matrix, open_shell=True)
+
+    ### SHOULD BECOME ###
+
+    # NEW CODE
+    bs_matrix = ...
+    ci_strs_up, ci_strs_dn = bitstring_matrix_to_ci_strs(bs_matrix, open_shell=True)
+    ```
+
+*   The `addresses` argument to [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") and [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals") has been deprecated in favor of `bitstring_matrix`. Users are no longer required to convert their configurations to integers; instead, they should now pass in the bitstring matrix specifying the subspace onto which to project and diagonalize the Hamiltonian. The conversion to the integer representation of determinants will be done internally.
+
+<span id="release-notes-0-6-0-bug-fixes" />
+
+<span id="id22" />
+
+### Bug Fixes
+
+*   Fixed a bug in [`qiskit_addon_sqd.configuration_recovery.recover_configurations()`](configuration-recovery#recover_configurations "qiskit_addon_sqd.configuration_recovery.recover_configurations") which would sometimes cause a divide-by-zero error when calculating individual bit-flip probability.
+
+*   Fixes a bug that caused configuration recovery to fail on bitstrings of length greater than 72.
+
+<span id="release-notes-0-5-0" />
+
+<span id="id23" />
+
+## 0.5.0
+
+<span id="release-notes-0-5-0-upgrade-notes" />
+
+<span id="id24" />
+
+### Upgrade Notes
+
+*   The [`qiskit_addon_sqd.counts.generate_counts_bipartite_hamming()`](counts#generate_counts_bipartite_hamming "qiskit_addon_sqd.counts.generate_counts_bipartite_hamming"), [`qiskit_addon_sqd.subsampling.postselect_and_subsample()`](subsampling#postselect_and_subsample "qiskit_addon_sqd.subsampling.postselect_and_subsample"), and [`qiskit_addon_sqd.configuration_recovery.post_select_by_hamming_weight()`](configuration-recovery#post_select_by_hamming_weight "qiskit_addon_sqd.configuration_recovery.post_select_by_hamming_weight") now require the `hamming_right` and `hamming_left` arguments to be specified as keyword arguments. Additionally, the `samples_per_batch` and `n_batches` arguments to [`qiskit_addon_sqd.subsampling.postselect_and_subsample()`](subsampling#postselect_and_subsample "qiskit_addon_sqd.subsampling.postselect_and_subsample") should now be passed as keyword arguments.
+
+    To upgrade
+
+    ```python
+    from qiskit_addon_sqd.configuration_recovery import post_select_by_hamming_weight
+    from qiskit_addon_sqd.subsampling import postselect_and_subsample
+    from qiskit_addon_sqd.counts import generate_counts_bipartite_hamming
+
+    counts = generate_counts_bipartite_hamming(num_samples, num_bits, num_elec_a, num_elec_b)
+
+    ...
+
+    bs_mat = post_select_by_hamming_weight(bs_mat_full, num_elec_a, num_elec_b)    
+
+    ...
+
+    batches = postselect_and_subsample(
+        bs_mat,
+        probs_arr,
+        num_elec_a,
+        num_elec_b,
+        samples_per_batch,
+        num_batches,
+    )
+    ```
+
+    should be changed to
+
+    ```python
+    from qiskit_addon_sqd.configuration_recovery import post_select_by_hamming_weight
+    from qiskit_addon_sqd.subsampling import postselect_and_subsample
+    from qiskit_addon_sqd.counts import generate_counts_bipartite_hamming
+
+    counts = generate_counts_bipartite_hamming(num_samples, num_bits, hamming_right=num_elec_a, hamming_left=num_elec_b)
+
+    ...
+
+    bs_mat = post_select_by_hamming_weight(bs_mat_full, hamming_right=num_elec_a, hamming_left=num_elec_b)
+
+    ...
+
+    batches = postselect_and_subsample(
+        bs_mat,
+        probs_arr,
+        hamming_right=num_elec_a,
+        hamming_left=num_elec_b,
+        samples_per_batch=samples_per_batch,
+        num_batches=num_batches,
+    )
+    ```
+
+<span id="release-notes-0-4-0" />
+
+<span id="id25" />
+
+## 0.4.0
+
+<span id="release-notes-0-4-0-prelude" />
+
+### Prelude
+
+This is a minor release which introduces a couple of small, but important, breaking changes to to the API. These changes allow for a more consistent pattern in specifying the number of alpha and beta electrons throughout both the chemistry and non-chemistry functions in the API.
+
+<span id="release-notes-0-4-0-upgrade-notes" />
+
+<span id="id26" />
+
+### Upgrade Notes
+
+*   The [`qiskit_addon_sqd.counts.generate_counts_bipartite_hamming()`](counts#generate_counts_bipartite_hamming "qiskit_addon_sqd.counts.generate_counts_bipartite_hamming"), [`qiskit_addon_sqd.subsampling.postselect_and_subsample()`](subsampling#postselect_and_subsample "qiskit_addon_sqd.subsampling.postselect_and_subsample"), and [`qiskit_addon_sqd.configuration_recovery.post_select_by_hamming_weight()`](configuration-recovery#post_select_by_hamming_weight "qiskit_addon_sqd.configuration_recovery.post_select_by_hamming_weight") now take the `hamming_right` positional argument before the `hamming_left` argument to better match the rest of the workflow.
+
+    To upgrade
+
+    ```python
+    from qiskit_addon_sqd.configuration_recovery import post_select_by_hamming_weight
+    from qiskit_addon_sqd.subsampling import postselect_and_subsample
+    from qiskit_addon_sqd.counts import generate_counts_bipartite_hamming
+
+    counts = generate_counts_bipartite_hamming(num_samples, num_bits, num_elec_b, num_elec_a)
+
+    ...
+
+    bs_mat = post_select_by_hamming_weight(bs_mat_full, num_elec_b, num_elec_a)    
+
+    ...
+
+    batches = postselect_and_subsample(
+        bs_mat,
+        probs_arr,
+        num_elec_b,
+        num_elec_a,
+        samples_per_batch,
+        n_batches,
+    )
+    ```
+
+    should be changed to
+
+    ```python
+    from qiskit_addon_sqd.configuration_recovery import post_select_by_hamming_weight
+    from qiskit_addon_sqd.subsampling import postselect_and_subsample
+    from qiskit_addon_sqd.counts import generate_counts_bipartite_hamming
+
+    counts = generate_counts_bipartite_hamming(num_samples, num_bits, num_elec_a, num_elec_b)
+
+    bs_mat = post_select_by_hamming_weight(bs_mat_full, num_elec_a, num_elec_b)
+
+    ...
+
+    batches = postselect_and_subsample(
+        bs_mat,
+        probs_arr,
+        num_elec_a,
+        num_elec_b,
+        samples_per_batch,
+        n_batches,
+    )
+    ```
+

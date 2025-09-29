@@ -14,63 +14,160 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES = new Set([
-  "public/api/qiskit-ibm-runtime/0.14/objects.inv",
-  "public/api/qiskit-ibm-runtime/0.15/objects.inv",
-  "public/api/qiskit-ibm-runtime/0.16/objects.inv",
-]);
+export const IGNORED_FILES: Set<string> = new Set([]);
 
 // -----------------------------------------------------------------------------------
-// Always ignored URLs
+// Always ignored URLs - prefer to use more precise ignores
 // -----------------------------------------------------------------------------------
 
-const _QISKIT_UTILS = [
-  "#qiskit.utils.optionals.HAS_TESTTOOLS",
-  "#qiskit.utils.optionals.HAS_GRAPHVIZ",
-  "#qiskit.utils.optionals.HAS_PYDOT",
-  "https://github.com/python-constraint/python-constraint%3E__",
+// These can be removed once we remove old versions of Qiskit SDK. These links legitimately 404.
+const _QISKIT_AQUA_CPLEX = [
+  "https://www.ibm.com/support/knowledgecenter/SSSA5P_12.10.0/COS_KC_home.html",
+  "https://www.ibm.com/support/knowledgecenter/SSSA5P_12.10.0/ilog.odms.cplex.help/CPLEX/GettingStarted/topics/set_up/setup_synopsis.html",
+  "https://www.ibm.com/support/knowledgecenter/SSSA5P_12.10.0/ilog.odms.cplex.help/CPLEX/GettingStarted/topics/set_up/Python_setup.html",
 ];
 
-const _PATTERNS_REORG_IGNORES = [
-  "/run/primitives-examples",
-  "/run/sessions",
-  "/build/circuit-construction",
-  "/start/configure-qiskit-local#environment-variables",
-  "/build/pulse",
-  "/run",
-  "/transpile",
-  "/run/max-execution-time",
-  "/run/configure-runtime-compilation",
-  "/run/configure-error-mitigation",
-  "/start/install#qiskit-versioning",
-  "/start/configure-qiskit-local",
-  "/run/primitives-get-started#3-initialize-the-qiskit-runtime-sampler",
-  "/run/primitives-get-started#3-initialize-qiskit-runtime-estimator",
-  "/run/run-jobs-batch",
-  "/api/migration-guides/qiskit-runtime",
-  "/api/migration-guides/v2-primitives",
-];
-
+// These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
 const ALWAYS_IGNORED_URLS__EXPECTED = [
+  ..._QISKIT_AQUA_CPLEX,
   "https://auth.quantum-computing.ibm.com/api",
+  "https://auth.quantum.ibm.com/api",
+  "https://quantum-computing.cloud.ibm.com",
+  "https://api.quantum-computing.ibm.com/runtime",
+  "https://us-east.quantum-computing.cloud.ibm.com/",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "http://www.satcompetition.org/2009/format-benchmarks2009.html",
   "https://qiskit.slack.com/archives/C06KF8YHUAU",
-  // StackOverflow rate limits us.
+  "https://support.us.ovhcloud.com/hc/en-us/articles/360002245784-Creating-Your-First-Public-Cloud-Project",
+  "https://support.google.com/accounts/answer/27441?hl",
+  "https://colab.research.google.com/",
+  "https://colab.research.google.com/#create=true",
+  "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
+  "https://forms.office.com/r/zN3hvMTqJ1",
+  "https://forms.office.com/e/kJzViZNVa4",
+  "https://platform.openai.com/docs/api-reference/completions",
+  "https://code.visualstudio.com/",
+  "https://doi.org/10.1002/qute.201800012",
   "https://stackoverflow.com/",
   "https://stackoverflow.com/questions/1049722/what-is-2s-complement",
   "https://quantumcomputing.stackexchange.com/help/how-to-ask",
   "https://quantumcomputing.stackexchange.com/questions/",
   "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
-  "mailto:tellibm@us.ibm.com",
+  "https://www.science.org/doi/10.1126/science.273.5278.1073",
+  "https://journals.aps.org/prx/abstract/10.1103/PhysRevX.10.011022",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.99.032331",
+  "https://link.aps.org/doi/10.1103/PhysRevLett.103.110501",
+  "https://link.aps.org/doi/10.1103/PhysRevA.83.012308",
+  "https://link.aps.org/doi/10.1103/PhysRevA.100.032328",
+  "https://link.aps.org/doi/10.1103/PRXQuantum.4.030319",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.71.052330",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.93.032318",
+  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.024034",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.94.052325",
+  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.064027",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.210601",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.033154",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.042303",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.033309",
+  "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.114510",
+  "https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.020315",
+  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.19.024047",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.013254",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.102.032420",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.103.032430",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.023218",
+  "https://journals.aps.org/pr/pdf/10.1103/PhysRev.47.777",
+  "https://journals.aps.org/prper/pdf/10.1103/PhysRevSTPER.11.020117",
+  "https://academic.oup.com/book/36426",
+  "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
+  "https://https://arxiv.org/abs/quant-ph/0403071",
+  "https://doi.org/10.1103/PhysRevApplied.5.034007",
+  "http://dx.doi.org/10.1103/PhysRevA.83.012308",
+  "https://doi.org/10.1103/PhysRevLett.103.150502",
+  "https://doi.org/10.1103/PhysRevA.99.032331",
+  "https://dl.acm.org/doi/10.1145/3445814.3446706",
+  "https://doi.org/10.1145/3520304.3533963",
+  "https://doi.org/10.1145/3445814.3446706",
+  "https://doi.org/10.1145/3490631",
+  "http://dx.doi.org/10.1145/1278349.1278355",
+  "https://doi.org/10.1063/5.0042147",
+  "https://doi.org/10.1103/PhysRevApplied.22.054037",
+  "https://doi.org/10.1103/PhysRevApplied.20.014024",
+  "https://doi.org/10.1103/PhysRevApplied.22.064068",
+  "https://aip.scitation.org/doi/10.1063/1.5019371",
+  "https://aip.scitation.org/doi/10.1063/1.5141835",
+  "https://pubs.aip.org/aip/rsi/article/88/10/104703/836456",
+  "https://epubs.siam.org/doi/10.1137/100787921",
+  "https://epubs.siam.org/doi/10.1137/S0097539795293172",
+  "https://ieeexplore.ieee.org/document/1323804",
+  "https://ieeexplore.ieee.org/document/880982",
+  "https://ieeexplore.ieee.org/document/657661",
+  "https://spj.science.org/doi/10.34133/icomputing.0037",
+  "https://finance.yahoo.com/quote/8801.T",
+  "https://finance.yahoo.com/quote/CLF",
+  "https://finance.yahoo.com/quote/GBPJPY",
+  "https://finance.yahoo.com/quote/ITX.MC",
+  "https://finance.yahoo.com/quote/META",
+  "https://finance.yahoo.com/quote/TMBMKDE-10Y",
+  "https://finance.yahoo.com/quote/XS2239553048",
+  "https://www.ibm.com/downloads/documents/us-en/107a02e97d48fcd7",
+  "https://www.ibm.com/downloads/documents/us-en/10a99803fcafdd0c",
+  "https://www.eetimes.com/battery-research-advances-quantum-computing-capabilities/",
+  "https://www.eon.com/en/about-us/media/press-release/2021/2021-09-02-eon-allies-with-ibm-quantum.html",
+  "https://quantumcomputing.stackexchange.com/questions/tagged/qiskit",
+  "https://quantumcomputing.stackexchange.com/questions/tagged/ibm-q-experience",
+  "https://onlinelibrary.wiley.com/doi/epdf/10.1002/ijch.202100111",
+  "https://pubs.acs.org/doi/10.1021/acs.jpcb.5c01030",
+  "https://wires.onlinelibrary.wiley.com/doi/10.1002/wcms.1519",
+  "https://github.com/Qiskit/qiskit-terra/issues/5775",
+  "https://docs.python-requests.org/en/latest/api/",
+  "https://github.com/Qiskit/qiskit-terra/issues/9552",
+  "https://www.ibm.com/downloads/cas/8QDGKDZJ",
+  "https://www.ibm.com/downloads/cas/BDGQRXOZ",
+  "https://www.iotworldtoday.com/smart-cities/ibm-panel-highlights-quantum-role-in-sustainability",
+  "https://journals.aps.org/prxquantum/pdf/10.1103/PRXQuantum.3.010313",
+  "https://pubs.acs.org/doi/full/10.1021/acs.jctc.8b00450",
+  "https://ibm.box.com/shared/static/59c2kjqefvjy5wy5lct099thr4y0ry8c.zip",
+  "https://ibm.box.com/s/fh3xele1e7k0nrgd1imivvq52hy3wz9c",
+  "https://dl.acm.org/doi/10.1145/359340.359342",
+  "https://pubs.aip.org/aip/jap/article/132/16/160902/2837574/The-future-of-quantum-computing-with",
+  "https://csrc.nist.gov/glossary/term/security_strength",
+  "https://csrc.nist.gov/news/2023/three-draft-fips-for-post-quantum-cryptography",
+  "https://csrc.nist.gov/pubs/fips/205/ipd",
+  "https://dl.acm.org/doi/10.1145/237814.237838",
+  "https://doi.org/10.1080/07468342.1987.11973000",
+  "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4878865/",
+  "https://dl.acm.org/doi/10.1145/237814.237866",
+  "https://doi.org/10.1137/S0097539795293172",
+  "https://doi.org/10.1063/5.0082975",
+  "https://doi.org/10.1145/359340.359342",
+  "https://doi.org/10.1137/S0097539795293172",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.140503",
+  "https://doi.org/10.1145/276698.276705",
+  "https://doi.org/10.1145/237814.237838",
+  "https://ibm.box.com/shared/static/vee9e1kkxxiih5g8yqdhoo6t0o3dw7xf.zip",
+  "https://ibm.box.com/shared/static/vee9e1kkxxiih5g8yqdhoo6t0o3dw7xf.zip",
+  "https://ibm.box.com/shared/static/a0zgies7bh91hm2lwev9o0bfeybxc6n6.zip",
+  "https://ibm.box.com/shared/static/3s99zptw6c7nrfzmneogs4y7ezrx5nbh.zip",
+  "https://ibm.box.com/shared/static/ruz8wf353hncenmaywjlfjilflaumnzt.zip",
+  "https://ibm.box.com/shared/static/tg8vv00ern2bmxmm033xt9oe0fcvwamc.zip",
+  "https://ibm.box.com/shared/static/pnb9vhw1ruz72r3wp4pwfilwc7rzmufw.zip",
+  "https://ibm.box.com/shared/static/0hvvgr1gnwx64x2ukgk04sss6sxc4zko.zip",
+  "https://ibm.box.com/shared/static/srgnll6u8ame7gk186pkthq7erc7l6rw.zip",
+  "https://ibm.box.com/s/kzzsmxhw38vph1ioohczaet53euwi310",
+  "https://ibm.box.com/shared/static/ws8x00xu0pksjzixyyspxzrilvt36iff.zip",
+  "https://ibm.box.com/shared/static/k38xhk5yaqy9b3gjdmu0ynhnd9i4c3e1.zip",
+  "https://ibm.box.com/s/bipgoms7gr6b6vhkoc1uw6oi4wsanfoq",
+  "https://ibm.box.com/shared/static/fw1538dogvyv0qbfqg8tan1k2fs27mfv.zip",
+  "https://ibm.box.com/s/blnffu0pd7yzxarq3zc3w0jv90365ny2",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.85.441",
 ];
 
-const ALWAYS_IGNORED_URLS__SHOULD_FIX = [
-  "circuit#qiskit.circuit.CASE_DEFAULT",
-  // Bad anchor in qiskit_ibm_runtime.options.Options.md for 0.14 - 0.16.
-  "/run/max-execution-time#maximum-execution-time",
-  ..._QISKIT_UTILS,
-  ..._PATTERNS_REORG_IGNORES,
+// These external URLs cause actual 404s and should probably be fixed.
+const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
+  // We accidentally broke redirects for learn.qiskit.org. The IBM infra team is working on this.
+  "https://learn.qiskit.org/course/ch-algorithms/quantum-phase-estimation",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -79,185 +176,287 @@ export const ALWAYS_IGNORED_URLS = new Set([
 ]);
 
 // -----------------------------------------------------------------------------------
+// Always ignored URL regexes - be careful using this
+// -----------------------------------------------------------------------------------
+
+function _addonsObjectsInvRegexes(): string[] {
+  // Addons have non-API docs in their Sphinx build that translate into invalid links
+  // we should ignore
+  return ["how-tos", "how_tos", "install", "index", "explanations"].flatMap(
+    (path) => [
+      // Latest version
+      `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
+      // Historical versions
+      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]{1,2}\/${path}(\/.*|#.*|$)`,
+    ],
+  );
+}
+
+export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
+  ..._addonsObjectsInvRegexes(),
+];
+
+// -----------------------------------------------------------------------------------
+// Always ignored URL prefixes - be careful using this
+// -----------------------------------------------------------------------------------
+
+export const ALWAYS_IGNORED_URL_PREFIXES: string[] = [];
+
+// -----------------------------------------------------------------------------------
 // Files to ignores
 // -----------------------------------------------------------------------------------
 
 // A mapping of files to lists of links that will not be searched.
 type FilesToIgnores = { [id: string]: string[] };
 
-const _QPY_IGNORES = [
-  "#f1",
-  "#f2",
-  "#f3",
-  "#id2",
-  "#id3",
-  "#id4",
-  "#id5",
-  "#id6",
-  "#id7",
-  "#id8",
-];
+function mergeFilesToIgnores(...mappings: FilesToIgnores[]): FilesToIgnores {
+  const result: FilesToIgnores = {};
+  mappings.forEach((mapping) => {
+    Object.entries(mapping).forEach(([file, ignores]) => {
+      if (result[file]) {
+        result[file].push(...ignores);
+      } else {
+        result[file] = ignores;
+      }
+    });
+  });
+  return result;
+}
 
-const _CIRCUIT_MODULE_IGNORES = [
-  "#qiskit.circuit.SessionEquivalenceLibrary",
-  "#qiskit.circuit.StandardEquivalenceLibrary",
-];
-
-const _RUNTIME_OBJECT_INV = Object.fromEntries(
-  [
-    "",
-    "dev/",
-    "0.16/",
-    "0.17/",
-    "0.18/",
-    "0.19/",
-    "0.20/",
-    "0.21/",
-    "0.22/",
-    "0.23/",
-    "0.24/",
-    "0.25/",
-    "0.26/",
-    "0.27/",
-    "0.28/",
-    "0.29/",
-    "0.29/",
-  ].map((vers) => [
-    `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+function _runtimeObjectsInv(): FilesToIgnores {
+  const legacy = Object.fromEntries(
+    ["0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map((vers) => [
+      `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
+      [
+        `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+      ],
+    ]),
+  );
+  const latest = Object.fromEntries(
     [
-      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.RuntimeEncoder#key_separator`,
-      `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
-      `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+      "",
+      "dev/",
+      "0.30/",
+      "0.31/",
+      "0.32/",
+      "0.33/",
+      "0.34/",
+      "0.35/",
+      "0.36/",
+      "0.37/",
+      "0.38/",
+      "0.39/",
+      "0.40/",
+      "0.41/",
+    ].map((vers) => [
+      `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
+      [
+        `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
+      ],
+    ]),
+  );
+  return { ...legacy, ...latest };
+}
+
+function _qiskitUtilsData(): FilesToIgnores {
+  // Qiskit docs used .. py:data:: incorrectly. We didn't fix these versions of the docs
+  // because it is too tedious.
+  const objectsInv = Object.fromEntries(
+    ["1.0/", "1.1/"].map((vers) => [
+      `public/docs/api/qiskit/${vers}objects.inv`,
+      [
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CONSTRAINT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CPLEX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CVXPY`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_DOCPLEX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_FIXTURES`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_GRAPHVIZ`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IBMQ`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IGNIS`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IPYTHON`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IPYWIDGETS`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_JAX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_JUPYTER`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_MATPLOTLIB`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_NETWORKX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_NLOPT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PDFLATEX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PDFTOCAIRO`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PIL`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PYDOT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PYGMENTS`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PYLATEX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_QASM3_IMPORT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SEABORN`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SKLEARN`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SKQUANT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SKSNFIT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SQSNOBFIT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SYMENGINE`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_TESTTOOLS`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_TOQM`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_TWEEDLEDUM`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_Z3`,
+      ],
+    ]),
+  );
+  const utilsFile = Object.fromEntries(
+    ["1.0", "1.1"].map((vers) => [
+      `docs/api/qiskit/${vers}/utils.mdx`,
+      [
+        "#qiskit.utils.optionals.HAS_TESTTOOLS",
+        "#qiskit.utils.optionals.HAS_GRAPHVIZ",
+        "#qiskit.utils.optionals.HAS_PYDOT",
+      ],
+    ]),
+  );
+
+  const releaseNotesFile = Object.fromEntries(
+    ["1.0", "1.1"].map((vers) => [
+      `docs/api/qiskit/release-notes/${vers}.mdx`,
+      [`/docs/api/qiskit/${vers}/utils#qiskit.utils.optionals.HAS_SYMENGINE`],
+    ]),
+  );
+  return {
+    ...releaseNotesFile,
+    ...objectsInv,
+    ...utilsFile,
+  };
+}
+
+function _patternsReorg(): FilesToIgnores {
+  // We have redirects for all these files. It's best to update API docs to point directly to the new URL,
+  // but we don't bother updating old docs.
+  const qiskit = Object.fromEntries(
+    ["", "0.46/", "1.0/", "1.1/", "1.2/"].flatMap((vers) => [
+      [
+        `docs/api/qiskit/${vers}qiskit.circuit.QuantumCircuit.mdx`,
+        ["/docs/build/circuit-construction"],
+      ],
+      [
+        `docs/api/qiskit/${vers}qiskit.transpiler.passes.ValidatePulseGates.mdx`,
+        ["/docs/build/pulse"],
+      ],
+      [`docs/api/qiskit/${vers}qpy.mdx`, ["/docs/build/pulse"]],
+    ]),
+  );
+  const runtime = Object.fromEntries(
+    [25, 26].flatMap((vers) => [
+      [
+        `docs/api/qiskit-ibm-runtime/0.${vers}/batch.mdx`,
+        ["/docs/run/run-jobs-batch", "/docs/run/max-execution-time"],
+      ],
+      [
+        `docs/api/qiskit-ibm-runtime/0.${vers}/session.mdx`,
+        ["/docs/run/max-execution-time"],
+      ],
+      [
+        `docs/api/qiskit-ibm-runtime/0.${vers}/options-options.mdx`,
+        [
+          "/docs/run/max-execution-time",
+          "/docs/run/configure-error-mitigation",
+          "/docs/run/max-execution-time#maximum-execution-time",
+        ],
+      ],
+      [
+        `docs/api/qiskit-ibm-runtime/0.${vers}/options-estimator-options.mdx`,
+        [
+          "/docs/run/configure-error-mitigation",
+          "/docs/run/configure-runtime-compilation",
+        ],
+      ],
+      [
+        `docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v1.mdx`,
+        ["/docs/api/migration-guides/v2-primitives"],
+      ],
+      [
+        `docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v1.mdx`,
+        ["/docs/api/migration-guides/v2-primitives"],
+      ],
+      [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/docs/run"]],
+      [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/docs/run"]],
+      [
+        `docs/api/qiskit-ibm-runtime/0.${vers}/noise-learner-noise-learner.mdx`,
+        ["/docs/run"],
+      ],
+      [
+        `docs/api/qiskit-ibm-runtime/0.${vers}/transpiler.mdx`,
+        ["/docs/transpile"],
+      ],
+    ]),
+  );
+  return {
+    ...qiskit,
+    ...runtime,
+    "docs/api/qiskit/release-notes/1.0.mdx": [
+      "/docs/start/install#qiskit-versioning",
+      "/docs/start/configure-qiskit-local",
     ],
-  ]),
+    "docs/api/qiskit/release-notes/0.46.mdx": [
+      "/docs/start/install#qiskit-versioning",
+    ],
+    "docs/api/qiskit/1.1/qiskit.quantum_info.SparsePauliOp.mdx": [
+      "/docs/start/configure-qiskit-local#environment-variables",
+    ],
+  };
+}
+
+function _runtimeLegacyReleaseNotes(): FilesToIgnores {
+  return {
+    "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
+      "/docs/api/qiskit-ibm-runtime/0.21/qiskit-runtime-service#runtime",
+      "/docs/api/qiskit-ibm-runtime/0.20/sampler#run",
+    ],
+  };
+}
+
+const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
+  _qiskitUtilsData(),
+  _patternsReorg(),
+  _runtimeObjectsInv(),
+  _runtimeLegacyReleaseNotes(),
 );
 
-const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
+function _qiskitCRegexes(): FilesToIgnores {
+  return {
+    "public/docs/api/qiskit-c/objects.inv": [
+      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_from_native",
+      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_from_native.value",
+      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_to_native",
+      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_to_native.value",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ms",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ns",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ps",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_s",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_us",
+      "/docs/api/qiskit-c/index#c_api",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1a1d0477d0d30b088dfd322e85b4be5464",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1ae08ef5279f405357144d24ec1147b5f9",
+      "/docs/api/qiskit-c/version#qiskit_version_patch",
+      "/docs/api/qiskit-c/version#qiskit_version_minor",
+      "/docs/api/qiskit-c/version#qiskit_version_major",
+      "/docs/api/qiskit-c/version#qiskit_version_hex",
+      "/docs/api/qiskit-c/version#qiskit_version",
+      "/docs/api/qiskit-c/version#qiskit_release_serial",
+      "/docs/api/qiskit-c/version#qiskit_release_level",
+      "/docs/api/qiskit-c/version#qiskit_get_version_hex",
+    ],
+    "docs/api/qiskit-c/qk-transpiler.mdx": [
+      "#_cppv412qk_transpilepk9qkcircuitpk8qktargetpk18qktranspileoptionsp17qktranspileresultppc",
+      "#structqktranspileoptions",
+    ],
+    "docs/api/qiskit-c/qk-vf-2-layout-result.mdx": [
+      "qk-transpiler-passes#_cppv440qk_transpiler_pass_standalone_vf2_layoutpk9qkcircuitpk8qktargetb7int64_td7int64_t",
+    ],
+  };
+}
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
-  // Qiskit
-  "docs/api/qiskit/release-notes/1.0.mdx": [
-    "/api/qiskit/1.0/utils#qiskit.utils.optionals.HAS_SYMENGINE",
-  ],
-  "docs/api/qiskit/qpy.mdx": _QPY_IGNORES,
-  "docs/api/qiskit/dev/qpy.mdx": _QPY_IGNORES,
-  "docs/api/qiskit/circuit.mdx": _CIRCUIT_MODULE_IGNORES,
-  "docs/api/qiskit/dev/circuit.mdx": _CIRCUIT_MODULE_IGNORES,
-  // Runtime
-  "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#runtime",
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#run",
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeOptions",
-  ],
-  // Provider
-  "docs/api/qiskit-ibm-provider/release-notes.mdx": [
-    "/api/qiskit/qiskit.circuit.Delay",
-  ],
-  // objects.inv
-  ..._RUNTIME_OBJECT_INV,
-  "public/api/qiskit/objects.inv": [
-    "/api/qiskit/circuit#qiskit.circuit.CASE_DEFAULT",
-    "/api/qiskit/qiskit.pulse.instructions.Reference#scope_delimiter",
-    "/api/qiskit/qasm2#qiskit.qasm2.LEGACY_CUSTOM_CLASSICAL",
-    "/api/qiskit/qasm2#qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS",
-    "/api/qiskit/qasm2#qiskit.qasm2.LEGACY_INCLUDE_PATH",
-    "/api/qiskit/qasm3#qiskit.qasm3.STDGATES_INC_GATES",
-    "/api/qiskit/qiskit.transpiler.StagedPassManager#invalid_stage_regex",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_AER",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_CONSTRAINT",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_CPLEX",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_CVXPY",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_DOCPLEX",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_FIXTURES",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_GRAPHVIZ",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_IBMQ",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_IGNIS",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_IPYTHON",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_IPYWIDGETS",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_JAX",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_JUPYTER",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_MATPLOTLIB",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_NETWORKX",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_NLOPT",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_PDFLATEX",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_PDFTOCAIRO",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_PIL",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_PYDOT",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_PYGMENTS",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_PYLATEX",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_QASM3_IMPORT",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SEABORN",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SKLEARN",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SKQUANT",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SKSNFIT",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SQSNOBFIT",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_TESTTOOLS",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_TOQM",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_TWEEDLEDUM",
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_Z3",
-    "/api/qiskit/qiskit.visualization.timeline_drawer#style-dict-doc",
-    "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-constraints",
-    "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-envelope",
-    "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition",
-    "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize",
-    "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
-    "/api/qiskit/circuit#qiskit.circuit.SessionEquivalenceLibrary",
-    "/api/qiskit/circuit#qiskit.circuit.StandardEquivalenceLibrary",
-  ],
-  "public/api/qiskit/dev/objects.inv": [
-    "/api/qiskit/dev/circuit#qiskit.circuit.CASE_DEFAULT",
-    "/api/qiskit/dev/qiskit.pulse.instructions.Reference#scope_delimiter",
-    "/api/qiskit/dev/qasm2#qiskit.qasm2.LEGACY_CUSTOM_CLASSICAL",
-    "/api/qiskit/dev/qasm2#qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS",
-    "/api/qiskit/dev/qasm2#qiskit.qasm2.LEGACY_INCLUDE_PATH",
-    "/api/qiskit/dev/qasm3#qiskit.qasm3.STDGATES_INC_GATES",
-    "/api/qiskit/dev/qiskit.transpiler.StagedPassManager#invalid_stage_regex",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_AER",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_CONSTRAINT",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_CPLEX",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_CVXPY",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_DOCPLEX",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_FIXTURES",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_GRAPHVIZ",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_IBMQ",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_IGNIS",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_IPYTHON",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_IPYWIDGETS",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_JAX",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_JUPYTER",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_MATPLOTLIB",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_NETWORKX",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_NLOPT",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_PDFLATEX",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_PDFTOCAIRO",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_PIL",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_PYDOT",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_PYGMENTS",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_PYLATEX",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_QASM3_IMPORT",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SEABORN",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SKLEARN",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SKQUANT",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SKSNFIT",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SQSNOBFIT",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_SYMENGINE",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_TESTTOOLS",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_TOQM",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_TWEEDLEDUM",
-    "/api/qiskit/dev/utils#qiskit.utils.optionals.HAS_Z3",
-    "/api/qiskit/dev/qiskit.visualization.timeline_drawer#style-dict-doc",
-    "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-constraints",
-    "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-envelope",
-    "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition",
-    "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize",
-    "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
-    "/api/qiskit/dev/circuit#qiskit.circuit.SessionEquivalenceLibrary",
-    "/api/qiskit/dev/circuit#qiskit.circuit.StandardEquivalenceLibrary",
-  ],
-};
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores =
+  mergeFilesToIgnores(_qiskitCRegexes());
 
-export const FILES_TO_IGNORES: FilesToIgnores = {
-  ...FILES_TO_IGNORES__EXPECTED,
-  ...FILES_TO_IGNORES__SHOULD_FIX,
-};
+export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
+  FILES_TO_IGNORES__EXPECTED,
+  FILES_TO_IGNORES__SHOULD_FIX,
+);

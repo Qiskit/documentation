@@ -15,8 +15,14 @@ import subprocess
 import sys
 from pathlib import Path
 
-PWD = Path(__file__).parent
-IMAGE = "icr.io/qc-open-source-docs-public/preview:latest"
+# Get the latest digest by running `docker pull icr.io/qc-open-source-docs-public/preview:latest`.
+IMAGE_DIGEST = "sha256:ff683e340ea017fa4801634c6dbfaddaa3109d0c937c87f0e7c4dc5a44cfabd4"
+
+# Docker on Windows uses `/` rather than `\`, so we need to call `.as_posix()`:
+# https://medium.com/@kale.miller96/how-to-mount-your-current-working-directory-to-your-docker-container-in-windows-74e47fa104d7
+PWD = Path(__file__).parent.as_posix()
+
+IMAGE = f"icr.io/qc-open-source-docs-public/preview@{IMAGE_DIGEST}"
 
 
 def skip_apis() -> tuple[str]:
@@ -27,17 +33,18 @@ def skip_apis() -> tuple[str]:
     return ("-v", "/home/node/app/docs/api")
 
 def main() -> None:
-    print(
-        "Warning: this may be using an outdated version of the app. Run "
-        + f"`docker pull {IMAGE}` to check for updates.",
-        file=sys.stderr,
-    )
+    if "--pull-only" in sys.argv:
+        subprocess.run(["docker", "pull", IMAGE], check=True)
+        sys.exit(0)
+
     # Keep this aligned with the Dockerfile at the root of the repository.
     cmd = [
         "docker",
         "run",
         "-v",
-        f"{PWD}/docs:/home/node/app/docs",
+        f"{PWD}/docs:/home/node/app/content/docs",
+        "-v",
+        f"{PWD}/learning:/home/node/app/content/learning",
         *skip_apis(),
         "-v",
         f"{PWD}/public:/home/node/app/packages/preview/public",
@@ -55,4 +62,4 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        pass
+        raise SystemExit(1)

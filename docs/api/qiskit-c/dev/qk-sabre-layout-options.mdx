@@ -1,0 +1,52 @@
+---
+title: QkSabreLayoutOptions (dev version)
+description: API reference for QkSabreLayoutOptions in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QkSabreLayoutOptions
+---
+
+# QkSabreLayoutOptions
+
+When running the `qk_transpiler_pass_standalone_sabre_layout` function this type defines the options for running the pass.
+
+## Data Types
+
+### QkSabreLayoutOptions
+
+<Class id="QkSabreLayoutOptions" signature="struct QkSabreLayoutOptions">
+  The options for running `qk_transpiler_pass_standalone_sabre_layout`. This struct is used as an input to control the behavior of the layout and routing algorithms.
+
+  #### size\_t max\_iterations
+
+  <Attribute id="max_iterations">
+    The number of forward-backward iterations in the sabre routing algorithm
+  </Attribute>
+
+  #### size\_t num\_swap\_trials
+
+  <Attribute id="num_swap_trials">
+    The number of trials to run of the sabre routing algorithm for each iteration. When > 1 the trial that routing trial that results in the output with the fewest swap gates will be selected.
+  </Attribute>
+
+  #### size\_t num\_random\_trials
+
+  <Attribute id="num_random_trials">
+    The number of random layout trials to run. The trial that results in the output with the fewest swap gates will be selected.
+  </Attribute>
+
+  #### uint64\_t seed
+
+  <Attribute id="seed">
+    A seed value for the pRNG used internally.
+  </Attribute>
+</Class>
+
+## Functions
+
+### qk\_sabre\_layout\_options\_default
+
+<Function id="qk_sabre_layout_options_default" signature="QkSabreLayoutOptions qk_sabre_layout_options_default(void)">
+  Build a default sabre layout options object. This builds a sabre layout with `max_iterations` set to 4, both `num_swap_trials` and `num_random_trials` set to 20, and the seed selected by a RNG seeded from system entropy.
+</Function>
+

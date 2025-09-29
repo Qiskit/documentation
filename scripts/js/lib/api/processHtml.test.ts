@@ -16,7 +16,7 @@ import {
   addLanguageClassToCodeBlocks,
   loadImages,
   handleSphinxDesignCards,
-  maybeSetModuleMetadata,
+  maybeSetPythonModuleMetadata,
   renameAllH1s,
   removeHtmlExtensionsInRelativeLinks,
   removeDownloadSourceCode,
@@ -24,8 +24,10 @@ import {
   removeColonSpans,
   removeMatplotlibFigCaptions,
   replaceViewcodeLinksWithGitHub,
+  updateRedirectedExternalLinks,
   convertRubricsToHeaders,
   processMembersAndSetMeta,
+  handleFootnotes,
 } from "./processHtml.js";
 import { Metadata } from "./Metadata.js";
 import { CheerioDoc } from "../testUtils.js";
@@ -35,11 +37,11 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/logo.png" alt="Logo"><img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images", false);
+    const images = loadImages(doc.$, doc.$main, "/my-images", false, false);
     expect(images).toEqual([
       {
         fileName: "logo.png",
-        dest: "/my-images/logo.png",
+        dest: "/my-images/logo.avif",
       },
       {
         fileName: "view-page-source-icon.svg",
@@ -47,15 +49,15 @@ test.describe("loadImages()", () => {
       },
     ]);
     doc.expectHtml(
-      `<img src="/my-images/logo.png" alt="Logo"><img src="/my-images/view-page-source-icon.svg">`,
+      `<img src="/my-images/logo.avif" alt="Logo"><img src="/my-images/view-page-source-icon.svg">`,
     );
   });
 
-  test("release note", () => {
+  test("release note - single release note file", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true);
+    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, false);
     expect(images).toEqual([
       {
         fileName: "view-page-source-icon.svg",
@@ -63,6 +65,20 @@ test.describe("loadImages()", () => {
       },
     ]);
     doc.expectHtml(`<img src="/my-images/view-page-source-icon.svg">`);
+  });
+
+  test("release note - separate release note files", () => {
+    const doc = CheerioDoc.load(
+      `<img src="../_static/images/view-page-source-icon.svg">`,
+    );
+    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, true);
+    expect(images).toEqual([
+      {
+        fileName: "view-page-source-icon.svg",
+        dest: "/my-images/0.45/view-page-source-icon.svg",
+      },
+    ]);
+    doc.expectHtml(`<img src="/my-images/0.45/view-page-source-icon.svg">`);
   });
 });
 
@@ -269,7 +285,7 @@ test("addLanguageClassToCodeBlocks()", () => {
   // as with this example. Also this name is misleading. Really what we are doing here is dealing with RST's `.. parsed-literal ::`
   // (https://docutils.sourceforge.io/docs/ref/rst/directives.html#parsed-literal-block), which we tend to use to put code literals
   // along with gate text representations like the above.
-  addLanguageClassToCodeBlocks(doc1.$, doc1.$main);
+  addLanguageClassToCodeBlocks(doc1.$, doc1.$main, { isCApi: false });
   doc1.expectHtml(`<p><strong>Circuit symbol:</strong></p>
     <div class="highlight-default notranslate"><div class="highlight"><pre><code class="language-python"><span></span>     ┌──────────┐
     q_0: ┤ U(ϴ,φ,λ) ├
@@ -286,7 +302,7 @@ test("addLanguageClassToCodeBlocks()", () => {
       </pre>
       </div>
     </div>`);
-  addLanguageClassToCodeBlocks(doc2.$, doc2.$main);
+  addLanguageClassToCodeBlocks(doc2.$, doc2.$main, { isCApi: false });
   doc2.expectHtml(`<div class="highlight-default notranslate">
       <div class="highlight">
       <pre><code class="language-python"><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_runtime.options</span> <span class="kn">import</span> <span class="n">Options</span>
@@ -296,6 +312,33 @@ test("addLanguageClassToCodeBlocks()", () => {
       </code></pre>
       </div>
     </div>`);
+});
+
+test("updateRedirectedExternalLinks()", () => {
+  const redirects = {
+    "https://ibm.com/old": "https://ibm.com/new",
+    "https://basename.example-website.com/old#anchor?and=query":
+      "https://newbasename.example.com/new#newanchor?query=new",
+  };
+  const doc = CheerioDoc.load(
+    `<a href="https://ibm.com/old">https://ibm.com/old</a>
+    <a href="https://ibm.com/old">https://ibm.com/old (v3)</a>
+    <a href="https://ibm.com/old-but-not-redirected">https://ibm.com/old-but-not-redirected</a>
+    <a href="https://ibm.com/old-but-not-redirected">https://ibm.com/old-but-not-redirected (v3)</a>
+    <a href="https://ibm.com/old-but-not-redirected#anchor?and=query">https://ibm.com/old-but-not-redirected#anchor?and=query</a>
+    <a href="https://basename.example-website.com/old#anchor?and=query"></a>
+    <p>https://ibm.com/old</p>`,
+  );
+  updateRedirectedExternalLinks(doc.$, doc.$main, redirects);
+  doc.expectHtml(
+    `<a href="https://ibm.com/new">https://ibm.com/new</a>
+    <a href="https://ibm.com/new">https://ibm.com/new (v3)</a>
+    <a href="https://ibm.com/old-but-not-redirected">https://ibm.com/old-but-not-redirected</a>
+    <a href="https://ibm.com/old-but-not-redirected">https://ibm.com/old-but-not-redirected (v3)</a>
+    <a href="https://ibm.com/old-but-not-redirected#anchor?and=query">https://ibm.com/old-but-not-redirected#anchor?and=query</a>
+    <a href="https://newbasename.example.com/new#newanchor?query=new"></a>
+    <p>https://ibm.com/old</p>`,
+  );
 });
 
 test("replaceSourceLinksWithGitHub()", () => {
@@ -324,7 +367,7 @@ test("convertRubricsToHeaders()", () => {
     <p class="rubric">References</p>
     <p class="rubric">Reference</p>
     <p class="rubric">Simple examples</p>
-    <p class="rubric">Example code</p>
+    <p class="rubric" id="example-code">Example code</p>
     <p class="rubric">Attributes</p>
     <p class="rubric">Methods</p>`);
   convertRubricsToHeaders(doc.$, doc.$main);
@@ -333,25 +376,43 @@ test("convertRubricsToHeaders()", () => {
     <strong>References</strong>
     <strong>Reference</strong>
     <strong>Simple examples</strong>
-    <strong>Example code</strong>
+    <span id="example-code" class="target"></span><strong>Example code</strong>
     <h2>Attributes</h2>
     <h2>Methods</h2>`);
 });
 
-test.describe("maybeSetModuleMetadata()", () => {
+test("handleFootnotes()", () => {
+  const doc = CheerioDoc.load(`
+    <p>All values use <a class="footnote-reference brackets" href="#f1" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> (big endian) for compatibility.</p>
+    <aside class="footnote-list brackets">
+    <aside class="footnote brackets" id="f1" role="doc-footnote">
+    <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span></aside></aside>`);
+  handleFootnotes(doc.$, doc.$main);
+  doc.expectHtml(`
+    <p>All values use <span id="id2" class="target"></span><a class="footnote-reference brackets" href="#f1" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> (big endian) for compatibility.</p>
+    <aside class="footnote-list brackets">
+    <span id="f1" class="target"></span><aside class="footnote brackets" id="f1" role="doc-footnote">
+    <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span></aside></aside>`);
+});
+
+test.describe("maybeSetPythonModuleMetadata()", () => {
   test("not a module", () => {
     const html = `<h1>Hello</h1>`;
     const meta: Metadata = {};
     const doc = CheerioDoc.load(html);
-    maybeSetModuleMetadata(doc.$, doc.$main, meta);
+    maybeSetPythonModuleMetadata(doc.$, doc.$main, meta);
     doc.expectHtml(html);
     expect(meta).toEqual({});
   });
 
-  const checkModuleFound = (html: string, name: string): void => {
+  const checkModuleFound = (
+    html: string,
+    name: string,
+    isCApi: boolean = false,
+  ): void => {
     const meta: Metadata = {};
     const doc = CheerioDoc.load(html);
-    maybeSetModuleMetadata(doc.$, doc.$main, meta);
+    maybeSetPythonModuleMetadata(doc.$, doc.$main, meta);
     doc.expectHtml(html);
     expect(meta).toEqual({
       apiType: "module",
@@ -398,7 +459,7 @@ test.describe("processMembersAndSetMeta()", () => {
 </dd>`;
     const doc = CheerioDoc.load(html);
     const meta: Metadata = {};
-    await processMembersAndSetMeta(doc.$, doc.$main, meta);
+    await processMembersAndSetMeta(doc.$, doc.$main, meta, { isCApi: false });
     doc.expectHtml(`      <h1>Circuit Converters</h1>
 <h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)¶" modifiers="" extrasignatures="[]">
   
@@ -446,7 +507,7 @@ backends may not have this attribute.</p>
 `;
     const doc = CheerioDoc.load(html);
     const meta: Metadata = {};
-    await processMembersAndSetMeta(doc.$, doc.$main, meta);
+    await processMembersAndSetMeta(doc.$, doc.$main, meta, { isCApi: false });
     doc.expectHtml(`<h1>least_busy</h1>
 <div><function id="qiskit_ibm_provider.least_busy" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)¶" modifiers="" extrasignatures="[]">
   
@@ -506,7 +567,7 @@ particular error, which subclasses both <a class="reference internal" href="#qis
 `;
     const doc = CheerioDoc.load(html);
     const meta: Metadata = {};
-    await processMembersAndSetMeta(doc.$, doc.$main, meta);
+    await processMembersAndSetMeta(doc.$, doc.$main, meta, { isCApi: false });
     doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
 <h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
 <p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
@@ -535,6 +596,86 @@ particular error, which subclasses both <a class="reference internal" href="#qis
     expect(meta).toEqual({
       apiName: "qiskit.exceptions.QiskitError",
       apiType: "exception",
+    });
+  });
+
+  test("data", async () => {
+    const html = `
+<dl class="py data">
+<dt class="sig sig-object py" id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS">
+<span class="sig-prename descclassname"><span class="pre">qiskit.qasm2.</span></span><span class="sig-name descname"><span class="pre">LEGACY_CUSTOM_INSTRUCTIONS</span></span><a class="headerlink" href="#qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tuple containing the extra <cite>custom_instructions</cite> that Qiskit’s legacy built-in converters used
+if <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> is included, and there is any definition of a <code class="docutils literal notranslate"><span class="pre">delay</span></code> instruction.  The gates
+in the paper version of <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> and <code class="docutils literal notranslate"><span class="pre">delay</span></code> all require a compatible declaration
+statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all
+marked as builtins since they are not actually present in any include file this parser sees.</p>
+</dd></dl>
+`;
+    const doc = CheerioDoc.load(html);
+    const meta: Metadata = { apiType: "module", apiName: "my_module" };
+    await processMembersAndSetMeta(doc.$, doc.$main, meta, { isCApi: false });
+    doc.expectHtml(`
+<h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" attributetypehint="" attributevalue="" isdedicatedpage="undefined" github="undefined" signature="" modifiers="" extrasignatures="[]">
+  
+<div><p>A tuple containing the extra <cite>custom_instructions</cite> that Qiskit’s legacy built-in converters used
+if <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> is included, and there is any definition of a <code class="docutils literal notranslate"><span class="pre">delay</span></code> instruction.  The gates
+in the paper version of <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> and <code class="docutils literal notranslate"><span class="pre">delay</span></code> all require a compatible declaration
+statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all
+marked as builtins since they are not actually present in any include file this parser sees.</p>
+</div>
+</attribute></div>
+`);
+    expect(meta).toEqual({
+      apiName: "my_module",
+      apiType: "module",
+    });
+  });
+
+  test("C API function ID", async () => {
+    const html = `<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415qk_obs_identity8uint32_t">
+<span id="_CPPv315qk_obs_identity8uint32_t"></span><span id="_CPPv215qk_obs_identity8uint32_t"></span><span id="qk_obs_identity__uint32_t"></span><span class="target" id="group__QkSparseObservable_1ga535fe356c00797365924811926b0ce37"></span><span class="n"><span class="pre">QkSparseObservable</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">qk_obs_identity</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">num_qubits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415qk_obs_identity8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Construct the identity observable.</p>
+<section id="group__QkSparseObservable_1autotoc_md4">
+<h2>Example<a class="headerlink" href="#group__QkSparseObservable_1autotoc_md4" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate" id="group__QkSparseObservable_1autotoc_md4"><div class="highlight"><pre><span></span><span class="n">QkSparseObservable</span> <span class="o">*</span><span class="n">identity</span> <span class="o">=</span> <span class="n">qk_obs_identity</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_qubits</strong> – The number of qubits the observable is defined on.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A pointer to the created observable.</p>
+</dd>
+</dl>
+</dd></dl>`;
+    const doc = CheerioDoc.load(html);
+    const meta: Metadata = {};
+    await processMembersAndSetMeta(doc.$, doc.$main, meta, { isCApi: true });
+    doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" attributetypehint=\"undefined\" attributevalue=\"undefined\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)¶\" modifiers=\"\" extrasignatures=\"[]\">
+  
+<div><p>Construct the identity observable.</p>
+<section id=\"group__QkSparseObservable_1autotoc_md4\">
+<h4>Example<a class=\"headerlink\" href=\"#group__QkSparseObservable_1autotoc_md4\" title=\"Permalink to this heading\">¶</a></h4>
+<div class=\"highlight-default notranslate\" id=\"group__QkSparseObservable_1autotoc_md4\"><div class=\"highlight\"><pre><span></span><span class=\"n\">QkSparseObservable</span> <span class=\"o\">*</span><span class=\"n\">identity</span> <span class=\"o\">=</span> <span class=\"n\">qk_obs_identity</span><span class=\"p\">(</span><span class=\"mi\">100</span><span class=\"p\">);</span>
+</pre></div>
+</div>
+</section>
+<dl class=\"field-list simple\">
+<dt class=\"field-odd\">Parameters<span class=\"colon\">:</span></dt>
+<dd class=\"field-odd\"><p><strong>num_qubits</strong> – The number of qubits the observable is defined on.</p>
+</dd>
+<dt class=\"field-even\">Returns<span class=\"colon\">:</span></dt>
+<dd class=\"field-even\"><p>A pointer to the created observable.</p>
+</dd>
+</dl>
+</div>
+</function></div>`);
+    expect(meta).toEqual({
+      apiType: "function",
+      apiName: "qk_obs_identity",
     });
   });
 });

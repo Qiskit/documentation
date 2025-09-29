@@ -1,6 +1,6 @@
 ---
-title: SolovayKitaevDecomposition
-description: API reference for qiskit.synthesis.SolovayKitaevDecomposition
+title: SolovayKitaevDecomposition (v0.46)
+description: API reference for qiskit.synthesis.SolovayKitaevDecomposition in qiskit v0.46
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
@@ -24,29 +24,29 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
   ### find\_basic\_approximation
 
   <Function id="qiskit.synthesis.SolovayKitaevDecomposition.find_basic_approximation" signature="find_basic_approximation(sequence)">
-    Finds gate in `self._basic_approximations` that best represents `sequence`.
+    Find `GateSequence` in `self._basic_approximations` that approximates `sequence`.
 
     **Parameters**
 
-    **sequence** (*GateSequence*) – The gate to find the approximation to.
+    **sequence** (*GateSequence*) – `GateSequence` to find the approximation to.
 
     **Returns**
 
-    Gate in basic approximations that is closest to `sequence`.
+    `GateSequence` in `self._basic_approximations` that approximates `sequence`.
 
     **Return type**
 
-    [*Gate*](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+    *GateSequence*
   </Function>
 
   ### load\_basic\_approximations
 
-  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.load_basic_approximations" signature="load_basic_approximations(data)">
+  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.load_basic_approximations" signature="load_basic_approximations(data)" modifiers="static">
     Load basic approximations.
 
     **Parameters**
 
-    **data** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – If a string, specifies the path to the file from where to load the data. If a dictionary, directly specifies the decompositions as `{gates: matrix}`. There `gates` are the names of the gates producing the SO(3) matrix `matrix`, e.g. `{"h t": np.array([[0, 0.7071, -0.7071], [0, -0.7071, -0.7071], [-1, 0, 0]]}`.
+    **data** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – If a string, specifies the path to the file from where to load the data. If a dictionary, directly specifies the decompositions as `{gates: matrix}` or `{gates: (matrix, global_phase)}`. There, `gates` are the names of the gates producing the SO(3) matrix `matrix`, e.g. `{"h t": np.array([[0, 0.7071, -0.7071], [0, -0.7071, -0.7071], [-1, 0, 0]]}` and the `global_phase` can be given to account for a global phase difference between the U(2) matrix of the quantum gates and the stored SO(3) matrix. If not given, the `global_phase` will be assumed to be 0.
 
     **Returns**
 

@@ -1,0 +1,454 @@
+---
+title: FakeBrooklynV2 (v0.30)
+description: API reference for qiskit_ibm_runtime.fake_provider.FakeBrooklynV2 in qiskit-ibm-runtime v0.30
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.fake_provider.FakeBrooklynV2
+---
+
+# FakeBrooklynV2
+
+<Class id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/backends/brooklyn/fake_brooklyn.py#L21-L28" signature="FakeBrooklynV2" modifiers="class">
+  A fake Brooklyn V2 backend.
+
+  FakeBackendV2 initializer.
+
+  ## Attributes
+
+  ### backend\_name
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.backend_name" attributeValue="'fake_brooklyn'" />
+
+  ### conf\_filename
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.conf_filename" attributeValue="'conf_brooklyn.json'" />
+
+  ### coupling\_map
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.coupling_map">
+    Return the [`CouplingMap`](/docs/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.2)") object
+  </Attribute>
+
+  ### defs\_filename
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.defs_filename" attributeValue="'defs_brooklyn.json'" />
+
+  ### dirname
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.dirname" attributeValue="'/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/brooklyn'" />
+
+  ### dt
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.dt">
+    Return the system time resolution of input signals
+
+    This is required to be implemented if the backend supports Pulse scheduling.
+
+    **Return type**
+
+    `Optional`\[`float`]
+
+    **Returns**
+
+    The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
+  </Attribute>
+
+  ### dtm
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.dtm">
+    Return the system time resolution of output signals
+
+    **Return type**
+
+    `float`
+
+    **Returns**
+
+    The output signal timestep in seconds.
+  </Attribute>
+
+  ### instruction\_durations
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.instruction_durations">
+    Return the [`InstructionDurations`](/docs/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.2)") object.
+  </Attribute>
+
+  ### instruction\_schedule\_map
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.instruction_schedule_map">
+    Return the [InstructionScheduleMap](/docs/api/qiskit/1.4/qiskit.pulse.InstructionScheduleMap "(in Qiskit v1.2)") for the instructions defined in this backend’s target.
+  </Attribute>
+
+  ### instructions
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.instructions">
+    A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
+
+    **Return type**
+
+    `List`\[`Tuple`\[[`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)"), `Tuple`\[`int`]]]
+  </Attribute>
+
+  ### max\_circuits
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.max_circuits">
+    **Return type**
+
+    `None`
+  </Attribute>
+
+  ### meas\_map
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.meas_map">
+    Return the grouping of measurements which are multiplexed This is required to be implemented if the backend supports Pulse scheduling.
+
+    **Return type**
+
+    `List`\[`List`\[`int`]]
+
+    **Returns**
+
+    The grouping of measurements which are multiplexed
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.num_qubits">
+    Return the number of qubits the backend has.
+
+    **Return type**
+
+    `int`
+  </Attribute>
+
+  ### operation\_names
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.operation_names">
+    A list of instruction names that the backend supports.
+
+    **Return type**
+
+    `List`\[`str`]
+  </Attribute>
+
+  ### operations
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.operations">
+    A list of [`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)") instances that the backend supports.
+
+    **Return type**
+
+    `List`\[[`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)")]
+  </Attribute>
+
+  ### options
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.options">
+    Return the options for the backend
+
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.run "qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.run") method.
+  </Attribute>
+
+  ### props\_filename
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.props_filename" attributeValue="'props_brooklyn.json'" />
+
+  ### provider
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.provider">
+    Return the backend Provider.
+
+    **Returns**
+
+    the Provider responsible for the backend.
+
+    **Return type**
+
+    Provider
+  </Attribute>
+
+  ### target
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.target">
+    A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.2)") object for the backend.
+
+    **Return type**
+
+    Target
+  </Attribute>
+
+  ### version
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.version" attributeValue="2" />
+
+  ### name
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.name">
+    Name of the backend.
+  </Attribute>
+
+  ### description
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.description">
+    Optional human-readable description.
+  </Attribute>
+
+  ### online\_date
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.online_date">
+    Date that the backend came online.
+  </Attribute>
+
+  ### backend\_version
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.backend_version">
+    Version of the backend being provided. This is not the same as `BackendV2.version`, which is the version of the `Backend` abstract interface.
+  </Attribute>
+
+  ## Methods
+
+  ### acquire\_channel
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.acquire_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L377-L390" signature="acquire_channel(qubit)">
+    Return the acquisition channel for the given qubit.
+
+    This is required to be implemented if the backend supports Pulse scheduling.
+
+    **Returns**
+
+    The Qubit measurement acquisition line.
+
+    **Return type**
+
+    AcquireChannel
+  </Function>
+
+  ### check\_faulty
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L232-L264" signature="check_faulty(circuit)">
+    Check if the input circuit uses faulty qubits or edges.
+
+    **Parameters**
+
+    **circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – Circuit to check.
+
+    **Raises**
+
+    **ValueError** – If an instruction operating on a faulty qubit or edge is found.
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### configuration
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L228-L230" signature="configuration()">
+    Return the backend configuration.
+
+    **Return type**
+
+    `Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]
+  </Function>
+
+  ### control\_channel
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.control_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L392-L412" signature="control_channel(qubits)">
+    Return the secondary drive channel for the given qubit
+
+    This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
+
+    This is required to be implemented if the backend supports Pulse scheduling.
+
+    **Parameters**
+
+    **qubits** (`Iterable`\[`int`]) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+
+    **Returns**
+
+    The multi qubit control line.
+
+    **Return type**
+
+    List\[ControlChannel]
+  </Function>
+
+  ### defaults
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.defaults" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L212-L226" signature="defaults(refresh=False)">
+    Return the pulse defaults for the backend
+
+    **Parameters**
+
+    *   **refresh** (`bool`) – If `True`, re-retrieve the backend defaults from the
+    *   **file.** (*local*)
+
+    **Return type**
+
+    `PulseDefaults`
+
+    **Returns**
+
+    The backend pulse defaults or `None` if the backend does not support pulse.
+  </Function>
+
+  ### drive\_channel
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.drive_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L347-L360" signature="drive_channel(qubit)">
+    Return the drive channel for the given qubit.
+
+    This is required to be implemented if the backend supports Pulse scheduling.
+
+    **Returns**
+
+    The Qubit drive channel
+
+    **Return type**
+
+    DriveChannel
+  </Function>
+
+  ### measure\_channel
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.measure_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L362-L375" signature="measure_channel(qubit)">
+    Return the measure stimulus channel for the given qubit.
+
+    This is required to be implemented if the backend supports Pulse scheduling.
+
+    **Returns**
+
+    The Qubit measurement stimulus line
+
+    **Return type**
+
+    MeasureChannel
+  </Function>
+
+  ### properties
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L198-L210" signature="properties(refresh=False)">
+    Return the backend properties
+
+    **Parameters**
+
+    *   **refresh** (`bool`) – If `True`, re-retrieve the backend properties
+    *   **file.** (*from the local*)
+
+    **Return type**
+
+    `BackendProperties`
+
+    **Returns**
+
+    The backend properties.
+  </Function>
+
+  ### qubit\_properties
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.qubit_properties" signature="qubit_properties(qubit)">
+    Return QubitProperties for a given qubit.
+
+    If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
+
+    **Parameters**
+
+    **qubit** (`Union`\[`int`, `List`\[`int`]]) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
+
+    **Return type**
+
+    `Union`\[[`QubitProperties`](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.2)"), `List`\[[`QubitProperties`](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.2)")]]
+
+    **Returns**
+
+    The `QubitProperties` object for the specified qubit. If a list of qubits is provided a list will be returned. If properties are missing for a qubit this can be `None`.
+
+    **Raises**
+
+    **NotImplementedError** – if the backend doesn’t support querying the qubit properties
+  </Function>
+
+  ### refresh
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L563-L644" signature="refresh(service)">
+    Update the data files from its real counterpart
+
+    This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation: \* ../fake\_provider/backends/\{backend\_name}/conf\_\{backend\_name}.json \* ../fake\_provider/backends/\{backend\_name}/defs\_\{backend\_name}.json \* ../fake\_provider/backends/\{backend\_name}/props\_\{backend\_name}.json
+
+    **The new data files will persist through sessions so the files will stay updated unless they**
+
+    are manually reverted locally or when qiskit-ibm-runtime is upgraded/reinstalled.
+
+    **Parameters**
+
+    **service** ([`QiskitRuntimeService`](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – A `QiskitRuntimeService` instance
+
+    **Raises**
+
+    *   **ValueError** – if the provided service is a non-QiskitRuntimeService instance.
+    *   **Exception** – If the real target doesn’t exist or can’t be accessed
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L414-L475" signature="run(run_input, **options)">
+    Run on the fake backend using a simulator.
+
+    This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicSimulator or Aer simulator and returns a [`Job`](/docs/api/qiskit/qiskit.providers.Job "(in Qiskit v1.2)") object.
+
+    If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicSimulator without noise.
+
+    Currently noisy simulation of a pulse job is not supported yet in FakeBackendV2.
+
+    **Parameters**
+
+    *   **run\_input** (*QuantumCircuit or Schedule or ScheduleBlock or list*) – An individual or a list of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), [ScheduleBlock](/docs/api/qiskit/1.4/qiskit.pulse.ScheduleBlock "(in Qiskit v1.2)"), or [Schedule](/docs/api/qiskit/1.4/qiskit.pulse.Schedule "(in Qiskit v1.2)") objects to run on the backend.
+    *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
+
+    **Returns**
+
+    The job object for the run
+
+    **Return type**
+
+    Job
+
+    **Raises**
+
+    **QiskitError** – If a pulse job is supplied and qiskit-aer is not installed.
+  </Function>
+
+  ### set\_options
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
+
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+
+    **Parameters**
+
+    **fields** – The fields to update the options
+
+    **Raises**
+
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
+
+  ### status
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeBrooklynV2.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.30/qiskit_ibm_runtime/fake_provider/fake_backend.py#L180-L196" signature="status()">
+    Return the backend status.
+
+    **Return type**
+
+    `BackendStatus`
+
+    **Returns**
+
+    The status of the backend.
+  </Function>
+</Class>
+

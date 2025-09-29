@@ -5,7 +5,7 @@ description: Qiskit patterns are the broad steps employed when running a domain-
 
 # Introduction to Qiskit patterns
 
-A Qiskit pattern is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum&trade; researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit patterns allow domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern. That pattern can then be executed locally, through cloud services, or deployed with Quantum Serverless.
+A Qiskit pattern is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum&reg; researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit patterns allow domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern. That pattern can then be executed locally, through cloud services, or deployed with Qiskit Serverless.
 
 
 The four steps of a Qiskit pattern are as follows:
@@ -14,14 +14,14 @@ The four steps of a Qiskit pattern are as follows:
 - [**Execute** on target hardware](./execute-on-hardware)
 - [**Post-process** results](./post-process-results)
 
-![All Qiskit pattern steps are shown (Map problem, Optimize for hardware, Execute on hardware, and Post-process results). All steps except 'Execute on hardware' use the Qiskit SDK. Optimizing for hardware additionally uses the Qiskit Transpiler Service.  Executing on hardware uses only the Qiskit Runtime Service.](/images/qiskit-patterns/patterns.svg)
+![All Qiskit pattern steps are shown (Map the problem, Optimize for hardware, Execute on hardware, and Post-process results). All steps except 'Execute on hardware' use the Qiskit SDK. Optimizing for hardware additionally uses the Qiskit Transpiler Service.  Executing on hardware uses only the Qiskit Runtime Service.](/docs/images/qiskit-patterns/patterns.svg)
 
 Each step is detailed in the sections below.
 
-## Map problem to quantum circuits and operators
+## Map the problem to quantum circuits and operators
 
 
-This step describes how a user starts with a classical problem and figures out how to map it to a quantum computer. For example, in applications such as chemistry and quantum simulation, this step generally involves constructing a quantum circuit representing the Hamiltonian you are attempting to solve. During this step, for certain problems, it might also be desirable to specify the mapping of the problem onto qubits in the heavy-hex (or gross) lattice of IBM;reg; hardware from the outset if the structure of the problem lends itself to optimization earlier. It is also worth considering at this point what the outcome of the particular algorithm will be in preparation for the later execute step - for example, if the desired outcome involves inferring correlation functions using Hadamard tests, you might prepare to use `Sampler`, whereas specifying observables would use the `Estimator` and could provide many error mitigation options.
+This step describes how a user starts with a classical problem and figures out how to map it to a quantum computer. For example, in applications such as chemistry and quantum simulation, this step generally involves constructing a quantum circuit representing the Hamiltonian you are attempting to solve. During this step, for certain problems, it might also be desirable to specify the mapping of the problem onto qubits in the heavy-hex (or gross) lattice of IBM&reg; hardware from the outset if the structure of the problem lends itself to optimization earlier. It is also worth considering at this point what the outcome of the particular algorithm will be in preparation for the later execute step - for example, if the desired outcome involves inferring correlation functions using Hadamard tests, you might prepare to use Sampler, whereas specifying observables would use the Estimator and could provide many error mitigation options.
 
 The output of this step is normally a collection of circuits or quantum operators that can be optimized for hardware in the next step.
 
@@ -53,10 +53,36 @@ This final step involves stitching the outputs from the prior step back together
 
 As the field moves from bespoke circuit construction to utility-scale workflows, the flexibility and ease with which Qiskit patterns allow users to compose the different steps of the pattern opens quantum computing to a wide variety of applications and techniques for easy use by quantum computational scientists.
 
+## Guides demonstrating Qiskit patterns in action
+
+### Guides focused on one or more pattern steps
+
+* [Map the problem to quantum circuits and operators](/docs/guides/map-problem-to-circuits)
+* [Optimize for target hardware](/docs/guides/optimize-for-hardware)
+* [Execute on target hardware](/docs/guides/execute-on-hardware)
+* [Post-process results](/docs/guides/post-process-results)
+
+### Guides focused on the full patterns workflow
+
+- [Qiskit Serverless](/docs/guides/serverless)
+  * [Overview of Qiskit Serverless](./serverless)
+  * [Write your first Qiskit Serverless program](./serverless-first-program)
+  * [Run your first Qiskit Serverless workload remotely](./serverless-run-first-workload)
+  * [Manage Qiskit Serverless compute and data resources](./serverless-manage-resources)
+  * [Port code to Qiskit Serverless](./serverless-port-code)
+
+- [Qiskit Functions](/docs/guides/functions)
+  * [Kipu Quantum Iskay Quantum Optimizer](/docs/guides/kipu-optimization)
+  * [Multiverse Computing Singularity](/docs/guides/multiverse-computing-singularity)
+  * [Q-CTRL Optimization Solver](/docs/guides/q-ctrl-optimization-solver)
+  * [Quantum Portfolio Optimizer: A Qiskit Function by Global Data Quantum](/docs/guides/global-data-quantum-optimizer)
+  * [QUICK-PDE: A Qiskit Function by ColibriTD](/docs/guides/colibritd-pde)
+  * [Qunova Computing HI-VQE Chemistry](/docs/guides/qunova-chemistry)
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-  -  Explore each step in a Qiskit pattern in more detail, starting with [Map problem to quantum circuits and operators](./map-problem-to-circuits).
-  -  Run a full example of a Qiskit pattern in the [CHSH Inequality tutorial](https://learning.quantum.ibm.com/tutorial/chsh-inequality).
+  -  Explore each step in a Qiskit pattern in more detail, starting with [Map the problem to quantum circuits and operators](./map-problem-to-circuits).
+  -  Run a full example of a Qiskit pattern in the [CHSH inequality tutorial](/docs/tutorials/chsh-inequality).
 </Admonition>
 

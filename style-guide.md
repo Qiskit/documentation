@@ -1,10 +1,16 @@
-# Technical documentation writing guidelines
+# Writing for IBM Quantum: Common IBM Style "gotchas"
 
-Technical documentation avoids conversational language because it must be translatable, accessible, usable by AI, and understood by a variety of audiences. Effective technical writing is direct, bland, and bossy! (And that's ok!) Feel free to ask us (@abbycross or @beckykd) about these guidelines or any other style questions!
+Refer to:
 
-In addition to “normal” grammar rules, IBM Quantum technical documentation follows [IBM style guidelines](https://ibmdocs-test.dcs.ibm.com/docs/en/ibm-style), which include rules for ensuring clear translation, correct [terminology usage](https://w3.terminology.g11n.ibm.com/standards/terminology/), accessibility, and general guidelines that helps all IBM documentation have the same look and feel. (Note that this is specific to technical documentation, not marketing material or blogs, which have their own voice, tone, and style guides.) An added bonus when you follow these guidelines is that the text is easier for AI to "understand" and use. There are specific [Writing guidelines for AI](https://w3.ibm.com/w3publisher/ai-content-workstream/guidelines), but most of those guidelines echo the same general tenants of brevity and clarity that we encourage.
+- The [README](./README.md) for how to set up the project and run quality checks.
+- Our [MDX guide](./mdx-guide.md) for how to write documentation and use our variant of markdown.
 
-The following list highlights grammatical and stylistic situations we frequently encounter while proofreading documentation.
+The following IBM Style guidelines highlight grammatical and stylistic situations that frequently appear in IBM Quantum content.
+
+> [!TIP]
+> If you are writing a piece of technical documentation - for example, authoring a guide for the IBM Quantum Platform docs - note that technical writing avoids conversational language because it must be translatable, accessible, usable by AI, and understood by a variety of audiences. Effective technical writing is direct, bland, and bossy! (And that's ok!) Feel free to contact @abbycross or @beckykd about these guidelines or any other style questions.
+
+IBM Quantum content follows IBM style guidelines, which include rules for ensuring clear translation, correct terminology usage, accessibility, and general guidelines that helps all IBM content have the same look and feel. An added bonus when you follow these guidelines is that the text is easier for AI to "understand" and use.
 
 ## Titles and headers
 
@@ -43,3 +49,23 @@ The following list highlights grammatical and stylistic situations we frequently
 
 - "and/or" is very hard to translate, so do not use
 - Don't rely only on color to describe something. Instead, use at least one other way (thickness, pattern, and so forth) to distinguish an item
+
+## Proper marking and attribution
+
+**All information needs to identify, mark, and attribute IBM and applicable third-party trademarks.** We do this the first time an IBM trademark appears on each page. See the [Copyright and trademark information](https://www.ibm.com/legal/copyright-trademark) page for more details.
+
+Some companies require a special attribution notice. View a list of the companies to include in a special attribution notice at the [Special attributions](https://www.ibm.com/legal/copyright-trademark#special) section of the IBM Legal site.
+
+Refer to [the MDX guide](./mdx-guide.md#trademark-symbols) for how to add the symbols to markdown.
+
+<details>
+<summary>A (non-exhaustive) list of trademarked names found in our docs:</summary>
+
+- IBM&reg;
+- IBM Cloud&reg;
+- IBM Quantum&reg;
+</details>
+
+**Note**: Although Qiskit is a registered trademark of IBM, we do not mark it as such.
+
+See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.

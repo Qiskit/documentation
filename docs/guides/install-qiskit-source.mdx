@@ -3,30 +3,32 @@ title: Install the Qiskit SDK from source
 description: Learn how to install the development version of Qiskit.
 
 ---
+{/* cspell:ignore rustup */}
+
 # Install the Qiskit SDK and Qiskit Runtime from source
 
-Installing the Qiskit SDK from source allows you to access the current development version, instead of using the version in the Python Package Index (PyPI) repository. This lets you inspect and extend the latest version of the Qiskit code more efficiently. 
+Installing the Qiskit SDK from source allows you to access the current development version, instead of using the version in the Python Package Index (PyPI) repository. This lets you inspect and extend the latest version of the Qiskit code more efficiently.
 
 ## Create and activate a new virtual environment
 
-1. Create a minimal environment with only Python installed in it.
+1. Navigate to your project directory and create a minimal environment with only Python installed in it.
 
         <OperatingSystemTabs>
           <TabItem value="mac" label="macOS">
             ```shell
-            python3 -m venv /path/to/virtual/environment
+            python3 -m venv .venv
             ```
           </TabItem>
 
           <TabItem value="linux" label="Linux">
             ```shell
-            python3 -m venv /path/to/virtual/environment
+            python3 -m venv .venv
             ```
           </TabItem>
 
           <TabItem value="win" label="Windows">
             ```text
-            python3 -m venv c:\path\to\virtual\environment
+            python -m venv .venv
             ```
           </TabItem>
          </OperatingSystemTabs>
@@ -36,26 +38,26 @@ Installing the Qiskit SDK from source allows you to access the current developme
          <OperatingSystemTabs>
            <TabItem value="mac" label="macOS">
              ```shell
-             source /path/to/virtual/environment/bin/activate
+             source .venv/bin/activate
              ```
            </TabItem>
 
            <TabItem value="linux" label="Linux">
              ```shell
-             source /path/to/virtual/environment/bin/activate
+             source .venv/bin/activate
              ```
            </TabItem>
 
            <TabItem value="win" label="Windows">
              ```text
-             c:\path\to\virtual\environment\Scripts\Activate.ps1
+             .venv\Scripts\Activate.ps1
              ```
            </TabItem>
          </OperatingSystemTabs>
 
 ## Install the Rust compiler
 
-A Rust compiler must be installed on your system to compile Qiskit. To install the Rust compiler, use the cross-platform Rust installer [rustup](https://rustup.rs/) or [another install method.](https://forge.rust-lang.org/infra/other-installation-methods.html) 
+A Rust compiler must be installed on your system to compile Qiskit. To install the Rust compiler, use the cross-platform Rust installer [`rustup`](https://rustup.rs/) or [another install method.](https://forge.rust-lang.org/infra/other-installation-methods.html)
 
 ## Install Qiskit
 
@@ -67,7 +69,7 @@ Follow these steps to install Qiskit:
 git clone https://github.com/Qiskit/qiskit.git
 ```
 
-2. Change to the `qiskit` directory. 
+2. Change to the `qiskit` directory.
 
 ```bash
 cd qiskit
@@ -79,9 +81,9 @@ cd qiskit
 pip install -r requirements-dev.txt
 ```
 
-4. Install `qiskit`. 
+4. Install `qiskit`.
 
-  * **Standard install**: 
+  * **Standard install**:
 
     ```bash
     pip install .
@@ -113,21 +115,15 @@ Follow these steps if you want to install Qiskit Runtime:
 git clone https://github.com/Qiskit/qiskit-ibm-runtime.git
 ```
 
-2. Change to the `qiskit_ibm_runtime` directory. 
+2. Change to the `qiskit-ibm-runtime` directory.
 
 ```bash
-cd qiskit_ibm_runtime
+cd qiskit-ibm-runtime
 ```
 
-3. (Optional) If you want to run tests or linting checks, install the developer requirements. We recommend using a [virtual environment](https://docs.python.org/3/library/venv.html) to avoid polluting your global Python installation.
+3. Install `qiskit-runtime`. We recommend using a [virtual environment](https://docs.python.org/3/library/venv.html) to avoid polluting your global Python installation.
 
-```bash
-pip install -r requirements-dev.txt
-```
-
-4. Install `qiskit-runtime`. We recommend using a [virtual environment](https://docs.python.org/3/library/venv.html) to avoid polluting your global Python installation.
-
-  * **Standard install**: 
+  * **Standard install**:
 
     ```bash
     pip install .
@@ -139,7 +135,13 @@ pip install -r requirements-dev.txt
     pip install -e .
     ```
 
-    In editable mode, the compiled extensions are built in _debug mode_ without optimizations. 
+    In editable mode, the compiled extensions are built in _debug mode_ without optimizations.
+
+4. (Optional) If you want to run tests or linting checks, install the developer requirements. We recommend using a [virtual environment](https://docs.python.org/3/library/venv.html) to avoid polluting your global Python installation.
+
+```bash
+pip install -e ".[dev]"
+```
 
 
 ## Next steps
@@ -147,6 +149,6 @@ pip install -r requirements-dev.txt
 <Admonition type="tip" title="Recommendations">
   - Read the [contributing guidelines](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md) to contribute to the open-source Qiskit SDK.
   - Learn how to [build circuits](./map-problem-to-circuits).
-  - [Run the Hello world program](hello-world).
-  - Try a tutorial, such as [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm).
+  - [Run the Hello world program](/docs/tutorials/hello-world).
+  - Try a tutorial, such as [Grover's algorithm](/docs/tutorials/grovers-algorithm).
 </Admonition>

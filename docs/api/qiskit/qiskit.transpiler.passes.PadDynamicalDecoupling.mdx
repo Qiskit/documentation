@@ -1,6 +1,6 @@
 ---
-title: PadDynamicalDecoupling
-description: API reference for qiskit.transpiler.passes.PadDynamicalDecoupling
+title: PadDynamicalDecoupling (latest version)
+description: API reference for qiskit.transpiler.passes.PadDynamicalDecoupling in the latest version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
 # PadDynamicalDecoupling
 
-<Class id="qiskit.transpiler.passes.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py#L36-L432" signature="qiskit.transpiler.passes.PadDynamicalDecoupling(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py#L36-L408" signature="qiskit.transpiler.passes.PadDynamicalDecoupling(*args, **kwargs)" modifiers="class">
   Bases: `BasePadding`
 
   Dynamical decoupling insertion pass.
@@ -23,9 +23,10 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
   import numpy as np
   from qiskit.circuit import QuantumCircuit
   from qiskit.circuit.library import XGate
-  from qiskit.transpiler import PassManager, InstructionDurations
+  from qiskit.transpiler import PassManager, InstructionDurations, Target, CouplingMap
   from qiskit.transpiler.passes import ALAPScheduleAnalysis, PadDynamicalDecoupling
   from qiskit.visualization import timeline_drawer
+
   circ = QuantumCircuit(4)
   circ.h(0)
   circ.cx(0, 1)
@@ -35,7 +36,15 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
   durations = InstructionDurations(
       [("h", 0, 50), ("cx", [0, 1], 700), ("reset", None, 10),
        ("cx", [1, 2], 200), ("cx", [2, 3], 300),
-       ("x", None, 50), ("measure", None, 1000)]
+       ("x", None, 50), ("measure", None, 1000)],
+      dt=1e-7
+  )
+  target = Target.from_configuration(
+      ["h", "cx", "reset", "x", "measure"],
+      num_qubits=4,
+      coupling_map=CouplingMap.from_line(4, bidirectional=False),
+      instruction_durations=durations,
+      dt=1e-7,
   )
 
   # balanced X-X sequence on all qubits
@@ -43,7 +52,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
   pm = PassManager([ALAPScheduleAnalysis(durations),
                     PadDynamicalDecoupling(durations, dd_sequence)])
   circ_dd = pm.run(circ)
-  timeline_drawer(circ_dd)
+  timeline_drawer(circ_dd, target=target)
 
   # Uhrig sequence on qubit 0
   n = 8
@@ -61,12 +70,12 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
       ]
   )
   circ_dd = pm.run(circ)
-  timeline_drawer(circ_dd)
+  timeline_drawer(circ_dd, target=target)
   ```
 
-  ![../\_images/qiskit-transpiler-passes-PadDynamicalDecoupling-1\_00.png](/images/api/qiskit/qiskit-transpiler-passes-PadDynamicalDecoupling-1_00.png)
+  ![Output from the previous code.](/docs/images/api/qiskit/qiskit-transpiler-passes-PadDynamicalDecoupling-1_00.avif)
 
-  ![../\_images/qiskit-transpiler-passes-PadDynamicalDecoupling-1\_01.png](/images/api/qiskit/qiskit-transpiler-passes-PadDynamicalDecoupling-1_01.png)
+  ![Output from the previous code.](/docs/images/api/qiskit/qiskit-transpiler-passes-PadDynamicalDecoupling-1_01.avif)
 
   <Admonition title="Note" type="note">
     You may need to call alignment pass before running dynamical decoupling to guarantee your circuit satisfies acquisition alignment constraints.
@@ -84,7 +93,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
   *   **spacing** – A list of spacings between the DD gates. The available slack will be divided according to this. The list length must be one more than the length of dd\_sequence, and the elements must sum to 1. If None, a balanced spacing will be used \[d/2, d, d, …, d, d, d/2].
 
-  *   **skip\_reset\_qubits** – If True, does not insert DD on idle periods that immediately follow initialized/reset qubits (as qubits in the ground state are less susceptile to decoherence).
+  *   **skip\_reset\_qubits** – If True, does not insert DD on idle periods that immediately follow initialized/reset qubits (as qubits in the ground state are less susceptible to decoherence).
 
   *   **pulse\_alignment** – The hardware constraints for gate timing allocation. This is usually provided from `backend.configuration().timing_constraints`. If provided, the delay length, i.e. `spacing`, is implicitly adjusted to satisfy this constraint.
 
@@ -101,7 +110,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
   *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When invalid DD sequence is specified.
   *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When pulse gate with the duration which is non-multiple of the alignment constraint value is found.
-  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If `dd_sequence` is not specified
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – If `dd_sequence` is not specified
 
   ## Attributes
 
@@ -125,14 +134,14 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -140,27 +149,33 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### get\_duration
+
+  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.get_duration" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L74-L97" signature="get_duration(node, dag)">
+    Get duration of a given node in the circuit.
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L71-L166" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L99-L194" signature="run(dag)">
     Run the padding pass on `dag`.
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to be checked.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – DAG to be checked.
 
     **Returns**
 
@@ -177,7 +192,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

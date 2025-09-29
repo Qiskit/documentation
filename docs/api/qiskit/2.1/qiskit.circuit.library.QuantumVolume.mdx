@@ -1,0 +1,63 @@
+---
+title: QuantumVolume (v2.1)
+description: API reference for qiskit.circuit.library.QuantumVolume in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QuantumVolume
+---
+
+# QuantumVolume
+
+<Class id="qiskit.circuit.library.QuantumVolume" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/quantum_volume.py#L25-L130" signature="qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True, *, flatten=False)" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  A quantum volume model circuit.
+
+  The model circuits are random instances of circuits used to measure the Quantum Volume metric, as introduced in \[1].
+
+  The model circuits consist of layers of Haar random elements of SU(4) applied between corresponding pairs of qubits in a random bipartition.
+
+  **Reference Circuit:**
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-QuantumVolume-1.avif)
+
+  **Expanded Circuit:**
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-QuantumVolume-2.avif)
+
+  **References:**
+
+  \[1] A. Cross et al. Validating quantum computers using randomized model circuits, Phys. Rev. A 100, 032328 (2019). \[[arXiv:1811.12926](https://arxiv.org/abs/1811.12926)]
+
+  Create quantum volume model circuit of size num\_qubits x depth.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of active qubits in model circuit.
+  *   **depth** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – layers of SU(4) operations in model circuit.
+  *   **seed** (*Optional\[Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*, np.random.Generator]]*) – Random number generator or generator seed.
+  *   **classical\_permutation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – use classical permutations at every layer, rather than quantum.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `False` (the default), construct a circuit that contains a single instruction, which in turn has the actual volume structure. If `True`, construct the volume structure directly.
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

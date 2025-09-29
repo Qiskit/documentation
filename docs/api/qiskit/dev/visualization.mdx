@@ -1,6 +1,6 @@
 ---
-title: visualization
-description: API reference for qiskit.visualization
+title: visualization (dev version)
+description: API reference for qiskit.visualization in the dev version of qiskit
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.visualization
@@ -14,15 +14,13 @@ python_api_name: qiskit.visualization
 
 # Visualizations
 
-<span id="module-qiskit.visualization" />
-
 `qiskit.visualization`
 
-The visualization module contain functions that visualizes measurement outcome counts, quantum states, circuits, pulses, devices and more.
+The visualization module contain functions that visualizes measurement outcome counts, quantum states, circuits, devices and more.
 
 To use visualization functions, you are required to install visualization optionals to your development environment:
 
-```python
+```bash
 pip install 'qiskit[visualization]'
 ```
 
@@ -49,7 +47,7 @@ data = [counts1, counts2]
 plot_histogram(data)
 ```
 
-![../\_images/visualization-1.png](/images/api/qiskit/dev/visualization-1.png)
+![Output from the previous code.](/docs/images/api/qiskit/dev/visualization-1.avif)
 
 You can specify `legend`, `title`, `figsize` and `color` by passing to the kwargs.
 
@@ -67,7 +65,7 @@ color=['crimson','midnightblue']
 plot_histogram(data, legend=legend, title=title, figsize=figsize, color=color)
 ```
 
-![../\_images/visualization-2.png](/images/api/qiskit/dev/visualization-2.png)
+![Output from the previous code.](/docs/images/api/qiskit/dev/visualization-2.avif)
 
 You can save the figure to file either by passing the file name to `filename` kwarg or use [matplotlib.figure.Figure.savefig](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.savefig) method.
 
@@ -97,7 +95,7 @@ counts = {"00": 501, "11": 499}
 plot_histogram(counts)
 ```
 
-![../\_images/visualization-3.png](/images/api/qiskit/dev/visualization-3.png)
+![Output from the previous code.](/docs/images/api/qiskit/dev/visualization-3.avif)
 
 The data can be a dictionary with bit string as key and counts as value, or more commonly a [`Counts`](qiskit.result.Counts "qiskit.result.Counts") object obtained from [`get_counts()`](qiskit.result.Result#get_counts "qiskit.result.Result.get_counts").
 
@@ -136,7 +134,7 @@ state = [[ 0.75  , 0.433j],
 plot_state_city(state)
 ```
 
-![../\_images/visualization-4.png](/images/api/qiskit/dev/visualization-4.png)
+![Output from the previous code.](/docs/images/api/qiskit/dev/visualization-4.avif)
 
 The state can be array-like list of lists, `numpy.array`, or more commonly [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") or [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") objects obtained from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"):
 
@@ -154,7 +152,7 @@ state = Statevector(qc)
 plot_state_city(state)
 ```
 
-![../\_images/visualization-5.png](/images/api/qiskit/dev/visualization-5.png)
+![Output from the previous code.](/docs/images/api/qiskit/dev/visualization-5.avif)
 
 ```python
 from qiskit import QuantumCircuit
@@ -170,7 +168,7 @@ state = DensityMatrix(qc)
 plot_state_city(state)
 ```
 
-![../\_images/visualization-6.png](/images/api/qiskit/dev/visualization-6.png)
+![Output from the previous code.](/docs/images/api/qiskit/dev/visualization-6.avif)
 
 You can find code examples for each visualization functions on the individual function API page.
 
@@ -225,7 +223,9 @@ You can find code examples for each visualization functions on the individual fu
 
 ### VisualizationError
 
-<Class id="qiskit.visualization.VisualizationError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/visualization/exceptions.py#L18-L21" signature="qiskit.visualization.VisualizationError(*message)" modifiers="exception">
+<Class id="qiskit.visualization.VisualizationError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/visualization/exceptions.py#L18-L21" signature="qiskit.visualization.VisualizationError(*message)" modifiers="exception">
+  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
+
   For visualization specific errors.
 
   Set the error message.

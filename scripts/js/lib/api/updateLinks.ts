@@ -10,6 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import { join } from "path";
 import { initial, keyBy, keys, last } from "lodash-es";
 import { Root } from "mdast";
 import { visit } from "unist-util-visit";
@@ -26,6 +27,8 @@ import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
+import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
+import { DOCS_BASE_PATH } from "./conversionPipeline.js";
 
 export interface Link {
   url: string; // Where the link goes
@@ -58,45 +61,106 @@ export function normalizeUrl(
   url: string,
   resultsByName: { [key: string]: HtmlToMdResultWithUrl },
   itemNames: Set<string>,
+  kwargs: {
+    kebabCaseAndShorten: boolean;
+    pkgName: string;
+    pkgOutputDir: string;
+  },
 ): string {
   if (isAbsoluteUrl(url)) return url;
-  if (url.startsWith("/")) return url;
+
+  // We add the base path to the internal links if needed
+  if (
+    url.startsWith("/") &&
+    !url.startsWith(DOCS_BASE_PATH) &&
+    !url.endsWith(DOCS_BASE_PATH)
+  ) {
+    url = `${DOCS_BASE_PATH}${url}`;
+  }
+
+  // Absolute URLs are already normalized, except those pointing to the same API docs.
+  // For those cases, we need to transform them to kebab-case.
+  // Todo: Transform URLs pointing to other APIs, when they all use kebab-case.
+  if (
+    url.startsWith("/") &&
+    !url.startsWith(`${DOCS_BASE_PATH}/api/${kwargs.pkgName}`)
+  )
+    return url;
   url = transformSpecialCaseUrl(url);
 
-  url = removePart(url, "/", ["stubs", "apidocs", "apidoc", ".."]);
+  // The C API uses the same artifact as the Python API, but all its pages are
+  // located under the `cdoc` folder.
+  const pythonApiFolders = ["stubs", "apidocs", "apidoc"];
+  const addQiskitPrefix =
+    kwargs.pkgName == "qiskit-c" &&
+    pythonApiFolders.some((f) => url.split("/").includes(f));
+
+  url = removePart(url, "/", [...pythonApiFolders, ".."]);
+
+  // TODO (#3375): Investigate if we can make this case more generic.
+  // The Qiskit C API sometimes links to the Python API. In those cases, we need to add the
+  // full prefix
+  if (addQiskitPrefix) {
+    return `${kwargs.pkgOutputDir.replace(kwargs.pkgName, "qiskit")}/${url}`;
+  }
 
   const urlParts = url.split("/");
   const initialUrlParts = initial(urlParts);
-  const [path, hash] = last(urlParts)!.split("#") as [
+  const [page, hash] = last(urlParts)!.split("#") as [
     string,
     string | undefined,
   ];
 
+  const normalizedPage = kwargs.kebabCaseAndShorten
+    ? kebabCaseAndShortenPage(page, kwargs.pkgName)
+    : page;
+  const normalizedUrlWithoutHash = [...initialUrlParts, normalizedPage].join(
+    "/",
+  );
+
+  // Default case. We'll then check if the hash should be transformed
+  // for a few edge cases.
+  url = hash ? `${normalizedUrlWithoutHash}#${hash}` : normalizedUrlWithoutHash;
+
   // qiskit_ibm_runtime.RuntimeJob
   // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob
-  if (itemNames.has(path)) {
-    if (hash === path) {
-      url = [...initialUrlParts, path].join("/");
+  if (itemNames.has(page)) {
+    if (hash === page) {
+      url = normalizedUrlWithoutHash;
     }
 
+    // Rather than linking to the component like `Function` or `Attribute`, we link to the header.
+    // This is necessary because until we implement https://github.com/Qiskit/documentation/issues/1395, the
+    // anchor for the component would take you too low in the page, given that the header is above the component.
     // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
-    if (hash?.startsWith(`${path}.`)) {
-      const member = removePrefix(hash, `${path}.`);
-      url = [...initialUrlParts, path].join("/") + `#${member}`;
+    //
+    // TODO(#2217): Remove this special case and use the full ID instead.
+    if (hash?.startsWith(`${page}.`)) {
+      let member = removePrefix(hash, `${page}.`);
+      // Also check for inline classes, which often show up on module pages.
+      // qiskit_addon_obp.utils.truncating#qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm
+      // -> qiskit_addon_obp.utils.truncating#p_norm, whereas without this check
+      // it would be qiskit_addon_obp.utils.truncating#TruncationErrorBudget.p_norm.
+      if (member.includes(".")) {
+        member = member.split(".", 2)[1];
+      }
+      url = `${normalizedUrlWithoutHash}#${member}`;
     }
   }
 
   // qiskit_ibm_runtime.QiskitRuntimeService.job -> qiskit_ibm_runtime.QiskitRuntimeService#job
-  const pathParts = path.split(".");
+  const pathParts = page.split(".");
   const member = last(pathParts);
   const initialPathParts = initial(pathParts);
   const parentName = initialPathParts.join(".");
   if ("class" === resultsByName[parentName]?.meta.apiType) {
-    url = [...initialUrlParts, parentName].join("/") + "#" + member;
+    const normalizedParentName = kwargs.kebabCaseAndShorten
+      ? kebabCaseAndShortenPage(parentName, kwargs.pkgName)
+      : parentName;
+    url = [...initialUrlParts, normalizedParentName].join("/") + "#" + member;
   }
 
-  url = lowerCaseIfMarkdownAnchor(url);
-  return url;
+  return lowerCaseIfMarkdownAnchor(url);
 }
 
 export function relativizeLink(link: Link): Link | undefined {
@@ -105,6 +169,8 @@ export function relativizeLink(link: Link): Link | undefined {
     ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],
     ["https://docs.quantum.ibm.com/", ""],
     ["https://docs.quantum-computing.ibm.com/", ""],
+    ["https://quantum.cloud.ibm.com/docs", "/docs"],
+    ["https://quantum.cloud.ibm.com/learning", "/learning"],
   ]);
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
     link.url.startsWith(prefix),
@@ -121,11 +187,17 @@ export function relativizeLink(link: Link): Link | undefined {
 
   const newText = link.url === link.text ? url : undefined;
   const newPrefix = priorPrefixToNewPrefix.get(priorPrefix)!;
-  return { url: `${newPrefix}/${url}`, text: newText };
+  const relativeUrl = removePrefix(join(newPrefix, url), "/");
+  return { url: `/${relativeUrl}`, text: newText };
 }
 
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
+  kwargs: {
+    kebabCaseAndShorten: boolean;
+    pkgName: string;
+    pkgOutputDir: string;
+  },
   maybeObjectsInv?: ObjectsInv,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);
@@ -153,7 +225,7 @@ export async function updateLinks(
               textNode.value = relativizedLink.text;
             }
           }
-          node.url = normalizeUrl(node.url, resultsByName, itemNames);
+          node.url = normalizeUrl(node.url, resultsByName, itemNames, kwargs);
         });
       })
       .use(remarkStringify, remarkStringifyOptions)
@@ -163,6 +235,6 @@ export async function updateLinks(
   }
 
   maybeObjectsInv?.updateUris((uri: string) =>
-    normalizeUrl(uri, resultsByName, itemNames),
+    normalizeUrl(uri, resultsByName, itemNames, kwargs),
   );
 }

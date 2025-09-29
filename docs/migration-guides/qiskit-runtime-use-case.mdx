@@ -29,7 +29,7 @@ pub_result = result[0]
   </TabItem>
 
   <TabItem value="Legacy" label="backend.run">
-``` python
+```python
 from qiskit_ibm_provider import IBMProvider
 
 # Define provider and backend
@@ -45,7 +45,7 @@ result = job.result()
 <span id="migrate-options"></span>
 ## Specifying options
 
-All options that were available with `backend.run` are available in the Qiskit Runtime primitives, but they are specified differently.  For more information, see [Migrate options](qiskit-runtime-options) and [Advanced Qiskit Runtime options.](/guides/runtime-options-overview)
+All options that were available with `backend.run` are available in the Qiskit Runtime primitives, but they are specified differently.  For more information, see [Migrate options](qiskit-runtime-options) and [Advanced Qiskit Runtime options.](/docs/guides/runtime-options-overview)
 
 <Tabs>
   <TabItem value="Updated" label="Runtime primitives">
@@ -102,7 +102,7 @@ hardware_counts
   </TabItem>
 </Tabs>
 
-For more information about dynamic circuits, see the [Classical feedforward and control flow](/guides/classical-feedforward-and-control-flow) topic, or try the [Repeat until success](https://learning.quantum.ibm.com/tutorial/repeat-until-success) tutorial.
+For more information about dynamic circuits, see the [Classical feedforward and control flow](/docs/guides/classical-feedforward-and-control-flow) topic.
 
 <span id="parm-circ"></span>
 ## Parameterized circuits
@@ -121,7 +121,7 @@ parametrized circuits.
 
 Define a parametrized circuit:
 
-``` python
+```python
 from qiskit.circuit import QuantumCircuit, ParameterVector
 
 n = 3
@@ -147,7 +147,7 @@ qc.draw()
 
 Assign the following parameter values to the circuit:
 
-``` python
+```python
 import numpy as np
 theta_values = [np.pi/2, np.pi/2, np.pi/2]
 ```
@@ -169,7 +169,7 @@ isa_circuit = pm.run(qc)
 
 The primitives take in parametrized circuits directly, together
 with the parameter values, and the parameter assignment operation can be
-performed more efficiently on the server side.  The input is in the form of primitive unified blocs (PUBs), where each PUB is a tuple that contains a circuit and the data broadcasted to it. For further details, see [Introduction to primitives.](/guides/primitives#interface-changes)
+performed more efficiently on the server side.  The input is in the form of primitive unified blocs (PUBs), where each PUB is a tuple that contains a circuit and the data broadcasted to it. For further details, see [Primitive inputs and outputs.](/docs/guides/primitive-input-output)
 
 If you have multiple sets of parameter values you want to bind to the same circuit, you can specify them in a single PUB, in the format of (circuit, [parameter_value_set1, parameter_value_set2]).
 
@@ -177,7 +177,7 @@ If you have multiple sets of parameter values you want to bind to the same circu
 You need the classical register name to get the results.  By default, it is named `meas` when you use `measure_all()`.  However, the classical register name for this example is `c`.  You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
 </Admonition>
 
-``` python
+```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 sampler = Sampler(backend)
@@ -194,7 +194,7 @@ print(f" >> Counts for the c output register: {pub_result.data.c.get_counts()}")
 The parameter values had to be bound to their respective
 circuit parameters prior to calling `backend.run()`.
 
-``` python
+```python
 from qiskit import Aer
 
 bound_circuit = qc.bind_parameters(theta_values)
@@ -262,7 +262,7 @@ isa_circuit = pm.run(circuit)
 
 result = backend.run(isa_circuit, shots=10, meas_level=1, meas_return="avg").result()
 
->>> print("result: ", result)
+print("result: ", result)
 ```
   </TabItem>
 </Tabs>

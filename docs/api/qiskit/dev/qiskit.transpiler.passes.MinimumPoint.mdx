@@ -1,6 +1,6 @@
 ---
-title: MinimumPoint
-description: API reference for qiskit.transpiler.passes.MinimumPoint
+title: MinimumPoint (dev version)
+description: API reference for qiskit.transpiler.passes.MinimumPoint in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.transpiler.passes.MinimumPoint
@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.MinimumPoint
 
 # MinimumPoint
 
-<Class id="qiskit.transpiler.passes.MinimumPoint" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passes/utils/minimum_point.py#L24-L109" signature="qiskit.transpiler.passes.MinimumPoint(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.MinimumPoint" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/minimum_point.py#L24-L109" signature="qiskit.transpiler.passes.MinimumPoint(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Check if the DAG has reached a relative semi-stable point over previous runs
@@ -29,9 +29,9 @@ python_api_name: qiskit.transpiler.passes.MinimumPoint
 
   **Parameters**
 
-  *   **property\_set\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of property set keys that will be used to evaluate the local minimum. The values of these property set keys will be used as a tuple for comparison
-  *   **prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The prefix to use for the property set key that is used for tracking previous evaluations
-  *   **backtrack\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of entries to store. If this number is reached and the next iteration doesn’t have a decrease in the number of values the minimum of the previous n will be set as the output dag and `minimum_point` will be set to `True` in the property set
+  *   **property\_set\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of property set keys that will be used to evaluate the local minimum. The values of these property set keys will be used as a tuple for comparison
+  *   **prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The prefix to use for the property set key that is used for tracking previous evaluations
+  *   **backtrack\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of entries to store. If this number is reached and the next iteration doesn’t have a decrease in the number of values the minimum of the previous n will be set as the output dag and `minimum_point` will be set to `True` in the property set
 
   ## Attributes
 
@@ -55,14 +55,14 @@ python_api_name: qiskit.transpiler.passes.MinimumPoint
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.MinimumPoint.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.MinimumPoint.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -70,28 +70,28 @@ python_api_name: qiskit.transpiler.passes.MinimumPoint
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.MinimumPoint.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.MinimumPoint.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.MinimumPoint.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passes/utils/minimum_point.py#L75-L109" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.MinimumPoint.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/minimum_point.py#L75-L109" signature="run(dag)">
     Run the MinimumPoint pass on dag.
   </Function>
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.MinimumPoint.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.MinimumPoint.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

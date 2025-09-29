@@ -1,0 +1,57 @@
+---
+title: phase_estimation (dev version)
+description: API reference for qiskit.circuit.library.phase_estimation in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.circuit.library.phase_estimation
+---
+
+<span id="qiskit-circuit-library-phase-estimation" />
+
+# qiskit.circuit.library.phase\_estimation
+
+<Function id="qiskit.circuit.library.phase_estimation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/phase_estimation.py#L109-L180" signature="qiskit.circuit.library.phase_estimation(num_evaluation_qubits, unitary, name='QPE')">
+  Phase Estimation circuit.
+
+  In the Quantum Phase Estimation (QPE) algorithm \[1, 2, 3], the Phase Estimation circuit is used to estimate the phase $\phi$ of an eigenvalue $e^{2\pi i\phi}$ of a unitary operator $U$, provided with the corresponding eigenstate $|\psi\rangle$. That is
+
+$$
+U|\psi\rangle = e^{2\pi i\phi} |\psi\rangle
+$$
+
+  This estimation (and thereby this circuit) is a central routine to several well-known algorithms, such as Shor’s algorithm or Quantum Amplitude Estimation.
+
+  **Parameters**
+
+  *   **num\_evaluation\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of evaluation qubits.
+  *   **unitary** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – The unitary operation $U$ which will be repeated and controlled. This can either be a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). Passing gates can often be more performant, as it allows calling optimized control and power subroutines.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the output circuit.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+  Reference Circuit:
+
+  ```python
+  from qiskit.circuit.library import phase_estimation, PauliEvolutionGate
+  from qiskit.quantum_info import SparsePauliOp
+
+  hamiltonian = SparsePauliOp(["ZZ", "IX", "XI"])
+  evo = PauliEvolutionGate(hamiltonian, time=0.1)  # implements exp(-itH)
+
+  circuit = phase_estimation(3, evo)  # QPE for the evolution operator
+  circuit.draw("mpl")
+  ```
+
+  ![A phase estimation circuit.](/docs/images/api/qiskit/dev/qiskit-circuit-library-phase_estimation-1.avif)
+
+  References:
+
+  \[1] Kitaev, A. Y. (1995). Quantum measurements and the Abelian Stabilizer Problem. 1–22. [quant-ph/9511026](http://arxiv.org/abs/quant-ph/9511026)
+
+  \[2] Michael A. Nielsen and Isaac L. Chuang. 2011. Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.). Cambridge University Press, New York, NY, USA.
+
+  \[3] Qiskit [textbook](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/quantum-phase-estimation.ipynb)
+</Function>
+

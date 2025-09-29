@@ -1,6 +1,6 @@
 ---
-title: qasm2
-description: API reference for qiskit.qasm2
+title: qasm2 (dev version)
+description: API reference for qiskit.qasm2 in the dev version of qiskit
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.qasm2
@@ -13,8 +13,6 @@ python_api_name: qiskit.qasm2
 <span id="openqasm-2-qiskit-qasm2" />
 
 # OpenQASM 2
-
-<span id="module-qiskit.qasm2" />
 
 `qiskit.qasm2`
 
@@ -32,17 +30,17 @@ This module contains two public functions, both of which create a [`QuantumCircu
 
 ### load
 
-<Function id="qiskit.qasm2.load" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm2/__init__.py#L602-L654" signature="qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)">
+<Function id="qiskit.qasm2.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/__init__.py#L617-L669" signature="qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)">
   Parse an OpenQASM 2 program from a file into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). The given path should be ASCII or UTF-8 encoded, and contain the OpenQASM 2 program.
 
   **Parameters**
 
-  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.12)")) – The OpenQASM 2 program in a string.
-  *   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.12)")*]*) – order of directories to search when evaluating `include` statements.
-  *   **include\_input\_directory** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.12)")*\['append', 'prepend'] | None*) – Whether to add the directory of the input file to the `include_path`, and if so, whether to *append* it to search last, or *prepend* it to search first. Pass `None` to suppress adding this directory entirely.
-  *   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
-  *   **custom\_classical** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*CustomClassical*](#qiskit.qasm2.CustomClassical "qiskit.qasm2.CustomClassical")*]*) – any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#qasm2-custom-classical) for more.
-  *   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether to run in [strict mode](#qasm2-strict-mode).
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.13)")) – The OpenQASM 2 program in a string.
+  *   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.13)")*]*) – order of directories to search when evaluating `include` statements.
+  *   **include\_input\_directory** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.13)")*\['append', 'prepend'] | None*) – Whether to add the directory of the input file to the `include_path`, and if so, whether to *append* it to search last, or *prepend* it to search first. Pass `None` to suppress adding this directory entirely.
+  *   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
+  *   **custom\_classical** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*CustomClassical*](#qiskit.qasm2.CustomClassical "qiskit.qasm2.CustomClassical")*]*) – any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#qasm2-custom-classical) for more.
+  *   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – whether to run in [strict mode](#qasm2-strict-mode).
 
   **Returns**
 
@@ -55,16 +53,16 @@ This module contains two public functions, both of which create a [`QuantumCircu
 
 ### loads
 
-<Function id="qiskit.qasm2.loads" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm2/__init__.py#L563-L599" signature="qiskit.qasm2.loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)">
+<Function id="qiskit.qasm2.loads" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/__init__.py#L578-L614" signature="qiskit.qasm2.loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)">
   Parse an OpenQASM 2 program from a string into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
   **Parameters**
 
-  *   **string** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The OpenQASM 2 program in a string.
-  *   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.12)")*]*) – order of directories to search when evaluating `include` statements.
-  *   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
-  *   **custom\_classical** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*CustomClassical*](#qiskit.qasm2.CustomClassical "qiskit.qasm2.CustomClassical")*]*) – any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#qasm2-custom-classical) for more.
-  *   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether to run in [strict mode](#qasm2-strict-mode).
+  *   **string** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The OpenQASM 2 program in a string.
+  *   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.13)")*]*) – order of directories to search when evaluating `include` statements.
+  *   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
+  *   **custom\_classical** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*CustomClassical*](#qiskit.qasm2.CustomClassical "qiskit.qasm2.CustomClassical")*]*) – any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#qasm2-custom-classical) for more.
+  *   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – whether to run in [strict mode](#qasm2-strict-mode).
 
   **Returns**
 
@@ -85,12 +83,51 @@ You can extend the quantum components of the OpenQASM 2 language by passing an i
 
 #### CustomInstruction
 
-<Class id="qiskit.qasm2.CustomInstruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm2/parse.py#L80-L100" signature="qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)" modifiers="class">
+<Class id="qiskit.qasm2.CustomInstruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/parse.py#L79-L128" signature="qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
   Information about a custom instruction that should be defined during the parse.
 
   The `name`, `num_params` and `num_qubits` fields are self-explanatory. The `constructor` field should be a callable object with signature `*args -> Instruction`, where each of the `num_params` `args` is a floating-point value. Most of the built-in Qiskit gate classes have this form.
 
   There is a final `builtin` field. This is optional, and if set true will cause the instruction to be defined and available within the parsing, even if there is no definition in any included OpenQASM 2 file.
+
+  **Examples**
+
+  Instruct the importer to use Qiskit’s [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate") and [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate") objects to interpret `gate` statements that are known to have been created from those same objects during OpenQASM 2 export:
+
+  ```python
+  from qiskit import qasm2
+  from qiskit.circuit import QuantumCircuit, library
+
+  qc = QuantumCircuit(2)
+  qc.ecr(0, 1)
+  qc.rzx(0.3, 0, 1)
+  qc.rzx(0.7, 1, 0)
+  qc.rzx(1.5, 0, 1)
+  qc.ecr(1, 0)
+
+  # This output string includes `gate ecr q0, q1 { ... }` and `gate rzx(p) q0, q1 { ... }`
+  # statements, since `ecr` and `rzx` are neither built-in gates nor in ``qelib1.inc``.
+  dumped = qasm2.dumps(qc)
+
+  # Tell the importer how to interpret the `gate` statements, which we know are safe
+  # because we controlled the input OpenQASM 2 source.
+  custom = [
+      qasm2.CustomInstruction("ecr", 0, 2, library.ECRGate),
+      qasm2.CustomInstruction("rzx", 1, 2, library.RZXGate),
+  ]
+
+  loaded = qasm2.loads(dumped, custom_instructions=custom)
+  ```
+
+  **Parameters**
+
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+  *   **num\_params** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+  *   **constructor** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[...],* [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")*]*) –
+  *   **builtin** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
 </Class>
 
 This can be particularly useful when trying to resolve ambiguities in the global-phase conventions of an OpenQASM 2 program. See [OpenQASM 2 Phase Conventions](#qasm2-phase-conventions) for more details.
@@ -104,6 +141,8 @@ Similar to the quantum extensions above, you can also extend the processing done
 #### CustomClassical
 
 <Class id="qiskit.qasm2.CustomClassical" signature="qiskit.qasm2.CustomClassical" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
   Information about a custom classical function that should be defined in mathematical expressions.
 
   The given callable must be a Python function that takes num\_params floats, and returns a float. The name is the identifier that refers to it in the OpenQASM 2 program. This cannot clash with any defined gates.
@@ -123,13 +162,13 @@ Similar to other serialization modules in Python, this module offers two public 
 
 ### dump
 
-<Function id="qiskit.qasm2.dump" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm2/export.py#L107-L122" signature="qiskit.qasm2.dump(circuit, filename_or_stream, /)">
+<Function id="qiskit.qasm2.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/export.py#L107-L122" signature="qiskit.qasm2.dump(circuit, filename_or_stream, /)">
   Dump a circuit as an OpenQASM 2 program to a file or stream.
 
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to be exported.
-  *   **filename\_or\_stream** ([*os.PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.12)")  *|*[*io.TextIOBase*](https://docs.python.org/3/library/io.html#io.TextIOBase "(in Python v3.12)")) – either a path-like object (likely a [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") or [`pathlib.Path`](https://docs.python.org/3/library/pathlib.html#pathlib.Path "(in Python v3.12)")), or an already opened text-mode stream.
+  *   **filename\_or\_stream** ([*os.PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.13)")  *|*[*io.TextIOBase*](https://docs.python.org/3/library/io.html#io.TextIOBase "(in Python v3.13)")) – either a path-like object (likely a [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") or [`pathlib.Path`](https://docs.python.org/3/library/pathlib.html#pathlib.Path "(in Python v3.13)")), or an already opened text-mode stream.
 
   **Raises**
 
@@ -138,7 +177,7 @@ Similar to other serialization modules in Python, this module offers two public 
 
 ### dumps
 
-<Function id="qiskit.qasm2.dumps" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm2/export.py#L125-L200" signature="qiskit.qasm2.dumps(circuit, /)">
+<Function id="qiskit.qasm2.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/export.py#L125-L200" signature="qiskit.qasm2.dumps(circuit, /)">
   Export a circuit to an OpenQASM 2 program in a string.
 
   **Parameters**
@@ -155,7 +194,7 @@ Similar to other serialization modules in Python, this module offers two public 
 
   **Return type**
 
-  [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
 </Function>
 
 ## Errors
@@ -164,7 +203,9 @@ This module defines a generic error type that derives from [`QiskitError`](excep
 
 ### QASM2Error
 
-<Class id="qiskit.qasm2.QASM2Error" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm2/exceptions.py#L18-L19" signature="qiskit.qasm2.QASM2Error(*message)" modifiers="exception">
+<Class id="qiskit.qasm2.QASM2Error" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/exceptions.py#L18-L19" signature="qiskit.qasm2.QASM2Error(*message)" modifiers="exception">
+  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
+
   A general error raised by the OpenQASM 2 interoperation layer.
 
   Set the error message.
@@ -174,7 +215,9 @@ In cases where the lexer or parser fails due to an invalid OpenQASM 2 file, the 
 
 ### QASM2ParseError
 
-<Class id="qiskit.qasm2.QASM2ParseError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm2/exceptions.py#L22-L23" signature="qiskit.qasm2.QASM2ParseError(*message)" modifiers="exception">
+<Class id="qiskit.qasm2.QASM2ParseError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/exceptions.py#L22-L23" signature="qiskit.qasm2.QASM2ParseError(*message)" modifiers="exception">
+  Bases: [`QASM2Error`](#qiskit.qasm2.QASM2Error "qiskit.qasm2.exceptions.QASM2Error")
+
   An error raised because of a failure to parse an OpenQASM 2 file.
 
   Set the error message.
@@ -184,7 +227,9 @@ When the exporters fail to export a circuit, likely because it has structure tha
 
 ### QASM2ExportError
 
-<Class id="qiskit.qasm2.QASM2ExportError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm2/exceptions.py#L26-L27" signature="qiskit.qasm2.QASM2ExportError(*message)" modifiers="exception">
+<Class id="qiskit.qasm2.QASM2ExportError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/exceptions.py#L26-L27" signature="qiskit.qasm2.QASM2ExportError(*message)" modifiers="exception">
+  Bases: [`QASM2Error`](#qiskit.qasm2.QASM2Error "qiskit.qasm2.exceptions.QASM2Error")
+
   An error raised because of a failure to convert a Qiskit object to an OpenQASM 2 form.
 
   Set the error message.
@@ -209,7 +254,7 @@ qc.measure([0, 1], [0, 1])
 print(qiskit.qasm2.dumps(qc))
 ```
 
-```python
+```text
 OPENQASM 2.0;
 include "qelib1.inc";
 qreg q[2];
@@ -226,7 +271,7 @@ Write out the same [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circ
 qiskit.qasm2.dump(qc, "myfile.qasm")
 ```
 
-Similarly, one can use general [`os.PathLike`](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.12)") instances as the filename:
+Similarly, one can use general [`os.PathLike`](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.13)") instances as the filename:
 
 ```python
 import pathlib
@@ -264,7 +309,7 @@ circuit = qiskit.qasm2.loads(program)
 circuit.draw()
 ```
 
-```python
+```text
      ┌───┐     ┌─┐
 q_0: ┤ H ├──■──┤M├───
      └───┘┌─┴─┐└╥┘┌─┐
@@ -372,7 +417,7 @@ circuit = loads(program, custom_classical=customs)
 
 As a language, OpenQASM 2 does not have a way to specify the global phase of a complete program, nor of particular gate definitions. This means that parsers of the language may interpret particular gates with a different global phase than what you might expect. For example, the *de facto* standard library of OpenQASM 2 `qelib1.inc` contains definitions of `u1` and `rz` as follows:
 
-```python
+```text
 gate u1(lambda) q {
     U(0, 0, lambda) q;
 }
@@ -417,7 +462,7 @@ This will use Qiskit’s [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.
 Operator(qasm2.loads(program, custom_instructions=custom))
 ```
 
-```python
+```text
 Operator([[1.000000e+00+0.j, 0.000000e+00+0.j],
           [0.000000e+00+0.j, 6.123234e-17+1.j]],
          input_dims=(2,), output_dims=(2,))
@@ -482,17 +527,23 @@ In particular, in the legacy importers:
 
 You can emulate this behavior in [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") by setting include\_path appropriately (try inspecting the variable `qiskit.__file__` to find the installed location), and by passing a list of [`CustomInstruction`](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.CustomInstruction") instances for each of the custom gates you care about. To make things easier we make three tuples available, which each contain one component of a configuration that is equivalent to Qiskit’s legacy converter behavior.
 
-**qiskit.qasm2.LEGACY\_CUSTOM\_INSTRUCTIONS**
+### qiskit.qasm2.LEGACY\_CUSTOM\_INSTRUCTIONS
 
-A tuple containing the extra custom\_instructions that Qiskit’s legacy built-in converters used if `qelib1.inc` is included, and there is any definition of a `delay` instruction. The gates in the paper version of `qelib1.inc` and `delay` all require a compatible declaration statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all marked as builtins since they are not actually present in any include file this parser sees.
+<Attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS">
+  A tuple containing the extra custom\_instructions that Qiskit’s legacy built-in converters used if `qelib1.inc` is included, and there is any definition of a `delay` instruction. The gates in the paper version of `qelib1.inc` and `delay` all require a compatible declaration statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all marked as builtins since they are not actually present in any include file this parser sees.
+</Attribute>
 
-**qiskit.qasm2.LEGACY\_CUSTOM\_CLASSICAL**
+### qiskit.qasm2.LEGACY\_CUSTOM\_CLASSICAL
 
-A tuple containing the extra custom\_classical functions that Qiskit’s legacy built-in converters use beyond those specified by the paper. This is the three basic inverse trigonometric functions: $\asin$, $\acos$ and $\atan$.
+<Attribute id="qiskit.qasm2.LEGACY_CUSTOM_CLASSICAL">
+  A tuple containing the extra custom\_classical functions that Qiskit’s legacy built-in converters use beyond those specified by the paper. This is the three basic inverse trigonometric functions: $\asin$, $\acos$ and $\atan$.
+</Attribute>
 
-**qiskit.qasm2.LEGACY\_INCLUDE\_PATH**
+### qiskit.qasm2.LEGACY\_INCLUDE\_PATH
 
-A tuple containing the exact include\_path used by the legacy Qiskit converter.
+<Attribute id="qiskit.qasm2.LEGACY_INCLUDE_PATH">
+  A tuple containing the exact include\_path used by the legacy Qiskit converter.
+</Attribute>
 
 On *all* the gates defined in Qiskit’s legacy version of `qelib1.inc` and the `delay` instruction, it does not matter how the gates are actually defined and used, the legacy importer will always attempt to output its custom objects for them. This can result in errors during the circuit construction, even after a successful parse. There is no way to emulate this buggy behavior with [`qiskit.qasm2`](#module-qiskit.qasm2 "qiskit.qasm2"); only an `include "qelib1.inc";` statement or the custom\_instructions argument can cause built-in Qiskit instructions to be used, and the signatures of these match each other.
 

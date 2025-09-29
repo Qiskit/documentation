@@ -1,6 +1,6 @@
 ---
-title: pulse
-description: API reference for qiskit.pulse
+title: pulse (v0.46)
+description: API reference for qiskit.pulse in qiskit v0.46
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.pulse
@@ -13,8 +13,6 @@ python_api_name: qiskit.pulse
 <span id="pulse-qiskit-pulse" />
 
 # Pulse
-
-<span id="module-qiskit.pulse" />
 
 `qiskit.pulse`
 
@@ -33,8 +31,6 @@ This is sufficient to allow the quantum physicist to explore and correct for noi
 <span id="pulse-insts" />
 
 ## Instructions
-
-<span id="module-qiskit.pulse" />
 
 `qiskit.pulse.instructions`
 
@@ -89,8 +85,6 @@ These are all instances of the same base class:
 <span id="pulse-library-qiskit-pulse-library" />
 
 ## Pulse Library
-
-<span id="module-qiskit.pulse" />
 
 `qiskit.pulse.library`
 
@@ -239,7 +233,7 @@ $$
   plt.show()
   ```
 
-  ![../\_images/pulse-1.png](/images/api/qiskit/0.46/pulse-1.png)
+  ![../\_images/pulse-1.png](/docs/images/api/qiskit/0.46/pulse-1.avif)
 </Function>
 
 #### triangle
@@ -286,7 +280,7 @@ $$
   plt.show()
   ```
 
-  ![../\_images/pulse-2.png](/images/api/qiskit/0.46/pulse-2.png)
+  ![../\_images/pulse-2.png](/docs/images/api/qiskit/0.46/pulse-2.avif)
 </Function>
 
 #### cos
@@ -592,8 +586,6 @@ $$
 
 ## Channels
 
-<span id="module-qiskit.pulse" />
-
 `qiskit.pulse.channels`
 
 Pulse is meant to be agnostic to the underlying hardware implementation, while still allowing low-level control. Therefore, our signal channels are *virtual* hardware channels. The backend which executes our programs is responsible for mapping these virtual channels to the proper physical channel within the quantum control hardware.
@@ -650,8 +642,6 @@ Schedules are Pulse programs. They describe instruction sequences for the contro
 <span id="pulse-transforms-qiskit-pulse-transforms" />
 
 ## Pulse Transforms
-
-<span id="module-qiskit.pulse" />
 
 `qiskit.pulse.transforms`
 
@@ -985,7 +975,7 @@ The DAG transforms create DAG representation of input program. This can be used 
 
   **Return type**
 
-  [*PyDAG*](https://www.rustworkx.org/apiref/rustworkx.PyDAG.html#rustworkx.PyDAG "(in rustworkx v0.14)")
+  [*PyDAG*](https://www.rustworkx.org/apiref/rustworkx.PyDAG.html#rustworkx.PyDAG "(in rustworkx v0.15)")
 </Function>
 
 <span id="pulse-transform-chain" />
@@ -1043,7 +1033,7 @@ with pulse.build(name='pulse_programming_in') as pulse_prog:
 pulse_prog.draw()
 ```
 
-![../\_images/pulse-3.png](/images/api/qiskit/0.46/pulse-3.png)
+![../\_images/pulse-3.png](/docs/images/api/qiskit/0.46/pulse-3.avif)
 
 To begin pulse programming we must first initialize our program builder context with [`build()`](#qiskit.pulse.builder.build "qiskit.pulse.builder.build"), after which we can begin adding program statements. For example, below we write a simple program that [`play()`](#qiskit.pulse.builder.play "qiskit.pulse.builder.play")s a pulse:
 
@@ -1058,7 +1048,7 @@ with pulse.build() as pulse_prog:
 pulse_prog.draw()
 ```
 
-![../\_images/pulse-4.png](/images/api/qiskit/0.46/pulse-4.png)
+![../\_images/pulse-4.png](/docs/images/api/qiskit/0.46/pulse-4.avif)
 
 The builder initializes a [`pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), `pulse_prog` and then begins to construct the program within the context. The output pulse schedule will survive after the context is exited and can be executed like a normal Qiskit schedule using `qiskit.execute(pulse_prog, backend)`.
 
@@ -1092,7 +1082,7 @@ with pulse.build(backend) as decoupled_bell_prep_and_measure:
 decoupled_bell_prep_and_measure.draw()
 ```
 
-![../\_images/pulse-5.png](/images/api/qiskit/0.46/pulse-5.png)
+![../\_images/pulse-5.png](/docs/images/api/qiskit/0.46/pulse-5.avif)
 
 <Admonition title="Warning" type="caution">
   Calling gates directly within the pulse builder namespace is deprecated as of qiskit 0.46.0.
@@ -1427,7 +1417,7 @@ with pulse.build(backend) as drive_sched:
 drive_sched.draw()
 ```
 
-![../\_images/pulse-6.png](/images/api/qiskit/0.46/pulse-6.png)
+![../\_images/pulse-6.png](/docs/images/api/qiskit/0.46/pulse-6.avif)
 
 #### acquire
 
@@ -1751,7 +1741,7 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **pulse** (*Pulse |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – Pulse to play.
+  *   **pulse** (*Pulse |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Pulse to play.
   *   **channel** (*PulseChannel*) – Channel to play pulse on.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the pulse.
 </Function>
@@ -1917,7 +1907,7 @@ with pulse.build() as pulse_prog:
 pulse_prog.draw()
 ```
 
-![../\_images/pulse-7.png](/images/api/qiskit/0.46/pulse-7.png)
+![../\_images/pulse-7.png](/docs/images/api/qiskit/0.46/pulse-7.avif)
 
 #### align\_equispaced
 
@@ -1946,7 +1936,7 @@ pulse_prog.draw()
   hahn_echo.draw()
   ```
 
-  ![../\_images/pulse-8.png](/images/api/qiskit/0.46/pulse-8.png)
+  ![../\_images/pulse-8.png](/docs/images/api/qiskit/0.46/pulse-8.avif)
 
   **Parameters**
 
@@ -1997,7 +1987,7 @@ pulse_prog.draw()
   udd_sched.draw()
   ```
 
-  ![../\_images/pulse-9.png](/images/api/qiskit/0.46/pulse-9.png)
+  ![../\_images/pulse-9.png](/docs/images/api/qiskit/0.46/pulse-9.avif)
 
   **Parameters**
 
@@ -2589,7 +2579,7 @@ There are 1e-06 seconds in 4500 samples.
 
   **Parameters**
 
-  **samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – Number of samples to convert to time in seconds.
+  **samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Number of samples to convert to time in seconds.
 
   **Returns**
 
@@ -2597,7 +2587,7 @@ There are 1e-06 seconds in 4500 samples.
 
   **Return type**
 
-  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")
 </Function>
 
 #### seconds\_to\_samples
@@ -2609,7 +2599,7 @@ There are 1e-06 seconds in 4500 samples.
 
   **Parameters**
 
-  **seconds** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – Time in seconds to convert to samples.
+  **seconds** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Time in seconds to convert to samples.
 
   **Returns**
 
@@ -2617,7 +2607,7 @@ There are 1e-06 seconds in 4500 samples.
 
   **Return type**
 
-  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")
+  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")
 </Function>
 
 ## Configuration

@@ -1,0 +1,74 @@
+---
+title: iteration (v0.9)
+description: API reference for qiskit_addon_cutting.utils.iteration in qiskit-addon-cutting v0.9
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_cutting.utils.iteration
+---
+
+<span id="module-qiskit_addon_cutting.utils.iteration" />
+
+<span id="iteration-utilities-qiskit-addon-cutting-utils-iteration" />
+
+# Iteration utilities
+
+`qiskit_addon_cutting.utils.iteration`
+
+Iteration utilities.
+
+### unique\_by\_id
+
+<Function id="qiskit_addon_cutting.utils.iteration.unique_by_id" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/utils/iteration.py" signature="unique_by_id(iterable, /)">
+  Return unique objects in `iterable`, by identity.
+
+  ```python
+  >>> a = {0}
+  >>> list(unique_by_id([a, a]))
+  [{0}]
+  :rtype: :sphinx_autodoc_typehints_type:`\:py\:class\:\`\~collections.abc.ValuesView\``
+  ```
+
+  ```python
+  >>> list(unique_by_id([a, a.copy()]))
+  [{0}, {0}]
+  ```
+
+  **Parameters**
+
+  **iterable** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.13)"))
+
+  **Return type**
+
+  [*ValuesView*](https://docs.python.org/3/library/collections.abc.html#collections.abc.ValuesView "(in Python v3.13)")
+</Function>
+
+### unique\_by\_eq
+
+<Function id="qiskit_addon_cutting.utils.iteration.unique_by_eq" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/utils/iteration.py" signature="unique_by_eq(iterable, /)">
+  Return unique objects in `iterable`, by equality.
+
+  This function is only appropriate if (i) there are a small number of objects, and (ii) the objects are not guaranteed to be hashable. Otherwise, a `dict` or `set` is a better choice.
+
+  This function may potentially make a comparison between all pairs of elements, so it executes in $O(n^2)$ time in the worst case, in contrast to a `dict` or `set`, both of which can be constructed in $O(n)$ time.
+
+  ```python
+  >>> a = {0}
+  >>> list(unique_by_eq([a, a]))
+  [{0}]
+  :rtype: :sphinx_autodoc_typehints_type:`\:py\:class\:\`list\``
+  ```
+
+  ```python
+  >>> list(unique_by_eq([a, a.copy()]))
+  [{0}]
+  ```
+
+  **Parameters**
+
+  **iterable** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.13)"))
+
+  **Return type**
+
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")
+</Function>
+

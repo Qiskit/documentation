@@ -1,6 +1,6 @@
 ---
-title: BasicSimulator
-description: API reference for qiskit.providers.basic_provider.BasicSimulator
+title: BasicSimulator (latest version)
+description: API reference for qiskit.providers.basic_provider.BasicSimulator in the latest version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.providers.basic_provider.BasicSimulator
@@ -8,20 +8,20 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
 # BasicSimulator
 
-<Class id="qiskit.providers.basic_provider.BasicSimulator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/basic_provider/basic_simulator.py#L66-L803" signature="qiskit.providers.basic_provider.BasicSimulator(provider=None, target=None, **fields)" modifiers="class">
+<Class id="qiskit.providers.basic_provider.BasicSimulator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/providers/basic_provider/basic_simulator.py#L65-L693" signature="qiskit.providers.basic_provider.BasicSimulator(provider=None, target=None, **fields)" modifiers="class">
   Bases: [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 
   Python implementation of a basic (non-efficient) quantum simulator.
 
   **Parameters**
 
-  *   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider") *| None*) – An optional backwards reference to the [`Provider`](qiskit.providers.Provider "qiskit.providers.Provider") object that the backend is from.
+  *   **provider** – An optional backwards reference to the provider object that the backend is from.
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target") *| None*) – An optional target to configure the simulator.
   *   **fields** – kwargs for the values to use to override the default options.
 
   **Raises**
 
-  [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If a field is specified that’s outside the backend’s options.
+  [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – If a field is specified that’s outside the backend’s options.
 
   ## Attributes
 
@@ -58,19 +58,13 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the output signal timestep
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if the backend doesn’t support querying the output signal timestep
   </Attribute>
 
   ### instruction\_durations
 
   <Attribute id="qiskit.providers.basic_provider.BasicSimulator.instruction_durations">
     Return the [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") object.
-  </Attribute>
-
-  ### instruction\_schedule\_map
-
-  <Attribute id="qiskit.providers.basic_provider.BasicSimulator.instruction_schedule_map">
-    Return the [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") for the instructions defined in this backend’s target.
   </Attribute>
 
   ### instructions
@@ -96,7 +90,7 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if the backend doesn’t support querying the measurement mapping
   </Attribute>
 
   ### num\_qubits
@@ -128,15 +122,15 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
   ### provider
 
   <Attribute id="qiskit.providers.basic_provider.BasicSimulator.provider">
-    Return the backend Provider.
+    Return the backend provider.
 
     **Returns**
 
-    the Provider responsible for the backend.
+    the provider responsible for the backend.
 
     **Return type**
 
-    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    provider
   </Attribute>
 
   ### target
@@ -173,116 +167,16 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
   ## Methods
 
-  ### acquire\_channel
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend.py#L548-L561" signature="acquire_channel(qubit)">
-    Return the acquisition channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    **Returns**
-
-    The Qubit measurement acquisition line.
-
-    **Return type**
-
-    [AcquireChannel](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
-
-    **Raises**
-
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
-  </Function>
-
-  ### configuration
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.configuration" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/basic_provider/basic_simulator.py#L215-L257" signature="configuration()">
-    Return the simulator backend configuration.
-
-    **Returns**
-
-    The configuration for the backend.
-
-    **Return type**
-
-    [*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.backendconfiguration.BackendConfiguration")
-  </Function>
-
-  ### control\_channel
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.control_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend.py#L563-L583" signature="control_channel(qubits)">
-    Return the secondary drive channel for the given qubit
-
-    This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    **Parameters**
-
-    **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
-
-    **Returns**
-
-    The multi qubit control line.
-
-    **Return type**
-
-    List\[[ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
-
-    **Raises**
-
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
-  </Function>
-
-  ### drive\_channel
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.drive_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend.py#L518-L531" signature="drive_channel(qubit)">
-    Return the drive channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    **Returns**
-
-    The Qubit drive channel
-
-    **Return type**
-
-    [DriveChannel](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
-
-    **Raises**
-
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
-  </Function>
-
-  ### measure\_channel
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.measure_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend.py#L533-L546" signature="measure_channel(qubit)">
-    Return the measure stimulus channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    **Returns**
-
-    The Qubit measurement stimulus line
-
-    **Return type**
-
-    [MeasureChannel](qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
-
-    **Raises**
-
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
-  </Function>
-
   ### qubit\_properties
 
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend.py#L484-L516" signature="qubit_properties(qubit)">
+  <Function id="qiskit.providers.basic_provider.BasicSimulator.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/providers/backend.py#L242-L274" signature="qubit_properties(qubit)">
     Return QubitProperties for a given qubit.
 
     If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
 
     **Parameters**
 
-    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
+    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
 
     **Returns**
 
@@ -290,22 +184,22 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the qubit properties
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if the backend doesn’t support querying the qubit properties
 
     **Return type**
 
-    [*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties") | [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties")]
+    [*QubitProperties*](qiskit.providers.QubitProperties "qiskit._accelerate.target.QubitProperties") | [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit._accelerate.target.QubitProperties")]
   </Function>
 
   ### run
 
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/basic_provider/basic_simulator.py#L500-L543" signature="run(run_input, **backend_options)">
+  <Function id="qiskit.providers.basic_provider.BasicSimulator.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/providers/basic_provider/basic_simulator.py#L422-L470" signature="run(run_input, **run_options)">
     Run on the backend.
 
     **Parameters**
 
-    *   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – payload of the experiment
-    *   **backend\_options** – backend options
+    *   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – the QuantumCircuit (or list of QuantumCircuit objects) to run
+    *   **run\_options** (*kwargs*) – additional runtime backend options
 
     **Returns**
 
@@ -317,62 +211,26 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
     **Additional Information:**
 
-    **backend\_options: Is a dict of options for the backend. It may contain**
+    *   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run. These may include:
 
-    *   “initial\_statevector”: vector\_like
-
-    The “initial\_statevector” option specifies a custom initial initial statevector for the simulator to be used instead of the all zero state. This size of this vector must be correct for the number of qubits in `run_input` parameter.
+        > *   “initial\_statevector”: vector-like. The “initial\_statevector” option specifies a custom initial statevector to be used instead of the all-zero state. The size of this vector must correspond to the number of qubits in the `run_input` argument.
+        > *   “seed\_simulator”: int. This is the internal seed for sample generation.
+        > *   “shots”: int. Number of shots used in the simulation.
+        > *   “memory”: bool. If True, the result will contain the results of every individual shot simulation.
 
     Example:
 
     ```python
-    backend_options = {
-        "initial_statevector": np.array([1, 0, 0, 1j]) / math.sqrt(2),
-    }
+    backend.run(
+        circuit_2q,
+        initial_statevector = np.array([1, 0, 0, 1j]) / math.sqrt(2)
+    )
     ```
-  </Function>
-
-  ### run\_experiment
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.run_experiment" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/basic_provider/basic_simulator.py#L578-L782" signature="run_experiment(experiment)">
-    Run an experiment (circuit) and return a single experiment result.
-
-    **Parameters**
-
-    **experiment** ([*QasmQobjExperiment*](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.qasm_qobj.QasmQobjExperiment")) – experiment from qobj experiments list
-
-    **Returns**
-
-    A result dictionary which looks something like:
-
-    ```python
-    {
-    "name": name of this experiment (obtained from qobj.experiment header)
-    "seed": random seed used for simulation
-    "shots": number of shots used in the simulation
-    "data":
-        {
-        "counts": {'0x9: 5, ...},
-        "memory": ['0x9', '0xF', '0x1D', ..., '0x9']
-        },
-    "status": status string for the simulation
-    "success": boolean
-    "time_taken": simulation time of this single experiment
-    }
-    ```
-
-    **Raises**
-
-    [**BasicProviderError**](qiskit.providers.basic_provider.BasicProviderError "qiskit.providers.basic_provider.BasicProviderError") – if an error occurred.
-
-    **Return type**
-
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), …]
   </Function>
 
   ### set\_options
 
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend.py#L585-L602" signature="set_options(**fields)">
+  <Function id="qiskit.providers.basic_provider.BasicSimulator.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/providers/backend.py#L276-L293" signature="set_options(**fields)">
     Set the options fields for the backend
 
     This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
@@ -383,7 +241,7 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
     **Raises**
 
-    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – If the field passed in is not part of the options
   </Function>
 </Class>
 

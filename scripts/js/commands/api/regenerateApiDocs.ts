@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile, readdir } from "fs/promises";
+import { readdir } from "fs/promises";
 
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
@@ -19,6 +19,7 @@ import { $ } from "zx";
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
 import { pathExists } from "../../lib/fs.js";
+import { readApiFullVersion } from "../../lib/apiVersions.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
 interface Arguments {
@@ -55,7 +56,6 @@ zxMain(async () => {
   const args = readArgs();
   await validateGitStatus();
 
-  const results = new Map<string, string[]>();
   for (const pkgName of Pkg.VALID_NAMES) {
     if (args.package && pkgName != args.package) {
       continue;
@@ -67,22 +67,15 @@ zxMain(async () => {
     );
     const maybeDevVersion = await getDevVersion(pkgName);
 
-    const result = await processVersions(
+    await processVersions(
       pkgName,
       args.skipDownload,
       historicalVersions,
       currentVersion,
       maybeDevVersion,
     );
-    results.set(pkgName, result);
   }
 
-  console.log("");
-  results.forEach((result: string[], pkgName: string) => {
-    console.log(`Regeneration of ${pkgName}:`);
-    result.forEach((msg) => console.error(msg));
-    console.log("");
-  });
   await generateHistoricalRedirects();
 
   console.log(`Each regenerated version has been saved as a distinct commit. If the changes are
@@ -96,29 +89,19 @@ async function processVersions(
   historicalVersions: string[],
   currentVersion: string,
   maybeDevVersion: string | undefined,
-): Promise<string[]> {
-  const results: string[] = [];
-
+): Promise<void> {
   for (const historicalVersion of historicalVersions) {
-    results.push(
-      await regenerateVersion(
-        pkgName,
-        historicalVersion,
-        skipDownload,
-        "historical",
-      ),
+    await regenerateVersion(
+      pkgName,
+      historicalVersion,
+      skipDownload,
+      "historical",
     );
   }
-
-  results.push(await regenerateVersion(pkgName, currentVersion, skipDownload));
-
+  await regenerateVersion(pkgName, currentVersion, skipDownload);
   if (maybeDevVersion) {
-    results.push(
-      await regenerateVersion(pkgName, maybeDevVersion, skipDownload, "dev"),
-    );
+    await regenerateVersion(pkgName, maybeDevVersion, skipDownload, "dev");
   }
-
-  return results;
 }
 
 async function regenerateVersion(
@@ -126,7 +109,7 @@ async function regenerateVersion(
   version: string,
   skipDownload: boolean,
   typeArgument?: "historical" | "dev",
-): Promise<string> {
+): Promise<void> {
   const command = ["npm", "run", "gen-api", "--", "-p", pkgName, "-v", version];
   if (typeArgument) {
     command.push(`--${typeArgument}`);
@@ -139,13 +122,13 @@ async function regenerateVersion(
     await $`${command}`;
     if ((await gitStatus()) !== "") {
       await gitCommit(`Regenerate ${pkgName} ${version}`);
-      return `✅ ${pkgName} ${version} regenerated correctly`;
+      console.log(`🚀 ${pkgName} ${version} regenerated correctly`);
     } else {
-      return `☑️ ${pkgName} ${version} is up-to-date`;
+      console.log(`✅ ${pkgName} ${version} is already up-to-date`);
     }
   } catch (_) {
     await gitRestore(".");
-    return `❌ ${pkgName} ${version} failed to regenerate`;
+    console.error(`❌ ${pkgName} ${version} failed to regenerate`);
   }
 }
 
@@ -153,8 +136,7 @@ async function getDevVersion(pkgName: string): Promise<string | undefined> {
   const devPath = `docs/api/${pkgName}/dev`;
 
   if (await pathExists(devPath)) {
-    return JSON.parse(await readFile(`${devPath}/_package.json`, "utf-8"))
-      .version;
+    return await readApiFullVersion(devPath);
   }
 
   return undefined;
@@ -173,18 +155,15 @@ async function getReleasedVersions(
     ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
     for (const folder of historicalFolders) {
-      const historicalVersion = JSON.parse(
-        await readFile(`${pkgDocsPath}/${folder.name}/_package.json`, "utf-8"),
+      const historicalVersion = await readApiFullVersion(
+        `${pkgDocsPath}/${folder.name}`,
       );
-      historicalVersions.push(historicalVersion.version);
+      historicalVersions.push(historicalVersion);
     }
   }
 
-  const currentVersion = JSON.parse(
-    await readFile(`${pkgDocsPath}/_package.json`, "utf-8"),
-  );
-
-  return [historicalVersions, currentVersion.version];
+  const currentVersion = await readApiFullVersion(pkgDocsPath);
+  return [historicalVersions, currentVersion];
 }
 
 async function validateGitStatus(): Promise<void> {

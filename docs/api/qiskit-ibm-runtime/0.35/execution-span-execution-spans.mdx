@@ -1,0 +1,124 @@
+---
+title: ExecutionSpans (v0.35)
+description: API reference for qiskit_ibm_runtime.execution_span.ExecutionSpans in qiskit-ibm-runtime v0.35
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpans
+---
+
+# ExecutionSpans
+
+<Class id="qiskit_ibm_runtime.execution_span.ExecutionSpans" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.35/qiskit_ibm_runtime/execution_span/execution_spans.py#L26-L144" signature="ExecutionSpans(spans)" modifiers="class">
+  Bases: `object`
+
+  A collection of timings for pub results.
+
+  This class is a list-like containing [`ExecutionSpan`](execution-span-execution-span "qiskit_ibm_runtime.execution_span.ExecutionSpan")s, where each execution span represents a time window of data collection, and contains a reference to exactly which of the data were collected during the window.
+
+  It is possible for distinct time windows to overlap. This is not because a QPU was performing multiple executions at once, but is instead an artifact of certain classical processing that may happen concurrently with quantum execution. The guarantee being made is that the referenced data definitely occurred in the reported execution span, but not necessarily that the limits of the time window are as tight as possible.
+
+  ## Attributes
+
+  **Parameters**
+
+  **spans** (*Iterable\[*[*ExecutionSpan*](execution-span-execution-span "qiskit_ibm_runtime.execution_span.ExecutionSpan")*]*)
+
+  ### duration
+
+  <Attribute id="qiskit_ibm_runtime.execution_span.ExecutionSpans.duration">
+    The total duration of this collection, in seconds.
+  </Attribute>
+
+  ### pub\_idxs
+
+  <Attribute id="qiskit_ibm_runtime.execution_span.ExecutionSpans.pub_idxs">
+    Which pubs, by index, have dependence on one or more execution spans present.
+  </Attribute>
+
+  ### start
+
+  <Attribute id="qiskit_ibm_runtime.execution_span.ExecutionSpans.start">
+    The start time of the entire collection, in UTC.
+  </Attribute>
+
+  ### stop
+
+  <Attribute id="qiskit_ibm_runtime.execution_span.ExecutionSpans.stop">
+    The stop time of the entire collection, in UTC.
+  </Attribute>
+
+  ## Methods
+
+  ### \_\_getitem\_\_
+
+  <Function id="qiskit_ibm_runtime.execution_span.ExecutionSpans.__getitem__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.35/qiskit_ibm_runtime/execution_span/execution_spans.py#L59-L64" signature="__getitem__(idxs: int) → ExecutionSpan" extraSignatures={["__getitem__(idxs: slice | list[int]) → ExecutionSpans"]} />
+
+  ### \_\_len\_\_
+
+  <Function id="qiskit_ibm_runtime.execution_span.ExecutionSpans.__len__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.35/qiskit_ibm_runtime/execution_span/execution_spans.py#L50-L51" signature="__len__()">
+    **Return type**
+
+    int
+  </Function>
+
+  ### draw
+
+  <Function id="qiskit_ibm_runtime.execution_span.ExecutionSpans.draw" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.35/qiskit_ibm_runtime/execution_span/execution_spans.py#L120-L144" signature="draw(name=None, normalize_y=False, line_width=4)">
+    Draw these execution spans.
+
+    <Admonition title="Note" type="note">
+      To draw multiple sets of execution spans at once, for example coming from multiple jobs, consider calling [`draw_execution_spans()`](visualization-draw-execution-spans "qiskit_ibm_runtime.visualization.draw_execution_spans") directly.
+    </Admonition>
+
+    **Parameters**
+
+    *   **name** (*str*) – The name of this set of spans.
+    *   **normalize\_y** (*bool*) – Whether to display the y-axis units as a percentage of work complete, rather than cumulative shots completed.
+    *   **line\_width** (*int*) – The thickness of line segments.
+
+    **Returns**
+
+    A plotly figure.
+
+    **Return type**
+
+    PlotlyFigure
+  </Function>
+
+  ### filter\_by\_pub
+
+  <Function id="qiskit_ibm_runtime.execution_span.ExecutionSpans.filter_by_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.35/qiskit_ibm_runtime/execution_span/execution_spans.py#L95-L103" signature="filter_by_pub(pub_idx)">
+    Return a new set of spans where each one has been filtered to the specified pubs.
+
+    See also :meth:\~.ExecutionSpan.filter\_by\_pub\`.
+
+    **Parameters**
+
+    **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices to filter.
+
+    **Return type**
+
+    [ExecutionSpans](#qiskit_ibm_runtime.execution_span.ExecutionSpans "qiskit_ibm_runtime.execution_span.ExecutionSpans")
+  </Function>
+
+  ### sort
+
+  <Function id="qiskit_ibm_runtime.execution_span.ExecutionSpans.sort" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.35/qiskit_ibm_runtime/execution_span/execution_spans.py#L105-L118" signature="sort(inplace=True)">
+    Return the same execution spans, sorted.
+
+    Sorting is done by the [`start`](execution-span-execution-span#start "qiskit_ibm_runtime.execution_span.ExecutionSpan.start") timestamp of each execution span.
+
+    **Parameters**
+
+    **inplace** (*bool*) – Whether to sort this instance in place, or return a copy.
+
+    **Returns**
+
+    This instance if `inplace`, a new instance otherwise, sorted.
+
+    **Return type**
+
+    [*ExecutionSpans*](#qiskit_ibm_runtime.execution_span.ExecutionSpans "qiskit_ibm_runtime.execution_span.execution_spans.ExecutionSpans")
+  </Function>
+</Class>
+

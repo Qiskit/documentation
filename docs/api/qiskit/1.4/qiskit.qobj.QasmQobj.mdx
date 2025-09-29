@@ -1,0 +1,82 @@
+---
+title: QasmQobj (v1.4)
+description: API reference for qiskit.qobj.QasmQobj in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.QasmQobj
+---
+
+# QasmQobj
+
+<Class id="qiskit.qobj.QasmQobj" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/qasm_qobj.py#L590-L708" signature="qiskit.qobj.QasmQobj(qobj_id=None, config=None, experiments=None, header=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  An OpenQASM 2 Qobj.
+
+  Instantiate a new OpenQASM 2 Qobj Object.
+
+  Each OpenQASM 2 Qobj object is used to represent a single payload that will be passed to a Qiskit provider. It mirrors the Qobj the published [Qobj specification](https://arxiv.org/abs/1809.03452) for OpenQASM experiments.
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The class `qiskit.qobj.qasm_qobj.QasmQobj` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
+  </Admonition>
+
+  **Parameters**
+
+  *   **qobj\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – An identifier for the qobj
+  *   **config** (*QasmQobjRunConfig*) – A config for the entire run
+  *   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
+  *   **experiments** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of lists of [`QasmQobjExperiment`](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") objects representing an experiment
+
+  ## Methods
+
+  ### from\_dict
+
+  <Function id="qiskit.qobj.QasmQobj.from_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/qasm_qobj.py#L679-L702" signature="from_dict(data)" modifiers="classmethod">
+    Create a new QASMQobj object from a dictionary.
+
+    **Parameters**
+
+    **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – A dictionary representing the QasmQobj to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.QasmQobj.to_dict "qiskit.qobj.QasmQobj.to_dict").
+
+    **Returns**
+
+    The QasmQobj from the input dictionary.
+
+    **Return type**
+
+    [QasmQobj](#qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")
+  </Function>
+
+  ### to\_dict
+
+  <Function id="qiskit.qobj.QasmQobj.to_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/qasm_qobj.py#L642-L677" signature="to_dict()">
+    Return a dictionary format representation of the OpenQASM 2 Qobj.
+
+    Note this dict is not in the json wire format expected by IBM and Qobj specification because complex numbers are still of type complex. Also, this may contain native numpy arrays. When serializing this output for use with IBM systems, you can leverage a json encoder that converts these as expected. For example:
+
+    ```python
+    import json
+    import numpy
+
+    class QobjEncoder(json.JSONEncoder):
+        def default(self, obj):
+            if isinstance(obj, numpy.ndarray):
+                return obj.tolist()
+            if isinstance(obj, complex):
+                return (obj.real, obj.imag)
+            return json.JSONEncoder.default(self, obj)
+
+    json.dumps(qobj.to_dict(), cls=QobjEncoder)
+    ```
+
+    **Returns**
+
+    A dictionary representation of the QasmQobj object
+
+    **Return type**
+
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+  </Function>
+</Class>
+

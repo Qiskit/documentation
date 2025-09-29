@@ -1,0 +1,119 @@
+---
+title: CollectMultiQBlocks (v1.4)
+description: API reference for qiskit.transpiler.passes.CollectMultiQBlocks in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
+---
+
+# CollectMultiQBlocks
+
+<Class id="qiskit.transpiler.passes.CollectMultiQBlocks" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L20-L227" signature="qiskit.transpiler.passes.CollectMultiQBlocks(*args, **kwargs)" modifiers="class">
+  Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+
+  Collect sequences of uninterrupted gates acting on groups of qubits. `max_block_size` specifies the maximum number of qubits that can be acted upon by any single group of gates
+
+  Traverse the DAG and find blocks of gates that act consecutively on groups of qubits. Write the blocks to `property_set` as a list of blocks of the form:
+
+  ```python
+  [[g0, g1, g2], [g4, g5]]
+  ```
+
+  Blocks are reported in a valid topological order. Further, the gates within each block are also reported in topological order Some gates may not be present in any block (e.g. if the number of operands is greater than `max_block_size`)
+
+  A Disjoint Set Union data structure (DSU) is used to maintain blocks as gates are processed. This data structure points each qubit to a set at all times and the sets correspond to current blocks. These change over time and the data structure allows these changes to be done quickly.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.CollectMultiQBlocks.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.CollectMultiQBlocks.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L72-L118" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### find\_set
+
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.find_set" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L53-L67" signature="find_set(index)">
+    DSU function for finding root of set of items If my parent is myself, I am the root. Otherwise we recursively find the root for my parent. After that, we assign my parent to be my root, saving recursion in the future.
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L88-L227" signature="run(dag)">
+    Run the CollectMultiQBlocks pass on dag.
+
+    The blocks contain “op” nodes in topological sort order such that all gates in a block act on the same set of qubits and are adjacent in the circuit.
+
+    The blocks are built by examining predecessors and successors of “cx” gates in the circuit. u1, u2, u3, cx, id gates will be included.
+
+    After the execution, `property_set['block_list']` is set to a list of tuples of `DAGNode` objects
+  </Function>
+
+  ### union\_set
+
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.union_set" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L69-L86" signature="union_set(set1, set2)">
+    DSU function for unioning two sets together Find the roots of each set. Then assign one to have the other as its parent, thus liking the sets. Merges smaller set into larger set in order to have better runtime
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L120-L138" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

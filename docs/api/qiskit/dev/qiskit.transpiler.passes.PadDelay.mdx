@@ -1,6 +1,6 @@
 ---
-title: PadDelay
-description: API reference for qiskit.transpiler.passes.PadDelay
+title: PadDelay (dev version)
+description: API reference for qiskit.transpiler.passes.PadDelay in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.transpiler.passes.PadDelay
@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
 # PadDelay
 
-<Class id="qiskit.transpiler.passes.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passes/scheduling/padding/pad_delay.py#L23-L79" signature="qiskit.transpiler.passes.PadDelay(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/pad_delay.py#L24-L90" signature="qiskit.transpiler.passes.PadDelay(*args, **kwargs)" modifiers="class">
   Bases: `BasePadding`
 
   Padding idle time with Delay instructions.
@@ -16,6 +16,9 @@ python_api_name: qiskit.transpiler.passes.PadDelay
   Consecutive delays will be merged in the output of this pass.
 
   ```python
+  from qiskit import QuantumCircuit
+  from qiskit.transpiler import InstructionDurations
+
   durations = InstructionDurations([("x", None, 160), ("cx", None, 800)])
 
   qc = QuantumCircuit(2)
@@ -26,7 +29,7 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
   The ASAP-scheduled circuit output may become
 
-  ```python
+  ```text
        ┌────────────────┐
   q_0: ┤ Delay(160[dt]) ├──■──
        └─────┬───┬──────┘┌─┴─┐
@@ -67,14 +70,14 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.PadDelay.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.PadDelay.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -82,27 +85,33 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### get\_duration
+
+  <Function id="qiskit.transpiler.passes.PadDelay.get_duration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L74-L97" signature="get_duration(node, dag)">
+    Get duration of a given node in the circuit.
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.PadDelay.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.PadDelay.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.PadDelay.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L71-L166" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.PadDelay.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L99-L194" signature="run(dag)">
     Run the padding pass on `dag`.
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to be checked.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – DAG to be checked.
 
     **Returns**
 
@@ -119,7 +128,7 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.PadDelay.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.PadDelay.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

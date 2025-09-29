@@ -15,6 +15,7 @@ on:
   pull_request:
     paths:
       - "docs/**/*"
+      - "learning/**/*"
       - "public/images/**/*"
       # PR previews don't build API docs.
       - "!docs/api/**/*"
@@ -32,6 +33,10 @@ jobs:
     env:
       PR_PREVIEW_PATH: pr-${{ github.event.pull_request.number }}
       PR_PREVIEW_URL: https://qiskit.github.io/documentation/pr-${{ github.event.pull_request.number }}/
+      # Refer to https://yarnpkg.com/features/security#hardened-mode. We cannot enable this
+      # because the Dockerfile already has the dependencies pre-installed and eagerly
+      # validating the lockfile will miss the required auth token.
+      YARN_ENABLE_HARDENED_MODE: 0
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

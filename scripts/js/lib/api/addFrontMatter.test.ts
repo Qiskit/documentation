@@ -14,10 +14,10 @@ import { expect, test } from "@playwright/test";
 
 import addFrontMatter from "./addFrontMatter.js";
 import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
-import { HtmlToMdResult } from "./HtmlToMdResult.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
 test("addFrontMatter()", () => {
-  const results: HtmlToMdResult[] = [
+  const results: HtmlToMdResultWithUrl[] = [
     {
       markdown: "# Hardcoded!",
       meta: {
@@ -25,6 +25,7 @@ test("addFrontMatter()", () => {
       },
       images: [],
       isReleaseNotes: false,
+      url: "/api/my-pkg/foo",
     },
     {
       markdown: "# Hardcoded with python_api_name!",
@@ -36,6 +37,7 @@ test("addFrontMatter()", () => {
       },
       images: [],
       isReleaseNotes: true,
+      url: "/api/my-pkg/release-notes",
     },
     {
       markdown: "# Python API",
@@ -45,6 +47,7 @@ test("addFrontMatter()", () => {
       },
       images: [],
       isReleaseNotes: false,
+      url: "/api/my-pkg/foo",
     },
     {
       markdown: "# My module",
@@ -54,12 +57,21 @@ test("addFrontMatter()", () => {
       },
       images: [],
       isReleaseNotes: false,
+      url: "/api/my-pkg/foo",
     },
     {
       markdown: "# Some release notes!",
       meta: {},
       images: [],
       isReleaseNotes: true,
+      url: "/api/my-pkg/releaes-notes",
+    },
+    {
+      markdown: "# Index page",
+      meta: {},
+      images: [],
+      isReleaseNotes: false,
+      url: "/api/my-pkg/index",
     },
   ];
   const pkg = Pkg.mock({
@@ -85,8 +97,8 @@ description: Hello world!
 # Hardcoded with python_api_name!
 `,
     `---
-title: MyClass
-description: API reference for quantum_software.MyClass
+title: MyClass (latest version)
+description: API reference for quantum_software.MyClass in the latest version of my-quantum-project
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: quantum_software.MyClass
@@ -95,8 +107,8 @@ python_api_name: quantum_software.MyClass
 # Python API
 `,
     `---
-title: quantum_software
-description: API reference for quantum_software
+title: quantum_software (latest version)
+description: API reference for quantum_software in the latest version of my-quantum-project
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: quantum_software
@@ -111,6 +123,13 @@ in_page_toc_max_heading_level: 3
 ---
 
 # Some release notes!
+`,
+    `---
+title: My Quantum Project API documentation (latest version)
+description: Index of all the modules in the latest version of my-quantum-project.
+---
+
+# Index page
 `,
   ]);
 });

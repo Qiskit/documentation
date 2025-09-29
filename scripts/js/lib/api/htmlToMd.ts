@@ -26,7 +26,7 @@ import { Emphasis, Root, Content } from "mdast";
 
 import { processHtml } from "./processHtml.js";
 import { HtmlToMdResult } from "./HtmlToMdResult.js";
-import { Metadata } from "./Metadata.js";
+import { Metadata, ApiTypeName } from "./Metadata.js";
 import { removePrefix, removeSuffix, capitalize } from "../stringUtils.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 
@@ -36,6 +36,8 @@ export async function sphinxHtmlToMarkdown(options: {
   imageDestination: string;
   determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
+  hasSeparateReleaseNotes: boolean;
+  isCApi: boolean;
 }): Promise<HtmlToMdResult> {
   const processedHtml = await processHtml(options);
   const markdown = await generateMarkdownFile(
@@ -102,6 +104,11 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
       }
       return defaultHandlers.pre(h, node);
     },
+    p(h, node: any) {
+      return node.properties.id
+        ? [buildSpanId(node.properties.id), ...all(h, node)]
+        : defaultHandlers.p(h, node);
+    },
     dl(h, node: any) {
       return defaultHandlers.div(h, node);
     },
@@ -118,10 +125,15 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
       }
 
       if (nodeClasses.includes("deprecated")) {
-        return buildDeprecatedAdmonition(node, handlers);
+        return buildApiVersionAdmonition(node, handlers, "danger");
+      }
+      if (nodeClasses.includes("versionadded")) {
+        return buildApiVersionAdmonition(node, handlers, "info");
       }
 
-      return defaultHandlers.div(h, node);
+      return node.properties.id && nodeClasses.includes("section")
+        ? [buildSpanId(node.properties.id), ...all(h, node)]
+        : defaultHandlers.div(h, node);
     },
     class(h, node: any): any {
       return buildApiComponent(h, node);
@@ -194,7 +206,7 @@ function findNodeWithProperty(nodeList: any[], propertyName: string) {
 function buildDt(
   h: H,
   node: any,
-  apiType?: string,
+  apiType?: ApiTypeName,
 ): void | Content | Content[] {
   if (apiType === "class" || apiType === "module") {
     return [
@@ -248,15 +260,17 @@ function buildAdmonition(
   };
 }
 
-function buildDeprecatedAdmonition(
+function buildApiVersionAdmonition(
   node: any,
   handlers: Record<string, Handle>,
+  admonitionType: "info" | "danger",
 ): MdxJsxFlowElement {
   const titleNode = findNodeWithProperty(
     node.children[0].children,
     "versionmodified",
   );
   const title = toText(titleNode).trim().replace(/:$/, "");
+
   const otherChildren: Array<any> = without(
     node.children[0].children,
     titleNode,
@@ -274,7 +288,7 @@ function buildDeprecatedAdmonition(
       {
         type: "mdxJsxAttribute",
         name: "type",
-        value: "danger",
+        value: admonitionType,
       },
     ],
     children: [

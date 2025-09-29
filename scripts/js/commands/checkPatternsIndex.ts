@@ -13,16 +13,63 @@
 import { readFile } from "fs/promises";
 
 import type { TocEntry } from "../lib/api/generateToc.js";
+import { readJsonFile } from "../lib/fs";
 
-const IGNORED_URLS = ["/guides/qiskit-serverless"];
+// URLs that show up in the left ToC under the `Tools` section, but are not in
+// any of the INDEX_PAGES.
+const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
+  "/docs/guides/qiskit-code-assistant",
+  "/docs/guides/qiskit-code-assistant-jupyterlab",
+  "/docs/guides/qiskit-code-assistant-vscode",
+  "/docs/guides/qiskit-code-assistant-local",
+  "/docs/guides/addons",
+  "/docs/guides/function-template-hamiltonian-simulation",
+  "/docs/guides/qiskit-addons-utils",
+  "/docs/guides/qiskit-code-assistant-openai-api",
+  "/docs/guides/manage-cost",
+  "/docs/guides/execution-modes-faq",
+]);
 
-const INDEX_PAGES = [
-  "docs/guides/map-problem-to-circuits.mdx",
-  "docs/guides/optimize-for-hardware.mdx",
-  "docs/guides/execute-on-hardware.mdx",
-  "docs/guides/post-process-results.mdx",
-];
+// URLs that show up in the INDEX_PAGES, but are not in the left ToC under
+// the `Tools` section.
+//
+// Note that `checkOrphanPages.tsx` will validate these
+// pages do show up somewhere in the ToC, they only might be in a different
+// section than `Tools.`
+const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
+  "/docs/guides/q-ctrl-optimization-solver",
+  "/docs/guides/kipu-optimization",
+  "/docs/guides/multiverse-computing-singularity",
+  "/docs/guides/global-data-quantum-optimizer",
+  "/docs/guides/colibritd-pde",
+  "/docs/guides/qunova-chemistry",
+  "/docs/guides/manage-cost",
+  "/docs/guides/instances",
+  "/docs/guides/access-instances-platform-apis",
+  "/docs/guides/cloud-setup",
+  "/docs/guides/initialize-account",
+  "/docs/guides/save-credentials",
+  "/docs/guides/cloud-setup-untrusted",
+  "/docs/guides/cloud-setup-invited",
+  "/docs/guides/cloud-setup-rest-api",
+  "/docs/support/execution-modes-faq",
+]);
 
+// URLs that show up in the INDEX_PAGES >1 time.
+const ALLOWLIST_DUPLICATE_ENTRIES: Set<string> = new Set([]);
+
+const INDEX_PAGE_URLS: Set<string> = new Set([
+  "/docs/guides/map-problem-to-circuits",
+  "/docs/guides/optimize-for-hardware",
+  "/docs/guides/execute-on-hardware",
+  "/docs/guides/post-process-results",
+  "/docs/guides/intro-to-patterns",
+]);
+
+const INDEX_PAGE_FILES = Array.from(INDEX_PAGE_URLS).map(
+  // We remove the initial `/` to make the path relative
+  (page) => `${page.substring(1)}.mdx`,
+);
 const TOC_PATH = "docs/guides/_toc.json";
 
 async function getIndexEntries(indexPath: string): Promise<string[]> {
@@ -58,7 +105,7 @@ function extractPageSlug(text: string): string | undefined {
     return pageSlug;
   }
   const page = pageSlug.split("/").pop();
-  return `/guides/${page}`;
+  return `/docs/guides/${page}`;
 }
 
 function getTocSectionPageNames(sectionNode: TocEntry): string[] {
@@ -77,12 +124,12 @@ function getTocSectionPageNames(sectionNode: TocEntry): string[] {
 }
 
 async function getToolsTocEntriesToCheck(): Promise<string[]> {
-  const toc = JSON.parse(await readFile(TOC_PATH, "utf-8"));
+  const toc = await readJsonFile(TOC_PATH);
   const toolsNode = toc.children.find(
     (child: TocEntry) => child.title == "Tools",
   );
   const toolsPages = getTocSectionPageNames(toolsNode);
-  return toolsPages.filter((page) => !IGNORED_URLS.includes(page));
+  return toolsPages.filter((page) => !ALLOWLIST_MISSING_FROM_INDEX.has(page));
 }
 
 async function deduplicateEntries(
@@ -93,7 +140,10 @@ async function deduplicateEntries(
   const errors: string[] = [];
 
   for (const entry of entries) {
-    if (deduplicatedPages.has(entry)) {
+    if (
+      deduplicatedPages.has(entry) &&
+      !ALLOWLIST_DUPLICATE_ENTRIES.has(entry)
+    ) {
       errors.push(`❌ ${filePath}: The entry ${entry} is duplicated`);
     } else {
       deduplicatedPages.add(entry);
@@ -109,7 +159,12 @@ function getExtraIndexPagesErrors(
   toolsEntries: Set<string>,
 ): string[] {
   return [...indexEntries]
-    .filter((page) => !toolsEntries.has(page))
+    .filter(
+      (page) =>
+        !toolsEntries.has(page) &&
+        !ALLOWLIST_MISSING_FROM_TOC.has(page) &&
+        !INDEX_PAGE_URLS.has(page),
+    )
     .map(
       (page) =>
         `❌ ${indexPage}: The entry ${page} doesn't appear in the \`Tools\` menu.`,
@@ -152,9 +207,9 @@ function maybePrintErrorsAndFail(
   if (extraToolsEntriesErrors.length > 0) {
     extraToolsEntriesErrors.forEach((error) => console.error(error));
     console.error(
-      "\nAdd the entries in one of the following index pages, or add the URL to the `IGNORED_URLS` list at the beginning of `/scripts/commands/checkPatternsIndex.tsx` if it's not used in Workflow:",
+      "\nAdd the entries in one of the following index pages, or add the URL to the `IGNORED_URLS` list at the beginning of `/scripts/js/commands/checkPatternsIndex.tsx` if it's not used in Workflow:",
     );
-    INDEX_PAGES.forEach((index) => console.error(`\t➡️  ${index}`));
+    INDEX_PAGE_FILES.forEach((index) => console.error(`\t➡️  ${index}`));
     allGood = false;
   }
 
@@ -171,7 +226,7 @@ async function main() {
   );
 
   let extraIndexEntriesErrors: string[] = [];
-  for (const indexPage of INDEX_PAGES) {
+  for (const indexPage of INDEX_PAGE_FILES) {
     const indexAllEntries = await getIndexEntries(indexPage);
     let [indexEntries, indexDuplicatedErrors] = await deduplicateEntries(
       indexPage,

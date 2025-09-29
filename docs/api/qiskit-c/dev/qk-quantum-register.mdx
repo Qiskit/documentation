@@ -1,0 +1,96 @@
+---
+title: QkQuantumRegister (dev version)
+description: API reference for QkQuantumRegister in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QkQuantumRegister
+---
+
+# QkQuantumRegister
+
+```c
+typedef struct QkQuantumRegister QkQuantumRegister
+```
+
+A common way to instantiate several bits at once is to create a register. A register is a named collection of bits. Creating a register enables giving a collection of bits a name which can be use as metadata around specific bits in a circuit. This name will also typically be preseserved when exporting the circuit to interchange languages.
+
+You can create a register by calling `qk_quantum_register_new()`, for example:
+
+```c
+#include <qiskit.h>
+
+QkQuantumRegister *qreg = qk_quantum_register_new(5, "my_qreg");
+```
+
+Which creates a new 5 qubit register named `"my_qreg"`.
+
+Then to add the register to a circuit you use the `qk_circuit_add_quantum_register()` function:
+
+```c
+QkCircuit *qc = qk_circuit_new(0, 0);
+qk_circuit_add_quantum_register(qc, qreg);
+uint32_t num_qubits = qk_circuit_num_qubits(qc); // 5
+```
+
+While circuits track registers, the registers themselves impart almost no behavioral differences on circuits.
+
+## Functions
+
+### qk\_quantum\_register\_new
+
+<Function id="qk_quantum_register_new" signature="QkQuantumRegister *qk_quantum_register_new(uint32_t num_qubits, const char *name)">
+  Construct a new owning quantum register with a given number of qubits and name
+
+  <span id="group__QkQuantumRegister_1autotoc_md4" />
+
+  #### Example
+
+  ```c
+  QkQuantumRegister *qr = qk_quantum_register_new(5, "five_qubits");
+  ```
+
+  <span id="group__QkQuantumRegister_1autotoc_md5" />
+
+  #### Safety
+
+  <span id="group__QkQuantumRegister_1autotoc_md5" />
+
+  The `name` parameter must be a pointer to memory that contains a valid nul terminator at the end of the string. It also must be valid for reads of bytes up to and including the nul terminator.
+
+  **Parameters**
+
+  *   **num\_qubits** – The number of qubits to create the register for
+  *   **name** – The name string for the created register. The name must be comprised of valid UTF-8 characters.
+
+  **Returns**
+
+  A pointer to the created register
+</Function>
+
+### qk\_quantum\_register\_free
+
+<Function id="qk_quantum_register_free" signature="void qk_quantum_register_free(QkQuantumRegister *reg)">
+  Free a quantum register.
+
+  <span id="group__QkQuantumRegister_1autotoc_md6" />
+
+  #### Example
+
+  ```c
+  QkQuantumRegister *qr = qk_quantum_register_new(1024, "qreg");
+  qk_quantum_register_free(qr);
+  ```
+
+  <span id="group__QkQuantumRegister_1autotoc_md7" />
+
+  #### Safety
+
+  <span id="group__QkQuantumRegister_1autotoc_md7" />
+
+  Behavior is undefined if `reg` is not either null or a valid pointer to a `QkQuantumRegister`.
+
+  **Parameters**
+
+  **reg** – A pointer to the register to free.
+</Function>
+

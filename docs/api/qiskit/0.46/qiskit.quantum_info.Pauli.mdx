@@ -1,6 +1,6 @@
 ---
-title: Pauli
-description: API reference for qiskit.quantum_info.Pauli
+title: Pauli (v0.46)
+description: API reference for qiskit.quantum_info.Pauli in qiskit v0.46
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.quantum_info.Pauli
@@ -46,7 +46,7 @@ $$
 
   **String representation**
 
-  An $n$-qubit Pauli may be represented by a string consisting of $n$ characters from `['I', 'X', 'Y', 'Z']`, and optionally phase coefficient in $['', '-i', '-', 'i']$. For example: `XYZ` or `'-iZIZ'`.
+  An $n$-qubit Pauli may be represented by a string consisting of $n$ characters from `['I', 'X', 'Y', 'Z']`, and optionally phase coefficient in `['', '-i', '-', 'i']`. For example: `'XYZ'` or `'-iZIZ'`.
 
   In the string representation qubit-0 corresponds to the right-most Pauli character, and qubit-$(n-1)$ to the left-most Pauli character. For example `'XYZ'` represents $X\otimes Y \otimes Z$ with `'Z'` on qubit-0, `'Y'` on qubit-1, and `'X'` on qubit-2.
 
@@ -99,11 +99,11 @@ $$
 
   Initialize the Pauli.
 
-  When using the symplectic array input data both z and x arguments must be provided, however the first (z) argument can be used alone for string label, Pauli operator, or ScalarOp input data.
+  When using the symplectic array input data both z and x arguments must be provided, however the first (z) argument can be used alone for string label, Pauli operator, or [`ScalarOp`](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp") input data.
 
   **Parameters**
 
-  **data** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")  *or*[*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*ScalarOp*](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")) – input data for Pauli. If input is a tuple it must be of the form `(z, x)` or (z, x, phase)\`\` where `z` and `x` are boolean Numpy arrays, and phase is an integer from Z\_4. If input is a string, it must be a concatenation of a phase and a Pauli string (e.g. ‘XYZ’, ‘-iZIZ’) where a phase string is a combination of at most three characters from \[‘+’, ‘-’, ‘’], \[‘1’, ‘’], and \[‘i’, ‘j’, ‘’] in this order, e.g. ‘’, ‘-1j’ while a Pauli string is 1 or more characters of ‘I’, ‘X’, ‘Y’ or ‘Z’, e.g. ‘Z’, ‘XIYY’.
+  **data** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")  *or*[*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*ScalarOp*](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")) – input data for Pauli. If input is a tuple it must be of the form `(z, x)` or `(z, x, phase)` where `z` and `x` are boolean Numpy arrays, and phase is an integer from $\mathbb{Z}_4$. If input is a string, it must be a concatenation of a phase and a Pauli string (e.g. `'XYZ', '-iZIZ'`) where a phase string is a combination of at most three characters from `['+', '-', '']`, `['1', '']`, and `['i', 'j', '']` in this order, e.g. `''`, `'-1j'` while a Pauli string is 1 or more characters of `'I'`, `'X'`, `'Y'`, or `'Z'`, e.g. `'Z'`, `'XIYY'`.
 
   **Raises**
 

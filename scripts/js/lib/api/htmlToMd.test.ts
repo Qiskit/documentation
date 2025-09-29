@@ -19,12 +19,18 @@ const DEFAULT_ARGS = {
   determineGithubUrl: (fileName: string) =>
     `https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/${fileName}.py`,
   releaseNotesTitle: "My Quantum release notes",
+  hasSeparateReleaseNotes: false,
 };
 
-async function toMd(html: string, withMetadata: boolean = false) {
+async function toMd(
+  html: string,
+  withMetadata: boolean = false,
+  isCApi: boolean = false,
+) {
   const result = await sphinxHtmlToMarkdown({
     fileName: "stubs/qiskit_ibm_runtime.Sampler.html",
     html,
+    isCApi,
     ...DEFAULT_ARGS,
   });
   return withMetadata ? result : result.markdown;
@@ -99,9 +105,10 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 // Transform code blocks
 // ------------------------------------------------------------------
 
-test("translate codeblocks to code fences with lang python", async () => {
+test("translate codeblocks to code fences with default lang python", async () => {
   expect(
     await toMd(`
+    <div class='highlight-default notranslate'>
     <div role='main'>
 <pre><span></span><span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
     <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>b</span><span class='p'>:</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>max_shots</span> <span class='o'>&gt;</span> <span class='mi'>50000</span><span class='p'>)</span>
@@ -109,8 +116,31 @@ test("translate codeblocks to code fences with lang python", async () => {
     <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>x</span><span class='p'>:</span> <span class='p'>(</span><span class='s2'>&quot;rz&quot;</span> <span class='ow'>in</span> <span class='n'>x</span><span class='o'>.</span><span class='n'>basis_gates</span> <span class='p'>)</span>
 </pre>
     </div>
+    </div>
     `),
   ).toEqual(`\`\`\`python
+QiskitRuntimeService.backends(
+    filters=lambda b: b.max_shots > 50000)
+QiskitRuntimeService.backends(
+    filters=lambda x: ("rz" in x.basis_gates )
+\`\`\`
+`);
+});
+
+test("translate codeblocks to code fences with lang c", async () => {
+  expect(
+    await toMd(`
+    <div class='highlight-c notranslate'>
+    <div role='main'>
+<pre><span></span><span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
+    <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>b</span><span class='p'>:</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>max_shots</span> <span class='o'>&gt;</span> <span class='mi'>50000</span><span class='p'>)</span>
+<span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
+    <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>x</span><span class='p'>:</span> <span class='p'>(</span><span class='s2'>&quot;rz&quot;</span> <span class='ow'>in</span> <span class='n'>x</span><span class='o'>.</span><span class='n'>basis_gates</span> <span class='p'>)</span>
+</pre>
+    </div>
+    </div>
+    `),
+  ).toEqual(`\`\`\`c
 QiskitRuntimeService.backends(
     filters=lambda b: b.max_shots > 50000)
 QiskitRuntimeService.backends(
@@ -279,6 +309,18 @@ test("preserve <span> with ids", async () => {
 `);
 });
 
+test("preserve ids of divs with class section", async () => {
+  expect(
+    await toMd(
+      `<div role="main"><div class="section" id="my-id"><p>Some text</p></div></div>`,
+    ),
+  ).toEqual(`<span id="my-id" />\n\nSome text\n`);
+  // The class `section` must be set.
+  expect(
+    await toMd(`<div role="main"><div id="my-id"><p>Some text</p></div></div>`),
+  ).toEqual(`Some text\n`);
+});
+
 test("merge contiguous <em> removing spaces", async () => {
   expect(
     await toMd(`
@@ -437,6 +479,21 @@ test("parse deprecations warnings", async () => {
       `),
   ).toEqual(`<Admonition title="Deprecated since version 0.23.0" type="danger">
   The method \`qiskit.circuit.quantumregister.QuantumRegister.qasm()\` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
+</Admonition>
+`);
+});
+
+test("versionadded is rendered as admonition", async () => {
+  expect(
+    await toMd(`
+      <div role="main">
+      <div class="versionadded">
+        <p><span class="versionmodified added">Added in version 2.5: </span>The <em>velocity</em> parameter.</p>
+      </div>
+      </div>
+    `),
+  ).toEqual(`<Admonition title="Added in version 2.5" type="info">
+  The *velocity* parameter.
 </Admonition>
 `);
 });
@@ -711,6 +768,55 @@ test("convert class property headings", async () => {
   });
 });
 
+test("convert abstract class property headings", async () => {
+  expect(
+    await toMd(
+      `<div role='main'>
+<h1>Estimator.circuits<a class='headerlink' href='#estimator' title='Permalink to this heading'>¶</a></h1>
+<dl class='py property'>
+  <dt class='sig sig-object py' id='qiskit_ibm_runtime.Estimator.circuits'>
+    <em class='property'
+    ><span class='pre'>abstract</span><span class='w'> </span><span class='pre'>property</span><span class='w'> </span></em
+    ><span class='sig-prename descclassname'
+  ><span class='pre'>Estimator.</span></span
+  ><span class='sig-name descname'><span class='pre'>circuits</span></span
+  ><em class='property'
+  ><span class='p'><span class='pre'>:</span></span
+  ><span class='w'> </span><span class='pre'>tuple</span
+  ><span class='p'><span class='pre'>[</span></span
+  ><span class='pre'>qiskit.circuit.quantumcircuit.QuantumCircuit</span
+  ><span class='p'><span class='pre'>,</span></span
+  ><span class='w'> </span
+  ><span class='p'><span class='pre'>...</span></span
+  ><span class='p'><span class='pre'>]</span></span></em
+  ><a
+    class='headerlink'
+    href='#qiskit_ibm_runtime.Estimator.circuits'
+    title='Permalink to this definition'
+  >¶</a
+  >
+  </dt>
+  <dd><p>Quantum circuits that represents quantum states.</p></dd>
+</dl>
+</div>
+`,
+      true,
+    ),
+  ).toEqual({
+    images: [],
+    isReleaseNotes: false,
+    markdown: `# circuits
+
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true} modifiers="abstract property">
+  Quantum circuits that represents quantum states.
+</Attribute>\n`,
+    meta: {
+      apiName: "qiskit_ibm_runtime.Estimator.circuits",
+      apiType: "property",
+    },
+  });
+});
+
 test("convert class method headings", async () => {
   expect(
     await toMd(
@@ -880,8 +986,6 @@ test("convert module headings removing () around the title", async () => {
 
 # Qiskit Runtime
 
-<span id="module-qiskit_ibm_runtime" />
-
 \`qiskit_ibm_runtime\`
 
 Modules related to Qiskit Runtime IBM Client.\n`,
@@ -913,6 +1017,7 @@ test("identify release notes", async () => {
             </ul>
             `,
       fileName: "release_notes.html",
+      isCApi: false,
       ...DEFAULT_ARGS,
     }),
   ).toEqual({
@@ -1080,5 +1185,95 @@ test("generate correct heading level", async () => {
 <Function id="qiskit.test.function1" signature="function1()" modifiers="abstract">
   Function 1
 </Function>
+`);
+});
+
+// ------------------------------------------------------------------
+// C API: Functions and structs
+// ------------------------------------------------------------------
+
+test("handle <dl> with className function", async () => {
+  expect(
+    await toMd(
+      `
+      <div role="main">
+      <p>Links of functions:</p>
+      <dl class="cpp function">
+      <dt class="sig sig-object cpp" id="_CPPv411qk_obs_zero8uint32_t">
+      <span id="_CPPv311qk_obs_zero8uint32_t"></span><span id="_CPPv211qk_obs_zero8uint32_t"></span><span id="qk_obs_zero__uint32_t"></span><span class="target" id="group__QkSparseObservable_1gaf6fff59681bd7c1dd6fc1164b5b1568d"></span><span class="n"><span class="pre">QkSparseObservable</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">qk_obs_zero</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">num_qubits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411qk_obs_zero8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+      <dd><p>Construct the zero observable (without any terms).</p>
+      <dl class="field-list simple">
+      <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+      <dd class="field-odd"><p><strong>num_qubits</strong> – The number of qubits the observable is defined on.</p>
+      </dd>
+      <dt class="field-even">Returns<span class="colon">:</span></dt>
+      <dd class="field-even"><p>A pointer to the created observable.</p>
+      </dd>
+      </dl>
+      </dd></dl>
+      </div>
+  `,
+      undefined,
+      true,
+    ),
+  ).toEqual(`Links of functions:
+
+### qk\\_obs\\_zero
+
+<Function id="qk_obs_zero" signature="QkSparseObservable *qk_obs_zero(uint32_t num_qubits)">
+  Construct the zero observable (without any terms).
+
+  **Parameters**
+
+  **num\\_qubits** – The number of qubits the observable is defined on.
+
+  **Returns**
+
+  A pointer to the created observable.
+</Function>
+`);
+});
+
+test("handle <dl> with className struct", async () => {
+  expect(
+    await toMd(
+      `
+      <div role="main">
+      <p>Links of structs:</p>
+      <dl class="cpp struct">
+      <dt class="sig sig-object cpp" id="_CPPv412QkSparseTerm">
+      <span id="_CPPv312QkSparseTerm"></span><span id="_CPPv212QkSparseTerm"></span><span id="QkSparseTerm"></span><span class="target" id="structQkSparseTerm"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">QkSparseTerm</span></span></span><a class="headerlink" href="#_CPPv412QkSparseTerm" title="Permalink to this definition">¶</a><br /></dt>
+      <dd><div class="docutils container">
+      <em>#include &lt;qiskit.h&gt;</em></div>
+      <p>This is a struct.</p>
+      <section id="structQkSparseTerm_1autotoc_md2">
+      <h2>Safety<a class="headerlink" href="#structQkSparseTerm_1autotoc_md2" title="Permalink to this heading">¶</a></h2>
+      <ul class="simple">
+      <li><p><code class="docutils literal notranslate"><span class="pre">bit_terms</span></code> must be a non-null, aligned pointer to <code class="docutils literal notranslate"><span class="pre">len</span></code> elements of type <code class="docutils literal notranslate"><span class="pre">BitTerm</span></code>.</p></li>
+      <li><p><code class="docutils literal notranslate"><span class="pre">indices</span></code> must be a non-null, aligned pointer to <code class="docutils literal notranslate"><span class="pre">len</span></code> elements of type <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code>. </p></li>
+      </ul>
+      </section>
+      </dd></dl>
+      </div>
+  `,
+      undefined,
+      true,
+    ),
+  ).toEqual(`Links of structs:
+
+### QkSparseTerm
+
+<Class id="QkSparseTerm" signature="struct QkSparseTerm">
+  *#include \\<qiskit.h>*
+
+  This is a struct.
+
+  <span id=\"structQkSparseTerm_1autotoc_md2\" />
+
+  #### Safety
+
+  *   \`bit_terms\` must be a non-null, aligned pointer to \`len\` elements of type \`BitTerm\`.
+  *   \`indices\` must be a non-null, aligned pointer to \`len\` elements of type \`uint32_t\`.
+</Class>
 `);
 });

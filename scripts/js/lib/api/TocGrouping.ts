@@ -41,6 +41,10 @@ export type TocGrouping = {
   moduleToSection: (module: string) => string | undefined;
 };
 
+// --------------------------------------------------------------------------------------------------
+// Qiskit SDK
+// --------------------------------------------------------------------------------------------------
+
 // Qiskit section names
 const _CIRCUITS = "Circuit construction";
 const _TRANSPILATION = "Transpilation";
@@ -174,4 +178,36 @@ function qiskitModuleToSection(module: string): string | undefined {
 export const QISKIT_TOC_GROUPING: TocGrouping = {
   entries: QISKIT_ENTRIES,
   moduleToSection: qiskitModuleToSection,
+};
+
+// --------------------------------------------------------------------------------------------------
+// qiskit-addon-mpf
+// --------------------------------------------------------------------------------------------------
+
+export const QISKIT_ADDON_MPF_GROUPING: TocGrouping = {
+  entries: [
+    {
+      moduleId: "qiskit_addon_mpf.static",
+      title: "qiskit_addon_mpf.static",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_addon_mpf.dynamic",
+      title: "qiskit_addon_mpf.dynamic",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_addon_mpf.costs",
+      title: "qiskit_addon_mpf.costs",
+      kind: "module",
+    },
+    {
+      name: "qiskit_addon_mpf.backends",
+      kind: "section",
+    },
+  ],
+  moduleToSection: (module) =>
+    hasPrefix(module, ["qiskit_addon_mpf.backends"])
+      ? "qiskit_addon_mpf.backends"
+      : undefined,
 };

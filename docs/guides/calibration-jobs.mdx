@@ -1,0 +1,63 @@
+---
+title: Calibration jobs
+description: Describes what calibration jobs are and how often they run
+
+---
+# Calibration jobs
+
+## What is calibrated?
+
+Multiple aspects of the QPU are affected by the many different calibrations that IBM&reg; runs daily and hourly.
+
+### Daily calibrations
+
+These calibrations run once every day and last 30-90 minutes, depending on the size of the QPU. The devices start this daily calibration at midnight ET, with the calibration jobs interleaving one-for-one with jobs from external users. This causes the calibration jobs to spread out across several hours, sometimes more than half a day. They include the following:
+
+*   **Single-qubit calibrations**
+
+The frequency, pulse amplitudes, and “DRAG” parameter of each qubit are calibrated.
+
+*   **Single-qubit benchmarking**
+
+    The T1/T2 coherence times and measurement error rates are measured, and randomized benchmarking is run in batches of non-adjacent qubits.
+
+*   **Two-qubit gate calibrations and benchmarking**
+
+    The amplitude and phase of each pulse is calibrated, and randomized benchmarking in batches of well-separated gates of similar length is run.
+
+### Hourly calibrations/monitoring
+
+These calibrations attempt to run hourly and last 2-3 minutes. They are interleaved with jobs from external users and will try to run in as close to one-hour intervals as possible. They include the following:
+
+*   Readout angle of each qubit
+*   Stability checks
+
+This ensures proper state discrimination.
+
+The system health is also monitored by using a quick test to confirm all single- and two-qubit gates are working at a basic level. This ensures the proper operation of gates and allows us to automatically close the queue if we notice a serious system failure.
+
+## Why are calibrations run?
+
+Calibrations ensure that the QPUs are stable and return accurate results. It also allows IBM to find and resolve any system failures as soon as possible. They also provide users with the most up-to-date error rates and coherence times, allowing them to make better choices when choosing which qubits to use or how to compile their circuits.
+
+## Multiple circuits in the same job
+
+**If I have multiple circuits in the same job, is it possible for some of those circuits to run under a different calibration?**
+
+No; since the circuits are bundled into a single job, the entire job will run with the same calibration. A calibration job cannot run simultaneously while an external job is running.
+
+## How long do calibration jobs run for?
+
+We run both daily and hourly calibration jobs. Daily calibrations on a smaller device (5-7 qubits) may take about 30 minutes, while for larger devices (7+ qubits) they could take about 90 minutes. The hourly calibrations run for about 2-3 minutes each hour.
+
+## Simultaneously-submitted jobs with different calibrations
+
+**Is it possible for two jobs that were submitted simultaneously to run under different calibrations?**
+
+Yes, it is possible. In this scenario, the first job would run and a calibration job would be interleaved between the end of the first job and the start of the second job. The second job would run under these new calibrations.
+
+## Benchmarking
+
+**Do you run benchmarking for each single qubit, or are qubits benchmarked in parallel?**
+
+All single-qubit calibrations and benchmarking are done in batches of non-nearest-neighbor qubits for efficiency.

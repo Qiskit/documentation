@@ -10,25 +10,25 @@ description: Migrate from using the original primitives (Estimator and Sampler) 
 # Migrate to the Qiskit Runtime V2 primitives
 
 <Admonition type="warning">
-The original primitives (referred to as the V1 primitives), [V1 Sampler](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV1) and [V1 Estimator](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV1), have been deprecated in `qiskit-ibm-runtime` 0.23.
-Their support will be removed on 15 August 2024.
+The original primitives (referred to as the V1 primitives), [V1 Sampler](/docs/api/qiskit-ibm-runtime/0.26/sampler-v1) and [V1 Estimator](/docs/api/qiskit-ibm-runtime/0.26/estimator-v1), have been deprecated in `qiskit-ibm-runtime` 0.23.
+Their support was removed on 15 August 2024.
 </Admonition>
 
 With the deprecation of the V1 primitives, all code should be migrated to use the V2 interfaces. This guide describes what changed in the Qiskit Runtime V2 primitives (available with qiskit-ibm-runtime 0.21.0) and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime.
 
-For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see [the qiskit.primitives section](qiskit-1.0-features#qiskit.primitives) in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
+For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see [the qiskit.primitives section](qiskit-1.0-features#qiskit.primitives) in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](/docs/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/docs/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
 
 ## Overview
 
-Version 2 of the primitives is introduced with a new base class for both Sampler and Estimator ([BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2) and [BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2)), along with new types for their inputs and outputs.
+Version 2 of the primitives is introduced with a new base class for both Sampler and Estimator ([BaseSamplerV2](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2) and [BaseEstimatorV2](/docs/api/qiskit/qiskit.primitives.BaseEstimatorV2)), along with new types for their inputs and outputs.
 
 The new interface lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit, so that sweeps over parameter value sets and observables can be efficiently specified. Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  Also, while you can still use  `resilience_level` (if using Estimator) as the simple knob, V2 primitives give you the flexibility to turn on or off individual error mitigation / suppression methods to customize them for your needs.
 
-To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target QPU (quantum processing unit).  Such circuits and observables are referred to as instruction set architecture (ISA) circuits and observables. V2 primitives do not perform layout, routing, and translation operations.  See the [transpilation documentation](/guides/transpile) for instructions to transform circuits.
+To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target QPU (quantum processing unit).  Such circuits and observables are referred to as instruction set architecture (ISA) circuits and observables. V2 primitives do not perform layout, routing, and translation operations.  See the [transpilation documentation](/docs/guides/transpile) for instructions to transform circuits.
 
 Sampler V2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights. The output data is also separated by the output register names defined by the program. This change enables future support for circuits with classical control flow.
 
-See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) for full details.
+See the [EstimatorV2 API reference](/docs/api/qiskit-ibm-runtime/estimator-v2) and [SamplerV2 API reference](/docs/api/qiskit-ibm-runtime/sampler-v2) for full details.
 
 ## Major changes
 
@@ -110,7 +110,7 @@ sampler.run([
 
 #### Output
 
-The output is now in the [`PubResult`](/api/qiskit/qiskit.primitives.PubResult) format. A `PubResult` is the data and metadata resulting from a single PUB’s execution.
+The output is now in the [`PubResult`](/docs/api/qiskit/qiskit.primitives.PubResult) format. A `PubResult` is the data and metadata resulting from a single PUB’s execution.
 
 * Estimator V2 continues to return expectation values.
 * The `data` portion of a Estimator V2 PubResult contains both expectation values and standard errors (`stds`). V1 returned variance in metadata.
@@ -183,6 +183,7 @@ The output is now in the [`PubResult`](/api/qiskit/qiskit.primitives.PubResult) 
   </TabItem>
 </Tabs>
 
+<span id="sampler-examples"></span>
 #### Sampler examples  (input and output)
 
 {/*Verified by Elena.*/}
@@ -210,6 +211,18 @@ The output is now in the [`PubResult`](/api/qiskit/qiskit.primitives.PubResult) 
       job = sampler_v2.run([(circuit1, vals1), (circuit2, vals1)])
       counts1 = job.result()[0].data.meas.get_counts()  # result for pub 1 (circuit 1)
       counts2 = job.result()[1].data.meas.get_counts()  # result for pub 2 (circuit 2)
+```
+  </TabItem>
+
+  <TabItem value="SamplerOut" label="Convert V2 output to V1 format">
+    The V1 output format was a dictionary of bitstrings (as an int) as the key and quasi-probabilities as the value for each circuit. The V2 format has the same key (but as a string) and counts as the value. To convert the V2 format to V1, divide the counts by the number of shots, where the number of shots selected is described in the [Specify options](/docs/guides/specify-runtime-options#shots) guide.
+
+    ```python
+    v2_result = sampler_v2_job.result()
+    v1_format = []
+    for pub_result in v2_result:
+        counts = pub_result.data.meas.get_counts()
+        v1_format.append( {int(key, 2): val/shots for key, val in counts.items()} )
 ```
   </TabItem>
 </Tabs>
@@ -254,7 +267,7 @@ Options are specified differently in the V2 primitives in these ways:
 - If you do not specify a value for an option, it is given a special value of `Unset` and the server defaults are used.
 - For V2 primitives, the `options` attribute is the `dataclass` Python type.  You can use the built-in `asdict` method to convert it to a dictionary.
 
-See the [API reference](/api/qiskit-ibm-runtime/options) for the list of available options.
+See the [API reference](/docs/api/qiskit-ibm-runtime/options) for the list of available options.
 
 {/*Verified EstimatorV2. 2/23 */}
 
@@ -440,7 +453,7 @@ V2 primitives support only circuits that adhere to the Instruction Set Architect
 
 ### Job status
 
-The V2 primitives have a new `RuntimeJobV2` class, which inherits from `BasePrimitiveJob`. The `status()` method of this new class returns a string instead of a JobStatus enum from Qiskit. See the [RuntimeJobV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeJobV2) for details.
+The V2 primitives have a new `RuntimeJobV2` class, which inherits from `BasePrimitiveJob`. The `status()` method of this new class returns a string instead of a JobStatus enum from Qiskit. See the [RuntimeJobV2 API reference](/docs/api/qiskit-ibm-runtime/runtime-job-v2) for details.
 
 <Tabs>
   <TabItem value="V2" label="V2 primitives">
@@ -467,13 +480,13 @@ print(f"Job {job.job_id()} is still running: {job.status() is JobStatus.RUNNING}
 ## Steps to migrate to Estimator V2
 
 1. Replace `from qiskit_ibm_runtime import Estimator` with `from qiskit_ibm_runtime import EstimatorV2 as Estimator`.
-2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Estimator` class (for example `estimator = Estimator(backend, options={“dynamical_decoupling”: {“enable”: True}})`), or set them after initialization:
+2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `EstimatorV2` class (for example `estimator = Estimator(backend, options={“dynamical_decoupling”: {“enable”: True}})`), or set them after initialization:
    ```python
    estimator = Estimator(backend)
    estimator.options.dynamical_decoupling.enable = True
    ```
 
-3. Review all the [supported options](/api/qiskit-ibm-runtime/options) and make updates accordingly.
+3. Review all the [supported options](/docs/api/qiskit-ibm-runtime/options) and make updates accordingly.
 4. Group each circuit you want to run with the observables and parameter values you want to apply to the circuit in a tuple (a PUB). For example, use `(circuit1, observable1, parameter_set1)` if you want to run `circuit1` with `observable1` and `parameter_set1`.
 
   1. You might need to reshape your arrays of observables or parameter sets if you want to apply their outer product. For example, an array of observables of shape (4, 1) and an array of parameter sets of shape (1, 6) will give you a result of (4, 6) expectation values. See the [Numpy broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) for more details.
@@ -749,6 +762,12 @@ expvals = job.result().values
 
 Explore sessions and advanced options to optimize circuit performance on QPUs.
 
+
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
+</Admonition>
+
+
 {/*Verified EstimatorV2. 2/23 */}
 
 <Tabs>
@@ -780,7 +799,7 @@ service = QiskitRuntimeService()
 
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
-with Session(service=service, backend=backend) as session:
+with Session(backend=backend) as session:
     estimator = Estimator()
 
     estimator.options.resilience_level = 1
@@ -832,7 +851,7 @@ service = QiskitRuntimeService()
 
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
-with Session(service=service, backend=backend) as session:
+with Session(backend=backend) as session:
     estimator = Estimator(options=options)
     job = estimator.run(isa_circuit, isa_observable)
     another_job = estimator.run(another_isa_circuit, another_isa_observable)
@@ -851,12 +870,12 @@ print(f" > Expectation values job 2: {another_result.values}")
 ## Steps to migrate to Sampler V2
 
 1. Replace `from qiskit_ibm_runtime import Sampler` with `from qiskit_ibm_runtime import SamplerV2 as Sampler`.
-2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Sampler` class (for example `sampler = Sampler(backend, options={“default_shots”: 1024})`), or set them after initialization:
+2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `SamplerV2` class (for example `sampler = Sampler(backend, options={“default_shots”: 1024})`), or set them after initialization:
    ```python
    sampler = Sampler(backend)
    sampler.options.default_shots = 1024
    ```
-3. Review all the [supported options](/api/qiskit-ibm-runtime/options) and make updates accordingly.
+3. Review all the [supported options](/docs/api/qiskit-ibm-runtime/options) and make updates accordingly.
 4. Group each circuit you want to run with the observables and parameter values you want to apply to the circuit in a tuple (a PUB). For example, use `(circuit1, parameter_set1)` if you want to run `circuit1` with `parameter_set1`.
    You can optionally specify the shots you want for that specific PUB.
 5. Update the sampler `run()` method to pass in the list of PUBs. For example, `run([(circuit1, parameter_set1)])`.
@@ -1090,6 +1109,12 @@ print(f" > Metadata: {result.metadata}")
 
 Explore sessions and advanced options to optimize circuit performance on QPUs.
 
+
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
+</Admonition>
+
+
 {/*Verified 2/28 */}
 
 <Tabs>
@@ -1122,7 +1147,7 @@ sampler.options.dynamical_decoupling.sequence_type = "XpXm"
 
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
-with Session(service=service, backend=backend) as session:
+with Session(backend=backend) as session:
     sampler = Sampler()
     job = sampler.run([isa_circuit])
     another_job = sampler.run([another_isa_circuit])
@@ -1162,7 +1187,7 @@ service = QiskitRuntimeService()
 
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
-with Session(service=service, backend=backend) as session:
+with Session(backend=backend) as session:
     sampler = Sampler(options=options)
     job = sampler.run(circuit)
     another_job = sampler.run(another_circuit)
@@ -1177,3 +1202,11 @@ print(f" > Quasi-probability distribution job 2: {another_result.quasi_dists}")
 ```
   </TabItem>
 </Tabs>
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Learn more about setting options in the [Specify options](/docs/guides/specify-runtime-options) guide.
+    - Learn more details about [Primitive inputs and outputs.](/docs/guides/primitive-input-output)
+    - Experiment with the [CHSH Inequality](/docs/tutorials/chsh-inequality) tutorial.
+</Admonition>

@@ -14,89 +14,74 @@ name: Test notebooks
 on:
   pull_request:
     paths:
+      - ".github/workflows/notebook-test.yml"
       - "docs/**/*.ipynb"
+      - "learning/**/*.ipynb"
       - "!docs/api/**/*"
+      - "scripts/nb-tester/**/*"
   workflow_dispatch:
 jobs:
   execute:
     name: Execute notebooks
+    if: github.repository_owner == 'Qiskit'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Exit early on forks
-        if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+      - name: Get relevant changed files
+        id: all-changed
+        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+        with:
+          files: "{{docs,learning}/**/*.ipynb,scripts/nb-tester/**/*,.github/workflows/notebook-test.yml}"
+          separator: "\n"
+          write_output_files: true
+
+      - name: Check if extra linux deps needed
+        id: check-deps
         shell: python
         run: |
-          raise SystemExit(
-            "We can't run this test on pull requests from forks."
-            "\n\n"
-            "If you have write access to Qiskit/documentation, push to a new "
-            "branch there and make your pull request from that branch instead."
-            "\n\n"
-            "If you don't have write access, you must test out the notebook "
-            "locally using the instructions in "
-            "https://github.com/Qiskit/documentation#execute-notebooks."
-            "When this PR is approved, a maintainer will merge it to a new "
-            "branch in Qiskit/documentation, then make a PR from that branch "
-            "into main so it can pass CI."
-          )
-
-      - name: Get all changed files
-        id: all-changed-files
-        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
-        with:
-          files: "docs/**/*.ipynb"
-          separator: "\n"
-
-      - name: Check for notebooks that require Linux
-        id: linux-changed-files
-        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
-        with:
           # Add your notebook to this list if it needs latex or graphviz to run
-          files: |
-            docs/guides/visualize-circuits.ipynb
-            docs/guides/custom-backend.ipynb
-            docs/guides/transpiler-stages.ipynb
-            docs/guides/represent-quantum-computers.ipynb
-            docs/guides/common-parameters.ipynb
+          EXTRA_DEPS_NOTEBOOKS = """\
+          docs/guides/visualize-circuits.ipynb
+          docs/guides/custom-backend.ipynb
+          docs/guides/transpiler-stages.ipynb
+          docs/guides/represent-quantum-computers.ipynb
+          docs/guides/common-parameters.ipynb
+          docs/guides/DAG-representation.ipynb
+          """.strip().split("\n")
+          import os
+          github_output = os.getenv("GITHUB_OUTPUT")
+          all_files = """${{ steps.all-changed.outputs.all_changed_files }}""".split("\n")
+
+          config_changed = any(path.startswith("scripts/") or path.startswith(".github") for path in all_files)
+          extra_deps = config_changed or any(path in EXTRA_DEPS_NOTEBOOKS for path in all_files)
+
+          with open(github_output, "a") as output:
+            output.write(f"NEEDS_EXTRA_DEPS={str(extra_deps).lower()}")
 
       - name: Setup environment
         uses: ./.github/actions/set-up-notebook-testing
         with:
-          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed }}
-          ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
-
-      - name: Check lint
-        shell: python
-        run: |
-          import subprocess, sys
-          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
-          args = ["tox", "-e", "lint", "--"] + files.split("\n")
-          try:
-            subprocess.run(args, check=True)
-          except:
-            print(
-              "To fix, install `tox` and run `tox -e fix` or download the fixed "
-              "notebook from this run by clicking \"Summary\" on the upper-left "
-              "of this page, and downloading the \"Executed notebooks\" artifact."
-              "\n\n"
-              "For more information, see https://github.com/Qiskit/documentation/blob/main/README.md#lint-notebooks"
-            )
-            sys.exit(1)
+          # Install Linux deps if the specific guides were changed, or
+          # if all files are being tested.
+          install-linux-deps: ${{ steps.check-deps.outputs.NEEDS_EXTRA_DEPS }}
+          ibm-cloud-token: ${{ secrets.IBM_CLOUD_TEST_TOKEN }}
+          instance: ${{ vars.IBM_CLOUD_TEST_CRN }}
 
       - name: Execute notebooks
-        if: "!cancelled()"
-        shell: python
+        env:
+          PR_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
+        run: python scripts/ci/pr-execute-notebooks.py
+
+      - name: Detect changed notebooks
+        id: changed-notebooks
         run: |
-          import subprocess
-          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
-          args = ["tox", "--"] + files.split("\n") + ["--write"]
-          subprocess.run(args, check=True)
+          echo "CHANGED_NOTEBOOKS<<EOF" >> $GITHUB_OUTPUT
+          git diff --name-only >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Upload executed notebooks
-        if: "!cancelled()"
         uses: actions/upload-artifact@v4
         with:
           name: Executed notebooks
-          path: ${{ steps.all-changed-files.outputs.all_changed_files }}
+          path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS || 'no-changes' }}

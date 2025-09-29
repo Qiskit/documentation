@@ -1,6 +1,6 @@
 ---
-title: pass_manager_drawer
-description: API reference for qiskit.visualization.pass_manager_drawer
+title: pass_manager_drawer (latest version)
+description: API reference for qiskit.visualization.pass_manager_drawer in the latest version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: function
 python_api_name: qiskit.visualization.pass_manager_drawer
@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.pass_manager_drawer
 
 # qiskit.visualization.pass\_manager\_drawer
 
-<Function id="qiskit.visualization.pass_manager_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/utils/lazy_tester.py#L32-L101" signature="qiskit.visualization.pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)">
+<Function id="qiskit.visualization.pass_manager_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/visualization/pass_manager_visualization.py#L32-L92" signature="qiskit.visualization.pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)">
   Draws the pass manager.
 
   This function needs [pydot](https://github.com/pydot/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed.
@@ -18,8 +18,8 @@ python_api_name: qiskit.visualization.pass_manager_drawer
   **Parameters**
 
   *   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – the pass manager to be drawn
-  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to
-  *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *or OrderedDict*) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – file path to save image to
+  *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)") *or OrderedDict*) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict
   *   **raw** ([*Bool*](circuit_classical#qiskit.circuit.classical.types.Bool "qiskit.circuit.classical.types.Bool")) – True if you want to save the raw Dot output not an image. The default is False.
 
   **Returns**
@@ -38,23 +38,12 @@ python_api_name: qiskit.visualization.pass_manager_drawer
   **Example**
 
   ```python
-   %matplotlib inline
   from qiskit import QuantumCircuit
-  from qiskit.compiler import transpile
-  from qiskit.transpiler import PassManager
+  from qiskit.transpiler import generate_preset_pass_manager
   from qiskit.visualization import pass_manager_drawer
-  from qiskit.transpiler.passes import Unroller
 
-  circ = QuantumCircuit(3)
-  circ.ccx(0, 1, 2)
-  circ.draw()
-
-  pass_ = Unroller(['u1', 'u2', 'u3', 'cx'])
-  pm = PassManager(pass_)
-  new_circ = pm.run(circ)
-  new_circ.draw(output='mpl')
-
-  pass_manager_drawer(pm, "passmanager.jpg")
+  pm = generate_preset_pass_manager(optimization_level=0)
+  pass_manager_drawer(pm)
   ```
 </Function>
 

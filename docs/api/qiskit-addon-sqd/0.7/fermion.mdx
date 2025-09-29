@@ -1,0 +1,229 @@
+---
+title: fermion (v0.7)
+description: API reference for qiskit_addon_sqd.fermion in qiskit-addon-sqd v0.7
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_sqd.fermion
+---
+
+<span id="module-qiskit_addon_sqd.fermion" />
+
+<span id="fermion-qiskit-addon-sqd-fermion" />
+
+# Fermion
+
+`qiskit_addon_sqd.fermion`
+
+Functions for the study of fermionic systems.
+
+### bitstring\_matrix\_to\_ci\_strs
+
+<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.7/qiskit_addon_sqd/fermion.py#L338-L382" signature="bitstring_matrix_to_ci_strs(bitstring_matrix, open_shell=False)">
+  Convert bitstrings (rows) in a `bitstring_matrix` into integer representations of determinants.
+
+  This function separates each bitstring in `bitstring_matrix` in half, flips the bits and translates them into integer representations, and finally appends them to their respective (spin-up or spin-down) lists. Those lists are sorted and output from this function.
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether unique configurations from the left and right halves of the bitstrings should be kept separate. If `False`, configurations from the left and right halves of the bitstrings are combined into a single set of unique configurations. That combined set will be returned for both the left and right bitstrings.
+
+  **Returns**
+
+  A length-2 tuple of determinant lists representing the right (spin-up) and left (spin-down) halves of the bitstrings, respectively.
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]
+</Function>
+
+### enlarge\_batch\_from\_transitions
+
+<Function id="qiskit_addon_sqd.fermion.enlarge_batch_from_transitions" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.7/qiskit_addon_sqd/fermion.py#L385-L408" signature="enlarge_batch_from_transitions(bitstring_matrix, transition_operators)">
+  Apply the set of transition operators to the configurations represented in `bitstring_matrix`.
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
+  *   **transition\_operators** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – A 1D or 2D array `I`, `+`, `-`, and `n` strings representing the action of the identity, creation, annihilation, or number operators. Each row represents a transition operator.
+
+  **Returns**
+
+  Bitstring matrix representing the augmented set of electronic configurations after applying the excitation operators.
+
+  **Return type**
+
+  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")
+</Function>
+
+### flip\_orbital\_occupancies
+
+<Function id="qiskit_addon_sqd.fermion.flip_orbital_occupancies" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.7/qiskit_addon_sqd/fermion.py#L262-L282" signature="flip_orbital_occupancies(occupancies)">
+  Flip an orbital occupancy array to match the indexing of a bitstring.
+
+  This function reformats a 1D array of spin-orbital occupancies formatted like:
+
+  > `[occ_a_1, occ_a_2, ..., occ_a_N, occ_b_1, ..., occ_b_N]`
+
+  To an array formatted like:
+
+  > `[occ_a_N, ..., occ_a_1, occ_b_N, ..., occ_b_1]`
+
+  where `N` is the number of spatial orbitals.
+
+  **Parameters**
+
+  **occupancies** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"))
+
+  **Return type**
+
+  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")
+</Function>
+
+### solve\_fermion
+
+<Function id="qiskit_addon_sqd.fermion.solve_fermion" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.7/qiskit_addon_sqd/fermion.py#L31-L111" signature="solve_fermion(bitstring_matrix, /, hcore, eri, *, open_shell=False, spin_sq=None, max_davidson=100, verbose=None)">
+  Approximate the ground state given molecular integrals and a set of electronic configurations.
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) –
+
+      A set of configurations defining the subspace onto which the Hamiltonian will be projected and diagonalized. This is a 2D array of `bool` representations of bit values such that each row represents a single bitstring. The spin-up configurations should be specified by column indices in range `(N, N/2]`, and the spin-down configurations should be specified by column indices in range `(N/2, 0]`, where `N` is the number of qubits.
+
+      (DEPRECATED) The configurations may also be specified by a length-2 tuple of sorted 1D arrays containing unsigned integer representations of the determinants. The two lists should represent the spin-up and spin-down orbitals, respectively.
+
+  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Core Hamiltonian matrix representing single-electron integrals
+
+  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Electronic repulsion integrals representing two-electron integrals
+
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether configurations from the left and right halves of the bitstrings should be kept separate. If `False`, CI strings from the left and right halves of the bitstrings are combined into a single set of unique configurations and used for both the alpha and beta subspaces.
+
+  *   **spin\_sq** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Target value for the total spin squared for the ground state. If `None`, no spin will be imposed.
+
+  *   **max\_davidson** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of cycles of Davidson’s algorithm
+
+  *   **verbose** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A verbosity level between 0 and 10
+
+  **Returns**
+
+  *   Minimum energy from SCI calculation
+  *   SCI coefficients
+  *   Average orbital occupancy
+  *   Expectation value of spin-squared
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
+</Function>
+
+### optimize\_orbitals
+
+<Function id="qiskit_addon_sqd.fermion.optimize_orbitals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.7/qiskit_addon_sqd/fermion.py#L114-L224" signature="optimize_orbitals(bitstring_matrix, /, hcore, eri, k_flat, *, open_shell=False, spin_sq=0.0, num_iters=10, num_steps_grad=10000, learning_rate=0.01, max_davidson=100)">
+  Optimize orbitals to produce a minimal ground state.
+
+  The process involves iterating over 3 steps:
+
+  **For `num_iters` iterations:**
+
+  *   Rotate the integrals with respect to the parameters, `k_flat`
+  *   Diagonalize and approximate the groundstate energy and wavefunction amplitudes
+  *   Optimize `k_flat` using gradient descent and the wavefunction amplitudes found in Step 2
+
+  Refer to [Sec. II A 4](https://arxiv.org/pdf/2405.05068) for more detailed discussion on this orbital optimization technique.
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) –
+
+      A set of configurations defining the subspace onto which the Hamiltonian will be projected and diagonalized. This is a 2D array of `bool` representations of bit values such that each row represents a single bitstring. The spin-up configurations should be specified by column indices in range `(N, N/2]`, and the spin-down configurations should be specified by column indices in range `(N/2, 0]`, where `N` is the number of qubits.
+
+      (DEPRECATED) The configurations may also be specified by a length-2 tuple of sorted 1D arrays containing unsigned integer representations of the determinants. The two lists should represent the spin-up and spin-down orbitals, respectively.
+
+  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Core Hamiltonian matrix representing single-electron integrals
+
+  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Electronic repulsion integrals representing two-electron integrals
+
+  *   **k\_flat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – 1D array defining the orbital transform. This array will be reshaped to be of shape (# orbitals, # orbitals) before being used as a similarity transform operator on the orbitals. Thus `len(k_flat)=# orbitals**2`.
+
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether configurations from the left and right halves of the bitstrings should be kept separate. If `False`, CI strings from the left and right halves of the bitstrings are combined into a single set of unique configurations and used for both the alpha and beta subspaces.
+
+  *   **spin\_sq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Target value for the total spin squared for the ground state
+
+  *   **num\_iters** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of iterations of orbital optimization to perform
+
+  *   **max\_davidson** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of cycles of Davidson’s algorithm to perform during diagonalization.
+
+  *   **num\_steps\_grad** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of steps of gradient descent to perform during each optimization iteration
+
+  *   **learning\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The learning rate to use during gradient descent
+
+  **Returns**
+
+  *   The groundstate energy found during the last optimization iteration
+  *   An optimized 1D array defining the orbital transform
+  *   Average orbital occupancy
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]]
+</Function>
+
+### rotate\_integrals
+
+<Function id="qiskit_addon_sqd.fermion.rotate_integrals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.7/qiskit_addon_sqd/fermion.py#L227-L259" signature="rotate_integrals(hcore, eri, k_flat)">
+  Perform a similarity transform on the integrals.
+
+  The transformation is described as:
+
+$$
+\hat{\widetilde{H}} = \hat{U^{\dagger}}(k)\hat{H}\hat{U}(k)
+$$
+
+  For more information on how $\hat{U}$ and $\hat{U^{\dagger}}$ are generated from `k_flat` and applied to the one- and two-body integrals, refer to [Sec. II A 4](https://arxiv.org/pdf/2405.05068).
+
+  **Parameters**
+
+  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Core Hamiltonian matrix representing single-electron integrals
+
+  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Electronic repulsion integrals representing two-electron integrals
+
+  *   **k\_flat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) –
+
+      1D array defining the orbital transform. Refer to [Sec. II A 4](https://arxiv.org/pdf/2405.05068) for more information on how these values are used to generate the transform operator.
+
+  **Returns**
+
+  *   The rotated core Hamiltonian matrix
+  *   The rotated ERI matrix
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]
+</Function>
+
+### bitstring\_matrix\_to\_sorted\_addresses
+
+<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.7/qiskit_addon_sqd/fermion.py#L285-L335" signature="bitstring_matrix_to_sorted_addresses(bitstring_matrix, open_shell=False)">
+  Convert a bitstring matrix into a sorted array of unique, unsigned integers.
+
+  This function separates each bitstring in `bitstring_matrix` in half, flips the bits and translates them into integer representations, and finally appends them to their respective (spin-up or spin-down) lists. Those lists are sorted and output from this function.
+
+  <Admonition title="Deprecated since version 0.6.0" type="danger">
+    The function `qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()` is deprecated as of qiskit-addon-sqd 0.6.0. It will be removed no sooner than qiskit-addon-sqd 0.8.0. Use the bitstring\_matrix\_to\_ci\_strs function.
+  </Admonition>
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether unique addresses from the left and right halves of the bitstrings should be kept separate. If `False`, addresses from the left and right halves of the bitstrings are combined into a single set of unique addresses. That combined set will be returned for both the left and right bitstrings.
+
+  **Returns**
+
+  A length-2 tuple of sorted, unique determinants representing the left (spin-down) and right (spin-up) halves of the bitstrings, respectively.
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]
+</Function>
+

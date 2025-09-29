@@ -20,18 +20,23 @@ import { mkdirp } from "mkdirp";
 
 import { pathExists } from "../fs.js";
 import { Pkg } from "./Pkg.js";
+import { getHeaders } from "../links/ExternalLink.js";
 
 async function downloadFromBox(
   pkgName: string,
   artifactUrl: string,
   destination: string,
 ) {
-  const response = await fetch(artifactUrl);
+  const response = await fetch(artifactUrl, {
+    headers: getHeaders(artifactUrl),
+  });
   if (response.ok) {
     const stream = createWriteStream(destination);
     await finished(Readable.fromWeb(response.body as any).pipe(stream));
   } else {
-    throw new Error(`Error downloading the ${pkgName} artifact from Box.`);
+    throw new Error(
+      `Error downloading the ${pkgName} artifact: ${response.status}, ${response.statusText}`,
+    );
   }
 }
 
@@ -47,18 +52,19 @@ export async function downloadSphinxArtifact(pkg: Pkg, artifactFolder: string) {
   );
 
   const artifactName = pkg.isDev() ? "dev" : `${pkg.versionWithoutPatch}`;
-  if (!(`${artifactName}` in artifactJson[`${pkg.name}`])) {
+  if (!(`${artifactName}` in artifactJson[`${pkg.artifactPackageName}`])) {
     throw new Error(
-      `Package ${pkg.name} version ${pkg.versionWithoutPatch} doesn't have an artifact stored. You can add one to https://ibm.ent.box.com/folder/246867452622
+      `Package ${pkg.artifactPackageName} version ${pkg.versionWithoutPatch} doesn't have an artifact stored. You can add one to https://ibm.ent.box.com/folder/246867452622
       following the steps detailed in the \`Generate the API docs\` section on the repo's README. If you are not an IBMer with access to the Box folder,
       you can ask in your pull request for a maintainer to help you. In the meantime, you can use another URL in api-html-artifacts.json, such as GitHub or
       even localhost for a server you start up; the URL needs to result in downloading the zip file.`,
     );
   }
-  const artifactUrl = artifactJson[`${pkg.name}`][`${artifactName}`];
+  const artifactUrl =
+    artifactJson[`${pkg.artifactPackageName}`][`${artifactName}`];
 
   await downloadFromBox(
-    pkg.name,
+    pkg.artifactPackageName,
     artifactUrl,
     `${artifactFolder}/artifact.zip`,
   );

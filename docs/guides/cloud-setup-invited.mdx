@@ -1,0 +1,61 @@
+---
+title: Set up your IBM Cloud account - invited users
+description: Setup instructions for IBM Quantum on IBM Cloud to submit Qiskit SDK and Qiskit Runtime jobs for users with email invitations
+platform: cloud
+---
+
+{/* cspell:ignore urlendcoded, WQVY */}
+
+# Set up your IBM Cloud account - invited users
+
+If you do not have an invitation from an administrator to join an account that an administrator set up, contact your administrator.  If you need to set up your own account, follow the steps in [Set up your IBM Cloud account](/docs/guides/cloud-setup).
+
+You can run workloads on IBM&reg; quantum processing units (QPUs) by setting up an account on IBM Cloud&reg;. You will also need to [install and set up Qiskit and Qiskit Runtime](/docs/guides/install-qiskit#local).
+
+
+Your user account is associated with one or more [instances](./instances), identified by _Cloud Resource Names_ (CRNs) that give access to IBM Quantum services. Additionally, a unique API token (also called a key) is assigned to each account, allowing for IBM Quantum access from Qiskit.  For instructions to choose a specific instance, see [Connect to an instance](./instances#connect-instance).
+
+    <Admonition type="note">
+      The [IBM Quantum Platform dashboard](https://quantum.cloud.ibm.com) and the [Instances page](https://quantum.cloud.ibm.com/instances) list the instances that you can access.
+    </Admonition>
+
+<span id="cloud"></span>
+## Set up to use IBM Cloud
+
+### Before you begin
+
+1. Accept the email invitation.
+1. Log in with an IBMid or Google account.  Note that the profile that you use to log in to IBM Cloud or IBM Quantum Platform in this step is not your IBM Cloud account.  After logging in, confirm your information and accept the invitation to join the account.
+1. Navigate back to [IBM Quantum Platform.](https://quantum.cloud.ibm.com)
+1. Make sure that the correct account and region are selected in the account switcher in the header, as shown in the following image.
+    * Choose the account that was invited in the email.
+    * The region controls where your jobs are run and where the job data is kept. You can access either region by using the same API key, but you can only see and access the instances that were created in the region that you're logged in to.
+
+    ![The IBM Quantum Platform header is shown.  The account switcher is to the right of the search bar.  The region switcher is to the right of the account switcher.](/docs/images/guides/cloud-setup/IQP-Header.svg 'IBM Quantum Platform header')
+
+
+### 2. Optional: Save your access credentials
+
+If you are using a trusted Python environment, such as a personal laptop, it is recommended that you use the `save_account()` method to [save your credentials locally.](/docs/guides/save-credentials)
+
+<span id="cloud-save"></span>
+### 3. Connect Qiskit with your service instance
+
+- [Initialize the service](/docs/guides/initialize-account) in a **trusted Python environment**
+- [Initialize the service in an **untrusted environment**](/docs/guides/cloud-setup-untrusted) (such as a public computer)
+
+<Admonition type="note" title="Notes">
+   * Follow [these instructions](/docs/guides/cloud-setup-rest-api) if you want to connect by using the REST API instead of using Qiskit.
+   * If necessary, use [this information](/docs/guides/quickstart-steps-org#firewall) to configure your firewall to enable access to the IBM Quantum API endpoints.
+</Admonition>
+
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  -  [Overview of available plans.](plans-overview)
+  -  [Configure the Qiskit SDK locally.](configure-qiskit-local)
+  -  [Set up to use IBM Quantum Platform with REST API](/docs/guides/cloud-setup-rest-api)
+  -  Follow the steps in [Hello world](/docs/tutorials/hello-world) to write and run a quantum program.
+  -  Try a [tutorial](/docs/tutorials).
+</Admonition>

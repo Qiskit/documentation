@@ -1,0 +1,214 @@
+---
+title: CZGate (v1.4)
+description: API reference for qiskit.circuit.library.CZGate in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.CZGate
+---
+
+# CZGate
+
+<Class id="qiskit.circuit.library.CZGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/z.py#L153-L246" signature="qiskit.circuit.library.CZGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
+  Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
+
+  Controlled-Z gate.
+
+  This is a Clifford and symmetric gate.
+
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`cz()`](qiskit.circuit.QuantumCircuit#cz "qiskit.circuit.QuantumCircuit.cz") method.
+
+  **Circuit symbol:**
+
+  ```text
+  q_0: ─■─
+        │
+  q_1: ─■─
+  ```
+
+  **Matrix representation:**
+
+$$
+CZ\ q_0, q_1 =
+I \otimes |0\rangle\langle 0| + Z \otimes |1\rangle\langle 1| =
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & -1
+\end{pmatrix}
+$$
+
+  In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $|1\rangle$ state.
+
+  Create new CZ gate.
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.CZGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.CZGate.base_class "qiskit.circuit.library.CZGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.library.CZGate.condition">
+    The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.library.CZGate.condition_bits">
+    Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### ctrl\_state
+
+  <Attribute id="qiskit.circuit.library.CZGate.ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.CZGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.CZGate.definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from [`ctrl_state`](#qiskit.circuit.library.CZGate.ctrl_state "qiskit.circuit.library.CZGate.ctrl_state"), the returned definition is conjugated with X without changing the internal `_definition`.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.CZGate.duration">
+    Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.CZGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.CZGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.CZGate.name">
+    Get name of gate. If the gate has open controls the gate name will become:
+
+    > \<original\_name\_o\<ctrl\_state>
+
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.CZGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_ctrl\_qubits
+
+  <Attribute id="qiskit.circuit.library.CZGate.num_ctrl_qubits">
+    Get number of control qubits.
+
+    **Returns**
+
+    The number of control qubits for the gate.
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.CZGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.CZGate.params">
+    Get parameters from base\_gate.
+
+    **Returns**
+
+    List of gate parameters.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.CZGate.unit">
+    Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.CZGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/z.py#L231-L243" signature="inverse(annotated=False)">
+    Return inverted CZ gate (itself).
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+    **Returns**
+
+    inverse gate (self-inverse).
+
+    **Return type**
+
+    [CZGate](#qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate")
+  </Function>
+</Class>
+

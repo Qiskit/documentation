@@ -5,7 +5,7 @@ description: Migrate from using the IBM Quantum cloud simulators to using Qiskit
 
 # Migrate from cloud simulators to local simulators
 
-In quantum computing, the choice between using simulators and quantum hardware is crucial for making progress in the field. While simulators are useful for testing and debugging, in this era of quantum utility, quantum development and industry advancement requires actual hardware. As part of the move to quantum utility, IBM Quantum&trade; cloud simulators were retired on 15 May 2024. This guide explains the retirement in more detail, and how to migrate from cloud-based simulators, such as `ibmq_qasm_simulator`, to local simulators.
+In quantum computing, the choice between using simulators and quantum hardware is crucial for making progress in the field. While simulators are useful for testing and debugging, in this era of quantum utility, quantum development and industry advancement requires actual hardware. As part of the move to quantum utility, IBM Quantum&reg; cloud simulators were retired on 15 May 2024. This guide explains the retirement in more detail, and how to migrate from cloud-based simulators, such as `ibmq_qasm_simulator`, to local simulators.
 
 ## Why are the cloud simulators being retired?
 
@@ -51,17 +51,36 @@ Successful quantum algorithms must be adapted to exploit the capabilities of qua
 Quantum simulators should be used to help develop and test programs before fine-tuning them and sending them to quantum hardware. Local simulators can do this with good performance and efficiency.  Clifford circuits can be simulated very efficiently, and results can be verified, which is a useful way to gain confidence in an experiment.
 
 <Admonition type="note">
-Local testing mode does not have built-in error suppression or mitigation.  Instead, you must specify those options explicitly. See [Configure error mitigation for Qiskit Runtime](/guides/configure-error-mitigation) for details.
+Local testing mode does not have built-in error suppression or mitigation.  Instead, you must specify those options explicitly. See [Configure error mitigation for Qiskit Runtime](/docs/guides/configure-error-mitigation) for details.
 </Admonition>
 
 ## Migrate to local simulators
 
-With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to replace cloud simulators. Depending on your needs, there are several ways to use local testing mode.  To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.
+With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to replace cloud simulators. Depending on your needs, there are several ways to use local testing mode.  To begin, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.
 
+### Guidance for choosing a simulator
+
+Use the following table to help choose a simulator.
+
+
+| Simulator           | Fake Backends                                   | AerSimulator                                       | Clifford Simulation                                |
+|---------------------|-------------------------------------------------|---------------------------------------------------|----------------------------------------------------|
+| **Purpose**         | Mimics specific IBM&reg; QPUs by using snapshots         | General-purpose, high-performance simulation      | Efficient simulation for Clifford circuits         |
+| **Noise model**     | Automatically applies noise model from QPU snapshots | Custom or based on real QPU calibration data      | Ideal for noise-free simulations                   |
+| **Circuit size**    | Limited to the capabilities of the mimicked QPU  | Can handle larger circuits               | Suitable for very large circuits (hundreds of qubits) |
+| **Results**         | Moderate runtime for QPU-specific tests          | Shorter runtime for a wide range of simulations    | Extremely fast, suitable for stabilizer circuits  |
+| **Use case**        | Testing transpiler and QPU-specific behavior     | General development, custom noise models          | Large stabilizer circuits, error correction        |
+
+
+<Admonition type="note">
+For most users, `AerSimulator` is a good choice, due to its flexibility and performance. However, if your work targets a specific QPU, a fake backend might be a better choice.
+</Admonition>
 
 ### Fake backends
 
-The [fake backends](/api/qiskit-ibm-runtime/fake_provider) mimic the behaviors of IBM QPUs by using snapshots. The snapshots contain important information about the QPU, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the QPU.  The noise model from the snapshot is automatically applied during simulation.
+The [fake backends](/docs/api/qiskit-ibm-runtime/fake-provider) mimic the behaviors of IBM QPUs by using snapshots. The snapshots contain important information about the QPU, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the QPU.  The noise model from the snapshot is automatically applied during simulation.
+
+Example:
 
 ```python
 from qiskit.circuit.library import RealAmplitudes
@@ -93,9 +112,15 @@ result = sampler.run([isa_qc]).result()
 
 ### AerSimulator
 
-You can use local testing mode with simulators from [Qiskit Aer](/guides/simulate-with-qiskit-aer), which provides higher-performance simulation that can handle larger circuits and [custom noise models](/guides/build-noise-models). It also supports Clifford simulation mode, which can efficiently simulate Clifford circuits with a large number of qubits.
+You can use local testing mode with simulators from [Qiskit Aer](/docs/guides/simulate-with-qiskit-aer), which provides higher-performance simulation that can handle larger circuits and [custom noise models](/docs/guides/build-noise-models). It also supports Clifford simulation mode, which can efficiently simulate Clifford circuits with a large number of qubits.
 
 Example with sessions, without noise:
+
+
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/docs/guides/execution-modes#job-mode) or [batch mode](/docs/guides/execution-modes#batch-mode).
+</Admonition>
+
 
 ```python
 from qiskit_aer import AerSimulator
@@ -123,7 +148,7 @@ with Session(backend=aer_sim) as session:
     result = sampler.run([isa_qc]).result()
 ```
 
-To simulate with noise, specify a QPU (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that QPU and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](/guides/build-noise-models).
+To simulate with noise, specify a QPU (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that QPU and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](/docs/guides/build-noise-models).
 
 Example with noise:
 
@@ -157,7 +182,7 @@ result = sampler.run([isa_qc]).result()
 <span id="clifford-sim"></span>
 ### Clifford simulation
 
-Because Clifford circuits can be simulated efficiently with verifiable results, Clifford simulation is a very useful tool. For an in-depth example, see [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](/guides/simulate-stabilizer-circuits).
+Because Clifford circuits can be simulated efficiently with verifiable results, Clifford simulation is a very useful tool. For an in-depth example, see [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](/docs/guides/simulate-stabilizer-circuits).
 
 Example:
 

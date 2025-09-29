@@ -1,6 +1,6 @@
 ---
-title: qasm2
-description: API reference for qiskit.qasm2
+title: qasm2 (v1.0)
+description: API reference for qiskit.qasm2 in qiskit v1.0
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.qasm2
@@ -13,8 +13,6 @@ python_api_name: qiskit.qasm2
 <span id="openqasm-2-qiskit-qasm2" />
 
 # OpenQASM 2
-
-<span id="module-qiskit.qasm2" />
 
 `qiskit.qasm2`
 
@@ -209,7 +207,7 @@ qc.measure([0, 1], [0, 1])
 print(qiskit.qasm2.dumps(qc))
 ```
 
-```python
+```text
 OPENQASM 2.0;
 include "qelib1.inc";
 qreg q[2];
@@ -264,7 +262,7 @@ circuit = qiskit.qasm2.loads(program)
 circuit.draw()
 ```
 
-```python
+```text
      ┌───┐     ┌─┐
 q_0: ┤ H ├──■──┤M├───
      └───┘┌─┴─┐└╥┘┌─┐
@@ -372,7 +370,7 @@ circuit = loads(program, custom_classical=customs)
 
 As a language, OpenQASM 2 does not have a way to specify the global phase of a complete program, nor of particular gate definitions. This means that parsers of the language may interpret particular gates with a different global phase than what you might expect. For example, the *de facto* standard library of OpenQASM 2 `qelib1.inc` contains definitions of `u1` and `rz` as follows:
 
-```python
+```text
 gate u1(lambda) q {
     U(0, 0, lambda) q;
 }
@@ -417,7 +415,7 @@ This will use Qiskit’s [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.
 Operator(qasm2.loads(program, custom_instructions=custom))
 ```
 
-```python
+```text
 Operator([[1.000000e+00+0.j, 0.000000e+00+0.j],
           [0.000000e+00+0.j, 6.123234e-17+1.j]],
          input_dims=(2,), output_dims=(2,))
@@ -482,17 +480,23 @@ In particular, in the legacy importers:
 
 You can emulate this behaviour in [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") by setting include\_path appropriately (try inspecting the variable `qiskit.__file__` to find the installed location), and by passing a list of [`CustomInstruction`](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.CustomInstruction") instances for each of the custom gates you care about. To make things easier we make three tuples available, which each contain one component of a configuration that is equivalent to Qiskit’s legacy converter behaviour.
 
-**qiskit.qasm2.LEGACY\_CUSTOM\_INSTRUCTIONS**
+### qiskit.qasm2.LEGACY\_CUSTOM\_INSTRUCTIONS
 
-A tuple containing the extra custom\_instructions that Qiskit’s legacy built-in converters used if `qelib1.inc` is included, and there is any definition of a `delay` instruction. The gates in the paper version of `qelib1.inc` and `delay` all require a compatible declaration statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all marked as builtins since they are not actually present in any include file this parser sees.
+<Attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS">
+  A tuple containing the extra custom\_instructions that Qiskit’s legacy built-in converters used if `qelib1.inc` is included, and there is any definition of a `delay` instruction. The gates in the paper version of `qelib1.inc` and `delay` all require a compatible declaration statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all marked as builtins since they are not actually present in any include file this parser sees.
+</Attribute>
 
-**qiskit.qasm2.LEGACY\_CUSTOM\_CLASSICAL**
+### qiskit.qasm2.LEGACY\_CUSTOM\_CLASSICAL
 
-A tuple containing the extra custom\_classical functions that Qiskit’s legacy built-in converters use beyond those specified by the paper. This is the three basic inverse trigonometric functions: $\asin$, $\acos$ and $\atan$.
+<Attribute id="qiskit.qasm2.LEGACY_CUSTOM_CLASSICAL">
+  A tuple containing the extra custom\_classical functions that Qiskit’s legacy built-in converters use beyond those specified by the paper. This is the three basic inverse trigonometric functions: $\asin$, $\acos$ and $\atan$.
+</Attribute>
 
-**qiskit.qasm2.LEGACY\_INCLUDE\_PATH**
+### qiskit.qasm2.LEGACY\_INCLUDE\_PATH
 
-A tuple containing the exact include\_path used by the legacy Qiskit converter.
+<Attribute id="qiskit.qasm2.LEGACY_INCLUDE_PATH">
+  A tuple containing the exact include\_path used by the legacy Qiskit converter.
+</Attribute>
 
 On *all* the gates defined in Qiskit’s legacy version of `qelib1.inc` and the `delay` instruction, it does not matter how the gates are actually defined and used, the legacy importer will always attempt to output its custom objects for them. This can result in errors during the circuit construction, even after a successful parse. There is no way to emulate this buggy behaviour with [`qiskit.qasm2`](#module-qiskit.qasm2 "qiskit.qasm2"); only an `include "qelib1.inc";` statement or the custom\_instructions argument can cause built-in Qiskit instructions to be used, and the signatures of these match each other.
 

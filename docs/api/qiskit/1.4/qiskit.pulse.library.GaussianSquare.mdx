@@ -1,0 +1,58 @@
+---
+title: GaussianSquare (v1.4)
+description: API reference for qiskit.pulse.library.GaussianSquare in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.library.GaussianSquare
+---
+
+# GaussianSquare
+
+<Class id="qiskit.pulse.library.GaussianSquare" isDedicatedPage={true} signature="qiskit.pulse.library.GaussianSquare(duration, amp, sigma, width=None, angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A square pulse with a Gaussian shaped risefall on both sides lifted such that its first sample is zero.
+
+  Exactly one of the `risefall_sigma_ratio` and `width` parameters has to be specified.
+
+  If `risefall_sigma_ratio` is not None and `width` is None:
+
+$$
+\begin{aligned}
+\text{risefall} &= \text{risefall\_sigma\_ratio} \times \text{sigma}\\
+\text{width} &= \text{duration} - 2 \times \text{risefall}
+\end{aligned}
+$$
+
+  If `width` is not None and `risefall_sigma_ratio` is None:
+
+$$
+\text{risefall} = \frac{\text{duration} - \text{width}}{2}
+
+
+$$
+
+  In both cases, the lifted gaussian square pulse $f'(x)$ is defined as:
+
+$$
+\begin{aligned}
+f'(x) &= \begin{cases}            \exp\biggl(-\frac12 \frac{(x - \text{risefall})^2}{\text{sigma}^2}\biggr)                & x < \text{risefall}\\
+1                & \text{risefall} \le x < \text{risefall} + \text{width}\\
+\exp\biggl(-\frac12                    \frac{{\bigl(x - (\text{risefall} + \text{width})\bigr)}^2}                          {\text{sigma}^2}                    \biggr)                & \text{risefall} + \text{width} \le x        \end{cases}\\
+f(x) &= \text{A} \times \frac{f'(x) - f'(-1)}{1-f'(-1)},            \quad 0 \le x < \text{duration}
+\end{aligned}
+$$
+
+  where $f'(x)$ is the gaussian square waveform without lifting or amplitude scaling, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.library.symbolic_pulses.GaussianSquare` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
+  ## Attributes
+
+  ### alias
+
+  <Attribute id="qiskit.pulse.library.GaussianSquare.alias" attributeValue="'GaussianSquare'" />
+</Class>
+

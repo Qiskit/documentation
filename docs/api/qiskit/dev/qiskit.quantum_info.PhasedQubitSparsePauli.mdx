@@ -1,0 +1,242 @@
+---
+title: PhasedQubitSparsePauli (dev version)
+description: API reference for qiskit.quantum_info.PhasedQubitSparsePauli in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.PhasedQubitSparsePauli
+---
+
+# PhasedQubitSparsePauli
+
+<Class id="qiskit.quantum_info.PhasedQubitSparsePauli" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.PhasedQubitSparsePauli" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A Pauli operator stored in a qubit-sparse format.
+
+  ## Representation
+
+  A Pauli operator is a tensor product of single-qubit Pauli operators of the form $P = (-i)^m \bigotimes_n A^{(n)}_i$, for $A^{(n)}_i \in \{I, X, Y, Z\}$ and an integer $m$ called the phase exponent. The internal representation of a [`PhasedQubitSparsePauli`](#qiskit.quantum_info.PhasedQubitSparsePauli "qiskit.quantum_info.PhasedQubitSparsePauli") stores only the non-identity single-qubit Pauli operators.
+
+  Internally, each single-qubit Pauli operator is stored with a numeric value. See the documentation of [`QubitSparsePauli`](qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli") for a description of the formatting of the numeric value associated with each Pauli, as well as descriptions of the [`paulis`](#qiskit.quantum_info.PhasedQubitSparsePauli.paulis "qiskit.quantum_info.PhasedQubitSparsePauli.paulis") and [`indices`](#qiskit.quantum_info.PhasedQubitSparsePauli.indices "qiskit.quantum_info.PhasedQubitSparsePauli.indices") attributes that store each Pauli and its associated qubit index.
+
+  Additionally, the phase of the operator can be retrieved through the [`phase`](#qiskit.quantum_info.PhasedQubitSparsePauli.phase "qiskit.quantum_info.PhasedQubitSparsePauli.phase") attribute, which returns the group phase exponent, matching the behaviour of the same attribute in [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
+
+  ## Construction
+
+  [`PhasedQubitSparsePauli`](#qiskit.quantum_info.PhasedQubitSparsePauli "qiskit.quantum_info.PhasedQubitSparsePauli") defines several constructors. The default constructor will attempt to delegate to one of the more specific constructors, based on the type of the input. You can always use the specific constructors to have more control over the construction.
+
+  <span id="phased-qubit-sparse-pauli-convert-constructors" />
+
+  | Method                                                                                                                                                | Summary                                                                                                                                                                                                      |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | [`from_label()`](#qiskit.quantum_info.PhasedQubitSparsePauli.from_label "qiskit.quantum_info.PhasedQubitSparsePauli.from_label")                      | Convert a dense string label into a [`PhasedQubitSparsePauli`](#qiskit.quantum_info.PhasedQubitSparsePauli "qiskit.quantum_info.PhasedQubitSparsePauli").                                                    |
+  | [`from_sparse_label()`](#qiskit.quantum_info.PhasedQubitSparsePauli.from_sparse_label "qiskit.quantum_info.PhasedQubitSparsePauli.from_sparse_label") | Build a [`PhasedQubitSparsePauli`](#qiskit.quantum_info.PhasedQubitSparsePauli "qiskit.quantum_info.PhasedQubitSparsePauli") from a tuple of a phase, a sparse string label, and the qubits they apply to.   |
+  | [`from_pauli()`](#qiskit.quantum_info.PhasedQubitSparsePauli.from_pauli "qiskit.quantum_info.PhasedQubitSparsePauli.from_pauli")                      | Raise a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") into a [`PhasedQubitSparsePauli`](#qiskit.quantum_info.PhasedQubitSparsePauli "qiskit.quantum_info.PhasedQubitSparsePauli"). |
+  | [`from_raw_parts()`](#qiskit.quantum_info.PhasedQubitSparsePauli.from_raw_parts "qiskit.quantum_info.PhasedQubitSparsePauli.from_raw_parts")          | Build the list from [the raw data arrays](qiskit.quantum_info.QubitSparsePauli#qubit-sparse-pauli-arrays) and the phase.                                                                                     |
+
+  ### \_\_new\_\_
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.__new__" signature="__new__(data, /, num_qubits=None)">
+    The default constructor of [`QubitSparsePauli`](qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli").
+
+    This delegates to one of [the explicit conversion-constructor methods](#phased-qubit-sparse-pauli-convert-constructors), based on the type of the `data` argument. If `num_qubits` is supplied and constructor implied by the type of `data` does not accept a number, the given integer must match the input.
+
+    **Parameters**
+
+    *   **data** – The data type of the input. This can be another [`QubitSparsePauli`](qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli"), in which case the input is copied, or it can be a valid format for either [`from_label()`](#qiskit.quantum_info.PhasedQubitSparsePauli.from_label "qiskit.quantum_info.PhasedQubitSparsePauli.from_label") or [`from_sparse_label()`](#qiskit.quantum_info.PhasedQubitSparsePauli.from_sparse_label "qiskit.quantum_info.PhasedQubitSparsePauli.from_sparse_label").
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*|None*) – Optional number of qubits for the operator. For most data inputs, this can be inferred and need not be passed. It is only necessary for the sparse-label format. If given unnecessarily, it must match the data input.
+  </Function>
+
+  ## Attributes
+
+  ### indices
+
+  <Attribute id="qiskit.quantum_info.PhasedQubitSparsePauli.indices">
+    Read-only view onto the indices of each non-identity single-qubit term.
+
+    The indices will always be in sorted order.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.quantum_info.PhasedQubitSparsePauli.num_qubits">
+    The number of qubits the term is defined on.
+  </Attribute>
+
+  ### paulis
+
+  <Attribute id="qiskit.quantum_info.PhasedQubitSparsePauli.paulis">
+    Read-only view onto the individual single-qubit terms.
+
+    The only valid values in the array are those with a corresponding `Pauli`.
+  </Attribute>
+
+  ### phase
+
+  <Attribute id="qiskit.quantum_info.PhasedQubitSparsePauli.phase">
+    Read-only view onto the phase.
+  </Attribute>
+
+  ## Methods
+
+  ### commutes
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.commutes" signature="commutes(other)">
+    Check if self\` commutes with another phased qubit sparse pauli.
+
+    **Parameters**
+
+    **other** ([*PhasedQubitSparsePauli*](#qiskit.quantum_info.PhasedQubitSparsePauli "qiskit.quantum_info.PhasedQubitSparsePauli")) – the phased qubit sparse Pauli to check for commutation with.
+  </Function>
+
+  ### compose
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.compose" signature="compose(other)">
+    Composition with another [`PhasedQubitSparsePauli`](#qiskit.quantum_info.PhasedQubitSparsePauli "qiskit.quantum_info.PhasedQubitSparsePauli").
+
+    **Parameters**
+
+    **other** ([*PhasedQubitSparsePauli*](#qiskit.quantum_info.PhasedQubitSparsePauli "qiskit.quantum_info.PhasedQubitSparsePauli")) – the qubit sparse Pauli to compose with.
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.copy" signature="copy()">
+    Get a copy of this term.
+  </Function>
+
+  ### from\_label
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.from_label" signature="from_label(label, /)" modifiers="static">
+    Construct from a dense string label.
+
+    The label must be a sequence of the alphabet `'IXYZ'`. The label is interpreted analogously to a bitstring. In other words, the right-most letter is associated with qubit 0, and so on. This is the same as the labels for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") and [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+
+    **Parameters**
+
+    **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the dense label.
+
+    **Examples**
+
+    ```python
+    >>> QubitSparsePauli.from_label("IIIIXZI")
+    <QubitSparsePauli on 7 qubits: X_2 Z_1>
+    >>> label = "IYXZI"
+    >>> pauli = Pauli(label)
+    >>> assert QubitSparsePauli.from_label(label) == QubitSparsePauli.from_pauli(pauli)
+    ```
+  </Function>
+
+  ### from\_pauli
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.from_pauli" signature="from_pauli(pauli, /)" modifiers="static">
+    Construct a [`PhasedQubitSparsePauli`](#qiskit.quantum_info.PhasedQubitSparsePauli "qiskit.quantum_info.PhasedQubitSparsePauli") from a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") instance.
+
+    **Parameters**
+
+    **pauli** ([`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – the single Pauli to convert.
+
+    **Examples**
+
+    ```python
+    >>> label = "iIYXZI"
+    >>> pauli = Pauli(label)
+    >>> PhasedQubitSparsePauli.from_pauli(pauli)
+    <PhasedQubitSparsePauli on 5 qubits: iY_3 X_2 Z_1>
+    >>> assert PhasedQubitSparsePauli.from_label(label) == PhasedQubitSparsePauli.from_pauli(pauli)
+    ```
+  </Function>
+
+  ### from\_raw\_parts
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.from_raw_parts" signature="from_raw_parts(num_qubits, paulis, indices, phase=0)" modifiers="static">
+    Construct a [`PhasedQubitSparsePauli`](#qiskit.quantum_info.PhasedQubitSparsePauli "qiskit.quantum_info.PhasedQubitSparsePauli") from raw Numpy arrays that match the required data representation described in the class-level documentation.
+
+    The data from each array is copied into fresh, growable Rust-space allocations.
+
+    **Parameters**
+
+    *   **num\_qubits** – number of qubits the operator acts on.
+    *   **paulis** – list of the single-qubit terms. This should be a Numpy array with dtype [`uint8`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint8 "(in NumPy v2.3)") (which is compatible with [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")).
+    *   **indices** – sorted list of the qubits each single-qubit term corresponds to. This should be a Numpy array with dtype [`uint32`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint32 "(in NumPy v2.3)").
+    *   **phase** – The phase exponent of the operator.
+
+    **Examples**
+
+    Construct a $Z$ operator acting on qubit 50 of 100 qubits.
+
+    ```python
+    >>> num_qubits = 100
+    >>> terms = np.array([PhasedQubitSparsePauli.Pauli.Z], dtype=np.uint8)
+    >>> indices = np.array([50], dtype=np.uint32)
+    >>> phase = 0
+    >>> PhasedQubitSparsePauli.from_raw_parts(num_qubits, terms, indices, phase)
+    <PhasedQubitSparsePauli on 100 qubits: Z_50>
+    ```
+  </Function>
+
+  ### from\_sparse\_label
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.from_sparse_label" signature="from_sparse_label(sparse_label, num_qubits)" modifiers="static">
+    Construct a phased qubit sparse Pauli from a sparse label, given as a tuple of an int for the phase exponent, a string of Paulis, and the indices of the corresponding qubits.
+
+    This is analogous to [`SparsePauliOp.from_sparse_list()`](qiskit.quantum_info.SparsePauliOp#from_sparse_list "qiskit.quantum_info.SparsePauliOp.from_sparse_list").
+
+    **Parameters**
+
+    *   **sparse\_label** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – labels and the qubits each single-qubit term applies to.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits the operator acts on.
+
+    **Examples**
+
+    Construct a simple Pauli:
+
+    ```python
+    >>> PhasedQubitSparsePauli.from_sparse_label(
+    ...     (0, "ZX", (1, 4)),
+    ...     num_qubits=5,
+    ... )
+    <PhasedQubitSparsePauli on 5 qubits: X_4 Z_1>
+    ```
+
+    This method can replicate the behavior of [`from_label()`](#qiskit.quantum_info.PhasedQubitSparsePauli.from_label "qiskit.quantum_info.PhasedQubitSparsePauli.from_label"), if the qubit-arguments field of the tuple is set to decreasing integers:
+
+    ```python
+    >>> label = "XYXZ"
+    >>> from_label = PhasedQubitSparsePauli.from_label(label)
+    >>> from_sparse_label = PhasedQubitSparsePauli.from_sparse_label(
+    ...     (0, label, (3, 2, 1, 0)),
+    ...     num_qubits=4
+    ... )
+    >>> assert from_label == from_sparse_label
+    ```
+  </Function>
+
+  ### identity
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.identity" signature="identity(num_qubits)" modifiers="static">
+    Get the identity operator for a given number of qubits.
+
+    **Examples**
+
+    Get the identity on 100 qubits:
+
+    ```python
+    >>> QubitSparsePauli.identity(100)
+    <QubitSparsePauli on 100 qubits: >
+    ```
+  </Function>
+
+  ### to\_pauli
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.to_pauli" signature="to_pauli()">
+    Return a [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") representing the same Pauli.
+  </Function>
+
+  ### to\_phased\_qubit\_sparse\_pauli\_list
+
+  <Function id="qiskit.quantum_info.PhasedQubitSparsePauli.to_phased_qubit_sparse_pauli_list" signature="to_phased_qubit_sparse_pauli_list()">
+    Convert this Pauli into a single element [`PhasedQubitSparsePauliList`](qiskit.quantum_info.PhasedQubitSparsePauliList "qiskit.quantum_info.PhasedQubitSparsePauliList").
+  </Function>
+</Class>
+

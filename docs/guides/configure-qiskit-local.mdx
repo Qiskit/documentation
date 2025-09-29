@@ -32,7 +32,7 @@ By default, this file is in `~/.qiskit/settings.conf` but the path can be overri
 - `circuit_mpl_style`: The default style sheet used for the mpl output system for the circuit drawer. Valid values are `default` or `bw`.
 - `circuit_mpl_style_path`: The paths to have the circuit drawer use to look for JSON style sheets when using the mpl output mode.
 - `state_drawer`: This is used to change the default system for the state visualization draw methods. Valid values are `repr`, `text`, `latex`, `latex_source`, `qsphere`, `hinton`, or `bloch`. When the output kwarg is not explicitly set on the [qiskit.quantum_info.DensityMatrix.draw](../api/qiskit/qiskit.quantum_info.DensityMatrix#densitymatrix) method, the specified output method is used.
-- `transpile_optimization_level`: Change the default optimization level for [qiskit.compiler.transpile](../api/qiskit/compiler#circuit-and-pulse-compilation-functions). Specify an integer 0-3.
+- `transpile_optimization_level`: Change the default optimization level for [qiskit.compiler.transpile](../api/qiskit/compiler#transpile). Specify an integer 0-3.
 - `parallel`: Whether Python multiprocessing is enabled for operations that support running in parallel.  For example, transpilation of multiple [qiskit.circuit.QuantumCircuit](../api/qiskit/qiskit.circuit.QuantumCircuit#quantumcircuit-class) objects. This setting can be overridden by the `QISKIT_PARALLEL` environment variable. Specify a boolean value.
 - `num_processes`: The maximum number of parallel processes to launch for parallel operations if parallel execution is enabled. This setting can be overridden by the `QISKIT_NUM_PROCS` environment variable. Specify an integer greater than `0`. 
 
@@ -49,12 +49,13 @@ Set these environment variables to alter the default behavior of Qiskit:
 - `QISKIT_NUM_PROCS`: The maximum number of parallel processes to launch for parallel operations if parallel execution is enabled. Specify an integer greater than zero.
 - `RAYON_NUM_THREADS`: The number of threads to run multithreaded operations in Qiskit. By default, multithreaded code launches a thread for each logical CPU. To adjust the number of threads Qiskit uses, set this to an integer value. For example, setting RAYON_NUM_THREADS=4 launches four threads for multithreaded functions. 
 - `QISKIT_FORCE_THREADS`: Specifies that multithreaded code should always execute in multiple threads. By default, if you're running multithreaded code in a section of Qiskit that is already running in parallel processes, Qiskit does not launch multiple threads but instead executes that function serially. This is done to avoid potentially overloading limited CPU resources. However, if you want to force the use of multiple threads even when in a multiprocess context, set `QISKIT_FORCE_THREADS=TRUE`.
+- `QISKIT_SABRE_ALL_THREADS`: Controls the behavior of the layout and routing pass in Qiskit's preset pass manager. When set to `1` or `TRUE`, this uses all available CPUs for running multiple random trials. This can improve the quality of the results, especially for systems with greater than 20 CPUs/cores; the tradeoff, however, is that results are not reproducible when run on different local hardware.
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
   - Learn how to [build circuits](./map-problem-to-circuits).
-  - [Run the Hello world program](hello-world).
-  - Try a tutorial, such as [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm).
+  - Try a tutorial, such as [Grover's algorithm](/docs/tutorials/grovers-algorithm).
+  - [Run the Hello world program](/docs/tutorials/hello-world).
   - Read the [contributing guidelines](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md) if you want to contribute to the open-source Qiskit SDK.
 </Admonition>

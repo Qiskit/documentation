@@ -1,0 +1,109 @@
+---
+title: transforms (latest version)
+description: API reference for qiskit_addon_cutting.utils.transforms in the latest version of qiskit-addon-cutting
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_cutting.utils.transforms
+---
+
+<span id="module-qiskit_addon_cutting.utils.transforms" />
+
+<span id="transforms-qiskit-addon-cutting-utils-transforms" />
+
+# Transforms
+
+`qiskit_addon_cutting.utils.transforms`
+
+Functions for manipulating quantum circuits.
+
+### separate\_circuit
+
+<Function id="qiskit_addon_cutting.utils.transforms.separate_circuit" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/utils/transforms.py" signature="separate_circuit(circuit, partition_labels=None)">
+  Separate the circuit into its disconnected components.
+
+  If `partition_labels` is provided, then the circuit will be separated according to those labels. A partition label of `None` is treated specially: it must be applied to an unused (idle) qubit, and that qubit will be removed when separating the circuit.
+
+  If `partition_labels` is `None`, then the circuit will be fully separated into its disconnected components, each of which will be labeled with consecutive integers starting with 0. Each idle wire will be eliminated in the resulting circuits.
+
+  ```python
+  >>> qc = QuantumCircuit(4)
+  >>> _ = qc.x(0)
+  >>> _ = qc.cx(1, 2)
+  >>> separate_circuit(qc, "ABBA").subcircuits.keys()
+  dict_keys(['A', 'B'])
+  >>> separate_circuit(qc, "ABBA").qubit_map
+  [('A', 0), ('B', 0), ('B', 1), ('A', 1)]
+  >>> separate_circuit(qc, ["A", "B", "B", None]).qubit_map
+  [('A', 0), ('B', 0), ('B', 1), (None, None)]
+  >>> separate_circuit(qc).subcircuits.keys()
+  dict_keys([0, 1])
+  >>> separate_circuit(qc).qubit_map
+  [(0, 0), (1, 0), (1, 1), (None, None)]
+  >>> separate_circuit(qc, "BAAC").subcircuits.keys()
+  dict_keys(['B', 'A', 'C'])
+  >>> separate_circuit(qc, "BAAC").qubit_map
+  [('B', 0), ('A', 0), ('A', 1), ('C', 0)]
+  ```
+
+  **Parameters**
+
+  *   **circuit** (QuantumCircuit) – The circuit to separate into disconnected subcircuits
+  *   **partition\_labels** (Sequence\[Hashable] | None) – A sequence of length `num_qubits`. Qubits with the same label will end up in the same subcircuit.
+
+  **Return type**
+
+  SeparatedCircuits
+
+  **Returns**
+
+  A [`SeparatedCircuits`](#qiskit_addon_cutting.utils.transforms.SeparatedCircuits "qiskit_addon_cutting.utils.transforms.SeparatedCircuits") named tuple containing the `subcircuits` and `qubit_map`.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The number of partition labels does not equal the number of qubits in the input circuit.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Operation spans more than one partition.
+</Function>
+
+### SeparatedCircuits
+
+<Class id="qiskit_addon_cutting.utils.transforms.SeparatedCircuits" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/utils/transforms.py" signature="SeparatedCircuits(subcircuits, qubit_map)" modifiers="class">
+  Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple "(in Python v3.13)")
+
+  Named tuple for result of [`separate_circuit()`](#qiskit_addon_cutting.utils.transforms.separate_circuit "qiskit_addon_cutting.utils.transforms.separate_circuit").
+
+  `subcircuits` is a dict of circuits, keyed by each partition label. `qubit_map` is a list with length equal to the number of qubits in the original circuit. Each element of that list is a 2-tuple which includes the partition label of that qubit, together with the index of that qubit in the corresponding subcircuit. If the original qubit is unused and has been removed from the separated circuits, then that tuple will be equal to `(None, None)`.
+
+  Create new instance of SeparatedCircuits(subcircuits, qubit\_map)
+
+  **Parameters**
+
+  *   **subcircuits** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[Hashable, QuantumCircuit]*)
+  *   **qubit\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[Hashable,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[None, None]]*)
+
+  #### count
+
+  <Function id="qiskit_addon_cutting.utils.transforms.SeparatedCircuits.count" signature="count(value, /)">
+    Return number of occurrences of value.
+  </Function>
+
+  #### index
+
+  <Function id="qiskit_addon_cutting.utils.transforms.SeparatedCircuits.index" signature="index(value, start=0, stop=9223372036854775807, /)">
+    Return first index of value.
+
+    Raises ValueError if the value is not present.
+  </Function>
+
+  #### qubit\_map
+
+  <Attribute id="qiskit_addon_cutting.utils.transforms.SeparatedCircuits.qubit_map" attributeTypeHint="list[tuple[Hashable, int] | tuple[None, None]]">
+    Alias for field number 1
+  </Attribute>
+
+  #### subcircuits
+
+  <Attribute id="qiskit_addon_cutting.utils.transforms.SeparatedCircuits.subcircuits" attributeTypeHint="dict[Hashable, QuantumCircuit]">
+    Alias for field number 0
+  </Attribute>
+</Class>
+

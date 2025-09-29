@@ -1,6 +1,6 @@
 ---
-title: plugin
-description: API reference for qiskit.transpiler.passes.synthesis.plugin
+title: plugin (v1.0)
+description: API reference for qiskit.transpiler.passes.synthesis.plugin in qiskit v1.0
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler.passes.synthesis.plugin
@@ -13,8 +13,6 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin
 <span id="synthesis-plugins-qiskit-transpiler-passes-synthesis-plugin" />
 
 # Synthesis Plugins
-
-<span id="module-qiskit.transpiler.passes.synthesis.plugin" />
 
 `qiskit.transpiler.passes.synthesis.plugin`
 
@@ -112,7 +110,7 @@ If for some reason the available inputs to the [`run()`](qiskit.transpiler.passe
 
 The second step is to expose the [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") as a setuptools entry point in the package metadata. This is done by simply adding an `entry-points` table in `pyproject.toml` for the plugin package with the necessary entry points under the `qiskit.unitary_synthesis` namespace. For example:
 
-```python
+```toml
 [project.entry-points."qiskit.unitary_synthesis"]
 "special" = "qiskit_plugin_pkg.module.plugin:SpecialUnitarySynthesis"
 ```
@@ -145,7 +143,7 @@ The above example creates a plugin to synthesize objects of type [`Clifford`](qi
 
 The second step is to expose the [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin") as a setuptools entry point in the package metadata. This is done by adding an `entry-points` table in `pyproject.toml` for the plugin package with the necessary entry points under the `qiskit.synthesis` namespace. For example:
 
-```python
+```toml
 [project.entry-points."qiskit.synthesis"]
 "clifford.special" = "qiskit_plugin_pkg.module.plugin:SpecialSynthesisClifford"
 ```

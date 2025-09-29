@@ -1,6 +1,6 @@
 ---
-title: Optimize1qGatesSimpleCommutation
-description: API reference for qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
+title: Optimize1qGatesSimpleCommutation (dev version)
+description: API reference for qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
 
 # Optimize1qGatesSimpleCommutation
 
-<Class id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passes/optimization/optimize_1q_commutation.py#L47-L258" signature="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/optimize_1q_commutation.py#L47-L257" signature="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Optimizes 1Q gate strings interrupted by 2Q gates by commuting the components and resynthesizing the results. The commutation rules are stored in `commutation_table`.
@@ -21,8 +21,8 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
 
   **Parameters**
 
-  *   **basis** (*List\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – See also Optimize1qGatesDecomposition.
-  *   **run\_to\_completion** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, this pass retries until it is unable to do any more work. If False, it finds and performs one optimization, and for full optimization the user is obligated to re-call the pass until the output stabilizes.
+  *   **basis** (*List\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – See also Optimize1qGatesDecomposition.
+  *   **run\_to\_completion** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, this pass retries until it is unable to do any more work. If False, it finds and performs one optimization, and for full optimization the user is obligated to re-call the pass until the output stabilizes.
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `basis` and this are specified then this argument will take precedence and `basis` will be ignored.
 
   ## Attributes
@@ -47,14 +47,14 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -62,22 +62,22 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passes/optimization/optimize_1q_commutation.py#L243-L258" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/optimize_1q_commutation.py#L242-L257" signature="run(dag)">
     **Parameters**
 
     **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the DAG to be optimized.
@@ -93,7 +93,7 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

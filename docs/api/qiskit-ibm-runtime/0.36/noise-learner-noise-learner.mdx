@@ -1,0 +1,116 @@
+---
+title: NoiseLearner (v0.36)
+description: API reference for qiskit_ibm_runtime.noise_learner.NoiseLearner in qiskit-ibm-runtime v0.36
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
+---
+
+# NoiseLearner
+
+<Class id="qiskit_ibm_runtime.noise_learner.NoiseLearner" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/noise_learner/noise_learner.py#L48-L268" signature="NoiseLearner(mode=None, options=None)" modifiers="class">
+  Bases: `object`
+
+  Class for executing noise learning experiments.
+
+  The noise learner class allows characterizing the noise processes affecting the gates in one or more circuits of interest, based on the Pauli-Lindblad noise model described in \[1].
+
+  The [`run()`](#qiskit_ibm_runtime.noise_learner.NoiseLearner.run "qiskit_ibm_runtime.noise_learner.NoiseLearner.run") method allows running a noise learner job for a list of circuits. After the job is submitted, the gates are collected into independent layers, and subsequently the resulting layers are characterized individually.
+
+  The way in which the gates are collected into layers depends on the twirling `strategy` specified in the given `options` (see [`NoiseLearnerOptions`](options-noise-learner-options "qiskit_ibm_runtime.options.NoiseLearnerOptions") for more details). Note that all strategies obey barriers. For example, if you have three ISA entangling layers of interest, consider putting them into one circuit separated by barriers acting on the qubits you wish to twirl, and select `strategy="active-circuit"`.
+
+  The following snippet shows an example where the noise learner is used to characterized the layers of two GHZ circuits.
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+  from qiskit_ibm_runtime import QiskitRuntimeService
+  from qiskit_ibm_runtime.noise_learner import NoiseLearner
+  from qiskit_ibm_runtime.options import NoiseLearnerOptions
+
+  service = QiskitRuntimeService()
+  backend = service.least_busy(operational=True, simulator=False)
+
+  # a circuit returning a two-qubit GHZ state
+  ghz = QuantumCircuit(2)
+  ghz.h(0)
+  ghz.cx(0, 1)
+
+  # another circuit returning a two-qubit GHZ state
+  another_ghz = QuantumCircuit(3)
+  another_ghz.h(0)
+  another_ghz.cx(0, 1)
+  another_ghz.cx(1, 2)
+  another_ghz.cx(0, 1)
+
+  pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+  circuits = pm.run([ghz, another_ghz])
+
+  # set the options
+  options = NoiseLearnerOptions()
+  options.layer_pair_depths = [0, 1, 10]
+
+  # run the noise learner job
+  learner = NoiseLearner(backend, options)
+  job = learner.run(circuits)
+  ```
+
+  **Parameters**
+
+  *   **mode** (*Optional\[Union\[BackendV2,* [*Session*](session "qiskit_ibm_runtime.Session")*,* [*Batch*](batch "qiskit_ibm_runtime.Batch")*]]*) –
+
+      The execution mode used to make the primitive query. It can be:
+
+      *   A `Backend` if you are using job mode.
+      *   A `Session` if you are using session execution mode.
+      *   A `Batch` if you are using batch execution mode.
+
+      Refer to the [Qiskit Runtime documentation](/docs/guides/execution-modes) for more information about the execution modes.
+
+  *   **options** (*Optional\[Union\[Dict,* [*NoiseLearnerOptions*](options-noise-learner-options "qiskit_ibm_runtime.options.NoiseLearnerOptions")*,* [*EstimatorOptions*](options-estimator-options "qiskit_ibm_runtime.options.EstimatorOptions")*]]*) – `NoiseLearnerOptions`. Alternatively, `EstimatorOptions` can be provided for convenience, in which case the estimator options get reformatted into noise learner options and all the irrelevant fields are ignored.
+
+  **References**
+
+  1.  E. van den Berg, Z. Minev, A. Kandala, K. Temme, *Probabilistic error cancellation with sparse Pauli–Lindblad models on noisy quantum processors*, Nature Physics volume 19, pages 1116–1121 (2023). [arXiv:2201.09866 \[quant-ph\]](https://arxiv.org/abs/2201.09866)
+
+  ## Attributes
+
+  ### options
+
+  <Attribute id="qiskit_ibm_runtime.noise_learner.NoiseLearner.options">
+    The options in this noise learner.
+  </Attribute>
+
+  ## Methods
+
+  ### backend
+
+  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/noise_learner/noise_learner.py#L219-L221" signature="backend()">
+    Return the backend the primitive query will be run on.
+
+    **Return type**
+
+    [*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.3)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/noise_learner/noise_learner.py#L140-L212" signature="run(circuits)">
+    Submit a request to the noise learner program.
+
+    This function breaks the given list of circuits into a list of unique layers, following the strategy set by the `twirling_strategy` field specified in the `options` (see `NoiseLearnerOptions` for more details) and sorting them based on the number of times they occur in the various circuits. Then, it runs the noise learning experiment for as many layers as specified by the `max_layers_to_learn` field in the `options`, prioritizing layers that occurr more frequently.
+
+    **Parameters**
+
+    **circuits** (*Iterable\[*[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") *| EstimatorPubLike]*) – An iterable of circuits to run the noise learner program for. Alternatively, estimator pub-like (primitive unified bloc) objects can be specified, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`. In this case, the pub-like objects are converted to a list of circuits, and all the other fields (such as `observables` and `parameter_values`) are ignored.
+
+    **Returns**
+
+    The submitted job.
+
+    **Return type**
+
+    [*RuntimeJobV2*](runtime-job-v2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")
+  </Function>
+</Class>
+

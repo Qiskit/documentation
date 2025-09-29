@@ -1,6 +1,6 @@
 ---
-title: Decompose
-description: API reference for qiskit.transpiler.passes.Decompose
+title: Decompose (latest version)
+description: API reference for qiskit.transpiler.passes.Decompose in the latest version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.transpiler.passes.Decompose
@@ -8,16 +8,15 @@ python_api_name: qiskit.transpiler.passes.Decompose
 
 # Decompose
 
-<Class id="qiskit.transpiler.passes.Decompose" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/basis/decompose.py#L23-L98" signature="qiskit.transpiler.passes.Decompose(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.Decompose" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/basis/decompose.py#L31-L127" signature="qiskit.transpiler.passes.Decompose(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Expand a gate in a circuit using its decomposition rules.
 
-  Decompose initializer.
-
   **Parameters**
 
-  **gates\_to\_decompose** – optional subset of gates to be decomposed, identified by gate label, name or type. Defaults to all gates.
+  *   **gates\_to\_decompose** – optional subset of gates to be decomposed, identified by gate label, name or type. Defaults to all gates.
+  *   **apply\_synthesis** – If `True`, run [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") to synthesize operations that do not have a definition attached.
 
   ## Attributes
 
@@ -41,14 +40,14 @@ python_api_name: qiskit.transpiler.passes.Decompose
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.Decompose.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.Decompose.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -56,27 +55,27 @@ python_api_name: qiskit.transpiler.passes.Decompose
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.Decompose.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.Decompose.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.Decompose.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/basis/decompose.py#L39-L67" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.Decompose.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/basis/decompose.py#L52-L97" signature="run(dag)">
     Run the Decompose pass on dag.
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – input dag.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – input dag.
 
     **Returns**
 
@@ -84,12 +83,12 @@ python_api_name: qiskit.transpiler.passes.Decompose
 
     **Return type**
 
-    [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+    [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")
   </Function>
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.Decompose.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.Decompose.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

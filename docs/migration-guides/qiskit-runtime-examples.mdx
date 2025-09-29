@@ -46,7 +46,7 @@ result = backend.run(isa_circuits)
   </TabItem>
 </Tabs>
 
-**Primitives model:** Access real QPUs through the `qiskit-ibm-runtime` **primitives** (`Sampler` and `Estimator`). Use **Local testing mode** to run local simulations on Qiskit Runtime fake backends or Aer simulators. The following examples assume you have defined circuits `isa_circuits` and observables `isa_observables`.
+**Primitives model:** Access real QPUs through the `qiskit-ibm-runtime` **primitives** (Sampler and Estimator). Use **Local testing mode** to run local simulations on Qiskit Runtime fake backends or Aer simulators. The following examples assume you have defined circuits `isa_circuits` and observables `isa_observables`.
 
 
 <Tabs>
@@ -250,7 +250,7 @@ expectation_value = sampler.eval().real
 ```
 
 ``` python
->>> print("expectation: ", expectation_value)
+print("expectation: ", expectation_value)
 expectation:  -1.065734058826613
 ```
   </TabItem>
@@ -352,7 +352,7 @@ result = job.result()
 <span id="sampler-example"></span>
 ### End-to-end example
 
-The following example shows an end-to-end example of sampling a circuit by using `backend.run()` and `Sampler`.
+The following example shows an end-to-end example of sampling a circuit by using `backend.run()` and Sampler.
 
 #### 1. Problem definition
 
@@ -360,7 +360,7 @@ We want to find the probability distribution
 associated with a quantum state:
 
 <Admonition type="attention" title="Important">
-When using the `Sampler` primitive, the circuit **must contain measurements**.
+When using the Sampler primitive, the circuit **must contain measurements**.
 </Admonition>
 
 <Tabs>
@@ -461,7 +461,7 @@ result = backend.run(isa_circuit, shots=1024).result()
 ```
 
 ``` python
->>> print("result: ", result)
+print("result: ", result)
 result:  Result(backend_name='ibmq_qasm_simulator', backend_version='0.11.0',
 qobj_id='65bb8a73-cced-40c1-995a-8961cc2badc4', job_id='63fc95612751d57b6639f777',
 success=True, results=[ExperimentResult(shots=1024, success=True, meas_level=2,
@@ -486,7 +486,7 @@ Now we get the probability distribution from the output:
 ``` python
 counts = result.get_counts(isa_circuit)
 
->>> print("counts: ", counts)
+print("counts: ", counts)
 counts:  {'0000': 255, '0001': 258, '0010': 243, '0011': 268}
 ```
 
@@ -503,9 +503,8 @@ to the following:
 <Admonition type="tip" title="Recommendations">
 - [Common use cases](qiskit-runtime-use-case)
 - [Migrate `backend.run` options to primitive options](qiskit-runtime-options)
-- [Setting execution options](/guides/runtime-options-overview)
-- [Primitive execution options API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)
-- [How to run a session](/guides/run-jobs-session)
-- [Qiskit Runtime local testing mode](/guides/local-testing-mode)
+- [Setting execution options](/docs/guides/runtime-options-overview)
+- [How to run a session](/docs/guides/run-jobs-session)
+- [Qiskit Runtime local testing mode](/docs/guides/local-testing-mode)
 </Admonition>
 

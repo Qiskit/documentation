@@ -11,18 +11,36 @@
 // that they have been altered from the originals.
 
 import { getLastPartFromFullIdentifier } from "../stringUtils.js";
-import { HtmlToMdResult } from "./HtmlToMdResult.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 
-function addFrontMatter<T extends HtmlToMdResult>(
-  results: T[],
-  pkg: Pkg,
-): void {
+function addFrontMatter(results: HtmlToMdResultWithUrl[], pkg: Pkg): void {
+  let titleVersion;
+  let descriptionVersion;
+  if (pkg.isLatest()) {
+    titleVersion = "latest version";
+    descriptionVersion = `in the latest version of ${pkg.name}`;
+  } else if (pkg.isDev()) {
+    titleVersion = "dev version";
+    descriptionVersion = `in the dev version of ${pkg.name}`;
+  } else {
+    titleVersion = `v${pkg.versionWithoutPatch}`;
+    descriptionVersion = `in ${pkg.name} v${pkg.versionWithoutPatch}`;
+  }
+
   for (let result of results) {
     let markdown = result.markdown;
     if (result.meta.hardcodedFrontmatter) {
       result.markdown = `---
 ${result.meta.hardcodedFrontmatter}
+---
+
+${markdown}
+`;
+    } else if (result.url.endsWith("index")) {
+      result.markdown = `---
+title: ${pkg.title} API documentation (${titleVersion})
+description: Index of all the modules ${descriptionVersion}.
 ---
 
 ${markdown}
@@ -33,10 +51,11 @@ ${markdown}
       // so that people can quickly scroll up to the code object, since
       // it is non-trivial, like having the class constructor. But for
       // module pages, showing the h1 in the page ToC is noisy.
-      const toc_min_level = result.meta.apiType === "module" ? 2 : 1;
+      const toc_min_level =
+        pkg.isCApi() || result.meta.apiType === "module" ? 2 : 1;
       result.markdown = `---
-title: ${getLastPartFromFullIdentifier(result.meta.apiName)}
-description: API reference for ${result.meta.apiName}
+title: ${getLastPartFromFullIdentifier(result.meta.apiName)} (${titleVersion})
+description: API reference for ${result.meta.apiName} ${descriptionVersion}
 in_page_toc_min_heading_level: ${toc_min_level}
 python_api_type: ${result.meta.apiType}
 python_api_name: ${result.meta.apiName}

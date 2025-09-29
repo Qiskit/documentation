@@ -26,7 +26,7 @@ test.describe("objects.inv", () => {
   });
 
   test("read file and decompress", async () => {
-    const objectsInv = await ObjectsInv.fromFile(TEST_FOLDER);
+    const objectsInv = await ObjectsInv.fromFile(TEST_FOLDER, "Python");
 
     expect(objectsInv.preamble).toEqual(
       "# Sphinx inventory version 2\n" +
@@ -54,10 +54,10 @@ test.describe("objects.inv", () => {
   });
 
   test("write file and re-read matches original", async () => {
-    const originalObjectsInv = await ObjectsInv.fromFile(TEST_FOLDER);
+    const originalObjectsInv = await ObjectsInv.fromFile(TEST_FOLDER, "Python");
     await originalObjectsInv.write(TEMP_FOLDER);
 
-    const newObjectsInv = await ObjectsInv.fromFile(TEMP_FOLDER);
+    const newObjectsInv = await ObjectsInv.fromFile(TEMP_FOLDER, "Python");
     expect(originalObjectsInv.entries.length).toEqual(
       newObjectsInv.entries.length,
     );
@@ -80,13 +80,6 @@ test.describe("objects.inv", () => {
         dispname: "-",
       },
       {
-        name: "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__",
-        domainAndRole: "std:doc",
-        priority: "-1",
-        uri: "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__.html",
-        dispname: "ASAPScheduleAnalysis.__call__",
-      },
-      {
         name: "search",
         domainAndRole: "std:label",
         priority: "-1",
@@ -100,23 +93,86 @@ test.describe("objects.inv", () => {
         uri: "legacy_release_notes.html#release-notes-ignis-0-5-0",
         dispname: "Ignis 0.5.0",
       },
-      {
-        name: "index",
-        domainAndRole: "std:doc",
-        priority: "-1",
-        uri: "index.html",
-        dispname: "Qiskit IBM Quantum Provider API docs preview",
-      },
     ];
 
     const objectsInv = new ObjectsInv(preamble, entries);
     objectsInv.updateUris(transformFunction);
     expect(objectsInv.entries.map((i) => i.uri)).toEqual([
       "qaskat_abm_runtame.RuntameJob#qaskat_abm_runtame.RuntameJob.job_ad",
-      "stubs/qaskat_abm_provader.transpaler.passes.schedulang.ASAPScheduleAnalysas.__call__",
       "search",
       "legacy_release_notes#release-notes-agnas-0-5-0",
-      "andex",
     ]);
+  });
+
+  test("C entries are filtered correctly", async () => {
+    const entries: ObjectsInvEntry[] = [
+      // These entries are valid
+      "QkBitTerm cpp:type 1 cdoc/qk-bit-term.html#_CPPv49$ -",
+      "qk_bitterm_label cpp:function 1 cdoc/qk-bit-term.html#_CPPv416qk_bitterm_label9QkBitTerm -",
+      "qk_bitterm_label::bit_term cpp:functionParam 1 cdoc/qk-bit-term.html#_CPPv416qk_bitterm_label9QkBitTerm -",
+
+      // These entries are from doxygen but do not appear in the final markdown so should be filtered out
+      "group___qk_bit_term_1gad8255603d800498cc15ac43da08b11a3 std:label -1 cdoc/qk-bit-term.html#$ -",
+      "group___qk_obs_1ga01248a05a0c005c42670601c9883a75c std:label -1 cdoc/qk-obs.html#$ -",
+      "group___qk_obs_term_1ga45426b47c2fb82c7296a353a57933724 std:label -1 cdoc/qk-obs-term.html#$ -",
+      "struct_qk_obs_term std:label -1 cdoc/qk-obs-term.html#$ -",
+    ]
+      .map((line) => ObjectsInv.lineToEntry(line, "C"))
+      .filter((e): e is ObjectsInvEntry => e !== null);
+
+    expect(
+      entries.map((e) =>
+        [e.name, e.domainAndRole, e.priority, e.uri, e.dispname].join(" "),
+      ),
+    ).toEqual([
+      "QkBitTerm cpp:type 1 qk-bit-term.html#qkbitterm -",
+      "qk_bitterm_label cpp:function 1 qk-bit-term.html#qk_bitterm_label -",
+      "qk_bitterm_label::bit_term cpp:functionParam 1 qk-bit-term.html#qk_bitterm_label -",
+    ]);
+  });
+
+  test("C entries are transformed correctly", async () => {
+    const testCases: [{ name: string; uri: string }, string][] = [
+      // These should just have the 'cdoc/' removed and the anchor normalized
+      [
+        { name: "QkBitTerm", uri: "cdoc/qk-bit-term.html#_CPPv49QkBitTerm" },
+        "qk-bit-term.html#qkbitterm",
+      ],
+      [
+        {
+          name: "qk_bitterm_label",
+          uri: "cdoc/qk-bit-term.html#_CPPv416qk_bitterm_label9QkBitTerm",
+        },
+        "qk-bit-term.html#qk_bitterm_label",
+      ],
+
+      // Attributes should point to their parents
+      [
+        {
+          name: "qk_bitterm_label::bit_term",
+          uri: "cdoc/qk-bit-term.html#_CPPv416qk_bitterm_label9QkBitTerm",
+        },
+        "qk-bit-term.html#qk_bitterm_label",
+      ],
+
+      // Map these labels to their objects
+      [
+        {
+          name: "structQkObsTerm_1a14ff1665641903565439ad9877fd2c8e",
+          uri: "cdoc/qk-obs-term.html#structQkObsTerm_1a14ff1665641903565439ad9877fd2c8e",
+        },
+        "qk-obs-term.html#qkobsterm",
+      ],
+      [
+        {
+          name: "structQkObsTerm_1autotoc_md2",
+          uri: "cdoc/qk-obs-term.html#structQkObsTerm_1autotoc_md2",
+        },
+        "qk-obs-term.html#qkobsterm",
+      ],
+    ];
+    for (const [{ name, uri }, expectedUri] of testCases) {
+      expect(ObjectsInv.transformCApiUri(uri, name)).toEqual(expectedUri);
+    }
   });
 });

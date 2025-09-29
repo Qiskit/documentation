@@ -1,6 +1,6 @@
 ---
-title: TwoQubitWeylDecomposition
-description: API reference for qiskit.synthesis.TwoQubitWeylDecomposition
+title: TwoQubitWeylDecomposition (dev version)
+description: API reference for qiskit.synthesis.TwoQubitWeylDecomposition in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.synthesis.TwoQubitWeylDecomposition
@@ -8,8 +8,8 @@ python_api_name: qiskit.synthesis.TwoQubitWeylDecomposition
 
 # TwoQubitWeylDecomposition
 
-<Class id="qiskit.synthesis.TwoQubitWeylDecomposition" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L131-L291" signature="qiskit.synthesis.TwoQubitWeylDecomposition(unitary_matrix, fidelity=0.999999999, *, _specialization=None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+<Class id="qiskit.synthesis.TwoQubitWeylDecomposition" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L105-L265" signature="qiskit.synthesis.TwoQubitWeylDecomposition(unitary_matrix, fidelity=0.999999999, *, _specialization=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   Two-qubit Weyl decomposition.
 
@@ -41,6 +41,12 @@ $$
   3.  B. Drury, P. J. Love, *Constructive Quantum Shannon Decomposition from Cartan Involutions*, [arXiv:0806.4015 \[quant-ph\]](https://arxiv.org/abs/0806.4015)
 
   ## Attributes
+
+  **Parameters**
+
+  *   **unitary\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")) –
+  *   **fidelity** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) –
+  *   **\_specialization** (*two\_qubit\_decompose.Specialization | None*) –
 
   ### a
 
@@ -90,18 +96,24 @@ $$
 
   ### actual\_fidelity
 
-  <Function id="qiskit.synthesis.TwoQubitWeylDecomposition.actual_fidelity" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L238-L242" signature="actual_fidelity(**kwargs)">
+  <Function id="qiskit.synthesis.TwoQubitWeylDecomposition.actual_fidelity" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L212-L216" signature="actual_fidelity(**kwargs)">
     Calculates the actual fidelity of the decomposed circuit to the input unitary.
 
     **Return type**
 
-    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
   </Function>
 
   ### circuit
 
-  <Function id="qiskit.synthesis.TwoQubitWeylDecomposition.circuit" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L229-L236" signature="circuit(*, euler_basis=None, simplify=False, atol=1e-12)">
+  <Function id="qiskit.synthesis.TwoQubitWeylDecomposition.circuit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L203-L210" signature="circuit(*, euler_basis=None, simplify=False, atol=1e-12)">
     Returns Weyl decomposition in circuit form.
+
+    **Parameters**
+
+    *   **euler\_basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+    *   **simplify** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
 
     **Return type**
 
@@ -110,8 +122,14 @@ $$
 
   ### from\_bytes
 
-  <Function id="qiskit.synthesis.TwoQubitWeylDecomposition.from_bytes" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L270-L285" signature="from_bytes(bytes_in, *, requested_fidelity, _specialization=None, **kwargs)" modifiers="classmethod">
+  <Function id="qiskit.synthesis.TwoQubitWeylDecomposition.from_bytes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L244-L259" signature="from_bytes(bytes_in, *, requested_fidelity, _specialization=None, **kwargs)" modifiers="classmethod">
     Decode bytes into [`TwoQubitWeylDecomposition`](#qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition").
+
+    **Parameters**
+
+    *   **bytes\_in** ([*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes "(in Python v3.13)")) –
+    *   **requested\_fidelity** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
+    *   **\_specialization** (*two\_qubit\_decompose.Specialization | None*) –
 
     **Return type**
 
@@ -120,13 +138,13 @@ $$
 
   ### specialize
 
-  <Function id="qiskit.synthesis.TwoQubitWeylDecomposition.specialize" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/utils/deprecation.py#L220-L227" signature="specialize()">
+  <Function id="qiskit.synthesis.TwoQubitWeylDecomposition.specialize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L194-L201" signature="specialize()">
     Make changes to the decomposition to comply with any specializations.
 
     This method will always raise a `NotImplementedError` because there are no specializations to comply with in the current implementation.
 
     <Admonition title="Deprecated since version 1.1.0" type="danger">
-      The method `qiskit.synthesis.two_qubit.two_qubit_decompose.TwoQubitWeylDecomposition.specialize()` is deprecated as of qiskit 1.1.0. It will be removed in the 2.0.0 release.
+      The method `qiskit.synthesis.two_qubit.two_qubit_decompose.TwoQubitWeylDecomposition.specialize()` is deprecated as of Qiskit 1.1.0. It will be removed in the 2.0.0 release.
     </Admonition>
   </Function>
 </Class>

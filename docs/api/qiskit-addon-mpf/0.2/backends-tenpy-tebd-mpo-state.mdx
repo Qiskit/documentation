@@ -1,0 +1,66 @@
+---
+title: MPOState (v0.2)
+description: API reference for qiskit_addon_mpf.backends.tenpy_tebd.MPOState in qiskit-addon-mpf v0.2
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_mpf.backends.tenpy_tebd.MPOState
+---
+
+# MPOState
+
+<Class id="qiskit_addon_mpf.backends.tenpy_tebd.MPOState" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_tebd/state.py#L27-L121" signature="MPOState(sites, Ws, bc='finite', IdL=None, IdR=None, max_range=None, explicit_plus_hc=False)" modifiers="class">
+  Bases: [`MPO`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.mpo.MPO.html#tenpy.networks.mpo.MPO "(in TeNPy v1.0.4)"), [`State`](backends#state "qiskit_addon_mpf.backends.interface.State")
+
+  A mediator class to make TeNPy’s MPO match the [`State`](backends#state "qiskit_addon_mpf.backends.State") interface.
+
+  This class simply ensures that a [`tenpy.networks.mpo.MPO`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.mpo.MPO.html#tenpy.networks.mpo.MPO "(in TeNPy v1.0.4)") object can work as a [`State`](backends#state "qiskit_addon_mpf.backends.State") instance.
+
+  ## Methods
+
+  ### initialize\_from\_lattice
+
+  <Function id="qiskit_addon_mpf.backends.tenpy_tebd.MPOState.initialize_from_lattice" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_tebd/state.py#L34-L88" signature="initialize_from_lattice(lat)" modifiers="classmethod">
+    Construct an identity [`MPOState`](#qiskit_addon_mpf.backends.tenpy_tebd.MPOState "qiskit_addon_mpf.backends.tenpy_tebd.MPOState") instance matching the provided lattice shape.
+
+    Given a lattice, this method constructs a new MPO identity matching the shape of the lattice.
+
+    **Parameters**
+
+    **lat** ([*Lattice*](https://tenpy.readthedocs.io/en/latest/reference/tenpy.models.lattice.Lattice.html#tenpy.models.lattice.Lattice "(in TeNPy v1.0.4)")) – the lattice describing the MPO sites.
+
+    **Returns**
+
+    An identity MPO.
+
+    **Return type**
+
+    [*MPOState*](#qiskit_addon_mpf.backends.tenpy_tebd.MPOState "qiskit_addon_mpf.backends.tenpy_tebd.state.MPOState")
+  </Function>
+
+  ### overlap
+
+  <Function id="qiskit_addon_mpf.backends.tenpy_tebd.MPOState.overlap" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/tenpy_tebd/state.py#L90-L121" signature="overlap(initial_state)">
+    Compute the overlap of this state with the provided initial state.
+
+    <Admonition title="Warning" type="caution">
+      This implementation only supports instances of [`tenpy.networks.mps.MPS`](https://tenpy.readthedocs.io/en/latest/reference/tenpy.networks.mps.MPS.html#tenpy.networks.mps.MPS "(in TeNPy v1.0.4)") for `initial_state`.
+    </Admonition>
+
+    **Parameters**
+
+    **initial\_state** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – the initial state with which to compute the overlap.
+
+    **Raises**
+
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – if the provided initial state has an incompatible type.
+
+    **Returns**
+
+    The overlap of this state with the provided one.
+
+    **Return type**
+
+    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+  </Function>
+</Class>
+

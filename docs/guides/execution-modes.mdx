@@ -5,50 +5,65 @@ description: An overview of the available execution modes in Qiskit Runtime; ses
 ---
 # Introduction to Qiskit Runtime execution modes
 
-There are several ways to run workloads, depending on your needs.
+When Qiskit Runtime was introduced, users could only execute circuits as individual jobs. As different types of quantum workloads emerged, the need for different scheduling strategies became evident. The execution modes determine how your jobs are scheduled, and choosing the right execution mode allows your workload to run efficiently within your budget. There are three execution modes: job, session, and batch.
 
-<Admonition type="note">
-The `mode` option is only available for V2 primitives and requires `qiskit-ibm-runtime` 0.24 or later.
+## Job mode
+
+A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` when instantiating a primitive. See [Primitives examples](/docs/guides/primitives-examples) for usage.
+
+<span id="batch-mode"></span>
+## Batch mode
+
+A multi-job manager for efficiently running experiments comprising multi-job workloads. These workloads are made up of independently executable jobs that have no conditional relationship with each other. With batch mode, users submit their jobs all at once. The system parallelizes or threads the pre-processing step of each primitive job to more tightly package quantum execution across jobs, and then runs the quantum execution of each job in quick succession to deliver the most efficient results.
+
+
+![A sets of jobs being run in batch mode.  The classical computation part of each job happens simultaneously, then all jobs are sent to the QPU.  The QPU is locked for your use from the time the first job reaches the QPU until the last job is done processing on the QPU.  There is no gap between jobs where the QPU is idle.](/docs/images/guides/execution-modes/batch.svg 'How a batch works')
+
+<Admonition type="note" title="Notes">
+    - When batching, jobs are not guaranteed to run in the order they are submitted. Also, while your batch jobs will run as closely together as possible, they don't get exclusive access to the backend. Therefore, your batch jobs might run in parallel with other users' jobs if there is enough processing capacity on the QPU. Additionally, QPU calibration jobs could run between the batched jobs.
+    - The queuing time does not decrease for the first job submitted within a batch. Therefore, batches do not provide any benefits when running a single job.
 </Admonition>
 
-**Job mode**: A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` when instantiating a primitive. See [Primitives examples](primitives-examples) for examples.
+To run in batch mode, specify `mode=batch` when instantiating a primitive or run the job in a batch context manager. See [Run jobs in a batch](/docs/guides/run-jobs-batch) for examples.
 
-[**Session mode**](sessions): A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously taking advantage of parallelism in the stack. Use sessions for iterative workloads or experiments that require dedicated access.  To run in session mode, specify `mode=session` when instantiating a primitive or run the job in a session context manager. See [Run jobs in a session](run-jobs-session) for examples.
+<span id="session-mode"></span>
+## Session mode
 
-[**Batch mode**](run-jobs-batch): A multi-job manager for efficiently running an experiment that is comprised of bundle of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously.   To run in batch mode, specify `mode=batch` when instantiating a primitive or run the job in a batch context manager. See [Run jobs in a batch](run-jobs-batch) for examples.
+A dedicated window for running a multi-job workload.  During this window, the user has exclusive access of the system and no other jobs can run - including calibration jobs. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously, taking advantage of parallelism in the stack. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources.
 
-The differences are summarized in the following table:
+![A sets of jobs being run in session mode and the other is being run in batch mode.  Between each job is the interactive TTL (interactive time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The QPU is reserved for your use during the entire session.](/docs/images/guides/execution-modes/session.svg 'How a session works')
 
-|     Mode     |                  Usage                  |                                                                                                        Benefit                                                                                                        |
-|:------------:|:---------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Job mode     | Quantum computation only.               | Easiest to use when running a small experiment. Might run sooner than batch mode.                                                                                                                                     |
-| Batch mode   | Quantum computation only.               | The entire batch of jobs is scheduled together and there is no additional queuing time for each. Jobs in a batch are usually run close together.                                                                     |
-| Session mode | Both classical and quantum computation. | Dedicated and exclusive access to the QPU during the session active window, and no other users’ or QPU jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
 
-<span id="best-practices"></span>
-## Best practices
+To run in session mode, specify `mode=session` when instantiating a primitive, or run the job in a session context manager. See [Run jobs in a session](/docs/guides/run-jobs-session) for examples.
 
-To ensure the most efficient use of the execution modes, the following practices are recommended:
+<Admonition type="note" title="Notes">
+- The queuing time does not decrease for the first job submitted within a session. Therefore, sessions do not provide any benefits when running a single job.
+- Open Plan users cannot submit session jobs.
+</Admonition>
 
-- Always close your session, either by using a context manager or by specifying `session.close()`.
-- There is a fixed overhead associated with running a job. In general, if each of your jobs uses less than one minute of QPU time, consider combining several into one larger job (this applies to all execution modes). "QPU time" refers to time spent by the QPU complex to process your job.
+## Basic workflow
 
-    A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using  `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`
+The basic workflow for batches and sessions is similar:
 
-- If each of your jobs consumes more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, up to five classical jobs can be processed in parallel. You can take advantage of this by submitting multiple jobs in [batch](run-jobs-batch#partition) or [session](run-jobs-session#two-vqe) execution mode.
+1. The first job in a batch or session enters the normal queue. For batches, the entire batch of jobs is scheduled together.
+2. When the first job starts running, the maximum time to live (TTL) timer starts, and does not stop or pause until the end is reached.
+3. The interactive TTL timer starts after each job is completed.  If there are no workload jobs ready within the interactive TTL window, the workload is temporarily deactivated and normal job selection resumes. A job can reactivate the deactivated workload if the batch or session has not reached its maximum TTL value.
+   <Admonition type="note">
+   The job must go through the normal queue to reactivate the workload.
+   </Admonition>
+4. If the maximum TTL value is reached, the workload ends and any remaining queued jobs fail. Any job currently running won't run to completion if doing so would exceed the instance's cost limit.
 
-The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost effective because it can reduce wall clock time.
 
-## Sessions versus batch usage
+The following video illustrates the basic workflow, using sessions as an example:
 
-Usage is a measurement of the amount of time the QPU is locked for your workload.
+<IBMVideo id="134371940" title="A user starts a session job and becomes the priority user.  They submit jobs to the QPU while other users wait. After the prioritized user's session finishes, the next person's jobs can begin processing."/>
 
-* Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens **last**.
-* Batch usage is the amount of time all jobs spend on the QPU.
-* Single job usage is the quantum time they use in processing.
+For full details about the TTL timers, see the [Maximum execution time](/docs/guides/max-execution-time) guide.
 
-To find the usage time for your session or batch, in `qiskit-ibm-runtime` 0.23 or later, run `session.details()["usage_time"]` or `batch.details()["usage_time"]`.
+## Next steps
 
-If you are calling the REST API directly, the usage time is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both session and batch workloads.
-
-![This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The QPU is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the QPU.  The QPU is locked for your use from the time the first job reaches the QPU until the last job is done processing.  There is no gap between jobs where the QPU is idle.](/images/guides/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')
+<Admonition type="tip" title="Recommendations">
+    - [Run a job in batch mode.](/docs/guides/run-jobs-batch/)
+    - [Run a job in session mode.](/docs/guides/run-jobs-session)
+    - [Choose the right execution mode.](/docs/guides/choose-execution-mode)
+</Admonition>

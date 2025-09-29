@@ -1,0 +1,66 @@
+---
+title: CircuitEvolver (latest version)
+description: API reference for qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver in the latest version of qiskit-addon-mpf
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver
+---
+
+# CircuitEvolver
+
+<Class id="qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_circuit/evolver.py#L24-L92" signature="CircuitEvolver(evolution_state, circuit, dt)" modifiers="class">
+  Bases: [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.interface.Evolver")
+
+  A time-evolution engine based on quantum circuits.
+
+  This algorithm performs time-evolution by means of successively applying a quantum circuit corresponding to a single Trotter step to its internal state. More specifically, it builds out a tensor network in the [`CircuitState`](backends-quimb-circuit-circuit-state "qiskit_addon_mpf.backends.quimb_circuit.CircuitState"). As required by the [`DynamicMPF`](dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm, it tracks a left- and right-hand side of the time-evolution for computing the overlap of two circuits. Depending on [`conjugate`](#qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.conjugate "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.conjugate"), an instance of this engine will apply the quantum gates of its template circuit to the corresponding side (see [`quimb_circuit`](backends-quimb-circuit#module-qiskit_addon_mpf.backends.quimb_circuit "qiskit_addon_mpf.backends.quimb_circuit") for more details).
+
+  Initialize a [`CircuitEvolver`](#qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") instance.
+
+  **Parameters**
+
+  *   **evolution\_state** ([*CircuitState*](backends-quimb-circuit-circuit-state "qiskit_addon_mpf.backends.quimb_circuit.CircuitState")) – a reference to the time-evolution state.
+  *   **circuit** (*QuantumCircuit*) – the template circuit encoding the time-evolution of a single Trotter step. This circuit **must** be parameterized (see [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.4)") in place of the Trotter methods time step. This parameter must be named `dt`.
+  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the time step that will be used and later bound to the [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.4)") of the `circuit` object.
+
+  ## Attributes
+
+  ### conjugate
+
+  <Attribute id="qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.conjugate">
+    Returns whether this time-evolver instance acts on the right-hand side.
+  </Attribute>
+
+  ### evolved\_time
+
+  <Attribute id="qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.evolved_time">
+    Returns the current evolution time.
+  </Attribute>
+
+  ### evolution\_state
+
+  <Attribute id="qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.evolution_state">
+    The time-evolution state (see also [`DynamicMPF.evolution_state`](dynamic#evolution_state "qiskit_addon_mpf.dynamic.DynamicMPF.evolution_state")).
+  </Attribute>
+
+  ### circuit
+
+  <Attribute id="qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.circuit">
+    The parameterized [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") describing the Trotter step.
+  </Attribute>
+
+  ## Methods
+
+  ### step
+
+  <Function id="qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.step" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_circuit/evolver.py#L74-L92" signature="step()">
+    Perform a single time step of TEBD.
+
+    This will apply the gates of the [`circuit`](#qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.circuit "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.circuit") to the [`evolution_state`](#qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.evolution_state "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.evolution_state"). If [`conjugate`](#qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.conjugate "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver.conjugate") is `True`, it applies to [`CircuitState.lhs`](backends-quimb-circuit-circuit-state#lhs "qiskit_addon_mpf.backends.quimb_circuit.CircuitState.lhs"), otherwise to [`CircuitState.rhs`](backends-quimb-circuit-circuit-state#rhs "qiskit_addon_mpf.backends.quimb_circuit.CircuitState.rhs").
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+

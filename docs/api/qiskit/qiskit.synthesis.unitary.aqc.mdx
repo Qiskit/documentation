@@ -1,6 +1,6 @@
 ---
-title: aqc
-description: API reference for qiskit.synthesis.unitary.aqc
+title: aqc (latest version)
+description: API reference for qiskit.synthesis.unitary.aqc in the latest version of qiskit
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.synthesis.unitary.aqc
@@ -13,8 +13,6 @@ python_api_name: qiskit.synthesis.unitary.aqc
 <span id="approximate-quantum-compiler-qiskit-synthesis-unitary-aqc" />
 
 # Approximate Quantum Compiler
-
-<span id="module-qiskit.synthesis.unitary.aqc" />
 
 `qiskit.synthesis.unitary.aqc`
 
@@ -127,15 +125,15 @@ This uses a helper function, [`make_cnot_network`](#qiskit.synthesis.unitary.aqc
 
 ### make\_cnot\_network
 
-<Function id="qiskit.synthesis.unitary.aqc.make_cnot_network" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/synthesis/unitary/aqc/cnot_structures.py#L42-L111" signature="qiskit.synthesis.unitary.aqc.make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)">
+<Function id="qiskit.synthesis.unitary.aqc.make_cnot_network" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/synthesis/unitary/aqc/cnot_structures.py#L42-L111" signature="qiskit.synthesis.unitary.aqc.make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)">
   Generates a network consisting of building blocks each containing a CNOT gate and possibly some single-qubit ones. This network models a quantum operator in question. Note, each building block has 2 input and outputs corresponding to a pair of qubits. What we actually return here is a chain of indices of qubit pairs shared by every building block in a row.
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
-  *   **network\_layout** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – type of network geometry, `{"sequ", "spin", "cart", "cyclic_spin", "cyclic_line"}`.
-  *   **connectivity\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – type of inter-qubit connectivity, `{"full", "line", "star"}`.
-  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – depth of the CNOT-network, i.e. the number of layers, where each layer consists of a single CNOT-block; default value will be selected, if `L <= 0`.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of qubits.
+  *   **network\_layout** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – type of network geometry, `{"sequ", "spin", "cart", "cyclic_spin", "cyclic_line"}`.
+  *   **connectivity\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – type of inter-qubit connectivity, `{"full", "line", "star"}`.
+  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – depth of the CNOT-network, i.e. the number of layers, where each layer consists of a single CNOT-block; default value will be selected, if `L <= 0`.
 
   **Returns**
 
@@ -145,11 +143,11 @@ This uses a helper function, [`make_cnot_network`](#qiskit.synthesis.unitary.aqc
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if unsupported type of CNOT-network layout or number of qubits or combination of parameters are passed.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – if unsupported type of CNOT-network layout or number of qubits or combination of parameters are passed.
 
   **Return type**
 
-  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")
+  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")
 </Function>
 
 One can take advantage of accelerated version of objective function. It implements the same mathematical algorithm as the default one `DefaultCNOTUnitObjective` but runs several times faster. Instantiation of accelerated objective function class is similar to the default case:

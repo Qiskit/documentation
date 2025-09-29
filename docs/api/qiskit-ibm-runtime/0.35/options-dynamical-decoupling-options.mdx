@@ -1,0 +1,84 @@
+---
+title: DynamicalDecouplingOptions (v0.35)
+description: API reference for qiskit_ibm_runtime.options.DynamicalDecouplingOptions in qiskit-ibm-runtime v0.35
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
+---
+
+# DynamicalDecouplingOptions
+
+<Class id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.35/qiskit_ibm_runtime/options/dynamical_decoupling_options.py#L20-L63" signature="DynamicalDecouplingOptions(enable=Unset, sequence_type=Unset, extra_slack_distribution=Unset, scheduling_method=Unset, skip_reset_qubits=Unset)" modifiers="class">
+  Bases: `object`
+
+  Options for dynamical decoupling (DD).
+
+  ## Attributes
+
+  **Parameters**
+
+  *   **enable** (*UnsetType | bool*)
+  *   **sequence\_type** (*UnsetType | Literal\['XX', 'XpXm', 'XY4']*)
+  *   **extra\_slack\_distribution** (*UnsetType | Literal\['middle', 'edges']*)
+  *   **scheduling\_method** (*UnsetType | Literal\['alap', 'asap']*)
+  *   **skip\_reset\_qubits** (*UnsetType | bool*)
+
+  ### enable
+
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.enable" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
+    Whether to enable DD as specified by the other options in this class.
+
+    Default: False.
+  </Attribute>
+
+  ### extra\_slack\_distribution
+
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.extra_slack_distribution" attributeTypeHint="UnsetType | Literal['middle', 'edges']" attributeValue="Unset">
+    Where to put extra timing delays due to rounding issues. Rounding issues arise because the discrete time step `dt` of the system cannot be divided. This option takes following values.
+
+    Default: “middle”.
+
+    *   `"middle"`: Put the extra slack to the interval at the middle of the sequence.
+
+    *   **`"edges"`: Divide the extra slack as evenly as possible into intervals at**
+
+        beginning and end of the sequence.
+  </Attribute>
+
+  ### scheduling\_method
+
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.scheduling_method" attributeTypeHint="UnsetType | Literal['alap', 'asap']" attributeValue="Unset">
+    Whether to schedule gates as soon as (“asap”) or as late as (“alap”) possible.
+
+    Default: “alap”.
+  </Attribute>
+
+  ### sequence\_type
+
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.sequence_type" attributeTypeHint="UnsetType | Literal['XX', 'XpXm', 'XY4']" attributeValue="Unset">
+    Which dynamical decoupling sequence to use.
+
+    Default: “XX”.
+
+    *   `"XX"`: use the sequence `tau/2 - (+X) - tau - (+X) - tau/2`
+
+    *   `"XpXm"`: use the sequence `tau/2 - (+X) - tau - (-X) - tau/2`
+
+    *   **`"XY4"`:use the sequence**
+
+        `tau/2 - (+X) - tau - (+Y) - tau (-X) - tau - (-Y) - tau/2`
+  </Attribute>
+
+  ### skip\_reset\_qubits
+
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.skip_reset_qubits" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
+    Whether to insert DD on idle periods that immediately follow initialized/reset qubits.
+
+    Since qubits in the ground state are less susceptible to decoherence, it can be beneficial to let them be while they are known to be in this state.
+
+    Default: False.
+  </Attribute>
+
+  ## Methods
+</Class>
+

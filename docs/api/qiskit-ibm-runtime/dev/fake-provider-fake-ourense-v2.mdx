@@ -1,0 +1,337 @@
+---
+title: FakeOurenseV2 (dev version)
+description: API reference for qiskit_ibm_runtime.fake_provider.FakeOurenseV2 in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.fake_provider.FakeOurenseV2
+---
+
+# FakeOurenseV2
+
+<Class id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/ourense/fake_ourense.py#L21-L34" signature="FakeOurenseV2" modifiers="class">
+  Bases: `FakeBackendV2`
+
+  A fake 5 qubit backend.
+
+  ```text
+  0 ↔ 1 ↔ 3 ↔ 4
+      ↕
+      2
+  ```
+
+  FakeBackendV2 initializer.
+
+  ## Attributes
+
+  ### backend\_name
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.backend_name" attributeValue="'fake_ourense'" />
+
+  ### conf\_filename
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.conf_filename" attributeValue="'conf_ourense.json'" />
+
+  ### coupling\_map
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.coupling_map">
+    Return the [`CouplingMap`](/docs/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v2.1)") object
+  </Attribute>
+
+  ### dirname
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.dirname" attributeValue="'/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/ourense'" />
+
+  ### dt
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.dt">
+    Return the system time resolution of input signals
+
+    This is required to be implemented if the backend supports Pulse scheduling.
+
+    **Returns**
+
+    The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
+  </Attribute>
+
+  ### dtm
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.dtm">
+    Return the system time resolution of output signals
+
+    **Returns**
+
+    The output signal timestep in seconds.
+  </Attribute>
+
+  ### instruction\_durations
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.instruction_durations">
+    Return the [`InstructionDurations`](/docs/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v2.1)") object.
+  </Attribute>
+
+  ### instructions
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.instructions">
+    A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
+  </Attribute>
+
+  ### max\_circuits
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.max_circuits">
+    This property used to return the max\_experiments value from the backend configuration but this value is no longer an accurate representation of backend circuit limits. New fields will be added to indicate new limits.
+  </Attribute>
+
+  ### meas\_map
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.meas_map">
+    Return the grouping of measurements which are multiplexed
+
+    This is required to be implemented if the backend supports Pulse scheduling.
+
+    **Returns**
+
+    The grouping of measurements which are multiplexed
+
+    **Raises**
+
+    **NotImplementedError** – if the backend doesn’t support querying the measurement mapping
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.num_qubits">
+    Return the number of qubits the backend has.
+  </Attribute>
+
+  ### operation\_names
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.operation_names">
+    A list of instruction names that the backend supports.
+  </Attribute>
+
+  ### operations
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.operations">
+    A list of [`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v2.1)") instances that the backend supports.
+  </Attribute>
+
+  ### options
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.options">
+    Return the options for the backend
+
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeOurenseV2.run "qiskit_ibm_runtime.fake_provider.FakeOurenseV2.run") method.
+  </Attribute>
+
+  ### props\_filename
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.props_filename" attributeValue="'props_ourense.json'" />
+
+  ### provider
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.provider">
+    Return the backend provider.
+
+    **Returns**
+
+    the provider responsible for the backend.
+
+    **Return type**
+
+    provider
+  </Attribute>
+
+  ### target
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.target">
+    A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.1)") object for the backend.
+
+    **Return type**
+
+    Target
+  </Attribute>
+
+  ### version
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.version" attributeValue="2" />
+
+  ### name
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.name">
+    Name of the backend.
+  </Attribute>
+
+  ### description
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.description">
+    Optional human-readable description.
+  </Attribute>
+
+  ### online\_date
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.online_date">
+    Date that the backend came online.
+  </Attribute>
+
+  ### backend\_version
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.backend_version">
+    Version of the backend being provided. This is not the same as `BackendV2.version`, which is the version of the `Backend` abstract interface.
+  </Attribute>
+
+  ## Methods
+
+  ### check\_faulty
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L175-L207" signature="check_faulty(circuit)">
+    Check if the input circuit uses faulty qubits or edges.
+
+    **Parameters**
+
+    **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.1)")) – Circuit to check.
+
+    **Raises**
+
+    **ValueError** – If an instruction operating on a faulty qubit or edge is found.
+
+    **Return type**
+
+    None
+  </Function>
+
+  ### configuration
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L171-L173" signature="configuration()">
+    Return the backend configuration.
+
+    **Return type**
+
+    [*QasmBackendConfiguration*](models-qasm-backend-configuration "qiskit_ibm_runtime.models.backend_configuration.QasmBackendConfiguration")
+  </Function>
+
+  ### properties
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L158-L169" signature="properties(refresh=False)">
+    Return the backend properties
+
+    **Parameters**
+
+    **refresh** (*bool*) – If `True`, re-retrieve the backend properties from the local file.
+
+    **Returns**
+
+    The backend properties.
+
+    **Return type**
+
+    [*BackendProperties*](models-backend-properties "qiskit_ibm_runtime.models.backend_properties.BackendProperties")
+  </Function>
+
+  ### qubit\_properties
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.qubit_properties" signature="qubit_properties(qubit)">
+    Return QubitProperties for a given qubit.
+
+    If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
+
+    **Parameters**
+
+    **qubit** (*int | List\[int]*) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
+
+    **Returns**
+
+    The `QubitProperties` object for the specified qubit. If a list of qubits is provided a list will be returned. If properties are missing for a qubit this can be `None`.
+
+    **Raises**
+
+    **NotImplementedError** – if the backend doesn’t support querying the qubit properties
+
+    **Return type**
+
+    [*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.1)") | *List*\[[*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.1)")]
+  </Function>
+
+  ### refresh
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L394-L465" signature="refresh(service, use_fractional_gates=False)">
+    Update the data files from its real counterpart
+
+    This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation:
+
+    *   `../fake_provider/backends/{backend_name}/conf_{backend_name}.json`
+    *   `../fake_provider/backends/{backend_name}/defs_{backend_name}.json`
+    *   `../fake_provider/backends/{backend_name}/props_{backend_name}.json`
+
+    The new data files will persist through sessions so the files will stay updated unless they are manually reverted locally or when `qiskit-ibm-runtime` is upgraded or reinstalled.
+
+    **Parameters**
+
+    *   **service** ([*QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – A `QiskitRuntimeService` instance
+    *   **use\_fractional\_gates** (*bool*) – Set True to allow for the backends to include fractional gates.
+
+    **Raises**
+
+    *   **ValueError** – if the provided service is a non-QiskitRuntimeService instance.
+    *   **Exception** – If the real target doesn’t exist or can’t be accessed
+
+    **Return type**
+
+    None
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L278-L309" signature="run(run_input, **options)">
+    Run on the fake backend using a simulator.
+
+    This method runs circuit jobs (an individual or a list of QuantumCircuit) using BasicSimulator or Aer simulator and returns a [`Job`](/docs/api/qiskit/qiskit.providers.Job "(in Qiskit v2.1)") object.
+
+    If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicSimulator without noise.
+
+    Currently noisy simulation of a pulse job is not supported yet in FakeBackendV2.
+
+    **Parameters**
+
+    *   **run\_input** (*QuantumCircuit or list*) – An individual or a list of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.1)")
+    *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
+
+    **Returns**
+
+    The job object for the run
+
+    **Return type**
+
+    Job
+  </Function>
+
+  ### set\_options
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
+
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+
+    **Parameters**
+
+    **fields** – The fields to update the options
+
+    **Raises**
+
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
+
+  ### status
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L140-L156" signature="status()">
+    Return the backend status.
+
+    **Returns**
+
+    The status of the backend.
+
+    **Return type**
+
+    [*BackendStatus*](models-backend-status "qiskit_ibm_runtime.models.backend_status.BackendStatus")
+  </Function>
+</Class>
+

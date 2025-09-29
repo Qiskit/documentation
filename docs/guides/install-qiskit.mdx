@@ -3,24 +3,18 @@ title: Install Qiskit
 description: Install the Qiskit SDK and Qiskit Runtime on various operating systems
 
 ---
+
 <span id="qiskit-install"></span>
 # Install Qiskit
 
-<ImageLink
-  title="Coding with Qiskit 1.x, Episode 2: How to install Qiskit"
-  alt="Video thumbnail: Dr. Derek Wang stands against a pink background."
-  href="https://youtu.be/dZWz4Gs_BuI"
-  src="/images/guides/install-qiskit/youtube-thumbnail.png"
-/>
-
-Whether you will work locally or in a cloud environment, the first step for all users is to install Qiskit. For those wanting to run on a real quantum processing unit (QPU), your next step is to choose one of two channels in order to access IBM&reg; QPUs: IBM Quantum Platform or IBM Cloud&reg;.
+Whether you will work locally or in a cloud environment, the first step for all users is to install Qiskit.
 
 <Admonition type="caution" title="Upgrade from Qiskit 0.x to Qiskit 1.0 and beyond">
   (If you are installing Qiskit for the first time, skip ahead to the [Install and set up](#local) section. This notice is relevant only to users who have installed Qiskit previously.)
 
   **For those upgrading from version 0.x to 1.0 or later**: note that because Qiskit v1.0 uses a new packaging structure, you **cannot** use `pip install -U qiskit` to upgrade from any Qiskit 0.x version to 1.0.
 
-  See the [Qiskit 1.0 migration guide](/migration-guides/qiskit-1.0) for details and instructions.
+  See the [Qiskit 1.0 migration guide](/docs/migration-guides/qiskit-1.0) for details and instructions.
 
   Future updates starting with Qiskit 1.0 will allow for in-place upgrades.
 </Admonition>
@@ -45,27 +39,27 @@ Whether you will work locally or in a cloud environment, the first step for all 
 
     One important advantage of a virtual environment is that if your Python environment becomes corrupted somewhere along the way, you can easily delete the virtual environment and start over!
 
-    Choose a preferred location in which to store information about your virtual environments. Commonly they're stored in a directory named `.venv` within a user's home directory.
+    Choose a preferred location in which to store information about your virtual environments. Typically they're stored in a directory named `.venv` within each project directory you're working in.
     </details>
 
-    First, create a minimal environment with only Python installed in it.
+    First, navigate to your project directory and create a minimal environment with only Python installed in it.
 
         <OperatingSystemTabs>
           <TabItem value="mac" label="macOS">
             ```shell
-            python3 -m venv /path/to/virtual/environment
+            python3 -m venv .venv
             ```
           </TabItem>
 
           <TabItem value="linux" label="Linux">
             ```shell
-            python3 -m venv /path/to/virtual/environment
+            python3 -m venv .venv
             ```
           </TabItem>
 
           <TabItem value="win" label="Windows">
             ```text
-            python3 -m venv c:\path\to\virtual\environment
+            python -m venv .venv
             ```
           </TabItem>
          </OperatingSystemTabs>
@@ -75,19 +69,31 @@ Whether you will work locally or in a cloud environment, the first step for all 
          <OperatingSystemTabs>
            <TabItem value="mac" label="macOS">
              ```shell
-             source /path/to/virtual/environment/bin/activate
+             source .venv/bin/activate
              ```
            </TabItem>
 
            <TabItem value="linux" label="Linux">
              ```shell
-             source /path/to/virtual/environment/bin/activate
+             source .venv/bin/activate
              ```
            </TabItem>
 
            <TabItem value="win" label="Windows">
+              If using PowerShell:
+
              ```text
-             c:\path\to\virtual\environment\Scripts\Activate.ps1
+             .venv\Scripts\Activate.ps1
+             ```
+             If using Git Bash:
+
+             ```text
+             source .venv/scripts/activate
+             ```
+              If using command prompt:
+
+             ```text
+             .venv\Scripts\activate
              ```
            </TabItem>
          </OperatingSystemTabs>
@@ -121,8 +127,8 @@ Whether you will work locally or in a cloud environment, the first step for all 
       </TabItem>
     </Tabs>
 
-
-1. If you want to run a Jupyter notebook with the Qiskit packages you just installed, you will need to install Jupyter in your environment.
+<span id="local-jupyter"></span>
+1. If you want to run a Jupyter notebook with the Qiskit packages you just installed, you need to install Jupyter in your environment.
 
       ```shell
       pip install jupyter
@@ -130,14 +136,25 @@ Whether you will work locally or in a cloud environment, the first step for all 
     Then open your notebook as follows:
 
       ```shell
-      jupyter notebook path/to/notebook.ipynb
+      jupyter notebook <path/to/notebook.ipynb>
       ```
 
-If you are planning to work locally and use simulators built into Qiskit, then your installation is done. If you want to run jobs on IBM QPUs, next [select an access channel](setup-channel) and finish your setup.
+
+If you are planning to work locally and use simulators built into Qiskit, then your installation is done. If you want to run jobs on IBM QPUs, continue on to [set up your IBM Cloud account](cloud-setup).
+
 
 <Admonition type="note" title="Stay current with the latest versions">
     Periodically check the [Qiskit release notes](../api/qiskit/release-notes) and the [Qiskit Runtime release notes](../api/qiskit-ibm-runtime/release-notes) to see new releases. We recommend frequently updating your requirements for `qiskit` and `qiskit-ibm-runtime` by, for example, changing the versions in `requirements.txt` to the latest versions, then running `pip install -r requirements.txt` or the appropriate command for your dependency management workflow.
 </Admonition>
+
+<CodeAssistantAdmonition
+  tagLine="Need help? Try asking Qiskit Code Assistant."
+  prompts={[
+    "# Print the version of Qiskit we're using",
+    "# Return True if the version of Qiskit is 1.0 or greater",
+    "# Install Qiskit 1.0.2"
+  ]}
+/>
 
 ## Troubleshooting
 
@@ -197,6 +214,51 @@ Qiskit strives to support as many operating systems as possible, but due to limi
 
 Additionally, Qiskit only supports the CPython implementation of the Python language. Running with other Python interpreters such as PyPy is not supported.
 
+### Qiskit v2.x
+
+In the Qiskit v2.x release series, the supported platforms are:
+
+<details>
+  <summary>
+    Tier 1
+  </summary>
+  Tier 1 operating systems are fully tested as part of the development processes to ensure any proposed change will function correctly. Pre-compiled binaries are built, tested, and published to PyPI as part of the release process. Typically, as long as there is a functioning Python environment installed, Qiskit can be installed on these operating systems without needing to install further dependencies.
+
+  Tier 1 operating systems:
+
+  - Linux x86_64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification).
+  - macOS x86_64 (10.12 or later)
+  - macOS ARM64 (11.0 or newer)
+  - Windows 64-bit (Windows 10 and later supported)
+  - Linux AArch64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+</details>
+
+<details>
+  <summary>
+    Tier 2
+  </summary>
+  *There are no Tier 2 operating systems in the Qiskit v2.x release series.* Tier 2 operating systems are not tested as part of development process. However, pre-compiled binaries are built, tested, and published to PyPI as part of the release process and these packages can be expected to be installed with only a functioning Python environment.
+</details>
+
+<details>
+  <summary>
+    Tier 3
+  </summary>
+  Tier 3 operating systems are not tested as part of the development process. Pre-compiled binaries are built and published to PyPI as part of the release process but are not tested. They may not be installable with only a functioning Python environment and might require a C/C++ compiler or additional programs to build dependencies from source as part of the installation process. Support for these operating systems are best effort only.
+
+  Tier 3 operating systems:
+
+  - Linux ppc64le (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/)packaging specification)
+  - Linux s390x (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+</details>
+
+Starting in Qiskit v2.0.0, only 64-bit platforms are supported and 32-bit platforms are not supported. You will not be able to build from source
+on 32-bit platforms either, as internally the Qiskit Rust code assumes a 64-bit pointer width.
+
+### Qiskit v1.x
+
+In the Qiskit v1.x release series, the supported platforms are:
+
 <details>
   <summary>
     Tier 1
@@ -239,8 +301,11 @@ Additionally, Qiskit only supports the CPython implementation of the Python lang
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-  -  [Select and set up an IBM Quantum channel.](setup-channel)
+
+
+  - Set up your [IBM Cloud account.](/docs/guides/cloud-setup)
+
   -  [Configure Qiskit locally.](configure-qiskit-local)
-  -  Follow the steps in [Hello world](hello-world) to write and run a quantum program.
-  -  Try one of the [workflow example tutorials.](https://learning.quantum.ibm.com/catalog/tutorials?category=workflow-example)
+  -  Follow the steps in [Hello world](/docs/tutorials/hello-world) to write and run a quantum program.
+  -  Try an IBM Quantum Learning [tutorial.](/docs/tutorials)
 </Admonition>

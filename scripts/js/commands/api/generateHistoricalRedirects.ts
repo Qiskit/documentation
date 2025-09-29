@@ -19,10 +19,6 @@ import { removeSuffix } from "../../lib/stringUtils.js";
 
 const OUTPUT_FILE = "./scripts/config/historical-pages-to-latest.json";
 
-zxMain(async () => {
-  await generateHistoricalRedirects();
-});
-
 export async function generateHistoricalRedirects(): Promise<void> {
   console.log(`Generating ${OUTPUT_FILE}`);
   const redirectData: HistoricalRedirectData = {};
@@ -92,10 +88,32 @@ async function getRedirectsForVersion(
     if (latestPages.includes(basename(path))) {
       continue;
     }
-    // For now, we always redirect to the top level. Future improvements could
-    // try to identify the module name and redirect there if it exists.
+
     const pageName = removeSuffix(basename(path), ".mdx");
+
+    if (
+      versionPath.includes("qiskit-ibm-transpiler") &&
+      pageName.includes("qiskit-transpiler-service")
+    ) {
+      redirects[pageName] =
+        `/${pageName.replace("qiskit-transpiler-service-", "")}`;
+      continue;
+    }
+
+    if (pageName.endsWith(".rst")) {
+      redirects[pageName] =
+        `/${pageName.replace("_class.rst", "").replace("_fun.rst", "")}`;
+      continue;
+    }
+
+    // Otherwise, redirect to the top-level.
     redirects[pageName] = "/";
   }
   return redirects;
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  zxMain(async () => {
+    await generateHistoricalRedirects();
+  });
 }

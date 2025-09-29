@@ -1,0 +1,140 @@
+---
+title: LayerError (dev version)
+description: API reference for qiskit_ibm_runtime.utils.noise_learner_result.LayerError in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.utils.noise_learner_result.LayerError
+---
+
+# LayerError
+
+<Class id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/noise_learner_result.py#L136-L349" signature="LayerError(circuit, qubits, error=None)" modifiers="class">
+  Bases: `object`
+
+  The error channel (in Pauli-Lindblad format) of a single layer of instructions.
+
+  **Parameters**
+
+  *   **circuit** (*QuantumCircuit*) – A circuit whose noise has been learnt.
+  *   **qubits** (*Sequence\[int]*) – The labels of the qubits in the `circuit`.
+  *   **error** (*Optional\[*[*PauliLindbladError*](utils-noise-learner-result-pauli-lindblad-error "qiskit_ibm_runtime.utils.noise_learner_result.PauliLindbladError")*]*) – The Pauli Lindblad error channel affecting the `circuit`, or `None` if the error channel is either unknown or explicitly disabled.
+
+  **Raises**
+
+  **ValueError** – If `circuit`, `qubits`, and `error` have mismatching number of qubits.
+
+  ## Attributes
+
+  ### circuit
+
+  <Attribute id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.circuit">
+    The circuit in this `LayerError`.
+  </Attribute>
+
+  ### error
+
+  <Attribute id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.error">
+    The error channel in this `LayerError`, or `None` if the error channel is either unknown or explicitly disabled.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.num_qubits">
+    The number of qubits in this [`LayerError`](#qiskit_ibm_runtime.utils.noise_learner_result.LayerError "qiskit_ibm_runtime.utils.noise_learner_result.LayerError").
+  </Attribute>
+
+  ### qubits
+
+  <Attribute id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.qubits">
+    The qubits in this `LayerError`.
+  </Attribute>
+
+  ## Methods
+
+  ### draw\_map
+
+  <Function id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_map" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/noise_learner_result.py#L195-L275" signature="draw_map(embedding, colorscale='Bluered', color_no_data='lightgray', color_out_of_scale='lightgreen', num_edge_segments=16, edge_width=4, height=500, highest_rate=None, background_color='white', radius=0.25, width=800)">
+    Draw a map view of a this layer error.
+
+    **Parameters**
+
+    *   **embedding** (*Union\[Embedding, BackendV2]*) – An `Embedding` object containing the coordinates and coupling map to draw the layer error on, or a backend to generate an `Embedding` for.
+    *   **colorscale** (*str*) – The colorscale used to show the rates of this layer error.
+    *   **color\_no\_data** (*str*) – The color used for qubits and edges for which no data is available.
+    *   **color\_out\_of\_scale** (*str*) – The color used for rates with value greater than `highest_rate`.
+    *   **num\_edge\_segments** (*int*) – The number of equal-sized segments that edges are made of.
+    *   **edge\_width** (*float*) – The line width of the edges in pixels.
+    *   **height** (*int*) – The height of the returned figure.
+    *   **highest\_rate** (*Optional\[float]*) – The highest rate, used to normalize all other rates before choosing their colors. If `None`, it defaults to the highest value found in the `layer_error`.
+    *   **background\_color** (*str*) – The background color.
+    *   **radius** (*float*) – The radius of the pie charts representing the qubits.
+    *   **width** (*int*) – The width of the returned figure.
+
+    **Return type**
+
+    PlotlyFigure
+
+    ```python
+    from qiskit import QuantumCircuit
+    from qiskit.quantum_info import PauliList
+    from qiskit_ibm_runtime.utils.embeddings import Embedding
+    from qiskit_ibm_runtime.utils.noise_learner_result import LayerError, PauliLindbladError
+
+    # A five-qubit 1-D embedding with nearest neighbouring connectivity
+    coordinates1 = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5)]
+    coupling_map1 = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
+    embedding1 = Embedding(coordinates1, coupling_map1)
+
+    # A six-qubit horseshoe-shaped embedding with nearest neighbouring connectivity
+    coordinates2 = [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2)]
+    coupling_map2 = [(0, 1), (1, 2), (0, 3), (3, 4), (4, 5)]
+    embedding2 = Embedding(coordinates2, coupling_map2)
+
+    # A LayerError object
+    circuit = QuantumCircuit(4)
+    qubits = [1, 2, 3, 4]
+    generators = PauliList(["IIIX", "IIXI", "IXII", "YIII", "ZIII", "XXII", "ZZII"])
+    rates = [0.01, 0.01, 0.01, 0.005, 0.02, 0.01, 0.01]
+    error = PauliLindbladError(generators, rates)
+    layer_error = LayerError(circuit, qubits, error)
+
+    # Draw the layer error on embedding1
+    layer_error.draw_map(embedding1)
+
+    # Draw the layer error on embedding2
+    layer_error.draw_map(embedding2)
+    ```
+  </Function>
+
+  ### draw\_swarm
+
+  <Function id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_swarm" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/noise_learner_result.py#L277-L341" signature="draw_swarm(num_bodies=None, max_rate=None, min_rate=None, connected=None, colors=None, num_bins=None, opacities=0.4, names=None, x_coo=None, marker_size=None, height=500, width=800)">
+    Draw a swarm plot of the rates in this layer error.
+
+    This function plots the rates along a vertical axes, offsetting the rates along the `x` axis so that they do not overlap with each other.
+
+    <Admonition title="Note" type="note">
+      To draw multiple layer errors at once, consider calling [`draw_layer_errors_swarm()`](visualization-draw-layer-errors-swarm "qiskit_ibm_runtime.visualization.draw_layer_errors_swarm") directly.
+    </Admonition>
+
+    **Parameters**
+
+    *   **num\_bodies** (*Optional\[int]*) – The weight of the generators to include in the plot, or `None` if all the generators should be included.
+    *   **max\_rate** (*Optional\[float]*) – The largest rate to include in the plot, or `None` if no upper limit should be set.
+    *   **min\_rate** (*Optional\[float]*) – The smallest rate to include in the plot, or `None` if no lower limit should be set.
+    *   **connected** (*Optional\[Union\[list\[Pauli], list\[str]]]*) – A list of generators whose markers are to be connected by lines.
+    *   **colors** (*Optional\[list\[str]]*) – A list of colors for the markers in the plot, or `None` if these colors are to be chosen automatically.
+    *   **num\_bins** (*Optional\[int]*) – The number of bins to place the rates into when calculating the `x`-axis offsets.
+    *   **opacities** (*Union\[float, list\[float]]*) – A list of opacities for the markers.
+    *   **names** (*Optional\[list\[str]]*) – The names of the various layers as displayed in the legend. If `None`, default names are assigned based on the layers’ position inside the `layer_errors` list.
+    *   **x\_coo** (*Optional\[list\[float]]*) – The `x`-axis coordinates of the vertical axes that the markers are drawn around, or `None` if these axes should be placed at regular intervals.
+    *   **marker\_size** (*Optional\[float]*) – The size of the marker in the plot.
+    *   **height** (*int*) – The height of the returned figure.
+    *   **width** (*int*) – The width of the returned figure.
+
+    **Return type**
+
+    PlotlyFigure
+  </Function>
+</Class>
+
