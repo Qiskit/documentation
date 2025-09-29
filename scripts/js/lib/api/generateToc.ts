@@ -232,13 +232,11 @@ function generateOverviewPage(tocModules: TocEntry[]): void {
 
 export function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
   if (!pkg.releaseNotesConfig.enabled) return;
-  console.log("inside 1st if");
   const releaseNotesUrl = `${DOCS_BASE_PATH}/api/${pkg.releaseNotesPackageName()}/release-notes`;
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
   if (!pkg.hasSeparateReleaseNotes()) {
-    console.log("inside second if ");
     return { ...releaseNotesEntry, url: releaseNotesUrl };
   }
 

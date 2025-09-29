@@ -321,7 +321,6 @@ test("generate a toc without modules and releaes notes", () => {
 
 test("returns nested entries grouped by major version", () => {
   const pkg = Pkg.mock({
-    name: "My Quantum Project",
     releaseNotesConfig: {
       enabled: true,
       separatePagesVersions: ["2.1", "2.0", "1.9"],
@@ -338,11 +337,11 @@ test("returns nested entries grouped by major version", () => {
         children: [
           {
             title: "v2.1",
-            url: "/docs/api/My Quantum Project/release-notes/2.1",
+            url: "/docs/api/my-quantum-project/release-notes/2.1",
           },
           {
             title: "v2.0",
-            url: "/docs/api/My Quantum Project/release-notes/2.0",
+            url: "/docs/api/my-quantum-project/release-notes/2.0",
           },
         ],
       },
@@ -351,7 +350,7 @@ test("returns nested entries grouped by major version", () => {
         children: [
           {
             title: "v1.9",
-            url: "/docs/api/My Quantum Project/release-notes/1.9",
+            url: "/docs/api/my-quantum-project/release-notes/1.9",
           },
         ],
       },
