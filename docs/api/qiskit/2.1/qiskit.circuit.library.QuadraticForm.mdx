@@ -1,0 +1,102 @@
+---
+title: QuadraticForm (v2.1)
+description: API reference for qiskit.circuit.library.QuadraticForm in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QuadraticForm
+---
+
+# QuadraticForm
+
+<Class id="qiskit.circuit.library.QuadraticForm" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/arithmetic/quadratic_form.py#L30-L194" signature="qiskit.circuit.library.QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  Implements a quadratic form on binary variables encoded in qubit registers.
+
+  A quadratic form on binary variables is a quadratic function $Q$ acting on a binary variable of $n$ bits, $x = x_0 ... x_{n-1}$. For an integer matrix $A$, an integer vector $b$ and an integer $c$ the function can be written as
+
+$$
+Q(x) = x^T A x + x^T b + c
+$$
+
+  If $A$, $b$ or $c$ contain scalar values, this circuit computes only an approximation of the quadratic form.
+
+  Provided with $m$ qubits to encode the value, this circuit computes $Q(x) \mod 2^m$ in \[two’s complement]\([https://stackoverflow.com/questions/1049722/what-is-2s-complement](https://stackoverflow.com/questions/1049722/what-is-2s-complement)) representation.
+
+$$
+|x\rangle_n |0\rangle_m \mapsto |x\rangle_n |(Q(x) + 2^m) \mod 2^m \rangle_m
+$$
+
+  Since we use two’s complement e.g. the value of $Q(x) = 3$ requires 2 bits to represent the value and 1 bit for the sign: 3 = ‘011’ where the first 0 indicates a positive value. On the other hand, $Q(x) = -3$ would be -3 = ‘101’, where the first 1 indicates a negative value and 01 is the two’s complement of 3.
+
+  If the value of $Q(x)$ is too large to be represented with m qubits, the resulting bitstring is $(Q(x) + 2^m) \mod 2^m)$.
+
+  The implementation of this circuit is discussed in \[1], Fig. 6.
+
+  **References**
+
+  **\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
+
+  [arXiv:1912.04088](https://arxiv.org/pdf/1912.04088.pdf)
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.arithmetic.quadratic_form.QuadraticForm` is deprecated as of Qiskit 2.1. It will be removed Qiskit 3.0. Use the QuadraticFormGate instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_result\_qubits** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The number of qubits to encode the result. Called $m$ in the class documentation.
+  *   **quadratic** (*Optional\[Union\[np.ndarray, List\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]]]]]*) – A matrix containing the quadratic coefficients, $A$.
+  *   **linear** (*Optional\[Union\[np.ndarray, List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]]]]*) – An array containing the linear coefficients, $b$.
+  *   **offset** (*Optional\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]]*) – A constant offset, $c$.
+  *   **little\_endian** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Encode the result in little endianness.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If `linear` and `quadratic` have mismatching sizes.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If `num_result_qubits` is unspecified but cannot be determined because some values of the quadratic form are parameterized.
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.QuadraticForm.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+
+  ## Methods
+
+  ### required\_result\_qubits
+
+  <Function id="qiskit.circuit.library.QuadraticForm.required_result_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/arithmetic/quadratic_form.py#L177-L194" signature="required_result_qubits(quadratic, linear, offset)" modifiers="static">
+    Get the number of required result qubits.
+
+    **Parameters**
+
+    *   **quadratic** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]*) – A matrix containing the quadratic coefficients.
+    *   **linear** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – An array containing the linear coefficients.
+    *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – A constant offset.
+
+    **Returns**
+
+    The number of qubits needed to represent the value of the quadratic form in twos complement.
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+</Class>
+

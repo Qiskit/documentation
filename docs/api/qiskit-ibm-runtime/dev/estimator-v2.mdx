@@ -45,7 +45,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   estimator = Estimator(mode=backend)
 
-  # calculate [ <psi(theta1)|hamiltonian|psi(theta)> ]
+  # calculate [ <psi(theta)|hamiltonian|psi(theta)> ]
   job = estimator.run([(isa_psi, isa_observables, [theta])])
   pub_result = job.result()[0]
   print(f"Expectation values: {pub_result.data.evs}")
@@ -93,7 +93,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.EstimatorV2.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_primitive.py#L217-L219" signature="backend()">
+  <Function id="qiskit_ibm_runtime.EstimatorV2.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_primitive.py#L205-L207" signature="backend()">
     Return the backend the primitive query will be run on.
 
     **Return type**

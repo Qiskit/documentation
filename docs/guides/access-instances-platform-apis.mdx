@@ -1,0 +1,44 @@
+---
+title: Use IBM Cloud Platform APIs to access instances
+description: Parameters to set when provisioning a Qiskit Runtime service instance, and extension fields returned when accessing an instance.
+
+---
+{/* cspell:ignore ResourceController  */}
+
+# Use IBM Cloud Platform APIs to access instances
+
+
+This guide is for anyone using the IBM Cloud Platform APIs to provision or manage access to instances. It provides details on the [parameters](#parameters) you can set when provisioning an instance, as well as the set of [extension fields](#extensions) returned when you access an instance.
+
+<Admonition type="note">
+Refer to the IBM Cloud&reg; ResourceController API documentation for more information.
+
+Some relevant pages:
+- [Create (provision) a new resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance)
+- [Update a resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#update-resource-instance)
+- [Get a resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#get-resource-instance)
+- [Get a list of all resource instances](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances)  
+    
+    When getting a list of all resource instances, note that you can filter to only Qiskit Runtime instances with `resource_id = "b6049020-80f4-11eb-a0f7-e35ec9b4054f"`
+
+</Admonition>
+
+## `parameters`
+
+In the body when provisioning an instance:
+
+
+- **instance_limit_seconds** (string or null, `^[0-9]+$`): The limit to set on the instance. For Open Plan: if omitted, this defaults to 10 minutes.
+.
+- **usage_allocation_seconds** (string or null, `^[0-9]+$`): Allotted time for the instance, used by the fair-share scheduler to determine the priority in the queue, based on usage of all QPUs. (This does not apply to Pay-As-You-Go instances.)
+- **backends** (Array of lists of backends (strings or null) or array with "ANY")): the allow-list of names of backends that are available to this instance. Default: `["ANY"]`, means all backends available on this plan. `[]` means no backends.
+
+## `extensions`
+
+In the response when provisioning or when getting the details of an instance:
+
+Additional instance properties contributed by the service that are represented as key-value pairs. These properties persist with the instance under the extensions property.
+
+- **instance_limit_seconds** (integer or null, `>= 0`): The time limit to set on the instance.
+- **usage_allocation_seconds** (integer or null, `>= 0`): Allotted time for the instance, used by the fair-share scheduler to determine the priority in the queue, based on usage of all QPUs.
+- **backends** (Required; array of lists of backends (strings) or array with "ANY" (strings)): The allow-list of names of backends that are available to this instance. Default: `["ANY"]`, means all backends are available on this plan. `[]` means no backends.

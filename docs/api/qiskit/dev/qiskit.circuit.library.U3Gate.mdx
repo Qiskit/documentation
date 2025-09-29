@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.U3Gate
 
 # U3Gate
 
-<Class id="qiskit.circuit.library.U3Gate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u3.py#L27-L183" signature="qiskit.circuit.library.U3Gate(theta, phi, lam, label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.U3Gate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u3.py#L27-L189" signature="qiskit.circuit.library.U3Gate(theta, phi, lam, label=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Generic single-qubit rotation gate with 3 Euler angles.
@@ -17,7 +17,7 @@ python_api_name: qiskit.circuit.library.U3Gate
     This gate is deprecated. Instead, the following replacements should be used
 
 $$
-U3(\theta, \phi, \lambda) =  U(\theta, \phi, \lambda)
+U3(\theta, \phi, \lambda) = U(\theta, \phi, \lambda)
 $$
 
     ```python
@@ -26,7 +26,7 @@ $$
     ```
   </Admonition>
 
-  **Circuit symbol:**
+  Circuit symbol:
 
   ```text
        ┌───────────┐
@@ -34,7 +34,7 @@ $$
        └───────────┘
   ```
 
-  **Matrix Representation:**
+  Matrix representation:
 
 $$
 \newcommand{\rotationangle}{\frac{\theta}{2}}
@@ -51,11 +51,11 @@ $$
     The matrix representation shown here differs from the [OpenQASM 2.0 specification](https://doi.org/10.48550/arXiv.1707.03429) by a global phase of $e^{i(\phi+\lambda)/2}$.
   </Admonition>
 
-  **Examples:**
+  Examples:
 
 $$
-U3(\theta, \phi, \lambda) = e^{-i \frac{\pi + \theta}{2}} P(\phi + \pi) \sqrt{X}
-P(\theta + \pi) \sqrt{X} P(\lambda)
+U3(\theta, \phi, \lambda) = P(\phi) R_Y(\theta) P(\lambda)
+= e^{i\frac{\phi + \lambda}{2}} R_Z(\phi) R_Y(\theta) R_Z(\lambda)
 $$
 
 $$
@@ -66,16 +66,14 @@ $$
 U3(\theta, 0, 0) = RY(\theta)
 $$
 
-  Create new U3 gate.
-
-  ## Attributes
-
   **Parameters**
 
-  *   **theta** (*ParameterValueType*) –
-  *   **phi** (*ParameterValueType*) –
-  *   **lam** (*ParameterValueType*) –
-  *   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) –
+  *   **theta** (*ParameterValueType*) – The angle $\theta corresponding to the :math:`R_Y(\theta)$ rotation.
+  *   **phi** (*ParameterValueType*) – The angle $\phi$ corresponding to the $R_Z(\phi)$ rotation.
+  *   **lam** (*ParameterValueType*) – The angle $\lambda$ corresponding to the $R_Z(\lambda)$ rotation.
+  *   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – An optional label for the gate.
+
+  ## Attributes
 
   ### base\_class
 
@@ -152,13 +150,13 @@ $$
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.library.U3Gate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L321-L326" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.library.U3Gate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L320-L325" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.U3Gate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L188-L245" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.U3Gate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L187-L244" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -211,7 +209,7 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.U3Gate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u3.py#L114-L151" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.U3Gate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u3.py#L120-L157" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return a (multi-)controlled-U3 gate.
 
     **Parameters**
@@ -232,7 +230,7 @@ $$
 
   ### copy
 
-  <Function id="qiskit.circuit.library.U3Gate.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L431-L446" signature="copy(name=None)">
+  <Function id="qiskit.circuit.library.U3Gate.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L430-L445" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -250,7 +248,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.U3Gate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u3.py#L98-L112" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.U3Gate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u3.py#L104-L118" signature="inverse(annotated=False)">
     Return inverted U3 gate.
 
     $U3(\theta,\phi,\lambda)^{\dagger} =U3(-\theta,-\lambda,-\phi))$
@@ -270,13 +268,13 @@ $$
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.library.U3Gate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L286-L291" signature="is_parameterized()">
+  <Function id="qiskit.circuit.library.U3Gate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L285-L290" signature="is_parameterized()">
     Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
   </Function>
 
   ### power
 
-  <Function id="qiskit.circuit.library.U3Gate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L63-L94" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.U3Gate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L62-L93" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
@@ -297,7 +295,7 @@ $$
 
   ### repeat
 
-  <Function id="qiskit.circuit.library.U3Gate.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L494-L524" signature="repeat(n)">
+  <Function id="qiskit.circuit.library.U3Gate.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L493-L523" signature="repeat(n)">
     Creates an instruction with `self` repeated :math\`n\` times.
 
     **Parameters**
@@ -319,7 +317,7 @@ $$
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.library.U3Gate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L348-L372" signature="reverse_ops()">
+  <Function id="qiskit.circuit.library.U3Gate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L347-L371" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -337,7 +335,7 @@ $$
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.library.U3Gate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L217-L257" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.library.U3Gate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L216-L256" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -355,7 +353,7 @@ $$
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.library.U3Gate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
+  <Function id="qiskit.circuit.library.U3Gate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L48-L60" signature="to_matrix()">
     Return a Numpy.array for the gate unitary matrix.
 
     **Returns**
@@ -373,7 +371,7 @@ $$
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.library.U3Gate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L146-L154" signature="to_mutable()">
+  <Function id="qiskit.circuit.library.U3Gate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L145-L153" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -381,7 +379,7 @@ $$
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.U3Gate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L247-L261" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.U3Gate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L246-L260" signature="validate_parameter(parameter)">
     Gate parameters should be int, float, or ParameterExpression
   </Function>
 </Class>

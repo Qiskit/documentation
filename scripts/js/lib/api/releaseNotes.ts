@@ -12,7 +12,7 @@
 
 import { parse } from "path";
 import { readFile, writeFile, readdir } from "fs/promises";
-
+import { groupBy } from "lodash-es";
 import { $ } from "zx";
 import transformLinks from "transform-markdown-links";
 
@@ -153,7 +153,7 @@ function addNewReleaseNotes(pkg: Pkg): void {
   pkg.releaseNotesConfig.separatePagesVersions.unshift(pkg.versionWithoutPatch);
 }
 
-function generateReleaseNotesIndex(pkg: Pkg): string {
+export function generateReleaseNotesIndex(pkg: Pkg): string {
   let markdown = `---
 title: ${pkg.title} release notes
 description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.
@@ -166,10 +166,14 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 ## Release notes by version
 
 `;
-  for (const version of pkg.releaseNotesConfig.separatePagesVersions) {
-    markdown += `* [${version}](./${version})\n`;
+
+  const grouped = groupByMajorVersion(
+    pkg.releaseNotesConfig.separatePagesVersions,
+  );
+  for (const [majorVersion, versionList] of grouped) {
+    markdown += renderVersionGroup(majorVersion, versionList) + "\n\n";
   }
-  return markdown;
+  return markdown.trim();
 }
 
 /**
@@ -215,7 +219,7 @@ function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
   if (releaseNotesNode.children[0].title != newVersion) {
     releaseNotesNode.children.unshift({
       title: newVersion,
-      url: `/api/qiskit/release-notes/${newVersion}`,
+      url: `${DOCS_BASE_PATH}/api/qiskit/release-notes/${newVersion}`,
     });
   }
 }
@@ -256,4 +260,40 @@ async function writeReleaseNoteForVersion(
 
     await writeFile(versionPath, `${initialHeader}\n## ${versionsMarkdown}`);
   }
+}
+
+export function groupByMajorVersion(versions: string[]): Map<string, string[]> {
+  // Group versions by major version
+  const grouped = groupBy(versions, (v) => v.split(".")[0]);
+
+  // Sort major version keys in descending numeric order
+  const sortedKeys = Object.keys(grouped).sort((a, b) =>
+    b.localeCompare(a, undefined, { numeric: true }),
+  );
+
+  // Create a Map to preserve insertion order
+  const sortedRecord = new Map<string, string[]>();
+
+  for (const key of sortedKeys) {
+    const items = grouped[key];
+    // Sort each version group in descending order using numeric-aware comparison
+    const sortedItems = items.sort((a, b) =>
+      b.localeCompare(a, undefined, { numeric: true }),
+    );
+    sortedRecord.set(key, sortedItems);
+  }
+
+  return sortedRecord;
+}
+
+function renderVersionGroup(majorVersion: string, versions: string[]): string {
+  const items = versions
+    .map((version) => `- [v${version}](./${version})`)
+    .join("\n");
+  return `
+<details>
+<summary>v${majorVersion}</summary>
+${items}
+</details>
+  `.trim();
 }

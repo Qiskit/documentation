@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.LinearFunction
 
 # LinearFunction
 
-<Class id="qiskit.circuit.library.LinearFunction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L26-L318" signature="qiskit.circuit.library.LinearFunction(linear, validate_input=False)" modifiers="class">
+<Class id="qiskit.circuit.library.LinearFunction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L26-L319" signature="qiskit.circuit.library.LinearFunction(linear, validate_input=False)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   A linear reversible circuit on n qubits.
@@ -19,7 +19,9 @@ python_api_name: qiskit.circuit.library.LinearFunction
 
   For efficiency, the internal n x n matrix is stored in the format expected by cnot\_synth, which is the big-endian (and not the little-endian) bit-ordering convention.
 
-  **Example:** the circuit
+  Example:
+
+  The circuit
 
   ```text
   q_0: ──■──
@@ -39,11 +41,9 @@ $$
 \end{pmatrix}
 $$
 
-  **References:**
+  References:
 
   \[1] Ketan N. Patel, Igor L. Markov, and John P. Hayes, Optimal synthesis of linear reversible circuits, Quantum Inf. Comput. 8(3) (2008). [Online at umich.edu.](https://web.eecs.umich.edu/~imarkov/pubs/jour/qic08-cnot.pdf)
-
-  Create a new linear function.
 
   **Parameters**
 
@@ -143,13 +143,13 @@ $$
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.library.LinearFunction.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L321-L326" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.library.LinearFunction.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L320-L325" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.LinearFunction.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L188-L245" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.LinearFunction.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L187-L244" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -202,7 +202,7 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.LinearFunction.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L105-L145" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.LinearFunction.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L104-L144" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return the controlled version of itself.
 
     Implemented either as a controlled gate (ref. [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")).
@@ -225,7 +225,7 @@ $$
 
   ### copy
 
-  <Function id="qiskit.circuit.library.LinearFunction.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L431-L446" signature="copy(name=None)">
+  <Function id="qiskit.circuit.library.LinearFunction.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L430-L445" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -243,7 +243,7 @@ $$
 
   ### extend\_with\_identity
 
-  <Function id="qiskit.circuit.library.LinearFunction.extend_with_identity" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L275-L293" signature="extend_with_identity(num_qubits, positions)">
+  <Function id="qiskit.circuit.library.LinearFunction.extend_with_identity" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L276-L294" signature="extend_with_identity(num_qubits, positions)">
     Extend linear function to a linear function over nq qubits, with identities on other subsystems.
 
     **Parameters**
@@ -262,13 +262,13 @@ $$
 
   ### function\_str
 
-  <Function id="qiskit.circuit.library.LinearFunction.function_str" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L301-L318" signature="function_str()">
+  <Function id="qiskit.circuit.library.LinearFunction.function_str" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L302-L319" signature="function_str()">
     Return string representation of the linear function viewed as a linear transformation.
   </Function>
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.LinearFunction.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L374-L429" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.LinearFunction.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L373-L428" signature="inverse(annotated=False)">
     Invert this instruction.
 
     If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
@@ -292,13 +292,13 @@ $$
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.library.LinearFunction.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L286-L291" signature="is_parameterized()">
+  <Function id="qiskit.circuit.library.LinearFunction.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L285-L290" signature="is_parameterized()">
     Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
   </Function>
 
   ### is\_permutation
 
-  <Function id="qiskit.circuit.library.LinearFunction.is_permutation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L254-L261" signature="is_permutation()">
+  <Function id="qiskit.circuit.library.LinearFunction.is_permutation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L255-L262" signature="is_permutation()">
     Returns whether this linear function is a permutation, that is whether every row and every column of the n x n matrix has exactly one 1.
 
     **Return type**
@@ -308,19 +308,19 @@ $$
 
   ### mat\_str
 
-  <Function id="qiskit.circuit.library.LinearFunction.mat_str" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L295-L299" signature="mat_str()">
+  <Function id="qiskit.circuit.library.LinearFunction.mat_str" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L296-L300" signature="mat_str()">
     Return string representation of the linear function viewed as a matrix with 0/1 entries.
   </Function>
 
   ### permutation\_pattern
 
-  <Function id="qiskit.circuit.library.LinearFunction.permutation_pattern" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L263-L273" signature="permutation_pattern()">
+  <Function id="qiskit.circuit.library.LinearFunction.permutation_pattern" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L264-L274" signature="permutation_pattern()">
     This method first checks if a linear function is a permutation and raises a qiskit.circuit.exceptions.CircuitError if not. In the case that this linear function is a permutation, returns the permutation pattern.
   </Function>
 
   ### power
 
-  <Function id="qiskit.circuit.library.LinearFunction.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L63-L94" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.LinearFunction.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L62-L93" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
@@ -341,7 +341,7 @@ $$
 
   ### repeat
 
-  <Function id="qiskit.circuit.library.LinearFunction.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L494-L524" signature="repeat(n)">
+  <Function id="qiskit.circuit.library.LinearFunction.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L493-L523" signature="repeat(n)">
     Creates an instruction with `self` repeated :math\`n\` times.
 
     **Parameters**
@@ -363,7 +363,7 @@ $$
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.library.LinearFunction.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L348-L372" signature="reverse_ops()">
+  <Function id="qiskit.circuit.library.LinearFunction.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L347-L371" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -381,7 +381,7 @@ $$
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.library.LinearFunction.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L217-L257" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.library.LinearFunction.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L216-L256" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -399,7 +399,7 @@ $$
 
   ### synthesize
 
-  <Function id="qiskit.circuit.library.LinearFunction.synthesize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L229-L240" signature="synthesize()">
+  <Function id="qiskit.circuit.library.LinearFunction.synthesize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L230-L241" signature="synthesize()">
     Synthesizes the linear function into a quantum circuit.
 
     <Admonition title="Deprecated since version 2.1" type="danger">
@@ -417,7 +417,7 @@ $$
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.library.LinearFunction.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
+  <Function id="qiskit.circuit.library.LinearFunction.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L48-L60" signature="to_matrix()">
     Return a Numpy.array for the gate unitary matrix.
 
     **Returns**
@@ -435,7 +435,7 @@ $$
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.library.LinearFunction.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L146-L154" signature="to_mutable()">
+  <Function id="qiskit.circuit.library.LinearFunction.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L145-L153" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -443,7 +443,7 @@ $$
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.LinearFunction.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L219-L221" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.LinearFunction.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L220-L222" signature="validate_parameter(parameter)">
     Parameter validation
   </Function>
 </Class>

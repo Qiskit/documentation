@@ -7,15 +7,12 @@ description: Setup instructions for IBM Quantum on IBM Cloud to submit Qiskit SD
 
 # Set up your IBM Cloud account
 
-If you have an invitation to join an account, follow the steps in [Set up your IBM Cloud account - invited users](/docs/guides/cloud-setup-invited) instead.
+If you were emailed an invitation to join an account, follow the steps in [Set up your IBM Cloud account - invited users](/docs/guides/cloud-setup-invited) instead.
 
 You can run workloads on IBM&reg; quantum processing units (QPUs) by setting up an account on IBM Cloud&reg;. You will also need to [install and set up Qiskit and Qiskit Runtime](/docs/guides/install-qiskit#local).
 
 Your user account is associated with one or more [instances,](./instances) identified by _Cloud Resource Names_ (CRNs) that give access to IBM Quantum services. Additionally, a unique API token (also called a key) is assigned to each account, allowing for IBM Quantum access from Qiskit.  For instructions to choose a specific instance, see [Connect to an instance](./instances#connect-instance).
 
-    <Admonition type="note">
-      The [IBM Quantum Platform dashboard](https://quantum.cloud.ibm.com) and the [Instances page](https://quantum.cloud.ibm.com/instances) list the instances that you can access.
-    </Admonition>
 
 <span id="cloud"></span>
 ## Set up to use IBM Cloud
@@ -24,9 +21,9 @@ Your user account is associated with one or more [instances,](./instances) ident
 
 1. If you do not already have one, set up an [IBM Cloud account.](https://quantum.cloud.ibm.com/registration)
    <Admonition type="note">
-   You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
+   You can be part of multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the header of the [IBM Quantum Platform](https://quantum.cloud.ibm.com) interface.
    </Admonition>
-1. Log in to [IBM Quantum Platform](https://quantum.cloud.ibm.com) with an IBMid or Google account.  If you don't have one, you are guided through creating one.
+1. Log in to [IBM Quantum Platform](https://quantum.cloud.ibm.com) with an IBMid or Google account.  If you don't have one, you are guided through creating one. (These login credentials are not your IBM Cloud account credentials.)
 1. Make sure that the correct account and region are selected in the account switcher in the header, as shown in the following image.
 
     The region controls where your jobs are run and where the job data is kept. You can access either region by using the same API key, but you can only see and access the instances that were created in the region that you're logged in to.
@@ -36,89 +33,22 @@ Your user account is associated with one or more [instances,](./instances) ident
 
 ### 1. Create an instance
 
-    Go to the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com) If you have one or more instances shown, skip this step. Otherwise, follow these steps to create an instance.
+You can create an instance from the IBM Quantum Platform [Instances](https://quantum.cloud.ibm.com/instances) page.  See [Create an instance](/docs/guides/instances#add-instance) for detailed instructions.
 
-    <span id="switcher"></span>
-    1. Make sure that the correct account and region are selected from the account and region switchers in the header, as shown in the following image.
-        * You can have multiple accounts.  If you don't see the instances or jobs you're expecting, try a different account.
-        * The region controls where your jobs are run and where the job data is kept. You can access either region by using the same API key, but you can only see and access the instances that were created in the region that you're logged in to.
-        * If you want to create an Open instance, you must choose the us-east region.
+### 2. Optional: Save your access credentials
 
-        ![The IBM Quantum Platform header is shown.  The account switcher is to the right of the search bar.  The region switcher is to the right of the account switcher.](/docs/images/guides/cloud-setup/IQP-Header.svg 'IBM Quantum Platform header')
-
-    1. Click **Create instance**.
-         * Choose a name and the plan to use.
-         * If you are creating an instance of the Pay-As-You-Go Plan, it is recommended that you set the total cost limit or the usage limit. (These values can be updated later.)
-         * Scroll down to see the **Terms** link.  After reading the terms, agree to the license agreements by checking the box in the bottom right corner of the page, and click **Next**.
-    1. On the Plan inheritance page, leave the default setting (toggle is not enabled) and click **Next** if you're setting up an Open instance.
-
-        If you are not setting up an Open instance and you want different QPUs to be available on this instance, enable the "Customize allocated compute resources" toggle, choose the QPUs you want this instance to be able to access, then click **Next**.
-        <Admonition type="note">
-       If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later.
-        </Admonition>
-    1. Choose whether you want an access group to be created for this instance and click **Create instance**.   This access group allows other users (collaborators) to share the time allocated to this instance.  Collaborators can be added on the Users page.
-
-       For an Open instance, you probably don't need this access group, although creating one won't impact your usage unless you add another user to the group.
-
-       You can add or remove access groups at any time from IBM Cloud.  See [Setting up access groups](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) for instructions.
-
-        <Admonition type="note">
-          If you are an administrator who needs to set up Qiskit Runtime on Cloud for your organization, refer to [Plan Qiskit Runtime for an organization](/docs/guides/considerations-set-up-runtime).
-        </Admonition>
-
-<span id="access-credentials"></span>
-### 2. Find your access credentials
-    1. Find your API key. From the [dashboard](https://quantum.cloud.ibm.com/), create your API key, then copy it to a secure location so you can use it for authentication. Note that you can use the same API key to connect to any region.
-    2. Optional: Find the instance you want to use from the [Instances](https://quantum.cloud.ibm.com/instances) page. Click the icon to copy its CRN, then save it in a secure location so you can use it to identify the instance.
+If you are using a trusted Python environment, such as a personal laptop, it is recommended that you use the `save_account()` method to [save your credentials locally.](/docs/guides/save-credentials)
 
 <span id="cloud-save"></span>
 ### 3. Connect Qiskit with your service instance
-If you are working in a trusted Python environment (such as on a personal laptop or workstation), use the `save_account()` method to save your credentials locally, then use them to initialize the service.
 
-1. Ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](/docs/guides/install-qiskit#local).
-1. Activate the Python virtual environment, run Python in your virtual environment, and enter the following:
+- [Initialize the service](/docs/guides/initialize-account) in a **trusted Python environment**
+- [Initialize the service in an **untrusted environment**](/docs/guides/cloud-setup-untrusted) (such as a public computer)
 
-    ```python
-    token = "<your-API-token>"
-    ```
-2. Initialize the service.
-<Admonition type="Note">
-When an instance CRN or name is passed in, only backends and jobs from that instance are available.  If an instance is not specified (allowed in Qiskit Runtime v0.40.1 and later), all backends and jobs across all instances in your account are available. In this case, when a backend is specified, an instance that can access that backend is found and used.
+<Admonition type="note" title="Notes">
+   * Follow [these instructions](/docs/guides/cloud-setup-rest-api) if you want to connect by using the REST API instead of using Qiskit.
+   * If necessary, use [this information](/docs/guides/quickstart-steps-org#firewall) to configure your firewall to enable access to the IBM Quantum API endpoints.
 </Admonition>
-
-```python
-  from qiskit_ibm_runtime import QiskitRuntimeService
-  service = QiskitRuntimeService.save_account(
-    token="token", # IBM Cloud API key.
-    # Your token is confidential. Do not share your token in public code.
-    instance="<IBM Cloud CRN or instance name>", # Optionally specify the instance to use.
-    plans_preference="['open', 'premium']", # Optionally set the types of plans to prioritize.  This is ignored if the instance is specified.
-    # Additionally, instances of a certain plan type are excluded if the plan name is not specified.
-    region="us-east", # Optionally set the region to prioritize. Accepted values are 'us-east' or 'eu-de'. This is ignored if the instance is specified.
-    name="<account-name>", # Optionally name this set of account credentials. 
-    set_as_default=True, # Optionally set these as your default credentials.
-  )
-```
-
-
-      ```python
-    from qiskit_ibm_runtime import QiskitRuntimeService
-
-    # If you named your credentials, optionally specify the name here, as follows:
-    # QiskitRuntimeService(name='account-name')
-    # If you don't specify a name, the default credentials are loaded.
-    service = QiskitRuntimeService()
-       ```
-      * If you are saving multiple accounts, consider using the `name` parameter to differentiate them.
-      * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
-      * If you don't save your credentials, you must specify them every time you start a new session.
-      * If you specify your credentials, a saved account will not be used.
-
-    <Admonition type="note" title="Notes">
-      * Follow [these instructions](/docs/guides/cloud-setup-untrusted) to authenticate to IBM Cloud if you are not using a trusted environment. For example, if you are using a public comptuer.
-      * Follow [these instructions](/docs/guides/cloud-setup-rest-api) if you want to connect by using the REST API instead of using Qiskit.
-      * If necessary, use [this information](/docs/guides/quickstart-steps-org#firewall) to configure your firewall to enable access to the IBM Quantum API endpoints.
-    </Admonition>
 
 
 ## Next steps
