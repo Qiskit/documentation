@@ -30,6 +30,7 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/circuit-execution",
   "docs/guides/configure-runtime-compilation",
   "docs/guides/save-jobs",
+  "docs/guides/add-job-tags",
   "docs/guides/visualize-results",
   "docs/guides/create-transpiler-plugin",
   "docs/guides/intro-to-patterns",
