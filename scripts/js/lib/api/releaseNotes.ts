@@ -22,6 +22,7 @@ import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./conversionPipeline.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import { removePrefix } from "../stringUtils.js";
+import { generateReleaseNotesEntry, TocEntry } from "./generateToc.js";
 
 // ---------------------------------------------------------------------------
 // Generic release notes handling
@@ -182,44 +183,27 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
   console.log("Updating _toc.json files for the historical versions");
 
+  const releaseNotesEntry = generateReleaseNotesEntry(pkg);
+  if (!releaseNotesEntry) {
+    throw new Error(
+      `Assertion error: could not generate release notes TOC entry for '${pkg.name}'.`,
+    );
+  }
+
   const historicalFolders = (
     await readdir(`docs/api/${pkg.name}`, { withFileTypes: true })
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
   for (let folder of historicalFolders) {
-    let tocFile = await readFile(
-      `docs/api/${pkg.name}/${folder.name}/_toc.json`,
-      {
-        encoding: "utf8",
-      },
-    );
-
-    let jsonData = JSON.parse(tocFile);
-
-    // Add the new version if necessary
-    for (let child of jsonData.children) {
-      if (child.title == "Release notes") {
-        addNewReleaseNoteToc(child, pkg.versionWithoutPatch);
-      }
-    }
-
-    await writeFile(
-      `docs/api/${pkg.name}/${folder.name}/_toc.json`,
-      JSON.stringify(jsonData, null, 2) + "\n",
-    );
-  }
-}
-
-/**
- * Adds a new entry for the current API version to the JSON list of release notes
- */
-function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
-  // Add the current API version in the second position of the list
-  if (releaseNotesNode.children[0].title != newVersion) {
-    releaseNotesNode.children.unshift({
-      title: newVersion,
-      url: `${DOCS_BASE_PATH}/api/qiskit/release-notes/${newVersion}`,
+    const tocPath = `docs/api/${pkg.name}/${folder.name}/_toc.json`;
+    const rawToc = await readFile(tocPath, {
+      encoding: "utf8",
     });
+    let tocJson = JSON.parse(rawToc)
+    tocJson.children = tocJson.children.map((child: TocEntry) =>
+      child.title === "Release notes" ? releaseNotesEntry : child,
+    );
+    await writeFile(tocPath, JSON.stringify(tocJson, null, 2) + "\n");
   }
 }
 
