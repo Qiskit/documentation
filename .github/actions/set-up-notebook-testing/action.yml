@@ -51,6 +51,8 @@ runs:
               token="${{ inputs.ibm-cloud-token }}",
               set_as_default=True
           )
+          # Need to save the account with the 'ibm_quantum_platform' channel since some of the
+          #  functions notebooks use it.
           QiskitRuntimeService.save_account(
               channel="ibm_quantum_platform",
               instance="${{ inputs.instance }}",
