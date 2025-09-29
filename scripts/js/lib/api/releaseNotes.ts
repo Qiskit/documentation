@@ -183,8 +183,8 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
   console.log("Updating _toc.json files for the historical versions");
 
-  const releaseNotesEntry = generateReleaseNotesEntry(pkg);
-  if (!releaseNotesEntry) {
+  const maybeReleaseNotesEntry = generateReleaseNotesEntry(pkg);
+  if (!maybeReleaseNotesEntry) {
     throw new Error(
       `Assertion error: could not generate release notes TOC entry for '${pkg.name}'.`,
     );
@@ -199,9 +199,9 @@ async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
     const rawToc = await readFile(tocPath, {
       encoding: "utf8",
     });
-    let tocJson = JSON.parse(rawToc)
+    const tocJson = JSON.parse(rawToc);
     tocJson.children = tocJson.children.map((child: TocEntry) =>
-      child.title === "Release notes" ? releaseNotesEntry : child,
+      child.title === "Release notes" ? maybeReleaseNotesEntry : child,
     );
     await writeFile(tocPath, JSON.stringify(tocJson, null, 2) + "\n");
   }
