@@ -17,6 +17,7 @@ import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 import type { TocGrouping } from "./TocGrouping.js";
 import { DOCS_BASE_PATH } from "./conversionPipeline.js";
+import { groupByMajorVersion } from "./releaseNotes.js";
 
 export type TocEntry = {
   title: string;
@@ -235,14 +236,25 @@ export function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
-  if (!pkg.hasSeparateReleaseNotes())
+  if (!pkg.hasSeparateReleaseNotes()) {
     return { ...releaseNotesEntry, url: releaseNotesUrl };
-  releaseNotesEntry.children = pkg.releaseNotesConfig.separatePagesVersions.map(
-    (vers) => ({
-      title: vers,
-      url: `${releaseNotesUrl}/${vers}`,
-    }),
+  }
+
+  const groupedVersions = groupByMajorVersion(
+    pkg.releaseNotesConfig.separatePagesVersions,
   );
+  const children: TocEntry[] = [];
+  for (const [major, versions] of groupedVersions) {
+    const majorEntry: TocEntry = {
+      title: `v${major}`,
+      children: versions.map((vers) => ({
+        title: `v${vers}`,
+        url: `${releaseNotesUrl}/${vers}`,
+      })),
+    };
+    children.push(majorEntry);
+  }
+  releaseNotesEntry.children = children;
   return releaseNotesEntry;
 }
 
