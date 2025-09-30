@@ -134,6 +134,9 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/migration-guides/qiskit-backendv1-to-v2.mdx",
   "docs/guides/install-qiskit.mdx",
   "docs/api/qiskit-c/index.mdx",
+  "docs/api/qiskit-c/2.1/index.mdx",
+  "docs/api/qiskit-c/2.1/qk-complex-64.mdx",
+  "docs/api/qiskit-ibm-runtime/estimator-v2.mdx",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
@@ -214,7 +217,6 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/0.46/qiskit.{algorithms,extensions,opflow}.*",
     "docs/api/qiskit/0.46/qiskit.utils.QuantumInstance.mdx",
     "docs/api/qiskit/0.46/qiskit.primitives.Base{Estimator,Sampler}.mdx",
-    "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.mdx",
     "docs/api/qiskit-ibm-runtime/0.26/{sampler,estimator}{,-v1}.mdx",
     // Release notes referenced in files.
     "docs/api/qiskit/release-notes/index.mdx",
@@ -222,14 +224,13 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/release-notes/1.*.mdx",
     "docs/api/qiskit/release-notes/2.*.mdx",
     // Used by release notes.
-    "docs/api/qiskit-ibm-runtime/0.20/sampler.mdx",
-    "docs/api/qiskit-ibm-runtime/0.21/qiskit-runtime-service.mdx",
     "docs/api/qiskit-ibm-runtime/0.25/runtime-options.mdx",
     "docs/api/qiskit-ibm-runtime/0.27/options-resilience-options.mdx",
     "docs/api/qiskit-ibm-runtime/0.29/qiskit-runtime-service.mdx",
     "docs/api/qiskit-ibm-runtime/0.29/session.mdx",
     "docs/api/qiskit-ibm-runtime/0.30/runtime-job.mdx",
     "docs/api/qiskit-ibm-runtime/0.34/ibm-backend.mdx",
+    "docs/api/qiskit-ibm-runtime/0.41/runtime-job.mdx",
     // Used by the latest updates page.
     "docs/api/qiskit-ibm-runtime/0.40/ibm-backend.mdx",
     // These pages were removed in Qiskit 2.0.
@@ -339,7 +340,7 @@ async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
 
   return await FileBatch.fromGlobs(
     toCheck,
-    [`docs/api/qiskit/0.45/*`, "docs/api/qiskit/release-notes/index.mdx"],
+    [`docs/api/qiskit/0.46/*`, "docs/api/qiskit/release-notes/index.mdx"],
     `qiskit legacy release notes`,
   );
 }

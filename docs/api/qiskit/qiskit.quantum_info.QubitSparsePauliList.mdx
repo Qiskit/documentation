@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.QubitSparsePauliList
 
 # QubitSparsePauliList
 
-<Class id="qiskit.quantum_info.QubitSparsePauliList" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.QubitSparsePauliList" modifiers="class">
+<Class id="qiskit.quantum_info.QubitSparsePauliList" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.QubitSparsePauliList" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   A list of phase-less Pauli operators stored in a qubit-sparse format.
@@ -305,6 +305,30 @@ python_api_name: qiskit.quantum_info.QubitSparsePauliList
 
       The reverse of this method.
     </Admonition>
+  </Function>
+
+  ### to\_dense\_array
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.to_dense_array" signature="to_dense_array()">
+    Express the list in a dense array format.
+
+    Each entry is a u8 following the [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") representation, while the rows index distinct Paulis and the columns distinct qubits.
+
+    **Examples**
+
+    ```python
+    >>> paulis = QubitSparsePauliList.from_sparse_list(
+    ...     [("ZX", (1, 4)), ("YY", (0, 3)), ("XX", (0, 1))],
+    ...     num_qubits=5,
+    ... )
+    >>> paulis.to_dense_array()
+    ```
+  </Function>
+
+  ### to\_pauli\_list
+
+  <Function id="qiskit.quantum_info.QubitSparsePauliList.to_pauli_list" signature="to_pauli_list()">
+    Return a [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") representing the same phaseless list of Paulis.
   </Function>
 
   ### to\_sparse\_list

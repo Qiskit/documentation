@@ -1,0 +1,79 @@
+---
+title: GMS (v2.1)
+description: API reference for qiskit.circuit.library.GMS in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.GMS
+---
+
+# GMS
+
+<Class id="qiskit.circuit.library.GMS" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/generalized_gates/gms.py#L30-L102" signature="qiskit.circuit.library.GMS(num_qubits, theta)" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  Global Mølmer–Sørensen gate.
+
+  **Circuit symbol:**
+
+  ```text
+       ┌───────────┐
+  q_0: ┤0          ├
+       │           │
+  q_1: ┤1   GMS    ├
+       │           │
+  q_2: ┤2          ├
+       └───────────┘
+  ```
+
+  **Expanded Circuit:**
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-GMS-1.avif)
+
+  The Mølmer–Sørensen gate is native to ion-trap systems. The global MS can be applied to multiple ions to entangle multiple qubits simultaneously \[1].
+
+  In the two-qubit case, this is equivalent to an XX(theta) interaction, and is thus reduced to the RXXGate. The global MS gate is a sum of XX interactions on all pairs \[2].
+
+$$
+GMS(\chi_{12}, \chi_{13}, ..., \chi_{n-1 n}) =
+exp(-i \sum_{i=1}^{n} \sum_{j=i+1}^{n} X{\otimes}X \frac{\chi_{ij}}{2})
+$$
+
+  **References:**
+
+  \[1] Sørensen, A. and Mølmer, K., Multi-particle entanglement of hot trapped ions. Physical Review Letters. 82 (9): 1835–1838. [arXiv:9810040](https://arxiv.org/abs/quant-ph/9810040)
+
+  \[2] Maslov, D. and Nam, Y., Use of global interactions in efficient quantum circuit constructions. New Journal of Physics, 20(3), p.033018. [arXiv:1707.06356](https://arxiv.org/abs/1707.06356)
+
+  Create a new Global Mølmer–Sørensen (GMS) gate.
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.generalized_gates.gms.GMS` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use the MSGate instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – width of gate.
+  *   **theta** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | np.ndarray*) – a num\_qubits x num\_qubits symmetric matrix of interaction angles for each qubit pair. The upper triangle is considered.
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.GMS.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

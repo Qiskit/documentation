@@ -1,0 +1,66 @@
+name: (TRANSLATIONS 🌍) Report a translation error
+description: Report an incorrect translation in the Documentation or Learning pages
+labels: ["translations 🌍", "needs triage 🤔"]
+assignees:
+  - arnaucasau
+  - Eric-Arellano
+
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for reporting an issue to improve the translations! Please also use the search to see if there are any other relevant issues or pull requests.
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ Note that this issue template is only for Documentation and Learning content in languages different than English. To report a typo on an English page, you can use our other templates.
+
+  - type: checkboxes
+    attributes:
+      label: Select the language/s where the error appears
+      description: Please select only the languages where you can provide a correct translation in this issue.
+      options:
+        - label: French
+        - label: German
+        - label: Italian
+        - label: Japanese
+        - label: Korean
+        - label: Portuguese
+        - label: Spanish
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: URL to the relevant documentation
+      description: Provide the URL where the translation error can be found. If the issue affects more than one language, you can remove the language code from the URL.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Describe the issue
+      description: Please provide a description of why the current translation is incorrect.
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: When proposing a fix for an error, you must provide what the current text says, as well as your proposed change. Always include the complete paragraph where the error can be found.
+
+  - type: textarea
+    attributes:
+      label: Current paragraph/s containing the error (before)
+      description: Please provide the complete paragraph/s where the translation error can be found.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Fixed paragraph/s (after)
+      description: Please provide the complete paragraph/s including your fix.
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: Thank you for your feedback! If you are interested in joining the IBM Quantum Feedback Program, <a href="https://www.ibm.com/quantum/feedback-program">sign up here</a>.

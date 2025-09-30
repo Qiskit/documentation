@@ -38,7 +38,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   ### cregs
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.cregs">
-    Returns the dict containing the QuantumRegisters in the circuit
+    Returns the dict containing the ClassicalRegisters in the circuit
   </Attribute>
 
   ### duration
@@ -165,7 +165,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### add\_captured\_stretch
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.add_captured_stretch" signature="add_captured_stretch(var)">
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_captured_stretch" signature="add_captured_stretch(stretch)">
     Add a captured stretch to the circuit.
 
     **Parameters**
@@ -186,7 +186,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   ### add\_clbits
 
   <Function id="qiskit.dagcircuit.DAGCircuit.add_clbits" signature="add_clbits(clbits)">
-    Add individual qubit wires.
+    Add individual clbit wires.
   </Function>
 
   ### add\_creg
@@ -197,12 +197,12 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### add\_declared\_stretch
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.add_declared_stretch" signature="add_declared_stretch(var)">
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_declared_stretch" signature="add_declared_stretch(stretch)">
     Add a declared stretch to the circuit.
 
     **Parameters**
 
-    **var** – the stretch to add.
+    **stretch** – the stretch to add.
   </Function>
 
   ### add\_declared\_var
@@ -382,7 +382,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### copy\_empty\_like
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.copy_empty_like" signature="copy_empty_like(*, vars_mode='alike')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.copy_empty_like" signature="copy_empty_like(*, vars_mode=Ellipsis)">
     Return a copy of self with the same structure but empty.
 
     **That structure includes:**
@@ -654,7 +654,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### layers
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.layers" signature="layers(*, vars_mode='captures')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.layers" signature="layers(*, vars_mode=Ellipsis)">
     Yield a shallow view on a layer of this DAGCircuit for all d layers of this circuit.
 
     A layer is a circuit whose gates act on disjoint qubits, i.e., a layer has depth 1. The total number of layers equals the circuit depth d. The layers are indexed from 0 to d-1 with the earliest layer at index 0. The layers are constructed using a greedy algorithm. Each returned layer is a dict containing \{“graph”: circuit graph, “partition”: list of qubit lists}.
@@ -668,6 +668,20 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   <Function id="qiskit.dagcircuit.DAGCircuit.longest_path" signature="longest_path()">
     Returns the longest path in the dag as a list of DAGOpNodes, DAGInNodes, and DAGOutNodes.
+  </Function>
+
+  ### make\_physical
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.make_physical" signature="make_physical(num_qubits=None)">
+    Put `self` into the canonical physical form, with the given number of qubits.
+
+    This acts in place, and does not need to traverse the DAG. It is intended for use when the DAG is known to already represent a physical circuit, and we just need to assert that it is canonical physical form.
+
+    This erases any information about virtual qubits in the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"); if using this yourself, you may need to ensure you have created and stored a suitable [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout"). Effectively, this applies the “trivial” layout mapping virtual qubit 0 to physical qubit 0, and so on.
+
+    **Parameters**
+
+    **num\_qubits** – if given, the total number of physical qubits in the output; it must be at least as large as the number of qubits in the DAG. If not given, the number of qubits is unchanged.
   </Function>
 
   ### multi\_qubit\_ops
@@ -975,7 +989,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### separable\_circuits
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.separable_circuits" signature="separable_circuits(remove_idle_qubits=False, *, vars_mode='alike')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.separable_circuits" signature="separable_circuits(remove_idle_qubits=False, *, vars_mode=Ellipsis)">
     Decompose the circuit into sets of qubits with no gates connecting them.
 
     **Parameters**
@@ -997,7 +1011,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### serial\_layers
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.serial_layers" signature="serial_layers(*, vars_mode='captures')">
+  <Function id="qiskit.dagcircuit.DAGCircuit.serial_layers" signature="serial_layers(*, vars_mode=Ellipsis)">
     Yield a layer for all gates of this circuit.
 
     A serial layer is a circuit with one gate. The layers have the same structure as in layers().
@@ -1023,6 +1037,28 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     **Raises**
 
     [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if an unknown [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") is present in a call with `recurse=True`, or any control flow is present in a non-recursive call.
+  </Function>
+
+  ### structurally\_equal
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.structurally_equal" signature="structurally_equal(other)">
+    Are these two DAGs structurally equal?
+
+    This function returns true iff the graph structures are precisely the same as each other, including the valid node indices, edge orders, and so on. This is a much stricter check than graph equivalence, and is mostly useful for testing if two [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") instances have been constructed and manipulated in the exact same ways. For example, this method can be used to test whether a sequence of manipulations of a DAG is deterministic.
+
+    This method does not consider tracking metadata such as [`metadata`](#qiskit.dagcircuit.DAGCircuit.metadata "qiskit.dagcircuit.DAGCircuit.metadata") or [`name`](#qiskit.dagcircuit.DAGCircuit.name "qiskit.dagcircuit.DAGCircuit.name"), but does consider many low-level implementation details of the internal representation, many of which do not change the semantics of the circuit.
+
+    This method should, in general, be much faster than graph-equivalence checks, but will return `False` in many more situations. This method should never return `True` when a graph-equivalence check would return `False`.
+
+    <Admonition title="Note" type="note">
+      This currently does not handle control flow, because of technical limitations in the internal representation of control flow, and will return false if any control-flow operation is present, even if they are individually equal.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      **The `==` operator**
+
+      [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") implements `__eq__()` between itself and other [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") instances (this same method also powers [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")’s equality check). This implements a semantic data-flow equality check, which is less sensitive to the order operations were defined. This is typically what a user cares about with respect to equality.
+    </Admonition>
   </Function>
 
   ### substitute\_node
