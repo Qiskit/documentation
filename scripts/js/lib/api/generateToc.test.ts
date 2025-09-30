@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { generateToc } from "./generateToc.js";
+import { generateToc, generateReleaseNotesEntry } from "./generateToc.js";
 import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
 import type { TocGroupingEntry } from "./TocGrouping.js";
 
@@ -220,7 +220,7 @@ test("TOC with separate release note files", () => {
   const toc = generateToc(
     Pkg.mock({
       releaseNotesConfig: new ReleaseNotesConfig({
-        separatePagesVersions: ["0.39", "0.38"],
+        separatePagesVersions: ["2.1", "2.0", "1.9", "0.39", "0.38"],
       }),
     }),
     [
@@ -243,17 +243,44 @@ test("TOC with separate release note files", () => {
         url: "/docs/api/my-quantum-project",
       },
       {
+        title: "Release notes",
         children: [
           {
-            title: "0.39",
-            url: "/docs/api/my-quantum-project/release-notes/0.39",
+            title: "v2",
+            children: [
+              {
+                title: "v2.1",
+                url: "/docs/api/my-quantum-project/release-notes/2.1",
+              },
+              {
+                title: "v2.0",
+                url: "/docs/api/my-quantum-project/release-notes/2.0",
+              },
+            ],
           },
           {
-            title: "0.38",
-            url: "/docs/api/my-quantum-project/release-notes/0.38",
+            title: "v1",
+            children: [
+              {
+                title: "v1.9",
+                url: "/docs/api/my-quantum-project/release-notes/1.9",
+              },
+            ],
+          },
+          {
+            title: "v0",
+            children: [
+              {
+                title: "v0.39",
+                url: "/docs/api/my-quantum-project/release-notes/0.39",
+              },
+              {
+                title: "v0.38",
+                url: "/docs/api/my-quantum-project/release-notes/0.38",
+              },
+            ],
           },
         ],
-        title: "Release notes",
       },
     ],
     collapsed: true,
