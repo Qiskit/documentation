@@ -220,7 +220,7 @@ test("TOC with separate release note files", () => {
   const toc = generateToc(
     Pkg.mock({
       releaseNotesConfig: new ReleaseNotesConfig({
-        separatePagesVersions: ["0.39", "0.38"],
+        separatePagesVersions: ["2.1", "2.0", "1.9", "0.39", "0.38"],
       }),
     }),
     [
@@ -246,6 +246,28 @@ test("TOC with separate release note files", () => {
         title: "Release notes",
         children: [
           {
+            title: "v2",
+            children: [
+              {
+                title: "v2.1",
+                url: "/docs/api/my-quantum-project/release-notes/2.1",
+              },
+              {
+                title: "v2.0",
+                url: "/docs/api/my-quantum-project/release-notes/2.0",
+              },
+            ],
+          },
+          {
+            title: "v1",
+            children: [
+              {
+                title: "v1.9",
+                url: "/docs/api/my-quantum-project/release-notes/1.9",
+              },
+            ],
+          },
+          {
             title: "v0",
             children: [
               {
@@ -265,6 +287,7 @@ test("TOC with separate release note files", () => {
     title: "My Quantum Project",
   });
 });
+
 test("generate a toc without modules and releaes notes", () => {
   const toc = generateToc(
     Pkg.mock({
@@ -316,44 +339,5 @@ test("generate a toc without modules and releaes notes", () => {
     ],
     collapsed: true,
     title: "My Quantum Project",
-  });
-});
-
-test("returns nested entries grouped by major version", () => {
-  const pkg = Pkg.mock({
-    releaseNotesConfig: {
-      enabled: true,
-      separatePagesVersions: ["2.1", "2.0", "1.9"],
-    },
-  });
-
-  const result = generateReleaseNotesEntry(pkg);
-
-  expect(result).toEqual({
-    title: "Release notes",
-    children: [
-      {
-        title: "v2",
-        children: [
-          {
-            title: "v2.1",
-            url: "/docs/api/my-quantum-project/release-notes/2.1",
-          },
-          {
-            title: "v2.0",
-            url: "/docs/api/my-quantum-project/release-notes/2.0",
-          },
-        ],
-      },
-      {
-        title: "v1",
-        children: [
-          {
-            title: "v1.9",
-            url: "/docs/api/my-quantum-project/release-notes/1.9",
-          },
-        ],
-      },
-    ],
   });
 });
