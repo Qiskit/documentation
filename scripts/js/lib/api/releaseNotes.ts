@@ -170,16 +170,12 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
   const grouped = groupByMajorVersion(
     pkg.releaseNotesConfig.separatePagesVersions,
   );
-
-  let isFirst = true;
-  grouped.forEach((versionList, majorVersion) => {
-    const isLatestVersion = isFirst;
+  [...grouped.entries()].forEach(([majorVersion, versionList], idx) => {
     markdown +=
-      renderVersionGroup(majorVersion, versionList, { isLatestVersion }) +
-      "\n\n";
-    isFirst = false;
+      renderVersionGroup(majorVersion, versionList, {
+        isLatestVersion: idx === 0,
+      }) + "\n\n";
   });
-
   return markdown.trim();
 }
 
