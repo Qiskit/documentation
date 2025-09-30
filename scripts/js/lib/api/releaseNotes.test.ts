@@ -41,7 +41,7 @@ test.describe("generateReleaseNotesIndex", () => {
     const result = generateReleaseNotesIndex(pkg);
     expect(result).toContain(`# My Quantum Project release notes`);
     expect(result).toContain(`
-<details>
+<details open>
 <summary>v2</summary>
 - [v2.0](./2.0)
 </details>
