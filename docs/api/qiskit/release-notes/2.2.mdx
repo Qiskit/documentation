@@ -14,9 +14,41 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 2.2.1
+
+<span id="relnotes-2-2-1-prelude" />
+
+### Prelude
+
+Qiskit 2.2.1 is a small patch release that fixes several bugs identified in the 2.2.0 release.
+
+<span id="relnotes-2-2-1-transpiler-upgrade-notes" />
+
+### Transpiler Upgrade Notes
+
+*   The maximum call and trial limits for the exact-matching run of [`VF2PostLayout`](/docs/api/qiskit/qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") at `optimization_level=3` have been reduced to avoid excessive runtimes for highly symmetric trial circuits being mapped to large coupling maps.
+
+<span id="relnotes-2-2-1-bug-fixes" />
+
+### Bug Fixes
+
+*   [`DAGCircuit.apply_operation_back()`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#apply_operation_back "qiskit.dagcircuit.DAGCircuit.apply_operation_back"), [`apply_operation_back()`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#apply_operation_back "qiskit.dagcircuit.DAGCircuit.apply_operation_back") and `circuit_to_dag()` will now add new edges in a deterministic order. The previous behavior could cause certain transpiler passes (such as [`SabreSwap`](/docs/api/qiskit/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")) to traverse the DAG in non-deterministic orders.
+
+*   [`DAGCircuit.apply_operation_front()`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#apply_operation_front "qiskit.dagcircuit.DAGCircuit.apply_operation_front") can no longer insert invalid self loops when handling nodes that include classical conditions.
+
+*   Fixed an issue with [`pickle`](https://docs.python.org/3/library/pickle.html#module-pickle "(in Python v3.13)") support for the [`SabreSwap`](/docs/api/qiskit/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") where a [`SabreSwap`](/docs/api/qiskit/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") instance would error when being pickled after the [`SabreSwap.run()`](/docs/api/qiskit/qiskit.transpiler.passes.SabreSwap#run "qiskit.transpiler.passes.SabreSwap.run") method was run. Fixed [#15071](https://github.com/Qiskit/qiskit/issues/15071).
+
+*   Fixed an issue where [`is_unitary()`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp#is_unitary "qiskit.quantum_info.SparsePauliOp.is_unitary") was not properly respecting the input tolerance values when checking if an operator is unitary. The method now correctly uses the provided `atol` and `rtol` parameters when simplifying the operator and checking if it equals the identity. This fixes [#14107](https://github.com/Qiskit/qiskit/issues/14107).
+
+<span id="relnotes-2-2-0" />
+
+<span id="id2" />
+
 ## 2.2.0
 
 <span id="relnotes-2-2-0-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
@@ -430,6 +462,8 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-2-0-transpiler-upgrade-notes" />
 
+<span id="id4" />
+
 ### Transpiler Upgrade Notes
 
 *   The circuit [`PassManager`](/docs/api/qiskit/qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") now always sets the properties `original_circuit_indices` and `num_input_qubits` before execution starts on individual passes. These are properties of the input circuit, which it was previously up to individual passes to set, often as a side effect of their primary purpose.
@@ -447,6 +481,8 @@ The v2.2 release series is the final minor release series with support Python 3.
     > *   [`QuantumVolume`](/docs/api/qiskit/qiskit.circuit.library.QuantumVolume "qiskit.circuit.library.QuantumVolume") `-->` [`quantum_volume()`](/docs/api/qiskit/qiskit.circuit.library.quantum_volume "qiskit.circuit.library.quantum_volume")
 
 <span id="relnotes-2-2-0-bug-fixes" />
+
+<span id="id5" />
 
 ### Bug Fixes
 
@@ -630,7 +666,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-c-api-features" />
 
-<span id="id2" />
+<span id="id6" />
 
 ### C API Features
 
@@ -655,7 +691,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-circuits-features" />
 
-<span id="id3" />
+<span id="id7" />
 
 ### Circuits Features
 
@@ -733,7 +769,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-openqasm-features" />
 
-<span id="id4" />
+<span id="id8" />
 
 ### OpenQASM Features
 
@@ -743,7 +779,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-qpy-features" />
 
-<span id="id5" />
+<span id="id9" />
 
 ### QPY Features
 
@@ -755,7 +791,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-synthesis-features" />
 
-<span id="id6" />
+<span id="id10" />
 
 ### Synthesis Features
 
@@ -792,7 +828,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-transpiler-features" />
 
-<span id="id7" />
+<span id="id11" />
 
 ### Transpiler Features
 
@@ -988,7 +1024,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-visualization-features" />
 
-<span id="id8" />
+<span id="id12" />
 
 ### Visualization Features
 
@@ -1022,7 +1058,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-upgrade-notes" />
 
-<span id="id9" />
+<span id="id13" />
 
 ### Upgrade Notes
 
@@ -1034,7 +1070,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-circuits-upgrade-notes" />
 
-<span id="id10" />
+<span id="id14" />
 
 ### Circuits Upgrade Notes
 
@@ -1057,7 +1093,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-synthesis-upgrade-notes" />
 
-<span id="id11" />
+<span id="id15" />
 
 ### Synthesis Upgrade Notes
 
@@ -1069,7 +1105,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-transpiler-upgrade-notes" />
 
-<span id="id12" />
+<span id="id16" />
 
 ### Transpiler Upgrade Notes
 
@@ -1093,7 +1129,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-circuits-deprecations" />
 
-<span id="id13" />
+<span id="id17" />
 
 ### Circuits Deprecations
 
@@ -1124,7 +1160,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-bug-fixes" />
 
-<span id="id14" />
+<span id="id18" />
 
 ### Bug Fixes
 
@@ -1180,7 +1216,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-1-0rc1-other-notes" />
 
-<span id="id15" />
+<span id="id19" />
 
 ### Other Notes
 
@@ -1194,13 +1230,13 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 <span id="relnotes-2-0-0rc1" />
 
-<span id="id16" />
+<span id="id20" />
 
 ## 2.0.0rc1
 
 <span id="relnotes-2-0-0rc1-prelude" />
 
-<span id="id17" />
+<span id="id21" />
 
 ### Prelude
 
@@ -1231,7 +1267,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-new-features" />
 
-<span id="id18" />
+<span id="id22" />
 
 ### New Features
 
@@ -1276,7 +1312,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-circuits-features" />
 
-<span id="id19" />
+<span id="id23" />
 
 ### Circuits Features
 
@@ -1493,7 +1529,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-primitives-features" />
 
-<span id="id20" />
+<span id="id24" />
 
 ### Primitives Features
 
@@ -1518,7 +1554,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-quantum-information-features" />
 
-<span id="id21" />
+<span id="id25" />
 
 ### Quantum Information Features
 
@@ -1550,7 +1586,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-synthesis-features" />
 
-<span id="id22" />
+<span id="id26" />
 
 ### Synthesis Features
 
@@ -1575,7 +1611,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-transpiler-features" />
 
-<span id="id23" />
+<span id="id27" />
 
 ### Transpiler Features
 
@@ -1705,7 +1741,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-upgrade-notes" />
 
-<span id="id24" />
+<span id="id28" />
 
 ### Upgrade Notes
 
@@ -1727,7 +1763,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-circuits-upgrade-notes" />
 
-<span id="id25" />
+<span id="id29" />
 
 ### Circuits Upgrade Notes
 
@@ -1951,7 +1987,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-qpy-upgrade-notes" />
 
-<span id="id26" />
+<span id="id30" />
 
 ### QPY Upgrade Notes
 
@@ -1965,7 +2001,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-synthesis-upgrade-notes" />
 
-<span id="id27" />
+<span id="id31" />
 
 ### Synthesis Upgrade Notes
 
@@ -1975,7 +2011,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-transpiler-upgrade-notes" />
 
-<span id="id28" />
+<span id="id32" />
 
 ### Transpiler Upgrade Notes
 
@@ -2269,7 +2305,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-circuits-deprecations" />
 
-<span id="id29" />
+<span id="id33" />
 
 ### Circuits Deprecations
 
@@ -2289,7 +2325,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-2-0-0rc1-bug-fixes" />
 
-<span id="id30" />
+<span id="id34" />
 
 ### Bug Fixes
 
@@ -2411,13 +2447,13 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-1-3-0rc1" />
 
-<span id="id31" />
+<span id="id35" />
 
 ## 1.3.0rc1
 
 <span id="relnotes-1-3-0rc1-new-features" />
 
-<span id="id32" />
+<span id="id36" />
 
 ### New Features
 
@@ -2425,7 +2461,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-1-3-0rc1-circuits-features" />
 
-<span id="id33" />
+<span id="id37" />
 
 ### Circuits Features
 
@@ -2551,7 +2587,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-1-3-0rc1-openqasm-features" />
 
-<span id="id34" />
+<span id="id38" />
 
 ### OpenQASM Features
 
@@ -2559,7 +2595,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-1-3-0rc1-qpy-features" />
 
-<span id="id35" />
+<span id="id39" />
 
 ### QPY Features
 
@@ -2567,7 +2603,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-1-3-0rc1-quantum-information-features" />
 
-<span id="id36" />
+<span id="id40" />
 
 ### Quantum Information Features
 
@@ -2612,7 +2648,7 @@ For additional context and examples, refer to the [OpenQASM 3 language specifica
 
 <span id="relnotes-1-3-0rc1-synthesis-features" />
 
-<span id="id37" />
+<span id="id41" />
 
 ### Synthesis Features
 
@@ -2683,7 +2719,7 @@ $$
 
 <span id="relnotes-1-3-0rc1-transpiler-features" />
 
-<span id="id38" />
+<span id="id42" />
 
 ### Transpiler Features
 
@@ -2721,7 +2757,7 @@ $$
 
 <span id="relnotes-1-3-0rc1-visualization-features" />
 
-<span id="id39" />
+<span id="id43" />
 
 ### Visualization Features
 
@@ -2755,7 +2791,7 @@ $$
 
 <span id="relnotes-1-3-0rc1-upgrade-notes" />
 
-<span id="id40" />
+<span id="id44" />
 
 ### Upgrade Notes
 
@@ -2767,7 +2803,7 @@ $$
 
 <span id="relnotes-1-3-0rc1-circuits-upgrade-notes" />
 
-<span id="id41" />
+<span id="id45" />
 
 ### Circuits Upgrade Notes
 
@@ -2775,7 +2811,7 @@ $$
 
 <span id="relnotes-1-3-0rc1-qpy-upgrade-notes" />
 
-<span id="id42" />
+<span id="id46" />
 
 ### QPY Upgrade Notes
 
@@ -2783,7 +2819,7 @@ $$
 
 <span id="relnotes-1-3-0rc1-deprecation-notes" />
 
-<span id="id43" />
+<span id="id47" />
 
 ### Deprecation Notes
 
@@ -2793,7 +2829,7 @@ $$
 
 <span id="relnotes-1-3-0rc1-circuits-deprecations" />
 
-<span id="id44" />
+<span id="id48" />
 
 ### Circuits Deprecations
 
@@ -2877,7 +2913,7 @@ $$
 
 <span id="relnotes-1-3-0rc1-transpiler-deprecations" />
 
-<span id="id45" />
+<span id="id49" />
 
 ### Transpiler Deprecations
 
@@ -2953,7 +2989,7 @@ $$
 
 <span id="relnotes-1-3-0rc1-bug-fixes" />
 
-<span id="id46" />
+<span id="id50" />
 
 ### Bug Fixes
 
@@ -3013,7 +3049,7 @@ $$
 
 <span id="relnotes-1-3-0b1-new-features" />
 
-<span id="id47" />
+<span id="id51" />
 
 ### New Features
 
@@ -3046,7 +3082,7 @@ $$
 
 <span id="relnotes-1-3-0b1-circuits-features" />
 
-<span id="id48" />
+<span id="id52" />
 
 ### Circuits Features
 
@@ -3186,7 +3222,7 @@ $$
 
 <span id="relnotes-1-3-0b1-primitives-features" />
 
-<span id="id49" />
+<span id="id53" />
 
 ### Primitives Features
 
@@ -3226,7 +3262,7 @@ $$
 
 <span id="relnotes-1-3-0b1-openqasm-features" />
 
-<span id="id50" />
+<span id="id54" />
 
 ### OpenQASM Features
 
@@ -3238,7 +3274,7 @@ $$
 
 <span id="relnotes-1-3-0b1-qpy-features" />
 
-<span id="id51" />
+<span id="id55" />
 
 ### QPY Features
 
@@ -3246,7 +3282,7 @@ $$
 
 <span id="relnotes-1-3-0b1-synthesis-features" />
 
-<span id="id52" />
+<span id="id56" />
 
 ### Synthesis Features
 
@@ -3288,7 +3324,7 @@ $$
 
 <span id="relnotes-1-3-0b1-transpiler-features" />
 
-<span id="id53" />
+<span id="id57" />
 
 ### Transpiler Features
 
@@ -3391,7 +3427,7 @@ $$
 
 <span id="relnotes-1-3-0b1-visualization-features" />
 
-<span id="id54" />
+<span id="id58" />
 
 ### Visualization Features
 
@@ -3408,7 +3444,7 @@ $$
 
 <span id="relnotes-1-3-0b1-misc-features" />
 
-<span id="id55" />
+<span id="id59" />
 
 ### Misc. Features
 
@@ -3416,7 +3452,7 @@ $$
 
 <span id="relnotes-1-3-0b1-upgrade-notes" />
 
-<span id="id56" />
+<span id="id60" />
 
 ### Upgrade Notes
 
@@ -3424,7 +3460,7 @@ $$
 
 <span id="relnotes-1-3-0b1-circuits-upgrade-notes" />
 
-<span id="id57" />
+<span id="id61" />
 
 ### Circuits Upgrade Notes
 
@@ -3483,7 +3519,7 @@ $$
 
 <span id="relnotes-1-3-0b1-primitives-upgrade-notes" />
 
-<span id="id58" />
+<span id="id62" />
 
 ### Primitives Upgrade Notes
 
@@ -3493,7 +3529,7 @@ $$
 
 <span id="relnotes-1-3-0b1-providers-upgrade-notes" />
 
-<span id="id59" />
+<span id="id63" />
 
 ### Providers Upgrade Notes
 
@@ -3503,7 +3539,7 @@ $$
 
 <span id="relnotes-1-3-0b1-qpy-upgrade-notes" />
 
-<span id="id60" />
+<span id="id64" />
 
 ### QPY Upgrade Notes
 
@@ -3511,7 +3547,7 @@ $$
 
 <span id="relnotes-1-3-0b1-synthesis-upgrade-notes" />
 
-<span id="id61" />
+<span id="id65" />
 
 ### Synthesis Upgrade Notes
 
@@ -3521,7 +3557,7 @@ $$
 
 <span id="relnotes-1-3-0b1-transpiler-upgrade-notes" />
 
-<span id="id62" />
+<span id="id66" />
 
 ### Transpiler Upgrade Notes
 
@@ -3561,7 +3597,7 @@ $$
 
 <span id="relnotes-1-3-0b1-misc-upgrade-notes" />
 
-<span id="id63" />
+<span id="id67" />
 
 ### Misc. Upgrade Notes
 
@@ -3569,7 +3605,7 @@ $$
 
 <span id="relnotes-1-3-0b1-circuits-deprecations" />
 
-<span id="id64" />
+<span id="id68" />
 
 ### Circuits Deprecations
 
@@ -3627,7 +3663,7 @@ $$
 
 <span id="relnotes-1-3-0b1-providers-deprecations" />
 
-<span id="id65" />
+<span id="id69" />
 
 ### Providers Deprecations
 
@@ -3645,7 +3681,7 @@ $$
 
 <span id="relnotes-1-3-0b1-transpiler-deprecations" />
 
-<span id="id66" />
+<span id="id70" />
 
 ### Transpiler Deprecations
 
@@ -3705,7 +3741,7 @@ $$
 
 <span id="relnotes-1-3-0b1-visualization-deprecations" />
 
-<span id="id67" />
+<span id="id71" />
 
 ### Visualization Deprecations
 
@@ -3715,7 +3751,7 @@ $$
 
 <span id="relnotes-1-3-0b1-bug-fixes" />
 
-<span id="id68" />
+<span id="id72" />
 
 ### Bug Fixes
 
@@ -3854,13 +3890,13 @@ $$
 
 <span id="relnotes-1-1-0rc1" />
 
-<span id="id73" />
+<span id="id77" />
 
 ## 1.1.0rc1
 
 <span id="relnotes-1-1-0rc1-new-features" />
 
-<span id="id74" />
+<span id="id78" />
 
 ### New Features
 
@@ -4051,7 +4087,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-circuits-features" />
 
-<span id="id75" />
+<span id="id79" />
 
 ### Circuits Features
 
@@ -4144,7 +4180,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-primitives-features" />
 
-<span id="id76" />
+<span id="id80" />
 
 ### Primitives Features
 
@@ -4412,7 +4448,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-providers-features" />
 
-<span id="id77" />
+<span id="id81" />
 
 ### Providers Features
 
@@ -4428,7 +4464,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-quantum-information-features" />
 
-<span id="id78" />
+<span id="id82" />
 
 ### Quantum Information Features
 
@@ -4458,7 +4494,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-synthesis-features" />
 
-<span id="id79" />
+<span id="id83" />
 
 ### Synthesis Features
 
@@ -4485,7 +4521,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-transpiler-features" />
 
-<span id="id80" />
+<span id="id84" />
 
 ### Transpiler Features
 
@@ -4499,7 +4535,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-upgrade-notes" />
 
-<span id="id81" />
+<span id="id85" />
 
 ### Upgrade Notes
 
@@ -4509,7 +4545,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-circuits-upgrade-notes" />
 
-<span id="id82" />
+<span id="id86" />
 
 ### Circuits Upgrade Notes
 
@@ -4519,7 +4555,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-primitives-upgrade-notes" />
 
-<span id="id83" />
+<span id="id87" />
 
 ### Primitives Upgrade Notes
 
@@ -4527,7 +4563,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-synthesis-upgrade-notes" />
 
-<span id="id84" />
+<span id="id88" />
 
 ### Synthesis Upgrade Notes
 
@@ -4535,7 +4571,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-transpiler-upgrade-notes" />
 
-<span id="id85" />
+<span id="id89" />
 
 ### Transpiler Upgrade Notes
 
@@ -4543,7 +4579,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-deprecation-notes" />
 
-<span id="id86" />
+<span id="id90" />
 
 ### Deprecation Notes
 
@@ -4555,7 +4591,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-providers-deprecations" />
 
-<span id="id87" />
+<span id="id91" />
 
 ### Providers Deprecations
 
@@ -4579,7 +4615,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-transpiler-deprecations" />
 
-<span id="id88" />
+<span id="id92" />
 
 ### Transpiler Deprecations
 
@@ -4595,7 +4631,7 @@ $$
 
 <span id="relnotes-1-1-0rc1-bug-fixes" />
 
-<span id="id89" />
+<span id="id93" />
 
 ### Bug Fixes
 
@@ -4673,15 +4709,15 @@ $$
 
 <span id="relnotes-1-1-0rc1-other-notes" />
 
-<span id="id90" />
+<span id="id94" />
 
 ### Other Notes
 
-*   Support for the arm64 macOS platform has been promoted from Tier 3 to Tier 1. Previously the platform was at Tier 3 because there was no available CI environment for testing Qiskit on the platform. Now that Github has made an arm64 macOS environment available to open source projects <span id="id91" />[\[1\]](#id92) we’re testing the platform along with the other Tier 1 supported platforms.
+*   Support for the arm64 macOS platform has been promoted from Tier 3 to Tier 1. Previously the platform was at Tier 3 because there was no available CI environment for testing Qiskit on the platform. Now that Github has made an arm64 macOS environment available to open source projects <span id="id95" />[\[1\]](#id96) we’re testing the platform along with the other Tier 1 supported platforms.
 
-    <span id="id92" />
+    <span id="id96" />
 
-    \[[1](#id91)]
+    \[[1](#id95)]
 
     [https://github.blog/changelog/2024-01-30-github-actions-introducing-the-new-m1-macos-runner-available-to-open-source/](https://github.blog/changelog/2024-01-30-github-actions-introducing-the-new-m1-macos-runner-available-to-open-source/)
 
