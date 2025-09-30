@@ -192,7 +192,10 @@ async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
 
   const historicalFolders = (
     await readdir(`docs/api/${pkg.name}`, { withFileTypes: true })
-  ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
+  ).filter(
+    (file) =>
+      file.isDirectory() && (file.name.match(/[0-9].*/) || file.name === "dev"),
+  );
 
   for (let folder of historicalFolders) {
     const tocPath = `docs/api/${pkg.name}/${folder.name}/_toc.json`;
