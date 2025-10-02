@@ -95,6 +95,30 @@ qc.barrier()
     Stretch resolution equation:  $a + 8 + a + 8 + a + 8 = 100   =   3*a + 24$
 </Admonition>
 
+## View stretch values in Qiskit Runtime
+
+When using a Qiskit Runtime primitive, you can view the stretch values.  To view this data, enable its retrieval, then access the data directly from the metadata as follows:
+
+```python
+# enable stretch value retrieval
+sampler.options.experimental = {
+    "execution": {
+        "stretch_values": True,
+    },
+}
+
+# Access the stretch values from the metadata
+job_result: SamplerPubResult = job.result()
+    circuit_stretch_values = job_result[0].metadata["compilation"]["stretch_values"]
+```
+
+### Visualize the stretch values
+
+You can display the output figure, save it to a file, or both.
+
+- Run `fig.show()` display the figure.
+- Run `fig.write_image("<path.format>")` download the figure.  For example: `fig.write_html("scheduler_timing.html")` or `fig.write_image("scheduler_timing.png")`.
+
 ## Qiskit Runtime limitations
 
 Support for `stretch` in Qiskit Runtime is currently experimental and has the following constraints:
