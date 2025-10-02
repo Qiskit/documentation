@@ -184,13 +184,13 @@ def cancel_trailing_jobs(start_time: datetime) -> Result:
         if not job.in_final_state()
     ]
     if not jobs:
-        print(f'Killing trailing job:\n {jobs}')
         return Result(True)
 
     print(
         f"⚠️ Cancelling {len(jobs)} job(s) created after {start_time}.\n"
         "Add any notebooks that submit jobs to `notebooks-that-submit-jobs` in "
         f"`scripts/config/notebook-testing.toml`."
+        f"Killing trailing job:\n {jobs}"
     )
     for job in jobs:
         job.cancel()
