@@ -184,6 +184,7 @@ def cancel_trailing_jobs(start_time: datetime) -> Result:
         if not job.in_final_state()
     ]
     if not jobs:
+        print(f'Killing trailing job:\n {jobs}')
         return Result(True)
 
     print(
