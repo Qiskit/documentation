@@ -88,6 +88,7 @@ export const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/tutorials/global-data-quantum-optimizer.ipynb",
   "docs/tutorials/krylov-quantum-diagonalization.ipynb",
   "docs/tutorials/periodic-boundary-conditions-with-circuit-cutting.ipynb",
+  "docs/tutorials/transverse-field-ising-model.ipynb",
   "docs/tutorials/real-time-benchmarking-for-qubit-selection.ipynb",
   "docs/tutorials/sample-based-quantum-diagonalization.ipynb",
   "docs/tutorials/shors-algorithm.ipynb",

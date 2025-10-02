@@ -39,6 +39,7 @@ const SYNTHETIC_FILES: string[] = [
   "announcements/product-updates.mdx",
   "announcements/index.mdx",
   "announcements/product-updates/2025-03-03-new-version-dynamic-circuits.mdx",
+  "announcements/product-updates/2025-09-25-new-dynamic-circuits.mdx",
 ];
 
 interface Arguments {
@@ -230,6 +231,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.29/session.mdx",
     "docs/api/qiskit-ibm-runtime/0.30/runtime-job.mdx",
     "docs/api/qiskit-ibm-runtime/0.34/ibm-backend.mdx",
+    "docs/api/qiskit-ibm-runtime/0.41/runtime-job.mdx",
     // Used by the latest updates page.
     "docs/api/qiskit-ibm-runtime/0.40/ibm-backend.mdx",
     // These pages were removed in Qiskit 2.0.

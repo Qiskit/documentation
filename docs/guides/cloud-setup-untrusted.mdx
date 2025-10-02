@@ -18,6 +18,12 @@ Follow these instructions if you are working with IBM Cloud or the IBM Qiskit Ru
       If you accidentally share your key with someone or include it in version control like Git, immediately revoke your key by following the [Deleting an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) topic on IBM Cloud.
     </Admonition>
 
+<span id="access-credentials"></span>
+## Find your access credentials
+
+1. Find your API key (also referred to as an  _API token_). From the [dashboard](https://quantum.cloud.ibm.com/), create your API key, then copy it to a secure location so you can use it for authentication. The token will not be visible again. Note that you can use a single API key to connect to any region.
+2. Optional: Find the instance you want to use from the [Instances](https://quantum.cloud.ibm.com/instances) page. Hover over its CRN, click the icon to copy it, then save it in a secure location so you can use it to identify the instance.
+
 ## Authenticate to IBM Cloud in an untrusted environment
 
 To initialize the service in this situation, use code like the following:
@@ -28,7 +34,7 @@ To initialize the service in this situation, use code like the following:
     # Saved accounts are not used when a token is passed in. The service is initialized with credentials that are not saved.
     service = QiskitRuntimeService(
       # Delete your key on the API keys page after entering this code:
-      token="<IBM Cloud API key>",
+      token="<your-API-key>", # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
       # Optionally specify an instance to use
       instance="<IBM Cloud CRN or instance name>"
       )
@@ -38,16 +44,26 @@ To initialize the service in this situation, use code like the following:
 ## Authenticate to the REST API in an untrusted environment
 
 
-Follow these steps to use your API key directly to authenticate to the Qiskit Runtime REST API.
+Follow these steps to use your API key directly to authenticate to the Qiskit Runtime REST API, where `<your_API_KEY>` is the 44-character API_KEY you created and saved from your IBM Quantum Platform Home dashboard.
 
-1. Authenticate requests to the Qiskit Runtime REST API by including the CRN and bearer token to the request's headers.
+1. Use your API key to generate a [bearer token](/docs/api/qiskit-runtime-rest#authentication). A _bearer token_ is a temporary credential that expires after no more than one hour. After the acquired token expires, you must generate a new one to continue calling IBM Cloud or other service APIs. :
+  ```bash
+  curl -X POST 'https://iam.cloud.ibm.com/identity/token' \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d 'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=your_API_KEY'
+  ```
+  Copy and save the returned bearer token:  `"access_token": "<NEW_BEARER_TOKEN>"`
+1. Authenticate requests to the Qiskit Runtime REST API by including the CRN and bearer token in the request's headers.
 
-  ```python
-  # Refresh your API key on the dashboard after using the code as follows:
-  api_key = "<your-key>"
+  ```bash
+  curl -X 'GET' \
+     'https://quantum.cloud.ibm.com/api/v1/usage' \
+     '-H accept: application/json' \
+     '-H authorization: Bearer <BEARER_TOKEN>' \
+     '-H Service-CRN: <INSTANCE_CRN>'
   ```
 
-1. Change your API key after each use by following the [Deleting an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) instructions on IBM Cloud.
+1. Change your API key after each use by generating a new API key on the IBM Quantum Platform home page, or by following the [Deleting an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) instructions on IBM Cloud.
 
 ## Next steps
 

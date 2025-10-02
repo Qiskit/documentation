@@ -22,6 +22,7 @@ import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./conversionPipeline.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import { removePrefix } from "../stringUtils.js";
+import { generateReleaseNotesEntry, TocEntry } from "./generateToc.js";
 
 // ---------------------------------------------------------------------------
 // Generic release notes handling
@@ -108,7 +109,6 @@ export async function maybeUpdateReleaseNotesFolder(
   ) {
     return;
   }
-  addNewReleaseNotes(pkg);
   await updateHistoricalTocFiles(pkg);
   console.log("Generating release-notes/index");
   const indexMarkdown = generateReleaseNotesIndex(pkg);
@@ -116,17 +116,27 @@ export async function maybeUpdateReleaseNotesFolder(
 }
 
 /**
- * Check for markdown files in `docs/api/<pkg-name>/release-notes/,
- * then sort them and return the list of versions.
+ * For packages with separate release note pages, determine all the versions.
+ *
+ * This works by reading from the file-system and also considering the current
+ * version being generated. The file-system is how we determine the versions that
+ * are not being actively generated.
+ *
+ * Returns versions in descending order.
  */
-export const findSeparateReleaseNotesVersions = async (
+export async function determineReleaseNotesSeparetePagesVersions(
   pkgName: string,
-): Promise<string[]> => {
-  return (await $`ls docs/api/${pkgName}/release-notes`.quiet()).stdout
-    .trim()
-    .split("\n")
-    .map((x) => parse(x).name)
-    .filter((x) => x.match(/^\d/)) // remove index
+  versionWithoutPatch: string,
+): Promise<string[]> {
+  const versions = new Set(
+    (await $`ls docs/api/${pkgName}/release-notes`.quiet()).stdout
+      .trim()
+      .split("\n")
+      .map((x) => parse(x).name)
+      .filter((x) => x.match(/^\d/)), // remove index
+  );
+  versions.add(versionWithoutPatch);
+  return Array.from(versions)
     .sort((a: string, b: string) => {
       const aParts = a.split(".").map((x) => Number(x));
       const bParts = b.split(".").map((x) => Number(x));
@@ -141,16 +151,6 @@ export const findSeparateReleaseNotesVersions = async (
       return 0;
     })
     .reverse();
-};
-
-function addNewReleaseNotes(pkg: Pkg): void {
-  if (
-    pkg.releaseNotesConfig.separatePagesVersions[0] === pkg.versionWithoutPatch
-  ) {
-    // Entries already includes most recent release notes
-    return;
-  }
-  pkg.releaseNotesConfig.separatePagesVersions.unshift(pkg.versionWithoutPatch);
 }
 
 export function generateReleaseNotesIndex(pkg: Pkg): string {
@@ -170,9 +170,12 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
   const grouped = groupByMajorVersion(
     pkg.releaseNotesConfig.separatePagesVersions,
   );
-  for (const [majorVersion, versionList] of grouped) {
-    markdown += renderVersionGroup(majorVersion, versionList) + "\n\n";
-  }
+  [...grouped.entries()].forEach(([majorVersion, versionList], idx) => {
+    markdown +=
+      renderVersionGroup(majorVersion, versionList, {
+        isLatestVersion: idx === 0,
+      }) + "\n\n";
+  });
   return markdown.trim();
 }
 
@@ -183,44 +186,30 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
   console.log("Updating _toc.json files for the historical versions");
 
-  const historicalFolders = (
-    await readdir(`docs/api/${pkg.name}`, { withFileTypes: true })
-  ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
-
-  for (let folder of historicalFolders) {
-    let tocFile = await readFile(
-      `docs/api/${pkg.name}/${folder.name}/_toc.json`,
-      {
-        encoding: "utf8",
-      },
-    );
-
-    let jsonData = JSON.parse(tocFile);
-
-    // Add the new version if necessary
-    for (let child of jsonData.children) {
-      if (child.title == "Release notes") {
-        addNewReleaseNoteToc(child, pkg.versionWithoutPatch);
-      }
-    }
-
-    await writeFile(
-      `docs/api/${pkg.name}/${folder.name}/_toc.json`,
-      JSON.stringify(jsonData, null, 2) + "\n",
+  const maybeReleaseNotesEntry = generateReleaseNotesEntry(pkg);
+  if (!maybeReleaseNotesEntry) {
+    throw new Error(
+      `Assertion error: could not generate release notes TOC entry for '${pkg.name}'.`,
     );
   }
-}
 
-/**
- * Adds a new entry for the current API version to the JSON list of release notes
- */
-function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
-  // Add the current API version in the second position of the list
-  if (releaseNotesNode.children[0].title != newVersion) {
-    releaseNotesNode.children.unshift({
-      title: newVersion,
-      url: `${DOCS_BASE_PATH}/api/qiskit/release-notes/${newVersion}`,
+  const historicalFolders = (
+    await readdir(`docs/api/${pkg.name}`, { withFileTypes: true })
+  ).filter(
+    (file) =>
+      file.isDirectory() && (file.name.match(/[0-9].*/) || file.name === "dev"),
+  );
+
+  for (let folder of historicalFolders) {
+    const tocPath = `docs/api/${pkg.name}/${folder.name}/_toc.json`;
+    const rawToc = await readFile(tocPath, {
+      encoding: "utf8",
     });
+    const tocJson = JSON.parse(rawToc);
+    tocJson.children = tocJson.children.map((child: TocEntry) =>
+      child.title === "Release notes" ? maybeReleaseNotesEntry : child,
+    );
+    await writeFile(tocPath, JSON.stringify(tocJson, null, 2) + "\n");
   }
 }
 
@@ -286,12 +275,17 @@ export function groupByMajorVersion(versions: string[]): Map<string, string[]> {
   return sortedRecord;
 }
 
-function renderVersionGroup(majorVersion: string, versions: string[]): string {
+function renderVersionGroup(
+  majorVersion: string,
+  versions: string[],
+  kwargs: { isLatestVersion?: boolean } = {},
+): string {
   const items = versions
     .map((version) => `- [v${version}](./${version})`)
     .join("\n");
+  const openAttr = kwargs.isLatestVersion ? " open" : "";
   return `
-<details>
+<details${openAttr}>
 <summary>v${majorVersion}</summary>
 ${items}
 </details>
