@@ -96,7 +96,7 @@ def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
             if config.check_pending_deprecations:
                 warning_filter = "import warnings as _warnings \
                 \n_warnings.simplefilter('default', category=PendingDeprecationWarning) \
-                \n_warnings.filter(action='ignore', category=Warning, module='qiskit_ibm_runtime', message='Loading default saved account')
+                \n_warnings.filter(action='ignore', category=Warning, module='qiskit_ibm_runtime', message='Loading default saved account')"
             pre_execute_code = PRE_EXECUTE_CODE + warning_filter
 
             patch = config.get_patch_for_group(group)
