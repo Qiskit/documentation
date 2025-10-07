@@ -360,7 +360,7 @@ test.describe("relativizeLink()", () => {
   );
 
   [
-    ["/docs", "/docs"],
+    ["https://quantum.cloud.ibm.com/docs", "/docs"],
     [
       "/docs/api/qiskit/qiskit.transpiler.CouplingMap",
       "/docs/api/qiskit/qiskit.transpiler.CouplingMap",

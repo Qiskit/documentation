@@ -169,9 +169,7 @@ export function relativizeLink(link: Link): Link | undefined {
     ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],
     ["https://docs.quantum.ibm.com/", ""],
     ["https://docs.quantum-computing.ibm.com/", ""],
-    ["https://quantum.cloud.ibm.com/", ""], // ✅ New domain added
-    ["/docs", "/docs"],
-    ["/learning", "/learning"],
+    ["https://quantum.cloud.ibm.com/", "/"], // ✅ New domain added
   ]);
 
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>

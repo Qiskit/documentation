@@ -65,7 +65,7 @@ const SYNTHETIC_FILES: string[] = [
   "computers?processorType=Heron.mdx",
   "functions?id=q-ctrl-optimization-solver.mdx",
   "scripts/js/lib/links/ignores.ts",
-  "./index.mdx",
+  "./index.mdx", // This entry is for links to /
   "computers?processorType=Eagle.mdx",
 ];
 
