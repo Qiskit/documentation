@@ -169,18 +169,22 @@ export function relativizeLink(link: Link): Link | undefined {
     ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],
     ["https://docs.quantum.ibm.com/", ""],
     ["https://docs.quantum-computing.ibm.com/", ""],
-    ["https://quantum.cloud.ibm.com/docs", "/docs"],
-    ["https://quantum.cloud.ibm.com/learning", "/learning"],
+    ["https://quantum.cloud.ibm.com/", ""], // ✅ New domain added
+    ["/docs", "/docs"],
+    ["/learning", "/learning"],
   ]);
+
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
     link.url.startsWith(prefix),
   );
   if (!priorPrefix) {
     return;
   }
+
   let [url, anchor] = link.url.split("#");
   url = removePrefix(url, priorPrefix);
   url = removeSuffix(url, ".html");
+
   if (anchor && anchor !== url) {
     url = `${url}#${anchor}`;
   }
@@ -188,6 +192,7 @@ export function relativizeLink(link: Link): Link | undefined {
   const newText = link.url === link.text ? url : undefined;
   const newPrefix = priorPrefixToNewPrefix.get(priorPrefix)!;
   const relativeUrl = removePrefix(join(newPrefix, url), "/");
+
   return { url: `/${relativeUrl}`, text: newText };
 }
 

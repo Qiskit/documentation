@@ -14,7 +14,7 @@ This guide explains the changes to the REST API and provides suggestions on how 
 <Admonition type="caution">
 The new Qiskit Runtime REST API uses the following URL. When you call the API, you can no longer use https://api.quantum-computing.ibm.com/runtime or https://us-east.quantum-computing.cloud.ibm.com/. Instead, use:
 ```
-https://quantum.cloud.ibm.com/api/
+/api/
 ```
 </Admonition>
 
@@ -23,11 +23,11 @@ https://quantum.cloud.ibm.com/api/
 <span id="from-runtime-cloud"></span>
 ## Migrate from the Qiskit Runtime on IBM Cloud REST API
 If you are moving from the [Qiskit Runtime on IBM Cloud REST API](/docs/api/qiskit-runtime-rest), not much has changed for you. The following points are all you need to consider:
-* When you call the API, instead of using `https://us-east.quantum-computing.cloud.ibm.com/` you must use: `https://quantum.cloud.ibm.com/api/`.
+* When you call the API, instead of using `https://us-east.quantum-computing.cloud.ibm.com/` you must use: `/api/`.
 * All existing endpoints are the same, but now have `/v1/` in front.  For example, `/jobs` becomes `/v1/jobs`.
 * There is also one new endpoint: `/v1/versions`.
 
-For the whole schema, see the [Qiskit Runtime API.](https://quantum.cloud.ibm.com/api/docs/)
+For the whole schema, see the [Qiskit Runtime API.](/api/docs/)
 
 <span id="from-classic"></span>
 ## Migrate from the Qiskit Runtime REST API on IBM Quantum Platform Classic
@@ -71,7 +71,7 @@ Use the response property `expires_in` in the API response to identify the lengt
 
 ```bash
 curl -X 'GET' \
-   'https://quantum.cloud.ibm.com/api/v1/analytics/usage' \
+   '/api/v1/analytics/usage' \
    -H 'accept: application/json' \
    -H 'Authorization: Bearer <BEARER_TOKEN>' \
    -H 'Service-CRN: crn:v1:bluemix:public:quantum-computing:us-east:a/b947c1c5a9378d64aed96696e4d76e8e:a3a7f181-35aa-42c8-94d6-7c8ed6e1a94b::'
@@ -81,7 +81,7 @@ curl -X 'GET' \
 
 Many of the endpoints from the REST API on IBM Quantum Platform Classic have either changed or been removed because of this merge. The following sections list the endpoints that are changing, and provide a suggested replacement (if applicable).
 
-For the whole schema, see the [Qiskit Runtime API.](https://quantum.cloud.ibm.com/api/docs/)
+For the whole schema, see the [Qiskit Runtime API.](/api/docs/)
 
 #### Changes to account- and instance-related endpoints
 

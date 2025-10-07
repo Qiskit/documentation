@@ -180,6 +180,12 @@ export class InternalLink {
   check(existingFiles: File[]): string | undefined {
     const failingFiles: string[] = [];
     this.originFiles.forEach((originFile) => {
+      const possiblePaths = this.possibleFilePaths(originFile);
+
+      // 🔍 Log the link and its possible resolutions
+      console.log(`🔗 Link: '${this.value}' from '${originFile}'`);
+      console.log(`🧭 Possible paths:`, possiblePaths);
+
       if (this.isValid(existingFiles, originFile)) {
         return;
       }
