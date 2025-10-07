@@ -66,6 +66,7 @@ const SYNTHETIC_FILES: string[] = [
   "functions?id=q-ctrl-optimization-solver.mdx",
   "scripts/js/lib/links/ignores.ts",
   "./index.mdx",
+  "computers?processorType=Eagle.mdx",
 ];
 
 interface Arguments {
