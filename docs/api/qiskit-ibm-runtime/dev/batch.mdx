@@ -68,7 +68,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   **Parameters**
 
-  *   **backend** ([*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v2.1)")) – Instance of `Backend` class.
+  *   **backend** ([*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v2.2)")) – Instance of `Backend` class.
   *   **max\_time** (*int | str | None*) – Maximum amount of time a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/docs/guides/max-execution-time).
   *   **create\_new** (*bool | None*) – If True, the POST session API endpoint will be called to create a new session. Prevents creating a new session when `from_id()` is called.
 
@@ -165,8 +165,17 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### from\_id
 
-  <Function id="qiskit_ibm_runtime.Batch.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L320-L373" signature="from_id(session_id, service)" modifiers="classmethod">
-    Construct a Session object with a given session\_id
+  <Function id="qiskit_ibm_runtime.Batch.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L320-L382" signature="from_id(session_id, service)" modifiers="classmethod">
+    Construct a Session object with a given `session_id`. For example:
+
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService, Session
+    service = QiskitRuntimeService()
+    job = service.job(<job_id>)
+    existing_session_id = job.session_id
+
+    new_session = Session.from_id(existing_session_id, service)
+    ```
 
     **Parameters**
 
