@@ -362,11 +362,14 @@ test.describe("relativizeLink()", () => {
   [
     ["https://quantum.cloud.ibm.com/docs", "/docs"],
     [
-      "/docs/api/qiskit/qiskit.transpiler.CouplingMap",
+      "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap",
       "/docs/api/qiskit/qiskit.transpiler.CouplingMap",
     ],
-    ["/learning", "/learning"],
-    ["/learning/courses/page", "/learning/courses/page"],
+    ["https://quantum.cloud.ibm.com/learning", "/learning"],
+    [
+      "https://quantum.cloud.ibm.com/learning/courses/page",
+      "/learning/courses/page",
+    ],
   ].forEach(([input, expected]) =>
     test(`relativize quantum.cloud.ibm.com links - ${input}`, () => {
       expect(relativizeLink({ url: input })).toEqual({ url: expected });
