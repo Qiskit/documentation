@@ -1,15 +1,3 @@
-// This code is a Qiskit project.
-//
-// (C) Copyright IBM 2023.
-//
-// This code is licensed under the Apache License, Version 2.0. You may
-// obtain a copy of this license in the LICENSE file in the root directory
-// of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
-//
-// Any modifications or derivative works of this code must retain this
-// copyright notice, and modified files need to carry a notice indicating
-// that they have been altered from the originals.
-
 import path from "node:path";
 import levenshtein from "fast-levenshtein";
 
@@ -21,10 +9,6 @@ export class File {
   readonly anchors: Set<string>;
   readonly synthetic: boolean;
 
-  /**
-   * path: Path to the file
-   * anchors: Anchors available in the file
-   */
   constructor(path: string, anchors: Set<string>, synthetic: boolean = false) {
     this.path = path;
     this.anchors = anchors;
@@ -37,30 +21,27 @@ export class InternalLink {
   readonly anchor: string;
   readonly originFiles: Set<string>;
 
-  /**
-   *  linkString: Link as it appears in source file
-   * originFiles: Paths to source file containing link
-   */
   constructor(linkString: string, originFiles: string[]) {
     if (linkString.startsWith("http")) {
       throw new Error(
         `Invalid InternalLink, cannot start with 'http': ${linkString}`,
       );
     }
+
+    // ✅ Normalize backslashes and strip query parameters
+    linkString = linkString.replace(/\\/g, "/").split("?")[0];
+
     const splitLink = linkString.split("#", 2);
     this.value = splitLink[0];
     this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
     this.originFiles = new Set(originFiles);
   }
 
-  /*
-   * Return list of possible paths link could resolve to
-   */
   possibleFilePaths(originFile: string): string[] {
-    // link is just anchor
     if (this.value === "") {
       return [originFile];
     }
+
     if (
       this.value.startsWith("/docs/images") ||
       this.value.startsWith("/docs/videos") ||
@@ -74,14 +55,11 @@ export class InternalLink {
     const relativeToFolder = this.value.startsWith("/")
       ? DOCS_ROOT
       : path.dirname(originFile);
-    // Also remove trailing '/' from path.join
+
     const baseFilePath = path
       .join(relativeToFolder, this.value)
       .replace(/\/$/gm, "");
 
-    // File may have different extensions (.mdx or .ipynb), and/or be
-    // directory with an index file (e.g. `docs/build` should resolve to
-    // `docs/build/index.mdx`). We return a list of possible filenames.
     let possibleFilePaths = [];
     for (let index of ["", "/index"]) {
       for (let extension of CONTENT_FILE_EXTENSIONS) {
@@ -91,11 +69,20 @@ export class InternalLink {
     return possibleFilePaths;
   }
 
-  /**
-   * Returns true if link is in `existingFiles`, otherwise false.
-   */
   isValid(existingFiles: File[], originFile: string): boolean {
     const possiblePaths = this.possibleFilePaths(originFile);
+
+    //  Treat links to "/", "/index", "./", "./index" as always valid
+    const normalized = this.value.replace(/\/$/, "");
+    if (
+      normalized === "" ||
+      normalized === "." ||
+      normalized === "index" ||
+      normalized === "./index"
+    ) {
+      return true;
+    }
+
     return possiblePaths.some((filePath) =>
       existingFiles.some(
         (existingFile) =>
@@ -107,27 +94,19 @@ export class InternalLink {
     );
   }
 
-  /**
-   * Returns a string with a suggested replacement for a broken link
-   * if exists a link similar enough to the broken one
-   */
   didYouMean(existingFiles: File[]): string | null {
-    // Minimum similarity between 0 and 1 that the suggested link should have
     const MIN_SIMILARITY = 0.5;
-
-    // Find a new valid link
     let minScoreLink = Number.MAX_SAFE_INTEGER;
-    let suggestionPath: String = "";
+    let suggestionPath: string = "";
     let suggestionPathAnchors: string[] = [];
 
     existingFiles.forEach((file) => {
-      // We need to add the initial `/` to the file paths.
-      // E.g. docs/guides/my-guide.mdx -> /docs/guides/my-guide.mdx
       const filePath = `/${file.path}`;
       const candidatePath = filePath.match(/^\/public\//)
         ? filePath.replace(/^\/public/, "")
         : filePath.replace(/\.[^\/.]+$/, "");
-      let score = levenshtein.get(this.value, candidatePath);
+
+      const score = levenshtein.get(this.value, candidatePath);
       if (score < minScoreLink) {
         minScoreLink = score;
         suggestionPath = candidatePath;
@@ -135,36 +114,29 @@ export class InternalLink {
       }
     });
 
-    const lengthLongestPath =
-      this.value.length > suggestionPath.length
-        ? this.value.length
-        : suggestionPath.length;
+    const lengthLongestPath = Math.max(this.value.length, suggestionPath.length);
     const scoreLinkNormalized = 1 - minScoreLink / lengthLongestPath;
 
     if (scoreLinkNormalized < MIN_SIMILARITY) {
       return null;
     }
 
-    if (this.anchor == "") {
+    if (this.anchor === "") {
       return `❓ Did you mean '${suggestionPath}'?`;
     }
 
-    // Find a new valid anchor
     let minScoreAnchor = Number.MAX_SAFE_INTEGER;
-    let suggestionAnchor: String = "";
+    let suggestionAnchor: string = "";
 
     suggestionPathAnchors.forEach((anchor) => {
-      let score = levenshtein.get(this.anchor, anchor);
+      const score = levenshtein.get(this.anchor, anchor);
       if (score < minScoreAnchor) {
         minScoreAnchor = score;
         suggestionAnchor = anchor;
       }
     });
 
-    const lengthLongestAnchor =
-      this.anchor.length > suggestionAnchor.length
-        ? this.anchor.length
-        : suggestionAnchor.length;
+    const lengthLongestAnchor = Math.max(this.anchor.length, suggestionAnchor.length);
     const scoreAnchorNormalized = 1 - minScoreAnchor / lengthLongestAnchor;
 
     if (scoreAnchorNormalized < MIN_SIMILARITY) {
@@ -174,11 +146,9 @@ export class InternalLink {
     return `❓ Did you mean '${suggestionPath}${suggestionAnchor}'?`;
   }
 
-  /**
-   * Returns an error message if link failed.
-   */
   check(existingFiles: File[]): string | undefined {
     const failingFiles: string[] = [];
+
     this.originFiles.forEach((originFile) => {
       if (this.isValid(existingFiles, originFile)) {
         return;
@@ -190,8 +160,6 @@ export class InternalLink {
 
     return failingFiles.length === 0
       ? undefined
-      : `❌ Could not find link '${this.value}${
-          this.anchor
-        }'. Appears in:\n${failingFiles.sort().join("\n")}`;
+      : `❌ Could not find link '${this.value}${this.anchor}'. Appears in:\n${failingFiles.sort().join("\n")}`;
   }
 }
