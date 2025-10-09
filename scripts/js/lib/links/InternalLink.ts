@@ -1,3 +1,15 @@
+// This code is a Qiskit project.
+//
+// (C) Copyright IBM 2023.
+//
+// This code is licensed under the Apache License, Version 2.0. You may
+// obtain a copy of this license in the LICENSE file in the root directory
+// of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+//
+// Any modifications or derivative works of this code must retain this
+// copyright notice, and modified files need to carry a notice indicating
+// that they have been altered from the originals.
+
 import path from "node:path";
 import levenshtein from "fast-levenshtein";
 
@@ -69,6 +81,10 @@ export class InternalLink {
     return possibleFilePaths;
   }
 
+  /**
+   * Returns true if link is in `existingFiles`, otherwise false.
+   */
+
   isValid(existingFiles: File[], originFile: string): boolean {
     const possiblePaths = this.possibleFilePaths(originFile);
 
@@ -94,6 +110,11 @@ export class InternalLink {
     );
   }
 
+  /**
+   * Returns a string with a suggested replacement for a broken link
+   * if exists a link similar enough to the broken one
+   */
+
   didYouMean(existingFiles: File[]): string | null {
     const MIN_SIMILARITY = 0.5;
     let minScoreLink = Number.MAX_SAFE_INTEGER;
@@ -114,7 +135,10 @@ export class InternalLink {
       }
     });
 
-    const lengthLongestPath = Math.max(this.value.length, suggestionPath.length);
+    const lengthLongestPath = Math.max(
+      this.value.length,
+      suggestionPath.length,
+    );
     const scoreLinkNormalized = 1 - minScoreLink / lengthLongestPath;
 
     if (scoreLinkNormalized < MIN_SIMILARITY) {
@@ -136,7 +160,10 @@ export class InternalLink {
       }
     });
 
-    const lengthLongestAnchor = Math.max(this.anchor.length, suggestionAnchor.length);
+    const lengthLongestAnchor = Math.max(
+      this.anchor.length,
+      suggestionAnchor.length,
+    );
     const scoreAnchorNormalized = 1 - minScoreAnchor / lengthLongestAnchor;
 
     if (scoreAnchorNormalized < MIN_SIMILARITY) {
@@ -145,6 +172,10 @@ export class InternalLink {
 
     return `❓ Did you mean '${suggestionPath}${suggestionAnchor}'?`;
   }
+
+  /**
+   * Returns an error message if link failed.
+   */
 
   check(existingFiles: File[]): string | undefined {
     const failingFiles: string[] = [];
