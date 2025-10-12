@@ -84,13 +84,13 @@ export LD_LIBRARY_PATH=/path/to/dist/c/lib:$LD_LIBRARY_PATH
 ```
 On MacOS:
 ```bash
-export DYLD_LIBRARY_PATH=/path/to/dist/c/lib:$DYLD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=/path/to/dist/c/lib:/path/to/python/lib:$DYLD_LIBRARY_PATH
 ```
 Alternatively, you can set the runtime library path during compilation by adding
 ```
--Wl,-rpath,/path/to/dist/c/lib
+-Wl,-rpath,/path/to/dist/c/lib -Wl,-rpath,/path/to/python/lib
 ```
-to the compiler flags.
+to the compiler flags. This ensures your program can find both the Qiskit library and the required Python libraries (such as libpython3.xx.dylib).
 
 Now you can execute the binary:
 ```bash
