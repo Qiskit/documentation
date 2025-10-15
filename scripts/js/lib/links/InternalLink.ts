@@ -17,7 +17,9 @@ const DOCS_ROOT = "./";
 const CONTENT_FILE_EXTENSIONS = [".mdx", ".ipynb"];
 
 function toPosixPath(p: string): string {
-  return p.replace(/\\/g, "/").replace(/^([A-Za-z]):/, (_, drive) => `/${drive.toLowerCase()}`);
+  return p
+    .replace(/\\/g, "/")
+    .replace(/^([A-Za-z]):/, (_, drive) => `/${drive.toLowerCase()}`);
 }
 
 export class File {
@@ -73,16 +75,16 @@ export class InternalLink {
       this.value.startsWith("/learning/videos") ||
       this.value.endsWith(".pdf")
     ) {
-      return [(path.posix.join("public", this.value)).toLowerCase()];
+      return [path.posix.join("public", this.value).toLowerCase()];
     }
 
     const relativeToFolder = this.value.startsWith("/")
       ? DOCS_ROOT
       : path.posix.dirname(originFile);
     // Also remove trailing '/' from path.join
-    const baseFilePath =(path.posix
+    const baseFilePath = path.posix
       .join(relativeToFolder, this.value)
-      .replace(/\/$/gm, ""))
+      .replace(/\/$/gm, "");
 
     // File may have different extensions (.mdx or .ipynb), and/or be
     // directory with an index file (e.g. `docs/build` should resolve to
