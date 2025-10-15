@@ -16,6 +16,10 @@ import levenshtein from "fast-levenshtein";
 const DOCS_ROOT = "./";
 const CONTENT_FILE_EXTENSIONS = [".mdx", ".ipynb"];
 
+function toPosixPath(p: string): string {
+  return p.replace(/\\/g, "/").replace(/^([A-Za-z]):/, (_, drive) => `/${drive.toLowerCase()}`);
+}
+
 export class File {
   readonly path: string;
   readonly anchors: Set<string>;
@@ -26,7 +30,7 @@ export class File {
    * anchors: Anchors available in the file
    */
   constructor(path: string, anchors: Set<string>, synthetic: boolean = false) {
-    this.path = path;
+    this.path = toPosixPath(path);
     this.anchors = anchors;
     this.synthetic = synthetic;
   }
@@ -48,15 +52,16 @@ export class InternalLink {
       );
     }
     const splitLink = linkString.split("#", 2);
-    this.value = splitLink[0];
+    this.value = toPosixPath(splitLink[0]);
     this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
-    this.originFiles = new Set(originFiles);
+    this.originFiles = new Set(originFiles.map(toPosixPath));
   }
 
   /*
    * Return list of possible paths link could resolve to
    */
   possibleFilePaths(originFile: string): string[] {
+    originFile = toPosixPath(originFile);
     // link is just anchor
     if (this.value === "") {
       return [originFile];
@@ -68,16 +73,16 @@ export class InternalLink {
       this.value.startsWith("/learning/videos") ||
       this.value.endsWith(".pdf")
     ) {
-      return [path.join("public/", this.value)];
+      return [(path.posix.join("public", this.value)).toLowerCase()];
     }
 
     const relativeToFolder = this.value.startsWith("/")
       ? DOCS_ROOT
-      : path.dirname(originFile);
+      : path.posix.dirname(originFile);
     // Also remove trailing '/' from path.join
-    const baseFilePath = path
+    const baseFilePath =(path.posix
       .join(relativeToFolder, this.value)
-      .replace(/\/$/gm, "");
+      .replace(/\/$/gm, ""))
 
     // File may have different extensions (.mdx or .ipynb), and/or be
     // directory with an index file (e.g. `docs/build` should resolve to
@@ -95,11 +100,12 @@ export class InternalLink {
    * Returns true if link is in `existingFiles`, otherwise false.
    */
   isValid(existingFiles: File[], originFile: string): boolean {
+    const normalize = (p: string) => toPosixPath(p).toLowerCase();
     const possiblePaths = this.possibleFilePaths(originFile);
     return possiblePaths.some((filePath) =>
       existingFiles.some(
         (existingFile) =>
-          existingFile.path == filePath &&
+          normalize(existingFile.path) == normalize(filePath) &&
           (this.anchor == "" ||
             existingFile.synthetic == true ||
             existingFile.anchors.has(this.anchor)),
