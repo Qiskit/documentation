@@ -185,10 +185,15 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     ADDON_GLOBS_TO_LOAD,
     { check: args.historicalApis },
   );
+  const utils = await determineHistoricalFileBatches(
+    "qiskit-addon-utils",
+    ADDON_GLOBS_TO_LOAD,
+    { check: args.historicalApis },
+  );
 
   // This is intentionally ordered so that the smallest APIs are checked first,
   // since they are much faster to check.
-  result.push(...transpiler, ...sqd, ...mpf, ...runtime, ...qiskit);
+  result.push(...transpiler, ...sqd, ...mpf, ...utils, ...runtime, ...qiskit);
 
   if (args.qiskitLegacyReleaseNotes) {
     result.push(await determineQiskitLegacyReleaseNotes());
