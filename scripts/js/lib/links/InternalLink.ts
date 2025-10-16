@@ -57,7 +57,6 @@ export class InternalLink {
    * Return list of possible paths link could resolve to
    */
   possibleFilePaths(originFile: string): string[] {
-    originFile = originFile;
     // link is just anchor
     if (this.value === "") {
       return [originFile];
