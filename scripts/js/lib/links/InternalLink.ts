@@ -16,12 +16,6 @@ import levenshtein from "fast-levenshtein";
 const DOCS_ROOT = "./";
 const CONTENT_FILE_EXTENSIONS = [".mdx", ".ipynb"];
 
-function toPosixPath(p: string): string {
-  return p
-    .replace(/\\/g, "/")
-    .replace(/^([A-Za-z]):/, (_, drive) => `/${drive.toLowerCase()}`);
-}
-
 export class File {
   readonly path: string;
   readonly anchors: Set<string>;
@@ -32,7 +26,7 @@ export class File {
    * anchors: Anchors available in the file
    */
   constructor(path: string, anchors: Set<string>, synthetic: boolean = false) {
-    this.path = toPosixPath(path);
+    this.path = path;
     this.anchors = anchors;
     this.synthetic = synthetic;
   }
@@ -54,16 +48,16 @@ export class InternalLink {
       );
     }
     const splitLink = linkString.split("#", 2);
-    this.value = toPosixPath(splitLink[0]);
+    this.value = splitLink[0];
     this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
-    this.originFiles = new Set(originFiles.map(toPosixPath));
+    this.originFiles = new Set(originFiles);
   }
 
   /*
    * Return list of possible paths link could resolve to
    */
   possibleFilePaths(originFile: string): string[] {
-    originFile = toPosixPath(originFile);
+    originFile = originFile;
     // link is just anchor
     if (this.value === "") {
       return [originFile];
@@ -75,7 +69,7 @@ export class InternalLink {
       this.value.startsWith("/learning/videos") ||
       this.value.endsWith(".pdf")
     ) {
-      return [path.posix.join("public", this.value).toLowerCase()];
+      return [path.posix.join("public/", this.value)];
     }
 
     const relativeToFolder = this.value.startsWith("/")
@@ -102,12 +96,11 @@ export class InternalLink {
    * Returns true if link is in `existingFiles`, otherwise false.
    */
   isValid(existingFiles: File[], originFile: string): boolean {
-    const normalize = (p: string) => toPosixPath(p).toLowerCase();
     const possiblePaths = this.possibleFilePaths(originFile);
     return possiblePaths.some((filePath) =>
       existingFiles.some(
         (existingFile) =>
-          normalize(existingFile.path) == normalize(filePath) &&
+          existingFile.path == filePath &&
           (this.anchor == "" ||
             existingFile.synthetic == true ||
             existingFile.anchors.has(this.anchor)),
