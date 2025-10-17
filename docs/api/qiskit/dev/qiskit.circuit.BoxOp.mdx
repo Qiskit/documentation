@@ -23,7 +23,7 @@ python_api_name: qiskit.circuit.BoxOp
 
   **Parameters**
 
-  *   **body** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the circuit to use as the body of the box. This should explicit close over any [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") variables that must be incident from the outer circuit. The expected number of qubit and clbits for the resulting instruction are inferred from the number in the circuit, even if they are idle.
+  *   **body** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the circuit to use as the body of the box. This should explicitly close over any [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") variables that must be incident from the outer circuit. The required number of qubit and clbits for the resulting instruction are inferred from the number in the circuit, even if they are idle.
   *   **duration** (*None*) – an optional duration for the box as a whole.
   *   **unit** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.14)")*\['dt', 's', 'ms', 'us', 'ns', 'ps', 'expr'] | None*) – the unit of the `duration`.
   *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – an optional string label for the instruction.
@@ -61,7 +61,7 @@ python_api_name: qiskit.circuit.BoxOp
   <Attribute id="qiskit.circuit.BoxOp.body">
     The `body` [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") of the operation.
 
-    This is the same as object returned as the sole entry in [`params()`](#qiskit.circuit.BoxOp.params "qiskit.circuit.BoxOp.params") and [`blocks()`](#qiskit.circuit.BoxOp.blocks "qiskit.circuit.BoxOp.blocks").
+    This is the same object returned as the sole entry in [`params()`](#qiskit.circuit.BoxOp.params "qiskit.circuit.BoxOp.params") and [`blocks()`](#qiskit.circuit.BoxOp.blocks "qiskit.circuit.BoxOp.blocks").
   </Attribute>
 
   ### decompositions
@@ -307,7 +307,7 @@ python_api_name: qiskit.circuit.BoxOp
   ### validate\_parameter
 
   <Function id="qiskit.circuit.BoxOp.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L281-L283" signature="validate_parameter(parameter)">
-    Instruction parameters has no validation or normalization.
+    Instruction parameter has no validation or normalization.
   </Function>
 </Class>
 
