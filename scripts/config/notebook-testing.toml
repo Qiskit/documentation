@@ -92,15 +92,13 @@ notebooks = [
     "docs/guides/run-jobs-session.ipynb",
     "docs/guides/primitive-input-output.ipynb",
     "docs/guides/add-job-tags.ipynb",
+    "docs/guides/visualize-circuit-timing.ipynb",
 ]
 
 # Only run the following notebooks in our fortnightly cron job on real hardware.
 [groups.cron-job-only]
 test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
-    # The following notebook requires real hardware to run because of the `compilation` key word.
-    "docs/guides/visualize-circuit-timing.ipynb",
-
     "docs/tutorials/hello-world.ipynb",
     # The following notebook takes >300s to run and should be executed in the
     # cron job. Even though it does not use real hardware
