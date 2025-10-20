@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { join } from "path";
+import path from "node:path";
 import { initial, keyBy, keys, last } from "lodash-es";
 import { Root } from "mdast";
 import { visit } from "unist-util-visit";
@@ -187,7 +187,7 @@ export function relativizeLink(link: Link): Link | undefined {
 
   const newText = link.url === link.text ? url : undefined;
   const newPrefix = priorPrefixToNewPrefix.get(priorPrefix)!;
-  const relativeUrl = removePrefix(join(newPrefix, url), "/");
+  const relativeUrl = removePrefix(path.posix.join(newPrefix, url), "/");
   return { url: `/${relativeUrl}`, text: newText };
 }
 
