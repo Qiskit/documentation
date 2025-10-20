@@ -166,7 +166,7 @@ For all of these reasons, serialization and deserialization of annotations is ha
 
 A principal goal of the annotation framework is to allow custom analyses and commands to be stored on circuits in an instruction-local manner, either by the user on entry to the compiler, or for one compiler pass to store information for later consumption.
 
-For example, we can write a simple transpiler pass that collects runs of single-qubit operations, and puts each run into a [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp"), the calculates the total unitary action and attaches it as a custom annotation, so the same analysis does not need to be repeated later, even if the internals of each block are optimized.
+For example, we can write a simple transpiler pass that collects runs of single-qubit operations, and puts each run into a [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp"), then calculates the total unitary action and attaches it as a custom annotation, so the same analysis does not need to be repeated later, even if the internals of each block are optimized.
 
 ```python
 from qiskit.circuit import annotation, QuantumCircuit, BoxOp
