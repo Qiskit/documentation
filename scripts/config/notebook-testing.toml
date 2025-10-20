@@ -65,7 +65,6 @@ test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
     "docs/guides/specify-runtime-options.ipynb",
     "docs/guides/visualize-results.ipynb",
-    "docs/guides/visualize-circuit-timing.ipynb",
 ]
 
 # Mock the following notebooks in our extended checks using IBM Quantum's
@@ -99,6 +98,9 @@ notebooks = [
 [groups.cron-job-only]
 test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
+    # The following notebook requires real hardware to run because of the `compilation` key word.
+    "docs/guides/visualize-circuit-timing.ipynb",
+
     "docs/tutorials/hello-world.ipynb",
     # The following notebook takes >300s to run and should be executed in the
     # cron job. Even though it does not use real hardware
