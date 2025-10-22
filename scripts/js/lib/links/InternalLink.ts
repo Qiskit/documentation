@@ -68,14 +68,14 @@ export class InternalLink {
       this.value.startsWith("/learning/videos") ||
       this.value.endsWith(".pdf")
     ) {
-      return [path.join("public/", this.value)];
+      return [path.posix.join("public/", this.value)];
     }
 
     const relativeToFolder = this.value.startsWith("/")
       ? DOCS_ROOT
-      : path.dirname(originFile);
+      : path.posix.dirname(originFile);
     // Also remove trailing '/' from path.join
-    const baseFilePath = path
+    const baseFilePath = path.posix
       .join(relativeToFolder, this.value)
       .replace(/\/$/gm, "");
 

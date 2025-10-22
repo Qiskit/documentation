@@ -95,6 +95,26 @@ qc.barrier()
     Stretch resolution equation:  $a + 8 + a + 8 + a + 8 = 100   =   3*a + 24$
 </Admonition>
 
+## View stretch values in Qiskit Runtime
+
+The concrete value of a stretch duration is resolved at compile time, after the circuit is scheduled. When running a Sampler job in Qiskit Runtime, you can view the resolved stretch values in the job result metadata.  Support for `stretch` in Qiskit Runtime is currently experimental, so you need to first set an experimental option to enable its retrieval, then access the data directly from the metadata as follows:
+
+```python
+# enable stretch value retrieval
+sampler.options.experimental = {
+    "execution": {
+        "stretch_values": True,
+    },
+}
+
+# Access the stretch values from the metadata
+job_result = job.result()
+circuit_stretch_values = job_result[0].metadata["compilation"]["stretch_values"]
+```
+<Admonition type="note">
+Although the total circuit time is returned, this is NOT the time used for billing (quantum time).
+</Admonition>
+
 ## Qiskit Runtime limitations
 
 Support for `stretch` in Qiskit Runtime is currently experimental and has the following constraints:
