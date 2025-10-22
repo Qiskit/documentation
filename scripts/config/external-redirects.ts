@@ -12,7 +12,7 @@ export const externalRedirects = {
   "https://docs.quantum.ibm.com/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager":
     "https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager",
   "https://docs.quantum.ibm.com/api/qiskit/providers#migrating-from-backendv1-to-backendv2":
-    "https://docs.quantum.ibm.com/migration-guides/qiskit-backendv1-to-v2",
+    "https://docs.quantum.ibm.com/guides/qiskit-backendv1-to-v2",
   ...Object.fromEntries(
     QISKIT_REMOVED_PAGES.map((link) => [
       `https://docs.quantum.ibm.com/api/qiskit/${link}`,

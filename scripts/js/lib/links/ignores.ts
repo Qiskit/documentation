@@ -369,11 +369,11 @@ function _patternsReorg(): FilesToIgnores {
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v1.mdx`,
-        ["/docs/api/migration-guides/v2-primitives"],
+        ["/docs/api/guides/v2-primitives"],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v1.mdx`,
-        ["/docs/api/migration-guides/v2-primitives"],
+        ["/docs/api/guides/v2-primitives"],
       ],
       [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/docs/run"]],
       [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/docs/run"]],
