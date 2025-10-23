@@ -131,7 +131,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/configure-qiskit-local.mdx",
   "docs/guides/transpiler-stages.ipynb",
   "docs/api/qiskit/providers.mdx",
-  "docs/open-source/qiskit-sdk-version-strategy.mdx",
+  "docs/guides/qiskit-sdk-version-strategy.mdx",
   "docs/migration-guides/qiskit-backendv1-to-v2.mdx",
   "docs/guides/install-qiskit.mdx",
   "docs/api/qiskit-c/index.mdx",
