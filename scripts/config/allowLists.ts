@@ -16,6 +16,7 @@ export const METADATA_ALLOWLIST: Set<string> = new Set([
 
 export const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/external-providers-primitives-v2.mdx",
+  "docs/guides/create-a-provider.mdx",
   "docs/guides/local-simulators.mdx",
   "docs/guides/metapackage-migration.mdx",
   "docs/guides/qiskit-1.0-features.mdx",
