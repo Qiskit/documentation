@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.Target
 
 # Target
 
-<Class id="qiskit.transpiler.Target" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L93-L945" signature="qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None)" modifiers="class">
+<Class id="qiskit.transpiler.Target" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L93-L958" signature="qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None, **_subclass_kwargs)" modifiers="class">
   Bases: `BaseTarget`
 
   The intent of the `Target` object is to inform Qiskit’s compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. It currently contains a description of instructions on a backend and their properties as well as some timing information. However, this exact interface may evolve over time as the needs of the compiler change. These changes will be done in a backwards compatible and controlled manner when they are made (either through versioning, subclassing, or mixins) to add on to the set of information exposed by a target.
@@ -78,30 +78,102 @@ python_api_name: qiskit.transpiler.Target
   This class can be queried via the mapping protocol, using the instruction’s name as a key. You can modify any property for an instruction via the [`update_instruction_properties()`](#qiskit.transpiler.Target.update_instruction_properties "qiskit.transpiler.Target.update_instruction_properties") method. Modification via the mapping protocol or mutating the attributes of a [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") object is **not** supported and doing so will invalidate the internal state of the object.
 
   <Admonition title="Note" type="note">
-    This class assumes that qubit indices start at 0 and are a contiguous set if you want a submapping the bits will need to be reindexed in a new\`\`Target\`\` object.
+    This class assumes that qubit indices start at 0 and are a contiguous set if you want a submapping the bits will need to be reindexed in a new [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") object.
   </Admonition>
 
   <Admonition title="Note" type="note">
     This class only supports additions of gates, qargs, and properties. If you need to remove one of these the best option is to iterate over an existing object and create a new subset (or use one of the methods to do this). The object internally caches different views and these would potentially be invalidated by removals.
   </Admonition>
 
-  Create a new `Target` object
+  ## Subclassing
 
-  **Parameters**
+  While it is technically possible to subclass [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target"), beware that the majority of the built-in information is in Rust and is queried from Rust in built-in transpiler passes. Python-space overrides are not visible to Rust, and you should not rely on these to change the behavior of Qiskit’s built-in transpiler passes. [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") is largely supposed to be a representation of a QPU that has specialized *constructors*, not specialized subclasses; the usual API for constructing a [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") should be a function that returns a base [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target"), not a subclass with a custom initializer.
 
-  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – An optional string to describe the Target.
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – An optional int to specify the number of qubits the backend target has. If not set it will be implicitly set based on the qargs when `add_instruction()` is called. Note this must be set if the backend target is for a noiseless simulator that doesn’t have constraints on the instructions so the transpiler knows how many qubits are available.
-  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – The system time resolution of input signals in seconds
-  *   **granularity** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – An integer value representing minimum pulse gate resolution in units of `dt`. A user-defined pulse gate should have duration of a multiple of this granularity value.
-  *   **min\_length** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – An integer value representing minimum pulse gate length in units of `dt`. A user-defined pulse gate should be longer than this length.
-  *   **pulse\_alignment** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – An integer value representing a time resolution of gate instruction starting time. Gate instruction should start at time which is a multiple of the alignment value.
-  *   **acquire\_alignment** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – An integer value representing a time resolution of measure instruction starting time. Measure instruction should start at time which is a multiple of the alignment value.
-  *   **qubit\_properties** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – A list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects defining the characteristics of each qubit on the target device. If specified the length of this list must match the number of qubits in the target, where the index in the list matches the qubit number the properties are defined for. If some qubits don’t have properties available you can set that entry to `None`
-  *   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – A list of sets of qubits that must be measured together. This must be provided as a nested list like `[[0, 1], [2, 3, 4]]`.
+  You may use subclassing to add *addition* Python-space properties to your [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target"), for example to then interpret in custom backend-specific transpiler stages; the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") is passed to stage-plugin constructors.
 
-  **Raises**
+  You should not subclass [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") to attempt to modify the behavior of Qiskit’s built-in passes; the Python-space subclassing will not be seen by passes written in Rust.
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If both `num_qubits` and `qubit_properties` are both defined and the value of `num_qubits` differs from the length of `qubit_properties`.
+  Further, as the core of [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") is written in Rust, it uses [`__new__()`](https://docs.python.org/3/reference/datamodel.html#object.__new__ "(in Python v3.14)") as its initializer, and you must ensure that the correct arguments are passed through to the underlying implementation. If you override the signature of the [`__init__()`](https://docs.python.org/3/reference/datamodel.html#object.__init__ "(in Python v3.14)") method, you must also include an override of [`__new__()`](https://docs.python.org/3/reference/datamodel.html#object.__new__ "(in Python v3.14)") with the same signature, which calls `super().__new__()` in a correct manner.
+
+  Create a new [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") object.
+
+  **param description**
+
+  An optional string to describe the Target.
+
+  **type description**
+
+  str
+
+  **param num\_qubits**
+
+  An optional int to specify the number of qubits the backend target has. This is not a hard limit on the construction; any call to [`add_instruction()`](#qiskit.transpiler.Target.add_instruction "qiskit.transpiler.Target.add_instruction") will cause the set num\_qubits to update to accommodate any concrete `qargs` in the given properties.
+
+  This can be explicitly set to `None` to indicate a [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") representing a simulator or other abstract machine that imposes no limits on the number of qubits. In this case, all instructions added to the target should be global (with `properties=None` or `properties={None: None}`).
+
+  **type num\_qubits**
+
+  int
+
+  **param dt**
+
+  The system time resolution of input signals in seconds
+
+  **type dt**
+
+  float
+
+  **param granularity**
+
+  An integer value representing minimum pulse gate resolution in units of `dt`. A user-defined pulse gate should have duration of a multiple of this granularity value.
+
+  **type granularity**
+
+  int
+
+  **param min\_length**
+
+  An integer value representing minimum pulse gate length in units of `dt`. A user-defined pulse gate should be longer than this length.
+
+  **type min\_length**
+
+  int
+
+  **param pulse\_alignment**
+
+  An integer value representing a time resolution of gate instruction starting time. Gate instruction should start at time which is a multiple of the alignment value.
+
+  **type pulse\_alignment**
+
+  int
+
+  **param acquire\_alignment**
+
+  An integer value representing a time resolution of measure instruction starting time. Measure instruction should start at time which is a multiple of the alignment value.
+
+  **type acquire\_alignment**
+
+  int
+
+  **param qubit\_properties**
+
+  A list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects defining the characteristics of each qubit on the target device. If specified the length of this list must match the number of qubits in the target, where the index in the list matches the qubit number the properties are defined for. If some qubits don’t have properties available you can set that entry to `None`
+
+  **type qubit\_properties**
+
+  list
+
+  **param concurrent\_measurements**
+
+  A list of sets of qubits that must be measured together. This must be provided as a nested list like `[[0, 1], [2, 3, 4]]`.
+
+  **type concurrent\_measurements**
+
+  list
+
+  **raises ValueError**
+
+  If both `num_qubits` and `qubit_properties` are both defined and the value of `num_qubits` differs from the length of `qubit_properties`.
 
   ## Attributes
 
@@ -179,7 +251,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### add\_instruction
 
-  <Function id="qiskit.transpiler.Target.add_instruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L356-L456" signature="add_instruction(instruction, properties=None, name=None, *, angle_bounds=None)">
+  <Function id="qiskit.transpiler.Target.add_instruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L369-L469" signature="add_instruction(instruction, properties=None, name=None, *, angle_bounds=None)">
     Add a new instruction to the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target")
 
     As `Target` objects are strictly additive this is the primary method for modifying a `Target`. Typically, you will use this to fully populate a `Target` before using it in [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2"). For example:
@@ -219,7 +291,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### build\_coupling\_map
 
-  <Function id="qiskit.transpiler.Target.build_coupling_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L610-L676" signature="build_coupling_map(two_q_gate=None, filter_idle_qubits=False)">
+  <Function id="qiskit.transpiler.Target.build_coupling_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L623-L689" signature="build_coupling_map(two_q_gate=None, filter_idle_qubits=False)">
     Get a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") from this target.
 
     If there is a mix of two qubit operations that have a connectivity constraint and those that are globally defined this will also return `None` because the globally connectivity means there is no constraint on the target. If you wish to see the constraints of the two qubit operations that have constraints you should use the `two_q_gate` argument to limit the output to the gates which have a constraint.
@@ -247,7 +319,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### durations
 
-  <Function id="qiskit.transpiler.Target.durations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L491-L506" signature="durations()">
+  <Function id="qiskit.transpiler.Target.durations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L504-L519" signature="durations()">
     Get an InstructionDurations object from the target
 
     **Returns**
@@ -263,7 +335,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### from\_configuration
 
-  <Function id="qiskit.transpiler.Target.from_configuration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L778-L945" signature="from_configuration(basis_gates, num_qubits=None, coupling_map=None, instruction_durations=None, concurrent_measurements=None, dt=None, timing_constraints=None, custom_name_mapping=None)" modifiers="classmethod">
+  <Function id="qiskit.transpiler.Target.from_configuration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L791-L958" signature="from_configuration(basis_gates, num_qubits=None, coupling_map=None, instruction_durations=None, concurrent_measurements=None, dt=None, timing_constraints=None, custom_name_mapping=None)" modifiers="classmethod">
     Create a target object from the individual global configuration
 
     Prior to the creation of the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") class, the constraints of a backend were represented by a collection of different objects which combined represent a subset of the information contained in the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target"). This function provides a simple interface to convert those separate objects to a [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target").
@@ -316,13 +388,13 @@ python_api_name: qiskit.transpiler.Target
 
   ### get
 
-  <Function id="qiskit.transpiler.Target.get" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L692-L697" signature="get(key, default=None)">
+  <Function id="qiskit.transpiler.Target.get" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L705-L710" signature="get(key, default=None)">
     Gets an item from the Target. If not found return a provided default or None.
   </Function>
 
   ### get\_non\_global\_operation\_names
 
-  <Function id="qiskit.transpiler.Target.get_non_global_operation_names" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L316-L343" signature="get_non_global_operation_names(strict_direction=False)">
+  <Function id="qiskit.transpiler.Target.get_non_global_operation_names" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L329-L356" signature="get_non_global_operation_names(strict_direction=False)">
     Return the non-global operation names for the target
 
     The non-global operations are those in the target which don’t apply on all qubits (for single qubit operations) or all multi-qubit qargs (for multi-qubit operations).
@@ -356,7 +428,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### instruction\_properties
 
-  <Function id="qiskit.transpiler.Target.instruction_properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L538-L576" signature="instruction_properties(index)">
+  <Function id="qiskit.transpiler.Target.instruction_properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L551-L589" signature="instruction_properties(index)">
     Get the instruction properties for a specific instruction tuple
 
     This method is to be used in conjunction with the [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") attribute of a [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") object. You can use this method to quickly get the instruction properties for an element of [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") by using the index in that list. However, if you’re not working with [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") directly it is likely more efficient to access the target directly via the name and qubits to get the instruction properties. For example, if [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") returned:
@@ -435,13 +507,13 @@ python_api_name: qiskit.transpiler.Target
 
   ### items
 
-  <Function id="qiskit.transpiler.Target.items" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L713-L715" signature="items()">
+  <Function id="qiskit.transpiler.Target.items" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L726-L728" signature="items()">
     Returns pairs of Gate names and its property map (str, dict\[tuple, InstructionProperties])
   </Function>
 
   ### keys
 
-  <Function id="qiskit.transpiler.Target.keys" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L705-L707" signature="keys()">
+  <Function id="qiskit.transpiler.Target.keys" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L718-L720" signature="keys()">
     Return the keys (operation\_names) of the Target
   </Function>
 
@@ -509,7 +581,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### qargs\_for\_operation\_name
 
-  <Function id="qiskit.transpiler.Target.qargs_for_operation_name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L479-L489" signature="qargs_for_operation_name(operation)">
+  <Function id="qiskit.transpiler.Target.qargs_for_operation_name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L492-L502" signature="qargs_for_operation_name(operation)">
     Get the qargs for a given operation name
 
     **Parameters**
@@ -527,7 +599,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### seconds\_to\_dt
 
-  <Function id="qiskit.transpiler.Target.seconds_to_dt" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L766-L776" signature="seconds_to_dt(duration)">
+  <Function id="qiskit.transpiler.Target.seconds_to_dt" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L779-L789" signature="seconds_to_dt(duration)">
     Convert a given duration in seconds to units of dt
 
     **Parameters**
@@ -569,7 +641,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### timing\_constraints
 
-  <Function id="qiskit.transpiler.Target.timing_constraints" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L508-L516" signature="timing_constraints()">
+  <Function id="qiskit.transpiler.Target.timing_constraints" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L521-L529" signature="timing_constraints()">
     Get an `TimingConstraints` object from the target
 
     **Returns**
@@ -583,7 +655,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### update\_instruction\_properties
 
-  <Function id="qiskit.transpiler.Target.update_instruction_properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L458-L477" signature="update_instruction_properties(instruction, qargs, properties)">
+  <Function id="qiskit.transpiler.Target.update_instruction_properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L471-L490" signature="update_instruction_properties(instruction, qargs, properties)">
     Update the property object for an instruction qarg pair already in the Target.
 
     For ease of access, a user is able to obtain the mapping between an instruction’s applicable qargs and its instruction properties via the mapping protocol (using `__getitem__`), with the instruction’s name as the key. This method is the only way to modify/update the properties of an instruction in the `Target`. Usage of the mapping protocol for modifications is not supported.
@@ -601,8 +673,20 @@ python_api_name: qiskit.transpiler.Target
 
   ### values
 
-  <Function id="qiskit.transpiler.Target.values" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L709-L711" signature="values()">
+  <Function id="qiskit.transpiler.Target.values" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L722-L724" signature="values()">
     Return the Property Map (qargs -> InstructionProperties) of every instruction in the Target
   </Function>
+
+  **Parameters**
+
+  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) –
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) –
+  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)") *| None*) –
+  *   **granularity** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
+  *   **min\_length** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
+  *   **pulse\_alignment** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
+  *   **acquire\_alignment** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
+  *   **qubit\_properties** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") *| None*) –
+  *   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") *| None*) –
 </Class>
 

@@ -142,7 +142,7 @@ export class Pkg {
     if (name === "qiskit-ibm-transpiler") {
       return new Pkg({
         ...args,
-        title: "Qiskit Transpiler Service client",
+        title: "Qiskit Transpiler Service",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
         kebabCaseAndShortenUrls: true,
         language: "Python",
