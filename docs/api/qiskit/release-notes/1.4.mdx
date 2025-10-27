@@ -14,15 +14,45 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 1.4.5
+
+<span id="relnotes-1-4-5-prelude" />
+
+### Prelude
+
+Qiskit v1.4.5 is the last bugfix release in the 1.4 series and marks the end-of-life of the series. Support for security fixes in the 1.4 series will be continued until March 31st, 2026.
+
+<span id="relnotes-1-4-5-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed the handling of anonymous bits in circuit visualization. Previously, bits that were not associated to a register would be displayed with the default Python representation, whereas now they show the index in a readable fashion. Fixed [#14031](https://github.com/Qiskit/qiskit/issues/14031).
+
+*   Fixed an issue in the [`Optimize1qGatesDecomposition`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition") when the pass was initialized with a [`Target`](/docs/api/qiskit/1.4/qiskit.transpiler.Target "qiskit.transpiler.Target") that contains 1q gates with fixed angle parameters. Previously, the pass would potentially output gates outside the target as it wasn’t checking that the gate in the target supported arbitrary parameter values. Fixed [#14743](https://github.com/Qiskit/qiskit/issues/14743).
+
+*   Fixed incorrect behavior in the [`BasisTranslator`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") pass where a multi-qubit gate within a [`ControlFlowOp`](/docs/api/qiskit/1.4/qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") block would track the supported operation with its local qubit indices instead of using the absolute indices of the outer circuit. Fixed [#13728](https://github.com/Qiskit/qiskit/issues/13728).
+
+*   Fixed a bug in [`HighLevelSynthesis`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis"), where custom gate calibrations were not recognized if the gate appeared nested inside other instruction objects. Partially fixed [#13728](https://github.com/Qiskit/qiskit/issues/13728).
+
+*   Fixed a failure in the circuit text drawer, which could occur when circuit blocks inside control flow operations were defined on different registers than the outer circuit. This situation could for example happen when appending [`ControlFlowOp`](/docs/api/qiskit/1.4/qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") operations directly, or for circuits after transpilation.
+
+<span id="relnotes-1-4-4" />
+
+<span id="id2" />
+
 ## 1.4.4
 
 <span id="relnotes-1-4-4-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
 Qiskit v1.4.4 is a minor bugfix release for the v1.4.x release series.
 
 <span id="relnotes-1-4-4-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
@@ -48,13 +78,13 @@ Qiskit v1.4.4 is a minor bugfix release for the v1.4.x release series.
 
 <span id="relnotes-1-4-3" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 1.4.3
 
 <span id="relnotes-1-4-3-prelude" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### Prelude
 
@@ -62,7 +92,7 @@ Qiskit v1.4.3 is a minor bugfix release for the v1.4.x release series.
 
 <span id="relnotes-1-4-3-bug-fixes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Bug Fixes
 
@@ -84,13 +114,13 @@ Qiskit v1.4.3 is a minor bugfix release for the v1.4.x release series.
 
 <span id="relnotes-1-4-2" />
 
-<span id="id5" />
+<span id="id8" />
 
 ## 1.4.2
 
 <span id="relnotes-1-4-2-prelude" />
 
-<span id="id6" />
+<span id="id9" />
 
 ### Prelude
 
@@ -116,7 +146,7 @@ Qiskit 1.4.2 is a patch release that fixes bugs found in the 1.4 release series.
 
 <span id="relnotes-1-4-2-bug-fixes" />
 
-<span id="id7" />
+<span id="id10" />
 
 ### Bug Fixes
 
@@ -124,13 +154,13 @@ Qiskit 1.4.2 is a patch release that fixes bugs found in the 1.4 release series.
 
 <span id="relnotes-1-4-1" />
 
-<span id="id8" />
+<span id="id11" />
 
 ## 1.4.1
 
 <span id="relnotes-1-4-1-prelude" />
 
-<span id="id9" />
+<span id="id12" />
 
 ### Prelude
 
@@ -138,7 +168,7 @@ Qiskit 1.4.1 is a small patch release, fixing some bugs found in the 1.4 extende
 
 <span id="relnotes-1-4-1-bug-fixes" />
 
-<span id="id10" />
+<span id="id13" />
 
 ### Bug Fixes
 
@@ -161,13 +191,13 @@ Qiskit 1.4.1 is a small patch release, fixing some bugs found in the 1.4 extende
 
 <span id="relnotes-1-4-0" />
 
-<span id="id11" />
+<span id="id14" />
 
 ## 1.4.0
 
 <span id="relnotes-1-4-0-prelude" />
 
-<span id="id12" />
+<span id="id15" />
 
 ### Prelude
 
@@ -307,7 +337,7 @@ The Qiskit v1.4 release is the final minor version release for the v1.x series. 
 
 <span id="relnotes-1-4-0-bug-fixes" />
 
-<span id="id13" />
+<span id="id16" />
 
 ### Bug Fixes
 

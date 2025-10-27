@@ -20,8 +20,7 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
   from qiskit.circuit.library import RZGate
   from qiskit.dagcircuit import DAGCircuit
   from qiskit.transpiler.passes import WrapAngles
-  from qiskit.transpiler.target import Target
-  from qiskit.transpiler import WrapAngleRegistry
+  from qiskit.transpiler import Target, WrapAngleRegistry
 
   param = Parameter("a")
   circuit = QuantumCircuit(1)
@@ -52,8 +51,13 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
 
   **Parameters**
 
-  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") that
-  *   **registry** ([*WrapAngleRegistry*](qiskit.transpiler.WrapAngleRegistry "qiskit.transpiler.WrapAngleRegistry")) – The registry of wrapping functions used by the pass to wrap the angles of a gate. If not specified the global `WRAP_ANGLE_REGISTRY` object defined in this module will be used. Unless you are planning to run this pass standalone or are building a custom [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") including this pass you will want to rely on `WRAP_ANGLE_REGISTRY`.
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target QPU.
+
+  *   **registry** ([*WrapAngleRegistry*](qiskit.transpiler.WrapAngleRegistry "qiskit.transpiler.WrapAngleRegistry")) –
+
+      The registry of wrapping functions used by the pass to wrap the angles of a gate. If not specified the global [`WRAP_ANGLE_REGISTRY`](transpiler_passes#qiskit.transpiler.passes.qiskit.transpiler.passes.utils.wrap_angles.WRAP_ANGLE_REGISTRY "qiskit.transpiler.passes.qiskit.transpiler.passes.utils.wrap_angles.WRAP_ANGLE_REGISTRY") object will be used.
+
+      Unless you are planning to run this pass standalone or are building a custom [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") including this pass you will want to rely on [`WRAP_ANGLE_REGISTRY`](transpiler_passes#qiskit.transpiler.passes.qiskit.transpiler.passes.utils.wrap_angles.WRAP_ANGLE_REGISTRY "qiskit.transpiler.passes.qiskit.transpiler.passes.utils.wrap_angles.WRAP_ANGLE_REGISTRY").
 
   ## Attributes
 
@@ -82,9 +86,9 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -92,7 +96,7 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -102,7 +106,7 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
   </Function>
 
   ### run
@@ -116,7 +120,7 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – when this is left unimplemented for a pass.
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.14)") – when this is left unimplemented for a pass.
   </Function>
 
   ### update\_status
