@@ -602,16 +602,16 @@ $$
 
 ### qk\_transpiler\_pass\_standalone\_vf2\_layout
 
-<Function id="qk_transpiler_pass_standalone_vf2_layout" signature="QkVF2LayoutResult *qk_transpiler_pass_standalone_vf2_layout(const QkCircuit *circuit, const QkTarget *target, bool strict_direction, int64_t call_limit, double time_limit, int64_t max_trials)">
-  Run the VF2Layout pass on a circuit.
+<Function id="qk_transpiler_pass_standalone_vf2_layout" signature="QkVF2LayoutResult *qk_transpiler_pass_standalone_vf2_layout(const QkCircuit *circuit, const QkTarget *target, const QkVF2LayoutConfiguration *config, bool strict_direction)">
+  Use the VF2 algorithm to choose a layout (if possible) for the input circuit, using a noise-aware scoring heuristic based only on hardware error rates, and not the specific gates in the circuit.
 
-  VF2Layout is a pass for choosing a layout of a circuit onto a connectivity graph as a subgraph isomorphism problem solved by VF2.
+  This function corresponds to the Python-space `VF2Layout` pass.
+
+  This function is suitable for use on circuits that have not yet been fully lowered to hardware. If your circuit has already been completely lowered to hardware and you are looking to *improve* the layout for an exact interaction graph, use `qk_transpile_pass_standalone_vf2_layout_exact` instead.
 
   If this pass finds a solution that means there is a “perfect layout” and that no further swap mapping or routing is needed. However, there is not always a possible solution, or a solution might exist but it is not found within the limits specified when the pass is called.
 
-  By default, this pass will construct a heuristic scoring map based on the error rates in the provided `target` argument. The function will continue searching for layouts and use the heuristic scoring to return the layout which will run with the best estimated fidelity.
-
-  <span id="group__QkTranspilerPasses_1autotoc_md188" />
+  <span id="group__QkTranspilerPasses_1autotoc_md193" />
 
   #### Example
 
@@ -633,26 +633,27 @@ $$
           qk_circuit_gate(qc, QkGate_CX, qargs, NULL);
       }
   }
-  QkVF2LayoutResult *layout_result = qk_transpiler_pass_standalone_vf2_layout(qc, target, false, -1, NAN, -1);
+  QkVF2LayoutConfiguration *config = qk_vf2_layout_configuration_new();
+  qk_vf2_layout_configuration_set_call_limit(config, 10000);
+  QkVF2LayoutResult *layout_result = qk_transpiler_pass_standalone_vf2_layout(qc, target, config, false);
   qk_vf2_layout_result_free(layout_result);
+  qk_vf2_layout_configuration_free(config);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md189" />
+  <span id="group__QkTranspilerPasses_1autotoc_md194" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md189" />
+  <span id="group__QkTranspilerPasses_1autotoc_md194" />
 
-  Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`.
+  Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`. Behavior is undefined if `config` is a non-null pointer that does not point to a valid `QkVF2LayoutConfiguration` object (but a null pointer is fine).
 
   **Parameters**
 
   *   **circuit** – A pointer to the circuit to run VF2Layout on
   *   **target** – A pointer to the target to run the VF2Layout pass on
-  *   **strict\_direction** – If true the pass will consider the edge direction in the connectivity described in the `target`. Typically setting this to `false` is desirable as an undirected search has more degrees of freedom and is more likely to find a layout (or a better layout if there are multiple choices) and correcting directionality is a simple operation for later transpilation stages.
-  *   **call\_limit** – The number of state visits to attempt in each execution of the VF2 algorithm. If the value is set to a negative value the VF2 algorithm will run without any limit.
-  *   **time\_limit** – The total time in seconds to run for `VF2Layout`. This is checked after each layout search so it is not a hard time limit, but a soft limit that when checked if the set time has elapsed the function will return the best layout it has found so far. Set this to a value less than or equal to 0.0 to run without any time limit.
-  *   **max\_trials** – The maximum number of trials to run the VF2 algorithm to try and find layouts. If the value is negative this will be treated as unbounded which means the algorithm will run until all possible layouts are scored. If the value is 0 the number of trials will be limited based on the number of edges in the interaction or the coupling graph (whichever is larger).
+  *   **config** – A pointer to the `QkVF2LayoutConfiguration` configuration structure. If this pointer is null, the pass defaults are used.
+  *   **strict\_direction** – If `true`, the pass will consider the edge direction in the connectivity described in the `target`. Typically, setting this to `false` is desireable as the error heuristic is already very approximate, and two-qubit gates can almost invariably be synthesised to “flip” direction using only local one-qubit gates and the native-direction two-qubit gate.
 
   **Returns**
 
