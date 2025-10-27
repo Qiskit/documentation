@@ -52,7 +52,6 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/docs/guides/cloud-setup-untrusted",
   "/docs/guides/cloud-setup-invited",
   "/docs/guides/cloud-setup-rest-api",
-  "/docs/support/execution-modes-faq",
 ]);
 
 // URLs that show up in the INDEX_PAGES >1 time.
