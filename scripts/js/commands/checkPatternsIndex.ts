@@ -29,6 +29,7 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/docs/guides/manage-cost",
   "/docs/guides/execution-modes-faq",
   "/docs/guides/faq",
+  "/docs/guides/execution-modes-faq",
   "/docs/guides/open-source",
 ]);
 
