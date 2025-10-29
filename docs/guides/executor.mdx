@@ -14,24 +14,28 @@ The Executor primitive and its supporting tools are designed for quantum informa
 
 In this initial release, Executor support focuses mostly on Pauli twirling, noise model learning and injection, and basis changes. Other support capabilities will be added gradually over time.
 
+## Samplomatic
+
+The Executor primitive works in the context of the [Samplomatic](https://github.com/Qiskit/samplomatic/) package, which is a library that supports customized sampling randomizations.
+
+Samplomatic uses box instructions to reason about collections of circuit operations that should be treated as having a stable noise context, and uses annotations on boxes to allow users to declare and configure intent. Every box is a scope that owns a set of qubits, operations that act on those qubits, and a list of annotations. 
+
+Samplomatic annotations specify *directives* and *dressings*. Directives specify what to do with the box (for example, twirl the box). Dressings are groups of parameterized gates to add to the left or right side of the box (for example, a layer of single-qubit gates).
+
+The core type of the Samplomatic library is the `Samplex` class. This object represents a parametric probability distribution over the parameters of some template circuit, as well as other array-valued fields to use in post-processing data collected from executing the bound template circuit. Its `sample()` method is the primary interface for querying and specifying inputs and processing outputs. The various inputs and outputs of a samplex depend on many factors - for example, whether measurement twirling is present or whether noise injection is required. Usually, you will first create a circuit with dressed boxes in order to instantiate this object.
+
+The library also provides a `generate_boxing_pass_manager()` method, which builds a [`PassManager`](/docs/api/qiskit/passmanager) that automatically groups circuit instructions into annotated boxes. With `generate_boxing_pass_manager()`, you can quickly and easily iterate on boxing strategies and circuit dressings.
+
 ## Workflow
 
-Samplomatic uses box instructions to reason about collections of circuit operations that should be treated as having a stable noise context, and uses annotations on boxes to allow users to declare and configure intent. Every box is a scope that owns a set of qubits, operations that act on those qubits, and a list of annotations. Samplomatic annotations specify directives and dressings. Directives specify what to do with the box, e.g. twirl the box. Dressings are groups of parameterized gates to add to the left- or right-side of the box, e.g. a layer of single qubit gates.
+The high-level workflow consists of three steps: 
 
-
-The core type of the Samplomatic library is the `Samplex` class. This object represents a parametric probability distribution over the parameters of some template circuit, as well as other array-valued fields to use in post-processing data collected from executing the bound template circuit. Its `sample()` method is the primary interface you will use for querying and specifying inputs and processing outputs. The various inputs and outputs present in a samplex depend on many factors, for example, whether measurement twirling is present or whether noise injection is required. Generally, you will need to create a circuit with dressed boxes in order to instantiate this object.
-
-The library also possesses a `generate_boxing_pass_manager()` method which is a flexible and convenient tool to build a [`PassManager`](../api/qiskit/passmanager) able to group the circuit instructions into annotated boxes. Whether you want to automate your workflow, you are interested in trying different boxing strategies for your circuits, or you simply want a quick and easy alternative to grouping and annotating by hand, generate_boxing_pass_manager() is built to iterate on the way you dress circuits quickly and easily.
+1. Preparation - generate the target circuit and group its operations into boxes.
+2. Learning step - learn the noise of the instructions you want to mitigate.
+3. Execution step - execute the circuit on a backend with Executor, and analyze the results.
 
 
 /* Add information about how `Samplex` and the Executor primitive are used together when executing workloads... */
-
-Important words to define:
-    - box
-    - annotation
-    - samplex
-    - dressing
-
 
 ## NoiseLearnerV3
 
