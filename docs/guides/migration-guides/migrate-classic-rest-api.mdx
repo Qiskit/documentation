@@ -1,0 +1,153 @@
+---
+title: Migrate to the new Qiskit Runtime REST API
+description: Migrate from using the current Qiskit Runtime REST API on any platform to using the new Qiskit Runtime REST API.
+---
+
+{/* cspell:ignore WQVY */}
+
+# Migrate to the new Qiskit Runtime REST API
+
+As part of the move to the new IBM Quantum&reg; Platform, the Qiskit Runtime REST API on IBM Quantum Platform Classic and the Qiskit Runtime REST API on IBM Cloud&reg; have been combined into one REST API: the *Qiskit Runtime REST API*.
+
+This guide explains the changes to the REST API and provides suggestions on how to migrate, whether you were previously using either the IBM Cloud or IBM Quantum Platform version.
+
+<Admonition type="caution">
+The new Qiskit Runtime REST API uses the following URL. When you call the API, you can no longer use https://api.quantum-computing.ibm.com/runtime or https://us-east.quantum-computing.cloud.ibm.com/. Instead, use:
+```
+https://quantum.cloud.ibm.com/api/
+```
+</Admonition>
+
+
+
+<span id="from-runtime-cloud"></span>
+## Migrate from the Qiskit Runtime on IBM Cloud REST API
+If you are moving from the [Qiskit Runtime on IBM Cloud REST API](/docs/api/qiskit-runtime-rest), not much has changed for you. The following points are all you need to consider:
+* When you call the API, instead of using `https://us-east.quantum-computing.cloud.ibm.com/` you must use: `https://quantum.cloud.ibm.com/api/`.
+* All existing endpoints are the same, but now have `/v1/` in front.  For example, `/jobs` becomes `/v1/jobs`.
+* There is also one new endpoint: `/v1/versions`.
+
+For the whole schema, see the [Qiskit Runtime API.](https://quantum.cloud.ibm.com/api/docs/)
+
+<span id="from-classic"></span>
+## Migrate from the Qiskit Runtime REST API on IBM Quantum Platform Classic
+
+If you are moving from the classic Qiskit Runtime REST API, there are two new concepts that are important to understand: **Instances** and **IAM bearer tokens**.
+
+### Instances
+
+_Instances_ are virtual servers that manage the execution of your workloads, including executing quantum programs and classical compute tasks (such as processing error mitigation).  Instances must be specified in the request header by their *Cloud Resource Name* (CRN).
+
+You can see the instances you have access to on the dashboard, or by clicking the "Instances" tab from the dashboard. Each instance is listed with its CRN identifier. You will need to include this identifier in the header for most of your requests to the REST API.
+
+
+### Authorize requests with IAM bearer tokens
+
+IBM Cloud Identity and Access Management (IAM) bearer tokens are short-lived tokens that are used to authenticate requests to the REST API, and are generated using your account's API key. To generate one, call the [IAM Identity Services API](https://cloud.ibm.com/apidocs/iam-identity-token-api#create-api-key) as shown in the following sample request:
+
+   ```bash
+   curl -X POST 'https://iam.cloud.ibm.com/identity/token' \
+   -H 'Content-Type: application/x-www-form-urlencoded' \
+   -d 'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=MY_APIKEY'
+   ```
+   Expected Response
+   ```text
+   {
+      "access_token": "eyJhbGciOiJIUz......sgrKIi8hdFs",
+      "refresh_token": "SPrXw5tBE3......KBQ+luWQVY=",
+      "token_type": "Bearer",
+      "expires_in": 3600,
+      "expiration": 1473188353
+   }
+   ```
+
+<Admonition type="note" title="What is a bearer token?">
+A bearer token is a temporary credential that expires after no more than one hour. After the acquired token expires, you must generate a new one to continue calling IBM Cloud or other service APIs. You can only perform actions that are allowed by your level of assigned access within all accounts.
+
+Use the response property `expires_in` in the API response to identify the length of time that your specific access token is valid.
+</Admonition>
+
+#### Example request using the new REST API
+
+```bash
+curl -X 'GET' \
+   'https://quantum.cloud.ibm.com/api/v1/analytics/usage' \
+   -H 'accept: application/json' \
+   -H 'Authorization: Bearer <BEARER_TOKEN>' \
+   -H 'Service-CRN: crn:v1:bluemix:public:quantum-computing:us-east:a/b947c1c5a9378d64aed96696e4d76e8e:a3a7f181-35aa-42c8-94d6-7c8ed6e1a94b::'
+```
+
+### Changes to the endpoints of the REST API
+
+Many of the endpoints from the REST API on IBM Quantum Platform Classic have either changed or been removed because of this merge. The following sections list the endpoints that are changing, and provide a suggested replacement (if applicable).
+
+For the whole schema, see the [Qiskit Runtime API.](https://quantum.cloud.ibm.com/api/docs/)
+
+#### Changes to account- and instance-related endpoints
+
+|Request Type | Endpoint | Replacement | Note |
+| --------   | ------   | ------- | ------- |
+| GET | `/health` | **N/A**: Removed without replacement | |
+| GET | `/users/me` | `/v1/accounts/\{id\}` | |
+| POST | `/auth/validate` | **N/A**: Removed without replacement | |
+| POST | `/logout` | `/v1/logout` | |
+| GET | `/instances` | `/v1/instance` <br/><br/> `/v1/instances/configuration`   | The instance CRN must be in the request header. <br/><br/> An instance's usage limit can be set or viewed with a GET or PUT request to `/v1/instances/configuration` <br/> |
+| GET | `/instances` | `/v1/instances/usage` | Used to obtain usage information for a given instance. |
+
+
+#### Changes to job-related endpoints
+
+|Request Type | Endpoint | Replacement | Note |
+| --------   | ------   | ------- | ------- |
+| GET | `/facade/v1/jobs` | `/v1/jobs` | Use an instance CRN in the request header instead of `provider` in the query parameters. |
+| POST | `/facade/v1/jobs` | `/v1/jobs` | The `hub`, `group`, and `project` keys are no longer required (use instance CRN instead). <br/> The `private` request body parameter has also been removed. | |
+
+|Request Type | Endpoint | Replacement |
+| --------   | ------   | ------- |
+| GET | `/facade/v1/jobs/tags` | `/v1/tags` |
+| GET | `/facade/v1/jobs/\{id\}/type` | **N/A** |
+| GET | `/jobs*` <br/> `/jobs/\{id\}` <br/> `/jobs/\{id\}/metrics`  | `/v1/jobs` <br/> `/v1/jobs/\{id\}` <br/> `/v1/jobs/\{id\}/metrics` |
+| GET | `/jobs/\{id\}/interim_results` <br/> `/jobs/\{id\}/transpiled_circuits` <br/> `/jobs/\{id\}/logs`  | `/v1/jobs/\{id\}/interim_results` <br/> `/v1/jobs/\{id\}/transpiled_circuits` <br/> `/v1/jobs/\{id\}/logs` |
+| POST | `/jobs/\{id\}/cancel` | `/v1/jobs/\{id\}/cancel` |
+| PUT | `/jobs/\{id\}/tags` | `/v1/jobs/\{id\}/tags` |
+| DELETE | `/jobs/\{id\}` | `/v1/jobs/\{id\}` |
+
+#### Changes to session- and workload-related endpoints
+
+|Request Type | Endpoint | Replacement | Note |
+| --------   | ------   | ------- | ------- |
+| POST | `/sessions` | `/v1/sessions` | The request property `instance` was removed. Use an instance CRN instead. <br/> Additionally, the `max_session_ttl` has been renamed to `max_ttl` | |
+
+|Request Type | Endpoint | Replacement |
+| --------   | ------   | ------- |
+| PATCH | `/sessions/\{id\}` | `/v1/sessions\{id\}` |
+| GET | `/sessions/\{id\}` <br/> `/sessions/\{id\}/extended` | `/v1/sessions\{id\}` <br/> **N/A** |
+| DELETE | `/sessions/\{id\}/close` | `/v1/sessions\{id\}/close` |
+| GET | `/workloads/me` | `/v1/workloads` |
+
+
+
+#### Changes to system-related endpoints
+
+|Request Type | Endpoint | Replacement | Note |
+| --------   | ------   | ------- | ------- |
+| GET | `/backends` | `/v1/backends` | The `provider` query parameter has been removed, use an instance CRN instead. |
+
+|Request Type | Endpoint | Replacement |
+| --------   | ------   | ------- |
+| GET | `/backends/\{name\}/status` | `/v1/backends/\{id\}/status` |
+| GET | `/backends/\{name\}/defaults` | `/v1/backends/\{id\}/defaults` |
+| GET | `/backends/\{name\}/properties` | `/v1/backends/\{id\}/properties` |
+| GET | `/v1/backends/\{name\}/configuration` | `/v1/backends/\{id\}/configuration` |
+
+
+
+#### Changes to analytics- and usage-related endpoints
+
+|Request Type | Endpoint | Replacement |
+| --------   | ------   | ------- |
+| GET | `/usage` | **NA**: Removed without replacement |
+| GET | `/analytics/usage` | `/v1/analytics/usage` |
+| GET | `/analytics/filters` | `/v1/analytics/filters` |
+| GET | `/analytics/usage-grouped` | `/v1/analytics/usage-grouped` |
+| GET | `/analytics/usage-grouped-by-date` | `/v1/analytics/usage-grouped-by-date` |
