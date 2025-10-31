@@ -74,156 +74,144 @@ The transpiler will also allocate ancilla qubits to the circuit if the target ha
 
 ## Functions
 
-### qk\_transpile\_layout\_num\_input\_qubits
+**<span id="group__QkTranspileLayout_1gac185897a8b6133aef581dfd6452a2a0c" />uint32\_t qk\_transpile\_layout\_num\_input\_qubits(const QkTranspileLayout \*layout)**
 
-<Function id="qk_transpile_layout_num_input_qubits" signature="uint32_t qk_transpile_layout_num_input_qubits(const QkTranspileLayout *layout)">
-  Return the number of qubits in the input circuit to the transpiler.
+Return the number of qubits in the input circuit to the transpiler.
 
-  <span id="group__QkTranspileLayout_1autotoc_md240" />
+<span id="group__QkTranspileLayout_1autotoc_md245" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md240" />
+<span id="group__QkTranspileLayout_1autotoc_md245" />
 
-  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`.
+Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`.
 
-  **Parameters**
+**Parameters**
 
-  **layout** – A pointer to the `QkTranspileLayout`.
+*   **layout** – A pointer to the `QkTranspileLayout`.
 
-  **Returns**
+**Returns**
 
-  The number of input qubits
-</Function>
+The number of input qubits
 
-### qk\_transpile\_layout\_num\_output\_qubits
+**<span id="group__QkTranspileLayout_1gac62934711792593fdef99feda0cdd0fe" />uint32\_t qk\_transpile\_layout\_num\_output\_qubits(const QkTranspileLayout \*layout)**
 
-<Function id="qk_transpile_layout_num_output_qubits" signature="uint32_t qk_transpile_layout_num_output_qubits(const QkTranspileLayout *layout)">
-  Return the number of qubits in the output circuit from the transpiler.
+Return the number of qubits in the output circuit from the transpiler.
 
-  <span id="group__QkTranspileLayout_1autotoc_md241" />
+<span id="group__QkTranspileLayout_1autotoc_md246" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md241" />
+<span id="group__QkTranspileLayout_1autotoc_md246" />
 
-  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`.
+Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`.
 
-  **Parameters**
+**Parameters**
 
-  **layout** – A pointer to the `QkTranspileLayout`.
+*   **layout** – A pointer to the `QkTranspileLayout`.
 
-  **Returns**
+**Returns**
 
-  The number of output qubits
-</Function>
+The number of output qubits
 
-### qk\_transpile\_layout\_initial\_layout
+**<span id="group__QkTranspileLayout_1gac714f1398d7b20f2f86c5577d24669f3" />bool qk\_transpile\_layout\_initial\_layout(const QkTranspileLayout \*layout, bool filter\_ancillas, uint32\_t \*initial\_layout)**
 
-<Function id="qk_transpile_layout_initial_layout" signature="bool qk_transpile_layout_initial_layout(const QkTranspileLayout *layout, bool filter_ancillas, uint32_t *initial_layout)">
-  Query the initial layout of a `QkTranspileLayout`.
+Query the initial layout of a `QkTranspileLayout`.
 
-  The output array from this function represents the mapping from the virutal qubits in the original input circuit to the physical qubit in the output circuit. The index in the array is the virtual qubit and the value is the physical qubit. For example an output array of:
+The output array from this function represents the mapping from the virutal qubits in the original input circuit to the physical qubit in the output circuit. The index in the array is the virtual qubit and the value is the physical qubit. For example an output array of:
 
-  ```c
-  [1, 0, 2]
-  ```
+```c
+[1, 0, 2]
+```
 
-  indicates that the layout maps virtual qubit 0 -> physical qubit 1, virtual qubit 1 -> physical qubit -> 0, and virtual qubit 2 -> physical qubit 2.
+indicates that the layout maps virtual qubit 0 -> physical qubit 1, virtual qubit 1 -> physical qubit -> 0, and virtual qubit 2 -> physical qubit 2.
 
-  <span id="group__QkTranspileLayout_1autotoc_md242" />
+<span id="group__QkTranspileLayout_1autotoc_md247" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md242" />
+<span id="group__QkTranspileLayout_1autotoc_md247" />
 
-  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`. `initial_layout` must be a valid, non-null pointer with a large enough allocation to store the size necessary for the initial layout. If `filter_ancillas` is true this will be number of input qubits (which can be checked with `qk_transpile_layout_num_input_qubits()`) or the number of output qubits if `filter_ancillas` is false (which can be queried with `qk_transpile_layout_num_output_qubits()`).
+Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`. `initial_layout` must be a valid, non-null pointer with a large enough allocation to store the size necessary for the initial layout. If `filter_ancillas` is true this will be number of input qubits (which can be checked with `qk_transpile_layout_num_input_qubits()`) or the number of output qubits if `filter_ancillas` is false (which can be queried with `qk_transpile_layout_num_output_qubits()`).
 
-  **Parameters**
+**Parameters**
 
-  *   **layout** – A pointer to the `QkTranspileLayout`.
-  *   **filter\_ancillas** – If set to true the output array will not include any indicies for any ancillas added by the transpiler.
-  *   **initial\_layout** – A pointer to the array where this function will write the initial layout to. This must have sufficient space for the full array which will either be `qk_transpile_layout_num_input_qubits()` or `qk_transpile_layout_num_output_qubits()` for `filter_ancillas` being true or false respectively.
+*   **layout** – A pointer to the `QkTranspileLayout`.
+*   **filter\_ancillas** – If set to true the output array will not include any indicies for any ancillas added by the transpiler.
+*   **initial\_layout** – A pointer to the array where this function will write the initial layout to. This must have sufficient space for the full array which will either be `qk_transpile_layout_num_input_qubits()` or `qk_transpile_layout_num_output_qubits()` for `filter_ancillas` being true or false respectively.
 
-  **Returns**
+**Returns**
 
-  True if there was a initial\_layout written to `initial_layout` and false if there is no initial layout.
-</Function>
+True if there was a initial\_layout written to `initial_layout` and false if there is no initial layout.
 
-### qk\_transpile\_layout\_output\_permutation
+**<span id="group__QkTranspileLayout_1ga80a3a333a440bde8bcf7cd3066da23da" />bool qk\_transpile\_layout\_output\_permutation(const QkTranspileLayout \*layout, uint32\_t \*output\_permutation)**
 
-<Function id="qk_transpile_layout_output_permutation" signature="bool qk_transpile_layout_output_permutation(const QkTranspileLayout *layout, uint32_t *output_permutation)">
-  Query the output permutation of a `QkTranspileLayout`
+Query the output permutation of a `QkTranspileLayout`
 
-  The output array from this function represents the permutation induced by the transpiler where the index indicates the qubit at the start of the circuit and the value is the position of the qubit at the end of the circuit. For example an output array of:
+The output array from this function represents the permutation induced by the transpiler where the index indicates the qubit at the start of the circuit and the value is the position of the qubit at the end of the circuit. For example an output array of:
 
-  ```c
-  [1, 2, 0]
-  ```
+```c
+[1, 2, 0]
+```
 
-  indicates that qubit 0 from the start of the circuit is at qubit 1 at the end of the circuit, 1 -> 2, and 2 -> 0.
+indicates that qubit 0 from the start of the circuit is at qubit 1 at the end of the circuit, 1 -> 2, and 2 -> 0.
 
-  <span id="group__QkTranspileLayout_1autotoc_md243" />
+<span id="group__QkTranspileLayout_1autotoc_md248" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md243" />
+<span id="group__QkTranspileLayout_1autotoc_md248" />
 
-  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`. `output_permutation` must be a valid, non-null pointer with a large enough allocation to store the size necessary for the output\_permutation. This will always be the number of output qubits in the `QkTranspileLayout` which can be queried with `qk_transpile_layout_num_output_qubits()`.
+Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`. `output_permutation` must be a valid, non-null pointer with a large enough allocation to store the size necessary for the output\_permutation. This will always be the number of output qubits in the `QkTranspileLayout` which can be queried with `qk_transpile_layout_num_output_qubits()`.
 
-  **Parameters**
+**Parameters**
 
-  *   **layout** – A pointer to the `QkTranspileLayout`.
-  *   **output\_permutation** – A pointer to the array where this function will write the output permutation to. This must have sufficient space for the output which will be the number of output qubits in the layout. This can be queried with `qk_transpile_layout_num_output_qubits`.
+*   **layout** – A pointer to the `QkTranspileLayout`.
+*   **output\_permutation** – A pointer to the array where this function will write the output permutation to. This must have sufficient space for the output which will be the number of output qubits in the layout. This can be queried with `qk_transpile_layout_num_output_qubits`.
 
-  **Returns**
+**Returns**
 
-  True if there is an output permutation that was written to `output_permutation` false if the `QkTranspileLayout` does not contain an output permutation.
-</Function>
+True if there is an output permutation that was written to `output_permutation` false if the `QkTranspileLayout` does not contain an output permutation.
 
-### qk\_transpile\_layout\_final\_layout
+**<span id="group__QkTranspileLayout_1gad9d63c8498cb69584ddc7d2c420b1040" />void qk\_transpile\_layout\_final\_layout(const QkTranspileLayout \*layout, bool filter\_ancillas, uint32\_t \*final\_layout)**
 
-<Function id="qk_transpile_layout_final_layout" signature="void qk_transpile_layout_final_layout(const QkTranspileLayout *layout, bool filter_ancillas, uint32_t *final_layout)">
-  Query the final layout of a `QkTranspileLayout`
+Query the final layout of a `QkTranspileLayout`
 
-  The output array represents the mapping from the virtual qubit in the original input circuit to the physical qubit at the end of the transpile circuit that has that qubit’s state. The array index represents the virtual qubit and the value represents the physical qubit at the end of the transpiled circuit which has that virtual qubit’s state. For example, an output array of:
+The output array represents the mapping from the virtual qubit in the original input circuit to the physical qubit at the end of the transpile circuit that has that qubit’s state. The array index represents the virtual qubit and the value represents the physical qubit at the end of the transpiled circuit which has that virtual qubit’s state. For example, an output array of:
 
-  ```c
-  [2, 0, 1]
-  ```
+```c
+[2, 0, 1]
+```
 
-  indicates that virtual qubit 0’s state in the original circuit is on physical qubit 2 at the end of the transpiled circuit, 1 -> 0, and 2 -> 1.
+indicates that virtual qubit 0’s state in the original circuit is on physical qubit 2 at the end of the transpiled circuit, 1 -> 0, and 2 -> 1.
 
-  <span id="group__QkTranspileLayout_1autotoc_md244" />
+<span id="group__QkTranspileLayout_1autotoc_md249" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md244" />
+<span id="group__QkTranspileLayout_1autotoc_md249" />
 
-  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`. `final_layout` must be a valid, non-null pointer with a large enough allocation to store the size necessary for the final layout. If `filter_ancillas` is true this will be number of input qubits (which can be checked with `qk_transpile_layout_num_input_qubits()`) or the number of output qubits if `filter_ancillas` is false (which can be queried with `qk_transpile_layout_num_output_qubits()`).
+Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`. `final_layout` must be a valid, non-null pointer with a large enough allocation to store the size necessary for the final layout. If `filter_ancillas` is true this will be number of input qubits (which can be checked with `qk_transpile_layout_num_input_qubits()`) or the number of output qubits if `filter_ancillas` is false (which can be queried with `qk_transpile_layout_num_output_qubits()`).
 
-  **Parameters**
+**Parameters**
 
-  *   **layout** – A pointer to the `QkTranspileLayout`.
-  *   **filter\_ancillas** – If set to true the output array will not include any indicies for any ancillas added by the transpiler.
-  *   **final\_layout** – A pointer to the array where this function will write the final layout to. This must have sufficient space for the output which will either be the number of input or output qubits depending on the value of filter\_ancillas.
-</Function>
+*   **layout** – A pointer to the `QkTranspileLayout`.
+*   **filter\_ancillas** – If set to true the output array will not include any indicies for any ancillas added by the transpiler.
+*   **final\_layout** – A pointer to the array where this function will write the final layout to. This must have sufficient space for the output which will either be the number of input or output qubits depending on the value of filter\_ancillas.
 
-### qk\_transpile\_layout\_free
+**<span id="group__QkTranspileLayout_1ga504a91a72d3eb1d8bf651c2e2793bfec" />void qk\_transpile\_layout\_free(QkTranspileLayout \*layout)**
 
-<Function id="qk_transpile_layout_free" signature="void qk_transpile_layout_free(QkTranspileLayout *layout)">
-  Free a `QkTranspileLayout` object
+Free a `QkTranspileLayout` object
 
-  <span id="group__QkTranspileLayout_1autotoc_md245" />
+<span id="group__QkTranspileLayout_1autotoc_md250" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md245" />
+<span id="group__QkTranspileLayout_1autotoc_md250" />
 
-  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`.
+Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`.
 
-  **Parameters**
+**Parameters**
 
-  **layout** – a pointer to the layout to free
-</Function>
+*   **layout** – a pointer to the layout to free
 

@@ -39,779 +39,697 @@ The circuit C API currently only supports creating circuits that contain operati
 
 ## Data Types
 
-### QkOpCount
+**<span id="structQkOpCount" />struct QkOpCount**
 
-<Class id="QkOpCount" signature="struct QkOpCount">
-  An individual operation count represented by the operation name and the number of instances in the circuit.
+An individual operation count represented by the operation name and the number of instances in the circuit.
 
-  #### const char \*name
+**<span id="structQkOpCount_1aff581e33fd1948e8accefcaf24b59d34" />const char \*name**
 
-  <Attribute id="name">
-    A nul terminated string representing the operation name
-  </Attribute>
+A nul terminated string representing the operation name
 
-  #### size\_t count
+**<span id="structQkOpCount_1a7a50b1ac1b0418b1a1867d2f18d9e988" />size\_t count**
 
-  <Attribute id="count">
-    The number of instances of this operation in the circuit
-  </Attribute>
-</Class>
+The number of instances of this operation in the circuit
 
-### QkOpCounts
+**<span id="structQkOpCounts" />struct QkOpCounts**
 
-<Class id="QkOpCounts" signature="struct QkOpCounts">
-  An array of `OpCount` objects representing the total counts of all the operation types in a circuit.
+An array of `OpCount` objects representing the total counts of all the operation types in a circuit.
 
-  #### QkOpCount \*data
+**<span id="structQkOpCounts_1aab03460c89a928b41e52b5a5be82dcb1" />[QkOpCount](#c.QkOpCount "QkOpCount") \*data**
 
-  <Attribute id="data">
-    A array of size `len` containing `OpCount` objects for each type of operation in the circuit
-  </Attribute>
+A array of size `len` containing `OpCount` objects for each type of operation in the circuit
 
-  #### size\_t len
+**<span id="structQkOpCounts_1a8b0698f65afa7efd076726cb100f677b" />size\_t len**
 
-  <Attribute id="len">
-    The number of elements in `data`
-  </Attribute>
-</Class>
+The number of elements in `data`
 
-### QkCircuitInstruction
+**<span id="structQkCircuitInstruction" />struct QkCircuitInstruction**
 
-<Class id="QkCircuitInstruction" signature="struct QkCircuitInstruction">
-  A circuit instruction representation.
+A circuit instruction representation.
 
-  This struct represents the data contained in an individual instruction in a `QkCircuit`. It is not a pointer to the underlying object, but contains a copy of the properties of the instruction for inspection.
+This struct represents the data contained in an individual instruction in a `QkCircuit`. It is not a pointer to the underlying object, but contains a copy of the properties of the instruction for inspection.
 
-  #### char \*name
+**<span id="structQkCircuitInstruction_1aaad2823d8f31e63d745f76ff44a40ecb" />char \*name**
 
-  <Attribute id="name">
-    The instruction name
-  </Attribute>
+The instruction name
 
-  #### uint32\_t \*qubits
+**<span id="structQkCircuitInstruction_1ae8cb2bd0f9018adb5ae6d07dfd48100e" />uint32\_t \*qubits**
 
-  <Attribute id="qubits">
-    A pointer to an array of qubit indices this instruction operates on.
-  </Attribute>
+A pointer to an array of qubit indices this instruction operates on.
 
-  #### uint32\_t \*clbits
+**<span id="structQkCircuitInstruction_1a3ba02a54935e4458bbb99d2a172a576e" />uint32\_t \*clbits**
 
-  <Attribute id="clbits">
-    A pointer to an array of clbit indices this instruction operates on.
-  </Attribute>
+A pointer to an array of clbit indices this instruction operates on.
 
-  #### double \*params
+**<span id="structQkCircuitInstruction_1aa1a502fc930ef2519ed08e35158604e2" />double \*params**
 
-  <Attribute id="params">
-    A pointer to an array of parameter values for this instruction.
-  </Attribute>
+A pointer to an array of parameter values for this instruction.
 
-  #### uint32\_t num\_qubits
+**<span id="structQkCircuitInstruction_1a774fba78ad228eab905be65a8a7e613d" />uint32\_t num\_qubits**
 
-  <Attribute id="num_qubits">
-    The number of qubits for this instruction.
-  </Attribute>
+The number of qubits for this instruction.
 
-  #### uint32\_t num\_clbits
+**<span id="structQkCircuitInstruction_1a462203a774aa4ed92c3c42e963e5ed88" />uint32\_t num\_clbits**
 
-  <Attribute id="num_clbits">
-    The number of clbits for this instruction.
-  </Attribute>
+The number of clbits for this instruction.
 
-  #### uint32\_t num\_params
+**<span id="structQkCircuitInstruction_1aaaac1752be17d3cb0e89bdd87b02952e" />uint32\_t num\_params**
 
-  <Attribute id="num_params">
-    The number of parameters for this instruction.
-  </Attribute>
-</Class>
+The number of parameters for this instruction.
 
 ## Functions
 
-### QkDelayUnit
+**<span id="group__QkCircuit_1ga5b5e2ce76f4e163308671a5f4f01a749" />enum QkDelayUnit**
 
-<Class id="QkDelayUnit" signature="enum QkDelayUnit">
-  Units for circuit delays.
+Units for circuit delays.
 
-  *Values:*
+*Values:*
 
-  #### enumerator QkDelayUnit\_S
+**<span id="group__QkCircuit_1gga5b5e2ce76f4e163308671a5f4f01a749abc9a43dda22ee50547bd9b8f2d8148c3" />enumerator QkDelayUnit\_S**
 
-  <Attribute id="QkDelayUnit_S">
-    Seconds.
-  </Attribute>
+Seconds.
 
-  #### enumerator QkDelayUnit\_MS
+**<span id="group__QkCircuit_1gga5b5e2ce76f4e163308671a5f4f01a749a3e579dd951115f79a66982e9178fb99f" />enumerator QkDelayUnit\_MS**
 
-  <Attribute id="QkDelayUnit_MS">
-    Milliseconds.
-  </Attribute>
+Milliseconds.
 
-  #### enumerator QkDelayUnit\_US
+**<span id="group__QkCircuit_1gga5b5e2ce76f4e163308671a5f4f01a749a9d0a11fb09ced7a5b34998fb35cc0953" />enumerator QkDelayUnit\_US**
 
-  <Attribute id="QkDelayUnit_US">
-    Microseconds.
-  </Attribute>
+Microseconds.
 
-  #### enumerator QkDelayUnit\_NS
+**<span id="group__QkCircuit_1gga5b5e2ce76f4e163308671a5f4f01a749a747db5f56c0b791226c62159e997b453" />enumerator QkDelayUnit\_NS**
 
-  <Attribute id="QkDelayUnit_NS">
-    Nanoseconds.
-  </Attribute>
+Nanoseconds.
 
-  #### enumerator QkDelayUnit\_PS
+**<span id="group__QkCircuit_1gga5b5e2ce76f4e163308671a5f4f01a749a15185b754eff45d21cbd0fdc2ce4df37" />enumerator QkDelayUnit\_PS**
 
-  <Attribute id="QkDelayUnit_PS">
-    Picoseconds.
-  </Attribute>
-</Class>
+Picoseconds.
 
-### qk\_circuit\_new
+**<span id="group__QkCircuit_1ga4f3552c6da7aa518fc3222a7d513b107" />QkCircuit \*qk\_circuit\_new(uint32\_t num\_qubits, uint32\_t num\_clbits)**
 
-<Function id="qk_circuit_new" signature="QkCircuit *qk_circuit_new(uint32_t num_qubits, uint32_t num_clbits)">
-  Construct a new circuit with the given number of qubits and clbits.
+Construct a new circuit with the given number of qubits and clbits.
 
-  <span id="group__QkCircuit_1autotoc_md3" />
+<span id="group__QkCircuit_1autotoc_md4" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *empty = qk_circuit_new(100, 100);
-  ```
+```c
+QkCircuit *empty = qk_circuit_new(100, 100);
+```
 
-  **Parameters**
+**Parameters**
 
-  *   **num\_qubits** – The number of qubits the circuit contains.
-  *   **num\_clbits** – The number of clbits the circuit contains.
+*   **num\_qubits** – The number of qubits the circuit contains.
+*   **num\_clbits** – The number of clbits the circuit contains.
 
-  **Returns**
+**Returns**
 
-  A pointer to the created circuit.
-</Function>
+A pointer to the created circuit.
 
-### qk\_circuit\_add\_quantum\_register
+**<span id="group__QkCircuit_1ga97bfc91865d605bad5188c9ba2443331" />void qk\_circuit\_add\_quantum\_register(QkCircuit \*circuit, const QkQuantumRegister \*reg)**
 
-<Function id="qk_circuit_add_quantum_register" signature="void qk_circuit_add_quantum_register(QkCircuit *circuit, const QkQuantumRegister *reg)">
-  Add a quantum register to a given quantum circuit
+Add a quantum register to a given quantum circuit
 
-  <span id="group__QkCircuit_1autotoc_md12" />
+<span id="group__QkCircuit_1autotoc_md13" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(0, 0);
-  QkQuantumRegister *qr = qk_quantum_register_new(1024, "my_little_register");
-  qk_circuit_add_quantum_register(qc, qr);
-  qk_quantum_register_free(qr);
-  qk_circuit_free(qc);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(0, 0);
+QkQuantumRegister *qr = qk_quantum_register_new(1024, "my_little_register");
+qk_circuit_add_quantum_register(qc, qr);
+qk_quantum_register_free(qr);
+qk_circuit_free(qc);
+```
 
-  <span id="group__QkCircuit_1autotoc_md13" />
+<span id="group__QkCircuit_1autotoc_md14" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md13" />
+<span id="group__QkCircuit_1autotoc_md14" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `reg` is not a valid, non-null pointer to a `QkQuantumRegister`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `reg` is not a valid, non-null pointer to a `QkQuantumRegister`.
 
-  **Parameters**
+**Parameters**
 
-  *   **circuit** – A pointer to the circuit.
-  *   **reg** – A pointer to the quantum register
-</Function>
+*   **circuit** – A pointer to the circuit.
+*   **reg** – A pointer to the quantum register
 
-### qk\_circuit\_add\_classical\_register
+**<span id="group__QkCircuit_1ga1e6b8500f2658b47f2cfc64b49a54140" />void qk\_circuit\_add\_classical\_register(QkCircuit \*circuit, const QkClassicalRegister \*reg)**
 
-<Function id="qk_circuit_add_classical_register" signature="void qk_circuit_add_classical_register(QkCircuit *circuit, const QkClassicalRegister *reg)">
-  Add a classical register to a given quantum circuit
+Add a classical register to a given quantum circuit
 
-  <span id="group__QkCircuit_1autotoc_md14" />
+<span id="group__QkCircuit_1autotoc_md15" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(0, 0);
-  QkClassicalRegister *cr = qk_classical_register_new(24, "my_big_register");
-  qk_circuit_add_classical_register(qc, cr);
-  qk_classical_register_free(cr);
-  qk_circuit_free(qc);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(0, 0);
+QkClassicalRegister *cr = qk_classical_register_new(24, "my_big_register");
+qk_circuit_add_classical_register(qc, cr);
+qk_classical_register_free(cr);
+qk_circuit_free(qc);
+```
 
-  <span id="group__QkCircuit_1autotoc_md15" />
+<span id="group__QkCircuit_1autotoc_md16" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md15" />
+<span id="group__QkCircuit_1autotoc_md16" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `reg` is not a valid, non-null pointer to a `QkClassicalRegister`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `reg` is not a valid, non-null pointer to a `QkClassicalRegister`.
 
-  **Parameters**
+**Parameters**
 
-  *   **circuit** – A pointer to the circuit.
-  *   **reg** – A pointer to the classical register
-</Function>
+*   **circuit** – A pointer to the circuit.
+*   **reg** – A pointer to the classical register
 
-### qk\_circuit\_copy
+**<span id="group__QkCircuit_1ga8ef01cf8450f7e77cb5ca1dd72b5f8e0" />QkCircuit \*qk\_circuit\_copy(const QkCircuit \*circuit)**
 
-<Function id="qk_circuit_copy" signature="QkCircuit *qk_circuit_copy(const QkCircuit *circuit)">
-  Create a copy of a `QkCircuit`.
+Create a copy of a `QkCircuit`.
 
-  <span id="group__QkCircuit_1autotoc_md16" />
+<span id="group__QkCircuit_1autotoc_md17" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(100, 100);
-  QkCircuit *copy = qk_circuit_copy(qc);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(100, 100);
+QkCircuit *copy = qk_circuit_copy(qc);
+```
 
-  <span id="group__QkCircuit_1autotoc_md17" />
+<span id="group__QkCircuit_1autotoc_md18" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md17" />
+<span id="group__QkCircuit_1autotoc_md18" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  **circuit** – A pointer to the circuit to copy.
+*   **circuit** – A pointer to the circuit to copy.
 
-  **Returns**
+**Returns**
 
-  A new pointer to a copy of the input `circuit`.
-</Function>
+A new pointer to a copy of the input `circuit`.
 
-### qk\_circuit\_num\_qubits
+**<span id="group__QkCircuit_1ga32d7a681db00006c9272a0ad42715601" />uint32\_t qk\_circuit\_num\_qubits(const QkCircuit \*circuit)**
 
-<Function id="qk_circuit_num_qubits" signature="uint32_t qk_circuit_num_qubits(const QkCircuit *circuit)">
-  Get the number of qubits the circuit contains.
+Get the number of qubits the circuit contains.
 
-  <span id="group__QkCircuit_1autotoc_md18" />
+<span id="group__QkCircuit_1autotoc_md19" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(100, 100);
-  uint32_t num_qubits = qk_circuit_num_qubits(qc);  // num_qubits==100
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(100, 100);
+uint32_t num_qubits = qk_circuit_num_qubits(qc);  // num_qubits==100
+```
 
-  <span id="group__QkCircuit_1autotoc_md19" />
+<span id="group__QkCircuit_1autotoc_md20" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md19" />
+<span id="group__QkCircuit_1autotoc_md20" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  **circuit** – A pointer to the circuit.
+*   **circuit** – A pointer to the circuit.
 
-  **Returns**
+**Returns**
 
-  The number of qubits the circuit is defined on.
-</Function>
+The number of qubits the circuit is defined on.
 
-### qk\_circuit\_num\_clbits
+**<span id="group__QkCircuit_1ga834b4d54e6d1caee56685faf4fd02384" />uint32\_t qk\_circuit\_num\_clbits(const QkCircuit \*circuit)**
 
-<Function id="qk_circuit_num_clbits" signature="uint32_t qk_circuit_num_clbits(const QkCircuit *circuit)">
-  Get the number of clbits the circuit contains.
+Get the number of clbits the circuit contains.
 
-  <span id="group__QkCircuit_1autotoc_md20" />
+<span id="group__QkCircuit_1autotoc_md21" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(100, 50);
-  uint32_t num_clbits = qk_circuit_num_clbits(qc);  // num_clbits==50
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(100, 50);
+uint32_t num_clbits = qk_circuit_num_clbits(qc);  // num_clbits==50
+```
 
-  <span id="group__QkCircuit_1autotoc_md21" />
+<span id="group__QkCircuit_1autotoc_md22" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md21" />
+<span id="group__QkCircuit_1autotoc_md22" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  **circuit** – A pointer to the circuit.
+*   **circuit** – A pointer to the circuit.
 
-  **Returns**
+**Returns**
 
-  The number of qubits the circuit is defined on.
-</Function>
+The number of qubits the circuit is defined on.
 
-### qk\_circuit\_free
+**<span id="group__QkCircuit_1ga6c5b86521277eedd4290c337692dc0b9" />void qk\_circuit\_free(QkCircuit \*circuit)**
 
-<Function id="qk_circuit_free" signature="void qk_circuit_free(QkCircuit *circuit)">
-  Free the circuit.
+Free the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md22" />
+<span id="group__QkCircuit_1autotoc_md23" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(100, 100);
-  qk_circuit_free(qc);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(100, 100);
+qk_circuit_free(qc);
+```
 
-  <span id="group__QkCircuit_1autotoc_md23" />
+<span id="group__QkCircuit_1autotoc_md24" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md23" />
+<span id="group__QkCircuit_1autotoc_md24" />
 
-  Behavior is undefined if `circuit` is not either null or a valid pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not either null or a valid pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  **circuit** – A pointer to the circuit to free.
-</Function>
+*   **circuit** – A pointer to the circuit to free.
 
-### qk\_circuit\_gate
+**<span id="group__QkCircuit_1ga3ea4058c47112b740e93fb36b7720664" />QkExitCode qk\_circuit\_gate(QkCircuit \*circuit, QkGate gate, const uint32\_t \*qubits, const double \*params)**
 
-<Function id="qk_circuit_gate" signature="QkExitCode qk_circuit_gate(QkCircuit *circuit, QkGate gate, const uint32_t *qubits, const double *params)">
-  Append a `QkGate` to the circuit.
+Append a `QkGate` to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md24" />
+<span id="group__QkCircuit_1autotoc_md25" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(100, 0);
-  uint32_t qubit[1] = {0};
-  qk_circuit_gate(qc, QkGate_H, qubit, NULL);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(100, 0);
+uint32_t qubit[1] = {0};
+qk_circuit_gate(qc, QkGate_H, qubit, NULL);
+```
 
-  <span id="group__QkCircuit_1autotoc_md25" />
+<span id="group__QkCircuit_1autotoc_md26" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md25" />
+<span id="group__QkCircuit_1autotoc_md26" />
 
-  The `qubits` and `params` types are expected to be a pointer to an array of `uint32_t` and `double` respectively where the length is matching the expectations for the standard gate. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given gate. You can check `qk_gate_num_qubits` and `qk_gate_num_params` to determine how many qubits and params are required for a given gate.
+The `qubits` and `params` types are expected to be a pointer to an array of `uint32_t` and `double` respectively where the length is matching the expectations for the standard gate. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given gate. You can check `qk_gate_num_qubits` and `qk_gate_num_params` to determine how many qubits and params are required for a given gate.
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  *   **circuit** – A pointer to the circuit to add the gate to.
-  *   **gate** – The StandardGate to add to the circuit.
-  *   **qubits** – The pointer to the array of `uint32_t` qubit indices to add the gate on. This can be a null pointer if there are no qubits for `gate` (e.g. `QkGate_GlobalPhase`).
-  *   **params** – The pointer to the array of `double` values to use for the gate parameters. This can be a null pointer if there are no parameters for `gate` (e.g. `QkGate_H`).
+*   **circuit** – A pointer to the circuit to add the gate to.
+*   **gate** – The StandardGate to add to the circuit.
+*   **qubits** – The pointer to the array of `uint32_t` qubit indices to add the gate on. This can be a null pointer if there are no qubits for `gate` (e.g. `QkGate_GlobalPhase`).
+*   **params** – The pointer to the array of `double` values to use for the gate parameters. This can be a null pointer if there are no parameters for `gate` (e.g. `QkGate_H`).
 
-  **Returns**
+**Returns**
 
-  An exit code.
-</Function>
+An exit code.
 
-### qk\_gate\_num\_qubits
+**<span id="group__QkCircuit_1ga373022ee02592be340f05a2218bf4b5f" />uint32\_t qk\_gate\_num\_qubits(QkGate gate)**
 
-<Function id="qk_gate_num_qubits" signature="uint32_t qk_gate_num_qubits(QkGate gate)">
-  Get the number of qubits for a `QkGate`.
+Get the number of qubits for a `QkGate`.
 
-  <span id="group__QkCircuit_1autotoc_md26" />
+<span id="group__QkCircuit_1autotoc_md27" />
 
-  #### Example
+### Example
 
-  ```c
-  uint32_t num_qubits = qk_gate_num_qubits(QkGate_CCX);
-  ```
+```c
+uint32_t num_qubits = qk_gate_num_qubits(QkGate_CCX);
+```
 
-  **Parameters**
+**Parameters**
 
-  **gate** – The `QkGate` to get the number of qubits for.
+*   **gate** – The `QkGate` to get the number of qubits for.
 
-  **Returns**
+**Returns**
 
-  The number of qubits the gate acts on.
-</Function>
+The number of qubits the gate acts on.
 
-### qk\_gate\_num\_params
+**<span id="group__QkCircuit_1ga934f800963a23ad68e3ffe04f3aa8895" />uint32\_t qk\_gate\_num\_params(QkGate gate)**
 
-<Function id="qk_gate_num_params" signature="uint32_t qk_gate_num_params(QkGate gate)">
-  Get the number of parameters for a `QkGate`.
+Get the number of parameters for a `QkGate`.
 
-  <span id="group__QkCircuit_1autotoc_md27" />
+<span id="group__QkCircuit_1autotoc_md28" />
 
-  #### Example
+### Example
 
-  ```c
-  uint32_t num_params = qk_gate_num_params(QkGate_R);
-  ```
+```c
+uint32_t num_params = qk_gate_num_params(QkGate_R);
+```
 
-  **Parameters**
+**Parameters**
 
-  **gate** – The `QkGate` to get the number of qubits for.
+*   **gate** – The `QkGate` to get the number of qubits for.
 
-  **Returns**
+**Returns**
 
-  The number of parameters the gate has.
-</Function>
+The number of parameters the gate has.
 
-### qk\_circuit\_measure
+**<span id="group__QkCircuit_1ga8639d1ecd32415e41006c3cd204c907e" />QkExitCode qk\_circuit\_measure(QkCircuit \*circuit, uint32\_t qubit, uint32\_t clbit)**
 
-<Function id="qk_circuit_measure" signature="QkExitCode qk_circuit_measure(QkCircuit *circuit, uint32_t qubit, uint32_t clbit)">
-  Append a measurement to the circuit
+Append a measurement to the circuit
 
-  <span id="group__QkCircuit_1autotoc_md28" />
+<span id="group__QkCircuit_1autotoc_md29" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(100, 1);
-  qk_circuit_measure(qc, 0, 0);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(100, 1);
+qk_circuit_measure(qc, 0, 0);
+```
 
-  <span id="group__QkCircuit_1autotoc_md29" />
+<span id="group__QkCircuit_1autotoc_md30" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md29" />
+<span id="group__QkCircuit_1autotoc_md30" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  *   **circuit** – A pointer to the circuit to add the measurement to
-  *   **qubit** – The `uint32_t` for the qubit to measure
-  *   **clbit** – The `uint32_t` for the clbit to store the measurement outcome in
+*   **circuit** – A pointer to the circuit to add the measurement to
+*   **qubit** – The `uint32_t` for the qubit to measure
+*   **clbit** – The `uint32_t` for the clbit to store the measurement outcome in
 
-  **Returns**
+**Returns**
 
-  An exit code.
-</Function>
+An exit code.
 
-### qk\_circuit\_reset
+**<span id="group__QkCircuit_1ga1ce7196b0b30c3596da6ed8bca4c9e8e" />QkExitCode qk\_circuit\_reset(QkCircuit \*circuit, uint32\_t qubit)**
 
-<Function id="qk_circuit_reset" signature="QkExitCode qk_circuit_reset(QkCircuit *circuit, uint32_t qubit)">
-  Append a reset to the circuit
+Append a reset to the circuit
 
-  <span id="group__QkCircuit_1autotoc_md30" />
+<span id="group__QkCircuit_1autotoc_md31" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(100, 0);
-  qk_circuit_reset(qc, 0);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(100, 0);
+qk_circuit_reset(qc, 0);
+```
 
-  <span id="group__QkCircuit_1autotoc_md31" />
+<span id="group__QkCircuit_1autotoc_md32" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md31" />
+<span id="group__QkCircuit_1autotoc_md32" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  *   **circuit** – A pointer to the circuit to add the reset to
-  *   **qubit** – The `uint32_t` for the qubit to reset
+*   **circuit** – A pointer to the circuit to add the reset to
+*   **qubit** – The `uint32_t` for the qubit to reset
 
-  **Returns**
+**Returns**
 
-  An exit code.
-</Function>
+An exit code.
 
-### qk\_circuit\_barrier
+**<span id="group__QkCircuit_1ga632b69315931d94fd7b7930c9b5eed19" />QkExitCode qk\_circuit\_barrier(QkCircuit \*circuit, const uint32\_t \*qubits, uint32\_t num\_qubits)**
 
-<Function id="qk_circuit_barrier" signature="QkExitCode qk_circuit_barrier(QkCircuit *circuit, const uint32_t *qubits, uint32_t num_qubits)">
-  Append a barrier to the circuit.
+Append a barrier to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md32" />
+<span id="group__QkCircuit_1autotoc_md33" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(100, 1);
-  uint32_t qubits[5] = {0, 1, 2, 3, 4};
-  qk_circuit_barrier(qc, qubits, 5);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(100, 1);
+uint32_t qubits[5] = {0, 1, 2, 3, 4};
+qk_circuit_barrier(qc, qubits, 5);
+```
 
-  <span id="group__QkCircuit_1autotoc_md33" />
+<span id="group__QkCircuit_1autotoc_md34" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md33" />
+<span id="group__QkCircuit_1autotoc_md34" />
 
-  The length of the array `qubits` points to must be `num_qubits`. If there is a mismatch the behavior is undefined.
+The length of the array `qubits` points to must be `num_qubits`. If there is a mismatch the behavior is undefined.
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  *   **circuit** – A pointer to the circuit to add the barrier to.
-  *   **num\_qubits** – The number of qubits wide the barrier is.
-  *   **qubits** – The pointer to the array of `uint32_t` qubit indices to add the barrier on.
+*   **circuit** – A pointer to the circuit to add the barrier to.
+*   **num\_qubits** – The number of qubits wide the barrier is.
+*   **qubits** – The pointer to the array of `uint32_t` qubit indices to add the barrier on.
 
-  **Returns**
+**Returns**
 
-  An exit code.
-</Function>
+An exit code.
 
-### qk\_circuit\_unitary
+**<span id="group__QkCircuit_1gaa26738bc834b8dd5a6f81b31bca4fd6f" />QkExitCode qk\_circuit\_unitary(QkCircuit \*circuit, const [QkComplex64](qk-complex-64#c.QkComplex64 "QkComplex64") \*matrix, const uint32\_t \*qubits, uint32\_t num\_qubits, bool check\_input)**
 
-<Function id="qk_circuit_unitary" signature="QkExitCode qk_circuit_unitary(QkCircuit *circuit, const QkComplex64 *matrix, const uint32_t *qubits, uint32_t num_qubits, bool check_input)">
-  Append an arbitrary unitary matrix to the circuit.
+Append an arbitrary unitary matrix to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md34" />
+<span id="group__QkCircuit_1autotoc_md35" />
 
-  #### Example
+### Example
 
-  ```c
-  QkComplex64 c0 = {0, 0};  // 0+0i
-  QkComplex64 c1 = {1, 0};  // 1+0i
+```c
+QkComplex64 c0 = {0, 0};  // 0+0i
+QkComplex64 c1 = {1, 0};  // 1+0i
 
-  const uint32_t num_qubits = 1;
-  QkComplex64 unitary[2*2] = {c0, c1,  // row 0
-                                    c1, c0}; // row 1
+const uint32_t num_qubits = 1;
+QkComplex64 unitary[2*2] = {c0, c1,  // row 0
+                                  c1, c0}; // row 1
 
-  QkCircuit *circuit = qk_circuit_new(1, 0);  // 1 qubit circuit
-  uint32_t qubit[1] = {0};  // qubit to apply the unitary on
-  qk_circuit_unitary(circuit, unitary, qubit, num_qubits, true);
-  ```
+QkCircuit *circuit = qk_circuit_new(1, 0);  // 1 qubit circuit
+uint32_t qubit[1] = {0};  // qubit to apply the unitary on
+qk_circuit_unitary(circuit, unitary, qubit, num_qubits, true);
+```
 
-  <span id="group__QkCircuit_1autotoc_md35" />
+<span id="group__QkCircuit_1autotoc_md36" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md35" />
+<span id="group__QkCircuit_1autotoc_md36" />
 
-  Behavior is undefined if any of the following is violated:
+Behavior is undefined if any of the following is violated:
 
-  *   `circuit` is a valid, non-null pointer to a `QkCircuit`
-  *   `matrix` is a pointer to a nested array of `QkComplex64` of dimension `2 ^ num_qubits x 2 ^ num_qubits`
-  *   `qubits` is a pointer to `num_qubits` readable element of type `uint32_t`
+*   `circuit` is a valid, non-null pointer to a `QkCircuit`
+*   `matrix` is a pointer to a nested array of `QkComplex64` of dimension `2 ^ num_qubits x 2 ^ num_qubits`
+*   `qubits` is a pointer to `num_qubits` readable element of type `uint32_t`
 
-  **Parameters**
+**Parameters**
 
-  *   **circuit** – A pointer to the circuit to append the unitary to.
-  *   **matrix** – A pointer to the `QkComplex64` array representing the unitary matrix. This must be a row-major, unitary matrix of dimension `2 ^ num_qubits x 2 ^ num_qubits`. More explicitly: the `(i, j)`-th element is given by `matrix[i * 2^n + j]`. The contents of `matrix` are copied inside this function before being added to the circuit, so caller keeps ownership of the original memory that `matrix` points to and can reuse it after the call and the caller is responsible for freeing it.
-  *   **qubits** – A pointer to array of qubit indices, of length `num_qubits`.
-  *   **num\_qubits** – The number of qubits the unitary acts on.
-  *   **check\_input** – When true, the function verifies that the matrix is unitary. If set to False the caller is responsible for ensuring the matrix is unitary, if the matrix is not unitary this is undefined behavior and will result in a corrupt circuit.
-</Function>
+*   **circuit** – A pointer to the circuit to append the unitary to.
+*   **matrix** – A pointer to the `QkComplex64` array representing the unitary matrix. This must be a row-major, unitary matrix of dimension `2 ^ num_qubits x 2 ^ num_qubits`. More explicitly: the `(i, j)`-th element is given by `matrix[i * 2^n + j]`. The contents of `matrix` are copied inside this function before being added to the circuit, so caller keeps ownership of the original memory that `matrix` points to and can reuse it after the call and the caller is responsible for freeing it.
+*   **qubits** – A pointer to array of qubit indices, of length `num_qubits`.
+*   **num\_qubits** – The number of qubits the unitary acts on.
+*   **check\_input** – When true, the function verifies that the matrix is unitary. If set to False the caller is responsible for ensuring the matrix is unitary, if the matrix is not unitary this is undefined behavior and will result in a corrupt circuit.
 
-### qk\_circuit\_count\_ops
+**<span id="group__QkCircuit_1ga49cc089e20ab2c42745ce4e1a61785a7" />[QkOpCounts](#c.QkOpCounts "QkOpCounts") qk\_circuit\_count\_ops(const QkCircuit \*circuit)**
 
-<Function id="qk_circuit_count_ops" signature="QkOpCounts qk_circuit_count_ops(const QkCircuit *circuit)">
-  Return a list of string names for instructions in a circuit and their counts.
+Return a list of string names for instructions in a circuit and their counts.
 
-  To properly free the memory allocated by the struct, you should call `qk_opcounts_clear`. Dropping the `QkOpCounts` struct without doing so will leave the stored array of `QkOpCount` allocated and produce a memory leak.
+To properly free the memory allocated by the struct, you should call `qk_opcounts_clear`. Dropping the `QkOpCounts` struct without doing so will leave the stored array of `QkOpCount` allocated and produce a memory leak.
 
-  <span id="group__QkCircuit_1autotoc_md36" />
+<span id="group__QkCircuit_1autotoc_md37" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(100, 0);
-  uint32_t qubits[1] = {0};
-  qk_circuit_gate(qc, QkGate_H, qubits, NULL);
-  QkOpCounts counts = qk_circuit_count_ops(qc);
-  // .. once done
-  qk_opcounts_clear(&counts);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(100, 0);
+uint32_t qubits[1] = {0};
+qk_circuit_gate(qc, QkGate_H, qubits, NULL);
+QkOpCounts counts = qk_circuit_count_ops(qc);
+// .. once done
+qk_opcounts_clear(&counts);
+```
 
-  <span id="group__QkCircuit_1autotoc_md37" />
+<span id="group__QkCircuit_1autotoc_md38" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md37" />
+<span id="group__QkCircuit_1autotoc_md38" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  **circuit** – A pointer to the circuit to get the counts for.
+*   **circuit** – A pointer to the circuit to get the counts for.
 
-  **Returns**
+**Returns**
 
-  An `QkOpCounts` struct containing the circuit operation counts.
-</Function>
+An `QkOpCounts` struct containing the circuit operation counts.
 
-### qk\_circuit\_num\_instructions
+**<span id="group__QkCircuit_1gac62f28f884f7bcd23187fe415dc7f2e7" />size\_t qk\_circuit\_num\_instructions(const QkCircuit \*circuit)**
 
-<Function id="qk_circuit_num_instructions" signature="size_t qk_circuit_num_instructions(const QkCircuit *circuit)">
-  Return the total number of instructions in the circuit.
+Return the total number of instructions in the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md38" />
+<span id="group__QkCircuit_1autotoc_md39" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(100, 0);
-  uint32_t qubit[1] = {0};
-  qk_circuit_gate(qc, QkGate_H, qubit, NULL);
-  size_t num = qk_circuit_num_instructions(qc); // 1
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(100, 0);
+uint32_t qubit[1] = {0};
+qk_circuit_gate(qc, QkGate_H, qubit, NULL);
+size_t num = qk_circuit_num_instructions(qc); // 1
+```
 
-  <span id="group__QkCircuit_1autotoc_md39" />
+<span id="group__QkCircuit_1autotoc_md40" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md39" />
+<span id="group__QkCircuit_1autotoc_md40" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  **circuit** – A pointer to the circuit to get the total number of instructions for.
+*   **circuit** – A pointer to the circuit to get the total number of instructions for.
 
-  **Returns**
+**Returns**
 
-  The total number of instructions in the circuit.
-</Function>
+The total number of instructions in the circuit.
 
-### qk\_circuit\_get\_instruction
+**<span id="group__QkCircuit_1ga1fce5e67d091b80d65363c3387d6c587" />void qk\_circuit\_get\_instruction(const QkCircuit \*circuit, size\_t index, [QkCircuitInstruction](#c.QkCircuitInstruction "QkCircuitInstruction") \*instruction)**
 
-<Function id="qk_circuit_get_instruction" signature="void qk_circuit_get_instruction(const QkCircuit *circuit, size_t index, QkCircuitInstruction *instruction)">
-  Return the instruction details for an instruction in the circuit.
+Return the instruction details for an instruction in the circuit.
 
-  This function is used to get the instruction details for a given instruction in the circuit.
+This function is used to get the instruction details for a given instruction in the circuit.
 
-  This function allocates memory internally for the provided `QkCircuitInstruction` and thus you are responsible for calling `qk_circuit_instruction_clear` to free it.
+This function allocates memory internally for the provided `QkCircuitInstruction` and thus you are responsible for calling `qk_circuit_instruction_clear` to free it.
 
-  <span id="group__QkCircuit_1autotoc_md40" />
+<span id="group__QkCircuit_1autotoc_md41" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuitInstruction inst;
-  QkCircuit *qc = qk_circuit_new(100, 0);
-  uint32_t qubit[1] = {0};
-  qk_circuit_gate(qc, QkGate_H, qubit, NULL);
-  qk_circuit_get_instruction(qc, 0, &inst);
-  qk_circuit_instruction_clear(&inst);
-  ```
+```c
+QkCircuitInstruction inst;
+QkCircuit *qc = qk_circuit_new(100, 0);
+uint32_t qubit[1] = {0};
+qk_circuit_gate(qc, QkGate_H, qubit, NULL);
+qk_circuit_get_instruction(qc, 0, &inst);
+qk_circuit_instruction_clear(&inst);
+```
 
-  <span id="group__QkCircuit_1autotoc_md41" />
+<span id="group__QkCircuit_1autotoc_md42" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md41" />
+<span id="group__QkCircuit_1autotoc_md42" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`. The value for `index` must be less than the value returned by `qk_circuit_num_instructions` otherwise this function will panic. Behavior is undefined if `instruction` is not a valid, non-null pointer to a memory allocation with sufficient space for a `QkCircuitInstruction`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`. The value for `index` must be less than the value returned by `qk_circuit_num_instructions` otherwise this function will panic. Behavior is undefined if `instruction` is not a valid, non-null pointer to a memory allocation with sufficient space for a `QkCircuitInstruction`.
 
-  **Parameters**
+**Parameters**
 
-  *   **circuit** – A pointer to the circuit to get the instruction details for.
-  *   **index** – The instruction index to get the instruction details of.
-  *   **instruction** – A pointer to where to write out the `QkCircuitInstruction`
-</Function>
+*   **circuit** – A pointer to the circuit to get the instruction details for.
+*   **index** – The instruction index to get the instruction details of.
+*   **instruction** – A pointer to where to write out the `QkCircuitInstruction`
 
-### qk\_circuit\_instruction\_clear
+**<span id="group__QkCircuit_1gaae7f722dc296e5ee67f5023aaf74fcd4" />void qk\_circuit\_instruction\_clear([QkCircuitInstruction](#c.QkCircuitInstruction "QkCircuitInstruction") \*inst)**
 
-<Function id="qk_circuit_instruction_clear" signature="void qk_circuit_instruction_clear(QkCircuitInstruction *inst)">
-  Clear the data in circuit instruction object.
+Clear the data in circuit instruction object.
 
-  This function doesn’t free the allocation for the provided `QkCircuitInstruction` pointer, it only frees the internal allocations for the data contained in the instruction. You are responsible for allocating and freeing the actual allocation used to store a `QkCircuitInstruction`.
+This function doesn’t free the allocation for the provided `QkCircuitInstruction` pointer, it only frees the internal allocations for the data contained in the instruction. You are responsible for allocating and freeing the actual allocation used to store a `QkCircuitInstruction`.
 
-  <span id="group__QkCircuit_1autotoc_md42" />
+<span id="group__QkCircuit_1autotoc_md43" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuitInstruction *inst = malloc(sizeof(QkCircuitInstruction));
-  QkCircuit *qc = qk_circuit_new(100, 0);
-  uint32_t q0[1] = {0};
-  qk_circuit_gate(qc, QkGate_H, q0, NULL);
-  qk_circuit_get_instruction(qc, 0, inst);
-  qk_circuit_instruction_clear(inst); // clear internal allocations
-  free(inst); // free struct
-  qk_circuit_free(qc); // free the circuit
-  ```
+```c
+QkCircuitInstruction *inst = malloc(sizeof(QkCircuitInstruction));
+QkCircuit *qc = qk_circuit_new(100, 0);
+uint32_t q0[1] = {0};
+qk_circuit_gate(qc, QkGate_H, q0, NULL);
+qk_circuit_get_instruction(qc, 0, inst);
+qk_circuit_instruction_clear(inst); // clear internal allocations
+free(inst); // free struct
+qk_circuit_free(qc); // free the circuit
+```
 
-  <span id="group__QkCircuit_1autotoc_md43" />
+<span id="group__QkCircuit_1autotoc_md44" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md43" />
+<span id="group__QkCircuit_1autotoc_md44" />
 
-  Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkCircuitInstruction`.
+Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkCircuitInstruction`.
 
-  **Parameters**
+**Parameters**
 
-  **inst** – A pointer to the instruction to free.
-</Function>
+*   **inst** – A pointer to the instruction to free.
 
-### qk\_opcounts\_clear
+**<span id="group__QkCircuit_1gaec37fb1567308063e3714363c5c4f20f" />void qk\_opcounts\_clear([QkOpCounts](#c.QkOpCounts "QkOpCounts") \*op\_counts)**
 
-<Function id="qk_opcounts_clear" signature="void qk_opcounts_clear(QkOpCounts *op_counts)">
-  Clear the content in a circuit operation count list.
+Clear the content in a circuit operation count list.
 
-  <span id="group__QkCircuit_1autotoc_md44" />
+<span id="group__QkCircuit_1autotoc_md45" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md44" />
+<span id="group__QkCircuit_1autotoc_md45" />
 
-  Behavior is undefined if `op_counts` is not the object returned by `qk_circuit_count_ops`.
+Behavior is undefined if `op_counts` is not the object returned by `qk_circuit_count_ops`.
 
-  **Parameters**
+**Parameters**
 
-  **op\_counts** – The returned op count list from `qk_circuit_count_ops`.
-</Function>
+*   **op\_counts** – The returned op count list from `qk_circuit_count_ops`.
 
-### qk\_circuit\_to\_python
+**<span id="group__QkCircuit_1gad9855975b3895c8d7a016168acc4fedc" />[PyObject](https://docs.python.org/3/c-api/structures.html#c.PyObject "(in Python v3.14)") \*qk\_circuit\_to\_python(QkCircuit \*circuit)**
 
-<Function id="qk_circuit_to_python" signature="PyObject *qk_circuit_to_python(QkCircuit *circuit)">
-  Convert to a Python-space `QuantumCircuit`.
+Convert to a Python-space `QuantumCircuit`.
 
-  This function takes ownership of the pointer and gives it to Python. Using the input `circuit` pointer after it’s passed to this function is undefined behavior. In particular, `qk_circuit_free` should not be called on this pointer anymore.
+This function takes ownership of the pointer and gives it to Python. Using the input `circuit` pointer after it’s passed to this function is undefined behavior. In particular, `qk_circuit_free` should not be called on this pointer anymore.
 
-  <span id="group__QkCircuit_1autotoc_md45" />
+<span id="group__QkCircuit_1autotoc_md46" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md45" />
+<span id="group__QkCircuit_1autotoc_md46" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`
 
-  It is assumed that the thread currently executing this function holds the Python GIL. This is required to create the Python object returned by this function.
+It is assumed that the thread currently executing this function holds the Python GIL. This is required to create the Python object returned by this function.
 
-  **Parameters**
+**Parameters**
 
-  **circuit** – The C-space `QkCircuit` pointer.
+*   **circuit** – The C-space `QkCircuit` pointer.
 
-  **Returns**
+**Returns**
 
-  A Python `QuantumCircuit` object.
-</Function>
+A Python `QuantumCircuit` object.
 
-### qk\_circuit\_delay
+**<span id="group__QkCircuit_1ga382b12c508c9061e4afdd7e3d8e89b1e" />QkExitCode qk\_circuit\_delay(QkCircuit \*circuit, uint32\_t qubit, double duration, [QkDelayUnit](#c.QkDelayUnit "QkDelayUnit") unit)**
 
-<Function id="qk_circuit_delay" signature="QkExitCode qk_circuit_delay(QkCircuit *circuit, uint32_t qubit, double duration, QkDelayUnit unit)">
-  Append a delay instruction to the circuit.
+Append a delay instruction to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md46" />
+<span id="group__QkCircuit_1autotoc_md47" />
 
-  #### Example
+### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(1, 0);
-  qk_circuit_delay(qc, 0, 100.0, QkDelayUnit_NS);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(1, 0);
+qk_circuit_delay(qc, 0, 100.0, QkDelayUnit_NS);
+```
 
-  <span id="group__QkCircuit_1autotoc_md47" />
+<span id="group__QkCircuit_1autotoc_md48" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkCircuit_1autotoc_md47" />
+<span id="group__QkCircuit_1autotoc_md48" />
 
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
-  **Parameters**
+**Parameters**
 
-  *   **circuit** – A pointer to the circuit to add the delay to.
-  *   **qubit** – The `uint32_t` index of the qubit to apply the delay to.
-  *   **duration** – The duration of the delay.
-  *   **unit** – An enum representing the unit of the duration.
+*   **circuit** – A pointer to the circuit to add the delay to.
+*   **qubit** – The `uint32_t` index of the qubit to apply the delay to.
+*   **duration** – The duration of the delay.
+*   **unit** – An enum representing the unit of the duration.
 
-  **Returns**
+**Returns**
 
-  An exit code.
-</Function>
+An exit code.
 
