@@ -287,6 +287,31 @@ There is a specific use case where you want to show instructions for different o
 </OperatingSystemTabs>
 ```
 
+### Card
+
+The `Card` component creates a clickable card that links to another page, such as our [API index page](https://quantum.cloud.ibm.com/docs/api). 
+
+To use, first set up a `CardGroup` component. Then, insert one or more `Card` components inside the `CardGroup`. For each `Card`, you must set the `title`, `description`, `href`, and and `analyticsName`, such as the following example:
+
+
+```mdx
+<CardGroup>
+    <Card
+      title="Approximate quantum compilation tensor"
+      description="Supports the construction of high-fidelity circuits with reduced depth"
+      href="/docs/api/qiskit-addon-aqc-tensor"
+      analyticsName="Overview page: card: addon AQC Tensor"
+    />
+
+    <Card
+      title="Qiskit SDK"
+      description="A radical software development kit"
+      href="/docs/api/qiskit"
+      analyticsName="Overview page: card: Qiskit SDK"
+    />
+</CardGroup>
+```
+
 ### CodeCellPlaceholder
 
 This component only works in notebooks. Notebook code cells are always at the
