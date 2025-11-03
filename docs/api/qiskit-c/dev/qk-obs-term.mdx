@@ -12,90 +12,76 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
 
 ## Data types
 
-### QkObsTerm
+**<span id="structQkObsTerm" />struct QkObsTerm**
 
-<Class id="QkObsTerm" signature="struct QkObsTerm">
-  A term in a `QkObs`.
+A term in a `QkObs`.
 
-  This contains the coefficient (`coeff`), the number of qubits of the observable (`num_qubits`) and pointers to the `bit_terms` and `indices` arrays, which have length `len`. It’s the responsibility of the user that the data is coherent, see also the below section on safety.
+This contains the coefficient (`coeff`), the number of qubits of the observable (`num_qubits`) and pointers to the `bit_terms` and `indices` arrays, which have length `len`. It’s the responsibility of the user that the data is coherent, see also the below section on safety.
 
-  <span id="structQkObsTerm_1autotoc_md2" />
+<span id="structQkObsTerm_1autotoc_md2" />
 
-  #### Safety
+### Safety
 
-  <span id="structQkObsTerm_1autotoc_md2" />
+<span id="structQkObsTerm_1autotoc_md2" />
 
-  *   `bit_terms` must be a non-null, aligned pointer to `len` elements of type `QkBitTerm`.
-  *   `indices` must be a non-null, aligned pointer to `len` elements of type `uint32_t`.
+*   `bit_terms` must be a non-null, aligned pointer to `len` elements of type `QkBitTerm`.
+*   `indices` must be a non-null, aligned pointer to `len` elements of type `uint32_t`.
 
-  #### QkComplex64 coeff
+**<span id="structQkObsTerm_1af1019513a1a00f578d33b38d10b36670" />[QkComplex64](qk-complex-64#c.QkComplex64 "QkComplex64") coeff**
 
-  <Attribute id="coeff">
-    The coefficient of the observable term.
-  </Attribute>
+The coefficient of the observable term.
 
-  #### size\_t len
+**<span id="structQkObsTerm_1a780a5ce2fdf4087abc63756254a40424" />size\_t len**
 
-  <Attribute id="len">
-    Length of the `bit_terms` and `indices` arrays.
-  </Attribute>
+Length of the `bit_terms` and `indices` arrays.
 
-  #### QkBitTerm \*bit\_terms
+**<span id="structQkObsTerm_1af131526e747cdcac7ecc1dffc66b439c" />QkBitTerm \*bit\_terms**
 
-  <Attribute id="bit_terms">
-    A non-null, aligned pointer to `len` elements of type `QkBitTerm`.
-  </Attribute>
+A non-null, aligned pointer to `len` elements of type `QkBitTerm`.
 
-  #### uint32\_t \*indices
+**<span id="structQkObsTerm_1a3e532a189705a89456f2d2b96d2ff759" />uint32\_t \*indices**
 
-  <Attribute id="indices">
-    A non-null, aligned pointer to `len` elements of type `uint32_t`.
-  </Attribute>
+A non-null, aligned pointer to `len` elements of type `uint32_t`.
 
-  #### uint32\_t num\_qubits
+**<span id="structQkObsTerm_1aaab7bf8363689e37e5c9a8131c54f674" />uint32\_t num\_qubits**
 
-  <Attribute id="num_qubits">
-    The number of qubits the observable term is defined on.
-  </Attribute>
-</Class>
+The number of qubits the observable term is defined on.
 
 ## Functions
 
-### qk\_obsterm\_str
+**<span id="group__QkObsTerm_1ga45426b47c2fb82c7296a353a57933724" />char \*qk\_obsterm\_str(const [QkObsTerm](#c.QkObsTerm "QkObsTerm") \*term)**
 
-<Function id="qk_obsterm_str" signature="char *qk_obsterm_str(const QkObsTerm *term)">
-  Return a string representation of the sparse term.
+Return a string representation of the sparse term.
 
-  <span id="group__QkObsTerm_1autotoc_md153" />
+<span id="group__QkObsTerm_1autotoc_md154" />
 
-  #### Example
+### Example
 
-  ```c
-  QkObs *obs = qk_obs_identity(100);
-  QkObsTerm term;
-  qk_obs_term(obs, 0, &term);
-  char *string = qk_obsterm_str(&term);
-  qk_str_free(string);
-  ```
+```c
+QkObs *obs = qk_obs_identity(100);
+QkObsTerm term;
+qk_obs_term(obs, 0, &term);
+char *string = qk_obsterm_str(&term);
+qk_str_free(string);
+```
 
-  <span id="group__QkObsTerm_1autotoc_md154" />
+<span id="group__QkObsTerm_1autotoc_md155" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkObsTerm_1autotoc_md154" />
+<span id="group__QkObsTerm_1autotoc_md155" />
 
-  Behavior is undefined `term` is not a valid, non-null pointer to a `QkObsTerm`.
+Behavior is undefined `term` is not a valid, non-null pointer to a `QkObsTerm`.
 
-  The string must not be freed with the normal C free, you must use `qk_str_free` to free the memory consumed by the String. Not calling `qk_str_free` will lead to a memory leak.
+The string must not be freed with the normal C free, you must use `qk_str_free` to free the memory consumed by the String. Not calling `qk_str_free` will lead to a memory leak.
 
-  Do not change the length of the string after it’s returned, although values can be mutated.
+Do not change the length of the string after it’s returned, although values can be mutated.
 
-  **Parameters**
+**Parameters**
 
-  **term** – A pointer to the term.
+*   **term** – A pointer to the term.
 
-  **Returns**
+**Returns**
 
-  The function exit code. This is `>0` if reading the term failed.
-</Function>
+The function exit code. This is `>0` if reading the term failed.
 
