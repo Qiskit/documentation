@@ -9,9 +9,9 @@ description: Describes what calibration jobs are and how often they run
 
 Multiple aspects of the QPU are affected by the many different calibrations that IBM&reg; runs daily and hourly.
 
-### Daily calibrations
+### Device calibrations
 
-These calibrations run once every day and last 30-90 minutes, depending on the size of the QPU. The devices start this daily calibration at midnight ET, with the calibration jobs interleaving one-for-one with jobs from external users. This causes the calibration jobs to spread out across several hours, sometimes more than half a day. They include the following:
+Calibration for qubit and gate parameters are conducted on an as-needed basis when parameters are determined to require calibration based on regularly scheduled diagnostic monitoring experiments that are interleaved with user jobs. These calibrations can occur at any time during the day based on device performance. Experiments which measure benchmarks which are reported to Qiskit are run daily and interleave with user jobs.
 
 *   **Single-qubit calibrations**
 
@@ -19,11 +19,11 @@ The frequency, pulse amplitudes, and “DRAG” parameter of each qubit are cali
 
 *   **Single-qubit benchmarking**
 
-    The T1/T2 coherence times and measurement error rates are measured, and randomized benchmarking is run in batches of non-adjacent qubits.
+    The T1/T2 coherence times and measurement error rates are measured, and randomized benchmarking is run in batches of non-adjacent qubits. These are run automatically on an as-needed basis.
 
 *   **Two-qubit gate calibrations and benchmarking**
 
-    The amplitude and phase of each pulse is calibrated, and randomized benchmarking in batches of well-separated gates of similar length is run.
+    The amplitude and phase of each pulse is calibrated, and randomized benchmarking in batches of well-separated gates of similar length is run. These are run automatically on an as-needed basis.
 
 ### Hourly calibrations/monitoring
 
