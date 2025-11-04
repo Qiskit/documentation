@@ -1,16 +1,16 @@
 ---
-title: Execution model (beta)
-description: Executor is a lower-level primitive that provides more flexibility when customizing your error mitigation workflow.
+title: Samplomatic execution model (beta)
+description: Use this composable, explicit execution model with your utility-scale experiments to fine-tune error mitigation and other techniques.
 
 ---
 
-# Execution model (beta)
+# Samplomatic execution model (beta)
 
 <Admonition type="note" title="Beta release">
 All components in this new execution model are currently in beta and might not be stable. You are invited to test them and provide feedback by opening an issue in the [Samplomatic](https://github.com/Qiskit/samplomatic/issues) or [Qiskit Runtime](https://github.com/Qiskit/qiskit-ibm-runtime/issues) GitHub repositories.
 </Admonition>
 
-The Sampler and Estimator primitive interfaces were the higher-level abstraction designed for algorithm developers to focus more on innovation and less on data conversion. However, they are less suitable for quantum information scientists who require more control and flexibility for their utility-scale experiments. To close this gap, we introduce a beta version of a new execution model. This model provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side, so that you can fine-tune error mitigation and other techniques without sacrificing performance. This explicit and composable model makes it easier to experiment with new techniques, reproduce results, and share methods.
+The Sampler and Estimator primitive interfaces were the higher-level abstraction designed for algorithm developers to focus more on innovation and less on data conversion. However, they are less suitable for quantum information scientists who require more control and flexibility for their utility-scale experiments. To close this gap, we introduce a beta version of a new execution model. The **Samplomatic execution model** provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side, so that you can fine-tune error mitigation and other techniques without sacrificing performance. This explicit and composable model makes it easier to experiment with new techniques, reproduce results, and share methods.
 
 In this beta release, the execution model focuses on giving you control over techniques that are built into the existing Sampler and Estimator, including Pauli-twirling, noise model learning and injection, and basis changes. Support for other capabilities will be added gradually over time.
 
@@ -30,7 +30,7 @@ Applying error mitigation to a circuit under this new framework typically consis
 
 We describe below the new tools you can use to implement this workflow.
 
-## Tools for this execution model
+## Tools for the Samplomatic execution model
 
 There are several new tools that can be used together to implement an error mitigation technique in this new execution model: 
 
