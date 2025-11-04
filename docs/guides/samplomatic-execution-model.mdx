@@ -10,15 +10,15 @@ description: Use this composable, explicit execution model with your utility-sca
 All components in this new execution model are currently in beta and might not be stable. You are invited to test them and provide feedback by opening an issue in the [Samplomatic](https://github.com/Qiskit/samplomatic/issues) or [Qiskit Runtime](https://github.com/Qiskit/qiskit-ibm-runtime/issues) GitHub repositories.
 </Admonition>
 
-The Sampler and Estimator primitive interfaces were the higher-level abstraction designed for algorithm developers to focus more on innovation and less on data conversion. However, they are less suitable for quantum information scientists who require more control and flexibility for their utility-scale experiments. To close this gap, we introduce a beta version of a new execution model. The **Samplomatic execution model** provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side, so that you can fine-tune error mitigation and other techniques without sacrificing performance. This explicit and composable model makes it easier to experiment with new techniques, reproduce results, and share methods.
+The Sampler and Estimator primitive interfaces provide a higher-level abstraction for algorithm developers to focus more on innovation and less on data conversion. However, they are less suitable for quantum information scientists, who require more control and flexibility for their utility-scale experiments. The **Samplomatic execution model**, currently in beta release, addresses this need. This new execution model provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side, so that you can fine-tune error mitigation and other techniques without sacrificing performance. This explicit and composable model makes it easier to experiment with new techniques, reproduce results, and share methods.
 
-In this beta release, the execution model focuses on giving you control over techniques that are built into the existing Sampler and Estimator, including Pauli-twirling, noise model learning and injection, and basis changes. Support for other capabilities will be added gradually over time.
+In this beta release, the Samplomatic execution model focuses on giving you control over techniques that are built into the existing Sampler and Estimator, including Pauli twirling, noise model learning and injection, and basis changes. Support for other capabilities will be added gradually over time.
 
 ## Workflow
 
-One main goal of this new execution model is to allow you to apply error mitigation methods in a more modular way. For example, it allows you to define which layers in the circuit to mitigate, or adjust the noise rates being injected into the circuit. 
+One main goal of this new execution model is to provide a modular way to apply error mitigation methods. For example, you can define which layers in the circuit to mitigate, or adjust the noise rates being injected into the circuit. 
 
-Applying error mitigation to a circuit under this new framework typically consists of the following steps:
+To apply error mitigation to a circuit under the framework, your workflow will typically involve the following steps:
 
 1. Group instructions into boxes and apply annotations to them. The annotations capture the intended transformation without actually generating the circuit variants. 
 
@@ -26,7 +26,7 @@ Applying error mitigation to a circuit under this new framework typically consis
 
 3. Build the template circuit and samplex from the boxed circuit
 
-4. Run the template circuit and samplex with the Executor, which will generate and execute the circuit variants as instructed. 
+4. Run the template circuit and samplex with the [Executor](#executor), which will generate and execute the circuit variants as instructed. 
 
 We describe below the new tools you can use to implement this workflow.
 
