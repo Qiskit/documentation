@@ -308,6 +308,7 @@ To use, first set up a `CardGroup` component. Then, insert one or more `Card` co
       description="A radical software development kit"
       href="/docs/api/qiskit"
       analyticsName="Overview page: card: Qiskit SDK"
+      linkText="Learn more"
     />
 </CardGroup>
 ```
