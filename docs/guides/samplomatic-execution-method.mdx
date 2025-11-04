@@ -1,49 +1,77 @@
 ---
-title: Executor primitive (beta)
+title: Execution model (beta)
 description: Executor is a lower-level primitive that provides more flexibility when customizing your error mitigation workflow.
 
 ---
 
-# Executor primitive (beta)
+# Execution model (beta)
 
 <Admonition type="note" title="Beta release">
-The Executor primitive is currently in beta and might not be stable. You are invited to test it and provide feedback by opening an issue in the [Samplomatic](https://github.com/Qiskit/samplomatic/issues) or [Qiskit Runtime](https://github.com/Qiskit/qiskit-ibm-runtime/issues) GitHub repositories.
+All components in this new execution model are currently in beta and might not be stable. You are invited to test them and provide feedback by opening an issue in the [Samplomatic](https://github.com/Qiskit/samplomatic/issues) or [Qiskit Runtime](https://github.com/Qiskit/qiskit-ibm-runtime/issues) GitHub repositories.
 </Admonition>
 
-The Executor primitive and its supporting tools are designed for quantum information scientists to run utility-scale experiments that require more control and flexibility. Executor provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side, so that you can fine-tune error mitigation and other techniques without sacrificing performance. Executor's clear, composable model for execution workflows makes it easier to experiment with new techniques, reproduce results, and share methods.
+The Sampler and Estimator primitive interfaces were the higher-level abstraction designed for algorithm developers to focus more on innovation and less on data conversion. However, they are less suitable for quantum information scientists who require more control and flexibility for their utility-scale experiments. To close this gap, we introduce a beta version of a new execution model. This model provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side, so that you can fine-tune error mitigation and other techniques without sacrificing performance. This explicit and composable model makes it easier to experiment with new techniques, reproduce results, and share methods.
 
-In this initial release, Executor support focuses mostly on Pauli twirling, noise model learning and injection, and basis changes. Other support capabilities will be added gradually over time.
-
-## Samplomatic
-
-The Executor primitive works in the context of the [Samplomatic](https://github.com/Qiskit/samplomatic/) package, which is a library that supports customized sampling randomizations.
-
-Samplomatic uses box instructions to reason about collections of circuit operations that should be treated as having a stable noise context, and uses annotations on boxes to allow users to declare and configure intent. Every box is a scope that owns a set of qubits, operations that act on those qubits, and a list of annotations. 
-
-Samplomatic annotations specify *directives* and *dressings*. Directives specify what to do with the box (for example, twirl the box). Dressings are groups of parameterized gates to add to the left or right side of the box (for example, a layer of single-qubit gates).
-
-The core type of the Samplomatic library is the `Samplex` class. This object represents a parametric probability distribution over the parameters of some template circuit, as well as other array-valued fields to use in post-processing data collected from executing the bound template circuit. Its `sample()` method is the primary interface for querying and specifying inputs and processing outputs. The various inputs and outputs of a samplex depend on many factors - for example, whether measurement twirling is present or whether noise injection is required. Usually, you will first create a circuit with dressed boxes in order to instantiate this object.
-
-The library also provides a `generate_boxing_pass_manager()` method, which builds a [`PassManager`](/docs/api/qiskit/passmanager) that automatically groups circuit instructions into annotated boxes. With `generate_boxing_pass_manager()`, you can quickly and easily iterate on boxing strategies and circuit dressings.
+In this beta release, the execution model focuses on giving you control over techniques that are built into the existing Sampler and Estimator, including Pauli-twirling, noise model learning and injection, and basis changes. Support for other capabilities will be added gradually over time.
 
 ## Workflow
 
-The high-level workflow consists of three steps: 
+One main goal of this new execution model is to allow you to apply error mitigation methods in a more modular way. For example, it allows you to define which layers in the circuit to mitigate, or adjust the noise rates being injected into the circuit. 
 
-1. Preparation - generate the target circuit and group its operations into boxes.
-2. Learning step - learn the noise of the instructions you want to mitigate.
-3. Execution step - execute the circuit on a backend with Executor, and analyze the results.
+Applying error mitigation to a circuit under this new framework typically consists of the following steps:
+
+1. Group instructions into boxes and apply annotations to them. The annotations capture the intended transformation without actually generating the circuit variants. 
+
+2. Learn the noise models of the unique layers, if needed, using the new NoiseLearnerV3. 
+
+3. Build the template circuit and samplex from the boxed circuit
+
+4. Run the template circuit and samplex with the Executor, which will generate and execute the circuit variants as instructed. 
+
+We describe below the new tools you can use to implement this workflow.
+
+## Tools for this execution model
+
+There are several new tools that can be used together to implement an error mitigation technique in this new execution model: 
+
+### Samplomatic
+
+[Samplomatic](https://github.com/Qiskit/samplomatic/) is a new open source library that supports customized sampling randomizations. It uses the [box](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#box) constructs to reason about collections of circuit operations that should be treated as having a stable noise context, and uses annotations on boxes to allow you to declare and configure intents. For example, you can stratify your circuit into boxes, add twirling annotation to each box, and specify which twirling group to use, as shown in the following figure:
+
+IMAGE
+
+A circuit with annotated boxes can then be used to generate a *template circuit* and a *samplex*. The output template circuit is a parameterized circuit that will be executed without further alteration (besides having different parameter values assigned to it). The `samplex`, which is the core type of the Samplomatic library, represents a parametric probability distribution over the parameters of the template circuit, as well as other array-valued fields to use in post-processing data collected from executing the bound template circuit. In other words, the template circuit and samplex pair tells Qiskit Runtime Executor (described below) exactly what parameters to generate and what bound circuits to run. Because these two constructs are created on the client-side, you can do local inspection and sampling to verify the outputs prior to sending it for hardware execution. 
+
+To simplify the process of generating annotated boxes, the Samplomatic library also provides transpiler passes that automatically groups circuit instructions into annotated boxes based on the strategies you provide.
+
+To learn more about Samplomatic, refer to its [API reference](https://qiskit.github.io/samplomatic/) and [GitHub](https://github.com/Qiskit/samplomatic) repository.
 
 
-/* Add information about how `Samplex` and the Executor primitive are used together when executing workloads... */
+### Executor
 
-## NoiseLearnerV3
+Executor is a new Qiskit Runtime helper program that takes the template circuit and samplex pair as the input, generates and binds parameter values according to the samplex, executes the bound circuits on the hardware, and returns the execution results and metadata. It follows the directives of the input pair and does not make any implicit decisions for you, making the process transparent yet performant. 
+
+You will need to install the `executor_preview` branch from `qiskit-ibm-runtime` to access `Executor`:
+
+```bash
+pip install -U https://github.com/Qiskit/qiskit-ibm-runtime.git@executor_preview
+```
+The inputs and output of Executor is very different from those of Sampler and Estimator. Refer to its [API reference](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.Executor.html) for more information.
+
+### NoiseLearnerV3
+
+Similar to the current [`NoiseLearner`](https://quantum.cloud.ibm.com/docs/en/guides/noise-learning), this Qiskit Runtime helper program returns the sparse [Pauli-Lindblad noise model](https://arxiv.org/abs/2201.09866) that is used in many error mitigation methods, including [PEC](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec), [PEA](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea), and [PNA](https://github.com/Qiskit/qiskit-addon-pna/tree/main). In the original `NoiseLearner`, you pass in a list of circuits, and the program stratifies the circuits into layers and returns the noise model for each unique layer. `NoiseLearnerV3`, on the other hand, gives you control over how to stratify your circuits, and the program simply takes a list of instructions (e.g. unique layers) as the inputs. 
+
+You will need to install the `executor_preview` branch from qiskit-ibm-runtime to access `NoiseLearnerV3`:
+
+```bash
+pip install -U https://github.com/Qiskit/qiskit-ibm-runtime.git@executor_preview
+```
+To learn more about NoiseLearnerV3, refer to its [API reference](https://qiskit.github.io/qiskit-ibm-runtime/apidocs/noise_learner_v3.html) documentation.
+
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-- Visit the Samplomatic documentation for [API references](https://qiskit.github.io/samplomatic/api/index.html) and guides, which include examples of the following:
-    - [Dressed boxes](https://qiskit.github.io/samplomatic/guides/dressed_boxes.html)
-    - [Transpiling with `generate_boxing_pass_manager()`](https://qiskit.github.io/samplomatic/guides/transpiler.html)
-    - [Working with samplex inputs and outputs](https://qiskit.github.io/samplomatic/guides/samplex_io.html)
+- Check out two new Qiskit addons, [Shaded lightcone](https://github.com/Qiskit/qiskit-addon-slc) and [Propagated noise absorption](https://github.com/Qiskit/qiskit-addon-pna), which are built on top of this new execution model.
 </Admonition>
