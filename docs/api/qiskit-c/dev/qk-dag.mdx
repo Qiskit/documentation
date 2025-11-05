@@ -18,182 +18,170 @@ The C API currently only supports building DAGs that contain operations defined 
 
 ## Functions
 
-### qk\_dag\_new
+**<span id="group__QkDag_1gaf45fb29cdbe2d5dc6a852e9c14ca08a0" />QkDag \*qk\_dag\_new(void)**
 
-<Function id="qk_dag_new" signature="QkDag *qk_dag_new(void)">
-  Construct a new empty DAG.
+Construct a new empty DAG.
 
-  You must free the returned DAG with qk\_dag\_free when done with it.
+You must free the returned DAG with qk\_dag\_free when done with it.
 
-  <span id="group__QkDag_1autotoc_md50" />
+<span id="group__QkDag_1autotoc_md51" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *empty = qk_dag_new();
-  ```
+```c
+QkDag *empty = qk_dag_new();
+```
 
-  **Returns**
+**Returns**
 
-  A pointer to the created DAG.
-</Function>
+A pointer to the created DAG.
 
-### qk\_dag\_add\_quantum\_register
+**<span id="group__QkDag_1ga0bd511df98315cae4d20356ef606525d" />void qk\_dag\_add\_quantum\_register(QkDag \*dag, const QkQuantumRegister \*reg)**
 
-<Function id="qk_dag_add_quantum_register" signature="void qk_dag_add_quantum_register(QkDag *dag, const QkQuantumRegister *reg)">
-  Add a quantum register to the DAG.
+Add a quantum register to the DAG.
 
-  <span id="group__QkDag_1autotoc_md51" />
+<span id="group__QkDag_1autotoc_md52" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *dag = qk_dag_new();
-  QkQuantumRegister *qr = qk_quantum_register_new(1024, "my_register");
-  qk_dag_add_quantum_register(dag, qr);
-  qk_quantum_register_free(qr);
-  qk_dag_free(dag);
-  ```
+```c
+QkDag *dag = qk_dag_new();
+QkQuantumRegister *qr = qk_quantum_register_new(1024, "my_register");
+qk_dag_add_quantum_register(dag, qr);
+qk_quantum_register_free(qr);
+qk_dag_free(dag);
+```
 
-  <span id="group__QkDag_1autotoc_md52" />
+<span id="group__QkDag_1autotoc_md53" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkDag_1autotoc_md52" />
+<span id="group__QkDag_1autotoc_md53" />
 
-  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `reg` is not a valid, non-null pointer to a `QkQuantumRegister`.
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `reg` is not a valid, non-null pointer to a `QkQuantumRegister`.
 
-  **Parameters**
+**Parameters**
 
-  *   **dag** – A pointer to the DAG.
-  *   **reg** – A pointer to the quantum register.
-</Function>
+*   **dag** – A pointer to the DAG.
+*   **reg** – A pointer to the quantum register.
 
-### qk\_dag\_add\_classical\_register
+**<span id="group__QkDag_1ga32219249fb51bad1d5e928e0ff7638bb" />void qk\_dag\_add\_classical\_register(QkDag \*dag, const QkClassicalRegister \*reg)**
 
-<Function id="qk_dag_add_classical_register" signature="void qk_dag_add_classical_register(QkDag *dag, const QkClassicalRegister *reg)">
-  Add a classical register to the DAG.
+Add a classical register to the DAG.
 
-  <span id="group__QkDag_1autotoc_md53" />
+<span id="group__QkDag_1autotoc_md54" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *dag = qk_dag_new();
-  QkClassicalRegister *cr = qk_classical_register_new(24, "my_register");
-  qk_dag_add_classical_register(dag, cr);
-  qk_classical_register_free(cr);
-  qk_dag_free(dag);
-  ```
+```c
+QkDag *dag = qk_dag_new();
+QkClassicalRegister *cr = qk_classical_register_new(24, "my_register");
+qk_dag_add_classical_register(dag, cr);
+qk_classical_register_free(cr);
+qk_dag_free(dag);
+```
 
-  <span id="group__QkDag_1autotoc_md54" />
+<span id="group__QkDag_1autotoc_md55" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkDag_1autotoc_md54" />
+<span id="group__QkDag_1autotoc_md55" />
 
-  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `reg` is not a valid, non-null pointer to a `QkClassicalRegister`.
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `reg` is not a valid, non-null pointer to a `QkClassicalRegister`.
 
-  **Parameters**
+**Parameters**
 
-  *   **dag** – A pointer to the DAG.
-  *   **reg** – A pointer to the classical register.
-</Function>
+*   **dag** – A pointer to the DAG.
+*   **reg** – A pointer to the classical register.
 
-### qk\_dag\_num\_qubits
+**<span id="group__QkDag_1gadd3162cad19b8ce8385bb3df964b871e" />uint32\_t qk\_dag\_num\_qubits(const QkDag \*dag)**
 
-<Function id="qk_dag_num_qubits" signature="uint32_t qk_dag_num_qubits(const QkDag *dag)">
-  Get the number of qubits the DAG contains.
+Get the number of qubits the DAG contains.
 
-  <span id="group__QkDag_1autotoc_md55" />
+<span id="group__QkDag_1autotoc_md56" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *dag = qk_dag_new();
-  QkQuantumRegister *qr = qk_quantum_register_new(24, "my_register");
-  qk_dag_add_quantum_register(dag, qr);
-  uint32_t num_qubits = qk_dag_num_qubits(dag);  // num_qubits==24
-  qk_quantum_register_free(qr);
-  qk_dag_free(dag);
-  ```
+```c
+QkDag *dag = qk_dag_new();
+QkQuantumRegister *qr = qk_quantum_register_new(24, "my_register");
+qk_dag_add_quantum_register(dag, qr);
+uint32_t num_qubits = qk_dag_num_qubits(dag);  // num_qubits==24
+qk_quantum_register_free(qr);
+qk_dag_free(dag);
+```
 
-  <span id="group__QkDag_1autotoc_md56" />
+<span id="group__QkDag_1autotoc_md57" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkDag_1autotoc_md56" />
+<span id="group__QkDag_1autotoc_md57" />
 
-  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
-  **Parameters**
+**Parameters**
 
-  **dag** – A pointer to the DAG.
+*   **dag** – A pointer to the DAG.
 
-  **Returns**
+**Returns**
 
-  The number of qubits the DAG is defined on.
-</Function>
+The number of qubits the DAG is defined on.
 
-### qk\_dag\_num\_clbits
+**<span id="group__QkDag_1ga2f99ab0e0813f8926fb383a73343b786" />uint32\_t qk\_dag\_num\_clbits(const QkDag \*dag)**
 
-<Function id="qk_dag_num_clbits" signature="uint32_t qk_dag_num_clbits(const QkDag *dag)">
-  Get the number of clbits the DAG contains.
+Get the number of clbits the DAG contains.
 
-  <span id="group__QkDag_1autotoc_md57" />
+<span id="group__QkDag_1autotoc_md58" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *dag = qk_dag_new();
-  QkClassicalRegister *cr = qk_classical_register_new(24, "my_register");
-  qk_dag_add_classical_register(dag, cr);
-  uint32_t num_clbits = qk_dag_num_clbits(dag);  // num_clbits==24
-  qk_classical_register_free(cr);
-  qk_dag_free(dag);
-  ```
+```c
+QkDag *dag = qk_dag_new();
+QkClassicalRegister *cr = qk_classical_register_new(24, "my_register");
+qk_dag_add_classical_register(dag, cr);
+uint32_t num_clbits = qk_dag_num_clbits(dag);  // num_clbits==24
+qk_classical_register_free(cr);
+qk_dag_free(dag);
+```
 
-  <span id="group__QkDag_1autotoc_md58" />
+<span id="group__QkDag_1autotoc_md59" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkDag_1autotoc_md58" />
+<span id="group__QkDag_1autotoc_md59" />
 
-  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
-  **Parameters**
+**Parameters**
 
-  **dag** – A pointer to the DAG.
+*   **dag** – A pointer to the DAG.
 
-  **Returns**
+**Returns**
 
-  The number of clbits the DAG is defined on.
-</Function>
+The number of clbits the DAG is defined on.
 
-### qk\_dag\_free
+**<span id="group__QkDag_1ga4064900d53fa7d3c2ad14d43882af5fe" />void qk\_dag\_free(QkDag \*dag)**
 
-<Function id="qk_dag_free" signature="void qk_dag_free(QkDag *dag)">
-  Free the DAG.
+Free the DAG.
 
-  <span id="group__QkDag_1autotoc_md59" />
+<span id="group__QkDag_1autotoc_md60" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *dag = qk_dag_new();
-  qk_dag_free(dag);
-  ```
+```c
+QkDag *dag = qk_dag_new();
+qk_dag_free(dag);
+```
 
-  <span id="group__QkDag_1autotoc_md60" />
+<span id="group__QkDag_1autotoc_md61" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkDag_1autotoc_md60" />
+<span id="group__QkDag_1autotoc_md61" />
 
-  Behavior is undefined if `dag` is not either null or a valid pointer to a `QkDag`.
+Behavior is undefined if `dag` is not either null or a valid pointer to a `QkDag`.
 
-  **Parameters**
+**Parameters**
 
-  **dag** – A pointer to the DAG to free.
-</Function>
+*   **dag** – A pointer to the DAG to free.
 
