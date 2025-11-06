@@ -26,7 +26,7 @@ To apply error mitigation to a circuit under the framework, your workflow will t
 
 3. Build the template circuit and samplex from the boxed circuit.
 
-4. Run the template circuit and samplex with the [Executor](#executor), which will generate and execute the circuit variants as instructed. 
+4. Run the template circuit and samplex with the [Executor](#executor) primitive, which will generate and execute the circuit variants as instructed. 
 
 5. Post-process execution results. For example, you can apply post-selection, or extrapolate mitigated expectation values from the execution results.
 
@@ -41,22 +41,22 @@ The following tools can be used together to implement an error mitigation techni
 
 ![Example of using boxes and twirling annotations](/docs/images/guides/directed-execution-model/execution-model.avif)
 
-A circuit with annotated boxes can then be used to generate a *template circuit* and a *samplex*. The output template circuit is a parameterized circuit that will be executed without further alteration (other than having different parameter values assigned to it). The samplex, which is the core type of the Samplomatic library, represents a parametric probability distribution over the parameters of the template circuit and other array-valued fields. These fields can be used to post-process data collected from executing the bound template circuit. In other words, the template circuit and samplex pair tells the Executor (described below) exactly what parameters to generate and what bound circuits to run. Because these two constructs are created on the client-side, you can do local inspection and sampling to verify the outputs prior to sending it for hardware execution. 
+A circuit with annotated boxes can then be used to generate a *template circuit* and a *samplex*. The output template circuit is a parameterized circuit that will be executed without further alteration (other than having different parameter values assigned to it). The samplex, which is the core type of the Samplomatic library, represents a parametric probability distribution over the parameters of the template circuit and other array-valued fields. These fields can be used to post-process data collected from executing the bound template circuit. In other words, the template circuit and samplex pair tells the Executor primitive (described below) exactly what parameters to generate and what bound circuits to run. Because these two constructs are created on the client-side, you can do local inspection and sampling to verify the outputs prior to sending it for hardware execution. 
 
 To simplify the process of generating annotated boxes, the Samplomatic library also provides transpiler passes that automatically group circuit instructions into annotated boxes, based on the strategies you provide.
 
 To learn more about Samplomatic, visit the [guides](https://qiskit.github.io/samplomatic/guides/index.html) and [API reference](https://qiskit.github.io/samplomatic/) documentation. Feel free to submit feedback and report bugs in its [GitHub](https://github.com/Qiskit/samplomatic) repository.
 
-### Executor
+### Executor primitive
 
-Executor is a new Qiskit Runtime helper program that takes the template circuit and samplex pair as the input, generates and binds parameter values according to the samplex, executes the bound circuits on the hardware, and returns the execution results and metadata. It follows the directives of the input pair and does not make any implicit decisions for you, making the process transparent yet performant. 
+Executor is a new Qiskit Runtime primitive that takes the template circuit and samplex pair as the input, generates and binds parameter values according to the samplex, executes the bound circuits on the hardware, and returns the execution results and metadata. It follows the directives of the input pair and does not make any implicit decisions for you, making the process transparent yet performant. 
 
 You will need to install the `executor_preview` branch from `qiskit-ibm-runtime` to access `Executor`:
 
 ```bash
 pip install -U git+https://github.com/Qiskit/qiskit-ibm-runtime.git@executor_preview
 ```
-The inputs and output of Executor is very different from those of Sampler and Estimator. Refer to its [API reference](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.Executor.html) for more information.
+The inputs and output of the Executor primitive is very different from those of Sampler and Estimator. Refer to its [API reference](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.Executor.html) for more information.
 
 ### NoiseLearnerV3
 
