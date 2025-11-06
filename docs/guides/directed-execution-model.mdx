@@ -41,7 +41,7 @@ The following tools can be used together to implement an error mitigation techni
 
 ![Example of using boxes and twirling annotations](/docs/images/guides/directed-execution-model/execution-model.avif)
 
-A circuit with annotated boxes can then be used to generate a *template circuit* and a *samplex*. The output template circuit is a parameterized circuit that will be executed without further alteration (other than having different parameter values assigned to it). The samplex, which is the core type of the Samplomatic library, represents a parametric probability distribution over the parameters of the template circuit and other array-valued fields. These fields can be used to post-process data collected from executing the bound template circuit. In other words, the template circuit and samplex pair tells the Executor primitive (described below) exactly what parameters to generate and what bound circuits to run. Because these two constructs are created on the client-side, you can do local inspection and sampling to verify the outputs prior to sending it for hardware execution. 
+A circuit with annotated boxes can then be used to generate a *template circuit* and a *samplex*. The output template circuit is a parameterized circuit that will be executed without further alteration (other than having different parameter values assigned to it). The samplex, which is the core type of the Samplomatic library, represents a parametric probability distribution over the parameters of the template circuit and other array-valued fields. These fields can be used to post-process data collected from executing the bound template circuit. In other words, the template circuit and samplex pair tells the Executor primitive (described below) exactly what parameters to generate and what bound circuits to run. Because these two constructs are created on the client side, you can do local inspection and sampling to verify the outputs prior to sending it for hardware execution. 
 
 To simplify the process of generating annotated boxes, the Samplomatic library also provides transpiler passes that automatically group circuit instructions into annotated boxes, based on the strategies you provide.
 
@@ -49,21 +49,21 @@ To learn more about Samplomatic, visit the [guides](https://qiskit.github.io/sam
 
 ### Executor primitive
 
-Executor is a new Qiskit Runtime primitive that takes the template circuit and samplex pair as the input, generates and binds parameter values according to the samplex, executes the bound circuits on the hardware, and returns the execution results and metadata. It follows the directives of the input pair and does not make any implicit decisions for you, making the process transparent yet performant. 
+Executor is a new Qiskit Runtime primitive that takes the template circuit and samplex pair as the input, generates and binds parameter values according to the samplex, executes the bound circuits on the hardware, and returns the execution results and metadata. It follows the directives of the input pair and does not make any implicit decisions for you, so that the process is transparent yet performant. 
 
-You will need to install the `executor_preview` branch from `qiskit-ibm-runtime` to access `Executor`:
+To access `Executor`, install the `executor_preview` branch from `qiskit-ibm-runtime`:
 
 ```bash
 pip install -U git+https://github.com/Qiskit/qiskit-ibm-runtime.git@executor_preview
 ```
-The inputs and output of the Executor primitive is very different from those of Sampler and Estimator. Refer to its [API reference](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.Executor.html) for more information.
+The inputs and output of the Executor primitive are very different from those of Sampler and Estimator. Refer to the [Executor API reference](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.Executor.html) for more information.
 
 ### NoiseLearnerV3
 
-Similar to the current [`NoiseLearner`](https://quantum.cloud.ibm.com/docs/en/guides/noise-learning), this Qiskit Runtime helper program returns the sparse [Pauli-Lindblad noise model](https://arxiv.org/abs/2201.09866) that is used in many error mitigation methods, including [PEC](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec), [PEA](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea), and [PNA](https://github.com/Qiskit/qiskit-addon-pna/tree/main). In the original `NoiseLearner`, you pass in a list of circuits, and the program stratifies the circuits into layers and returns the noise model for each unique layer. `NoiseLearnerV3`, on the other hand, gives you control over how to stratify your circuits, and the program simply takes a list of boxed circuit instructions (e.g. unique layers) as the inputs. 
+Similar to the current [`NoiseLearner`](https://quantum.cloud.ibm.com/docs/en/guides/noise-learning), this Qiskit Runtime helper program returns the sparse [Pauli-Lindblad noise model](https://arxiv.org/abs/2201.09866) that is used in many error mitigation methods, including [PEC](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec), [PEA](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea), and [PNA](https://github.com/Qiskit/qiskit-addon-pna/tree/main). In the original `NoiseLearner`, you pass in a list of circuits, and the program stratifies the circuits into layers and returns the noise model for each unique layer. `NoiseLearnerV3`, on the other hand, gives you control over how to stratify your circuits, and the program simply takes a list of boxed circuit instructions (for example, unique layers) as the inputs. 
 
 `NoiseLearnerV3` also supports measurement noise learning. For each instruction set in the input list, it runs the Pauli-Lindblad learning protocol if the set contains one- and two-qubit gates, and the [TREX](/docs/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex) protocol if the set contains measurements.
-You will need to install the `executor_preview` branch from qiskit-ibm-runtime to access `NoiseLearnerV3`:
+To access `NoiseLearnerV3`, install the `executor_preview` branch from `qiskit-ibm-runtime`:
 
 ```bash
 pip install -U git+https://github.com/Qiskit/qiskit-ibm-runtime.git@executor_preview
