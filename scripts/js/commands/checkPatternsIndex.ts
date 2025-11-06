@@ -23,7 +23,7 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/docs/guides/qiskit-code-assistant-vscode",
   "/docs/guides/qiskit-code-assistant-local",
   "/docs/guides/addons",
-  "/docs/guides/qiskit-introduction",
+  "/docs/guides/qiskit-intro",
   "/docs/guides/function-template-hamiltonian-simulation",
   "/docs/guides/qiskit-addons-utils",
   "/docs/guides/qiskit-code-assistant-openai-api",
