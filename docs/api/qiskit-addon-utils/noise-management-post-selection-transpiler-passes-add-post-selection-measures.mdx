@@ -1,0 +1,114 @@
+---
+title: AddPostSelectionMeasures (latest version)
+description: API reference for qiskit_addon_utils.noise_management.post_selection.transpiler.passes.AddPostSelectionMeasures in the latest version of qiskit-addon-utils
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_utils.noise_management.post_selection.transpiler.passes.AddPostSelectionMeasures
+---
+
+# AddPostSelectionMeasures
+
+<Class id="qiskit_addon_utils.noise_management.post_selection.transpiler.passes.AddPostSelectionMeasures" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/post_selection/transpiler/passes/add_post_selection_measures.py#L43-L171" signature="AddPostSelectionMeasures(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass "(in Qiskit v2.2)")
+
+  Add a post selection measurement after every terminal measurement.
+
+  A post selection measurement is a measurement that follows a regular measurement on a given qubit. It consists of a narrowband X-pulse followed by a regular measurement operation. In the absence of noise, it is expected to return `(b + 1) % 2`, where `b` is the outcome of the original measurement.
+
+  This pass adds post selection measurements after every terminal measurement, i.e., after every measurement that is not followed by another operation on the same wire. The added measurements are placed after a barrier, and write to new classical registers that are copies of the DAG’s registers, with modified names.
+
+  <Admonition title="Note" type="note">
+    When this pass encounters a control flow operation, it iterates through all of its blocks. It marks as “terminated” only those qubits that are terminated in every one of the blocks, and it treats as unterminated every other qubit.
+  </Admonition>
+
+  Initialize the pass.
+
+  **Parameters**
+
+  *   **x\_pulse\_type** – The type of X-pulse to apply for the post-selection measurements.
+  *   **post\_selection\_suffix** – A fixed suffix to append to the names of the classical registers when copying them.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit_addon_utils.noise_management.post_selection.transpiler.passes.AddPostSelectionMeasures.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit_addon_utils.noise_management.post_selection.transpiler.passes.AddPostSelectionMeasures.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit_addon_utils.noise_management.post_selection.transpiler.passes.AddPostSelectionMeasures.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.2)")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.2)")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_addon_utils.noise_management.post_selection.transpiler.passes.AddPostSelectionMeasures.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_addon_utils.noise_management.post_selection.transpiler.passes.AddPostSelectionMeasures.run" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/post_selection/transpiler/passes/add_post_selection_measures.py#L82-L108" signature="run(dag)">
+    Run a pass on the DAGCircuit. This is implemented by the pass developer.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.2)")) – the dag on which the pass is run.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.14)") – when this is left unimplemented for a pass.
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_addon_utils.noise_management.post_selection.transpiler.passes.AddPostSelectionMeasures.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.2)")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.2)")
+  </Function>
+</Class>
+
