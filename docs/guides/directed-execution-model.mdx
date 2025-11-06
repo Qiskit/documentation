@@ -1,18 +1,18 @@
 ---
-title: Samplomatic execution model (beta)
+title: Directed execution model (beta)
 description: Use this composable, explicit execution model with your utility-scale experiments to fine-tune error mitigation and other techniques.
 
 ---
 
-# Samplomatic execution model (beta)
+# Directed execution model (beta)
 
 <Admonition type="note" title="Beta release">
 All components in this new execution model are currently in beta and might not be stable. You are invited to test them and provide feedback by opening an issue in the [Samplomatic](https://github.com/Qiskit/samplomatic/issues) or [Qiskit Runtime](https://github.com/Qiskit/qiskit-ibm-runtime/issues) GitHub repositories.
 </Admonition>
 
-The Sampler and Estimator primitive interfaces provide a higher-level abstraction for algorithm developers to focus more on innovation and less on data conversion. However, they are less suitable for quantum information scientists, who require more control and flexibility for their utility-scale experiments. The **Samplomatic execution model**, currently in beta release, addresses this need. This new execution model provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side, so that you can fine-tune error mitigation and other techniques without sacrificing performance. This explicit and composable model makes it easier to experiment with new techniques, reproduce results, and share methods.
+The Sampler and Estimator primitive interfaces provide a higher-level abstraction for algorithm developers to focus more on innovation and less on data conversion. However, they are less suitable for quantum information scientists, who require more control and flexibility for their utility-scale experiments. The **directed execution model**, currently in beta release, addresses this need. This new execution model provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side, so that you can fine-tune error mitigation and other techniques without sacrificing performance. This explicit and composable model makes it easier to experiment with new techniques, reproduce results, and share methods.
 
-In its beta release, the Samplomatic execution model focuses on giving you control over techniques that are built into the existing Sampler and Estimator, including Pauli twirling, noise model learning and injection, and basis changes. Support for other capabilities will be added gradually over time.
+In its beta release, the directed execution model focuses on giving you control over techniques that are built into the existing Sampler and Estimator, including Pauli twirling, noise model learning and injection, and basis changes. Support for other capabilities will be added gradually over time.
 
 ## Workflow
 
@@ -31,7 +31,7 @@ To apply error mitigation to a circuit under the framework, your workflow will t
 5. Post-process execution results. For example, you can apply post-selection, or extrapolate mitigated expectation values from the execution results.
 
 <span id="samplomatic-tools"></span>
-## Tools for the Samplomatic execution model
+## Tools for the directed execution model
 
 The following tools can be used together to implement an error mitigation technique in this new execution model.
 
@@ -39,7 +39,7 @@ The following tools can be used together to implement an error mitigation techni
 
 [Samplomatic](https://github.com/Qiskit/samplomatic/) is a new open-source library that supports customized sampling randomizations. It uses the [box](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#box) construct to reason about collections of circuit operations that should be treated as having a stable noise context, and uses annotations on boxes to allow you to declare and configure intents. For example, you can stratify your circuit into boxes, add a twirling annotation to each box, and specify which twirling group to use, as shown in the following figure:
 
-![Example of using boxes and twirling annotations](/docs/images/guides/samplomatic-execution-model/execution-model.avif)
+![Example of using boxes and twirling annotations](/docs/images/guides/directed-execution-model/execution-model.avif)
 
 A circuit with annotated boxes can then be used to generate a *template circuit* and a *samplex*. The output template circuit is a parameterized circuit that will be executed without further alteration (other than having different parameter values assigned to it). The samplex, which is the core type of the Samplomatic library, represents a parametric probability distribution over the parameters of the template circuit and other array-valued fields. These fields can be used to post-process data collected from executing the bound template circuit. In other words, the template circuit and samplex pair tells the Executor (described below) exactly what parameters to generate and what bound circuits to run. Because these two constructs are created on the client-side, you can do local inspection and sampling to verify the outputs prior to sending it for hardware execution. 
 
