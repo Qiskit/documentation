@@ -26,7 +26,7 @@ Run the following command in your terminal:
 bash <(curl -fsSL https://raw.githubusercontent.com/Qiskit/qiskit-code-assistant-vscode/main/setup_local.sh)
 ```
 
-This script will:
+This script performs the following steps:
 - Install Ollama (if not already installed)
 - Download and configure the recommended Qiskit Code Assistant model
 - Set up the VS Code extension to work with your local deployment
@@ -71,7 +71,7 @@ GGUF format models are optimized for local use and require fewer computational r
 4. [qiskit/granite-3.2-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF) – Released **June 2025**  
    *Trained with Qiskit data up to version **2.0***  
 
-The Open Source Qiskit Code Assistant models are available in <DefinitionTooltip definition="Safetensors is a file format designed specifically for storing machine learning model weights and tensors in a secure and efficient manner.">safetensors</DefinitionTooltip> or <DefinitionTooltip definition="GGUF is a binary format that is designed for fast loading and saving of models, and for ease of reading.">GGUF file format</DefinitionTooltip> and can be downloaded from the Hugging Face as explained below.
+The Open Source Qiskit Code Assistant models are available in <DefinitionTooltip definition="Safetensors is a file format designed specifically for storing machine learning model weights and tensors in a secure and efficient manner.">safetensors</DefinitionTooltip> or <DefinitionTooltip definition="GGUF is a binary format that is designed for quickly loading and saving models, and for readability.">GGUF file format</DefinitionTooltip> and can be downloaded from the Hugging Face as explained below.
 
 ### Qiskit versions used for training
 
@@ -104,8 +104,8 @@ If you prefer to manually configure your local setup or need more control over t
 
 Follow these steps to download any Qiskit Code Assistant-related model from the Hugging Face website:
 
-1. Navigate to the desired Qiskit model page on Hugging Face
-2. Go to the **Files and Versions** tab and download the safetensors or GGUF model files
+1. Navigate to the desired Qiskit model page on Hugging Face.
+2. Go to the **Files and Versions** tab and download the safetensors or GGUF model files.
 
 </details>
 
@@ -132,9 +132,9 @@ To download any of the available Qiskit Code Assistant models using the Hugging 
 
 <details>
 
-<summary>Deploy manually the Qiskit Code Assistant models in local through Ollama</summary>
+<summary>Manually deploy the Qiskit Code Assistant models in local through Ollama</summary>
 
-There are multiple ways to deploy and interact with the downloaded Qiskit Code Assistant model. This guide demonstrates using [Ollama](https://ollama.com) as follows: either with the [Ollama application](#using-the-ollama-application) using the Hugging Face Hub integration or local model, or with the [`llama-cpp-python` package](#use-llama-cpp-python).
+There are multiple ways to deploy and interact with the downloaded Qiskit Code Assistant model. This guide demonstrates using [Ollama](https://ollama.com) as follows: either with the [Ollama application](#using-the-ollama-application) by using the Hugging Face Hub integration or local model, or with the [`llama-cpp-python` package](#use-llama-cpp-python).
 
 ### Using the Ollama application
 
@@ -168,7 +168,7 @@ The [Ollama/Hugging Face Hub integration](https://huggingface.co/docs/hub/ollama
     ollama run hf.co/Qiskit/Qwen2.5-Coder-14B-Qiskit
     ```
 
-you can use the `hf.co/Qiskit/Qwen2.5-Coder-14B-Qiskit` model or any of the other currently recommended GGUF official models `hf.co/Qiskit/mistral-small-3.2-24b-qiskit-GGUF` or `hf.co/Qiskit/granite-3.3-8b-qiskit-GGUF`.
+You can use the `hf.co/Qiskit/Qwen2.5-Coder-14B-Qiskit` model or any of the other currently recommended GGUF official models `hf.co/Qiskit/mistral-small-3.2-24b-qiskit-GGUF` or `hf.co/Qiskit/granite-3.3-8b-qiskit-GGUF`.
 
 #### Set up Ollama with a manually downloaded Qiskit Code Assistant GGUF model
 
@@ -218,7 +218,7 @@ ollama run Qwen2.5-Coder-14B-Qiskit
 Some useful commands:
 
 - `ollama list` - List models on your computer
-- `ollama rm Qwen2.5-Coder-14B-Qiskit` - Remove/delete the model
+- `ollama rm Qwen2.5-Coder-14B-Qiskit` - Delete the model
 - `ollama show Qwen2.5-Coder-14B-Qiskit` - Show model information
 - `ollama stop Qwen2.5-Coder-14B-Qiskit` - Stop a model that is currently running
 - `ollama ps` - List which models are currently loaded
@@ -227,7 +227,7 @@ Some useful commands:
 
 <details>
 
-<summary>Deploy manually the Qiskit Code Assistant models in local through the `llama-cpp-python` package</summary>
+<summary>Manually deploy the Qiskit Code Assistant models in local through the `llama-cpp-python` package</summary>
 
 <span id="use-llama-cpp-python"></span>
 An alternative to the Ollama application is the `llama-cpp-python` package, which is a Python binding for `llama.cpp`. It gives you more control and flexibility to run the GGUF model locally, and is ideal for users who wish to integrate the local model in their workflows and Python applications.
@@ -267,7 +267,7 @@ raw_pred = model(input, **generation_kwargs)["choices"][0]["text"]
 
 <details>
 
-<summary>Deploy manually the Qiskit Code Assistant models in local through llama.cpp</summary>
+<summary>Manually deploy the Qiskit Code Assistant models in local through llama.cpp</summary>
 ### Use the `llama.cpp` library
 
 Another alternative is to use `llama.cpp`, an open-source library for performing LLM inference on a CPU with minimal setup.
