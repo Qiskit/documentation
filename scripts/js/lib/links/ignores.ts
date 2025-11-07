@@ -44,7 +44,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://colab.research.google.com/#create=true",
   "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
   "https://forms.office.com/r/zN3hvMTqJ1",
-  "https://forms.office.com/e/kJzViZNVa4",
+  "https://forms.cloud.microsoft/e/3Wi9cbjQPK",
   "https://platform.openai.com/docs/api-reference/completions",
   "https://code.visualstudio.com/",
   "https://doi.org/10.1002/qute.201800012",
