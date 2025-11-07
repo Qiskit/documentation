@@ -15,15 +15,15 @@ Calibrations for qubit and gate parameters are conducted on an as-needed basis. 
 
 *   **Single-qubit calibrations**
 
-The frequency, pulse amplitudes, and “DRAG” parameter of each qubit are calibrated.
+    The frequency, pulse amplitudes, and “DRAG” parameter of each qubit are calibrated on an as-needed basis.
 
 *   **Single-qubit benchmarking**
 
-    The T1/T2 coherence times and measurement error rates are measured, and randomized benchmarking is run in batches of non-adjacent qubits. These are run automatically on an as-needed basis.
+    The T1/T2 coherence times and measurement error rates are measured, and randomized benchmarking is run in batches of non-adjacent qubits. These benchmarks are measured on a daily basis, other than measurement error, which is reported when readout angle calibrations are performed as well. 
 
 *   **Two-qubit gate calibrations and benchmarking**
 
-    The amplitude and phase of each pulse is calibrated, and randomized benchmarking in batches of well-separated gates of similar length is run. These are run automatically on an as-needed basis.
+    The amplitude and phase of each pulse is calibrated, and randomized benchmarking in batches of well-separated gates of similar length is run. These benchmarks are measured on a daily basis.
 
 ### Hourly calibrations/monitoring
 
@@ -48,7 +48,8 @@ No; since the circuits are bundled into a single job, the entire job will run wi
 
 ## How long do calibration jobs run for?
 
-We run both daily and hourly calibration jobs. Daily calibrations on a smaller device (5-7 qubits) may take about 30 minutes, while for larger devices (7+ qubits) they could take about 90 minutes. The hourly calibrations run for about 2-3 minutes each hour.
+As calibrations are now performed on an as-needed basis, the timing of each calibration depends on device performance and scheduling relative to active job flow. For Heron devices, the total calibration time accumulated over the course of a day is not expected to exceed two hours.
+
 
 ## Simultaneously-submitted jobs with different calibrations
 
