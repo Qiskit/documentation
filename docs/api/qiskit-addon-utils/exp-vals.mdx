@@ -1,0 +1,141 @@
+---
+title: exp_vals (latest version)
+description: API reference for qiskit_addon_utils.exp_vals in the latest version of qiskit-addon-utils
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_utils.exp_vals
+---
+
+<span id="module-qiskit_addon_utils.exp_vals" />
+
+<span id="exp-vals-qiskit-addon-utils-exp-vals" />
+
+# exp\_vals
+
+`qiskit_addon_utils.exp_vals`
+
+Tools for calculating expectation values.
+
+### executor\_expectation\_values
+
+<Function id="qiskit_addon_utils.exp_vals.executor_expectation_values" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/exp_vals/expectation_values.py#L24-L220" signature="executor_expectation_values(bool_array, basis_dict, /, meas_basis_axis=None, *, avg_axis=None, measurement_flips=None, pauli_signs=None, postselect_mask=None, gamma_factor=None, rescale_factors=None)">
+  Computes expectation values from boolean data and metadata, aiming for compatibility with the components of a result from `Executor` in `qiskit_ibm_runtime` .
+
+  Uses data in bool\_array, acquired with measurement bases as ordered in keys of basis\_dict, to compute observables encoded in values of basis\_dict.
+
+  Optionally allows averaging over additional axes of bool\_array, as when twirling.
+
+  Optionally supports measurement twirling, PEC, and postselection.
+
+  **Parameters**
+
+  *   **bool\_array** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.3)")*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.3)")*]]*) – Boolean array, presumably representing data from measured qubits. The last two axes are the number of shots and number of classical bits, respectively. The least significant bit is assumed to be at index 0 of the bits axis. If meas\_basis\_axis is given, that axis of bool\_array indexes the measurement bases, with length len(basis\_dict).
+  *   **basis\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v2.2)")*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)") *| None]]*) – This dict encodes how the data in bool\_array should be used to estimate the desired list of Pauli observables. The ith key is a measurement basis assumed to correspond to the ith slice of bool\_array along the meas\_basis\_axis axis. Each dict value is a list of length equal to the number of desired observables. The jth element of this list is a SparsePauliOp assumed to be compatible (qubit-wise commuting) with the measurement-basis key. In place of a SparsePauliOp, None may be used to represent the zero operator, when a basis is not used to compute an observable. The jth observable is defined as the sum of the jth element of each dict value (contribution from each meas basis). - Note the order of dict entries is relied on here for indexing; the dict keys are never used. - Assumes each Pauli term (in dict values) is compatible with each measurement basis (in keys). - Assumes each term in each observable appears for exactly one basis (TODO: remove this assumption).
+  *   **meas\_basis\_axis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – Axis of bool\_array that indexes measurement bases. Ordering must match ordering in basis\_dict. If None, then len(basis\_dict) must be 1, and bool\_array is assumed to correspond to the only measurement basis.
+  *   **avg\_axis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*, ...] | None*) – Optional axis or axes of bool\_array to average over when computing expectation values. Usually this is the “twirling” axis. Must be nonnegative. (The shots axis, assumed to be at index -2 in the boolean array, is always averaged over).
+  *   **measurement\_flips** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.3)")*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.3)")*]] | None*) – Optional boolean array used with measurement twirling. Indicates which bits were acquired with measurements preceded by bit-flip gates. Data processing will use the result of xor\`ing this array with \`bool\_array. Must be same shape as bool\_array.
+  *   **pauli\_signs** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.3)")*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.3)")*]] | None*) – Optional boolean array used with probabilistic error cancellation (PEC). Final axis is assumed to index all noisy boxes in circuit. Value of True indicates an overall sign of -1 should be associated with the noisy box, typically because an odd number of inverse-noise errors were inserted in that box for the specified circuit randomization. The final axis is immediately collapsed as a sum mod 2 to obtain the overall sign associated with each circuit randomization. Remaining shape must be pauli\_signs.shape\[:-1] == bool\_array.shape\[:-2]. Note this array does not have a shots axis.
+  *   **postselect\_mask** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.3)")*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.3)")*]] | None*) – Optional boolean array used for postselection. True (False) indicates a shot accepted (rejected) by postselection. Shape must be bool\_array.shape\[:-1].
+  *   **gamma\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)") *| None*) – Rescaling factor gamma to be applied to PEC mitigated expectation values. If None, rescaling factors will be computed as the number of positive samples minus the number of negative samples, computed as 1/(np.sum(\~pauli\_signs, axis=avg\_axis) - np.sum(pauli\_signs, axis=avg\_axis)). This can fail due to division by zero if there are an equal number of positive and negative samples. Also note this rescales each expectation value by a different factor. (TODO: allow specifying an array of gamma values).
+  *   **rescale\_factors** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")*]]] | None*) – Scale factor for each Pauli term in each observable in each basis in the given `basis_dict`. Typically used for readout mitigation (“TREX”) correction factors. Each item in the list corresponds to a different basis, and contains a list of lists of factors for each term in each observable related to that basis. The order of the bases and the observables inside each basis should be the same as in basis\_dict. For empty observables for some of the bases, keep an empty list. If None, scaling factor will not be applied.
+
+  **Returns**
+
+  A list of (exp. val, variance) 2-tuples, one for each desired observable.
+
+  **Note: Covariances between summed terms in each observable are not currently accounted for in the**
+
+  returned variances. (TODO)
+
+  **Raises**
+
+  *   **ValueError if avg\_axis contains negative values.** –
+  *   **ValueError if meas\_basis\_axis is None but len**\*\*(****basis\_dict****) \*\***!= 1.** –
+  *   **ValueError if the number**\*\* of ****entries in basis\_dict does not equal the length**** of \*\***bool\_array along meas\_basis\_axis.** –
+</Function>
+
+### get\_measurement\_bases
+
+<Function id="qiskit_addon_utils.exp_vals.get_measurement_bases" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/exp_vals/measurement_bases.py#L21-L61" signature="get_measurement_bases(observables)">
+  Choose bases to sample in order to calculate expectation values for all given observables.
+
+  Here a “basis” refers to measurement of a full-weight or high-weight Pauli, from which multiple qubit-wise commuting Paulis may be estimated.
+
+  The bases are chosen by grouping commuting Paulis across the different observables.
+
+  **Parameters**
+
+  **observables** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)")*]*) – The observables to calculate using the quantum computer.
+
+  **Returns**
+
+  *   List of Pauli bases to sample encoded in a list of uint8 where 0=I,1=Z,2=X,3=Y.
+  *   Dict that maps each measured basis to the relevant Paulis and their coefficients for each observable. With the measured bases as keys, for each observable there is a SparsePauliOp representing it.
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)"), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.3)")\[*uint8*]]], [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")\[[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v2.2)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)")]]]
+</Function>
+
+### map\_observable\_isa\_to\_canonical
+
+<Function id="qiskit_addon_utils.exp_vals.map_observable_isa_to_canonical" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/exp_vals/observable_mappings.py#L22-L69" signature="map_observable_isa_to_canonical(isa_observable, canonical_qubits)">
+  Map an observable defined relative to the transpiled circuit to canonical box-order.
+
+  In the transpiled (or ISA) ordering, the qubits are indexed based on the “physical” layout of qubits in the device.
+
+  For info on canonical qubit ordering conventions see the [Samplomatic docs](https://qiskit.github.io/samplomatic/guides/samplex_io.html#qubit-ordering-convention)).
+
+  **Parameters**
+
+  *   **isa\_observable** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v2.2)")  *|*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)")  *|*[*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable "(in Qiskit v2.2)")) – A Pauli, SparsePauliOp, or SparseObservable object.
+  *   **canonical\_qubits** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – A sequence specifying the physical qubit for each canonical qubit.
+
+  **Returns**
+
+  A mapped operator of the same type as `isa_observable`
+
+  **Return type**
+
+  [*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v2.2)") | [*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)") | [*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable "(in Qiskit v2.2)")
+</Function>
+
+### map\_observable\_virtual\_to\_canonical
+
+<Function id="qiskit_addon_utils.exp_vals.map_observable_virtual_to_canonical" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/exp_vals/observable_mappings.py#L72-L125" signature="map_observable_virtual_to_canonical(virt_observable, layout, canonical_qubits)">
+  Map an observable with virtual qubit ordering to canonical box-order.
+
+  For info on canonical qubit ordering conventions see the [Samplomatic docs](https://qiskit.github.io/samplomatic/guides/samplex_io.html#qubit-ordering-convention)).
+
+  **Parameters**
+
+  *   **virt\_observable** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v2.2)")  *|*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)")  *|*[*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable "(in Qiskit v2.2)")) – A Pauli, SparsePauliOp, or SparseObservable object.
+  *   **layout** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – The list of physical qubits used for the isa circuit.
+  *   **canonical\_qubits** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – A dictionary mapping canonical qubits within a box to physical qubits within the layout.
+
+  **Returns**
+
+  A mapped operator of the same type as `virt_observable`
+</Function>
+
+### map\_observable\_isa\_to\_virtual
+
+<Function id="qiskit_addon_utils.exp_vals.map_observable_isa_to_virtual" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/exp_vals/observable_mappings.py#L128-L174" signature="map_observable_isa_to_virtual(isa_observable, layout)">
+  Map an observable defined relative to the transpiled circuit to virtual order.
+
+  In the transpiled (or ISA) ordering, the qubits are indexed based on the “physical” layout of qubits in the device.
+
+  **Parameters**
+
+  *   **isa\_observable** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v2.2)")  *|*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)")  *|*[*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable "(in Qiskit v2.2)")) – A Pauli, SparsePauliOp, or SparseObservable object.
+  *   **layout** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – The list of physical qubits used for the isa circuit.
+
+  **Returns**
+
+  A mapped operator of the same type as `isa_observable`
+
+  **Return type**
+
+  [*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v2.2)") | [*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)") | [*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable "(in Qiskit v2.2)")
+</Function>
+

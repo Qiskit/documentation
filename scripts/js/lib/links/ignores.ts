@@ -14,7 +14,12 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES: Set<string> = new Set([]);
+export const IGNORED_FILES: Set<string> = new Set([
+  // The Qiskit C API objects.inv have a lot of broken links that we should fix. Recently,
+  // the Qiskit team changed their linking of the C++ domain references to C, which created
+  // a ton of broken links. See https://github.com/Qiskit/qiskit/pull/15250
+  "public/docs/api/qiskit-c/objects.inv",
+]);
 
 // -----------------------------------------------------------------------------------
 // Always ignored URLs - prefer to use more precise ignores
@@ -44,7 +49,6 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://colab.research.google.com/#create=true",
   "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
   "https://forms.office.com/r/zN3hvMTqJ1",
-  "https://forms.office.com/e/kJzViZNVa4",
   "https://platform.openai.com/docs/api-reference/completions",
   "https://code.visualstudio.com/",
   "https://doi.org/10.1002/qute.201800012",
@@ -248,6 +252,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
       "0.39/",
       "0.40/",
       "0.41/",
+      "0.42/",
     ].map((vers) => [
       `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [
@@ -368,11 +373,11 @@ function _patternsReorg(): FilesToIgnores {
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v1.mdx`,
-        ["/docs/api/migration-guides/v2-primitives"],
+        ["/docs/api/guides/v2-primitives"],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v1.mdx`,
-        ["/docs/api/migration-guides/v2-primitives"],
+        ["/docs/api/guides/v2-primitives"],
       ],
       [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/docs/run"]],
       [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/docs/run"]],
@@ -420,36 +425,7 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
 
 function _qiskitCRegexes(): FilesToIgnores {
   return {
-    "public/docs/api/qiskit-c/objects.inv": [
-      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_from_native",
-      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_from_native.value",
-      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_to_native",
-      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_to_native.value",
-      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ms",
-      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ns",
-      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ps",
-      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_s",
-      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_us",
-      "/docs/api/qiskit-c/index#c_api",
-      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64",
-      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1a1d0477d0d30b088dfd322e85b4be5464",
-      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1ae08ef5279f405357144d24ec1147b5f9",
-      "/docs/api/qiskit-c/version#qiskit_version_patch",
-      "/docs/api/qiskit-c/version#qiskit_version_minor",
-      "/docs/api/qiskit-c/version#qiskit_version_major",
-      "/docs/api/qiskit-c/version#qiskit_version_hex",
-      "/docs/api/qiskit-c/version#qiskit_version",
-      "/docs/api/qiskit-c/version#qiskit_release_serial",
-      "/docs/api/qiskit-c/version#qiskit_release_level",
-      "/docs/api/qiskit-c/version#qiskit_get_version_hex",
-    ],
-    "docs/api/qiskit-c/qk-transpiler.mdx": [
-      "#_cppv412qk_transpilepk9qkcircuitpk8qktargetpk18qktranspileoptionsp17qktranspileresultppc",
-      "#structqktranspileoptions",
-    ],
-    "docs/api/qiskit-c/qk-vf-2-layout-result.mdx": [
-      "qk-transpiler-passes#_cppv440qk_transpiler_pass_standalone_vf2_layoutpk9qkcircuitpk8qktargetb7int64_td7int64_t",
-    ],
+    "docs/api/qiskit-c/qk-transpiler.mdx": ["#structqktranspileoptions"],
   };
 }
 
