@@ -16,88 +16,96 @@ When running the `qk_transpiler_pass_standalone_vf2_layout()` function it return
 
 ## Functions
 
-**<span id="group__QkVF2LayoutResult_1ga7cd7aa1c99809484c9e9047c87c4bd43" />bool qk\_vf2\_layout\_result\_has\_match(const QkVF2LayoutResult \*layout)**
+### qk\_vf2\_layout\_result\_has\_match
 
-Check whether a result was found.
+<Function id="qk_vf2_layout_result_has_match" signature="bool qk_vf2_layout_result_has_match(const QkVF2LayoutResult *layout)">
+  Check whether a result was found.
 
-<span id="group__QkVF2LayoutResult_1autotoc_md121" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md121" />
 
-### Safety
+  #### Safety
 
-<span id="group__QkVF2LayoutResult_1autotoc_md121" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md121" />
 
-Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`.
+  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`.
 
-**Parameters**
+  **Parameters**
 
-*   **layout** – a pointer to the layout
+  *   **layout** – a pointer to the layout
 
-**Returns**
+  **Returns**
 
-`true` if the `qk_transpiler_pass_standalone_vf2_layout()` run found a layout
+  `true` if the `qk_transpiler_pass_standalone_vf2_layout()` run found a layout
+</Function>
 
-**<span id="group__QkVF2LayoutResult_1gad6896206691007dda6729165d1054c83" />uint32\_t qk\_vf2\_layout\_result\_num\_qubits(const QkVF2LayoutResult \*layout)**
+### qk\_vf2\_layout\_result\_num\_qubits
 
-Get the number of virtual qubits in the layout.
+<Function id="qk_vf2_layout_result_num_qubits" signature="uint32_t qk_vf2_layout_result_num_qubits(const QkVF2LayoutResult *layout)">
+  Get the number of virtual qubits in the layout.
 
-<span id="group__QkVF2LayoutResult_1autotoc_md122" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md122" />
 
-### Safety
+  #### Safety
 
-<span id="group__QkVF2LayoutResult_1autotoc_md122" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md122" />
 
-Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`. The result must have a layout found.
+  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`. The result must have a layout found.
 
-**Parameters**
+  **Parameters**
 
-*   **layout** – a pointer to the layout
+  *   **layout** – a pointer to the layout
 
-**Returns**
+  **Returns**
 
-The number of virtual qubits in the layout
+  The number of virtual qubits in the layout
+</Function>
 
-**<span id="group__QkVF2LayoutResult_1ga13db6b21d0c226a5dbda706d0cc94f1f" />uint32\_t qk\_vf2\_layout\_result\_map\_virtual\_qubit(const QkVF2LayoutResult \*layout, uint32\_t qubit)**
+### qk\_vf2\_layout\_result\_map\_virtual\_qubit
 
-Get the physical qubit for a given virtual qubit
+<Function id="qk_vf2_layout_result_map_virtual_qubit" signature="uint32_t qk_vf2_layout_result_map_virtual_qubit(const QkVF2LayoutResult *layout, uint32_t qubit)">
+  Get the physical qubit for a given virtual qubit
 
-<span id="group__QkVF2LayoutResult_1autotoc_md123" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md123" />
 
-### Safety
+  #### Safety
 
-<span id="group__QkVF2LayoutResult_1autotoc_md123" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md123" />
 
-Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`. Also qubit must be a valid qubit for the circuit and there must be a result found.
+  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`. Also qubit must be a valid qubit for the circuit and there must be a result found.
 
-**Parameters**
+  **Parameters**
 
-*   **layout** – a pointer to the layout
-*   **qubit** – the virtual qubit to get the physical qubit of
+  *   **layout** – a pointer to the layout
+  *   **qubit** – the virtual qubit to get the physical qubit of
 
-**Returns**
+  **Returns**
 
-The physical qubit mapped to by the specified virtual qubit
+  The physical qubit mapped to by the specified virtual qubit
+</Function>
 
-**<span id="group__QkVF2LayoutResult_1gaa5204351e24a4355b688ca3899b7d50b" />void qk\_vf2\_layout\_result\_free(QkVF2LayoutResult \*layout)**
+### qk\_vf2\_layout\_result\_free
 
-Free a `QkVF2LayoutResult` object
+<Function id="qk_vf2_layout_result_free" signature="void qk_vf2_layout_result_free(QkVF2LayoutResult *layout)">
+  Free a `QkVF2LayoutResult` object
 
-<span id="group__QkVF2LayoutResult_1autotoc_md124" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md124" />
 
-### Example
+  #### Example
 
-```c
-QkCircuit *qc = qk_circuit_new(1, 0);
-```
+  ```c
+  QkCircuit *qc = qk_circuit_new(1, 0);
+  ```
 
-<span id="group__QkVF2LayoutResult_1autotoc_md125" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md125" />
 
-### Safety
+  #### Safety
 
-<span id="group__QkVF2LayoutResult_1autotoc_md125" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md125" />
 
-Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2Layout`.
+  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2Layout`.
 
-**Parameters**
+  **Parameters**
 
-*   **layout** – a pointer to the layout to free
+  *   **layout** – a pointer to the layout to free
+</Function>
 

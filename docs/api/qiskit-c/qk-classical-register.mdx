@@ -36,57 +36,61 @@ While circuits track registers, the registers themselves impart almost no behavi
 
 ## Functions
 
-**<span id="group__QkClassicalRegister_1ga25f55305151ce58b447a38cbac2bf451" />void qk\_classical\_register\_free(QkClassicalRegister \*reg)**
+### qk\_classical\_register\_free
 
-Free a classical register.
+<Function id="qk_classical_register_free" signature="void qk_classical_register_free(QkClassicalRegister *reg)">
+  Free a classical register.
 
-<span id="group__QkClassicalRegister_1autotoc_md8" />
+  <span id="group__QkClassicalRegister_1autotoc_md8" />
 
-### Example
+  #### Example
 
-```c
-QkClassicalRegister *cr = qk_classical_register_new(1024, "creg");
-qk_classical_register_free(cr);
-```
+  ```c
+  QkClassicalRegister *cr = qk_classical_register_new(1024, "creg");
+  qk_classical_register_free(cr);
+  ```
 
-<span id="group__QkClassicalRegister_1autotoc_md9" />
+  <span id="group__QkClassicalRegister_1autotoc_md9" />
 
-### Safety
+  #### Safety
 
-<span id="group__QkClassicalRegister_1autotoc_md9" />
+  <span id="group__QkClassicalRegister_1autotoc_md9" />
 
-Behavior is undefined if `reg` is not either null or a valid pointer to a `QkClassicalRegister`.
+  Behavior is undefined if `reg` is not either null or a valid pointer to a `QkClassicalRegister`.
 
-**Parameters**
+  **Parameters**
 
-*   **reg** – A pointer to the register to free.
+  *   **reg** – A pointer to the register to free.
+</Function>
 
-**<span id="group__QkClassicalRegister_1ga583ef9ef5116020b713617f874df03ac" />QkClassicalRegister \*qk\_classical\_register\_new(uint32\_t num\_clbits, const char \*name)**
+### qk\_classical\_register\_new
 
-Construct a new owning classical register with a given number of clbits and name
+<Function id="qk_classical_register_new" signature="QkClassicalRegister *qk_classical_register_new(uint32_t num_clbits, const char *name)">
+  Construct a new owning classical register with a given number of clbits and name
 
-<span id="group__QkClassicalRegister_1autotoc_md10" />
+  <span id="group__QkClassicalRegister_1autotoc_md10" />
 
-### Example
+  #### Example
 
-```c
-QkClassicalRegister *cr = qk_classical_register_new(5, "five_qubits");
-```
+  ```c
+  QkClassicalRegister *cr = qk_classical_register_new(5, "five_qubits");
+  ```
 
-<span id="group__QkClassicalRegister_1autotoc_md11" />
+  <span id="group__QkClassicalRegister_1autotoc_md11" />
 
-### Safety
+  #### Safety
 
-<span id="group__QkClassicalRegister_1autotoc_md11" />
+  <span id="group__QkClassicalRegister_1autotoc_md11" />
 
-The `name` parameter must be a pointer to memory that contains a valid nul terminator at the end of the string. It also must be valid for reads of bytes up to and including the nul terminator.
+  The `name` parameter must be a pointer to memory that contains a valid nul terminator at the end of the string. It also must be valid for reads of bytes up to and including the nul terminator.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_clbits** – The number of clbits to create the register for
-*   **name** – The name string for the created register. The name must be comprised of valid UTF-8 characters.
+  *   **num\_clbits** – The number of clbits to create the register for
+  *   **name** – The name string for the created register. The name must be comprised of valid UTF-8 characters.
 
-**Returns**
+  **Returns**
 
-A pointer to the created register
+  A pointer to the created register
+</Function>
 

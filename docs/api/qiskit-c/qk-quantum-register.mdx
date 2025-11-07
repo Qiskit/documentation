@@ -36,57 +36,61 @@ While circuits track registers, the registers themselves impart almost no behavi
 
 ## Functions
 
-**<span id="group__QkQuantumRegister_1gaaf3f26bd5def052584bc7f5840baa9bc" />QkQuantumRegister \*qk\_quantum\_register\_new(uint32\_t num\_qubits, const char \*name)**
+### qk\_quantum\_register\_new
 
-Construct a new owning quantum register with a given number of qubits and name
+<Function id="qk_quantum_register_new" signature="QkQuantumRegister *qk_quantum_register_new(uint32_t num_qubits, const char *name)">
+  Construct a new owning quantum register with a given number of qubits and name
 
-<span id="group__QkQuantumRegister_1autotoc_md4" />
+  <span id="group__QkQuantumRegister_1autotoc_md4" />
 
-### Example
+  #### Example
 
-```c
-QkQuantumRegister *qr = qk_quantum_register_new(5, "five_qubits");
-```
+  ```c
+  QkQuantumRegister *qr = qk_quantum_register_new(5, "five_qubits");
+  ```
 
-<span id="group__QkQuantumRegister_1autotoc_md5" />
+  <span id="group__QkQuantumRegister_1autotoc_md5" />
 
-### Safety
+  #### Safety
 
-<span id="group__QkQuantumRegister_1autotoc_md5" />
+  <span id="group__QkQuantumRegister_1autotoc_md5" />
 
-The `name` parameter must be a pointer to memory that contains a valid nul terminator at the end of the string. It also must be valid for reads of bytes up to and including the nul terminator.
+  The `name` parameter must be a pointer to memory that contains a valid nul terminator at the end of the string. It also must be valid for reads of bytes up to and including the nul terminator.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_qubits** – The number of qubits to create the register for
-*   **name** – The name string for the created register. The name must be comprised of valid UTF-8 characters.
+  *   **num\_qubits** – The number of qubits to create the register for
+  *   **name** – The name string for the created register. The name must be comprised of valid UTF-8 characters.
 
-**Returns**
+  **Returns**
 
-A pointer to the created register
+  A pointer to the created register
+</Function>
 
-**<span id="group__QkQuantumRegister_1ga82b286647e454e5e04f6df4a3f46a597" />void qk\_quantum\_register\_free(QkQuantumRegister \*reg)**
+### qk\_quantum\_register\_free
 
-Free a quantum register.
+<Function id="qk_quantum_register_free" signature="void qk_quantum_register_free(QkQuantumRegister *reg)">
+  Free a quantum register.
 
-<span id="group__QkQuantumRegister_1autotoc_md6" />
+  <span id="group__QkQuantumRegister_1autotoc_md6" />
 
-### Example
+  #### Example
 
-```c
-QkQuantumRegister *qr = qk_quantum_register_new(1024, "qreg");
-qk_quantum_register_free(qr);
-```
+  ```c
+  QkQuantumRegister *qr = qk_quantum_register_new(1024, "qreg");
+  qk_quantum_register_free(qr);
+  ```
 
-<span id="group__QkQuantumRegister_1autotoc_md7" />
+  <span id="group__QkQuantumRegister_1autotoc_md7" />
 
-### Safety
+  #### Safety
 
-<span id="group__QkQuantumRegister_1autotoc_md7" />
+  <span id="group__QkQuantumRegister_1autotoc_md7" />
 
-Behavior is undefined if `reg` is not either null or a valid pointer to a `QkQuantumRegister`.
+  Behavior is undefined if `reg` is not either null or a valid pointer to a `QkQuantumRegister`.
 
-**Parameters**
+  **Parameters**
 
-*   **reg** – A pointer to the register to free.
+  *   **reg** – A pointer to the register to free.
+</Function>
 

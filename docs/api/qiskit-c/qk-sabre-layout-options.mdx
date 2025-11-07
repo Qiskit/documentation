@@ -12,29 +12,41 @@ When running the `qk_transpiler_pass_standalone_sabre_layout` function this type
 
 ## Data Types
 
-**<span id="structQkSabreLayoutOptions" />struct QkSabreLayoutOptions**
+### QkSabreLayoutOptions
 
-The options for running `qk_transpiler_pass_standalone_sabre_layout`. This struct is used as an input to control the behavior of the layout and routing algorithms.
+<Class id="QkSabreLayoutOptions" signature="struct QkSabreLayoutOptions">
+  The options for running `qk_transpiler_pass_standalone_sabre_layout`. This struct is used as an input to control the behavior of the layout and routing algorithms.
 
-**<span id="structQkSabreLayoutOptions_1ababbf506f666c6e71c4fc7ed509063a6" />size\_t max\_iterations**
+  #### size\_t max\_iterations
 
-The number of forward-backward iterations in the sabre routing algorithm
+  <Attribute id="max_iterations">
+    The number of forward-backward iterations in the sabre routing algorithm
+  </Attribute>
 
-**<span id="structQkSabreLayoutOptions_1a2d79a59c238da5a3e8bbb1424f7324f3" />size\_t num\_swap\_trials**
+  #### size\_t num\_swap\_trials
 
-The number of trials to run of the sabre routing algorithm for each iteration. When > 1 the trial that routing trial that results in the output with the fewest swap gates will be selected.
+  <Attribute id="num_swap_trials">
+    The number of trials to run of the sabre routing algorithm for each iteration. When > 1 the trial that routing trial that results in the output with the fewest swap gates will be selected.
+  </Attribute>
 
-**<span id="structQkSabreLayoutOptions_1a8adff689e30379864f38745da03c5caf" />size\_t num\_random\_trials**
+  #### size\_t num\_random\_trials
 
-The number of random layout trials to run. The trial that results in the output with the fewest swap gates will be selected.
+  <Attribute id="num_random_trials">
+    The number of random layout trials to run. The trial that results in the output with the fewest swap gates will be selected.
+  </Attribute>
 
-**<span id="structQkSabreLayoutOptions_1ae06470fcc413d8892f6caf253f8c4850" />uint64\_t seed**
+  #### uint64\_t seed
 
-A seed value for the pRNG used internally.
+  <Attribute id="seed">
+    A seed value for the pRNG used internally.
+  </Attribute>
+</Class>
 
 ## Functions
 
-**<span id="group__QkSabreLayoutOptions_1gab7f9f11fd8d915783ec467f40cd2ae6b" />[QkSabreLayoutOptions](#c.QkSabreLayoutOptions "QkSabreLayoutOptions") qk\_sabre\_layout\_options\_default(void)**
+### qk\_sabre\_layout\_options\_default
 
-Build a default sabre layout options object. This builds a sabre layout with `max_iterations` set to 4, both `num_swap_trials` and `num_random_trials` set to 20, and the seed selected by a RNG seeded from system entropy.
+<Function id="qk_sabre_layout_options_default" signature="QkSabreLayoutOptions qk_sabre_layout_options_default(void)">
+  Build a default sabre layout options object. This builds a sabre layout with `max_iterations` set to 4, both `num_swap_trials` and `num_random_trials` set to 20, and the seed selected by a RNG seeded from system entropy.
+</Function>
 
