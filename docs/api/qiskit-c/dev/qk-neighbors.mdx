@@ -1,0 +1,132 @@
+---
+title: QkNeighbors (dev version)
+description: API reference for QkNeighbors in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QkNeighbors
+---
+
+# QkNeighbors
+
+**<span id="structQkNeighbors" />struct QkNeighbors**
+
+An adjacency-list representation of a coupling graph.
+
+This is initialized by `qk_neighbors_from_target`.
+
+This object is read-only from C. To satisfy the safety guarantees of `qk_neighbors_clear`, you must not overwrite any data initialized by `qk_neighbors_from_target`, including any pointed-to data.
+
+<span id="structQkNeighbors_1autotoc_md3" />
+
+## Representation
+
+<span id="structQkNeighbors_1autotoc_md3" />
+
+After initialization by `qk_neighbors_from_target`, the structure will be in one of two modes:
+
+*   all-to-all connectivity
+*   limited two-qubit connectivity
+
+In the all-to-all case, the `neighbors` and `partition` pointers will both be the null pointer, and `num_qubits` will be the number of qubits in the `QkTarget`. These objects do not have backing allocations, and do not need to be given to `qk_neighbors_clear` (though this function is a safe no-op in this case).
+
+In the limited two-qubit case (which is by far the more common for real hardware), see the documentation of the structure members for their interpretation.
+
+**<span id="structQkNeighbors_1affe57c900f2e59be4cd3f580c2712cf1" />const uint32\_t \*neighbors**
+
+A partitioned adjacency-list representation of the neighbors of each qubit. This pointer is valid for exactly `partition[num_qubits + 1]` reads.
+
+For qubit number `i`, its neighbors are the values between offsets `partition[i]` (inclusive) and `partition[i + 1]` (exclusive). The values between these two offsets are sorted in ascending order and contain no duplicates.
+
+**<span id="structQkNeighbors_1a389dbd7d16fd5a271524cca0c302c585" />const size\_t \*partition**
+
+How the `neighbors` field is partitioned into slices. This pointer is valid for exactly `num_qubits + 1` reads. The first value is always 0, and values increase monotonically.
+
+**<span id="structQkNeighbors_1ac67b2eb4dce05a0ff4eb17da1c03c951" />uint32\_t num\_qubits**
+
+The number of qubits.
+
+## Functions
+
+**<span id="group__QkNeighbors_1ga66d15fc38289cc00a9d3c59c9a45855b" />bool qk\_neighbors\_is\_all\_to\_all(const [QkNeighbors](#c.QkNeighbors "QkNeighbors") \*neighbors)**
+
+Does this coupling graph represent all-to-all connectivity?
+
+This is represented by `neighbors` and `partition` being null pointers, so they are not valid for any reads.
+
+<span id="group__QkNeighbors_1autotoc_md177" />
+
+### Safety
+
+<span id="group__QkNeighbors_1autotoc_md177" />
+
+`neighbors` must point to a valid, initialized `QkNeighbors` object.
+
+**Parameters**
+
+*   **neighbors** – The coupling graph.
+
+**Returns**
+
+Whether the graph represents all to all connectivity.
+
+**<span id="group__QkNeighbors_1ga669f657eb9b8b8b1cf82dca3e57ac175" />bool qk\_neighbors\_from\_target(const QkTarget \*target, [QkNeighbors](#c.QkNeighbors "QkNeighbors") \*neighbors)**
+
+Initialize a `QkNeighbors` object from a `QkTarget`.
+
+If the target contains multi-qubit gates, they will be ignored and the connectivity will only represent the two-qubit coupling constraints. If the target represents all-to-all connectivity, the function returns `true`, and the output pointers will be initialized to be null pointers, in keeping with the representation of all-to-all connectivity.
+
+<span id="group__QkNeighbors_1autotoc_md178" />
+
+### Examples
+
+```c
+QkTarget *target = build_target_from_somewhere();
+QkNeighbors neighbors;
+if (qk_neighbors_from_target(target, &neighbors)) {
+    printf("All-to-all connectivity on &lu qubits.\n", neighbors.num_qubits);
+    return;
+}
+printf("Qubit 3 has %zu neighbors.\n", neighbors.partition[4] - neighbors.partition[3]);
+printf("Those neighbors are: [");
+for (size_t offset = neighbors.partition[3]; offset < neighbors.partition[4]; offset++) {
+    printf("%u%s",
+           neighbors.neighbors[offset],
+           offset + 1 == neighbors.partition[4] ? "" : ", ");
+}
+printf("]\n");
+qk_neighbors_clear(&neighbors);
+```
+
+<span id="group__QkNeighbors_1autotoc_md179" />
+
+### Safety
+
+<span id="group__QkNeighbors_1autotoc_md179" />
+
+`target` must point to a valid `QkTarget` object. `neighbors` must be aligned and safe to write to, but need not be initialized.
+
+**Parameters**
+
+*   **target** – The target to read the connectivity from.
+*   **neighbors** – The `QkNeighbors` object to initialize.
+
+**Returns**
+
+Whether the `QkTarget` represented all-to-all connectivity (`true`) or has regular connectivity (`false`).
+
+**<span id="group__QkNeighbors_1gac695e705f8dc0b3bd6f9a3f9646c9792" />void qk\_neighbors\_clear([QkNeighbors](#c.QkNeighbors "QkNeighbors") \*neighbors)**
+
+Free all the allocations within the object.
+
+After calling this function, the `QkNeighbors` object will contain null pointers in all its allocations and present as if it represents all-to-all connectivity.
+
+This should only be called on `QkNeighbors` objects that were initialized by `qk_neighbors_from_target`.
+
+<span id="group__QkNeighbors_1autotoc_md180" />
+
+### Safety
+
+<span id="group__QkNeighbors_1autotoc_md180" />
+
+`neighbors` must point to a valid, initialized `QkNeighbors` object, which must have been initialized by a call to `qk_neighbors_from_target` and unaltered since then.
+

@@ -16,184 +16,619 @@ The `QkDag` struct exposes a low level interface to the Qiskit transpiler’s di
 
 The C API currently only supports building DAGs that contain operations defined in Qiskit’s internal Rust data model. Generally this includes only gates in the standard gate library, standard non-unitary operations (currently [`Barrier`](/docs/api/qiskit/dev/circuit#qiskit.circuit.Barrier "qiskit.circuit.Barrier"), [`Measure`](/docs/api/qiskit/dev/circuit#qiskit.circuit.Measure "qiskit.circuit.Measure"), [`Reset`](/docs/api/qiskit/dev/circuit#qiskit.circuit.Reset "qiskit.circuit.Reset"), and [`Delay`](/docs/api/qiskit/dev/circuit#qiskit.circuit.Delay "qiskit.circuit.Delay")) and [`UnitaryGate`](/docs/api/qiskit/dev/qiskit.circuit.library.UnitaryGate#qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate"). This functionality will be expanded over time as the Rust data model is expanded to natively support more functionality.
 
+## Data Types
+
+**<span id="qiskit_8h_1a8ca420a5f382512ce8122a8d09420ab1" />enum QkDagNodeType**
+
+The type of node in a `QkDag`.
+
+Operation nodes represent an applied instruction. The rest of the nodes are considered “wire” nodes and represent the endpoints of the DAG’s data dependency chains.
+
+*Values:*
+
+**<span id="qiskit_8h_1a8ca420a5f382512ce8122a8d09420ab1aa73826048968af5e3166d23bd5fdd88a" />enumerator QkDagNodeType\_Operation**
+
+Operation node.
+
+**<span id="qiskit_8h_1a8ca420a5f382512ce8122a8d09420ab1a0516b827f7af9ec2a4d2f211b543fcab" />enumerator QkDagNodeType\_QubitIn**
+
+Qubit wire start node.
+
+**<span id="qiskit_8h_1a8ca420a5f382512ce8122a8d09420ab1a87bcf4713ef76e93cb83a46bdad40d0b" />enumerator QkDagNodeType\_QubitOut**
+
+Qubit wire end node.
+
+**<span id="qiskit_8h_1a8ca420a5f382512ce8122a8d09420ab1ad5771f9ecf704351c8bb0c3828be0f6d" />enumerator QkDagNodeType\_ClbitIn**
+
+Clbit wire start node.
+
+**<span id="qiskit_8h_1a8ca420a5f382512ce8122a8d09420ab1a8aa5feeef72d3f4b0d59340c8b33849c" />enumerator QkDagNodeType\_ClbitOut**
+
+Clbit wire end node.
+
+**<span id="qiskit_8h_1a8ca420a5f382512ce8122a8d09420ab1aca8c9813400c82df6394491367217749" />enumerator QkDagNodeType\_VarIn**
+
+Classical variable wire start node.
+
+**<span id="qiskit_8h_1a8ca420a5f382512ce8122a8d09420ab1ad6eb8629e021cc48080d50e121a05e40" />enumerator QkDagNodeType\_VarOut**
+
+Classical variable wire end node.
+
+**<span id="qiskit_8h_1a3e4de010767922370820cec7861e1182" />enum QkOperationKind**
+
+The operation’s kind.
+
+This is returned when querying a particular node in the graph with `qk_dag_op_node_kind`, and is intended to allow the caller to dispatch (e.g. via a “switch”) calls specific to the contained operation’s kind.
+
+*Values:*
+
+**<span id="qiskit_8h_1a3e4de010767922370820cec7861e1182a41480409c7927b0f1f9ba0e6057f69e9" />enumerator QkOperationKind\_Gate**
+
+**<span id="qiskit_8h_1a3e4de010767922370820cec7861e1182a869a2f1e17a1717a14498d6e5ca0eef7" />enumerator QkOperationKind\_Barrier**
+
+**<span id="qiskit_8h_1a3e4de010767922370820cec7861e1182a1a18c545488f725a41240b720232d5dc" />enumerator QkOperationKind\_Delay**
+
+**<span id="qiskit_8h_1a3e4de010767922370820cec7861e1182aaf55de319a260a56b10cf03599631072" />enumerator QkOperationKind\_Measure**
+
+**<span id="qiskit_8h_1a3e4de010767922370820cec7861e1182a0331bff900daf68b74e71f7f6def19d2" />enumerator QkOperationKind\_Reset**
+
+**<span id="qiskit_8h_1a3e4de010767922370820cec7861e1182ae36d97f4f8d937235ebf701bb9300c6d" />enumerator QkOperationKind\_Unitary**
+
 ## Functions
 
-### qk\_dag\_new
+**<span id="group__QkDag_1gaf45fb29cdbe2d5dc6a852e9c14ca08a0" />QkDag \*qk\_dag\_new(void)**
 
-<Function id="qk_dag_new" signature="QkDag *qk_dag_new(void)">
-  Construct a new empty DAG.
+Construct a new empty DAG.
 
-  You must free the returned DAG with qk\_dag\_free when done with it.
+You must free the returned DAG with qk\_dag\_free when done with it.
 
-  <span id="group__QkDag_1autotoc_md50" />
+<span id="group__QkDag_1autotoc_md51" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *empty = qk_dag_new();
-  ```
+```c
+QkDag *empty = qk_dag_new();
+```
 
-  **Returns**
+**Returns**
 
-  A pointer to the created DAG.
-</Function>
+A pointer to the created DAG.
 
-### qk\_dag\_add\_quantum\_register
+**<span id="group__QkDag_1ga0bd511df98315cae4d20356ef606525d" />void qk\_dag\_add\_quantum\_register(QkDag \*dag, const QkQuantumRegister \*reg)**
 
-<Function id="qk_dag_add_quantum_register" signature="void qk_dag_add_quantum_register(QkDag *dag, const QkQuantumRegister *reg)">
-  Add a quantum register to the DAG.
+Add a quantum register to the DAG.
 
-  <span id="group__QkDag_1autotoc_md51" />
+<span id="group__QkDag_1autotoc_md52" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *dag = qk_dag_new();
-  QkQuantumRegister *qr = qk_quantum_register_new(1024, "my_register");
-  qk_dag_add_quantum_register(dag, qr);
-  qk_quantum_register_free(qr);
-  qk_dag_free(dag);
-  ```
+```c
+QkDag *dag = qk_dag_new();
+QkQuantumRegister *qr = qk_quantum_register_new(1024, "my_register");
+qk_dag_add_quantum_register(dag, qr);
+qk_quantum_register_free(qr);
+qk_dag_free(dag);
+```
 
-  <span id="group__QkDag_1autotoc_md52" />
+<span id="group__QkDag_1autotoc_md53" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkDag_1autotoc_md52" />
+<span id="group__QkDag_1autotoc_md53" />
 
-  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `reg` is not a valid, non-null pointer to a `QkQuantumRegister`.
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `reg` is not a valid, non-null pointer to a `QkQuantumRegister`.
 
-  **Parameters**
+**Parameters**
 
-  *   **dag** – A pointer to the DAG.
-  *   **reg** – A pointer to the quantum register.
-</Function>
+*   **dag** – A pointer to the DAG.
+*   **reg** – A pointer to the quantum register.
 
-### qk\_dag\_add\_classical\_register
+**<span id="group__QkDag_1ga32219249fb51bad1d5e928e0ff7638bb" />void qk\_dag\_add\_classical\_register(QkDag \*dag, const QkClassicalRegister \*reg)**
 
-<Function id="qk_dag_add_classical_register" signature="void qk_dag_add_classical_register(QkDag *dag, const QkClassicalRegister *reg)">
-  Add a classical register to the DAG.
+Add a classical register to the DAG.
 
-  <span id="group__QkDag_1autotoc_md53" />
+<span id="group__QkDag_1autotoc_md54" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *dag = qk_dag_new();
-  QkClassicalRegister *cr = qk_classical_register_new(24, "my_register");
-  qk_dag_add_classical_register(dag, cr);
-  qk_classical_register_free(cr);
-  qk_dag_free(dag);
-  ```
+```c
+QkDag *dag = qk_dag_new();
+QkClassicalRegister *cr = qk_classical_register_new(24, "my_register");
+qk_dag_add_classical_register(dag, cr);
+qk_classical_register_free(cr);
+qk_dag_free(dag);
+```
 
-  <span id="group__QkDag_1autotoc_md54" />
+<span id="group__QkDag_1autotoc_md55" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkDag_1autotoc_md54" />
+<span id="group__QkDag_1autotoc_md55" />
 
-  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `reg` is not a valid, non-null pointer to a `QkClassicalRegister`.
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `reg` is not a valid, non-null pointer to a `QkClassicalRegister`.
 
-  **Parameters**
+**Parameters**
 
-  *   **dag** – A pointer to the DAG.
-  *   **reg** – A pointer to the classical register.
-</Function>
+*   **dag** – A pointer to the DAG.
+*   **reg** – A pointer to the classical register.
 
-### qk\_dag\_num\_qubits
+**<span id="group__QkDag_1gadd3162cad19b8ce8385bb3df964b871e" />uint32\_t qk\_dag\_num\_qubits(const QkDag \*dag)**
 
-<Function id="qk_dag_num_qubits" signature="uint32_t qk_dag_num_qubits(const QkDag *dag)">
-  Get the number of qubits the DAG contains.
+Get the number of qubits the DAG contains.
 
-  <span id="group__QkDag_1autotoc_md55" />
+<span id="group__QkDag_1autotoc_md56" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *dag = qk_dag_new();
-  QkQuantumRegister *qr = qk_quantum_register_new(24, "my_register");
-  qk_dag_add_quantum_register(dag, qr);
-  uint32_t num_qubits = qk_dag_num_qubits(dag);  // num_qubits==24
-  qk_quantum_register_free(qr);
-  qk_dag_free(dag);
-  ```
+```c
+QkDag *dag = qk_dag_new();
+QkQuantumRegister *qr = qk_quantum_register_new(24, "my_register");
+qk_dag_add_quantum_register(dag, qr);
+uint32_t num_qubits = qk_dag_num_qubits(dag);  // num_qubits==24
+qk_quantum_register_free(qr);
+qk_dag_free(dag);
+```
 
-  <span id="group__QkDag_1autotoc_md56" />
+<span id="group__QkDag_1autotoc_md57" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkDag_1autotoc_md56" />
+<span id="group__QkDag_1autotoc_md57" />
 
-  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
-  **Parameters**
+**Parameters**
 
-  **dag** – A pointer to the DAG.
+*   **dag** – A pointer to the DAG.
 
-  **Returns**
+**Returns**
 
-  The number of qubits the DAG is defined on.
-</Function>
+The number of qubits the DAG is defined on.
 
-### qk\_dag\_num\_clbits
+**<span id="group__QkDag_1ga2f99ab0e0813f8926fb383a73343b786" />uint32\_t qk\_dag\_num\_clbits(const QkDag \*dag)**
 
-<Function id="qk_dag_num_clbits" signature="uint32_t qk_dag_num_clbits(const QkDag *dag)">
-  Get the number of clbits the DAG contains.
+Get the number of clbits the DAG contains.
 
-  <span id="group__QkDag_1autotoc_md57" />
+<span id="group__QkDag_1autotoc_md58" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *dag = qk_dag_new();
-  QkClassicalRegister *cr = qk_classical_register_new(24, "my_register");
-  qk_dag_add_classical_register(dag, cr);
-  uint32_t num_clbits = qk_dag_num_clbits(dag);  // num_clbits==24
-  qk_classical_register_free(cr);
-  qk_dag_free(dag);
-  ```
+```c
+QkDag *dag = qk_dag_new();
+QkClassicalRegister *cr = qk_classical_register_new(24, "my_register");
+qk_dag_add_classical_register(dag, cr);
+uint32_t num_clbits = qk_dag_num_clbits(dag);  // num_clbits==24
+qk_classical_register_free(cr);
+qk_dag_free(dag);
+```
 
-  <span id="group__QkDag_1autotoc_md58" />
+<span id="group__QkDag_1autotoc_md59" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkDag_1autotoc_md58" />
+<span id="group__QkDag_1autotoc_md59" />
 
-  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
-  **Parameters**
+**Parameters**
 
-  **dag** – A pointer to the DAG.
+*   **dag** – A pointer to the DAG.
 
-  **Returns**
+**Returns**
 
-  The number of clbits the DAG is defined on.
-</Function>
+The number of clbits the DAG is defined on.
 
-### qk\_dag\_free
+**<span id="group__QkDag_1ga2946021642ed9423c60d489612f7efdb" />size\_t qk\_dag\_num\_op\_nodes(const QkDag \*dag)**
 
-<Function id="qk_dag_free" signature="void qk_dag_free(QkDag *dag)">
-  Free the DAG.
+Return the total number of operation nodes in the DAG.
 
-  <span id="group__QkDag_1autotoc_md59" />
+<span id="group__QkDag_1autotoc_md60" />
 
-  #### Example
+### Example
 
-  ```c
-  QkDag *dag = qk_dag_new();
-  qk_dag_free(dag);
-  ```
+```c
+QkDag *dag = qk_dag_new();
+QkQuantumRegister *qr = qk_quantum_register_new(1, "my_register");
+qk_dag_add_quantum_register(dag, qr);
 
-  <span id="group__QkDag_1autotoc_md60" />
+uint32_t qubit[1] = {0};
+qk_dag_apply_gate(dag, QkGate_H, qubit, NULL, false);
+size_t num = qk_dag_num_op_nodes(dag); // 1
 
-  #### Safety
+qk_dag_free(dag);
+qk_quantum_register_free(qr);
+```
 
-  <span id="group__QkDag_1autotoc_md60" />
+<span id="group__QkDag_1autotoc_md61" />
 
-  Behavior is undefined if `dag` is not either null or a valid pointer to a `QkDag`.
+### Safety
 
-  **Parameters**
+<span id="group__QkDag_1autotoc_md61" />
 
-  **dag** – A pointer to the DAG to free.
-</Function>
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+
+**Returns**
+
+The total number of instructions in the DAG.
+
+**<span id="group__QkDag_1ga5c8631775bb9da84feed6b2672ef254b" />[QkDagNodeType](#c.QkDagNodeType "QkDagNodeType") qk\_dag\_node\_type(const QkDag \*dag, uint32\_t node)**
+
+Get the type of the specified node.
+
+The result can be used in a switch statement to dispatch proper handling when iterating over nodes of unknown type.
+
+<span id="group__QkDag_1autotoc_md62" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md62" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **node** – The node to get the type of.
+
+**Returns**
+
+The type of the node.
+
+**<span id="group__QkDag_1gad43b01d2a1b364cc74eb72154768760c" />uint32\_t qk\_dag\_qubit\_in\_node(const QkDag \*dag, uint32\_t qubit)**
+
+Retrieve the index of the input node of the wire corresponding to the given qubit.
+
+<span id="group__QkDag_1autotoc_md63" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md63" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **qubit** – The qubit to get the input node index of.
+
+**Returns**
+
+The input node of the qubit wire.
+
+**<span id="group__QkDag_1gabfb9fb1c146300f9b72604cf5b6fe7a7" />uint32\_t qk\_dag\_qubit\_out\_node(const QkDag \*dag, uint32\_t qubit)**
+
+Retrieve the index of the output node of the wire corresponding to the given qubit.
+
+<span id="group__QkDag_1autotoc_md64" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md64" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **qubit** – The qubit to get the output node index of.
+
+**Returns**
+
+The output node of the qubit wire.
+
+**<span id="group__QkDag_1ga2af4a75bebac120d17cbdbf94d05ce49" />uint32\_t qk\_dag\_clbit\_in\_node(const QkDag \*dag, uint32\_t clbit)**
+
+Retrieve the index of the input node of the wire corresponding to the given clbit.
+
+<span id="group__QkDag_1autotoc_md65" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md65" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **clbit** – The clbit to get the input node index of.
+
+**Returns**
+
+The input node of the clbit wire.
+
+**<span id="group__QkDag_1ga0ff081a6cf06133e2a19a3183b3bacbc" />uint32\_t qk\_dag\_clbit\_out\_node(const QkDag \*dag, uint32\_t clbit)**
+
+Retrieve the index of the output node of the wire corresponding to the given clbit.
+
+<span id="group__QkDag_1autotoc_md66" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md66" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **clbit** – The clbit to get the output node index of.
+
+**Returns**
+
+The output node of the clbit wire.
+
+**<span id="group__QkDag_1gaf4ebb2bba6f22e0597fb92e370db04fe" />uint32\_t qk\_dag\_wire\_node\_value(const QkDag \*dag, uint32\_t node)**
+
+Retrieve the value of a wire endpoint node.
+
+<span id="group__QkDag_1autotoc_md67" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md67" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **node** – The endpoint node to get the wire value of.
+
+**Returns**
+
+The value (e.g. qubit, clbit, or var) within the endpoint node.
+
+**<span id="group__QkDag_1gaf86c91ca16e1446cc69a2efe5d720c36" />uint32\_t qk\_dag\_op\_node\_num\_qubits(const QkDag \*dag, uint32\_t node)**
+
+Gets the number of qubits of the specified operation node.
+
+Panics if the node is not an operation.
+
+<span id="group__QkDag_1autotoc_md68" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md68" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **node** – The operation node to get the number of qubits of.
+
+**Returns**
+
+The number of qubits of the operation.
+
+**<span id="group__QkDag_1ga0b0e031283f86887aa82bee3d68278ab" />uint32\_t qk\_dag\_op\_node\_num\_clbits(const QkDag \*dag, uint32\_t node)**
+
+Gets the number of clbits of the specified operation node.
+
+Panics if the node is not an operation.
+
+<span id="group__QkDag_1autotoc_md69" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md69" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **node** – The operation node to get the number of clbits of.
+
+**Returns**
+
+The number of clbits of the operation.
+
+**<span id="group__QkDag_1ga154b7574fc73ecaa5075a9f4ae892a0a" />uint32\_t qk\_dag\_op\_node\_num\_params(const QkDag \*dag, uint32\_t node)**
+
+Gets the number of params of the specified operation node.
+
+Panics if the node is not an operation.
+
+<span id="group__QkDag_1autotoc_md70" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md70" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **node** – The operation node to get the number of params of.
+
+**Returns**
+
+The number of params of the operation.
+
+**<span id="group__QkDag_1ga58f4d0970ce2796d38ef0692cfe48993" />const uint32\_t \*qk\_dag\_op\_node\_qubits(const QkDag \*dag, uint32\_t node)**
+
+Retrieve the qubits of the specified operation node.
+
+Panics if the node is not an operation.
+
+<span id="group__QkDag_1autotoc_md71" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md71" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **node** – The operation node to get the qubits of.
+
+**Returns**
+
+A pointer to the qubits. Use `qk_dag_op_node_num_qubits` to determine the number of elements.
+
+**<span id="group__QkDag_1gafdbe594ca94114d3f14ddde299fe72c1" />const uint32\_t \*qk\_dag\_op\_node\_clbits(const QkDag \*dag, uint32\_t node)**
+
+Retrieve the clbits of the specified operation node.
+
+Panics if the node is not an operation.
+
+<span id="group__QkDag_1autotoc_md72" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md72" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **node** – The operation node to get the clbits of.
+
+**Returns**
+
+A pointer to the clbits. Use `qk_dag_op_node_num_clbits` to determine the number of elements.
+
+**<span id="group__QkDag_1gab40dcb87d7ac9f772b327cc6973fedea" />uint32\_t qk\_dag\_apply\_gate(QkDag \*dag, QkGate gate, const uint32\_t \*qubits, const double \*params, bool front)**
+
+Apply a `QkGate` to the DAG.
+
+<span id="group__QkDag_1autotoc_md73" />
+
+### Example
+
+```c
+QkDag *dag = qk_dag_new();
+QkQuantumRegister *qr = qk_quantum_register_new(1, "my_register");
+qk_dag_add_quantum_register(dag, qr);
+
+uint32_t qubit[1] = {0};
+qk_dag_apply_gate(dag, QkGate_H, qubit, NULL, false);
+
+qk_dag_free(dag);
+qk_quantum_register_free(qr);
+```
+
+<span id="group__QkDag_1autotoc_md74" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md74" />
+
+The `qubits` and `params` types are expected to be a pointer to an array of `uint32_t` and `double` respectively where the length is matching the expectations for the standard gate. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given gate. You can check `qk_gate_num_qubits` and `qk_gate_num_params` to determine how many qubits and params are required for a given gate.
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG to apply the gate to.
+*   **gate** – The StandardGate to apply.
+*   **qubits** – The pointer to the array of `uint32_t` qubit indices to add the gate on. This can be a null pointer if there are no qubits for `gate` (e.g. `QkGate_GlobalPhase`).
+*   **params** – The pointer to the array of `double` values to use for the gate parameters. This can be a null pointer if there are no parameters for `gate` (e.g. `QkGate_H`).
+*   **front** – If `true`, the gate is applied as the first operation on the specified qubits, rather than as the last.
+
+**Returns**
+
+The index of the newly added operation node.
+
+**<span id="group__QkDag_1ga116f626e3a50e29578d88148afa3731c" />QkGate qk\_dag\_op\_node\_gate\_op(const QkDag \*dag, uint32\_t node, double \*out\_params)**
+
+Retrieve the standard gate of the specified node.
+
+Panics if the node is not a standard gate operation.
+
+<span id="group__QkDag_1autotoc_md75" />
+
+### Example
+
+```c
+QkDag *dag = qk_dag_new();
+QkQuantumRegister *qr = qk_quantum_register_new(1, "my_register");
+qk_dag_add_quantum_register(dag, qr);
+
+uint32_t qubit[1] = {0};
+uint32_t h_gate_idx = qk_dag_apply_gate(dag, QkGate_H, qubit, NULL, false);
+
+QkGate gate = qk_dag_op_node_gate_op(dag, h_gate_idx, NULL);
+
+qk_dag_free(dag);
+qk_quantum_register_free(qr);
+```
+
+<span id="group__QkDag_1autotoc_md76" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md76" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`. If `out_params` is non-NULL, it must point to a buffer large enough to hold all the gate’s params, otherwise behavior is undefined as this function will write beyond its bounds. You can check `qk_dag_op_node_num_params` to determine how many params are required for any given operation node.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **node** – The operation node to get the standard gate of.
+*   **out\_params** – A buffer to be filled with the gate’s params or NULL if they’re not wanted.
+
+**Returns**
+
+The gate value.
+
+**<span id="group__QkDag_1gabac7bcf2dcf35a63534074f6908221fe" />[QkOperationKind](#c.QkOperationKind "QkOperationKind") qk\_dag\_op\_node\_kind(const QkDag \*dag, uint32\_t node)**
+
+Get the “kind” of an operation node.
+
+The result can be used in a switch statement to dispatch proper handling when iterating over operation nodes.
+
+Panics if `node` is not an operation node.
+
+<span id="group__QkDag_1autotoc_md77" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md77" />
+
+Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG.
+*   **node** – The operation node to get the “kind” of.
+
+**Returns**
+
+The “kind” of the node.
+
+**<span id="group__QkDag_1ga4064900d53fa7d3c2ad14d43882af5fe" />void qk\_dag\_free(QkDag \*dag)**
+
+Free the DAG.
+
+<span id="group__QkDag_1autotoc_md78" />
+
+### Example
+
+```c
+QkDag *dag = qk_dag_new();
+qk_dag_free(dag);
+```
+
+<span id="group__QkDag_1autotoc_md79" />
+
+### Safety
+
+<span id="group__QkDag_1autotoc_md79" />
+
+Behavior is undefined if `dag` is not either null or a valid pointer to a `QkDag`.
+
+**Parameters**
+
+*   **dag** – A pointer to the DAG to free.
 

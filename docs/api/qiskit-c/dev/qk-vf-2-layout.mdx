@@ -14,121 +14,109 @@ python_api_name: VF2 compiler-pass objects
 typedef struct QkVF2LayoutConfiguration QkVF2LayoutConfiguration
 ```
 
-The `qk_transpiler_pass_standalone_vf2_layout()` function takes this object as its configuration.
+The [`qk_transpiler_pass_standalone_vf2_layout()`](qk-transpiler-passes#c.qk_transpiler_pass_standalone_vf2_layout "qk_transpiler_pass_standalone_vf2_layout") function takes this object as its configuration.
 
-### qk\_vf2\_layout\_configuration\_new
+**<span id="group__QkVF2LayoutConfiguration_1ga4f8420ad1237a7efaac10ebcc26bcc61" />QkVF2LayoutConfiguration \*qk\_vf2\_layout\_configuration\_new(void)**
 
-<Function id="qk_vf2_layout_configuration_new" signature="QkVF2LayoutConfiguration *qk_vf2_layout_configuration_new(void)">
-  Create a new configuration for the VF2 passes that runs everything completely unbounded.
+Create a new configuration for the VF2 passes that runs everything completely unbounded.
 
-  Call `qk_vf2_layout_configuration_free` with the return value to free the memory when done.
+Call `qk_vf2_layout_configuration_free` with the return value to free the memory when done.
 
-  **Returns**
+**Returns**
 
-  A pointer to the configuration.
-</Function>
+A pointer to the configuration.
 
-### qk\_vf2\_layout\_configuration\_free
+**<span id="group__QkVF2LayoutConfiguration_1ga7ae22b337aa359d1701cd7a72fa63296" />void qk\_vf2\_layout\_configuration\_free(QkVF2LayoutConfiguration \*config)**
 
-<Function id="qk_vf2_layout_configuration_free" signature="void qk_vf2_layout_configuration_free(QkVF2LayoutConfiguration *config)">
-  Free a `QkVf2LayoutConfiguration` object.
+Free a `QkVf2LayoutConfiguration` object.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md188" />
+<span id="group__QkVF2LayoutConfiguration_1autotoc_md211" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md188" />
+<span id="group__QkVF2LayoutConfiguration_1autotoc_md211" />
 
-  Behavior is undefined if `config` is a non-null pointer, but does not point to a valid, aligned `QkVF2LayoutConfiguration` object.
+Behavior is undefined if `config` is a non-null pointer, but does not point to a valid, aligned `QkVF2LayoutConfiguration` object.
 
-  **Parameters**
+**Parameters**
 
-  **config** – A pointer to the configuration.
-</Function>
+*   **config** – A pointer to the configuration.
 
-### qk\_vf2\_layout\_configuration\_set\_call\_limit
+**<span id="group__QkVF2LayoutConfiguration_1gae9e5b21c3dc195b55cd347a94795e9c6" />void qk\_vf2\_layout\_configuration\_set\_call\_limit(QkVF2LayoutConfiguration \*config, int64\_t limit)**
 
-<Function id="qk_vf2_layout_configuration_set_call_limit" signature="void qk_vf2_layout_configuration_set_call_limit(QkVF2LayoutConfiguration *config, int64_t limit)">
-  Limit the numbers of times that the VF2 algorithm will attempt to extend its mapping.
+Limit the numbers of times that the VF2 algorithm will attempt to extend its mapping.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md189" />
+<span id="group__QkVF2LayoutConfiguration_1autotoc_md212" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md189" />
+<span id="group__QkVF2LayoutConfiguration_1autotoc_md212" />
 
-  Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
+Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
 
-  **Parameters**
+**Parameters**
 
-  *   **config** – The configuration to update.
-  *   **limit** – The number of attempts to allow. Set to a negative number to have no bound.
-</Function>
+*   **config** – The configuration to update.
+*   **limit** – The number of attempts to allow. Set to a negative number to have no bound.
 
-### qk\_vf2\_layout\_configuration\_set\_time\_limit
+**<span id="group__QkVF2LayoutConfiguration_1ga9bcb0c3c1a43418f82d7ef1086d8cee4" />void qk\_vf2\_layout\_configuration\_set\_time\_limit(QkVF2LayoutConfiguration \*config, double limit)**
 
-<Function id="qk_vf2_layout_configuration_set_time_limit" signature="void qk_vf2_layout_configuration_set_time_limit(QkVF2LayoutConfiguration *config, double limit)">
-  Limit the runtime of the VF2 search.
+Limit the runtime of the VF2 search.
 
-  This is not a hard limit; it is only checked when an improved layout is encountered. Using this option also makes the pass non-deterministic. It is generally recommended to use `qk_vf2_layout_configuration_set_call_limit` instead.
+This is not a hard limit; it is only checked when an improved layout is encountered. Using this option also makes the pass non-deterministic. It is generally recommended to use `qk_vf2_layout_configuration_set_call_limit` instead.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md190" />
+<span id="group__QkVF2LayoutConfiguration_1autotoc_md213" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md190" />
+<span id="group__QkVF2LayoutConfiguration_1autotoc_md213" />
 
-  Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
+Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
 
-  **Parameters**
+**Parameters**
 
-  *   **config** – The configuration to update.
-  *   **limit** – The time in seconds to allow. Set to a non-positive value to run with no limit.
-</Function>
+*   **config** – The configuration to update.
+*   **limit** – The time in seconds to allow. Set to a non-positive value to run with no limit.
 
-### qk\_vf2\_layout\_configuration\_set\_max\_trials
+**<span id="group__QkVF2LayoutConfiguration_1ga481b858d6f1c2633e889392e38fb18f6" />void qk\_vf2\_layout\_configuration\_set\_max\_trials(QkVF2LayoutConfiguration \*config, uint64\_t limit)**
 
-<Function id="qk_vf2_layout_configuration_set_max_trials" signature="void qk_vf2_layout_configuration_set_max_trials(QkVF2LayoutConfiguration *config, uint64_t limit)">
-  Limit the total number of complete improvements found.
+Limit the total number of complete improvements found.
 
-  Since the VF2 search tree is pruned on-the-fly based on scoring in the `QkTarget`, this limit is not especially powerful. See `qk_vf2_layout_configuration_set_call_limit` for a tighter bound.
+Since the VF2 search tree is pruned on-the-fly based on scoring in the `QkTarget`, this limit is not especially powerful. See `qk_vf2_layout_configuration_set_call_limit` for a tighter bound.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md191" />
+<span id="group__QkVF2LayoutConfiguration_1autotoc_md214" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md191" />
+<span id="group__QkVF2LayoutConfiguration_1autotoc_md214" />
 
-  Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
+Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
 
-  **Parameters**
+**Parameters**
 
-  *   **config** – The configuration to update.
-  *   **limit** – The number of complete layouts to allow before terminating. Set to 0 to run unbounded.
-</Function>
+*   **config** – The configuration to update.
+*   **limit** – The number of complete layouts to allow before terminating. Set to 0 to run unbounded.
 
-### qk\_vf2\_layout\_configuration\_set\_shuffle\_seed
+**<span id="group__QkVF2LayoutConfiguration_1ga7e6e24b938b8c73ac6312c3a84069514" />void qk\_vf2\_layout\_configuration\_set\_shuffle\_seed(QkVF2LayoutConfiguration \*config, uint64\_t seed)**
 
-<Function id="qk_vf2_layout_configuration_set_shuffle_seed" signature="void qk_vf2_layout_configuration_set_shuffle_seed(QkVF2LayoutConfiguration *config, uint64_t seed)">
-  Activate node shuffling of the input graphs with a given seed.
+Activate node shuffling of the input graphs with a given seed.
 
-  This effectively drives a modification of the matching order of VF2, which in theory means that the space of a bounded search is not biased based on the node indices. In practice, Qiskit uses the VF2++ ordering improvements when running in “average” mode (corresponding to initial layout search), and starts from the identity mapping in “exact” made. Both of these ordering heuristics are typically far more likely to find results for the given problem than randomization.
+This effectively drives a modification of the matching order of VF2, which in theory means that the space of a bounded search is not biased based on the node indices. In practice, Qiskit uses the VF2++ ordering improvements when running in “average” mode (corresponding to initial layout search), and starts from the identity mapping in “exact” made. Both of these ordering heuristics are typically far more likely to find results for the given problem than randomization.
 
-  If this function was not called, no node shuffling takes place.
+If this function was not called, no node shuffling takes place.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md192" />
+<span id="group__QkVF2LayoutConfiguration_1autotoc_md215" />
 
-  #### Safety
+### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md192" />
+<span id="group__QkVF2LayoutConfiguration_1autotoc_md215" />
 
-  Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
+Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
 
-  **Parameters**
+**Parameters**
 
-  *   **config** – The configuration to update.
-  *   **seed** – The seed to use for the activated shuffling.
-</Function>
+*   **config** – The configuration to update.
+*   **seed** – The seed to use for the activated shuffling.
 
 ## QkVF2LayoutResult
 
@@ -140,98 +128,90 @@ When running the `qk_transpiler_pass_standalone_vf2_layout` function it returns 
 
 ### Functions
 
-#### qk\_vf2\_layout\_result\_has\_match
+**<span id="group__QkVF2LayoutResult_1ga7cd7aa1c99809484c9e9047c87c4bd43" />bool qk\_vf2\_layout\_result\_has\_match(const QkVF2LayoutResult \*layout)**
 
-<Function id="qk_vf2_layout_result_has_match" signature="bool qk_vf2_layout_result_has_match(const QkVF2LayoutResult *layout)">
-  Check whether a result was found.
+Check whether a result was found.
 
-  A `true` value includes the situation where the configuration specified to try the “trivial” layout and it was found to be the best (and consequently no qubit relabelling is necessary, other than ancilla expansion if appropriate). See `qk_vf2_layout_result_has_improvement` to distinguish whether an explicit remapping is stored.
+A `true` value includes the situation where the configuration specified to try the “trivial” layout and it was found to be the best (and consequently no qubit relabelling is necessary, other than ancilla expansion if appropriate). See `qk_vf2_layout_result_has_improvement` to distinguish whether an explicit remapping is stored.
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md183" />
+<span id="group__QkVF2LayoutResult_1autotoc_md206" />
 
-  ##### Safety
+#### Safety
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md183" />
+<span id="group__QkVF2LayoutResult_1autotoc_md206" />
 
-  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`.
+Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`.
 
-  **Parameters**
+**Parameters**
 
-  **layout** – a pointer to the layout
+*   **layout** – a pointer to the layout
 
-  **Returns**
+**Returns**
 
-  `true` if the VF2-based layout pass found any match.
-</Function>
+`true` if the VF2-based layout pass found any match.
 
-#### qk\_vf2\_layout\_result\_has\_improvement
+**<span id="group__QkVF2LayoutResult_1ga3c5d16b1f6b0bed181283394ce6cf5b0" />bool qk\_vf2\_layout\_result\_has\_improvement(const QkVF2LayoutResult \*layout)**
 
-<Function id="qk_vf2_layout_result_has_improvement" signature="bool qk_vf2_layout_result_has_improvement(const QkVF2LayoutResult *layout)">
-  Check whether the result is an improvement to the trivial layout.
+Check whether the result is an improvement to the trivial layout.
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md184" />
+<span id="group__QkVF2LayoutResult_1autotoc_md207" />
 
-  ##### Safety
+#### Safety
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md184" />
+<span id="group__QkVF2LayoutResult_1autotoc_md207" />
 
-  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`.
+Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`.
 
-  **Parameters**
+**Parameters**
 
-  **layout** – a pointer to the layout
+*   **layout** – a pointer to the layout
 
-  **Returns**
+**Returns**
 
-  `true` if the VF2-based layout pass found an improved match.
-</Function>
+`true` if the VF2-based layout pass found an improved match.
 
-#### qk\_vf2\_layout\_result\_map\_virtual\_qubit
+**<span id="group__QkVF2LayoutResult_1ga13db6b21d0c226a5dbda706d0cc94f1f" />uint32\_t qk\_vf2\_layout\_result\_map\_virtual\_qubit(const QkVF2LayoutResult \*layout, uint32\_t qubit)**
 
-<Function id="qk_vf2_layout_result_map_virtual_qubit" signature="uint32_t qk_vf2_layout_result_map_virtual_qubit(const QkVF2LayoutResult *layout, uint32_t qubit)">
-  Get the physical qubit for a given virtual qubit
+Get the physical qubit for a given virtual qubit
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md185" />
+<span id="group__QkVF2LayoutResult_1autotoc_md208" />
 
-  ##### Safety
+#### Safety
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md185" />
+<span id="group__QkVF2LayoutResult_1autotoc_md208" />
 
-  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult` containing a result, or if the qubit is out of range for the initial circuit.
+Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult` containing a result, or if the qubit is out of range for the initial circuit.
 
-  **Parameters**
+**Parameters**
 
-  *   **layout** – a pointer to the layout
-  *   **qubit** – the virtual qubit to get the physical qubit of
+*   **layout** – a pointer to the layout
+*   **qubit** – the virtual qubit to get the physical qubit of
 
-  **Returns**
+**Returns**
 
-  The physical qubit mapped to by the specified virtual qubit
-</Function>
+The physical qubit mapped to by the specified virtual qubit
 
-#### qk\_vf2\_layout\_result\_free
+**<span id="group__QkVF2LayoutResult_1gaa5204351e24a4355b688ca3899b7d50b" />void qk\_vf2\_layout\_result\_free(QkVF2LayoutResult \*layout)**
 
-<Function id="qk_vf2_layout_result_free" signature="void qk_vf2_layout_result_free(QkVF2LayoutResult *layout)">
-  Free a `QkVF2LayoutResult` object
+Free a `QkVF2LayoutResult` object
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md186" />
+<span id="group__QkVF2LayoutResult_1autotoc_md209" />
 
-  ##### Example
+#### Example
 
-  ```c
-  QkCircuit *qc = qk_circuit_new(1, 0);
-  ```
+```c
+QkCircuit *qc = qk_circuit_new(1, 0);
+```
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md187" />
+<span id="group__QkVF2LayoutResult_1autotoc_md210" />
 
-  ##### Safety
+#### Safety
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md187" />
+<span id="group__QkVF2LayoutResult_1autotoc_md210" />
 
-  Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2Layout`.
+Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2Layout`.
 
-  **Parameters**
+**Parameters**
 
-  **layout** – a pointer to the layout to free
-</Function>
+*   **layout** – a pointer to the layout to free
 
