@@ -8,7 +8,7 @@ python_api_name: QkTranspiler
 
 # QkTranspiler
 
-The `qk_transpile()` function exposes Qiskit’s tranpsiler ([`qiskit.transpiler`](/docs/api/qiskit/dev/transpiler#module-qiskit.transpiler "qiskit.transpiler")) to C. The basic functionality is using the same underlying code as the Python-space version, but the transpiler as exposed to C has more limitations than what is exposed to Python. The transpiler assumes a circuit built constructed using solely the C API and is intended to work solely in the case of a standalone C API. It will potentially not work correctly when in a mixed Python/C use case. If you’re mixing C and Python you should call the [`generate_preset_pass_manager()`](/docs/api/qiskit/dev/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") or [`transpile()`](/docs/api/qiskit/dev/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") functions for those circuits.
+The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit’s tranpsiler ([`qiskit.transpiler`](/docs/api/qiskit/dev/transpiler#module-qiskit.transpiler "qiskit.transpiler")) to C. The basic functionality is using the same underlying code as the Python-space version, but the transpiler as exposed to C has more limitations than what is exposed to Python. The transpiler assumes a circuit built constructed using solely the C API and is intended to work solely in the case of a standalone C API. It will potentially not work correctly when in a mixed Python/C use case. If you’re mixing C and Python you should call the [`generate_preset_pass_manager()`](/docs/api/qiskit/dev/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") or [`transpile()`](/docs/api/qiskit/dev/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") functions for those circuits.
 
 ## Data Types
 
@@ -18,6 +18,18 @@ The `qk_transpile()` function exposes Qiskit’s tranpsiler ([`qiskit.transpiler
   The container result object from `qk_transpile`
 
   When the transpiler successfully compiles a quantum circuit for a given target it returns the transpiled circuit and the layout. The `qk_transpile` function will write pointers to the fields in this struct when it successfully executes, you can initialize this struct with null pointers or leave them unset as the values are never read by `qk_transpile` and only written to. After calling `qk_transpile` you are responsible for calling `qk_circuit_free` and `qk_transpile_layout_free` on the members of this struct.
+
+  #### QkCircuit \*circuit
+
+  <Attribute id="circuit">
+    The compiled circuit.
+  </Attribute>
+
+  #### QkTranspileLayout \*layout
+
+  <Attribute id="layout">
+    Metadata about the initial and final virtual-to-physical layouts.
+  </Attribute>
 </Class>
 
 ### QkTranspileOptions
@@ -63,17 +75,17 @@ The `qk_transpile()` function exposes Qiskit’s tranpsiler ([`qiskit.transpiler
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md239" />
+  <span id="group__QkTranspiler_1autotoc_md262" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md239" />
+  <span id="group__QkTranspiler_1autotoc_md262" />
 
   Behavior is undefined if `circuit`, `target`, or `result`, are not valid, non-null pointers to a `QkCircuit`, `QkTarget`, or `QkTranspileResult` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or ``NULL`. ``error`must be a valid pointer to a`char`pointer or`NULL\`\`.
 
   **Parameters**
 
-  *   **circuit** – A pointer to the circuit to run the transpiler on.
+  *   **qc** – A pointer to the circuit to run the transpiler on.
   *   **target** – A pointer to the target to compile the circuit for.
   *   **options** – A pointer to an options object that defines user options. If this is a null pointer the default values will be used. See `qk_transpile_default_options` for more details on the default values.
   *   **result** – A pointer to the memory location of the transpiler result. On a successful execution (return code 0) the output of the transpiler will be written to the pointer. The members of the result struct are owned by the caller and you are responsible for freeing the members using the respective free functions.
