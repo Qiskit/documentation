@@ -21,12 +21,19 @@ export type ApiObjectName =
   | "exception"
   | "data"
   // C API types
-  | "struct"
+  | "cStruct"
   | "cFunction"
-  | "typedef"
-  | "enum"
-  | "enumerator"
-  | "structMember";
+  | "cTypedef"
+  | "cEnum"
+  | "cEnumerator"
+  | "cStructMember"
+  // C++ types used by historical Qiskit C API versions
+  | "cppStruct"
+  | "cppFunction"
+  | "cppTypedef"
+  | "cppEnum"
+  | "cppEnumerator"
+  | "cppStructMember";
 
 interface ApiObjectInfo {
   htmlSelector: string;
@@ -40,19 +47,28 @@ interface ApiObjectInfo {
  * it'll be displayed on the website).
  */
 export const API_OBJECTS: { [K in ApiObjectName]: ApiObjectInfo } = {
+  // Python API types
   class: { htmlSelector: "dl.py.class", tagName: "class" },
   exception: { htmlSelector: "dl.py.exception", tagName: "class" },
   attribute: { htmlSelector: "dl.py.attribute", tagName: "attribute" },
   property: { htmlSelector: "dl.py.property", tagName: "attribute" },
   function: { htmlSelector: "dl.py.function", tagName: "function" },
-  cFunction: { htmlSelector: "dl.cpp.function", tagName: "function" },
   method: { htmlSelector: "dl.py.method", tagName: "function" },
   data: { htmlSelector: "dl.py.data", tagName: "attribute" },
-  struct: { htmlSelector: "dl.cpp.struct", tagName: "class" },
-  typedef: { htmlSelector: "dl.cpp.type", tagName: "class" },
-  enum: { htmlSelector: "dl.cpp.enum", tagName: "class" },
-  enumerator: { htmlSelector: "dl.cpp.enumerator", tagName: "attribute" },
-  structMember: { htmlSelector: "dl.cpp.var", tagName: "attribute" },
+  // C API types
+  cFunction: { htmlSelector: "dl.c.function", tagName: "function" },
+  cStruct: { htmlSelector: "dl.c.struct", tagName: "class" },
+  cTypedef: { htmlSelector: "dl.c.type", tagName: "class" },
+  cEnum: { htmlSelector: "dl.c.enum", tagName: "class" },
+  cEnumerator: { htmlSelector: "dl.c.enumerator", tagName: "attribute" },
+  cStructMember: { htmlSelector: "dl.c.var", tagName: "attribute" },
+  // C++ types used by historical Qiskit C API versions
+  cppFunction: { htmlSelector: "dl.cpp.function", tagName: "function" },
+  cppStruct: { htmlSelector: "dl.cpp.struct", tagName: "class" },
+  cppTypedef: { htmlSelector: "dl.cpp.type", tagName: "class" },
+  cppEnum: { htmlSelector: "dl.cpp.enum", tagName: "class" },
+  cppEnumerator: { htmlSelector: "dl.cpp.enumerator", tagName: "attribute" },
+  cppStructMember: { htmlSelector: "dl.cpp.var", tagName: "attribute" },
 } as const;
 
 export type Metadata = {

@@ -14,9 +14,89 @@ Learn how to install, configure, and use any of Qiskit Code Assistant models on 
     - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
 </Admonition>
 
-## Download the Qiskit Code Assistant models
+## Quick start (recommended)
 
-The Open Source Qiskit Code Assistant models are available in <DefinitionTooltip definition="Safetensors is a file format designed specifically for storing machine learning model weights and tensors in a secure and efficient manner.">safetensors</DefinitionTooltip> or <DefinitionTooltip definition="GGUF is a binary format that is designed for fast loading and saving of models, and for ease of reading.">GGUF file format</DefinitionTooltip> and can be downloaded from the Hugging Face Hub in one of two ways.
+The easiest way to get started with Qiskit Code Assistant in local mode is to use the automated setup scripts for either the VS Code or JupyterLab extension. These scripts will automatically install [Ollama](https://ollama.com/) to run the LLMs, download the recommended model, and configure the extension for you.
+
+### VS Code extension setup
+
+Run the following command in your terminal:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/Qiskit/qiskit-code-assistant-vscode/main/setup_local.sh)
+```
+
+This script performs the following steps:
+- Install Ollama (if not already installed)
+- Download and configure the recommended Qiskit Code Assistant model
+- Set up the VS Code extension to work with your local deployment
+
+### JupyterLab extension setup
+
+Run the following command in your terminal:
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/Qiskit/qiskit-code-assistant-jupyterlab/main/setup_local.sh)
+```
+
+This script will:
+- Install Ollama (if not already installed)
+- Download and configure the recommended Qiskit Code Assistant model
+- Set up the JupyterLab extension to work with your local deployment
+
+## Available models
+
+### Current models
+
+These are the latest recommended models for use with Qiskit Code Assistant:
+
+1. [Qiskit/mistral-small-3.2-24b-qiskit](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit) - Released October 2025
+2. [qiskit/qwen2.5-coder-14b-qiskit](https://huggingface.co/Qiskit/qwen2.5-coder-14b-qiskit) - Released June 2025
+3. [qiskit/granite-3.3-8b-qiskit](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit) - Released June 2025
+4. [qiskit/granite-3.2-8b-qiskit](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit) - Released June 2025
+
+### GGUF models (recommended for personal environments/laptops)
+
+GGUF format models are optimized for local use and require fewer computational resources:
+
+1. [mistral-small-3.2-24b-qiskit-GGUF](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit-GGUF) – Released **October 2025**  
+   *Trained with Qiskit data up to version **2.1***  
+
+2. [qiskit/qwen2.5-coder-14b-qiskit-GGUF](https://huggingface.co/Qiskit/qwen2.5-coder-14b-qiskit-GGUF) – Released **June 2025**  
+   *Trained with Qiskit data up to version **2.0***  
+
+3. [qiskit/granite-3.3-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF) – Released **June 2025**  
+   *Trained with Qiskit data up to version **2.0***  
+
+4. [qiskit/granite-3.2-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF) – Released **June 2025**  
+   *Trained with Qiskit data up to version **2.0***  
+
+The Open Source Qiskit Code Assistant models are available in <DefinitionTooltip definition="Safetensors is a file format designed specifically for storing machine learning model weights and tensors in a secure and efficient manner.">safetensors</DefinitionTooltip> or <DefinitionTooltip definition="GGUF is a binary format that is designed for quickly loading and saving models, and for readability.">GGUF file format</DefinitionTooltip> and can be downloaded from the Hugging Face as explained below.
+
+### Qiskit versions used for training
+
+| **Model** | &nbsp; | **Benchmark Metrics** | &nbsp; | **Release date** | **Trained on Qiskit version** |
+|---|---|---|---|---|---|
+| &nbsp; | **QiskitHumanEval-Hard** | **QiskitHumanEval** | **HumanEval** | &nbsp; | &nbsp; |
+| **mistral-small-3.2-24b-qiskit** | 20.53 | 40.39 | 77.49 | **October 2025** | **2.1** |
+| qwen2.5-coder-14b-qiskit | 25.16 | 49.01 | 91.46 | June 2025 | 2.0 |
+| granite-3.3-8b-qiskit | 14.56 | 27.15 | 62.80 | June 2025 | 2.0 |
+| granite-3.2-8b-qiskit | 9.93 | 24.50 | 57.31 | June 2025 | 2.0 |
+| granite-8b-qiskit-rc-0.10 | 15.89 | 38.41 | 59.76 | February 2025 | 1.3 |
+| granite-8b-qiskit | 17.88 | 44.37 | 53.66 | November 2024 | 1.2 |
+
+
+### Deprecated models
+
+These models are no longer actively maintained but remain available:
+
+1. [qiskit/granite-8b-qiskit-rc-0.10](https://huggingface.co/Qiskit/granite-8b-qiskit-rc-0.10) - Released February 2025 (deprecated)
+2. [qiskit/granite-8b-qiskit](https://huggingface.co/Qiskit/granite-8b-qiskit) - Released November 2024 (deprecated)
+
+
+## Advanced setup
+
+If you prefer to manually configure your local setup or need more control over the installation process, expand the sections below.
 
 <details>
 
@@ -24,21 +104,10 @@ The Open Source Qiskit Code Assistant models are available in <DefinitionTooltip
 
 Follow these steps to download any Qiskit Code Assistant-related model from the Hugging Face website:
 
-1. Navigate to the desired Qiskit model page in
-1. Go to the Files and Versions tab and download the safetensors or GGUF model files.
-
-Publicly available open source models:
-1. [qiskit/granite-3.3-8b-qiskit](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit). Released June 2025.
-1. [qiskit/granite-3.3-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF). Released June 2025. Recommended for use in personal environments/laptops
-1. [qiskit/granite-3.2-8b-qiskit](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit). Released June 2025.
-1. [qiskit/granite-3.2-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF). Released June 2025. Recommended for use in personal environments/laptops
-1. [qiskit/qwen2.5-coder-14b-qiskit](https://huggingface.co/Qiskit/qwen2.5-coder-14b-qiskit). Released June 2025.
-1. [qiskit/qwen2.5-coder-14b-qiskit-GGUF](https://huggingface.co/Qiskit/qwen2.5-coder-14b-qiskit-GGUF). Released June 2025. Recommended for use in personal environments/laptops
-1. [qiskit/granite-8b-qiskit-rc-0.10](https://huggingface.co/Qiskit/granite-8b-qiskit-rc-0.10). Released February 2025 (deprecated).
-1. [qiskit/granite-8b-qiskit](https://huggingface.co/Qiskit/granite-8b-qiskit). Released November 2024 (deprecated).
+1. Navigate to the desired Qiskit model page on Hugging Face.
+2. Go to the **Files and Versions** tab and download the safetensors or GGUF model files.
 
 </details>
-
 
 <details>
 
@@ -61,10 +130,11 @@ To download any of the available Qiskit Code Assistant models using the Hugging 
 
 </details>
 
+<details>
 
-## Use the Qiskit Code Assistant model
+<summary>Manually deploy the Qiskit Code Assistant models in local through Ollama</summary>
 
-There are multiple ways to deploy and interact with the downloaded Qiskit Code Assistant model. This guide demonstrates using [Ollama](https://ollama.com) as follows: either with the [Ollama application](#using-the-ollama-application) using the Hugging Face Hub integration or local model, or with the [`llama-cpp-python` package](#using-the-llama-cpp-python-package).
+There are multiple ways to deploy and interact with the downloaded Qiskit Code Assistant model. This guide demonstrates using [Ollama](https://ollama.com) as follows: either with the [Ollama application](#using-the-ollama-application) by using the Hugging Face Hub integration or local model, or with the [`llama-cpp-python` package](#use-llama-cpp-python).
 
 ### Using the Ollama application
 
@@ -81,7 +151,7 @@ The Ollama application provides a simple solution to run the LLMs locally. It is
 1. Try Ollama in your terminal and start running models. For example:
 
     ```
-    ollama run granite3-dense:8b
+    ollama run hf.co/Qiskit/Qwen2.5-Coder-14B-Qiskit
     ```
 
 #### Set up Ollama using the Hugging Face Hub integration
@@ -90,19 +160,19 @@ The [Ollama/Hugging Face Hub integration](https://huggingface.co/docs/hub/ollama
 
 1. Make sure the Ollama application is running.
 
-1. Go the desired model page, and copy the URL. For example, https://huggingface.co/Qiskit/granite-3.3-8b-qiskit.
+1. Go the desired model page, and copy the URL. For example, https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF.
 
 1. From your terminal, run the command:
 
     ```
-    ollama run hf.co/Qiskit/granite-3.3-8b-qiskit-GGUF
+    ollama run hf.co/Qiskit/Qwen2.5-Coder-14B-Qiskit
     ```
 
-you can use the `hf.co/Qiskit/granite-3.3-8b-qiskit-GGUF` model or any of the other currently recommended GGUF official models `hf.co/Qiskit/qwen2.5-coder-14b-qiskit-GGUF` or `hf.co/Qiskit/granite-3.2-8b-qiskit-GGUF`.
+You can use the `hf.co/Qiskit/Qwen2.5-Coder-14B-Qiskit` model or any of the other currently recommended GGUF official models `hf.co/Qiskit/mistral-small-3.2-24b-qiskit-GGUF` or `hf.co/Qiskit/granite-3.3-8b-qiskit-GGUF`.
 
 #### Set up Ollama with a manually downloaded Qiskit Code Assistant GGUF model
 
-If you have manually downloaded a GGUF model such as https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF and you want to experiment with different templates and parameters, you can follow these steps to load it into your local Ollama application.
+If you have manually downloaded a GGUF model such as https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF and you want to experiment with different templates and parameters, you can follow these steps to load it into your local Ollama application.
 
 1. Create a `Modelfile` entering the following content and be sure to update `<PATH-TO-GGUF-FILE>` to the actual path of your downloaded model.
 
@@ -131,7 +201,7 @@ If you have manually downloaded a GGUF model such as https://huggingface.co/Qisk
 1. Run the following command to create a custom model instance based on the `Modelfile`.
 
     ```
-    ollama create granite-3.3-8b-qiskit -f ./path-to-model-file
+    ollama create Qwen2.5-Coder-14B-Qiskit -f ./path-to-model-file
     ```
 
     <Admonition type="note">This process may take some time for Ollama to read the model file, initialize the model instance, and configure it according to the specifications provided.</Admonition>
@@ -139,22 +209,27 @@ If you have manually downloaded a GGUF model such as https://huggingface.co/Qisk
 
 #### Run the Qiskit Code Assistant model manually downloaded in Ollama
 
-After the `granite-3.3-8b-qiskit-GGUF` model has been set up in Ollama, run the following command to launch the model and interact with it in the terminal (in chat mode).
+After the `Qwen2.5-Coder-14B-Qiskit` model has been set up in Ollama, run the following command to launch the model and interact with it in the terminal (in chat mode).
 
 ```
-ollama run granite-3.3-8b-qiskit
+ollama run Qwen2.5-Coder-14B-Qiskit
 ```
 
 Some useful commands:
 
 - `ollama list` - List models on your computer
-- `ollama rm granite-3.3-8b-qiskit` - Remove/delete the model
-- `ollama show granite-3.3-8b-qiskit` - Show model information
-- `ollama stop granite-3.3-8b-qiskit` - Stop a model that is currently running
+- `ollama rm Qwen2.5-Coder-14B-Qiskit` - Delete the model
+- `ollama show Qwen2.5-Coder-14B-Qiskit` - Show model information
+- `ollama stop Qwen2.5-Coder-14B-Qiskit` - Stop a model that is currently running
 - `ollama ps` - List which models are currently loaded
 
-### Using the `llama-cpp-python` package
+</details>
 
+<details>
+
+<summary>Manually deploy the Qiskit Code Assistant models in local through the `llama-cpp-python` package</summary>
+
+<span id="use-llama-cpp-python"></span>
 An alternative to the Ollama application is the `llama-cpp-python` package, which is a Python binding for `llama.cpp`. It gives you more control and flexibility to run the GGUF model locally, and is ideal for users who wish to integrate the local model in their workflows and Python applications.
 
 1. Install [`llama-cpp-python`](https://pypi.org/project/llama-cpp-python/)
@@ -188,6 +263,11 @@ generation_kwargs = {
 raw_pred = model(input, **generation_kwargs)["choices"][0]["text"]
 ```
 
+</details>
+
+<details>
+
+<summary>Manually deploy the Qiskit Code Assistant models in local through llama.cpp</summary>
 ### Use the `llama.cpp` library
 
 Another alternative is to use `llama.cpp`, an open-source library for performing LLM inference on a CPU with minimal setup.
@@ -206,19 +286,19 @@ Once installed, you can use `llama.cpp` to interact with GGUF models in conversa
 llama-cli -m my_model.gguf -cnv
 
 # Or download and run a model directly from Hugging Face
-llama-cli -hf Qiskit/granite-3.3-8b-qiskit-GGUF -cnv
+llama-cli -hf Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF -cnv
 ```
 
 You can also launch an OpenAI-compatible API server for the model in the following way:
 ```bash
-llama-server -hf Qiskit/granite-3.3-8b-qiskit-GGUF
+llama-server -hf Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF
 ```
 
 #### Advanced parameters
 With the `llama-cli` program, you can control the model generation using command-line options. For example, you can provide an initial “system” prompt using the `-p/--prompt` flag. In conversation mode (`-cnv`), this initial prompt acts as the system message. Otherwise, you can simply prepend any desired instruction to your prompt text. You can also adjust sampling parameters - for instance: temperature (`--temp`), top-k (`--top-k`), top-p (`--top-p`), repetition penalty (`--repeat-penalty`), and the seed to use (`--seed`). The following is an example invocation using these options:
 
 ```bash
-llama-cli -hf Qiskit/granite-3.3-8b-qiskit-GGUF \
+llama-cli -hf Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF \
   -p "You are a friendly assistant." -cnv \
   --temp 0.7 \
   --top-k 50 \
@@ -227,14 +307,19 @@ llama-cli -hf Qiskit/granite-3.3-8b-qiskit-GGUF \
   --seed 42
 ```
 
-To ensure proper functionality of our Qiskit models, we recommend using the system prompt provided in our HF GGUF repositories: system prompt for [granite-3.3-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF/blob/main/system), [Qwen2.5-Coder-14B-Qiskit-GGUF](https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF/blob/main/system), and [granite-3.2-8b-qiskit-GGUF.](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF/blob/main/system)
+To ensure proper functionality of our Qiskit models, we recommend using the system prompt provided in our HF GGUF repositories: system prompt for [mistral-small-3.2-24b-qiskit-GGUF](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit-GGUF/blob/main/system), [Qwen2.5-Coder-14B-Qiskit-GGUF](https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF/blob/main/system), [granite-3.3-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF/blob/main/system), and [granite-3.2-8b-qiskit-GGUF.](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF/blob/main/system)
 
-### Use the Qiskit Code Assistant extensions
+
+</details>
+
+<details>
+
+<summary>Manually connect extensions to local deployment</summary>
 
 Use the VS Code extension and JupyterLab extension for the Qiskit Code Assistant to prompt the locally deployed Qiskit Code Assistant model. Once you have the Ollama application [set up with the model](#using-the-ollama-application), you can configure the extensions to connect to the local service.
 
 
-#### Connect with the Qiskit Code Assistant VS Code extension
+### Connect with the Qiskit Code Assistant VS Code extension
 
 With the Qiskit Code Assistant VS Code extension, you can interact with the model and perform code completion while writing your code. This can work well for users looking for assistance writing Qiskit code for their Python applications.
 
@@ -244,7 +329,7 @@ With the Qiskit Code Assistant VS Code extension, you can interact with the mode
 
 The Qiskit Code Assistant model configured in Ollama should appear in the status bar and is then ready to use.
 
-#### Connect with the Qiskit Code Assistant JupyterLab extension
+### Connect with the Qiskit Code Assistant JupyterLab extension
 
 With the Qiskit Code Assistant JupyterLab extension, you can interact with the model and perform code completion directly in your Jupyter Notebook. Users who predominantly work with Jupyter Notebooks can take advantage of this extension to further enhance their experience writing Qiskit code.
 
@@ -252,3 +337,5 @@ With the Qiskit Code Assistant JupyterLab extension, you can interact with the m
 1. In JupyterLab, go to the **Settings Editor** and set the **Qiskit Code Assistant Service API** to the URL of your local Ollama deployment (for example, `http://localhost:11434`).
 
 The Qiskit Code Assistant model configured in Ollama should appear in the status bar and is then ready to use.
+
+</details>
