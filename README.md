@@ -88,7 +88,7 @@ git config --add remote.origin.fetch '^refs/heads/gh-pages'
 To contribute code to this repository, your email must be configured properly with Git, as follows:
 
 1. Run `git config --get user.email`. You do not need to make any further changes if the email address is one of the addresses set up with your github.com account.
-2. Otherwise, run `git config --global user.email <your-email>`. Use an email address associated with your github.com acocunt.
+2. Otherwise, run `git config --global user.email <your-email>`. Use an email address associated with your github.com account.
 
 ### Prerequisites to building the docs locally
 
