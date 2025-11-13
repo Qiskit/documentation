@@ -51,7 +51,8 @@ Compilation requires the following tools:
 * A C compiler: for example, GCC on Linux and Clang on MacOS. Qiskit's C API is compatible with a compiler conforming to the [C11](https://en.wikipedia.org/wiki/C11_(C_standard_revision)) standard.
 * [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to create the C header, which you can install with `cargo install cbindgen`
     Note that running the tool from the command line should be enabled, which might require exporting your `PATH` variable to include `/path/to/.cargo/bin`
-* (GNU) Make: this is optional but is recommended to use automated install processes
+* Python library installed (Python 3.9+): The Python library is required during dynamic linking. Notice that Python *is not* needed at runtime. See [this issue](https://github.com/Qiskit/qiskit/issues/14240) for more details.
+* (GNU) Make: this is optional but is recommended to use automated install processes.
 
 This code verifies that everything has been installed:
 ```bash
@@ -77,20 +78,27 @@ You can then compile a C program using the Qiskit C header and library:
 ```bash
 gcc example.c -o example.o -I /path/to/dist/c/include -L /path/to/dist/c/lib -lqiskit
 ```
-To ensure the library is found during execution, set the runtime library path to
-include `/path/to/dist/c/lib`. This depends on the platform. On Linux:
+To ensure the Qiskit library is found during execution, set the runtime library path to
+include `/path/to/dist/c/lib`. If the Python library is not available per default during dynamic linking,
+this also needs to be added. These commands on the platform. On Linux:
 ```bash
 export LD_LIBRARY_PATH=/path/to/dist/c/lib:$LD_LIBRARY_PATH
+# on Linux, the Python library is typically included in the dynamic library path per default
+export LD_LIBRARY_PATH=/path/to/python/lib:$LD_LIBRARY_PATH
 ```
 On MacOS:
 ```bash
 export DYLD_LIBRARY_PATH=/path/to/dist/c/lib:$DYLD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=/path/to/python/lib:$DYLD_LIBRARY_PATH
 ```
 Alternatively, you can set the runtime library path during compilation by adding
 ```
 -Wl,-rpath,/path/to/dist/c/lib
+# same for Python
 ```
 to the compiler flags.
+In addition, the Python library needs to be available during dynamic linking. In Linux environments
+this is typically the default. 
 
 Now you can execute the binary:
 ```bash
