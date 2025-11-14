@@ -51,7 +51,7 @@ Compilation requires the following tools:
 * A C compiler: for example, GCC on Linux and Clang on MacOS. Qiskit's C API is compatible with a compiler conforming to the [C11](https://en.wikipedia.org/wiki/C11_(C_standard_revision)) standard.
 * [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to create the C header, which you can install with `cargo install cbindgen`
     Note that running the tool from the command line should be enabled, which might require exporting your `PATH` variable to include `/path/to/.cargo/bin`
-* Python library installed (Python 3.9+): The Python library is required during dynamic linking. Notice that Python is not used at runtime and the interpreter is never initialized, only the symbols need to be defined. See [this issue](https://github.com/Qiskit/qiskit/issues/14240) for more details.
+* Python library installed (Python 3.9+): The Python library is required during dynamic linking. Notice that Python is not used at runtime and the interpreter is never initialized, only some symbols from `libpython` need to be defined. See [this issue](https://github.com/Qiskit/qiskit/issues/14240) for more details.
 * (GNU) Make: this is optional but is recommended to use automated install processes.
 
 This code verifies that everything has been installed:
