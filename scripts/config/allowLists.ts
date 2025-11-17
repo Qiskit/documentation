@@ -60,6 +60,7 @@ export const IGNORE_TITLE_MISMATCHES: string[] = [
   "learning/courses/quantum-safe-cryptography/exam.mdx",
   "learning/courses/utility-scale-quantum-computing/classical-simulation.mdx",
   "learning/courses/variational-algorithm-design/exam.mdx",
+  "learning/courses/general-formulation-of-quantum-information/exam.mdx",
   "docs/guides/ai-transpiler-passes.ipynb",
   "docs/guides/algorithmiq-tem.ipynb",
   "docs/guides/build-noise-models.ipynb",
