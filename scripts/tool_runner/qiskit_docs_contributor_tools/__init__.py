@@ -64,14 +64,6 @@ def check_packages(verbose=False) -> None:
             ),
         ),
         (
-            "docker",
-            (
-                "Go to https://docs.docker.com/engine/install/. If you are an "
-                "IBM employee, make sure to only install Docker Engine; do NOT "
-                'install "Docker Desktop".'
-            ),
-        ),
-        (
             "tox",
             (
                 "First, make sure `pipx` is installed "
