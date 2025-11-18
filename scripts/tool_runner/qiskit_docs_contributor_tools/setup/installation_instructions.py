@@ -10,40 +10,15 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from dataclasses import dataclass
-import subprocess
+import shutil
 
 
-@dataclass
-class PackageCheck:
-    package_name: str
-    """Human-friendly pacakge name"""
-    version_command: list[str]
-    """Command that should return version info"""
-    install_instructions: str
-    """Human readable instructions to install the correct version of the package"""
-
-
-def check_for_package(pkg: PackageCheck) -> tuple[bool, str]:
-    try:
-        subprocess.check_output(
-            pkg.version_command,
-            text=True,
-            encoding="utf-8",
-        )
-    except FileNotFoundError:
+def check_for_package(command: str, install_instructions: str) -> tuple[bool, str]:
+    if shutil.which(command) is None:
         return (
             False,
-            f"❌ Could not find package '{pkg.package_name}' on this system. "
+            f"❌ No command '{command}' on this system. "
             + "To install it:\n"
-            + pkg.install_instructions,
+            + install_instructions,
         )
-    except Exception:
-        return (
-            False,
-            f"❌ Something went wrong while checking for '{pkg.package_name}' "
-            + "on this system. You might have the wrong version installed, to install it:\n"
-            + pkg.install_instructions,
-        )
-
-    return (True, f"✅ {pkg.package_name}")
+    return (True, f"✅ {command}")

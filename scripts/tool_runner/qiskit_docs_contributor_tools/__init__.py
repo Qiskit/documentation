@@ -16,7 +16,7 @@ import logging
 import textwrap
 import subprocess
 
-from .setup.installation_instructions import PackageCheck, check_for_package
+from .setup.installation_instructions import check_for_package
 
 logger = logging.getLogger(__name__)
 
@@ -50,40 +50,37 @@ def run_cmd(name: str, cmd: list[str], *, progress: str | None) -> None:
     # This ends the program without adding a noisy stacktrace.
     raise SystemExit(1)
 
+
 def check_packages(verbose=False) -> None:
     """Check the current system has the required packages"""
     checks = [
-        PackageCheck(
-            package_name="Node.js",
-            version_command=["node", "--version"],
-            install_instructions=(
+        (
+            "node",
+            (
                 "If you expect to use JavaScript in other projects, consider "
                 "using NVM (https://github.com/nvm-sh/nvm). Otherwise, consider "
                 "using Homebrew (https://formulae.brew.sh/formula/node) or "
                 "installing Node.js directly (https://nodejs.org/en)."
             ),
         ),
-        PackageCheck(
-            package_name="Docker",
-            version_command=["docker", "--version"],
-            install_instructions=(
+        (
+            "docker",
+            (
                 "Go to https://docs.docker.com/engine/install/. If you are an "
                 "IBM employee, make sure to only install Docker Engine; do NOT "
                 'install "Docker Desktop".'
             ),
         ),
-        PackageCheck(
-            package_name="Tox",
-            version_command=["tox", "--version"],
-            install_instructions=(
+        (
+            "tox",
+            (
                 "First, make sure `pipx` is installed "
                 "(https://pipx.pypa.io/stable/), then run `pipx install tox`"
             ),
         ),
-        PackageCheck(
-            package_name="ImageMagick",
-            version_command=["magick", "--version"],
-            install_instructions=(
+        (
+            "magick",
+            (
                 "See instructions at "
                 "https://imagemagick.org/script/download.php. "
                 "We recommend installing through a package manager rather than "
@@ -91,8 +88,8 @@ def check_packages(verbose=False) -> None:
             ),
         ),
     ]
-    for check in checks:
-        installed, message = check_for_package(check)
+    for command, install_instructions in checks:
+        installed, message = check_for_package(command, install_instructions)
         if not installed:
             print(message)
             raise SystemExit(1)
