@@ -11,7 +11,13 @@
 # that they have been altered from the originals.
 
 name: Test tooling
-on: [pull_request, merge_group]
+on:
+  pull_request:
+    paths:
+      - scripts/image-tester/*
+      - scripts/nb-tester/*
+      - scripts/notebook-normalizer/*
+      - scripts/tool_runner/*
 jobs:
   test_tooling:
     name: Test tooling
