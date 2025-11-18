@@ -113,4 +113,4 @@ def _get_image(
 
 
 def _image_mdx_component(image: Image) -> str:
-    return f'<Image src="/{image.destination_filepath.relative_to("public")}" alt="Output of the previous code cell" />'
+    return f'<Image src="/{image.destination_filepath.relative_to("public").as_posix()}" alt="Output of the previous code cell" />'
