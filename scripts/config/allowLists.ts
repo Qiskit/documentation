@@ -14,7 +14,14 @@ export const METADATA_ALLOWLIST: Set<string> = new Set([
   "docs/api/qiskit/0.46/transpiler_builtin_plugins.mdx",
 ]);
 
-export const IGNORE_TITLE_MISMATCHES: string[] = [
+export function ignoreTitleMismatch(filepath: string): boolean {
+  const isLearningPage = filepath.startsWith("learning/");
+  const isApiPage = filepath.startsWith("docs/api");
+  if (isLearningPage || isApiPage) return true;
+  return IGNORE_TITLE_MISMATCHES.includes(filepath);
+}
+
+const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/external-providers-primitives-v2.mdx",
   "docs/guides/create-a-provider.mdx",
   "docs/guides/local-simulators.mdx",
