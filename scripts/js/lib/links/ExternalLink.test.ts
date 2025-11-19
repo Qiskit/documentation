@@ -37,12 +37,52 @@ test.describe("ExternalLink.check()", () => {
     expect(result).toBeUndefined();
   });
 
-  test("invalid link", async () => {
+  test("404", async () => {
     global.fetch = () => Promise.resolve(new Response("", { status: 404 }));
     let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
     const result = await link.check();
     expect(result).toEqual(
-      "❌ Could not find link 'https://bad-link.com'. Appears in:\n    /testorigin.mdx",
+      "❌ Could not find link 'https://bad-link.com' (404). Appears in:\n    /testorigin.mdx",
+    );
+  });
+
+  test("410", async () => {
+    global.fetch = () => Promise.resolve(new Response("", { status: 410 }));
+    let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
+    const result = await link.check();
+    expect(result).toEqual(
+      "❌ Link 'https://bad-link.com' has been removed (410). Appears in:\n    /testorigin.mdx",
+    );
+  });
+
+  test("temporary redirect", async () => {
+    global.fetch = () => Promise.resolve(new Response("", { status: 302 }));
+    let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
+    const result = await link.check();
+    expect(result).toBeUndefined();
+  });
+
+  test("permanent redirect", async () => {
+    global.fetch = () =>
+      Promise.resolve(
+        new Response("", {
+          status: 308,
+          headers: { location: "https://good-link.com" },
+        }),
+      );
+    let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
+    const result = await link.check();
+    expect(result).toEqual(
+      "❌ Link 'https://bad-link.com' has permanently moved to 'https://good-link.com' (308). Appears in:\n    /testorigin.mdx",
+    );
+  });
+
+  test("other problem", async () => {
+    global.fetch = () => Promise.resolve(new Response("", { status: 502 }));
+    let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
+    const result = await link.check();
+    expect(result).toEqual(
+      "❌ Link 'https://bad-link.com' returned unexpected code: 502. Appears in:\n    /testorigin.mdx",
     );
   });
 

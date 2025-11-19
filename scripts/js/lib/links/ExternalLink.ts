@@ -69,7 +69,26 @@ function responseToErrorMessage(
   link: string,
   response: Response,
 ): string | undefined {
-  if (response.status >= 300) return `Could not find link '${link}'`;
+  const httpCode = response.status;
+  const isOk = httpCode >= 100 && httpCode < 300;
+  if (isOk) return undefined;
+
+  const isTempRedirect = httpCode === 302 || httpCode === 307;
+  if (isTempRedirect) return undefined;
+
+  const isPermanentRedirect = httpCode === 301 || httpCode === 308;
+  if (isPermanentRedirect) {
+    // Location should be provided for 301 or 308 responses, but if not, then
+    // 'null' appearing in logs is acceptable.
+    const maybeNewLocation = response.headers.get("location");
+    return `Link '${link}' has permanently moved to '${maybeNewLocation}' (${httpCode})`;
+  }
+
+  if (httpCode === 404) return `Could not find link '${link}' (${httpCode})`;
+  if (httpCode === 410) return `Link '${link}' has been removed (${httpCode})`;
+  if (httpCode === 418) return `Link '${link}' is a teapot (${httpCode})`;
+
+  return `Link '${link}' returned unexpected code: ${httpCode}`;
 }
 
 export function getHeaders(link: string): HeadersInit {
