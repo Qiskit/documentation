@@ -64,6 +64,10 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
   Generate transpiler options defaults
 
   This function generates a [QkTranspileOptions](#structqktranspileoptions) with the default settings This currently is `optimization_level` 2, no seed, and no approximation.
+
+  **Returns**
+
+  A `QkTranspileOptions` object with default settings.
 </Function>
 
 ### qk\_transpile
@@ -75,13 +79,13 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md262" />
+  <span id="group__QkTranspiler_1autotoc_md261" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md262" />
+  <span id="group__QkTranspiler_1autotoc_md261" />
 
-  Behavior is undefined if `circuit`, `target`, or `result`, are not valid, non-null pointers to a `QkCircuit`, `QkTarget`, or `QkTranspileResult` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or ``NULL`. ``error`must be a valid pointer to a`char`pointer or`NULL\`\`.
+  Behavior is undefined if `circuit`, `target`, or `result`, are not valid, non-null pointers to a `QkCircuit`, `QkTarget`, or `QkTranspileResult` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
   **Parameters**
 
@@ -89,7 +93,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
   *   **target** â€“ A pointer to the target to compile the circuit for.
   *   **options** â€“ A pointer to an options object that defines user options. If this is a null pointer the default values will be used. See `qk_transpile_default_options` for more details on the default values.
   *   **result** â€“ A pointer to the memory location of the transpiler result. On a successful execution (return code 0) the output of the transpiler will be written to the pointer. The members of the result struct are owned by the caller and you are responsible for freeing the members using the respective free functions.
-  *   **error** â€“ A pointer to a pointer with an nul terminated string with an error description. If the transpiler fails a pointer to the string with the error description will be written to this pointer. That pointer needs to be freed with `qk_str_free`\`. This can be a null pointer in which case the error will not be written out.
+  *   **error** â€“ A pointer to a pointer with an nul terminated string with an error description. If the transpiler fails a pointer to the string with the error description will be written to this pointer. That pointer needs to be freed with `qk_str_free`. This can be a null pointer in which case the error will not be written out.
 
   **Returns**
 
