@@ -36,7 +36,7 @@ test("ignoreTitleMismatch()", async () => {
   // Don't ignore guides in general
   expect(ignoreTitleMismatch("docs/guides/example-page.mdx")).toEqual(false);
 
-  expect(ignoreTitleMismatch("docs/security/nested/something.mdx")).toEqual(
+  expect(ignoreTitleMismatch("docs/guides/nested/something.mdx")).toEqual(
     false,
   );
 });
