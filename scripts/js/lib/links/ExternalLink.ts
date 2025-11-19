@@ -58,6 +58,7 @@ async function safeFetch(
     const response = await fetch(link, {
       headers: getHeaders(link),
       method: "HEAD",
+      redirect: "manual",
     });
     return { response };
   } catch (err) {
