@@ -66,6 +66,7 @@ The following table documents options from the latest version of `qiskit-ibm-run
 The total number of shots to use per circuit per configuration.
 
 **Choices**: Integer >= 0
+
 **Default**: None
 
 [`default_shots` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_shots)
@@ -79,6 +80,7 @@ The total number of shots to use per circuit per configuration.
 The default precision to use for any PUB or `run()` call that does not specify one.
 
 **Choices**: Float > 0
+
 **Default**: 0.015625 (1 / sqrt(4096))
 
 [`default_precision` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_precision)
@@ -98,6 +100,7 @@ Control dynamical decoupling error mitigation settings.
 </summary>
 
 **Choices**: `True`, `False`
+
 **Default**: `False`
 </details>
 
@@ -107,6 +110,7 @@ Control dynamical decoupling error mitigation settings.
 </summary>
 
 **Choices**: `middle`, `edges`
+
 **Default**: `middle`
 </details>
 
@@ -154,6 +158,7 @@ Default: `False`
 Callable function that receives the `Job ID` and `Job result`.
 
 **Choices**: None
+
 **Default**: None
 </details>
 
@@ -165,6 +170,7 @@ Callable function that receives the `Job ID` and `Job result`.
 List of tags.
 
 **Choices**: None
+
 **Default**: None
 </details>
 
@@ -174,6 +180,7 @@ List of tags.
 </summary>
 
 **Choices**: DEBUG, INFO, WARNING, ERROR, CRITICAL
+
 **Default**: WARNING
 </details>
 
@@ -183,6 +190,7 @@ List of tags.
 </summary>
 
 **Choices**: `True`, `False`
+
 **Default**: `False`
 </details>
 
@@ -202,6 +210,7 @@ List of tags.
 Whether to reset the qubits to the ground state for each shot.
 
 **Choices**: `True`, `False`
+
 **Default**: `True`
 </details>
 
@@ -212,6 +221,7 @@ Whether to reset the qubits to the ground state for each shot.
 The delay between a measurement and the subsequent quantum circuit.
 
 **Choices**: Value in the range supplied by `backend.rep_delay_range`
+
 **Default**: Given by `backend.default_rep_delay`
 </details>
 
@@ -223,6 +233,7 @@ The delay between a measurement and the subsequent quantum circuit.
 ### `max_execution_time`
 </summary>
 **Choices**: Integer number of seconds in the range [1, 10800]
+
 **Default**: 10800 (3 hours)
 
 [`max_execution_time` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#max_execution_time)
@@ -251,6 +262,7 @@ Options for learning layer noise.
 </summary>
 
 **Choices**: list[int] of 2-10 values in the range [0, 200]
+
 **Default**: `(0, 1, 2, 4, 16, 32)`
 
 </details>
@@ -261,6 +273,7 @@ Options for learning layer noise.
 </summary>
 
 **Choices**: None, Integer >= 1
+
 **Default**: `4`
 
 </details>
@@ -271,6 +284,7 @@ Options for learning layer noise.
 </summary>
 
 **Choices**: Integer >= 1
+
 **Default**: `32`
 
 </details>
@@ -281,6 +295,7 @@ Options for learning layer noise.
 </summary>
 
 **Choices**: Integer >= 1
+
 **Default**: `128`
 
 </details>
@@ -291,6 +306,7 @@ Options for learning layer noise.
 </summary>
 
 **Choices**: `NoiseLearnerResult`, `Sequence[LayerError]`
+
 **Default**: None
 
 </details>
@@ -301,6 +317,7 @@ Options for learning layer noise.
 </summary>
 
 **Choices**: `True`, `False`
+
 **Default**: `True`
 
 </details>
@@ -321,6 +338,7 @@ Options for measurement noise learning.
 </summary>
 
 **Choices**: Integer >= 1
+
 **Default**: `32`
 
 </details>
@@ -331,116 +349,113 @@ Options for measurement noise learning.
 </summary>
 
 **Choices**: Integer, `auto`
+
 **Default**: `auto`
 
 </details>
 
 <details>
 <summary>
-#### `resilience.measure_noise_learning.pec_mitigation`
+#### `resilience.pec_mitigation`
 </summary>
 
 **Choices**: `True`, `False`
+
 **Default**: `False`
 
 </details>
 
 <details>
 <summary>
-#### `resilience.measure_noise_learning.pec`
+#### `resilience.pec`
 </summary>
 
 Probabilistic error cancellation mitigation options.
 
-[`resilience.measure_noise_learning.pec` API documentation](/docs/api/qiskit-ibm-runtime/options-pec-options)
+[`resilience.pec` API documentation](/docs/api/qiskit-ibm-runtime/options-pec-options)
 </details>
 
 <details>
 <summary>
-##### `resilience.measure_noise_learning.pec.max_overhead`
+##### `resilience.pec.max_overhead`
 </summary>
 
 **Choices**: `None`, Integer >= 1
+
+
 **Default**: `100`
 
 </details>
 
 <details>
 <summary>
-##### `resilience.measure_noise_learning.pec.max_overhead`
-</summary>
-
-**Choices**: `None`, Integer >= 1
-**Default**: `100`
-
-</details>
-
-<details>
-<summary>
-##### `resilience.measure_noise_learning.pec.noise_gain`
+##### `resilience.pec.noise_gain`
 </summary>
 
 **Choices**: `auto`, float in the range [0, 1]
+
 **Default**: `auto`
 
 </details>
 
 <details>
 <summary>
-#### `resilience.measure_noise_learning.zne_mitigation`
+#### `resilience.zne_mitigation`
 </summary>
 
 **Choices**: `True`, `False`
+
 **Default**: `False`
 
 </details>
 
 <details>
 <summary>
-#### `resilience.measure_noise_learning.zne`
+#### `resilience.zne`
 </summary>
 
-**Choices**: `True`, `False`
-**Default**: `False`
-
-[`resilience.measure_noise_learning.zne` API documentation](/docs/api/qiskit-ibm-runtime/options-zne-options)
+[`resilience.zne` API documentation](/docs/api/qiskit-ibm-runtime/options-zne-options)
 </details>
 
 <details>
 <summary>
-##### `resilience.measure_noise_learning.zne.amplifier`
+##### `resilience.zne.amplifier`
 </summary>
 
 **Choices**: `gate_folding`, `gate_folding_front`, `gate_folding_back`, `pea`
+
 **Default**: `gate_folding`
 
 </details>
 <details>
 <summary>
-##### `resilience.measure_noise_learning.zne.extrapolated_noise_factors`
+##### `resilience.zne.extrapolated_noise_factors`
 </summary>
 
 **Choices**: List of floats
+
 **Default**: `[0, *noise_factors]`
 
 </details>
 
 <details>
 <summary>
-##### `resilience.measure_noise_learning.zne.extrapolator`
+##### `resilience.zne.extrapolator`
 </summary>
 
 **Choices**: One or more of: `exponential`, `linear`, `double_exponential`, `polynomial_degree_(1 <= k <= 7)`, `fallback`
+
 **Default**: `(exponential, linear)`
 
 </details>
 
 <details>
 <summary>
-##### `resilience.measure_noise_learning.zne.noise_factors`
+##### `resilience.zne.noise_factors`
 </summary>
 
 **Choices**: List of floats; each float >= 1
+
 **Default**: `(1, 1.5, 2)` for `PEA`, and `(1, 3, 5)` otherwise
 
 </details>
@@ -456,6 +471,7 @@ Probabilistic error cancellation mitigation options.
 How much resilience to build against errors. Higher levels generate more accurate results at the expense of longer processing times.
 
 **Choices**: `0`, `1`, `2`
+
 **Default**: `1`
 
 [`resilience_level` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#resilience_level)
@@ -467,6 +483,7 @@ How much resilience to build against errors. Higher levels generate more accurat
 </summary>
 
 **Choices**: Integer
+
 **Default**: None
 
 [`seed_estimator`](/docs/api/qiskit-ibm-runtime/options-estimator-options#seed_estimator)
@@ -485,6 +502,7 @@ Options to pass when simulating a backend
 </summary>
 
 **Choices**: List of basis gate names to unroll to
+
 **Default**: The set of all basis gates supported by [Qiskit Aer simulator](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html)
 
 </details>
@@ -495,7 +513,8 @@ Options to pass when simulating a backend
 </summary>
 
 **Choices**: List of directed two-qubit interactions
-**Default**: Full connectivity
+
+**Default**: None, which implies no connectivity constraints (full connectivity).
 
 </details>
 
@@ -505,6 +524,7 @@ Options to pass when simulating a backend
 </summary>
 
 **Choices**: [Qiskit Aer NoiseModel](/docs/guides/build-noise-models), or its representation
+
 **Default**: None
 
 </details>
@@ -515,6 +535,7 @@ Options to pass when simulating a backend
 </summary>
 
 **Choices**: Integer
+
 **Default**: None
 
 </details>
@@ -536,6 +557,7 @@ Twirling options
 </summary>
 
 **Choices**: True, False
+
 **Default**: False
 
 </details>
@@ -546,6 +568,7 @@ Twirling options
 </summary>
 
 **Choices**: True, False
+
 **Default**: True
 
 </details>
@@ -556,6 +579,7 @@ Twirling options
 </summary>
 
 **Choices**: `auto`, Integer >= 1
+
 **Default**: `auto`
 
 </details>
@@ -566,6 +590,7 @@ Twirling options
 </summary>
 
 **Choices**: `auto`, Integer >= 1
+
 **Default**: `auto`
 
 </details>
@@ -576,6 +601,7 @@ Twirling options
 </summary>
 
 **Choices**: `active`, `active-circuit`, `active-accum`, `all`
+
 **Default**: `active-accum`
 
 </details>
@@ -589,15 +615,6 @@ Twirling options
 </summary>
 
 Experimental options, when available.
-<details>
-<summary>
-#### `experimental.execution_path`
-
-**Choices**: `active`, `active-circuit`, `active-accum`, `all`
-**Default**: None
-
-</summary>
-</details>
 
 </details>
 
@@ -613,6 +630,7 @@ Experimental options, when available.
 The total number of shots to use per circuit per configuration.
 
 **Choices**: Integer >= 0
+
 **Default**: None
 
 [`default_shots` API documentation](/docs/api/qiskit-ibm-runtime/options-sampler-options#default_shots)
@@ -632,6 +650,7 @@ Control dynamical decoupling error mitigation settings.
 </summary>
 
 **Choices**: `True`, `False`
+
 **Default**: `False`
 </details>
 
@@ -641,6 +660,7 @@ Control dynamical decoupling error mitigation settings.
 </summary>
 
 **Choices**: `middle`, `edges`
+
 **Default**: `middle`
 </details>
 
@@ -681,23 +701,13 @@ Default: `False`
 [`environment` API documentation](/docs/api/qiskit-ibm-runtime/options-sampler-options#environment)
 <details>
 <summary>
-#### `environment.callback`
-</summary>
-
-Callable function that receives the `Job ID` and `Job result`.
-
-**Choices**: None
-**Default**: None
-</details>
-
-<details>
-<summary>
 #### `environment.job_tags`
 </summary>
 
 List of tags.
 
 **Choices**: None
+
 **Default**: None
 </details>
 
@@ -707,6 +717,7 @@ List of tags.
 </summary>
 
 **Choices**: DEBUG, INFO, WARNING, ERROR, CRITICAL
+
 **Default**: WARNING
 </details>
 
@@ -716,6 +727,7 @@ List of tags.
 </summary>
 
 **Choices**: `True`, `False`
+
 **Default**: `False`
 </details>
 
@@ -734,6 +746,7 @@ List of tags.
 Whether to reset the qubits to the ground state for each shot.
 
 **Choices**: `True`, `False`
+
 **Default**: `True`
 </details>
 
@@ -744,6 +757,7 @@ Whether to reset the qubits to the ground state for each shot.
 The delay between a measurement and the subsequent quantum circuit.
 
 **Choices**: Value in the range supplied by `backend.rep_delay_range`
+
 **Default**: Given by `backend.default_rep_delay`
 </details>
 <details>
@@ -752,6 +766,7 @@ The delay between a measurement and the subsequent quantum circuit.
 </summary>
 
 **Choices**: `classified`, `kerneled`, `avg_kerneled`
+
 **Default**: `classified`
 </details>
 
@@ -763,6 +778,7 @@ The delay between a measurement and the subsequent quantum circuit.
 ### `max_execution_time`
 </summary>
 **Choices**: Integer number of seconds in the range [1, 10800]
+
 **Default**: 10800 (3 hours)
 
 [`max_execution_time` API documentation](/docs/api/qiskit-ibm-runtime/options-sampler-options#max_execution_time)
@@ -782,6 +798,7 @@ Options to pass when simulating a backend
 </summary>
 
 **Choices**: List of basis gate names to unroll to
+
 **Default**: The set of all basis gates supported by [Qiskit Aer simulator](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html)
 
 </details>
@@ -792,7 +809,8 @@ Options to pass when simulating a backend
 </summary>
 
 **Choices**: List of directed two-qubit interactions
-**Default**: Full connectivity
+
+**Default**: None, which implies no connectivity constraints (full connectivity).
 
 </details>
 
@@ -802,6 +820,7 @@ Options to pass when simulating a backend
 </summary>
 
 **Choices**: [Qiskit Aer NoiseModel](/docs/guides/build-noise-models), or its representation
+
 **Default**: None
 
 </details>
@@ -812,6 +831,7 @@ Options to pass when simulating a backend
 </summary>
 
 **Choices**: Integer
+
 **Default**: None
 
 </details>
@@ -833,6 +853,7 @@ Twirling options
 </summary>
 
 **Choices**: True, False
+
 **Default**: False
 
 </details>
@@ -843,7 +864,8 @@ Twirling options
 </summary>
 
 **Choices**: True, False
-**Default**: True
+
+**Default**: False
 
 </details>
 
@@ -853,6 +875,7 @@ Twirling options
 </summary>
 
 **Choices**: `auto`, Integer >= 1
+
 **Default**: `auto`
 
 </details>
@@ -863,6 +886,7 @@ Twirling options
 </summary>
 
 **Choices**: `auto`, Integer >= 1
+
 **Default**: `auto`
 
 </details>
@@ -873,6 +897,7 @@ Twirling options
 </summary>
 
 **Choices**: `active`, `active-circuit`, `active-accum`, `all`
+
 **Default**: `active-accum`
 
 </details>
@@ -906,11 +931,11 @@ Due to differences in the device compilation process, certain runtime features c
   - PEA
   - PEC
   - Dynamical decoupling
-  - Fractional gates
 
   Other notes:
   - Can be used with gate twirling for non-conditional gates.
-  - Dynamic circuits are not supported on all QPUs.  Additionally, some dynamic circuit functions have been deprecated. For details, see [Classical feedforward and control flow.](/docs/guides/classical-feedforward-and-control-flow)
+  - Compatible with fractional gates when using `qiskit-ibm-runtime` v0.42.0 or later.
+
   </TabItem>
   <TabItem value="DD" label="Dynamical decoupling">
   Incompatible with dynamic circuits.
@@ -919,10 +944,11 @@ Due to differences in the device compilation process, certain runtime features c
 
   <TabItem value="Fractional" label="Fractional gates">
   Incompatible with:
-  - Dynamic circuits
   - Gate twirling
   - PEA
   - PEC
+
+  Compatible with dynamic circuits when using `qiskit-ibm-runtime` v0.42.0 or later.
 
   </TabItem>
 
@@ -935,7 +961,7 @@ Due to differences in the device compilation process, certain runtime features c
   Might not work when using custom gates.
   </TabItem>
   <TabItem value="Twirling" label="Gate twirling">
-  Incompatible with fractional gates.
+  Incompatible with fractional gates or with stretches.
 
   Other notes:
   - Can be used with dynamic circuits with non-conditional gates.

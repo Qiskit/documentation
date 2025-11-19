@@ -1,0 +1,70 @@
+---
+title: ApproximateCircuit (v2.1)
+description: API reference for qiskit.synthesis.unitary.aqc.ApproximateCircuit in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.synthesis.unitary.aqc.ApproximateCircuit
+---
+
+# ApproximateCircuit
+
+<Class id="qiskit.synthesis.unitary.aqc.ApproximateCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/synthesis/unitary/aqc/approximate.py#L21-L52" signature="qiskit.synthesis.unitary.aqc.ApproximateCircuit(num_qubits, name=None)" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+
+  A base class that represents an approximate circuit.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of qubit this circuit will span.
+  *   **name** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – a name of the circuit.
+
+  ## Attributes
+
+  ### thetas
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.thetas">
+    The property is not implemented and raises a `NotImplementedException` exception.
+
+    **Returns**
+
+    a vector of parameters of this circuit.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+
+  ## Methods
+
+  ### build
+
+  <Function id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.build" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/synthesis/unitary/aqc/approximate.py#L43-L52" signature="build(thetas)" modifiers="abstract">
+    **Constructs this circuit out of the parameters(thetas). Parameter values must be set before**
+
+    constructing the circuit.
+
+    **Parameters**
+
+    **thetas** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")) – a vector of parameters to be set in this circuit.
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+

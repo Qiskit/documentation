@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.OptimizeCliffordT
 
 # OptimizeCliffordT
 
-<Class id="qiskit.transpiler.passes.OptimizeCliffordT" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/optimize_clifford_t.py#L20-L68" signature="qiskit.transpiler.passes.OptimizeCliffordT(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.OptimizeCliffordT" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/optimize_clifford_t.py#L20-L42" signature="qiskit.transpiler.passes.OptimizeCliffordT(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   An optimization pass for Clifford+T circuits.
@@ -42,9 +42,9 @@ python_api_name: qiskit.transpiler.passes.OptimizeCliffordT
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -52,7 +52,7 @@ python_api_name: qiskit.transpiler.passes.OptimizeCliffordT
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -62,13 +62,15 @@ python_api_name: qiskit.transpiler.passes.OptimizeCliffordT
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.OptimizeCliffordT.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/optimize_clifford_t.py#L27-L68" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.OptimizeCliffordT.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/optimize_clifford_t.py#L27-L42" signature="run(dag)">
     Run the OptimizeCliffordT pass on dag.
+
+    The pass applies to a Clifford + T/Tdg circuit, and outputs an optimized Clifford + T/Tdg circuit.
 
     **Parameters**
 

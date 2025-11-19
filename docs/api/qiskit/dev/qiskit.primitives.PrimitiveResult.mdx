@@ -8,15 +8,27 @@ python_api_name: qiskit.primitives.PrimitiveResult
 
 # PrimitiveResult
 
-<Class id="qiskit.primitives.PrimitiveResult" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/primitive_result.py#L25-L53" signature="qiskit.primitives.PrimitiveResult(pub_results, metadata=None)" modifiers="class">
-  Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.13)")\[`T`]
+<Class id="qiskit.primitives.PrimitiveResult" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/primitive_result.py#L25-L71" signature="qiskit.primitives.PrimitiveResult(pub_results, metadata=None)" modifiers="class">
+  Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.14)")\[`T`]
 
   A container for multiple pub results and global metadata.
+
+  This is the return value from any V2 primitive’s `run().result()`. This object corresponds to the *entire* execution, not any single pub; it does not contain any actual data, but may contain freeform [`metadata`](#qiskit.primitives.PrimitiveResult.metadata "qiskit.primitives.PrimitiveResult.metadata") returned by the primitive implementer about the entire submission (as opposed to [`PubResult.metadata`](qiskit.primitives.PubResult#metadata "qiskit.primitives.PubResult.metadata"), which is metadata about a single pub).
+
+  You access the actual data of each individual pub either by iterating through this object (`for pub_result in primitive_result: ...`), or by direct list-like index access `pub_result = primitive_result[0]`. The type of each individual pub result is [`PubResult`](qiskit.primitives.PubResult "qiskit.primitives.PubResult"), or potentially a primitive- and implementation-specific subclass of that.
+
+  Most likely, if you submitted a single pub to a primitive like:
+
+  ```python
+  primitive_result = primitive.run([(qc,)]).result()
+  ```
+
+  then the data you care about is in `primitive_result[0].data`, which is a [`DataBin`](qiskit.primitives.DataBin "qiskit.primitives.DataBin"). The object `primitive_result[0]` is a [`PubResult`](qiskit.primitives.PubResult "qiskit.primitives.PubResult").
 
   **Parameters**
 
   *   **pub\_results** (*Iterable\[T]*) – Pub results.
-  *   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Any] | None*) – Metadata that is common to all pub results; metadata specific to particular pubs should be placed in their metadata fields. Keys are expected to be strings.
+  *   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*, Any] | None*) – Metadata that is common to all pub results; metadata specific to particular pubs should be placed in their metadata fields. Keys are expected to be strings.
 
   ## Attributes
 

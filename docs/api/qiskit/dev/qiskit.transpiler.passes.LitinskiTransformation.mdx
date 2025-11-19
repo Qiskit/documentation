@@ -8,12 +8,12 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
 # LitinskiTransformation
 
-<Class id="qiskit.transpiler.passes.LitinskiTransformation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/litinski_transformation.py#L21-L77" signature="qiskit.transpiler.passes.LitinskiTransformation(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.LitinskiTransformation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/litinski_transformation.py#L21-L80" signature="qiskit.transpiler.passes.LitinskiTransformation(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Applies Litinski transform to a circuit.
 
-  The transform applies to a circuit containing Clifford + RZ-rotation gates (including T and Tdg), and moves Clifford gates to the end of the circuit, while changing rotation gates to multi-qubit rotations (represented using PauliEvolution gates).
+  The transform applies to a circuit containing Clifford, single-qubit RZ-rotation gates (including T and Tdg), and standard Z-measurements, and moves Clifford gates to the end of the circuit. In the process, it changes RZ-rotations to product pauli rotations (implemented as [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") gates), and changes Z-measurements to product pauli measurements (implemented using `PauliProductMeasurement` instructions).
 
   The pass supports all of the Clifford gates in the list returned by [`get_clifford_gate_names()`](qiskit.quantum_info.get_clifford_gate_names "qiskit.quantum_info.get_clifford_gate_names"):
 
@@ -60,9 +60,9 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -70,7 +70,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -80,12 +80,12 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.LitinskiTransformation.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/litinski_transformation.py#L58-L77" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.LitinskiTransformation.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/litinski_transformation.py#L61-L80" signature="run(dag)">
     Run the LitiskiTransformation pass on `dag`.
 
     **Parameters**

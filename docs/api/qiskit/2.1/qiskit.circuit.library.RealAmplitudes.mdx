@@ -1,0 +1,157 @@
+---
+title: RealAmplitudes (v2.1)
+description: API reference for qiskit.circuit.library.RealAmplitudes in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.RealAmplitudes
+---
+
+# RealAmplitudes
+
+<Class id="qiskit.circuit.library.RealAmplitudes" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/n_local/real_amplitudes.py#L139-L312" signature="qiskit.circuit.library.RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes', flatten=None)" modifiers="class">
+  Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
+
+  The real-amplitudes 2-local circuit.
+
+  The `RealAmplitudes` circuit is a heuristic trial wave function used as Ansatz in chemistry applications or classification circuits in machine learning. The circuit consists of alternating layers of $Y$ rotations and $CX$ entanglements. The entanglement pattern can be user-defined or selected from a predefined set. It is called `RealAmplitudes` since the prepared quantum states will only have real amplitudes, the complex part is always 0.
+
+  For example a `RealAmplitudes` circuit with 2 repetitions on 3 qubits with `'reverse_linear'` entanglement is
+
+  ```text
+  ┌──────────┐ ░            ░ ┌──────────┐ ░            ░ ┌──────────┐
+  ┤ Ry(θ[0]) ├─░────────■───░─┤ Ry(θ[3]) ├─░────────■───░─┤ Ry(θ[6]) ├
+  ├──────────┤ ░      ┌─┴─┐ ░ ├──────────┤ ░      ┌─┴─┐ ░ ├──────────┤
+  ┤ Ry(θ[1]) ├─░───■──┤ X ├─░─┤ Ry(θ[4]) ├─░───■──┤ X ├─░─┤ Ry(θ[7]) ├
+  ├──────────┤ ░ ┌─┴─┐└───┘ ░ ├──────────┤ ░ ┌─┴─┐└───┘ ░ ├──────────┤
+  ┤ Ry(θ[2]) ├─░─┤ X ├──────░─┤ Ry(θ[5]) ├─░─┤ X ├──────░─┤ Ry(θ[8]) ├
+  └──────────┘ ░ └───┘      ░ └──────────┘ ░ └───┘      ░ └──────────┘
+  ```
+
+  The entanglement can be set using the `entanglement` keyword as string or a list of index-pairs. See the documentation of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") and `NLocal` for more detail. Additional options that can be set include the number of repetitions, skipping rotation gates on qubits that are not entangled, leaving out the final rotation layer and inserting barriers in between the rotation and entanglement layers.
+
+  If some qubits are not entangled with other qubits it makes sense to not apply rotation gates on these qubits, since a sequence of $Y$ rotations can be reduced to a single $Y$ rotation with summed rotation angles.
+
+  **Examples**
+
+  ```python
+  >>> ansatz = RealAmplitudes(3, reps=2)  # create the circuit on 3 qubits
+  >>> print(ansatz.decompose())
+       ┌──────────┐                 ┌──────────┐                 ┌──────────┐
+  q_0: ┤ Ry(θ[0]) ├──────────■──────┤ Ry(θ[3]) ├──────────■──────┤ Ry(θ[6]) ├
+       ├──────────┤        ┌─┴─┐    ├──────────┤        ┌─┴─┐    ├──────────┤
+  q_1: ┤ Ry(θ[1]) ├──■─────┤ X ├────┤ Ry(θ[4]) ├──■─────┤ X ├────┤ Ry(θ[7]) ├
+       ├──────────┤┌─┴─┐┌──┴───┴───┐└──────────┘┌─┴─┐┌──┴───┴───┐└──────────┘
+  q_2: ┤ Ry(θ[2]) ├┤ X ├┤ Ry(θ[5]) ├────────────┤ X ├┤ Ry(θ[8]) ├────────────
+       └──────────┘└───┘└──────────┘            └───┘└──────────┘
+  ```
+
+  ```python
+  >>> ansatz = RealAmplitudes(3, entanglement='full', reps=2, flatten=True)
+  >>> print(ansatz)
+       ┌──────────┐          ┌──────────┐                      ┌──────────┐
+  q_0: ┤ RY(θ[0]) ├──■────■──┤ RY(θ[3]) ├──────────────■────■──┤ RY(θ[6]) ├────────────
+       ├──────────┤┌─┴─┐  │  └──────────┘┌──────────┐┌─┴─┐  │  └──────────┘┌──────────┐
+  q_1: ┤ RY(θ[1]) ├┤ X ├──┼───────■──────┤ RY(θ[4]) ├┤ X ├──┼───────■──────┤ RY(θ[7]) ├
+       ├──────────┤└───┘┌─┴─┐   ┌─┴─┐    ├──────────┤└───┘┌─┴─┐   ┌─┴─┐    ├──────────┤
+  q_2: ┤ RY(θ[2]) ├─────┤ X ├───┤ X ├────┤ RY(θ[5]) ├─────┤ X ├───┤ X ├────┤ RY(θ[8]) ├
+       └──────────┘     └───┘   └───┘    └──────────┘     └───┘   └───┘    └──────────┘
+  ```
+
+  ```python
+  >>> ansatz = RealAmplitudes(3, entanglement='linear', reps=2, insert_barriers=True,
+  ... flatten=True)
+  >>> qc = QuantumCircuit(3)  # create a circuit and append the RY variational form
+  >>> qc.compose(ansatz, inplace=True)
+  >>> qc.draw()
+       ┌──────────┐ ░            ░ ┌──────────┐ ░            ░ ┌──────────┐
+  q_0: ┤ RY(θ[0]) ├─░───■────────░─┤ RY(θ[3]) ├─░───■────────░─┤ RY(θ[6]) ├
+       ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤
+  q_1: ┤ RY(θ[1]) ├─░─┤ X ├──■───░─┤ RY(θ[4]) ├─░─┤ X ├──■───░─┤ RY(θ[7]) ├
+       ├──────────┤ ░ └───┘┌─┴─┐ ░ ├──────────┤ ░ └───┘┌─┴─┐ ░ ├──────────┤
+  q_2: ┤ RY(θ[2]) ├─░──────┤ X ├─░─┤ RY(θ[5]) ├─░──────┤ X ├─░─┤ RY(θ[8]) ├
+       └──────────┘ ░      └───┘ ░ └──────────┘ ░      └───┘ ░ └──────────┘
+  ```
+
+  ```python
+  >>> ansatz = RealAmplitudes(4, reps=1, entanglement='circular', insert_barriers=True,
+  ... flatten=True)
+  >>> print(ansatz)
+       ┌──────────┐ ░ ┌───┐                ░ ┌──────────┐
+  q_0: ┤ RY(θ[0]) ├─░─┤ X ├──■─────────────░─┤ RY(θ[4]) ├
+       ├──────────┤ ░ └─┬─┘┌─┴─┐           ░ ├──────────┤
+  q_1: ┤ RY(θ[1]) ├─░───┼──┤ X ├──■────────░─┤ RY(θ[5]) ├
+       ├──────────┤ ░   │  └───┘┌─┴─┐      ░ ├──────────┤
+  q_2: ┤ RY(θ[2]) ├─░───┼───────┤ X ├──■───░─┤ RY(θ[6]) ├
+       ├──────────┤ ░   │       └───┘┌─┴─┐ ░ ├──────────┤
+  q_3: ┤ RY(θ[3]) ├─░───■────────────┤ X ├─░─┤ RY(θ[7]) ├
+       └──────────┘ ░                └───┘ ░ └──────────┘
+  ```
+
+  ```python
+  >>> ansatz = RealAmplitudes(4, reps=2, entanglement=[[0,3], [0,2]],
+  ... skip_unentangled_qubits=True, flatten=True)
+  >>> print(ansatz)
+       ┌──────────┐                 ┌──────────┐                 ┌──────────┐
+  q_0: ┤ RY(θ[0]) ├──■───────■──────┤ RY(θ[3]) ├──■───────■──────┤ RY(θ[6]) ├
+       └──────────┘  │       │      └──────────┘  │       │      └──────────┘
+  q_1: ──────────────┼───────┼────────────────────┼───────┼──────────────────
+       ┌──────────┐  │     ┌─┴─┐    ┌──────────┐  │     ┌─┴─┐    ┌──────────┐
+  q_2: ┤ RY(θ[1]) ├──┼─────┤ X ├────┤ RY(θ[4]) ├──┼─────┤ X ├────┤ RY(θ[7]) ├
+       ├──────────┤┌─┴─┐┌──┴───┴───┐└──────────┘┌─┴─┐┌──┴───┴───┐└──────────┘
+  q_3: ┤ RY(θ[2]) ├┤ X ├┤ RY(θ[5]) ├────────────┤ X ├┤ RY(θ[8]) ├────────────
+       └──────────┘└───┘└──────────┘            └───┘└──────────┘
+  ```
+
+  <Admonition title="See also" type="note">
+    The [`real_amplitudes()`](qiskit.circuit.library.real_amplitudes "qiskit.circuit.library.real_amplitudes") function constructs a functionally equivalent circuit, but faster.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.n_local.real_amplitudes.RealAmplitudes` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use the function qiskit.circuit.library.real\_amplitudes instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits of the RealAmplitudes circuit.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
+  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ ‘reverse\_linear, ‘circular’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. Default to ‘reverse\_linear’ entanglement. Note that ‘reverse\_linear’ entanglement provides the same unitary as ‘full’ with fewer entangling gates. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A QuantumCircuit object to prepend to the circuit.
+  *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
+  *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If False, a rotation layer is added at the end of the ansatz. If True, no rotation layer is added.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+
+  ## Attributes
+
+  ### parameter\_bounds
+
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.parameter_bounds">
+    Return the parameter bounds.
+
+    **Returns**
+
+    The parameter bounds.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

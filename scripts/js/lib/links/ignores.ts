@@ -14,7 +14,12 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES: Set<string> = new Set([]);
+export const IGNORED_FILES: Set<string> = new Set([
+  // The Qiskit C API objects.inv have a lot of broken links that we should fix. Recently,
+  // the Qiskit team changed their linking of the C++ domain references to C, which created
+  // a ton of broken links. See https://github.com/Qiskit/qiskit/pull/15250
+  "public/docs/api/qiskit-c/objects.inv",
+]);
 
 // -----------------------------------------------------------------------------------
 // Always ignored URLs - prefer to use more precise ignores
@@ -44,7 +49,6 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://colab.research.google.com/#create=true",
   "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
   "https://forms.office.com/r/zN3hvMTqJ1",
-  "https://forms.office.com/e/kJzViZNVa4",
   "https://platform.openai.com/docs/api-reference/completions",
   "https://code.visualstudio.com/",
   "https://doi.org/10.1002/qute.201800012",
@@ -192,28 +196,8 @@ function _addonsObjectsInvRegexes(): string[] {
   );
 }
 
-function _runtimeObjectsInvRegexes(): string[] {
-  // Runtime has non-API docs in their Sphinx build that translate into invalid links
-  // we should ignore
-  return [
-    "errors",
-    "migrate",
-    "cloud",
-    "faqs",
-    "index",
-    "sessions",
-    "primitives",
-    "compare",
-    "retired",
-  ].map(
-    (path) =>
-      `\/api\/qiskit-ibm-runtime\/(0.16|0.15|0.14)\/${path}(\/.*|#.*|$)`,
-  );
-}
-
 export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
   ..._addonsObjectsInvRegexes(),
-  ..._runtimeObjectsInvRegexes(),
 ];
 
 // -----------------------------------------------------------------------------------
@@ -245,25 +229,12 @@ function mergeFilesToIgnores(...mappings: FilesToIgnores[]): FilesToIgnores {
 
 function _runtimeObjectsInv(): FilesToIgnores {
   const legacy = Object.fromEntries(
-    ["0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/", "0.22/"].map(
-      (vers) => [
-        `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
-        [
-          `/docs/api/qiskit-ibm-runtime/${vers}index#next-steps`,
-          `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
-        ],
+    ["0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map((vers) => [
+      `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
+      [
+        `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
       ],
-    ),
-  );
-  const legacy2 = Object.fromEntries(
-    ["0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
-      (vers) => [
-        `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
-        [
-          `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
-        ],
-      ],
-    ),
+    ]),
   );
   const latest = Object.fromEntries(
     [
@@ -280,6 +251,8 @@ function _runtimeObjectsInv(): FilesToIgnores {
       "0.38/",
       "0.39/",
       "0.40/",
+      "0.41/",
+      "0.42/",
     ].map((vers) => [
       `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [
@@ -287,14 +260,14 @@ function _runtimeObjectsInv(): FilesToIgnores {
       ],
     ]),
   );
-  return { ...legacy, ...legacy2, ...latest };
+  return { ...legacy, ...latest };
 }
 
 function _qiskitUtilsData(): FilesToIgnores {
   // Qiskit docs used .. py:data:: incorrectly. We didn't fix these versions of the docs
   // because it is too tedious.
   const objectsInv = Object.fromEntries(
-    ["0.45/", "1.0/", "1.1/"].map((vers) => [
+    ["1.0/", "1.1/"].map((vers) => [
       `public/docs/api/qiskit/${vers}objects.inv`,
       [
         `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
@@ -334,21 +307,7 @@ function _qiskitUtilsData(): FilesToIgnores {
     ]),
   );
   const utilsFile = Object.fromEntries(
-    [
-      "0.35",
-      "0.36",
-      "0.37",
-      "0.38",
-      "0.39",
-      "0.40",
-      "0.41",
-      "0.42",
-      "0.43",
-      "0.44",
-      "0.45",
-      "1.0",
-      "1.1",
-    ].map((vers) => [
+    ["1.0", "1.1"].map((vers) => [
       `docs/api/qiskit/${vers}/utils.mdx`,
       [
         "#qiskit.utils.optionals.HAS_TESTTOOLS",
@@ -375,7 +334,7 @@ function _patternsReorg(): FilesToIgnores {
   // We have redirects for all these files. It's best to update API docs to point directly to the new URL,
   // but we don't bother updating old docs.
   const qiskit = Object.fromEntries(
-    ["", "0.45/", "0.46/", "1.0/", "1.1/", "1.2/"].flatMap((vers) => [
+    ["", "0.46/", "1.0/", "1.1/", "1.2/"].flatMap((vers) => [
       [
         `docs/api/qiskit/${vers}qiskit.circuit.QuantumCircuit.mdx`,
         ["/docs/build/circuit-construction"],
@@ -388,7 +347,7 @@ function _patternsReorg(): FilesToIgnores {
     ]),
   );
   const runtime = Object.fromEntries(
-    [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26].flatMap((vers) => [
+    [25, 26].flatMap((vers) => [
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/batch.mdx`,
         ["/docs/run/run-jobs-batch", "/docs/run/max-execution-time"],
@@ -414,11 +373,11 @@ function _patternsReorg(): FilesToIgnores {
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v1.mdx`,
-        ["/docs/api/migration-guides/v2-primitives"],
+        ["/docs/api/guides/v2-primitives"],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v1.mdx`,
-        ["/docs/api/migration-guides/v2-primitives"],
+        ["/docs/api/guides/v2-primitives"],
       ],
       [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/docs/run"]],
       [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/docs/run"]],
@@ -448,40 +407,12 @@ function _patternsReorg(): FilesToIgnores {
   };
 }
 
-function _legacyQiskitSDKIssues(): FilesToIgnores {
-  // These are all issues due to quirks in our old docs. They
-  // are all safe to ignore and not worth the effort to fix.
-
-  // The module page is missing the expected anchor, even in the original Sphinx. However,
-  // the page is small enough that the link to the transpile function is easy to access.
-  const transpileAnchor = Object.fromEntries(
-    ["37", "38", "39", "40", "41", "42", "43"].map((vers) => [
-      `docs/api/qiskit/0.${vers}/qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager.mdx`,
-      ["compiler#qiskit.compiler.transpile"],
-    ]),
-  );
-  // The capitalization of the anchor link changes between the class page and the referring
-  // page, and it's inconsistent in the original Sphinx. However, it doesn't matter
-  // because the anchor is at the top of the page anyways.
-  const pulseLibraryAnchorCapitalization = Object.fromEntries(
-    ["37", "38", "39", "40", "41", "42"].flatMap((vers) => [
-      [
-        `docs/api/qiskit/0.${vers}/qiskit.pulse.library.gaussian_square.mdx`,
-        ["qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian"],
-      ],
-      [
-        `docs/api/qiskit/0.${vers}/pulse.mdx`,
-        [
-          "qiskit.pulse.library.constant#qiskit.pulse.library.constant",
-          "qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian",
-          "qiskit.pulse.library.drag#qiskit.pulse.library.drag",
-        ],
-      ],
-    ]),
-  );
+function _runtimeLegacyReleaseNotes(): FilesToIgnores {
   return {
-    ...transpileAnchor,
-    ...pulseLibraryAnchorCapitalization,
+    "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
+      "/docs/api/qiskit-ibm-runtime/0.21/qiskit-runtime-service#runtime",
+      "/docs/api/qiskit-ibm-runtime/0.20/sampler#run",
+    ],
   };
 }
 
@@ -489,32 +420,17 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
-  _legacyQiskitSDKIssues(),
+  _runtimeLegacyReleaseNotes(),
 );
 
-function _qiskitCObjectsInvRegexes(): FilesToIgnores {
+function _qiskitCRegexes(): FilesToIgnores {
   return {
-    "public/docs/api/qiskit-c/objects.inv": [
-      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_from_native",
-      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_from_native.value",
-      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_to_native",
-      "/docs/api/qiskit-c/qk-complex-64#qk_complex64_to_native.value",
-      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ms",
-      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ns",
-      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ps",
-      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_s",
-      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_us",
-      "/docs/api/qiskit-c/index#c_api",
-      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64",
-      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1a1d0477d0d30b088dfd322e85b4be5464",
-      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1ae08ef5279f405357144d24ec1147b5f9",
-    ],
+    "docs/api/qiskit-c/qk-transpiler.mdx": ["#structqktranspileoptions"],
   };
 }
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
-  _qiskitCObjectsInvRegexes(),
-);
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores =
+  mergeFilesToIgnores(_qiskitCRegexes());
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,

@@ -56,6 +56,8 @@ In Jupyter notebooks, set `title` and `description` in the `metadata` section fo
 }
 ```
 
+Avoid using hyphens, colons, semicolons, backticks, and pipes when writing the `title` and `description`. These characters might be used differently in other languages, and their use might complicate the translation process. Our translation tooling often replaces them with other symbols that could change their meaning or even break the page.
+
 ## Links
 
 Internal URLs referring to other docs pages should start with `/docs` and not include the file extension. For example:
@@ -219,7 +221,10 @@ To use a `DefinitionTooltip`, use the following syntax:
 
 For full list of props, please check [here](https://react.carbondesignsystem.com/?path=/docs/components-definitiontooltip--playground#component-api).
 
-Warning: do not use LaTeX/math expressions in the same paragraph as a definition tooltip because it will break the styling. Use a new line to separate out the two into separate paragraphs.
+Caveats:
+
+1. Do not use any interactive content (e.g. links) with the `definition` prop or inside the tags. If you use such content, it will not be available to users of screen reader software.
+2. Do not use single and double quotes in the `definition` prop. Even if they are escaped, they cause problems when translating the files.
 
 ### Tabs
 
@@ -280,6 +285,37 @@ There is a specific use case where you want to show instructions for different o
     command
   </TabItem>
 </OperatingSystemTabs>
+```
+
+### Card
+
+The `Card` component creates a clickable card that links to another page, such as our [API index page](https://quantum.cloud.ibm.com/docs/api). 
+
+To use, first set up a `CardGroup` component. Then, insert one or more `Card` components inside the `CardGroup`. For each `Card`, you must set these properties:
+
+* `title`
+* `description`
+* `href`: the link
+* `analyticsName`: an internal identifier for analytics. A good format is `brief page name: brief description of the card`
+* `linkText` (optional): the text used for the arrow, such as 'Learn more'. Defaults to 'See details'
+
+```mdx
+<CardGroup>
+    <Card
+      title="Approximate quantum compilation tensor"
+      description="Supports the construction of high-fidelity circuits with reduced depth"
+      href="/docs/api/qiskit-addon-aqc-tensor"
+      analyticsName="overview page: addon AQC Tensor"
+    />
+
+    <Card
+      title="Qiskit SDK"
+      description="A radical software development kit"
+      href="/docs/api/qiskit"
+      analyticsName="overview page: Qiskit SDK"
+      linkText="Learn more"
+    />
+</CardGroup>
 ```
 
 ### CodeCellPlaceholder
