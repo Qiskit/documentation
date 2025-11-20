@@ -60,7 +60,7 @@ def check_packages(verbose=False) -> None:
                 "If you expect to use JavaScript in other projects, consider "
                 "using NVM (https://github.com/nvm-sh/nvm). Otherwise, consider "
                 "using Homebrew (https://formulae.brew.sh/formula/node) or "
-                "installing Node.js directly (https://nodejs.org/en)."
+                "installing Node.js directly (https://nodejs.org)."
             ),
         ),
         (
