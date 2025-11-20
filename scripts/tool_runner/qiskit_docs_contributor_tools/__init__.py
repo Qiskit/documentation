@@ -56,7 +56,7 @@ def install_node_dependencies() -> None:
     run_cmd("Installed Node dependencies", ["npm", "install"], progress=None)
 
 
-def check_packages(verbose=False) -> None:
+def check_packages(print_on_success=False) -> None:
     """Check the current system has the required packages"""
     checks = [
         (
@@ -90,5 +90,5 @@ def check_packages(verbose=False) -> None:
         if not installed:
             print(message)
             raise SystemExit(1)
-        if verbose:
+        if print_on_success:
             print(message)
