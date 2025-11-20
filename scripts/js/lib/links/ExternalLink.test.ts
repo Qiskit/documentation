@@ -72,9 +72,7 @@ test.describe("ExternalLink.check()", () => {
       );
     let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
     const result = await link.check();
-    expect(result).toEqual(
-      "❌ Link 'https://bad-link.com' has permanently moved to 'https://good-link.com' (308). Appears in:\n    /testorigin.mdx",
-    );
+    expect(result).toBeUndefined();
   });
 
   test("other problem", async () => {

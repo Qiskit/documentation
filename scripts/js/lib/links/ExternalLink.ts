@@ -74,16 +74,8 @@ function responseToErrorMessage(
   const isOk = httpCode >= 100 && httpCode < 300;
   if (isOk) return undefined;
 
-  const isTempRedirect = httpCode === 302 || httpCode === 307;
-  if (isTempRedirect) return undefined;
-
-  const isPermanentRedirect = httpCode === 301 || httpCode === 308;
-  if (isPermanentRedirect) {
-    // Location should be provided for 301 or 308 responses, but if not, then
-    // 'null' appearing in logs is acceptable.
-    const maybeNewLocation = response.headers.get("location");
-    return `Link '${link}' has permanently moved to '${maybeNewLocation}' (${httpCode})`;
-  }
+  const isRedirectLike = httpCode >= 300 && httpCode < 399;
+  if (isRedirectLike) return undefined;
 
   if (httpCode === 404) return `Could not find link '${link}' (${httpCode})`;
   if (httpCode === 410) return `Link '${link}' has been removed (${httpCode})`;
