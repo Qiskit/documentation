@@ -51,6 +51,11 @@ def run_cmd(name: str, cmd: list[str], *, progress: str | None) -> None:
     raise SystemExit(1)
 
 
+def install_node_dependencies() -> None:
+    print("Installing Node dependencies (this may take a while)...")
+    run_cmd("Installed Node dependencies", ["npm", "install"], progress=None)
+
+
 def check_packages(verbose=False) -> None:
     """Check the current system has the required packages"""
     checks = [

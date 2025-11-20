@@ -14,7 +14,12 @@
 import logging
 from pathlib import Path
 
-from scripts.tool_runner.qiskit_docs_contributor_tools import configure_logging, run_cmd, check_packages
+from scripts.tool_runner.qiskit_docs_contributor_tools import (
+    configure_logging,
+    run_cmd,
+    check_packages,
+    install_node_dependencies,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +40,7 @@ CHECKS = {
 def main() -> None:
     check_packages()
     if not Path("./node_modules").exists():
-        run_cmd("install Node.js dependencies", ["npm", "install"], progress=None)
+        install_node_dependencies()
     for i, (name, cmd) in enumerate(CHECKS.items()):
         run_cmd(name, cmd, progress=f"{i + 1}/{len(CHECKS)}")
     logger.info("🎉 All checks passed!")

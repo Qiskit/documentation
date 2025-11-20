@@ -10,18 +10,18 @@
 # Any modifications or derivative works of this code must retain this
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
+
 from scripts.tool_runner.qiskit_docs_contributor_tools import (
     configure_logging,
-    run_cmd,
+    check_packages,
+    install_node_dependencies,
 )
-from scripts.tool_runner.qiskit_docs_contributor_tools import check_packages
 
 
 def main() -> None:
     print("Checking for installed packages...")
     check_packages(verbose=True)
-    print("Installing Node dependencies (this may take a while)...")
-    run_cmd("Installed Node dependencies", ["npm", "install"], progress=None)
+    install_node_dependencies()
 
 
 if __name__ == "__main__":
