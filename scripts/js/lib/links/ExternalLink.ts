@@ -73,9 +73,6 @@ function responseToErrorMessage(
   const isOk = httpCode >= 100 && httpCode < 300;
   if (isOk) return undefined;
 
-  const isRedirectLike = httpCode >= 300 && httpCode < 399;
-  if (isRedirectLike) return undefined;
-
   if (httpCode === 404) return `Could not find link '${link}' (${httpCode})`;
   if (httpCode === 410) return `Link '${link}' has been removed (${httpCode})`;
   if (httpCode === 418) return `Link '${link}' is a teapot (${httpCode})`;

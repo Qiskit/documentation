@@ -55,26 +55,6 @@ test.describe("ExternalLink.check()", () => {
     );
   });
 
-  test("temporary redirect", async () => {
-    global.fetch = () => Promise.resolve(new Response("", { status: 302 }));
-    let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
-    const result = await link.check();
-    expect(result).toBeUndefined();
-  });
-
-  test("permanent redirect", async () => {
-    global.fetch = () =>
-      Promise.resolve(
-        new Response("", {
-          status: 308,
-          headers: { location: "https://good-link.com" },
-        }),
-      );
-    let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
-    const result = await link.check();
-    expect(result).toBeUndefined();
-  });
-
   test("other problem", async () => {
     global.fetch = () => Promise.resolve(new Response("", { status: 502 }));
     let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
