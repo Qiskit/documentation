@@ -11,12 +11,17 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from scripts.tool_runner.qiskit_docs_contributor_tools import configure_logging, run_cmd, check_packages
+from scripts.tool_runner.qiskit_docs_contributor_tools import (
+    configure_logging,
+    check_packages,
+    install_node_dependencies,
+)
 
 
 def main() -> None:
-    check_packages()
-    run_cmd("notebook formatters", ["tox", "-e", "fix"], progress=None)
+    print("Checking for installed packages...")
+    check_packages(print_on_success=True)
+    install_node_dependencies()
 
 
 if __name__ == "__main__":

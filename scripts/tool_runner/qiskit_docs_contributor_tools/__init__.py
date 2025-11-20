@@ -16,6 +16,8 @@ import logging
 import textwrap
 import subprocess
 
+from .setup.installation_instructions import check_for_package
+
 logger = logging.getLogger(__name__)
 
 
@@ -47,3 +49,46 @@ def run_cmd(name: str, cmd: list[str], *, progress: str | None) -> None:
 
     # This ends the program without adding a noisy stacktrace.
     raise SystemExit(1)
+
+
+def install_node_dependencies() -> None:
+    print("Installing Node dependencies (this may take a while)...")
+    run_cmd("Installed Node dependencies", ["npm", "install"], progress=None)
+
+
+def check_packages(print_on_success=False) -> None:
+    """Check the current system has the required packages"""
+    checks = [
+        (
+            "node",
+            (
+                "If you expect to use JavaScript in other projects, consider "
+                "using NVM (https://github.com/nvm-sh/nvm). Otherwise, consider "
+                "using Homebrew (https://formulae.brew.sh/formula/node) or "
+                "installing Node.js directly (https://nodejs.org)."
+            ),
+        ),
+        (
+            "tox",
+            (
+                "First, make sure `pipx` is installed "
+                "(https://pipx.pypa.io/stable/), then run `pipx install tox`"
+            ),
+        ),
+        (
+            "magick",
+            (
+                "See instructions at "
+                "https://imagemagick.org/script/download.php. "
+                "We recommend installing through a package manager rather than "
+                "downloading the binary."
+            ),
+        ),
+    ]
+    for command, install_instructions in checks:
+        installed, message = check_for_package(command, install_instructions)
+        if not installed:
+            print(message)
+            raise SystemExit(1)
+        if print_on_success:
+            print(message)

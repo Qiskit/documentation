@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # This code is a Qiskit project.
 #
 # (C) Copyright IBM 2025.
@@ -11,17 +10,15 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from scripts.tool_runner.qiskit_docs_contributor_tools import configure_logging, run_cmd, check_packages
+import shutil
 
 
-def main() -> None:
-    check_packages()
-    run_cmd("notebook formatters", ["tox", "-e", "fix"], progress=None)
-
-
-if __name__ == "__main__":
-    try:
-        configure_logging()
-        main()
-    except KeyboardInterrupt:
-        raise SystemExit(1)
+def check_for_package(command: str, install_instructions: str) -> tuple[bool, str]:
+    if shutil.which(command) is None:
+        return (
+            False,
+            f"❌ No command '{command}' on this system. "
+            + "To install it:\n"
+            + install_instructions,
+        )
+    return (True, f"✅ {command}")
