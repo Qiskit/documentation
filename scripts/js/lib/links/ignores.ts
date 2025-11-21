@@ -140,6 +140,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   // The following links fail inconsistently. That is, they don't always return
   // the same status code. Sometimes it's 404, sometimes 503, sometimes 200 etc.
   // They do work whenever I've tested them in a browser.
+  "https://csrc.nist.gov/news/2023/three-draft-fips-for-post-quantum-cryptography",
   "https://csrc.nist.gov/pubs/fips/205/ipd",
   "https://doi.org/10.6028/jres.104.027",
   "https://eprint.iacr.org/2012/090",
@@ -157,7 +158,6 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
   "https://support.google.com/accounts/answer/27441?hl",
   "https://www.ibm.com/thought-leadership/institute-business-value/report/quantumfinancial",
-  'https://csrc.nist.gov/news/2023/three-draft-fips-for-post-quantum-cryptography',
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
