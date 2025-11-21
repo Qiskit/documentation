@@ -39,15 +39,11 @@ const FORBIDS_OUR_USER_AGENT = [
   "https://dl.acm.org/doi/10.1145/359340.359342",
   "https://dl.acm.org/doi/10.1145/3656436",
   "https://doi.org/10.1063/5.0042147",
-  "https://doi.org/10.1063/5.0042147",
   "https://doi.org/10.1063/5.0082975",
   "https://doi.org/10.1080/07468342.1987.11973000",
   "https://doi.org/10.1103/PhysRevA.99.032331",
   "https://doi.org/10.1103/PhysRevApplied.20.014024",
-  "https://doi.org/10.1103/PhysRevApplied.20.014024",
   "https://doi.org/10.1103/PhysRevApplied.22.054037",
-  "https://doi.org/10.1103/PhysRevApplied.22.054037",
-  "https://doi.org/10.1103/PhysRevApplied.22.064068",
   "https://doi.org/10.1103/PhysRevApplied.22.064068",
   "https://doi.org/10.1103/PhysRevApplied.5.034007",
   "https://doi.org/10.1137/S0097539795293172",
@@ -59,9 +55,10 @@ const FORBIDS_OUR_USER_AGENT = [
   "https://doi.org/10.1145/3490631",
   "https://doi.org/10.1145/3520304.3533963",
   "https://doi.org/10.1145/359340.359342",
+  "https://dx.doi.org/10.1103/PhysRevA.83.012308",
+  "https://dx.doi.org/10.1145/1278349.1278355",
   "https://epubs.siam.org/doi/10.1137/100787921",
   "https://epubs.siam.org/doi/10.1137/S0097539795293172",
-  "https://epubs.siam.org/doi/abs/10.1137/S0036144598347011",
   "https://epubs.siam.org/doi/abs/10.1137/S0036144598347011",
   "https://journals.aps.org/pr/pdf/10.1103/PhysRev.47.777",
   "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.100.012305",
@@ -89,7 +86,6 @@ const FORBIDS_OUR_USER_AGENT = [
   "https://journals.aps.org/prx/accepted/a9074K06A8e1590147da9c69f8c4b64c28247be5a",
   "https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.2.040326",
   "https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.020315",
-  "https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.030339",
   "https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.030339",
   "https://journals.aps.org/prxquantum/pdf/10.1103/PRXQuantum.3.010313",
   "https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.32.170",
@@ -131,6 +127,8 @@ const FETCH_FAILS = [
   "https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/quantum-computing-use-cases-are-getting-real-what-you-need-to-know",
   "https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/quantum-computing-just-might-save-the-planet",
   "https://www.mckinsey.com/industries/chemicals/our-insights/the-next-big-thing-quantum-computings-potential-impact-on-chemicals?cid=eml-web",
+  // The following link is only accessible through IBM VPN
+  "https://w3.ibm.com/w3publisher/w3-privacy-notice",
 ];
 
 // These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
@@ -142,6 +140,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   // The following links fail inconsistently. That is, they don't always return
   // the same status code. Sometimes it's 404, sometimes 503, sometimes 200 etc.
   // They do work whenever I've tested them in a browser.
+  "https://csrc.nist.gov/pubs/fips/205/ipd",
+  "https://doi.org/10.6028/jres.104.027",
+  "https://eprint.iacr.org/2012/090",
   "https://finance.yahoo.com/quote/8801.T",
   "https://finance.yahoo.com/quote/CLF",
   "https://finance.yahoo.com/quote/GBPJPY",
@@ -149,8 +150,14 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://finance.yahoo.com/quote/META",
   "https://finance.yahoo.com/quote/TMBMKDE-10Y",
   "https://finance.yahoo.com/quote/XS2239553048",
-  "https://support.google.com/accounts/answer/27441?hl",
+  "https://ibm.ent.box.com/s/bipgoms7gr6b6vhkoc1uw6oi4wsanfoq",
+  "https://ibm.ent.box.com/s/blnffu0pd7yzxarq3zc3w0jv90365ny2",
+  "https://ibm.ent.box.com/s/fh3xele1e7k0nrgd1imivvq52hy3wz9c",
+  "https://ibm.ent.box.com/s/kzzsmxhw38vph1ioohczaet53euwi310",
   "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
+  "https://support.google.com/accounts/answer/27441?hl",
+  "https://www.ibm.com/thought-leadership/institute-business-value/report/quantumfinancial",
+  'https://csrc.nist.gov/news/2023/three-draft-fips-for-post-quantum-cryptography',
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
