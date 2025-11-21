@@ -227,3 +227,28 @@ The transpiler will also allocate ancilla qubits to the circuit if the target ha
   *   **layout** – a pointer to the layout to free
 </Function>
 
+### qk\_transpile\_layout\_to\_python
+
+<Function id="qk_transpile_layout_to_python" signature="PyObject *qk_transpile_layout_to_python(const QkTranspileLayout *layout, const QkCircuit *circuit)">
+  Generate a Python-space `TranspileLayout` object from a `QkTranspileLayout`.
+
+  The created Python-space object is a copy of the `QkTranspileLayout` provided, the data representation is different between C and Python and the data is not moved to Python like for some other `*_to_python` functions.
+
+  <span id="group__QkTranspileLayout_1autotoc_md268" />
+
+  #### Safety
+
+  <span id="group__QkTranspileLayout_1autotoc_md268" />
+
+  Behavior is undefined if `layout` and `circuit` are not valid, non-null pointers to a `QkTranspileLayout` and `QkCircuit` respectively. It is assumed that the thread currently executing this function holds the Python GIL. This is required to create the Python object returned by this function.
+
+  **Parameters**
+
+  *   **layout** – a pointer to a `QkTranspileLayout`.
+  *   **circuit** – a pointer to the original `QkCircuit`.
+
+  **Returns**
+
+  the PyObject pointer for the Python space TranspileLayout object.
+</Function>
+
