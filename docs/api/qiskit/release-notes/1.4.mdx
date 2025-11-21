@@ -108,7 +108,7 @@ Qiskit v1.4.3 is a minor bugfix release for the v1.4.x release series.
 
 *   Fixed a problem in the [`SolovayKitaev`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev") transpiler pass where the pass could crash due to encountering a 180 degree rotation in the internal recursion, which was not handled correctly.
 
-*   Fixed a problem in the [`SolovayKitaev`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev") transpiler pass where the generated approximation could have a phase that differs by $\pi$ from the correct value. This resulted due to the internal $SO(3)$ representation, which requires additional handling to obtain the correct sign of the qubit gate matrix. Fixed [#9552](https://github.com/Qiskit/qiskit-terra/issues/9552)
+*   Fixed a problem in the [`SolovayKitaev`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev") transpiler pass where the generated approximation could have a phase that differs by $\pi$ from the correct value. This resulted due to the internal $SO(3)$ representation, which requires additional handling to obtain the correct sign of the qubit gate matrix. Fixed [#9552](https://github.com/Qiskit/qiskit/issues/9552)
 
 *   The fallback error heuristic in [`VF2Layout`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") and [`VF2PostLayout`](/docs/api/qiskit/1.4/qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout"), used when there were no reported error rates, could previously assign errors greater than one, and have unpredictable effects on the resulting layout scores.
 

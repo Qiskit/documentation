@@ -579,7 +579,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
     In addition, the pass now always performs a syntactic (non-matrix-based) check first, when identifying inverse gate pairs. If the gates are not syntactically equal, the argument `matrix_based` is set to `True`, and the operation does not act on more than `max_qubits` qubits, then a matrix-based check is also performed. This slightly improves the reduction potential of the pass.
 
-    Fixed [#14407](https://github.com/Qiskit/qiskit-terra/issues/14407), [#14635](https://github.com/Qiskit/qiskit-terra/issues/14635), and [#14645](https://github.com/Qiskit/qiskit-terra/issues/14645).
+    Fixed [#14407](https://github.com/Qiskit/qiskit/issues/14407), [#14635](https://github.com/Qiskit/qiskit/issues/14635), and [#14645](https://github.com/Qiskit/qiskit/issues/14645).
 
 *   Fixed several issues in the [`CommutativeCancellation`](/docs/api/qiskit/qiskit.transpiler.passes.CommutativeCancellation "qiskit.transpiler.passes.CommutativeCancellation") transpiler pass (and thereby in [`transpile()`](/docs/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile")), where the global phase of the circuit was not updated correctly. In particular, merging an X-gate and an RX-gate introduced a phase mismatch, while removing a Pauli rotation gate with angle of the form $(2 + 4k)\pi$, $k \in \mathbb Z$ incorrectly produced a phase shift of $-1$.
 
