@@ -166,9 +166,9 @@ export class ObjectsInv {
     }
 
     // We have no way of working out the IDs of attributes (e.g.
-    // `QkObsTerm::num_qubits`), so we instead just point to the parent object.
-    // This is a best-effort attempt that should get users close to the right
-    // place.
+    // `QkObsTerm::num_qubits` or `qk_bitterm_label.bit_term`), so we instead
+    // just point to the parent object. This is a best-effort attempt that
+    // should get users close to the right place.
     if (name.includes("::")) {
       const objectName = name.split("::")[0].toLowerCase();
       return `${path}#${objectName}`;
