@@ -169,7 +169,12 @@ export class ObjectsInv {
     // `QkObsTerm::num_qubits`), so we instead just point to the parent object.
     // This is a best-effort attempt that should get users close to the right
     // place.
-    const objectName = name.split("::")[0].toLowerCase();
+    if (name.includes("::")) {
+      const objectName = name.split("::")[0].toLowerCase();
+      return `${path}#${objectName}`;
+    }
+
+    const objectName = name.split(".")[0].toLowerCase();
     return `${path}#${objectName}`;
   }
 

@@ -14,12 +14,7 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES: Set<string> = new Set([
-  // The Qiskit C API objects.inv have a lot of broken links that we should fix. Recently,
-  // the Qiskit team changed their linking of the C++ domain references to C, which created
-  // a ton of broken links. See https://github.com/Qiskit/qiskit/pull/15250
-  "public/docs/api/qiskit-c/objects.inv",
-]);
+export const IGNORED_FILES: Set<string> = new Set([]);
 
 // -----------------------------------------------------------------------------------
 // Always ignored URLs - prefer to use more precise ignores
