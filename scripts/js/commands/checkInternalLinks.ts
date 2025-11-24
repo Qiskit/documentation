@@ -138,6 +138,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit-c/2.1/index.mdx",
   "docs/api/qiskit-c/2.1/qk-complex-64.mdx",
   "docs/api/qiskit-ibm-runtime/estimator-v2.mdx",
+  "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];

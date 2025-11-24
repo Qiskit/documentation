@@ -79,21 +79,21 @@ python_api_name: qiskit.circuit.AnnotatedOperation
 
   ### control
 
-  <Function id="qiskit.circuit.AnnotatedOperation.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L159-L186" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=True)">
+  <Function id="qiskit.circuit.AnnotatedOperation.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L159-L186" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return the controlled version of itself.
 
-    Implemented as an annotated operation, see [`AnnotatedOperation`](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+    Implemented as [`AnnotatedOperation`](#qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), regardless of the value of `annotated`.
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – number of controls to add to gate (default: `1`)
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – ignored (used for consistency with other control methods)
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – ignored (used for consistency with other control methods)
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Number of controls to add. Defauls to `1`.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – Ignored.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)") *| None*) – Ignored.
 
     **Returns**
 
-    Controlled version of the given operation.
+    A controlled version of the given operation.
 
     **Return type**
 
