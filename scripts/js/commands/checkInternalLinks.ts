@@ -114,7 +114,7 @@ const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
   "docs/guides/*.{mdx,ipynb}",
-  "docs/migration-guides/*.{mdx,ipynb}",
+  "docs/guides/*.{mdx,ipynb}",
   ...QISKIT_REMOVED_PAGES_TO_LOAD,
 ];
 const TRANSPILER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
@@ -123,7 +123,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/0.45.mdx",
   "docs/api/qiskit/release-notes/0.46.mdx",
   "docs/api/qiskit/release-notes/index.mdx",
-  "docs/migration-guides/qiskit-1.0-features.mdx",
+  "docs/guides/qiskit-1.0-features.mdx",
   "docs/guides/construct-circuits.ipynb",
   "docs/guides/bit-ordering.ipynb",
   "docs/guides/pulse.ipynb",
@@ -131,13 +131,14 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/configure-qiskit-local.mdx",
   "docs/guides/transpiler-stages.ipynb",
   "docs/api/qiskit/providers.mdx",
-  "docs/open-source/qiskit-sdk-version-strategy.mdx",
-  "docs/migration-guides/qiskit-backendv1-to-v2.mdx",
+  "docs/guides/qiskit-sdk-version-strategy.mdx",
+  "docs/guides/qiskit-backendv1-to-v2.mdx",
   "docs/guides/install-qiskit.mdx",
   "docs/api/qiskit-c/index.mdx",
   "docs/api/qiskit-c/2.1/index.mdx",
   "docs/api/qiskit-c/2.1/qk-complex-64.mdx",
   "docs/api/qiskit-ibm-runtime/estimator-v2.mdx",
+  "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];

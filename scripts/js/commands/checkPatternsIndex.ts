@@ -23,11 +23,15 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/docs/guides/qiskit-code-assistant-vscode",
   "/docs/guides/qiskit-code-assistant-local",
   "/docs/guides/addons",
+  "/docs/guides/tools-intro",
   "/docs/guides/function-template-hamiltonian-simulation",
   "/docs/guides/qiskit-addons-utils",
   "/docs/guides/qiskit-code-assistant-openai-api",
   "/docs/guides/manage-cost",
   "/docs/guides/execution-modes-faq",
+  "/docs/guides/faq",
+  "/docs/guides/execution-modes-faq",
+  "/docs/guides/open-source",
 ]);
 
 // URLs that show up in the INDEX_PAGES, but are not in the left ToC under
@@ -52,7 +56,7 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/docs/guides/cloud-setup-untrusted",
   "/docs/guides/cloud-setup-invited",
   "/docs/guides/cloud-setup-rest-api",
-  "/docs/support/execution-modes-faq",
+  "/docs/guides/execution-modes-faq",
 ]);
 
 // URLs that show up in the INDEX_PAGES >1 time.

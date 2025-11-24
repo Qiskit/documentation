@@ -170,7 +170,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_new" signature="QkCircuit *qk_circuit_new(uint32_t num_qubits, uint32_t num_clbits)">
   Construct a new circuit with the given number of qubits and clbits.
 
-  <span id="group__QkCircuit_1autotoc_md3" />
+  <span id="group__QkCircuit_1autotoc_md4" />
 
   #### Example
 
@@ -193,7 +193,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_add_quantum_register" signature="void qk_circuit_add_quantum_register(QkCircuit *circuit, const QkQuantumRegister *reg)">
   Add a quantum register to a given quantum circuit
 
-  <span id="group__QkCircuit_1autotoc_md12" />
+  <span id="group__QkCircuit_1autotoc_md13" />
 
   #### Example
 
@@ -205,11 +205,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(qc);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md13" />
+  <span id="group__QkCircuit_1autotoc_md14" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md13" />
+  <span id="group__QkCircuit_1autotoc_md14" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `reg` is not a valid, non-null pointer to a `QkQuantumRegister`.
 
@@ -224,7 +224,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_add_classical_register" signature="void qk_circuit_add_classical_register(QkCircuit *circuit, const QkClassicalRegister *reg)">
   Add a classical register to a given quantum circuit
 
-  <span id="group__QkCircuit_1autotoc_md14" />
+  <span id="group__QkCircuit_1autotoc_md15" />
 
   #### Example
 
@@ -236,11 +236,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(qc);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md15" />
+  <span id="group__QkCircuit_1autotoc_md16" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md15" />
+  <span id="group__QkCircuit_1autotoc_md16" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `reg` is not a valid, non-null pointer to a `QkClassicalRegister`.
 
@@ -255,7 +255,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_copy" signature="QkCircuit *qk_circuit_copy(const QkCircuit *circuit)">
   Create a copy of a `QkCircuit`.
 
-  <span id="group__QkCircuit_1autotoc_md16" />
+  <span id="group__QkCircuit_1autotoc_md17" />
 
   #### Example
 
@@ -264,17 +264,17 @@ The circuit C API currently only supports creating circuits that contain operati
   QkCircuit *copy = qk_circuit_copy(qc);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md17" />
+  <span id="group__QkCircuit_1autotoc_md18" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md17" />
+  <span id="group__QkCircuit_1autotoc_md18" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
   **Parameters**
 
-  **circuit** – A pointer to the circuit to copy.
+  *   **circuit** – A pointer to the circuit to copy.
 
   **Returns**
 
@@ -286,7 +286,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_num_qubits" signature="uint32_t qk_circuit_num_qubits(const QkCircuit *circuit)">
   Get the number of qubits the circuit contains.
 
-  <span id="group__QkCircuit_1autotoc_md18" />
+  <span id="group__QkCircuit_1autotoc_md19" />
 
   #### Example
 
@@ -295,17 +295,17 @@ The circuit C API currently only supports creating circuits that contain operati
   uint32_t num_qubits = qk_circuit_num_qubits(qc);  // num_qubits==100
   ```
 
-  <span id="group__QkCircuit_1autotoc_md19" />
+  <span id="group__QkCircuit_1autotoc_md20" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md19" />
+  <span id="group__QkCircuit_1autotoc_md20" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
   **Parameters**
 
-  **circuit** – A pointer to the circuit.
+  *   **circuit** – A pointer to the circuit.
 
   **Returns**
 
@@ -317,7 +317,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_num_clbits" signature="uint32_t qk_circuit_num_clbits(const QkCircuit *circuit)">
   Get the number of clbits the circuit contains.
 
-  <span id="group__QkCircuit_1autotoc_md20" />
+  <span id="group__QkCircuit_1autotoc_md21" />
 
   #### Example
 
@@ -326,17 +326,17 @@ The circuit C API currently only supports creating circuits that contain operati
   uint32_t num_clbits = qk_circuit_num_clbits(qc);  // num_clbits==50
   ```
 
-  <span id="group__QkCircuit_1autotoc_md21" />
+  <span id="group__QkCircuit_1autotoc_md22" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md21" />
+  <span id="group__QkCircuit_1autotoc_md22" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
   **Parameters**
 
-  **circuit** – A pointer to the circuit.
+  *   **circuit** – A pointer to the circuit.
 
   **Returns**
 
@@ -348,7 +348,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_free" signature="void qk_circuit_free(QkCircuit *circuit)">
   Free the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md22" />
+  <span id="group__QkCircuit_1autotoc_md23" />
 
   #### Example
 
@@ -357,17 +357,17 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(qc);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md23" />
+  <span id="group__QkCircuit_1autotoc_md24" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md23" />
+  <span id="group__QkCircuit_1autotoc_md24" />
 
   Behavior is undefined if `circuit` is not either null or a valid pointer to a `QkCircuit`.
 
   **Parameters**
 
-  **circuit** – A pointer to the circuit to free.
+  *   **circuit** – A pointer to the circuit to free.
 </Function>
 
 ### qk\_circuit\_gate
@@ -375,7 +375,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_gate" signature="QkExitCode qk_circuit_gate(QkCircuit *circuit, QkGate gate, const uint32_t *qubits, const double *params)">
   Append a `QkGate` to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md24" />
+  <span id="group__QkCircuit_1autotoc_md25" />
 
   #### Example
 
@@ -385,11 +385,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_gate(qc, QkGate_H, qubit, NULL);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md25" />
+  <span id="group__QkCircuit_1autotoc_md26" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md25" />
+  <span id="group__QkCircuit_1autotoc_md26" />
 
   The `qubits` and `params` types are expected to be a pointer to an array of `uint32_t` and `double` respectively where the length is matching the expectations for the standard gate. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given gate. You can check `qk_gate_num_qubits` and `qk_gate_num_params` to determine how many qubits and params are required for a given gate.
 
@@ -412,7 +412,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_gate_num_qubits" signature="uint32_t qk_gate_num_qubits(QkGate gate)">
   Get the number of qubits for a `QkGate`.
 
-  <span id="group__QkCircuit_1autotoc_md26" />
+  <span id="group__QkCircuit_1autotoc_md27" />
 
   #### Example
 
@@ -422,7 +422,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   **Parameters**
 
-  **gate** – The `QkGate` to get the number of qubits for.
+  *   **gate** – The `QkGate` to get the number of qubits for.
 
   **Returns**
 
@@ -434,7 +434,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_gate_num_params" signature="uint32_t qk_gate_num_params(QkGate gate)">
   Get the number of parameters for a `QkGate`.
 
-  <span id="group__QkCircuit_1autotoc_md27" />
+  <span id="group__QkCircuit_1autotoc_md28" />
 
   #### Example
 
@@ -444,7 +444,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   **Parameters**
 
-  **gate** – The `QkGate` to get the number of qubits for.
+  *   **gate** – The `QkGate` to get the number of qubits for.
 
   **Returns**
 
@@ -456,7 +456,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_measure" signature="QkExitCode qk_circuit_measure(QkCircuit *circuit, uint32_t qubit, uint32_t clbit)">
   Append a measurement to the circuit
 
-  <span id="group__QkCircuit_1autotoc_md28" />
+  <span id="group__QkCircuit_1autotoc_md29" />
 
   #### Example
 
@@ -465,11 +465,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_measure(qc, 0, 0);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md29" />
+  <span id="group__QkCircuit_1autotoc_md30" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md29" />
+  <span id="group__QkCircuit_1autotoc_md30" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -489,7 +489,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_reset" signature="QkExitCode qk_circuit_reset(QkCircuit *circuit, uint32_t qubit)">
   Append a reset to the circuit
 
-  <span id="group__QkCircuit_1autotoc_md30" />
+  <span id="group__QkCircuit_1autotoc_md31" />
 
   #### Example
 
@@ -498,11 +498,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_reset(qc, 0);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md31" />
+  <span id="group__QkCircuit_1autotoc_md32" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md31" />
+  <span id="group__QkCircuit_1autotoc_md32" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -521,7 +521,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_barrier" signature="QkExitCode qk_circuit_barrier(QkCircuit *circuit, const uint32_t *qubits, uint32_t num_qubits)">
   Append a barrier to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md32" />
+  <span id="group__QkCircuit_1autotoc_md33" />
 
   #### Example
 
@@ -531,11 +531,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_barrier(qc, qubits, 5);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md33" />
+  <span id="group__QkCircuit_1autotoc_md34" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md33" />
+  <span id="group__QkCircuit_1autotoc_md34" />
 
   The length of the array `qubits` points to must be `num_qubits`. If there is a mismatch the behavior is undefined.
 
@@ -557,7 +557,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_unitary" signature="QkExitCode qk_circuit_unitary(QkCircuit *circuit, const QkComplex64 *matrix, const uint32_t *qubits, uint32_t num_qubits, bool check_input)">
   Append an arbitrary unitary matrix to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md34" />
+  <span id="group__QkCircuit_1autotoc_md35" />
 
   #### Example
 
@@ -567,24 +567,24 @@ The circuit C API currently only supports creating circuits that contain operati
 
   const uint32_t num_qubits = 1;
   QkComplex64 unitary[2*2] = {c0, c1,  // row 0
-                                    c1, c0}; // row 1
+                              c1, c0}; // row 1
 
   QkCircuit *circuit = qk_circuit_new(1, 0);  // 1 qubit circuit
   uint32_t qubit[1] = {0};  // qubit to apply the unitary on
   qk_circuit_unitary(circuit, unitary, qubit, num_qubits, true);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md35" />
+  <span id="group__QkCircuit_1autotoc_md36" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md35" />
+  <span id="group__QkCircuit_1autotoc_md36" />
 
   Behavior is undefined if any of the following is violated:
 
   *   `circuit` is a valid, non-null pointer to a `QkCircuit`
-  *   `matrix` is a pointer to a nested array of `QkComplex64` of dimension `2 ^ num_qubits x 2 ^ num_qubits`
-  *   `qubits` is a pointer to `num_qubits` readable element of type `uint32_t`
+  *   `matrix` is an aligned pointer to `4**num_qubits` initialized `QkComplex64` values
+  *   `qubits` is an aligned pointer to `num_qubits` initialized `uint32_t` values
 
   **Parameters**
 
@@ -593,6 +593,10 @@ The circuit C API currently only supports creating circuits that contain operati
   *   **qubits** – A pointer to array of qubit indices, of length `num_qubits`.
   *   **num\_qubits** – The number of qubits the unitary acts on.
   *   **check\_input** – When true, the function verifies that the matrix is unitary. If set to False the caller is responsible for ensuring the matrix is unitary, if the matrix is not unitary this is undefined behavior and will result in a corrupt circuit.
+
+  **Returns**
+
+  An exit code.
 </Function>
 
 ### qk\_circuit\_count\_ops
@@ -602,7 +606,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   To properly free the memory allocated by the struct, you should call `qk_opcounts_clear`. Dropping the `QkOpCounts` struct without doing so will leave the stored array of `QkOpCount` allocated and produce a memory leak.
 
-  <span id="group__QkCircuit_1autotoc_md36" />
+  <span id="group__QkCircuit_1autotoc_md37" />
 
   #### Example
 
@@ -615,17 +619,17 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_opcounts_clear(&counts);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md37" />
+  <span id="group__QkCircuit_1autotoc_md38" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md37" />
+  <span id="group__QkCircuit_1autotoc_md38" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
   **Parameters**
 
-  **circuit** – A pointer to the circuit to get the counts for.
+  *   **circuit** – A pointer to the circuit to get the counts for.
 
   **Returns**
 
@@ -637,7 +641,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_num_instructions" signature="size_t qk_circuit_num_instructions(const QkCircuit *circuit)">
   Return the total number of instructions in the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md38" />
+  <span id="group__QkCircuit_1autotoc_md39" />
 
   #### Example
 
@@ -648,17 +652,17 @@ The circuit C API currently only supports creating circuits that contain operati
   size_t num = qk_circuit_num_instructions(qc); // 1
   ```
 
-  <span id="group__QkCircuit_1autotoc_md39" />
+  <span id="group__QkCircuit_1autotoc_md40" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md39" />
+  <span id="group__QkCircuit_1autotoc_md40" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
   **Parameters**
 
-  **circuit** – A pointer to the circuit to get the total number of instructions for.
+  *   **circuit** – A pointer to the circuit to get the total number of instructions for.
 
   **Returns**
 
@@ -674,7 +678,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   This function allocates memory internally for the provided `QkCircuitInstruction` and thus you are responsible for calling `qk_circuit_instruction_clear` to free it.
 
-  <span id="group__QkCircuit_1autotoc_md40" />
+  <span id="group__QkCircuit_1autotoc_md41" />
 
   #### Example
 
@@ -687,11 +691,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_instruction_clear(&inst);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md41" />
+  <span id="group__QkCircuit_1autotoc_md42" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md41" />
+  <span id="group__QkCircuit_1autotoc_md42" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`. The value for `index` must be less than the value returned by `qk_circuit_num_instructions` otherwise this function will panic. Behavior is undefined if `instruction` is not a valid, non-null pointer to a memory allocation with sufficient space for a `QkCircuitInstruction`.
 
@@ -709,7 +713,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   This function doesn’t free the allocation for the provided `QkCircuitInstruction` pointer, it only frees the internal allocations for the data contained in the instruction. You are responsible for allocating and freeing the actual allocation used to store a `QkCircuitInstruction`.
 
-  <span id="group__QkCircuit_1autotoc_md42" />
+  <span id="group__QkCircuit_1autotoc_md43" />
 
   #### Example
 
@@ -724,17 +728,17 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(qc); // free the circuit
   ```
 
-  <span id="group__QkCircuit_1autotoc_md43" />
+  <span id="group__QkCircuit_1autotoc_md44" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md43" />
+  <span id="group__QkCircuit_1autotoc_md44" />
 
   Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkCircuitInstruction`.
 
   **Parameters**
 
-  **inst** – A pointer to the instruction to free.
+  *   **inst** – A pointer to the instruction to free.
 </Function>
 
 ### qk\_opcounts\_clear
@@ -742,17 +746,17 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_opcounts_clear" signature="void qk_opcounts_clear(QkOpCounts *op_counts)">
   Clear the content in a circuit operation count list.
 
-  <span id="group__QkCircuit_1autotoc_md44" />
+  <span id="group__QkCircuit_1autotoc_md45" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md44" />
+  <span id="group__QkCircuit_1autotoc_md45" />
 
   Behavior is undefined if `op_counts` is not the object returned by `qk_circuit_count_ops`.
 
   **Parameters**
 
-  **op\_counts** – The returned op count list from `qk_circuit_count_ops`.
+  *   **op\_counts** – The returned op count list from `qk_circuit_count_ops`.
 </Function>
 
 ### qk\_circuit\_to\_python
@@ -762,11 +766,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   This function takes ownership of the pointer and gives it to Python. Using the input `circuit` pointer after it’s passed to this function is undefined behavior. In particular, `qk_circuit_free` should not be called on this pointer anymore.
 
-  <span id="group__QkCircuit_1autotoc_md45" />
+  <span id="group__QkCircuit_1autotoc_md46" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md45" />
+  <span id="group__QkCircuit_1autotoc_md46" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`
 
@@ -774,7 +778,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   **Parameters**
 
-  **circuit** – The C-space `QkCircuit` pointer.
+  *   **circuit** – The C-space `QkCircuit` pointer.
 
   **Returns**
 
@@ -786,7 +790,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_delay" signature="QkExitCode qk_circuit_delay(QkCircuit *circuit, uint32_t qubit, double duration, QkDelayUnit unit)">
   Append a delay instruction to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md46" />
+  <span id="group__QkCircuit_1autotoc_md47" />
 
   #### Example
 
@@ -795,11 +799,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_delay(qc, 0, 100.0, QkDelayUnit_NS);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md47" />
+  <span id="group__QkCircuit_1autotoc_md48" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md47" />
+  <span id="group__QkCircuit_1autotoc_md48" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 

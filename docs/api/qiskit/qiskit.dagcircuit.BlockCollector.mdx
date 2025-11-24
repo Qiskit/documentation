@@ -9,13 +9,13 @@ python_api_name: qiskit.dagcircuit.BlockCollector
 # BlockCollector
 
 <Class id="qiskit.dagcircuit.BlockCollector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/dagcircuit/collect_blocks.py#L29-L260" signature="qiskit.dagcircuit.BlockCollector(dag)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
 
   This class implements various strategies of dividing a DAG (direct acyclic graph) into blocks of nodes that satisfy certain criteria. It works both with the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") and [`DAGDependency`](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency") representations of a DAG, where DagDependency takes into account commutativity between nodes.
 
   Collecting nodes from DAGDependency generally leads to more optimal results, but is slower, as it requires to construct a DAGDependency beforehand. Thus, DAGCircuit should be used with lower transpiler settings, and DAGDependency should be used with higher transpiler settings.
 
-  In general, there are multiple ways to collect maximal blocks. The approaches used here are of the form ‘starting from the input nodes of a DAG, greedily collect the largest block of nodes that match certain criteria’. For additional details, see [https://github.com/Qiskit/qiskit-terra/issues/5775](https://github.com/Qiskit/qiskit-terra/issues/5775).
+  In general, there are multiple ways to collect maximal blocks. The approaches used here are of the form ‘starting from the input nodes of a DAG, greedily collect the largest block of nodes that match certain criteria’. For additional details, see [https://github.com/Qiskit/qiskit/issues/5775](https://github.com/Qiskit/qiskit/issues/5775).
 
   **Parameters**
 
@@ -47,11 +47,11 @@ python_api_name: qiskit.dagcircuit.BlockCollector
     **Parameters**
 
     *   **filter\_fn** (*Callable*) –
-    *   **max\_block\_width** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
+    *   **max\_block\_width** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) –
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode") | [DAGDepNode](qiskit.dagcircuit.DAGDepNode "qiskit.dagcircuit.DAGDepNode")]
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode") | [DAGDepNode](qiskit.dagcircuit.DAGDepNode "qiskit.dagcircuit.DAGDepNode")]
   </Function>
 </Class>
 

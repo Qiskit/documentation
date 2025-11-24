@@ -118,7 +118,7 @@ The 0.7.1 release provides a workaround to ensure that the experiments generated
 
 ### Prelude
 
-The 0.7 release introduces an automated cut finding code for the new circuit cutting workflow. With this milestone, the older cutting workflow (CutQC) is now deprecated. Additionally, this is the first CKT release to support version 2 of the Qiskit Runtime primitives. User are encouraged to [migrate to v2 primitives](/docs/migration-guides/v2-primitives) as soon as possible.
+The 0.7 release introduces an automated cut finding code for the new circuit cutting workflow. With this milestone, the older cutting workflow (CutQC) is now deprecated. Additionally, this is the first CKT release to support version 2 of the Qiskit Runtime primitives. User are encouraged to [migrate to v2 primitives](/docs/guides/v2-primitives) as soon as possible.
 
 <span id="release-notes-0-7-0-new-features" />
 
@@ -128,7 +128,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 *   Added a cut-finder function, `circuit_knitting.cutting.find_cuts()`, for automatically identifying locations to place LO gate and wire cuts such that the circuit is separable and runnable, given the maximum number of qubits per subcircuit as a parameter. The cut-finder will search for cut schemes which minimize the sampling overhead. Note, however, that for larger circuits, the number of cuts needed to separate the circuit will naturally grow larger, leading to an exponentially increasing sampling overhead. For instances of wire cuts, the cut-finder assumes no qubit reuse. Therefore, for each wire cut, a new wire is added to the circuit. In addition, the cut-finder requires that every gate in an input circuit be at most a two qubit gate. The search algorithm used by the cut-finder to identify cut locations is Dijkstra’s best first search algorithm which is guaranteed to find solutions with the lowest sampling overhead, provided any user-specified value for the maximum number of allowed backjumps or for the maximum sampling overhead does not prematurely stop the search. If the user wishes to time-restrict the search when running the cut-finder on large circuits, they can specify a maximum sampling overhead and/or a maximum number of allowed backjumps, in which case the cut-finder will return a valid albeit suboptimal cut scheme.
 
-*   Circuit cutting reconstruction can now interpret the [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult "(in Qiskit v1.4)") object, which is returned by version 2 of the sampler primitive ([`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2 "(in Qiskit v1.4)")). See the [migration guide](/docs/migration-guides/qiskit-1.0-features#qiskitprimitives) for details on upgrading to version 2 of the Qiskit primitives.
+*   Circuit cutting reconstruction can now interpret the [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult "(in Qiskit v1.4)") object, which is returned by version 2 of the sampler primitive ([`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2 "(in Qiskit v1.4)")). See the [migration guide](/docs/guides/qiskit-1.0-features#qiskitprimitives) for details on upgrading to version 2 of the Qiskit primitives.
 
 <span id="release-notes-0-7-0-upgrade-notes" />
 
