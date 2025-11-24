@@ -16,8 +16,11 @@ description: Discover tools that help manage noise through techniques such as er
 ## Zero-noise extrapolation
 [Zero-noise extrapolation (ZNE)](/docs/guides/error-mitigation-and-suppression-techniques#pauli-twirling#zero-noise-extrapolation-zne) is used for mitigating errors when estimating observables' expectation values. It consists of two phases: noise amplification and extrapolation.  To enable ZNE, set  `zne_mitigation` to `True` in the Qiskit Runtime [resilience options](/docs/api/qiskit-ibm-runtime/options-resilience-options-v2) for Estimator.
 
-## Probabilistic Error Amplification
-[Probabilistic Error Amplification (PEA)](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea) - PEA is a  sophisticated ZNE technique that consists of three stages: learning, noise amplification, and extrapolation. To enable PEA, enable ZNE by setting  `zne_mitigation` to `True` and set `zne.amplifier` to `pea` in the Qiskit Runtime [resilience options](/docs/api/qiskit-ibm-runtime/options-resilience-options-v2) for Estimator.
+## Propagated noise absorption
+The [Propagated noise absorption (PNA)](https://qiskit.github.io/qiskit-addon-pna/) addon implements the PNA technique.  This is a technique for mitigating errors in observable expectation values by “absorbing” the inverses of the learned noise channels into the observable using [Pauli propagation.](https://qiskit.github.io/pauli-prop/) Each Pauli noise generator in the noise model is classically propagated to the end of the circuit and applied to the observable, resulting in a new observable that when measured on a QPU, mitigates the learned gate noise.
+
+## Probabilistic error amplification
+[Probabilistic error amplification (PEA)](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea) is a  sophisticated ZNE technique that consists of three stages: learning, noise amplification, and extrapolation. To enable PEA, enable ZNE by setting  `zne_mitigation` to `True` and set `zne.amplifier` to `pea` in the Qiskit Runtime [resilience options](/docs/api/qiskit-ibm-runtime/options-resilience-options-v2) for Estimator.
 
 ## Probabilistic error cancellation
 [Probabilistic error cancellation (PEC)](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec) is a technique for mitigating errors in estimating expectation values of observables. Unlike ZNE, it returns an unbiased estimate of the expectation value. However, it generally incurs a greater overhead. To eanble PEC, set `pec_mitigation` to `True` in the Qiskit Runtime [resilience options](/docs/api/qiskit-ibm-runtime/options-resilience-options-v2) for Estimator.
@@ -43,8 +46,6 @@ The [SQD (HPC-ready)](https://qiskit.github.io/qiskit-addon-sqd-hpc/) addon is a
 ## mthree
 The [mthree (M3)](https://qiskit.github.io/qiskit-addon-mthree/) addon is a package for scalable quantum measurement error mitigation that need not explicitly form the assignment matrix, or its inverse, as is thus a matrix-free measurement mitigation routine.
 
-## Propagated noise absorption
-The [Propagated noise absorption (PNA)](https://qiskit.github.io/qiskit-addon-pna/) addon implements the PNA technique.  This is a technique for mitigating errors in observable expectation values by “absorbing” the inverses of the learned noise channels into the observable using [Pauli propagation.](https://qiskit.github.io/pauli-prop/) Each Pauli noise generator in the noise model is classically propagated to the end of the circuit and applied to the observable, resulting in a new observable that when measured on a QPU, mitigates the learned gate noise.
 
 ## Next steps
 
