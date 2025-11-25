@@ -6,11 +6,11 @@ description: Overview of the Quantum Resource Management Interface for integrati
 
 # Quantum resource management interface (QMRI)
 
-The Quantum resource management interface is a vendor-agnostic library for high-performance compute (HPC) systems to control state, run tasks, and monitor the behavior of quantum computational resources. It acts as a thin middleware layer that abstracts away the complexities associated with controlling quantum resources through a set of simple APIs. Written in Rust, this interface also exposes Python and C APIs for ease of integration into nearly any computational environment.
+The Quantum resource management interface (QRMI) is a vendor-agnostic library for high-performance compute (HPC) systems to control state, run tasks, and monitor the behavior of quantum computational resources. It acts as a thin middleware layer that abstracts away the complexities associated with controlling quantum resources through a set of simple APIs. Written in Rust, this interface also exposes Python and C APIs for ease of integration into nearly any computational environment.
 
-The source code to build and deploy this interface can be found in this [GitHub repository](https://github.com/qiskit-community/qrmi).
+Find the source code to build and deploy QMRI in this [GitHub repository](https://github.com/qiskit-community/qrmi).
 
-There is also an optional `task_runner` command line tool to execute quantum payloads against quantum hardware which is included in the Python package. The full documentation can be found [here](https://github.com/qiskit-community/qrmi/blob/main/python/qrmi/tools/task_runner/README.md).
+An optional `task_runner` command line tool to execute quantum payloads against quantum hardware is included in the Python package. Find the [full documentation](https://github.com/qiskit-community/qrmi/blob/main/python/qrmi/tools/task_runner/README.md) in the GitHub repository.
 
 ## Build the QRMI libraries
 
@@ -29,27 +29,27 @@ RedHat Enterprise Linux 10, Rocky Linux 8, Rocky Linux 9, SuSE 15,
 Ubuntu 22.04, Ubuntu 24.04, MacOS Sequoia 15.1 or above
 ```
 
-#### Compiling environment:
+#### Compiling environment
 * Rust compiler 1.91 or above [Link](https://www.rust-lang.org/tools/install)
 * A C compiler: for example, GCC (`gcc`) on Linux and Clang (`clang-tools-extra`) for Rust unknown targets/cross compilations. QRMI is compatible with a compiler conforming to the C11 standard.
-* `make/cmake` (make/cmake RPM for RHEL compatible OS)
-* `openssl` (openssl-devel RPM for RHEL compatible OS)
-* `zlib` (zlib-devel RPM for RHEL compatible OS)
-* Python 3.11, 3.12 or 3.13 (For Python API)
-  * Libraries and header files needed for Python development(python3.1x-devel RPM for RHEL compatible OS)
+* `make/cmake` (make/cmake RPM for RHEL-compatible OS)
+* `openssl` (openssl-devel RPM for RHEL-compatible OS)
+* `zlib` (zlib-devel RPM for RHEL-compatible OS)
+* Python 3.11, 3.12, or 3.13 (For Python API)
+  * Libraries and header files needed for Python development (python3.1x-devel RPM for RHEL-compatible OS):
     * /usr/include/python3.1x
     * /usr/lib64/libpython3.1x.so
-* Doxygen (for generating C API document), depending on the OS
-  * ```dnf install doxygen``` for Linux(RHEL/CentOS/Rocky Linux etc)
+* Doxygen (for generating C API document), depending on the OS:
+  * ```dnf install doxygen``` for Linux(RHEL/CentOS/Rocky Linux etc.)
   * ```apt install doxygen``` for Linux(Ubuntu etc.)
   * ```brew install doxygen```for MacOS
 
 #### Runtime environment
-* gcc (libgcc RPM for RHEL compatible OS)
-* openssl (openssl-libs RPM for RHEL compatible OS)
-* zlib (zlib RPM for RHEL compatible OS)
-* Python 3.11, 3.12 or 3.13 (For Python API)
-    * Libraries and header files needed for Python development(python3.1x-devel RPM for RHEL compatible OS)
+* gcc (libgcc RPM for RHEL-compatible OS)
+* openssl (openssl-libs RPM for RHEL-compatible OS)
+* zlib (zlib RPM for RHEL-compatible OS)
+* Python 3.11, 3.12, or 3.13 (For Python API)
+    * Libraries and header files needed for Python development (python3.1x-devel RPM for RHEL-compatible OS)
 
 ---
 
@@ -62,7 +62,7 @@ cargo build --release
 
 
 
-Then to build the Python package, first set up a python environment and install the required dependencies.
+To build the Python package, first set up a Python environment and install the required dependencies.
 ```shell-session
 . ~/.cargo/env
 cargo clean
@@ -72,13 +72,13 @@ pip install --upgrade pip
 pip install -r requirements-dev.txt
 ```
 
-Create the stub files for the python code.
+Create the stub files for the Python code.
 ```shell-session
 . ~/.cargo/env
 cargo run --bin stubgen --features=pyo3
 ```
 
-And lastly, build the python wheels for distribution to your hosts.
+Lastly, build the Python wheels for distribution to your hosts.
 ```shell-session
 source ~/py312_qrmi_venv/bin/activate
 CARGO_TARGET_DIR=./target/release/maturin maturin build --release
@@ -90,7 +90,7 @@ The wheel is created in the `./target/release/maturin/wheels` directory. You can
 
 ## Logging
 
-QRMI supports [log crate](https://crates.io/crates/log) for logging. You can find the detailed QRMI runtime logs by specifying `RUST_LOG` environment variable with log level. Supported levels are `error`, `warn`, `info`, `debug` and `trace`. Default level is `warn`. 
+QRMI supports [log crate](https://crates.io/crates/log) for logging. You can find the detailed QRMI runtime logs by specifying `RUST_LOG` environment variable with the log level. Supported levels are `error`, `warn`, `info`, `debug` and `trace`. The default level is `warn`. 
 
 If you specify `trace`, you can find underlying HTTP transaction logs.
 
@@ -114,12 +114,12 @@ The Rust API documentation can be created by running
 cargo doc --no-deps --open
 ```
 
-And the C API documentation can be created using doxygen
+The C API documentation can be created by using doxygen:
 ```shell-session
 doxygen Doxyfile
 ```
 
-This will create an HTML document under the `./html` directory which you can open in a web browser. 
+This will create an HTML document under the `./html` directory, which you can open in a web browser. 
 
 
 The Python API documentation is generated with `pydoc`. After entering the virtual environment with the QRMI packaged installed, run the following commands:
@@ -130,12 +130,12 @@ Server commands: [b]rowser, [q]uit
 server> b
 ```
 
-Then open the following page in your browser
+Then, open the following page in your browser:
 ```shell-session
 http://localhost:8290/qrmi.html 
 ```
 
-and stop the server with
+Stop the server with
 ```shell-session
 server> q
 ```
