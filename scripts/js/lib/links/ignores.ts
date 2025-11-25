@@ -14,12 +14,7 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES: Set<string> = new Set([
-  // The Qiskit C API objects.inv have a lot of broken links that we should fix. Recently,
-  // the Qiskit team changed their linking of the C++ domain references to C, which created
-  // a ton of broken links. See https://github.com/Qiskit/qiskit/pull/15250
-  "public/docs/api/qiskit-c/objects.inv",
-]);
+export const IGNORED_FILES: Set<string> = new Set([]);
 
 // -----------------------------------------------------------------------------------
 // Always ignored URLs - prefer to use more precise ignores
@@ -432,6 +427,24 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
 
 function _qiskitCRegexes(): FilesToIgnores {
   return {
+    "public/docs/api/qiskit-c/objects.inv": [
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ms",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ns",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ps",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_s",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_us",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1a1d0477d0d30b088dfd322e85b4be5464",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1ae08ef5279f405357144d24ec1147b5f9",
+      "/docs/api/qiskit-c/version#qiskit_get_version_hex",
+      "/docs/api/qiskit-c/version#qiskit_release_level",
+      "/docs/api/qiskit-c/version#qiskit_release_serial",
+      "/docs/api/qiskit-c/version#qiskit_version",
+      "/docs/api/qiskit-c/version#qiskit_version_hex",
+      "/docs/api/qiskit-c/version#qiskit_version_major",
+      "/docs/api/qiskit-c/version#qiskit_version_minor",
+      "/docs/api/qiskit-c/version#qiskit_version_patch",
+    ],
     "docs/api/qiskit-c/qk-transpiler.mdx": ["#structqktranspileoptions"],
   };
 }
