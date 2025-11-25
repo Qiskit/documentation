@@ -1,151 +1,177 @@
-Spank plugins for Slurm to support quantum resources
-====================================================
+---
+title: SPANK plugin for QRMI
+description: Overview of the SPANK plugin for quantum resource management in HPC systems.
+---
+{/* cspell:ignore QRMI, SBATCH, srun, Pasqal, slurmd, Doxyfile, Gres, ntasks, fffffffb */}
 
-## Content
+# SPANK plugin for QRMI
 
-- [Context](#content)
-- [Definitions](#definitions)
-  - [QPU](#qpu)
-  - [Quantum computer](#quantum-computer)
-  - [Spank plugins](#spank-plugins)
-  - [Spank quantum plugin](#spank-quantum-plugin)
-  - [Qiskit primitives (Sampler and Estimator)](#qiskit-primitives-sampler-and-estimator)
-- [Vendor-Specific Context: IBM](#vendor-specific-context-ibm)
-- [Vendor-Specific Definitions: IBM](#vendor-specific-definitions-ibm)
-  - [IBM Quantum Platform](#ibm-quantum-platform)
-  - [Direct Access API](#direct-access-api) 
-- [High Level Structure](#high-level-structure) 
-- [Quantum resource for workload management systems](#quantum-resource-for-workload-management-system)
-- [Quantum resource API](#quantum-resource-api)
-- [Integration Flow](#integration-flow)
-- [High Level Flow of Quantum Plugin](#high-level-flow-of-quantum-plugin)
-- [General architecture](#general-architecture-of-plugin)
-- [Architectural Tenets](#architectural-tenents)
+The [SPANK plugin](https://github.com/qiskit-community/spank-plugins/) for the [Quantum Resource Management Interface (QRMI)](./qrmi) is used to configure access to quantum resources from user jobs in a compute environment administrated by the Slurm workload manager. It handles the acquisition and release of access to quantum resources and sets the necessary environment variables for executing quantum workloads. The available quantum resources are specified in a `qrmi_config.json` file, which is managed by an administrator.
 
-See [UX](./ux.md) for HPC user experience, HPC developer experience and usage patterns.
+Once installed, this plugin registers the following option. A Slurm user can specify which quantum resources are used for the Slurm job script.
 
-## Context
+```bash
+--qpu=names             Comma separated list of QPU resources to use.
+```
 
-Overview of involved components, personas and backend service options:
-![context diagram](./images/context_diagram.png)
+For example,
+```bash
+#!/bin/bash
 
-## Definitions
+#SBATCH --job-name=sampler_job
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --qpu=ibm_quebec,ibm_sherbrooke
 
-### QPU
-A `QPU` includes all of the hardware responsible for accepting an executable quantum instruction set, or a quantum circuit, and returning an accurate answer. That means the QPU includes the quantum chip(s) in a superconducting quantum computer, as well as additional components such as the amplifiers, control electronics, instruments.
+# Your script goes here...
+```
 
-### Quantum Computer
-A `Quantum Computer` is comprised of the QPU and the classical compute needed to execute requests coming in through an API (its endpoint).
 
-### Spank plugins
-`SPANK` provides a very generic interface for stackable plug-ins which may be used to dynamically modify the job launch code in Slurm.
-https://slurm.schedmd.com/spank.html
+## Requirements and configuration
 
-### Spank quantum plugin
-A plugin in Slurm that manages the operation of quantum jobs in Slurm. It handles Slurm resources related to quantum and is configured so that jobs can execute on Quantum Computers. 
+The following tools are required for the compiling environment:
+* Rust compiler 1.86 or above [Link](https://www.rust-lang.org/tools/install)
+* A C compiler: for example, GCC(gcc) on Linux and Clang(clang-tools-extra) for Rust unknown targets/cross compilations. QRMI and its Spank plugin are compatible with a compiler conforming to the C11 standard.
+* make/cmake (make/cmake RPM for RHEL compatible OS
+* openssl (openssl-devel RPM for RHEL compatible OS)
+* zlib (zlib-devel RPM for RHEL compatible OS)
+* Slurm header files(slurm/slurm.h etc.) must be available on your host
 
-### Qiskit primitives (Sampler and Estimator)
-The two most common tasks for quantum computers are sampling quantum states and calculating expectation values. These tasks motivated the design of the Qiskit primitives: `Estimator` and `Sampler`.
 
-- Estimator computes expectation values of observables with respect to states prepared by quantum circuits.
-- Sampler samples the output register from quantum circuit execution.
+The runtime environment requires:
+* gcc (libgcc RPM for RHEL compatible OS)
+* openssl (openssl-libs RPM for RHEL compatible OS)
+* zlib (zlib RPM for RHEL compatible OS)
 
-In short, the computational model introduced by the Qiskit primitives moves quantum programming one step closer to where classical programming is today, where the focus is less on the hardware details and more on the results you are trying to achieve.
+### Configure available Quantum Resources
 
-## Vendor-Specific Context: IBM
+A [`qrmi_config.json.example`](https://github.com/qiskit-community/spank-plugins/blob/main/plugins/spank_qrmi/qrmi_config.json.example) is provided in the repository as an example configuration.
 
-Extension of the context overview of involved components, personas and backend service options for IBM:
-![context diagram IBM](./images/context_diagram_ibm.png)
+The `resources` array contains a set of available Quantum Resources which can be used by Slurm users in the jobs. Each Quantum Resource definition contains:
 
-## Vendor-Specific Definitions: IBM
+| Property | Description |
+| ---- | ---- |
+| name | Quantum resource name. e.g. Quantum backend name. |
+| type | Resource type (`direct-access`, `qiskit-runtime-service` and `pasqal-cloud`) |
+| environment | A set of environment variables to work with QRMI. Current implementations assume API endpoint and credentials are specified via environment variable setting. |
 
-### IBM Quantum Platform
-Cloud-based quantum computing service providing access to IBM's fleet of quantum backends. Sometimes abbreviated as IQP.
+If a user specifies a resource with the `--qpu` option that is not defined in the `qrmi_config.json` file, the specification will be ignored.
 
-### Direct Access API
-Local interface to am IBM Quantum Computer. Sometimes abbreviated as DA API. Below the Direct Access API, classical preparation of jobs prior to the actual quantum execution can run in parallel (called *lanes* in the API definition).
+If the user sets the necessary environment variables for job execution themselves, it is not required to specify them in this file. In this case, the environment property will be `{}`.
 
-## Vendor-Specific Definitions: Pasqal
+<Admonition type="note">
+If you are using a QPU resource with the resource type `qiskit-runtime-service`, use an account that supports [opening a session](https://quantum.cloud.ibm.com/docs/en/guides/run-jobs-session#open-a-session), such as a Premium plan.
 
-### Pasqal Cloud Service
-Cloud-based quantum computing service providing access to Pasqal QPU's and emulators. Sometimes abbreviated as PCS.
+If you are using an account that does not support opening a session, such as an Open plan account, add `QRMI_IBM_QRS_SESSION_MODE="batch"` to the environment variable list in qrmi_config.json as workaround.
+</Admonition>
 
-### Pulser
-Pasqal's native programming library [GitHub](https://github.com/pasqal-io/pulser). Supported in the low-level interfaces such as the QRMI.
+## Installation
 
-## High Level Structure
+Run the build using `make` and `cmake`
+```shell-session
+. ~/.cargo/env
+mkdir build
+cd build
+cmake ..
+make
+```
 
-At large, there are three domains:
-* HPC users, consuming slurm resources and using access to Quantum Computers through these resources
-* HPC admins, configuring slurm and managing access and mapping to available Quantum Computers
-* Quantum Computer providers, offering access to Quantum/QPU resources on Quantum Computers
+By default, the `CMakeLists.txt` file expects the Slurm header file (`slurm.h`) to be located in `/usr/include/slurm`, but this can be customized as shown below.
 
-![High Level Structure](./images/high_level_structure.png)
+```shell-session
+SLURM_INCLUDE_DIRS=<directory containing slurm/slurm.h> cmake ..
+```
 
-## Quantum resource for workload management system
-General GRES (custom resource) for quantum computers is QPU.
-All quantum resources will have an identity and map to a Quantum Computer's quantum resource (i.e. map to a QPU).
 
-Additional resource definition might be needed depending on implementation from hardware vendors. Some vendors expose to parallelism within quantum computer as execution lanes, threads, parts of devices, etc. Therefore we define quantum resource as an abstract that composed out of physical device and parallelism notion.
+If the above build step is successful, a Linux shared library named `spank_qrmi.so` will be created under the `build/` directory. 
 
-![resource definition](./images/resource_definition.png)
+In addition, add the following 1 line to the `/etc/slurm/plugstack.conf` on the nodes where this plugin is installed.
 
-The QPU resource definition does not expose individual parallelism abstracts. Each backend flavor can have specific qualifiers how to use backend specific capabilities (e.g. for common use case: if a user wants to exclusively use a backend, all parallel job preparation units will be available for use -- if not, several users could submit jobs and share these units. As execution lanes in DA API do not have any identities that could be managed explicitly, only quantities resp. exclusive/shared use should be user controlled).
+Note that administrator needs to create `qrmi_config.json` file and specify the path as plugin argument like below.
 
-![resource mapping](./images/resource_mapping.png)
+```bash
+optional /usr/lib64/slurm/spank_qrmi.so /etc/slurm/qrmi_config.json
+```
 
-## Quantum resource API
-Any type of resource should implement resource control interface. Flow of working with resource following pattern: `acquire resource` → `execute` → `release resource`. Implementation of this interface might vary from platform to platform.
+<Admonition type="note">
+There are optional arguments available. It allows you to add environment variables to the Slurm process where the SPANK plugin is loaded. The format for specifying environment variables is defined as follows.
+```bash
+--env:{variable name}={value}
+```
+For example, when interacting with Quantum resources via an HTTP proxy, the environment variables `http_proxy`, `https_proxy`, and `no_proxy` are required. These can be added as shown below.
+```bash
+optional /usr/lib64/slurm/spank_qrmi.so /etc/slurm/qrmi_config.json --env:http_proxy=http://192.168.1.128:3128 --env:https_proxy=http://192.168.1.128:3128
+```
+</Admonition>
+For allocator node, your don't need to specify the path to qrmi_config.json like below.
 
-![resource control api](./images/resource_control_api.png)
+```bash
+optional /usr/lib64/slurm/spank_qrmi.so
+```
 
-## Integration Flow
 
-Similar to any Gres resource (GPU, AIU, etc), we treat QPU as gres and acquire it for whole duration of the job.
-Primitive calls will manage the data and call towards the Quantum Computer (for most cases through Slurm to govern user access to the slurm-level quantum resource and potentially inject Quantum Computer access credentials)
+The following table shows which Slurm context nodes these files should be copied to. For more details of each context, refer to the [SPANK Plugin documentation](https://slurm.schedmd.com/spank.html#SECTION_SPANK-PLUGINS)
+| Files | Slurm contexts |
+| ------- | ------- |
+| `plugstack.conf` | **local**, **remote**, **allocator**, **slurmd** and **job_script**.  |
+| `qrmi_config.json` | **remote** (Compute nodes) |
+| `spank_qrmi.so` | **allocator** and **remote** (Login nodes and Compute nodes) |
 
-![integration Flow](./images/integration_flow.png)
 
-This avoids drawbacks of other options, e.g. when the user application's primitive call will create other Slurm jobs that send primitive data towards the Quantum Computer.
-Having this logic of sending data towards the Quantum Computer in qiskit level code reduces complexity and latency, and avoids complexity in error handling.
+<Admonition type="note">
+Once `plugstack.conf` is updated, spank plugins will be loaded at runtime during the next job launch, which means administrators do not need to restart Slurm cluster.
+</Admonition>
 
-## High Level Flow of Quantum Plugin
+Once you complete installation, you should find `--qpu=names` option in the sbatch help message.
 
-This is the high level flow from when Slurm jobs are started to how requests find their way to a Quantum Computer.
-Requests refer to any interaction between application and Quantum Computer (e.g. including getting configuration information that is needed for transpilation).
+```bash
+Options provided by plugins:
+      --qpu=names             Comma separated list of QPU resources to use.
+```
 
-![High Level Flow -- png editable with draw.io, please keep it that way](./images/high-level-plugin-flow.png)
+## Logging
 
-## General architecture of plugin
+This plugin uses Slurm logger for logging. Log messages from this plugin can be found in `/var/log/slurm/slurmd.log`, etc.
 
-Quantum plugin will be using Spank architecture events sequence of call during job execution to inject necessary logic to work with quantum computer API.
+```bash
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank: /etc/slurm/plugstack.conf:1: Loaded plugin spank_qrmi.so
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c(6582, 0): -> slurm_spank_init argc=1 remote=1
+[2025-07-31T09:43:34.019] [21.batch] debug:  SPANK: appending plugin option "qpu"
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c(6582,0): <- slurm_spank_init rc=0
+[2025-07-31T09:43:34.019] [21.batch] debug2: spank: spank_qrmi.so: init = 0
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c: --qpu=[ibm_sherbrooke,ibm_torino]
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c(6582, 0): -> slurm_spank_init_post_opt argc=1 remote=1
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c, fffffffb
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c: argv[0] = [/etc/slurm/qrmi_config.json]
+[2025-07-31T09:43:34.020] [21.batch] debug:  spank_qrmi_c: name(ibm_sherbrooke), type(1) found in qrmi_config
+```
 
-1. Job execution flow
-    1. Prolog
-        1. Handle secrets
-        2. Acquire resource
-        3. Create network middleware
-    2. Task init
-        1. Handle options
-        2. Set env variables
-    3. Epilog
-        1. Remove middleware
-        2. Release resource
+You can enable QRMI runtime log by specifying the following `srun` arguments.
 
-![general architecture](./images/general_architecture.png)
+|  sbatch/srun option | Slurm log level (SRUN_DEBUG) | QRMI log level (RUST_LOG) |
+| ---- | ---- | ---- |
+| (default) | 3 | info |
+| `--quiet` | 2 | error |
+| `--verbose` | 4 | debug |
+| `-vv` or more | 5 | trace |
 
-## Architectural Tenents
 
-* A Slurm-level QPU resource maps to physical resource of a Quantum Computer
-  * Quantum backend selection is part of that Slurm resource definition and is considered configuration, not source code
-  * Qiskit-level code can refer to that Slurm resource and access/use the quantum resource behind it. Qiskit-level code should avoid naming the desired backend directly (=> it should be part of the Slurm resource definition instead)
-  * Slurm QPU resources have an identity (allowing to bind against it from qiskit)
-  * additional qualifiers of the Slurm QPU resource are backend type specific
-  * parallelism abstracts (such as execution lanes which are anonymous units to prepare jobs in parallel for quantum execution which is still serialized) are abstracted behind the Slurm QPU resource. Qualifiers may be used to deal with specifics (such as: are these lanes held exclusive for one user, or is there a shared access possible)
-* Quantum resources are acquired/locked before usage
-  * as identification/selection of the quantum resource is through the Slurm resource, transpilation can only happen after that
-  * initially, transpilation will happen after acquiring the resource, which can can lead to slightly lower QPU utilization, as other jobs may be locked out. This may (should!) be improved in a later phase and requires an extended concept (such as first step is define the resource, which may or may not result in actions, second step is lock for execution) -- more details required at a later time!
-* Primitive calls will trigger submission towards the Quantum Computer
-  * Flow is triggered from the qiskit-level code, without scheduling additional intermediate Slurm jobs
-  * The network flow can go through the Slurm plugin, to govern user access or manage access to the Quantum Computer
-  * The network/data flow can be specific to a backend type (using intermediate storage to hold input/output data, or sending data in-line)
+## Considerations for multiple QPUs
+
+At runtime, each QRMI instance is linked to a single QPU resource. To enable the use of multiple Quantum resources within a single job script, this plugin sets environment variables with the resource name as a prefix. For example, if `--qpu=qpu1,qpu2` is specified, the environment variables will be set as follows:
+
+```bash
+qpu1_QRMI_IBM_DA_ENDPOINT=http://test1
+qpu2_QRMI_IBM_DA_ENDPOINT=http://test2
+```
+
+This ensures that each QRMI instance operates with the configuration parameters set for its respective resource during the execution of the Slurm job.
+
+The above environment variable settings are applied only to jobs where the `--qpu=names` option is specified.
+
+This plugin also set the following 2 environment variables which will be referred by QRMI primitives code.
+
+| Environment variable | Description |
+| ---- | ---- |
+| `SLURM_JOB_QPU_RESOURCES` | Comma separated list of QPU resources to use at runtime. Undocumented resources will be filtered out. For example, `qpu1,qpu2`. |
+| `SLURM_JOB_QPU_TYPES` | Comma separated list of Resource type (`direct-access`, `qiskit-runtime-service` and `pasqal-cloud`). For example, `direct-access,pasqal-cloud` |
