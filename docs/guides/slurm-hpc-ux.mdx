@@ -8,7 +8,7 @@ description: User guide for the quantum resource management SPANK plugin
 
 Slurm QPU resource definitions determine what physical resources can be used by Slurm jobs in high-performance compute (HPC) environments. User source code should be agnostic to specific backend instances and even backend types as far as possible. This keeps source code portable while the QPU selection criteria are part of the resource definition (which is considered configuration as opposed to source code).
 
-## Configuring QPU resources in job creation
+## Configure QPU resources in job creation
 
 <Admonition type="caution">
 Note that this plugin is under active development and the exact syntax is subject to change.
@@ -17,11 +17,11 @@ Note that this plugin is under active development and the exact syntax is subjec
 ### Administrator scope
 
 HPC administrators configure the SPANK plugin, i.e. what physical resources can be provided to Slurm jobs.
-This configuration contains all the information needed to have Slurm jobs access the physical resources, such as endpoints, and access credentials.
+This configuration contains all the information needed to have Slurm jobs access the physical resources, such as endpoints and access credentials.
 
-You can read over the [`qrmi_config.json.example`](https://github.com/qiskit-community/spank-plugins/blob/main/plugins/spank_qrmi/qrmi_config.json.example) for a comprehensive example configuration.
+Read the [`qrmi_config.json.example`](https://github.com/qiskit-community/spank-plugins/blob/main/plugins/spank_qrmi/qrmi_config.json.example) for a comprehensive example configuration.
 
-In `slurm.conf`, qpu resources can be assigned to some or all nodes for usage:
+In `slurm.conf`, QPU resources can be assigned to some or all nodes for usage:
 ```
 ...
 GresTypes=qpu,name
@@ -31,11 +31,11 @@ NodeName=node[1-5000] Gres=qpu,name:ibm_fez
 
 ### User scope
 
-HPC users submit jobs using QPU resources that are tied to Slurm QPU resources. The name attribute references what the HPC administrator has defined. Mid-term, backend selection can be based on criteria other than a predefined name which refers to a specific backend (e.g. by capacity and error rate qualifiers which help downselect between the defined set of backends).
+HPC users submit jobs using QPU resources that are tied to Slurm QPU resources. The name attribute references what the HPC administrator has defined. Mid-term, backend selection can be based on criteria other than a predefined name referring to a specific backend (for example, by capacity and error rate qualifiers, to help down-select among the defined set of backends).
 
 There might be additional environment variables required, depending on the backend type.
 
-`SBATCH` parameters will point to one or more QPU resource assigned to the application as generic resources.
+`SBATCH` parameters will point to one or more QPU resources assigned to the application as generic resources.
 Environment variables provided through the plugin will provide the necessary information to the application (see the [HPC application scope](#hpc-application-scope) section for details).
 
 ```shell
@@ -64,8 +64,8 @@ srun ...
 
 HPC applications use the Slurm QPU resources assigned to the Slurm job.
 
-Environment variables provide more details for use by the application, e.g. `SLURM_JOB_QPU_RESOURCES` listing the quantum resource names (comma separated if there are several provided).
-These variables will be used by QRMI. (See the README files in the various QRMI directories ([ibm](https://github.com/qiskit-community/qrmi/blob/main/examples/qiskit_primitives/ibm/README.md), [pasqal](https://github.com/qiskit-community/qrmi/blob/main/examples/qiskit_primitives/pasqal/README.md)) for more details.)
+Environment variables provide more details for use by the application; for example, `SLURM_JOB_QPU_RESOURCES` lists the quantum resource names (comma-separated if several are provided).
+These variables will be used by QRMI. (See the README files in the various QRMI directories ([IBM](https://github.com/qiskit-community/qrmi/blob/main/examples/qiskit_primitives/ibm/README.md), [pasqal](https://github.com/qiskit-community/qrmi/blob/main/examples/qiskit_primitives/pasqal/README.md)) for more details.)
 
 ```python
 from qiskit import QuantumCircuit
@@ -116,14 +116,14 @@ See the [examples directory](https://github.com/qiskit-community/qrmi/tree/main/
 Configuration of Direct Access API backends (HPC admin scope) includes endpoints and credentials to the Direct Access endpoint, authentication services as well as the S3 endpoint.
 Specifically, this includes:
 
-* IBM Cloud API key for creating bearer tokens
-* endpoint of Direct Access API
+* IBM Cloud&reg; API key for creating bearer tokens
+* Endpoint of the Direct Access API
 * S3 bucket and access details
 
 Access credentials should not be visible to HPC users or other non-privileged users on the system.
-Therefore, sensitive data can be put in separate files which can be access protected accordingly.
+Therefore, sensitive data can be put in separate files, which can be access-protected accordingly.
 
-Note that Slurm has got full access to the backend.
+Note that Slurm has full access to the backend.
 This has several implications:
 
 * the Slurm plugin is responsible for multi-tenancy (ensuring that users don't see results of other users' jobs)
@@ -140,26 +140,26 @@ Instead, mid term, there can be two different modes that HPC users can specify:
 #### Qiskit Runtime Service
 ##### User scope
 
-It is expected, that users specify additional access details in environment variables.
-Specifically, this includes
+It is expected that users specify additional access details in environment variables.
+Specifically, this includes the following:
 
 * Qiskit Runtime service instance (CRN, Cloud Resource Name)
 * Endpoint for Qiskit Runtime (unless auto-detected from the CRN)
-* API key which has access to the CRN
-* S3 instance, bucket and access token/credentials for data transfers
+* API key, which has access to the CRN
+* S3 instance, bucket, and access token/credentials for data transfers
 
-This determines under which user and service instance the Qiskit Runtime service is used
-Accordingly, IBM Quantum Platform's scheduling considers the user's and service instance's capabilities for scheduling.
+These details determine under which user and service instance the Qiskit Runtime service is used.
+Accordingly, IBM Quantum&reg; Platform scheduling considers the user's and service instance's capabilities for scheduling.
 
-At this time, users have to provide the above details (no shared cluster-wide Quantum access).
+At this time, users must provide the above details (no shared cluster-wide quantum access).
 
 #### Pasqal Cloud Services
 ##### HPC admin scope
-There is no specific set-up required from HPC admins for PCS usage.
+There is no specific setup required from HPC admins for PCS usage.
 
 ##### HPC user scope
 It is expected, that users specify additional access details in environment variables.
-Specifically, this currently includes
+Currently, this includes the following:
 
 * PCS resource to target (FRESNEL, EMU_FRESNEL, EMU_MPS)
 * Authorization token
