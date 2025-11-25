@@ -21,6 +21,49 @@ At most, **10 million** executions are allowed.  The number of executions is the
 
 For example, if you have a PUB with one circuit, observables with shape (1, 6), and parameters with shape (4, 1), this would render $4 \times 6 = 24$ circuits (or fewer, if some observables commute). If you requested 2,000 shots, then the total number of executions is $24 \times 2,000 = 48,000$.
 
+When the observables commute, the number of executions can be further reduced. Generally, we calculate number of observables that commute by using Qiskit as follows:
+
+```python
+number_of_commuting_groups = observables.group_commuting(qubit_wise=True)
+```
+OR
+```python
+number_of_commuting_groups = observables.group_qubit_wise_commuting()
+```
+
+After determining the number of commuting groups, the total execution is given by:
+$Total executions = number_of_commuting_groups * number_of_parameter_set * number_of_shots$
+
+If `Total executions` is more than 10 million, that workload cannot be handled by the quantum software stack and usually will fail due to timeout or `1500` errors.
+
+Additionally, if you use error mitigation or error correction techniques such as twirling, the number of actual executions during runtime are greater than the `Total executions` calculated.
+
+### Example
+
+Define circuits, transpile them, and get a count of how many gates will be run.
+
+```python
+from qiskit.transpiler import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+num_qubits = 50
+ghz = QuantumCircuit(num_qubits)
+ghz.h(range(num_qubits))
+ghz.cx(0, range(1, num_qubits))
+op_counts = ghz.count_ops()
+
+# Choose the least busy backend
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
+transpiled_ghz = pm.run(ghz)
+op_counts = transpiled_ghz.count_ops()
+
+print(f"Post-Transpilation gates: {op_counts[]}")
+```
+For full details, see [Transpile against custom backends.](/docs/guides/custom-backend#ex-count-ops)
+
 <span id="per-qubit"></span>
 ## Maximum number of low-level instructions per qubit
 
