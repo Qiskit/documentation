@@ -69,7 +69,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
     **Parameters**
 
-    **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[Task]*) – A set of transpiler passes to be added to schedule.
+    **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[qiskit.passmanager.base\_tasks.Task]*) – A set of transpiler passes to be added to schedule.
 
     **Raises**
 
@@ -112,7 +112,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
     **Parameters**
 
     *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Pass index to replace, based on the position in passes().
-    *   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[BasePass]*) – A pass set to be added to the pass manager schedule.
+    *   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[qiskit.transpiler.basepasses.BasePass]*) – A pass set to be added to the pass manager schedule.
 
     **Return type**
 
@@ -130,7 +130,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
     *   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
 
-    *   **callback** (*Callable | None*) –
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) –
 
         A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments:
 
@@ -164,7 +164,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
               When running transpilation with multi-processing, the callback function is invoked within the context of each sub-process, independently of the parent process.
             </Admonition>
 
-    *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The maximum number of parallel processes to launch if parallel execution is enabled. This argument overrides `num_processes` in the user configuration file, and the `QISKIT_NUM_PROCS` environment variable. If set to `None` the system default or local user configuration will be used.
+    *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – The maximum number of parallel processes to launch if parallel execution is enabled. This argument overrides `num_processes` in the user configuration file, and the `QISKIT_NUM_PROCS` environment variable. If set to `None` the system default or local user configuration will be used.
 
     *   **property\_set** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*object*](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")*] | None*) – If given, the initial value to use as the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") for the pass manager pipeline. This can be used to persist analysis from one run to another, in cases where you know the analysis is safe to share. Beware that some analysis will be specific to the input circuit and the particular [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), so you should take a lot of care when using this argument.
 
@@ -174,7 +174,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
     **Return type**
 
-    \_CircuitsT
+    *\_CircuitsT*
   </Function>
 
   ### to\_flow\_controller
