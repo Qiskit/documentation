@@ -1,0 +1,353 @@
+---
+title: Tools index by task
+description: Find resources relevant to your work, organized by task.
+---
+
+# Tools index by task
+
+## Tools Related to Mapping
+
+### AQC-Tensor
+
+AQC-Tensor is a Qiskit addon which uses tensor network methods to compile the initial portion of a circuit into a nearly equivalent approximation, with much fewer layers. This addon will likely be most useful for the challenges that simulate the time evolution of a quantum system, but may also be useful for circuits which have:
+
+A great intermediate state which can be achieved by tensor-network simulation
+
+A good circuit that prepares an approximation to the target state, but with fewer layers when compiled to the target hardware device.
+
+*Relevant docs links:*
+
+- [Overview page](https://quantum.cloud.ibm.com/docs/en/guides/qiskit-addons-aqc)
+- [Getting started with AQC-Tensor](https://quantum.cloud.ibm.com/docs/en/guides/qiskit-addons-aqc-get-started)
+- [Tutorial featuring AQC-Tensor](https://quantum.cloud.ibm.com/docs/en/tutorials/approximate-quantum-compilation-for-time-evolution)
+
+### Qiskit Circuit Library
+
+The Qiskit SDK’s circuit library will be your go-to place for constructing circuits and beginning the process of building your workloads for the challenges. There is a wide berth of features here, from standard single-/multi-qubit gates to pre-built ansatze, and even custom unitary gates. We also recommend using fractional gates when circuits have many parameters with relatively small angles.
+
+*Relevant docs links:*
+
+- [Circuit library overview](https://quantum.cloud.ibm.com/docs/en/guides/circuit-library)
+- [Circuit library API reference](https://quantum.cloud.ibm.com/docs/en/api/qiskit/circuit_library)
+- [Fractional gates](https://quantum.cloud.ibm.com/docs/en/guides/fractional-gates)
+- [Synthesizing custom unitary operators](https://quantum.cloud.ibm.com/docs/en/guides/synthesize-unitary-operators)
+
+### Optimization Mapper
+
+Optimization mapper is a Qiskit addon that contains functionality to model optimization problems. For example, it contains functions for creating model of binary optimization problems to solve with Qiskit.
+
+*Relevant docs links:*
+
+- [Optimization mapper documentation page](https://qiskit.github.io/qiskit-addon-opt-mapper/)
+- [qiskit-addon-opt-mapper Github repo](https://github.com/qiskit/qiskit-addon-opt-mapper)
+
+### Quantum Optimization Best Practices
+
+A community repository full of guidelines, best practices, and reference implementations for running quantum optimization algorithms. While they are not feature-complete, they are a helpful way to get started in building quantum workloads to solve optimization problems. There is also a repo which hosts a reference QAOA pipeline.
+
+*Relevant links:*
+
+- [Github repository for quantum optimization](https://github.com/qiskit-community/qopt-best-practices)
+- [QAOA Training Pipeline](https://github.com/qiskit-community/qaoa_training_pipeline)
+
+### Device Benchmarking
+
+Qiskit Device Benchmarking is a respository for code to run various device level benchmarks through Qiskit. It is not intended to define a benchmark standard, but instead provides code examples replicate benchmarking metrics that have been reported in literature or elsewhere.
+
+*Relevant links:*
+
+- [Qiskit Device Benchmarking repository](https://github.com/qiskit-community/qiskit-device-benchmarking)
+- [Benchmarking notebooks](https://github.com/qiskit-community/qiskit-device-benchmarking/blob/main/notebooks/README.md)
+
+## Tools for Preparing & Optimizing Quantum Workloads
+
+### Transpiler
+
+Once your circuits have been created, they then need to be transpiled against the QPU you will be executing on. The Qiskit SDK has robust tooling for building custom transpilation pipelines that allow you to carefully tune which transformation and analysis passes are executed (and in which sequence). But the simplest way to get started is to just use the pre-build pass managers.
+
+*Relevant docs links:*
+
+- [Introduction to transpilation](https://quantum.cloud.ibm.com/docs/en/guides/transpile)
+- [Write custom transpilation passes](https://quantum.cloud.ibm.com/docs/en/guides/custom-transpiler-pass)
+- [Utilize transpiler plugins](https://quantum.cloud.ibm.com/docs/en/guides/transpiler-plugins)
+- [Configure the preset pass managers](https://quantum.cloud.ibm.com/docs/en/guides/defaults-and-configuration-options)
+- [Tutorial on qubit selection](https://quantum.cloud.ibm.com/docs/en/tutorials/real-time-benchmarking-for-qubit-selection)
+
+### Dynamic Circuits
+
+Dynamic circuits are powerful tools with which your can measure qubits in the middle of a quantum circuit execution and then perform classical logic operations within the circuit, based on the outcome of those mid-circuit measurements. Some common uses cases of dynamic circuits include efficient quantum state preparation, long-range entanglement, and sampling of IQP-like circuits. 
+
+*Relevant docs links:*
+
+- [Classical feed-forward and control flow](https://quantum.cloud.ibm.com/docs/en/guides/classical-feedforward-and-control-flow) (this is the primary way to integrate dynamic circuits into your workloads)
+- [Tutorial on using dynamic circuits to generate long-range entanglement](https://quantum.cloud.ibm.com/docs/en/tutorials/long-range-entanglement)
+
+### Dynamical Decoupling
+
+Dynamical decoupling (DD) is a technique for suppressing errors due to qubit decoherence. It is primarily useful in regions within a quantum circuit in which one or more qubits site idle while other instructions are being executed. Both Sampler and Estimator primitives have built-in support for applying DD. Alternatively, you can use the PadDynamicalDecoupling transpiler pass in Qiskit, or build your own using the new stretch instruction.
+
+*Relevant docs links:*
+
+- [Overview of DD](https://quantum.cloud.ibm.com/docs/en/guides/error-mitigation-and-suppression-techniques#dynamical-decoupling)
+- [Introduction to primitive options](https://quantum.cloud.ibm.com/docs/en/guides/runtime-options-overview)
+- [Create a pass manager for dynamical decoupling](https://quantum.cloud.ibm.com/docs/en/guides/dynamical-decoupling-pass-manager)
+- [Deferred timing resolution using stretch](https://quantum.cloud.ibm.com/docs/en/guides/stretch) (this is especially useful for apply DD in a dynamic circuit)
+
+### Operator Backpropagation
+
+This Qiskit addon utilizes a technique to reduce circuit depth by trimming operations from its end at the cost of more operator measurements. However, this increased cost can be trimmed down by dropping operators with small coefficients which don’t contribute much to the final estimation. You could experiment coupling this alongside the AQC-Tensor addon for even lower circuit depths.
+
+*Relevant docs links:*
+
+- [Overview of OBP addon](https://quantum.cloud.ibm.com/docs/en/guides/qiskit-addons-obp)
+- [Get started with OBP](https://quantum.cloud.ibm.com/docs/en/guides/qiskit-addons-obp-get-started)
+- [Tutorial on OBP](https://quantum.cloud.ibm.com/docs/en/tutorials/operator-back-propagation)
+
+
+
+## Tools for Debugging and Validating Workloads
+
+### Noisy Estimator Analyzer Tool
+
+To gauge the expected performance of estimator-based workloads, NEAT is provided as a convenience tool to analyze and predict the performance of your queries. It uses Qiskit Aer to simulate the estimation task classically efficiently, either exactly or in the presence of noise, and can also convert your PUBs into cliffordized circuits.
+
+*Relevant docs links:*
+
+- [Analyze a Qiskit Runtime job using NEAT](https://quantum.cloud.ibm.com/docs/en/guides/debug-qiskit-runtime-jobs)
+- [NEAT API reference page](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/debug-tools-neat)
+
+
+### Local Testing Mode
+
+Qiskit Runtime possesses the ability to test workloads while fine-tuning them before submitting them as jobs to a QPU. To use this feature, simply specify one of the fake backends from `qiskit_ibm_runtime.fake_provider` or use one from the Qiskit Aer library. To utilize this feature, we suggest either cliffordizing the circuit you plan to run or scale down the number of qubits in your workload.
+
+*Relevant docs links:*
+
+- [Overview of using the local testing mode](https://quantum.cloud.ibm.com/docs/en/guides/local-testing-mode)
+- [Fake Provider API reference](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/fake-provider)
+
+
+
+## Executing Workloads
+
+### Estimator & Sampler Primitives
+
+The Estimator and Sampler primitives are used to execute your circuits on QPUs. Estimator computes expectation values of observables with respect to states prepared by quantum circuits, and Sampler samples the output register from quantum circuit execution. Both primitives have built-in error suppression support, and Estimator also have built-in error mitigation methods. 
+
+*Relevant docs links:*
+
+- [Primitive inputs and outputs](https://quantum.cloud.ibm.com/docs/en/guides/primitive-input-output)
+- [Introduction to the primitive options](https://quantum.cloud.ibm.com/docs/en/guides/runtime-options-overview)
+- [Primitives examples](https://quantum.cloud.ibm.com/docs/en/guides/primitives-examples)
+- [Tutorial on combining error mitigation options with Estimator](https://quantum.cloud.ibm.com/docs/en/tutorials/combine-error-mitigation-techniques)
+
+### Execution modes
+
+When building quantum workloads, it can sometimes be helpful to utilize different scheduling strategies for execution. The execution modes determine how your jobs are scheduled, and choosing the right execution mode allows your workload to run efficiently (and within your budget).
+
+*Relevant docs links:*
+
+- [Overview of Job, Batch, and Session modes](https://quantum.cloud.ibm.com/docs/en/guides/execution-modes)
+- [How to choose the right execution mode](https://quantum.cloud.ibm.com/docs/en/guides/choose-execution-mode)
+
+### Executor Primitive
+
+Executor allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. With Executor, users will gain a clearer and more composable model for execution workflows, making it easier to experiment with new techniques, reproduce results, and share methods.
+
+Relevant docs links:
+- [API reference for Executor primitive](https://qiskit.github.io/qiskit-ibm-runtime/index.html)
+
+
+
+
+## Tools for Error mitigation
+
+### Samplomatic
+
+Samplomatic is a library that helps you sample randomizations of your quantum circuits in exactly the way that you specify. It utilizes the Qiskit SDK’s `Box` annotations to specify regions of a circuit that should have similar noise profiles and can group collections of gates to twirl or use the same noise model from the Noise Learner.
+
+*Relevant docs links:*
+
+- [Samplomatic documentation](https://qiskit.github.io/samplomatic/)
+- [Samplomatic Github repo](https://github.com/Qiskit/samplomatic)
+
+### Noise Learner
+
+Many error mitigation techniques, such as PEA and PEC, require an accurate noise model. Noise Learner is a helper program that returns a Pauli-Lindblad noise model for the input circuit. This can help you to further tune how PEA and PEC are done in your Estimator job, or re-use the same model in an iterative workload. 
+
+*Relevant docs links:*
+
+- [Overview of noise learning helper](https://quantum.cloud.ibm.com/docs/en/guides/noise-learning)
+- API reference for [`NoiseLearner`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/noise-learner) and [`NoiseLearnerOptions``](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-noise-learner-options)
+- [Related link to NLV3 which has samplomatic support 
+
+### Pauli Twirling
+
+Pauli twirling, also known as randomized compiling, is an error suppression technique used to convert the effects of unknown types of noise into one which can be characterized (and thus mitigated). 
+
+*Relevant docs links:*
+
+- [Explanation and usage of Pauli Twirling in primitive options](https://quantum.cloud.ibm.com/docs/en/guides/error-mitigation-and-suppression-techniques#pauli-twirling)
+- [Related link to using Pauli Twirling with Samplomatic]()
+- [Error mitigation compatibility in primitive options](https://quantum.cloud.ibm.com/docs/en/guides/runtime-options-overview#feature-compatibility)
+
+### Matrix-Free Measurement Mitigation
+
+This Qiskit addon is used to reduce measurement error by finding corrected measurement probabilities. This is primarily useful for problems which can benefit from workloads which estimate the expectation value of observables and also works in the context of dynamic circuits.
+
+*Relevant docs links:*
+
+- [M3 addon documentation](https://qiskit.github.io/qiskit-addon-mthree/)
+- [Guide on the basic usage of M3](https://qiskit.github.io/qiskit-addon-mthree/basic.html)
+- [Tutorial on using M3 with mid-circuit measurement](https://qiskit.github.io/qiskit-addon-mthree/tutorials/04_dynamic_bv.html)
+
+### Probabilistic Error Cancellation (PEC)
+
+This error mitigation technique returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It reproduces the  output of the ideal circuit by executing different noisy circuit instances drawn from a random ensemble defined by the linear combination. The Qiskit Runtime Estimator has built-in support for PEC, which you can enable through the Estimator option.
+
+*Relevant docs links:*
+
+- [Explanation of PEC](https://quantum.cloud.ibm.com/docs/en/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec)
+- [API Reference for PEC options](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-pec-options)
+
+### Zero Noise Extrapolation (ZNE)
+
+This error mitigation technique first computes the expectation value at different noise levels, then estimates the ideal result by extrapolating the noisy expectation value results to the zero-noise limit. Since this can be done in multiple ways, there are a number of noise amplification and extrapolation techniques available. In working through these challenges, you may want to experiment with different approaches to both noise amplification and extrapolation.
+
+*Relevant docs links:*
+
+- [Qiskit Runtime primitive options for ZNE](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-zne-options)
+- [Introduction to ZNE](https://quantum.cloud.ibm.com/docs/en/guides/error-mitigation-and-suppression-techniques#zero-noise-extrapolation-zne)
+- [Error mitigation feature compatibility](https://quantum.cloud.ibm.com/docs/en/guides/runtime-options-overview#feature-compatibility)
+- [ArXiV white paper on best practices for digital ZNE](https://arxiv.org/abs/2307.05203)
+
+### Gate Folding Based ZNE
+
+Gate folding is a noise amplification process which replaces two-qubit gates with equivalent sequences of two-qubit gates and their inverses. This approach is straightforward and simple to utilized but can be imperfect.
+
+*Relevant docs links:*
+
+- [Qiskit Runtime primitive options for ZNE](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-zne-options)
+- [Introduction to ZNE](https://quantum.cloud.ibm.com/docs/en/guides/error-mitigation-and-suppression-techniques#zero-noise-extrapolation-zne)
+
+### Probabilistic Error Amplification
+
+PEA is a more sophisticated means of amplifying errors for ZNE and involves running preliminary experiments to learn a twirled noise model of the circuit and then uses this model to perform a more accurate error amplification. 
+
+*Relevant docs links:*
+
+- [API reference for `LayerNoiseLearningOptions`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-layer-noise-learning-options)
+- [API reference for `NoiseLearner`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/noise-learner-noise-learner)
+
+### Twirled Readout Error Extinction (TREX)
+
+This error mitigation technique is used to mitigate the effects of measurement errors by using twirled measurements and can be used alongside many other techniques such as ZNE and PEC that mitigates gate errors.
+
+*Relevant docs links:*
+
+- [Explanation of TREX](https://quantum.cloud.ibm.com/docs/en/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex)
+- [Error mitigation feature compatibility](https://quantum.cloud.ibm.com/docs/en/guides/runtime-options-overview#feature-compatibility)
+- [API reference for measurement noise learning options](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-measure-noise-learning-options)
+
+### Propagated Noise Absorption
+
+This new Qiskit addon uses Pauli propagation to characterize Pauli noise affecting different layers of a circuit. It accomplishes this by using a learned noise model and propagating its inverse into the target observable to measure.
+
+*Relevant docs links:*
+
+- [PNA documentation page](https://qiskit.github.io/qiskit-addon-pna/)
+- [qiskit-addon-pna Github repo](https://github.com/Qiskit/qiskit-addon-pna)
+
+### Shaded Light Cones
+
+Shaded lightcones (SLC) uses pauli propagation to reduce the number of error terms accounted for in a noise model according to the specifics of the target observable. This new Qiskit addon is most useful for reducing the sampling overhead for running PEC-based workloads.
+
+*Relevant docs links:*
+
+- [SLC documentation page](https://qiskit.github.io/qiskit-addon-slc/)
+- [qiskit-addon-slc Github repo](https://github.ibm.com/ibm-q-research/qiskit-addon-slc)
+
+
+
+## Tools for Post Processing
+
+### Sample based Quantum Diagonalization
+
+This Qiskit addon allows you to implement a post-processing technique to measure the ground state energies of a quantum system. It processes samples obtained from a given circuit to project and diagonalize a target Hamiltonian in a subspace spanned by them, essentially “refining” the results obtained from a workload. This is primarily useful when building workloads which seek to obtain the eigenvalues and eigenvectors of quantum systems (such as chemical or lattice models).
+
+*Relevant docs links:*
+
+- [Overview of SQD](https://quantum.cloud.ibm.com/docs/en/guides/qiskit-addons-sqd)
+- [Getting started with SQD](https://quantum.cloud.ibm.com/docs/en/guides/qiskit-addons-sqd-get-started)
+- [Tutorial using SQD for a chemistry Hamiltonian](https://quantum.cloud.ibm.com/docs/en/tutorials/sample-based-quantum-diagonalization)
+- [Tutorial using SQD and KQD for a lattice model](https://quantum.cloud.ibm.com/docs/en/tutorials/sample-based-krylov-quantum-diagonalization)
+
+### Multi-Product Formulas
+
+The MPF Qiskit addon is primarily used to post-process workloads seeking to simulate the time evolution of a quantum system. The MPF tool will ingest data such as the number of Trotter steps to prepare and solve an associated system of linear equations, which can then be used to refine the expectation-value measurements of a time-evolved state.
+
+*Relevant docs links:*
+
+- [Overview of MPF](https://quantum.cloud.ibm.com/docs/en/guides/qiskit-addons-mpf)
+- [Getting started with MPF](https://quantum.cloud.ibm.com/docs/en/guides/qiskit-addons-mpf-get-started)
+- [Tutorial using MPF to reduce Trotter error](https://quantum.cloud.ibm.com/docs/en/tutorials/multi-product-formula)
+
+### Measurement Post-Selection
+
+The noise models produced by Noise Learner may not be accurate for Heron backends due to non-Markovian noise on these devices. Our internal study has shown this can be alleviated with measurement-based post-selection. This technique adds a series of rx gates followed by a measurement to the circuit, and in post-processing throws away the “bad” bitstrings. There are utility functions in Qiskit addons to help implementing this, and NoiseLearnerV3 also has built-in support. 
+
+*Relevant docs links:*
+
+- [API reference for post selection utilities](https://quantum.cloud.ibm.com/docs/en/api/qiskit-addon-utils/noise-management-post-selection)
+- [API reference for post selection transpiler passes](https://quantum.cloud.ibm.com/docs/en/api/qiskit-addon-utils/noise-management-post-selection-transpiler-passes)
+- [Link to NoiseLearnerV3 API ref]
+
+## Qiskit Functions (Pre-built workflows to speed up applications research)
+
+### Algorithmiq Tensor-Network Error Mitigation Function
+
+Algorithmiq’s Tensor-network Error Mitigation (TEM) method is a hybrid quantum-classical algorithm designed for automating and performing noise mitigation. It accomplishes this by constructing a tensor network representing an approximate inverse of the noise affecting a circuit to obtain unbiased estimates of an observable. TEM is a novel error mitigation method based on post-processing with tensor networks, and it provides unbiased error mitigation with the lowest possible shot overhead on the quantum hardware, minimizing the runtime and hence the costs of experiments. It requires exponentially less shots than probabilistic error cancellation (PEC) and significantly less shots than zero noise extrapolation (ZNE).
+
+
+*Relevant docs links:*
+
+- [Overview of TEM function](https://quantum.cloud.ibm.com/docs/en/guides/algorithmiq-tem)
+
+### Q-CTRL Performance Management Function
+
+This Qiskit function uses AI-powered error suppression and mitigation techniques and is agnostic to the type of workload being executed.
+
+Relevant docs links:
+
+- [Overview of Q-CTRL Performance Management](https://quantum.cloud.ibm.com/docs/en/guides/q-ctrl-performance-management)
+- [Tutorial using Performance Management for TFIM](https://quantum.cloud.ibm.com/docs/en/tutorials/transverse-field-ising-model)
+- [Tutorial using Performance Management for QPE](https://quantum.cloud.ibm.com/docs/en/tutorials/quantum-phase-estimation-qctrl)
+
+### QEDMA Qiskit Function QESEM
+
+The QESEM Qiskit Functioon by QEDMA uses a suite of proprietary error mitigation techniques to improve the results of your workload. These techniques include gate optimization, noise-aware transpilation, error suppression, and unbiased error mitigation.
+
+
+*Relevant docs links:*
+
+- [Overview of QESEM Function](https://quantum.cloud.ibm.com/docs/en/guides/kipu-optimization)
+- [Tutorial for QESEM coming soon...]
+
+### Iskay Quantum Optimizer
+
+This Qiskit Function by Kipu Quantum solves unconstrained binary optimization problems with QUBO (Quadratic Unconstrained Binary Optimization) formulation and higher-order (HUBO) optimization problems.
+
+*Relevant docs links:*
+
+- [Overview of Iskay Quantum Function](https://quantum.cloud.ibm.com/docs/en/guides/kipu-optimization)
+- [Tutorial for Iskay coming soon...]
+
+### Q-CTRL Optimization Solver
+
+This Qiskit Function by Q-CTRL is designed to solve utility-scale optimization problems. It takes in a high-level problem definition, and executes an entire workflow to optimize the problem, without manual configuration. 
+
+
+*Relevant docs links:*
+
+- [Overview of Optimization Solver](https://quantum.cloud.ibm.com/docs/en/guides/q-ctrl-optimization-solver)
+- [Spin-glass tutorial for Optimization Solver](https://quantum.cloud.ibm.com/docs/en/tutorials/solve-higher-order-binary-optimization-problems-with-q-ctrls-optimization-solver)

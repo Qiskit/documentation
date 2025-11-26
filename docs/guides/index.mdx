@@ -33,20 +33,55 @@ Find how-to guides, specific use-case tutorials, and API references for your qua
 
 ## Tools by task
 
-### Map circuits
+### Tools for mapping
 
-| Tool | Description | Links |
-| --- | --- | --- |
-| AQC-Tensor | A Qiskit addon for building time evolution circuits | <ul><li>&#x2022; [Overview page](/docs/guides/qiskit-addons-aqc)</li><li>&#x2022; [Get started with AQC-Tensor](/docs/guides/qiskit-addons-aqc-get-started)</li><li>&#x2022; [Tutorial](/docs/tutorials/approximate-quantum-compilation-for-time-evolution)</li></ul>|
-| Qiskit Circuit library | The standard library of gates and circuit instructions | <ul>&#x2022; [Overview](/docs/guides/circuit-library)<li></li><li>&#x2022; [API reference](/docs/api/qiskit/circuit_library)</li><li>&#x2022; [Fractional gates](/docs/guides/fractional-gates)</li><li>&#x2022; [Synthesize unitary operators](/docs/guides/synthesize-unitary-operators)</li></ul> |
-| Optimization mapper | A Qiskit addon for mapping optimization problems to circuits and operators | <ul><li>&#x2022; [Documentation](https://qiskit.github.io/qiskit-addon-opt-mapper/) </li><li> &#x2022; [GitHub repository](https://github.com/qiskit/qiskit-addon-opt-mapper)</li></ul> |
-| Quantum optimization best practices | A collection of guidelines to run quantum optimization workloads | <ul><li>&#x2022; [GitHub repository](https://github.com/qiskit-community/qopt-best-practices) </li><li> &#x2022; [QAOA training pipeline](https://github.com/qiskit-community/qaoa_training_pipeline)</li></ul> |
+- [*AQC-Tensor*](/docs/guides/tool-index#aqc-tensor) - A Qiskit addon for building time evolution circuits
+- [*Qiskit Circuit Library*](/docs/guides/tool-index#qiskit-circuit-library) - The Qiskit SDK’s standard library of gates and circuit instructions
+- [*Optimization Mapper*](/docs/guides/tool-index#optimization-mapper) - A Qiskit addon for mapping optimization problems to circuits and operators
+- [*Quantum Optimization Best Practices*](/docs/guides/tool-index#quantum-optimization-best-practices) - A collection of guidelines to run quantum optimization workloads
 
-### Prepare and optimize quantum workloads
+### [2. Tools for Preparing & Optimizing Quantum Workloads](/docs/guides/tool-index#tools-for-preparing--optimizing-quantum-workloads)
 
-| Tool | Description | Links |
-| --- | --- | --- |
-| Transpiler | <ul><li> &#x2022; [Introduction to transpilation](/docs/guides/transpile) </li><li> &#x2022; [Write custom passes](/docs/guides/custom-transpiler-pass) </li><li> &#x2022; [Use transpiler plugins](/docs/guides/transpiler-plugins) </li><li> &#x2022; [Configure preset pass managers](/docs/guides/defaults-and-configuration-options) </li><li> &#x2022; [Qubit selection tutorial](/docs/tutorials/real-time-benchmarking-for-qubit-selection) </li></ul> | Translate circuit instructions to execute on quantum hardware, with options for efficient layout and routing |
+- [*Transpiler*](/docs/guides/tool-index#transpiler) - Translate circuit instructions to execute on quantum hardware, with options for efficient layout and routing
+- [*Dynamic Circuits*](/docs/guides/tool-index#dynamic-circuits) - Perform certain tasks, such as long range entanglement and state preparation, at constant depth
+- [*Dynamical Decoupling*](/docs/guides/tool-index#dynamical-decoupling) - Reduce decoherence errors on idle qubits
+- [*Operator Backpropagation*](/docs/guides/tool-index#operator-backpropagation) - Reduce circuit depth by trimming operations at the cost of increased measurements
+
+### [3. Tools for Debugging & Validating Workloads](/docs/guides/tool-index#tools-for-debugging-and-validating-workloads)
+
+- [*Noisy Estimator Analyzer Tool*](/docs/guides/tool-index#noisy-estimator-analyzer-tool) - Gauge the expected performance of quantum workloads
+- [*Local Testing Mode*](/docs/guides/tool-index#local-testing-mode) - Simulate smaller or Cliffordized circuits to assess performance
+
+
+### [4. Tools for Executing Workloads](/docs/guides/tool-index#4-tools-for-executing-workloads)
+- [*Estimator & Sampler Primitives*](/docs/guides/tool-index#estimator--sampler-primitives) - Handles hardware execution and returns samples or expectation values, with some built-in error suppression/mitigation support
+- [*Execution Modes*](/docs/guides/tool-index#execution-modes) - Efficiently schedule workload execution
+- [*Executor Primitive*](/docs/guides/tool-index#executor-primitive) - Generate and execute circuit variants based on input samplex directive
+
+### [5. Tools for Error Mitigation](/docs/guides/tool-index#tools-for-error-mitigation)
+
+- [*Samplomatic*](/docs/guides/tool-index#samplomatic) - Fine tune error mitigation in specific circuit regions
+- [*Noise Learner*](/docs/guides/tool-index#noise-learner) - Learn and return the sparse Pauli-Lindblad noise model, which can be used for error mitigation methods like PEA, PEC, and PNA
+- [*Pauli Twirling*](/docs/guides/tool-index#pauli-twirling) - Covert coherent noise to better characterized stochastic noise
+- [*Matrix-Free Measurement Mitigation*](/docs/guides/tool-index#matrix-free-measurement-mitigation) - Reduce measurement errors
+- [*Probabilistic Error Cancellation*](/docs/guides/tool-index#probabilistic-error-cancellation) - Mitigate errors by statistically canceling noise, which generally returns an unbiased expectation value at the expense of greater overhead
+- [*Zero Noise Extrapolation*](/docs/guides/tool-index#zero-noise-extrapolation-zne) - Mitigate errors by amplifying noise and extrapolating corrected expectation values
+- [*Twirled Readout Error Extinction*](/docs/guides/tool-index#twirled-readout-error-extinction-trex) - Reduce measurement error via twirling
+- [*Propagated Noise Absorption*](/docs/guides/tool-index#propagated-noise-absorption) - Characterize and propagate the effects of noise into an observable
+- [*Shaded Light Cones*](/docs/guides/tool-index#shaded-light-cones) - Reduce the overhead of PEC error mitigation
+
+### [6. Tools for Post-Processing](/docs/guides/tool-index#tools-for-post-processing)
+
+- [*Sample Based Quantum Diagonalization*](/docs/guides/tool-index#sample-based-quantum-diagonalization) - Post-process samples to refine results in simulation workloads
+- [*Multi-Product Formulas*](/docs/guides/tool-index#multi-product-formulas) - Refine expectation values in workloads simulating time evolution
+- [*Measurement Post-Selection*](/docs/guides/tool-index#measurement-post-selection) - Refine samples by post-selecting known “bad” bitstrings
+
+
+### [7. Qiskit Functions](/docs/guides/tool-index#qiskit-functions-pre-built-workflows-to-speed-up-applications-research)
+- [*Algorithmiq Tensor-Network Error Mitigation Function*](/docs/guides/tool-index#algorithmiq-tensor-network-error-mitigation-function)
+- [*Q-CTRL Performance Management Function*](/docs/guides/tool-index#q-ctrl-performance-management-function)
+- [*QEDMA Qiskit Function QESEM*](/docs/guides/tool-index#qedma-qiskit-function-qesem)
+- [*Q-CTRL Optimization Solver*](/docs/guides/tool-index#q-ctrl-optimization-solver)
 
 
 ## Support
