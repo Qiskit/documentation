@@ -11,7 +11,6 @@ test-strategies.extended = {}
 test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
     "docs/guides/quick-start.ipynb",
-    "docs/guides/build-noise-models.ipynb",
     "docs/guides/circuit-library.ipynb",
     "docs/guides/classical-feedforward-and-control-flow.ipynb",
     "docs/guides/common-parameters.ipynb",
@@ -20,10 +19,7 @@ notebooks = [
     "docs/guides/custom-backend.ipynb",
     "docs/guides/custom-transpiler-pass.ipynb",
     "docs/guides/defaults-and-configuration-options.ipynb",
-    "docs/guides/dynamical-decoupling-pass-manager.ipynb",
     "docs/guides/error-mitigation-and-suppression-techniques.ipynb",
-    "docs/guides/get-qpu-information.ipynb",
-    "docs/guides/local-testing-mode.ipynb",
     "docs/guides/operator-class.ipynb",
     "docs/guides/operators-overview.ipynb",
     "docs/guides/plot-quantum-states.ipynb",
@@ -36,8 +32,6 @@ notebooks = [
     "docs/guides/simulate-stabilizer-circuits.ipynb",
     "docs/guides/simulate-with-qiskit-aer.ipynb",
     "docs/guides/specify-observables-pauli.ipynb",
-    "docs/guides/transpile-with-pass-managers.ipynb",
-    "docs/guides/transpiler-plugins.ipynb",
     "docs/guides/transpiler-stages.ipynb",
     "docs/guides/visualize-circuits.ipynb",
     "docs/guides/qiskit-addons-cutting-wires.ipynb",
@@ -133,6 +127,14 @@ notebooks = [
 # Don't ever test the following notebooks
 [groups.exclude]
 notebooks = [
+    # Need to replace `ibm_brisbane` with another device
+    "docs/guides/build-noise-models.ipynb",
+    "docs/guides/dynamical-decoupling-pass-manager.ipynb",
+    "docs/guides/get-qpu-information.ipynb",
+    "docs/guides/local-testing-mode.ipynb",
+    "docs/guides/transpile-with-pass-managers.ipynb",
+    "docs/guides/transpiler-plugins.ipynb",
+
     # This notebook contains undefined variables so can't run at all.
     "docs/guides/function-template-hamiltonian-simulation.ipynb",
     "docs/guides/function-template-chemistry-workflow.ipynb",
@@ -179,6 +181,7 @@ notebooks = [
     "docs/tutorials/spin-chain-vqe.ipynb",
     "docs/tutorials/quantum-approximate-optimization-algorithm.ipynb",
     "docs/tutorials/quantum-kernel-training.ipynb",
+    "docs/tutorials/projected-quantum-kernels.ipynb",
     "docs/tutorials/transpilation-optimizations-with-sabre.ipynb",
     "docs/tutorials/qunova-hivqe.ipynb",
     "docs/tutorials/real-time-benchmarking-for-qubit-selection.ipynb",
@@ -274,6 +277,7 @@ notebooks = [
     "learning/courses/general-formulation-of-quantum-information/purifications-and-fidelity/introduction.ipynb",
     "learning/courses/general-formulation-of-quantum-information/purifications-and-fidelity/purifications.ipynb",
     "learning/courses/general-formulation-of-quantum-information/purifications-and-fidelity/fidelity.ipynb",
+    "learning/courses/general-formulation-of-quantum-information/exam.ipynb",
     "learning/courses/quantum-business-foundations/start-your-quantum-journey.ipynb",
     "learning/courses/quantum-business-foundations/introduction-to-quantum-computing.ipynb",
     "learning/courses/quantum-business-foundations/quantum-technology.ipynb",
@@ -286,6 +290,7 @@ notebooks = [
     "learning/modules/computer-science/grovers.ipynb",
     "learning/modules/computer-science/quantum-key-distribution.ipynb",
     "learning/modules/computer-science/quantum-teleportation.ipynb",
+    "learning/modules/computer-science/shors-algorithm.ipynb",
     "learning/modules/computer-science/qft.ipynb",
     "learning/modules/quantum-mechanics/superposition-with-qiskit.ipynb",
     "learning/modules/quantum-mechanics/stern-gerlach-measurements-with-qiskit.ipynb",

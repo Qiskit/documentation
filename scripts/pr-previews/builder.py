@@ -120,7 +120,6 @@ def _copy_local_content(root_dir: Path) -> None:
         "docs/guides",
         "docs/tutorials",
         "public/docs/images/tutorials",
-        "docs/security",
         "learning",
         "public/docs/images/guides",
         "public/docs/images/qiskit-patterns",

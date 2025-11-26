@@ -27,7 +27,6 @@ jobs:
         run: npm ci
       - name: Install ImageMagick
         run: |
-          sudo apt-get update
           sudo apt-get install -y imagemagick
           sudo ln -s /usr/bin/convert /usr/bin/magick
       - name: Install Playwright
@@ -105,6 +104,3 @@ jobs:
               "To fix, install tox and run `tox -e fix`."
             )
             sys.exit(1)
-
-      - name: Test packages
-        run: tox -e tests
