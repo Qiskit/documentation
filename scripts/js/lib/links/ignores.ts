@@ -119,6 +119,7 @@ const FETCH_RETURNS_405 = [
   "https://forms.cloud.microsoft/e/3Wi9cbjQPK",
   "https://forms.office.com/r/zN3hvMTqJ1",
   "https://pmc.ncbi.nlm.nih.gov/articles/PMC4878865/",
+  "https://forms.cloud.microsoft/e/3Wi9cbjQPK",
 ];
 
 // Fetching these links throws an error, but they work in-browser. Not sure why.
