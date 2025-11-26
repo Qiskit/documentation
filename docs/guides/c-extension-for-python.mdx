@@ -15,7 +15,7 @@ This requires additional steps to the standalone C usage; for more details, see 
 </Admonition>
 
 <Admonition type="note">
-  These instructions have only been tested on UNIX-like systems. Windows instructions are in progress._
+  These instructions have only been tested on UNIX-like systems. Windows instructions are in progress.
 </Admonition>
 
 ## Requirements
@@ -176,44 +176,6 @@ static struct PyModuleDef cextension = {
 };
 
 PyMODINIT_FUNC PyInit_cextension(void) { return PyModule_Create(&cextension); }
-
-int main(int argc, char *argv[]) {
-    PyStatus status;
-    PyConfig config;
-    PyConfig_InitPythonConfig(&config);
-
-    // Add a built-in module, before Py_Initialize.
-    if (PyImport_AppendInittab("cextension", PyInit_cextension) == -1) {
-        fprintf(stderr, "Error: could not extend in-built modules table\n");
-        exit(1);
-    }
-
-    // Pass argv[0] to the Python interpreter.
-    status = PyConfig_SetBytesString(&config, &config.program_name, argv[0]);
-    if (PyStatus_Exception(status)) {
-        goto exception;
-    }
-
-    // Initialize the Python interpreter.
-    status = Py_InitializeFromConfig(&config);
-    if (PyStatus_Exception(status)) {
-        goto exception;
-    }
-    PyConfig_Clear(&config);
-
-    // Import the module.
-    PyObject *pmodule = PyImport_ImportModule("cextension");
-    if (!pmodule) {
-        PyErr_Print();
-        fprintf(stderr, "Error: could not import module 'cextension'\n");
-    }
-
-    return 0;
-
-exception:
-    PyConfig_Clear(&config);
-    Py_ExitStatusException(status);
-}
 ```
 To compile a shared library, link both the Python and Qiskit libraries, as described in
 the [Build](#build) section above. The Python script then does not need `ctypes`

@@ -37,7 +37,7 @@ async function main() {
   const links = await getLinks(filePaths);
 
   // We use a for loop to reduce the risk of rate limiting.
-  let allGood = true;
+  let failedLinks = [];
   let numLinksChecked = 1;
   for (const link of links) {
     const result = await link.check();
@@ -50,12 +50,24 @@ async function main() {
 
     if (result === undefined) continue;
     console.error(result);
-    allGood = false;
+    failedLinks.push(link);
+  }
+
+  // Retry failed links once to reduce noise from flakes.
+  let allGood = true;
+  if (failedLinks.length != 0) {
+    for (const link of failedLinks) {
+      console.log(`Retrying '${link.value}'`);
+      const result = await link.check();
+      if (result === undefined) continue;
+      console.error(result);
+      allGood = false;
+    }
   }
 
   if (!allGood) {
     console.error(
-      `\n\n💔 Some external links appear broken, although it's possible they are flakes. Checked ${links.length} links.`,
+      `\n\n💔 Some external links appear broken. Although we've checked them twice, it's possible they are still flakes. Checked ${links.length} links.`,
     );
     process.exit(1);
   }
