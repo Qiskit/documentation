@@ -10,10 +10,59 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
+from typing import TypedDict
+
+# Add your notebook to this list if it needs latex or graphviz to run
+EXTRA_DEPS_NOTEBOOKS = """\
+docs/guides/visualize-circuits.ipynb
+docs/guides/custom-backend.ipynb
+docs/guides/transpiler-stages.ipynb
+docs/guides/represent-quantum-computers.ipynb
+docs/guides/common-parameters.ipynb
+docs/guides/DAG-representation.ipynb
+""".strip().split(
+    "\n"
+)
+
+
+class Config(TypedDict):
+    SHOULD_RUN: str
+    FILES_TO_RUN: str
+    NEEDS_EXTRA_DEPS: str
+
+
+def nb_tester_config(changed_files: list[str]) -> Config:
+    contains_script_file = any(
+        path == ".github/workflows/notebook-test.yml"
+        or path.startswith("scripts/nb-tester")
+        for path in changed_files
+    )
+    if contains_script_file:
+        return {"SHOULD_RUN": "true", "FILES_TO_RUN": "", "NEEDS_EXTRA_DEPS": "true"}
+
+    def is_content_notebook(path: str) -> bool:
+        return path.endswith(".ipynb") and (
+            path.startswith("learning/")
+            or (path.startswith("docs/") and not path.startswith("docs/api/"))
+        )
+
+    content_notebooks = list(filter(is_content_notebook, changed_files))
+    if content_notebooks == []:
+        return {"SHOULD_RUN": "false", "FILES_TO_RUN": "", "NEEDS_EXTRA_DEPS": "false"}
+
+    return {
+        "SHOULD_RUN": "true",
+        "FILES_TO_RUN": ",".join(content_notebooks),
+        "NEEDS_EXTRA_DEPS": str(
+            any(path in EXTRA_DEPS_NOTEBOOKS for path in content_notebooks)
+        ).lower(),
+    }
+
 
 # =====
 # TESTS
 # =====
+
 
 def test_should_not_run_changed_mdx_config():
     files = ["docs/guides/thing.mdx"]
