@@ -30,24 +30,13 @@ CI.
 
 import os
 import subprocess
-from pathlib import Path
-
-CONTENT_DIRECTORIES = ["docs", "learning"]
-
-all_changed_files = Path(".github/outputs/all_changed_files.txt").read_text().split("\n")
-
-def is_content_dir(path: str) -> bool:
-    return any(path.startswith(f"{dirname}/") for dirname in CONTENT_DIRECTORIES)
-
-changed_notebooks = [
-    path for path in all_changed_files
-    if is_content_dir(path)
-]
-config_changed = any(path.startswith("scripts/") for path in all_changed_files)
+import sys
 
 args = ["tox", "--", "--write"]
-if changed_notebooks and not config_changed:
-  args.extend(changed_notebooks)
+if len(sys.argv) > 1:
+    extra_args = sys.argv[1].split(",")
+    if extra_args != [""]:
+        args.extend(extra_args)
 
 is_fork = os.environ["PR_REPOSITORY"] != os.environ["GITHUB_REPOSITORY"]
 

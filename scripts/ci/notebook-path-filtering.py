@@ -10,7 +10,9 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
+import os
 from typing import TypedDict
+from pathlib import Path
 
 # Add your notebook to this list if it needs latex or graphviz to run
 EXTRA_DEPS_NOTEBOOKS = """\
@@ -57,6 +59,18 @@ def nb_tester_config(changed_files: list[str]) -> Config:
             any(path in EXTRA_DEPS_NOTEBOOKS for path in content_notebooks)
         ).lower(),
     }
+
+
+if __name__ == "__main__":
+    all_changed_files = (
+        Path(".github/outputs/all_changed_files.txt").read_text().split("\n")
+    )
+    config = nb_tester_config(all_changed_files)
+
+    github_output = os.getenv("GITHUB_OUTPUT")
+    with open(github_output, "a") as output:
+        for key, value in config.items():
+            output.write(f"{key}={value}")
 
 
 # =====
