@@ -20,7 +20,7 @@ jobs:
     if: github.repository_owner == 'Qiskit'
     runs-on: ubuntu-latest
     outputs:
-      SHOULD_RUN_NOTEBOOK_TESTER: ${{ steps.filter.SHOULD_RUN_NOTEBOOK_TESTER }}
+      SHOULD_RUN_NOTEBOOK_TESTER: ${{ steps.filter.outputs.SHOULD_RUN_NOTEBOOK_TESTER }}
     steps:
       - uses: actions/checkout@v4
       - name: Check paths
