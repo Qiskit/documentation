@@ -13,17 +13,31 @@
 name: Test notebooks
 on:
   pull_request:
-    paths:
-      - ".github/workflows/notebook-test.yml"
-      - "docs/**/*.ipynb"
-      - "learning/**/*.ipynb"
-      - "!docs/api/**/*"
-      - "scripts/nb-tester/**/*"
   workflow_dispatch:
 jobs:
+  check_paths:
+    name: Decide whether to run
+    if: github.repository_owner == 'Qiskit'
+    runs-on: ubuntu-latest
+    outputs:
+      SHOULD_RUN_NOTEBOOK_TESTER: ${{ steps.filter.outputs.SHOULD_RUN_NOTEBOOK_TESTER }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/ci/pr-path-filter.py
+      - name: Check paths
+        id: filter
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          CHANGED_FILES=$(gh pr diff ${{ github.event.number }} --name-only)
+          echo $CHANGED_FILES | python scripts/ci/pr-path-filter.py
+          cat $GITHUB_OUTPUT
   execute:
     name: Execute notebooks
-    if: github.repository_owner == 'Qiskit'
+    needs: [check_paths]
+    if: needs.check_paths.outputs.SHOULD_RUN_NOTEBOOK_TESTER == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
