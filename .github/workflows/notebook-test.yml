@@ -28,7 +28,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          CHANGED_FILES=$(gh pr diff ${{ github.event.number }} --name-only)
+          CHANGED_FILES=$(gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only)
           echo $CHANGED_FILES | python scripts/ci/pr-path-filter.py
   execute:
     name: Execute notebooks
