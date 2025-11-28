@@ -819,3 +819,43 @@ The circuit C API currently only supports creating circuits that contain operati
   An exit code.
 </Function>
 
+### qk\_circuit\_to\_dag
+
+<Function id="qk_circuit_to_dag" signature="QkDag *qk_circuit_to_dag(const QkCircuit *circuit)">
+  Convert a given circuit to a DAG.
+
+  The new DAG is copied from the circuit; the original `circuit` reference is still owned by the caller and still required to be freed with `qk_circuit_free`. You must free the returned DAG with `qk_dag_free` when done with it.
+
+  <span id="group__QkCircuit_1autotoc_md49" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(0, 0);
+  QkQuantumRegister *qr = qk_quantum_register_new(3, "qr");
+  qk_circuit_add_quantum_register(qc, qr);
+  qk_quantum_register_free(qr);
+
+  QkDag *dag = qk_circuit_to_dag(qc);
+
+  qk_dag_free(dag);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md50" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md50" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit from which to create the DAG.
+
+  **Returns**
+
+  A pointer to the new DAG.
+</Function>
+
