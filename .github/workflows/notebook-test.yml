@@ -28,7 +28,7 @@ jobs:
           echo $CHANGED_FILES | python scripts/ci/pr-path-filter.py
   execute:
     name: Execute notebooks
-    needs: [check_paths]
+    needs: [path_filter]
     if: github.repository_owner == 'Qiskit' && jobs.check_paths.outputs.SHOULD_RUN == 'true'
     runs-on: ubuntu-latest
     steps:
