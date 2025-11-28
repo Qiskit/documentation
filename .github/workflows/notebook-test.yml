@@ -22,13 +22,14 @@ jobs:
     outputs:
       SHOULD_RUN_NOTEBOOK_TESTER: ${{ steps.filter.SHOULD_RUN_NOTEBOOK_TESTER }}
     steps:
+      - uses: actions/checkout@v4
       - name: Check paths
         id: filter
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          CHANGED_FILES=$(gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only)
+          CHANGED_FILES=$(gh pr diff ${{ github.event.number }} --name-only)
           echo $CHANGED_FILES | python scripts/ci/pr-path-filter.py
   execute:
     name: Execute notebooks
