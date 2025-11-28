@@ -25,6 +25,8 @@ jobs:
       - name: Check paths
         id: filter
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           CHANGED_FILES=$(gh pr diff ${{ github.event.number }} --name-only)
           echo $CHANGED_FILES | python scripts/ci/pr-path-filter.py
