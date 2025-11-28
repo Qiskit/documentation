@@ -15,7 +15,7 @@ on:
   pull_request:
   workflow_dispatch:
 jobs:
-  path_filter:
+  check_paths:
     name: Check if job should run
     if: github.repository_owner == 'Qiskit'
     runs-on: ubuntu-latest
@@ -23,12 +23,13 @@ jobs:
       SHOULD_RUN_NOTEBOOK_TESTER: ${{ steps.filter.SHOULD_RUN_NOTEBOOK_TESTER }}
     steps:
       - name: Check paths
+        id: filter
         run: |
           CHANGED_FILES=$(gh pr diff ${{ github.event.number }} --name-only)
           echo $CHANGED_FILES | python scripts/ci/pr-path-filter.py
   execute:
     name: Execute notebooks
-    needs: [path_filter]
+    needs: [check_paths]
     if: github.repository_owner == 'Qiskit' && jobs.check_paths.outputs.SHOULD_RUN == 'true'
     runs-on: ubuntu-latest
     steps:
