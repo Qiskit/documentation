@@ -12,7 +12,8 @@
 
 import { expect, test } from "@playwright/test";
 
-import { parseAnchors, parseLinks } from "./extractLinks.js";
+import { parseAnchors } from "./extractLinks.js";
+import { parseLinks } from "../../../rust/md-extract-links/index.js";
 
 test("parseAnchors()", () => {
   const result = parseAnchors(`
@@ -91,7 +92,7 @@ test("parseLinks()", async () => {
 
     <a href="./explicit-anchor">Explicit anchor</a>
     `;
-  const [internalLinks, externalLinks] = await parseLinks(markdown);
+  const [internalLinks, externalLinks] = parseLinks(markdown).map(arr => new Set(arr));
   expect(internalLinks).toEqual(
     new Set(["./relative", "/images/my_image.png", "./explicit-anchor"]),
   );

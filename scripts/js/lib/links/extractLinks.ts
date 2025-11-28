@@ -12,14 +12,7 @@
 
 import path from "node:path";
 
-import { visit } from "unist-util-visit";
-import { unified } from "unified";
-import remarkStringify from "remark-stringify";
-import remarkMdx, { Root } from "remark-mdx";
-import remarkGfm from "remark-gfm";
-import remarkParse from "remark-parse";
-import frontmatter from "remark-frontmatter";
-import remarkMath from "remark-math";
+import { parseLinks } from "../../../rust/md-extract-links/index.js";
 
 import { ObjectsInv } from "../api/objectsInv.js";
 import { readMarkdown } from "../markdownReader.js";
@@ -60,45 +53,6 @@ export function parseAnchors(markdown: string): Set<string> {
   return anchors;
 }
 
-export async function parseLinks(
-  markdown: string,
-): Promise<[Set<string>, Set<string>]> {
-  const internalLinks = new Set<string>();
-  const externalLinks = new Set<string>();
-
-  const addLink = (link: string): void => {
-    // We cannot check that email addresses are valid.
-    if (link.startsWith("mailto:")) return;
-
-    if (link.startsWith("http")) {
-      externalLinks.add(link);
-    } else {
-      internalLinks.add(link);
-    }
-  };
-
-  const tree = unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(remarkMath)
-    .use(remarkMdx)
-    .use(frontmatter)
-    .parse(markdown);
-
-  visit(tree, (node: any) => {
-    if (node.type === "link" || node.type === "image") {
-      addLink(node.url);
-    } else if (node.type === "mdxJsxTextElement" && node.name === "a") {
-      const href = node.attributes.find((attr: any) => attr.name == "href");
-      if (href) {
-        addLink(href.value);
-      }
-    }
-  });
-
-  return [internalLinks, externalLinks];
-}
-
 async function parseObjectsInv(filePath: string): Promise<Set<string>> {
   const objinv = await ObjectsInv.fromFile(
     removeSuffix(filePath, "objects.inv"),
@@ -127,11 +81,14 @@ export async function parseFile(filePath: string): Promise<ParsedFile> {
       internalLinks: new Set(),
       externalLinks: new Set(),
     };
-
   const markdown = await readMarkdown(filePath);
   try {
-    const [internalLinks, externalLinks] = await parseLinks(markdown);
-    return { anchors: parseAnchors(markdown), internalLinks, externalLinks };
+    const [internalLinks, externalLinks] = parseLinks(markdown).map(arr => new Set(arr));
+    return {
+      anchors: parseAnchors(markdown),
+      internalLinks,
+      externalLinks,
+    };
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : `${err}`;
     throw new Error(`Problem parsing '${filePath}':\n` + msg);
