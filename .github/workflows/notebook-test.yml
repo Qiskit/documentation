@@ -35,7 +35,7 @@ jobs:
   execute:
     name: Execute notebooks
     needs: [check_paths]
-    if: needs.check_paths.outputs.SHOULD_RUN_NOTEBOOK_TESTER == true
+    if: needs.check_paths.outputs.SHOULD_RUN_NOTEBOOK_TESTER == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
