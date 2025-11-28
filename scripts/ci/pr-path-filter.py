@@ -44,6 +44,7 @@ def filter_paths(changed_files: list[str]) -> Config:
 if __name__ == "__main__":
     all_changed_files = sys.stdin.read().strip()
     config = filter_paths(all_changed_files)
+    print(config)
 
     github_output = os.getenv("GITHUB_OUTPUT")
     with open(github_output, "a") as output:
