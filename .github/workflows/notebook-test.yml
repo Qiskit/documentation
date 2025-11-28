@@ -31,6 +31,7 @@ jobs:
         run: |
           CHANGED_FILES=$(gh pr diff ${{ github.event.number }} --name-only)
           echo $CHANGED_FILES | python scripts/ci/pr-path-filter.py
+          echo $GITHUB_OUTPUT
   execute:
     name: Execute notebooks
     needs: [check_paths]
