@@ -34,7 +34,7 @@ jobs:
   execute:
     name: Execute notebooks
     needs: [check_paths]
-    if: github.repository_owner == 'Qiskit' && needs.check_paths.outputs.SHOULD_RUN == 'true'
+    if: github.repository_owner == 'Qiskit' && needs.check_paths.outputs.SHOULD_RUN_NOTEBOOK_TESTER == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
