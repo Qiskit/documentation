@@ -23,6 +23,8 @@ jobs:
       SHOULD_RUN_NOTEBOOK_TESTER: ${{ steps.filter.outputs.SHOULD_RUN_NOTEBOOK_TESTER }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse_checkout: scripts/ci/pr-path-filter.py
       - name: Check paths
         id: filter
         shell: bash
