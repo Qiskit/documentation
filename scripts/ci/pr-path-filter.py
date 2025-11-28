@@ -41,9 +41,12 @@ def filter_paths(changed_files: list[str]) -> Config:
 
 
 if __name__ == "__main__":
-    all_changed_files = sys.stdin.read().strip().split(" ")
+    all_changed_files = [
+      path.strip() for path in sys.stdin.readlines()
+    ]
+    print(repr(all_changed_files))
     print(
-        "Changed files:\n * ",
+        "Changed files:\n *",
         "\n * ".join(all_changed_files)
     )
     config = filter_paths(all_changed_files)
