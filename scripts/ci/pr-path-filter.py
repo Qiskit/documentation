@@ -13,7 +13,6 @@
 import os
 import sys
 from typing import TypedDict
-from pathlib import Path
 
 
 class Config(TypedDict):
@@ -44,8 +43,8 @@ def filter_paths(changed_files: list[str]) -> Config:
 if __name__ == "__main__":
     all_changed_files = sys.stdin.read().strip().split(" ")
     print(
-        "Changed files:",
-        " * " + "\n * ".join(all_changed_files)
+        "Changed files:\n * ",
+        "\n * ".join(all_changed_files)
     )
     config = filter_paths(all_changed_files)
     print(config)
