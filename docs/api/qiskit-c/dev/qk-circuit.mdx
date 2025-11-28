@@ -567,7 +567,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   const uint32_t num_qubits = 1;
   QkComplex64 unitary[2*2] = {c0, c1,  // row 0
-                                    c1, c0}; // row 1
+                              c1, c0}; // row 1
 
   QkCircuit *circuit = qk_circuit_new(1, 0);  // 1 qubit circuit
   uint32_t qubit[1] = {0};  // qubit to apply the unitary on
@@ -583,8 +583,8 @@ The circuit C API currently only supports creating circuits that contain operati
   Behavior is undefined if any of the following is violated:
 
   *   `circuit` is a valid, non-null pointer to a `QkCircuit`
-  *   `matrix` is a pointer to a nested array of `QkComplex64` of dimension `2 ^ num_qubits x 2 ^ num_qubits`
-  *   `qubits` is a pointer to `num_qubits` readable element of type `uint32_t`
+  *   `matrix` is an aligned pointer to `4**num_qubits` initialized `QkComplex64` values
+  *   `qubits` is an aligned pointer to `num_qubits` initialized `uint32_t` values
 
   **Parameters**
 
@@ -593,6 +593,10 @@ The circuit C API currently only supports creating circuits that contain operati
   *   **qubits** – A pointer to array of qubit indices, of length `num_qubits`.
   *   **num\_qubits** – The number of qubits the unitary acts on.
   *   **check\_input** – When true, the function verifies that the matrix is unitary. If set to False the caller is responsible for ensuring the matrix is unitary, if the matrix is not unitary this is undefined behavior and will result in a corrupt circuit.
+
+  **Returns**
+
+  An exit code.
 </Function>
 
 ### qk\_circuit\_count\_ops
@@ -813,5 +817,45 @@ The circuit C API currently only supports creating circuits that contain operati
   **Returns**
 
   An exit code.
+</Function>
+
+### qk\_circuit\_to\_dag
+
+<Function id="qk_circuit_to_dag" signature="QkDag *qk_circuit_to_dag(const QkCircuit *circuit)">
+  Convert a given circuit to a DAG.
+
+  The new DAG is copied from the circuit; the original `circuit` reference is still owned by the caller and still required to be freed with `qk_circuit_free`. You must free the returned DAG with `qk_dag_free` when done with it.
+
+  <span id="group__QkCircuit_1autotoc_md49" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(0, 0);
+  QkQuantumRegister *qr = qk_quantum_register_new(3, "qr");
+  qk_circuit_add_quantum_register(qc, qr);
+  qk_quantum_register_free(qr);
+
+  QkDag *dag = qk_circuit_to_dag(qc);
+
+  qk_dag_free(dag);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md50" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md50" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit from which to create the DAG.
+
+  **Returns**
+
+  A pointer to the new DAG.
 </Function>
 

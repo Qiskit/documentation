@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.U1Gate
 
 # U1Gate
 
-<Class id="qiskit.circuit.library.U1Gate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L24-L172" signature="qiskit.circuit.library.U1Gate(theta, label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.U1Gate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L24-L170" signature="qiskit.circuit.library.U1Gate(theta, label=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Single-qubit rotation about the Z axis.
@@ -160,7 +160,7 @@ $$
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.U1Gate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L187-L244" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.U1Gate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L183-L240" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -213,23 +213,21 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.U1Gate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L115-L148" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
-    Return a (multi-)controlled-U1 gate.
+  <Function id="qiskit.circuit.library.U1Gate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L115-L146" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return a controlled version of the U1 gate.
+
+    For a single control qubit, the controlled gate is implemented as [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate"). For more than one control qubits, the controlled gate is implemented as `MCU1Gate`. In each case, the value of `annotated` is ignored.
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – number of control qubits.
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – An optional label for the gate \[Default: `None`]
-    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – indicates whether the controlled gate should be implemented as an annotated gate.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Number of controls to add. Defauls to `1`.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – Optional gate label. Defaults to `None`.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)") *| None*) – Ignored.
 
     **Returns**
 
-    controlled version of this gate.
-
-    **Return type**
-
-    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+    A controlled version of this gate.
   </Function>
 
   ### copy
@@ -252,7 +250,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.U1Gate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L150-L162" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.U1Gate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L148-L160" signature="inverse(annotated=False)">
     Return inverted U1 gate ($U1(\lambda)^{\dagger} = U1(-\lambda))$
 
     **Parameters**
@@ -381,7 +379,7 @@ $$
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.U1Gate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L246-L260" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.U1Gate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L242-L256" signature="validate_parameter(parameter)">
     Gate parameters should be int, float, or ParameterExpression
   </Function>
 </Class>
