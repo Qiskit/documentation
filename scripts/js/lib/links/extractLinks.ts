@@ -30,6 +30,8 @@ export type ParsedFile = {
   anchors: Set<string>;
   /** Internal links that this file has to other places. */
   internalLinks: Set<string>;
+  /** Absolute links to the IBM Quantum platform (we forbid these) */
+  platformLinks: Set<string>;
   /** External links that this file has to other places. */
   externalLinks: Set<string>;
 };
@@ -62,15 +64,20 @@ export function parseAnchors(markdown: string): Set<string> {
 
 export async function parseLinks(
   markdown: string,
-): Promise<[Set<string>, Set<string>]> {
+): Promise<[Set<string>, Set<string>, Set<string>]> {
   const internalLinks = new Set<string>();
+  const platformLinks = new Set<string>();
   const externalLinks = new Set<string>();
 
   const addLink = (link: string): void => {
+    // The order matters for these if statements
+
     // We cannot check that email addresses are valid.
     if (link.startsWith("mailto:")) return;
 
-    if (link.startsWith("http")) {
+    if (link.startsWith("https://quantum.cloud.ibm.com")) {
+      platformLinks.add(link);
+    } else if (link.startsWith("http")) {
       externalLinks.add(link);
     } else {
       internalLinks.add(link);
@@ -96,7 +103,7 @@ export async function parseLinks(
     }
   });
 
-  return [internalLinks, externalLinks];
+  return [internalLinks, platformLinks, externalLinks];
 }
 
 async function parseObjectsInv(filePath: string): Promise<Set<string>> {
@@ -116,6 +123,7 @@ export async function parseFile(filePath: string): Promise<ParsedFile> {
     const links = await parseObjectsInv(filePath);
     return {
       internalLinks: links,
+      platformLinks: new Set(),
       externalLinks: new Set(),
       anchors: new Set(),
     };
@@ -125,13 +133,21 @@ export async function parseFile(filePath: string): Promise<ParsedFile> {
     return {
       anchors: new Set(),
       internalLinks: new Set(),
+      platformLinks: new Set(),
       externalLinks: new Set(),
     };
 
   const markdown = await readMarkdown(filePath);
   try {
-    const [internalLinks, externalLinks] = await parseLinks(markdown);
-    return { anchors: parseAnchors(markdown), internalLinks, externalLinks };
+    const [internalLinks, platformLinks, externalLinks] =
+      await parseLinks(markdown);
+
+    return {
+      anchors: parseAnchors(markdown),
+      internalLinks,
+      platformLinks,
+      externalLinks,
+    };
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : `${err}`;
     throw new Error(`Problem parsing '${filePath}':\n` + msg);

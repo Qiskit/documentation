@@ -87,13 +87,22 @@ test("parseLinks()", async () => {
     # A header
     Our [first link!](https://ibm.com) and, look, [another](./relative)!
 
+    An [absolute internal link](https://quantum.cloud.ibm.com) and, look, [another](https://quantum.cloud.ibm.com/docs/guides)!
+
     ![](/images/my_image.png)
 
     <a href="./explicit-anchor">Explicit anchor</a>
     `;
-  const [internalLinks, externalLinks] = await parseLinks(markdown);
+  const [internalLinks, platformLinks, externalLinks] =
+    await parseLinks(markdown);
   expect(internalLinks).toEqual(
     new Set(["./relative", "/images/my_image.png", "./explicit-anchor"]),
+  );
+  expect(platformLinks).toEqual(
+    new Set([
+      "https://quantum.cloud.ibm.com",
+      "https://quantum.cloud.ibm.com/docs/guides",
+    ]),
   );
   expect(externalLinks).toEqual(new Set(["https://ibm.com"]));
 });
