@@ -56,31 +56,34 @@ jobs:
         run: npm test
 
       - name: Get all changed docs files
+        env:
+          GH_TOKEN: ${{ github.token }}
         id: all-changed-files
-        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
-        with:
-          files: "{docs,learning}/**/*.{md,mdx,ipynb}"
-          separator: "\n"
-          write_output_files: true
+        run: |
+          ALL_CHANGED_FILES=$(gh pr diff ${{ github.event.number }} --name-only)
+          CHANGED_DOCS_FILES=$(echo $ALL_CHANGED_FILES | grep '(docs|learning)\/.*\.(md|mdx|ipynb)')
+          mkdir -p .github/outputs/changed-files
+          echo "docs-files=$CHANGED_DOCS_FILES" >> $GITHUB_OUTPUT
+          echo $CHANGED_DOCS_FILES > .github/outputs/changed-files/changed-docs-files.txt
 
       - name: Pull preview image
-        if: steps.all-changed-files.outputs.any_changed == 'true'
+        if: steps.all-changed-files.outputs.docs-files != ''
         run: ./start --pull-only
       - name: Start local Docker preview (cloud app)
-        if: steps.all-changed-files.outputs.any_changed == 'true'
+        if: steps.all-changed-files.outputs.docs-files != ''
         run: |
           ./start --apis &
           sleep 1
       - name: Check that pages render
-        if: steps.all-changed-files.outputs.any_changed == 'true'
+        if: steps.all-changed-files.outputs.docs-files != ''
         run: |
           npm run check:pages-render -- --from-file .github/outputs/all_changed_files.txt
       - name: Check that Katex expressions render
-        if: steps.all-changed-files.outputs.any_changed == 'true'
+        if: steps.all-changed-files.outputs.docs-files != ''
         run: |
           npm run check:katex-render -- --from-file .github/outputs/all_changed_files.txt
       - name: Stop Docker preview
-        if: steps.all-changed-files.outputs.any_changed == 'true'
+        if: steps.all-changed-files.outputs.docs-files != ''
         run: docker ps -q | xargs docker stop
 
       - name: Setup Python environment
