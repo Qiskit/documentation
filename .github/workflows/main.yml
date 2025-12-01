@@ -79,6 +79,7 @@ jobs:
               if re.match(r"(docs|learning)\/.*\.(md|mdx|ipynb)", path)
           ]
 
+          github_output = os.getenv("GITHUB_OUTPUT")
           with open(github_output, "a") as output:
               output.write(f"docs-changed={docs_changed}")
 
