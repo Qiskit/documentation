@@ -59,12 +59,28 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         id: all-changed-files
+        shell: python
         run: |
-          ALL_CHANGED_FILES=$(gh pr diff ${{ github.event.number }} --name-only)
-          CHANGED_DOCS_FILES=$(echo $ALL_CHANGED_FILES | grep '(docs|learning)\/.*\.(md|mdx|ipynb)')
-          mkdir -p .github/outputs/changed-files
-          echo "docs-files=$CHANGED_DOCS_FILES" >> $GITHUB_OUTPUT
-          echo $CHANGED_DOCS_FILES > .github/outputs/changed-files/changed-docs-files.txt
+          import re
+          import os
+          import subprocess
+
+          all_changed = (
+              subprocess.check_output(
+                  ["gh", "pr", "diff", "${{ github.event.number }}", "--name-only"]
+              )
+              .decode()
+              .strip()
+              .split("\n")
+          )
+          docs_changed = [
+              path
+              for path in all_changed
+              if re.match(r"(docs|learning)\/.*\.(md|mdx|ipynb)", path)
+          ]
+
+          with open(github_output, "a") as output:
+              output.write(f"docs-changed={docs_changed}")
 
       - name: Pull preview image
         if: steps.all-changed-files.outputs.docs-files != ''
