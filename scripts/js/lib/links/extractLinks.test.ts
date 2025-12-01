@@ -83,7 +83,7 @@ test("parseAnchors()", () => {
   );
 });
 
-test("parseLinks()", async () => {
+test("parseLinks()", () => {
   const markdown = `
     # A header
     Our [first link!](https://ibm.com) and, look, [another](./relative)!
@@ -92,7 +92,9 @@ test("parseLinks()", async () => {
 
     <a href="./explicit-anchor">Explicit anchor</a>
     `;
-  const [internalLinks, externalLinks] = parseLinks(markdown).map(arr => new Set(arr));
+  const [internalLinks, externalLinks] = parseLinks(markdown, "").map(
+    (arr) => new Set(arr),
+  );
   expect(internalLinks).toEqual(
     new Set(["./relative", "/images/my_image.png", "./explicit-anchor"]),
   );

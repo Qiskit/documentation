@@ -83,7 +83,9 @@ export async function parseFile(filePath: string): Promise<ParsedFile> {
     };
   const markdown = await readMarkdown(filePath);
   try {
-    const [internalLinks, externalLinks] = parseLinks(markdown).map(arr => new Set(arr));
+    const [internalLinks, externalLinks] = parseLinks(markdown, filePath).map(
+      (arr) => new Set(arr),
+    );
     return {
       anchors: parseAnchors(markdown),
       internalLinks,

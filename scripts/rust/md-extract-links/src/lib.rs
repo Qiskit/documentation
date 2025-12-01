@@ -1,15 +1,32 @@
 #![deny(clippy::all)]
 
-use markdown::mdast::{AttributeContent, AttributeValue, MdxJsxTextElement};
-use markdown::{mdast::Node, to_mdast, ParseOptions};
+use markdown::mdast::{AttributeContent, AttributeValue, Html, MdxJsxTextElement};
+use markdown::{mdast::Node, to_mdast, ParseOptions, Constructs};
 use napi_derive::napi;
 use std::collections::HashSet;
 
 #[napi]
-pub fn parse_links(markdown: String) -> (Vec<String>, Vec<String>) {
-  let ast = match to_mdast(markdown.as_str(), &ParseOptions::gfm()) {
+pub fn parse_links(markdown: String, file_name: String) -> (Vec<String>, Vec<String>) {
+  let options = ParseOptions {
+    constructs: Constructs {
+      gfm_autolink_literal: true,
+      gfm_footnote_definition: true,
+      gfm_label_start_footnote: true,
+      gfm_strikethrough: true,
+      gfm_table: true,
+      gfm_task_list_item: true,
+      math_flow: true,
+      math_text: true,
+      mdx_jsx_flow: true,
+      mdx_jsx_text: true,
+      ..Constructs::mdx()
+    },
+    ..ParseOptions::mdx()
+  };
+
+  let ast = match to_mdast(markdown.as_str(), &options) {
     Ok(ast) => ast,
-    Err(_) => panic!("Error parsing file!!"),
+    Err(m) => panic!("Error parsing file: {}\n{}", file_name, m),
   };
 
   let mut links = HashSet::<String>::default();
