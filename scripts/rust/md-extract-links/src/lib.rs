@@ -1,12 +1,13 @@
 #![deny(clippy::all)]
 
-use markdown::mdast::{AttributeContent, AttributeValue, Html, MdxJsxTextElement};
-use markdown::{mdast::Node, to_mdast, ParseOptions, Constructs};
+use markdown::mdast::{AttributeContent, AttributeValue, MdxJsxTextElement};
+use markdown::{mdast::Node, to_mdast, Constructs, ParseOptions};
+use napi::Error;
 use napi_derive::napi;
 use std::collections::HashSet;
 
 #[napi]
-pub fn parse_links(markdown: String, file_name: String) -> (Vec<String>, Vec<String>) {
+pub fn extract_links(markdown: String) -> Result<Vec<String>, Error> {
   let options = ParseOptions {
     constructs: Constructs {
       gfm_autolink_literal: true,
@@ -26,25 +27,13 @@ pub fn parse_links(markdown: String, file_name: String) -> (Vec<String>, Vec<Str
 
   let ast = match to_mdast(markdown.as_str(), &options) {
     Ok(ast) => ast,
-    Err(m) => panic!("Error parsing file: {}\n{}", file_name, m),
+    Err(m) => return Err(Error::from_reason(m.to_string())),
   };
 
   let mut links = HashSet::<String>::default();
   extract_from_node(&ast, &mut links);
 
-  let mut internal_links = vec![];
-  let mut external_links = vec![];
-  for link in links.into_iter() {
-    if link.starts_with("mailto") {
-      continue;
-    };
-    if link.starts_with("http") {
-      external_links.push(link)
-    } else {
-      internal_links.push(link)
-    }
-  }
-  return (internal_links, external_links);
+  Ok(links.into_iter().collect())
 }
 
 fn extract_from_node(node: &Node, links: &mut HashSet<String>) {

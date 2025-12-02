@@ -572,4 +572,4 @@ if (!nativeBinding) {
 }
 
 module.exports = nativeBinding
-module.exports.parseLinks = nativeBinding.parseLinks
+module.exports.extractLinks = nativeBinding.extractLinks

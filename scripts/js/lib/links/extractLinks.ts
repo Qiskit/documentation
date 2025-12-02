@@ -12,7 +12,8 @@
 
 import path from "node:path";
 
-import { parseLinks } from "../../../rust/md-extract-links/index.js";
+import { extractLinks } from "../../../rust/md-extract-links/index.js";
+import { partition } from "lodash-es";
 
 import { ObjectsInv } from "../api/objectsInv.js";
 import { readMarkdown } from "../markdownReader.js";
@@ -53,6 +54,11 @@ export function parseAnchors(markdown: string): Set<string> {
   return anchors;
 }
 
+export function parseLinks(markdown: string): [Set<string>, Set<string>] {
+  const allLinks = extractLinks(markdown).filter(link => !link.startsWith('mailto:'));
+  return partition(allLinks, link => !link.startsWith("http")).map(list => new Set(list));
+}
+
 async function parseObjectsInv(filePath: string): Promise<Set<string>> {
   const objinv = await ObjectsInv.fromFile(
     removeSuffix(filePath, "objects.inv"),
@@ -83,7 +89,7 @@ export async function parseFile(filePath: string): Promise<ParsedFile> {
     };
   const markdown = await readMarkdown(filePath);
   try {
-    const [internalLinks, externalLinks] = parseLinks(markdown, filePath).map(
+    const [internalLinks, externalLinks] = parseLinks(markdown).map(
       (arr) => new Set(arr),
     );
     return {

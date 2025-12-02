@@ -12,8 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { parseAnchors } from "./extractLinks.js";
-import { parseLinks } from "../../../rust/md-extract-links/index.js";
+import { parseAnchors, parseLinks } from "./extractLinks.js";
 
 test("parseAnchors()", () => {
   const result = parseAnchors(`
@@ -83,7 +82,7 @@ test("parseAnchors()", () => {
   );
 });
 
-test("parseLinks()", () => {
+test("parseLinks()", async () => {
   const markdown = `
     # A header
     Our [first link!](https://ibm.com) and, look, [another](./relative)!
@@ -92,9 +91,7 @@ test("parseLinks()", () => {
 
     <a href="./explicit-anchor">Explicit anchor</a>
     `;
-  const [internalLinks, externalLinks] = parseLinks(markdown, "").map(
-    (arr) => new Set(arr),
-  );
+  const [internalLinks, externalLinks] = parseLinks(markdown);
   expect(internalLinks).toEqual(
     new Set(["./relative", "/images/my_image.png", "./explicit-anchor"]),
   );
