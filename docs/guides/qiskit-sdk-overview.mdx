@@ -13,8 +13,6 @@ In addition, many open-source projects are part of the broader Qiskit ecosystem.
 
 ![All Qiskit pattern steps are shown (Map the problem, Optimize for hardware, Execute on hardware, and Post-process results). All steps, except for 'Execute on hardware', use the Qiskit SDK. 'Optimizing for hardware' additionally uses the Qiskit Transpiler Service.  'Executing on hardware' uses only the Qiskit Runtime Service.](/docs/images/qiskit-patterns/patterns.svg)
 
-IBM is committed to the responsible development of quantum computing. Learn more and review our responsible quantum principles in the [Responsible quantum computing](/docs/responsible-quantum-computing) topic.
-
 ## The Qiskit SDK
 
 The Qiskit SDK (package name [`qiskit`](https://pypi.org/project/qiskit/)) is an open-source SDK for working with quantum computers at the level of extended (static, dynamic, and scheduled) quantum circuits, operators, and primitives. This library is the core component of Qiskit; it is the largest package under the Qiskit name with the broadest suite of tools for quantum computation, and many other components interface with it.
@@ -33,7 +31,7 @@ Some of the most useful features of the Qiskit SDK include:
 
 ### Installation
 
-For a more detailed introduction to installing the Qiskit SDK, check out the [installation page](./install-qiskit). If you're ready to install it now, simply run:
+For a more detailed introduction to installing the Qiskit SDK, check out the [installation page](/docs/guides/install-qiskit). If you're ready to install it now, simply run:
 
 ```bash
 pip install qiskit
@@ -42,25 +40,6 @@ pip install qiskit
 ### Benchmarking and the Benchpress package
 
 Benchmarking is important for comparing the relative performance of quantum software across different stages of a development workflow. Benchmarking tests for quantum software might, for example, look at the speed and quality of building, manipulating, and transpiling circuits. IBM Quantum is committed to delivering the most performant SDK possible, and to that end, the Qiskit SDK is benchmarked using over 1,000 tests developed by leading universities, national labs, and researchers at IBM. The benchmarking suite used for these tests, named Benchpress, is now available as [an open-source package](https://github.com/qiskit/benchpress). You can now use the Benchpress package to perform your own analysis of quantum SDK performance.
-
-## Qiskit Runtime
-
-Qiskit Runtime is a cloud-based service for executing quantum computations on IBM Quantum&reg; hardware. The `qiskit-ibm-runtime` package is a client for that service, and is the successor to the Qiskit IBM Provider. The Qiskit Runtime service streamlines quantum computations and provides optimal implementations of the Qiskit primitives for IBM Quantum hardware. To get started with Qiskit Runtime primitives, visit the [documentation](./get-started-with-primitives).
-
-Qiskit Runtime is designed to use additional classical and quantum compute resources, including techniques such as error suppression and error mitigation, to return a higher-quality result from executing quantum circuits on quantum processors. Examples include dynamical decoupling for error suppression, and readout mitigation and zero-noise extrapolation (ZNE) for error mitigation. Learn how to configure these options on the [Configure error mitigation](./configure-error-mitigation) page.
-
-
-Qiskit Runtime also includes three types of execution modes for running your quantum program on IBM hardware: [_Job_, _Session_, and _Batch_,](/docs/guides/execution-modes) each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. Note that Open Plan users cannot submit session jobs.
-
-To quickly install Qiskit Runtime, run the following command:
-```bash
-pip install qiskit-ibm-runtime
-```
-
-More details on setting up a development environment for building quantum programs can be found in the [installation page](./install-qiskit).
-
-### Is Qiskit Runtime open-source?
-The short answer is, _not all of it_. The Qiskit Runtime service software that handles the technicalities of running your quantum program on an IBM Quantum device (including any error mitigation and suppression) is **not** open-source. However, the Qiskit Runtime client (the interface for users to access the Qiskit Runtime service), the Qiskit SDK running on the server side, and some of the software used for error mitigation, **are** open-source.  To get involved with the Qiskit open-source efforts, visit our GitHub organization at [github.com/Qiskit](https://github.com/Qiskit) and [github.com/Qiskit-Extensions](https://github.com/Qiskit-Extensions/).
 
 ## Qiskit Serverless
 
