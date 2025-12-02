@@ -14,8 +14,7 @@ import path from "node:path";
 
 import { visit } from "unist-util-visit";
 import { unified } from "unified";
-import remarkStringify from "remark-stringify";
-import remarkMdx, { Root } from "remark-mdx";
+import remarkMdx from "remark-mdx";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import frontmatter from "remark-frontmatter";
@@ -24,6 +23,7 @@ import remarkMath from "remark-math";
 import { ObjectsInv } from "../api/objectsInv.js";
 import { readMarkdown } from "../markdownReader.js";
 import { removePrefix, removeSuffix } from "../stringUtils.js";
+import { PLATFORM_URL } from "./InternalLink.js";
 
 export type ParsedFile = {
   /** Anchors that the file defines. These can be linked to from other files. */
@@ -75,7 +75,7 @@ export async function parseLinks(
     // We cannot check that email addresses are valid.
     if (link.startsWith("mailto:")) return;
 
-    if (link.startsWith("https://quantum.cloud.ibm.com")) {
+    if (link.startsWith(PLATFORM_URL)) {
       platformLinks.add(link);
     } else if (link.startsWith("http")) {
       externalLinks.add(link);

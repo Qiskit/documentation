@@ -15,6 +15,7 @@ import levenshtein from "fast-levenshtein";
 
 const DOCS_ROOT = "./";
 const CONTENT_FILE_EXTENSIONS = [".mdx", ".ipynb"];
+export const PLATFORM_URL = "https://quantum.cloud.ibm.com";
 
 export class File {
   readonly path: string;
@@ -29,6 +30,32 @@ export class File {
     this.path = path;
     this.anchors = anchors;
     this.synthetic = synthetic;
+  }
+}
+
+export class PlatformLink {
+  readonly value: string;
+  readonly originFiles: Set<string>;
+
+  /**
+   *  linkString: Link as it appears in source file
+   * originFiles: Paths to source file containing link
+   */
+  constructor(linkString: string, originFiles: string[]) {
+    if (!linkString.startsWith(PLATFORM_URL)) {
+      throw new Error(
+        `Invalid PlatformLink, must start with ${PLATFORM_URL}: ${linkString}`,
+      );
+    }
+    this.value = linkString;
+    this.originFiles = new Set(originFiles);
+  }
+
+  /**
+   * Returns an error message if link failed.
+   */
+  check(): string | undefined {
+    return `❌ Found a link to IQP '${this.value}'. Appears in:\n${[...this.originFiles].sort().join("\n")}`;
   }
 }
 

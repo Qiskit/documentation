@@ -12,7 +12,11 @@
 
 import { globby } from "globby";
 
-import { InternalLink, File } from "./InternalLink.js";
+import {
+  InternalLink,
+  File,
+  PlatformLink,
+} from "./InternalLink.js";
 import {
   ALWAYS_IGNORED_URLS,
   ALWAYS_IGNORED_URL_PREFIXES,
@@ -66,16 +70,18 @@ export class FileBatch {
    *      than any additional we may add at check-time, e.g. images.
    *   2. A list of InternalLink objects to validate.
    */
-  async load(): Promise<[File[], InternalLink[]]> {
+  async load(): Promise<[File[], InternalLink[], PlatformLink[]]> {
     const parsedFilesToLoad = this.toLoad.map(async (filePath) => {
       const parsed = await parseFile(filePath);
       return new File(filePath, parsed.anchors);
     });
 
-    const linksToOriginFiles = new Map<string, string[]>();
+    const internalLinksToOriginFiles = new Map<string, string[]>();
+    const platformLinksToOriginFiles = new Map<string, string[]>();
     const parsedFilesToCheck = this.toCheck.map(async (filePath) => {
       const parsed = await parseFile(filePath);
-      addLinksToMap(filePath, parsed.internalLinks, linksToOriginFiles);
+      addLinksToMap(filePath, parsed.internalLinks, internalLinksToOriginFiles);
+      addLinksToMap(filePath, parsed.platformLinks, platformLinksToOriginFiles);
       return new File(filePath, parsed.anchors);
     });
 
@@ -83,11 +89,14 @@ export class FileBatch {
       ...parsedFilesToCheck,
       ...parsedFilesToLoad,
     ]);
-    const links = Array.from(linksToOriginFiles.entries()).map(
+    const internalLinks = Array.from(internalLinksToOriginFiles.entries()).map(
       ([link, originFiles]) => new InternalLink(link, originFiles),
     );
+    const platformLinks = Array.from(platformLinksToOriginFiles.entries()).map(
+      ([link, originFiles]) => new PlatformLink(link, originFiles),
+    );
 
-    return [files, links];
+    return [files, internalLinks, platformLinks];
   }
 
   /**
@@ -98,11 +107,11 @@ export class FileBatch {
   async checkInternalLinks(otherFiles: File[]): Promise<boolean> {
     console.log(`\n\nChecking internal links for ${this.description}`);
 
-    const [docsFiles, links] = await this.load();
+    const [docsFiles, internalLinks, platformLinks] = await this.load();
     const existingFiles = docsFiles.concat(otherFiles);
 
     let allGood = true;
-    links.forEach((link) => {
+    [...internalLinks, ...platformLinks].forEach((link) => {
       const result = link.check(existingFiles);
       if (result === undefined) return;
       console.error(result);
