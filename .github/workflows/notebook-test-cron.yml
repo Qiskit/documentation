@@ -54,7 +54,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git switch -c actions/cron-${{ github.run_id }}
-          git commit -am "Re-run notebooks"
+          git add .
+          git commit -m "Re-run notebooks"
           git push origin actions/cron-${{ github.run_id }}
           gh pr create \
            -B main \
@@ -64,6 +65,7 @@ jobs:
             This PR updates all notebooks that ran successfully with the new cell outputs.
             > [!NOTE]
             > This pull request was created by a GitHub action." \
+           --reviewer frankharkins \
            --reviewer kaelynj
 
       - name: Upload executed notebooks
@@ -91,7 +93,7 @@ jobs:
             github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: "Weekly notebook test failed",
+              title: "Fortnightly notebook test failed",
               body: message,
               labels: ["needs triage 🤔"],
             })
