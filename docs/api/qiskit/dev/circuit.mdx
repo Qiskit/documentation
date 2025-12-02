@@ -267,7 +267,7 @@ Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circu
 
 #### Qubit
 
-<Class id="qiskit.circuit.Qubit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.Qubit" modifiers="class">
+<Class id="qiskit.circuit.Qubit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.Qubit(register=None, index=None)" modifiers="class">
   Bases: [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.Bit")
 
   A qubit, which can be compared between different circuits.
@@ -275,7 +275,7 @@ Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circu
 
 #### Clbit
 
-<Class id="qiskit.circuit.Clbit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.Clbit" modifiers="class">
+<Class id="qiskit.circuit.Clbit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.Clbit(register=None, index=None)" modifiers="class">
   Bases: [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.Bit")
 
   A clbit, which can be compared between different circuits.
@@ -309,7 +309,7 @@ Each of the defined bit subtypes has an associated register, which have the same
 
 #### QuantumRegister
 
-<Class id="qiskit.circuit.QuantumRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.QuantumRegister" modifiers="class">
+<Class id="qiskit.circuit.QuantumRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.QuantumRegister(size=None, name=None, bits=None)" modifiers="class">
   Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.Register")
 
   Implement a register.
@@ -317,7 +317,7 @@ Each of the defined bit subtypes has an associated register, which have the same
 
 #### ClassicalRegister
 
-<Class id="qiskit.circuit.ClassicalRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.ClassicalRegister" modifiers="class">
+<Class id="qiskit.circuit.ClassicalRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.ClassicalRegister(size=None, name=None, bits=None)" modifiers="class">
   Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.Register")
 
   Implement a register.
@@ -325,7 +325,7 @@ Each of the defined bit subtypes has an associated register, which have the same
 
 #### AncillaRegister
 
-<Class id="qiskit.circuit.AncillaRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.AncillaRegister" modifiers="class">
+<Class id="qiskit.circuit.AncillaRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)" modifiers="class">
   Bases: [`QuantumRegister`](#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")
 
   Implement an ancilla register.
@@ -341,9 +341,9 @@ Classical registers and bits were the original way of representing classical dat
 
 The scalar type of the [`QuantumCircuit.data`](qiskit.circuit.QuantumCircuit#data "qiskit.circuit.QuantumCircuit.data") sequence is the “instruction context” object, [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction"). This is essentially just a data class that contains a representation of what is to be done (its [`operation`](qiskit.circuit.CircuitInstruction#operation "qiskit.circuit.CircuitInstruction.operation")), and the data it acts on (the [`qubits`](qiskit.circuit.CircuitInstruction#qubits "qiskit.circuit.CircuitInstruction.qubits") and [`clbits`](qiskit.circuit.CircuitInstruction#clbits "qiskit.circuit.CircuitInstruction.clbits")).
 
-|                                                                                               |                                                                                                                                                                 |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") | A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the `operation` and various operands. |
+|                                                                                                                             |                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")(operation\[, qubits, clbits]) | A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the `operation` and various operands. |
 
 Programmatically, this class is actually implemented in Rust and is a constructed handle to internal data within Rust space. Mutations to instances of this class will not be reflected in the circuit. In general, you cannot mutate instruction contexts that are already in the circuit directly; the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") interface is designed for storing and building circuits, while the [transpiler and its passes](transpiler#qiskit-transpiler), and its intermediate [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") representation, are where you should look for an interface to mutate circuits.
 
@@ -583,10 +583,10 @@ A circuit can contain manual classical storage locations, represented internally
 
 Various parametric [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances in Qiskit can be parametrized in ways that are designed to be resolved at compile time. These are characterized by the use of the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") and [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") classes.
 
-|                                                                                                  |                                    |
-| ------------------------------------------------------------------------------------------------ | ---------------------------------- |
-| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")                               | A compile-time symbolic parameter. |
-| [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") | A parameter expression.            |
+|                                                                                                                      |                                    |
+| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")(name\[, uuid])                                    | A compile-time symbolic parameter. |
+| [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")(\[name\_map, expr]) | A parameter expression.            |
 
 The main way that this differs from the `expr.Var` variables used in real-time classical computation is that [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") is a symbolic representation of a mathematical expression. The semantics of the expression are those of regular mathematics over the continuous real numbers (and, in limited cases, over the complex numbers). In contrast, [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") is a handle to a variable stored on a classical computer, such as a floating-point value or an fixed-width integer, which are always discrete.
 
@@ -596,10 +596,10 @@ The “compile-time” part of these parameters means that you typically will wa
 
 You may want to use many parameters that are related to each other. To make this easier (and to avoid you needing to come up with many names), you can use the convenience constructor [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector"). The elements of the vector are all valid [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances, of a special subclass [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement").
 
-|                                                                                                           |                                                                                                         |
-| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length])     | A container of many related [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects. |
-| [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") | An element of a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").   |
+|                                                                                                                                   |                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length])                             | A container of many related [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects. |
+| [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement")(vector, index\[, uuid]) | An element of a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").   |
 
 <span id="circuit-control-flow-repr" />
 
@@ -706,9 +706,9 @@ Consult [the control-flow construction documentation](qiskit.circuit.QuantumCirc
 
 Certain circuit instructions can be “annotated” with instruction-local annotations. As of Qiskit 2.1.0, this is limited to [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp"). All annotations are subclasses of one base interface-defining object, but typically represent entirely custom analyses and commands.
 
-|                                                                       |                                           |
-| --------------------------------------------------------------------- | ----------------------------------------- |
-| [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") | An arbitrary annotation for instructions. |
+|                                                                                           |                                           |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------- |
+| [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation")(\*args, \*\*kwargs) | An arbitrary annotation for instructions. |
 
 ### Investigating commutation relations
 
@@ -913,9 +913,9 @@ For a more backend-like simulation experience, there are simulator-backed implem
 
 A common task in mapping abstract circuits to physical hardware and optimizing the result is to find equivalence relations that map a gate to a different basis set. Qiskit stores this information in a database class called [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary").
 
-|                                                                                               |                                                                                                        |
-| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") | A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits. |
+|                                                                                                        |                                                                                                        |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")(\[base]) | A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits. |
 
 Qiskit ships with a large set of predefined equivalence relationships for all of its standard gates. This base library is called [`StandardEquivalenceLibrary`](#qiskit.circuit.StandardEquivalenceLibrary "qiskit.circuit.StandardEquivalenceLibrary"), and should be treated as immutable.
 

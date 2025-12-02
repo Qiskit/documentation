@@ -77,26 +77,24 @@ export async function parseLinks(
     }
   };
 
-  await unified()
+  const tree = unified()
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkMath)
     .use(remarkMdx)
     .use(frontmatter)
-    .use(() => (tree: Root) => {
-      visit(tree, { type: "mdxJsxTextElement", name: "a" }, (TreeNode: any) => {
-        const href = TreeNode.attributes.find(
-          (attr: any) => attr.name == "href",
-        );
-        if (href) {
-          addLink(href.value);
-        }
-      });
-      visit(tree, "link", (TreeNode) => addLink(TreeNode.url));
-      visit(tree, "image", (TreeNode) => addLink(TreeNode.url));
-    })
-    .use(remarkStringify)
-    .process(markdown);
+    .parse(markdown);
+
+  visit(tree, (node: any) => {
+    if (node.type === "link" || node.type === "image") {
+      addLink(node.url);
+    } else if (node.type === "mdxJsxTextElement" && node.name === "a") {
+      const href = node.attributes.find((attr: any) => attr.name == "href");
+      if (href) {
+        addLink(href.value);
+      }
+    }
+  });
 
   return [internalLinks, externalLinks];
 }

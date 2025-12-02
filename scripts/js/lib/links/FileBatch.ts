@@ -67,22 +67,26 @@ export class FileBatch {
    *   2. A list of InternalLink objects to validate.
    */
   async load(): Promise<[File[], InternalLink[]]> {
-    const files: File[] = [];
-    for (let filePath of this.toLoad) {
+    const parsedFilesToLoad = this.toLoad.map(async (filePath) => {
       const parsed = await parseFile(filePath);
-      files.push(new File(filePath, parsed.anchors));
-    }
+      return new File(filePath, parsed.anchors);
+    });
 
     const linksToOriginFiles = new Map<string, string[]>();
-    for (const filePath of this.toCheck) {
+    const parsedFilesToCheck = this.toCheck.map(async (filePath) => {
       const parsed = await parseFile(filePath);
-      files.push(new File(filePath, parsed.anchors));
       addLinksToMap(filePath, parsed.internalLinks, linksToOriginFiles);
-    }
+      return new File(filePath, parsed.anchors);
+    });
 
+    const files: File[] = await Promise.all([
+      ...parsedFilesToCheck,
+      ...parsedFilesToLoad,
+    ]);
     const links = Array.from(linksToOriginFiles.entries()).map(
       ([link, originFiles]) => new InternalLink(link, originFiles),
     );
+
     return [files, links];
   }
 
