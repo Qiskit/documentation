@@ -54,7 +54,7 @@ jobs:
           #  scripts/js/lib/links/thing.ts
           #  .github/workflows/api-checks.yml
           #
-          #  # Should not match:
+          #  -- Should not match:
           #  scripts/nb-tester/file.py
           #  docs/guides/thing.ipynb
           #  public/learning/image.svg
@@ -64,7 +64,6 @@ jobs:
           API_CHECKS_REGEX='(\.github\/workflows\/notebook-test\.yml|(docs|learning)(?!\/api\/)\/.*\.ipynb|scripts\/nb-tester\/.*)'
 
           CHANGED_FILES=$(gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only)
-          echo "$(echo "${CHANGED_FILES[@]}" | grep -P $NOTEBOOK_TEST_REGEX)"
           if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $NOTEBOOK_TEST_REGEX)" != '' ]
           then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
