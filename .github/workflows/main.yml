@@ -196,7 +196,7 @@ jobs:
           docs/guides/DAG-representation.ipynb
           """.strip().split("\n")
           import os
-          import path
+          from pathlib import Path
           github_output = os.getenv("GITHUB_OUTPUT")
           all_files = Path(".github/outputs/changed-files.txt").read_text().split("\n")
 
