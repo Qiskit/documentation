@@ -31,7 +31,7 @@ NodeName=node[1-5000] Gres=qpu,name:ibm_fez
 
 ### User scope
 
-HPC users submit jobs using QPU resources that are tied to Slurm QPU resources. The name attribute references what the HPC administrator has defined. Mid-term, backend selection can be based on criteria other than a predefined name referring to a specific backend (for example, by capacity and error rate qualifiers, to help down-select among the defined set of backends).
+HPC users submit jobs using QPU resources that are tied to Slurm QPU resources. The name attribute references what the HPC administrator has defined. During a slurm job's runtime, backend selection can be based on criteria other than a predefined name referring to a specific backend (for example, by capacity and error rate qualifiers, to help down-select among the defined set of backends).
 
 There might be additional environment variables required, depending on the backend type.
 
@@ -128,11 +128,11 @@ This has several implications:
 
 * The Slurm plugin is responsible for multi-tenancy (ensuring that users don't see results of other users' jobs)
 * The HPC cluster side is responsible for vetting users (who is allowed to access the QPU) and ensuring according access
-* the capacity and priority of the QPU usage is solely managed through Slurm; there is notother scheduling of users involved outside of Slurm
+* The capacity and priority of the QPU usage is solely managed through Slurm; there is no other scheduling of users involved outside of Slurm
 
 ##### User scope
 Execution lanes are not exposed to the HPC administrator or user directly.
-Instead, mid term, there can be two different modes that HPC users can specify:
+Instead, during runtime, there can be two different modes that HPC users can specify:
 
 * `exclusive=true` specifies that no other jobs can use the resource at the same time. An exclusive mode job gets all execution lanes and cannot run at the same time as a non-exclusive job
 * `exclusive=false` allows other jobs to run in parallel. In this case, there can be as many jobs as there are execution lanes, all running at the same time, and the job is assigned one lane
