@@ -22,7 +22,6 @@ export function ignoreTitleMismatch(filepath: string): boolean {
 }
 
 const IGNORE_TITLE_MISMATCHES: string[] = [
-  "docs/guides/intro-to-patterns.mdx",
   "docs/guides/overview-qiskit-ecosystem.mdx",
   "docs/guides/overview-qiskit-runtime.mdx",
   "docs/guides/overview-qiskit-ecosystem.mdx",
