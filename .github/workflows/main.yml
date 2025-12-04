@@ -179,7 +179,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir -p .github/output
+          mkdir -p .github/outputs
           gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only > .github/outputs/changed-files.txt
 
       - name: Check if extra linux deps needed
