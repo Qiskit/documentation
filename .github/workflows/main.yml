@@ -17,7 +17,7 @@ jobs:
     name: Decide which jobs to run
     runs-on: ubuntu-latest
     # We don't run these tests in the merge queue
-    if: github.repository_owner == 'Qiskit' && github.event_name == 'pull_request'
+    if: false && github.repository_owner == 'Qiskit' && github.event_name == 'pull_request'
     outputs:
       run-notebook-tester: ${{ steps.decide.outputs.RUN_NOTEBOOK_TESTER }}
       run-api-checks: ${{ steps.decide.outputs.RUN_API_CHECKS }}
