@@ -16,6 +16,7 @@ jobs:
   decide-jobs:
     name: Decide which jobs to run
     runs-on: ubuntu-latest
+    # We don't run these tests in the merge queue
     if: github.repository_owner == 'Qiskit' && github.event_name == 'pull_request'
     outputs:
       run-notebook-tester: ${{ steps.decide.outputs.RUN_NOTEBOOK_TESTER }}
@@ -73,6 +74,7 @@ jobs:
           then
             echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
           fi
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -82,7 +84,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
       - name: Install Node.js dependencies
         run: npm ci
       - name: Install ImageMagick
@@ -164,6 +166,7 @@ jobs:
               "To fix, install tox and run `tox -e fix`."
             )
             sys.exit(1)
+
   notebook-test:
     name: Execute notebooks
     needs: [decide-jobs]
@@ -230,6 +233,7 @@ jobs:
         with:
           name: Executed notebooks
           path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS || 'no-changes' }}
+
   api-checks:
     name: API checks
     needs: [decide-jobs]
@@ -240,7 +244,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
       - name: Install Node.js dependencies
         run: npm ci
       - name: Check internal links
