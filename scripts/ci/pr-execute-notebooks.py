@@ -35,7 +35,7 @@ from pathlib import Path
 
 CONTENT_DIRECTORIES = ["docs", "learning"]
 
-all_changed_files = sys.argv[1].strip().split("\n")
+all_changed_files = Path(".github/outputs/changed-files.txt").read_text().split("\n")
 
 def is_content_dir(path: str) -> bool:
     return any(path.startswith(f"{dirname}/") for dirname in CONTENT_DIRECTORIES)

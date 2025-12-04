@@ -176,13 +176,16 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Get changed files
-        id: all-changed
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          echo "CHANGED_FILES<<EOF" >> $GITHUB_OUTPUT
-          gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+        run: >
+          mkdir -p .github/output
+          &&
+          gh pr diff
+            -R Qiskit/documentation
+            ${{ github.event.number }}
+            --name-only
+            > .github/outputs/changed-files.txt
 
       - name: Check if extra linux deps needed
         id: check-deps
@@ -198,8 +201,9 @@ jobs:
           docs/guides/DAG-representation.ipynb
           """.strip().split("\n")
           import os
+          import path
           github_output = os.getenv("GITHUB_OUTPUT")
-          all_files = """${{ steps.all-changed.outputs.CHANGED_FILES }}""".split("\n")
+          all_files = Path(".github/outputs/changed-files.txt").read_text().split("\n")
 
           config_changed = any(path.startswith("scripts/") or path.startswith(".github") for path in all_files)
           extra_deps = config_changed or any(path in EXTRA_DEPS_NOTEBOOKS for path in all_files)
@@ -219,7 +223,7 @@ jobs:
       - name: Execute notebooks
         env:
           PR_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
-        run: python scripts/ci/pr-execute-notebooks.py "${{ steps.all-changed.outputs.CHANGED_FILES}}"
+        run: python scripts/ci/pr-execute-notebooks.py
 
       - name: Detect changed notebooks
         id: changed-notebooks
