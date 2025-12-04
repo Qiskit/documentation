@@ -6,7 +6,7 @@ description: User guide for the quantum resource management SPANK plugin
 
 # SPANK plugin user guide
 
-Slurm QPU resource definitions determine what physical resources can be used by Slurm jobs in high-performance compute (HPC) environments. User source code should be agnostic to specific backend instances and even backend types as far as possible. This keeps source code portable while the QPU selection criteria are part of the resource definition (which is considered configuration as opposed to source code).
+Slurm QPU resource definitions determine what physical resources can be used by Slurm jobs in high-performance compute (HPC) environments. User source code should be agnostic to specific backend instances, and even backend types whenever possible. This keeps source code portable while the QPU selection criteria are part of the resource definition (which is considered configuration rather than source code).
 
 ## Configure QPU resources in job creation
 
@@ -16,7 +16,7 @@ Note that this plugin is under active development and the exact syntax is subjec
 
 ### Administrator scope
 
-HPC administrators configure the SPANK plugin, i.e. what physical resources can be provided to Slurm jobs.
+HPC administrators configure the SPANK plugin to specify what physical resources can be provided to Slurm jobs.
 This configuration contains all the information needed to have Slurm jobs access the physical resources, such as endpoints and access credentials.
 
 Read the [`qrmi_config.json.example`](https://github.com/qiskit-community/spank-plugins/blob/main/plugins/spank_qrmi/qrmi_config.json.example) for a comprehensive example configuration.
@@ -113,7 +113,7 @@ See the [examples directory](https://github.com/qiskit-community/qrmi/tree/main/
 ### Backend specifics
 #### IBM Direct Access API
 ##### Administrator scope
-Configuration of Direct Access API backends (HPC admin scope) includes endpoints and credentials to the Direct Access endpoint, authentication services as well as the S3 endpoint.
+Configuration of Direct Access API backends (HPC admin scope) includes endpoints and credentials to the Direct Access endpoint and authentication services as well as to the S3 endpoint.
 Specifically, this includes:
 
 * IBM Cloud&reg; API key for creating bearer tokens
@@ -126,16 +126,16 @@ Therefore, sensitive data can be put in separate files, which can be access-prot
 Note that Slurm has full access to the backend.
 This has several implications:
 
-* the Slurm plugin is responsible for multi-tenancy (ensuring that users don't see results of other users' jobs)
-* vetting of users (who is allowed to access the QPU) and ensuring according access is up to the HPC cluster side
-* the capacity and priority of the QPU usage is solely managed through Slurm; there is not other scheduling of users involved outside of Slurm
+* The Slurm plugin is responsible for multi-tenancy (ensuring that users don't see results of other users' jobs)
+* The HPC cluster side is responsible for vetting users (who is allowed to access the QPU) and ensuring according access
+* the capacity and priority of the QPU usage is solely managed through Slurm; there is notother scheduling of users involved outside of Slurm
 
 ##### User scope
 Execution lanes are not exposed to the HPC administrator or user directly.
 Instead, mid term, there can be two different modes that HPC users can specify:
 
-* `exclusive=true` specifies that no other jobs can use the resource at the same time. An exclusive mode job gets all execution lanes and can not run at the same time as a non-exclusive job
-* `exclusive=false` allows other jobs to run in parallel. In that case, there can be as many jobs as there are execution lanes at the same time, and the job essentially only gets one lane
+* `exclusive=true` specifies that no other jobs can use the resource at the same time. An exclusive mode job gets all execution lanes and cannot run at the same time as a non-exclusive job
+* `exclusive=false` allows other jobs to run in parallel. In this case, there can be as many jobs as there are execution lanes, all running at the same time, and the job is assigned one lane
 
 #### Qiskit Runtime Service
 ##### User scope
