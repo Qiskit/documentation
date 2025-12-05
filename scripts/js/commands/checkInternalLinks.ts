@@ -126,7 +126,6 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/qiskit-1.0-features.mdx",
   "docs/guides/construct-circuits.ipynb",
   "docs/guides/bit-ordering.ipynb",
-  "docs/guides/pulse.ipynb",
   "docs/guides/primitives.ipynb",
   "docs/guides/configure-qiskit-local.mdx",
   "docs/guides/transpiler-stages.ipynb",

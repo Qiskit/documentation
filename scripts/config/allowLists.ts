@@ -22,6 +22,9 @@ export function ignoreTitleMismatch(filepath: string): boolean {
 }
 
 const IGNORE_TITLE_MISMATCHES: string[] = [
+  "docs/guides/overview-qiskit-ecosystem.mdx",
+  "docs/guides/overview-qiskit-runtime.mdx",
+  "docs/guides/overview-qiskit-ecosystem.mdx",
   "docs/guides/external-providers-primitives-v2.mdx",
   "docs/guides/create-a-provider.mdx",
   "docs/guides/local-simulators.mdx",

@@ -1,0 +1,23 @@
+---
+title: Overview to mapping tools
+description: Take a classical problem and map it to run on a quantum computer.
+---
+
+# Overview to mapping tools
+
+Mapping tools assist with mapping a classical problem to circuits and operators, for execution on a quantum computer.
+
+In applications such as chemistry and quantum simulation, mapping generally involves constructing a quantum circuit representing the Hamiltonian you are attempting to solve. For certain problems, it might also be desirable to specify the mapping of the problem onto qubits in the heavy-hex (or gross) lattice of IBM&reg; hardware from the outset if the structure of the problem lends itself to optimization earlier.
+
+It is also worth considering at this point what the outcome of the particular algorithm will be in preparation for the later execute step - for example, if the desired outcome involves
+inferring correlation functions using Hadamard tests, you might prepare to use Sampler; if it involves specifying observables, you would use Estimator.
+
+The output map is normally a collection of circuits or quantum operators.
+
+## Relevant resources
+ 
+- [AQC-Tensor](/docs/guides/tool-index#aqc-tensor) - A Qiskit addon for building time evolution circuits
+- [Qiskit circuit library](/docs/guides/tool-index#qiskit-circuit-library) - The Qiskit SDK standard library of gates and circuit instructions
+- [Optimization mapper](/docs/guides/tool-index#optimization-mapper) - A Qiskit addon for mapping optimization problems to circuits and operators
+- [Quantum optimization best practices](/docs/guides/tool-index#quantum-optimization-best-practices) - A collection of guidelines to run quantum optimization workloads
+- [Device benchmarking](/docs/guides/tool-index#device-benchmarking)
