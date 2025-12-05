@@ -57,11 +57,11 @@ jobs:
           #  .github/workflows/notebook-test-cron.yml
         run: |
           CHANGED_FILES=$(gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only)
-          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $NOTEBOOK_TEST_REGEX)" != '' ]
+          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $NOTEBOOK_TEST_REGEX || true)" != '' ]
           then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
           fi
-          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $API_CHECKS_REGEX)" != '' ]
+          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $API_CHECKS_REGEX || true)" != '' ]
           then
             echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
           fi
@@ -127,7 +127,7 @@ jobs:
         id: changed-content-files
         run: |
           CHANGED_FILES=$(gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only)
-          CHANGED_CONTENT_FILES=$(echo $CHANGED_FILES | grep -P $CONTENT_FILE_REGEX)
+          CHANGED_CONTENT_FILES=$(echo $CHANGED_FILES | grep -P $CONTENT_FILE_REGEX || true)
           if [ "$CHANGED_CONTENT_FILES" != '' ]
           then
             echo "ANY_CHANGED=true" >> "$GITHUB_OUTPUT"
