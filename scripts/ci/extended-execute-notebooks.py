@@ -11,23 +11,11 @@
 # that they have been altered from the originals.
 
 """
-Run the notebook tester on changed notebooks (between branch and main) using
-test-eagle.
+Run the notebook tester on all notebooks using test-eagle.
 """
 
-import os
 import subprocess
 from pathlib import Path
-
-all_changed_files = (
-    Path(".github/outputs/all_changed_files.txt").read_text().split("\n")
-)
-
-changed_notebooks = [
-    path for path in all_changed_files
-    if path.endswith(".ipynb")
-]
-config_changed = any(path.startswith("scripts/") for path in all_changed_files)
 
 args = ["tox", "--", "--test-strategy", "extended"]
 if changed_notebooks and not config_changed:
