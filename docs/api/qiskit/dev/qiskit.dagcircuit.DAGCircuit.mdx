@@ -1145,6 +1145,22 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if either node is not an OpNode or nodes are not connected
   </Function>
 
+  ### to\_circuit
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.to_circuit" signature="to_circuit(*, copy_operations=True)">
+    Convert this DAG to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+    This is a simple wrapper around [`dag_to_circuit()`](converters#qiskit.converters.dag_to_circuit "qiskit.converters.dag_to_circuit").
+
+    **Parameters**
+
+    **copy\_operations** – whether to deep copy the individual instructions. If set to `False`, the operation is cheaper but mutations to the instructions in the circuit will affect the original circuit.
+
+    **Returns**
+
+    a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") representing this same DAG.
+  </Function>
+
   ### topological\_nodes
 
   <Function id="qiskit.dagcircuit.DAGCircuit.topological_nodes" signature="topological_nodes(key=None)">
