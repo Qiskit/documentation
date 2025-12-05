@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.CommutationChecker
 
 # CommutationChecker
 
-<Class id="qiskit.circuit.CommutationChecker" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L24-L143" signature="qiskit.circuit.CommutationChecker(standard_gate_commutations=None, cache_max_entries=1000000, *, gates=None)" modifiers="class">
+<Class id="qiskit.circuit.CommutationChecker" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L24-L149" signature="qiskit.circuit.CommutationChecker(standard_gate_commutations=None, cache_max_entries=1000000, *, gates=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
 
   Check commutations of two operations.
@@ -39,7 +39,7 @@ $$
 
   ### check\_commutation\_entries
 
-  <Function id="qiskit.circuit.CommutationChecker.check_commutation_entries" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L123-L143" signature="check_commutation_entries(first_op, first_qargs, second_op, second_qargs)">
+  <Function id="qiskit.circuit.CommutationChecker.check_commutation_entries" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L129-L149" signature="check_commutation_entries(first_op, first_qargs, second_op, second_qargs)">
     Returns stored commutation relation if any
 
     **Parameters**
@@ -60,14 +60,14 @@ $$
 
   ### clear\_cached\_commutations
 
-  <Function id="qiskit.circuit.CommutationChecker.clear_cached_commutations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L119-L121" signature="clear_cached_commutations()">
+  <Function id="qiskit.circuit.CommutationChecker.clear_cached_commutations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L125-L127" signature="clear_cached_commutations()">
     Clears the dictionary holding cached commutations
   </Function>
 
   ### commute
 
-  <Function id="qiskit.circuit.CommutationChecker.commute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L71-L113" signature="commute(op1, qargs1, cargs1, op2, qargs2, cargs2, max_num_qubits=3, approximation_degree=1.0)">
-    Checks if two Operations commute. The return value of True means that the operations truly commute, and the return value of False means that either the operations do not commute or that the commutation check was skipped (for example, when the operations have conditions or have too many qubits).
+  <Function id="qiskit.circuit.CommutationChecker.commute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L71-L119" signature="commute(op1, qargs1, cargs1, op2, qargs2, cargs2, max_num_qubits=None, approximation_degree=1.0, matrix_max_num_qubits=3)">
+    Checks if two Operations commute. The return value of `True` means that the operations truly commute, and the return value of `False` means that either the operations do not commute or that the commutation check was skipped (for example, when the operations have conditions or have too many qubits).
 
     **Parameters**
 
@@ -77,12 +77,13 @@ $$
     *   **op2** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
     *   **qargs2** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – second operation’s qubits.
     *   **cargs2** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – second operation’s clbits.
-    *   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the maximum number of qubits to consider, the check may be skipped if the number of qubits for either operation exceeds this amount.
+    *   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – the maximum number of qubits to consider, the check may be skipped if the number of qubits for either operation exceeds this amount. Defaults to `None`, which means no limit. See also `matrix_max_num_qubits` to limit the dimension of matrices computed.
     *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – If the average gate fidelity in between the two operations is above this number (up to `1e-12`) they are assumed to commute.
+    *   **matrix\_max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the maximum number of qubits for which it is allowed to compute the matrix representation. This is needed if there is no efficient heck readily available, e.g. for custom gates.
 
     **Returns**
 
-    whether two operations commute.
+    Whether two operations commute.
 
     **Return type**
 
@@ -106,7 +107,7 @@ $$
 
   ### num\_cached\_entries
 
-  <Function id="qiskit.circuit.CommutationChecker.num_cached_entries" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L115-L117" signature="num_cached_entries()">
+  <Function id="qiskit.circuit.CommutationChecker.num_cached_entries" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L121-L123" signature="num_cached_entries()">
     Returns number of cached entries
   </Function>
 </Class>

@@ -165,6 +165,52 @@ The circuit C API currently only supports creating circuits that contain operati
   </Attribute>
 </Class>
 
+### QkVarsMode
+
+<Class id="QkVarsMode" signature="enum QkVarsMode">
+  The mode to copy the classical variables, for operations that create a new circuit based on an existing one.
+
+  *Values:*
+
+  #### enumerator QkVarsMode\_Alike
+
+  <Attribute id="QkVarsMode_Alike">
+    Each variable has the same type it had in the input.
+  </Attribute>
+
+  #### enumerator QkVarsMode\_Captures
+
+  <Attribute id="QkVarsMode_Captures">
+    Each variable becomes a “capture”.
+  </Attribute>
+
+  #### enumerator QkVarsMode\_Drop
+
+  <Attribute id="QkVarsMode_Drop">
+    Do not copy the variable data.
+  </Attribute>
+</Class>
+
+### QkBlocksMode
+
+<Class id="QkBlocksMode" signature="enum QkBlocksMode">
+  The mode to use to copy blocks in control-flow instructions, for operations that create a new circuit based on an existing one.
+
+  *Values:*
+
+  #### enumerator QkBlocksMode\_Drop
+
+  <Attribute id="QkBlocksMode_Drop">
+    Drop the blocks.
+  </Attribute>
+
+  #### enumerator QkBlocksMode\_Keep
+
+  <Attribute id="QkBlocksMode_Keep">
+    Keep the blocks.
+  </Attribute>
+</Class>
+
 ### qk\_circuit\_new
 
 <Function id="qk_circuit_new" signature="QkCircuit *qk_circuit_new(uint32_t num_qubits, uint32_t num_clbits)">
@@ -857,5 +903,58 @@ The circuit C API currently only supports creating circuits that contain operati
   **Returns**
 
   A pointer to the new DAG.
+</Function>
+
+### qk\_circuit\_copy\_empty\_like
+
+<Function id="qk_circuit_copy_empty_like" signature="QkCircuit *qk_circuit_copy_empty_like(const QkCircuit *circuit, QkVarsMode vars_mode, QkBlocksMode blocks_mode)">
+  Return a copy of self with the same structure but empty.
+
+  That structure includes:
+
+  *   global phase
+  *   all the qubits and clbits, including the registers.
+
+  <span id="group__QkCircuit_1autotoc_md51" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(10, 10);
+  for (int i = 0; i < 10; i++) {
+      qk_circuit_measure(qc, i, i);
+      uint32_t qubits[1] = {i};
+      qk_circuit_gate(qc, QkGate_H, qubits, NULL);
+  }
+
+  // As the circuit does not contain any control-flow instructions,
+  // vars_mode and blocks_mode do not have any effect.
+  QkCircuit *copy = qk_circuit_copy_empty_like(qc, QkVarsMode_Alike, QkBlocksMode_Drop);
+
+  size_t num_copy_instructions = qk_circuit_num_instructions(copy); // 0
+
+  // do something with the copy
+
+  qk_circuit_free(qc);
+  qk_circuit_free(copy);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md52" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md52" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to copy.
+  *   **vars\_mode** – The mode for handling classical variables.
+  *   **blocks\_mode** – The mode for handling blocks.
+
+  **Returns**
+
+  The pointer to the copied circuit.
 </Function>
 
