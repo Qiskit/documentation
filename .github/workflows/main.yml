@@ -29,9 +29,9 @@ jobs:
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
-          NOTEBOOK_TEST_REGEX: (\.github\/workflows\/notebook-test\.yml|(docs|learning)(?!\/api\/)\/.*\.ipynb|scripts\/nb-tester\/.*)
+          NOTEBOOK_TEST_REGEX: (\.github\/workflows\/main\.yml|(docs|learning)(?!\/api\/)\/.*\.ipynb|scripts\/nb-tester\/.*)
           #  -- Should match:
-          #  .github/workflows/notebook-test.yml
+          #  .github/workflows/main.yml
           #  scripts/nb-tester/requirements.txt
           #  docs/guides/thing.ipynb
           #  learning/courses/my-course/notebook.ipynb
@@ -42,13 +42,13 @@ jobs:
           #  docs/api/thing.ipynb
           #  scripts/js/lib/thing.ts
 
-          API_CHECKS_REGEX: (\.github\/workflows\/notebook-test\.yml|(docs|learning)(?!\/api\/)\/.*\.ipynb|scripts\/nb-tester\/.*)
+          API_CHECKS_REGEX: (\.github\/workflows\/main\.yml|(docs\/api|public\/docs\/api|scripts\/js)\/.*)
           #  -- Should match:
           #  docs/api/qiskit/index.mdx
-          #  public/api/qiskit-ibm-runtime/objects.inv
-          #  public/images/thing.avif
+          #  public/docs/api/qiskit-ibm-runtime/objects.inv
+          #  public/docs/api/qiskit/thing.avif
           #  scripts/js/lib/links/thing.ts
-          #  .github/workflows/api-checks.yml
+          #  .github/workflows/main.yml
           #
           #  -- Should not match:
           #  scripts/nb-tester/file.py
