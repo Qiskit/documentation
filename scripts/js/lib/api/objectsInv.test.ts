@@ -154,6 +154,13 @@ test.describe("objects.inv", () => {
         },
         "qk-bit-term.html#qk_bitterm_label",
       ],
+      [
+        {
+          name: "QkCircuitInstruction.num_qubits",
+          uri: "cdoc/qk-circuit.html#c.$",
+        },
+        "qk-circuit.html#qkcircuitinstruction",
+      ],
 
       // Map these labels to their objects
       [

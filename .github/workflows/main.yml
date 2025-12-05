@@ -10,9 +10,71 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-name: Lint
+name: Pull request
 on: [pull_request, merge_group]
 jobs:
+  decide-jobs:
+    name: Decide which jobs to run
+    runs-on: ubuntu-latest
+    # We don't run these tests in the merge queue
+    if: github.repository_owner == 'Qiskit' && github.event_name == 'pull_request'
+    outputs:
+      run-notebook-tester: ${{ steps.decide.outputs.RUN_NOTEBOOK_TESTER }}
+      run-api-checks: ${{ steps.decide.outputs.RUN_API_CHECKS }}
+    steps:
+      - name: Decide which jobs to run
+        id: decide
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # If changing this regex, test it on https://regex101.com/ with the
+          # following paths (you can paste the block in and uncomment it):
+          #
+          #  -- Should match:
+          #  .github/workflows/notebook-test.yml
+          #  scripts/nb-tester/requirements.txt
+          #  docs/guides/thing.ipynb
+          #  learning/courses/my-course/notebook.ipynb
+          #
+          #  -- Should not match:
+          #  docs/guides/thing.mdx
+          #  docs/api/thing.mdx
+          #  docs/api/thing.ipynb
+          #  scripts/js/lib/thing.ts
+          #
+          # Add new tests if necessary
+          NOTEBOOK_TEST_REGEX='(\.github\/workflows\/notebook-test\.yml|(docs|learning)(?!\/api\/)\/.*\.ipynb|scripts\/nb-tester\/.*)'
+
+          # If changing this regex, test it on https://regex101.com/ with the
+          # following paths (you can paste the block in and uncomment it):
+          #
+          #  -- Should match:
+          #  docs/api/qiskit/index.mdx
+          #  public/api/qiskit-ibm-runtime/objects.inv
+          #  public/images/thing.avif
+          #  scripts/js/lib/links/thing.ts
+          #  .github/workflows/api-checks.yml
+          #
+          #  -- Should not match:
+          #  scripts/nb-tester/file.py
+          #  docs/guides/thing.ipynb
+          #  public/learning/image.svg
+          #  .github/workflows/notebook-test-cron.yml
+          #
+          # Add new tests if necessary
+          API_CHECKS_REGEX='(\.github\/workflows\/notebook-test\.yml|(docs|learning)(?!\/api\/)\/.*\.ipynb|scripts\/nb-tester\/.*)'
+
+          CHANGED_FILES=$(gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only)
+          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $NOTEBOOK_TEST_REGEX)" != '' ]
+          then
+            echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $API_CHECKS_REGEX)" != '' ]
+          then
+            echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
+          fi
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -22,12 +84,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
       - name: Install Node.js dependencies
         run: npm ci
       - name: Install ImageMagick
         run: |
-          sudo apt-get update
           sudo apt-get install -y imagemagick
           sudo ln -s /usr/bin/convert /usr/bin/magick
       - name: Install Playwright
@@ -106,5 +167,93 @@ jobs:
             )
             sys.exit(1)
 
-      - name: Test packages
-        run: tox -e tests
+  notebook-test:
+    name: Execute notebooks
+    needs: [decide-jobs]
+    if: github.repository_owner == 'Qiskit' && needs.decide-jobs.outputs.run-notebook-tester == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get changed files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .github/outputs
+          gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only > .github/outputs/changed-files.txt
+
+      - name: Check if extra linux deps needed
+        id: check-deps
+        shell: python
+        run: |
+          # Add your notebook to this list if it needs latex or graphviz to run
+          EXTRA_DEPS_NOTEBOOKS = """\
+          docs/guides/visualize-circuits.ipynb
+          docs/guides/custom-backend.ipynb
+          docs/guides/transpiler-stages.ipynb
+          docs/guides/represent-quantum-computers.ipynb
+          docs/guides/common-parameters.ipynb
+          docs/guides/DAG-representation.ipynb
+          """.strip().split("\n")
+          import os
+          from pathlib import Path
+          github_output = os.getenv("GITHUB_OUTPUT")
+          all_files = Path(".github/outputs/changed-files.txt").read_text().split("\n")
+
+          config_changed = any(path.startswith("scripts/") or path.startswith(".github") for path in all_files)
+          extra_deps = config_changed or any(path in EXTRA_DEPS_NOTEBOOKS for path in all_files)
+
+          with open(github_output, "a") as output:
+            output.write(f"NEEDS_EXTRA_DEPS={str(extra_deps).lower()}")
+
+      - name: Setup environment
+        uses: ./.github/actions/set-up-notebook-testing
+        with:
+          # Install Linux deps if the specific guides were changed, or
+          # if all files are being tested.
+          install-linux-deps: ${{ steps.check-deps.outputs.NEEDS_EXTRA_DEPS }}
+          ibm-cloud-token: ${{ secrets.IBM_CLOUD_TEST_TOKEN }}
+          instance: ${{ vars.IBM_CLOUD_TEST_CRN }}
+
+      - name: Execute notebooks
+        env:
+          PR_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
+        run: python scripts/ci/pr-execute-notebooks.py
+
+      - name: Detect changed notebooks
+        id: changed-notebooks
+        run: |
+          echo "CHANGED_NOTEBOOKS<<EOF" >> $GITHUB_OUTPUT
+          git diff --name-only >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Upload executed notebooks
+        uses: actions/upload-artifact@v4
+        with:
+          name: Executed notebooks
+          path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS || 'no-changes' }}
+
+  api-checks:
+    name: API checks
+    needs: [decide-jobs]
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'Qiskit' && needs.decide-jobs.outputs.run-api-checks == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Check internal links
+        run: >
+          npm run check:internal-links --
+          --current-apis
+          --dev-apis
+          --historical-apis
+          --qiskit-legacy-release-notes
+      - name: Check for orphan pages
+        run: npm run check:orphan-pages -- --apis
+      - name: Check markdown
+        run: npm run check:markdown -- --apis
