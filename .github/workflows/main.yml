@@ -132,6 +132,7 @@ jobs:
           then
             echo "ANY_CHANGED=true" >> "$GITHUB_OUTPUT"
           fi
+          mkdir -p .github/outputs
           echo $CHANGED_CONTENT_FILES >> .github/outputs/changed-content-files.txt
       - name: Pull preview image
         if: steps.changed-docs-files.outputs.ANY_CHANGED == 'true'
