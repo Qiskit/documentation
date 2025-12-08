@@ -22,11 +22,11 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
   *   **job\_id** (*str*) – Job ID.
   *   **program\_id** (*str*) – ID of the program this job is for.
   *   **creation\_date** (*str | None*) – Job creation date, in UTC.
-  *   **result\_decoder** (*Type\[ResultDecoder] | Sequence\[Type\[ResultDecoder]] | None*) – A `ResultDecoder` subclass used to decode job results.
+  *   **result\_decoder** (*type\[ResultDecoder] | Sequence\[type\[ResultDecoder]] | None*) – A `ResultDecoder` subclass used to decode job results.
   *   **image** (*str | None*) – Runtime image used for this job: image\_name:tag.
   *   **service** ([*qiskit\_runtime\_service.QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Runtime service.
   *   **session\_id** (*str | None*) – Job ID of the first job in a runtime session.
-  *   **tags** (*List | None*) – Tags assigned to the job.
+  *   **tags** (*list | None*) – Tags assigned to the job.
   *   **version** (*int | None*) – Primitive version.
   *   **private** (*bool | None*) – Marks job as private.
 
@@ -38,7 +38,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
   ### JOB\_FINAL\_STATES
 
-  <Attribute id="qiskit_ibm_runtime.RuntimeJobV2.JOB_FINAL_STATES" attributeTypeHint="Tuple[Literal['INITIALIZING', 'QUEUED', 'RUNNING', 'CANCELLED', 'DONE', 'ERROR'], ...]" attributeValue="('DONE', 'CANCELLED', 'ERROR')" />
+  <Attribute id="qiskit_ibm_runtime.RuntimeJobV2.JOB_FINAL_STATES" attributeTypeHint="tuple[Literal['INITIALIZING', 'QUEUED', 'RUNNING', 'CANCELLED', 'DONE', 'ERROR'], ...]" attributeValue="('DONE', 'CANCELLED', 'ERROR')" />
 
   ### creation\_date
 
@@ -179,7 +179,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
   ### error\_message
 
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.error_message" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L190-L197" signature="error_message()">
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.error_message" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L189-L196" signature="error_message()">
     Returns the reason if the job failed.
 
     **Returns**
@@ -245,7 +245,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
   ### metrics
 
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.metrics" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L126-L142" signature="metrics()">
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.metrics" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L125-L141" signature="metrics()">
     Return job metrics.
 
     **Returns**
@@ -267,7 +267,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
   ### properties
 
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L173-L188" signature="properties(refresh=False)">
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L172-L187" signature="properties(refresh=False)">
     Return the backend properties for this job.
 
     **Parameters**
@@ -291,7 +291,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
     **Parameters**
 
     *   **timeout** (*float | None*) – Number of seconds to wait for job.
-    *   **decoder** (*Type\[ResultDecoder] | None*) – A `ResultDecoder` subclass used to decode job results.
+    *   **decoder** (*type\[ResultDecoder] | None*) – A `ResultDecoder` subclass used to decode job results.
 
     **Returns**
 
@@ -334,12 +334,12 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
   ### update\_tags
 
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.update_tags" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L144-L171" signature="update_tags(new_tags)">
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.update_tags" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L143-L170" signature="update_tags(new_tags)">
     Update the tags associated with this job.
 
     **Parameters**
 
-    **new\_tags** (*List\[str]*) – New tags to assign to the job.
+    **new\_tags** (*list\[str]*) – New tags to assign to the job.
 
     **Returns**
 
@@ -351,12 +351,12 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
     **Return type**
 
-    *List*\[str]
+    list\[str]
   </Function>
 
   ### usage
 
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L118-L124" signature="usage()">
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L117-L123" signature="usage()">
     Return job usage in seconds.
 
     **Return type**
