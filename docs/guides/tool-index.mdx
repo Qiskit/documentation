@@ -69,16 +69,6 @@ To get started building quantum workloads to solve optimization problems, refer 
 - [GitHub repository for quantum optimization](https://github.com/qiskit-community/qopt-best-practices)
 - [QAOA training pipeline](https://github.com/qiskit-community/qaoa_training_pipeline)
 
-### Device benchmarking
-
-<details>
-Qiskit device benchmarking is a repository for code to run various device-level benchmarks through Qiskit. It is not intended to define a benchmark standard, but instead provides code examples to replicate benchmarking metrics that have been reported in literature or elsewhere.
-</details>
-
-*Relevant links:*
-
-- [Qiskit device benchmarking repository](https://github.com/qiskit-community/qiskit-device-benchmarking)
-- [Benchmarking notebooks](https://github.com/qiskit-community/qiskit-device-benchmarking/blob/main/notebooks/README.md)
 
 ## Prepare and optimize workloads
 
@@ -156,7 +146,7 @@ The noisy estimator analyzer tool (NEAT) analyzes and predicts the performance o
 - [NEAT API reference page](/docs/api/qiskit-ibm-runtime/debug-tools-neat)
 
 
-### Local testing mode
+### Qiskit Runtime local testing mode
 
 <details>
 <summary>Simulate smaller or Cliffordized circuits to assess performance</summary>
@@ -202,10 +192,10 @@ Explore the different execution modes - scheduling strategies for execution - wh
 - [Overview of job, batch, and session modes](/docs/guides/execution-modes)
 - [How to choose the right execution mode](/docs/guides/choose-execution-mode)
 
-### Executor primitive
+### Directed execution model
 
 <details>
-<summary>Generate and execute circuit variants based on the input samplex directive</summary>
+<summary>Generate and execute circuit variants based on directives defined with Samplomatic</summary>
 
 Executor allows you to fine-tune error mitigation and other techniques without sacrificing performance, by providing the ingredients to capture design intents on the client-side, and shifting the costly generation of circuit variants to the server-side. With Executor, users will gain a clearer and more composable model for execution workflows, making it easier to experiment with new techniques, reproduce results, and share methods.
 </details>
@@ -294,6 +284,20 @@ This error mitigation technique returns an unbiased estimate of the expectation 
 <summary>Mitigate errors by amplifying noise and extrapolating corrected expectation values</summary>
 
 This error mitigation technique first computes the expectation value at different noise levels, then estimates the ideal result by extrapolating the noisy expectation value results to the zero-noise limit. Since this can be done in multiple ways, a number of noise amplification and extrapolation techniques are available.
+
+#### Gate folding-based ZNE
+Gate folding is a noise amplification process that replaces two-qubit gates with equivalent sequences of two-qubit gates and their inverses. This approach is straightforward and simple to use, but can be imperfect.
+
+#### Probabilistic error amplification
+
+Probabilistic error amplification (PEA) is a more sophisticated means of amplifying errors for ZNE. It involves running preliminary experiments to learn a twirled noise model of the circuit, and then uses this model to perform a more accurate error amplification. 
+
+
+**Relevant resources**
+
+- [PEA overview](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea)
+- [API reference for `LayerNoiseLearningOptions`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)
+- [API reference for `NoiseLearner`](/docs/api/qiskit-ibm-runtime/noise-learner-noise-learner)
 </details>
 
 **Relevant resources**
@@ -301,7 +305,6 @@ This error mitigation technique first computes the expectation value at differen
 - [Qiskit Runtime primitive options for ZNE](/docs/api/qiskit-ibm-runtime/options-zne-options)
 - [Introduction to ZNE](/docs/guides/error-mitigation-and-suppression-techniques#zero-noise-extrapolation-zne)
 - [Error mitigation feature compatibility](/docs/guides/runtime-options-overview#feature-compatibility)
-- [ArXiv white paper on best practices for digital ZNE](https://arxiv.org/abs/2307.05203)
 
 ### Gate folding-based ZNE
 
@@ -419,6 +422,7 @@ The noise models produced by `NoiseLearner` might not be accurate for Heron back
 ### Algorithmiq Tensor-Network Error Mitigation Function
 
 <details>
+<summary> Qiskit Function for error mitigation based on tensor-network methods </summary>
 Algorithmiq's Tensor-network Error Mitigation (TEM) method is a hybrid quantum-classical algorithm designed for automating and performing noise mitigation. It accomplishes this by constructing a tensor network representing an approximate inverse of the noise affecting a circuit to obtain unbiased estimates of an observable. TEM is a novel error mitigation method based on post-processing with tensor networks, and it provides unbiased error mitigation with the lowest possible shot overhead on the quantum hardware, minimizing the runtime and hence the costs of experiments. It requires exponentially less shots than probabilistic error cancellation (PEC) and significantly less shots than zero noise extrapolation (ZNE).
 </details>
 
