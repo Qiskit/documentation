@@ -7,12 +7,12 @@ description: Take a classical problem and map it to run on a quantum computer.
 
 Mapping tools assist with mapping a classical problem to circuits and operators, for execution on a quantum computer.
 
-In applications such as chemistry and quantum simulation, mapping generally involves constructing a quantum circuit representing the Hamiltonian you are attempting to solve. For certain problems, it might also be desirable to specify the mapping of the problem onto qubits in the heavy-hex (or gross) lattice of IBM&reg; hardware from the outset if the structure of the problem lends itself to optimization earlier.
+In applications such as chemistry and quantum simulation, mapping generally involves constructing a quantum circuit representing the Hamiltonian you are attempting to solve. For certain problems, it might also be desirable to map the problem onto qubits in the heavy-hex (or gross) lattice of IBM&reg; hardware from the outset if the structure of the problem lends itself to optimization earlier.
 
-It is also worth considering at this point what the outcome of the particular algorithm will be in preparation for the later execute step - for example, if the desired outcome involves
+It is also worth considering at this point what the outcome of the particular algorithm will be in preparation for the later execute step - for example, if the desired outcome involves inferring correlation functions using Hadamard tests, you might prepare to use the Sampler primitive, whereas specifying observables would use the Estimator primitive and might provide many more error mitigation options.
 inferring correlation functions using Hadamard tests, you might prepare to use Sampler; if it involves specifying observables, you would use Estimator.
 
-The output map is normally a collection of circuits or quantum operators.
+The output of this step in a Qiskit pattern is normally a collection of circuits or quantum operators and is almost exclusively done within the Qiskit SDK. The pages within this section explain many of the features for circuit building, incorporating dynamic circuits with feedforward and control flow, and specifying operators and observables, as well as explaining the OpenQASM language standard.
 
 ## Relevant resources
  
