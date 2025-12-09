@@ -35,19 +35,19 @@ To provide code suggestions, Qiskit Code Assistant uses a Large Language Model (
 
 Our LLMs specialized for Qiskit are available also as open-source models. Check all the models available at https://huggingface.co/Qiskit.
 
-## The Qiskit HumanEval benchmark
+## The Qiskit HumanEval and Qiskit HumanEval Hard benchmarks
 
-To test the `mistral-small-3.2-24b-qiskit` model, we collaborated with Qiskit Advocates and experts to create the execution-based benchmark called Qiskit HumanEval (QHE), and ran it on the model. This benchmark is similar to [HumanEval](https://arxiv.org/abs/2107.03374), including multiple challenging code problems to solve, all based on the official Qiskit libraries.
+To test the `mistral-small-3.2-24b-qiskit` and other models, we collaborated with Qiskit Advocates and experts to create the execution-based benchmark called Qiskit HumanEval (QHE), and ran it on the model. This benchmark is similar to [HumanEval](https://arxiv.org/abs/2107.03374), including multiple challenging code problems to solve, all based on the official Qiskit libraries.
 
-The benchmark is composed of approximately 150 tests, each one made from a function definition, followed by a docstring that details the task the model is required to solve. Each example also includes a reference canonical solution, as well as unit tests, to evaluate the correctness of the generated solutions. There are three levels of difficulty for tests: basic, intermediate, and difficult.
+The benchmark is composed of approximately 150 tests, each one made from a function definition, followed by a docstring that details the task the model is required to solve. Each example also includes a reference canonical solution, as well as unit tests, to evaluate the correctness of the generated solutions. There are three levels of difficulty for tests: basic, intermediate, and difficult. The Qiskit HumanEval Hard benchmark is a variation of the Qiskit HumanEval one, but removing information related to imports, so the LLM needs to figure out the right imports. That simple change makes the dataset to be much more challenging, according to our tests and initial results.
 
 
-The dataset for the Qiskit HumanEval is expected to be open source soon.
+The datasets for Qiskit HumanEval and Qiskit HumanEval Hard are available at [qiskit_humaneval](https://huggingface.co/datasets/Qiskit/qiskit_humaneval) and [qiskit_humaneval_hard](https://huggingface.co/datasets/Qiskit/qiskit_humaneval_hard). You can contribute to the development of these benchmarks in [GitHub.](https://github.com/qiskit-community/qiskit-human-eval)
 
 
 ## More information and citations
 
-To learn more about Qiskit Code Assistant or the Qiskit HumanEval and cite it in your scientific publications, review these recommended citations:
+To learn more about Qiskit Code Assistant, the Qiskit HumanEval or Qiskit HumanEval Hard benchmarks, and cite it in your scientific publications, review these recommended citations:
 
 ```
 @misc{2405.19495,
@@ -64,6 +64,15 @@ Author = {Sanjay Vishwakarma and Francis Harkins and Siddharth Golecha and Visha
 Title = {Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models},
 Year = {2024},
 Eprint = {arXiv:2406.14712},
+}
+```
+
+```
+@misc{2508.20907,
+Author = {Nicolas Dupuis and Adarsh Tiwari and Youssef Mroueh and David Kremer and Ismael Faro and Juan Cruz-Benito},
+Title = {Quantum Verifiable Rewards for Post-Training Qiskit Code Assistant},
+Year = {2025},
+Eprint = {arXiv:2508.20907},
 }
 ```
 
