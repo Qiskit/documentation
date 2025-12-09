@@ -126,7 +126,17 @@ jobs:
           #  scripts/nb-tester/example-notebook.ipynb
         id: changed-content-files
         run: |
-          CHANGED_FILES=$(gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only)
+          # GitHub API doesn't give PR information in the merge_group event, but
+          # we can get the PR number from the branch name
+          if [ "${{ github.event_name }}" == 'merge_group' ]
+          then
+            BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
+            PR_NUMBER="$(echo $BRANCH_NAME | grep -oP '(?<=gh-readonly-queue/main/pr-)\d+')"
+          else
+            PR_NUMBER="${{ github.event.number }}"
+          fi
+
+          CHANGED_FILES=$(gh pr diff -R Qiskit/documentation $PR_NUMBER --name-only)
           CHANGED_CONTENT_FILES=$(echo $CHANGED_FILES | grep -P $CONTENT_FILE_REGEX || true)
           if [ "$CHANGED_CONTENT_FILES" != '' ]
           then
