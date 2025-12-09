@@ -30,7 +30,7 @@ def get_timestamp(dest: Path) -> int:
 def write_timestamp(dest: Path) -> None:
     now = time.time()
     Path(dest).mkdir(parents=True, exist_ok=True)
-    Path(dest / "last_modified.txt").write_text(str(now))
+    Path(dest / "last_modified.txt").write_text(str(int(now)))
 
 
 def configure_logging() -> None:
