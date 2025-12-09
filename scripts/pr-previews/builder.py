@@ -57,7 +57,7 @@ def main() -> None:
     with setup_dir() as dir:
         yarn_build(dir, args.basepath)
         save_output(dir, args.dest)
-        write_timestamp(dir)
+    write_timestamp(args.dest)
 
 
 def write_proof_of_concept(dest: Path) -> None:
