@@ -103,21 +103,6 @@ Dynamic circuits are powerful tools for measuring qubits in the middle of a quan
 - [Classical feed-forward and control flow](/docs/guides/classical-feedforward-and-control-flow) (This is the primary way to integrate dynamic circuits into your workloads)
 - [Tutorial on using dynamic circuits to generate long-range entanglement](/docs/tutorials/long-range-entanglement)
 
-### Dynamical decoupling
-
-<details>
-<summary>Reduce decoherence errors on idle qubits</summary>
-
-Dynamical decoupling (DD) is a technique for suppressing errors due to qubit decoherence. It is primarily useful in regions within a quantum circuit in which one or more qubits site idle while other instructions are being executed. Both Sampler and Estimator primitives have built-in support for applying DD. Alternatively, you can use the [`PadDynamicalDecoupling`](/docs/api/qiskit/qiskit.transpiler.passes.PadDynamicalDecoupling) transpiler pass in Qiskit, or build your own using the new stretch instruction.
-</details>
-
-**Relevant resources**
-
-- [Overview of DD](/docs/guides/error-mitigation-and-suppression-techniques#dynamical-decoupling)
-- [Introduction to primitive options](/docs/guides/runtime-options-overview)
-- [Create a pass manager for dynamical decoupling](/docs/guides/dynamical-decoupling-pass-manager)
-- [Deferred timing resolution using stretch](/docs/guides/stretch) (Especially useful for applying DD in a dynamic circuit)
-
 ### Operator backpropagation
 
 <details>
@@ -304,8 +289,6 @@ Probabilistic error amplification (PEA) is a more sophisticated means of amplify
 - [PEA overview](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea)
 - [API reference for `LayerNoiseLearningOptions`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)
 - [API reference for `NoiseLearner`](/docs/api/qiskit-ibm-runtime/noise-learner-noise-learner)
-- [Qiskit Runtime primitive options for ZNE](/docs/api/qiskit-ibm-runtime/options-zne-options)
-- [Introduction to ZNE](/docs/guides/error-mitigation-and-suppression-techniques#zero-noise-extrapolation-zne)
 
 ### Twirled readout error extinction (TREX)
 
@@ -346,6 +329,21 @@ The shaded lightcones (SLC) Qiskit addon uses Pauli propagation to reduce the nu
 
 - [SLC documentation page](https://qiskit.github.io/qiskit-addon-slc/)
 - [`qiskit-addon-slc` GitHub repo](https://github.ibm.com/ibm-q-research/qiskit-addon-slc)
+
+### Dynamical decoupling
+
+<details>
+<summary>Reduce decoherence errors on idle qubits</summary>
+
+Dynamical decoupling (DD) is a technique for suppressing errors due to qubit decoherence. It is primarily useful in regions within a quantum circuit in which one or more qubits site idle while other instructions are being executed. Both Sampler and Estimator primitives have built-in support for applying DD. Alternatively, you can use the [`PadDynamicalDecoupling`](/docs/api/qiskit/qiskit.transpiler.passes.PadDynamicalDecoupling) transpiler pass in Qiskit, or build your own using the new stretch instruction.
+</details>
+
+**Relevant resources**
+
+- [Overview of DD](/docs/guides/error-mitigation-and-suppression-techniques#dynamical-decoupling)
+- [Introduction to primitive options](/docs/guides/runtime-options-overview)
+- [Create a pass manager for dynamical decoupling](/docs/guides/dynamical-decoupling-pass-manager)
+- [Deferred timing resolution using stretch](/docs/guides/stretch) (Especially useful for applying DD in a dynamic circuit)
 
 ### Sample-based quantum diagonalization
 
