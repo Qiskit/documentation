@@ -1,0 +1,114 @@
+---
+title: Qiskit MCP Servers
+description: Use Qiskit MCP Servers to integrate quantum computing capabilities into AI assistants and agents.
+---
+
+# Qiskit MCP Servers
+
+Qiskit MCP Servers is a collection of [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers that integrate quantum computing capabilities into AI systems. These servers enable AI assistants, large language models (LLMs), and agents to access IBM Quantum&reg; services and Qiskit libraries.
+
+<Admonition type="note">
+    This is an open-source project. For the most up-to-date information, detailed API coverage, and advanced configurations, refer to the [Qiskit MCP Servers GitHub repository](https://github.com/Qiskit/mcp-servers).
+</Admonition>
+
+## When should I use Qiskit MCP Servers?
+
+Qiskit MCP Servers allow AI assistants to help you with quantum computing tasks. This includes some of the following examples:
+
+- Generating quantum code with contextual awareness 
+- Answering quantum computing questions directly from reliable sources
+- Connecting to real quantum hardware automatically
+- Analyzing and selecting optimal quantum backends
+- Executing quantum circuits and tracking job status
+
+## What is included?
+
+The following MCP servers are available:
+
+### Qiskit Code Assistant MCP Server
+
+Provides intelligent quantum code completion and assistance through the [Qiskit Code Assistant](/docs/guides/qiskit-code-assistant). This server integrates the Qiskit Code Assistant capabilities directly into MCP-compatible AI tools.
+
+As with any other feature from Qiskit Code Assistant, this MCP server only works for IBM Quantum Premium Plan users registered on the [IBM Quantum Platform.](https://quantum.cloud.ibm.com/)
+
+### Qiskit IBM Runtime MCP Server
+
+Provides access to IBM Quantum cloud services through the Qiskit IBM Runtime. This enables AI assistants to interact with quantum backends, submit jobs, and retrieve results.
+
+## Install Qiskit MCP Servers
+
+To use Qiskit MCP Servers, you need:
+
+- Python 3.10 or higher (3.11+ recommended)
+- An IBM Quantum account with API token (see [Set up your IBM Cloud account](/docs/guides/cloud-setup))
+
+Install all the available Qiskit MCP servers by running the following command from a terminal:
+
+```bash
+pip install qiskit-mcp-servers
+```
+
+You can also install the individual MCP servers:
+
+```bash
+pip install qiskit-code-assistant-mcp-server
+pip install qiskit-ibm-runtime-mcp-server
+```
+
+## Configure Qiskit MCP Servers
+
+### Set environment variables
+
+Set up the required environment variables for authentication.
+
+For the Qiskit IBM Runtime or Qiskit Code Assistant MCP Servers:
+
+```bash
+export QISKIT_IBM_TOKEN="your_token"
+```
+
+You can find your API token in your [IBM Quantum account settings](https://quantum.cloud.ibm.com/).
+
+### Configure your MCP client
+
+Configure your MCP-compatible client (such as Claude Desktop, Cursor, or other AI tools) to use the Qiskit MCP servers. The exact configuration depends on your client. For example, in a typical MCP client configuration file:
+
+```json
+{
+  "mcpServers": {
+    "qiskit-ibm-runtime": {
+      "command": "qiskit-ibm-runtime-mcp-server"
+    },
+    "qiskit-code-assistant": {
+      "command": "qiskit-code-assistant-mcp-server"
+    }
+  }
+}
+```
+
+Refer to your MCP client's documentation for specific configuration instructions.
+
+## Test the MCP servers
+
+You can test the MCP servers interactively using the MCP Inspector:
+
+```bash
+npx @modelcontextprotocol/inspector qiskit-ibm-runtime-mcp-server
+```
+
+Or for the Qiskit Code Assistant MCP server:
+
+```bash
+npx @modelcontextprotocol/inspector qiskit-code-assistant-mcp-server
+```
+
+## Next steps
+
+<Admonition type="info" title="Recommendations">
+
+- Visit the [Qiskit MCP Servers GitHub repository](https://github.com/Qiskit/mcp-servers) for detailed documentation, API coverage, and examples.
+- Learn about [Qiskit Code Assistant](/docs/guides/qiskit-code-assistant) to understand the AI capabilities available through the MCP servers.
+- Set up your [IBM Quantum account](/docs/guides/cloud-setup) if you haven't already.
+- Explore the [Model Context Protocol documentation](https://modelcontextprotocol.io/) to learn more about MCP.
+
+</Admonition>
