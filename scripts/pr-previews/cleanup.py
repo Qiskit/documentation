@@ -76,10 +76,10 @@ def is_stale(folder_name: str) -> bool:
 
 def delete_closed_pr_folders() -> None:
     active_pr_folders = get_active_pr_folders()
-    is_closed = lambda folder: folder not in active_pr_folders
 
     for folder in Path(".").glob("pr-*"):
-        if is_closed(folder.name):
+        is_closed = folder not in active_pr_folders
+        if is_closed:
             logger.info(f"Deleting {folder} as PR is closed")
             shutil.rmtree(folder)
             continue
