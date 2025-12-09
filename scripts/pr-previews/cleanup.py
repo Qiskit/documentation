@@ -15,6 +15,7 @@
 import json
 import logging
 import shutil
+import time
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -29,6 +30,8 @@ from utils import (
 
 INITIAL_COMMIT = "499a5040585d02593cdd8237e19c9ee4a84ae126"
 
+SEVEN_DAYS_IN_SECONDS = 60 * 60 * 24 * 7
+PR_EXPIRATION_TIME_SECONDS = SEVEN_DAYS_IN_SECONDS
 
 def main() -> None:
     setup_git_account()
@@ -64,14 +67,26 @@ def get_active_pr_folders() -> set[str]:
     # `raw` is JSON string of form: { number: int }[]
     return {f"pr-{obj['number']}" for obj in json.loads(raw)}
 
+def is_stale(folder_name: str) -> bool:
+    # All time measured in seconds, from the unix epoch
+    current_timestamp = time.time()
+    last_modified_timestamp = int(run_subprocess(["git", "log", "-n", "1", "--format=%at", folder_name]).stdout)
+    return (current_timestamp - last_modified_timestamp) > PR_EXPIRATION_TIME_SECONDS
 
 def delete_closed_pr_folders() -> None:
     active_pr_folders = get_active_pr_folders()
-    for folder in Path(".").glob("pr-*"):
-        if folder.name not in active_pr_folders:
-            logger.info(f"Deleting {folder}")
-            shutil.rmtree(folder)
+    is_closed = lambda folder: folder not in active_pr_folders
 
+    for folder in Path(".").glob("pr-*"):
+        if is_closed(folder.name):
+            logger.info(f"Deleting {folder} as PR is closed")
+            shutil.rmtree(folder)
+            continue
+        if is_stale(folder.name):
+            logger.info(f"Would delete {folder} as it is stale")
+            # TODO (#3433) Change the log message and uncomment the following line
+            # shutil.rmtree(folder)
+            continue
 
 if __name__ == "__main__":
     configure_logging()
