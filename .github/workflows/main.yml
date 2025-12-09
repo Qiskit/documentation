@@ -145,23 +145,23 @@ jobs:
           mkdir -p .github/outputs
           echo $CHANGED_CONTENT_FILES >> .github/outputs/changed-content-files.txt
       - name: Pull preview image
-        if: steps.changed-docs-files.outputs.ANY_CHANGED == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: ./start --pull-only
       - name: Start local Docker preview (cloud app)
-        if: steps.changed-docs-files.outputs.ANY_CHANGED == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: |
           ./start --apis &
           sleep 1
       - name: Check that pages render
-        if: steps.changed-docs-files.outputs.ANY_CHANGED == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: |
           npm run check:pages-render -- --from-file .github/outputs/changed-content-files.txt
       - name: Check that Katex expressions render
-        if: steps.changed-docs-files.outputs.ANY_CHANGED == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: |
           npm run check:katex-render -- --from-file .github/outputs/changed-content-files.txt
       - name: Stop Docker preview
-        if: steps.changed-docs-files.outputs.ANY_CHANGED == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: docker ps -q | xargs docker stop
 
       - name: Setup Python environment
@@ -174,7 +174,7 @@ jobs:
         run: python scripts/ci/check-all-notebooks-are-tested.py
 
       - name: Lint notebooks
-        if: steps.changed-docs-files.outputs.ANY_CHANGED == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         shell: python
         run: |
           import subprocess, sys
