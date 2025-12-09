@@ -12,430 +12,296 @@ in_page_toc_max_heading_level: 2
 
 ## Map problem to circuits
 
-### AQC-Tensor
+<CardGroup>
+    <Card
+      title="Qiskit circuit library"
+      description="Start with the Qiskit circuit library when beginning the process of constructing circuits and workloads. Available features range from standard single- and multi-qubit gates to pre-built ansatze, and also include custom unitary gates."
+      href="/docs/guides/circuit-library"
+      analyticsName="Tools index page: Circuit library"
+      linkText="Overview"
+    />
 
-<details>
-<summary>A Qiskit addon for building time evolution circuits</summary>
+    <Card
+      title="Optimization mapper"
+      description="Optimization mapper is a Qiskit addon that contains the functionality to model optimization problems. For example, you can use it to create models of binary optimization problems to solve with Qiskit."
+      href="https://qiskit.github.io/qiskit-addon-opt-mapper/"
+      analyticsName="Tools index page: Optimization mapper"
+      linkText="Docs"
+    />
 
-AQC-Tensor is a Qiskit addon that uses tensor network methods to compile the initial portion of a circuit into a nearly equivalent approximation, with many fewer layers. In addition to simulating the time evolution of a quantum system, this addon can also be useful in these cases:
+    <Card
+      title="Quantum optimization best practices"
+      description="To get started building quantum workloads to solve optimization problems, refer to this community repository, which contains guidelines, best practices, and reference implementations for running quantum optimization algorithms."
+      href="https://github.com/qiskit-community/qopt-best-practices"
+      analyticsName="Tools index page: Optimization best practices"
+      linkText="GitHub repository"
+    />
 
-- A circuit for which tensor-network simulation achieves a great intermediate state
-
-- A good circuit that prepares an approximation to the target state, but with fewer layers when compiled to the target hardware device
-</details>
-
-**Relevant resources**
-
-- [Overview page](/docs/guides/qiskit-addons-aqc)
-- [Get started with AQC-Tensor](/docs/guides/qiskit-addons-aqc-get-started)
-- [Tutorial featuring AQC-Tensor](/docs/tutorials/approximate-quantum-compilation-for-time-evolution)
-
-### Qiskit circuit library
-
-<details>
-<summary>The standard library of gates and circuit instructions in the Qiskit SDK</summary>
-
-Start with the Qiskit circuit library when beginning the process of constructing circuits and workloads. Available features range from standard single- and multi-qubit gates to pre-built ansatze, and also include custom unitary gates.
-</details>
-
-**Relevant resources**
-
-- [Circuit library overview](/docs/guides/circuit-library)
-- [Circuit library API reference](/docs/api/qiskit/circuit_library)
-- [Fractional gates](/docs/guides/fractional-gates)
-- [Synthesize custom unitary operators](/docs/guides/synthesize-unitary-operators)
-
-### Optimization mapper
-
-<details>
-<summary>A Qiskit addon for mapping optimization problems to circuits and operators</summary>
-
-Optimization mapper is a Qiskit addon that contains the functionality to model optimization problems. For example, you can use it to create models of binary optimization problems to solve with Qiskit.
-</details>
-
-**Relevant resources**
-
-- [Optimization mapper documentation page](https://qiskit.github.io/qiskit-addon-opt-mapper/)
-- [`qiskit-addon-opt-mapper` GitHub repo](https://github.com/qiskit/qiskit-addon-opt-mapper)
-
-### Quantum optimization best practices
-
-<details>
-<summary>A collection of guidelines to run quantum optimization workloads</summary>
-
-To get started building quantum workloads to solve optimization problems, refer to the following community repository, which containing guidelines, best practices, and reference implementations for running quantum optimization algorithms. Also listed is a reference QAOA training pipeline.
-</details>
-
-*Relevant links:*
-
-- [GitHub repository for quantum optimization](https://github.com/qiskit-community/qopt-best-practices)
-- [QAOA training pipeline](https://github.com/qiskit-community/qaoa_training_pipeline)
-
+    <Card
+      title="AQC-Tensor"
+      description="A Qiskit addon that uses tensor network methods to compile the initial portion of a circuit into a nearly equivalent approximation, with many fewer layers. In addition to simulating the time evolution of a quantum system, this addon can also be useful in the following cases: your circuit's tensor-network simulation achieves a great intermediate state; and your circuit prepares an approximation to the target state, but with fewer layers when compiled to the target hardware device."
+      href="/docs/guides/qiskit-addons-aqc"
+      analyticsName="Tools index page: AQC-Tensor"
+      linkText="Overview"
+    />
+</CardGroup>
 
 ## Prepare and optimize workloads
 
-### Transpiler
+<CardGroup>
+    <Card
+      title="Transpiler"
+      description="Once your circuits have been created, they then need to be transpiled against the QPU that will execute your workload. The Qiskit SDK has robust tooling for building custom transpilation pipelines that allow you to carefully tune which transformation and analysis passes are executed (and in which sequence). Note that the simplest way to get started is to use the pre-built pass managers."
+      href="/docs/guides/transpile"
+      analyticsName="Tools index page: transpiler"
+      linkText="Introduction"
+    />
 
-<details>
-<summary>Translate circuit instructions to execute on quantum hardware, with options for efficient layout and routing</summary>
+    <Card
+      title="Dynamic circuits"
+      description="Dynamic circuits are powerful tools for measuring qubits in the middle of a quantum circuit execution - and based on the outcome of those mid-circuit measurements, you can then perform classical logic operations within the circuit. Some common uses cases include efficient quantum state preparation, long-range entanglement, and sampling of instantaneous quantum polynomial-like circuits. "
+      href="/docs/guides/classical-feedforward-and-control-flow"
+      analyticsName="Tools index page: Dynamic circuits"
+      linkText="Introduction"
+    />
 
-Once your circuits have been created, they then need to be transpiled against the QPU that will execute your workload. The Qiskit SDK has robust tooling for building custom transpilation pipelines that allow you to carefully tune which transformation and analysis passes are executed (and in which sequence). Note that the simplest way to get started is to use the pre-built pass managers.
-</details>
-
-**Relevant resources**
-
-- [Introduction to transpilation](/docs/guides/transpile)
-- [Write custom transpilation passes](/docs/guides/custom-transpiler-pass)
-- [Utilize transpiler plugins](/docs/guides/transpiler-plugins)
-- [Configure the preset pass managers](/docs/guides/defaults-and-configuration-options)
-- [Tutorial on qubit selection](/docs/tutorials/real-time-benchmarking-for-qubit-selection)
-
-### Dynamic circuits
-
-<details>
-<summary>Perform certain tasks, such as long-range entanglement and state preparation, at constant depth</summary>
-
-Dynamic circuits are powerful tools for measuring qubits in the middle of a quantum circuit execution - and based on the outcome of those mid-circuit measurements, you can then perform classical logic operations within the circuit. Some common uses cases include efficient quantum state preparation, long-range entanglement, and sampling of instantaneous quantum polynomial-like circuits. 
-</details>
-
-**Relevant resources**
-
-- [Classical feed-forward and control flow](/docs/guides/classical-feedforward-and-control-flow) (This is the primary way to integrate dynamic circuits into your workloads)
-- [Tutorial on using dynamic circuits to generate long-range entanglement](/docs/tutorials/long-range-entanglement)
-
-### Operator backpropagation
-
-<details>
-<summary>Reduce circuit depth by trimming operations at the cost of increased measurements</summary>
-
-This Qiskit addon utilizes a technique to reduce circuit depth by trimming operations from its end at the cost of more operator measurements. However, this increased cost can be lessened by dropping operators with small coefficients, which don't contribute much to the final estimation. You could experiment with coupling this alongside the AQC-Tensor addon for even lower circuit depths.
-</details>
-
-**Relevant resources**
-
-- [Overview of OBP addon](/docs/guides/qiskit-addons-obp)
-- [Get started with OBP](/docs/guides/qiskit-addons-obp-get-started)
-- [Tutorial on OBP](/docs/tutorials/operator-back-propagation)
+    <Card
+      title="Operator backpropagation (OBP)"
+      description="This Qiskit addon utilizes a technique to reduce circuit depth by trimming operations from its end at the cost of more operator measurements. However, this increased cost can be lessened by dropping operators with small coefficients, which don't contribute much to the final estimation. You could experiment with coupling this alongside the AQC-Tensor addon for even lower circuit depths."
+      href="/docs/guides/qiskit-addons-obp"
+      analyticsName="Tools index page: OBP"
+      linkText="Overview"
+    />
+</CardGroup>
 
 ## Debug
 
-### Noisy estimator analyzer tool
+<CardGroup>
 
-<details>
-<summary>Gauge the expected performance of quantum workloads</summary>
+    <Card
+      title="Noisy estimator analyzer tool (NEAT)"
+      description="NEAT analyzes and predicts the performance of your queries when you are gauging the expected performance of estimator-based workloads. It uses Qiskit Aer to simulate the estimation task classically and efficiently, either exactly or in the presence of noise, and can also convert your Primitive Unified Blocs (PUBs) into Cliffordized circuits."
+      href="/docs/guides/debug-qiskit-runtime-jobs"
+      analyticsName="Tools index page: NEAT"
+      linkText="Debug a Qiskit Runtime job"
+    />
 
-The noisy estimator analyzer tool (NEAT) analyzes and predicts the performance of your queries when you are gauging the expected performance of estimator-based workloads. It uses Qiskit Aer to simulate the estimation task classically and efficiently, either exactly or in the presence of noise, and can also convert your Primitive Unified Blocs (PUBs) into Cliffordized circuits.
-</details>
+    <Card
+      title="Qiskit Runtime local testing mode"
+      description="Qiskit Runtime can test workloads while fine-tuning them before submitting them to a QPU. To use this feature, simply specify one of the fake backends from `qiskit_ibm_runtime.fake_provider` or use one from the Qiskit Aer library. To utilize this feature, we suggest either Cliffordizing your circuit,  or scale down the number of qubits in your workload."
+      href="/docs/guides/local-testing-mode"
+      analyticsName="Tools index page: Local testing mode"
+      linkText="Overview"
+    />
 
-**Relevant resources**
-
-- [Analyze a Qiskit Runtime job using NEAT](/docs/guides/debug-qiskit-runtime-jobs)
-- [NEAT API reference page](/docs/api/qiskit-ibm-runtime/debug-tools-neat)
-
-
-### Qiskit Runtime local testing mode
-
-<details>
-<summary>Simulate smaller or Cliffordized circuits to assess performance</summary>
-
-Qiskit Runtime can test workloads while fine-tuning them before submitting them to a QPU. To use this feature, simply specify one of the fake backends from `qiskit_ibm_runtime.fake_provider` or use one from the Qiskit Aer library. To utilize this feature, we suggest either Cliffordizing your circuit,  or scale down the number of qubits in your workload.
-</details>
-
-**Relevant resources**
-
-- [Overview of local testing mode](/docs/guides/local-testing-mode)
-- [Fake Provider API reference](/docs/api/qiskit-ibm-runtime/fake-provider)
-
-
+</CardGroup>
 
 ## Execute on hardware
 
-<span id="tool-index-primitives"></span>
-### Estimator and Sampler primitives
+<CardGroup>
 
-<details>
-<summary>Handles hardware execution and returns samples or expectation values, with some built-in error suppression/mitigation support</summary>
+    <Card
+      title="Estimator and Sampler primitives"
+      description="The Estimator and Sampler primitives are used to execute your circuits on QPUs. Estimator computes expectation values of observables with respect to states prepared by quantum circuits, and Sampler samples the output register from quantum circuit execution. Both primitives have built-in error suppression support, and Estimator also has built-in error mitigation methods."
+      href="/docs/guides/get-started-with-primitives"
+      analyticsName="Tools index page: Primitives"
+      linkText="Get started"
+    />
 
-The Estimator and Sampler primitives are used to execute your circuits on QPUs. Estimator computes expectation values of observables with respect to states prepared by quantum circuits, and Sampler samples the output register from quantum circuit execution. Both primitives have built-in error suppression support, and Estimator also has built-in error mitigation methods. 
-</details>
+    <Card
+      title="Execution modes"
+      description="Explore the different execution modes - scheduling strategies for execution - when building quantum workloads, to determine which one is most efficient for a specific workload."
+      href="/docs/guides/execution-modes"
+      analyticsName="Tools index page: Execution modes"
+      linkText="Overview"
+    />
 
-**Relevant resources**
+    <Card
+      title="Directed execution model"
+      description="Executor allows you to fine-tune error mitigation and other techniques without sacrificing performance, by providing the ingredients to capture design intents on the client-side, and shifting the costly generation of circuit variants to the server-side. With Executor, users will gain a clearer and more composable model for execution workflows, making it easier to experiment with new techniques, reproduce results, and share methods."
+      href="/docs/guides/directed-execution-model"
+      analyticsName="Tools index page: Executor"
+      linkText="Overview"
+    />
 
-- [Primitive inputs and outputs](/docs/guides/primitive-input-output)
-- [Introduction to the primitive options](/docs/guides/runtime-options-overview)
-- [Primitives examples](/docs/guides/primitives-examples)
-- [Tutorial on combining error mitigation options with Estimator](/docs/tutorials/combine-error-mitigation-techniques)
-
-### Execution modes
-
-<details>
-<summary>Efficiently schedule workload execution</summary>
-
-Explore the different execution modes - scheduling strategies for execution - when building quantum workloads, to determine which one is most efficient for a specific workload.
-</details>
-
-**Relevant resources**
-
-- [Overview of job, batch, and session modes](/docs/guides/execution-modes)
-- [How to choose the right execution mode](/docs/guides/choose-execution-mode)
-
-### Directed execution model
-
-<details>
-<summary>Generate and execute circuit variants based on directives defined with Samplomatic</summary>
-
-Executor allows you to fine-tune error mitigation and other techniques without sacrificing performance, by providing the ingredients to capture design intents on the client-side, and shifting the costly generation of circuit variants to the server-side. With Executor, users will gain a clearer and more composable model for execution workflows, making it easier to experiment with new techniques, reproduce results, and share methods.
-</details>
-
-Relevant docs links:
-- [API reference for Executor primitive](https://qiskit.github.io/qiskit-ibm-runtime/index.html)
-- [Directed execution model (beta)](/docs/guides/directed-execution-model)
+</CardGroup>
 
 ## Manage noise
 
-### Samplomatic
-
-<details>
-<summary>Fine-tune error mitigation in specific circuit regions</summary>
-
-Samplomatic is a library for sampling randomizations of your quantum circuits in exactly the way that you specify. It utilizes the Qiskit SDK's `Box` annotations to specify regions of a circuit that should have similar noise profiles; it can also can group collections of gates to twirl, or use the same noise model from `NoiseLearner`.
-</details>
-
-**Relevant resources**
-
-- [Samplomatic documentation](https://qiskit.github.io/samplomatic/)
-- [Samplomatic GitHub repo](https://github.com/Qiskit/samplomatic)
-- [Directed execution model (beta)](/docs/guides/directed-execution-model)
-
-### NoiseLearner
-
-<details>
-<summary>Learn and return the sparse Pauli-Lindblad noise model, which can be used for error mitigation methods like PEA, PEC, and PNA</summary>
-
-Many error mitigation techniques, such as PEA and PEC, require an accurate noise model. `NoiseLearner` is a helper program that returns a Pauli-Lindblad noise model for the input circuit. You can then further tune how PEA and PEC are done in your Estimator job, or re-use the same model in an iterative workload. 
-</details>
-
-**Relevant resources**
-
-- [Overview of noise learning helper](/docs/guides/noise-learning)
-- API reference for [`NoiseLearner`](/docs/api/qiskit-ibm-runtime/noise-learner) and [`NoiseLearnerOptions`](/docs/api/qiskit-ibm-runtime/options-noise-learner-options)
-- [Directed execution model (beta)](/docs/guides/directed-execution-model)
-
-### Pauli twirling
-
-<details>
-<summary>Convert coherent noise to better characterized stochastic noise</summary>
-
-Pauli twirling, also known as randomized compiling, is an error suppression technique used to convert the effects of unknown types of noise into one that can be characterized (and thus mitigated). 
-</details>
-
-**Relevant resources**
-
-- [Explanation and usage of Pauli twirling in primitive options](/docs/guides/error-mitigation-and-suppression-techniques#pauli-twirling)
-- [Example of a Pauli twirling annotation in a circuit created in Samplomatic](/docs/guides/directed-execution-model#samplomatic)
-- [Error mitigation compatibility in primitive options](/docs/guides/runtime-options-overview#feature-compatibility)
-
-### Matrix-free measurement mitigation
-
-<details>
-<summary>Reduce measurement errors</summary>
-
-The Matrix-free measurement mitigation (M3) Qiskit addon is used to reduce measurement error by finding corrected measurement probabilities. Use it for problems that benefit from workloads that estimate the expectation value of observables. M3 also works in the context of dynamic circuits.
-</details>
-
-**Relevant resources**
-
-- [M3 addon documentation](https://qiskit.github.io/qiskit-addon-mthree/)
-- [Guide on the basic usage of M3](https://qiskit.github.io/qiskit-addon-mthree/basic.html)
-- [Tutorial on using M3 with mid-circuit measurement](https://qiskit.github.io/qiskit-addon-mthree/tutorials/04_dynamic_bv.html)
-- [Readout error mitigation for the Sampler primitive using M3](/docs/tutorials/readout-error-mitigation-sampler)
-
-<span id="tool-index-pec"></span>
-
-### Probabilistic error cancellation (PEC)
-
-<details>
-<summary>Mitigate errors by statistically canceling noise, resulting in an unbiased expectation value at the expense of greater overhead</summary>
-
-This error mitigation technique returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It reproduces the output of the ideal circuit by executing different noisy circuit instances drawn from a random ensemble defined by the linear combination. The Qiskit Runtime Estimator primitive has built-in support for PEC, which you can enable through the Estimator option.
-</details>
-
-**Relevant resources**
-
-- [Explanation of PEC](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec)
-- [API reference for PEC options](/docs/api/qiskit-ibm-runtime/options-pec-options)
-
-### Zero-noise extrapolation (ZNE)
-
-<details>
-<summary>Mitigate errors by amplifying noise and extrapolating corrected expectation values</summary>
-
-This error mitigation technique first computes the expectation value at different noise levels, then estimates the ideal result by extrapolating the noisy expectation value results to the zero-noise limit. Since this can be done in multiple ways, a number of noise amplification and extrapolation techniques are available.
-
-#### Gate folding-based ZNE
-Gate folding is a noise amplification process that replaces two-qubit gates with equivalent sequences of two-qubit gates and their inverses. This approach is straightforward and simple to use, but can be imperfect.
-
-#### Probabilistic error amplification
-
-Probabilistic error amplification (PEA) is a more sophisticated means of amplifying errors for ZNE. It involves running preliminary experiments to learn a twirled noise model of the circuit, and then uses this model to perform a more accurate error amplification. 
-
-</details>
-
-**Relevant resources**
-
-- [Qiskit Runtime primitive options for ZNE](/docs/api/qiskit-ibm-runtime/options-zne-options)
-- [Introduction to ZNE](/docs/guides/error-mitigation-and-suppression-techniques#zero-noise-extrapolation-zne)
-- [Error mitigation feature compatibility](/docs/guides/runtime-options-overview#feature-compatibility)
-- [PEA overview](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea)
-- [API reference for `LayerNoiseLearningOptions`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)
-- [API reference for `NoiseLearner`](/docs/api/qiskit-ibm-runtime/noise-learner-noise-learner)
-
-### Twirled readout error extinction (TREX)
-
-<details>
-<summary>Use twirling to reduce measurement error</summary>
-
-This error mitigation technique is used to mitigate the effects of measurement errors by using twirled measurements. It can be used alongside many other techniques that mitigate gate errors, such as ZNE and PEC.
-</details>
-
-**Relevant resources**
-
-- [Explanation of TREX](/docs/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex)
-- [Error mitigation feature compatibility](/docs/guides/runtime-options-overview#feature-compatibility)
-- [API reference for measurement noise learning options](/docs/api/qiskit-ibm-runtime/options-measure-noise-learning-options)
-
-### Propagated noise absorption
-
-<details>
-<summary>Characterize and propagate the effects of noise into an observable</summary>
-
-This Qiskit addon uses Pauli propagation to characterize Pauli noise affecting different layers of a circuit, by using a learned noise model and propagating its inverse into the target observable to measure.
-</details>
-
-**Relevant resources**
-
-- [PNA documentation page](https://qiskit.github.io/qiskit-addon-pna/)
-- [`qiskit-addon-pna` GitHub repo](https://github.com/Qiskit/qiskit-addon-pna)
-
-### Shaded lightcones
-
-<details>
-<summary>Reduce the overhead of PEC error mitigation</summary>
-
-The shaded lightcones (SLC) Qiskit addon uses Pauli propagation to reduce the number of error terms accounted for in a noise model, according to the specifics of the target observable. It is useful for reducing the sampling overhead when running PEC-based workloads.
-</details>
-
-**Relevant resources**
-
-- [SLC documentation page](https://qiskit.github.io/qiskit-addon-slc/)
-- [`qiskit-addon-slc` GitHub repo](https://github.ibm.com/ibm-q-research/qiskit-addon-slc)
-
-### Dynamical decoupling
-
-<details>
-<summary>Reduce decoherence errors on idle qubits</summary>
-
-Dynamical decoupling (DD) is a technique for suppressing errors due to qubit decoherence. It is primarily useful in regions within a quantum circuit in which one or more qubits site idle while other instructions are being executed. Both Sampler and Estimator primitives have built-in support for applying DD. Alternatively, you can use the [`PadDynamicalDecoupling`](/docs/api/qiskit/qiskit.transpiler.passes.PadDynamicalDecoupling) transpiler pass in Qiskit, or build your own using the new stretch instruction.
-</details>
-
-**Relevant resources**
-
-- [Overview of DD](/docs/guides/error-mitigation-and-suppression-techniques#dynamical-decoupling)
-- [Introduction to primitive options](/docs/guides/runtime-options-overview)
-- [Create a pass manager for dynamical decoupling](/docs/guides/dynamical-decoupling-pass-manager)
-- [Deferred timing resolution using stretch](/docs/guides/stretch) (Especially useful for applying DD in a dynamic circuit)
-
-### Sample-based quantum diagonalization
-
-<details>
-<summary>Post-process samples to refine results in simulation workloads</summary>
-
-With the Sample-based quantum diagonalization (SQD) Qiskit addon, you can implement a post-processing technique to measure the ground state energies of a quantum system. SQD processes samples from a given circuit to project and diagonalize a target Hamiltonian in a subspace spanned by them, essentially "refining" the results obtained from a workload. Use when you want to obtain the eigenvalues and eigenvectors of quantum systems (such as chemical or lattice models).
-</details>
-
-**Relevant resources**
-
-- [Overview of SQD](/docs/guides/qiskit-addons-sqd)
-- [Getting started with SQD](/docs/guides/qiskit-addons-sqd-get-started)
-- [Tutorial using SQD for a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization)
-- [Tutorial using SQD and KQD for a lattice model](/docs/tutorials/sample-based-krylov-quantum-diagonalization)
-
-**SQD for HPC**: See the following documentation for an HPC-ready implementation of the SQD addon, which is written in modern C++17 standards and is designed to create a single compiled binary for use with MPI.
-
-- [SQD for HPC API reference](https://qiskit.github.io/qiskit-addon-sqd-hpc/)
-- [SQD for HPC GitHub repository](https://github.com/qiskit/qiskit-addon-sqd-hpc)
-
-### Multi-product formulas
-
-<details>
-<summary>Refine expectation values in workloads simulating time evolution</summary>
-
-The Multi-product formulas (MPF) Qiskit addon is used to post-process workloads that simulate the time evolution of a quantum system. The MPF tool will ingest data such as the number of Trotter steps to prepare and solve an associated system of linear equations, which can then be used to refine the expectation-value measurements of a time-evolved state.
-</details>
-
-**Relevant resources**
-
-- [Overview of MPF](/docs/guides/qiskit-addons-mpf)
-- [Getting started with MPF](/docs/guides/qiskit-addons-mpf-get-started)
-- [Tutorial using MPF to reduce Trotter error](/docs/tutorials/multi-product-formula)
-
-### Measurement post-selection
-
-<details>
-<summary>Refine samples by post-selecting known "bad" bitstrings</summary>
-
-The noise models produced by `NoiseLearner` might not be accurate for Heron backends due to non-Markovian noise on these devices. An internal study has shown this can be alleviated with measurement-based post-selection. This technique adds a series of RX gates followed by a measurement to the circuit, and in post-processing throws away the "bad" bitstrings. The Qiskit addon utilities package contains functionalities to implement this technique, and `NoiseLearnerV3` also has built-in support. 
-</details>
-
-**Relevant resources**
-
-- [API reference for post-selection utilities](/docs/api/qiskit-addon-utils/noise-management)
-- [API reference for post-selection transpiler passes](/docs/api/qiskit-addon-utils/noise-management-post-selection-transpiler-passes)
-- [API reference for `NoiseLearnerV3`](https://qiskit.github.io/qiskit-ibm-runtime/apidocs/noise_learner_v3.html)
+<CardGroup>
+
+    <Card
+      title="Samplomatic"
+      description="Samplomatic is a library for sampling randomizations of your quantum circuits in exactly the way that you specify. It utilizes the Qiskit SDK's `Box` annotations to specify regions of a circuit that should have similar noise profiles; it can also can group collections of gates to twirl, or use the same noise model from `NoiseLearner`."
+      href="https://qiskit.github.io/samplomatic/"
+      analyticsName="Tools index page: Samplomatic"
+      linkText="Docs"
+    />
+
+    <Card
+      title="NoiseLearner"
+      description="Many error mitigation techniques, such as PEA and PEC, require an accurate noise model. `NoiseLearner` is a helper program that returns a Pauli-Lindblad noise model for the input circuit. You can then further tune how PEA and PEC are done in your Estimator job, or re-use the same model in an iterative workload."
+      href="/docs/guides/noise-learning"
+      analyticsName="Tools index page: NoiseLearner"
+      linkText="Overview"
+    />
+
+    <Card
+      title="Pauli twirling"
+      description="Pauli twirling, also known as randomized compiling, is an error suppression technique used to convert the effects of unknown types of noise into one that can be characterized (and thus mitigated). "
+      href="/docs/guides/error-mitigation-and-suppression-techniques#pauli-twirling"
+      analyticsName="Tools index page: Pauli twirling"
+      linkText="Overview"
+    />
+
+    <Card
+      title="Matrix-free measurement mitigation (M3)"
+      description="The Matrix-free measurement mitigation (M3) Qiskit addon is used to reduce measurement error by finding corrected measurement probabilities. Use it for problems that benefit from workloads that estimate the expectation value of observables. M3 also works in the context of dynamic circuits."
+      href="https://qiskit.github.io/qiskit-addon-mthree/"
+      analyticsName="Tools index page: mthree"
+      linkText="Docs"
+    />
+
+    <Card
+      title="Probabilistic error cancellation (PEC)"
+      description="This error mitigation technique returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It reproduces the output of the ideal circuit by executing different noisy circuit instances drawn from a random ensemble defined by the linear combination. The Qiskit Runtime Estimator primitive has built-in support for PEC, which you can enable through the Estimator option."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec"
+      analyticsName="Tools index page: PEC"
+      linkText="Overview"
+    />
+
+    <Card
+      title="Zero-noise extrapolation (ZNE)"
+      description="This error mitigation technique first computes the expectation value at different noise levels, then estimates the ideal result by extrapolating the noisy expectation value results to the zero-noise limit. Since this can be done in multiple ways, a number of noise amplification and extrapolation techniques are available."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#zero-noise-extrapolation-zne"
+      analyticsName="Tools index page: ZNE"
+      linkText="Introduction"
+    />
+
+    <Card
+      title="Gate folding-based ZNE"
+      description="Gate folding is a noise amplification process that replaces two-qubit gates with equivalent sequences of two-qubit gates and their inverses. This approach is straightforward and simple to use, but can be imperfect."
+      href="/docs/api/qiskit-ibm-runtime/options-zne-options"
+      analyticsName="Tools index page: Gate folding-based ZNE"
+      linkText="Primitive options for ZNE"
+    />
+
+    <Card
+      title="Probabilistic error amplification (PEA)"
+      description="Probabilistic error amplification is a more sophisticated means of amplifying errors for ZNE. It involves running preliminary experiments to learn a twirled noise model of the circuit, and then uses this model to perform a more accurate error amplification. "
+      href="/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea"
+      analyticsName="Tools index page: PEA"
+      linkText="Overview"
+    />
+
+    <Card
+      title="Twirled readout error extinction (TREX)"
+      description="This error mitigation technique is used to mitigate the effects of measurement errors by using twirled measurements. It can be used alongside many other techniques that mitigate gate errors, such as ZNE and PEC."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex"
+      analyticsName="Tools index page: TREX"
+      linkText="Overview"
+    />
+
+    <Card
+      title="Propagated noise absorption (PNA)"
+      description="This Qiskit addon uses Pauli propagation to characterize Pauli noise affecting different layers of a circuit, by using a learned noise model and propagating its inverse into the target observable to measure."
+      href="https://qiskit.github.io/qiskit-addon-pna/"
+      analyticsName="Tools index page: PNA"
+      linkText="Docs"
+    />
+
+    <Card
+      title="Shaded lightcones (SLC)"
+      description="The shaded lightcones (SLC) Qiskit addon uses Pauli propagation to reduce the number of error terms accounted for in a noise model, according to the specifics of the target observable. It is useful for reducing the sampling overhead when running PEC-based workloads."
+      href="https://qiskit.github.io/qiskit-addon-slc/"
+      analyticsName="Tools index page: SLC"
+      linkText="Docs"
+    />
+
+    <Card
+      title="Dynamical decoupling (DD)"
+      description="A technique for suppressing errors due to qubit decoherence, DD is primarily useful in regions within a quantum circuit in which one or more qubits site idle while other instructions are being executed. Both Sampler and Estimator primitives have built-in support for applying DD. Alternatively, you can use the `PadDynamicalDecoupling` transpiler pass, or build your own using the new stretch instruction."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#dynamical-decoupling"
+      analyticsName="Tools index page: DD"
+      linkText="Overview"
+    />
+
+    <Card
+      title="Sample-based quantum diagonalization (SQD)"
+      description="With this Qiskit addon, you can implement a post-processing technique to measure the ground state energies of a quantum system. SQD processes samples from a given circuit to project and diagonalize a target Hamiltonian in a subspace spanned by them, essentially refining the results obtained from a workload. Use when you want to obtain the eigenvalues and eigenvectors of quantum systems (such as chemical or lattice models)."
+      href="/docs/guides/qiskit-addons-sqd"
+      analyticsName="Tools index page: SQD"
+      linkText="Overview"
+    />
+
+    <Card
+      title="SQD for HPC"
+      description="This HPC-ready implementation of the SQD addon is written in modern C++17 standards and is designed to create a single compiled binary for use with MPI."
+      href="https://qiskit.github.io/qiskit-addon-sqd-hpc/"
+      analyticsName="Tools index page: SQD for HPC"
+      linkText="Docs"
+    />
+
+    <Card
+      title="Multi-product formulas (MPF)"
+      description="This Qiskit addon post-processes workloads that simulate the time evolution of a quantum system. The MPF tool will ingest data such as the number of Trotter steps to prepare and solve an associated system of linear equations, which can then be used to refine the expectation-value measurements of a time-evolved state."
+      href="/docs/guides/qiskit-addons-mpf"
+      analyticsName="Tools index page:MPF"
+      linkText="Overview"
+    />
+
+    <Card
+      title="Measurement post-selection"
+      description="The noise models produced by `NoiseLearner` might not be accurate for Heron backends due to non-Markovian noise on these devices. An internal study has shown this can be alleviated with measurement-based post-selection. This technique adds a series of RX gates followed by a measurement to the circuit, and in post-processing throws away the bad bitstrings. Implement with the Qiskit addon utilities package, or with `NoiseLearnerV3`. "
+      href="/docs/api/qiskit-addon-utils/noise-management"
+      analyticsName="Tools index page: Measurement post-selection"
+      linkText="API reference"
+    />
+
+</CardGroup>
 
 ## Qiskit Functions
 
-### Algorithmiq Tensor-Network Error Mitigation Function
+<CardGroup>
 
-Algorithmiq's Tensor-network Error Mitigation (TEM) method is a hybrid quantum-classical algorithm designed for automating and performing noise mitigation. It accomplishes this by constructing a tensor network representing an approximate inverse of the noise affecting a circuit to obtain unbiased estimates of an observable. TEM is a novel error mitigation method based on post-processing with tensor networks, and it provides unbiased error mitigation with the lowest possible shot overhead on the quantum hardware, minimizing the runtime and hence the costs of experiments. It requires exponentially less shots than probabilistic error cancellation (PEC) and significantly less shots than zero noise extrapolation (ZNE).
+    <Card
+      title="Algorithmiq Tensor-Network Error Mitigation Function"
+      description="This function's method is a hybrid quantum-classical algorithm designed for automating and performing noise mitigation. It constructs a tensor network representing an approximate inverse of the noise affecting a circuit to obtain unbiased estimates of an observable. TEM is a novel error mitigation method based on post-processing with tensor networks, and it provides unbiased error mitigation with the lowest possible shot overhead on the quantum hardware, minimizing experiment runtime."
+      href="/docs/guides/algorithmiq-tem"
+      analyticsName="Tools index page: Algorithmiq TEM"
+      linkText="Overview"
+    />
 
-**Relevant resources**
+    <Card
+      title="Q-CTRL Performance Management Function"
+      description="This Qiskit Function uses AI-powered error suppression and mitigation techniques, and is agnostic to the type of workload being executed.
+"
+      href="/docs/guides/q-ctrl-performance-management"
+      analyticsName="Tools index page: Performance management"
+      linkText="Overview"
+    />
 
-- [Overview of the TEM Qiskit Function](/docs/guides/algorithmiq-tem)
+    <Card
+      title="Qedma Qiskit Function QESEM"
+      description="This Qiskit Function uses a suite of proprietary error mitigation techniques to improve the results of your workload. These techniques include gate optimization, noise-aware transpilation, error suppression, and unbiased error mitigation."
+      href="/docs/guides/qedma-qesem"
+      analyticsName="Tools index page: QESEM"
+      linkText="Overview"
+    />
 
-### Q-CTRL Performance Management Function
+    <Card
+      title="Iskay Quantum Optimizer"
+      description="This Qiskit Function by Kipu Quantum solves unconstrained binary optimization problems with the QUBO (Quadratic Unconstrained Binary Optimization) formulation and higher-order (HUBO) optimization problems."
+      href="/docs/guides/kipu-optimization"
+      analyticsName="Tools index page: Iskay"
+      linkText="Overview"
+    />
 
-This Qiskit Function uses AI-powered error suppression and mitigation techniques, and is agnostic to the type of workload being executed.
-
-Relevant docs links:
-
-- [Overview of Q-CTRL Performance Management](/docs/guides/q-ctrl-performance-management)
-- [Tutorial using Performance Management for TFIM](/docs/tutorials/transverse-field-ising-model)
-- [Tutorial using Performance Management for QPE](/docs/tutorials/quantum-phase-estimation-qctrl)
-
-### QEDMA Qiskit Function QESEM
-
-The QESEM Qiskit Function by QEDMA uses a suite of proprietary error mitigation techniques to improve the results of your workload. These techniques include gate optimization, noise-aware transpilation, error suppression, and unbiased error mitigation.
-
-**Relevant resources**
-
-- [Overview of QESEM Function](/docs/guides/kipu-optimization)
-- [Simulate 2D tilted-field Ising with the QESEM function](/docs/tutorials/qedma-2d-ising-with-qesem)
-
-### Iskay Quantum Optimizer
-
-This Qiskit Function by Kipu Quantum solves unconstrained binary optimization problems with the QUBO (Quadratic Unconstrained Binary Optimization) formulation and higher-order (HUBO) optimization problems.
-
-**Relevant resources**
-
-- [Overview of Iskay Quantum Function](/docs/guides/kipu-optimization)
-- [Solve the Market Split problem with Kipu Quantum's Iskay Quantum Optimizer](/docs/tutorials/solve-market-split-problem-with-iskay-quantum-optimizer)
-
-### Q-CTRL Optimization Solver
-
-This Qiskit Function by Q-CTRL is designed to solve utility-scale optimization problems. It takes in a high-level problem definition, and executes an entire workflow to optimize the problem, without manual configuration. 
-
-**Relevant resources**
-
-- [Overview of Optimization Solver](/docs/guides/q-ctrl-optimization-solver)
-- [Spin-glass tutorial for Optimization Solver](/docs/tutorials/solve-higher-order-binary-optimization-problems-with-q-ctrls-optimization-solver)
+    <Card
+      title="Q-CTRL Optimization Solver"
+      description="This Qiskit Function by Q-CTRL is designed to solve utility-scale optimization problems. It takes in a high-level problem definition, and executes an entire workflow to optimize the problem, without manual configuration. "
+      href="/docs/guides/q-ctrl-optimization-solver"
+      analyticsName="Tools index page: Optimization solver"
+      linkText="Overview"
+    />
+</CardGroup>
