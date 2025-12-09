@@ -23,7 +23,7 @@ from typing import Iterator
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from utils import configure_logging, run_subprocess
+from utils import configure_logging, run_subprocess, write_timestamp
 
 # You can change this to `iqp-channel-docs-preview-builder` when running locally, if
 # you're able to create a local copy of the builder image through the closed source repo.
@@ -57,6 +57,7 @@ def main() -> None:
     with setup_dir() as dir:
         yarn_build(dir, args.basepath)
         save_output(dir, args.dest)
+        write_timestamp(dir)
 
 
 def write_proof_of_concept(dest: Path) -> None:

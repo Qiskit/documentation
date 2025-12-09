@@ -26,6 +26,7 @@ from utils import (
     setup_git_account,
     switch_branch,
     changed_files,
+    get_timestamp,
 )
 
 INITIAL_COMMIT = "499a5040585d02593cdd8237e19c9ee4a84ae126"
@@ -70,7 +71,7 @@ def get_active_pr_folders() -> set[str]:
 def is_stale(folder_name: str) -> bool:
     # All time measured in seconds, from the unix epoch
     current_timestamp = time.time()
-    last_modified_timestamp = int(run_subprocess(["git", "log", "-n", "1", "--format=%at", folder_name]).stdout)
+    last_modified_timestamp = get_timestamp(folder_name)
     return (current_timestamp - last_modified_timestamp) > PR_EXPIRATION_TIME_SECONDS
 
 def delete_closed_pr_folders() -> None:
