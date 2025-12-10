@@ -12,27 +12,23 @@
 
 name: PR preview
 on:
-  pull_request:
-    paths:
-      - "docs/**/*"
-      - "learning/**/*"
-      - "public/images/**/*"
-      # PR previews don't build API docs.
-      - "!docs/api/**/*"
-      - "!public/images/api/**/*"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  group: "main-preview"
   cancel-in-progress: true
 
 jobs:
-  pr-preview:
-    name: PR preview
+  update-preview:
+    name: Main branch preview
     runs-on: ubuntu-latest
     if: github.event.pull_request.head.repo.full_name == github.repository
     env:
-      PR_PREVIEW_PATH: pr-${{ github.event.pull_request.number }}
-      PR_PREVIEW_URL: https://qiskit.github.io/documentation/pr-${{ github.event.pull_request.number }}/
+      PREVIEW_PATH: main
+      PREVIEW_URL: https://qiskit.github.io/documentation/main/
       # Refer to https://yarnpkg.com/features/security#hardened-mode. We cannot enable this
       # because the Dockerfile already has the dependencies pre-installed and eagerly
       # validating the lockfile will miss the required auth token.
@@ -41,7 +37,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -57,20 +53,20 @@ jobs:
         with:
           step: start
           token: ${{ secrets.GITHUB_TOKEN }}
-          env: pr_preview
+          env: main
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Build static site
         run: >
           scripts/pr-previews/builder.py
-          ${{ env.PR_PREVIEW_PATH }}
-          --basepath /documentation/${{ env.PR_PREVIEW_PATH }}
+          ${{ env.PREVIEW_PATH }}
+          --basepath /documentation/${{ env.PREVIEW_PATH }}
 
       - name: Deploy to GitHub Pages
-        run: scripts/pr-previews/deploy.py ${{ env.PR_PREVIEW_PATH }}
+        run: scripts/pr-previews/deploy.py ${{ env.PREVIEW_PATH }}
 
       - name: Determine deployment result
-        run: scripts/pr-previews/poll_deployment.py ${{ env.PR_PREVIEW_URL }}
+        run: scripts/pr-previews/poll_deployment.py ${{ env.PREVIEW_URL }}
       - name: Report deployment status
         uses: bobheadxi/deployments@v1
         if: always()
@@ -80,5 +76,5 @@ jobs:
           env: ${{ steps.deployment.outputs.env }}
           status: ${{ job.status }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-          env_url: ${{ env.PR_PREVIEW_URL }}
+          env_url: ${{ env.PREVIEW_URL }}
           override: false
