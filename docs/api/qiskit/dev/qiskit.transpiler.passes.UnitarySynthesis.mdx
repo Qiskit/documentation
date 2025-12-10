@@ -8,14 +8,14 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
 # UnitarySynthesis
 
-<Class id="qiskit.transpiler.passes.UnitarySynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/unitary_synthesis.py#L54-L350" signature="qiskit.transpiler.passes.UnitarySynthesis(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.UnitarySynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/unitary_synthesis.py#L54-L364" signature="qiskit.transpiler.passes.UnitarySynthesis(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Synthesize gates according to their basis gates.
 
   Synthesize unitaries over some basis gates.
 
-  This pass can approximate 2-qubit unitaries given some gate fidelities (via `target`). More approximation can be forced by setting a heuristic dial `approximation_degree`.
+  This pass can approximate unitaries given some gate fidelities (via `target`). More approximation can be forced by setting a heuristic dial `approximation_degree`.
 
   **Parameters**
 
@@ -29,6 +29,7 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
   *   **min\_qubits** – The minimum number of qubits in the unitary to synthesize. If this is set and the unitary is less than the specified number of qubits it will not be synthesized.
   *   **plugin\_config** – Optional extra configuration arguments (as a `dict`) which are passed directly to the specified unitary synthesis plugin. By default, this will have no effect as the default plugin has no extra arguments. Refer to the documentation of your unitary synthesis plugin on how to use this.
   *   **target** – The optional [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") for the target device the pass is compiling for. If specified this will supersede the values set for `basis_gates` and `coupling_map`.
+  *   **fallback\_on\_default** – specifies whether the default synthesis method should be used in the case that a non-default synthesis `method` is specified but is either unable to synthesize the operation or the synthesized circuit does not conform to the target.
 
   **Raises**
 
@@ -86,7 +87,7 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.UnitarySynthesis.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/unitary_synthesis.py#L160-L267" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.UnitarySynthesis.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/unitary_synthesis.py#L166-L263" signature="run(dag)">
     Run the UnitarySynthesis pass on `dag`.
 
     **Parameters**
