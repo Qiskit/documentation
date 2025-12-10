@@ -31,7 +31,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="AQC-Tensor"
-      description="A Qiskit addon that uses tensor network methods to compile the initial portion of a circuit into a nearly equivalent approximation, with many fewer layers. In addition to simulating the time evolution of a quantum system, this addon can also be useful in the following cases: your circuit's tensor-network simulation achieves a great intermediate state; and your circuit prepares an approximation to the target state, but with fewer layers when compiled to the target hardware device."
+      description="A Qiskit addon that uses tensor network methods to compile the initial portion of a circuit into a nearly equivalent approximation, with many fewer layers. It simulates the time evolution of a quantum system, and is also useful in cases where a circuit's tensor-network simulation achieves a great intermediate state - or a circuit prepares an approximation to the target state, but with fewer layers when compiled to the QPU."
       href="/docs/guides/qiskit-addons-aqc"
       analyticsName="Tools index page: AQC-Tensor"
       linkText="Read the guide"
@@ -39,7 +39,7 @@ in_page_toc_max_heading_level: 2
     
     <Card
       title="Quantum optimization best practices"
-      description="To get started building quantum workloads to solve optimization problems, refer to this community repository, which contains guidelines, best practices, and reference implementations for running quantum optimization algorithms."
+      description="To get started building quantum workloads to solve optimization problems, refer to this community repository, which contains guidelines, best practices, and reference implementations for running quantum optimization algorithms. It uses the Quantum Approximate Optimization Algorithm (QAOA) workflow as a point of reference."
       href="https://github.com/qiskit-community/qopt-best-practices"
       analyticsName="Tools index page: Optimization best practices"
       linkText="Explore the GitHub repository"
@@ -112,7 +112,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="Execution modes"
-      description="Explore the different execution modes - scheduling strategies for execution - when building quantum workloads, to determine which one is most efficient for a specific workload."
+      description="Explore the different execution modes - scheduling strategies for execution - when building quantum workloads, to determine which one is most efficient for a specific workload. Batch mode is a multi-job manager for efficiently running experiments comprising multi-job workloads, and session mode is a dedicated window for running a multi-job workload. (Open Plan instances cannot run in session mode.)"
       href="/docs/guides/execution-modes"
       analyticsName="Tools index page: Execution modes"
       linkText="Visit the execution modes guides"
@@ -166,7 +166,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="Probabilistic error cancellation (PEC)"
-      description="This error mitigation technique returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It reproduces the output of the ideal circuit by executing different noisy circuit instances drawn from a random ensemble defined by the linear combination. The Qiskit Runtime Estimator primitive has built-in support for PEC, which you can enable through the Estimator option."
+      description="This error mitigation technique returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It reproduces the output of the ideal circuit by executing different noisy circuit instances drawn from a random ensemble defined by the linear combination."
       href="/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec"
       analyticsName="Tools index page: PEC"
       linkText="Read the guide"
@@ -222,7 +222,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="Dynamical decoupling (DD)"
-      description="A technique for suppressing errors due to qubit decoherence, DD is primarily useful in regions within a quantum circuit in which one or more qubits site idle while other instructions are being executed. Both Sampler and Estimator primitives have built-in support for applying DD. Alternatively, you can use the `PadDynamicalDecoupling` transpiler pass, or build your own using the new stretch instruction."
+      description="A technique for suppressing decoherence errors, DD is useful in regions within a circuit in which one or more qubits sit idle while other instructions are being executed. Use Sampler and Estimator's built-in support to apply DD, try the `PadDynamicalDecoupling` transpiler pass, or build your own using the new stretch instruction."
       href="/docs/guides/error-mitigation-and-suppression-techniques#dynamical-decoupling"
       analyticsName="Tools index page: DD"
       linkText="Read the guide"
@@ -230,7 +230,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="Sample-based quantum diagonalization (SQD)"
-      description="With this Qiskit addon, you can implement a post-processing technique to measure the ground state energies of a quantum system. SQD processes samples from a given circuit to project and diagonalize a target Hamiltonian in a subspace spanned by them, essentially refining the results obtained from a workload. Use when you want to obtain the eigenvalues and eigenvectors of quantum systems (such as chemical or lattice models)."
+      description="This Qiskit addon implements a post-processing technique to measure ground state energies. It processes samples from a given circuit to project and diagonalize a target Hamiltonian in a subspace. Use when you want to obtain the eigenvalues and eigenvectors of quantum systems (such as chemical or lattice models)."
       href="/docs/guides/qiskit-addons-sqd"
       analyticsName="Tools index page: SQD"
       linkText="Read the guide"
@@ -238,7 +238,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="SQD for HPC"
-      description="This HPC-ready implementation of the SQD addon is written in modern C++17 standards and is designed to create a single compiled binary for use with MPI."
+      description="This HPC-ready implementation of the SQD addon is written in modern C++17 standards and is designed to create a single compiled binary for use with MPI.  This library builds upon existing interfaces in the C++ standard template library (STL)."
       href="https://qiskit.github.io/qiskit-addon-sqd-hpc/"
       analyticsName="Tools index page: SQD for HPC"
       linkText="Browse the GitHub documentation"
