@@ -78,7 +78,7 @@ def delete_closed_pr_folders() -> None:
     active_pr_folders = get_active_pr_folders()
 
     for folder in Path(".").glob("pr-*"):
-        is_closed = folder not in active_pr_folders
+        is_closed = folder.name not in active_pr_folders
         if is_closed:
             logger.info(f"Deleting {folder} as PR is closed")
             shutil.rmtree(folder)
