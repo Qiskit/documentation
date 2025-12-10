@@ -69,7 +69,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="Operator backpropagation (OBP)"
-      description="This Qiskit addon utilizes a technique to reduce circuit depth by trimming operations from its end at the cost of more operator measurements. However, this increased cost can be lessened by dropping operators with small coefficients, which don't contribute much to the final estimation. You could experiment with coupling this alongside the AQC-Tensor addon for even lower circuit depths."
+      description="This Qiskit addon utilizes a technique to reduce circuit depth by trimming operations from its end at the cost of more operator measurements. However, this increased cost can be lessened by dropping operators with small coefficients, which don't contribute much to the final estimation."
       href="/docs/guides/qiskit-addons-obp"
       analyticsName="Tools index page: OBP"
       linkText="Read the guide"
@@ -82,7 +82,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="Noisy estimator analyzer tool (NEAT)"
-      description="NEAT analyzes and predicts the performance of your queries when you are gauging the expected performance of estimator-based workloads. It uses Qiskit Aer to simulate the estimation task classically and efficiently, either exactly or in the presence of noise, and can also convert your Primitive Unified Blocs (PUBs) into Cliffordized circuits."
+      description="NEAT analyzes and predicts the performance of your queries when you are gauging the expected performance of estimator-based workloads. This tool uses Qiskit Aer to simulate the estimation task classically, either exactly or with a noise model.  NEAT can also convert your Primitive Unified Blocs (PUBs) into Cliffordized circuits."
       href="/docs/guides/debug-qiskit-runtime-jobs"
       analyticsName="Tools index page: NEAT"
       linkText="Read the guide"
@@ -112,7 +112,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="Execution modes"
-      description="Explore the different execution modes - scheduling strategies for execution - when building quantum workloads, to determine which one is most efficient for a specific workload. Batch mode is a multi-job manager for efficiently running experiments comprising multi-job workloads, and session mode is a dedicated window for running a multi-job workload. (Open Plan instances cannot run in session mode.)"
+      description="Execution modes are scheduling strategies for execution to use when building quantum workloads. Batch mode is a multi-job manager for efficiently running experiments comprising multi-job workloads, and session mode is a dedicated window for running a multi-job workload. (Open Plan instances cannot run in session mode.)"
       href="/docs/guides/execution-modes"
       analyticsName="Tools index page: Execution modes"
       linkText="Visit the execution modes guides"
@@ -134,7 +134,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="Samplomatic"
-      description="Samplomatic is a library for sampling randomizations of your quantum circuits in exactly the way that you specify. It utilizes the Qiskit SDK's `Box` annotations to specify regions of a circuit that should have similar noise profiles; it can also can group collections of gates to twirl, or use the same noise model from `NoiseLearner`."
+      description="Samplomatic is the client-side library for the directed execution model, providing the ability to create sampling randomizations of your quantum circuits in exactly the way that you specify. It utilizes the Qiskit SDK `Box` annotations to specify regions of a circuit that should have similar noise profiles, and can also group collections of gates to twirl, or use the same noise model from `NoiseLearner`."
       href="https://qiskit.github.io/samplomatic/"
       analyticsName="Tools index page: Samplomatic"
       linkText="Browse the GitHub documentation"
@@ -166,7 +166,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="Probabilistic error cancellation (PEC)"
-      description="This error mitigation technique returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It reproduces the output of the ideal circuit by executing different noisy circuit instances drawn from a random ensemble defined by the linear combination."
+      description="This error mitigation technique returns an unbiased estimate of the expectation value, at the expense of a large sampling overhead. It reproduces the output of the ideal circuit by executing different noisy circuit instances drawn from a random ensemble defined by the linear combination."
       href="/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec"
       analyticsName="Tools index page: PEC"
       linkText="Read the guide"
@@ -181,7 +181,7 @@ in_page_toc_max_heading_level: 2
     />
 
     <Card
-      title="Gate folding-based ZNE"
+      title="Gate folding-based noise amplification"
       description="Gate folding is a noise amplification process that replaces two-qubit gates with equivalent sequences of two-qubit gates and their inverses. This approach is straightforward and simple to use, but can be imperfect."
       href="/docs/api/qiskit-ibm-runtime/options-zne-options"
       analyticsName="Tools index page: Gate folding-based ZNE"
@@ -254,7 +254,7 @@ in_page_toc_max_heading_level: 2
 
     <Card
       title="Measurement post-selection"
-      description="The noise models produced by `NoiseLearner` might not be accurate for Heron backends due to non-Markovian noise on these devices. An internal study has shown this can be alleviated with measurement-based post-selection. This technique adds a series of RX gates followed by a measurement to the circuit, and in post-processing throws away the bad bitstrings. Implement with the Qiskit addon utilities package, or with `NoiseLearnerV3`. "
+      description="The noise models produced by `NoiseLearner` might not be accurate for some Heron backends due to non-Markovian noise on these devices. This can be alleviated with measurement-based post-selection. The technique adds a series of RX gates followed by a measurement to the circuit, and in post-processing throws away the bad bitstrings. Implement this with the Qiskit addon utilities package, or with `NoiseLearnerV3`. "
       href="/docs/api/qiskit-addon-utils/noise-management"
       analyticsName="Tools index page: Measurement post-selection"
       linkText="API reference"
