@@ -72,6 +72,8 @@ def is_stale(folder_name: str) -> bool:
     # All time measured in seconds, from the unix epoch
     current_timestamp = time.time()
     last_modified_timestamp = get_timestamp(Path(folder_name))
+    if last_modified_timestamp is None:
+        return False
     return (current_timestamp - last_modified_timestamp) > PR_EXPIRATION_TIME_SECONDS
 
 def delete_closed_pr_folders() -> None:
