@@ -23,8 +23,11 @@ from typing import Iterator
 logger = logging.getLogger(__name__)
 
 
-def get_timestamp(dest: Path) -> int:
-    return int(Path(dest / "last_modified.txt").read_text())
+def get_timestamp(dest: Path) -> int | None:
+    try:
+        return int(Path(dest / "last_modified.txt").read_text())
+    except (FileNotFoundError, ValueError):
+        return None
 
 
 def write_timestamp(dest: Path) -> None:
