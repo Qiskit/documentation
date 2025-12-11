@@ -13,7 +13,6 @@
 name: Main branch preview
 on:
   workflow_dispatch:
-  pull_request:
   push:
     branches:
       - main
@@ -26,7 +25,6 @@ jobs:
   update-preview:
     name: Main branch preview
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.full_name == github.repository
     env:
       PREVIEW_PATH: main
       PREVIEW_URL: https://qiskit.github.io/documentation/main/
@@ -55,7 +53,6 @@ jobs:
           step: start
           token: ${{ secrets.GITHUB_TOKEN }}
           env: main
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Build static site
         run: >
