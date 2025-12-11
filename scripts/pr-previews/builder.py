@@ -103,6 +103,9 @@ def save_output(root_dir: Path, dest: Path) -> None:
             shutil.copy2(item, dest)
     logger.info(f"Static site files copied to {dest}")
 
+def copy_with_log(src: str, dest: str) -> None:
+    logger.info(f"Copy '{src}'")
+    shutil.copy2(src, dest)
 
 @contextmanager
 def setup_dir() -> Iterator[Path]:
@@ -114,24 +117,33 @@ def setup_dir() -> Iterator[Path]:
         _extract_docker_files(root_dir)
         yield root_dir
 
-
 def _copy_local_content(root_dir: Path) -> None:
-    # We intentionally don't copy over API docs to speed up the build.
+
+    def ignore_contents(dir: str, contents: list[str]) -> list[str]:
+        """For input to shutil.copytree. This function takes the directory path
+        (such as `docs/guides`) and a list of file and folder names (entries) in
+        that directory. It should output a list of entries to ignore.
+        """
+        ignores = []
+
+        # Ignore all paths with "/api/" in them
+        # We intentionally don't copy over API docs to speed up the build.
+        if "api" in contents:
+            ignores.append("api")
+
+        return ignores
+
     for dir in [
-        "docs/guides",
-        "docs/tutorials",
-        "public/docs/images/tutorials",
+        "docs",
+        "public",
         "learning",
-        "public/docs/images/guides",
-        "public/docs/images/qiskit-patterns",
-        "public/learning",
     ]:
         dest = (
             root_dir / "packages/preview" / dir
             if dir.startswith("public")
             else root_dir / f"content/{dir}"
         )
-        shutil.copytree(dir, dest)
+        shutil.copytree(dir, dest, ignore=ignore_contents, copy_function=copy_with_log)
 
     for fp in [
         "docs/responsible-quantum-computing.mdx",
