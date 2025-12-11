@@ -54,7 +54,13 @@ def main() -> None:
         write_proof_of_concept(args.dest)
         return
 
-    with setup_dir() as dir:
+    try:
+        lines = Path(".github/outputs/changed-content-files.txt").read_text().split("\n")
+        changed_content_files = set(line for line in lines if line != "")
+    except FileNotFoundError:
+        changed_content_files: set[str] = set()
+
+    with setup_dir(changed_content_files) as dir:
         yarn_build(dir, args.basepath)
         save_output(dir, args.dest)
     write_timestamp(args.dest)
@@ -108,18 +114,16 @@ def copy_with_log(src: str, dest: str) -> None:
     shutil.copy2(src, dest)
 
 @contextmanager
-def setup_dir() -> Iterator[Path]:
+def setup_dir(changed_content_files: set[str]) -> Iterator[Path]:
     with TemporaryDirectory() as _tempdir:
         root_dir = Path(_tempdir)
         logger.info(f"Using tmpdir {root_dir}")
 
-        _copy_local_content(root_dir)
+        _copy_local_content(root_dir, changed_content_files)
         _extract_docker_files(root_dir)
         yield root_dir
 
-def _copy_local_content(root_dir: Path) -> None:
-
-    changed_files = set()
+def _copy_local_content(root_dir: Path, changed_files: set[str]) -> None:
 
     def ignore_contents(dir: str, contents: list[str]) -> list[str]:
         """For input to shutil.copytree. This function takes the directory path
