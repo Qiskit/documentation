@@ -119,6 +119,8 @@ def setup_dir() -> Iterator[Path]:
 
 def _copy_local_content(root_dir: Path) -> None:
 
+    changed_files = set()
+
     def ignore_contents(dir: str, contents: list[str]) -> list[str]:
         """For input to shutil.copytree. This function takes the directory path
         (such as `docs/guides`) and a list of file and folder names (entries) in
@@ -130,6 +132,37 @@ def _copy_local_content(root_dir: Path) -> None:
         # We intentionally don't copy over API docs to speed up the build.
         if "api" in contents:
             ignores.append("api")
+
+        # No changed files means we should copy over everything.
+        if len(changed_files) == 0:
+            return ignores
+
+        for entry in contents:
+            full_path = f"{dir}/{entry}"
+
+            # Always copy over the `public` folder as its contents could be used
+            # anywhere. TODO: Maybe make this more selective?
+            if full_path.startswith("public"):
+                continue
+
+            # We also need to copy over `_toc.json` used by any changed files.
+            # Copytree should only reach these files if a sibling or child of
+            # the current directory contains a changed file.
+            if entry == "_toc.json":
+                continue
+
+            # We also need to copy over the index files because the app doesn't
+            # build without them
+            if entry.startswith("index."):
+                continue
+
+            # Finally, continue traversing if the directory contains one of our
+            # changed files.
+            if any(file.startswith(full_path) for file in changed_files):
+                continue
+
+            # Ignore everything else
+            ignores.append(entry)
 
         return ignores
 
