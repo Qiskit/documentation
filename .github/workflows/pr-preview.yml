@@ -91,6 +91,10 @@ jobs:
           ${{ env.PR_PREVIEW_PATH }}
           --basepath /documentation/${{ env.PR_PREVIEW_PATH }}
 
+      - name: Delete temp files
+        # Otherwise this gets pushed to the gh-pages branch
+        run: rm -r .github/outputs
+
       - name: Deploy to GitHub Pages
         run: scripts/pr-previews/deploy.py ${{ env.PR_PREVIEW_PATH }}
 
