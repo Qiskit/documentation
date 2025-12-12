@@ -54,7 +54,13 @@ def main() -> None:
         write_proof_of_concept(args.dest)
         return
 
-    with setup_dir() as dir:
+    try:
+        lines = Path(".github/outputs/changed-content-files.txt").read_text().split("\n")
+        changed_content_files = set(line for line in lines if line != "")
+    except FileNotFoundError:
+        changed_content_files: set[str] = set()
+
+    with setup_dir(changed_content_files) as dir:
         yarn_build(dir, args.basepath)
         save_output(dir, args.dest)
     write_timestamp(args.dest)
@@ -103,35 +109,74 @@ def save_output(root_dir: Path, dest: Path) -> None:
             shutil.copy2(item, dest)
     logger.info(f"Static site files copied to {dest}")
 
-
 @contextmanager
-def setup_dir() -> Iterator[Path]:
+def setup_dir(changed_content_files: set[str]) -> Iterator[Path]:
     with TemporaryDirectory() as _tempdir:
         root_dir = Path(_tempdir)
         logger.info(f"Using tmpdir {root_dir}")
 
-        _copy_local_content(root_dir)
+        _copy_local_content(root_dir, changed_content_files)
         _extract_docker_files(root_dir)
         yield root_dir
 
+def _copy_local_content(root_dir: Path, changed_files: set[str]) -> None:
 
-def _copy_local_content(root_dir: Path) -> None:
-    # We intentionally don't copy over API docs to speed up the build.
+    def ignore_contents(dir: str, contents: list[str]) -> list[str]:
+        """For input to shutil.copytree. This function takes the directory path
+        (such as `docs/guides`) and a list of file and folder names (entries) in
+        that directory. It should output a list of entries to ignore.
+        """
+        ignores = []
+
+        # Ignore all paths with "/api/" in them
+        # We intentionally don't copy over API docs to speed up the build.
+        if "api" in contents:
+            ignores.append("api")
+
+        # No changed files means we should copy over everything.
+        if len(changed_files) == 0:
+            return ignores
+
+        for entry in contents:
+            full_path = f"{dir}/{entry}"
+
+            # Always copy over the `public` folder as its contents could be used
+            # anywhere. TODO: Maybe make this more selective?
+            if full_path.startswith("public"):
+                continue
+
+            # We also need to copy over `_toc.json` used by any changed files.
+            # Copytree should only reach these files if a sibling or child of
+            # the current directory contains a changed file.
+            if entry == "_toc.json":
+                continue
+
+            # We also need to copy over the index files because the app doesn't
+            # build without them
+            if entry.startswith("index."):
+                continue
+
+            # Finally, continue traversing if the directory contains one of our
+            # changed files.
+            if any(file.startswith(full_path) for file in changed_files):
+                continue
+
+            # Ignore everything else
+            ignores.append(entry)
+
+        return ignores
+
     for dir in [
-        "docs/guides",
-        "docs/tutorials",
-        "public/docs/images/tutorials",
+        "docs",
+        "public",
         "learning",
-        "public/docs/images/guides",
-        "public/docs/images/qiskit-patterns",
-        "public/learning",
     ]:
         dest = (
             root_dir / "packages/preview" / dir
             if dir.startswith("public")
             else root_dir / f"content/{dir}"
         )
-        shutil.copytree(dir, dest)
+        shutil.copytree(dir, dest, ignore=ignore_contents)
 
     for fp in [
         "docs/responsible-quantum-computing.mdx",
