@@ -109,10 +109,6 @@ def save_output(root_dir: Path, dest: Path) -> None:
             shutil.copy2(item, dest)
     logger.info(f"Static site files copied to {dest}")
 
-def copy_with_log(src: str, dest: str) -> None:
-    logger.info(f"Copy '{src}'")
-    shutil.copy2(src, dest)
-
 @contextmanager
 def setup_dir(changed_content_files: set[str]) -> Iterator[Path]:
     with TemporaryDirectory() as _tempdir:
@@ -180,7 +176,7 @@ def _copy_local_content(root_dir: Path, changed_files: set[str]) -> None:
             if dir.startswith("public")
             else root_dir / f"content/{dir}"
         )
-        shutil.copytree(dir, dest, ignore=ignore_contents, copy_function=copy_with_log)
+        shutil.copytree(dir, dest, ignore=ignore_contents)
 
     for fp in [
         "docs/responsible-quantum-computing.mdx",
