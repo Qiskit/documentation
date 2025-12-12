@@ -22,6 +22,7 @@ state_drawer = hinton
 transpile_optimization_level = 3
 parallel = False
 num_processes = 15
+min_qpy_version = 14
  ```
 
 By default, this file is in `~/.qiskit/settings.conf` but the path can be overridden with the `QISKIT_SETTINGS` environment variable.
@@ -35,6 +36,7 @@ By default, this file is in `~/.qiskit/settings.conf` but the path can be overri
 - `transpile_optimization_level`: Change the default optimization level for [qiskit.compiler.transpile](../api/qiskit/compiler#transpile). Specify an integer 0-3.
 - `parallel`: Whether Python multiprocessing is enabled for operations that support running in parallel.  For example, transpilation of multiple [qiskit.circuit.QuantumCircuit](../api/qiskit/qiskit.circuit.QuantumCircuit#quantumcircuit-class) objects. This setting can be overridden by the `QISKIT_PARALLEL` environment variable. Specify a boolean value.
 - `num_processes`: The maximum number of parallel processes to launch for parallel operations if parallel execution is enabled. This setting can be overridden by the `QISKIT_NUM_PROCS` environment variable. Specify an integer greater than `0`. 
+- `min_qpy_version`: QPY loading will reject files with a QPY version lower than the one defined here. This option can be used to restrict allowed QPY versions when deserialization security issues are discovered in older QPY versions, preventing the loading of potentially malicious payloads.
 
 <Admonition type="note">
     * Circuit drawer settings apply to [qiskit.circuit.QuantumCircuit.draw](../api/qiskit/qiskit.circuit.QuantumCircuit) and [qiskit.visualization.circuit_drawer.](../api/qiskit/qiskit.visualization.circuit_drawer#qiskitvisualizationcircuit_drawer)
