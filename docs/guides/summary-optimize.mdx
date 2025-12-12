@@ -1,0 +1,17 @@
+---
+title: Overview to optimization tools
+description: Introduction to the documentation section on tools for optimizing abstract circuits and operators so they can run on quantum hardware.
+---
+
+# Overview to optimization tools
+
+Optimization tools help to maximize the likelihood of success in the execution of your circuits. Optimizations can include mapping the route and layout of the circuit to physical qubit hardware, converting to the basis gates of the hardware, and reducing the number of operations.
+
+During this step, abstract circuits must be transpiled to Instruction Set Architecture (ISA) circuits. An ISA circuit is one that consists only of gates understood by the target hardware (basis gates), and any multi-qubit gates needed to obey any connectivity constraints (coupling map).
+
+## Relevant resources
+
+- [Transpiler](/docs/guides/transpile) - Translate circuit instructions to execute on quantum hardware, with options for efficient layout and routing
+- [Dynamic circuits](/docs/guides/classical-feedforward-and-control-flow) - Perform certain tasks, such as long-range entanglement and state preparation, at constant depth
+- [Dynamical decoupling](/docs/guides/error-mitigation-and-suppression-techniques#dynamical-decoupling) - Reduce decoherence errors on idle qubits
+- [Operator backpropagation](/docs/guides/qiskit-addons-obp) - Reduce circuit depth by trimming operations at the cost of increased measurements
