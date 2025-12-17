@@ -26,11 +26,29 @@
     "softwareTerms",
     "scientific-terms-us"
   ],
-  "words": ["casteist", "doxxing"],
+  "words": [
+    "casteist",
+    "doxxing",
+    "abits",
+    "bbase",
+    "countsint",
+    "bmeas",
+    "bbits",
+    "agoodbits",
+    "bgoodbits",
+    "ebase",
+    "emeas",
+    "ebits",
+    "teleporting",
+    "Teleporting",
+    "ebitsa",
+    "ebitsb",
+    "pmzero"
+  ],
   "ignoreRegExpList": [
     // Markdown links
-    "\\((.*)\\)",
-    // $$ ... $$ code blocks
+    "\\]\\(([^\\)]*)\\)",
+    // $$ ... $$ math blocks
     "\\$\\$\n(?:.*\n)*?\\$\\$",
     // words inside curly braces. e.g. {word}
     "{\\w+}",
@@ -48,6 +66,8 @@
     "([a-zA-Z_]\\w*)\\.[a-zA-Z_\\.]*",
     // Words with numbers in them, which are usually code
     "[a-zA-Z]+\\d+[a-zA-Z\\d]*",
+    // Pauli strings (e.g. IIZZZIZIXYY)
+    "[^\\w][IXYZ]{3,}[^\\w]",
     // TOC URLs
     "^\\s+\"url\": \".+\""
   ]

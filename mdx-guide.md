@@ -19,7 +19,6 @@ If your file will have non-trivial code in it, please create a Jupyter notebook 
 
 Add the file to these places:
 
-- The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits` AND the Tools section in the `_toc.json` file. Or, in the rare case that it doesn't belong on any of these pages, list it in `scripts/js/commands/checkPatternsIndex.ts` in the ALLOWLIST_MISSING_FROM_INDEX or the ALLOWLIST_MISSING_FROM_TOC section. For example, `"/guides/qiskit-code-assistant"`.
 - qiskit_bot.yaml. Everyone listed under the file name is notified any time the file is updated. If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes. For example, - "`@NoNotifications`"
 - The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension. If you want a "New" pill to appear next to the page in the side bar, add `"isNew": true` and `"isNewDate:"YYYY-MM-DD"`with the page's publish date to that page's entry.
   > [!NOTE]
@@ -56,6 +55,8 @@ In Jupyter notebooks, set `title` and `description` in the `metadata` section fo
 }
 ```
 
+Avoid using hyphens, colons, semicolons, backticks, and pipes when writing the `title` and `description`. These characters might be used differently in other languages, and their use might complicate the translation process. Our translation tooling often replaces them with other symbols that could change their meaning or even break the page.
+
 ## Links
 
 Internal URLs referring to other docs pages should start with `/docs` and not include the file extension. For example:
@@ -89,17 +90,17 @@ To include a caption:
 
 You can include a version of the image to be with the dark theme. You only need to create an image with the same name ending in `@dark`. So for example, if you have a `sampler.png` image, the dark version would be `sampler@dark.png`. This is important for images that have a white background.
 
-## Videos
+## IBM Videos
 
-Videos are stored in the `public/docs/videos` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/docs/videos/guides/my-file/video1.mp4`.
+The `IBMVideo` component allows you to add embedded videos from [video.ibm.com](https://video.ibm.com).
 
-To add a video:
+To use the component, you only need the video's `id` and a descriptive `title` that will be used for accessibility purposes:
 
 ```markdown
-<video title="Write a description of the video here as 'alt text' for accessibility." className="max-w-auto h-auto" controls>
-    <source src="/docs/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
-</video>
+<IBMVideo id="134056207" title="This is an example"/>
 ```
+
+Ensure that the video is allowed to be embedded on `*.cloud.ibm.com` and `qiskit.github.io`. This is set as metadata in IBM Video Streaming. This should work automatically as long as the video is uploaded to the same group as our other videos.
 
 ## Math
 
@@ -117,9 +118,23 @@ $$
 
 ## Tables
 
-Tables are supported: https://www.markdownguide.org/extended-syntax/.
+Tables are supported: https://www.markdownguide.org/extended-syntax/#tables
 
-Warning: do not use `|` inside LaTeX/math expressions. Markdown will incorrectly interpret `|` as the divider between cells. Instead, use `\vert`.
+To include lists inside a cell, use `<ul>` or `<ol>`, along with `<li>`. You can also use normal Markdown links and the `Admonition` component. For example:
+
+```
+| Header |
+| -- |
+| <ol><li>Entry 1</li><li>Entry 2</li></ol> |
+| [a link](https://ibm.com) |
+| <Admonition title="A warning">Some content.</Admonition> |
+```
+
+However, be careful to not add overly complex components like `<Tabs>` because they can make the site hard to interact with and be bad for accessibility. 
+
+With LaTex and math expressions, do not use `|` because Markdown will incorrectly interpret `|` as the divider between cells. Instead, use `\vert`.
+
+Be careful to avoid overly wide tables, as they do not render well on small screens. Instead, consider alternative content layout like using [collapsible sections](#collapsible-sections).
 
 ## Comments
 
@@ -156,24 +171,6 @@ Use `&reg;` to get &reg; for registered trademarks.
 use `&trade;` to get &trade; for nonregistered trademarks.
 
 ⚠️ **Note**: Do not include trademarks in headings. The code will display rather than the symbol.
-
-## Platform-specific pages
-
-You can restrict pages to only appear on a specific platform (IQP Cloud or IQP Classic).
-
-1. Add `"platform": "cloud"` or `"platform": "legacy"` to the pages' entry in `_toc.json`. This will stop the page from appearing in the left table of contents in the other platform.
-
-   ```json
-   {
-     "title": "Connecting to IBM Cloud",
-     "url": "/cloud/connect-to-ibm-cloud",
-     "platform": "cloud"
-   }
-   ```
-
-   **Note:** If every page in a section is platform-specific, you must also add the `"platform"` attribute to the section too. Otherwise, users will see an empty section on the other platform.
-
-2. Add `platform: cloud` to the page's metadata. This will make the page 404 if a user tries to access that page's URL. See [Page metadata](#page-metadata) for how to set this.
 
 ## Custom components
 
@@ -213,6 +210,20 @@ We also have a specialized admonition for Qiskit Code Assistant prompt suggestio
 />
 ```
 
+### Figures
+
+Use this component for proofs, theorems, definitions, or anything that is
+referenced in the main flow of the document, but could be moved to another part
+of the document without affecting the main flow.
+
+To insert a figure, use the following syntax.
+
+```mdx
+<Figure title="Proof">
+  You can use any MDX inside a figure.
+</Figure>
+```
+
 ### Definition Tooltip
 
 To use a `DefinitionTooltip`, use the following syntax:
@@ -223,7 +234,10 @@ To use a `DefinitionTooltip`, use the following syntax:
 
 For full list of props, please check [here](https://react.carbondesignsystem.com/?path=/docs/components-definitiontooltip--playground#component-api).
 
-Warning: do not use LaTeX/math expressions in the same paragraph as a definition tooltip because it will break the styling. Use a new line to separate out the two into separate paragraphs.
+Caveats:
+
+1. Do not use any interactive content (e.g. links) with the `definition` prop or inside the tags. If you use such content, it will not be available to users of screen reader software.
+2. Do not use single and double quotes in the `definition` prop. Even if they are escaped, they cause problems when translating the files.
 
 ### Tabs
 
@@ -284,6 +298,37 @@ There is a specific use case where you want to show instructions for different o
     command
   </TabItem>
 </OperatingSystemTabs>
+```
+
+### Card
+
+The `Card` component creates a clickable card that links to another page, such as our [API index page](https://quantum.cloud.ibm.com/docs/api). 
+
+To use, first set up a `CardGroup` component. Then, insert one or more `Card` components inside the `CardGroup`. For each `Card`, you must set these properties:
+
+* `title`
+* `description`
+* `href`: the link
+* `analyticsName`: an internal identifier for analytics. A good format is `brief page name: brief description of the card`
+* `linkText` (optional): the text used for the arrow, such as 'Learn more'. Defaults to 'See details'
+
+```mdx
+<CardGroup>
+    <Card
+      title="Approximate quantum compilation tensor"
+      description="Supports the construction of high-fidelity circuits with reduced depth"
+      href="/docs/api/qiskit-addon-aqc-tensor"
+      analyticsName="overview page: addon AQC Tensor"
+    />
+
+    <Card
+      title="Qiskit SDK"
+      description="A radical software development kit"
+      href="/docs/api/qiskit"
+      analyticsName="overview page: Qiskit SDK"
+      linkText="Learn more"
+    />
+</CardGroup>
 ```
 
 ### CodeCellPlaceholder

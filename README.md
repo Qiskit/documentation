@@ -53,7 +53,7 @@ You can look through the open issues we have in this repo and address them with 
 
 Before getting started on an issue, remember to do the following:
 
-1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/en/open-source/code-of-conduct)
+1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/guides/code-of-conduct)
 2. Check for open, unassigned issues with the "good first issue" label
 3. Select an issue that is not already assigned to someone and leave a comment to request to be assigned
 
@@ -82,6 +82,13 @@ We also recommend running this command once to tell Git to ignore the `gh-pages`
 ```bash
 git config --add remote.origin.fetch '^refs/heads/gh-pages'
 ```
+
+### Git email address
+
+To contribute code to this repository, your email must be configured properly with Git, as follows:
+
+1. Run `git config --get user.email`. You do not need to make any further changes if the email address is one of the addresses set up with your github.com account.
+2. Otherwise, run `git config --global user.email <your-email>`. Use an email address associated with your github.com account.
 
 ### Prerequisites to building the docs locally
 
@@ -161,7 +168,7 @@ You may find it convenient to install the following VSCode extensions to automat
 
 We offer some tools that are not included in `./check` and `./fix`. Likewise, many of the checks skip API docs by default.
 
-Run `npm run` to see a list of all our checks. For any particular check, run `npm run my-check -- --help` for more information and advanced arguments, such as `npm run check:metadata -- --help`.
+Run `npm run` to see a list of all our checks. For any particular check, run `npm run my-check -- --help` for more information and advanced arguments, such as `npm run check:markdown -- --help`.
 
 ## Jupyter notebooks
 
@@ -226,8 +233,11 @@ graphviz`.
   tox -- <path/to/notebook.ipynb> <path/to/another-notebook.ipynb>
   ```
 - To write the execution results to the file, pass the `--write` argument.
+  Since we only allow writing results from real hardware, you will usually also
+  need to pass `--test-strategy=hardware`. Note this means the run will use QPU
+  time.
   ```sh
-  tox -- optional/paths/to/notebooks.ipynb --write
+  tox -- optional/paths/to/notebooks.ipynb --write --test-strategy=hardware
   ```
 
 When you make a pull request changing a notebook that doesn't submit jobs, you

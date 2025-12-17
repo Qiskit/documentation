@@ -20,71 +20,165 @@ export const IGNORED_FILES: Set<string> = new Set([]);
 // Always ignored URLs - prefer to use more precise ignores
 // -----------------------------------------------------------------------------------
 
-// These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
-const ALWAYS_IGNORED_URLS__EXPECTED = [
-  "https://auth.quantum-computing.ibm.com/api",
-  "https://auth.quantum.ibm.com/api",
-  "https://api.quantum-computing.ibm.com/runtime",
-  "https://us-east.quantum-computing.cloud.ibm.com/",
-  "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
-  "http://www.satcompetition.org/2009/format-benchmarks2009.html",
-  "https://qiskit.slack.com/archives/C06KF8YHUAU",
-  "https://support.us.ovhcloud.com/hc/en-us/articles/360002245784-Creating-Your-First-Public-Cloud-Project",
-  "https://support.google.com/accounts/answer/27441?hl",
-  "https://colab.research.google.com/",
-  "https://colab.research.google.com/#create=true",
-  "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
-  "https://forms.office.com/r/zN3hvMTqJ1",
-  "https://platform.openai.com/docs/api-reference/completions",
-  "https://code.visualstudio.com/",
-  "https://doi.org/10.1002/qute.201800012",
-  "https://stackoverflow.com/",
-  "https://stackoverflow.com/questions/1049722/what-is-2s-complement",
-  "https://quantumcomputing.stackexchange.com/help/how-to-ask",
-  "https://quantumcomputing.stackexchange.com/questions/",
-  "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
-  "https://www.science.org/doi/10.1126/science.273.5278.1073",
-  "https://journals.aps.org/prx/abstract/10.1103/PhysRevX.10.011022",
-  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.99.032331",
-  "https://link.aps.org/doi/10.1103/PhysRevLett.103.110501",
-  "https://link.aps.org/doi/10.1103/PhysRevA.83.012308",
-  "https://link.aps.org/doi/10.1103/PhysRevA.100.032328",
-  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.71.052330",
-  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.93.032318",
-  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.024034",
-  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620",
-  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.94.052325",
-  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.064027",
-  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.210601",
-  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.033154",
-  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.042303",
-  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.033309",
-  "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
-  "https://https://arxiv.org/abs/quant-ph/0403071",
-  "https://doi.org/10.1103/PhysRevApplied.5.034007",
+// These links 403/404 with our user agent but 200 in browser. We should respect
+// the website's preference and avoid checking automatically. Might be a good
+// idea to click on these every now and again to check they still work.
+const FORBIDS_OUR_USER_AGENT = [
   "http://dx.doi.org/10.1103/PhysRevA.83.012308",
-  "https://doi.org/10.1103/PhysRevLett.103.150502",
-  "https://doi.org/10.1103/PhysRevA.99.032331",
+  "http://dx.doi.org/10.1145/1278349.1278355",
+  "https://academic.oup.com/book/36426",
+  "https://crates.io/crates/faer",
+  "https://dl.acm.org/doi/10.1145/237814.237838",
+  "https://dl.acm.org/doi/10.1145/237814.237866",
   "https://dl.acm.org/doi/10.1145/3445814.3446706",
-  "https://doi.org/10.1145/3520304.3533963",
+  "https://dl.acm.org/doi/10.1145/359340.359342",
+  "https://dl.acm.org/doi/10.1145/3656436",
+  "https://doi.org/10.1063/5.0042147",
+  "https://doi.org/10.1063/5.0082975",
+  "https://doi.org/10.1080/07468342.1987.11973000",
+  "https://doi.org/10.1103/PhysRevA.99.032331",
+  "https://doi.org/10.1103/PhysRevApplied.20.014024",
+  "https://doi.org/10.1103/PhysRevApplied.22.054037",
+  "https://doi.org/10.1103/PhysRevApplied.22.064068",
+  "https://doi.org/10.1103/PhysRevApplied.5.034007",
+  "https://doi.org/10.1137/S0097539795293172",
+  "https://doi.org/10.1145/167088.167239",
+  "https://doi.org/10.1145/237814.237838",
+  "https://doi.org/10.1145/237814.237866",
+  "https://doi.org/10.1145/276698.276705",
   "https://doi.org/10.1145/3445814.3446706",
   "https://doi.org/10.1145/3490631",
-  "http://dx.doi.org/10.1145/1278349.1278355",
-  "https://doi.org/10.1063/5.0042147",
-  "https://doi.org/10.1103/PhysRevApplied.22.054037",
-  "https://doi.org/10.1103/PhysRevApplied.20.014024",
-  "https://doi.org/10.1103/PhysRevApplied.22.064068",
-  "https://aip.scitation.org/doi/10.1063/1.5019371",
-  "https://aip.scitation.org/doi/10.1063/1.5141835",
+  "https://doi.org/10.1145/3520304.3533963",
+  "https://doi.org/10.1145/359340.359342",
+  "https://dx.doi.org/10.1103/PhysRevA.83.012308",
+  "https://dx.doi.org/10.1145/1278349.1278355",
+  "https://epubs.siam.org/doi/10.1137/100787921",
+  "https://epubs.siam.org/doi/10.1137/S0097539795293172",
+  "https://epubs.siam.org/doi/abs/10.1137/S0036144598347011",
+  "https://journals.aps.org/pr/pdf/10.1103/PhysRev.47.777",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.100.012305",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.102.032420",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.103.032430",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.71.052330",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.042303",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.93.032318",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.94.052325",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.99.032331",
+  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.19.024047",
+  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.024034",
+  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.064027",
+  "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.114510",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.140503",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.210601",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.85.441",
+  "https://journals.aps.org/prper/pdf/10.1103/PhysRevSTPER.11.020117",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.033154",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.013254",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.023218",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.033309",
+  "https://journals.aps.org/prx/abstract/10.1103/PhysRevX.10.011022",
+  "https://journals.aps.org/prx/accepted/a9074K06A8e1590147da9c69f8c4b64c28247be5a",
+  "https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.2.040326",
+  "https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.020315",
+  "https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.030339",
+  "https://journals.aps.org/prxquantum/pdf/10.1103/PRXQuantum.3.010313",
+  "https://journals.aps.org/rmp/abstract/10.1103/RevModPhys.32.170",
+  "https://link.aps.org/doi/10.1103/PRXQuantum.4.030319",
+  "https://link.aps.org/doi/10.1103/PhysRevA.100.032328",
+  "https://link.aps.org/doi/10.1103/PhysRevA.83.012308",
+  "https://link.aps.org/doi/10.1103/PhysRevLett.103.110501",
+  "https://onlinelibrary.wiley.com/doi/epdf/10.1002/ijch.202100111",
+  "https://platform.openai.com/docs/api-reference/completions",
+  "https://pubs.acs.org/doi/10.1021/acs.jpcb.5c01030",
+  "https://pubs.acs.org/doi/full/10.1021/acs.jctc.8b00450",
+  "https://pubs.aip.org/aip/jap/article/132/16/160902/2837574/The-future-of-quantum-computing-with",
   "https://pubs.aip.org/aip/rsi/article/88/10/104703/836456",
-  "https://ieeexplore.ieee.org/document/1323804",
-  "https://ieeexplore.ieee.org/document/880982",
-  "https://ieeexplore.ieee.org/document/657661",
+  "https://spj.science.org/doi/10.34133/icomputing.0037",
+  "https://support.us.ovhcloud.com/hc/en-us/articles/360002245784-Creating-Your-First-Public-Cloud-Project",
+  "https://wires.onlinelibrary.wiley.com/doi/10.1002/wcms.1519",
+  "https://www.eetimes.com/battery-research-advances-quantum-computing-capabilities/",
+  "https://www.eon.com/en/about-us/media/press-release/2021/2021-09-02-eon-allies-with-ibm-quantum.html",
+  "https://www.iotworldtoday.com/smart-cities/ibm-panel-highlights-quantum-role-in-sustainability",
+  "https://www.science.org/doi/10.1126/sciadv.adk4321",
+  "https://www.science.org/doi/10.1126/science.273.5278.1073",
+  "https://www.science.org/doi/full/10.1126/science.aad9480",
+  "https://www.science.org/doi/full/10.1126/science.abq0225",
+  "https://www.science.org/doi/full/10.1126/science.abq0225#supplementary-materials",
+];
+
+// These links work when last tested in a browser
+const FETCH_RETURNS_405 = [
+  "https://colab.research.google.com/",
+  "https://colab.research.google.com/#create=true",
+  "https://forms.cloud.microsoft/e/3Wi9cbjQPK",
+  "https://forms.office.com/r/zN3hvMTqJ1",
+  "https://pmc.ncbi.nlm.nih.gov/articles/PMC4878865/",
+];
+
+// Fetching these links throws an error, but they work in-browser. Not sure why.
+const FETCH_FAILS = [
+  "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
+  "https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/quantum-computing-use-cases-are-getting-real-what-you-need-to-know",
+  "https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/quantum-computing-just-might-save-the-planet",
+  "https://www.mckinsey.com/industries/chemicals/our-insights/the-next-big-thing-quantum-computings-potential-impact-on-chemicals?cid=eml-web",
+  // The following link is only accessible through IBM VPN
+  "https://w3.ibm.com/w3publisher/w3-privacy-notice",
+];
+
+// These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
+const ALWAYS_IGNORED_URLS__EXPECTED = [
+  ...FORBIDS_OUR_USER_AGENT,
+  ...FETCH_RETURNS_405,
+  ...FETCH_FAILS,
+
+  // The following links fail inconsistently. That is, they don't always return
+  // the same status code. Sometimes it's 404, sometimes 503, sometimes 200 etc.
+  // They do work whenever I've tested them in a browser.
+  "https://csrc.nist.gov/news/2023/three-draft-fips-for-post-quantum-cryptography",
+  "https://csrc.nist.gov/pubs/fips/205/ipd",
+  "https://doi.org/10.6028/jres.104.027",
+  "https://eprint.iacr.org/2012/090",
+  "https://finance.yahoo.com/quote/8801.T",
+  "https://finance.yahoo.com/quote/CLF",
+  "https://finance.yahoo.com/quote/GBPJPY",
+  "https://finance.yahoo.com/quote/ITX.MC",
+  "https://finance.yahoo.com/quote/META",
+  "https://finance.yahoo.com/quote/TMBMKDE-10Y",
+  "https://finance.yahoo.com/quote/XS2239553048",
+  "https://ibm.ent.box.com/s/bipgoms7gr6b6vhkoc1uw6oi4wsanfoq",
+  "https://ibm.ent.box.com/s/blnffu0pd7yzxarq3zc3w0jv90365ny2",
+  "https://ibm.ent.box.com/s/fh3xele1e7k0nrgd1imivvq52hy3wz9c",
+  "https://ibm.ent.box.com/s/kzzsmxhw38vph1ioohczaet53euwi310",
+  "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
+  "https://support.google.com/accounts/answer/27441?hl",
+  "https://www.ibm.com/thought-leadership/institute-business-value/report/quantumfinancial",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
 const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
-  "/learning/courses/quantum-business-foundations/exam",
+  // These schemas are not available any more. They might have moved, but we're not sure where.
+  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json",
+  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json",
+  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_status_schema.json",
+  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json",
+
+  // These links are from old IQP and do not work any more
+  "https://api.quantum-computing.ibm.com/runtime",
+  "https://auth.quantum-computing.ibm.com/api",
+  "https://auth.quantum.ibm.com/api",
+  "https://quantum-computing.cloud.ibm.com",
+  "https://us-east.quantum-computing.cloud.ibm.com/",
+
+  // Other links that don't seem to exist any more
+  "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
+  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
+  "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
+
+  // The pulse guide was removed in https://github.com/Qiskit/documentation/pull/4251 and should be fixed
+  // in the Qiskit latest, dev, and some historical versions. In the meantime, the app will redirect the
+  // page to pulse-migration so the links are not broken.
+  "/docs/guides/pulse",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -104,33 +198,13 @@ function _addonsObjectsInvRegexes(): string[] {
       // Latest version
       `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
       // Historical versions
-      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]\/${path}(\/.*|#.*|$)`,
+      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]{1,2}\/${path}(\/.*|#.*|$)`,
     ],
-  );
-}
-
-function _runtimeObjectsInvRegexes(): string[] {
-  // Runtime has non-API docs in their Sphinx build that translate into invalid links
-  // we should ignore
-  return [
-    "errors",
-    "migrate",
-    "cloud",
-    "faqs",
-    "index",
-    "sessions",
-    "primitives",
-    "compare",
-    "retired",
-  ].map(
-    (path) =>
-      `\/api\/qiskit-ibm-runtime\/(0.16|0.15|0.14)\/${path}(\/.*|#.*|$)`,
   );
 }
 
 export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
   ..._addonsObjectsInvRegexes(),
-  ..._runtimeObjectsInvRegexes(),
 ];
 
 // -----------------------------------------------------------------------------------
@@ -162,25 +236,12 @@ function mergeFilesToIgnores(...mappings: FilesToIgnores[]): FilesToIgnores {
 
 function _runtimeObjectsInv(): FilesToIgnores {
   const legacy = Object.fromEntries(
-    ["0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/", "0.22/"].map(
-      (vers) => [
-        `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
-        [
-          `/docs/api/qiskit-ibm-runtime/${vers}index#next-steps`,
-          `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
-        ],
+    ["0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map((vers) => [
+      `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
+      [
+        `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
       ],
-    ),
-  );
-  const legacy2 = Object.fromEntries(
-    ["0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
-      (vers) => [
-        `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
-        [
-          `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
-        ],
-      ],
-    ),
+    ]),
   );
   const latest = Object.fromEntries(
     [
@@ -196,6 +257,9 @@ function _runtimeObjectsInv(): FilesToIgnores {
       "0.37/",
       "0.38/",
       "0.39/",
+      "0.40/",
+      "0.41/",
+      "0.42/",
     ].map((vers) => [
       `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [
@@ -203,14 +267,14 @@ function _runtimeObjectsInv(): FilesToIgnores {
       ],
     ]),
   );
-  return { ...legacy, ...legacy2, ...latest };
+  return { ...legacy, ...latest };
 }
 
 function _qiskitUtilsData(): FilesToIgnores {
   // Qiskit docs used .. py:data:: incorrectly. We didn't fix these versions of the docs
   // because it is too tedious.
   const objectsInv = Object.fromEntries(
-    ["0.45/", "1.0/", "1.1/"].map((vers) => [
+    ["1.0/", "1.1/"].map((vers) => [
       `public/docs/api/qiskit/${vers}objects.inv`,
       [
         `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
@@ -250,21 +314,7 @@ function _qiskitUtilsData(): FilesToIgnores {
     ]),
   );
   const utilsFile = Object.fromEntries(
-    [
-      "0.35",
-      "0.36",
-      "0.37",
-      "0.38",
-      "0.39",
-      "0.40",
-      "0.41",
-      "0.42",
-      "0.43",
-      "0.44",
-      "0.45",
-      "1.0",
-      "1.1",
-    ].map((vers) => [
+    ["1.0", "1.1"].map((vers) => [
       `docs/api/qiskit/${vers}/utils.mdx`,
       [
         "#qiskit.utils.optionals.HAS_TESTTOOLS",
@@ -273,10 +323,15 @@ function _qiskitUtilsData(): FilesToIgnores {
       ],
     ]),
   );
+
+  const releaseNotesFile = Object.fromEntries(
+    ["1.0", "1.1"].map((vers) => [
+      `docs/api/qiskit/release-notes/${vers}.mdx`,
+      [`/docs/api/qiskit/${vers}/utils#qiskit.utils.optionals.HAS_SYMENGINE`],
+    ]),
+  );
   return {
-    "docs/api/qiskit/release-notes/1.0.mdx": [
-      "/docs/api/qiskit/1.0/utils#qiskit.utils.optionals.HAS_SYMENGINE",
-    ],
+    ...releaseNotesFile,
     ...objectsInv,
     ...utilsFile,
   };
@@ -286,7 +341,7 @@ function _patternsReorg(): FilesToIgnores {
   // We have redirects for all these files. It's best to update API docs to point directly to the new URL,
   // but we don't bother updating old docs.
   const qiskit = Object.fromEntries(
-    ["", "0.45/", "0.46/", "1.0/", "1.1/", "1.2/"].flatMap((vers) => [
+    ["", "0.46/", "1.0/", "1.1/", "1.2/"].flatMap((vers) => [
       [
         `docs/api/qiskit/${vers}qiskit.circuit.QuantumCircuit.mdx`,
         ["/docs/build/circuit-construction"],
@@ -299,7 +354,7 @@ function _patternsReorg(): FilesToIgnores {
     ]),
   );
   const runtime = Object.fromEntries(
-    [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26].flatMap((vers) => [
+    [25, 26].flatMap((vers) => [
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/batch.mdx`,
         ["/docs/run/run-jobs-batch", "/docs/run/max-execution-time"],
@@ -325,11 +380,11 @@ function _patternsReorg(): FilesToIgnores {
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v1.mdx`,
-        ["/docs/api/migration-guides/v2-primitives"],
+        ["/docs/api/guides/v2-primitives"],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v1.mdx`,
-        ["/docs/api/migration-guides/v2-primitives"],
+        ["/docs/api/guides/v2-primitives"],
       ],
       [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/docs/run"]],
       [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/docs/run"]],
@@ -359,40 +414,12 @@ function _patternsReorg(): FilesToIgnores {
   };
 }
 
-function _legacyQiskitSDKIssues(): FilesToIgnores {
-  // These are all issues due to quirks in our old docs. They
-  // are all safe to ignore and not worth the effort to fix.
-
-  // The module page is missing the expected anchor, even in the original Sphinx. However,
-  // the page is small enough that the link to the transpile function is easy to access.
-  const transpileAnchor = Object.fromEntries(
-    ["37", "38", "39", "40", "41", "42", "43"].map((vers) => [
-      `docs/api/qiskit/0.${vers}/qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager.mdx`,
-      ["compiler#qiskit.compiler.transpile"],
-    ]),
-  );
-  // The capitalization of the anchor link changes between the class page and the referring
-  // page, and it's inconsistent in the original Sphinx. However, it doesn't matter
-  // because the anchor is at the top of the page anyways.
-  const pulseLibraryAnchorCapitalization = Object.fromEntries(
-    ["37", "38", "39", "40", "41", "42"].flatMap((vers) => [
-      [
-        `docs/api/qiskit/0.${vers}/qiskit.pulse.library.gaussian_square.mdx`,
-        ["qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian"],
-      ],
-      [
-        `docs/api/qiskit/0.${vers}/pulse.mdx`,
-        [
-          "qiskit.pulse.library.constant#qiskit.pulse.library.constant",
-          "qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian",
-          "qiskit.pulse.library.drag#qiskit.pulse.library.drag",
-        ],
-      ],
-    ]),
-  );
+function _runtimeLegacyReleaseNotes(): FilesToIgnores {
   return {
-    ...transpileAnchor,
-    ...pulseLibraryAnchorCapitalization,
+    "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
+      "/docs/api/qiskit-ibm-runtime/0.21/qiskit-runtime-service#runtime",
+      "/docs/api/qiskit-ibm-runtime/0.20/sampler#run",
+    ],
   };
 }
 
@@ -400,10 +427,35 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
-  _legacyQiskitSDKIssues(),
+  _runtimeLegacyReleaseNotes(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
+function _qiskitCRegexes(): FilesToIgnores {
+  return {
+    "public/docs/api/qiskit-c/objects.inv": [
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ms",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ns",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_ps",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_s",
+      "/docs/api/qiskit-c/qk-circuit#qkdelayunit_us",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1a1d0477d0d30b088dfd322e85b4be5464",
+      "/docs/api/qiskit-c/qk-complex-64#structqkcomplex64_1ae08ef5279f405357144d24ec1147b5f9",
+      "/docs/api/qiskit-c/version#qiskit_get_version_hex",
+      "/docs/api/qiskit-c/version#qiskit_release_level",
+      "/docs/api/qiskit-c/version#qiskit_release_serial",
+      "/docs/api/qiskit-c/version#qiskit_version",
+      "/docs/api/qiskit-c/version#qiskit_version_hex",
+      "/docs/api/qiskit-c/version#qiskit_version_major",
+      "/docs/api/qiskit-c/version#qiskit_version_minor",
+      "/docs/api/qiskit-c/version#qiskit_version_patch",
+    ],
+    "docs/api/qiskit-c/qk-transpiler.mdx": ["#structqktranspileoptions"],
+  };
+}
+
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores =
+  mergeFilesToIgnores(_qiskitCRegexes());
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,

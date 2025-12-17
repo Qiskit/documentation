@@ -12,8 +12,7 @@
 
 import { join } from "path/posix";
 
-import { findSeparateReleaseNotesVersions } from "./releaseNotes.js";
-import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage.js";
+import { determineReleaseNotesSeparetePagesVersions } from "./releaseNotes.js";
 import {
   TocGrouping,
   QISKIT_TOC_GROUPING,
@@ -22,6 +21,7 @@ import {
 
 export class ReleaseNotesConfig {
   readonly enabled: boolean;
+  /** A list of the release note versions in descending order. */
   readonly separatePagesVersions: string[];
   readonly linkToPackage?: string;
 
@@ -110,7 +110,11 @@ export class Pkg {
     };
 
     if (name === "qiskit") {
-      const releaseNoteEntries = await findSeparateReleaseNotesVersions(name);
+      const releaseNoteEntries =
+        await determineReleaseNotesSeparetePagesVersions(
+          name,
+          versionWithoutPatch,
+        );
       return new Pkg({
         ...args,
         title: "Qiskit SDK",
@@ -137,7 +141,7 @@ export class Pkg {
     if (name === "qiskit-ibm-transpiler") {
       return new Pkg({
         ...args,
-        title: "Qiskit Transpiler Service client",
+        title: "Qiskit Transpiler Service",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
         kebabCaseAndShortenUrls: true,
         language: "Python",
@@ -313,35 +317,19 @@ export class Pkg {
     const normalizeFile = (fp: string) =>
       convertToInitPy.has(fp) ? `${fp}/__init__` : fp;
 
-    // Runtime and Qiskit 0.45+ are simple: there is a branch called `stable/<version>`
-    // like `stable/0.45` in each GitHub project.
-    if (
-      this.name !== "qiskit" ||
-      this.type === "dev" ||
-      +this.versionWithoutPatch >= 0.45
-    ) {
-      const branchName =
-        this.type === "dev" && this.version.endsWith("-dev")
-          ? "main"
-          : `stable/${this.versionWithoutPatch}`;
-      const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
-      return (fileName) => {
-        if (!this.githubSlug) {
-          throw new Error(
-            `Encountered sphinx.ext.viewcode link, but Pkg.githubSlug is not set for ${this.name}`,
-          );
-        }
+    const branchName =
+      this.type === "dev" && this.version.endsWith("-dev")
+        ? "main"
+        : `stable/${this.versionWithoutPatch}`;
+    const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
+    return (fileName) => {
+      if (!this.githubSlug) {
+        throw new Error(
+          `Encountered sphinx.ext.viewcode link, but Pkg.githubSlug is not set for ${this.name}`,
+        );
+      }
 
-        return `${baseUrl}/${normalizeFile(fileName)}.py`;
-      };
-    }
-
-    // Otherwise, we have to deal with Qiskit <0.45, when we had the qiskit-metapackage comprised of
-    // multiple packages. Refer to the version table in api/qiskit/release-notes/0.44.mdx.
-    return (fileName) =>
-      determineHistoricalQiskitGithubUrl(
-        this.versionWithoutPatch,
-        normalizeFile(fileName),
-      );
+      return `${baseUrl}/${normalizeFile(fileName)}.py`;
+    };
   }
 }

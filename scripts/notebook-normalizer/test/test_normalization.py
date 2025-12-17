@@ -1,4 +1,4 @@
-import base64
+import json
 import nbformat
 from pathlib import Path
 from textwrap import dedent
@@ -255,3 +255,55 @@ def test_circuit_draw_html():
     output_data = result.nb.cells[0]["outputs"][0]["data"]
     assert "text/html" not in output_data
     assert "text/plain" in output_data
+
+
+katex_json = lambda expr : {
+      "cells": [
+       {
+        "cell_type": "code",
+        "execution_count": 1,
+        "id": "aaaaaa",
+        "metadata": {},
+        "outputs": [
+             {
+            "data": {
+            "text/latex": [
+            f"{expr}"
+            ],
+            "text/plain": [
+            "Matrix([\n",
+            "[ 1,  0],\n",
+            "[  0,   1],\n"
+            ]
+            },
+            "execution_count": 3,
+            "metadata": {},
+            "output_type": "execute_result"
+            }
+        ],
+        "source": []
+       }
+      ],
+      "metadata": {},
+      "nbformat": 4,
+      "nbformat_minor": 5
+     }
+
+def test_katex():
+    math_expr = "$\\displaystyle \\left[\\begin{matrix}1 & 0 \\\\0 & 1 \\\\ \\end{matrix}\\right]$"
+    nb_source = dedent(json.dumps(katex_json(math_expr)).strip())
+    nb = nbformat.reads(nb_source, 4)
+    result = normalize_notebook(nb, Path("public/root"))
+    assert changes_made(result)
+    assert len(result.nb.cells[0]["outputs"]) == 1
+    output_data = result.nb.cells[0]["outputs"][0]["data"]
+    assert "text/latex" in output_data
+    assert "text/plain" in output_data
+    assert output_data['text/latex'] == "$$\n\\displaystyle \\left[\\begin{matrix}1 & 0 \\\\0 & 1 \\\\ \\end{matrix}\\right]\n$$"
+
+def test_katex_noop():
+    math_expr = "$$\n \\left[\\begin{matrix}1 & 0 \\\\0 & 1 \\\\ \\end{matrix}\\right]\n$$"
+    nb_source = dedent(json.dumps(katex_json(math_expr)).strip())
+    nb = nbformat.reads(nb_source, 4)
+    result = normalize_notebook(nb, Path("public/root"))
+    assert not changes_made(result)

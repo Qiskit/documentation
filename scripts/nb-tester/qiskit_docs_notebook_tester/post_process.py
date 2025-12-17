@@ -23,6 +23,13 @@ from squeaky import clean_notebook
 
 # This markdown replaces cells with tag 'version-info'
 VERSION_INFO = """\
+{{/*
+  DO NOT EDIT THIS CELL!!!
+  This cell's content is generated automatically by a script. Anything you add
+  here will be removed next time the notebook is run. To add new content, create
+  a new cell before or after this one.
+*/}}
+
 <details>
 <summary><b>Package versions</b></summary>
 
@@ -46,7 +53,9 @@ def post_process_notebook(nb: nbformat.NotebookNode) -> nbformat.NotebookNode:
         if "version-info" in cell.metadata.get("tags", []):
             python_code = "\n".join(cell.source for cell in nb.cells if cell.cell_type == 'code')
             requirements_txt = Path("scripts/nb-tester/requirements.txt").read_text()
-            cell.source = VERSION_INFO.format(packages=get_package_versions(python_code, requirements_txt))
+            used_package_versions = get_package_versions(python_code, requirements_txt)
+            if used_package_versions:
+                cell.source = VERSION_INFO.format(packages=used_package_versions)
 
     nb, _ = clean_notebook(nb)
     return nb

@@ -11,55 +11,37 @@
 // that they have been altered from the originals.
 
 import { load } from "cheerio";
-import { unified } from "unified";
-import { Root } from "remark-mdx";
+import { Root } from "mdast";
 import { visit } from "unist-util-visit";
-import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm";
-import remarkStringify from "remark-stringify";
 import { last, split } from "lodash-es";
 
-export async function collectInvalidImageErrors(
-  markdown: string,
-): Promise<Set<string>> {
+export function collectInvalidImageErrors(tree: Root): Set<string> {
   const imagesErrors = new Set<string>();
 
-  await unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(() => (tree: Root) => {
-      visit(tree, "image", (node) => {
-        // Sphinx uses the image path as alt text if it wasn't defined using the
-        // :alt: option.
-        const imageName = last(split(node.url, "/"));
-        if (!node.alt || node.alt.endsWith(imageName!)) {
-          imagesErrors.add(`The image '${node.url}' does not have alt text.`);
-        }
+  visit(tree, "image", (node) => {
+    const imageName = last(split(node.url, "/"));
+    if (!node.alt || node.alt.endsWith(imageName!)) {
+      imagesErrors.add(`The image '${node.url}' does not have alt text.`);
+    }
 
-        // Ask to convert PNG and JPEG to AVIF
-        if (node.url.match(/\.(png|jpe?g)$/)) {
-          const urlWithAvifExtension = node.url.replace(
-            /\.(png|jpe?g)$/,
-            ".avif",
-          );
-          imagesErrors.add(
-            `Convert '${imageName}' to AVIF. You can use the command \`magick <path/to/image>.png <path/to/image>.avif\`. ` +
-              `If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. ` +
-              `Then delete the old file and update the markdown to point to the new file.`,
-          );
-        }
-      });
-      visit(tree, "html", (node) => {
-        const $ = load(node.value);
-        if ($("img").length) {
-          imagesErrors.add(
-            `The image '${$("img").attr("src")}' uses an HTML <img> tag instead of markdown syntax.`,
-          );
-        }
-      });
-    })
-    .use(remarkStringify)
-    .process(markdown);
+    if (node.url.match(/\.(png|jpe?g)$/)) {
+      const urlWithAvifExtension = node.url.replace(/\.(png|jpe?g)$/, ".avif");
+      imagesErrors.add(
+        `Convert '${imageName}' to AVIF. You can use the command \`magick <path/to/image>.png <path/to/image>.avif\`. ` +
+          `If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. ` +
+          `Then delete the old file and update the markdown to point to the new file.`,
+      );
+    }
+  });
+
+  visit(tree, "html", (node) => {
+    const $ = load(node.value);
+    if ($("img").length) {
+      imagesErrors.add(
+        `The image '${$("img").attr("src")}' uses an HTML <img> tag instead of markdown syntax.`,
+      );
+    }
+  });
 
   return imagesErrors;
 }

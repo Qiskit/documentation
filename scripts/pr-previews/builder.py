@@ -23,7 +23,7 @@ from typing import Iterator
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-from utils import configure_logging, run_subprocess
+from utils import configure_logging, run_subprocess, write_timestamp
 
 # You can change this to `iqp-channel-docs-preview-builder` when running locally, if
 # you're able to create a local copy of the builder image through the closed source repo.
@@ -57,6 +57,7 @@ def main() -> None:
     with setup_dir() as dir:
         yarn_build(dir, args.basepath)
         save_output(dir, args.dest)
+    write_timestamp(args.dest)
 
 
 def write_proof_of_concept(dest: Path) -> None:
@@ -84,7 +85,7 @@ def yarn_build(root_dir: Path, base_path: str) -> None:
     # dependencies, like the first-party deps, will already have been installed.
     run_subprocess(["yarn", "install"], cwd=root_dir, stream_output=True)
     run_subprocess(
-        ["yarn", "build"],
+        ["yarn", "build:preview"],
         cwd=root_dir,
         env={**os.environ, "NEXT_PUBLIC_BASE_PATH": base_path},
         stream_output=True,
@@ -120,10 +121,7 @@ def _copy_local_content(root_dir: Path) -> None:
         "docs/guides",
         "docs/tutorials",
         "public/docs/images/tutorials",
-        "docs/migration-guides",
-        "docs/open-source",
         "learning",
-        "public/docs/videos",
         "public/docs/images/guides",
         "public/docs/images/qiskit-patterns",
         "public/learning",
@@ -136,9 +134,8 @@ def _copy_local_content(root_dir: Path) -> None:
         shutil.copytree(dir, dest)
 
     for fp in [
-        "docs/support.mdx",
         "docs/responsible-quantum-computing.mdx",
-        "docs/faq.mdx",
+        "docs/accessibility.mdx",
     ]:
         shutil.copy2(fp, root_dir / f"content/{fp}")
 
@@ -152,6 +149,7 @@ def _extract_docker_files(root_dir: Path) -> None:
     finally:
         run_subprocess(["docker", "rm", container_id])
     logger.info("Docker contents extracted")
+
 
 if __name__ == "__main__":
     configure_logging()

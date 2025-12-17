@@ -483,6 +483,21 @@ test("parse deprecations warnings", async () => {
 `);
 });
 
+test("versionadded is rendered as admonition", async () => {
+  expect(
+    await toMd(`
+      <div role="main">
+      <div class="versionadded">
+        <p><span class="versionmodified added">Added in version 2.5: </span>The <em>velocity</em> parameter.</p>
+      </div>
+      </div>
+    `),
+  ).toEqual(`<Admonition title="Added in version 2.5" type="info">
+  The *velocity* parameter.
+</Admonition>
+`);
+});
+
 // ------------------------------------------------------------------
 // Handle math expressions
 // ------------------------------------------------------------------

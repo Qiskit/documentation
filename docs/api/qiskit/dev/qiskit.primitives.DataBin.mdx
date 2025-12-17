@@ -8,10 +8,20 @@ python_api_name: qiskit.primitives.DataBin
 
 # DataBin
 
-<Class id="qiskit.primitives.DataBin" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/data_bin.py#L32-L150" signature="qiskit.primitives.DataBin(*, shape=(), **data)" modifiers="class">
+<Class id="qiskit.primitives.DataBin" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/data_bin.py#L32-L170" signature="qiskit.primitives.DataBin(*, shape=(), **data)" modifiers="class">
   Bases: `ShapedMixin`
 
-  Namespace for storing data.
+  The main data return from a single pub out of [`PubResult`](qiskit.primitives.PubResult "qiskit.primitives.PubResult").
+
+  You access the data within this object either by attribute access (`data_bin.my_field`) or by [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")-like string keys (`data_bin["my_field"]`). This class behaves as a Python immutable mapping, so you can (for example) query the available keys with [`keys()`](#qiskit.primitives.DataBin.keys "qiskit.primitives.DataBin.keys"), and iterate through both keys and values with [`items()`](#qiskit.primitives.DataBin.items "qiskit.primitives.DataBin.items").
+
+  This class will have different attributes and keys, depending on the primitive used and the pub submitted. These “special” attributes will have names that match the keys. For example, if you submitted a `SamplerV2` job, typically the attributes and keys are the names of the [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") objects that were in the circuit defining this pub.
+
+  All of the attributes and keys have the same shape associated with them, which is the n-dimensional shape of the corresponding pub. The attributes and keys will typically either be [`BitArray`](qiskit.primitives.BitArray "qiskit.primitives.BitArray") or [`numpy.ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)") instances, depending on the primitive used and the input pub.
+
+  Users do not typically construct this class themselves. Instead, you receive it as the [`PubResult.data`](qiskit.primitives.PubResult#data "qiskit.primitives.PubResult.data") field for a single pub’s result out of a complete execution.
+
+  Examples:
 
   ```python
   import numpy as np
@@ -38,8 +48,8 @@ python_api_name: qiskit.primitives.DataBin
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If a name overlaps with a method name on this class.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If some value is inconsistent with the provided shape.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If a name overlaps with a method name on this class.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If some value is inconsistent with the provided shape.
 
   ## Attributes
 
@@ -59,32 +69,32 @@ python_api_name: qiskit.primitives.DataBin
 
   ### items
 
-  <Function id="qiskit.primitives.DataBin.items" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/data_bin.py#L132-L134" signature="items()">
+  <Function id="qiskit.primitives.DataBin.items" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/data_bin.py#L152-L154" signature="items()">
     Return a view of field names and values
 
     **Return type**
 
-    [*ItemsView*](https://docs.python.org/3/library/typing.html#typing.ItemsView "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")]
+    [*ItemsView*](https://docs.python.org/3/library/typing.html#typing.ItemsView "(in Python v3.14)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")]
   </Function>
 
   ### keys
 
-  <Function id="qiskit.primitives.DataBin.keys" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/data_bin.py#L124-L126" signature="keys()">
+  <Function id="qiskit.primitives.DataBin.keys" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/data_bin.py#L144-L146" signature="keys()">
     Return a view of field names.
 
     **Return type**
 
-    [*KeysView*](https://docs.python.org/3/library/typing.html#typing.KeysView "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")]
+    [*KeysView*](https://docs.python.org/3/library/typing.html#typing.KeysView "(in Python v3.14)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")]
   </Function>
 
   ### values
 
-  <Function id="qiskit.primitives.DataBin.values" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/data_bin.py#L128-L130" signature="values()">
+  <Function id="qiskit.primitives.DataBin.values" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/data_bin.py#L148-L150" signature="values()">
     Return a view of values.
 
     **Return type**
 
-    [*ValuesView*](https://docs.python.org/3/library/typing.html#typing.ValuesView "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")]
+    [*ValuesView*](https://docs.python.org/3/library/typing.html#typing.ValuesView "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")]
   </Function>
 </Class>
 

@@ -1,0 +1,62 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2025.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+name: Generate Observability Docs
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * 1,2,3,4,5" # At 01:00 on Monday-Friday.
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'Qiskit'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: |
+          run: npm ci
+
+      - name: Run observability script
+        run: npx tsx scripts/js/commands/generateObservabilityPage.ts
+
+      - name: Get all changed docs files
+        id: changed-docs-files
+
+        run: |
+          echo "CHANGED_FILES<<EOF" >> $GITHUB_OUTPUT
+          git diff --name-only docs >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Make pull request
+        if: steps.changed-docs-files.outputs.CHANGED_FILES
+
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git switch -c actions/cron-${{ github.run_id }}
+          git add .
+          git commit -m "Update observability page"
+          git push origin actions/cron-${{ github.run_id }}
+          gh pr create \
+           -B main \
+           -H actions/cron-${{ github.run_id }} \
+           --title "Update observability page" \
+           --body "An action recently updated the observability page. \
+            > [!NOTE]
+            > This pull request was created by a GitHub action." \
+           --reviewer arnaucasau \
+           --reviewer Eric-Arellano

@@ -1,0 +1,78 @@
+---
+title: InnerProduct (v2.1)
+description: API reference for qiskit.circuit.library.InnerProduct in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.InnerProduct
+---
+
+# InnerProduct
+
+<Class id="qiskit.circuit.library.InnerProduct" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/library/boolean_logic/inner_product.py#L21-L85" signature="qiskit.circuit.library.InnerProduct(num_qubits)" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  A 2n-qubit Boolean function that computes the inner product of two n-qubit vectors over $F_2$.
+
+  This implementation is a phase oracle which computes the following transform.
+
+$$
+\mathcal{IP}_{2n} : F_2^{2n} \rightarrow {-1, 1}
+\mathcal{IP}_{2n}(x_1, \cdots, x_n, y_1, \cdots, y_n) = (-1)^{x.y}
+$$
+
+  The corresponding unitary is a diagonal, which induces a -1 phase on any inputs where the inner product of the top and bottom registers is 1. Otherwise it keeps the input intact.
+
+  ```text
+  q0_0: ─■──────────
+         │
+  q0_1: ─┼──■───────
+         │  │
+  q0_2: ─┼──┼──■────
+         │  │  │
+  q0_3: ─┼──┼──┼──■─
+         │  │  │  │
+  q1_0: ─■──┼──┼──┼─
+            │  │  │
+  q1_1: ────■──┼──┼─
+               │  │
+  q1_2: ───────■──┼─
+                  │
+  q1_3: ──────────■─
+  ```
+
+  **Reference Circuit:**
+
+  ![Diagram illustrating the previously described circuit.](/docs/images/api/qiskit/2.1/qiskit-circuit-library-InnerProduct-1.avif)
+
+  Return a circuit to compute the inner product of 2 n-qubit registers.
+
+  <Admonition title="Deprecated since version 2.1" type="danger">
+    The class `qiskit.circuit.library.boolean_logic.inner_product.InnerProduct` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. Use qiskit.circuit.library.InnerProductGate instead.
+  </Admonition>
+
+  **Parameters**
+
+  **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – width of top and bottom registers (half total circuit width)
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.InnerProduct.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

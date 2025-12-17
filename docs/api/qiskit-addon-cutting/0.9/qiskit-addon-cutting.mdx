@@ -169,7 +169,9 @@ Circuit cutting.
 
   In both cases, the subexperiment lists are ordered as follows:
 
-  > $[sample_{0}observable_{0}, \ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, \ldots, sample_{M-1}observable_{N-1}]$
+$$
+[sample_{0}observable_{0}, \ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, \ldots, sample_{M-1}observable_{N-1}]
+$$
 
   The coefficients will always be returned as a 1D array – one coefficient for each unique sample.
 
@@ -208,7 +210,9 @@ Circuit cutting.
 
       The subexperiment results are expected to be ordered in the same way the subexperiments are ordered in the output of [`generate_cutting_experiments()`](#qiskit_addon_cutting.generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") – one result for every sample and observable, as shown below. The Qiskit Sampler primitive will return the results in the same order the experiments are submitted, so users who do not use [`generate_cutting_experiments()`](#qiskit_addon_cutting.generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") to generate their experiments should take care to order their subexperiments as follows before submitting them to the sampler primitive:
 
-      $[sample_{0}observable_{0}, \ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, \ldots, sample_{M-1}observable_{N-1}]$
+$$
+[sample_{0}observable_{0}, \ldots, sample_{0}observable_{N-1}, sample_{1}observable_{0}, \ldots, sample_{M-1}observable_{N-1}]
+$$
 
   *   **coefficients** (Sequence\[tuple\[float, WeightType]]) – A sequence containing the coefficient associated with each unique subexperiment. Each element is a tuple containing the coefficient (a `float`) together with its [`WeightType`](qpd#weighttype "qiskit_addon_cutting.qpd.WeightType"), which denotes how the value was generated. The contribution from each subexperiment will be multiplied by its corresponding coefficient, and the resulting terms will be summed to obtain the reconstructed expectation value.
 

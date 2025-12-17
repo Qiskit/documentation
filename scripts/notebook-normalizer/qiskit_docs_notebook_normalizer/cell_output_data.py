@@ -4,6 +4,7 @@ from tempfile import NamedTemporaryFile
 from typing import Literal
 from dataclasses import dataclass
 from pathlib import Path
+import re
 
 # Qiskit's QuantumCircuit.draw() results in Jupyter outputting both a `text/html` and
 # `text/plain` entry. The HTML entry has pre-applied formatting that makes sense in
@@ -36,7 +37,8 @@ class RasterImage:
         temp_file = NamedTemporaryFile(suffix=self.source_format)
         with temp_file as f:
             f.write(self.data)
-            subprocess.run(["magick", temp_file.name, self.destination_filepath], check=True)
+            f.file.seek(0) # change the File Handle position to the beginning of the file
+            subprocess.run(["magick", f.name, self.destination_filepath], check=True)
 
 
 
@@ -49,6 +51,26 @@ def remove_circuit_drawing_html(output_data: dict) -> bool:
         if html.startswith(CIRCUIT_DRAW_HTML_PREFIX):
             del output_data["text/html"]
             return True
+    return False
+
+def remove_inline_katex_expression(output_data: dict) -> bool:
+    """Converts inline katex expressions into display mode if needed and returns True if any changes were made."""
+    if "text/latex" not in output_data:
+        return False
+
+    latex = output_data.get("text/latex").strip()
+
+    # We skip displayed equations because they already have the desired style
+    if latex.startswith('$$'):
+        return False
+
+    # We transform inline katex expressions
+    if latex.startswith('$') and latex.endswith('$'):
+        latex = re.sub(r'^\$', '$$\n', latex)# Replace the first '$'
+        latex = re.sub(r'\$$', '\n$$', latex) # Replace the last '$'
+        output_data["text/latex"] = latex
+        return True
+
     return False
 
 
@@ -91,4 +113,4 @@ def _get_image(
 
 
 def _image_mdx_component(image: Image) -> str:
-    return f'<Image src="/{image.destination_filepath.relative_to("public")}" alt="Output of the previous code cell" />'
+    return f'<Image src="/{image.destination_filepath.relative_to("public").as_posix()}" alt="Output of the previous code cell" />'

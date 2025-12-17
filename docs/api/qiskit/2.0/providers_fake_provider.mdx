@@ -1,0 +1,64 @@
+---
+title: fake_provider (v2.0)
+description: API reference for qiskit.providers.fake_provider in qiskit v2.0
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.providers.fake_provider
+---
+
+<span id="module-qiskit.providers.fake_provider" />
+
+<span id="qiskit-providers-fakeprovider" />
+
+<span id="fake-provider-qiskit-providers-fake-provider" />
+
+# Fake Provider
+
+`qiskit.providers.fake_provider`
+
+## Overview
+
+The fake provider module in Qiskit contains fake (simulated) backend classes useful for testing the transpiler and other backend-facing functionality.
+
+### Example Usage
+
+Here is an example of using a simulated backend for transpilation and running.
+
+```python
+from qiskit import QuantumCircuit, transpile
+from qiskit.providers.fake_provider import GenericBackendV2
+from qiskit.visualization import plot_histogram
+
+# Generate a 5-qubit simulated backend
+backend = GenericBackendV2(num_qubits=5)
+
+# Create a simple circuit
+circuit = QuantumCircuit(3)
+circuit.h(0)
+circuit.cx(0,1)
+circuit.cx(0,2)
+circuit.measure_all()
+circuit.draw('mpl')
+
+# Transpile the ideal circuit to a circuit that can be directly executed by the backend
+transpiled_circuit = transpile(circuit, backend)
+transpiled_circuit.draw('mpl')
+
+# Run the transpiled circuit using the simulated backend
+job = backend.run(transpiled_circuit)
+counts = job.result().get_counts()
+plot_histogram(counts)
+```
+
+![Output from the previous code.](/docs/images/api/qiskit/2.0/providers_fake_provider-1_00.avif)
+
+![Output from the previous code.](/docs/images/api/qiskit/2.0/providers_fake_provider-1_01.avif)
+
+![Output from the previous code.](/docs/images/api/qiskit/2.0/providers_fake_provider-1_02.avif)
+
+## V2 Simulated Backends
+
+|                                                                                                                                                            |                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [`GenericBackendV2`](qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2")(num\_qubits\[, basis\_gates, ...]) | Generic [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") implementation with a configurable constructor. |
+

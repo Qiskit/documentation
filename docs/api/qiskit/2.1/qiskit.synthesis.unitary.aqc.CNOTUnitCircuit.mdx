@@ -1,0 +1,76 @@
+---
+title: CNOTUnitCircuit (v2.1)
+description: API reference for qiskit.synthesis.unitary.aqc.CNOTUnitCircuit in qiskit v2.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
+---
+
+# CNOTUnitCircuit
+
+<Class id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/synthesis/unitary/aqc/cnot_unit_circuit.py#L24-L103" signature="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)" modifiers="class">
+  Bases: [`ApproximateCircuit`](qiskit.synthesis.unitary.aqc.ApproximateCircuit "qiskit.synthesis.unitary.aqc.approximate.ApproximateCircuit")
+
+  A class that represents an approximate circuit based on CNOT unit blocks.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits in this circuit.
+  *   **cnots** (*np.ndarray*) – an array of dimensions `(2, L)` indicating where the CNOT units will be placed.
+  *   **tol** (*Optional\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – angle parameter less or equal this (small) value is considered equal zero and corresponding gate is not inserted into the output circuit (because it becomes identity one in this case).
+  *   **name** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – name of this circuit
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – if an unsupported parameter is passed.
+
+  ## Attributes
+
+  ### thetas
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.thetas">
+    Returns a vector of rotation angles used by CNOT units in this circuit.
+
+    **Returns**
+
+    Parameters of the rotation gates in this circuit.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+
+  ## Methods
+
+  ### build
+
+  <Function id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.build" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/synthesis/unitary/aqc/cnot_unit_circuit.py#L68-L103" signature="build(thetas)">
+    **Constructs a Qiskit quantum circuit out of the parameters (angles) of this circuit. If a**
+
+    parameter value is less in absolute value than the specified tolerance then the corresponding rotation gate will be skipped in the circuit.
+
+    **Parameters**
+
+    **thetas** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")) –
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.n_local
 
 # qiskit.circuit.library.n\_local
 
-<Function id="qiskit.circuit.library.n_local" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/n_local.py#L54-L265" signature="qiskit.circuit.library.n_local(num_qubits, rotation_blocks, entanglement_blocks, entanglement='full', reps=3, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, name='nlocal')">
+<Function id="qiskit.circuit.library.n_local" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/n_local/n_local.py#L54-L265" signature="qiskit.circuit.library.n_local(num_qubits, rotation_blocks, entanglement_blocks, entanglement='full', reps=3, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, name='nlocal')">
   Construct an n-local variational circuit.
 
   The structure of the n-local circuit are alternating rotation and entanglement layers. In both layers, parameterized circuit-blocks act on the circuit in a defined way. In the rotation layer, the blocks are applied stacked on top of each other, while in the entanglement layer according to the `entanglement` strategy. The circuit blocks can have arbitrary sizes (smaller equal to the number of qubits in the circuit). Each layer is repeated `reps` times, and by default a final rotation layer is appended.
@@ -39,33 +39,48 @@ python_api_name: qiskit.circuit.library.n_local
 
   Entanglement:
 
-  > The entanglement describes the connections of the gates in the entanglement layer. For a two-qubit gate for example, the entanglement contains pairs of qubits on which the gate should acts, e.g. `[[ctrl0, target0], [ctrl1, target1], ...]`. A set of default entanglement strategies is provided and can be selected by name:
-  >
-  > *   `"full"` entanglement is each qubit is entangled with all the others.
-  > *   `"linear"` entanglement is qubit $i$ entangled with qubit $i + 1$, for all $i \in \{0, 1, ... , n - 2\}$, where $n$ is the total number of qubits.
-  > *   `"reverse_linear"` entanglement is qubit $i$ entangled with qubit $i + 1$, for all $i \in \{n-2, n-3, ... , 1, 0\}$, where $n$ is the total number of qubits. Note that if `entanglement_blocks=="cx"` then this option provides the same unitary as `"full"` with fewer entangling gates.
-  > *   `"pairwise"` entanglement is one layer where qubit $i$ is entangled with qubit $i + 1$, for all even values of $i$, and then a second layer where qubit $i$ is entangled with qubit $i + 1$, for all odd values of $i$.
-  > *   `"circular"` entanglement is linear entanglement but with an additional entanglement of the first and last qubit before the linear part.
-  > *   `"sca"` (shifted-circular-alternating) entanglement is a generalized and modified version of the proposed circuit 14 in [Sim et al.](https://arxiv.org/abs/1905.10876). It consists of circular entanglement where the “long” entanglement connecting the first with the last qubit is shifted by one each block. Furthermore the role of control and target qubits are swapped every block (therefore alternating).
-  >
-  > If an entanglement layer contains multiple blocks, then the entanglement should be given as list of entanglements for each block. For example:
-  >
-  > ```python
-  > entanglement_blocks = ["rxx", "ryy"]
-  > entanglement = ["full", "linear"]  # full for rxx and linear for ryy
-  > ```
-  >
-  > or:
-  >
-  > ```python
-  > structure_rxx = [[0, 1], [2, 3]]
-  > structure_ryy = [[0, 2]]
-  > entanglement = [structure_rxx, structure_ryy]
-  > ```
-  >
-  > Finally, the entanglement can vary in each repetition of the circuit. For this, we support passing a callable that takes as input the layer index and returns the entanglement for the layer in the above format. See the examples below for a concrete example.
+  The entanglement describes the connections of the gates in the entanglement layer. For a two-qubit gate for example, the entanglement contains pairs of qubits on which the gate should acts, e.g. `[[ctrl0, target0], [ctrl1, target1], ...]`. A set of default entanglement strategies is provided and can be selected by name:
 
-  **Examples**
+  *   `"full"` entanglement is each qubit is entangled with all the others.
+
+  *   ## `"linear"` entanglement is qubit $i$ entangled with qubit $i + 1$,
+
+      for all $i \in \{0, 1, ... , n - 2\}$, where $n$ is the total number of qubits.
+
+  *   ## `"reverse_linear"` entanglement is qubit $i$ entangled with qubit $i + 1$,
+
+      for all $i \in \{n-2, n-3, ... , 1, 0\}$, where $n$ is the total number of qubits. Note that if `entanglement_blocks=="cx"` then this option provides the same unitary as `"full"` with fewer entangling gates.
+
+  *   ## `"pairwise"` entanglement is one layer where qubit $i$ is entangled with qubit
+
+      $i + 1$, for all even values of $i$, and then a second layer where qubit $i$ is entangled with qubit $i + 1$, for all odd values of $i$.
+
+  *   ## `"circular"` entanglement is linear entanglement but with an additional entanglement of the
+
+      first and last qubit before the linear part.
+
+  *   ## `"sca"` (shifted-circular-alternating) entanglement is a generalized and modified version
+
+      of the proposed circuit 14 in [Sim et al.](https://arxiv.org/abs/1905.10876). It consists of circular entanglement where the “long” entanglement connecting the first with the last qubit is shifted by one each block. Furthermore the role of control and target qubits are swapped every block (therefore alternating).
+
+  If an entanglement layer contains multiple blocks, then the entanglement should be given as list of entanglements for each block. For example:
+
+  ```python
+  entanglement_blocks = ["rxx", "ryy"]
+  entanglement = ["full", "linear"]  # full for rxx and linear for ryy
+  ```
+
+  or:
+
+  ```python
+  structure_rxx = [[0, 1], [2, 3]]
+  structure_ryy = [[0, 2]]
+  entanglement = [structure_rxx, structure_ryy]
+  ```
+
+  Finally, the entanglement can vary in each repetition of the circuit. For this, we support passing a callable that takes as input the layer index and returns the entanglement for the layer in the above format. See the examples below for a concrete example.
+
+  Examples:
 
   The rotation and entanglement gates can be specified via single strings, if they are made up of a single block per layer:
 
@@ -122,17 +137,17 @@ python_api_name: qiskit.circuit.library.n_local
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits of the circuit.
-  *   **rotation\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The blocks used in the rotation layers. If multiple are passed, these will be applied one after another (like new sub-layers).
-  *   **entanglement\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The blocks used in the entanglement layers. If multiple are passed, these will be applied one after another.
-  *   **entanglement** (*BlockEntanglement | Iterable\[BlockEntanglement] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*], BlockEntanglement | Iterable\[BlockEntanglement]]*) – The indices specifying on which qubits the input blocks act. This is specified by string describing an entanglement strategy (see the additional info) or a list of qubit connections. If a list of entanglement blocks is passed, different entanglement for each block can be specified by passing a list of entanglements. To specify varying entanglement for each repetition, pass a callable that takes as input the layer and returns the entanglement for that layer. Defaults to `"full"`, meaning an all-to-all entanglement structure.
-  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Specifies how often the rotation blocks and entanglement blocks are repeated.
-  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted.
-  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The prefix used if default parameters are generated.
-  *   **overwrite\_block\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If the parameters in the added blocks should be overwritten. If `False`, the parameters in the blocks are not changed.
-  *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether a final rotation layer is added to the circuit.
-  *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, the rotation gates act only on qubits that are entangled. If `False`, the rotation gates act on all qubits.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The name of the circuit.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The number of qubits of the circuit.
+  *   **rotation\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The blocks used in the rotation layers. If multiple are passed, these will be applied one after another (like new sub-layers).
+  *   **entanglement\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The blocks used in the entanglement layers. If multiple are passed, these will be applied one after another.
+  *   **entanglement** (*BlockEntanglement | Iterable\[BlockEntanglement] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*], BlockEntanglement | Iterable\[BlockEntanglement]]*) – The indices specifying on which qubits the input blocks act. This is specified by string describing an entanglement strategy (see the additional info) or a list of qubit connections. If a list of entanglement blocks is passed, different entanglement for each block can be specified by passing a list of entanglements. To specify varying entanglement for each repetition, pass a callable that takes as input the layer and returns the entanglement for that layer. Defaults to `"full"`, meaning an all-to-all entanglement structure.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Specifies how often the rotation blocks and entanglement blocks are repeated.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The prefix used if default parameters are generated.
+  *   **overwrite\_block\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If the parameters in the added blocks should be overwritten. If `False`, the parameters in the blocks are not changed.
+  *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – Whether a final rotation layer is added to the circuit.
+  *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If `True`, the rotation gates act only on qubits that are entangled. If `False`, the rotation gates act on all qubits.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The name of the circuit.
 
   **Returns**
 
