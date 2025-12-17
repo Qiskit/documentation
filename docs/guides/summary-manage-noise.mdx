@@ -1,0 +1,45 @@
+---
+title: Overview to noise management tools
+description: Discover tools that help manage noise through techniques such as error mitigation and suppression, and reducing circuit depth.
+---
+# Overview to noise management tools
+
+When executing quantum workloads, there are multiple ways to reduce the impact of noise. The open-source Qiskit addons provide error mitigation and suppression techniques that integrate directly into your development workflow, while Qiskit Runtime applies advanced error mitigation strategies automatically when jobs are submitted for execution. This page indexes all available tools and features across both options to help choose the right approach to manage noise when building quantum workloads.
+
+## General noise management techniques
+|  |
+| --- |
+| [**Directed execution model (beta)**](/docs/guides/directed-execution-model) <br></br>Provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side, so that you can fine-tune error mitigation and other techniques without sacrificing performance.|
+| [**Dynamical decoupling**](/docs/guides/error-mitigation-and-suppression-techniques#dynamical-decoupling)<br></br>Inserts pulse sequences on idling qubits to try to mitigate coherence errors caused by unwanted interactions between qubits during circuit execution.|
+| [**Pauli twirling**](/docs/guides/error-mitigation-and-suppression-techniques#pauli-twirling)<br></br>Noise tailoring technique that transforms any quantum channel into a Pauli channel. It is often combined with other error mitigation techniques that work well with Pauli noise.|
+| [**AQC-Tensor Qiskit addon**](https://qiskit.github.io/qiskit-addon-aqc-tensor/)<br></br>Enables users to compile the initial portion of a circuit into a nearly equivalent approximation of that circuit, but with fewer layers. |
+
+## Error mitigation for expectation values
+
+|  |
+| --- |
+|[**Twirled readout error extinction (TREX)**](/docs/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex)<br></br>Mitigates the effect of measurement errors for the estimation of Pauli observable expectation values. |
+|[**Probabilistic error amplification (PEA)**](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea)<br></br>ZNE technique that involves running preliminary experiments to learn a twirled noise model of the circuit and then uses this model to perform a more accurate error amplification. |
+| [**Probabilistic error cancellation (PEC)**](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec)<br></br>Returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It reproduces the output of the ideal circuit by executing different noisy circuit instances drawn from a random ensemble defined by the linear combination. |
+|[**Shaded lightcones (SLC)**](https://qiskit.github.io/qiskit-addon-slc/)<br></br> Uses Pauli propagation to reduce the number of error terms accounted for in a noise model according to the specifics of the target observable. Useful for reducing the sampling overhead for running PEC-based workloads.|
+| [**Operator backpropagation (OBP) Qiskit addon**](https://qiskit.github.io/qiskit-addon-obp/)<br></br>Uses a method based on Clifford perturbation theory to reduce circuit depth by trimming operations from its end at the cost of more operator measurements.|
+|[**Propagated noise absorption (PNA)**](https://qiskit.github.io/qiskit-addon-pna/)<br></br>Technique for mitigating errors in observable expectation values by "absorbing" the inverses of the learned noise channels into the observable using [Pauli propagation.](https://qiskit.github.io/pauli-prop/) Each Pauli noise generator in the noise model is classically propagated to the end of the circuit and applied to the observable, resulting in a new observable that when measured on a QPU, mitigates the learned gate noise|
+|[**Zero-noise extrapolation (ZNE)**](/docs/guides/error-mitigation-and-suppression-techniques#zero-noise-extrapolation-zne)<br></br>Error mitigation technique that first computes the expectation value at different noise levels, then estimates the ideal result by extrapolating the noisy expectation value results to the zero-noise limit. |
+
+
+## Error mitigation for sampling results
+
+|  |
+| --- |
+|[**Sample-based quantum diagonalization (SQD) Qiskit addon**](https://qiskit.github.io/qiskit-addon-sqd/)<br></br>Implements a technique for finding eigenvalues and eigenvectors of quantum operators, such as a quantum system Hamiltonian, using quantum and distributed classical computing together.|
+|[**Sample-based quantum diagonalization (HPC-ready) Qiskit addon**](https://qiskit.github.io/qiskit-addon-sqd-hpc/)<br></br>HPC-ready implementation of the [Qiskit addon for SQD.](https://qiskit.github.io/qiskit-addon-sqd/)|
+|[**mthree (M3) Qiskit addon**](https://qiskit.github.io/qiskit-addon-mthree/) <br></br>Package for scalable quantum measurement error mitigation that need not explicitly form the assignment matrix, or its inverse, and is thus a matrix-free measurement mitigation routine.|
+
+
+## Next steps
+
+- Check out the [tutorial](/docs/tutorials/combine-error-mitigation-techniques) on combining error mitigation options with the Estimator primitive.
+- [Configure error mitigation in Qiskit Runtime primitives.](/docs/guides/configure-error-mitigation)
+- [Configure error suppression in Qiskit Runtime primitives.](/docs/guides/configure-error-suppression)
+- Understand how to use the Qiskit Runtime [noise learner](/docs/guides/noise-learning) class.
+

@@ -26,12 +26,12 @@ jobs:
         id: decide
         env:
           GH_TOKEN: ${{ github.token }}
-        run: |
-          # If changing this regex, test it on https://regex101.com/ with the
+          # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
-          #
+          # Add new tests if necessary
+          NOTEBOOK_TEST_REGEX: (\.github\/workflows\/main\.yml|(docs|learning)(?!\/api\/)\/.*\.ipynb|scripts\/nb-tester\/.*)
           #  -- Should match:
-          #  .github/workflows/notebook-test.yml
+          #  .github/workflows/main.yml
           #  scripts/nb-tester/requirements.txt
           #  docs/guides/thing.ipynb
           #  learning/courses/my-course/notebook.ipynb
@@ -41,36 +41,27 @@ jobs:
           #  docs/api/thing.mdx
           #  docs/api/thing.ipynb
           #  scripts/js/lib/thing.ts
-          #
-          # Add new tests if necessary
-          NOTEBOOK_TEST_REGEX='(\.github\/workflows\/notebook-test\.yml|(docs|learning)(?!\/api\/)\/.*\.ipynb|scripts\/nb-tester\/.*)'
 
-          # If changing this regex, test it on https://regex101.com/ with the
-          # following paths (you can paste the block in and uncomment it):
-          #
+          API_CHECKS_REGEX: (\.github\/workflows\/main\.yml|(docs\/api|public\/docs\/api|scripts\/js)\/.*)
           #  -- Should match:
           #  docs/api/qiskit/index.mdx
-          #  public/api/qiskit-ibm-runtime/objects.inv
-          #  public/images/thing.avif
+          #  public/docs/api/qiskit-ibm-runtime/objects.inv
+          #  public/docs/api/qiskit/thing.avif
           #  scripts/js/lib/links/thing.ts
-          #  .github/workflows/api-checks.yml
+          #  .github/workflows/main.yml
           #
           #  -- Should not match:
           #  scripts/nb-tester/file.py
           #  docs/guides/thing.ipynb
           #  public/learning/image.svg
           #  .github/workflows/notebook-test-cron.yml
-          #
-          # Add new tests if necessary
-          API_CHECKS_REGEX='(\.github\/workflows\/notebook-test\.yml|(docs|learning)(?!\/api\/)\/.*\.ipynb|scripts\/nb-tester\/.*)'
-
+        run: |
           CHANGED_FILES=$(gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only)
-          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $NOTEBOOK_TEST_REGEX)" != '' ]
+          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $NOTEBOOK_TEST_REGEX || true)" != '' ]
           then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
           fi
-
-          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $API_CHECKS_REGEX)" != '' ]
+          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $API_CHECKS_REGEX || true)" != '' ]
           then
             echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
           fi
@@ -100,8 +91,6 @@ jobs:
         run: npm run check:spelling
       - name: Check Qiskit bot config
         run: npm run check:qiskit-bot
-      - name: Check Patterns index
-        run: npm run check:patterns-index
       - name: Check tutorials index
         run: python scripts/ci/check-tutorials-index.py
       - name: Internal link checker
@@ -117,32 +106,60 @@ jobs:
       - name: Infrastructure tests
         run: npm test
 
-      - name: Get all changed docs files
-        id: all-changed-files
-        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
-        with:
-          files: "{docs,learning}/**/*.{md,mdx,ipynb}"
-          separator: "\n"
-          write_output_files: true
+      - name: Get all changed content files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          # If changing these regexes, test them on https://regex101.com/ with the
+          # following paths (you can paste the block in and uncomment it):
+          # Add new tests if necessary
+          CONTENT_FILE_REGEX: (docs|learning)\/.*\.(mdx|ipynb)$
+          #  -- Should match:
+          #  docs/guides/thing.ipynb
+          #  docs/guides/thing.mdx
+          #  docs/api/qiskit/index.mdx
+          #  learning/courses/my-course/introduction.ipynb
+          #
+          #  -- Should not match:
+          #  docs/guides/_toc.json
+          #  scripts/nb-tester/example-notebook.ipynb
+        id: changed-content-files
+        run: |
+          # GitHub API doesn't give PR information in the merge_group event, but
+          # we can get the PR number from the branch name
+          if [ "${{ github.event_name }}" == 'merge_group' ]
+          then
+            BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
+            PR_NUMBER="$(echo $BRANCH_NAME | grep -oP '(?<=gh-readonly-queue/main/pr-)\d+')"
+          else
+            PR_NUMBER="${{ github.event.number }}"
+          fi
 
+          CHANGED_FILES=$(gh pr diff -R Qiskit/documentation $PR_NUMBER --name-only)
+          CHANGED_CONTENT_FILES=$(echo $CHANGED_FILES | grep -P $CONTENT_FILE_REGEX || true)
+          if [ "$CHANGED_CONTENT_FILES" != '' ]
+          then
+            echo "ANY_CHANGED=true" >> "$GITHUB_OUTPUT"
+          fi
+          mkdir -p .github/outputs
+          echo $CHANGED_CONTENT_FILES >> .github/outputs/changed-content-files.txt
       - name: Pull preview image
-        if: steps.all-changed-files.outputs.any_changed == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: ./start --pull-only
       - name: Start local Docker preview (cloud app)
-        if: steps.all-changed-files.outputs.any_changed == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: |
           ./start --apis &
           sleep 1
       - name: Check that pages render
-        if: steps.all-changed-files.outputs.any_changed == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: |
-          npm run check:pages-render -- --from-file .github/outputs/all_changed_files.txt
+          npm run check:pages-render -- --from-file .github/outputs/changed-content-files.txt
       - name: Check that Katex expressions render
-        if: steps.all-changed-files.outputs.any_changed == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: |
-          npm run check:katex-render -- --from-file .github/outputs/all_changed_files.txt
+          npm run check:katex-render -- --from-file .github/outputs/changed-content-files.txt
       - name: Stop Docker preview
-        if: steps.all-changed-files.outputs.any_changed == 'true'
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: docker ps -q | xargs docker stop
 
       - name: Setup Python environment
@@ -155,6 +172,7 @@ jobs:
         run: python scripts/ci/check-all-notebooks-are-tested.py
 
       - name: Lint notebooks
+        if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         shell: python
         run: |
           import subprocess, sys
@@ -185,23 +203,25 @@ jobs:
       - name: Check if extra linux deps needed
         id: check-deps
         shell: python
-        run: |
+        env:
           # Add your notebook to this list if it needs latex or graphviz to run
-          EXTRA_DEPS_NOTEBOOKS = """\
-          docs/guides/visualize-circuits.ipynb
-          docs/guides/custom-backend.ipynb
-          docs/guides/transpiler-stages.ipynb
-          docs/guides/represent-quantum-computers.ipynb
-          docs/guides/common-parameters.ipynb
-          docs/guides/DAG-representation.ipynb
-          """.strip().split("\n")
+          EXTRA_DEPS_NOTEBOOKS: |
+            docs/guides/visualize-circuits.ipynb
+            docs/guides/custom-backend.ipynb
+            docs/guides/transpiler-stages.ipynb
+            docs/guides/represent-quantum-computers.ipynb
+            docs/guides/common-parameters.ipynb
+            docs/guides/DAG-representation.ipynb
+        run: |
           import os
           from pathlib import Path
+
+          extra_deps_notebooks = """${{ env.EXTRA_DEPS_NOTEBOOKS }}""".strip().split("\n")
           github_output = os.getenv("GITHUB_OUTPUT")
           all_files = Path(".github/outputs/changed-files.txt").read_text().split("\n")
 
           config_changed = any(path.startswith("scripts/") or path.startswith(".github") for path in all_files)
-          extra_deps = config_changed or any(path in EXTRA_DEPS_NOTEBOOKS for path in all_files)
+          extra_deps = config_changed or any(path in extra_deps_notebooks for path in all_files)
 
           with open(github_output, "a") as output:
             output.write(f"NEEDS_EXTRA_DEPS={str(extra_deps).lower()}")
