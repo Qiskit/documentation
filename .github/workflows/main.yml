@@ -112,7 +112,7 @@ jobs:
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
-          CONTENT_FILE_REGEX: (docs|learning)\/.*\.(mdx|ipynb)
+          CONTENT_FILE_REGEX: (docs|learning)\/.*\.(mdx|ipynb)$
           #  -- Should match:
           #  docs/guides/thing.ipynb
           #  docs/guides/thing.mdx
@@ -135,7 +135,7 @@ jobs:
           fi
 
           CHANGED_FILES=$(gh pr diff -R Qiskit/documentation $PR_NUMBER --name-only)
-          CHANGED_CONTENT_FILES=$(echo $CHANGED_FILES | grep -P $CONTENT_FILE_REGEX || true)
+          CHANGED_CONTENT_FILES=$(echo "${CHANGED_FILES[@]}" | grep -P $CONTENT_FILE_REGEX || true)
           if [ "$CHANGED_CONTENT_FILES" != '' ]
           then
             echo "ANY_CHANGED=true" >> "$GITHUB_OUTPUT"
