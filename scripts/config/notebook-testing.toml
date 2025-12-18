@@ -100,7 +100,7 @@ notebooks = [
 [groups.cron-job-only]
 test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
-    "docs/guides/hello-world.ipynb",
+    "docs/tutorials/hello-world.ipynb",
     # The following notebook takes >300s to run and should be executed in the
     # cron job. Even though it does not use real hardware
     "docs/guides/qiskit-addons-cutting-gates.ipynb",
@@ -149,6 +149,10 @@ notebooks = [
     "docs/guides/kipu-optimization.ipynb",
     "docs/guides/global-data-quantum-optimizer.ipynb",
     "docs/guides/colibritd-pde.ipynb",
+
+    # This is broken with the most recent versions of Qiskit/Runtime, but we're
+    # removing the page soon so we've decided not to fix it.
+    "docs/guides/pulse.ipynb",
 
     # These notebooks have code snippets which are embedded in cloud/legacy tags
     #  and can't be run until we convert them to testable snippets
