@@ -135,7 +135,7 @@ jobs:
           fi
 
           CHANGED_FILES=$(gh pr diff -R Qiskit/documentation $PR_NUMBER --name-only)
-          CHANGED_CONTENT_FILES=$(echo $CHANGED_FILES | grep -P $CONTENT_FILE_REGEX || true)
+          CHANGED_CONTENT_FILES=$(echo "${CHANGED_FILES[@]}" | grep -P $CONTENT_FILE_REGEX || true)
           if [ "$CHANGED_CONTENT_FILES" != '' ]
           then
             echo "ANY_CHANGED=true" >> "$GITHUB_OUTPUT"
