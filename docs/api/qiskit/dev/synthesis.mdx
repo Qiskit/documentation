@@ -653,13 +653,67 @@ python_api_name: qiskit.synthesis
 | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | [`SolovayKitaevDecomposition`](qiskit.synthesis.SolovayKitaevDecomposition "qiskit.synthesis.SolovayKitaevDecomposition")(\[...]) | The Solovay Kitaev discrete decomposition algorithm. |
 
+### gridsynth\_rz
+
+<Function id="qiskit.synthesis.gridsynth_rz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/ross_selinger.py#L26-L51" signature="qiskit.synthesis.gridsynth_rz(angle, epsilon=1e-10)">
+  Approximate RZ-rotation using the Ross-Selinger algorithm.
+
+  The algorithm is described in \[1]. The source code (in Rust) is available at [https://github.com/qiskit-community/rsgridsynth](https://github.com/qiskit-community/rsgridsynth).
+
+  **Parameters**
+
+  *   **angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Specifies the angle of the RZ-rotation.
+  *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – The allowed approximation error.
+
+  **Returns**
+
+  A one-qubit circuit approximating `RZ(angle)`.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  References:
+
+  **\[1] Neil J. Ross, Peter Selinger, Optimal ancilla-free Clifford+T approximation of z-rotations,**
+
+  [arXiv:1403.2975](https://arxiv.org/pdf/1403.2975)
+</Function>
+
+### gridsynth\_unitary
+
+<Function id="qiskit.synthesis.gridsynth_unitary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/ross_selinger.py#L54-L79" signature="qiskit.synthesis.gridsynth_unitary(matrix, epsilon=1e-10)">
+  Approximate a 1-qubit unitary matrix using the Ross-Selinger algorithm.
+
+  The algorithm is described in \[1]. The source code (in Rust) is available at [https://github.com/qiskit-community/rsgridsynth](https://github.com/qiskit-community/rsgridsynth).
+
+  **Parameters**
+
+  *   **matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")) – A $2 imes 2$ unitary matrix.
+  *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – The allowed approximation error.
+
+  **Returns**
+
+  A one-qubit circuit approximating `matrix`.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  References:
+
+  **\[1] Neil J. Ross, Peter Selinger, Optimal ancilla-free Clifford+T approximation of z-rotations,**
+
+  [arXiv:1403.2975](https://arxiv.org/pdf/1403.2975)
+</Function>
+
 ### generate\_basic\_approximations
 
-<Function id="qiskit.synthesis.generate_basic_approximations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/generate_basis_approximations.py#L24-L53" signature="qiskit.synthesis.generate_basic_approximations(basis_gates, depth, filename=None)">
+<Function id="qiskit.synthesis.generate_basic_approximations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/generate_basis_approximations.py#L24-L52" signature="qiskit.synthesis.generate_basic_approximations(basis_gates, depth, filename=None)">
   Generates a list of `GateSequence`s with the gates in `basis_gates`.
 
-  <Admonition title="Deprecated since version 2.1_pending" type="danger">
-    The function `qiskit.synthesis.discrete_basis.generate_basis_approximations.generate_basic_approximations()` is pending deprecation as of Qiskit 2.1. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use the SolovayKitaevDecomposition class directly, to generate, store, and load the basic approximations.
+  <Admonition title="Deprecated since version 2.3" type="danger">
+    The function `qiskit.synthesis.discrete_basis.generate_basis_approximations.generate_basic_approximations()` is deprecated as of Qiskit 2.3. It will be removed no earlier than 3 months after the release date. Use the SolovayKitaevDecomposition class directly, to generate, store, and load the basic approximations.
   </Admonition>
 
   **Parameters**
