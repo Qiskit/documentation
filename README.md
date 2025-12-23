@@ -53,7 +53,7 @@ You can look through the open issues we have in this repo and address them with 
 
 Before getting started on an issue, remember to do the following:
 
-1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/open-source/code-of-conduct)
+1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/guides/code-of-conduct)
 2. Check for open, unassigned issues with the "good first issue" label
 3. Select an issue that is not already assigned to someone and leave a comment to request to be assigned
 
@@ -82,6 +82,13 @@ We also recommend running this command once to tell Git to ignore the `gh-pages`
 ```bash
 git config --add remote.origin.fetch '^refs/heads/gh-pages'
 ```
+
+### Git email address
+
+To contribute code to this repository, your email must be configured properly with Git, as follows:
+
+1. Run `git config --get user.email`. You do not need to make any further changes if the email address is one of the addresses set up with your github.com account.
+2. Otherwise, run `git config --global user.email <your-email>`. Use an email address associated with your github.com account.
 
 ### Prerequisites to building the docs locally
 

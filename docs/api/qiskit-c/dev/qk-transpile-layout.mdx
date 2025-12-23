@@ -79,17 +79,17 @@ The transpiler will also allocate ancilla qubits to the circuit if the target ha
 <Function id="qk_transpile_layout_num_input_qubits" signature="uint32_t qk_transpile_layout_num_input_qubits(const QkTranspileLayout *layout)">
   Return the number of qubits in the input circuit to the transpiler.
 
-  <span id="group__QkTranspileLayout_1autotoc_md235" />
+  <span id="group__QkTranspileLayout_1autotoc_md302" />
 
   #### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md235" />
+  <span id="group__QkTranspileLayout_1autotoc_md302" />
 
   Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`.
 
   **Parameters**
 
-  **layout** – A pointer to the `QkTranspileLayout`.
+  *   **layout** – A pointer to the `QkTranspileLayout`.
 
   **Returns**
 
@@ -101,17 +101,17 @@ The transpiler will also allocate ancilla qubits to the circuit if the target ha
 <Function id="qk_transpile_layout_num_output_qubits" signature="uint32_t qk_transpile_layout_num_output_qubits(const QkTranspileLayout *layout)">
   Return the number of qubits in the output circuit from the transpiler.
 
-  <span id="group__QkTranspileLayout_1autotoc_md236" />
+  <span id="group__QkTranspileLayout_1autotoc_md303" />
 
   #### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md236" />
+  <span id="group__QkTranspileLayout_1autotoc_md303" />
 
   Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`.
 
   **Parameters**
 
-  **layout** – A pointer to the `QkTranspileLayout`.
+  *   **layout** – A pointer to the `QkTranspileLayout`.
 
   **Returns**
 
@@ -131,11 +131,11 @@ The transpiler will also allocate ancilla qubits to the circuit if the target ha
 
   indicates that the layout maps virtual qubit 0 -> physical qubit 1, virtual qubit 1 -> physical qubit -> 0, and virtual qubit 2 -> physical qubit 2.
 
-  <span id="group__QkTranspileLayout_1autotoc_md237" />
+  <span id="group__QkTranspileLayout_1autotoc_md304" />
 
   #### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md237" />
+  <span id="group__QkTranspileLayout_1autotoc_md304" />
 
   Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`. `initial_layout` must be a valid, non-null pointer with a large enough allocation to store the size necessary for the initial layout. If `filter_ancillas` is true this will be number of input qubits (which can be checked with `qk_transpile_layout_num_input_qubits()`) or the number of output qubits if `filter_ancillas` is false (which can be queried with `qk_transpile_layout_num_output_qubits()`).
 
@@ -163,11 +163,11 @@ The transpiler will also allocate ancilla qubits to the circuit if the target ha
 
   indicates that qubit 0 from the start of the circuit is at qubit 1 at the end of the circuit, 1 -> 2, and 2 -> 0.
 
-  <span id="group__QkTranspileLayout_1autotoc_md238" />
+  <span id="group__QkTranspileLayout_1autotoc_md305" />
 
   #### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md238" />
+  <span id="group__QkTranspileLayout_1autotoc_md305" />
 
   Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`. `output_permutation` must be a valid, non-null pointer with a large enough allocation to store the size necessary for the output\_permutation. This will always be the number of output qubits in the `QkTranspileLayout` which can be queried with `qk_transpile_layout_num_output_qubits()`.
 
@@ -194,11 +194,11 @@ The transpiler will also allocate ancilla qubits to the circuit if the target ha
 
   indicates that virtual qubit 0’s state in the original circuit is on physical qubit 2 at the end of the transpiled circuit, 1 -> 0, and 2 -> 1.
 
-  <span id="group__QkTranspileLayout_1autotoc_md239" />
+  <span id="group__QkTranspileLayout_1autotoc_md306" />
 
   #### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md239" />
+  <span id="group__QkTranspileLayout_1autotoc_md306" />
 
   Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`. `final_layout` must be a valid, non-null pointer with a large enough allocation to store the size necessary for the final layout. If `filter_ancillas` is true this will be number of input qubits (which can be checked with `qk_transpile_layout_num_input_qubits()`) or the number of output qubits if `filter_ancillas` is false (which can be queried with `qk_transpile_layout_num_output_qubits()`).
 
@@ -209,21 +209,72 @@ The transpiler will also allocate ancilla qubits to the circuit if the target ha
   *   **final\_layout** – A pointer to the array where this function will write the final layout to. This must have sufficient space for the output which will either be the number of input or output qubits depending on the value of filter\_ancillas.
 </Function>
 
+### qk\_transpile\_layout\_generate\_from\_mapping
+
+<Function id="qk_transpile_layout_generate_from_mapping" signature="QkTranspileLayout *qk_transpile_layout_generate_from_mapping(const QkDag *original_dag, const QkTarget *target, const uint32_t *qubit_mapping)">
+  Generate a `QkTranspileLayout` from a initial layout mapping
+
+  This will generate a `QkTranspileLayout` with the initial layout set (and no ouptput permutation) from a provided mapping. The intent of this function is to enable creating a custom layout pass that also creates a `QkTranspileLayout` that you can use with subsequent stage functions such as `qk_transpile_stage_routing`.
+
+  <span id="group__QkTranspileLayout_1autotoc_md307" />
+
+  #### Safety
+
+  <span id="group__QkTranspileLayout_1autotoc_md307" />
+
+  Behavior is undefined if `original_dag` and target `target` are not a valid, aligned, non-null pointer to a `QkDag` or a `QkTarget` respectively. `qubit_mapping` must be a valid pointer to a contiguous array of `uint32_t` with enough space for the number of qubits indicated in `target`.
+
+  **Parameters**
+
+  *   **original\_dag** – A pointer to the original dag prior to running a custom layout pass. This dag must have fewer than or the same number of qubits as `target`.
+  *   **target** – A pointer to the target that layout was run on. This target must have fixed number of qubits set.
+  *   **qubit\_mapping** – A pointer to the layout mapping array. This array must have the same number of elements as there are qubits in target and each element is a unique integer and the all must fall in the range of 0 to `num_qubits` where `num_qubits` is the number of qubits indicated in the provided value for `target`. The first elements represent the virtual qubits in `original_dag` and the value represents the physical qubit in the target which the virtual qubit is mapped too. For example an array of `[1, 0, 2]` would map virtual qubit 0 -> physical qubit 1, virtual qubit 1 -> physical qubit 0, and virtual qubit 2 -> physical qubit 2. For elements that are not in the original dag these are treated as ancilla qubits, but still must be mapped to a physical qubit. This array will be copied into the output `QkTranspileLayout` so you must still free it after calling this function.
+
+  **Returns**
+
+  The QkTranspileLayout object with the initial layout set
+</Function>
+
 ### qk\_transpile\_layout\_free
 
 <Function id="qk_transpile_layout_free" signature="void qk_transpile_layout_free(QkTranspileLayout *layout)">
   Free a `QkTranspileLayout` object
 
-  <span id="group__QkTranspileLayout_1autotoc_md240" />
+  <span id="group__QkTranspileLayout_1autotoc_md308" />
 
   #### Safety
 
-  <span id="group__QkTranspileLayout_1autotoc_md240" />
+  <span id="group__QkTranspileLayout_1autotoc_md308" />
 
   Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkTranspileLayout`.
 
   **Parameters**
 
-  **layout** – a pointer to the layout to free
+  *   **layout** – a pointer to the layout to free
+</Function>
+
+### qk\_transpile\_layout\_to\_python
+
+<Function id="qk_transpile_layout_to_python" signature="PyObject *qk_transpile_layout_to_python(const QkTranspileLayout *layout, const QkCircuit *circuit)">
+  Generate a Python-space `TranspileLayout` object from a `QkTranspileLayout`.
+
+  The created Python-space object is a copy of the `QkTranspileLayout` provided, the data representation is different between C and Python and the data is not moved to Python like for some other `*_to_python` functions.
+
+  <span id="group__QkTranspileLayout_1autotoc_md309" />
+
+  #### Safety
+
+  <span id="group__QkTranspileLayout_1autotoc_md309" />
+
+  Behavior is undefined if `layout` and `circuit` are not valid, non-null pointers to a `QkTranspileLayout` and `QkCircuit` respectively. It is assumed that the thread currently executing this function holds the Python GIL. This is required to create the Python object returned by this function.
+
+  **Parameters**
+
+  *   **layout** – a pointer to a `QkTranspileLayout`.
+  *   **circuit** – a pointer to the original `QkCircuit`.
+
+  **Returns**
+
+  the PyObject pointer for the Python space TranspileLayout object.
 </Function>
 

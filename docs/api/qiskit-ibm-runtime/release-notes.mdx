@@ -106,7 +106,7 @@ in_page_toc_max_heading_level: 2
 
     This function uses the new `CircuitSchedule` class to load, parse, preprocess, and trace the data for plotting using a Plotly supported interface. ([2328](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2328))
 
-*   Virtual private endpoints for IBM Quantum Platform are now supported. Learn more in our [virtual private endpoints guide](/docs/security/virtual-private-endpoints). ([2367](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2367))
+*   Virtual private endpoints for IBM Quantum Platform are now supported. Learn more in our [virtual private endpoints guide](/docs/guides/virtual-private-endpoints). ([2367](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2367))
 
 *   It is now possible to retrieve the job tags of a job without having to actually fetch the job with [`QiskitRuntimeService.job()`](qiskit-runtime-service#job "qiskit_ibm_runtime.QiskitRuntimeService.job"). ([2420](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2420))
 
@@ -181,7 +181,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### Upgrade Notes
 
-*   Because of the sunset of IBM Quantum Platform Classic, the `ibm_quantum` channel is no longer supported from `qiskit-ibm-runtime`. Saved `ibm_quantum` channel accounts and data will not be accessible. Use the `ibm_quantum_platform` channel instead. See our [migration guide](/docs/migration-guides/classic-iqp-to-cloud-iqp) for more details. ([2289](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2289))
+*   Because of the sunset of IBM Quantum Platform Classic, the `ibm_quantum` channel is no longer supported from `qiskit-ibm-runtime`. Saved `ibm_quantum` channel accounts and data will not be accessible. Use the `ibm_quantum_platform` channel instead. See our [migration guide](https://github.com/Qiskit/documentation/blob/00575e951e6b397cbd9cba016b653979369c8cd5/docs/migration-guides/classic-iqp-to-cloud-iqp.mdx) for more details. ([2289](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2289))
 
 <span id="id10" />
 
@@ -259,7 +259,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### New Features
 
-*   The following changes were made to support the upcoming [IBM Quantum platform migration](/docs/migration-guides/classic-iqp-to-cloud-iqp):
+*   The following changes were made to support the upcoming [IBM Quantum platform migration](https://github.com/Qiskit/documentation/blob/00575e951e6b397cbd9cba016b653979369c8cd5/docs/migration-guides/classic-iqp-to-cloud-iqp.mdx):
 
     *   A new channel type, `ibm_quantum_platform`, has been introduced for service initialization (`QiskitRuntimeService()`). It joins the existing `ibm_quantum` (now deprecated) and `ibm_cloud` channels. By **default**, `ibm_quantum_platform` is selected when no channel is specified. This new channel connects to the new IBM Quantum Platform API and is intended to replace `ibm_cloud`. In the meantime, the `ibm_cloud` channel will redirect to the new API, but its continued use is discouraged.
 
@@ -371,7 +371,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 *   `RuntimeJob` is now deprecated and will be removed no sooner than three months from this release. `RuntimeJob` was superseded by [`RuntimeJobV2`](runtime-job-v2 "qiskit_ibm_runtime.RuntimeJobV2") in all primitive implementations, so the deprecation should not have any user impact. The major difference between the two classes is that [`status()`](runtime-job-v2#status "qiskit_ibm_runtime.RuntimeJobV2.status") returns a string instead of Qiskit’s `JobStatus` enum. ([2170](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2170))
 *   Since pulse gates are no longer supported, the [`IBMBackend`](ibm-backend "qiskit_ibm_runtime.IBMBackend") and `FakeBackendV2` `defaults()` method has been deprecated and will be removed no sooner than three months from this release. While the method still exists, these pulse defaults are no longer used to construct the backend target. ([2186](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2186))
-*   The `ibm_quantum` channel option is deprecated and will be sunset on 1 July. After this date, `ibm_cloud`, `ibm_quantum_platform`, and `local` will be the only valid channels. For help migrating to the new IBM Quantum Platform on the `ibm_cloud` channel, read the [migration guide](/docs/migration-guides/classic-iqp-to-cloud-iqp). ([2205](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2205))
+*   The `ibm_quantum` channel option is deprecated and will be sunset on 1 July. After this date, `ibm_cloud`, `ibm_quantum_platform`, and `local` will be the only valid channels. For help migrating to the new IBM Quantum Platform on the `ibm_cloud` channel, read the [migration guide](https://github.com/Qiskit/documentation/blob/00575e951e6b397cbd9cba016b653979369c8cd5/docs/migration-guides/classic-iqp-to-cloud-iqp.mdx). ([2205](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2205))
 
 <span id="id24" />
 
@@ -411,7 +411,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
     *   The backend configuration class `PulseBackendConfiguration` has been removed, so all backends will now be returned as `QasmBackendConfiguration`.
     *   `PulseDefaults` (backend defaults) can still be retrieved but they are no longer necessary when creating a backend `Target`.
 
-    See the [Pulse migration guide](/docs/migration-guides/pulse-migration) for details. ([2116](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2116))
+    See the [Pulse migration guide](/docs/guides/pulse-migration) for details. ([2116](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2116))
 
 *   Added a warning when a primitive is initialized outside of a session or batch context manager. In this scenario, the job will run in job mode instead of the session or batch. ([2152](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2152))
 
@@ -739,7 +739,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### Upgrade Notes
 
-*   The V1 Primitives `SamplerV1` and `EstimatorV1` have been completely removed. Please see the [migration guide](/docs/migration-guides/v2-primitives) and use the V2 Primitives instead. ([1857](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1857))
+*   The V1 Primitives `SamplerV1` and `EstimatorV1` have been completely removed. Please see the [migration guide](/docs/guides/v2-primitives) and use the V2 Primitives instead. ([1857](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1857))
 *   The `service` parameter is now required in `Session.from_id()`. ([1868](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1868))
 
 <span id="id72" />

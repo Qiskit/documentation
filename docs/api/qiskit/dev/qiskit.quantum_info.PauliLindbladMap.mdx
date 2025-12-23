@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.PauliLindbladMap
 
 # PauliLindbladMap
 
-<Class id="qiskit.quantum_info.PauliLindbladMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.PauliLindbladMap" modifiers="class">
+<Class id="qiskit.quantum_info.PauliLindbladMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.PauliLindbladMap(data, /, num_qubits=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
 
   A Pauli Lindblad map stored in a qubit-sparse format.
@@ -51,7 +51,7 @@ $$
 
   Each individual Pauli operator in the generator is a tensor product of single-qubit Pauli operators of the form $P = \bigotimes_n A^{(n)}_i$, for $A^{(n)}_i \in \{I, X, Y, Z\}$. The internal representation of a [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") stores only the non-identity single-qubit Pauli operators. This makes it significantly more efficient to represent generators such as $\sum_{n\in \text{qubits}} c_n L(Z^{(n)})$; for which [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") requires an amount of memory linear in the total number of qubits.
 
-  Internally, [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") stores an array of rates and a [`QubitSparsePauliList`](qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") containing the corresponding sparse Pauli operators. Additionally, [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") can compute the overall channel $\gamma$ in the `get_gamma()` method, as well as the corresponding probabilities (or quasi-probabilities) via the `get_probabilities()` method.
+  Internally, [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") stores an array of rates and a [`QubitSparsePauliList`](qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") containing the corresponding sparse Pauli operators. Additionally, [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") can compute the overall channel $\gamma$ in the [`gamma()`](#qiskit.quantum_info.PauliLindbladMap.gamma "qiskit.quantum_info.PauliLindbladMap.gamma") method, as well as the corresponding probabilities $p_P$ via the [`probabilities()`](#qiskit.quantum_info.PauliLindbladMap.probabilities "qiskit.quantum_info.PauliLindbladMap.probabilities") method.
 
   ### Indexing
 
@@ -61,7 +61,7 @@ $$
 
   #### GeneratorTerm
 
-  <Class id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="GeneratorTerm" modifiers="class">
+  <Class id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="GeneratorTerm(rate, qubit_sparse_pauli)" modifiers="class">
     Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
 
     A single term from a complete [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap").
@@ -529,7 +529,7 @@ $$
   ### probabilities
 
   <Function id="qiskit.quantum_info.PauliLindbladMap.probabilities" signature="probabilities()">
-    Calculate the probabilities for the map.
+    Calculate the probabilities $p_P$ for the map. These can be interpreted as the probabilities each generator is not applied, and are defined to be independent of the sign of each Lindblad rate.
   </Function>
 
   ### sample

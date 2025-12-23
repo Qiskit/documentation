@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.SparseObservable
 
 # SparseObservable
 
-<Class id="qiskit.quantum_info.SparseObservable" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.SparseObservable" modifiers="class">
+<Class id="qiskit.quantum_info.SparseObservable" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.SparseObservable(data, /, num_qubits=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
 
   An observable over Pauli bases that stores its data in a qubit-sparse format.
@@ -203,7 +203,7 @@ $$
 
   #### Term
 
-  <Class id="qiskit.quantum_info.SparseObservable.Term" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="Term" modifiers="class">
+  <Class id="qiskit.quantum_info.SparseObservable.Term" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/__init__.py" signature="Term(num_qubits, coeff, bit_terms, indices)" modifiers="class">
     Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
 
     A single term from a complete [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
@@ -492,6 +492,25 @@ $$
     >>> obs.clear()
     >>> assert obs == SparseObservable.zero(obs.py_num_qubits())
     ```
+  </Function>
+
+  #### commutes
+
+  <Function id="qiskit.quantum_info.SparseObservable.commutes" signature="commutes(other, tol=1e-12)">
+    Check whether the observable commutes with another one.
+
+    **Parameters**
+
+    *   **other** ([*SparseObservable*](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")) – The other observable to check commutation with.
+    *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – If coefficients in the product of self and other are below the tolerance (in magnitude), the terms are ignored.
+
+    **Returns**
+
+    `True` if the terms commute, up to tolerance, `False` otherwise.
+
+    **Raises**
+
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.14)") – If `other` could not be coerced to `SparseObservable`.
   </Function>
 
   #### compose

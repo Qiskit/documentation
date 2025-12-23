@@ -119,9 +119,23 @@ $$
 
 ## Tables
 
-Tables are supported: https://www.markdownguide.org/extended-syntax/.
+Tables are supported: https://www.markdownguide.org/extended-syntax/#tables
 
-Warning: do not use `|` inside LaTeX/math expressions. Markdown will incorrectly interpret `|` as the divider between cells. Instead, use `\vert`.
+To include lists inside a cell, use `<ul>` or `<ol>`, along with `<li>`. You can also use normal Markdown links and the `Admonition` component. For example:
+
+```
+| Header |
+| -- |
+| <ol><li>Entry 1</li><li>Entry 2</li></ol> |
+| [a link](https://ibm.com) |
+| <Admonition title="A warning">Some content.</Admonition> |
+```
+
+However, be careful to not add overly complex components like `<Tabs>` because they can make the site hard to interact with and be bad for accessibility. 
+
+With LaTex and math expressions, do not use `|` because Markdown will incorrectly interpret `|` as the divider between cells. Instead, use `\vert`.
+
+Be careful to avoid overly wide tables, as they do not render well on small screens. Instead, consider alternative content layout like using [collapsible sections](#collapsible-sections).
 
 ## Comments
 
@@ -285,6 +299,37 @@ There is a specific use case where you want to show instructions for different o
     command
   </TabItem>
 </OperatingSystemTabs>
+```
+
+### Card
+
+The `Card` component creates a clickable card that links to another page, such as our [API index page](https://quantum.cloud.ibm.com/docs/api). 
+
+To use, first set up a `CardGroup` component. Then, insert one or more `Card` components inside the `CardGroup`. For each `Card`, you must set these properties:
+
+* `title`
+* `description`
+* `href`: the link
+* `analyticsName`: an internal identifier for analytics. A good format is `brief page name: brief description of the card`
+* `linkText` (optional): the text used for the arrow, such as 'Learn more'. Defaults to 'See details'
+
+```mdx
+<CardGroup>
+    <Card
+      title="Approximate quantum compilation tensor"
+      description="Supports the construction of high-fidelity circuits with reduced depth"
+      href="/docs/api/qiskit-addon-aqc-tensor"
+      analyticsName="overview page: addon AQC Tensor"
+    />
+
+    <Card
+      title="Qiskit SDK"
+      description="A radical software development kit"
+      href="/docs/api/qiskit"
+      analyticsName="overview page: Qiskit SDK"
+      linkText="Learn more"
+    />
+</CardGroup>
 ```
 
 ### CodeCellPlaceholder

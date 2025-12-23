@@ -3,6 +3,8 @@ title: Qiskit Code Assistant - OpenAI API compatibility
 description: Learn how to integrate Qiskit Code Assistant with other applications through the OpenAI completions API.
 ---
 
+{/* cspell:ignore Groq */}
+
 <Admonition type="note" title="Notes">
     - Qiskit Code Assistant's OpenAI API compatibility is in preview release status and is subject to change.
     - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
@@ -36,7 +38,7 @@ To retrieve/view the model disclaimer, make a **GET** request to the disclaimer 
 
 ```
 curl -X 'GET' \
-  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-3.3-8b-qiskit/disclaimer' \
+  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/mistral-small-3.2-24b-qiskit/disclaimer' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer <IBM Quantum Classic API key>'
 ```
@@ -45,7 +47,7 @@ If you agree with the model disclaimer, to accept it, **POST** to the disclaimer
 
 ```
 curl -X 'POST' \
-  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-3.3-8b-qiskit/disclaimer' \
+  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/mistral-small-3.2-24b-qiskit/disclaimer' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer <IBM Quantum Classic API key>' \
   -H 'Content-Type: application/json' \
@@ -75,7 +77,7 @@ client = OpenAI(
 # Make a request to the completions API
 try:
     response = client.completions.create(
-        model="granite-3.3-8b-qiskit",
+        model="mistral-small-3.2-24b-qiskit",
         prompt="#Transpile a random circuit using the Qiskit Transpiler Service",
     )
 
@@ -95,7 +97,7 @@ LiteLLM is a convenient Python library to access multiple LLM APIs using the Ope
 from litellm import completion
 
 response = completion(
-    model=f"text-completion-openai/granite-3.3-8b-qiskit",
+    model=f"text-completion-openai/mistral-small-3.2-24b-qiskit",
     base_url="https://qiskit-code-assistant.quantum.ibm.com/v1",
     messages=[
         {
