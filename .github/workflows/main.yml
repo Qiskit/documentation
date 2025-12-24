@@ -22,6 +22,7 @@ jobs:
       run-notebook-tester: ${{ steps.changed-files.outputs.RUN_NOTEBOOK_TESTER }}
       run-api-checks: ${{ steps.decide.outputs.RUN_API_CHECKS }}
     steps:
+      - uses: actions/checkout@v4
       - name: Determine all changed files
         id: changed-files
         env:
