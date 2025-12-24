@@ -50,6 +50,7 @@ jobs:
       - name: Decide which jobs to run
         id: decide
         env:
+          CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
@@ -80,7 +81,6 @@ jobs:
           #  public/learning/image.svg
           #  .github/workflows/notebook-test-cron.yml
         run: |
-          CHANGED_FILES='${{ steps.changes.outputs.changed_files }}'
           if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES}" | grep -P "$NOTEBOOK_TEST_REGEX")" ]]; then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
             echo "RUN_NOTEBOOK_TESTER"
