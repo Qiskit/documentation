@@ -42,6 +42,7 @@ jobs:
           fi
 
           CHANGED_FILES=$(node scripts/ci/determine-changed-files.ts "${PR_NUMBER}")
+          echo "${CHANGED_FILES[@]}"
           {
             echo "changed_files<<__GH_OUTPUT__"
             printf '%s\n' "$CHANGED_FILES"
@@ -82,9 +83,11 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES[@]}" | grep -P "$NOTEBOOK_TEST_REGEX")" ]]; then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
+            echo "RUN_NOTEBOOK_TESTER"
           fi
           if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES[@]}" | grep -P "$API_CHECKS_REGEX")" ]]; then
             echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
+            echo "RUN_API_CHECKS"
           fi
 
   lint:
