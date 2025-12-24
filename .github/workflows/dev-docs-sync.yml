@@ -34,7 +34,7 @@ jobs:
           npm ci
 
       - name: Sync dev docs
-        run: node scripts/js/commands/api/syncDevDocs.ts
+        run: npx tsx scripts/js/commands/api/syncDevDocs.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

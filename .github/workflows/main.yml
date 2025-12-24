@@ -16,16 +16,31 @@ jobs:
   decide-jobs:
     name: Decide which jobs to run
     runs-on: ubuntu-latest
-    # We don't run these tests in the merge queue
-    if: github.repository_owner == 'Qiskit' && github.event_name == 'pull_request'
+    if: github.repository_owner == 'Qiskit'
     outputs:
-      run-notebook-tester: ${{ steps.decide.outputs.RUN_NOTEBOOK_TESTER }}
+      all-changed-files: ${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
+      run-notebook-tester: ${{ steps.changed-files.outputs.RUN_NOTEBOOK_TESTER }}
       run-api-checks: ${{ steps.decide.outputs.RUN_API_CHECKS }}
     steps:
+      - name: Determine all changed files
+        id: changed-files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # GitHub API doesn't give PR information in the merge_group event, but
+          # we can get the PR number from the branch name
+          if [[ "${{ github.event_name }}" == 'merge_group' ]]; then
+            BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
+            PR_NUMBER="$(echo $BRANCH_NAME | grep -oP '(?<=gh-readonly-queue/main/pr-)\d+')"
+          else
+            PR_NUMBER="${{ github.event.number }}"
+          fi
+
+          CHANGED_FILES=$(node scripts/ci/determine-changed-files.ts "${PR_NUMBER}")
+          echo "$CHANGED_FILES" >> "$GITHUB_OUTPUT"
       - name: Decide which jobs to run
         id: decide
         env:
-          GH_TOKEN: ${{ github.token }}
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
@@ -56,13 +71,10 @@ jobs:
           #  public/learning/image.svg
           #  .github/workflows/notebook-test-cron.yml
         run: |
-          CHANGED_FILES=$(gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only)
-          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $NOTEBOOK_TEST_REGEX || true)" != '' ]
-          then
+          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES[@]}" | grep -P "$NOTEBOOK_TEST_REGEX")" ]]; then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
           fi
-          if [ "$(echo "${CHANGED_FILES[@]}" | grep -P $API_CHECKS_REGEX || true)" != '' ]
-          then
+          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES[@]}" | grep -P "$API_CHECKS_REGEX")" ]]; then
             echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
           fi
 
@@ -125,18 +137,9 @@ jobs:
           #  docs/guides/_toc.json
           #  scripts/nb-tester/example-notebook.ipynb
         id: changed-content-files
+        env:
+          CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
         run: |
-          # GitHub API doesn't give PR information in the merge_group event, but
-          # we can get the PR number from the branch name
-          if [ "${{ github.event_name }}" == 'merge_group' ]
-          then
-            BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
-            PR_NUMBER="$(echo $BRANCH_NAME | grep -oP '(?<=gh-readonly-queue/main/pr-)\d+')"
-          else
-            PR_NUMBER="${{ github.event.number }}"
-          fi
-
-          CHANGED_FILES=$(gh pr diff -R Qiskit/documentation $PR_NUMBER --name-only)
           CHANGED_CONTENT_FILES=$(echo "${CHANGED_FILES[@]}" | grep -P $CONTENT_FILE_REGEX || true)
           if [ "$CHANGED_CONTENT_FILES" != '' ]
           then
@@ -198,9 +201,10 @@ jobs:
       - name: Get changed files
         env:
           GH_TOKEN: ${{ github.token }}
+          CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
         run: |
           mkdir -p .github/outputs
-          gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only > .github/outputs/changed-files.txt
+          echo "${CHANGED_FILES[@]}" > .github/outputs/changed-files.txt
 
       - name: Check if extra linux deps needed
         id: check-deps
