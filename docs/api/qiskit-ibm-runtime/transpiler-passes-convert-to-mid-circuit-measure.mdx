@@ -1,30 +1,36 @@
 ---
-title: ConvertIdToDelay (latest version)
-description: API reference for qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay in the latest version of qiskit-ibm-runtime
+title: ConvertToMidCircuitMeasure (latest version)
+description: API reference for qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure in the latest version of qiskit-ibm-runtime
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
+python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure
 ---
 
-# ConvertIdToDelay
+# ConvertToMidCircuitMeasure
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.44/qiskit_ibm_runtime/transpiler/passes/basis/convert_id_to_delay.py#L26-L86" signature="ConvertIdToDelay(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.44/qiskit_ibm_runtime/transpiler/passes/basis/convert_mid_circ_meas.py#L22-L74" signature="ConvertToMidCircuitMeasure(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass "(in Qiskit v2.2)")
 
-  Convert `qiskit.circuit.library.standard_gates.IGate` to a delay of the corresponding length.
+  This pass replaces terminal measures in the middle of the circuit with MidCircuitMeasure instructions.
 
-  Convert [`qiskit.circuit.library.IGate`](/docs/api/qiskit/qiskit.circuit.library.IGate "(in Qiskit v2.2)") to a Convert [`qiskit.circuit.Delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay "(in Qiskit v2.2)").
+  Transpiler pass that replaces terminal measure instructions in non-terminal locations with `MidCircuitMeasure` instructions. By default, these will be `measure_2`, but the pass accepts custom `measure_` definitions. This pass is expected to run after routing, as it will check that `MidCircuitMeasure` is supported in the corresponding physical qubit.
+
+  Note that the pass will only act on non-terminal `Measure` instances, and won’t replace existing mid-circuit measurement instructions (e.g., `"measure_2" -> "measure_3"`) or convert any `MidCircuitMeasure` instance into a `Measure`.
 
   **Parameters**
 
-  *   **duration** – Duration of the delay to replace the identity gate with.
-  *   **gate** – Single qubit gate to extract duration from.
+  *   **target** – Backend’s target instance that contains one or more `measure_` instructions.
+  *   **mcm\_name** – Name of the `measure_` instruction that terminal measure instructions in non-terminal locations will be replaced with. This instruction must be contained in the target. Defaults to `measure_2`.
+
+  **Raises**
+
+  **ValueError** – If the specifcied `mcm_name` does not conform to the `measure_` pattern or is not contained in the provided target.
 
   ## Attributes
 
   ### is\_analysis\_pass
 
-  <Attribute id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.is_analysis_pass">
+  <Attribute id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.is_analysis_pass">
     Check if the pass is an analysis pass.
 
     If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
@@ -32,7 +38,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
   ### is\_transformation\_pass
 
-  <Attribute id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.is_transformation_pass">
+  <Attribute id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.is_transformation_pass">
     Check if the pass is a transformation pass.
 
     If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
@@ -42,7 +48,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
   ### \_\_call\_\_
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.__call__" signature="__call__(circuit, property_set=None)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.__call__" signature="__call__(circuit, property_set=None)">
     Runs the pass on circuit.
 
     **Parameters**
@@ -61,7 +67,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
   ### execute
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.execute" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.execute" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -81,7 +87,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
   ### name
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.name" signature="name()">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.name" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -91,16 +97,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.44/qiskit_ibm_runtime/transpiler/passes/basis/convert_id_to_delay.py#L45-L47" signature="run(dag)">
-    Run a pass on the DAGCircuit. This is implemented by the pass developer.
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.44/qiskit_ibm_runtime/transpiler/passes/basis/convert_mid_circ_meas.py#L62-L74" signature="run(dag)">
+    Run the pass on a dag.
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.2)")) – the dag on which the pass is run.
-
-    **Raises**
-
-    **NotImplementedError** – when this is left unimplemented for a pass.
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.2)"))
 
     **Return type**
 
@@ -109,7 +111,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
   ### update\_status
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.update_status" signature="update_status(state, run_state)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.update_status" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**
