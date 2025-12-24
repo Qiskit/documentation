@@ -23,6 +23,10 @@ jobs:
       run-api-checks: ${{ steps.decide.outputs.RUN_API_CHECKS }}
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
       - name: Determine all changed files
         id: changed-files
         env:
