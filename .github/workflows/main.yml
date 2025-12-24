@@ -42,7 +42,11 @@ jobs:
           fi
 
           CHANGED_FILES=$(node scripts/ci/determine-changed-files.ts "${PR_NUMBER}")
-          echo "$CHANGED_FILES" >> "$GITHUB_OUTPUT"
+          {
+            echo "changed_files<<__GH_OUTPUT__"
+            printf '%s\n' "$CHANGED_FILES"
+            echo "__GH_OUTPUT__"
+          } >> "$GITHUB_OUTPUT"
       - name: Decide which jobs to run
         id: decide
         env:
