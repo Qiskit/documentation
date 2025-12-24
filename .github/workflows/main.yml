@@ -43,14 +43,14 @@ jobs:
 
           CHANGED_FILES=$(node scripts/ci/determine-changed-files.ts "${PR_NUMBER}")
           {
-            echo "changed_files<<__GH_OUTPUT__"
+            echo "ALL_CHANGED_FILES<<__GH_OUTPUT__"
             printf '%s\n' "$CHANGED_FILES"
             echo "__GH_OUTPUT__"
           } >> "$GITHUB_OUTPUT"
       - name: Decide which jobs to run
         id: decide
         env:
-          CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
+          CHANGED_FILES: ${{steps.changed-files.outputs.ALL_CHANGED_FILES}}
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
@@ -81,6 +81,7 @@ jobs:
           #  public/learning/image.svg
           #  .github/workflows/notebook-test-cron.yml
         run: |
+          echo "${CHANGED_FILES}"
           if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES}" | grep -P "$NOTEBOOK_TEST_REGEX")" ]]; then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
             echo "RUN_NOTEBOOK_TESTER"
