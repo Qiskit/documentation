@@ -30,7 +30,7 @@ jobs:
       - name: Determine all changed files
         id: changed-files
         env:
-          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           # GitHub API doesn't give PR information in the merge_group event, but
           # we can get the PR number from the branch name
