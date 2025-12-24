@@ -122,7 +122,6 @@ jobs:
 
       - name: Get all changed content files
         env:
-          GH_TOKEN: ${{ github.token }}
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
@@ -200,7 +199,6 @@ jobs:
 
       - name: Get changed files
         env:
-          GH_TOKEN: ${{ github.token }}
           CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
         run: |
           mkdir -p .github/outputs
