@@ -42,7 +42,6 @@ jobs:
           fi
 
           CHANGED_FILES=$(node scripts/ci/determine-changed-files.ts "${PR_NUMBER}")
-          echo "${CHANGED_FILES[@]}"
           {
             echo "changed_files<<__GH_OUTPUT__"
             printf '%s\n' "$CHANGED_FILES"
@@ -81,11 +80,12 @@ jobs:
           #  public/learning/image.svg
           #  .github/workflows/notebook-test-cron.yml
         run: |
-          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES[@]}" | grep -P "$NOTEBOOK_TEST_REGEX")" ]]; then
+          CHANGED_FILES='${{ steps.changes.outputs.changed_files }}'
+          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES}" | grep -P "$NOTEBOOK_TEST_REGEX")" ]]; then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
             echo "RUN_NOTEBOOK_TESTER"
           fi
-          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES[@]}" | grep -P "$API_CHECKS_REGEX")" ]]; then
+          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES}" | grep -P "$API_CHECKS_REGEX")" ]]; then
             echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
             echo "RUN_API_CHECKS"
           fi
@@ -150,7 +150,7 @@ jobs:
           #  scripts/nb-tester/example-notebook.ipynb
         id: changed-content-files
         run: |
-          CHANGED_CONTENT_FILES=$(echo "${CHANGED_FILES[@]}" | grep -P $CONTENT_FILE_REGEX || true)
+          CHANGED_CONTENT_FILES=$(echo "${CHANGED_FILES}" | grep -P $CONTENT_FILE_REGEX || true)
           if [ "$CHANGED_CONTENT_FILES" != '' ]
           then
             echo "ANY_CHANGED=true" >> "$GITHUB_OUTPUT"
@@ -213,7 +213,7 @@ jobs:
           CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
         run: |
           mkdir -p .github/outputs
-          echo "${CHANGED_FILES[@]}" > .github/outputs/changed-files.txt
+          echo "${CHANGED_FILES}" > .github/outputs/changed-files.txt
 
       - name: Check if extra linux deps needed
         id: check-deps
