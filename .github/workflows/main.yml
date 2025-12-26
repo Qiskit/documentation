@@ -19,7 +19,7 @@ jobs:
     if: github.repository_owner == 'Qiskit'
     outputs:
       all-changed-files: ${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
-      run-notebook-tester: ${{ steps.changed-files.outputs.RUN_NOTEBOOK_TESTER }}
+      run-notebook-tester: ${{ steps.decide.outputs.RUN_NOTEBOOK_TESTER }}
       run-api-checks: ${{ steps.decide.outputs.RUN_API_CHECKS }}
     steps:
       - uses: actions/checkout@v4
@@ -50,7 +50,7 @@ jobs:
       - name: Decide which jobs to run
         id: decide
         env:
-          CHANGED_FILES: ${{steps.changed-files.outputs.ALL_CHANGED_FILES}}
+          CHANGED_FILES: ${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
@@ -81,14 +81,11 @@ jobs:
           #  public/learning/image.svg
           #  .github/workflows/notebook-test-cron.yml
         run: |
-          echo "${CHANGED_FILES}"
           if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES}" | grep -P "$NOTEBOOK_TEST_REGEX")" ]]; then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
-            echo "RUN_NOTEBOOK_TESTER"
           fi
           if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES}" | grep -P "$API_CHECKS_REGEX")" ]]; then
             echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
-            echo "RUN_API_CHECKS"
           fi
 
   lint:
@@ -208,7 +205,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Get changed files
         env:
           CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
