@@ -1,81 +1,77 @@
 ---
-title: SolovayKitaevSynthesis (dev version)
-description: API reference for qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis in the dev version of qiskit
+title: RossSelingerSynthesis (dev version)
+description: API reference for qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis
+python_api_name: qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis
 ---
 
-# SolovayKitaevSynthesis
+# RossSelingerSynthesis
 
-<Class id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L223-L337" signature="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis" modifiers="class">
+<Class id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/ross_selinger_plugin.py#L32-L111" signature="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis" modifiers="class">
   Bases: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 
-  A Solovay-Kitaev Qiskit unitary synthesis plugin.
+  A Ross-Selinger Qiskit unitary synthesis plugin.
 
-  This plugin is invoked by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") when the `unitary_synthesis_method` parameter is set to `"sk"`.
+  The algorithm is described in \[1]. The source code (in Rust) is available at [https://github.com/qiskit-community/rsgridsynth](https://github.com/qiskit-community/rsgridsynth).
+
+  This plugin is invoked by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") when the `unitary_synthesis_method` parameter is set to `"gridsynth"`.
 
   This plugin supports customization and additional parameters can be passed to the plugin by passing a dictionary as the `unitary_synthesis_plugin_config` parameter of the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function.
 
   Supported parameters in the dictionary:
 
-  **basic\_approximations (str | dict):**
+  **epsilon (f64):**
 
-  The basic approximations for the finding the best discrete decomposition at the root of the recursion. If a string, it specifies the `.npy` file to load the approximations from. If a dictionary, it contains `{label: SO(3)-matrix}` pairs. If None, a default based on the specified `basis_gates` and `depth` is generated.
+  The allowed approximation error.
 
-  **basis\_gates (list):**
+  References:
 
-  A list of strings specifying the discrete basis gates to decompose to. If None, it defaults to `["h", "t", "tdg"]`. If `basic_approximations` is not None, `basis_set` is required to correspond to the basis set that was used to generate it.
+  **\[1] Neil J. Ross, Peter Selinger, Optimal ancilla-free Clifford+T approximation of z-rotations,**
 
-  **depth (int):**
-
-  The gate-depth of the basic approximations. All possible, unique combinations of the basis gates up to length `depth` are considered. If None, defaults to 12. If `basic_approximations` is not None, `depth` is required to correspond to the depth that was used to generate it.
-
-  **recursion\_degree (int):**
-
-  The number of times the decomposition is recursively improved. If None, defaults to 5.
+  [arXiv:1403.2975](https://arxiv.org/pdf/1403.2975)
 
   ## Attributes
 
   ### max\_qubits
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.max_qubits">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.max_qubits">
     Maximum number of supported qubits is `1`.
   </Attribute>
 
   ### min\_qubits
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.min_qubits">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.min_qubits">
     Minimum number of supported qubits is `1`.
   </Attribute>
 
   ### supported\_bases
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supported_bases">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.supported_bases">
     The plugin does not support bases for synthesis.
   </Attribute>
 
   ### supports\_basis\_gates
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_basis_gates">
-    The plugin does not support basis gates. By default it synthesis to the `["h", "t", "tdg"]` gate basis.
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.supports_basis_gates">
+    The plugin does not support basis gates. By default it synthesizes to the `["h", "s", "t", "x"]` gate basis.
   </Attribute>
 
   ### supports\_coupling\_map
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_coupling_map">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.supports_coupling_map">
     The plugin does not support coupling maps.
   </Attribute>
 
   ### supports\_gate\_errors
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_gate_errors">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.supports_gate_errors">
     The plugin does not support gate errors.
   </Attribute>
 
   ### supports\_gate\_errors\_by\_qubit
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_gate_errors_by_qubit">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.supports_gate_errors_by_qubit">
     Return whether the plugin supports taking `gate_errors_by_qubit`
 
     This differs from `supports_gate_errors`/`gate_errors` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names).
@@ -96,13 +92,13 @@ python_api_name: qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.Sol
 
   ### supports\_gate\_lengths
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_gate_lengths">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.supports_gate_lengths">
     The plugin does not support gate lengths.
   </Attribute>
 
   ### supports\_gate\_lengths\_by\_qubit
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_gate_lengths_by_qubit">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.supports_gate_lengths_by_qubit">
     Return whether the plugin supports taking `gate_lengths_by_qubit`
 
     This differs from `supports_gate_lengths`/`gate_lengths` by using a different view of the same data. Instead of being keyed by gate name this is keyed by qubit and uses [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances to represent gates (instead of gate names)
@@ -125,19 +121,19 @@ python_api_name: qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.Sol
 
   ### supports\_natural\_direction
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_natural_direction">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.supports_natural_direction">
     The plugin does not support natural direction, it does not assume bidirectional two qubit gates.
   </Attribute>
 
   ### supports\_pulse\_optimize
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_pulse_optimize">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.supports_pulse_optimize">
     The plugin does not support optimization of pulses.
   </Attribute>
 
   ### supports\_target
 
-  <Attribute id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.supports_target">
+  <Attribute id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.supports_target">
     Whether the plugin supports taking `target` as an option
 
     `target` will be a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the target device for the output of the synthesis pass.
@@ -149,8 +145,8 @@ python_api_name: qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.Sol
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L316-L337" signature="run(unitary, **options)">
-    Run the SolovayKitaevSynthesis synthesis plugin on the given unitary.
+  <Function id="qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/ross_selinger_plugin.py#L104-L111" signature="run(unitary, **options)">
+    Run the Ross-Selinger synthesis plugin on the given unitary.
   </Function>
 </Class>
 
