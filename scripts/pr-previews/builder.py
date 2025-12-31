@@ -55,7 +55,9 @@ def main() -> None:
         return
 
     try:
-        lines = Path(".github/outputs/changed-content-files.txt").read_text().split("\n")
+        lines = (
+            Path(".github/outputs/changed-content-files.txt").read_text().split("\n")
+        )
         changed_content_files = set(line for line in lines if line != "")
     except FileNotFoundError:
         logger.info("No changed files detected, will build all pages")
@@ -110,6 +112,7 @@ def save_output(root_dir: Path, dest: Path) -> None:
             shutil.copy2(item, dest)
     logger.info(f"Static site files copied to {dest}")
 
+
 @contextmanager
 def setup_dir(changed_content_files: set[str]) -> Iterator[Path]:
     with TemporaryDirectory() as _tempdir:
@@ -119,6 +122,7 @@ def setup_dir(changed_content_files: set[str]) -> Iterator[Path]:
         _copy_local_content(root_dir, changed_content_files)
         _extract_docker_files(root_dir)
         yield root_dir
+
 
 def _copy_local_content(root_dir: Path, changed_files: set[str]) -> None:
 
@@ -150,6 +154,7 @@ def _extract_docker_files(root_dir: Path) -> None:
     finally:
         run_subprocess(["docker", "rm", container_id])
     logger.info("Docker contents extracted")
+
 
 def _ignore_contents(dir: str, contents: list[str]) -> list[str]:
     """For input to shutil.copytree. This function takes the directory path
@@ -196,7 +201,6 @@ def _ignore_contents(dir: str, contents: list[str]) -> list[str]:
         ignores.append(entry)
 
     return ignores
-
 
 
 if __name__ == "__main__":
