@@ -159,8 +159,7 @@ def _copy_local_content(root_dir: Path, changed_files: set[str]) -> None:
             if entry.startswith("index."):
                 continue
 
-            # Finally, continue traversing if the directory contains one of our
-            # changed files.
+            # Finally, include files that were directly changed.
             if any(file.startswith(full_path) for file in changed_files):
                 continue
 
