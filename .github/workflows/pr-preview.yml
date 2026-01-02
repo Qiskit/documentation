@@ -60,7 +60,19 @@ jobs:
           env: pr_preview
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Get changed content files
+      - name: Get all changed files
+        id: changed-files
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          CHANGED_FILES=$(node scripts/ci/determine-changed-files.ts "${{ github.event.number }}")
+          {
+            echo "ALL_CHANGED_FILES<<__GH_OUTPUT__"
+            printf '%s\n' "$CHANGED_FILES"
+            echo "__GH_OUTPUT__"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Determine changed content files
         env:
           GH_TOKEN: ${{ github.token }}
           # If changing these regexes, test them on https://regex101.com/ with the
@@ -78,7 +90,7 @@ jobs:
           #  scripts/nb-tester/example-notebook.ipynb
         id: changed-content-files
         run: |
-          CHANGED_FILES=$(gh pr diff -R Qiskit/documentation ${{ github.event.number }} --name-only)
+          CHANGED_FILES=${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
           CHANGED_CONTENT_FILES=$(echo "${CHANGED_FILES[@]}" | grep -P $CONTENT_FILE_REGEX || true)
           mkdir -p .github/outputs
           echo "Detected these changed content files:"
