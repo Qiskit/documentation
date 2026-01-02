@@ -75,6 +75,7 @@ jobs:
       - name: Determine changed content files
         env:
           GH_TOKEN: ${{ github.token }}
+          CHANGED_FILES: ${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
@@ -90,7 +91,6 @@ jobs:
           #  scripts/nb-tester/example-notebook.ipynb
         id: changed-content-files
         run: |
-          CHANGED_FILES=${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
           CHANGED_CONTENT_FILES=$(echo "${CHANGED_FILES[@]}" | grep -P $CONTENT_FILE_REGEX || true)
           mkdir -p .github/outputs
           echo "Detected these changed content files:"
