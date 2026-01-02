@@ -4,7 +4,7 @@ description: How the IBM Quantum fair-share scheduler determines order of worklo
 
 ---
 
-# Fair-share scheduler!
+# Fair-share scheduler
 
 When you submit a workload to a quantum processing unit (QPU), it enters the scheduler for the specific QPU, joining the pool of workloads (from all users) that are waiting to be executed on that QPU. The order in which these workloads are executed is, by default, determined by a fair-share formula. As discussed below, this formula attempts to balance the workload between different [instances](/docs/guides/instances) according to the allocated QPU access amount over a given time window. In practice, this means that workloads from various instances are interweaved in such a way that the order in which workloads complete is not necessarily the order in which they were submitted. Because the order is calculated dynamically as new workloads arrive, it is generally impossible to guarantee when a workload will be executed from the fair-share scheduler.
 
