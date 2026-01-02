@@ -65,7 +65,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
-          CHANGED_FILES=$(node scripts/ci/determine-changed-files.ts "${{ github.event.number }}")
+          CHANGED_FILES="$(node scripts/ci/determine-changed-files.ts "${{ github.event.number }}")"
           {
             echo "ALL_CHANGED_FILES<<__GH_OUTPUT__"
             printf '%s\n' "$CHANGED_FILES"
