@@ -508,6 +508,39 @@ $$
     ```
   </Function>
 
+  ### parity\_sample
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.parity_sample" signature="parity_sample(num_samples, seed=None, scale=None, local_scale=None)">
+    Sample sign and Pauli operator pairs from the map.
+
+    Each sign is represented by a boolean, with `True` representing `-1`, and `False` representing `+1`.
+
+    Given the quasi-probability representation given in the class-level documentation, each sample is drawn via the following process:
+
+    *   Initialize the sign boolean, and a [`QubitSparsePauli`](qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli") instance to the identity operator.
+    *   Iterate through each Pauli in the map. Using the pseudo-probability associated with each operator, randomly choose between applying the operator or not.
+    *   If the operator is applied, update the :class\`QubitSparsePauli\` by multiplying it with the Pauli. If the rate associated with the Pauli is negative, flip the sign boolean.
+
+    The results are returned as a 1d array of booleans, and the corresponding sampled qubit sparse Paulis in the form of a [`QubitSparsePauliList`](qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList").
+
+    The arguments `scale` and `local_scale` can be used to change the underlying rates used in the sampling process without modifying current instance or requiring creating a new one. The `scale` argument scales all rates by a fixed float, and `local_scale` scales rates on a term-by-term basis.
+
+    **Parameters**
+
+    *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Number of samples to draw.
+    *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Random seed.
+    *   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Scale to apply to all rates.
+    *   **local\_scale** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")*]*) – Local scale to apply on a term-by-term basis.
+
+    **Returns**
+
+    The boolean array of signs and the list of qubit sparse paulis.
+
+    **Return type**
+
+    signs, qubit\_sparse\_pauli\_list
+  </Function>
+
   ### pauli\_fidelity
 
   <Function id="qiskit.quantum_info.PauliLindbladMap.pauli_fidelity" signature="pauli_fidelity(qubit_sparse_pauli)">
@@ -535,7 +568,7 @@ $$
   ### sample
 
   <Function id="qiskit.quantum_info.PauliLindbladMap.sample" signature="sample(num_samples, seed=None)">
-    For [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") instances with purely non-negative rates, sample Pauli operators from the map. If the map has negative rates, use [`PauliLindbladMap.signed_sample()`](#qiskit.quantum_info.PauliLindbladMap.signed_sample "qiskit.quantum_info.PauliLindbladMap.signed_sample").
+    For [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") instances with purely non-negative rates, sample Pauli operators from the map. If the map has negative rates, use [`PauliLindbladMap.parity_sample()`](#qiskit.quantum_info.PauliLindbladMap.parity_sample "qiskit.quantum_info.PauliLindbladMap.parity_sample").
 
     Given the quasi-probability representation given in the class-level documentation, each sample is drawn via the following process:
 
@@ -576,7 +609,7 @@ $$
   ### signed\_sample
 
   <Function id="qiskit.quantum_info.PauliLindbladMap.signed_sample" signature="signed_sample(num_samples, seed=None)">
-    Sample sign and Pauli operator pairs from the map.
+    Sample sign and Pauli operator pairs from the map. Note that the boolean sign convention in this method is non-standard. The preferred method for this kind of sampling is [`PauliLindbladMap.parity_sample()`](#qiskit.quantum_info.PauliLindbladMap.parity_sample "qiskit.quantum_info.PauliLindbladMap.parity_sample"), which is also more featureful.
 
     Each sign is represented by a boolean, with `True` representing `+1`, and `False` representing `-1`.
 
