@@ -60,11 +60,52 @@ jobs:
           env: pr_preview
           ref: ${{ github.event.pull_request.head.ref }}
 
+      - name: Get all changed files
+        id: changed-files
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          CHANGED_FILES="$(node scripts/ci/determine-changed-files.ts "${{ github.event.number }}")"
+          {
+            echo "ALL_CHANGED_FILES<<__GH_OUTPUT__"
+            printf '%s\n' "$CHANGED_FILES"
+            echo "__GH_OUTPUT__"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Determine changed content files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHANGED_FILES: ${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
+          # If changing these regexes, test them on https://regex101.com/ with the
+          # following paths (you can paste the block in and uncomment it):
+          # Add new tests if necessary
+          CONTENT_FILE_REGEX: (docs|learning)(?!\/api)\/.*\.(mdx|ipynb)
+          #  -- Should match:
+          #  docs/guides/thing.ipynb
+          #  docs/guides/thing.mdx
+          #  learning/courses/my-course/introduction.ipynb
+          #
+          #  -- Should not match:
+          #  docs/guides/_toc.json
+          #  docs/api/qiskit/index.mdx
+          #  scripts/nb-tester/example-notebook.ipynb
+        id: changed-content-files
+        run: |
+          CHANGED_CONTENT_FILES=$(echo "${CHANGED_FILES[@]}" | grep -P $CONTENT_FILE_REGEX || true)
+          mkdir -p .github/outputs
+          echo "Detected these changed content files:"
+          echo $CHANGED_CONTENT_FILES
+          echo $CHANGED_CONTENT_FILES >> .github/outputs/changed-content-files.txt
+
       - name: Build static site
         run: >
           scripts/pr-previews/builder.py
           ${{ env.PR_PREVIEW_PATH }}
           --basepath /documentation/${{ env.PR_PREVIEW_PATH }}
+
+      - name: Delete temp files
+        # Otherwise this gets pushed to the gh-pages branch
+        run: rm -r .github/outputs
 
       - name: Deploy to GitHub Pages
         run: scripts/pr-previews/deploy.py ${{ env.PR_PREVIEW_PATH }}
