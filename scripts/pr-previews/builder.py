@@ -150,7 +150,7 @@ def _copy_local_content(root_dir: Path, changed_files: set[str]) -> None:
 
 
 def _ignore_unchanged_files(
-    changed_files: set[str], dir: str, contents: list[str]
+    dir: str, contents: list[str], changed_files: set[str]
 ) -> list[str]:
     """For input to shutil.copytree. This function takes the directory path
     (such as `docs/guides`) and a list of file and folder names (entries) in
