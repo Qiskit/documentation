@@ -71,7 +71,7 @@ These variables will be used by QRMI. (See the README files in the various QRMI 
 from qiskit import QuantumCircuit
 # using an IBM QRMI flavor:
 from qrmi.primitives import QRMIService
-from qrmi.primitives.ibm import SamplerV2, get_target
+from qrmi.primitives.ibm import SamplerV2, get_backend
 
 # define circuit
 
@@ -89,10 +89,10 @@ resources = service.resources()
 qrmi = resources[0]
 
 # Generate transpiler target from backend configuration & properties and transpile
-target = get_target(qrmi)
+backend = get_backend(qrmi)
 pm = generate_preset_pass_manager(
     optimization_level=1,
-    target=target,
+    backend=backend,
 )
 
 isa_circuit = pm.run(circuit)
@@ -105,7 +105,14 @@ job = sampler.run([(isa_circuit, isa_observable, param_values)])
 print(f">>> Job ID: {job.job_id()}")
 
 result = job.result()
-print(f">>> {result}")
+
+if job.done():
+    pub_result = result[0]
+    print(f"Counts for the 'meas' output register: {pub_result.data.meas.get_counts()}")
+elif job.cancelled():
+    print("Cancelled")
+elif job.errored():
+    print(qrmi.task_logs(job.job_id()))
 ```
 
 See the [examples directory](https://github.com/qiskit-community/qrmi/tree/main/examples/qiskit_primitives/) for example files.
