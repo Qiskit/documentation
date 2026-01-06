@@ -5,7 +5,8 @@ description: Job limits imposed by the job validation service for jobs sent to I
 ---
 # Job limits
 
-When you send a job to an IBM&reg; QPU, it is first sent to the job validation service.  This service tries to ensure that the job will be able to run on the QPU so you don't have to wait for it to go through the queue and then have the job fail.  These checks include enforcing the described limits.
+When you send a job to an IBM&reg; QPU, it is first sent to the job validation service.  This service tries to ensure that the job will be able to run on the QPU so you don't have to wait for it to go through the queue and then have the job fail.  These checks include enforcing the following described limits. If these limits are exceeded, that workload cannot be handled by the quantum software stack and will usually fail.
+
 
 <Admonition type="note" title="Notes">
 - Certain primitive options increase the circuit size.  The described limits are checked _after_ the expected increase in circuit size. In particular, these options increase circuit size:
@@ -17,14 +18,18 @@ When you send a job to an IBM&reg; QPU, it is first sent to the job validation s
 <span id="max-shots"></span>
 ## Maximum executions
 
-At most, **10 million** executions are allowed.  The number of executions is the number of circuits times the number of shots, where the circuits are those generated after PUB elements are broadcasted.
+At most, **10 million** executions are allowed for Sampler jobs (Estimator jobs can be split into smaller sub-jobs, so this limit doesn't apply).  The number of executions is the number of circuits times the number of shots, where the circuits are those generated after PUB elements are broadcasted.
 
-For example, if you have a PUB with one circuit, observables with shape (1, 6), and parameters with shape (4, 1), this would render $4 \times 6 = 24$ circuits (or fewer, if some observables commute). If you requested 2,000 shots, then the total number of executions is $24 \times 2,000 = 48,000$.
+For example, if you have a PUB with one circuit and parameters with shape (4, 1), this would render 4 circuits. If you requested 2,000 shots, then the total number of executions is $4 \times 2,000 = 8,000$.
+
+Note that if you enable Pauli-twirling in your Sampler job, the total number of shots is based on the `num_randomizations` and `shots_per_randomization` values. See [TwirlingOptions](/docs/api/qiskit-ibm-runtime/options-twirling-options) for more details.
 
 <span id="per-qubit"></span>
 ## Maximum number of low-level instructions per qubit
 
-The service permits up to **26.8 million control-system instructions per qubit**. This ensures that the user circuits fit within the control system's instruction memory.  The following table describes how the system translates instruction set architecture (ISA) circuit instructions to control system instructions when calculating this limit.
+The service permits up to **26.8 million control-system instructions per qubit**. This ensures that the user circuits fit within the control system's instruction memory.  The below example shows how to transpile a circuit and count how many of each instruction there are. 
+
+The following table describes how the system translates instruction set architecture (ISA) circuit instructions to control system instructions when calculating this limit.
 
 | Instruction | Count |
 |-------------|-------|
@@ -42,6 +47,33 @@ The service permits up to **26.8 million control-system instructions per qubit**
 <Admonition type="note">
   This table captures the heuristic used in validation and does not reflect the exact number of instructions used to implement an operation.
 </Admonition>
+
+### Example
+
+Define circuits, transpile them, and get a count of how many gates will be run.
+
+```python
+from qiskit import QuantumCircuit
+from qiskit.transpiler import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+num_qubits = 50
+ghz = QuantumCircuit(num_qubits)
+ghz.h(range(num_qubits))
+ghz.cx(0, range(1, num_qubits))
+op_counts = ghz.count_ops()
+
+# Choose the least busy backend
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
+transpiled_ghz = pm.run(ghz)
+op_counts = transpiled_ghz.count_ops()
+
+print(f"Post-Transpilation gates: {op_counts}")
+```
+For full details, see [Transpile against custom backends.](/docs/guides/custom-backend#ex-count-ops)
 
 <span id="2-qubit-limit"></span>
 ## Maximum number of single- and two-qubit gates per circuit

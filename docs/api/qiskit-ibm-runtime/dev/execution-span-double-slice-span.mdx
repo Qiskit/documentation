@@ -13,7 +13,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
   An [`ExecutionSpan`](execution-span-execution-span "qiskit_ibm_runtime.execution_span.ExecutionSpan") for data stored in a sliceable format.
 
-  This type of execution span references pub result data by assuming that it is a sliceable portion of the data where the shots are the outermost slice and the rest of the data is flattened. Therefore, for each pub dependent on this span, the constructor accepts two `slice` objects, along with the corresponding shape of the data to be sliced; in contrast to [`SliceSpan`](execution-span-slice-span "qiskit_ibm_runtime.execution_span.SliceSpan"), this class does not assume that *all* shots for a particular set of parameter values are contiguous in the array of data.
+  This type of execution span references pub result data by assuming that it is a sliceable portion of the data where the shots are the outermost slice and the rest of the data is flattened. Therefore, for each pub dependent on this span, the constructor accepts two `slice` instances, along with the corresponding shape of the data to be sliced; in contrast to [`SliceSpan`](execution-span-slice-span "qiskit_ibm_runtime.execution_span.SliceSpan"), this class does not assume that *all* shots for a particular set of parameter values are contiguous in the array of data.
 
   **Parameters**
 
@@ -86,7 +86,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
     **Return type**
 
-    [DoubleSliceSpan](#qiskit_ibm_runtime.execution_span.DoubleSliceSpan "qiskit_ibm_runtime.execution_span.DoubleSliceSpan")
+    [*DoubleSliceSpan*](#qiskit_ibm_runtime.execution_span.DoubleSliceSpan "qiskit_ibm_runtime.execution_span.double_slice_span.DoubleSliceSpan")
   </Function>
 
   ### mask
@@ -108,7 +108,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")\[*Any*, [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.3)")\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.3)")]]
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.4)")\[tuple\[int, …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.4)")\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.4)")]]
   </Function>
 </Class>
 
