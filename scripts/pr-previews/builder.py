@@ -57,7 +57,7 @@ def main() -> None:
 
     try:
         lines = (
-            Path(".github/outputs/changed-content-files.txt").read_text().split("\n")
+            Path(".github/outputs/changed-content-files.txt").read_text().split(" ")
         )
         changed_content_files = set(line for line in lines if line != "")
     except FileNotFoundError:
