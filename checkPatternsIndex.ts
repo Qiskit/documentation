@@ -33,7 +33,6 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/docs/guides/faq",
   "/docs/guides/execution-modes-faq",
   "/docs/guides/open-source",
-  "/docs/guides/circuit-transpilation-settings",
 ]);
 
 // URLs that show up in the INDEX_PAGES, but are not in the left ToC under
