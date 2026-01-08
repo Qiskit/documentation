@@ -33,7 +33,6 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/docs/guides/faq",
   "/docs/guides/execution-modes-faq",
   "/docs/guides/open-source",
-  "/docs/guides/combine-error-mitigation-techniques",
   "/docs/guides/circuit-transpilation-settings",
 ]);
 
