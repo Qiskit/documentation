@@ -174,7 +174,12 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
-];
+
+  // The pulse guide was removed in https://github.com/Qiskit/documentation/pull/4251 and should be fixed
+  // in the Qiskit latest, dev, and some historical versions. In the meantime, the app will redirect the
+  // page to pulse-migration so the links are not broken.
+  "/docs/guides/pulse",
+  ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
