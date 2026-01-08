@@ -179,7 +179,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // in the Qiskit latest, dev, and some historical versions. In the meantime, the app will redirect the
   // page to pulse-migration so the links are not broken.
   "/docs/guides/pulse",
-  ];
+];
 
 export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
