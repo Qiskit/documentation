@@ -175,7 +175,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
 
-  // The pulse guide was removed in https://github.com/Qiskit/documentation/pull/4251 and should be fixed
+  // The pulse guide was removed in https://github.com/Qiskit/documentation/pull/4495 and should be fixed
   // in the Qiskit latest, dev, and some historical versions. In the meantime, the app will redirect the
   // page to pulse-migration so the links are not broken.
   "/docs/guides/pulse",
