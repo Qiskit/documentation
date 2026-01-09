@@ -137,6 +137,13 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit-c/index.mdx",
   "docs/api/qiskit-c/2.1/index.mdx",
   "docs/api/qiskit-c/2.1/qk-complex-64.mdx",
+  "docs/api/qiskit-c/2.2/qk-transpiler.mdx",
+  "docs/api/qiskit-c/2.2/qk-transpiler-passes.mdx",
+  "docs/api/qiskit-c/2.2/qk-target-entry.mdx",
+  "docs/api/qiskit-c/2.2/qk-obs.mdx",
+  "docs/api/qiskit-c/2.2/qk-circuit.mdx",
+  "docs/api/qiskit-c/2.2/qk-obs-term.mdx",
+  "docs/api/qiskit-c/2.2/qk-target.mdx",
   "docs/api/qiskit-ibm-runtime/estimator-v2.mdx",
   "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
 ];
