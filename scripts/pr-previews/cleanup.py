@@ -17,6 +17,8 @@ import logging
 import shutil
 import time
 from pathlib import Path
+from datetime import datetime
+from typing_extensions import TypedDict
 
 logger = logging.getLogger(__name__)
 
@@ -33,6 +35,7 @@ INITIAL_COMMIT = "499a5040585d02593cdd8237e19c9ee4a84ae126"
 
 SEVEN_DAYS_IN_SECONDS = 60 * 60 * 24 * 7
 PR_EXPIRATION_TIME_SECONDS = SEVEN_DAYS_IN_SECONDS
+
 
 def main() -> None:
     setup_git_account()
@@ -61,35 +64,76 @@ def main() -> None:
         logger.info("Cleaned up closed PR previews")
 
 
-def get_active_pr_folders() -> set[str]:
-    raw = run_subprocess(
-        ["gh", "pr", "list", "--state", "open", "--json", "number", "--limit", "1000"]
-    ).stdout
-    # `raw` is JSON string of form: { number: int }[]
-    return {f"pr-{obj['number']}" for obj in json.loads(raw)}
+class PrFolders(TypedDict):
+    open: set[str]
+    stale: set[str]
 
-def is_stale(folder_name: str) -> bool:
-    # All time measured in seconds, from the unix epoch
+
+def get_pr_folders() -> PrFolders:
+    # === Get PR data from GitHub API ===
+    raw = run_subprocess(
+        [
+            "gh",
+            "pr",
+            "list",
+            "--state",
+            "open",
+            "--json",
+            "number,updatedAt",
+            "--limit",
+            "1000",
+        ]
+    ).stdout
+
+    # === Parse GitHub API response ===
+    # We parse the JSON into `{ number: int, updatedAt: int }[]`
+    def parse_updated_at(data):
+        """Converts "updatedAt" fields from iso strings into unix timestamps"""
+        if "updatedAt" in data:
+            iso_format = data["updatedAt"]
+            timestamp = datetime.fromisoformat(iso_format).timestamp()
+            data["updatedAt"] = timestamp
+        return data
+
+    parsed = json.loads(raw, object_hook=parse_updated_at)
+
+    all_pr_numbers = (number for number in parsed)
+
+    # === Extract stale PRs ===
     current_timestamp = time.time()
-    last_modified_timestamp = get_timestamp(Path(folder_name))
-    if last_modified_timestamp is None:
-        return False
-    return (current_timestamp - last_modified_timestamp) > PR_EXPIRATION_TIME_SECONDS
+
+    def is_stale(updated_at: int) -> bool:
+        return (current_timestamp - updated_at) > PR_EXPIRATION_TIME_SECONDS
+
+    stale_pr_numbers = (pr["number"] for pr in parsed if is_stale(pr["updatedAt"]))
+
+    # === Return folder names ===
+    def number_to_folder(num: int) -> str:
+        return f"pr-{num}"
+
+    return {
+        "open": set(map(number_to_folder, all_pr_numbers)),
+        "stale": set(map(number_to_folder, stale_pr_numbers)),
+    }
+
 
 def delete_closed_pr_folders() -> None:
-    active_pr_folders = get_active_pr_folders()
+    pr_folders = get_pr_folders()
 
     for folder in Path(".").glob("pr-*"):
-        is_closed = folder.name not in active_pr_folders
+        is_closed = folder.name not in pr_folders["open"]
         if is_closed:
             logger.info(f"Deleting {folder} as PR is closed")
             shutil.rmtree(folder)
             continue
-        if is_stale(folder.name):
+
+        is_stale = folder.name in pr_folders["stale"]
+        if is_stale:
             logger.info(f"Would delete {folder} as it is stale")
             # TODO (#3433) Change the log message and uncomment the following line
             # shutil.rmtree(folder)
             continue
+
 
 if __name__ == "__main__":
     configure_logging()
