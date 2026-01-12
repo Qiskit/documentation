@@ -157,7 +157,7 @@ def test_determine_stale_active_pr():
       "number": 1,
       "updatedAt": "1970-01-01T01:00:00"
     }]"""
-    assert determine_stale(api_response, 0, 1) == {
+    assert determine_stale(api_response, current_time=0, expiration_period=1) == {
         "all_open": {"pr-1"},
         "open_stale": set(),
     }
@@ -170,9 +170,7 @@ def test_determine_stale_stale_pr():
       "number": 1,
       "updatedAt": "1970-01-01T01:00:00"
     }]"""
-    current_time = 100
-    expiration_period = 10
-    assert determine_stale(api_response, current_time, expiration_period) == {
+    assert determine_stale(api_response, current_time=100, expiration_period=10) == {
         "all_open": {"pr-1"},
         "open_stale": {"pr-1"},
     }
@@ -195,7 +193,9 @@ def test_determine_stale_many_results():
     ]"""
     current_time = int(datetime(1970, 1, 4, 1, 0).timestamp())  # 4th Jan, 1970
     two_days_in_seconds = 60 * 60 * 24 * 2
-    assert determine_stale(api_response, current_time, two_days_in_seconds) == {
+    assert determine_stale(
+        api_response, current_time, expiration_period=two_days_in_seconds
+    ) == {
         "all_open": {"pr-1", "pr-2", "pr-3"},
         "open_stale": {"pr-1"},
     }
