@@ -28,7 +28,6 @@ from utils import (
     setup_git_account,
     switch_branch,
     changed_files,
-    get_timestamp,
 )
 
 INITIAL_COMMIT = "499a5040585d02593cdd8237e19c9ee4a84ae126"
