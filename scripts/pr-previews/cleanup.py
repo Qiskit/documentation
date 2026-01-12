@@ -69,9 +69,40 @@ class PrFolders(TypedDict):
     stale: set[str]
 
 
+def determine_stale(
+    api_response: str, current_time: int, expiration_period: int
+) -> PrFolders:
+    # We parse the JSON into `{ number: int, updatedAt: int }[]`
+    def parse_updated_at(data):
+        """Converts "updatedAt" fields from iso strings into unix timestamps"""
+        if "updatedAt" in data:
+            iso_format = data["updatedAt"]
+            timestamp = datetime.fromisoformat(iso_format).timestamp()
+            data["updatedAt"] = timestamp
+        return data
+
+    parsed = json.loads(api_response, object_hook=parse_updated_at)
+    all_pr_numbers = (number for number in parsed)
+
+    # === Extract stale PRs ===
+
+    def is_stale(updated_at: int) -> bool:
+        return (current_time - updated_at) > expiration_period
+
+    stale_pr_numbers = (pr["number"] for pr in parsed if is_stale(pr["updatedAt"]))
+
+    # === Return folder names ===
+    def number_to_folder(num: int) -> str:
+        return f"pr-{num}"
+
+    return {
+        "open": set(map(number_to_folder, all_pr_numbers)),
+        "stale": set(map(number_to_folder, stale_pr_numbers)),
+    }
+
+
 def get_pr_folders() -> PrFolders:
-    # === Get PR data from GitHub API ===
-    raw = run_subprocess(
+    api_response = run_subprocess(
         [
             "gh",
             "pr",
@@ -84,37 +115,7 @@ def get_pr_folders() -> PrFolders:
             "1000",
         ]
     ).stdout
-
-    # === Parse GitHub API response ===
-    # We parse the JSON into `{ number: int, updatedAt: int }[]`
-    def parse_updated_at(data):
-        """Converts "updatedAt" fields from iso strings into unix timestamps"""
-        if "updatedAt" in data:
-            iso_format = data["updatedAt"]
-            timestamp = datetime.fromisoformat(iso_format).timestamp()
-            data["updatedAt"] = timestamp
-        return data
-
-    parsed = json.loads(raw, object_hook=parse_updated_at)
-
-    all_pr_numbers = (number for number in parsed)
-
-    # === Extract stale PRs ===
-    current_timestamp = time.time()
-
-    def is_stale(updated_at: int) -> bool:
-        return (current_timestamp - updated_at) > PR_EXPIRATION_TIME_SECONDS
-
-    stale_pr_numbers = (pr["number"] for pr in parsed if is_stale(pr["updatedAt"]))
-
-    # === Return folder names ===
-    def number_to_folder(num: int) -> str:
-        return f"pr-{num}"
-
-    return {
-        "open": set(map(number_to_folder, all_pr_numbers)),
-        "stale": set(map(number_to_folder, stale_pr_numbers)),
-    }
+    return determine_stale(api_response, int(time.time()), PR_EXPIRATION_TIME_SECONDS)
 
 
 def delete_closed_pr_folders() -> None:
