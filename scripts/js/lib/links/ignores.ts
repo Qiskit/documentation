@@ -173,7 +173,6 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://auth.quantum.ibm.com/api",
   "https://quantum-computing.cloud.ibm.com",
-
   // Other links that don't seem to exist any more
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
