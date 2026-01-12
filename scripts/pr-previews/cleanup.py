@@ -84,7 +84,9 @@ def determine_stale(
     parsed = json.loads(api_response, object_hook=parse_updated_at)
     all_pr_numbers = (pr["number"] for pr in parsed)
 
-    # === Extract stale PRs ===
+    # ========================================================
+    # Extract stale PRs
+    # ========================================================
 
     def is_stale(updated_at: int) -> bool:
         return (current_time - updated_at) > expiration_period
