@@ -56,7 +56,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/qpy/interface.py#L274-L438" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/qpy/interface.py#L274-L438" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
@@ -104,7 +104,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/qpy/interface.py#L89-L271" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=16, annotation_factories=None)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/qpy/interface.py#L89-L271" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=17, annotation_factories=None)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -171,7 +171,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### get\_qpy\_version
 
-<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/qpy/interface.py#L441-L468" signature="qiskit.qpy.get_qpy_version(file_obj)">
+<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/qpy/interface.py#L441-L468" signature="qiskit.qpy.get_qpy_version(file_obj)">
   This function identifies the QPY version of the file.
 
   This function will read the header of `file_obj` and will return the QPY format version. It will **not** advance the cursor of `file_obj`. If you are using this for a subsequent read, such as to call [`load()`](#qiskit.qpy.load "qiskit.qpy.load"), you can pass `file_obj` directly. For example:
@@ -201,7 +201,7 @@ These functions will raise a custom subclass of [`QiskitError`](exceptions#qiski
 
 ### QpyError
 
-<Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)" modifiers="exception">
+<Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Errors raised by the qpy module.
@@ -213,7 +213,7 @@ When a lower-than-maximum target QPY version is set for serialization, but the o
 
 ### UnsupportedFeatureForVersion
 
-<Class id="qiskit.qpy.UnsupportedFeatureForVersion" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/qpy/exceptions.py#L31-L48" signature="qiskit.qpy.UnsupportedFeatureForVersion(feature, required, target)" modifiers="exception">
+<Class id="qiskit.qpy.UnsupportedFeatureForVersion" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/qpy/exceptions.py#L31-L48" signature="qiskit.qpy.UnsupportedFeatureForVersion(feature, required, target)" modifiers="exception">
   Bases: [`QpyError`](#qiskit.qpy.QpyError "qiskit.qpy.exceptions.QpyError")
 
   QPY error raised when the target dump version is too low for a feature that is present in the object to be serialized.
@@ -259,7 +259,7 @@ If a feature being loaded is deprecated in the corresponding qiskit release, QPY
 
 ### QPYLoadingDeprecatedFeatureWarning
 
-<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
+<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
   Bases: [`QiskitWarning`](exceptions#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning")
 
   Visible deprecation warning for QPY loading functions without a stable point in the call stack.
@@ -284,6 +284,11 @@ If you’re planning to load a QPY file between different Qiskit versions knowin
 
 | Qiskit (qiskit-terra for \< 1.0.0) version | [`dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") format(s) output versions | [`load()`](#qiskit.qpy.load "qiskit.qpy.load") maximum supported version (older format versions can always be read) |
 | ------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| 2.3.0                                      | 13, 14, 15, 16, 17                                                       | 17                                                                                                                  |
+| 2.2.2                                      | 13, 14, 15, 16                                                           | 16                                                                                                                  |
+| 2.2.1                                      | 13, 14, 15, 16                                                           | 16                                                                                                                  |
+| 2.2.0                                      | 13, 14, 15, 16                                                           | 16                                                                                                                  |
+| 2.1.2                                      | 13, 14, 15, 16                                                           | 16                                                                                                                  |
 | 2.1.1                                      | 13, 14, 15, 16                                                           | 16                                                                                                                  |
 | 2.1.0                                      | 13, 14, 15                                                               | 15                                                                                                                  |
 | 2.0.2                                      | 13, 14                                                                   | 14                                                                                                                  |
@@ -392,6 +397,43 @@ Changed in version QPY: 15 `ANNOTATION_HEADER` was added between `REGISTERS` and
 Changed in version QPY: 12 `STANDALONE_VARS` was added between `REGISTERS` and `CUSTOM_DEFINITIONS`.
 
 There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
+
+<span id="qpy-version-17" />
+
+### Version 17
+
+Version 17 adds support for serializing and deserializing [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") containing [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") as operator(s).
+
+<span id="changes-to-pauli-evolution" />
+
+#### Changes to PAULI\_EVOLUTION
+
+The format of PAULI\_EVOLUTION itself remains unchanged, but the format of the operators that immediately follow the packed evolution gate is updated. Instead of operator\_count elements defined by SPARSE\_PAULI\_OP\_LIST\_ELEM format, the payload now specifies the type of each operator to account for either operators of type [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") or of [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
+
+The new payload following PAULI\_EVOLUTION now contains exactly operator\_count sequences of a bool (`"!?"`) followed by the operator. If the bool is `True`, the operator is a [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") and interpreted with the new SPARSE\_OBSERVABLE format (see below). If it is `False`, the operator is a [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") and interpreted according to the existing SPARSE\_PAULI\_OP\_LIST\_ELEM format.
+
+<span id="new-sparse-observable" />
+
+#### New SPARSE\_OBSERVABLE
+
+The SPARSE\_OBSERVABLE format represents an instance of a [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable"), given by
+
+```c
+struct {
+  uint32_t num_qubits;
+  uint64_t coeff_data_len;
+  uint64_t bitterm_data_len;
+  uint64_t inds_data_len;
+  uint64_t bounds_data_len;
+}
+```
+
+which is immediately followed by the number of qubits and then the data arrays of the coefficients, bit terms, indices, and boundaries of the observable. The format specifies the number of bytes each array occupies. The number of elements can be calculated by dividing the number of bytes by the size of each element.
+
+> *   Each coefficient is stored as two consecutive “!d” elements, first the real and then the imaginary part.
+> *   The bit term elements are of type “!H” and represents the u8 value of the [`SparseObservable.BitTerm`](qiskit.quantum_info.SparseObservable#bitterm "qiskit.quantum_info.SparseObservable.BitTerm")
+> *   The indices elements are of type “!I”.
+> *   The boundaries elements are of type “!Q”.
 
 <span id="qpy-version-16" />
 

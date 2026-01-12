@@ -14,7 +14,13 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES: Set<string> = new Set([]);
+export const IGNORED_FILES: Set<string> = new Set([
+  // TODO(#4200):
+  // The Qiskit C API objects.inv has a lot of broken links that we should fix.
+  // When working on this, we should also try to fix the links in `_qiskitCRegexes()`
+  // at the end of this file.
+  "public/docs/api/qiskit-c/objects.inv",
+]);
 
 // -----------------------------------------------------------------------------------
 // Always ignored URLs - prefer to use more precise ignores
@@ -174,6 +180,11 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
+
+  // The pulse guide was removed in https://github.com/Qiskit/documentation/pull/4495 and should be fixed
+  // in the Qiskit latest, dev, and some historical versions. In the meantime, the app will redirect the
+  // page to pulse-migration so the links are not broken.
+  "/docs/guides/pulse",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -448,7 +459,14 @@ function _qiskitCRegexes(): FilesToIgnores {
       "/docs/api/qiskit-c/version#qiskit_version_minor",
       "/docs/api/qiskit-c/version#qiskit_version_patch",
     ],
-    "docs/api/qiskit-c/qk-transpiler.mdx": ["#structqktranspileoptions"],
+    "docs/api/qiskit-c/qk-transpiler.mdx": [
+      "#structqktranspileoptions",
+      "#c.qk_transpile",
+    ],
+    "docs/api/qiskit-c/qk-dag.mdx": ["#structqkdagneighbors"],
+    "docs/api/qiskit-c/qk-transpiler-passes.mdx": [
+      "#c.qk_transpiler_pass_standalone_vf2_layout_average",
+    ],
   };
 }
 

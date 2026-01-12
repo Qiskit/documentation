@@ -59,7 +59,7 @@ python_api_name: qiskit.transpiler.Target
 
   Then in the `target` object accessing by `rx_30` will get the fixed angle [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") while `rx` will get the parameterized [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
 
-  You can optionally specify a bound on valid values on a gate in the target by using the `angle_bounds` keyword argument when calling the [`add_instruction()`](#qiskit.transpiler.Target.add_instruction "qiskit.transpiler.Target.add_instruction") method. Bounds are set on operations not individual instructions, so when you call [`add_instruction()`](#qiskit.transpiler.Target.add_instruction "qiskit.transpiler.Target.add_instruction") the bounds are applied for all qargs that it is defined on. The bounds are specified of a list of 2-tuples of floats where the first float is the lower bound and the second float is the upper bound. For example, if you specfied an angle bound:
+  You can optionally specify a bound on valid values on a gate in the target by using the `angle_bounds` keyword argument when calling the [`add_instruction()`](#qiskit.transpiler.Target.add_instruction "qiskit.transpiler.Target.add_instruction") method. Bounds are set on operations not individual instructions, so when you call [`add_instruction()`](#qiskit.transpiler.Target.add_instruction "qiskit.transpiler.Target.add_instruction") the bounds are applied for all qargs that it is defined on. The bounds are specified of a list of 2-tuples of floats where the first float is the lower bound and the second float is the upper bound. For example, if you specified an angle bound:
 
   ```python
   [(0.0, 3.14), (-3.14, 3.14), (0.0, 1.0)]
@@ -68,7 +68,7 @@ python_api_name: qiskit.transpiler.Target
   this indicates the angle bounds for a 3 parameter gate where the first parameter accepts angles between 0 and 3.14, the second between -3.14 and 3.14, and the third parameter between 0 and 1. All bounds are set inclusively as well. A bound can also be specified with `None` instead of a 2-tuple which indicates that parameter has no constraints. For example:
 
   ```python
-  [(0.0, 3.14, None, None)]
+  [(0.0, 3.14), None, None]
   ```
 
   indicates an angle bound for a 3 parameter gate where only the first parameter is restricted to angles between 0.0 and 3.14 and the other parameters accept any value.
