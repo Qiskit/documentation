@@ -19,7 +19,7 @@ This section shows how to build QRMI for C and Python.
 
 ### Requirements
 
-QRMI supports the following operating systems: 
+QRMI supports the following operating systems (OS): 
 
 ```
 AlmaLinux 9, Amazon Linux 2023, CentOS Stream 9, CentOS Stream 10, 
@@ -30,7 +30,7 @@ Ubuntu 22.04, Ubuntu 24.04, MacOS Sequoia 15.1 or above
 
 #### Compiling environment
 *  [Rust compiler](https://www.rust-lang.org/tools/install) 1.91 or above
-* A C compiler: for example, GCC (`gcc`) on Linux and Clang (`clang-tools-extra`) for Rust unknown targets/cross compilations. QRMI is compatible with a compiler conforming to the C11 standard.
+* A C compiler: for example, GCC (`gcc`) on Linux and Clang (`clang-tools-extra`) for Rust unknown targets/cross compilations. QRMI is compatible with a compiler conforming to the C11 standard
 * `make/cmake` (make/cmake RPM for RHEL-compatible OS)
 * `openssl` (openssl-devel RPM for RHEL-compatible OS)
 * `zlib` (zlib-devel RPM for RHEL-compatible OS)
@@ -39,8 +39,8 @@ Ubuntu 22.04, Ubuntu 24.04, MacOS Sequoia 15.1 or above
     * /usr/include/python3.1x
     * /usr/lib64/libpython3.1x.so
 * Doxygen (for generating C API document), depending on the OS:
-  * ```dnf install doxygen``` for Linux(RHEL/CentOS/Rocky Linux etc.)
-  * ```apt install doxygen``` for Linux(Ubuntu etc.)
+  * ```dnf install doxygen``` for Linux (RHEL/CentOS/Rocky Linux and others)
+  * ```apt install doxygen``` for Linux (Ubuntu and others)
   * ```brew install doxygen```for MacOS
 
 #### Runtime environment
@@ -89,7 +89,7 @@ The wheel is created in the `./target/release/maturin/wheels` directory. You can
 
 ## Logging
 
-QRMI supports [log crate](https://crates.io/crates/log) for logging. You can find the detailed QRMI runtime logs by specifying `RUST_LOG` environment variable with the log level. Supported levels are `error`, `warn`, `info`, `debug` and `trace`. The default level is `warn`. 
+QRMI supports [log crate](https://crates.io/crates/log) for logging. You can find the detailed QRMI runtime logs by specifying `RUST_LOG` environment variable with the log level. Supported levels are `error`, `warn`, `info`, `debug`, and `trace`. The default level is `warn`. 
 
 If you specify `trace`, you can find underlying HTTP transaction logs.
 
@@ -134,7 +134,7 @@ Then, open the following page in your browser:
 http://localhost:8290/qrmi.html 
 ```
 
-Stop the server with
+Stop the server with:
 ```shell-session
 server> q
 ```

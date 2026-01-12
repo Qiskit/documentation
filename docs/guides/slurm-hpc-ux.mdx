@@ -31,7 +31,7 @@ NodeName=node[1-5000] Gres=qpu,name:ibm_fez
 
 ### User scope
 
-HPC users submit jobs using QPU resources that are tied to Slurm QPU resources. The name attribute references what the HPC administrator has defined. During a slurm job's runtime, backend selection can be based on criteria other than a predefined name referring to a specific backend (for example, by capacity and error rate qualifiers, to help down-select among the defined set of backends).
+HPC users submit jobs using QPU resources that are tied to Slurm QPU resources. The name attribute references what the HPC administrator has defined. During a Slurm job's runtime, backend selection can be based on criteria other than a predefined name referring to a specific backend (for example, by capacity and error rate qualifiers, to help down-select among the defined set of backends).
 
 There might be additional environment variables required, depending on the backend type.
 
@@ -69,7 +69,7 @@ These variables will be used by QRMI. (See the README files in the various QRMI 
 
 ```python
 from qiskit import QuantumCircuit
-# using an IBM QRMI flavor:
+# Using an IBM QRMI flavor:
 from qrmi.primitives import QRMIService
 from qrmi.primitives.ibm import SamplerV2, get_backend
 
@@ -97,7 +97,7 @@ pm = generate_preset_pass_manager(
 
 isa_circuit = pm.run(circuit)
 
-# run the circuit
+# Run the circuit
 options = {}
 sampler = SamplerV2(qrmi, options=options)
 
@@ -120,7 +120,7 @@ See the [examples directory](https://github.com/qiskit-community/qrmi/tree/main/
 ### Backend specifics
 #### IBM Direct Access API
 ##### Administrator scope
-Configuration of Direct Access API backends (HPC admin scope) includes endpoints and credentials to the Direct Access endpoint and authentication services as well as to the S3 endpoint.
+Configuration of Direct Access API backends (HPC admin scope) includes endpoints and credentials to the Direct Access endpoint and authentication services, as well as to the S3 endpoint.
 Specifically, this includes:
 
 * IBM Cloud&reg; API key for creating bearer tokens
