@@ -82,7 +82,7 @@ def determine_stale(
         return data
 
     parsed = json.loads(api_response, object_hook=parse_updated_at)
-    all_pr_numbers = (number for number in parsed)
+    all_pr_numbers = (pr["number"] for pr in parsed)
 
     # === Extract stale PRs ===
 
@@ -139,3 +139,61 @@ def delete_closed_pr_folders() -> None:
 if __name__ == "__main__":
     configure_logging()
     main()
+
+
+# =====
+# TESTS
+# =====
+
+
+def test_determine_stale_empty_list():
+    assert determine_stale("[]", 0, 1) == {"all_open": set(), "open_stale": set()}
+
+
+def test_determine_stale_active_pr():
+    api_response = """[{
+      "number": 1,
+      "updatedAt": "1970-01-01T01:00:00"
+    }]"""
+    assert determine_stale(api_response, 0, 1) == {
+        "all_open": {"pr-1"},
+        "open_stale": set(),
+    }
+
+
+def test_determine_stale_stale_pr():
+    # unix_epoch = "1970-01-01T01:00:00"
+    # (checked wih `datetime.fromtimestamp(0).isoformat()`)
+    api_response = """[{
+      "number": 1,
+      "updatedAt": "1970-01-01T01:00:00"
+    }]"""
+    current_time = 100
+    expiration_period = 10
+    assert determine_stale(api_response, current_time, expiration_period) == {
+        "all_open": {"pr-1"},
+        "open_stale": {"pr-1"},
+    }
+
+
+def test_determine_stale_many_results():
+    api_response = """[
+      {
+        "number": 1,
+        "updatedAt": "1970-01-01T01:00:00"
+      },
+      {
+        "number": 2,
+        "updatedAt": "1970-01-02T01:00:00"
+      },
+      {
+        "number": 3,
+        "updatedAt": "1970-01-03T01:00:00"
+      }
+    ]"""
+    current_time = int(datetime(1970, 1, 4, 1, 0).timestamp())  # 4th Jan, 1970
+    two_days_in_seconds = 60 * 60 * 24 * 2
+    assert determine_stale(api_response, current_time, two_days_in_seconds) == {
+        "all_open": {"pr-1", "pr-2", "pr-3"},
+        "open_stale": {"pr-1"},
+    }
