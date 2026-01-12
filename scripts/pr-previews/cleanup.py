@@ -18,7 +18,7 @@ import shutil
 import time
 from pathlib import Path
 from datetime import datetime
-from typing_extensions import TypedDict
+from typing import TypedDict
 
 logger = logging.getLogger(__name__)
 
@@ -65,8 +65,8 @@ def main() -> None:
 
 
 class PrFolders(TypedDict):
-    open: set[str]
-    stale: set[str]
+    all_open: set[str]
+    open_stale: set[str]
 
 
 def determine_stale(
@@ -96,8 +96,8 @@ def determine_stale(
         return f"pr-{num}"
 
     return {
-        "open": set(map(number_to_folder, all_pr_numbers)),
-        "stale": set(map(number_to_folder, stale_pr_numbers)),
+        "all_open": set(map(number_to_folder, all_pr_numbers)),
+        "open_stale": set(map(number_to_folder, stale_pr_numbers)),
     }
 
 
@@ -122,13 +122,13 @@ def delete_closed_pr_folders() -> None:
     pr_folders = get_pr_folders()
 
     for folder in Path(".").glob("pr-*"):
-        is_closed = folder.name not in pr_folders["open"]
+        is_closed = folder.name not in pr_folders["all_open"]
         if is_closed:
             logger.info(f"Deleting {folder} as PR is closed")
             shutil.rmtree(folder)
             continue
 
-        is_stale = folder.name in pr_folders["stale"]
+        is_stale = folder.name in pr_folders["open_stale"]
         if is_stale:
             logger.info(f"Would delete {folder} as it is stale")
             # TODO (#3433) Change the log message and uncomment the following line
