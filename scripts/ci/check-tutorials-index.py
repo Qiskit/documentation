@@ -38,10 +38,9 @@ def is_hidden(path: Path) -> bool:
 
 def get_notebook_title(path: Path) -> str:
     data = json.loads(path.read_text())
-    try:
-        return data['metadata']['title'].strip()
-    except KeyError as err:
-        raise Exception("Make sure your notebook has a 'title' metadata!") from err
+    first_md_cell = next((item for item in data['cells'] if item['cell_type'] == 'markdown'))
+    title_line = next((item for item in first_md_cell['source'] if item.startswith("title:")))
+    return title_line.split("title:", 1)[1].strip()
 
 def get_expected_links() -> Iterator[Link]:
     notebook_paths = TUTORIALS_ROOT.rglob("**/*.ipynb")
