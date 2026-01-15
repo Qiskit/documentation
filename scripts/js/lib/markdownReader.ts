@@ -57,23 +57,29 @@ export function markdownFromNotebook(
     .join("\n\n");
 }
 
+async function readFileMarkdown(
+  filePath: string,
+  options: { includeCodeCellSourceCode?: boolean } = {},
+): Promise<string> {
+  const ext = path.extname(filePath);
+
+  if (ext === ".ipynb") {
+    const notebook = await readJsonFile(filePath);
+    return markdownFromNotebook(notebook, options);
+  }
+
+  if (ext === ".md" || ext === ".mdx") {
+    return readFile(filePath, "utf8");
+  }
+
+  throw new Error(`Unexpected file type: ${ext} at path ${filePath}`);
+}
+
 export async function readMarkdownAndMetadata(
   filePath: string,
   options: { includeCodeCellSourceCode?: boolean } = {},
 ): Promise<{ content: string; metadata: Record<string, any> }> {
-  const ext = path.extname(filePath);
-  if (ext === ".ipynb") {
-    const notebook = await readJsonFile(filePath);
-    const content = markdownFromNotebook(notebook, options);
-    const metadata = notebook.metadata || {};
-    return { content, metadata };
-  }
-
-  if (ext === ".md" || ext === ".mdx") {
-    const rawContent = await readFile(filePath, "utf8");
-    const parsed = grayMatter(rawContent);
-    return { content: parsed.content, metadata: parsed.data };
-  }
-
-  throw new Error(`Unexpected file type: ${ext} at path ${filePath}`);
+  const rawContent = await readFileMarkdown(filePath, options);
+  const parsed = grayMatter(rawContent);
+  return { content: parsed.content, metadata: parsed.data };
 }
