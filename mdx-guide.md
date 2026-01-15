@@ -32,28 +32,13 @@ Every page must set a `title` and `description`:
 - The title is used for browser tabs and the top line of search results. It should usually match the title used in the `_toc.json` file.
 - The description should describe the page in at least 50 but no more than 160 characters, ideally using some keywords. The description is what shows up as the text in search results. See https://github.com/Qiskit/documentation/issues/131 for some tips.
 
-In MDX files, set the metadata at the top of the file like this:
+Set the metadata at the top of the file like this:
 
 ```
 ---
 title: Representing quantum computers
 description: Learn about coupling maps, basis gates, and backend errors for transpiling
 ---
-```
-
-In Jupyter notebooks, set `title` and `description` in the `metadata` section for the file. In VSCode, you can set up the metadata with these instructions:
-
-1. Open up the file with the "Open With..." option (one way to do this is to right-click the file name to find the "Open With..." option) and then "Text Editor".
-2. Scroll down to the bottom of the file for the top-level key "metadata". Ensure that this is the metadata for the entire file and not for a single code block. You should see in the "metadata" section other entries like "language_info" and "nbconvert_exporter".
-3. Add new keys in the "metadata" section for "title" and "description".
-
-```json
-"metadata": {
-  "description": "Get started using Qiskit with IBM Quantum hardware in this Hello World example",
-  "title": "Hello world",
-  "celltoolbar": "Raw Cell Format",
-  "kernelspec": { ...
-}
 ```
 
 Avoid using hyphens, colons, semicolons, backticks, and pipes when writing the `title` and `description`. These characters might be used differently in other languages, and their use might complicate the translation process. Our translation tooling often replaces them with other symbols that could change their meaning or even break the page.
