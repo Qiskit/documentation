@@ -1,0 +1,175 @@
+---
+title: SPANK plugin for QRMI
+description: Overview of the SPANK plugin for quantum resource management in HPC systems.
+---
+{/* cspell:ignore QRMI, SBATCH, srun, Pasqal, slurmd, Doxyfile, Gres, ntasks, fffffffb, devel, libgcc */}
+
+# SPANK plugin for QRMI
+
+The [SPANK plugin](https://github.com/qiskit-community/spank-plugins/) for the [Quantum Resource Management Interface (QRMI)](/docs/guides/qrmi) is used to configure access to quantum resources from user jobs in a compute environment administrated by the Slurm workload manager. It handles the acquisition and release of access to quantum resources and sets the necessary environment variables for executing quantum workloads. The available quantum resources are specified in a `qrmi_config.json` file, which is managed by an administrator.
+
+Once installed, this plugin registers the following option. A Slurm user can specify which quantum resources are used for the Slurm job script.
+
+```bash
+--qpu=names             Comma separated list of QPU resources to use.
+```
+
+For example,
+```bash
+#!/bin/bash
+
+#SBATCH --job-name=sampler_job
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --qpu=ibm_quebec,ibm_sherbrooke
+
+# Your script goes here...
+```
+
+
+## Requirements and configuration
+
+The following tools are required for the compiling environment:
+* [Rust compiler](https://www.rust-lang.org/tools/install) 1.86 or above
+* A C compiler: for example, GCC (gcc) on Linux and Clang (clang-tools-extra) for Rust unknown targets/cross compilations. QRMI and its SPANK plugin are compatible with a compiler conforming to the C11 standard
+* make/cmake (make/cmake RPM for RHEL-compatible OS)
+* openssl (openssl-devel RPM for RHEL-compatible OS)
+* zlib (zlib-devel RPM for RHEL-compatible OS)
+* Slurm header files(slurm/slurm.h and so forth) must be available on your host
+
+
+The runtime environment requires:
+* gcc (libgcc RPM for RHEL-compatible OS)
+* openssl (openssl-libs RPM for RHEL-compatible OS)
+* zlib (zlib RPM for RHEL-compatible OS)
+
+### Configure available quantum resources
+
+The repository contains an example configuration ([`qrmi_config.json.example`](https://github.com/qiskit-community/spank-plugins/blob/main/plugins/spank_qrmi/qrmi_config.json.example)).
+
+The `resources` array contains a set of available quantum resources. Each quantum resource definition contains the following:
+
+| Property | Description |
+| ---- | ---- |
+| name | Quantum resource name (for example, backend name) |
+| type | Resource type (`direct-access`, `qiskit-runtime-service` and `pasqal-cloud`) |
+| environment | A set of environment variables to work with QRMI. Current implementations assume API endpoint and credentials are specified via environment variable setting |
+
+If a user specifies a resource with the `--qpu` option that is not defined in the `qrmi_config.json` file, the specification will be ignored.
+
+If the user sets the necessary environment variables for job execution themselves, it is not required to specify them in this file. In this case, the environment property will be `{}`.
+
+<Admonition type="note">
+If you are using a QPU resource with the resource type `qiskit-runtime-service`, use an account that supports [opening a session](/docs/guides/run-jobs-session#open-a-session), such as a Premium Plan account.
+
+If you are using an account that does not support opening a session, such as an Open Plan account, add `QRMI_IBM_QRS_SESSION_MODE="batch"` to the environment variable list in qrmi_config.json as aworkaround.
+</Admonition>
+
+## Installation
+
+Run the build using `make` and `cmake`:
+```shell-session
+. ~/.cargo/env
+mkdir build
+cd build
+cmake ..
+make
+```
+
+By default, the `CMakeLists.txt` file expects the Slurm header file (`slurm.h`) to be located in `/usr/include/slurm`, but this can be customized as shown below.
+
+```shell-session
+SLURM_INCLUDE_DIRS=<directory containing slurm/slurm.h> cmake ..
+```
+
+
+If the above build step is successful, a Linux shared library named `spank_qrmi.so` will be created under the `build/` directory. 
+
+In addition, add the following one line to the `/etc/slurm/plugstack.conf` on the nodes where this plugin is installed (note that an administrator needs to create the `qrmi_config.json` file and specify the path as a plugin argument, as in the following):
+
+```bash
+optional /usr/lib64/slurm/spank_qrmi.so /etc/slurm/qrmi_config.json
+```
+
+<Admonition type="note">
+You can use the available optional arguments to add environment variables to the Slurm process where the SPANK plugin is loaded. The format for specifying environment variables is defined as follows.
+```bash
+--env:{variable name}={value}
+```
+For example, when interacting with quantum resources via an HTTP proxy, the environment variables `http_proxy`, `https_proxy`, and `no_proxy` are required. These can be added as shown below.
+```bash
+optional /usr/lib64/slurm/spank_qrmi.so /etc/slurm/qrmi_config.json --env:http_proxy=http://192.168.1.128:3128 --env:https_proxy=http://192.168.1.128:3128
+```
+</Admonition>
+For the allocator node, your don't need to specify the path to qrmi_config.json, as in the following.
+
+```bash
+optional /usr/lib64/slurm/spank_qrmi.so
+```
+
+
+The following table shows which Slurm context nodes these files should be copied to. For more details of each context, refer to the [documentation](https://slurm.schedmd.com/spank.html#SECTION_SPANK-PLUGINS) for the SPANK plugin.
+| Files | Slurm contexts |
+| ------- | ------- |
+| `plugstack.conf` | **local**, **remote**, **allocator**, **slurmd**, and **job_script** |
+| `qrmi_config.json` | **remote** (Compute nodes) |
+| `spank_qrmi.so` | **allocator** and **remote** (Login nodes and compute nodes) |
+
+
+<Admonition type="note">
+Once `plugstack.conf` is updated, SPANK plugins will be loaded at runtime during the next job launch, which means administrators do not need to restart the Slurm cluster.
+</Admonition>
+
+Once you complete installation, you should find the `--qpu=names` option in the `sbatch` help message.
+
+```bash
+Options provided by plugins:
+      --qpu=names             Comma-separated list of QPU resources to use.
+```
+
+## Logging
+
+This plugin uses the Slurm logger for logging. Log messages from this plugin can be found in `/var/log/slurm/slurmd.log`.
+
+```bash
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank: /etc/slurm/plugstack.conf:1: Loaded plugin spank_qrmi.so
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c(6582, 0): -> slurm_spank_init argc=1 remote=1
+[2025-07-31T09:43:34.019] [21.batch] debug:  SPANK: appending plugin option "qpu"
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c(6582,0): <- slurm_spank_init rc=0
+[2025-07-31T09:43:34.019] [21.batch] debug2: spank: spank_qrmi.so: init = 0
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c: --qpu=[ibm_sherbrooke,ibm_torino]
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c(6582, 0): -> slurm_spank_init_post_opt argc=1 remote=1
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c, fffffffb
+[2025-07-31T09:43:34.019] [21.batch] debug:  spank_qrmi_c: argv[0] = [/etc/slurm/qrmi_config.json]
+[2025-07-31T09:43:34.020] [21.batch] debug:  spank_qrmi_c: name(ibm_sherbrooke), type(1) found in qrmi_config
+```
+
+You can enable the QRMI runtime log by specifying the following `srun` arguments.
+
+|  `sbatch`/`srun` option | Slurm log level (SRUN_DEBUG) | QRMI log level (RUST_LOG) |
+| ---- | ---- | ---- |
+| (default) | 3 | info |
+| `--quiet` | 2 | error |
+| `--verbose` | 4 | debug |
+| `-vv` or more | 5 | trace |
+
+
+## Considerations for multiple QPUs
+
+At runtime, each QRMI instance is linked to a single QPU resource. To enable the use of multiple quantum resources within a single job script, this plugin sets environment variables with the resource name as a prefix. For example, if `--qpu=qpu1,qpu2` is specified, the environment variables will be set as follows:
+
+```bash
+qpu1_QRMI_IBM_DA_ENDPOINT=http://test1
+qpu2_QRMI_IBM_DA_ENDPOINT=http://test2
+```
+
+This ensures that each QRMI instance operates with the configuration parameters set for its respective resource during the execution of the Slurm job.
+
+The above environment variable settings are applied only to jobs where the `--qpu=names` option is specified.
+
+This plugin also sets the following two environment variables, which are referred by the QRMI primitives code.
+
+| Environment variable | Description |
+| ---- | ---- |
+| `SLURM_JOB_QPU_RESOURCES` | Comma-separated list of QPU resources to use at runtime. Undocumented resources will be filtered out. For example, `qpu1,qpu2` |
+| `SLURM_JOB_QPU_TYPES` | Comma-separated list of resource type (`direct-access`, `qiskit-runtime-service`, and `pasqal-cloud`). For example, `direct-access,pasqal-cloud` |
