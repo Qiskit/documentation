@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.SolovayKitaev
 
 # SolovayKitaev
 
-<Class id="qiskit.transpiler.passes.SolovayKitaev" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L38-L201" signature="qiskit.transpiler.passes.SolovayKitaev(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.SolovayKitaev" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L38-L220" signature="qiskit.transpiler.passes.SolovayKitaev(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Approximately decompose 1q gates to a discrete basis using the Solovay-Kitaev algorithm.
@@ -75,27 +75,39 @@ python_api_name: qiskit.transpiler.passes.SolovayKitaev
   Error: 2.828408279166474
   ```
 
-  For individual basis gate sets, the `generate_basic_approximations` function can be used:
+  Individual basis gate sets can be specified in the initializer.
 
   ```python
-  from qiskit.synthesis import generate_basic_approximations
   from qiskit.transpiler.passes import SolovayKitaev
 
   basis = ["s", "sdg", "t", "tdg", "z", "h"]
-  approx = generate_basic_approximations(basis, depth=3)
 
-  skd = SolovayKitaev(recursion_degree=2, basic_approximations=approx)
+  skd = SolovayKitaev(recursion_degree=2, basis_gates=basis)
   ```
 
-  **References**
+  To generate and store basic approximations in between different instances, the [`SolovayKitaevDecomposition`](qiskit.synthesis.SolovayKitaevDecomposition "qiskit.synthesis.SolovayKitaevDecomposition") and its [`save_basic_approximations()`](qiskit.synthesis.SolovayKitaevDecomposition#save_basic_approximations "qiskit.synthesis.SolovayKitaevDecomposition.save_basic_approximations") method can be used.
 
-  **\[1]: Kitaev, A Yu (1997). Quantum computations: algorithms and error correction.**
+  ```python
+  from qiskit.transpiler.passes import SolovayKitaev
+  from qiskit.synthesis import SolovayKitaevDecomposition
 
-  Russian Mathematical Surveys. 52 (6): 1191–1249. [Online](https://iopscience.iop.org/article/10.1070/RM1997v052n06ABEH002155).
+  # generate basic approximations
+  basis = ["s", "sdg", "t", "tdg", "z", "h"]
+  decomp = SolovayKitaevDecomposition(basis_gates=basis, depth=5)
 
-  **\[2]: Dawson, Christopher M.; Nielsen, Michael A. (2005) The Solovay-Kitaev Algorithm.**
+  # store them in a local file
+  fname = "sk_approx.bin"
+  decomp.save_basic_approximations(fname)
 
-  [arXiv:quant-ph/0505030](https://arxiv.org/abs/quant-ph/0505030).
+  # load them for running Solovay-Kitaev
+  skd = SolovayKitaev(recursion_degree=2, basic_approximations=fname)
+  ```
+
+  References:
+
+  \[1] Kitaev, A Yu (1997). Quantum computations: algorithms and error correction. Russian Mathematical Surveys. 52 (6): 1191–1249. [Online](https://iopscience.iop.org/article/10.1070/RM1997v052n06ABEH002155).
+
+  \[2] Dawson, Christopher M.; Nielsen, Michael A. (2005) The Solovay-Kitaev Algorithm. [arXiv:quant-ph/0505030](https://arxiv.org/abs/quant-ph/0505030).
 
   **Parameters**
 
@@ -126,7 +138,7 @@ python_api_name: qiskit.transpiler.passes.SolovayKitaev
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.SolovayKitaev.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.SolovayKitaev.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -146,7 +158,7 @@ python_api_name: qiskit.transpiler.passes.SolovayKitaev
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.SolovayKitaev.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.SolovayKitaev.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -156,7 +168,7 @@ python_api_name: qiskit.transpiler.passes.SolovayKitaev
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.SolovayKitaev.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L167-L201" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.SolovayKitaev.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L186-L220" signature="run(dag)">
     Run the `SolovayKitaev` pass on dag.
 
     **Parameters**
@@ -178,7 +190,7 @@ python_api_name: qiskit.transpiler.passes.SolovayKitaev
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.SolovayKitaev.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.SolovayKitaev.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

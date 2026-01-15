@@ -34,6 +34,9 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/docs/guides/execution-modes-faq",
   "/docs/guides/open-source",
   "/docs/guides/circuit-transpilation-settings",
+  "/docs/guides/qrmi",
+  "/docs/guides/slurm-plugin",
+  "/docs/guides/slurm-hpc-ux",
 ]);
 
 // URLs that show up in the INDEX_PAGES, but are not in the left ToC under

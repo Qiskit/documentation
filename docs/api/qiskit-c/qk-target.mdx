@@ -41,6 +41,64 @@ qk_target_free(target);
 
 The Target C API currently only supports additions of `QkGate` instances with either no parameters or fixed parameters. Support for regular parameters will be added in the future. The functionality will keep expanding over time as we improve our Rust data model capabilities.
 
+## Data Types
+
+### QkInstructionProperties
+
+<Class id="QkInstructionProperties" signature="struct QkInstructionProperties">
+  A representation of a Target operation’s instruction properties.
+
+  #### double duration
+
+  <Attribute id="duration">
+    The duration, in seconds, of the instruction on the specified set of qubits. Will be set to `NaN` if the property is not defined.
+  </Attribute>
+
+  #### double error
+
+  <Attribute id="error">
+    The average error rate for the instruction on the specified set of qubits. Will be set to `NaN` if the property is not defined.
+  </Attribute>
+</Class>
+
+### QkTargetOp
+
+<Class id="QkTargetOp" signature="struct QkTargetOp">
+  Representation of an operation identified within the Target.
+
+  This struct is created natively by the underlying `Target` API and users should not write to it directly nor try to free its attributes manually as it would lead to undefined behavior. To free this struct, users should call `qk_target_op_clear` instead.
+
+  #### QkOperationKind op\_type
+
+  <Attribute id="op_type">
+    The identifier for the current operation.
+  </Attribute>
+
+  #### char \*name
+
+  <Attribute id="name">
+    The name of the operation.
+  </Attribute>
+
+  #### uint32\_t num\_qubits
+
+  <Attribute id="num_qubits">
+    The number of qubits this operation supports. Will default to `(uint32_t)-1` in the case of a variadic.
+  </Attribute>
+
+  #### double \*params
+
+  <Attribute id="params">
+    The parameters tied to this operation if fixed, as an array of `double`. If any of the parameters represented are not fixed angles it will be represented as with the `NaN` value. If there are no parameters then this value will be represented with a `NULL` pointer.
+  </Attribute>
+
+  #### uint32\_t num\_params
+
+  <Attribute id="num_params">
+    The number of parameters supported by this operation. Will default to `(uint32_t)-1` in the case of a variadic.
+  </Attribute>
+</Class>
+
 ## Functions
 
 ### qk\_target\_new
@@ -48,7 +106,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_new" signature="QkTarget *qk_target_new(uint32_t num_qubits)">
   Construct a new `QkTarget` with the given number of qubits. The number of qubits is bound to change if an instruction is added with properties that apply to a collection of qargs in which any index is higher than the specified number of qubits
 
-  <span id="group__QkTarget_1autotoc_md128" />
+  <span id="group__QkTarget_1autotoc_md250" />
 
   #### Example
 
@@ -70,7 +128,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_num_qubits" signature="uint32_t qk_target_num_qubits(const QkTarget *target)">
   Returns the number of qubits of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md129" />
+  <span id="group__QkTarget_1autotoc_md251" />
 
   #### Example
 
@@ -79,11 +137,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   uint32_t num_qubits = qk_target_num_qubits(target);
   ```
 
-  <span id="group__QkTarget_1autotoc_md130" />
+  <span id="group__QkTarget_1autotoc_md252" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md130" />
+  <span id="group__QkTarget_1autotoc_md252" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -101,7 +159,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_dt" signature="double qk_target_dt(const QkTarget *target)">
   Returns the dt value of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md131" />
+  <span id="group__QkTarget_1autotoc_md253" />
 
   #### Example
 
@@ -111,11 +169,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   double dt = qk_target_dt(target);
   ```
 
-  <span id="group__QkTarget_1autotoc_md132" />
+  <span id="group__QkTarget_1autotoc_md254" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md132" />
+  <span id="group__QkTarget_1autotoc_md254" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -133,7 +191,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_granularity" signature="uint32_t qk_target_granularity(const QkTarget *target)">
   Returns the granularity value of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md133" />
+  <span id="group__QkTarget_1autotoc_md255" />
 
   #### Example
 
@@ -143,11 +201,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   uint32_t granularity = qk_target_granularity(target);
   ```
 
-  <span id="group__QkTarget_1autotoc_md134" />
+  <span id="group__QkTarget_1autotoc_md256" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md134" />
+  <span id="group__QkTarget_1autotoc_md256" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -165,7 +223,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_min_length" signature="uint32_t qk_target_min_length(const QkTarget *target)">
   Returns the `min_length` value of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md135" />
+  <span id="group__QkTarget_1autotoc_md257" />
 
   #### Example
 
@@ -175,11 +233,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   size_t min_length = qk_target_min_length(target);
   ```
 
-  <span id="group__QkTarget_1autotoc_md136" />
+  <span id="group__QkTarget_1autotoc_md258" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md136" />
+  <span id="group__QkTarget_1autotoc_md258" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -197,7 +255,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_pulse_alignment" signature="uint32_t qk_target_pulse_alignment(const QkTarget *target)">
   Returns the `pulse_alignment` value of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md137" />
+  <span id="group__QkTarget_1autotoc_md259" />
 
   #### Example
 
@@ -207,11 +265,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   uint32_t pulse_alignment = qk_target_pulse_alignment(target);
   ```
 
-  <span id="group__QkTarget_1autotoc_md138" />
+  <span id="group__QkTarget_1autotoc_md260" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md138" />
+  <span id="group__QkTarget_1autotoc_md260" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -229,7 +287,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_acquire_alignment" signature="uint32_t qk_target_acquire_alignment(const QkTarget *target)">
   Returns the `acquire_alignment` value of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md139" />
+  <span id="group__QkTarget_1autotoc_md261" />
 
   #### Example
 
@@ -239,11 +297,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   uint32_t acquire_alignment = qk_target_pulse_alignment(target);
   ```
 
-  <span id="group__QkTarget_1autotoc_md140" />
+  <span id="group__QkTarget_1autotoc_md262" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md140" />
+  <span id="group__QkTarget_1autotoc_md262" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -261,7 +319,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_set_dt" signature="QkExitCode qk_target_set_dt(QkTarget *target, double dt)">
   Sets the dt value of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md141" />
+  <span id="group__QkTarget_1autotoc_md263" />
 
   #### Example
 
@@ -270,11 +328,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   double dt = qk_target_set_dt(target, 10e-9);
   ```
 
-  <span id="group__QkTarget_1autotoc_md142" />
+  <span id="group__QkTarget_1autotoc_md264" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md142" />
+  <span id="group__QkTarget_1autotoc_md264" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -293,7 +351,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_set_granularity" signature="QkExitCode qk_target_set_granularity(QkTarget *target, uint32_t granularity)">
   Sets the `granularity` value of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md143" />
+  <span id="group__QkTarget_1autotoc_md265" />
 
   #### Example
 
@@ -303,11 +361,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   qk_target_set_granularity(target, 2);
   ```
 
-  <span id="group__QkTarget_1autotoc_md144" />
+  <span id="group__QkTarget_1autotoc_md266" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md144" />
+  <span id="group__QkTarget_1autotoc_md266" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -326,7 +384,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_set_min_length" signature="QkExitCode qk_target_set_min_length(QkTarget *target, uint32_t min_length)">
   Sets the `min_length` value of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md145" />
+  <span id="group__QkTarget_1autotoc_md267" />
 
   #### Example
 
@@ -336,11 +394,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   qk_target_set_min_length(target, 3);
   ```
 
-  <span id="group__QkTarget_1autotoc_md146" />
+  <span id="group__QkTarget_1autotoc_md268" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md146" />
+  <span id="group__QkTarget_1autotoc_md268" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -359,7 +417,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_set_pulse_alignment" signature="QkExitCode qk_target_set_pulse_alignment(QkTarget *target, uint32_t pulse_alignment)">
   Returns the `pulse_alignment` value of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md147" />
+  <span id="group__QkTarget_1autotoc_md269" />
 
   #### Example
 
@@ -369,11 +427,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   qk_target_set_pulse_alignment(target, 4);
   ```
 
-  <span id="group__QkTarget_1autotoc_md148" />
+  <span id="group__QkTarget_1autotoc_md270" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md148" />
+  <span id="group__QkTarget_1autotoc_md270" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -392,7 +450,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_set_acquire_alignment" signature="QkExitCode qk_target_set_acquire_alignment(QkTarget *target, uint32_t acquire_alignment)">
   Sets the `acquire_alignment` value of this `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md149" />
+  <span id="group__QkTarget_1autotoc_md271" />
 
   #### Example
 
@@ -402,11 +460,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   qk_target_set_acquire_alignment(target, 5);
   ```
 
-  <span id="group__QkTarget_1autotoc_md150" />
+  <span id="group__QkTarget_1autotoc_md272" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md150" />
+  <span id="group__QkTarget_1autotoc_md272" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -425,7 +483,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_copy" signature="QkTarget *qk_target_copy(QkTarget *target)">
   Creates a copy of the `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md151" />
+  <span id="group__QkTarget_1autotoc_md273" />
 
   #### Example
 
@@ -439,11 +497,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   QkTarget *copied = qk_target_copy(target);
   ```
 
-  <span id="group__QkTarget_1autotoc_md152" />
+  <span id="group__QkTarget_1autotoc_md274" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md152" />
+  <span id="group__QkTarget_1autotoc_md274" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -461,7 +519,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_free" signature="void qk_target_free(QkTarget *target)">
   Free the `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md153" />
+  <span id="group__QkTarget_1autotoc_md275" />
 
   #### Example
 
@@ -470,11 +528,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   qk_target_free(target);
   ```
 
-  <span id="group__QkTarget_1autotoc_md154" />
+  <span id="group__QkTarget_1autotoc_md276" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md154" />
+  <span id="group__QkTarget_1autotoc_md276" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -488,7 +546,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_add_instruction" signature="QkExitCode qk_target_add_instruction(QkTarget *target, QkTargetEntry *target_entry)">
   Adds a gate to the `QkTarget` through a `QkTargetEntry`.
 
-  <span id="group__QkTarget_1autotoc_md166" />
+  <span id="group__QkTarget_1autotoc_md290" />
 
   #### Example
 
@@ -500,11 +558,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   QkExitCode result = qk_target_add_instruction(target, entry);
   ```
 
-  <span id="group__QkTarget_1autotoc_md167" />
+  <span id="group__QkTarget_1autotoc_md291" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md167" />
+  <span id="group__QkTarget_1autotoc_md291" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -525,14 +583,14 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_update_property" signature="QkExitCode qk_target_update_property(QkTarget *target, QkGate instruction, uint32_t *qargs, uint32_t num_qubits, double duration, double error)">
   Modifies the properties of a gate in the `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md168" />
+  <span id="group__QkTarget_1autotoc_md292" />
 
   #### Example
 
   ```c
   QkTarget *target = qk_target_new(5);
   double params[1] = {3.1415};
-  QkTargetEntry *entry = qk_target_entry_new_fixed(QkGate_CRX, params);
+  QkTargetEntry *entry = qk_target_entry_new_fixed(QkGate_CRX, params, "crx_pi");
   uint32_t qargs[2] = {0, 1};
   qk_target_entry_add_property(entry, qargs, 2, 0.0, 0.1);
   qk_target_add_instruction(target, entry);
@@ -540,11 +598,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   qk_target_update_property(target, QkGate_CRX, qargs, 2, 0.0012, 1.1);
   ```
 
-  <span id="group__QkTarget_1autotoc_md169" />
+  <span id="group__QkTarget_1autotoc_md293" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md169" />
+  <span id="group__QkTarget_1autotoc_md293" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -569,7 +627,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
 <Function id="qk_target_num_instructions" signature="size_t qk_target_num_instructions(const QkTarget *target)">
   Returns the number of instructions tracked by a `QkTarget`.
 
-  <span id="group__QkTarget_1autotoc_md170" />
+  <span id="group__QkTarget_1autotoc_md294" />
 
   #### Example
 
@@ -581,11 +639,11 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   size_t num_instructions = qk_target_num_instructions(target);
   ```
 
-  <span id="group__QkTarget_1autotoc_md171" />
+  <span id="group__QkTarget_1autotoc_md295" />
 
   #### Safety
 
-  <span id="group__QkTarget_1autotoc_md171" />
+  <span id="group__QkTarget_1autotoc_md295" />
 
   Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
 
@@ -596,5 +654,393 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   **Returns**
 
   The length of the target.
+</Function>
+
+### qk\_target\_instruction\_supported
+
+<Function id="qk_target_instruction_supported" signature="bool qk_target_instruction_supported(const QkTarget *target, const char *operation_name, const uint32_t *qargs, QkParam **params)">
+  Checks if the provided instruction and its qargs are supported by this `Target`.
+
+  <span id="group__QkTarget_1autotoc_md296" />
+
+  #### Example
+
+  ```c
+  // Create a mock target with only a global crx entry
+  // and 3.14 as its rotation parameter.
+  QkTarget *target = qk_target_new(5);
+  QkTargetEntry *crx_entry = qk_target_entry_new_fixed(QkGate_CRX, (double[]){3.14});
+  qk_target_entry_add_property(crx_entry, NULL, 0, 0.0, 0.1);
+  qk_target_add_instruction(target, crx_entry);
+
+  // Check if target is compatible with a "crx" gate
+  // at [0, 1] with 3.14 rotation.
+  QkParam *params[1] = {qk_param_from_double(3.14)};
+  qk_target_instruction_supported(target, "crx", (uint32_t []){0, 1}, params);
+
+  // Free the pointers
+  qk_param_free(params[0]);
+  qk_target_free(target);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md297" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md297" />
+
+  Behavior is undefined if `target` is not a valid, non-null pointer to a `QkTarget`.
+
+  The `qargs` argument is expected to be a pointer to an array of `u32int_t` where the length matches the expectation of the gate. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits for a given gate. You can check `qk_gate_num_qubits` to determine how many qubits are required for a given gate.
+
+  The `params` argument is expected to be an array of `QkParam` where the length matches the expectation of the operation in question. If the array is insufficiently long, the behavior will be undefined just as mentioned above for the `qargs` argument. You can always check `qk_gate_num_params` in the case of a `QkGate`.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `Target`.
+  *   **operation\_name** – The instruction name to check for.
+  *   **qargs** – The pointer to the array of `uint32_t` values to use as qargs. Can be `NULL` if global.
+  *   **params** – A pointer to an array of pointers of `QkParam` objects as parameters to check. Can be `NULL` if no parameters are present.
+
+  **Returns**
+
+  Whether the instruction is supported or not.
+</Function>
+
+### qk\_target\_op\_index
+
+<Function id="qk_target_op_index" signature="size_t qk_target_op_index(const QkTarget *target, const char *name)">
+  Return the index at which an operation is located based on its name.
+
+  <span id="group__QkTarget_1autotoc_md298" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  QkTargetEntry *target_entry = qk_target_entry_new(QkGate_H);
+  qk_target_add_instruction(target, target_entry);
+
+  size_t op_idx = qk_target_op_index(target, "h");
+  ```
+
+  <span id="group__QkTarget_1autotoc_md299" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md299" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`. Behavior is undefined if `name` is not a pointer to a valid null-terminated string.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **name** – The name to get the index of.
+
+  **Returns**
+
+  the index in which the operation is the maximum value of `size_t` in the case it is not in the Target.
+</Function>
+
+### qk\_target\_op\_name
+
+<Function id="qk_target_op_name" signature="char *qk_target_op_name(const QkTarget *target, size_t index)">
+  Return the name of the operation stored at that index in the `QkTarget` instance’s gate map.
+
+  <span id="group__QkTarget_1autotoc_md300" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  QkTargetEntry *target_entry = qk_target_entry_new(QkGate_H);
+  qk_target_add_instruction(target, target_entry);
+
+  char *op_name = qk_target_op_name(target, 0);
+  // Free after use
+  qk_str_free(op_name);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md301" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md301" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **index** – The index at which the gate is stored.
+
+  **Returns**
+
+  The name of the operation associated with the provided index.
+</Function>
+
+### qk\_target\_op\_num\_properties
+
+<Function id="qk_target_op_num_properties" signature="size_t qk_target_op_num_properties(const QkTarget *target, size_t index)">
+  Return the number of properties defined for the specified operation in the `QkTarget` instance, a.k.a. the length of the property map. Panics if the operation index is not present.
+
+  <span id="group__QkTarget_1autotoc_md302" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+  QkTargetEntry *target_entry = qk_target_entry_new(QkGate_H);
+  qk_target_add_instruction(target, target_entry);
+
+  size_t num_props = qk_target_op_num_properties(target, 0);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md303" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md303" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **index** – The index in which the gate is stored.
+
+  **Returns**
+
+  The number of properties specified for the operation associated with that index.
+</Function>
+
+### qk\_target\_op\_qargs\_index
+
+<Function id="qk_target_op_qargs_index" signature="size_t qk_target_op_qargs_index(const QkTarget *target, size_t op_idx, const uint32_t *qargs)">
+  Retrieve the index at which some qargs are stored. Returns `SIZE_MAX` if not found.
+
+  <span id="group__QkTarget_1autotoc_md304" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+
+  QkTargetEntry *entry = qk_target_entry_new(QkGate_CX);
+  uint32_t qargs[2] = {0, 1};
+  qk_target_entry_add_property(entry, qargs, 2, 0.0, 0.1);
+  qk_target_add_instruction(target, entry);
+
+  size_t idx_0_1 = qk_target_op_qargs_index(target, 0, qargs);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md305" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md305" />
+
+  Behavior is undefined if `QkTarget` is not a valid, non-null pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **op\_idx** – The index at which the operation is stored.
+  *   **qargs** – A pointer to the array of `uint32_t` qubit indices to check for, can be a null pointer to check for global properties.
+
+  **Returns**
+
+  The index of the qargs associated with the instruction at the specified `op_idx` index or `SIZE_MAX` if the qargs are not present.
+</Function>
+
+### qk\_target\_op\_qargs
+
+<Function id="qk_target_op_qargs" signature="void qk_target_op_qargs(const QkTarget *target, size_t op_idx, size_t qarg_idx, uint32_t **qargs_out, uint32_t *qargs_len)">
+  Retrieve the qargs for the operation by index.
+
+  Panics if any of the indices are out of range.
+
+  <span id="group__QkTarget_1autotoc_md306" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+
+  QkTargetEntry *entry = qk_target_entry_new(QkGate_CX);
+  uint32_t qargs[2] = {0, 1};
+  qk_target_entry_add_property(entry, qargs, 2, 0.0, 0.1);
+  qk_target_add_instruction(target, entry);
+
+  uint32_t *qargs_retrieved;
+  uint32_t qargs_length;
+  qk_target_op_qargs(target, 0, 0, &qargs_retrieved, &qargs_length);
+  if (qargs_retrieved) {
+      // We should enter this branch.
+      printf("Number of qargs: %lu\n", qargs_length);
+  } else {
+      printf("Qargs are global\n");
+  }
+  ```
+
+  <span id="group__QkTarget_1autotoc_md307" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md307" />
+
+  Behavior is undefined if `target` is not a valid, non-null pointer to a `QkTarget`. Behavior is undefined if each `qargs_out` or `qargs_len` are not aligned and writeable for a single value of the correct type.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **op\_idx** – The index at which the gate is stored.
+  *   **qarg\_idx** – The index at which the qargs are stored.
+  *   **qargs\_out** – An out pointer to an array qubits. If `op_idx` refers to a a global operation, a null pointer will be written. The written pointer is borrowed from the target and must not be freed. A zero-qargs instruction will write out a non-null pointer, though one that is invalid for reads.
+  *   **qargs\_len** – An out pointer to the length of the qargs in `qargs_out`. If the index is global, the written length is not defined.
+</Function>
+
+### qk\_target\_op\_props
+
+<Function id="qk_target_op_props" signature="void qk_target_op_props(const QkTarget *target, size_t op_idx, size_t qarg_idx, QkInstructionProperties *inst_props)">
+  Retrieve the qargs for the operation stored in its respective indices.
+
+  Panics if any of the indices are out of range.
+
+  <span id="group__QkTarget_1autotoc_md308" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+
+  QkTargetEntry *entry = qk_target_entry_new(QkGate_CX);
+  uint32_t qargs[2] = {0, 1};
+  qk_target_entry_add_property(entry, qargs, 2, 0.0, 0.1);
+  qk_target_add_instruction(target, entry);
+
+  QkInstructionProperties inst_props;
+  qk_target_op_props(target, 0, 0, &inst_props);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md309" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md309" />
+
+  Behavior is undefined if `target` is not a valid, non-null pointer to a `QkTarget`. Behavior is undefined if `inst_props` does not point to an address of the correct size to store `QkInstructionProperties` in.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **op\_idx** – The index in which the gate is stored.
+  *   **qarg\_idx** – The index in which the qargs are stored.
+  *   **inst\_props** – A pointer to write out the `QkInstructionProperties` instance.
+</Function>
+
+### qk\_target\_op\_get
+
+<Function id="qk_target_op_get" signature="void qk_target_op_get(const QkTarget *target, size_t index, QkTargetOp *out_op)">
+  Retrieves information about an operation in the Target via index. If the index is not present, this function will panic. You can check the `QkTarget` total number of instructions using `qk_target_num_instructions`.
+
+  <span id="group__QkTarget_1autotoc_md310" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+
+  QkTargetEntry *entry = qk_target_entry_new(QkGate_CX);
+  uint32_t qargs[2] = {0, 1};
+  qk_target_entry_add_property(entry, qargs, 2, 0.0, 0.1);
+  qk_target_add_instruction(target, entry);
+
+  QkTargetOp op;
+  qk_target_op_get(target, 0, &op);
+
+  // Clean up after you're done
+  qk_target_op_clear(&op);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md311" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md311" />
+
+  Behavior is undefined if `target` is not a valid, non-null pointer to a `QkTarget`. Behavior is undefined if `out_op` does not point to an address of the correct size to store `QkTargetOp` in.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `QkTarget`.
+  *   **index** – The index in which the gate is stored.
+  *   **out\_op** – A pointer to the space where the `QkTargetOp` will be stored.
+</Function>
+
+### qk\_target\_op\_gate
+
+<Function id="qk_target_op_gate" signature="QkGate qk_target_op_gate(const QkTarget *target, size_t index)">
+  Tries to retrieve a `QkGate` based on the operation stored in an index. The user is responsible for checking whether this operation is a gate in the `QkTarget` via using `qk_target_op_get`. If not, this function will panic.
+
+  <span id="group__QkTarget_1autotoc_md312" />
+
+  #### Example
+
+  ```c
+  QkTarget *target = qk_target_new(5);
+
+  QkTargetEntry *entry = qk_target_entry_new(QkGate_CX);
+  uint32_t qargs[2] = {0, 1};
+  qk_target_entry_add_property(entry, qargs, 2, 0.0, 0.1);
+  qk_target_add_instruction(target, entry);
+
+  QkTargetOp op;
+  qk_target_op_get(target, 0, &op);
+
+  // Check if the operation is a gate;
+  if (op.op_type == QkOperationKind_Gate) {
+      QkGate gate = qk_target_op_gate(target, 0);
+      // Do something
+  }
+
+  // Clean up after you're done.
+  qk_target_op_clear(&op);
+  ```
+
+  <span id="group__QkTarget_1autotoc_md313" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md313" />
+
+  Behavior is undefined if the `target` pointer is null or not aligned.
+
+  **Parameters**
+
+  *   **target** – A pointer to the `Target` instance.
+  *   **index** – The index at which the operation is located.
+
+  **Returns**
+
+  The `QkGate` enum in said index.
+</Function>
+
+### qk\_target\_op\_clear
+
+<Function id="qk_target_op_clear" signature="void qk_target_op_clear(QkTargetOp *op)">
+  Clears the `QkTargetOp` object.
+
+  <span id="group__QkTarget_1autotoc_md314" />
+
+  #### Safety
+
+  <span id="group__QkTarget_1autotoc_md314" />
+
+  The behavior will be undefined if the pointer is null or not-aligned. The data belonging to a `QkTargetOp` originates in Rust and can only be freed using this function.
+
+  **Parameters**
+
+  *   **op** – The pointer to a `QkTargetOp` object.
 </Function>
 
