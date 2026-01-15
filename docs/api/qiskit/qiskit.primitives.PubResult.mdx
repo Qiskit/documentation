@@ -8,10 +8,16 @@ python_api_name: qiskit.primitives.PubResult
 
 # PubResult
 
-<Class id="qiskit.primitives.PubResult" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/primitives/containers/pub_result.py#L24-L51" signature="qiskit.primitives.PubResult(data, metadata=None)" modifiers="class">
+<Class id="qiskit.primitives.PubResult" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/primitives/containers/pub_result.py#L24-L65" signature="qiskit.primitives.PubResult(data, metadata=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
 
-  Result of Primitive Unified Bloc.
+  The result object for a single pub (primitive unified bloc).
+
+  Each [`PubResult`](#qiskit.primitives.PubResult "qiskit.primitives.PubResult") is a single element of a greater [`PrimitiveResult`](qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult"). Within this result, there is implementation-defined freeform [`metadata`](#qiskit.primitives.PubResult.metadata "qiskit.primitives.PubResult.metadata"), and a [`DataBin`](qiskit.primitives.DataBin "qiskit.primitives.DataBin") in the [`data`](#qiskit.primitives.PubResult.data "qiskit.primitives.PubResult.data") field.
+
+  Most likely, you care about accessing the processed data of your execution. This is in the [`data`](#qiskit.primitives.PubResult.data "qiskit.primitives.PubResult.data") attribute. The [`metadata`](#qiskit.primitives.PubResult.metadata "qiskit.primitives.PubResult.metadata") object may contain extra information about the execution of this pub, including implementation-specific information, which should be documented by your primitive provider (as opposed to [`PrimitiveResult.metadata`](qiskit.primitives.PrimitiveResult#metadata "qiskit.primitives.PrimitiveResult.metadata"), which is metadata about the entire submission).
+
+  You typically get instances of this class by iterating over or indexing into a [`PrimitiveResult`](qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult"), which is what you get from `MyPritimive().run().result()`.
 
   Initialize a pub result.
 
