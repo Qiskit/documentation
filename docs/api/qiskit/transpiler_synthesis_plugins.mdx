@@ -188,8 +188,6 @@ will return a list of all the installed Clifford synthesis plugins.
 
 ## Available Plugins
 
-High-level synthesis plugins that are directly available in Qiskit include plugins for synthesizing [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects, [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction") objects, and [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") objects. Some of these plugins implicitly target all-to-all connectivity. This is not a practical limitation since [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.synthesis.high_level_synthesis.HighLevelSynthesis") typically runs before layout and routing, which will ensure that the final circuit adheres to the device connectivity by inserting additional SWAP gates. A good example is the permutation synthesis plugin `ACGSynthesisPermutation` which can synthesize any permutation with at most 2 layers of SWAP gates. On the other hand, some plugins implicitly target linear connectivity. Typically, the synthesizing circuits have larger depth and the number of gates, however no additional SWAP gates would be inserted if the following layout pass chose a consecutive line of qubits inside the topology of the device. A good example of this is the permutation synthesis plugin `KMSSynthesisPermutation` which can synthesize any permutation of `n` qubits in depth `n`. Typically, it is difficult to know in advance which of the two approaches: synthesizing circuits for all-to-all connectivity and inserting SWAP gates vs. synthesizing circuits for linear connectivity and inserting less or no SWAP gates lead a better final circuit, so it likely makes sense to try both and see which gives better results. Finally, some plugins can target a given connectivity, and hence should be run after the layout is set. In this case the synthesized circuit automatically adheres to the topology of the device. A good example of this is the permutation synthesis plugin `TokenSwapperSynthesisPermutation` which is able to synthesize arbitrary permutations with respect to arbitrary coupling maps. For more detail, please refer to description of each individual plugin.
-
 Below are the synthesis plugin classes available in Qiskit. These classes should not be used directly, but instead should be used through the plugin interface documented above. The classes are listed here to ease finding the documentation for each of the included plugins and to ease the comparison between different synthesis methods for a given object.
 
 <span id="id3" />
@@ -198,29 +196,67 @@ Below are the synthesis plugin classes available in Qiskit. These classes should
 
 <span id="module-qiskit.transpiler.passes.synthesis.aqc_plugin" />
 
-<span id="aqc-synthesis-plugin-in-qiskit-transpiler-passes-synthesis-aqc-plugin" />
-
-#### AQC Synthesis Plugin (in [`qiskit.transpiler.passes.synthesis.aqc_plugin`](#module-qiskit.transpiler.passes.synthesis.aqc_plugin "qiskit.transpiler.passes.synthesis.aqc_plugin"))
+#### AQC Synthesis Plugin
 
 |                                                                                                                                                               |                                               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | [`AQCSynthesisPlugin`](qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin "qiskit.transpiler.passes.synthesis.aqc_plugin.AQCSynthesisPlugin")() | An AQC-based Qiskit unitary synthesis plugin. |
 
-<span id="module-qiskit.transpiler.passes.synthesis.unitary_synthesis" />
-
-Unitary Synthesis Transpiler Pass
-
 <span id="module-qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis" />
 
-<span id="solovay-kitaev-synthesis-plugin-in-qiskit-transpiler-passes-synthesis-solovay-kitaev-synthesis" />
-
-#### Solovay-Kitaev Synthesis Plugin (in [`qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis`](#module-qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis "qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis"))
+#### Solovay-Kitaev Synthesis Plugin
 
 |                                                                                                                                                                                                       |                                                   |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
 | [`SolovayKitaevSynthesis`](qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis "qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis")() | A Solovay-Kitaev Qiskit unitary synthesis plugin. |
 
+<span id="module-qiskit.transpiler.passes.synthesis.ross_selinger_plugin" />
+
+#### Ross-Selinger Synthesis Plugin
+
+|                                                                                                                                                                                            |                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| [`RossSelingerSynthesis`](qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis "qiskit.transpiler.passes.synthesis.ross_selinger_plugin.RossSelingerSynthesis")() | A Ross-Selinger Qiskit unitary synthesis plugin. |
+
+<span id="module-qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin" />
+
+#### Clifford Unitary Synthesis Plugin
+
+|                                                                                                                                                                                                                       |                                      |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| [`CliffordUnitarySynthesis`](qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis "qiskit.transpiler.passes.synthesis.clifford_unitary_synth_plugin.CliffordUnitarySynthesis")() | A Clifford unitary synthesis plugin. |
+
+<span id="module-qiskit.transpiler.passes.synthesis.default_unitary_synth_plugin" />
+
+#### Default Unitary Synthesis Plugin
+
+The default unitary synthesis plugin defines the default algorithm used by [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") transpiler pass to synthesize unitary gates in the circuit. Its behavior depends on the number of qubits in the target unitary and the target basis.
+
+##### Continuous basis sets
+
+When the target basis is continuous (i.e. not Clifford+T), the plugin uses the following decompositions:
+
+*   1-qubit gates: Euler angle decompositions (see [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer")).
+*   2-qubit gates: KAK/Cartan decompositions (see [`TwoQubitBasisDecomposer`](qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer"), [`TwoQubitControlledUDecomposer`](qiskit.synthesis.TwoQubitControlledUDecomposer "qiskit.synthesis.TwoQubitControlledUDecomposer"), [`XXDecomposer`](qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer")).
+*   3+ qubit gates: Quantum Shannon Decomposition, see [`qs_decomposition()`](synthesis#qiskit.synthesis.qs_decomposition "qiskit.synthesis.qs_decomposition").
+
+For 1- and 2-qubit gates, the plugin uses the basis error information from the target to select the decomposition that maximizes the expected fidelity.
+
+<span id="clifford-t-basis-sets" />
+
+##### Clifford+T basis sets
+
+When the target basis is Clifford+T, the plugin uses the Solovay-Kitaev algorithm (see [`SolovayKitaevDecomposition`](qiskit.synthesis.SolovayKitaevDecomposition "qiskit.synthesis.SolovayKitaevDecomposition")) to approximate 1-qubit unitaries. The settings used to create basic approximations are `basis_gates=["h", "t", "tdg"]`, `depth=12` and `recursion_degree=5`, and were chosen empirically to balance approximation quality with computational cost. To use Solovay-Kitaev with custom parameters, or to avoid recomputing approximations for multiple circuits, you can invoke [`SolovayKitaevSynthesis`](qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis "qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis.SolovayKitaevSynthesis") unitary synthesis plugin instead of this default plugin.
+
+At present, Qiskit does not include algorithms for approximating 2+ qubit unitaries directly in the Clifford+T basis set. Therefore, the preset pass manager first decomposes such gates into `["cx", "u"]` basis, and then applies Solovay-Kitaev to the resulting 1-qubit unitary gates.
+
+|                                                                                                                                                                                                                  |                                       |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [`DefaultUnitarySynthesis`](qiskit.transpiler.passes.synthesis.default_unitary_synth_plugin.DefaultUnitarySynthesis "qiskit.transpiler.passes.synthesis.default_unitary_synth_plugin.DefaultUnitarySynthesis")() | The default unitary synthesis plugin. |
+
 ### High Level Synthesis
+
+High-level synthesis plugins that are directly available in Qiskit include plugins for synthesizing [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") objects, [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction") objects, and [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") objects. Some of these plugins implicitly target all-to-all connectivity. This is not a practical limitation since [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.synthesis.high_level_synthesis.HighLevelSynthesis") typically runs before layout and routing, which will ensure that the final circuit adheres to the device connectivity by inserting additional SWAP gates. A good example is the permutation synthesis plugin `ACGSynthesisPermutation` which can synthesize any permutation with at most 2 layers of SWAP gates. On the other hand, some plugins implicitly target linear connectivity. Typically, the synthesizing circuits have larger depth and the number of gates, however no additional SWAP gates would be inserted if the following layout pass chose a consecutive line of qubits inside the topology of the device. A good example of this is the permutation synthesis plugin `KMSSynthesisPermutation` which can synthesize any permutation of `n` qubits in depth `n`. Typically, it is difficult to know in advance which of the two approaches: synthesizing circuits for all-to-all connectivity and inserting SWAP gates vs. synthesizing circuits for linear connectivity and inserting less or no SWAP gates lead a better final circuit, so it likely makes sense to try both and see which gives better results. Finally, some plugins can target a given connectivity, and hence should be run after the layout is set. In this case the synthesized circuit automatically adheres to the topology of the device. A good example of this is the permutation synthesis plugin `TokenSwapperSynthesisPermutation` which is able to synthesize arbitrary permutations with respect to arbitrary coupling maps. For more detail, please refer to description of each individual plugin.
 
 For each high-level object we give a table that lists all of its plugins available directly in Qiskit. We include the name of the plugin, the class of the plugin, the targeted connectivity map and optionally additional information. Recall the plugins should be used via the previously described [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), for example:
 
