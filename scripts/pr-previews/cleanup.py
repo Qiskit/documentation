@@ -131,7 +131,7 @@ def delete_closed_pr_folders() -> None:
 
         is_stale = folder.name in pr_folders["open_stale"]
         if is_stale:
-            logger.info(f"Deleteting {folder} as it is stale")
+            logger.info(f"Deleting {folder} as it is stale")
             shutil.rmtree(folder)
             continue
 
