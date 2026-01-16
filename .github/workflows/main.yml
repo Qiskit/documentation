@@ -91,6 +91,7 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    needs: [decide-jobs]
     if: github.repository_owner == 'Qiskit'
     steps:
       - uses: actions/checkout@v4
