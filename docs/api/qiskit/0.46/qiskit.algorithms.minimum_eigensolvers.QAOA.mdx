@@ -50,7 +50,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.QAOA
 
     **Type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [int](https://docs.python.org/3/library/functions.html#int)
   </Attribute>
 
   ### initial\_state
@@ -76,7 +76,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.QAOA
 
     **Type**
 
-    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | Callable\[\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")] | None
+    [float](https://docs.python.org/3/library/functions.html#float) | Callable\[\[[list](https://docs.python.org/3/library/stdtypes.html#list)\[[float](https://docs.python.org/3/library/functions.html#float)]], [float](https://docs.python.org/3/library/functions.html#float)] | None
   </Attribute>
 
   ### callback
@@ -86,7 +86,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.QAOA
 
     **Type**
 
-    Callable\[\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), np.ndarray, [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), Any]], None] | None
+    Callable\[\[[int](https://docs.python.org/3/library/functions.html#int), np.ndarray, [float](https://docs.python.org/3/library/functions.html#float), [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), Any]], None] | None
   </Attribute>
 
   **References**
@@ -111,12 +111,12 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.QAOA
 
   *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")) – The sampler primitive to sample the circuits.
   *   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer")) – A classical optimizer to find the minimum energy. This can either be a Qiskit [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable implementing the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol.
-  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The integer parameter $p$. Has a minimum valid value of 1.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The integer parameter $p$. Has a minimum valid value of 1.
   *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – An optional initial state to prepend the QAOA circuit with.
   *   **mixer** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *| BaseOperator |*[*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – The mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces \[2, 3] as well as warm-starting the optimization \[4].
   *   **initial\_point** (*np.ndarray | None*) – An optional initial point (i.e. initial parameter values) for the optimizer. The length of the initial point must match the number of `ansatz` parameters. If `None`, a random point will be generated within certain parameter bounds. `QAOA` will look to the ansatz for these bounds. If the ansatz does not specify bounds, bounds of $-2\pi$, $2\pi$ will be used.
-  *   **aggregation** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| Callable\[\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – A float or callable to specify how the objective function evaluated on the basis states should be aggregated. If a float, this specifies the $\alpha \in [0,1]$ parameter for a CVaR expectation value.
-  *   **callback** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, np.ndarray,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any]], None] | None*) – A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the evaluated value, the metadata dictionary.
+  *   **aggregation** ([*float*](https://docs.python.org/3/library/functions.html#float) *| Callable\[\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]],* [*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – A float or callable to specify how the objective function evaluated on the basis states should be aggregated. If a float, this specifies the $\alpha \in [0,1]$ parameter for a CVaR expectation value.
+  *   **callback** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, np.ndarray,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Any]], None] | None*) – A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the evaluated value, the metadata dictionary.
 
   ## Attributes
 
@@ -160,7 +160,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.QAOA
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 </Class>
 
