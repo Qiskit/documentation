@@ -37,16 +37,16 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
   **Parameters**
 
   *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
-  *   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If True, considers the direction of the coupling map. Default is False.
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – shuffle the labelling of physical qubits to node indices in the coupling graph, using a given pRNG seed. `None` seeds using OS entropy (and so is non-deterministic). Using `-1` disables the shuffling.
-  *   **call\_limit** (*None |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *| None,*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None]*) – The maximum number of times that the inner VF2 isomorphism search will attempt to extend the mapping. If `None`, then no limit. If a 2-tuple, then the limit starts as the first item, and swaps to the second after the first match is found, without resetting the number of steps taken. This can be used to allow a long search for any mapping, but still terminate quickly with a small extension budget if one is found.
-  *   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – The total time limit in seconds to run `VF2Layout`. This is not completely strict; execution will finish on the first isomorphism found (if any) \_after\_ the time limit has been exceeded. Setting this option breaks determinism of the pass.
-  *   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – If set, the algorithm terminates after this many \_complete\_ layouts have been seen. Since the scoring is done on-the-fly, the vast majority of candidate layouts are pruned out of the search before ever becoming complete, so this option has little meaning. To set a low limit on the amount of time spent improving an initial limit, set a low value for the second item in the `call_limit` 2-tuple form.
+  *   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True, considers the direction of the coupling map. Default is False.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – shuffle the labelling of physical qubits to node indices in the coupling graph, using a given pRNG seed. `None` seeds using OS entropy (and so is non-deterministic). Using `-1` disables the shuffling.
+  *   **call\_limit** (*None |* [*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)  *| None,*[*int*](https://docs.python.org/3/library/functions.html#int) *| None]*) – The maximum number of times that the inner VF2 isomorphism search will attempt to extend the mapping. If `None`, then no limit. If a 2-tuple, then the limit starts as the first item, and swaps to the second after the first match is found, without resetting the number of steps taken. This can be used to allow a long search for any mapping, but still terminate quickly with a small extension budget if one is found.
+  *   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The total time limit in seconds to run `VF2Layout`. This is not completely strict; execution will finish on the first isomorphism found (if any) \_after\_ the time limit has been exceeded. Setting this option breaks determinism of the pass.
+  *   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int)) – If set, the algorithm terminates after this many \_complete\_ layouts have been seen. Since the scoring is done on-the-fly, the vast majority of candidate layouts are pruned out of the search before ever becoming complete, so this option has little meaning. To set a low limit on the amount of time spent improving an initial limit, set a low value for the second item in the `call_limit` 2-tuple form.
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2Layout` on. If specified it will supersede a set value for `coupling_map` if the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") contains connectivity constraints. If the value of `target` models an ideal backend without any constraints then the value of `coupling_map` will be used.
 
   **Raises**
 
-  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.14)") – At runtime, if neither `coupling_map` or `target` are provided.
+  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – At runtime, if neither `coupling_map` or `target` are provided.
 
   ## Attributes
 
@@ -75,9 +75,9 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -85,7 +85,7 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -95,7 +95,7 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
   </Function>
 
   ### run
