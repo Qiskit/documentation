@@ -83,7 +83,7 @@ You can extend the quantum components of the OpenQASM 2 language by passing an i
 
 #### CustomInstruction
 
-<Class id="qiskit.qasm2.CustomInstruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/parse.py#L79-L128" signature="qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)" modifiers="class">
+<Class id="qiskit.qasm2.CustomInstruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/parse.py#L80-L127" signature="qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
 
   Information about a custom instruction that should be defined during the parse.
@@ -126,7 +126,7 @@ You can extend the quantum components of the OpenQASM 2 language by passing an i
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) –
   *   **num\_params** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
   *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
-  *   **constructor** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.14)")*\[\[...],* [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")*]*) –
+  *   **constructor** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.14)")*\[\[Unpack],* [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")*]*) –
   *   **builtin** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) –
 </Class>
 
@@ -140,7 +140,7 @@ Similar to the quantum extensions above, you can also extend the processing done
 
 #### CustomClassical
 
-<Class id="qiskit.qasm2.CustomClassical" signature="qiskit.qasm2.CustomClassical" modifiers="class">
+<Class id="qiskit.qasm2.CustomClassical" signature="qiskit.qasm2.CustomClassical(name, num_params, callable, /)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
 
   Information about a custom classical function that should be defined in mathematical expressions.
@@ -162,13 +162,13 @@ Similar to other serialization modules in Python, this module offers two public 
 
 ### dump
 
-<Function id="qiskit.qasm2.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/export.py#L107-L122" signature="qiskit.qasm2.dump(circuit, filename_or_stream, /)">
+<Function id="qiskit.qasm2.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/export.py#L108-L123" signature="qiskit.qasm2.dump(circuit, filename_or_stream, /)">
   Dump a circuit as an OpenQASM 2 program to a file or stream.
 
   **Parameters**
 
-  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to be exported.
-  *   **filename\_or\_stream** ([*os.PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.14)")  *|*[*io.TextIOBase*](https://docs.python.org/3/library/io.html#io.TextIOBase "(in Python v3.14)")) – either a path-like object (likely a [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") or [`pathlib.Path`](https://docs.python.org/3/library/pathlib.html#pathlib.Path "(in Python v3.14)")), or an already opened text-mode stream.
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to be exported.
+  *   **filename\_or\_stream** ([*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.14)")  *|*[*TextIOBase*](https://docs.python.org/3/library/io.html#io.TextIOBase "(in Python v3.14)")) – either a path-like object (likely a [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") or [`pathlib.Path`](https://docs.python.org/3/library/pathlib.html#pathlib.Path "(in Python v3.14)")), or an already opened text-mode stream.
 
   **Raises**
 
@@ -177,7 +177,7 @@ Similar to other serialization modules in Python, this module offers two public 
 
 ### dumps
 
-<Function id="qiskit.qasm2.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/export.py#L125-L200" signature="qiskit.qasm2.dumps(circuit, /)">
+<Function id="qiskit.qasm2.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/export.py#L126-L232" signature="qiskit.qasm2.dumps(circuit, /)">
   Export a circuit to an OpenQASM 2 program in a string.
 
   **Parameters**

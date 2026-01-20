@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.PassManager
 
 # PassManager
 
-<Class id="qiskit.transpiler.PassManager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passmanager.py#L37-L229" signature="qiskit.transpiler.PassManager(passes=(), max_iteration=1000)" modifiers="class">
+<Class id="qiskit.transpiler.PassManager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passmanager.py#L37-L229" signature="qiskit.transpiler.PassManager(passes=(), max_iteration=1000)" modifiers="class">
   Bases: [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.passmanager.BasePassManager")
 
   Manager for a set of Passes and their scheduling during transpilation.
@@ -24,12 +24,12 @@ python_api_name: qiskit.transpiler.PassManager
 
   ### append
 
-  <Function id="qiskit.transpiler.PassManager.append" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passmanager.py#L99-L111" signature="append(passes)">
+  <Function id="qiskit.transpiler.PassManager.append" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passmanager.py#L99-L111" signature="append(passes)">
     Append a Pass Set to the schedule of passes.
 
     **Parameters**
 
-    **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[Task]*) – A set of transpiler passes to be added to schedule.
+    **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[qiskit.passmanager.base\_tasks.Task]*) – A set of transpiler passes to be added to schedule.
 
     **Raises**
 
@@ -42,7 +42,7 @@ python_api_name: qiskit.transpiler.PassManager
 
   ### draw
 
-  <Function id="qiskit.transpiler.PassManager.draw" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passmanager.py#L205-L229" signature="draw(filename=None, style=None, raw=False)">
+  <Function id="qiskit.transpiler.PassManager.draw" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passmanager.py#L205-L229" signature="draw(filename=None, style=None, raw=False)">
     Draw the pass manager.
 
     This function needs [pydot](https://github.com/erocarrera/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed.
@@ -68,7 +68,7 @@ python_api_name: qiskit.transpiler.PassManager
 
   ### remove
 
-  <Function id="qiskit.transpiler.PassManager.remove" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/passmanager/passmanager.py#L96-L108" signature="remove(index)">
+  <Function id="qiskit.transpiler.PassManager.remove" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/passmanager/passmanager.py#L96-L108" signature="remove(index)">
     Removes a particular pass in the scheduler.
 
     **Parameters**
@@ -86,13 +86,13 @@ python_api_name: qiskit.transpiler.PassManager
 
   ### replace
 
-  <Function id="qiskit.transpiler.PassManager.replace" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passmanager.py#L113-L124" signature="replace(index, passes)">
+  <Function id="qiskit.transpiler.PassManager.replace" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passmanager.py#L113-L124" signature="replace(index, passes)">
     Replace a particular pass in the scheduler.
 
     **Parameters**
 
     *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Pass index to replace, based on the position in passes().
-    *   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[Task]*) – A pass set to be added to the pass manager schedule.
+    *   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[qiskit.passmanager.base\_tasks.Task]*) – A pass set to be added to the pass manager schedule.
 
     **Return type**
 
@@ -101,7 +101,7 @@ python_api_name: qiskit.transpiler.PassManager
 
   ### run
 
-  <Function id="qiskit.transpiler.PassManager.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passmanager.py#L127-L203" signature="run(circuits, output_name=None, callback=None, num_processes=None, *, property_set=None)">
+  <Function id="qiskit.transpiler.PassManager.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passmanager.py#L127-L203" signature="run(circuits, output_name=None, callback=None, num_processes=None, *, property_set=None)">
     Run all the passes on the specified `circuits`.
 
     **Parameters**
@@ -110,7 +110,7 @@ python_api_name: qiskit.transpiler.PassManager
 
     *   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
 
-    *   **callback** (*Callable*) –
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)")) –
 
         A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments:
 
@@ -154,12 +154,12 @@ python_api_name: qiskit.transpiler.PassManager
 
     **Return type**
 
-    \_CircuitsT
+    *\_CircuitsT*
   </Function>
 
   ### to\_flow\_controller
 
-  <Function id="qiskit.transpiler.PassManager.to_flow_controller" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/passmanager/passmanager.py#L266-L274" signature="to_flow_controller()">
+  <Function id="qiskit.transpiler.PassManager.to_flow_controller" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/passmanager/passmanager.py#L266-L274" signature="to_flow_controller()">
     Linearize this manager into a single [`FlowControllerLinear`](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear"), so that it can be nested inside another pass manager.
 
     **Returns**

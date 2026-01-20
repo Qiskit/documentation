@@ -19,6 +19,7 @@ import { readJsonFile } from "../lib/fs";
 // any of the INDEX_PAGES.
 const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/docs/guides/qiskit-code-assistant",
+  "/docs/guides/qiskit-mcp-servers",
   "/docs/guides/qiskit-code-assistant-jupyterlab",
   "/docs/guides/qiskit-code-assistant-vscode",
   "/docs/guides/qiskit-code-assistant-local",
@@ -32,6 +33,9 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/docs/guides/faq",
   "/docs/guides/execution-modes-faq",
   "/docs/guides/open-source",
+  "/docs/guides/qrmi",
+  "/docs/guides/slurm-plugin",
+  "/docs/guides/slurm-hpc-ux",
 ]);
 
 // URLs that show up in the INDEX_PAGES, but are not in the left ToC under

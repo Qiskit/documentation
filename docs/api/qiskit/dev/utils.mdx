@@ -20,12 +20,12 @@ python_api_name: qiskit.utils
 
 ### add\_deprecation\_to\_docstring
 
-<Function id="qiskit.utils.add_deprecation_to_docstring" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/deprecation.py#L310-L382" signature="qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)">
+<Function id="qiskit.utils.add_deprecation_to_docstring" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/deprecation.py#L311-L383" signature="qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)">
   Dynamically insert the deprecation message into `func`’s docstring.
 
   **Parameters**
 
-  *   **func** (*Callable*) – The function to modify.
+  *   **func** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)")) – The function to modify.
   *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The full deprecation message.
   *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The version the deprecation started at.
   *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – Is the deprecation still pending?
@@ -51,7 +51,7 @@ python_api_name: qiskit.utils
   *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – Set to True if the deprecation is still pending.
   *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The package name shown in the deprecation message (e.g. the PyPI package name).
   *   **new\_alias** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – If the arg has simply been renamed, set this to the new name. The decorator will dynamically update the kwargs so that when the user sets the old arg, it will be passed in as the new\_alias arg.
-  *   **predicate** (*Callable\[\[Any],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")*] | None*) – Only log the runtime warning if the predicate returns True. This is useful to deprecate certain values or types for an argument, e.g. lambda my\_arg: isinstance(my\_arg, dict). Regardless of if a predicate is set, the runtime warning will only log when the user specifies the argument.
+  *   **predicate** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")*],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")*] | None*) – Only log the runtime warning if the predicate returns True. This is useful to deprecate certain values or types for an argument, e.g. lambda my\_arg: isinstance(my\_arg, dict). Regardless of if a predicate is set, the runtime warning will only log when the user specifies the argument.
   *   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
 
   **Returns**

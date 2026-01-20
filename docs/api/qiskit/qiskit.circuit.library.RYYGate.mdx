@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.RYYGate
 
 # RYYGate
 
-<Class id="qiskit.circuit.library.RYYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/standard_gates/ryy.py#L25-L169" signature="qiskit.circuit.library.RYYGate(theta, label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.RYYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/library/standard_gates/ryy.py#L25-L136" signature="qiskit.circuit.library.RYYGate(theta, label=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   A parametric 2-qubit $Y \otimes Y$ interaction (rotation about YY).
@@ -143,13 +143,13 @@ $$
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.library.RYYGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L320-L325" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.library.RYYGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/instruction.py#L320-L325" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.RYYGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/gate.py#L187-L244" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.RYYGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/gate.py#L199-L256" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -202,28 +202,34 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.RYYGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/standard_gates/ryy.py#L103-L134" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
-    Return a (multi-)controlled-YY gate.
+  <Function id="qiskit.circuit.library.RYYGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/gate.py#L105-L156" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return the controlled version of itself.
+
+    The controlled gate is implemented as [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") when `annotated` is `False`, and as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") when `annotated` is `True`.
+
+    <Admonition title="Deprecated since version 2.3" type="danger">
+      `qiskit.circuit.gate.Gate.control()`’s argument `annotated` is deprecated as of Qiskit 2.3. It will be removed in Qiskit 3.0. The method Gate.control() no longer accepts annotated=None. The new default is annotated=True, which represents the controlled gate as an AnnotatedOperation (unless a dedicated controlled-gate class already exists). You can explicitly set annotated=False to preserve the previous behavior. However, using annotated=True is recommended, as it defers construction of the controlled circuit to transpiler, and furthermore enables additional controlled-gate optimizations (typically leading to higher-quality circuits).
+    </Admonition>
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – number of control qubits.
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – An optional label for the gate \[Default: `None`]
-    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)") *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is set to `True` if the gate contains free parameters, in which case it cannot yet be synthesized.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Number of controls to add. Defauls to `1`.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – Optional gate label. Defaults to `None`. Ignored if the controlled gate is implemented as an annotated operation.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)") *| None*) – Indicates whether the controlled gate should be implemented as a controlled gate or as an annotated operation. If `None`, treated as `False`.
 
     **Returns**
 
-    controlled version of this gate.
+    A controlled version of this gate.
 
-    **Return type**
+    **Raises**
 
-    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `ctrl_state`.
   </Function>
 
   ### copy
 
-  <Function id="qiskit.circuit.library.RYYGate.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L430-L445" signature="copy(name=None)">
+  <Function id="qiskit.circuit.library.RYYGate.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/instruction.py#L430-L445" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -241,7 +247,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.RYYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/standard_gates/ryy.py#L136-L148" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.RYYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/library/standard_gates/ryy.py#L103-L115" signature="inverse(annotated=False)">
     Return inverse RYY gate (i.e. with the negative rotation angle).
 
     **Parameters**
@@ -259,13 +265,13 @@ $$
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.library.RYYGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L285-L290" signature="is_parameterized()">
+  <Function id="qiskit.circuit.library.RYYGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/instruction.py#L285-L290" signature="is_parameterized()">
     Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
   </Function>
 
   ### power
 
-  <Function id="qiskit.circuit.library.RYYGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/library/standard_gates/ryy.py#L162-L164" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.RYYGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/library/standard_gates/ryy.py#L129-L131" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
@@ -286,7 +292,7 @@ $$
 
   ### repeat
 
-  <Function id="qiskit.circuit.library.RYYGate.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L493-L523" signature="repeat(n)">
+  <Function id="qiskit.circuit.library.RYYGate.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/instruction.py#L493-L523" signature="repeat(n)">
     Creates an instruction with `self` repeated :math\`n\` times.
 
     **Parameters**
@@ -308,7 +314,7 @@ $$
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.library.RYYGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L347-L371" signature="reverse_ops()">
+  <Function id="qiskit.circuit.library.RYYGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/instruction.py#L347-L371" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -326,7 +332,7 @@ $$
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.library.RYYGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L216-L256" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.library.RYYGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/instruction.py#L216-L256" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -344,7 +350,7 @@ $$
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.library.RYYGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/gate.py#L48-L60" signature="to_matrix()">
+  <Function id="qiskit.circuit.library.RYYGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
     Return a Numpy.array for the gate unitary matrix.
 
     **Returns**
@@ -362,7 +368,7 @@ $$
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.library.RYYGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/instruction.py#L145-L153" signature="to_mutable()">
+  <Function id="qiskit.circuit.library.RYYGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/instruction.py#L145-L153" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -370,7 +376,7 @@ $$
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.RYYGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/circuit/gate.py#L246-L260" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.RYYGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/gate.py#L258-L272" signature="validate_parameter(parameter)">
     Gate parameters should be int, float, or ParameterExpression
   </Function>
 </Class>

@@ -8,12 +8,12 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
 # LitinskiTransformation
 
-<Class id="qiskit.transpiler.passes.LitinskiTransformation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/optimization/litinski_transformation.py#L21-L77" signature="qiskit.transpiler.passes.LitinskiTransformation(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.LitinskiTransformation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passes/optimization/litinski_transformation.py#L21-L80" signature="qiskit.transpiler.passes.LitinskiTransformation(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Applies Litinski transform to a circuit.
 
-  The transform applies to a circuit containing Clifford + RZ-rotation gates (including T and Tdg), and moves Clifford gates to the end of the circuit, while changing rotation gates to multi-qubit rotations (represented using PauliEvolution gates).
+  The transform applies to a circuit containing Clifford, single-qubit RZ-rotation gates (including T and Tdg), and standard Z-measurements, and moves Clifford gates to the end of the circuit. In the process, it changes RZ-rotations to product pauli rotations (implemented as [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") gates), and changes Z-measurements to product pauli measurements (implemented using [`PauliProductMeasurement`](qiskit.circuit.library.PauliProductMeasurement "qiskit.circuit.library.PauliProductMeasurement") instructions).
 
   The pass supports all of the Clifford gates in the list returned by [`get_clifford_gate_names()`](qiskit.quantum_info.get_clifford_gate_names "qiskit.quantum_info.get_clifford_gate_names"):
 
@@ -55,7 +55,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.LitinskiTransformation.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.LitinskiTransformation.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -75,7 +75,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.LitinskiTransformation.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.LitinskiTransformation.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -85,7 +85,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.LitinskiTransformation.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/optimization/litinski_transformation.py#L58-L77" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.LitinskiTransformation.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passes/optimization/litinski_transformation.py#L61-L80" signature="run(dag)">
     Run the LitiskiTransformation pass on `dag`.
 
     **Parameters**
@@ -107,7 +107,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.LitinskiTransformation.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.LitinskiTransformation.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

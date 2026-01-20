@@ -43,13 +43,13 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
   #### QkBitTerm \*bit\_terms
 
   <Attribute id="bit_terms">
-    A non-null, aligned pointer to `len` elements of type `QkBitTerm`.
+    An aligned pointer to `len` elements of type `QkBitTerm`. This can be `NULL` if and only if `len` is 0.
   </Attribute>
 
   #### uint32\_t \*indices
 
   <Attribute id="indices">
-    A non-null, aligned pointer to `len` elements of type `uint32_t`.
+    An aligned pointer to `len` elements of type `uint32_t`. This can be `NULL` if and only if `len` is 0.
   </Attribute>
 
   #### uint32\_t num\_qubits
@@ -66,7 +66,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
 <Function id="qk_obsterm_str" signature="char *qk_obsterm_str(const QkObsTerm *term)">
   Return a string representation of the sparse term.
 
-  <span id="group__QkObsTerm_1autotoc_md171" />
+  <span id="group__QkObsTerm_1autotoc_md201" />
 
   #### Example
 
@@ -78,11 +78,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
   qk_str_free(string);
   ```
 
-  <span id="group__QkObsTerm_1autotoc_md172" />
+  <span id="group__QkObsTerm_1autotoc_md202" />
 
   #### Safety
 
-  <span id="group__QkObsTerm_1autotoc_md172" />
+  <span id="group__QkObsTerm_1autotoc_md202" />
 
   Behavior is undefined `term` is not a valid, non-null pointer to a `QkObsTerm`.
 

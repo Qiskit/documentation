@@ -143,7 +143,7 @@ $$
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.GraphStateGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L183-L240" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.GraphStateGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L199-L256" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -196,10 +196,14 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.GraphStateGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L104-L140" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.GraphStateGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L105-L156" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return the controlled version of itself.
 
     The controlled gate is implemented as [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") when `annotated` is `False`, and as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") when `annotated` is `True`.
+
+    <Admonition title="Deprecated since version 2.3" type="danger">
+      `qiskit.circuit.gate.Gate.control()`’s argument `annotated` is deprecated as of Qiskit 2.3. It will be removed in Qiskit 3.0. The method Gate.control() no longer accepts annotated=None. The new default is annotated=True, which represents the controlled gate as an AnnotatedOperation (unless a dedicated controlled-gate class already exists). You can explicitly set annotated=False to preserve the previous behavior. However, using annotated=True is recommended, as it defers construction of the controlled circuit to transpiler, and furthermore enables additional controlled-gate optimizations (typically leading to higher-quality circuits).
+    </Admonition>
 
     **Parameters**
 
@@ -267,7 +271,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.GraphStateGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L62-L93" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.GraphStateGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L63-L94" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
@@ -346,7 +350,7 @@ $$
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.library.GraphStateGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L48-L60" signature="to_matrix()">
+  <Function id="qiskit.circuit.library.GraphStateGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
     Return a Numpy.array for the gate unitary matrix.
 
     **Returns**

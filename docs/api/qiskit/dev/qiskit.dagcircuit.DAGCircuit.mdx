@@ -755,6 +755,12 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if the given wire doesn’t exist in the DAG
   </Function>
 
+  ### num\_blocks
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.num_blocks" signature="num_blocks()">
+    Return the number of basic blocks in this circuit.
+  </Function>
+
   ### num\_clbits
 
   <Function id="qiskit.dagcircuit.DAGCircuit.num_clbits" signature="num_clbits()">
@@ -1139,14 +1145,31 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     [**DAGCircuitError**](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") – if either node is not an OpNode or nodes are not connected
   </Function>
 
+  ### to\_circuit
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.to_circuit" signature="to_circuit(*, copy_operations=True)">
+    Convert this DAG to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+    This is a simple wrapper around [`dag_to_circuit()`](converters#qiskit.converters.dag_to_circuit "qiskit.converters.dag_to_circuit").
+
+    **Parameters**
+
+    **copy\_operations** – whether to deep copy the individual instructions. If set to `False`, the operation is cheaper but mutations to the instructions in the circuit will affect the original circuit.
+
+    **Returns**
+
+    a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") representing this same DAG.
+  </Function>
+
   ### topological\_nodes
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.topological_nodes" signature="topological_nodes(key=None)">
+  <Function id="qiskit.dagcircuit.DAGCircuit.topological_nodes" signature="topological_nodes(key=None, reverse=False)">
     Yield nodes in topological order.
 
     **Parameters**
 
-    **key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the bit qargs and cargs of a node will be used for sorting.
+    *   **key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the bit qargs and cargs of a node will be used for sorting.
+    *   **reverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If True, yield nodes in reverse topological order.
 
     **Returns**
 
@@ -1159,14 +1182,15 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### topological\_op\_nodes
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.topological_op_nodes" signature="topological_op_nodes(key=None)">
+  <Function id="qiskit.dagcircuit.DAGCircuit.topological_op_nodes" signature="topological_op_nodes(key=None, reverse=False)">
     Yield op nodes in topological order.
 
     Allowed to pass in specific key to break ties in top order
 
     **Parameters**
 
-    **key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the qargs and cargs of a node will be used for sorting.
+    *   **key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the qargs and cargs of a node will be used for sorting.
+    *   **reverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If True, yield op nodes in reverse topological order.
 
     **Returns**
 

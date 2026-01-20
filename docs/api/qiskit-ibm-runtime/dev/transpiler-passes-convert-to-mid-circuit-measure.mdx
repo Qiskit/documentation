@@ -1,0 +1,131 @@
+---
+title: ConvertToMidCircuitMeasure (dev version)
+description: API reference for qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure
+---
+
+# ConvertToMidCircuitMeasure
+
+<Class id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/basis/convert_mid_circ_meas.py#L22-L74" signature="ConvertToMidCircuitMeasure(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass "(in Qiskit v2.3)")
+
+  This pass replaces terminal measures in the middle of the circuit with MidCircuitMeasure instructions.
+
+  Transpiler pass that replaces terminal measure instructions in non-terminal locations with `MidCircuitMeasure` instructions. By default, these will be `measure_2`, but the pass accepts custom `measure_` definitions. This pass is expected to run after routing, as it will check that `MidCircuitMeasure` is supported in the corresponding physical qubit.
+
+  Note that the pass will only act on non-terminal `Measure` instances, and won’t replace existing mid-circuit measurement instructions (e.g., `"measure_2" -> "measure_3"`) or convert any `MidCircuitMeasure` instance into a `Measure`.
+
+  **Parameters**
+
+  *   **target** – Backend’s target instance that contains one or more `measure_` instructions.
+  *   **mcm\_name** – Name of the `measure_` instruction that terminal measure instructions in non-terminal locations will be replaced with. This instruction must be contained in the target. Defaults to `measure_2`.
+
+  **Raises**
+
+  **ValueError** – If the specifcied `mcm_name` does not conform to the `measure_` pattern or is not contained in the provided target.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### \_\_call\_\_
+
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.__call__" signature="__call__(circuit, property_set=None)">
+    Runs the pass on circuit.
+
+    **Parameters**
+
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.3)")) – The dag on which the pass is run.
+    *   **property\_set** ([*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet "(in Qiskit v2.3)") *| dict | None*) – Input/output property set. An analysis pass might change the property set in-place. If not given, the existing `property_set` attribute of the pass will be used (if set).
+
+    **Returns**
+
+    If on transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
+
+    **Return type**
+
+    [*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.3)")
+  </Function>
+
+  ### execute
+
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** (*Any*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.3)")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** (*Callable | None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    tuple\[*Any*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.3)")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    str
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/basis/convert_mid_circ_meas.py#L62-L74" signature="run(dag)">
+    Run the pass on a dag.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.3)"))
+
+    **Return type**
+
+    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.3)")
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertToMidCircuitMeasure.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.3)")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.3)")
+  </Function>
+</Class>
+

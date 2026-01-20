@@ -59,7 +59,7 @@ python_api_name: qiskit.transpiler.Target
 
   Then in the `target` object accessing by `rx_30` will get the fixed angle [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") while `rx` will get the parameterized [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
 
-  You can optionally specify a bound on valid values on a gate in the target by using the `angle_bounds` keyword argument when calling the [`add_instruction()`](#qiskit.transpiler.Target.add_instruction "qiskit.transpiler.Target.add_instruction") method. Bounds are set on operations not individual instructions, so when you call [`add_instruction()`](#qiskit.transpiler.Target.add_instruction "qiskit.transpiler.Target.add_instruction") the bounds are applied for all qargs that it is defined on. The bounds are specified of a list of 2-tuples of floats where the first float is the lower bound and the second float is the upper bound. For example, if you specfied an angle bound:
+  You can optionally specify a bound on valid values on a gate in the target by using the `angle_bounds` keyword argument when calling the [`add_instruction()`](#qiskit.transpiler.Target.add_instruction "qiskit.transpiler.Target.add_instruction") method. Bounds are set on operations not individual instructions, so when you call [`add_instruction()`](#qiskit.transpiler.Target.add_instruction "qiskit.transpiler.Target.add_instruction") the bounds are applied for all qargs that it is defined on. The bounds are specified of a list of 2-tuples of floats where the first float is the lower bound and the second float is the upper bound. For example, if you specified an angle bound:
 
   ```python
   [(0.0, 3.14), (-3.14, 3.14), (0.0, 1.0)]
@@ -68,7 +68,7 @@ python_api_name: qiskit.transpiler.Target
   this indicates the angle bounds for a 3 parameter gate where the first parameter accepts angles between 0 and 3.14, the second between -3.14 and 3.14, and the third parameter between 0 and 1. All bounds are set inclusively as well. A bound can also be specified with `None` instead of a 2-tuple which indicates that parameter has no constraints. For example:
 
   ```python
-  [(0.0, 3.14, None, None)]
+  [(0.0, 3.14), None, None]
   ```
 
   indicates an angle bound for a 3 parameter gate where only the first parameter is restricted to angles between 0.0 and 3.14 and the other parameters accept any value.
@@ -346,12 +346,12 @@ python_api_name: qiskit.transpiler.Target
 
     *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*]*) – The list of basis gate names for the backend. For the target to be created these names must either be in the output from [`get_standard_gate_name_mapping()`](circuit_library#qiskit.circuit.library.get_standard_gate_name_mapping "qiskit.circuit.library.get_standard_gate_name_mapping") or present in the specified `custom_name_mapping` argument.
     *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – The number of qubits supported on the backend.
-    *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") *| None*) – The coupling map representing connectivity constraints on the backend. If specified all gates from `basis_gates` will be supported on all qubits (or pairs of qubits).
-    *   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") *| None*) – Optional instruction durations for instructions. If specified it will take priority for setting the `duration` field in the [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") objects for the instructions in the target.
+    *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap") *| None*) – The coupling map representing connectivity constraints on the backend. If specified all gates from `basis_gates` will be supported on all qubits (or pairs of qubits).
+    *   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations") *| None*) – Optional instruction durations for instructions. If specified it will take priority for setting the `duration` field in the [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") objects for the instructions in the target.
     *   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – A list of sets of qubits that must be measured together. This must be provided as a nested list like `[[0, 1], [2, 3, 4]]`.
     *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)") *| None*) – The system time resolution of input signals in seconds
     *   **timing\_constraints** (*TimingConstraints | None*) – Optional timing constraints to include in the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target")
-    *   **custom\_name\_mapping** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*, Any] | None*) – An optional dictionary that maps custom gate/operation names in `basis_gates` to an [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") object representing that gate/operation. By default, most standard gates names are mapped to the standard gate object from [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") this only needs to be specified if the input `basis_gates` defines gates in names outside that set.
+    *   **custom\_name\_mapping** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")*] | None*) – An optional dictionary that maps custom gate/operation names in `basis_gates` to an [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") object representing that gate/operation. By default, most standard gates names are mapped to the standard gate object from [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") this only needs to be specified if the input `basis_gates` defines gates in names outside that set.
 
     **Returns**
 

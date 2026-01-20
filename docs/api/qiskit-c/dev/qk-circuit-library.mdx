@@ -12,6 +12,49 @@ The Qiskit circuit library contains functions for building commonly used quantum
 
 ## Functions
 
+### qk\_circuit\_library\_iqp
+
+<Function id="qk_circuit_library_iqp" signature="QkCircuit *qk_circuit_library_iqp(uint32_t num_qubits, const int64_t *interactions, bool check_input)">
+  Generate an Instantaneous Quantum Polynomial (IQP) circuit from an integer interaction matrix.
+
+  The `interactions` matrix is interpreted as an `n × n` row-major array of 64-bit integers, where `n = num_qubits`. The diagonal entries set T-like phase powers, and the upper triangle encodes two-qubit CPhase interactions.
+
+  <span id="group__QkCircuitLibrary_1autotoc_md53" />
+
+  #### Safety
+
+  <span id="group__QkCircuitLibrary_1autotoc_md53" />
+
+  If `num_qubits > 0`, `interactions` **must** be a valid, non-null pointer to at least `num_qubits * num_qubits` contiguous `int64_t` values in row-major order. The memory pointed to by `interactions` must be properly aligned, readable for the duration of this call, and not mutably aliased. Passing an invalid pointer or a buffer that is too small results in undefined behaviour.
+
+  **Parameters**
+
+  *   **num\_qubits** – Number of logical qubits (`n`). Must match the dimension of the `interactions` matrix.
+  *   **interactions** – Pointer to a row-major `n × n` matrix of type `int64_t`. May be NULL only if `num_qubits == 0`.
+  *   **check\_input** – When `true`, this function verifies that the matrix is symmetric and returns `NULL` if it is not. When `false`, no additional validation is performed.
+
+  **Returns**
+
+  A newly allocated `QkCircuit*` on success (caller must free with `qk_circuit_free`), or `NULL` if `num_qubits > 0` and `interactions` is `NULL`, or if `check_input` is `true` and the matrix is not symmetric.
+</Function>
+
+### qk\_circuit\_library\_random\_iqp
+
+<Function id="qk_circuit_library_random_iqp" signature="QkCircuit *qk_circuit_library_random_iqp(uint32_t num_qubits, int64_t seed)">
+  Generate a random Instantaneous Quantum Polynomial (IQP) circuit.
+
+  This constructs a random symmetric integer interaction matrix internally and uses it to build an IQP circuit, mirroring the Python `qiskit.circuit.library.IQP` constructor.
+
+  **Parameters**
+
+  *   **num\_qubits** – Number of qubits.
+  *   **seed** – RNG seed. If negative, entropy is drawn from the OS; otherwise, the given value is used as a deterministic seed.
+
+  **Returns**
+
+  A newly allocated `QkCircuit*` (caller must free with `qk_circuit_free`).
+</Function>
+
 ### qk\_circuit\_library\_quantum\_volume
 
 <Function id="qk_circuit_library_quantum_volume" signature="QkCircuit *qk_circuit_library_quantum_volume(uint32_t num_qubits, size_t depth, int64_t seed)">
@@ -23,7 +66,7 @@ The Qiskit circuit library contains functions for building commonly used quantum
 
   \[1] A. Cross et al. Validating quantum computers using randomized model circuits, Phys. Rev. A 100, 032328 (2019). [arXiv:1811.12926](https://arxiv.org/abs/1811.12926)
 
-  <span id="group__QkCircuitLibrary_1autotoc_md49" />
+  <span id="group__QkCircuitLibrary_1autotoc_md54" />
 
   #### Example
 
