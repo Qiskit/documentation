@@ -13,6 +13,7 @@ When you send a job to an IBM&reg; QPU, it is first sent to the job validation s
   - Dynamical decoupling and gate-folding ZNE introduce additional gates that are included in the instructions for the [Maximum number of low-level instructions per qubit](#per-qubit) limit.
   - Gate-folding ZNE introduces additional two-qubit gates relevant to the [Maximum number of two-qubit gates per job](#2-qubit-limit) limit. The number of two-qubit gates is multiplied by the sum of noise factors requested in gate-folding ZNE.
 - The limits reported by the `backend.configuration()` fields `max_shots` and `max_experiments` are no longer relevant or enforced. These fields will be removed in the near future.
+- These limits are per job, not per Primitive Unified Bloc (PUB). 
 </Admonition>
 
 <span id="max-shots"></span>
