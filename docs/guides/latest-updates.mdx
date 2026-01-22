@@ -10,7 +10,7 @@ in_page_toc_max_heading_level: 2
 
 # Latest updates
 
-*Last updated 15 January 2026*
+*Last updated 23 January 2026*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
@@ -158,17 +158,27 @@ For full details on the early access release and upcoming improvements, [check o
 
 
 <span id="latest-qiskit-sdk"></span>
-## Qiskit SDK v2.2
+## Qiskit SDK v2.3
 
-**October 2025**
+**January 2026**
 
-Qiskit v2.2 adds several enhancements for the C API and the transpiler, as well as many other improvements and bug fixes. The major features of this new release are:
+Building on the momentum established across the v2.x series, which has centered on positioning Qiskit as the leading platform for hybrid quantum-HPC workflows, [Qiskit SDK v2.3](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) delivers a significant expansion of the C API alongside faster, more flexible tools for building and optimizing quantum circuits.
 
--  **C API transpile function:** The C API now includes a function for transpiling a quantum circuit: [`qk_transpile()`](/docs/api/qiskit-c/qk-transpiler). This function is equivalent to the Python [`transpile()`](/docs/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function for a standalone C context.
-- **Litinski transformation pass:** A new transformation pass [`LitinskiTransformation`](/docs/api/qiskit/qiskit.transpiler.passes.LitinskiTransformation "qiskit.transpiler.passes.LitinskiTransformation") that implements the transform described in [arXiv:1808.02892](https://arxiv.org/abs/1808.02892). This pass is typically used in compilation for fault-tolerant architectures.
-- **Angle bound support for targets:** The [`Target`](/docs/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") class now supports specifying bounds for the allowed values for parameterized operations added to the target. When an instruction is added to the [`Target`](/docs/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target"), you can add the optional argument `angle_bounds` to specify the upper and lower bounds for parameterized rotation gates. A new transpiler pass [`WrapAngles`](/docs/api/qiskit/qiskit.transpiler.passes.WrapAngles "qiskit.transpiler.passes.WrapAngles") was also added to enforce the angle constraints as part of a transpilation pipeline.
+Major updates include:
 
-Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.2.0) and the [v2.2 release notes.](/docs/api/qiskit/release-notes/2.2)
+**Custom transpiler passes in C** - Write custom transpiler passes through Qiskit's C API using the new QkDag object and an expanded QkTarget object, which enable step-by-step inspection, modification, and extension of the compilation process—without rebuilding the entire compiler pipeline.
+
+**Faster hardware layout selection** - Upgrades and Rust-driven performance enhancements to `VF2Layout` and `VF2PostLayout` improve the speed and scalability of circuit-to-hardware layout selection, reducing compilation overhead and improving fidelity on quantum hardware.
+
+**New multi-qubit Pauli measurement** The new `PauliProductMeasurement` instruction enables joint projective measurement across multiple qubits in a single operation, unlocking compilation to Pauli-based computation - a common representation in fault-tolerant quantum computing.
+
+**Improvements in early fault-tolerant transpilation** - Performance and feature enhancements for transpilation to early fault-tolerant targets - especially Clifford+T targets - help users more efficiently build transpilation pipelines for future QPUs.
+
+These capabilities give developers greater flexibility to customize quantum circuit optimizations and integrate with existing HPC workflows. 
+
+[Visit the blog](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) for the full technical summary.
+
+Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.3.0) and the [v2.2 release notes.](/docs/api/qiskit/release-notes/2.3)
 
 {/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
 
@@ -340,7 +350,7 @@ Improvements include the following:
 - We're excited to roll out two new functions for finance and optimization:
   - [QUICK-PDE](https://quantum.cloud.ibm.com/functions?id=colibritd-quick-pde) by ColibriTD allows users to solve certain differential equations for material deformation and computational fluid dynamics problems. For example, one team of researchers has already begun using the QUICK-PDE function to study the dynamics of novel reactive fluids developed to transfer heat more efficiently in a type of nuclear reactor known as Small Modular Reactors.
 
-  - [Quantum Portfolio Optimizer](https://quantum.cloud.ibm.com/functions?id=global-data-quantum-quantum-portfolio-optimizer) by Global Data Quantum enables quantitative finance researchers to back-test portfolio optimization strategies. Running on over 100 qubits, this function calculates a portfolio’s Sharpe ratio versus return across a specified time period. Early users are exploring the optimizer’s ability to evaluate historical performance of an investment strategy and to enable comparisons of different portfolios under similar conditions.
+  - [Quantum Portfolio Optimizer](https://quantum.cloud.ibm.com/functions?id=global-data-quantum-quantum-portfolio-optimizer) by Global Data Quantum enables quantitative finance researchers to back-test portfolio optimization strategies. Running on over 100 qubits, this function calculates a portfolio's Sharpe ratio versus return across a specified time period. Early users are exploring the optimizer's ability to evaluate historical performance of an investment strategy and to enable comparisons of different portfolios under similar conditions.
 
 Check out the [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions) to request a free trial today.
 
