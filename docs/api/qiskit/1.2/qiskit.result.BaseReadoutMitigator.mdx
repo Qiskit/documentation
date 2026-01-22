@@ -9,7 +9,7 @@ python_api_name: qiskit.result.BaseReadoutMitigator
 # BaseReadoutMitigator
 
 <Class id="qiskit.result.BaseReadoutMitigator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/result/mitigation/base_readout_mitigator.py#L23-L79" signature="qiskit.result.BaseReadoutMitigator" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   Base readout error mitigator class.
 
@@ -23,10 +23,10 @@ python_api_name: qiskit.result.BaseReadoutMitigator
     **Parameters**
 
     *   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – Counts object to be mitigated.
-    *   **diagonal** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – the diagonal operator. This may either be specified as a string containing I,Z,0,1 characters, or as a real valued 1D array\_like object supplying the full diagonal, or as a dictionary, or as Callable.
-    *   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
-    *   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – Optional, marginalize counts to just these bits.
-    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
+    *   **diagonal** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – the diagonal operator. This may either be specified as a string containing I,Z,0,1 characters, or as a real valued 1D array\_like object supplying the full diagonal, or as a dictionary, or as Callable.
+    *   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
+    *   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – Optional, marginalize counts to just these bits.
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
 
     **Returns**
 
@@ -34,7 +34,7 @@ python_api_name: qiskit.result.BaseReadoutMitigator
 
     **Return type**
 
-    [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
+    [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple)\[[float](https://docs.python.org/3/library/functions.html#float), [float](https://docs.python.org/3/library/functions.html#float)]
   </Function>
 
   ### quasi\_probabilities
@@ -45,9 +45,9 @@ python_api_name: qiskit.result.BaseReadoutMitigator
     **Parameters**
 
     *   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – Counts to be mitigated.
-    *   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
-    *   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – Optional, marginalize counts to just these bits.
-    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
+    *   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – the physical qubits measured to obtain the counts clbits. If None these are assumed to be qubits \[0, …, N-1] for N-bit counts.
+    *   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – Optional, marginalize counts to just these bits.
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
 
     **Returns**
 

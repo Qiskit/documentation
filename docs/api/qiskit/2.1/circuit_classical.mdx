@@ -47,7 +47,7 @@ The expression system is based on tree representation. All nodes in the tree are
 #### Expr
 
 <Class id="qiskit.circuit.classical.expr.Expr" signature="qiskit.circuit.classical.expr.Expr" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Root base class of all nodes in the expression tree. The base case should never be instantiated directly.
 
@@ -76,7 +76,7 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
   ##### name
 
   <Attribute id="qiskit.circuit.classical.expr.Var.name">
-    The name of the variable. This is required to exist if the backing [`var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attribute is a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.13)"), i.e. if it is a new-style variable, and must be `None` if it is an old-style variable.”””
+    The name of the variable. This is required to exist if the backing [`var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attribute is a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID), i.e. if it is a new-style variable, and must be `None` if it is an old-style variable.”””
   </Attribute>
 
   ##### new
@@ -88,7 +88,7 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
   ##### var
 
   <Attribute id="qiskit.circuit.classical.expr.Var.var">
-    A reference to the backing data storage of the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance. When lifting old-style [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instances into a [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), this is exactly the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"). If the variable is a new-style classical variable (one that owns its own storage separate to the old [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")/[`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") model), this field will be a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.13)") to uniquely identify it.”””
+    A reference to the backing data storage of the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance. When lifting old-style [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instances into a [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), this is exactly the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"). If the variable is a new-style classical variable (one that owns its own storage separate to the old [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")/[`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") model), this field will be a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID) to uniquely identify it.”””
   </Attribute>
 </Class>
 
@@ -128,7 +128,7 @@ Stretch variables for use in duration expressions are represented by the [`Stret
   ##### var
 
   <Attribute id="qiskit.circuit.classical.expr.Stretch.var">
-    A [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.13)") to uniquely identify this stretch.
+    A [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID) to uniquely identify this stretch.
   </Attribute>
 </Class>
 
@@ -150,7 +150,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
   ##### Op
 
   <Class id="qiskit.circuit.classical.expr.Unary.Op" signature="Op(value)" modifiers="class">
-    Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.13)")
+    Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
     Enumeration of the opcodes for unary operations.
 
@@ -177,7 +177,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
   ##### Op
 
   <Class id="qiskit.circuit.classical.expr.Binary.Op" signature="Op(value)" modifiers="class">
-    Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.13)")
+    Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
     Enumeration of the opcodes for binary operations.
 
@@ -262,7 +262,7 @@ The functions and methods described in this section are a more user-friendly way
 
   **Parameters**
 
-  *   **value** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **value** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
   *   **type** ([*types.Type*](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") *| None*) –
 
   **Return type**
@@ -292,7 +292,7 @@ You can manually specify casts in cases where the cast is allowed in explicit fo
 
   **Parameters**
 
-  *   **operand** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **operand** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
   *   **type** ([*Type*](#qiskit.circuit.classical.types.Type "qiskit._accelerate.circuit.classical.types.Type")) –
 
   **Return type**
@@ -320,7 +320,7 @@ There are helper constructor functions for each of the unary operations.
 
   **Parameters**
 
-  **operand** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  **operand** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -345,7 +345,7 @@ There are helper constructor functions for each of the unary operations.
 
   **Parameters**
 
-  **operand** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  **operand** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -372,8 +372,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -398,8 +398,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -424,8 +424,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -450,8 +450,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -476,8 +476,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -502,8 +502,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -528,8 +528,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -554,8 +554,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -580,8 +580,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -606,8 +606,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -632,8 +632,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -667,8 +667,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
   *   **type** ([*types.Type*](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") *| None*) –
 
   **Return type**
@@ -696,8 +696,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
   *   **type** ([*types.Type*](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") *| None*) –
 
   **Return type**
@@ -731,8 +731,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -765,8 +765,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -801,8 +801,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -846,8 +846,8 @@ Similarly, the binary operations and relations have helper functions defined.
 
   **Parameters**
 
-  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **left** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **right** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -876,8 +876,8 @@ You can index into unsigned integers and bit-likes using another unsigned intege
 
   **Parameters**
 
-  *   **target** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
-  *   **index** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) –
+  *   **target** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
+  *   **index** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) –
 
   **Return type**
 
@@ -893,7 +893,7 @@ Qiskit’s legacy method for specifying equality conditions for use in condition
 
   **Parameters**
 
-  **condition** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*qiskit.circuit.Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")  *|*[*qiskit.circuit.ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) –
+  **condition** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*qiskit.circuit.Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")  *|*[*qiskit.circuit.ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) –
 
   **Return type**
 
@@ -907,7 +907,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 #### ExprVisitor
 
 <Class id="qiskit.circuit.classical.expr.ExprVisitor" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/classical/expr/visitors.py#L32-L64" signature="qiskit.circuit.classical.expr.ExprVisitor" modifiers="class">
-  Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.13)")\[`_T_co`]
+  Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`_T_co`]
 
   Base class for visitors to the [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") tree. Subclasses should override whichever of the `visit_*` methods that they are able to handle, and should be organized such that non-existent methods will never be called.
 
@@ -1045,7 +1045,7 @@ For the convenience of simple visitors that only need to inspect the variables i
 
   **Return type**
 
-  [*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator "(in Python v3.13)")\[[*Var*](#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var")]
+  [*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator)\[[*Var*](#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var")]
 </Function>
 
 To iterator over all variables including stretch variables, the iterator method [`iter_identifiers()`](#qiskit.circuit.classical.expr.iter_identifiers "qiskit.circuit.classical.expr.iter_identifiers") is provided.
@@ -1083,7 +1083,7 @@ To iterator over all variables including stretch variables, the iterator method 
 
   **Return type**
 
-  [*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator "(in Python v3.13)")\[[*Var*](#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var") | [*Stretch*](#qiskit.circuit.classical.expr.Stretch "qiskit._accelerate.circuit.classical.expr.Stretch")]
+  [*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator)\[[*Var*](#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var") | [*Stretch*](#qiskit.circuit.classical.expr.Stretch "qiskit._accelerate.circuit.classical.expr.Stretch")]
 </Function>
 
 Two expressions can be compared for direct structural equality by using the built-in Python `==` operator. In general, though, one might want to compare two expressions slightly more semantically, allowing that the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes inside them are bound to different memory-location descriptions between two different circuits. In this case, one can use [`structurally_equivalent()`](#qiskit.circuit.classical.expr.structurally_equivalent "qiskit.circuit.classical.expr.structurally_equivalent") with two suitable “key” functions to do the comparison.
@@ -1101,12 +1101,12 @@ Two expressions can be compared for direct structural equality by using the buil
 
   *   **left** ([*expr.Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – one of the [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") nodes.
   *   **right** ([*expr.Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the other [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node.
-  *   **left\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*] | None*) – a callable whose output should be used when comparing [`Var.var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attributes. If this argument is `None` or its output is `None` for a given variable in `left`, the variable will be used verbatim.
-  *   **right\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*] | None*) – same as `left_var_key`, but used on the variables in `right` instead.
+  *   **left\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) – a callable whose output should be used when comparing [`Var.var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attributes. If this argument is `None` or its output is `None` for a given variable in `left`, the variable will be used verbatim.
+  *   **right\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) – same as `left_var_key`, but used on the variables in `right` instead.
 
   **Return type**
 
-  [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  [bool](https://docs.python.org/3/library/functions.html#bool)
 
   **Examples**
 
@@ -1182,7 +1182,7 @@ Some expressions have associated memory locations, and others may be purely temp
 
   **Return type**
 
-  [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  [bool](https://docs.python.org/3/library/functions.html#bool)
 </Function>
 
 <span id="module-qiskit.circuit.classical.types" />
@@ -1204,7 +1204,7 @@ All types inherit from an abstract base class:
 #### Type
 
 <Class id="qiskit.circuit.classical.types.Type" signature="qiskit.circuit.classical.types.Type" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Root base class of all nodes in the type tree. The base case should never be instantiated directly.
 
@@ -1296,7 +1296,7 @@ The return value is an enumeration [`Ordering`](#qiskit.circuit.classical.types.
 #### Ordering
 
 <Class id="qiskit.circuit.classical.types.Ordering" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/classical/types/ordering.py#L38-L55" signature="qiskit.circuit.classical.types.Ordering(value)" modifiers="class">
-  Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.13)")
+  Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
   Enumeration listing the possible relations between two types. Types only have a partial ordering, so it’s possible for two types to have no sub-typing relationship.
 
@@ -1333,11 +1333,11 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
   *   **left** ([*Type*](#qiskit.circuit.classical.types.Type "qiskit._accelerate.circuit.classical.types.Type")) –
   *   **right** ([*Type*](#qiskit.circuit.classical.types.Type "qiskit._accelerate.circuit.classical.types.Type")) –
-  *   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+  *   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
 
   **Return type**
 
-  [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  [bool](https://docs.python.org/3/library/functions.html#bool)
 </Function>
 
 #### is\_supertype
@@ -1368,11 +1368,11 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
   *   **left** ([*Type*](#qiskit.circuit.classical.types.Type "qiskit._accelerate.circuit.classical.types.Type")) –
   *   **right** ([*Type*](#qiskit.circuit.classical.types.Type "qiskit._accelerate.circuit.classical.types.Type")) –
-  *   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+  *   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
 
   **Return type**
 
-  [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  [bool](https://docs.python.org/3/library/functions.html#bool)
 </Function>
 
 #### greater
@@ -1386,7 +1386,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
   **Raises**
 
-  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – if there is no ordering relation between the two types.
+  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – if there is no ordering relation between the two types.
 
   **Parameters**
 
@@ -1410,7 +1410,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
 ### Casting between types
 
-It is common to need to cast values of one type to another type. The casting rules for this are embedded into the [`types`](https://docs.python.org/3/library/types.html#module-types "(in Python v3.13)") module. You can query the casting kinds using [`cast_kind()`](#qiskit.circuit.classical.types.cast_kind "qiskit.circuit.classical.types.cast_kind"):
+It is common to need to cast values of one type to another type. The casting rules for this are embedded into the [`types`](https://docs.python.org/3/library/types.html#module-types) module. You can query the casting kinds using [`cast_kind()`](#qiskit.circuit.classical.types.cast_kind "qiskit.circuit.classical.types.cast_kind"):
 
 #### cast\_kind
 
@@ -1448,7 +1448,7 @@ Note that casts between [`Float`](#qiskit.circuit.classical.types.Float "qiskit.
 #### CastKind
 
 <Class id="qiskit.circuit.classical.types.CastKind" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/circuit/classical/types/ordering.py#L166-L182" signature="qiskit.circuit.classical.types.CastKind(value)" modifiers="class">
-  Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.13)")
+  Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
   A return value indicating the type of cast that can occur from one type to another.
 </Class>

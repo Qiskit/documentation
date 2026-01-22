@@ -67,10 +67,10 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQE
   **Parameters**
 
   *   **solver** ([*VQE*](qiskit.algorithms.minimum_eigensolvers.VQE "qiskit.algorithms.minimum_eigensolvers.VQE")) – a [`VQE`](qiskit.algorithms.minimum_eigensolvers.VQE "qiskit.algorithms.minimum_eigensolvers.VQE") instance used internally to compute the minimum eigenvalues. It is a requirement that the [`ansatz`](qiskit.algorithms.minimum_eigensolvers.VQE#ansatz "qiskit.algorithms.minimum_eigensolvers.VQE.ansatz") of this solver is of type [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz").
-  *   **gradient\_threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – once all gradients have an absolute value smaller than this threshold, the algorithm has converged and terminates.
-  *   **eigenvalue\_threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – once the eigenvalue has changed by less than this threshold from one iteration to the next, the algorithm has converged and terminates. When this case occurs, the excitation included in the final iteration did not result in a significant improvement of the eigenvalue and, thus, the results from this iteration are not considered.
-  *   **max\_iterations** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – the maximum number of iterations for the adaptive loop. If `None`, the algorithm is not bound in its number of iterations.
-  *   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – once all gradients have an absolute value smaller than this threshold, the algorithm has converged and terminates. Defaults to `1e-5`.
+  *   **gradient\_threshold** ([*float*](https://docs.python.org/3/library/functions.html#float)) – once all gradients have an absolute value smaller than this threshold, the algorithm has converged and terminates.
+  *   **eigenvalue\_threshold** ([*float*](https://docs.python.org/3/library/functions.html#float)) – once the eigenvalue has changed by less than this threshold from one iteration to the next, the algorithm has converged and terminates. When this case occurs, the excitation included in the final iteration did not result in a significant improvement of the eigenvalue and, thus, the results from this iteration are not considered.
+  *   **max\_iterations** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – the maximum number of iterations for the adaptive loop. If `None`, the algorithm is not bound in its number of iterations.
+  *   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – once all gradients have an absolute value smaller than this threshold, the algorithm has converged and terminates. Defaults to `1e-5`.
 
   ## Attributes
 
@@ -106,7 +106,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQE
 
     **Raises**
 
-    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If an ansatz other than [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz") is provided.
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If an ansatz other than [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz") is provided.
     *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If all evaluated gradients lie below the convergence threshold in the first iteration of the algorithm.
 
     **Returns**
@@ -131,7 +131,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQE
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 </Class>
 
