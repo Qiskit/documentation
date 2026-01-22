@@ -430,8 +430,8 @@ function _runtimeLegacyReleaseNotes(): FilesToIgnores {
   };
 }
 
-function _historicalBrokenLinks(): FilesToIgnores {
-  const runtime = Object.fromEntries(
+function _runtimeHistoricalSchema(): FilesToIgnores {
+  return Object.fromEntries(
     [
       "0.25/",
       "0.26/",
@@ -463,8 +463,6 @@ function _historicalBrokenLinks(): FilesToIgnores {
       ],
     ]),
   );
-
-  return { ...runtime };
 }
 
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
@@ -472,7 +470,7 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _patternsReorg(),
   _runtimeObjectsInv(),
   _runtimeLegacyReleaseNotes(),
-  _historicalBrokenLinks(),
+  _runtimeHistoricalSchema(),
 );
 
 function _qiskitCRegexes(): FilesToIgnores {
