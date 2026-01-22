@@ -9,7 +9,7 @@ python_api_name: qiskit.quantum_info.PauliLindbladMap
 # PauliLindbladMap
 
 <Class id="qiskit.quantum_info.PauliLindbladMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.PauliLindbladMap" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A Pauli Lindblad map stored in a qubit-sparse format.
 
@@ -55,14 +55,14 @@ $$
 
   ### Indexing
 
-  [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") behaves as [a Python sequence](https://docs.python.org/3/glossary.html#term-sequence) (the standard form, not the expanded [`collections.abc.Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")). The generators of the map can be indexed by integers, and iterated through to yield individual generator terms.
+  [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap") behaves as [a Python sequence](https://docs.python.org/3/glossary.html#term-sequence) (the standard form, not the expanded [`collections.abc.Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)). The generators of the map can be indexed by integers, and iterated through to yield individual generator terms.
 
   Each generator term appears as an instance a self-contained class. The individual terms are copied out of the base map; mutations to them will not affect the original map from which they are indexed.
 
   #### GeneratorTerm
 
   <Class id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/__init__.py" signature="GeneratorTerm" modifiers="class">
-    Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
+    Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
     A single term from a complete [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap").
 
@@ -150,7 +150,7 @@ $$
     **Parameters**
 
     *   **data** – The data type of the input. This can be another [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap"), in which case the input is copied, or it can be a list in a valid format for either [`from_list()`](#qiskit.quantum_info.PauliLindbladMap.from_list "qiskit.quantum_info.PauliLindbladMap.from_list") or [`from_sparse_list()`](#qiskit.quantum_info.PauliLindbladMap.from_sparse_list "qiskit.quantum_info.PauliLindbladMap.from_sparse_list").
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*|None*) – Optional number of qubits for the map. For most data inputs, this can be inferred and need not be passed. It is only necessary for empty lists or the sparse-list format. If given unnecessarily, it must match the data input.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)*|None*) – Optional number of qubits for the map. For most data inputs, this can be inferred and need not be passed. It is only necessary for empty lists or the sparse-list format. If given unnecessarily, it must match the data input.
   </Function>
 
   In addition to the conversion-based constructors, there are also helper methods that construct special forms of maps.
@@ -200,8 +200,8 @@ $$
 
     **Parameters**
 
-    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*] | None*) – The layout to apply. Most uses of this function should pass the [`QuantumCircuit.layout`](qiskit.circuit.QuantumCircuit#layout "qiskit.circuit.QuantumCircuit.layout") field from a circuit that was transpiled for hardware. In addition, you can pass a list of new qubit indices. If given as explicitly `None`, no remapping is applied (but you can still use `num_qubits` to expand the map).
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – The number of qubits to expand the map to. If not supplied, the output will be as wide as the given [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), or the same width as the input if the `layout` is given in another form.
+    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – The layout to apply. Most uses of this function should pass the [`QuantumCircuit.layout`](qiskit.circuit.QuantumCircuit#layout "qiskit.circuit.QuantumCircuit.layout") field from a circuit that was transpiled for hardware. In addition, you can pass a list of new qubit indices. If given as explicitly `None`, no remapping is applied (but you can still use `num_qubits` to expand the map).
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits to expand the map to. If not supplied, the output will be as wide as the given [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), or the same width as the input if the `layout` is given in another form.
 
     **Returns**
 
@@ -261,7 +261,7 @@ $$
 
     **Parameters**
 
-    **indices** (*Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – The indices for which Paulis must be dropped.
+    **indices** (*Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The indices for which Paulis must be dropped.
 
     **Returns**
 
@@ -285,7 +285,7 @@ $$
 
     **Parameters**
 
-    **indices** (*Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – The indices of the qubits to trace out.
+    **indices** (*Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The indices of the qubits to trace out.
 
     **Returns**
 
@@ -315,8 +315,8 @@ $$
 
     **Parameters**
 
-    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")*]]*) – Pairs of labels and their associated rates in the generator sum.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – It is not necessary to specify this if you are sure that `iter` is not an empty sequence, since it can be inferred from the label lengths. If `iter` may be empty, you must specify this argument to disambiguate how many qubits the map acts on. If this is given and `iter` is not empty, the value must match the label lengths.
+    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]]*) – Pairs of labels and their associated rates in the generator sum.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – It is not necessary to specify this if you are sure that `iter` is not an empty sequence, since it can be inferred from the label lengths. If `iter` may be empty, you must specify this argument to disambiguate how many qubits the map acts on. If this is given and `iter` is not empty, the value must match the label lengths.
 
     **Examples**
 
@@ -371,8 +371,8 @@ $$
 
     **Parameters**
 
-    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*, Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")*]]*) – triples of labels, the qubits each single-qubit term applies to, and the rate of the entire term.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the number of qubits the map acts on.
+    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*float*](https://docs.python.org/3/library/functions.html#float)*]]*) – triples of labels, the qubits each single-qubit term applies to, and the rate of the entire term.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of qubits the map acts on.
 
     **Examples**
 
@@ -418,7 +418,7 @@ $$
     **Parameters**
 
     *   **obj** (*Iterable\[*[*Term*](qiskit.quantum_info.SparseObservable#term "qiskit.quantum_info.SparseObservable.Term")*]*) – Iterable of individual terms to build the map generator from.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – The number of qubits the map should act on. This is usually inferred from the input, but can be explicitly given to handle the case of an empty iterable.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits the map should act on. This is usually inferred from the input, but can be explicitly given to handle the case of an empty iterable.
 
     **Returns**
 
@@ -469,7 +469,7 @@ $$
 
     **Parameters**
 
-    **indices** (*Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – The indices for which Paulis must be kept.
+    **indices** (*Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The indices for which Paulis must be kept.
 
     **Returns**
 
@@ -493,7 +493,7 @@ $$
 
     **Parameters**
 
-    **indices** (*Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – The indices for which qubits must be kept.
+    **indices** (*Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The indices for which qubits must be kept.
 
     **Returns**
 
@@ -547,8 +547,8 @@ $$
 
     **Parameters**
 
-    *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Number of samples to draw.
-    *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Random seed. Defaults to `None`.
+    *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of samples to draw.
+    *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Random seed. Defaults to `None`.
 
     **Returns**
 
@@ -560,7 +560,7 @@ $$
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If any of the rates in the map are negative.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any of the rates in the map are negative.
   </Function>
 
   ### scale\_rates
@@ -570,7 +570,7 @@ $$
 
     **Parameters**
 
-    **scale\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – the scaling coefficient.
+    **scale\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the scaling coefficient.
   </Function>
 
   ### signed\_sample
@@ -590,8 +590,8 @@ $$
 
     **Parameters**
 
-    *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Number of samples to draw.
-    *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Random seed.
+    *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of samples to draw.
+    *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Random seed.
 
     **Returns**
 
@@ -615,7 +615,7 @@ $$
 
     **Parameters**
 
-    **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – after summing like terms, any rates whose absolute value is less than the given absolute tolerance will be suppressed from the output.
+    **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – after summing like terms, any rates whose absolute value is less than the given absolute tolerance will be suppressed from the output.
 
     **Examples**
 

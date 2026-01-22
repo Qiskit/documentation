@@ -19,16 +19,16 @@ python_api_name: qiskit.algorithms.optimizers.TNC
 
   **Parameters**
 
-  *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Maximum number of function evaluation.
-  *   **disp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Set to True to print convergence messages.
-  *   **accuracy** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Relative precision for finite difference calculations. If \<= machine\_precision, set to sqrt(machine\_precision). Defaults to 0.
-  *   **ftol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Precision goal for the value of f in the stopping criterion. If ftol \< 0.0, ftol is set to 0.0 defaults to -1.
-  *   **xtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Precision goal for the value of x in the stopping criterion (after applying x scaling factors). If xtol \< 0.0, xtol is set to sqrt(machine\_precision). Defaults to -1.
-  *   **gtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Precision goal for the value of the projected gradient in the stopping criterion (after applying x scaling factors). If gtol \< 0.0, gtol is set to 1e-2 \* sqrt(accuracy). Setting it to 0.0 is not recommended. Defaults to -1.
-  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Tolerance for termination.
-  *   **eps** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Step size used for numerical approximation of the Jacobian.
-  *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – A dictionary of solver options.
-  *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Max number of default gradient evaluations performed simultaneously.
+  *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Maximum number of function evaluation.
+  *   **disp** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Set to True to print convergence messages.
+  *   **accuracy** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Relative precision for finite difference calculations. If \<= machine\_precision, set to sqrt(machine\_precision). Defaults to 0.
+  *   **ftol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Precision goal for the value of f in the stopping criterion. If ftol \< 0.0, ftol is set to 0.0 defaults to -1.
+  *   **xtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Precision goal for the value of x in the stopping criterion (after applying x scaling factors). If xtol \< 0.0, xtol is set to sqrt(machine\_precision). Defaults to -1.
+  *   **gtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Precision goal for the value of the projected gradient in the stopping criterion (after applying x scaling factors). If gtol \< 0.0, gtol is set to 1e-2 \* sqrt(accuracy). Setting it to 0.0 is not recommended. Defaults to -1.
+  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Tolerance for termination.
+  *   **eps** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Step size used for numerical approximation of the Jacobian.
+  *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict) *| None*) – A dictionary of solver options.
+  *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Max number of default gradient evaluations performed simultaneously.
   *   **kwargs** – additional kwargs for scipy.optimize.minimize.
 
   ## Attributes
@@ -132,8 +132,8 @@ python_api_name: qiskit.algorithms.optimizers.TNC
 
     *   **x\_center** (*ndarray*) – point around which we compute the gradient
     *   **f** (*func*) – the function of which the gradient is to be computed.
-    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
-    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
+    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int)) – max evals grouped, defaults to 1 (i.e. no batching).
 
     **Returns**
 
@@ -151,10 +151,10 @@ python_api_name: qiskit.algorithms.optimizers.TNC
 
     **Parameters**
 
-    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The scalar function to minimize.
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The scalar function to minimize.
     *   **x0** (*POINT*) – The initial point for the minimization.
     *   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
-    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
     **Returns**
 
@@ -186,7 +186,7 @@ python_api_name: qiskit.algorithms.optimizers.TNC
 
     **Parameters**
 
-    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
+    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – options, given as name=value.
   </Function>
 
   ### wrap\_function
@@ -197,7 +197,7 @@ python_api_name: qiskit.algorithms.optimizers.TNC
     **Parameters**
 
     *   **function** (*func*) – the target function
-    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
+    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – the args to be injected
 
     **Returns**
 

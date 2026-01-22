@@ -9,7 +9,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 # SolovayKitaevDecomposition
 
 <Class id="qiskit.synthesis.SolovayKitaevDecomposition" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L33-L263" signature="qiskit.synthesis.SolovayKitaevDecomposition(basic_approximations=None, *, basis_gates=None, depth=12, check_input=False)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   The Solovay Kitaev discrete decomposition algorithm.
 
@@ -17,17 +17,17 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
   **Parameters**
 
-  *   **basic\_approximations** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*, np.ndarray] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[GateSequence] | None*) –
+  *   **basic\_approximations** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, np.ndarray] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[GateSequence] | None*) –
 
       A specification of the basic SO(3) approximations in terms of discrete gates. At each iteration this algorithm, the remaining error is approximated with the closest sequence of gates in this set. If a `str`, this specifies a filename from which to load the approximation. If a `dict`, then this contains `{gates: effective_SO3_matrix}` pairs, e.g. `{"h t": np.array([[0, 0.7071, -0.7071], [0, -0.7071, -0.7071], [-1, 0, 0]]}`. If a list, this contains the same information as the dict, but already converted to `GateSequence` objects, which contain the SO(3) matrix and gates.
 
       Either this parameter, or `basis_gates` and `depth` can be specified.
 
-  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*] | None*) – A list of discrete (i.e., non-parameterized) standard gates. Defaults to `["h", "t", "tdg"]`.
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*] | None*) – A list of discrete (i.e., non-parameterized) standard gates. Defaults to `["h", "t", "tdg"]`.
 
-  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The number of basis gate combinations to consider in the basis set. This determines how fast (and if) the algorithm converges and should be chosen sufficiently high.
+  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of basis gate combinations to consider in the basis set. This determines how fast (and if) the algorithm converges and should be chosen sufficiently high.
 
-  *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If `True`, perform intermediate steps checking whether the matrices are of expected form.
+  *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True`, perform intermediate steps checking whether the matrices are of expected form.
 
   ## Attributes
 
@@ -82,7 +82,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
     **Parameters**
 
-    **data** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")) – If a string, specifies the path to the file from where to load the data. If a dictionary, directly specifies the decompositions as `{gates: matrix}` or `{gates: (matrix, global_phase)}`. There, `gates` are the names of the gates producing the SO(3) matrix `matrix`, e.g. `{"h t": np.array([[0, 0.7071, -0.7071], [0, -0.7071, -0.7071], [-1, 0, 0]]}` and the `global_phase` can be given to account for a global phase difference between the U(2) matrix of the quantum gates and the stored SO(3) matrix. If not given, the `global_phase` will be assumed to be 0.
+    **data** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – If a string, specifies the path to the file from where to load the data. If a dictionary, directly specifies the decompositions as `{gates: matrix}` or `{gates: (matrix, global_phase)}`. There, `gates` are the names of the gates producing the SO(3) matrix `matrix`, e.g. `{"h t": np.array([[0, 0.7071, -0.7071], [0, -0.7071, -0.7071], [-1, 0, 0]]}` and the `global_phase` can be given to account for a global phase difference between the U(2) matrix of the quantum gates and the stored SO(3) matrix. If not given, the `global_phase` will be assumed to be 0.
 
     **Returns**
 
@@ -90,11 +90,11 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If the number of gate combinations and associated matrices does not match.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the number of gate combinations and associated matrices does not match.
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")\[GateSequence]
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[GateSequence]
   </Function>
 
   ### query\_basic\_approximation
@@ -119,9 +119,9 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
     **Parameters**
 
     *   **gate\_matrix** (*np.ndarray |* [*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – The single-qubit gate to approximate. Can either be a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"), where [`Gate.to_matrix()`](qiskit.circuit.Gate#to_matrix "qiskit.circuit.Gate.to_matrix") returns the matrix, or a $2\times 2$ unitary matrix representing the gate.
-    *   **recursion\_degree** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The recursion degree, called $n$ in the paper.
-    *   **return\_dag** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If `True` return a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), else a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
-    *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If `True` check that the input matrix is valid for the decomposition. Overrides the class attribute with the same name, but only for this function call.
+    *   **recursion\_degree** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The recursion degree, called $n$ in the paper.
+    *   **return\_dag** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True` return a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), else a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+    *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True` check that the input matrix is valid for the decomposition. Overrides the class attribute with the same name, but only for this function call.
 
     **Returns**
 
@@ -148,11 +148,11 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
     **Parameters**
 
-    **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The filename to store the approximations in.
+    **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The filename to store the approximations in.
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If the filename has a .npy extension. The format is not .npy, and storing as such can cause errors when loading the file again.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the filename has a .npy extension. The format is not .npy, and storing as such can cause errors when loading the file again.
   </Function>
 </Class>
 

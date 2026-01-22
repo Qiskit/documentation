@@ -9,11 +9,11 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford
 # ConvertISAToClifford
 
 <Class id="qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.38/qiskit_ibm_runtime/transpiler/passes/cliffordization/convert_isa_to_clifford.py#L29-L81" signature="ConvertISAToClifford(*args, **kwargs)" modifiers="class">
-  Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass "(in Qiskit v2.0)")
+  Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass)
 
   Convert the gates of an ISA circuit to Clifford gates.
 
-  ISA circuits only contain Clifford gates from a restricted set or [`qiskit.circuit.library.RZGate`](/docs/api/qiskit/qiskit.circuit.library.RZGate "(in Qiskit v2.0)")s by arbitrary angles. To convert them to Clifford circuits, this pass rounds the angle of every [`qiskit.circuit.library.RZGate`](/docs/api/qiskit/qiskit.circuit.library.RZGate "(in Qiskit v2.0)") to the closest multiple of pi/2 (or to a random multiple of pi/2 if the angle is unspecified), while it skips every Clifford gate, measurement, and barrier.
+  ISA circuits only contain Clifford gates from a restricted set or [`qiskit.circuit.library.RZGate`](/docs/api/qiskit/qiskit.circuit.library.RZGate)s by arbitrary angles. To convert them to Clifford circuits, this pass rounds the angle of every [`qiskit.circuit.library.RZGate`](/docs/api/qiskit/qiskit.circuit.library.RZGate) to the closest multiple of pi/2 (or to a random multiple of pi/2 if the angle is unspecified), while it skips every Clifford gate, measurement, and barrier.
 
   ```python
   import numpy as np
@@ -89,7 +89,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford
     **Parameters**
 
     *   **passmanager\_ir** (*Any*) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.0)")) – State associated with workflow execution by the pass manager itself.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
     *   **callback** (*Callable | None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
@@ -98,7 +98,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford
 
     **Return type**
 
-    tuple\[*Any*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.0)")]
+    tuple\[*Any*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
   </Function>
 
   ### name
@@ -118,7 +118,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.0)")) – the dag on which the pass is run.
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the dag on which the pass is run.
 
     **Raises**
 
@@ -126,7 +126,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford
 
     **Return type**
 
-    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.0)")
+    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
   </Function>
 
   ### update\_status
@@ -136,7 +136,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford
 
     **Parameters**
 
-    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.0)")) – Pass manager state to update.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
     *   **run\_state** (*RunState*) – Completion status of current task.
 
     **Returns**
@@ -145,7 +145,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford
 
     **Return type**
 
-    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.0)")
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
   </Function>
 </Class>
 
