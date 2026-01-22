@@ -162,21 +162,19 @@ For full details on the early access release and upcoming improvements, [check o
 
 **January 2026**
 
-Building on the momentum established across the v2.x series, which has centered on positioning Qiskit as the leading platform for hybrid quantum-HPC workflows, [Qiskit SDK v2.3](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) delivers a significant expansion of the C API alongside faster, more flexible tools for building and optimizing quantum circuits.
+- Building on the momentum established across the v2.x series, which has centered on positioning Qiskit as the leading platform for hybrid quantum-HPC workflows, [Qiskit SDK v2.3](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) delivers a significant expansion of the C API alongside faster, more flexible tools for building and optimizing quantum circuits.
 
-Major updates include:
+  Major updates include:
 
-**Custom transpiler passes in C** - Write custom transpiler passes through Qiskit's C API using the new QkDag object and an expanded QkTarget object, which enable step-by-step inspection, modification, and extension of the compilation process—without rebuilding the entire compiler pipeline.
+  - **Custom transpiler passes in C** - Write custom transpiler passes through Qiskit's C API using the new `QkDag` object and an expanded `QkTarget` object, which enable step-by-step inspection, modification, and extension of the compilation process - without rebuilding the entire compiler pipeline.
 
-**Faster hardware layout selection** - Upgrades and Rust-driven performance enhancements to `VF2Layout` and `VF2PostLayout` improve the speed and scalability of circuit-to-hardware layout selection, reducing compilation overhead and improving fidelity on quantum hardware.
+  - **Faster hardware layout selection** - Upgrades and Rust-driven performance enhancements to `VF2Layout` and `VF2PostLayout` improve the speed and scalability of circuit-to-hardware layout selection, reducing compilation overhead and improving fidelity on quantum hardware.
 
-**New multi-qubit Pauli measurement** The new `PauliProductMeasurement` instruction enables joint projective measurement across multiple qubits in a single operation, unlocking compilation to Pauli-based computation - a common representation in fault-tolerant quantum computing.
+  - **New multi-qubit Pauli measurement** The new `PauliProductMeasurement` instruction enables joint projective measurement across multiple qubits in a single operation, unlocking compilation to Pauli-based computation - a common representation in fault-tolerant quantum computing.
 
-**Improvements in early fault-tolerant transpilation** - Performance and feature enhancements for transpilation to early fault-tolerant targets - especially Clifford+T targets - help users more efficiently build transpilation pipelines for future QPUs.
+  - **Improvements in early fault-tolerant transpilation** - Performance and feature enhancements for transpilation to early fault-tolerant targets - especially Clifford+T targets - help users more efficiently build transpilation pipelines for future QPUs.
 
-These capabilities give developers greater flexibility to customize quantum circuit optimizations and integrate with existing HPC workflows. 
-
-[Visit the blog](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) for the full technical summary.
+  These capabilities give developers greater flexibility to customize quantum circuit optimizations and integrate with existing HPC workflows. [Visit the blog](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) for the full technical summary.
 
 Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.3.0) and the [v2.2 release notes.](/docs/api/qiskit/release-notes/2.3)
 
@@ -207,7 +205,7 @@ This summary of the latest changes to the Qiskit Runtime service applies to anyo
 
 **January 2026**
 
-[**Directed execution model**](https://quantum.cloud.ibm.com/docs/en/guides/directed-execution-model) - This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](https://qiskit.github.io/samplomatic/index.html) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
+- [**Directed execution model.**](/docs/guides/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](https://qiskit.github.io/samplomatic/index.html) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
 
 <details>
 <summary><b>Previous updates</b></summary>
