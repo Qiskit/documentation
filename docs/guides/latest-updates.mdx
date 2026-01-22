@@ -205,6 +205,13 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (by using `qiskit-ibm-runtime` or otherwise), or which version of the client SDK you use.
 
+**January 2026**
+
+[**Directed execution model**](https://quantum.cloud.ibm.com/docs/en/guides/directed-execution-model) - This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](https://qiskit.github.io/samplomatic/index.html) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
+
+<details>
+<summary><b>Previous updates</b></summary>
+
 **October 2025**
 
 - The new dynamic circuits is now available to all users on all backends, except some QPUs under the On-Prem Plan.
@@ -219,9 +226,6 @@ This summary of the latest changes to the Qiskit Runtime service applies to anyo
   Additional features will be rolled out later this year.
 
   See  [Classical feedforward and control flow](/docs/guides/classical-feedforward-and-control-flow) and [Deferred timing resolution using stretch](/docs/guides/stretch) for more information and code examples.
-
-<details>
-<summary><b>Previous updates</b></summary>
 
 **5 June 2025**
 
