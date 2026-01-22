@@ -79,14 +79,14 @@ jobs:
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
-          CONTENT_FILE_REGEX: (docs|learning)(?!\/api)\/.*\.(mdx|ipynb)
+          CONTENT_FILE_REGEX: (docs|learning)(?!\/api)\/.*\.(mdx|ipynb|json)
           #  -- Should match:
           #  docs/guides/thing.ipynb
           #  docs/guides/thing.mdx
           #  learning/courses/my-course/introduction.ipynb
+          #  docs/guides/_toc.json
           #
           #  -- Should not match:
-          #  docs/guides/_toc.json
           #  docs/api/qiskit/index.mdx
           #  scripts/nb-tester/example-notebook.ipynb
         id: changed-content-files
