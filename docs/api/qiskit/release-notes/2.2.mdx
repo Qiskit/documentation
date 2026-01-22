@@ -54,7 +54,7 @@ Qiskit 2.2.2 is a bugfix release for the v2.2 minor version series.
 
 ### Bug Fixes
 
-*   Fixed the implementation of [`__deepcopy__()`](https://docs.python.org/3/library/copy.html#object.__deepcopy__ "(in Python v3.14)") in [`QuantumCircuit`](/docs/api/qiskit/2.2/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") which did not deep-copy circuit parameters. As a consequence, mutating a [`BoxOp`](/docs/api/qiskit/2.2/qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") in a copied circuit no longer affects the original circuit.
+*   Fixed the implementation of [`__deepcopy__()`](https://docs.python.org/3/library/copy.html#object.__deepcopy__) in [`QuantumCircuit`](/docs/api/qiskit/2.2/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") which did not deep-copy circuit parameters. As a consequence, mutating a [`BoxOp`](/docs/api/qiskit/2.2/qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") in a copied circuit no longer affects the original circuit.
 
 *   Fixed an issue in the [`Optimize1qGatesDecomposition`](/docs/api/qiskit/2.2/qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition") pass when the pass is initialized with a [`Target`](/docs/api/qiskit/2.2/qiskit.transpiler.Target "qiskit.transpiler.Target") containing 1-qubit gates with fixed angle parameters. Previously, the pass would potentially output gates not included in the target as it did not check whether the gates in the target supported arbitrary parameter values. Fixed [#14743](https://github.com/Qiskit/qiskit/issues/14743).
 
@@ -62,7 +62,7 @@ Qiskit 2.2.2 is a bugfix release for the v2.2 minor version series.
 
 *   The [`ConsolidateBlocks`](/docs/api/qiskit/2.2/qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks") transpiler pass will now correctly evaluate whether a given gate is hardware-supported while recursing into control-flow operations.
 
-*   [`qpy.dump()`](/docs/api/qiskit/2.2/qpy#qiskit.qpy.dump "qiskit.qpy.dump") can now handle writing out to `.gz` files opened using the standard-library [`gzip`](https://docs.python.org/3/library/gzip.html#module-gzip "(in Python v3.14)") module with QPY versions 16 or greater. See [#15157](https://github.com/Qiskit/qiskit/pull/15157) for details.
+*   [`qpy.dump()`](/docs/api/qiskit/2.2/qpy#qiskit.qpy.dump "qiskit.qpy.dump") can now handle writing out to `.gz` files opened using the standard-library [`gzip`](https://docs.python.org/3/library/gzip.html#module-gzip) module with QPY versions 16 or greater. See [#15157](https://github.com/Qiskit/qiskit/pull/15157) for details.
 
 *   Fixed the method [`MCPhaseGate.inverse()`](/docs/api/qiskit/2.2/qiskit.circuit.library.MCPhaseGate#inverse "qiskit.circuit.library.MCPhaseGate.inverse") to preserve the control states of open-controlled gates when computing their inverses.
 
@@ -104,7 +104,7 @@ Qiskit 2.2.1 is a small patch release that fixes several bugs identified in the 
 
 *   [`DAGCircuit.apply_operation_front()`](/docs/api/qiskit/2.2/qiskit.dagcircuit.DAGCircuit#apply_operation_front "qiskit.dagcircuit.DAGCircuit.apply_operation_front") can no longer insert invalid self loops when handling nodes that include classical conditions.
 
-*   Fixed an issue with [`pickle`](https://docs.python.org/3/library/pickle.html#module-pickle "(in Python v3.14)") support for the [`SabreSwap`](/docs/api/qiskit/2.2/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") where a [`SabreSwap`](/docs/api/qiskit/2.2/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") instance would error when being pickled after the [`SabreSwap.run()`](/docs/api/qiskit/2.2/qiskit.transpiler.passes.SabreSwap#run "qiskit.transpiler.passes.SabreSwap.run") method was run. Fixed [#15071](https://github.com/Qiskit/qiskit/issues/15071).
+*   Fixed an issue with [`pickle`](https://docs.python.org/3/library/pickle.html#module-pickle) support for the [`SabreSwap`](/docs/api/qiskit/2.2/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") where a [`SabreSwap`](/docs/api/qiskit/2.2/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") instance would error when being pickled after the [`SabreSwap.run()`](/docs/api/qiskit/2.2/qiskit.transpiler.passes.SabreSwap#run "qiskit.transpiler.passes.SabreSwap.run") method was run. Fixed [#15071](https://github.com/Qiskit/qiskit/issues/15071).
 
 *   Fixed an issue where [`is_unitary()`](/docs/api/qiskit/2.2/qiskit.quantum_info.SparsePauliOp#is_unitary "qiskit.quantum_info.SparsePauliOp.is_unitary") was not properly respecting the input tolerance values when checking if an operator is unitary. The method now correctly uses the provided `atol` and `rtol` parameters when simplifying the operator and checking if it equals the identity. This fixes [#14107](https://github.com/Qiskit/qiskit/issues/14107).
 
@@ -415,7 +415,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
     ![\_images/release\_notes-1.png](/docs/images/api/qiskit/2.2/release_notes-1.avif)
 
-*   [`DAGCircuit`](/docs/api/qiskit/2.2/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") now has a manual implementation of [`__deepcopy__()`](https://docs.python.org/3/library/copy.html#object.__deepcopy__ "(in Python v3.14)"). This is orders of magnitude faster than the previous implicit implementation from the pickle protocol, especially for large circuits. This also directly benefits compilation performance when running [`transpile()`](/docs/api/qiskit/2.2/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or running the preset pass managers returned by [`generate_preset_pass_manager()`](/docs/api/qiskit/2.2/qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") at `optimization_level=3` as optimization level 3 internally deep copies the [`DAGCircuit`](/docs/api/qiskit/2.2/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") for each iteration of the optimization loop in the `optimization` stage.
+*   [`DAGCircuit`](/docs/api/qiskit/2.2/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") now has a manual implementation of [`__deepcopy__()`](https://docs.python.org/3/library/copy.html#object.__deepcopy__). This is orders of magnitude faster than the previous implicit implementation from the pickle protocol, especially for large circuits. This also directly benefits compilation performance when running [`transpile()`](/docs/api/qiskit/2.2/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or running the preset pass managers returned by [`generate_preset_pass_manager()`](/docs/api/qiskit/2.2/qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") at `optimization_level=3` as optimization level 3 internally deep copies the [`DAGCircuit`](/docs/api/qiskit/2.2/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") for each iteration of the optimization loop in the `optimization` stage.
 
 *   A new method, [`DAGCircuit.make_physical()`](/docs/api/qiskit/2.2/qiskit.dagcircuit.DAGCircuit#make_physical "qiskit.dagcircuit.DAGCircuit.make_physical"), is provided, which efficiently replaces the qubits in the [`DAGCircuit`](/docs/api/qiskit/2.2/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") with the canonical physical-qubit register, potentially including expansion. A similar method, [`QuantumCircuit.ensure_physical()`](/docs/api/qiskit/2.2/qiskit.circuit.QuantumCircuit#ensure_physical "qiskit.circuit.QuantumCircuit.ensure_physical") is also available.
 
@@ -522,7 +522,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 ### Quantum Information Upgrade Notes
 
-*   [`SparsePauliOp.assign_parameters()`](/docs/api/qiskit/2.2/qiskit.quantum_info.SparsePauliOp#assign_parameters "qiskit.quantum_info.SparsePauliOp.assign_parameters") will now set the dtype of the output [`coeffs`](/docs/api/qiskit/2.2/qiskit.quantum_info.SparsePauliOp#coeffs "qiskit.quantum_info.SparsePauliOp.coeffs") array to [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)") if all parameters are fully bound to numeric values.
+*   [`SparsePauliOp.assign_parameters()`](/docs/api/qiskit/2.2/qiskit.quantum_info.SparsePauliOp#assign_parameters "qiskit.quantum_info.SparsePauliOp.assign_parameters") will now set the dtype of the output [`coeffs`](/docs/api/qiskit/2.2/qiskit.quantum_info.SparsePauliOp#coeffs "qiskit.quantum_info.SparsePauliOp.coeffs") array to [`complex`](https://docs.python.org/3/library/functions.html#complex) if all parameters are fully bound to numeric values.
 
 <span id="relnotes-2-2-0-synthesis-upgrade-notes" />
 
@@ -634,7 +634,7 @@ The v2.2 release series is the final minor release series with support Python 3.
 
 *   Fixed a bug in `ObservablesArray.coerce_observable()` where an exception that an observable was not Hermitian was over-triggered. Observables equal to `zero` are not allowed and now invoke a graceful failure.
 
-*   [`qiskit.circuit.library.quantum_volume()`](/docs/api/qiskit/2.2/qiskit.circuit.library.quantum_volume "qiskit.circuit.library.quantum_volume") was updated to handle a [`numpy.random.Generator`](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.3)") as input for its `seed` argument. Previously, such a generator argument would result in a `TypeError`.
+*   [`qiskit.circuit.library.quantum_volume()`](/docs/api/qiskit/2.2/qiskit.circuit.library.quantum_volume "qiskit.circuit.library.quantum_volume") was updated to handle a [`numpy.random.Generator`](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator) as input for its `seed` argument. Previously, such a generator argument would result in a `TypeError`.
 
 *   [`QuantumCircuit.compose()`](/docs/api/qiskit/2.2/qiskit.circuit.QuantumCircuit#compose "qiskit.circuit.QuantumCircuit.compose") will now correctly remap anyway variables and stretches used in [`Delay`](/docs/api/qiskit/2.2/circuit#qiskit.circuit.Delay "qiskit.circuit.Delay") instructions when the `var_remap` argument is specified.
 

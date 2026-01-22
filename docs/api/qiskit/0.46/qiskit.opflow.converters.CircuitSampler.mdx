@@ -22,14 +22,14 @@ python_api_name: qiskit.opflow.converters.CircuitSampler
   **Parameters**
 
   *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend")  *|*[*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance")) – The quantum backend or QuantumInstance to use to sample the circuits.
-  *   **statevector** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If backend is a statevector backend, whether to replace the CircuitStateFns with DictStateFns (from the counts) or VectorStateFns (from the statevector). `None` will set this argument automatically based on the backend.
-  *   **attach\_results** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to attach the data from the backend `Results` object for a given `` CircuitStateFn` `` to an `execution_results` field added the converted `DictStateFn` or `VectorStateFn`.
-  *   **param\_qobj** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to use Aer’s parameterized Qobj capability to avoid re-assembling the circuits.
-  *   **caching** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The caching strategy. Can be ‘last’ (default) to store the last operator that was converted, set to ‘all’ to cache all processed operators.
+  *   **statevector** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – If backend is a statevector backend, whether to replace the CircuitStateFns with DictStateFns (from the counts) or VectorStateFns (from the statevector). `None` will set this argument automatically based on the backend.
+  *   **attach\_results** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to attach the data from the backend `Results` object for a given `` CircuitStateFn` `` to an `execution_results` field added the converted `DictStateFn` or `VectorStateFn`.
+  *   **param\_qobj** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to use Aer’s parameterized Qobj capability to avoid re-assembling the circuits.
+  *   **caching** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The caching strategy. Can be ‘last’ (default) to store the last operator that was converted, set to ‘all’ to cache all processed operators.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Set statevector or param\_qobj True when not supported by backend.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Set statevector or param\_qobj True when not supported by backend.
 
   ## Attributes
 
@@ -59,7 +59,7 @@ python_api_name: qiskit.opflow.converters.CircuitSampler
     **Parameters**
 
     *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to convert
-    *   **params** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]] | None*) – A dictionary mapping parameters to either single binding values or lists of binding values.
+    *   **params** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")*,* [*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] |* [*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]]] | None*) – A dictionary mapping parameters to either single binding values or lists of binding values.
 
     **Returns**
 
@@ -81,8 +81,8 @@ python_api_name: qiskit.opflow.converters.CircuitSampler
 
     **Parameters**
 
-    *   **circuit\_sfns** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*CircuitStateFn*](qiskit.opflow.state_fns.CircuitStateFn "qiskit.opflow.state_fns.circuit_state_fn.CircuitStateFn")*] | None*) – The list of CircuitStateFns to sample.
-    *   **param\_bindings** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – The parameterizations to bind to each CircuitStateFn.
+    *   **circuit\_sfns** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*CircuitStateFn*](qiskit.opflow.state_fns.CircuitStateFn "qiskit.opflow.state_fns.circuit_state_fn.CircuitStateFn")*] | None*) – The list of CircuitStateFns to sample.
+    *   **param\_bindings** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – The parameterizations to bind to each CircuitStateFn.
 
     **Returns**
 
@@ -94,7 +94,7 @@ python_api_name: qiskit.opflow.converters.CircuitSampler
 
     **Return type**
 
-    [*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*StateFn*](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")]]
+    [*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict)\[[int](https://docs.python.org/3/library/functions.html#int), [*List*](https://docs.python.org/3/library/typing.html#typing.List)\[[*StateFn*](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")]]
   </Function>
 </Class>
 
