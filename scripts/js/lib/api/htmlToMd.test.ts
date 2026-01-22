@@ -1310,7 +1310,10 @@ test.describe("removeVersionLinkTitle()", () => {
     expect(link3).toEqual(LINK_WITHOUT_TITLE);
   });
 
-  test("Links with titles to preserve", () => {
+  // We don't remove these titles because we use a conservative regex to reduce
+  // the risk of false positives. In the future, feel free to improve the regex
+  // to remove these titles.
+  test("Links with candidate titles to be removed that the regex doesn't catch", () => {
     const titleWithMinor = "(in Qiskit v1.3.4)";
     const link1 = createLinkNode(titleWithMinor);
     removeVersionLinkTitle(link1);
@@ -1320,7 +1323,9 @@ test.describe("removeVersionLinkTitle()", () => {
     const link2 = createLinkNode(titleWithoutParenthesis);
     removeVersionLinkTitle(link2);
     expect(link2.title).toEqual(titleWithoutParenthesis);
+  });
 
+  test("Link with a title to preserve", () => {
     const standardTitle = "My title";
     const link3 = createLinkNode(standardTitle);
     removeVersionLinkTitle(link3);

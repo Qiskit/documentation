@@ -30,11 +30,6 @@ import { Metadata, ApiTypeName } from "./Metadata.js";
 import { removePrefix, removeSuffix, capitalize } from "../stringUtils.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 
-// Intersphinx cross-references usually set link titles like "(in Python 3.14)".
-// We remove these titles because they are noisy, low-value to our users, and
-// they easily become out-of-sync.
-const VERSION_LINK_TITLE_REGEX = /^\(in [^ ]* v\d+\.\d+\)$/;
-
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
   fileName: string;
@@ -158,7 +153,10 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
 }
 
 export function removeVersionLinkTitle(node: Link) {
-  if (node.title?.match(VERSION_LINK_TITLE_REGEX)) {
+  // Intersphinx cross-references usually set link titles like "(in Python 3.14)".
+  // We remove these titles because they are noisy, low-value to our users, and
+  // they easily become out-of-sync.
+  if (node.title?.match(/^\(in [^ ]* v\d+\.\d+\)$/)) {
     delete node.title;
   }
 }
