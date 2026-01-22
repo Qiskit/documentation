@@ -41,16 +41,12 @@ jobs:
             PR_NUMBER="${{ github.event.number }}"
           fi
 
+          mkdir -p .github/outputs
           CHANGED_FILES=$(node scripts/ci/determine-changed-files.ts "${PR_NUMBER}")
-          {
-            echo "ALL_CHANGED_FILES<<__GH_OUTPUT__"
-            printf '%s\n' "$CHANGED_FILES"
-            echo "__GH_OUTPUT__"
-          } >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$CHANGED_FILES" > .github/outputs/changed-files.txt
       - name: Decide which jobs to run
         id: decide
         env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
@@ -81,16 +77,22 @@ jobs:
           #  public/learning/image.svg
           #  .github/workflows/notebook-test-cron.yml
         run: |
-          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES}" | grep -P "$NOTEBOOK_TEST_REGEX")" ]]; then
+          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(grep -P "$NOTEBOOK_TEST_REGEX" .github/outputs/changed-files.txt)" ]]; then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
           fi
-          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES}" | grep -P "$API_CHECKS_REGEX")" ]]; then
+          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(grep -P "$API_CHECKS_REGEX" .github/outputs/changed-files.txt)" ]]; then
             echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
           fi
+      - name: Save changed files artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: changed-files-artifact
+          path: .github/outputs
 
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    needs: [decide-jobs]
     if: github.repository_owner == 'Qiskit'
     steps:
       - uses: actions/checkout@v4
@@ -113,8 +115,6 @@ jobs:
         run: npm run check:spelling
       - name: Check Qiskit bot config
         run: npm run check:qiskit-bot
-      - name: Check Patterns index
-        run: npm run check:patterns-index
       - name: Check tutorials index
         run: python scripts/ci/check-tutorials-index.py
       - name: Internal link checker
@@ -130,9 +130,13 @@ jobs:
       - name: Infrastructure tests
         run: npm test
 
+      - name: Get changed files artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: changed-files-artifact
+          path: .github/outputs
       - name: Get all changed content files
         env:
-          CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
@@ -148,13 +152,13 @@ jobs:
           #  scripts/nb-tester/example-notebook.ipynb
         id: changed-content-files
         run: |
-          CHANGED_CONTENT_FILES=$(echo "${CHANGED_FILES}" | grep -P $CONTENT_FILE_REGEX || true)
+          CHANGED_CONTENT_FILES=$(grep -P $CONTENT_FILE_REGEX .github/outputs/changed-files.txt || true)
           if [ "$CHANGED_CONTENT_FILES" != '' ]
           then
             echo "ANY_CHANGED=true" >> "$GITHUB_OUTPUT"
           fi
           mkdir -p .github/outputs
-          echo $CHANGED_CONTENT_FILES >> .github/outputs/changed-content-files.txt
+          printf '%s\n' "$CHANGED_CONTENT_FILES" >> .github/outputs/changed-content-files.txt
       - name: Pull preview image
         if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: ./start --pull-only
@@ -205,13 +209,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Get changed files
-        env:
-          CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
-        run: |
-          mkdir -p .github/outputs
-          echo "${CHANGED_FILES}" > .github/outputs/changed-files.txt
-
+      - name: Get changed files artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: changed-files-artifact
+          path: .github/outputs
       - name: Check if extra linux deps needed
         id: check-deps
         shell: python

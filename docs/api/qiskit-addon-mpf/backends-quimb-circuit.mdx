@@ -14,7 +14,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_circuit
 
 `qiskit_addon_mpf.backends.quimb_circuit`
 
-A circuit-based time-evolution backend using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)").
+A circuit-based time-evolution backend using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb).
 
 <Admonition title="Warning" type="caution">
   This backend is only available if the optional dependencies have been installed:
@@ -31,7 +31,7 @@ A circuit-based time-evolution backend using [`quimb`](https://quimb.readthedocs
 
 ## Underlying method
 
-Quimb boasts direct support for the simulation of quantum circuits in the form of its tensor-network based [`quimb.tensor.Circuit`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.Circuit "(in quimb v1.10)") representation. We can leverage this, to bypass any explicit time-evolution algorithm and instead directly encode the time-evolution in a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") and use [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)") to compute the overlap between two such circuits. For more information, check out their guide on [Quantum Circuits](https://quimb.readthedocs.io/en/latest/tensor/tensor-circuit.html "(in quimb v1.10)").
+Quimb boasts direct support for the simulation of quantum circuits in the form of its tensor-network based [`quimb.tensor.Circuit`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.Circuit) representation. We can leverage this, to bypass any explicit time-evolution algorithm and instead directly encode the time-evolution in a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) and use [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb) to compute the overlap between two such circuits. For more information, check out their guide on [Quantum Circuits](https://quimb.readthedocs.io/en/latest/tensor/tensor-circuit.html).
 
 ## Code example
 
@@ -44,7 +44,7 @@ The [`IdentityStateFactory`](dynamic#identitystatefactory "qiskit_addon_mpf.dyna
 >>> identity_factory = CircuitState
 ```
 
-The setup of the [`CircuitEvolver`](backends-quimb-circuit-circuit-evolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") is slightly more involved. It requires a **parameterized** [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") object as its input where the [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.4)") should take the place of the Trotter methods time step (`dt`).
+The setup of the [`CircuitEvolver`](backends-quimb-circuit-circuit-evolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") is slightly more involved. It requires a **parameterized** [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) object as its input where the [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter) should take the place of the Trotter methods time step (`dt`).
 
 To show how such a parameterized Trotter circuit template is constructed, we reuse the same Hamiltonian and second-order Suzuki-Trotter formula as in [`quimb_layers`](backends-quimb-layers#module-qiskit_addon_mpf.backends.quimb_layers "qiskit_addon_mpf.backends.quimb_layers").
 
@@ -59,7 +59,7 @@ To show how such a parameterized Trotter circuit template is constructed, we reu
 ... )
 ```
 
-But this time, we specify a [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.4)") as the `time` argument when constructing the actual circuits.
+But this time, we specify a [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter) as the `time` argument when constructing the actual circuits.
 
 ```python
 >>> from functools import partial
@@ -73,7 +73,7 @@ But this time, we specify a [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parame
 ```
 
 <Admonition title="Caution" type="note">
-  It is **necessary** that the name of the [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.4)") is `dt`!
+  It is **necessary** that the name of the [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter) is `dt`!
 </Admonition>
 
 We can choose a higher order Trotter formula for the `exact_evolver_factory`. But note, that we must once again use a parameterized circuit, even if we immediately bind its parameter when constructing the `partial` function.

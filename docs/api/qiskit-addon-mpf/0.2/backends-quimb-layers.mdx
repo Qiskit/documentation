@@ -14,7 +14,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers
 
 `qiskit_addon_mpf.backends.quimb_layers`
 
-A layer-wise time-evolution backend using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)").
+A layer-wise time-evolution backend using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb).
 
 <Admonition title="Warning" type="caution">
   This backend is only available if the optional dependencies have been installed:
@@ -31,7 +31,7 @@ A layer-wise time-evolution backend using [`quimb`](https://quimb.readthedocs.io
 
 ## Underlying method
 
-This module provides a time-evolution backend similar to the TEBD-based one provided by the [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd") module. The main difference is that this module gives the user full flexibility for defining their product formulas, thereby not limiting them to the options built into the [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)") library.
+This module provides a time-evolution backend similar to the TEBD-based one provided by the [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd") module. The main difference is that this module gives the user full flexibility for defining their product formulas, thereby not limiting them to the options built into the [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb) library.
 
 At its core, the algorithm provided by this module is still a TEBD \[1] algorithm. However, rather than enforcing the alternating updates to the even and odd bonds of the time-evolution state (see also [`quimb_tebd.TEBDEvolver.sweep()`](backends-quimb-tebd-tebd-evolver#sweep "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver.sweep")) this implementation outsources the responsibility of updating bonds in alternating fashion to the definition of multiple time-evolution **layers**.
 
@@ -75,7 +75,7 @@ In the circuit above, we can clearly identify its layer-wise structure. We can e
 ![Output from the previous code.](/docs/images/api/qiskit-addon-mpf/0.2/qiskit_addon_mpf-backends-quimb_layers-3.avif)
 
 <Admonition title="Hint" type="note">
-  The asymmetry of the central layers is a result of the implementation of Qiskit’s [`SuzukiTrotter`](/docs/api/qiskit/qiskit.synthesis.SuzukiTrotter "(in Qiskit v1.3)") formula. In its second-order form, it combines the two half-time evolutions of the final term in the Hamiltonian into a single one of twice the length. We could transpile this circuit to collapse all such subequent gates in the central two layers (just like the last one), but for the sake of simplicity of this example, we will not do that here.
+  The asymmetry of the central layers is a result of the implementation of Qiskit’s [`SuzukiTrotter`](/docs/api/qiskit/qiskit.synthesis.SuzukiTrotter) formula. In its second-order form, it combines the two half-time evolutions of the final term in the Hamiltonian into a single one of twice the length. We could transpile this circuit to collapse all such subequent gates in the central two layers (just like the last one), but for the sake of simplicity of this example, we will not do that here.
 </Admonition>
 
 It is not possible to instruct Quimb’s TEBD algorithm to simulate the exact structure of the circuit shown above. The reason for that is a limitation in its interface, as it only accepts the full Hamiltonian to be provided which is then time-evolved using pre-defined Trotter formulas. However, in doing so it does not treat the order of the Pauli terms in a Hamiltonian with any significance (like we do here).

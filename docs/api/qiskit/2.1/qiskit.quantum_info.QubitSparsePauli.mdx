@@ -9,7 +9,7 @@ python_api_name: qiskit.quantum_info.QubitSparsePauli
 # QubitSparsePauli
 
 <Class id="qiskit.quantum_info.QubitSparsePauli" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.QubitSparsePauli" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A phase-less Pauli operator stored in a qubit-sparse format.
 
@@ -42,7 +42,7 @@ python_api_name: qiskit.quantum_info.QubitSparsePauli
   ### Pauli
 
   <Class id="qiskit.quantum_info.QubitSparsePauli.Pauli" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/quantum_info/__init__.py" signature="Pauli" modifiers="class">
-    An [`IntEnum`](https://docs.python.org/3/library/enum.html#enum.IntEnum "(in Python v3.13)") that provides named access to the numerical values used to represent each of the single-qubit alphabet terms enumerated in [Alphabet of single-qubit Pauli operators used in QubitSparsePauliList](#qubit-sparse-pauli-alphabet).
+    An [`IntEnum`](https://docs.python.org/3/library/enum.html#enum.IntEnum) that provides named access to the numerical values used to represent each of the single-qubit alphabet terms enumerated in [Alphabet of single-qubit Pauli operators used in QubitSparsePauliList](#qubit-sparse-pauli-alphabet).
 
     This class is attached to [`QubitSparsePauli`](#qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli"). Access it as [`QubitSparsePauli.Pauli`](#qiskit.quantum_info.QubitSparsePauli.Pauli "qiskit.quantum_info.QubitSparsePauli.Pauli"). If this is too much typing, and you are solely dealing with [`QubitSparsePauliList`](qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList") objects and the [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") name is not ambiguous, you might want to shorten it as:
 
@@ -80,7 +80,7 @@ python_api_name: qiskit.quantum_info.QubitSparsePauli
     </Attribute>
   </Class>
 
-  Each of the array-like attributes behaves like a Python sequence. You can index and slice these with standard [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")-like semantics. Slicing an attribute returns a Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)") containing a copy of the relevant data with the natural `dtype` of the field; this lets you easily do mathematics on the results, like bitwise operations on [`paulis`](#qiskit.quantum_info.QubitSparsePauli.paulis "qiskit.quantum_info.QubitSparsePauli.paulis").
+  Each of the array-like attributes behaves like a Python sequence. You can index and slice these with standard [`list`](https://docs.python.org/3/library/stdtypes.html#list)-like semantics. Slicing an attribute returns a Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) containing a copy of the relevant data with the natural `dtype` of the field; this lets you easily do mathematics on the results, like bitwise operations on [`paulis`](#qiskit.quantum_info.QubitSparsePauli.paulis "qiskit.quantum_info.QubitSparsePauli.paulis").
 
   ## Construction
 
@@ -105,7 +105,7 @@ python_api_name: qiskit.quantum_info.QubitSparsePauli
     **Parameters**
 
     *   **data** – The data type of the input. This can be another [`QubitSparsePauli`](#qiskit.quantum_info.QubitSparsePauli "qiskit.quantum_info.QubitSparsePauli"), in which case the input is copied, or it can be a valid format for either [`from_label()`](#qiskit.quantum_info.QubitSparsePauli.from_label "qiskit.quantum_info.QubitSparsePauli.from_label") or [`from_sparse_label()`](#qiskit.quantum_info.QubitSparsePauli.from_sparse_label "qiskit.quantum_info.QubitSparsePauli.from_sparse_label").
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*|None*) – Optional number of qubits for the operator. For most data inputs, this can be inferred and need not be passed. It is only necessary for the sparse-label format. If given unnecessarily, it must match the data input.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)*|None*) – Optional number of qubits for the operator. For most data inputs, this can be inferred and need not be passed. It is only necessary for the sparse-label format. If given unnecessarily, it must match the data input.
   </Function>
 
   ## Attributes
@@ -169,7 +169,7 @@ python_api_name: qiskit.quantum_info.QubitSparsePauli
 
     **Parameters**
 
-    **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the dense label.
+    **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the dense label.
 
     **Examples**
 
@@ -214,8 +214,8 @@ python_api_name: qiskit.quantum_info.QubitSparsePauli
     **Parameters**
 
     *   **num\_qubits** – number of qubits the operator acts on.
-    *   **paulis** – list of the single-qubit terms. This should be a Numpy array with dtype [`uint8`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint8 "(in NumPy v2.3)") (which is compatible with [`Pauli`](#qiskit.quantum_info.QubitSparsePauli.Pauli "qiskit.quantum_info.QubitSparsePauli.Pauli")).
-    *   **indices** – sorted list of the qubits each single-qubit term corresponds to. This should be a Numpy array with dtype [`uint32`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint32 "(in NumPy v2.3)").
+    *   **paulis** – list of the single-qubit terms. This should be a Numpy array with dtype [`uint8`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint8) (which is compatible with [`Pauli`](#qiskit.quantum_info.QubitSparsePauli.Pauli "qiskit.quantum_info.QubitSparsePauli.Pauli")).
+    *   **indices** – sorted list of the qubits each single-qubit term corresponds to. This should be a Numpy array with dtype [`uint32`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint32).
 
     **Examples**
 
@@ -239,8 +239,8 @@ python_api_name: qiskit.quantum_info.QubitSparsePauli
 
     **Parameters**
 
-    *   **sparse\_label** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – labels and the qubits each single-qubit term applies to.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits the operator acts on.
+    *   **sparse\_label** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – labels and the qubits each single-qubit term applies to.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of qubits the operator acts on.
 
     **Examples**
 

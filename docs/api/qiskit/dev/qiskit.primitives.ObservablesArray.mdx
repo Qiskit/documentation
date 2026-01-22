@@ -18,13 +18,13 @@ python_api_name: qiskit.primitives.ObservablesArray
   **Parameters**
 
   *   **observables** (*ObservablesArrayLike*) – An array-like of basis observable compatible objects.
-  *   **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – Specify the `copy` kwarg of the `object_array()` function when initializing observables.
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – The number of qubits of the observables. If not specified, the number of qubits will be inferred from the observables. If specified, then the specified number of qubits must match the number of qubits in the observables.
-  *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If true, coerce entries into the internal format and validate them. If false, the input should already be an array-like.
+  *   **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Specify the `copy` kwarg of the `object_array()` function when initializing observables.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits of the observables. If not specified, the number of qubits will be inferred from the observables. If specified, then the specified number of qubits must match the number of qubits in the observables.
+  *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If true, coerce entries into the internal format and validate them. If false, the input should already be an array-like.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If `validate=True` and the input observables array is not valid.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `validate=True` and the input observables array is not valid.
 
   ## Attributes
 
@@ -55,8 +55,8 @@ python_api_name: qiskit.primitives.ObservablesArray
 
     **Parameters**
 
-    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*] | None*) – Either a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), a list of integers or None. If both layout and `num_qubits` are none, a deep copy of the array is returned.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – The number of qubits to expand the array to. If not provided then if `layout` is a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") the number of the transpiler output circuit qubits will be used by default. If `layout` is a list of integers the permutation specified will be applied without any expansion. If layout is None, the array will be expanded to the given number of qubits.
+    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – Either a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), a list of integers or None. If both layout and `num_qubits` are none, a deep copy of the array is returned.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits to expand the array to. If not provided then if `layout` is a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") the number of the transpiler output circuit qubits will be used by default. If `layout` is a list of integers the permutation specified will be applied without any expansion. If layout is None, the array will be expanded to the given number of qubits.
 
     **Returns**
 
@@ -80,7 +80,7 @@ python_api_name: qiskit.primitives.ObservablesArray
 
     **Parameters**
 
-    **observables** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")  *|*[*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")*] | \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.4)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")*]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.4)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")*]]] |* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes "(in Python v3.14)") *| \_NestedSequence\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes "(in Python v3.14)")*]*) – an object to be observables array.
+    **observables** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")  *|*[*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*] | \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]]] |* [*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex)  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes) *| \_NestedSequence\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes)*]*) – an object to be observables array.
 
     **Returns**
 
@@ -98,7 +98,7 @@ python_api_name: qiskit.primitives.ObservablesArray
 
     **Parameters**
 
-    **observable** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")  *|*[*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")*]*) – The observable-like to format.
+    **observable** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")  *|*[*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The observable-like to format.
 
     **Returns**
 
@@ -106,8 +106,8 @@ python_api_name: qiskit.primitives.ObservablesArray
 
     **Raises**
 
-    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.14)") – If the input cannot be formatted because its type is not valid.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If the input observable is invalid or empty.
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If the input cannot be formatted because its type is not valid.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the input observable is invalid or empty.
 
     **Return type**
 
@@ -128,7 +128,7 @@ python_api_name: qiskit.primitives.ObservablesArray
     **Parameters**
 
     *   **other** ([*ObservablesArray*](#qiskit.primitives.ObservablesArray "qiskit.primitives.containers.observables_array.ObservablesArray")) – Another observables array to compare with.
-    *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – The tolerance to provide to [`simplify`](qiskit.quantum_info.SparseObservable#simplify "qiskit.quantum_info.SparseObservable.simplify") during checking.
+    *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The tolerance to provide to [`simplify`](qiskit.quantum_info.SparseObservable#simplify "qiskit.quantum_info.SparseObservable.simplify") during checking.
 
     **Returns**
 
@@ -136,7 +136,7 @@ python_api_name: qiskit.primitives.ObservablesArray
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### ravel
@@ -164,7 +164,7 @@ python_api_name: qiskit.primitives.ObservablesArray
 
     **Parameters**
 
-    **shape** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – The shape of the returned array.
+    **shape** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The shape of the returned array.
 
     **Returns**
 
@@ -192,19 +192,19 @@ python_api_name: qiskit.primitives.ObservablesArray
   ### sparse\_observables\_array
 
   <Function id="qiskit.primitives.ObservablesArray.sparse_observables_array" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/observables_array.py#L173-L183" signature="sparse_observables_array(copy=False)">
-    Convert to a [`numpy.ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.4)") with elements of type [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
+    Convert to a [`numpy.ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) with elements of type [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
 
     **Parameters**
 
-    **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – Whether to make a new array instance with new sparse observables as elements.
+    **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to make a new array instance with new sparse observables as elements.
 
     **Returns**
 
-    A [`numpy.ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.4)") with elements of type [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
+    A [`numpy.ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) with elements of type [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.4)")
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
   </Function>
 
   ### tolist
@@ -230,7 +230,7 @@ python_api_name: qiskit.primitives.ObservablesArray
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") | [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") | [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli") | [*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp") | [*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") | [*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping "(in Python v3.14)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") | [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")]
+    [list](https://docs.python.org/3/library/stdtypes.html#list) | [str](https://docs.python.org/3/library/stdtypes.html#str) | [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli") | [*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp") | [*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") | [*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping)\[[str](https://docs.python.org/3/library/stdtypes.html#str) | [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli"), [float](https://docs.python.org/3/library/functions.html#float)]
   </Function>
 
   ### validate
