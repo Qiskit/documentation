@@ -21,12 +21,12 @@ python_api_name: qiskit.algorithms.optimizers.P_BFGS
 
   **Parameters**
 
-  *   **maxfun** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Maximum number of function evaluations.
+  *   **maxfun** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Maximum number of function evaluations.
   *   **ftol** (*SupportsFloat*) – The iteration stops when (f^k - f^\{k+1})/max\{|f^k|,|f^\{k+1}|,1} \<= ftol.
-  *   **iprint** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Controls the frequency of output. iprint \< 0 means no output; iprint = 0 print only one line at the last iteration; 0 \< iprint \< 99 print also f and |proj g| every iprint iterations; iprint = 99 print details of every iteration except n-vectors; iprint = 100 print also the changes of active set and final x; iprint > 100 print details of every iteration including x and g.
-  *   **max\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – maximum number of processes allowed, has a min. value of 1 if not None.
-  *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – A dictionary of solver options.
-  *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Max number of default gradient evaluations performed simultaneously.
+  *   **iprint** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Controls the frequency of output. iprint \< 0 means no output; iprint = 0 print only one line at the last iteration; 0 \< iprint \< 99 print also f and |proj g| every iprint iterations; iprint = 99 print details of every iteration except n-vectors; iprint = 100 print also the changes of active set and final x; iprint > 100 print details of every iteration including x and g.
+  *   **max\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – maximum number of processes allowed, has a min. value of 1 if not None.
+  *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict) *| None*) – A dictionary of solver options.
+  *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Max number of default gradient evaluations performed simultaneously.
   *   **kwargs** – additional kwargs for scipy.optimize.minimize.
 
   ## Attributes
@@ -130,8 +130,8 @@ python_api_name: qiskit.algorithms.optimizers.P_BFGS
 
     *   **x\_center** (*ndarray*) – point around which we compute the gradient
     *   **f** (*func*) – the function of which the gradient is to be computed.
-    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
-    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
+    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int)) – max evals grouped, defaults to 1 (i.e. no batching).
 
     **Returns**
 
@@ -149,10 +149,10 @@ python_api_name: qiskit.algorithms.optimizers.P_BFGS
 
     **Parameters**
 
-    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The scalar function to minimize.
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The scalar function to minimize.
     *   **x0** (*POINT*) – The initial point for the minimization.
     *   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
-    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
     **Returns**
 
@@ -184,7 +184,7 @@ python_api_name: qiskit.algorithms.optimizers.P_BFGS
 
     **Parameters**
 
-    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
+    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – options, given as name=value.
   </Function>
 
   ### wrap\_function
@@ -195,7 +195,7 @@ python_api_name: qiskit.algorithms.optimizers.P_BFGS
     **Parameters**
 
     *   **function** (*func*) – the target function
-    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
+    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – the args to be injected
 
     **Returns**
 

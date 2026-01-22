@@ -30,8 +30,8 @@ $$
   **Parameters**
 
   *   **data** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation") *or BaseOperator or matrix*) – data to initialize operator.
-  *   **input\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the input subsystem dimensions. \[Default: None]
-  *   **output\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the output subsystem dimensions. \[Default: None]
+  *   **input\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – the input subsystem dimensions. \[Default: None]
+  *   **output\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – the output subsystem dimensions. \[Default: None]
 
   **Raises**
 
@@ -100,8 +100,8 @@ $$
 
     **Parameters**
 
-    *   **perm** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation.
-    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to `True` the permutation is applied before the operator, when set to `False` the permutation is applied after the operator.
+    *   **perm** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation.
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – When set to `True` the permutation is applied before the operator, when set to `False` the permutation is applied after the operator.
 
     **Returns**
 
@@ -124,8 +124,8 @@ $$
     **Parameters**
 
     *   **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Operator object.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
     **Returns**
 
@@ -166,7 +166,7 @@ $$
     **Parameters**
 
     *   **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
     **Returns**
 
@@ -196,7 +196,7 @@ $$
 
     **Parameters**
 
-    *   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, Default is repr.
+    *   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, Default is repr.
     *   **drawer\_args** – Arguments to be passed directly to the relevant drawing function or constructor (TextMatrix(), array\_to\_latex()). See the relevant function under qiskit.visualization for that function’s documentation.
 
     **Returns**
@@ -205,11 +205,11 @@ $$
 
     **Return type**
 
-    [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") or `TextMatrix` or `IPython.display.Latex`
+    [`str`](https://docs.python.org/3/library/stdtypes.html#str) or `TextMatrix` or `IPython.display.Latex`
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – when an invalid output method is selected.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – when an invalid output method is selected.
   </Function>
 
   ### equiv
@@ -220,8 +220,8 @@ $$
     **Parameters**
 
     *   **other** ([*Operator*](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – relative tolerance value for comparison.
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – absolute tolerance value for comparison.
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – relative tolerance value for comparison.
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – absolute tolerance value for comparison.
 
     **Returns**
 
@@ -229,7 +229,7 @@ $$
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### expand
@@ -264,7 +264,7 @@ $$
     **Parameters**
 
     *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to create an Operator object from.
-    *   **ignore\_set\_layout** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to `True` if the input `circuit` has a layout set it will be ignored
+    *   **ignore\_set\_layout** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – When set to `True` if the input `circuit` has a layout set it will be ignored
     *   **layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – If specified this kwarg can be used to specify a particular layout to use to permute the qubits in the created [`Operator`](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator"). If this is specified it will be used instead of a layout contained in the `circuit` input. If specified the virtual bits in the [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") must be present in the `circuit` input.
     *   **final\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – If specified this kwarg can be used to represent the output permutation caused by swap insertions during the routing stage of the transpiler.
 
@@ -328,7 +328,7 @@ $$
 
     **Parameters**
 
-    **n** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power to raise the matrix to.
+    **n** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the power to raise the matrix to.
 
     **Returns**
 
@@ -350,9 +350,9 @@ $$
 
     **Parameters**
 
-    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
+    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – reshape to an N-qubit operator \[Default: None].
 
     **Returns**
 
