@@ -48,9 +48,9 @@ python_api_name: qiskit.primitives.BindingsArray
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If all inputs are `None`.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If the shape cannot be automatically inferred from the arrays, or if there is some inconsistency in the shape of the given arrays.
-  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.14)") – If some of the values can’t be cast to a float type.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If all inputs are `None`.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the shape cannot be automatically inferred from the arrays, or if there is some inconsistency in the shape of the given arrays.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If some of the values can’t be cast to a float type.
 
   ## Attributes
 
@@ -89,7 +89,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Parameters**
 
-    **parameters** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.14)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*] | None*) – Optional parameters that determine the order of the output.
+    **parameters** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – Optional parameters that determine the order of the output.
 
     **Returns**
 
@@ -97,11 +97,11 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If `parameters` are provided, but do not match those found in `data`.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `parameters` are provided, but do not match those found in `data`.
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.4)")
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
   </Function>
 
   ### bind
@@ -112,7 +112,7 @@ python_api_name: qiskit.primitives.BindingsArray
     **Parameters**
 
     *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit to bind.
-    *   **loc** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*, ...]*) – A tuple of indices, on for each dimension of this array.
+    *   **loc** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...]*) – A tuple of indices, on for each dimension of this array.
 
     **Returns**
 
@@ -120,7 +120,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If the index doesn’t have the right number of values.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the index doesn’t have the right number of values.
 
     **Return type**
 
@@ -142,7 +142,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.4)")
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
   </Function>
 
   ### coerce
@@ -152,7 +152,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Parameters**
 
-    **bindings\_array** ([*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping "(in Python v3.14)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.14)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*, ...], \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.4)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")*]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.4)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")*]]] |* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes "(in Python v3.14)") *| \_NestedSequence\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes "(in Python v3.14)")*]]*) – An object to be bindings array.
+    **bindings\_array** ([*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, ...], \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]]] |* [*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes) *| \_NestedSequence\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes)*]]*) – An object to be bindings array.
 
     **Returns**
 
@@ -188,7 +188,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Parameters**
 
-    **shape** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – The shape of the returned bindings array.
+    **shape** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The shape of the returned bindings array.
 
     **Returns**
 
@@ -196,7 +196,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If the provided shape has a different product than the current size.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the provided shape has a different product than the current size.
 
     **Return type**
 
