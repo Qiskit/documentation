@@ -628,15 +628,15 @@ In general, the requirement is that **all the same circuit modifications are mad
 
 Some tips for ensuring this include:
 
-*   Be very careful when iterating over hash-based containers. Iteration over Python’s [`set`](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.14)") is non-deterministic due to hash-seed randomization. In Rust, iteration over the standard-library hash-based containers, including `hashbrown` equivalents with their default hashers is non-deterministic.
+*   Be very careful when iterating over hash-based containers. Iteration over Python’s [`set`](https://docs.python.org/3/library/stdtypes.html#set) is non-deterministic due to hash-seed randomization. In Rust, iteration over the standard-library hash-based containers, including `hashbrown` equivalents with their default hashers is non-deterministic.
 
     <Admonition title="Note" type="note">
-      Iteration over Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)") *is* deterministic, and guaranteed to be in insertion order if there have been no removals, and arbitrary but still deterministic order if there have been deterministic removals.
+      Iteration over Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict) *is* deterministic, and guaranteed to be in insertion order if there have been no removals, and arbitrary but still deterministic order if there have been deterministic removals.
     </Admonition>
 
-    In Python, if you need to create a [`set`](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.14)") and then iterate over it, consider instead using a [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)") with all the values being `None` as a substitute. Using a [`set`](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.14)") purely for membership testing is no trouble.
+    In Python, if you need to create a [`set`](https://docs.python.org/3/library/stdtypes.html#set) and then iterate over it, consider instead using a [`dict`](https://docs.python.org/3/library/stdtypes.html#dict) with all the values being `None` as a substitute. Using a [`set`](https://docs.python.org/3/library/stdtypes.html#set) purely for membership testing is no trouble.
 
-    In Rust, use `indexmap` and its structs `IndexMap` and `IndexSet` as replacements for `HashMap` and `HashSet`, respectively; they have similar deterministic-iteration properties to Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)").
+    In Rust, use `indexmap` and its structs `IndexMap` and `IndexSet` as replacements for `HashMap` and `HashSet`, respectively; they have similar deterministic-iteration properties to Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict).
 
 *   If your pass as stochastic components, ensure that you accept a `seed` input, and make your output pure if this is supplied as an integer. Typically this means storing the seed, and instantiating a new pRNG from this seed at the start of each call to `BasePass.run()`.
 

@@ -264,7 +264,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 *   Class [`TwirledSliceSpan`](execution-span-twirled-slice-span "qiskit_ibm_runtime.execution_span.TwirledSliceSpan") has a new data member `data_slice_version` of type integer, with default value 1. When set to 2, the data slice tuples contain information about the PUB shots, used in [`TwirledSliceSpan.mask()`](execution-span-twirled-slice-span#mask "qiskit_ibm_runtime.execution_span.TwirledSliceSpan.mask") to shape the returned array. The last axis will be truncated, such that its length will be shortened to `pub_shots`. ([2312](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2312))
 
-*   Added serialization for [`qiskit.quantum_info.PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap "(in Qiskit v2.2)"). ([2297](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2297))
+*   Added serialization for [`qiskit.quantum_info.PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap). ([2297](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2297))
 
 *   There is a new method `convert_to_rzz_valid_pub()`, which can be used to transform a PUB into an equivalent PUB that is compatible with Rzz constraints. The method currently does not support dynamic circuits and does not preserve global phase. ([2126](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2126))
 
@@ -531,9 +531,9 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 *   Added support for noise model and level 1 data to local sampler
 
-    The `simulator.noise_model` option of [`SamplerV2`](sampler-v2 "qiskit_ibm_runtime.SamplerV2") is now passed through to the [`BackendSamplerV2`](/docs/api/qiskit/qiskit.primitives.BackendSamplerV2 "(in Qiskit v2.2)") as a noise\_model option under run\_options if the primitive supports the run\_options option (support was added in Qiskit v1.3).
+    The `simulator.noise_model` option of [`SamplerV2`](sampler-v2 "qiskit_ibm_runtime.SamplerV2") is now passed through to the [`BackendSamplerV2`](/docs/api/qiskit/qiskit.primitives.BackendSamplerV2) as a noise\_model option under run\_options if the primitive supports the run\_options option (support was added in Qiskit v1.3).
 
-    Similarly, the `execution.meas_type` option of [`SamplerV2`](sampler-v2 "qiskit_ibm_runtime.SamplerV2") is now translated into `meas_level` and `meas_return` options under `run_options` of the [`BackendSamplerV2`](/docs/api/qiskit/qiskit.primitives.BackendSamplerV2 "(in Qiskit v2.2)") if it supports `run_options`. This change allows support for level 1 data in local testing mode, where previously only level 2 (classified) data was supported. ([1990](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1990))
+    Similarly, the `execution.meas_type` option of [`SamplerV2`](sampler-v2 "qiskit_ibm_runtime.SamplerV2") is now translated into `meas_level` and `meas_return` options under `run_options` of the [`BackendSamplerV2`](/docs/api/qiskit/qiskit.primitives.BackendSamplerV2) if it supports `run_options`. This change allows support for level 1 data in local testing mode, where previously only level 2 (classified) data was supported. ([1990](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1990))
 
 *   A new function `validate_rzz_pubs` was added. The function verifies that `rzz` parameters are in the range between `0` and `pi/2`, for numeric parameters (e.g., `rzz(np.pi/4, 0)`), and for unbounded parameters (`rzz(theta, 0)`) with values to substitute provided in the pub. Parameter expressions (e.g., `rzz(theta + phi, 0)`) are still not validated. ([2021](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2021))
 
