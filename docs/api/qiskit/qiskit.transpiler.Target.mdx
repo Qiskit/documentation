@@ -93,7 +93,7 @@ python_api_name: qiskit.transpiler.Target
 
   You should not subclass [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") to attempt to modify the behavior of Qiskit’s built-in passes; the Python-space subclassing will not be seen by passes written in Rust.
 
-  Further, as the core of [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") is written in Rust, it uses [`__new__()`](https://docs.python.org/3/reference/datamodel.html#object.__new__ "(in Python v3.14)") as its initializer, and you must ensure that the correct arguments are passed through to the underlying implementation. If you override the signature of the [`__init__()`](https://docs.python.org/3/reference/datamodel.html#object.__init__ "(in Python v3.14)") method, you must also include an override of [`__new__()`](https://docs.python.org/3/reference/datamodel.html#object.__new__ "(in Python v3.14)") with the same signature, which calls `super().__new__()` in a correct manner.
+  Further, as the core of [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") is written in Rust, it uses [`__new__()`](https://docs.python.org/3/reference/datamodel.html#object.__new__) as its initializer, and you must ensure that the correct arguments are passed through to the underlying implementation. If you override the signature of the [`__init__()`](https://docs.python.org/3/reference/datamodel.html#object.__init__) method, you must also include an override of [`__new__()`](https://docs.python.org/3/reference/datamodel.html#object.__new__) with the same signature, which calls `super().__new__()` in a correct manner.
 
   Create a new [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") object.
 
@@ -279,13 +279,13 @@ python_api_name: qiskit.transpiler.Target
     **Parameters**
 
     *   **instruction** (*Union\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*,* [*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]]*) – The operation object to add to the map. If it’s parameterized any value of the parameter can be set. Optionally for variable width instructions (such as control flow operations such as `ForLoop` or `MCXGate`) you can specify the class. If the class is specified than the `name` argument must be specified. When a class is used the gate is treated as global and not having any properties set.
-    *   **properties** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")) – A dictionary of qarg entries to an [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") object for that instruction implementation on the backend. Properties are optional for any instruction implementation, if there are no [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") available for the backend the value can be None. If there are no constraints on the instruction (as in a noiseless/ideal simulation) this can be set to `{None, None}` which will indicate it runs on all qubits (or all available permutations of qubits for multi-qubit gates). The first `None` indicates it applies to all qubits and the second `None` indicates there are no [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") for the instruction. By default, if properties is not set it is equivalent to passing `{None: None}`.
-    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – An optional name to use for identifying the instruction. If not specified the [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute of `gate` will be used. All gates in the `Target` need unique names. Backends can differentiate between different parameterization of a single gate by providing a unique name for each (e.g. “rx30”, “rx60”, \`”rx90”\`\` similar to the example in the documentation for the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") class).
-    *   **angle\_bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – The bounds on the parameters for a given gate. This is specified by a list of tuples (low, high) which represent the low and high bound (inclusively) on what float values are allowed for the parameter in that position. If a parameter doesn’t have an angle bound you can use `None` to represent that. For example if a 3 parameter gate only had a bound on the second parameter you would represent that with: `[None, [0, 3.14], None]` which means the first and third parameter allow any value but the second parameter only accepts values between 0 and 3.14.
+    *   **properties** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – A dictionary of qarg entries to an [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") object for that instruction implementation on the backend. Properties are optional for any instruction implementation, if there are no [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") available for the backend the value can be None. If there are no constraints on the instruction (as in a noiseless/ideal simulation) this can be set to `{None, None}` which will indicate it runs on all qubits (or all available permutations of qubits for multi-qubit gates). The first `None` indicates it applies to all qubits and the second `None` indicates there are no [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") for the instruction. By default, if properties is not set it is equivalent to passing `{None: None}`.
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – An optional name to use for identifying the instruction. If not specified the [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute of `gate` will be used. All gates in the `Target` need unique names. Backends can differentiate between different parameterization of a single gate by providing a unique name for each (e.g. “rx30”, “rx60”, \`”rx90”\`\` similar to the example in the documentation for the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") class).
+    *   **angle\_bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – The bounds on the parameters for a given gate. This is specified by a list of tuples (low, high) which represent the low and high bound (inclusively) on what float values are allowed for the parameter in that position. If a parameter doesn’t have an angle bound you can use `None` to represent that. For example if a 3 parameter gate only had a bound on the second parameter you would represent that with: `[None, [0, 3.14], None]` which means the first and third parameter allow any value but the second parameter only accepts values between 0 and 3.14.
 
     **Raises**
 
-    *   [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.14)") – If gate is already in map
+    *   [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError) – If gate is already in map
     *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If an operation class is passed in for `instruction` and no name is specified or `properties` is set.
   </Function>
 
@@ -298,8 +298,8 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    *   **two\_q\_gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – An optional gate name for a two qubit gate in the `Target` to generate the coupling map for. If specified the output coupling map will only have edges between qubits where this gate is present.
-    *   **filter\_idle\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If set to `True` the output [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") will remove any qubits that don’t have any operations defined in the target. Note that using this argument will result in an output [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object which has holes in its indices which might differ from the assumptions of the class. The typical use case of this argument is to be paired with [`CouplingMap.connected_components()`](qiskit.transpiler.CouplingMap#connected_components "qiskit.transpiler.CouplingMap.connected_components") which will handle the holes as expected.
+    *   **two\_q\_gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – An optional gate name for a two qubit gate in the `Target` to generate the coupling map for. If specified the output coupling map will only have edges between qubits where this gate is present.
+    *   **filter\_idle\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If set to `True` the output [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") will remove any qubits that don’t have any operations defined in the target. Note that using this argument will result in an output [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object which has holes in its indices which might differ from the assumptions of the class. The typical use case of this argument is to be paired with [`CouplingMap.connected_components()`](qiskit.transpiler.CouplingMap#connected_components "qiskit.transpiler.CouplingMap.connected_components") which will handle the holes as expected.
 
     **Returns**
 
@@ -313,8 +313,8 @@ python_api_name: qiskit.transpiler.Target
 
     **Raises**
 
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If a non-two qubit gate is passed in for `two_q_gate`.
-    *   [**IndexError**](https://docs.python.org/3/library/exceptions.html#IndexError "(in Python v3.14)") – If an Instruction not in the `Target` is passed in for `two_q_gate`.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If a non-two qubit gate is passed in for `two_q_gate`.
+    *   [**IndexError**](https://docs.python.org/3/library/exceptions.html#IndexError) – If an Instruction not in the `Target` is passed in for `two_q_gate`.
   </Function>
 
   ### durations
@@ -344,14 +344,14 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*]*) – The list of basis gate names for the backend. For the target to be created these names must either be in the output from [`get_standard_gate_name_mapping()`](circuit_library#qiskit.circuit.library.get_standard_gate_name_mapping "qiskit.circuit.library.get_standard_gate_name_mapping") or present in the specified `custom_name_mapping` argument.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – The number of qubits supported on the backend.
+    *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – The list of basis gate names for the backend. For the target to be created these names must either be in the output from [`get_standard_gate_name_mapping()`](circuit_library#qiskit.circuit.library.get_standard_gate_name_mapping "qiskit.circuit.library.get_standard_gate_name_mapping") or present in the specified `custom_name_mapping` argument.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits supported on the backend.
     *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap") *| None*) – The coupling map representing connectivity constraints on the backend. If specified all gates from `basis_gates` will be supported on all qubits (or pairs of qubits).
     *   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations") *| None*) – Optional instruction durations for instructions. If specified it will take priority for setting the `duration` field in the [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") objects for the instructions in the target.
-    *   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – A list of sets of qubits that must be measured together. This must be provided as a nested list like `[[0, 1], [2, 3, 4]]`.
-    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)") *| None*) – The system time resolution of input signals in seconds
+    *   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – A list of sets of qubits that must be measured together. This must be provided as a nested list like `[[0, 1], [2, 3, 4]]`.
+    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – The system time resolution of input signals in seconds
     *   **timing\_constraints** (*TimingConstraints | None*) – Optional timing constraints to include in the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target")
-    *   **custom\_name\_mapping** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")*] | None*) – An optional dictionary that maps custom gate/operation names in `basis_gates` to an [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") object representing that gate/operation. By default, most standard gates names are mapped to the standard gate object from [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") this only needs to be specified if the input `basis_gates` defines gates in names outside that set.
+    *   **custom\_name\_mapping** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) – An optional dictionary that maps custom gate/operation names in `basis_gates` to an [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") object representing that gate/operation. By default, most standard gates names are mapped to the standard gate object from [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") this only needs to be specified if the input `basis_gates` defines gates in names outside that set.
 
     **Returns**
 
@@ -365,7 +365,7 @@ python_api_name: qiskit.transpiler.Target
 
     *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the input basis gates contain > 2 qubits and `coupling_map` is
     *   **specified.** –
-    *   [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.14)") – If no mapping is available for a specified `basis_gate`.
+    *   [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError) – If no mapping is available for a specified `basis_gate`.
   </Function>
 
   ### gate\_has\_angle\_bounds
@@ -375,7 +375,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The instruction name to check if it has an angle bound set
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The instruction name to check if it has an angle bound set
 
     **Returns**
 
@@ -383,7 +383,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### get
@@ -401,7 +401,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If set to `True` the multi-qubit operations considered as non-global respect the strict direction (or order of qubits in the qargs is significant). For example, if `cx` is defined on `(0, 1)` and `ecr` is defined over `(1, 0)` by default neither would be considered non-global, but if `strict_direction` is set `True` both `cx` and `ecr` would be returned.
+    **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If set to `True` the multi-qubit operations considered as non-global respect the strict direction (or order of qubits in the qargs is significant). For example, if `cx` is defined on `(0, 1)` and `ecr` is defined over `(1, 0)` by default neither would be considered non-global, but if `strict_direction` is set `True` both `cx` and `ecr` would be returned.
 
     **Returns**
 
@@ -409,7 +409,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Return type**
 
-    List\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")]
+    List\[[str](https://docs.python.org/3/library/stdtypes.html#str)]
   </Function>
 
   ### has\_angle\_bounds
@@ -423,7 +423,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### instruction\_properties
@@ -453,7 +453,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The index of the instruction tuple from the [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") attribute. For, example if you want the properties from the third element in [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") you would set this to be `2`.
+    **index** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The index of the instruction tuple from the [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") attribute. For, example if you want the properties from the third element in [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") you would set this to be `2`.
 
     **Returns**
 
@@ -471,13 +471,13 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    *   **operation\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The name of the operation for the instruction. Either this or `operation_class` must be specified, if both are specified `operation_class` will take priority and this argument will be ignored.
+    *   **operation\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the operation for the instruction. Either this or `operation_class` must be specified, if both are specified `operation_class` will take priority and this argument will be ignored.
 
-    *   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")) – The tuple of qubit indices for the instruction. If this is not specified then this method will return `True` if the specified operation is supported on any qubits. The typical application will always have this set (otherwise it’s the same as just checking if the target contains the operation). Normally you would not set this argument if you wanted to check more generally that the target supports an operation with the `parameters` on any qubits.
+    *   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – The tuple of qubit indices for the instruction. If this is not specified then this method will return `True` if the specified operation is supported on any qubits. The typical application will always have this set (otherwise it’s the same as just checking if the target contains the operation). Normally you would not set this argument if you wanted to check more generally that the target supports an operation with the `parameters` on any qubits.
 
     *   **operation\_class** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]*) – The operation class to check whether the target supports a particular operation by class rather than by name. This lookup is more expensive as it needs to iterate over all operations in the target instead of just a single lookup. If this is specified it will supersede the `operation_name` argument. The typical use case for this operation is to check whether a specific variant of an operation is supported on the backend. For example, if you wanted to check whether a [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") was supported on a specific qubit with a fixed angle. That fixed angle variant will typically have a name different from the object’s [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute (`"rx"`) in the target. This can be used to check if any instances of the class are available in such a case.
 
-    *   **parameters** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) –
+    *   **parameters** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) –
 
         A list of parameters to check if the target supports them on the specified qubits. If the instruction supports the parameter values specified in the list on the operation and qargs specified this will return `True` but if the parameters are not supported on the specified instruction it will return `False`. If this argument is not specified this method will return `True` if the instruction is supported independent of the instruction parameters. If specified with any [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the list, that entry will be treated as supporting any value, however parameter names will not be checked (for example if an operation in the target is listed as parameterized with `"theta"` and `"phi"` is passed into this function that will return `True`). For example, if called with:
 
@@ -494,7 +494,7 @@ python_api_name: qiskit.transpiler.Target
 
         will return `True` if an RXGate(pi/4) exists on qubit 0.
 
-    *   **check\_angle\_bounds** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If set to True (the default) the value of `parameters` will be validated against any angle bounds set in the target. If any of the values in `parameters` are set to be [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") instances this flag will have no effect as angle bounds only impact non-parameterized operations in the circuit.
+    *   **check\_angle\_bounds** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If set to True (the default) the value of `parameters` will be validated against any angle bounds set in the target. If any of the values in `parameters` are set to be [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") instances this flag will have no effect as angle bounds only impact non-parameterized operations in the circuit.
 
     **Returns**
 
@@ -502,7 +502,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### items
@@ -524,7 +524,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The instruction name to get the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance for
+    **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The instruction name to get the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance for
 
     **Returns**
 
@@ -542,7 +542,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")) – A `qargs` tuple of the qubits to get the gates that apply to it. For example, `(0,)` will return the set of all instructions that apply to qubit 0. If set to `None` this will return the names for any globally defined operations in the target.
+    **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – A `qargs` tuple of the qubits to get the gates that apply to it. For example, `(0,)` will return the set of all instructions that apply to qubit 0. If set to `None` this will return the names for any globally defined operations in the target.
 
     **Returns**
 
@@ -550,11 +550,11 @@ python_api_name: qiskit.transpiler.Target
 
     **Return type**
 
-    [set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.14)")
+    [set](https://docs.python.org/3/library/stdtypes.html#set)
 
     **Raises**
 
-    [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.14)") – If `qargs` is not in target
+    [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError) – If `qargs` is not in target
   </Function>
 
   ### operations\_for\_qargs
@@ -564,7 +564,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")) – A qargs tuple of the qubits to get the gates that apply to it. For example, `(0,)` will return the set of all instructions that apply to qubit 0. If set to `None` this will return any globally defined operations in the target.
+    **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – A qargs tuple of the qubits to get the gates that apply to it. For example, `(0,)` will return the set of all instructions that apply to qubit 0. If set to `None` this will return any globally defined operations in the target.
 
     **Returns**
 
@@ -572,11 +572,11 @@ python_api_name: qiskit.transpiler.Target
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")
+    [list](https://docs.python.org/3/library/stdtypes.html#list)
 
     **Raises**
 
-    [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.14)") – If qargs is not in target
+    [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError) – If qargs is not in target
   </Function>
 
   ### qargs\_for\_operation\_name
@@ -586,7 +586,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    **operation** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The operation name to get qargs for
+    **operation** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The operation name to get qargs for
 
     **Returns**
 
@@ -594,7 +594,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Return type**
 
-    [set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.14)")
+    [set](https://docs.python.org/3/library/stdtypes.html#set)
   </Function>
 
   ### seconds\_to\_dt
@@ -604,11 +604,11 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    **duration** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – The duration in seconds, such as in an [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") field for an instruction in the target.
+    **duration** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The duration in seconds, such as in an [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") field for an instruction in the target.
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")
+    [int](https://docs.python.org/3/library/functions.html#int)
 
     **Returns**
 
@@ -622,8 +622,8 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The instruction name to check the angle bounds of
-    *   **angles** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – A list of float parameter values for `name` to see if they conform to the defined angle bounds.
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The instruction name to check the angle bounds of
+    *   **angles** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – A list of float parameter values for `name` to see if they conform to the defined angle bounds.
 
     **Returns**
 
@@ -631,7 +631,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
 
     **Raises**
 
@@ -662,13 +662,13 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    *   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The instruction name to update
-    *   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")) – The qargs to update the properties of
+    *   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The instruction name to update
+    *   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – The qargs to update the properties of
     *   **properties** ([*InstructionProperties*](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")) – The properties to set for this instruction
 
     **Raises**
 
-    [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.14)") – If `instruction` or `qarg` are not in the target
+    [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError) – If `instruction` or `qarg` are not in the target
   </Function>
 
   ### values
@@ -679,14 +679,14 @@ python_api_name: qiskit.transpiler.Target
 
   **Parameters**
 
-  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) –
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) –
-  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)") *| None*) –
-  *   **granularity** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
-  *   **min\_length** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
-  *   **pulse\_alignment** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
-  *   **acquire\_alignment** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
-  *   **qubit\_properties** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") *| None*) –
-  *   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") *| None*) –
+  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) –
+  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) –
+  *   **granularity** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
+  *   **min\_length** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
+  *   **pulse\_alignment** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
+  *   **acquire\_alignment** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
+  *   **qubit\_properties** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *| None*) –
+  *   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *| None*) –
 </Class>
 

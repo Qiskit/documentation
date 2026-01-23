@@ -84,7 +84,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   *   **file\_obj** (*BinaryIO*) – A file like object that contains the QPY binary data for a circuit.
   *   **metadata\_deserializer** (*Optional\[*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[JSONDecoder]]*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
-  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the loading of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects.
+  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the loading of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects.
 
   **Returns**
 
@@ -93,7 +93,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
   **Raises**
 
   *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if `file_obj` is not a valid QPY file
-  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.14)") – When invalid data type is loaded.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – When invalid data type is loaded.
   *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If the `symengine` engine library is not installed when loading a QPY version 10, 11, or 12 payload that is using symengine symbolic encoding and contains [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") instances.
   *   [**QpyError**](#qiskit.qpy.QpyError "qiskit.qpy.QpyError") – if known but unsupported data type is loaded.
 
@@ -147,9 +147,9 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   *   **metadata\_serializer** (*Optional\[*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[JSONEncoder]]*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
 
-  *   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – This flag is no longer used by QPY versions supported by this function and will have no impact on the generated QPY payload except to set a field in a QPY v13 file header which is unused.
+  *   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – This flag is no longer used by QPY versions supported by this function and will have no impact on the generated QPY payload except to set a field in a QPY v13 file header which is unused.
 
-  *   **version** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
+  *   **version** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
 
       The QPY format version to emit. By default this defaults to the latest supported format of [`QPY_VERSION`](#qiskit.qpy.QPY_VERSION "qiskit.qpy.QPY_VERSION"), however for compatibility reasons if you need to load the generated QPY payload with an older version of Qiskit you can also select an older QPY format version down to the minimum supported export version, which only can change during a Qiskit major version release, to generate an older QPY format version. You can access the current QPY version and minimum compatible version with [`qpy.QPY_VERSION`](#qiskit.qpy.QPY_VERSION "qiskit.qpy.QPY_VERSION") and [`qpy.QPY_COMPATIBILITY_VERSION`](#qiskit.qpy.QPY_COMPATIBILITY_VERSION "qiskit.qpy.QPY_COMPATIBILITY_VERSION") respectively.
 
@@ -161,12 +161,12 @@ with open('twenty_bells.qpy', 'rb') as fd:
           If serializing a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that contains [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects with `version` set low with the intent to load the payload using a historical release of Qiskit, it is safest to set the `use_symengine` flag to `False`. Versions of Qiskit prior to 1.2.4 cannot load QPY files containing `symengine`-serialized [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects unless the version of `symengine` used between the loading and generating environments matches.
         </Admonition>
 
-  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the dumping of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects. The subsequent call to [`load()`](#qiskit.qpy.load "qiskit.qpy.load") will need to use similar serializer objects, that understand the custom output format of those serializers.
+  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the dumping of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects. The subsequent call to [`load()`](#qiskit.qpy.load "qiskit.qpy.load") will need to use similar serializer objects, that understand the custom output format of those serializers.
 
   **Raises**
 
-  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.14)") – When invalid data type is input.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – When an unsupported version number is passed in for the `version` argument.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – When invalid data type is input.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – When an unsupported version number is passed in for the `version` argument.
 </Function>
 
 ### get\_qpy\_version
@@ -186,7 +186,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   **Parameters**
 
-  **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.14)")) – A file like object that contains the QPY binary data for a circuit.
+  **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO)) – A file like object that contains the QPY binary data for a circuit.
 
   **Returns**
 
@@ -194,7 +194,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   **Return type**
 
-  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")
+  [int](https://docs.python.org/3/library/functions.html#int)
 </Function>
 
 These functions will raise a custom subclass of [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") if they encounter problems during serialization or deserialization.
@@ -220,9 +220,9 @@ When a lower-than-maximum target QPY version is set for serialization, but the o
 
   **Parameters**
 
-  *   **feature** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – a description of the problematic feature.
-  *   **required** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the minimum version of QPY that would be required to represent this feature.
-  *   **target** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the version of QPY that is being used in the serialization.
+  *   **feature** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – a description of the problematic feature.
+  *   **required** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the minimum version of QPY that would be required to represent this feature.
+  *   **target** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the version of QPY that is being used in the serialization.
 </Class>
 
 ### qiskit.qpy.QPY\_VERSION
@@ -232,7 +232,7 @@ When a lower-than-maximum target QPY version is set for serialization, but the o
 
   **Type**
 
-  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")
+  [int](https://docs.python.org/3/library/functions.html#int)
 </Attribute>
 
 ### qiskit.qpy.QPY\_COMPATIBILITY\_VERSION
@@ -242,7 +242,7 @@ When a lower-than-maximum target QPY version is set for serialization, but the o
 
   **Type**
 
-  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")
+  [int](https://docs.python.org/3/library/functions.html#int)
 </Attribute>
 
 <span id="id1" />
@@ -1031,7 +1031,9 @@ The only change compared to [Version 5](#qpy-version-5) is the addition of class
 
 Version 5 changes from [Version 4](#qpy-version-4) by adding support for `ScheduleBlock` and changing two payloads the INSTRUCTION metadata payload and the CUSTOM\_INSTRUCTION block. These now have new fields to better account for [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") objects in a circuit. In addition, new payload MAP\_ITEM is defined to implement the [MAPPING](#qpy-mapping) block.
 
-With the support of `ScheduleBlock`, now [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") can be serialized together with `calibrations`, or [Pulse Gates](/docs/guides/pulse). In QPY version 5 and above, [CIRCUIT\_CALIBRATIONS](#qpy-circuit-calibrations) payload is packed after the [INSTRUCTIONS](#qpy-instructions) block.
+<Admonition title="Note" type="note">
+  Support for representing pulse schedules and custom calibrations was removed in Qiskit v2.0. When loading QPY payloads, these data fields are now ignored or raise an error when using Qiskit for deserialization.
+</Admonition>
 
 In QPY version 5 and above,
 

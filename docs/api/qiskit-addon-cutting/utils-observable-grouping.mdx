@@ -21,7 +21,7 @@ Module for conducting Pauli observable grouping.
 <Function id="qiskit_addon_cutting.utils.observable_grouping.observables_restricted_to_subsystem" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/utils/observable_grouping.py" signature="observables_restricted_to_subsystem(qubits, global_observables, /)">
   Restrict each observable to its support on a given subsystem.
 
-  A [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.4)") will be returned if a [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.4)") is provided; otherwise, a `list[Pauli]` will be returned.
+  A [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList) will be returned if a [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList) is provided; otherwise, a `list[Pauli]` will be returned.
 
   Any phase information will be discarded, consistent with the standard behavior when slicing a Pauli.
 
@@ -36,7 +36,7 @@ Module for conducting Pauli observable grouping.
 
   **Returns**
 
-  Each [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.4)") restricted to the subsystem.
+  Each [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli) restricted to the subsystem.
 
   ```python
   >>> observables_restricted_to_subsystem([1, 3], PauliList(["IXYZ", "iZZXX"]))
@@ -47,14 +47,14 @@ Module for conducting Pauli observable grouping.
 ### CommutingObservableGroup
 
 <Class id="qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/utils/observable_grouping.py" signature="CommutingObservableGroup(general_observable, commuting_observables)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Set of mutually qubit-wise commuting observables.
 
   **Parameters**
 
-  *   **general\_observable** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.4)"))
-  *   **commuting\_observables** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.4)")*]*)
+  *   **general\_observable** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli))
+  *   **commuting\_observables** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*]*)
 
   #### commuting\_observables
 
@@ -77,14 +77,14 @@ Module for conducting Pauli observable grouping.
   #### pauli\_indices
 
   <Attribute id="qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup.pauli_indices" attributeTypeHint="list[int]">
-    The indices of non-identity [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.4)")s in `general_observable`.
+    The indices of non-identity [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli)s in `general_observable`.
   </Attribute>
 </Class>
 
 ### ObservableCollection
 
 <Class id="qiskit_addon_cutting.utils.observable_grouping.ObservableCollection" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/utils/observable_grouping.py" signature="ObservableCollection(observables, /)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Collection of observables organized for efficient taking of measurements.
 
@@ -105,11 +105,11 @@ Module for conducting Pauli observable grouping.
 
     **Return type**
 
-    [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.4)")]
+    [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli)]
 
     **Parameters**
 
-    **commuting\_subobservables** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.4)")*]]*)
+    **commuting\_subobservables** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*]]*)
   </Function>
 
   #### groups
@@ -121,11 +121,11 @@ Module for conducting Pauli observable grouping.
   #### lookup
 
   <Attribute id="qiskit_addon_cutting.utils.observable_grouping.ObservableCollection.lookup" attributeTypeHint="dict[Pauli, list[tuple[int, int]]]">
-    Get dict which maps each [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.4)") observable to a list of indices, `(i, j)`, to commuting observables in `groups`.
+    Get dict which maps each [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli) observable to a list of indices, `(i, j)`, to commuting observables in `groups`.
 
-    For each element of the list, it means that the [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.4)") is given by the `j`-th commuting observable in the `i`-th group.
+    For each element of the list, it means that the [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli) is given by the `j`-th commuting observable in the `i`-th group.
 
-    This list will be of length 1 at minimum, but may potentially be longer if multiple [`CommutingObservableGroup`](#qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup "qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup") objects are compatible with the given [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.4)").
+    This list will be of length 1 at minimum, but may potentially be longer if multiple [`CommutingObservableGroup`](#qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup "qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup") objects are compatible with the given [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli).
   </Attribute>
 </Class>
 
