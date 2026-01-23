@@ -9,25 +9,25 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 # LayerModel
 
 <Class id="qiskit_addon_mpf.backends.quimb_layers.LayerModel" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_layers/model.py#L25-L135" signature="LayerModel(L, H2, H1=None, cyclic=False)" modifiers="class">
-  Bases: [`LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d_tebd/index.html#quimb.tensor.tensor_1d_tebd.LocalHam1D "(in quimb v1.10)")
+  Bases: [`LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d_tebd/index.html#quimb.tensor.tensor_1d_tebd.LocalHam1D)
 
   A model for representing a layer of time-evolution interactions.
 
-  Essentially, this class is a simple wrapper of [`quimb.tensor.LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.LocalHam1D "(in quimb v1.10)"). Its main purpose is to provide a simple interface for constructing a Quimb-compatible Hamiltonian from Qiskit objects.
+  Essentially, this class is a simple wrapper of [`quimb.tensor.LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.LocalHam1D). Its main purpose is to provide a simple interface for constructing a Quimb-compatible Hamiltonian from Qiskit objects.
 
   ## Methods
 
   ### from\_quantum\_circuit
 
   <Function id="qiskit_addon_mpf.backends.quimb_layers.LayerModel.from_quantum_circuit" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_layers/model.py#L50-L135" signature="from_quantum_circuit(circuit, *, keep_only_odd=None, **kwargs)" modifiers="classmethod">
-    Construct a [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") from a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)").
+    Construct a [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") from a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit).
 
     You can see an example of this function in action in the docs of `quimb_layers`.
 
     **Parameters**
 
-    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – the quantum circuit to parse.
-    *   **keep\_only\_odd** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – whether to keep only interactions on bonds with odd indices.
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the quantum circuit to parse.
+    *   **keep\_only\_odd** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – whether to keep only interactions on bonds with odd indices.
     *   **kwargs** – any additional keyword arguments to pass to the [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") constructor.
 
     **Returns**
@@ -36,7 +36,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if an unsupported quantum gate is encountered.
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if an unsupported quantum gate is encountered.
 
     **Return type**
 
@@ -50,8 +50,8 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 
     **Parameters**
 
-    *   **where** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – the pair of site indices of the local term to get. This identifies the bond index.
-    *   **x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the value with which to matrix exponentiate the interaction term.
+    *   **where** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the pair of site indices of the local term to get. This identifies the bond index.
+    *   **x** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the value with which to matrix exponentiate the interaction term.
 
     **Returns**
 
@@ -59,7 +59,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)") | None
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) | None
   </Function>
 </Class>
 

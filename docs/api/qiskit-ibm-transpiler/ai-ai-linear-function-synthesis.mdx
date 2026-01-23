@@ -8,17 +8,17 @@ python_api_name: qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis
 
 # AILinearFunctionSynthesis
 
-<Class id="qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.15/qiskit_ibm_transpiler/ai/synthesis.py#L236-L286" signature="qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis(coupling_map: list[list[int]] | None = None, backend: Backend | None = None, replace_only_if_better: bool = True, max_threads: int | None = None)" modifiers="class">
+<Class id="qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.16/qiskit_ibm_transpiler/ai/synthesis.py#L239-L289" signature="qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis(coupling_map: list[list[int]] | None = None, backend: Backend | None = None, replace_only_if_better: bool = True, max_threads: int | None = None)" modifiers="class">
   Bases: `AISynthesis`
 
   Synthesis for Linear Function circuits (blocks of CX and SWAP gates). Currently up to 9 qubit blocks.
 
   **Parameters**
 
-  *   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]], optional*) – A list of pairs that represents physical links between qubits.
+  *   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]], optional*) – A list of pairs that represents physical links between qubits.
   *   **backend** (*Backend, optional*) – Backend used for doing the AI Linear Function synthesis
-  *   **replace\_only\_if\_better** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")*, optional*) – Determine if replace the original circuit with the synthesized one if it’s better, defaults to True.
-  *   **max\_threads** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*, optional*) – Set the number of requests to send in parallel.
+  *   **replace\_only\_if\_better** ([*bool*](https://docs.python.org/3/library/functions.html#bool)*, optional*) – Determine if replace the original circuit with the synthesized one if it’s better, defaults to True.
+  *   **max\_threads** ([*int*](https://docs.python.org/3/library/functions.html#int)*, optional*) – Set the number of requests to send in parallel.
 
   ## Attributes
 
@@ -47,9 +47,9 @@ python_api_name: qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.3)")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)")) – A callback function which is caller per execution of optimization task.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -57,7 +57,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.3)")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
   </Function>
 
   ### name
@@ -67,26 +67,26 @@ python_api_name: qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
   </Function>
 
   ### run
 
-  <Function id="qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis.run" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.15/qiskit_ibm_transpiler/ai/synthesis.py#L162-L179" signature="run(dag)">
+  <Function id="qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis.run" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.16/qiskit_ibm_transpiler/ai/synthesis.py#L163-L180" signature="run(dag)">
     Run a pass on the DAGCircuit. This is implemented by the pass developer.
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v2.3)")) – the dag on which the pass is run.
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the dag on which the pass is run.
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.14)") – when this is left unimplemented for a pass.
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when this is left unimplemented for a pass.
   </Function>
 
   ### synth\_nodes
 
-  <Function id="qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis.synth_nodes" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.15/qiskit_ibm_transpiler/ai/synthesis.py#L115-L160" signature="synth_nodes(nodes)" />
+  <Function id="qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis.synth_nodes" github="https://github.com/Qiskit/qiskit-ibm-transpiler/tree/stable/0.16/qiskit_ibm_transpiler/ai/synthesis.py#L116-L161" signature="synth_nodes(nodes)" />
 
   ### update\_status
 
@@ -95,7 +95,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis
 
     **Parameters**
 
-    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.3)")) – Pass manager state to update.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
     *   **run\_state** (*RunState*) – Completion status of current task.
 
     **Returns**
@@ -104,7 +104,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AILinearFunctionSynthesis
 
     **Return type**
 
-    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v2.3)")
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
   </Function>
 </Class>
 

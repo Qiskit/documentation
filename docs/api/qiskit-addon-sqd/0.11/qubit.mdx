@@ -27,11 +27,11 @@ Functions for handling quantum samples.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring. This set of bitstrings specifies the subspace into which the `hamiltonian` will be projected and diagonalized.
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring. This set of bitstrings specifies the subspace into which the `hamiltonian` will be projected and diagonalized.
 
-  *   **hamiltonian** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)")) – A Hamiltonian specified as a Pauli operator.
+  *   **hamiltonian** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)) – A Hamiltonian specified as a Pauli operator.
 
-  *   **verbose** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to print the stage of the subroutine.
+  *   **verbose** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to print the stage of the subroutine.
 
   *   **\*\*scipy\_kwargs** –
 
@@ -44,11 +44,11 @@ Functions for handling quantum samples.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Bitstrings (rows) in `bitstring_matrix` must have length \< `64`.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Bitstrings (rows) in `bitstring_matrix` must have length \< `64`.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
 </Function>
 
 ### project\_operator\_to\_subspace
@@ -68,9 +68,9 @@ Functions for handling quantum samples.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring. This set of bitstrings specifies the subspace into which the `hamiltonian` will be projected and diagonalized.
-  *   **hamiltonian** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)")) – A Pauli operator to project onto a Hilbert subspace defined by `bitstring_matrix`.
-  *   **verbose** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to print the stage of the subroutine.
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring. This set of bitstrings specifies the subspace into which the `hamiltonian` will be projected and diagonalized.
+  *   **hamiltonian** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)) – A Pauli operator to project onto a Hilbert subspace defined by `bitstring_matrix`.
+  *   **verbose** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to print the stage of the subroutine.
 
   **Returns**
 
@@ -78,7 +78,7 @@ Functions for handling quantum samples.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Bitstrings (rows) in `bitstring_matrix` must have length \< `64`.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Bitstrings (rows) in `bitstring_matrix` must have length \< `64`.
 
   **Return type**
 
@@ -94,7 +94,7 @@ Functions for handling quantum samples.
 
   **Parameters**
 
-  **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
+  **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
 
   **Returns**
 
@@ -102,7 +102,7 @@ Functions for handling quantum samples.
 
   **Return type**
 
-  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")
+  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
 </Function>
 
 ### matrix\_elements\_from\_pauli
@@ -124,8 +124,8 @@ Functions for handling quantum samples.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring. The bitstrings in the matrix must be sorted according to their unsigned integer representations. Otherwise the projection will return wrong results.
-  *   **pauli** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v2.0)")) – A Pauli operator for which to find connected elements
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring. The bitstrings in the matrix must be sorted according to their unsigned integer representations. Otherwise the projection will return wrong results.
+  *   **pauli** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)) – A Pauli operator for which to find connected elements
 
   **Returns**
 
@@ -135,10 +135,10 @@ Functions for handling quantum samples.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Bitstrings (rows) in `bitstring_matrix` must have length \< `64`.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Bitstrings (rows) in `bitstring_matrix` must have length \< `64`.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
 </Function>
 

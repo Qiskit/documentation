@@ -33,11 +33,11 @@ Main operator backpropagation functionality.
 
   **Parameters**
 
-  *   **observables** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.3)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.3)")*]*) – The observable(s) onto which the circuit is backpropagated.
-  *   **slices** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")*]*) – A sequence of `QuantumCircuit` objects representing a single circuit which has been separated into partitions spanning all qubits. **These “slices” will be backpropagated in reverse order.** Each slice must span all qubits. One may use the tools provided in [`qiskit_addon_utils.slicing`](https://qiskit.github.io/qiskit-addon-utils/apidocs/qiskit_addon_utils.slicing.html#module-qiskit_addon_utils.slicing "(in Qiskit addon utilities)") to slice a single [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)").
+  *   **observables** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*]*) – The observable(s) onto which the circuit is backpropagated.
+  *   **slices** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)*]*) – A sequence of `QuantumCircuit` objects representing a single circuit which has been separated into partitions spanning all qubits. **These “slices” will be backpropagated in reverse order.** Each slice must span all qubits. One may use the tools provided in [`qiskit_addon_utils.slicing`](https://qiskit.github.io/qiskit-addon-utils/apidocs/qiskit_addon_utils.slicing.html#module-qiskit_addon_utils.slicing "(in Qiskit addon utilities)") to slice a single [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit).
   *   **truncation\_error\_budget** ([*TruncationErrorBudget*](utils-truncating#truncationerrorbudget "qiskit_addon_obp.utils.truncating.TruncationErrorBudget") *| None*) – The error budget used for truncating Pauli terms. Refer to the [how-to guide](https://qiskit.github.io/qiskit-addon-obp/how_tos/truncate_operator_terms.html) for a detailed discussion on truncating terms from the output operator and bounding the incurred error.
   *   **operator\_budget** ([*OperatorBudget*](utils-simplify#operatorbudget "qiskit_addon_obp.utils.simplify.OperatorBudget") *| None*) – Constraints on how large the operator may grow during backpropagation. If `None`, a default instance of [`OperatorBudget`](utils-simplify#operatorbudget "qiskit_addon_obp.utils.simplify.OperatorBudget") will be used, and no constraints will be placed on the output operator size.
-  *   **max\_seconds** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The maximum number of seconds to run the backpropagation. If this timeout is triggered before the function returns, the metadata of that moment will be returned. Note, that this metadata may contain only partial information for the last slice being backpropagated.
+  *   **max\_seconds** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The maximum number of seconds to run the backpropagation. If this timeout is triggered before the function returns, the metadata of that moment will be returned. Note, that this metadata may contain only partial information for the last slice being backpropagated.
 
   **Returns**
 
@@ -47,13 +47,13 @@ Main operator backpropagation functionality.
 
   **Raises**
 
-  *   [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError "(in Python v3.13)") – If the `max_seconds` argument is attempted to be used on Windows.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – All observables and slices must act on equivalent numbers of qubits.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – An input observable is larger than the constraints specified by `operator_budget`.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `operator_budget.max_paulis` or `operator_budget.max_qwc_groups` is less than 1.
+  *   [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError) – If the `max_seconds` argument is attempted to be used on Windows.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – All observables and slices must act on equivalent numbers of qubits.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – An input observable is larger than the constraints specified by `operator_budget`.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `operator_budget.max_paulis` or `operator_budget.max_qwc_groups` is less than 1.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.3)")], [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")\[[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")], [*OBPMetadata*](utils-metadata-obp-metadata "qiskit_addon_obp.utils.metadata.OBPMetadata")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list)\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)], [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)\[[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)], [*OBPMetadata*](utils-metadata-obp-metadata "qiskit_addon_obp.utils.metadata.OBPMetadata")]
 </Function>
 

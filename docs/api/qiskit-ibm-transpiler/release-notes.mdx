@@ -10,26 +10,36 @@ in_page_toc_max_heading_level: 2
 
 <span id="id1" />
 
+## 0.16.0 (2026-01-23)
+
+### New features
+
+*   Added local AI synthesis support using qiskit-gym reinforcement learning models. This enables local execution of AI-powered Clifford, Linear Function, and Permutation synthesis passes using the new open source framework qiskit-gym. Models are automatically downloaded from HuggingFace and cached locally. Configuration is available via environment variables (`QISKIT_TRANSPILER_<MODEL_TYPE>_REPO_ID`, `_REVISION`, `_SUBDIR`). ([209](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/209))
+
+<span id="id2" />
+
 ## 0.15.2 (2026-01-13)
 
 ### Upgrade notes
 
 *   Upgrade ‘qiskit-serverless’ dependency from 0.27.0 to 0.28.0. ([240](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/240))
 
-<span id="id2" />
+<span id="id3" />
 
 ## 0.15.1 (2026-01-08)
+
+<span id="id4" />
 
 ### New features
 
 *   `TranspilerService` now automatically reads the `instance` (CRN) from the saved account credentials, similar to other IBM Quantum services like `qiskit-ibm-runtime`, `qiskit-ibm-catalog`, and `qiskit-serverless`. The instance is retrieved from the saved credentials file (`~/.qiskit/qiskit-ibm.json`) or from the `QISKIT_IBM_INSTANCE` environment variable, eliminating the need to explicitly provide the `instance` parameter when initializing the service. ([233](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/233))
 *   Enhanced system token retrieval to support different account names. The token retrieval now tries `default-ibm-quantum-platform` before `default-ibm-quantum`, improving compatibility with `qiskit-ibm-runtime`. ([235](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/235))
 
-<span id="id3" />
+<span id="id5" />
 
 ## 0.15.0 (2025-12-02)
 
-<span id="id4" />
+<span id="id6" />
 
 ### Upgrade notes
 
@@ -37,7 +47,7 @@ in_page_toc_max_heading_level: 2
 *   Update old compatible syntaxis with 3.9 like List\[Union\[DAGOpNode, DAGDepNode]]: , to modern one: list\[DAGOpNode | DAGDepNode]. ([230](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/230))
 *   The `qiskit-ibm-ai-local-transpiler` package is now installed by default as a required dependency. Previously, this was an optional dependency that users needed to install explicitly using `pip install qiskit-ibm-transpiler[ai-local-mode]`. The `[ai-local-mode]` extra is maintained for backward compatibility but is no longer necessary. This change improves the default user experience by enabling AI transpiler passes to run locally without additional installation steps. ([231](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/231))
 
-<span id="id5" />
+<span id="id7" />
 
 ### New features
 
@@ -51,11 +61,11 @@ in_page_toc_max_heading_level: 2
 
 *   Removed the obsolete `requirements-dev.txt` file that was replaced by dependency groups in `pyproject.toml` in version 0.14.5. ([225](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/225))
 
-<span id="id6" />
+<span id="id8" />
 
 ## 0.14.5 (2025-11-18)
 
-<span id="id7" />
+<span id="id9" />
 
 ### Upgrade notes
 
@@ -65,7 +75,7 @@ in_page_toc_max_heading_level: 2
 
     **Impact to users** - No functional changes to the library itself. - Contributors now manage environments using uv instead of pip. ([210](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/210))
 
-<span id="id8" />
+<span id="id10" />
 
 ### Bug fixes
 
@@ -74,114 +84,114 @@ in_page_toc_max_heading_level: 2
 *   Re-enable functions e2e tests ([220](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/220))
 *   Workaround for physical circuits failing test ([219](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/219))
 
-<span id="id9" />
-
-## 0.14.4 (2025-10-29)
-
-<span id="id10" />
-
-### Bug fixes
-
-*   Revert: Restrict ibm-runtime till serverless fix the problem ([207](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/207))
-
 <span id="id11" />
 
-## 0.14.3 (2025-10-07)
+## 0.14.4 (2025-10-29)
 
 <span id="id12" />
 
 ### Bug fixes
 
-*   Restrict ibm-runtime till serverless fix the problem ([205](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/205))
+*   Revert: Restrict ibm-runtime till serverless fix the problem ([207](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/207))
 
 <span id="id13" />
 
-## 0.14.2 (2025-09-25)
+## 0.14.3 (2025-10-07)
 
 <span id="id14" />
+
+### Bug fixes
+
+*   Restrict ibm-runtime till serverless fix the problem ([205](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/205))
+
+<span id="id15" />
+
+## 0.14.2 (2025-09-25)
+
+<span id="id16" />
 
 ### Upgrade notes
 
 *   Update Qiskit Serverless and Qiskit IBM Runtime ([203](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/203))
 
-<span id="id15" />
+<span id="id17" />
 
 ## 0.14.1 (2025-09-15)
 
-<span id="id16" />
+<span id="id18" />
 
 ### New features
 
 *   docs: Improve documentation structure and add comprehensive tutorial ([198](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/198))
 *   Enable local\_mode by default for AIPauliNetworkSynthesis and solving a error for non-synthesized circuits ([199](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/199))
 
-<span id="id17" />
+<span id="id19" />
 
 ### Bug fixes
 
 *   Keep the original representation when the service/local version does not provide a better circuit ([195](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/195))
 
-<span id="id18" />
+<span id="id20" />
 
 ### Other notes
 
 *   Remove dependency on qiskit runtime for local testing ([200](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/200))
 
-<span id="id19" />
+<span id="id21" />
 
 ## 0.14.0 (2025-08-21)
 
-<span id="id20" />
+<span id="id22" />
 
 ### New features
 
 *   Migrate Transpiler Service to Qiskit Function ([189](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/189))
 
-<span id="id21" />
+<span id="id23" />
 
 ## 0.13.1 (2025-07-21)
 
-<span id="id22" />
+<span id="id24" />
 
 ### Other notes
 
 *   Updating the README to reflect the latest changes & updates ([184](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/191))
 
-<span id="id23" />
-
-## 0.13.0 (2025-07-03)
-
-<span id="id24" />
-
-### New features
-
-*   Enable Pauli Network inference in local mode ([184](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/184))
-
 <span id="id25" />
 
-## 0.12.0 (2025-06-20)
+## 0.13.0 (2025-07-03)
 
 <span id="id26" />
 
 ### New features
 
-*   Improve Collection Pass Performance via Precomputed Siblings and Queue Optimization #UnitaryHack2025 ([177](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/177))
+*   Enable Pauli Network inference in local mode ([184](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/184))
 
 <span id="id27" />
 
-## 0.11.1 (2025-05-14)
+## 0.12.0 (2025-06-20)
 
 <span id="id28" />
+
+### New features
+
+*   Improve Collection Pass Performance via Precomputed Siblings and Queue Optimization #UnitaryHack2025 ([177](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/177))
+
+<span id="id29" />
+
+## 0.11.1 (2025-05-14)
+
+<span id="id30" />
 
 ### Bug fixes
 
 *   Add Networkx package missing from the requirements ([172](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/172))
 
-<span id="id29" />
+<span id="id31" />
 
 ## 0.11.0 (2025-03-25)
 
-<span id="id30" />
+<span id="id32" />
 
 ### Upgrade notes
 
@@ -191,7 +201,7 @@ in_page_toc_max_heading_level: 2
 
 *   Remove backend\_name from AIRouting and AISynthesis ([165](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/165))
 
-<span id="id31" />
+<span id="id33" />
 
 ### Other notes
 
@@ -209,17 +219,17 @@ in_page_toc_max_heading_level: 2
 
     Fixes #166 \<[https://github.com/Qiskit/qiskit-ibm-transpiler/issues/166](https://github.com/Qiskit/qiskit-ibm-transpiler/issues/166)>. ([166](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/166))
 
-<span id="id32" />
+<span id="id34" />
 
 ## 0.10.3 (2025-03-04)
 
-<span id="id33" />
+<span id="id35" />
 
 ### Upgrade notes
 
 *   Support qiskit 1.4.0 (fixed) ([162](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/162))
 
-<span id="id34" />
+<span id="id36" />
 
 ### New features
 
@@ -238,21 +248,21 @@ in_page_toc_max_heading_level: 2
 
     Fixes #18 \<[https://github.com/Qiskit/qiskit-ibm-transpiler/issues/18](https://github.com/Qiskit/qiskit-ibm-transpiler/issues/18)>. ([158](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/158))
 
-<span id="id35" />
+<span id="id37" />
 
 ## 0.10.2 (2025-02-26)
 
-<span id="id36" />
+<span id="id38" />
 
 ### Upgrade notes
 
 *   Support qiskit 1.4.0 ([159](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/159))
 
-<span id="id37" />
+<span id="id39" />
 
 ## 0.10.1 (2025-02-20)
 
-<span id="id38" />
+<span id="id40" />
 
 ### Bug fixes
 
@@ -260,64 +270,64 @@ in_page_toc_max_heading_level: 2
 *   Add Qiskit 1.3.3 to QPY version mapping ([155](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/155))
 *   Use staging service for tests ([156](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/156))
 
-<span id="id39" />
+<span id="id41" />
 
 ## 0.10.0 (2025-01-09)
 
-<span id="id40" />
+<span id="id42" />
 
 ### Upgrade notes
 
 *   Update Qiskit to v1.3.0. ([144](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/144))
 
-<span id="id41" />
+<span id="id43" />
 
 ### Deprecation notes
 
 *   Remove qiskit\_transpiler\_service package. ([147](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/147))
 
-<span id="id42" />
+<span id="id44" />
 
 ### Bug fixes
 
 *   Align QPY version with service. ([136](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/136))
 *   Fixes permutation notebook example by updating the coupling map used ([141](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/141))
 
-<span id="id43" />
+<span id="id45" />
 
 ## 0.9.3 (2024-12-18)
 
-<span id="id44" />
+<span id="id46" />
 
 ### Other notes
 
 *   Pin qiskit\_ibm\_ai\_local\_transpiler version to 0.1.4 and Qiskit to \<1.3 ([149](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/149))
 
-<span id="id45" />
-
-## 0.9.2 (2024-12-12)
-
-<span id="id46" />
-
-### Bug fixes
-
-*   Pin qiskit\_ibm\_ai\_local\_transpiler version to 0.1.3 ([145](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/145))
-
 <span id="id47" />
 
-## 0.9.1 (2024-11-15)
+## 0.9.2 (2024-12-12)
 
 <span id="id48" />
 
 ### Bug fixes
 
-*   Fix optimization\_preferences\` used in generate\_ai\_pass\_manager method. Adding related tests ([130](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/130))
+*   Pin qiskit\_ibm\_ai\_local\_transpiler version to 0.1.3 ([145](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/145))
 
 <span id="id49" />
 
-## 0.9.0 (2024-11-14)
+## 0.9.1 (2024-11-15)
 
 <span id="id50" />
+
+### Bug fixes
+
+*   Fix optimization\_preferences\` used in generate\_ai\_pass\_manager method. Adding related tests ([130](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/130))
+
+<span id="id51" />
+
+## 0.9.0 (2024-11-14)
+
+<span id="id52" />
 
 ### New features
 
@@ -327,32 +337,32 @@ in_page_toc_max_heading_level: 2
 
 *   Deprecate Python 3.8 support
 
-<span id="id51" />
+<span id="id53" />
 
 ## 0.8.2 (2024-11-13)
 
-<span id="id52" />
+<span id="id54" />
 
 ### Bug fixes
 
 *   Added fix to avoid random test errors. Check that result exists when result is success. ([105](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/105))
 *   Fix pauli better circuit replacement. ([122](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/122))
 
-<span id="id53" />
+<span id="id55" />
 
 ## 0.8.1 (2024-11-13)
 
-<span id="id54" />
+<span id="id56" />
 
 ### New features
 
 *   Updating the README to reflect the availability of the AIPauliNetworkSynthesis feature. ([121](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/121))
 
-<span id="id55" />
+<span id="id57" />
 
 ## 0.8.0 (2024-11-13)
 
-<span id="id56" />
+<span id="id58" />
 
 ### New features
 
@@ -361,119 +371,119 @@ in_page_toc_max_heading_level: 2
 *   Retry http requests after any RequestException ([111](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/111))
 *   Add Pauli Network synthesis pass. ([112](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/112))
 
-<span id="id57" />
-
-## 0.7.4 (2024-11-11)
-
-<span id="id58" />
-
-### New features
-
-*   Use QPY as exchange format with service ([104](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/104))
-
 <span id="id59" />
 
-## 0.7.3 (2024-11-06)
+## 0.7.4 (2024-11-11)
 
 <span id="id60" />
 
 ### New features
 
-*   Retry http requests after any RequestException ([111](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/111))
+*   Use QPY as exchange format with service ([104](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/104))
 
 <span id="id61" />
 
-## 0.7.2 (2024-10-31)
+## 0.7.3 (2024-11-06)
 
 <span id="id62" />
+
+### New features
+
+*   Retry http requests after any RequestException ([111](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/111))
+
+<span id="id63" />
+
+## 0.7.2 (2024-10-31)
+
+<span id="id64" />
 
 ### Bug fixes
 
 *   Added fix to avoid random test errors. Check that result exists when result is success. ([105](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/105))
 
-<span id="id63" />
+<span id="id65" />
 
 ## 0.7.1 (2024-10-30)
 
-<span id="id64" />
+<span id="id66" />
 
 ### New features
 
 *   In case of failure, always retry the GET request to retrieve a result unitl the timeout is reached. Increase the delay between requests to 5 seconds when we are over 1 minute. Retry transpilation POST request three times in case of failure. ([97](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/97))
 
-<span id="id65" />
+<span id="id67" />
 
 ## 0.7.0 (2024-09-18)
 
-<span id="id66" />
+<span id="id68" />
 
 ### New features
 
 *   Adds support for sending the use\_fractional\_gates option to the transpile service ([83](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/83))
 *   Adds iterative decomposition to Qasm3 export. ([85](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/85))
 
-<span id="id67" />
+<span id="id69" />
 
 ### Other notes
 
 *   Removes unneeded benchmark method ([81](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/81))
 *   Adds test to verify that a circuit with a barrier will be transpiled ([84](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/84))
 
-<span id="id68" />
-
-## 0.6.5 (2024-11-11)
-
-<span id="id69" />
-
-### New features
-
-*   Use QPY as exchange format with service ([104](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/104))
-
 <span id="id70" />
 
-## 0.6.4 (2024-11-07)
+## 0.6.5 (2024-11-11)
 
 <span id="id71" />
 
 ### New features
 
-*   Retry http requests after any RequestException ([111](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/111))
+*   Use QPY as exchange format with service ([104](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/104))
 
 <span id="id72" />
 
-## 0.6.3 (2024-10-31)
+## 0.6.4 (2024-11-07)
 
 <span id="id73" />
+
+### New features
+
+*   Retry http requests after any RequestException ([111](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/111))
+
+<span id="id74" />
+
+## 0.6.3 (2024-10-31)
+
+<span id="id75" />
 
 ### Bug fixes
 
 *   Added fix to avoid random test errors. Check that result exists when result is success. ([105](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/105))
 
-<span id="id74" />
+<span id="id76" />
 
 ## 0.6.2 (2024-10-30)
 
-<span id="id75" />
+<span id="id77" />
 
 ### New features
 
 *   In case of failure, always retry the GET request to retrieve a result unitl the timeout is reached. Increase the delay between requests to 5 seconds when we are over 1 minute. Retry transpilation POST request three times in case of failure. ([97](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/97))
 
-<span id="id76" />
+<span id="id78" />
 
 ## 0.6.1 (2024-09-17)
 
-<span id="id77" />
+<span id="id79" />
 
 ### Bug fixes
 
 *   Fixes a bug with ECR gates coming from Qiskit when parsing using OpenQASM2 ([74](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/74))
 
-<span id="id78" />
+<span id="id80" />
 
 ## 0.6.0 (2024-09-16)
 
-<span id="id79" />
+<span id="id81" />
 
 ### New features
 
@@ -483,316 +493,316 @@ in_page_toc_max_heading_level: 2
 
 *   Enabling coupling\_map as options to the AI Synthesis passes ([70](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/70))
 
-<span id="id80" />
+<span id="id82" />
 
 ### Bug fixes
 
 *   Keep trying to get results even in case of HTTPError exception with status 520 ([52](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/52))
 *   Fixing the type of ECR gates when loading circuits from the Qiskit Transpiler Service ([63](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/63))
 
-<span id="id81" />
-
-## 0.5.7 (2024-11-11)
-
-<span id="id82" />
-
-### New features
-
-*   Use QPY as exchange format with service ([104](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/104))
-
 <span id="id83" />
 
-## 0.5.6 (2024-11-07)
+## 0.5.7 (2024-11-11)
 
 <span id="id84" />
 
 ### New features
 
-*   Retry http requests after any RequestException ([111](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/111))
+*   Use QPY as exchange format with service ([104](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/104))
 
 <span id="id85" />
 
-## 0.5.5 (2024-10-31)
+## 0.5.6 (2024-11-07)
 
 <span id="id86" />
+
+### New features
+
+*   Retry http requests after any RequestException ([111](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/111))
+
+<span id="id87" />
+
+## 0.5.5 (2024-10-31)
+
+<span id="id88" />
 
 ### Bug fixes
 
 *   Added fix to avoid random test errors. Check that result exists when result is success. ([105](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/105))
 
-<span id="id87" />
+<span id="id89" />
 
 ## 0.5.4 (2024-10-30)
 
-<span id="id88" />
+<span id="id90" />
 
 ### New features
 
 *   In case of failure, always retry the GET request to retrieve a result unitl the timeout is reached. Increase the delay between requests to 5 seconds when we are over 1 minute. Retry transpilation POST request three times in case of failure. ([97](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/97))
 
-<span id="id89" />
-
-## 0.5.3 (2024-09-17)
-
-<span id="id90" />
-
-### Bug fixes
-
-*   Fixes a bug with ECR gates coming from Qiskit when parsing using OpenQASM2 ([74](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/74))
-
 <span id="id91" />
 
-## 0.5.2 (2024-09-12)
+## 0.5.3 (2024-09-17)
 
 <span id="id92" />
 
 ### Bug fixes
 
-*   Fixing the type of ECR gates when loading circuits from the qiskit transpiler service ([63](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/63))
+*   Fixes a bug with ECR gates coming from Qiskit when parsing using OpenQASM2 ([74](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/74))
 
 <span id="id93" />
 
-## 0.5.1 (2024-08-29)
+## 0.5.2 (2024-09-12)
 
 <span id="id94" />
 
 ### Bug fixes
 
-*   Keep trying getting result even in case of HTTPError exception with status 520 ([52](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/52))
+*   Fixing the type of ECR gates when loading circuits from the qiskit transpiler service ([63](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/63))
 
 <span id="id95" />
 
-## 0.5.0 (2024-08-27)
+## 0.5.1 (2024-08-29)
 
 <span id="id96" />
+
+### Bug fixes
+
+*   Keep trying getting result even in case of HTTPError exception with status 520 ([52](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/52))
+
+<span id="id97" />
+
+## 0.5.0 (2024-08-27)
+
+<span id="id98" />
 
 ### Upgrade notes
 
 *   Rename package to `qiskit-ibm-transpiler` ([43](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/43))
 
-<span id="id97" />
-
-## 0.4.10 (2024-09-17)
-
-<span id="id98" />
-
-### Bug fixes
-
-*   Fixes a bug with ECR gates coming from Qiskit when parsing using OpenQASM2 ([77](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/77))
-
 <span id="id99" />
 
-## 0.4.9 (2024-09-12)
+## 0.4.10 (2024-09-17)
 
 <span id="id100" />
 
 ### Bug fixes
 
-*   Fixing the type of ECR gates when loading circuits from the qiskit transpiler service ([64](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/64))
+*   Fixes a bug with ECR gates coming from Qiskit when parsing using OpenQASM2 ([77](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/77))
 
 <span id="id101" />
 
-## 0.4.8 (2024-08-29)
+## 0.4.9 (2024-09-12)
 
 <span id="id102" />
 
 ### Bug fixes
 
-*   Keep trying getting result even in case of HTTPError exception with status 520 ([54](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/54))
+*   Fixing the type of ECR gates when loading circuits from the qiskit transpiler service ([64](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/64))
 
 <span id="id103" />
 
-## 0.4.7 (2024-08-27)
+## 0.4.8 (2024-08-29)
 
 <span id="id104" />
 
 ### Bug fixes
 
-*   Add stacklevel to DeprecationWarning so it appears in Jupyter notebooks ([49](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/49))
+*   Keep trying getting result even in case of HTTPError exception with status 520 ([54](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/54))
 
 <span id="id105" />
 
-## 0.4.6 (2024-08-23)
+## 0.4.7 (2024-08-27)
 
 <span id="id106" />
+
+### Bug fixes
+
+*   Add stacklevel to DeprecationWarning so it appears in Jupyter notebooks ([49](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/49))
+
+<span id="id107" />
+
+## 0.4.6 (2024-08-23)
+
+<span id="id108" />
 
 ### Deprecation notes
 
 *   Add deprecation notice in preparation for project rename to `qiskit-ibm-transpiler` ([40](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/40))
 
-<span id="id107" />
+<span id="id109" />
 
 ### Bug fixes
 
 *   Forward incoming error when decoding fails ([36](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/36))
 
-<span id="id108" />
+<span id="id110" />
 
 ## 0.4.5 (2024-08-01)
 
-<span id="id109" />
+<span id="id111" />
 
 ### New features
 
 *   Enable programmatic config of polling timeout ([28](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/28))
 
-<span id="id110" />
+<span id="id112" />
 
 ### Bug fixes
 
 *   Using the declared `ai_layout_mode` in the TranspilerService’s run method ([25](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/25))
 
-<span id="id111" />
+<span id="id113" />
 
 ## 0.4.4 (2024-07-25)
 
-<span id="id112" />
+<span id="id114" />
 
 ### Upgrade notes
 
 *   Increasing timeout to 600s instead of 120s ([21](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/21))
 
-<span id="id113" />
+<span id="id115" />
 
 ### New features
 
 *   Expose service errors to users ([8](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/8))
 *   Configure logging for a library ([10](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/10))
 
-<span id="id114" />
+<span id="id116" />
 
 ### Bug fixes
 
 *   Correctly parse string boolean for ai param ([7](https://github.com/Qiskit/qiskit-ibm-transpiler/pull/7))
 
-<span id="id115" />
+<span id="id117" />
 
 ## 0.4.3 (2024-06-07)
 
-<span id="id116" />
+<span id="id118" />
 
 ### Upgrade notes
 
 *   Check existence of credentials and raise related exceptions instead of breaking
 
-<span id="id117" />
+<span id="id119" />
 
 ## 0.4.2 (2024-06-07)
 
-<span id="id118" />
+<span id="id120" />
 
 ### Bug fixes
 
 *   Python 3.8 support. Back to specify types with typing
 *   Fixing some import errors for local modules
 
-<span id="id119" />
+<span id="id121" />
 
 ### Other notes
 
 *   Relaxing pin of local dependencies
 
-<span id="id120" />
+<span id="id122" />
 
 ## 0.4.1 (2024-06-06)
 
-<span id="id121" />
+<span id="id123" />
 
 ### Upgrade notes
 
 *   Updating logs levels
 
-<span id="id122" />
+<span id="id124" />
 
 ### Bug fixes
 
 *   Rebuild layout in transpiled circuit
 *   Avoid barrier nodes in collection
 
-<span id="id123" />
+<span id="id125" />
 
 ### Other notes
 
 *   Refactoring the extension code
 
-<span id="id124" />
+<span id="id126" />
 
 ## 0.4.0 (2024-05-28)
 
-<span id="id125" />
+<span id="id127" />
 
 ### Upgrade notes
 
 *   Updating Clifford service URL
 *   Replace `use_ai` by `ai` param in requests
 
-<span id="id126" />
+<span id="id128" />
 
 ### New features
 
 *   Request the synthesis of a list of circuits to the service.
 *   Adding docstrings for public documentation
 
-<span id="id127" />
+<span id="id129" />
 
 ### Bug fixes
 
 *   Adjust dependencies to be less strict and support minor version updates for qiskit & patch updates for qiskit-qasm3-import
 
-<span id="id128" />
+<span id="id130" />
 
 ### Other notes
 
 *   Move type hints in documentation.
 *   Set name to logger
 
-<span id="id129" />
+<span id="id131" />
 
 ## 0.3.0 (2024-02-29)
 
-<span id="id130" />
+<span id="id132" />
 
 ### Upgrade notes
 
 *   Updating the plugin to use Qiskit 1.0 by default
 
-<span id="id131" />
+<span id="id133" />
 
 ### Bug fixes
 
 *   Supporting measurements in circuits when transpiling using `ai=true` option
 
-<span id="id132" />
+<span id="id134" />
 
 ## 0.2.1 (2024-02-22)
 
-<span id="id133" />
+<span id="id135" />
 
 ### New features
 
 *   Add multithreading to synth requests. The requests to the service for transpile and transpile now are done in parallel.
 
-<span id="id134" />
+<span id="id136" />
 
 ### Upgrade notes
 
 *   Updated collection passes. Now the passes could work up to N of qubits or with any block size of qubits.
 
-<span id="id135" />
+<span id="id137" />
 
 ## 0.2.0 (2024-02-12)
 
-<span id="id136" />
+<span id="id138" />
 
 ### New features
 
 *   Added support for synthesis and transpilation of Clifford, Permutation and Linear Function circuits. Using new URLs for the service.
 
-<span id="id137" />
+<span id="id139" />
 
 ## 0.1.3 (2023-12-11)
 
-<span id="id138" />
+<span id="id140" />
 
 ### Bug fixes
 
@@ -800,7 +810,7 @@ in_page_toc_max_heading_level: 2
 *   Fixing hardcoded input to routing
 *   Fix bug in input and refactor
 
-<span id="id139" />
+<span id="id141" />
 
 ## 0.1.2 (2023-12-04)
 
