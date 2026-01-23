@@ -9,7 +9,7 @@ python_api_name: qiskit.algorithms.state_fidelities.BaseStateFidelity
 # BaseStateFidelity
 
 <Class id="qiskit.algorithms.state_fidelities.BaseStateFidelity" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/state_fidelities/base_state_fidelity.py" signature="qiskit.algorithms.state_fidelities.BaseStateFidelity" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   An interface to calculate state fidelities (state overlaps) for pairs of (parametrized) quantum circuits. The calculation depends on the particular fidelity method implementation, but can be always defined as the state overlap:
 
@@ -49,8 +49,8 @@ $$
 
     *   **circuits\_1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $|\psi\rangle$.
     *   **circuits\_2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – (Parametrized) quantum circuits preparing $|\phi\rangle$.
-    *   **values\_1** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Numerical parameters to be bound to the first set of circuits.
-    *   **values\_2** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Numerical parameters to be bound to the second set of circuits.
+    *   **values\_1** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – Numerical parameters to be bound to the first set of circuits.
+    *   **values\_2** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – Numerical parameters to be bound to the second set of circuits.
     *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > fidelity’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
 
     **Returns**
