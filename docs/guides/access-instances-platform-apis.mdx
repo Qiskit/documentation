@@ -8,7 +8,7 @@ description: Parameters to set when provisioning a Qiskit Runtime service instan
 # Use IBM Cloud Platform APIs to access instances
 
 
-This guide is for anyone using the IBM Cloud Platform APIs to provision or manage access to instances. It provides details on the [parameters](#parameters) you can set when provisioning an instance, as well as the set of [extension fields](#extensions) returned when you access an instance.
+This guide is for anyone using the IBM Cloud Platform APIs to provision, update, or manage access to instances. It provides details on the [parameters](#parameters) you can set when provisioning an instance, as well as the set of [extension fields](#extensions) returned when you access an instance.
 
 <Admonition type="note">
 Refer to the IBM Cloud&reg; ResourceController API documentation for more information.
@@ -25,13 +25,13 @@ Some relevant pages:
 
 ## `parameters`
 
-In the body when provisioning an instance:
+In the body when provisioning or updating an instance:
 
 
 - **instance_limit_seconds** (string or null, `^[0-9]+$`): The limit to set on the instance. For Open Plan: if omitted, this defaults to 10 minutes.
 .
 - **usage_allocation_seconds** (string or null, `^[0-9]+$`): Allotted time for the instance, used by the fair-share scheduler to determine the priority in the queue, based on usage of all QPUs. (This does not apply to Pay-As-You-Go instances.)
-- **backends** (Array of lists of backends (strings or null) or array with "ANY")): the allow-list of names of backends that are available to this instance. Default: `["ANY"]`, means all backends available on this plan. `[]` means no backends.
+- **backends** (array of lists of backends (strings or null) or array with "ANY"): the allow-list of names of backends that are available to this instance. Default: `["ANY"]`, means all backends available on this plan. `[]` means no backends.
 
 ## `extensions`
 

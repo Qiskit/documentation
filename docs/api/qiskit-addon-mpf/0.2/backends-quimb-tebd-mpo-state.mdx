@@ -9,29 +9,29 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.MPOState
 # MPOState
 
 <Class id="qiskit_addon_mpf.backends.quimb_tebd.MPOState" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_tebd/state.py#L39-L234" signature="MPOState(*args, **kwargs)" modifiers="class">
-  Bases: [`MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d/index.html#quimb.tensor.tensor_1d.MatrixProductOperator "(in quimb v1.10)"), [`State`](backends#state "qiskit_addon_mpf.backends.interface.State")
+  Bases: [`MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d/index.html#quimb.tensor.tensor_1d.MatrixProductOperator), [`State`](backends#state "qiskit_addon_mpf.backends.interface.State")
 
   An MPO enforcing the Vidal gauge.
 
-  This specialization of quimb’s existing [`quimb.tensor.MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductOperator "(in quimb v1.10)") enforces the Vidal gauge throughout its existence. This ensures a stable behavior of the [`DynamicMPF`](dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm when using the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver").
+  This specialization of quimb’s existing [`quimb.tensor.MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductOperator) enforces the Vidal gauge throughout its existence. This ensures a stable behavior of the [`DynamicMPF`](dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm when using the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver").
 
   Initialize a [`MPOState`](#qiskit_addon_mpf.backends.quimb_tebd.MPOState "qiskit_addon_mpf.backends.quimb_tebd.MPOState") instance.
 
   <Admonition title="Hint" type="note">
-    All arguments (positional and keyword) are simply forwarded to the [`quimb.tensor.MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductOperator "(in quimb v1.10)") constructor. Additionally, the [`vidal_singular_values`](#qiskit_addon_mpf.backends.quimb_tebd.MPOState.vidal_singular_values "qiskit_addon_mpf.backends.quimb_tebd.MPOState.vidal_singular_values") attribute gets initialized to a list of empty lists of length equal to the number of sites in this MPO.
+    All arguments (positional and keyword) are simply forwarded to the [`quimb.tensor.MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductOperator) constructor. Additionally, the [`vidal_singular_values`](#qiskit_addon_mpf.backends.quimb_tebd.MPOState.vidal_singular_values "qiskit_addon_mpf.backends.quimb_tebd.MPOState.vidal_singular_values") attribute gets initialized to a list of empty lists of length equal to the number of sites in this MPO.
   </Admonition>
 
   **Parameters**
 
-  *   **args** – all positional arguments will be forwarded to the [`quimb.tensor.MatrixProductState`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductState "(in quimb v1.10)") constructor.
-  *   **kwargs** – all keyword arguments will be forwarded to the [`quimb.tensor.MatrixProductState`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductState "(in quimb v1.10)") constructor.
+  *   **args** – all positional arguments will be forwarded to the [`quimb.tensor.MatrixProductState`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductState) constructor.
+  *   **kwargs** – all keyword arguments will be forwarded to the [`quimb.tensor.MatrixProductState`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductState) constructor.
 
   ## Attributes
 
   ### vidal\_singular\_values
 
   <Attribute id="qiskit_addon_mpf.backends.quimb_tebd.MPOState.vidal_singular_values" attributeTypeHint="list[list[float]]">
-    A nested list of singular values. The outer list is of equal length as this MPO itself ([`quimb.tensor.TensorNetwork1D.L`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TensorNetwork1D.L "(in quimb v1.10)")). Every item is another list of all the singular values for determining the Vidal gauge at that site.
+    A nested list of singular values. The outer list is of equal length as this MPO itself ([`quimb.tensor.TensorNetwork1D.L`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TensorNetwork1D.L)). Every item is another list of all the singular values for determining the Vidal gauge at that site.
   </Attribute>
 
   ## Methods
@@ -41,25 +41,25 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.MPOState
   <Function id="qiskit_addon_mpf.backends.quimb_tebd.MPOState.gate_split" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_tebd/state.py#L72-L196" signature="gate_split(gate, where, inplace=False, conj=False, **split_opts)">
     Apply a two-site gate and contract it back into the MPO.
 
-    The basic principle of this method is the same as that of [`quimb.tensor.MatrixProductState.gate_split()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductState.gate_split "(in quimb v1.10)"). However, the implementation ensures that the Vidal gauge is conserved.
+    The basic principle of this method is the same as that of [`quimb.tensor.MatrixProductState.gate_split()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductState.gate_split). However, the implementation ensures that the Vidal gauge is conserved.
 
     **Parameters**
 
-    *   **gate** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – the gate to be applied to the MPO. Its shape should be either `(d**2, d**2)` for a physical dimension of `d`, or a reshaped version thereof.
+    *   **gate** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – the gate to be applied to the MPO. Its shape should be either `(d**2, d**2)` for a physical dimension of `d`, or a reshaped version thereof.
 
-    *   **where** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – the indices of the sites where the gate should be applied.
+    *   **where** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the indices of the sites where the gate should be applied.
 
-    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – whether to perform the gate application in-place or return a new [`MPOState`](#qiskit_addon_mpf.backends.quimb_tebd.MPOState "qiskit_addon_mpf.backends.quimb_tebd.MPOState") with the gate applied to it.
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to perform the gate application in-place or return a new [`MPOState`](#qiskit_addon_mpf.backends.quimb_tebd.MPOState "qiskit_addon_mpf.backends.quimb_tebd.MPOState") with the gate applied to it.
 
-    *   **conj** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+    *   **conj** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
 
-        whether the gate should be applied to the lower (`conj=False`, the default, [`lower_ind()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_arbgeom/index.html#quimb.tensor.tensor_arbgeom.TensorNetworkGenOperator.lower_ind "(in quimb v1.10)")) or upper (`conj=True`, [`upper_ind()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_arbgeom/index.html#quimb.tensor.tensor_arbgeom.TensorNetworkGenOperator.upper_ind "(in quimb v1.10)")) indices of the underlying MPO.
+        whether the gate should be applied to the lower (`conj=False`, the default, [`lower_ind()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_arbgeom/index.html#quimb.tensor.tensor_arbgeom.TensorNetworkGenOperator.lower_ind)) or upper (`conj=True`, [`upper_ind()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_arbgeom/index.html#quimb.tensor.tensor_arbgeom.TensorNetworkGenOperator.upper_ind)) indices of the underlying MPO.
 
             <Admonition title="Note" type="note">
               This is essentially how the LHS and RHS of the [`DynamicMPF`](dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") are differentiated, by passing their [`Evolver.conjugate`](backends#conjugate "qiskit_addon_mpf.backends.Evolver.conjugate") property to this argument.
             </Admonition>
 
-    *   **split\_opts** – additional keyword arguments that will be forwarded to the [`quimb.tensor.tensor_split()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.tensor_split "(in quimb v1.10)") function. These can be used to affect the truncation of the tensor before it gets contracted back into the MPO.
+    *   **split\_opts** – additional keyword arguments that will be forwarded to the [`quimb.tensor.tensor_split()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.tensor_split) function. These can be used to affect the truncation of the tensor before it gets contracted back into the MPO.
 
     **Returns**
 
@@ -76,9 +76,9 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.MPOState
     **Parameters**
 
     *   **gate** (*np.ndarray*)
-    *   **where** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*)
-    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)"))
-    *   **conj** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)"))
+    *   **where** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*)
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
+    *   **conj** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
 
     **Return type**
 
@@ -91,16 +91,16 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.MPOState
     Compute the overlap of this state with the provided initial state.
 
     <Admonition title="Warning" type="caution">
-      This implementation only supports instances of [`quimb.tensor.MatrixProductState`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductState "(in quimb v1.10)") for `initial_state`.
+      This implementation only supports instances of [`quimb.tensor.MatrixProductState`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductState) for `initial_state`.
     </Admonition>
 
     **Parameters**
 
-    **initial\_state** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – the initial state with which to compute the overlap.
+    **initial\_state** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – the initial state with which to compute the overlap.
 
     **Raises**
 
-    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – if the provided initial state has an incompatible type.
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – if the provided initial state has an incompatible type.
 
     **Returns**
 
@@ -108,7 +108,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.MPOState
 
     **Return type**
 
-    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+    [complex](https://docs.python.org/3/library/functions.html#complex)
   </Function>
 </Class>
 

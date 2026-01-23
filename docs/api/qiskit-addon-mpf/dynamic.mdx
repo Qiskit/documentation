@@ -40,7 +40,7 @@ $$
 
   Below, we provide an example using the [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd") backend. We briefly explain each element.
 
-  First, we initialize a simple Heisenberg Hamiltonian which we would like to time-evolve. Since we are using a time-evolver based on [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)"), we also initialize the Hamiltonian using that library.
+  First, we initialize a simple Heisenberg Hamiltonian which we would like to time-evolve. Since we are using a time-evolver based on [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb), we also initialize the Hamiltonian using that library.
 
   ```python
   >>> from quimb.tensor import ham_1d_heis
@@ -48,7 +48,7 @@ $$
   >>> hamil = ham_1d_heis(num_qubits, 0.8, 0.3, cyclic=False)
   ```
 
-  Next, we define the number of Trotter steps to make up our MPF, the target evolution time as well as the initial state ($\psi_{in}$ in \[1] and $\psi_0$ in \[2], resp.) with respect to which we compute the overlap between the time-evolution states. Here, we simply use the Néel state which we also construct using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)"):
+  Next, we define the number of Trotter steps to make up our MPF, the target evolution time as well as the initial state ($\psi_{in}$ in \[1] and $\psi_0$ in \[2], resp.) with respect to which we compute the overlap between the time-evolution states. Here, we simply use the Néel state which we also construct using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb):
 
   ```python
   >>> trotter_steps = [3, 4]
@@ -60,7 +60,7 @@ $$
   >>> initial_state = MPS_neel_state(num_qubits)
   ```
 
-  Since we must run the full [`DynamicMPF`](#qiskit_addon_mpf.dynamic.DynamicMPF "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm for computing every element of $M_{ij}$ and $L_i$, we must provide factory methods for initializing the input arguments of the [`DynamicMPF`](#qiskit_addon_mpf.dynamic.DynamicMPF "qiskit_addon_mpf.dynamic.DynamicMPF") instances. To this end, we must provide three functions. To construct these, we will use the [`functools.partial()`](https://docs.python.org/3/library/functools.html#functools.partial "(in Python v3.13)") function.
+  Since we must run the full [`DynamicMPF`](#qiskit_addon_mpf.dynamic.DynamicMPF "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm for computing every element of $M_{ij}$ and $L_i$, we must provide factory methods for initializing the input arguments of the [`DynamicMPF`](#qiskit_addon_mpf.dynamic.DynamicMPF "qiskit_addon_mpf.dynamic.DynamicMPF") instances. To this end, we must provide three functions. To construct these, we will use the [`functools.partial()`](https://docs.python.org/3/library/functools.html#functools.partial) function.
 
   ```python
   >>> from functools import partial
@@ -78,7 +78,7 @@ $$
 
   The [`ExactEvolverFactory`](#qiskit_addon_mpf.dynamic.ExactEvolverFactory "qiskit_addon_mpf.dynamic.ExactEvolverFactory") function should take a [`State`](backends#state "qiskit_addon_mpf.backends.State") object as its only positional argument and should return a [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.Evolver") object, which will be used for computing the LHS of the $L_i$ elements (i.e. it should produce the exact time-evolution state, $\rho(t)$).
 
-  Here, we approximate the exact time-evolved state with a fourth-order Suzuki-Trotter formula using a small time step of 0.05. We also specify some [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)")-specific truncation options to bound the maximum bond dimension of the underlying tensor network as well as the minimum singular values of the split tensor network bonds.
+  Here, we approximate the exact time-evolved state with a fourth-order Suzuki-Trotter formula using a small time step of 0.05. We also specify some [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb)-specific truncation options to bound the maximum bond dimension of the underlying tensor network as well as the minimum singular values of the split tensor network bonds.
 
   ```python
   >>> from qiskit_addon_mpf.backends.quimb_tebd import TEBDEvolver
@@ -125,12 +125,12 @@ $$
 
   **Parameters**
 
-  *   **trotter\_steps** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – the sequence of trotter steps to be used.
-  *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the total target evolution time.
+  *   **trotter\_steps** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the sequence of trotter steps to be used.
+  *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the total target evolution time.
   *   **identity\_factory** ([*IdentityStateFactory*](#qiskit_addon_mpf.dynamic.IdentityStateFactory "qiskit_addon_mpf.dynamic.IdentityStateFactory")) – a function to generate an empty [`State`](backends#state "qiskit_addon_mpf.backends.State") object.
   *   **exact\_evolver\_factory** ([*ExactEvolverFactory*](#qiskit_addon_mpf.dynamic.ExactEvolverFactory "qiskit_addon_mpf.dynamic.ExactEvolverFactory")) – a function to initialize the [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.Evolver") instance which produces the exact time-evolution state, $\rho(t)$.
   *   **approx\_evolver\_factory** ([*ApproxEvolverFactory*](#qiskit_addon_mpf.dynamic.ApproxEvolverFactory "qiskit_addon_mpf.dynamic.ApproxEvolverFactory")) – a function to initialize the [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.Evolver") instance which produces the approximate time-evolution state, $\rho_{k_i}(t)$, for different values of $k_i$ depending on the provided time step, `dt`.
-  *   **initial\_state** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – the initial state ($\psi_{in}$ or $\psi_0$) with respect to which to compute the elements $M_{ij}$ of [`LSE.A`](costs#a "qiskit_addon_mpf.costs.LSE.A") and $L_i$ of [`LSE.b`](costs#b "qiskit_addon_mpf.costs.LSE.b"). The type of this object must match the tensor network backend chosen for the previous arguments.
+  *   **initial\_state** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – the initial state ($\psi_{in}$ or $\psi_0$) with respect to which to compute the elements $M_{ij}$ of [`LSE.A`](costs#a "qiskit_addon_mpf.costs.LSE.A") and $L_i$ of [`LSE.b`](costs#b "qiskit_addon_mpf.costs.LSE.b"). The type of this object must match the tensor network backend chosen for the previous arguments.
 
   **Returns**
 
@@ -158,7 +158,7 @@ The following protocols define the function signatures for the various object fa
 ### IdentityStateFactory
 
 <Class id="qiskit_addon_mpf.dynamic.IdentityStateFactory" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L154-L163" signature="IdentityStateFactory(*args, **kwargs)" modifiers="class">
-  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol "(in Python v3.13)")
+  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)
 
   The factory function protocol for constructing an identity [`State`](backends#state "qiskit_addon_mpf.backends.State") instance.
 
@@ -168,7 +168,7 @@ The following protocols define the function signatures for the various object fa
 ### ExactEvolverFactory
 
 <Class id="qiskit_addon_mpf.dynamic.ExactEvolverFactory" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L166-L175" signature="ExactEvolverFactory(*args, **kwargs)" modifiers="class">
-  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol "(in Python v3.13)")
+  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)
 
   The factory function protocol for constructing an exact [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.Evolver") instance.
 
@@ -178,7 +178,7 @@ The following protocols define the function signatures for the various object fa
 ### ApproxEvolverFactory
 
 <Class id="qiskit_addon_mpf.dynamic.ApproxEvolverFactory" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L178-L190" signature="ApproxEvolverFactory(*args, **kwargs)" modifiers="class">
-  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol "(in Python v3.13)")
+  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)
 
   The factory function protocol for constructing an approximate [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.Evolver") instance.
 
@@ -190,7 +190,7 @@ The following protocols define the function signatures for the various object fa
 ### DynamicMPF
 
 <Class id="qiskit_addon_mpf.dynamic.DynamicMPF" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/dynamic.py#L53-L151" signature="DynamicMPF(evolution_state, lhs, rhs)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   The dynamic MPF algorithm.
 
@@ -237,11 +237,11 @@ The following protocols define the function signatures for the various object fa
 
     **Parameters**
 
-    **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the total target evolution time.
+    **time** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the total target evolution time.
 
     **Raises**
 
-    [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError "(in Python v3.13)") – if the LHS and RHS evolved times are not equal at the end.
+    [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError) – if the LHS and RHS evolved times are not equal at the end.
 
     **Return type**
 
@@ -265,11 +265,11 @@ The following protocols define the function signatures for the various object fa
 
     **Parameters**
 
-    **initial\_state** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – the initial state with which to compute the overlap.
+    **initial\_state** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – the initial state with which to compute the overlap.
 
     **Raises**
 
-    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – if the provided initial state has an incompatible type.
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – if the provided initial state has an incompatible type.
 
     **Returns**
 
@@ -277,7 +277,7 @@ The following protocols define the function signatures for the various object fa
 
     **Return type**
 
-    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+    [complex](https://docs.python.org/3/library/functions.html#complex)
   </Function>
 
   #### rhs

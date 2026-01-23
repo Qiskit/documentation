@@ -23,9 +23,9 @@ Functions for performing self-consistent configuration recovery.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
-  *   **hamming\_right** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The target hamming weight of the right half of bitstrings
-  *   **hamming\_left** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The target hamming weight of the left half of bitstrings
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
+  *   **hamming\_right** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The target hamming weight of the right half of bitstrings
+  *   **hamming\_left** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The target hamming weight of the left half of bitstrings
 
   **Returns**
 
@@ -33,7 +33,7 @@ Functions for performing self-consistent configuration recovery.
 
   **Return type**
 
-  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")
+  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
 </Function>
 
 ### recover\_configurations
@@ -49,12 +49,12 @@ Functions for performing self-consistent configuration recovery.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
-  *   **probabilities** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 1D array specifying a probability distribution over the bitstrings
-  *   **avg\_occupancies** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*]*) – A length-2 tuple of arrays holding the mean occupancy of the spin-up and spin-down orbitals, respectively. The occupancies should be formatted as: `(array([occ_a_0, ..., occ_a_N]), array([occ_b_0, ..., occ_b_N]))`
-  *   **num\_elec\_a** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of spin-up electrons in the system.
-  *   **num\_elec\_b** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of spin-down electrons in the system.
-  *   **rand\_seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.2)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for controlling randomness
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
+  *   **probabilities** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 1D array specifying a probability distribution over the bitstrings
+  *   **avg\_occupancies** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*]*) – A length-2 tuple of arrays holding the mean occupancy of the spin-up and spin-down orbitals, respectively. The occupancies should be formatted as: `(array([occ_a_0, ..., occ_a_N]), array([occ_b_0, ..., occ_b_N]))`
+  *   **num\_elec\_a** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of spin-up electrons in the system.
+  *   **num\_elec\_b** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of spin-down electrons in the system.
+  *   **rand\_seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator)  *|*[*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – A seed for controlling randomness
 
   **Returns**
 
@@ -62,7 +62,7 @@ Functions for performing self-consistent configuration recovery.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
 
   **References**
 

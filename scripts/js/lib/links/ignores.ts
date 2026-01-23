@@ -164,8 +164,6 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
 // These external URLs cause actual 404s and should probably be fixed.
 const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // These schemas are not available any more. They might have moved, but we're not sure where.
-  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json",
-  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_status_schema.json",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json",
 
@@ -432,11 +430,47 @@ function _runtimeLegacyReleaseNotes(): FilesToIgnores {
   };
 }
 
+function _runtimeHistoricalSchema(): FilesToIgnores {
+  return Object.fromEntries(
+    [
+      "0.25/",
+      "0.26/",
+      "0.27/",
+      "0.28/",
+      "0.29/",
+      "0.30/",
+      "0.31/",
+      "0.32/",
+      "0.33/",
+      "0.34/",
+      "0.35/",
+      "0.36/",
+      "0.37/",
+      "0.38/",
+      "0.39/",
+      "0.40/",
+      "0.41/",
+      "0.42/",
+      "0.43/",
+      "0.44/",
+    ].flatMap((vers) => [
+      [
+        `docs/api/qiskit-ibm-runtime/${vers}ibm-backend.mdx`,
+        [
+          "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json",
+          "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json",
+        ],
+      ],
+    ]),
+  );
+}
+
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
   _runtimeLegacyReleaseNotes(),
+  _runtimeHistoricalSchema(),
 );
 
 function _qiskitCRegexes(): FilesToIgnores {
