@@ -1,0 +1,90 @@
+---
+title: SamplerPub (dev version)
+description: API reference for qiskit.primitives.SamplerPub in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.SamplerPub
+---
+
+# SamplerPub
+
+<Class id="qiskit.primitives.SamplerPub" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/sampler_pub.py#L34-L169" signature="qiskit.primitives.SamplerPub(circuit, parameter_values=None, shots=None, validate=True)" modifiers="class">
+  Bases: `ShapedMixin`
+
+  Pub (Primitive Unified Bloc) for a Sampler.
+
+  Pub is composed of tuple (circuit, parameter\_values, shots).
+
+  If shots are provided this number of shots will be run with the sampler, if `shots=None` the number of run shots is determined by the sampler.
+
+  Initialize a sampler pub.
+
+  **Parameters**
+
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A quantum circuit.
+  *   **parameter\_values** ([*BindingsArray*](qiskit.primitives.BindingsArray "qiskit.primitives.BindingsArray") *| None*) – A bindings array.
+  *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – A specific number of shots to run with. This value takes precedence over any value owed by or supplied to a sampler.
+  *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True`, the input data is validated during initialization.
+
+  ## Attributes
+
+  ### circuit
+
+  <Attribute id="qiskit.primitives.SamplerPub.circuit">
+    A quantum circuit.
+  </Attribute>
+
+  ### ndim
+
+  <Attribute id="qiskit.primitives.SamplerPub.ndim" />
+
+  ### parameter\_values
+
+  <Attribute id="qiskit.primitives.SamplerPub.parameter_values">
+    A bindings array.
+  </Attribute>
+
+  ### shape
+
+  <Attribute id="qiskit.primitives.SamplerPub.shape" />
+
+  ### shots
+
+  <Attribute id="qiskit.primitives.SamplerPub.shots">
+    An specific number of shots to run with (optional).
+
+    This value takes precedence over any value owed by or supplied to a sampler.
+  </Attribute>
+
+  ### size
+
+  <Attribute id="qiskit.primitives.SamplerPub.size" />
+
+  ## Methods
+
+  ### coerce
+
+  <Function id="qiskit.primitives.SamplerPub.coerce" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/sampler_pub.py#L85-L141" signature="coerce(pub, shots=None)" modifiers="classmethod">
+    Coerce a `SamplerPubLike` object into a [`SamplerPub`](#qiskit.primitives.SamplerPub "qiskit.primitives.SamplerPub") instance.
+
+    **Parameters**
+
+    *   **pub** (*SamplerPubLike*) – An object to coerce.
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – An optional default number of shots to use if not already specified by the pub-like object.
+
+    **Returns**
+
+    A coerced sampler pub.
+
+    **Return type**
+
+    [*SamplerPub*](#qiskit.primitives.SamplerPub "qiskit.primitives.containers.sampler_pub.SamplerPub")
+  </Function>
+
+  ### validate
+
+  <Function id="qiskit.primitives.SamplerPub.validate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/sampler_pub.py#L143-L169" signature="validate()">
+    Validate the pub.
+  </Function>
+</Class>
+

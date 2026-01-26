@@ -458,7 +458,7 @@ The optimization level has no effect on this plugin.
 
 Uses the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") algorithm to symbolically translate gates into the target basis. At a high level, this starts from the set of gates requested by the circuit, and uses rules from a given [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") (typically the [`SessionEquivalenceLibrary`](circuit#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary")) to move towards the ISA.
 
-For a Clifford+T basis set, the single-qubit rotation gates are approximated using the [`SolovayKitaevDecomposition`](qiskit.synthesis.SolovayKitaevDecomposition "qiskit.synthesis.SolovayKitaevDecomposition") algorithm.
+For a Clifford+T basis set, the single-qubit rotation gates are approximated using the [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") pass. By default (when `unitary_synthesis_method='default'`), this invokes the [`SolovayKitaevDecomposition`](qiskit.synthesis.SolovayKitaevDecomposition "qiskit.synthesis.SolovayKitaevDecomposition") algorithm. A custom synthesis method may be also specified, and it should either return the synthesized circuit in the Clifford+T basis set or return `None` in which case the default method would be called as fallback.
 
 This is the default translation method.
 
@@ -628,15 +628,15 @@ In general, the requirement is that **all the same circuit modifications are mad
 
 Some tips for ensuring this include:
 
-*   Be very careful when iterating over hash-based containers. Iteration over Python’s [`set`](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.14)") is non-deterministic due to hash-seed randomization. In Rust, iteration over the standard-library hash-based containers, including `hashbrown` equivalents with their default hashers is non-deterministic.
+*   Be very careful when iterating over hash-based containers. Iteration over Python’s [`set`](https://docs.python.org/3/library/stdtypes.html#set) is non-deterministic due to hash-seed randomization. In Rust, iteration over the standard-library hash-based containers, including `hashbrown` equivalents with their default hashers is non-deterministic.
 
     <Admonition title="Note" type="note">
-      Iteration over Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)") *is* deterministic, and guaranteed to be in insertion order if there have been no removals, and arbitrary but still deterministic order if there have been deterministic removals.
+      Iteration over Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict) *is* deterministic, and guaranteed to be in insertion order if there have been no removals, and arbitrary but still deterministic order if there have been deterministic removals.
     </Admonition>
 
-    In Python, if you need to create a [`set`](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.14)") and then iterate over it, consider instead using a [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)") with all the values being `None` as a substitute. Using a [`set`](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.14)") purely for membership testing is no trouble.
+    In Python, if you need to create a [`set`](https://docs.python.org/3/library/stdtypes.html#set) and then iterate over it, consider instead using a [`dict`](https://docs.python.org/3/library/stdtypes.html#dict) with all the values being `None` as a substitute. Using a [`set`](https://docs.python.org/3/library/stdtypes.html#set) purely for membership testing is no trouble.
 
-    In Rust, use `indexmap` and its structs `IndexMap` and `IndexSet` as replacements for `HashMap` and `HashSet`, respectively; they have similar deterministic-iteration properties to Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)").
+    In Rust, use `indexmap` and its structs `IndexMap` and `IndexSet` as replacements for `HashMap` and `HashSet`, respectively; they have similar deterministic-iteration properties to Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict).
 
 *   If your pass as stochastic components, ensure that you accept a `seed` input, and make your output pure if this is supplied as an integer. Typically this means storing the seed, and instantiating a new pRNG from this seed at the start of each call to `BasePass.run()`.
 
@@ -974,7 +974,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target")(\[description, num\_qubits, dt, ...])                            | The intent of the `Target` object is to inform Qiskit's compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. |
 | [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")(\[duration, error]) | A representation of the properties of a gate implementation.                                                                                                                                                       |
-| [`WrapAngleRegistry`](qiskit.transpiler.WrapAngleRegistry "qiskit.transpiler.WrapAngleRegistry")                                 | Registry of Angle Wrapping function                                                                                                                                                                                |
+| [`WrapAngleRegistry`](qiskit.transpiler.WrapAngleRegistry "qiskit.transpiler.WrapAngleRegistry")()                               | Registry of Angle Wrapping function                                                                                                                                                                                |
 
 ### Pass Manager Definition
 
@@ -1010,7 +1010,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### TranspilerError
 
-<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
   Bases: [`TranspilerAccessError`](#qiskit.transpiler.TranspilerAccessError "qiskit.transpiler.exceptions.TranspilerAccessError")
 
   Exceptions raised during transpilation.
@@ -1020,7 +1020,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### TranspilerAccessError
 
-<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
   Bases: [`PassManagerError`](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.exceptions.PassManagerError")
 
   DEPRECATED: Exception of access error in the transpiler passes.
@@ -1030,7 +1030,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### CouplingError
 
-<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Base class for errors raised by the coupling graph object.
@@ -1040,7 +1040,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### LayoutError
 
-<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Errors raised by the layout object.
@@ -1050,7 +1050,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### CircuitTooWideForTarget
 
-<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
   Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
 
   Error raised if the circuit is too wide for the target.
@@ -1060,7 +1060,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### InvalidLayoutError
 
-<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
   Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
 
   Error raised when a user provided layout is invalid.

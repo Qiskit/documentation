@@ -13,7 +13,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
   Applies Litinski transform to a circuit.
 
-  The transform applies to a circuit containing Clifford, single-qubit RZ-rotation gates (including T and Tdg), and standard Z-measurements, and moves Clifford gates to the end of the circuit. In the process, it changes RZ-rotations to product pauli rotations (implemented as [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") gates), and changes Z-measurements to product pauli measurements (implemented using `PauliProductMeasurement` instructions).
+  The transform applies to a circuit containing Clifford, single-qubit RZ-rotation gates (including T and Tdg), and standard Z-measurements, and moves Clifford gates to the end of the circuit. In the process, it changes RZ-rotations to product pauli rotations (implemented as [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") gates), and changes Z-measurements to product pauli measurements (implemented using [`PauliProductMeasurement`](qiskit.circuit.library.PauliProductMeasurement "qiskit.circuit.library.PauliProductMeasurement") instructions).
 
   The pass supports all of the Clifford gates in the list returned by [`get_clifford_gate_names()`](qiskit.quantum_info.get_clifford_gate_names "qiskit.quantum_info.get_clifford_gate_names"):
 
@@ -60,9 +60,9 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -70,7 +70,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -80,7 +80,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
   </Function>
 
   ### run

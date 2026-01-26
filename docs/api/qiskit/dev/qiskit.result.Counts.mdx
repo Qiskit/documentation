@@ -8,8 +8,8 @@ python_api_name: qiskit.result.Counts
 
 # Counts
 
-<Class id="qiskit.result.Counts" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/counts.py#L27-L189" signature="qiskit.result.Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)" modifiers="class">
-  Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")
+<Class id="qiskit.result.Counts" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/counts.py#L27-L196" signature="qiskit.result.Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)" modifiers="class">
+  Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)
 
   A class to store a counts result from a circuit execution.
 
@@ -17,24 +17,25 @@ python_api_name: qiskit.result.Counts
 
   **Parameters**
 
-  *   **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")) –
+  *   **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) –
 
-      The dictionary input for the counts. Where the keys represent a measured classical value and the value is an integer the number of shots with that result. The keys can be one of several formats:
+      The dictionary input for the counts. Where the keys represent a measured classical value and the value is an integer the number of shots with that result. All keys must be of the same format. This format must be one of the following.
 
       > *   A hexadecimal string of the form `'0x4a'`
-      > *   A bit string prefixed with `0b` for example `'0b1011'`
+      > *   A bit string prefixed with `0b`, for example `'0b1011'`
+      > *   A bit string with no prefix, for example `'1011'`
       > *   A bit string formatted across register and memory slots. For example, `'00 10'`.
       > *   A dit string, for example `'02'`. Note for objects created with dit strings the `creg_sizes` and `memory_slots` kwargs don’t work and [`hex_outcomes()`](#qiskit.result.Counts.hex_outcomes "qiskit.result.Counts.hex_outcomes") and [`int_outcomes()`](#qiskit.result.Counts.int_outcomes "qiskit.result.Counts.int_outcomes") also do not work.
 
-  *   **time\_taken** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – The duration of the experiment that generated the counts in seconds.
+  *   **time\_taken** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The duration of the experiment that generated the counts in seconds.
 
-  *   **creg\_sizes** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – a nested list where the inner element is a list of tuples containing both the classical register name and classical register size. For example, `[('c_reg', 2), ('my_creg', 4)]`.
+  *   **creg\_sizes** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – a nested list where the inner element is a list of tuples containing both the classical register name and classical register size. For example, `[('c_reg', 2), ('my_creg', 4)]`.
 
-  *   **memory\_slots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The number of total `memory_slots` in the experiment.
+  *   **memory\_slots** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of total `memory_slots` in the experiment.
 
   **Raises**
 
-  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.14)") – If the input key type is not an `int` or `str`.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If the input key type is not an `int` or `str`, or if the input keys are not all of the same type.
   *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If a dit string key is input with `creg_sizes` and/or `memory_slots`.
 
   ## Attributes
@@ -67,7 +68,7 @@ python_api_name: qiskit.result.Counts
 
   ### hex\_outcomes
 
-  <Function id="qiskit.result.Counts.hex_outcomes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/counts.py#L137-L158" signature="hex_outcomes()">
+  <Function id="qiskit.result.Counts.hex_outcomes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/counts.py#L144-L165" signature="hex_outcomes()">
     Return a counts dictionary with hexadecimal string keys
 
     **Returns**
@@ -78,7 +79,7 @@ python_api_name: qiskit.result.Counts
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)
 
     **Raises**
 
@@ -87,7 +88,7 @@ python_api_name: qiskit.result.Counts
 
   ### int\_outcomes
 
-  <Function id="qiskit.result.Counts.int_outcomes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/counts.py#L160-L180" signature="int_outcomes()">
+  <Function id="qiskit.result.Counts.int_outcomes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/counts.py#L167-L187" signature="int_outcomes()">
     Build a counts dictionary with integer keys instead of count strings
 
     **Returns**
@@ -96,7 +97,7 @@ python_api_name: qiskit.result.Counts
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)
 
     **Raises**
 
@@ -113,7 +114,7 @@ python_api_name: qiskit.result.Counts
 
   ### most\_frequent
 
-  <Function id="qiskit.result.Counts.most_frequent" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/counts.py#L118-L135" signature="most_frequent()">
+  <Function id="qiskit.result.Counts.most_frequent" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/counts.py#L125-L142" signature="most_frequent()">
     Return the most frequent count
 
     **Returns**
@@ -122,7 +123,7 @@ python_api_name: qiskit.result.Counts
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
 
     **Raises**
 
@@ -153,7 +154,7 @@ python_api_name: qiskit.result.Counts
 
   ### shots
 
-  <Function id="qiskit.result.Counts.shots" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/counts.py#L187-L189" signature="shots()">
+  <Function id="qiskit.result.Counts.shots" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/counts.py#L194-L196" signature="shots()">
     Return the number of shots
   </Function>
 

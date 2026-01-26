@@ -16,8 +16,10 @@ Qiskit MCP Servers is a collection of [Model Context Protocol (MCP)](https://mod
 
 Qiskit MCP Servers allow AI assistants to help you with quantum computing tasks, such as the following:
 
-- Generating quantum code with contextual awareness 
+- Creating, manipulating, and transpiling quantum circuits
 - Answering quantum computing questions directly from reliable sources
+- Generating quantum code with contextual awareness
+- Optimizing circuits using AI-powered transpilation
 - Connecting to real quantum hardware automatically
 - Analyzing and selecting optimal quantum backends
 - Executing quantum circuits and tracking job status
@@ -25,6 +27,10 @@ Qiskit MCP Servers allow AI assistants to help you with quantum computing tasks,
 ## What is included?
 
 The following MCP servers are available:
+
+### Qiskit MCP Server
+
+Provides core quantum computing capabilities for local development. This server enables AI assistants to create, manipulate, and transpile quantum circuits, as well as serialize them to formats like OpenQASM 3 and QPY.
 
 ### Qiskit Code Assistant MCP Server
 
@@ -36,33 +42,48 @@ As with any other feature from Qiskit Code Assistant, this MCP server only works
 
 Provides access to IBM Quantum cloud services through Qiskit Runtime. This enables AI assistants to interact with quantum backends, submit jobs, and retrieve results.
 
+### Qiskit IBM Transpiler MCP Server
+
+Provides AI-powered circuit optimization through the [AI-powered transpiler passes](/docs/guides/ai-transpiler-passes). This server enables AI assistants to optimize quantum circuits using advanced routing and optimization algorithms.
+
+### Community servers
+
+The following community-contributed MCP servers are also available:
+
+#### Qiskit Gym MCP Server
+
+Provides reinforcement learning capabilities for quantum circuit synthesis using the [qiskit-gym](https://github.com/AI4quantum/qiskit-gym) library. This server enables AI assistants to use RL-based optimization techniques for quantum circuit transpilation and synthesis.
+
 ## Install Qiskit MCP Servers
 
 To use Qiskit MCP Servers, you need:
 
 - Python 3.10 or later (3.11+ recommended)
-- An IBM Quantum account and API token (see [Set up your IBM Cloud account](/docs/guides/cloud-setup) for instructions.)
+- An IBM Quantum account and API token (see [Set up your IBM Cloud&reg; account](/docs/guides/cloud-setup) for instructions)
 
 Install all the available Qiskit MCP servers by running the following command from a terminal:
 
 ```bash
-pip install qiskit-mcp-servers
+pip install qiskit-mcp-servers[all]
 ```
 
-You can also install the individual MCP servers:
+You can also install individual MCP servers:
 
 ```bash
+pip install qiskit-mcp-server
 pip install qiskit-code-assistant-mcp-server
 pip install qiskit-ibm-runtime-mcp-server
+pip install qiskit-ibm-transpiler-mcp-server
+pip install qiskit-gym-mcp-server
 ```
 
 ## Configure Qiskit MCP Servers
 
 ### Set environment variables
 
-Set up the required environment variables for authentication.
+Set up the required environment variables for authentication. The Qiskit MCP Server does not require authentication for local use.
 
-For the Qiskit Runtime or Qiskit Code Assistant MCP Servers:
+For the Qiskit Runtime, Qiskit Code Assistant, or Qiskit IBM Transpiler MCP Servers:
 
 ```bash
 export QISKIT_IBM_TOKEN="<your_token>"
@@ -77,11 +98,20 @@ You can configure an MCP-compatible client (such as Claude Desktop, Cursor, or o
 ```json
 {
   "mcpServers": {
+    "qiskit": {
+      "command": "qiskit-mcp-server"
+    },
     "qiskit-ibm-runtime": {
       "command": "qiskit-ibm-runtime-mcp-server"
     },
     "qiskit-code-assistant": {
       "command": "qiskit-code-assistant-mcp-server"
+    },
+    "qiskit-ibm-transpiler": {
+      "command": "qiskit-ibm-transpiler-mcp-server"
+    },
+    "qiskit-gym": {
+      "command": "qiskit-gym-mcp-server"
     }
   }
 }
@@ -94,13 +124,20 @@ Refer to your MCP client's documentation for specific configuration instructions
 You can test the MCP servers interactively by using the MCP Inspector:
 
 ```bash
+# Test the Qiskit MCP Server
+npx @modelcontextprotocol/inspector qiskit-mcp-server
+
 # Test the Qiskit Runtime MCP Server
 npx @modelcontextprotocol/inspector qiskit-ibm-runtime-mcp-server
-```
 
-```bash
 # Test the Qiskit Code Assistant MCP Server
 npx @modelcontextprotocol/inspector qiskit-code-assistant-mcp-server
+
+# Test the Qiskit IBM Transpiler MCP Server
+npx @modelcontextprotocol/inspector qiskit-ibm-transpiler-mcp-server
+
+# Test the Qiskit Gym MCP Server
+npx @modelcontextprotocol/inspector qiskit-gym-mcp-server
 ```
 
 ## Next steps
@@ -108,7 +145,8 @@ npx @modelcontextprotocol/inspector qiskit-code-assistant-mcp-server
 <Admonition type="info" title="Recommendations">
 
 - Visit the [Qiskit MCP Servers GitHub repository](https://github.com/Qiskit/mcp-servers) for detailed documentation, API coverage, and examples.
-- Learn about [Qiskit Code Assistant](/docs/guides/qiskit-code-assistant) to understand the AI capabilities available through the MCP servers.
+- Learn about [Qiskit Code Assistant](/docs/guides/qiskit-code-assistant) to understand the AI code completion capabilities.
+- Learn about [AI-powered transpiler passes](/docs/guides/ai-transpiler-passes) to understand the AI-powered circuit optimization capabilities.
 - Set up your [IBM Quantum account](/docs/guides/cloud-setup) if you haven't already.
 - Explore the [Model Context Protocol documentation](https://modelcontextprotocol.io/) to learn more about MCP.
 

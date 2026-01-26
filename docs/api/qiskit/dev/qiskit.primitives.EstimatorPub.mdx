@@ -1,0 +1,99 @@
+---
+title: EstimatorPub (dev version)
+description: API reference for qiskit.primitives.EstimatorPub in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.EstimatorPub
+---
+
+# EstimatorPub
+
+<Class id="qiskit.primitives.EstimatorPub" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/estimator_pub.py#L36-L199" signature="qiskit.primitives.EstimatorPub(circuit, observables, parameter_values=None, precision=None, validate=True)" modifiers="class">
+  Bases: `ShapedMixin`
+
+  Primitive Unified Bloc for any Estimator primitive.
+
+  An estimator pub is essentially a tuple `(circuit, observables, parameter_values, precision)`.
+
+  If precision is provided this should be used for the target precision of an estimator, if `precision=None` the estimator will determine the target precision.
+
+  Initialize an estimator pub.
+
+  **Parameters**
+
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A quantum circuit.
+  *   **observables** ([*ObservablesArray*](qiskit.primitives.ObservablesArray "qiskit.primitives.ObservablesArray")) – An observables array.
+  *   **parameter\_values** ([*BindingsArray*](qiskit.primitives.BindingsArray "qiskit.primitives.BindingsArray") *| None*) – A bindings array, if the circuit is parametric.
+  *   **precision** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – An optional target precision for expectation value estimates.
+  *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to validate arguments during initialization.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the `observables` and `parameter_values` are not broadcastable, that is, if their shapes, when right-aligned, do not agree or equal 1.
+
+  ## Attributes
+
+  ### circuit
+
+  <Attribute id="qiskit.primitives.EstimatorPub.circuit">
+    A quantum circuit.
+  </Attribute>
+
+  ### ndim
+
+  <Attribute id="qiskit.primitives.EstimatorPub.ndim" />
+
+  ### observables
+
+  <Attribute id="qiskit.primitives.EstimatorPub.observables">
+    An observables array.
+  </Attribute>
+
+  ### parameter\_values
+
+  <Attribute id="qiskit.primitives.EstimatorPub.parameter_values">
+    A bindings array.
+  </Attribute>
+
+  ### precision
+
+  <Attribute id="qiskit.primitives.EstimatorPub.precision">
+    The target precision for expectation value estimates (optional).
+  </Attribute>
+
+  ### shape
+
+  <Attribute id="qiskit.primitives.EstimatorPub.shape" />
+
+  ### size
+
+  <Attribute id="qiskit.primitives.EstimatorPub.size" />
+
+  ## Methods
+
+  ### coerce
+
+  <Function id="qiskit.primitives.EstimatorPub.coerce" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/estimator_pub.py#L107-L168" signature="coerce(pub, precision=None)" modifiers="classmethod">
+    Coerce `EstimatorPubLike` into [`EstimatorPub`](#qiskit.primitives.EstimatorPub "qiskit.primitives.EstimatorPub").
+
+    **Parameters**
+
+    *   **pub** (*EstimatorPubLike*) – A compatible object for coercion.
+    *   **precision** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – an optional default precision to use if not already specified by the pub-like object.
+
+    **Returns**
+
+    An estimator pub.
+
+    **Return type**
+
+    [*EstimatorPub*](#qiskit.primitives.EstimatorPub "qiskit.primitives.containers.estimator_pub.EstimatorPub")
+  </Function>
+
+  ### validate
+
+  <Function id="qiskit.primitives.EstimatorPub.validate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/estimator_pub.py#L170-L199" signature="validate()">
+    Validate the pub.
+  </Function>
+</Class>
+

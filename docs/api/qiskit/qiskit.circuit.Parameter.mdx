@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.Parameter
 
 # Parameter
 
-<Class id="qiskit.circuit.Parameter" isDedicatedPage={true} signature="qiskit.circuit.Parameter" modifiers="class">
+<Class id="qiskit.circuit.Parameter" isDedicatedPage={true} signature="qiskit.circuit.Parameter(name, uuid=None)" modifiers="class">
   Bases: [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")
 
   A compile-time symbolic parameter.
@@ -50,6 +50,14 @@ python_api_name: qiskit.circuit.Parameter
     Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
   </Attribute>
 
+  ### num\_parameters
+
+  <Attribute id="qiskit.circuit.Parameter.num_parameters">
+    The number of unbound parameters in the expression.
+
+    This is equivalent to `len(expr.parameters)` but does not involve the overhead of creating a set and counting its length.
+  </Attribute>
+
   ### parameters
 
   <Attribute id="qiskit.circuit.Parameter.parameters">
@@ -63,7 +71,7 @@ python_api_name: qiskit.circuit.Parameter
   ### uuid
 
   <Attribute id="qiskit.circuit.Parameter.uuid">
-    Returns the [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.14)") of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
+    Returns the [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID) of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
 
     In advanced use cases, this property can be passed to the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter") constructor to produce an instance that compares equal to another instance.
   </Attribute>
@@ -125,7 +133,7 @@ python_api_name: qiskit.circuit.Parameter
 
         *   If parameter\_values contains parameters outside those in self. - If a non-numeric value is passed in `parameter_values`.
 
-    *   [**ZeroDivisionError**](https://docs.python.org/3/library/exceptions.html#ZeroDivisionError "(in Python v3.14)") –
+    *   [**ZeroDivisionError**](https://docs.python.org/3/library/exceptions.html#ZeroDivisionError) –
 
         *   If binding the provided values requires division by zero.
 

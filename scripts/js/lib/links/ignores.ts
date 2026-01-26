@@ -14,7 +14,13 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES: Set<string> = new Set([]);
+export const IGNORED_FILES: Set<string> = new Set([
+  // TODO(#4200):
+  // The Qiskit C API objects.inv has a lot of broken links that we should fix.
+  // When working on this, we should also try to fix the links in `_qiskitCRegexes()`
+  // at the end of this file.
+  "public/docs/api/qiskit-c/objects.inv",
+]);
 
 // -----------------------------------------------------------------------------------
 // Always ignored URLs - prefer to use more precise ignores
@@ -158,8 +164,6 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
 // These external URLs cause actual 404s and should probably be fixed.
 const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // These schemas are not available any more. They might have moved, but we're not sure where.
-  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json",
-  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_status_schema.json",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json",
 
@@ -174,6 +178,11 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
+
+  // The pulse guide was removed in https://github.com/Qiskit/documentation/pull/4495 and should be fixed
+  // in the Qiskit latest, dev, and some historical versions. In the meantime, the app will redirect the
+  // page to pulse-migration so the links are not broken.
+  "/docs/guides/pulse",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -421,11 +430,47 @@ function _runtimeLegacyReleaseNotes(): FilesToIgnores {
   };
 }
 
+function _runtimeHistoricalSchema(): FilesToIgnores {
+  return Object.fromEntries(
+    [
+      "0.25/",
+      "0.26/",
+      "0.27/",
+      "0.28/",
+      "0.29/",
+      "0.30/",
+      "0.31/",
+      "0.32/",
+      "0.33/",
+      "0.34/",
+      "0.35/",
+      "0.36/",
+      "0.37/",
+      "0.38/",
+      "0.39/",
+      "0.40/",
+      "0.41/",
+      "0.42/",
+      "0.43/",
+      "0.44/",
+    ].flatMap((vers) => [
+      [
+        `docs/api/qiskit-ibm-runtime/${vers}ibm-backend.mdx`,
+        [
+          "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json",
+          "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json",
+        ],
+      ],
+    ]),
+  );
+}
+
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
   _runtimeLegacyReleaseNotes(),
+  _runtimeHistoricalSchema(),
 );
 
 function _qiskitCRegexes(): FilesToIgnores {
@@ -448,7 +493,14 @@ function _qiskitCRegexes(): FilesToIgnores {
       "/docs/api/qiskit-c/version#qiskit_version_minor",
       "/docs/api/qiskit-c/version#qiskit_version_patch",
     ],
-    "docs/api/qiskit-c/qk-transpiler.mdx": ["#structqktranspileoptions"],
+    "docs/api/qiskit-c/qk-transpiler.mdx": [
+      "#structqktranspileoptions",
+      "#c.qk_transpile",
+    ],
+    "docs/api/qiskit-c/qk-dag.mdx": ["#structqkdagneighbors"],
+    "docs/api/qiskit-c/qk-transpiler-passes.mdx": [
+      "#c.qk_transpiler_pass_standalone_vf2_layout_average",
+    ],
   };
 }
 

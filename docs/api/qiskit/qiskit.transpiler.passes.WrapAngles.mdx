@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
 
 # WrapAngles
 
-<Class id="qiskit.transpiler.passes.WrapAngles" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/utils/wrap_angles.py#L23-L90" signature="qiskit.transpiler.passes.WrapAngles(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.WrapAngles" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passes/utils/wrap_angles.py#L21-L108" signature="qiskit.transpiler.passes.WrapAngles(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Wrap angles outside the bound specified in the target.
@@ -55,11 +55,28 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
 
   *   **registry** ([*WrapAngleRegistry*](qiskit.transpiler.WrapAngleRegistry "qiskit.transpiler.WrapAngleRegistry")) –
 
-      The registry of wrapping functions used by the pass to wrap the angles of a gate. If not specified the global [`WRAP_ANGLE_REGISTRY`](transpiler_passes#qiskit.transpiler.passes.qiskit.transpiler.passes.utils.wrap_angles.WRAP_ANGLE_REGISTRY "qiskit.transpiler.passes.qiskit.transpiler.passes.utils.wrap_angles.WRAP_ANGLE_REGISTRY") object will be used.
+      The registry of wrapping functions used by the pass to wrap the angles of a gate. If not specified the global [`DEFAULT_REGISTRY`](#qiskit.transpiler.passes.WrapAngles.DEFAULT_REGISTRY "qiskit.transpiler.passes.WrapAngles.DEFAULT_REGISTRY") object will be used.
 
-      Unless you are planning to run this pass standalone or are building a custom [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") including this pass you will want to rely on [`WRAP_ANGLE_REGISTRY`](transpiler_passes#qiskit.transpiler.passes.qiskit.transpiler.passes.utils.wrap_angles.WRAP_ANGLE_REGISTRY "qiskit.transpiler.passes.qiskit.transpiler.passes.utils.wrap_angles.WRAP_ANGLE_REGISTRY").
+      Unless you are planning to run this pass standalone or are building a custom [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") including this pass you will want to rely on [`DEFAULT_REGISTRY`](#qiskit.transpiler.passes.WrapAngles.DEFAULT_REGISTRY "qiskit.transpiler.passes.WrapAngles.DEFAULT_REGISTRY").
 
   ## Attributes
+
+  ### DEFAULT\_REGISTRY
+
+  <Attribute id="qiskit.transpiler.passes.WrapAngles.DEFAULT_REGISTRY" attributeValue="<qiskit._accelerate.angle_bound_registry.WrapAngleRegistry object>">
+    A global instance of [`WrapAngleRegistry`](qiskit.transpiler.WrapAngleRegistry "qiskit.transpiler.WrapAngleRegistry") that is used by default by this pass when no explicit registry is specified.
+
+    <Admonition title="Note" type="note">
+      This is also publicly accessible at the location `qiskit.transpiler.passes.utils.wrap_angles.WRAP_ANGLE_REGISTRY` due to an oversight in Qiskit 2.2 (in which the extended path is the only valid location). It is strongly encouraged to access this object via [`WrapAngles`](#qiskit.transpiler.passes.WrapAngles "qiskit.transpiler.passes.WrapAngles"), however, if you do not need to support Qiskit 2.2.
+    </Admonition>
+
+    <Admonition title="Note" type="note">
+      Attempts to write an entirely new registry object to the `qiskit.transpiler.passes.utils.wrap_angles` path will not be reflected in the defaults in Qiskit 2.3 onwards. While we do not recommend attempting to overwrite the object completely, should you need to do this and to support Qiskit 2.2 onwards, you should write references to the same object to both:
+
+      *   [`WrapAngles.DEFAULT_REGISTRY`](#qiskit.transpiler.passes.WrapAngles.DEFAULT_REGISTRY "qiskit.transpiler.passes.WrapAngles.DEFAULT_REGISTRY")
+      *   `qiskit.transpiler.passes.utils.wrap_angles.WRAP_ANGLE_REGISTRY`
+    </Admonition>
+  </Attribute>
 
   ### is\_analysis\_pass
 
@@ -81,14 +98,14 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.WrapAngles.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.WrapAngles.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -96,22 +113,22 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.WrapAngles.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.WrapAngles.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.WrapAngles.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/utils/wrap_angles.py#L88-L90" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.WrapAngles.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passes/utils/wrap_angles.py#L106-L108" signature="run(dag)">
     Run a pass on the DAGCircuit. This is implemented by the pass developer.
 
     **Parameters**
@@ -120,12 +137,12 @@ python_api_name: qiskit.transpiler.passes.WrapAngles
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.14)") – when this is left unimplemented for a pass.
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when this is left unimplemented for a pass.
   </Function>
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.WrapAngles.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.WrapAngles.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

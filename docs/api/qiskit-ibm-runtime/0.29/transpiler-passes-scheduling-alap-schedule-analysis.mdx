@@ -29,8 +29,8 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
   **Parameters**
 
-  *   **durations** ([`InstructionDurations`](/docs/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.2)")) – Durations of instructions to be used in scheduling.
-  *   **block\_ordering\_callable** (`Optional`\[`Callable`\[\[[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.2)")], `Generator`\[[`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode "(in Qiskit v1.2)"), `None`, `None`]]]) – A callable used to produce an ordering of the nodes to minimize the number of blocks needed. If not provided, `block_order_op_nodes()` will be used.
+  *   **durations** ([`InstructionDurations`](/docs/api/qiskit/qiskit.transpiler.InstructionDurations)) – Durations of instructions to be used in scheduling.
+  *   **block\_ordering\_callable** (`Optional`\[`Callable`\[\[[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)], `Generator`\[[`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode), `None`, `None`]]]) – A callable used to produce an ordering of the nodes to minimize the number of blocks needed. If not provided, `block_order_op_nodes()` will be used.
 
   ## Attributes
 
@@ -79,12 +79,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
     **Parameters**
 
     *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-    *   **state** ([`PassManagerState`](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – State associated with workflow execution by the pass manager itself.
+    *   **state** ([`PassManagerState`](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
     *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
 
     **Return type**
 
-    `tuple`\[`Any`, [`PassManagerState`](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")]
+    `tuple`\[`Any`, [`PassManagerState`](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
 
     **Returns**
 
@@ -104,7 +104,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
   ### run
 
   <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.29/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L459-L478" signature="run(dag)">
-    Run the ASAPSchedule pass on dag. :type dag: [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.2)") :param dag: DAG to schedule. :type dag: DAGCircuit
+    Run the ASAPSchedule pass on dag. :type dag: [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit) :param dag: DAG to schedule. :type dag: DAGCircuit
 
     **Raises**
 
@@ -127,12 +127,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
     **Parameters**
 
-    *   **state** ([`PassManagerState`](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – Pass manager state to update.
+    *   **state** ([`PassManagerState`](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
     *   **run\_state** (`RunState`) – Completion status of current task.
 
     **Return type**
 
-    [`PassManagerState`](/docs/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")
+    [`PassManagerState`](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
 
     **Returns**
 
