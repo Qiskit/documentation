@@ -37,17 +37,17 @@ $$
 
   **Parameters**
 
-  *   **order** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The order of the product formula.
-  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of time steps.
-  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to insert barriers between the atomic evolutions.
-  *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – How to arrange the CX gates for the Pauli evolutions, can be `"chain"`, where next neighbor connections are used, or `"fountain"`, where all qubits are connected to one. This only takes effect when `atomic_evolution is None`.
-  *   **atomic\_evolution** (*Callable\[\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*], None] | None*) – A function to apply the evolution of a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), or [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") of only commuting terms, to a circuit. The function takes in three arguments: the circuit to append the evolution to, the Pauli operator to evolve, and the evolution time. By default, a single Pauli evolution is decomposed into a chain of `CX` gates and a single `RZ` gate. Alternatively, the function can also take Pauli operator and evolution time as inputs and returns the circuit that will be appended to the overall circuit being built.
-  *   **wrap** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to wrap the atomic evolutions into custom gate objects. This only takes effect when `atomic_evolution is None`.
-  *   **preserve\_order** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `False`, allows reordering the terms of the operator to potentially yield a shallower evolution circuit. Not relevant when synthesizing operator with a single term.
+  *   **order** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The order of the product formula.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of time steps.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to insert barriers between the atomic evolutions.
+  *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – How to arrange the CX gates for the Pauli evolutions, can be `"chain"`, where next neighbor connections are used, or `"fountain"`, where all qubits are connected to one. This only takes effect when `atomic_evolution is None`.
+  *   **atomic\_evolution** (*Callable\[\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*], None] | None*) – A function to apply the evolution of a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), or [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") of only commuting terms, to a circuit. The function takes in three arguments: the circuit to append the evolution to, the Pauli operator to evolve, and the evolution time. By default, a single Pauli evolution is decomposed into a chain of `CX` gates and a single `RZ` gate. Alternatively, the function can also take Pauli operator and evolution time as inputs and returns the circuit that will be appended to the overall circuit being built.
+  *   **wrap** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to wrap the atomic evolutions into custom gate objects. This only takes effect when `atomic_evolution is None`.
+  *   **preserve\_order** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `False`, allows reordering the terms of the operator to potentially yield a shallower evolution circuit. Not relevant when synthesizing operator with a single term.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If order is not even
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If order is not even
 
   ## Attributes
 
@@ -62,7 +62,7 @@ $$
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – If a custom atomic evolution is set, which cannot be serialized.
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – If a custom atomic evolution is set, which cannot be serialized.
   </Attribute>
 
   ## Methods
@@ -92,7 +92,7 @@ $$
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")], ParameterValueType]]
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)], ParameterValueType]]
   </Function>
 
   ### synthesize

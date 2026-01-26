@@ -17,25 +17,25 @@ python_api_name: qiskit.visualization.pulse_drawer
 
   *   **program** ([*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")  *|*[*ParametricPulse*](qiskit.pulse.library.ParametricPulse "qiskit.pulse.library.parametric_pulses.ParametricPulse")  *|*[*SymbolicPulse*](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – Program to visualize. This program can be arbitrary Qiskit Pulse program, such as `Waveform`, `ParametricPulse`, `SymbolicPulse`, [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock").
 
-  *   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
+  *   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
 
   *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend") *| None*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
-  *   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+  *   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
-  *   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+  *   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-  *   **disable\_channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A control property to show specific pulse channel. Pulse channel instances provided as a list is not shown in the output image.
+  *   **disable\_channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A control property to show specific pulse channel. Pulse channel instances provided as a list is not shown in the output image.
 
-  *   **show\_snapshot** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show snapshot instructions.
+  *   **show\_snapshot** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Show snapshot instructions.
 
-  *   **show\_framechange** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show frame change instructions. The frame change represents instructions that modulate phase or frequency of pulse channels.
+  *   **show\_framechange** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Show frame change instructions. The frame change represents instructions that modulate phase or frequency of pulse channels.
 
-  *   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+  *   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
 
-  *   **show\_barrier** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show barrier lines.
+  *   **show\_barrier** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Show barrier lines.
 
-  *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) –
+  *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) –
 
       Name of plotter API to generate an output image. One of following APIs should be specified:
 
@@ -47,7 +47,7 @@ python_api_name: qiskit.visualization.pulse_drawer
 
       axis and style kwargs may depend on the plotter.
 
-  *   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+  *   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any) *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
 
   **Returns**
 

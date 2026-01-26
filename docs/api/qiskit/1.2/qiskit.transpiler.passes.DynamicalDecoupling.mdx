@@ -90,10 +90,10 @@ python_api_name: qiskit.transpiler.passes.DynamicalDecoupling
   **Parameters**
 
   *   **durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling.
-  *   **dd\_sequence** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – sequence of gates to apply in idle spots.
-  *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
-  *   **spacing** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – a list of spacings between the DD gates. The available slack will be divided according to this. The list length must be one more than the length of dd\_sequence, and the elements must sum to 1. If None, a balanced spacing will be used \[d/2, d, d, …, d, d, d/2].
-  *   **skip\_reset\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, does not insert DD on idle periods that immediately follow initialized/reset qubits (as qubits in the ground state are less susceptible to decoherence).
+  *   **dd\_sequence** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – sequence of gates to apply in idle spots.
+  *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
+  *   **spacing** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – a list of spacings between the DD gates. The available slack will be divided according to this. The list length must be one more than the length of dd\_sequence, and the elements must sum to 1. If None, a balanced spacing will be used \[d/2, d, d, …, d, d, d/2].
+  *   **skip\_reset\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, does not insert DD on idle periods that immediately follow initialized/reset qubits (as qubits in the ground state are less susceptible to decoherence).
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `durations` and this are specified then this argument will take precedence and `durations` will be ignored.
 
   ## Attributes
@@ -123,9 +123,9 @@ python_api_name: qiskit.transpiler.passes.DynamicalDecoupling
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -133,7 +133,7 @@ python_api_name: qiskit.transpiler.passes.DynamicalDecoupling
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -143,7 +143,7 @@ python_api_name: qiskit.transpiler.passes.DynamicalDecoupling
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
   </Function>
 
   ### run

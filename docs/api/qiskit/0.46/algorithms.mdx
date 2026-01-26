@@ -228,7 +228,7 @@ Utility functions used by algorithms.
   *   **quantum\_state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – An unparametrized quantum circuit representing a quantum state that expectation values are computed against.
   *   **observables** (*ListOrDict\[*[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")*]*) – A list or a dictionary of operators whose expectation values are to be calculated.
   *   **expectation** ([*ExpectationBase*](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")) – An instance of ExpectationBase which defines a method for calculating expectation values.
-  *   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
+  *   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float)) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
 
   **Returns**
 
@@ -236,11 +236,11 @@ Utility functions used by algorithms.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If a `quantum_state` with free parameters is provided.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If a `quantum_state` with free parameters is provided.
 
   **Return type**
 
-  ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")]]
+  ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[complex](https://docs.python.org/3/library/functions.html#complex), [complex](https://docs.python.org/3/library/functions.html#complex)]]
 </Function>
 
 #### estimate\_observables
@@ -253,8 +253,8 @@ Utility functions used by algorithms.
   *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – An estimator primitive used for calculations.
   *   **quantum\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A (parameterized) quantum circuit preparing a quantum state that expectation values are computed against.
   *   **observables** (*ListOrDict\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*]*) – A list or a dictionary of operators whose expectation values are to be calculated.
-  *   **parameter\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – Optional list of parameters values to evaluate the quantum circuit on.
-  *   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
+  *   **parameter\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – Optional list of parameters values to evaluate the quantum circuit on.
+  *   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float)) – A threshold value that defines which mean values should be neglected (helpful for ignoring numerical instabilities close to 0).
 
   **Returns**
 
@@ -266,6 +266,6 @@ Utility functions used by algorithms.
 
   **Return type**
 
-  ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"), [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), Any]]]
+  ListOrDict\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[complex](https://docs.python.org/3/library/functions.html#complex), [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), Any]]]
 </Function>
 

@@ -54,7 +54,7 @@ python_api_name: qiskit.algorithms.PVQD
 
     **Type**
 
-    Optional\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+    Optional\[[int](https://docs.python.org/3/library/functions.html#int)]
   </Attribute>
 
   ### evolution
@@ -74,7 +74,7 @@ python_api_name: qiskit.algorithms.PVQD
 
     **Type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Attribute>
 
   ### initial\_guess
@@ -144,9 +144,9 @@ python_api_name: qiskit.algorithms.PVQD
   *   **initial\_parameters** (*np.ndarray*) – The initial parameters for the ansatz. Together with the ansatz, these define the initial state of the time evolution.
   *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") *| None*) – An estimator primitive used for calculating expected values of auxiliary operators (if provided via the problem).
   *   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") *| None*) – The classical optimizers used to minimize the overlap between Trotterization and ansatz. Can be either a [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable using the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol. This argument is optional since it is not required for [`get_loss()`](#qiskit.algorithms.PVQD.get_loss "qiskit.algorithms.PVQD.get_loss"), but it has to be set before [`evolve()`](#qiskit.algorithms.PVQD.evolve "qiskit.algorithms.PVQD.evolve") is called.
-  *   **num\_timesteps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of time steps. If `None` it will be set such that the timestep is close to 0.01.
+  *   **num\_timesteps** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of time steps. If `None` it will be set such that the timestep is close to 0.01.
   *   **evolution** ([*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – The evolution synthesis to use for the construction of the Trotter step. Defaults to first-order Lie-Trotter decomposition, see also `evolution` for different options.
-  *   **use\_parameter\_shift** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, use the parameter shift rule to compute gradients. If False, the optimizer will not be passed a gradient callable. In that case, Qiskit optimizers will use a finite difference rule to approximate the gradients.
+  *   **use\_parameter\_shift** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True, use the parameter shift rule to compute gradients. If False, the optimizer will not be passed a gradient callable. In that case, Qiskit optimizers will use a finite difference rule to approximate the gradients.
   *   **initial\_guess** (*np.ndarray | None*) – The initial guess for the first VQE optimization. Afterwards the previous iteration result is used as initial guess. If None, this is set to a random vector with elements in the interval $[-0.01, 0.01]$.
 
   ## Methods
@@ -168,8 +168,8 @@ python_api_name: qiskit.algorithms.PVQD
 
     **Raises**
 
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `aux_operators` provided in the time evolution problem but no estimator provided to the algorithm.
-    *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If the evolution problem contains an initial state.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `aux_operators` provided in the time evolution problem but no estimator provided to the algorithm.
+    *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – If the evolution problem contains an initial state.
 
     **Return type**
 
@@ -185,7 +185,7 @@ python_api_name: qiskit.algorithms.PVQD
 
     *   **hamiltonian** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – The Hamiltonian under which to evolve.
     *   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The parameterized quantum circuit which attempts to approximate the time-evolved state.
-    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The time step.
+    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The time step.
     *   **current\_parameters** (*np.ndarray*) – The current parameters.
 
     **Returns**
@@ -196,7 +196,7 @@ python_api_name: qiskit.algorithms.PVQD
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")], Callable\[\[np.ndarray], np.ndarray]] | None
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float)], Callable\[\[np.ndarray], np.ndarray]] | None
   </Function>
 
   ### step
@@ -209,7 +209,7 @@ python_api_name: qiskit.algorithms.PVQD
     *   **hamiltonian** (*BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")) – The Hamiltonian under which to evolve.
     *   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The parameterized quantum circuit which attempts to approximate the time-evolved state.
     *   **theta** (*np.ndarray*) – The current parameters.
-    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The time step.
+    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The time step.
     *   **initial\_guess** (*np.ndarray*) – The initial guess for the classical optimization of the fidelity between the next variational state and the Trotter-evolved last state. If None, this is set to a random vector with elements in the interval $[-0.01, 0.01]$.
 
     **Returns**
@@ -218,7 +218,7 @@ python_api_name: qiskit.algorithms.PVQD
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[np.ndarray, [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[np.ndarray, [float](https://docs.python.org/3/library/functions.html#float)]
   </Function>
 </Class>
 

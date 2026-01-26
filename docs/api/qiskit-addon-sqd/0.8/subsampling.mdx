@@ -25,11 +25,11 @@ Functions for creating batches of samples from a bitstring matrix.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
-  *   **probabilities** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – A 1D array specifying a probability distribution over the bitstrings
-  *   **samples\_per\_batch** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of samples to draw for each batch
-  *   **num\_batches** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of batches to generate
-  *   **rand\_seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.1)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed to control random behavior
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
+  *   **probabilities** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 1D array specifying a probability distribution over the bitstrings
+  *   **samples\_per\_batch** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of samples to draw for each batch
+  *   **num\_batches** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of batches to generate
+  *   **rand\_seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator)  *|*[*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – A seed to control random behavior
 
   **Returns**
 
@@ -37,12 +37,12 @@ Functions for creating batches of samples from a bitstring matrix.
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The number of elements in `probabilities` must equal the number of rows in `bitstring_matrix`.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Samples per batch and number of batches must be positive integers.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The number of elements in `probabilities` must equal the number of rows in `bitstring_matrix`.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Samples per batch and number of batches must be positive integers.
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
 </Function>
 
 ### postselect\_and\_subsample
@@ -56,13 +56,13 @@ Functions for creating batches of samples from a bitstring matrix.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
-  *   **probabilities** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – A 1D array specifying a probability distribution over the bitstrings
-  *   **hamming\_right** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The target hamming weight for the right half of sampled bitstrings
-  *   **hamming\_left** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The target hamming weight for the left half of sampled bitstrings
-  *   **samples\_per\_batch** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of samples to draw for each batch
-  *   **num\_batches** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of batches to generate
-  *   **rand\_seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.1)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed to control random behavior
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
+  *   **probabilities** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 1D array specifying a probability distribution over the bitstrings
+  *   **hamming\_right** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The target hamming weight for the right half of sampled bitstrings
+  *   **hamming\_left** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The target hamming weight for the left half of sampled bitstrings
+  *   **samples\_per\_batch** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of samples to draw for each batch
+  *   **num\_batches** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of batches to generate
+  *   **rand\_seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator)  *|*[*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – A seed to control random behavior
 
   **Returns**
 
@@ -70,12 +70,12 @@ Functions for creating batches of samples from a bitstring matrix.
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The number of elements in `probabilities` must equal the number of rows in `bitstring_matrix`.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Hamming weights must be non-negative integers.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Samples per batch and number of batches must be positive integers.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The number of elements in `probabilities` must equal the number of rows in `bitstring_matrix`.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Hamming weights must be non-negative integers.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Samples per batch and number of batches must be positive integers.
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
 </Function>
 
