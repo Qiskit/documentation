@@ -29,10 +29,10 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
 
   **Parameters**
 
-  *   **grad\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*CircuitGradient*](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")) – The method used to compute the state gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`.
-  *   **qfi\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*CircuitQFI*](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")) – The method used to compute the QFI. Can be either `'lin_comb_full'` or `'overlap_block_diag'` or `'overlap_diag'`.
-  *   **regularization** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Use the following regularization with a least square method to solve the underlying system of linear equations Can be either None or `'ridge'` or `'lasso'` or `'perturb_diag'` `'ridge'` and `'lasso'` use an automatic optimal parameter search If regularization is None but the metric is ill-conditioned or singular then a least square solver is used without regularization
-  *   **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Optional parameters for a CircuitGradient
+  *   **grad\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*CircuitGradient*](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")) – The method used to compute the state gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`.
+  *   **qfi\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*CircuitQFI*](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")) – The method used to compute the QFI. Can be either `'lin_comb_full'` or `'overlap_block_diag'` or `'overlap_diag'`.
+  *   **regularization** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Use the following regularization with a least square method to solve the underlying system of linear equations Can be either None or `'ridge'` or `'lasso'` or `'perturb_diag'` `'ridge'` and `'lasso'` use an automatic optimal parameter search If regularization is None but the metric is ill-conditioned or singular then a least square solver is used without regularization
+  *   **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – Optional parameters for a CircuitGradient
 
   ## Attributes
 
@@ -70,7 +70,7 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
     **Parameters**
 
     *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator we are taking the gradient of.
-    *   **params** ([*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*] | None*) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
+    *   **params** ([*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*] | None*) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
 
     **Returns**
 
@@ -78,9 +78,9 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
 
     **Raises**
 
-    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If `operator` does not represent an expectation value or the quantum state is not `CircuitStateFn`.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `params` contains a parameter not present in `operator`.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `operator` is not parameterized.
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If `operator` does not represent an expectation value or the quantum state is not `CircuitStateFn`.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `params` contains a parameter not present in `operator`.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `operator` is not parameterized.
 
     **Return type**
 
@@ -94,8 +94,8 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
 
     **Parameters**
 
-    *   **x** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – Iterable consisting of Gradient, Quantum Fisher Information.
-    *   **regularization** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Regularization method.
+    *   **x** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – Iterable consisting of Gradient, Quantum Fisher Information.
+    *   **regularization** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Regularization method.
 
     **Returns**
 
@@ -103,11 +103,11 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the gradient has imaginary components that are non-negligible.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the gradient has imaginary components that are non-negligible.
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
   </Function>
 </Class>
 

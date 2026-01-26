@@ -30,9 +30,9 @@ python_api_name: qiskit.converters
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
-  *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
+  *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
   *   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted instruction will be registered.
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional instruction label.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Optional instruction label.
 
   **Raises**
 
@@ -73,9 +73,9 @@ python_api_name: qiskit.converters
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
-  *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the Gate.
+  *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the Gate.
   *   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted gate will be registered.
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional gate label.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Optional gate label.
 
   **Raises**
 
@@ -102,7 +102,7 @@ python_api_name: qiskit.converters
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
-  *   **copy\_operations** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Deep copy the operation objects in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") for the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"). This should only be set to `False` if the input [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will not be used anymore as the operations in the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be shared instances and modifications to operations in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be reflected in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") (and vice versa).
+  *   **copy\_operations** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Deep copy the operation objects in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") for the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"). This should only be set to `False` if the input [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will not be used anymore as the operations in the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be shared instances and modifications to operations in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be reflected in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") (and vice versa).
   *   **qubit\_order** (*Iterable\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*] or None*) – the order that the qubits should be indexed in the output DAG. Defaults to the same order as in the circuit.
   *   **clbit\_order** (*Iterable\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*] or None*) – the order that the clbits should be indexed in the output DAG. Defaults to the same order as in the circuit.
 
@@ -116,7 +116,7 @@ python_api_name: qiskit.converters
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if the `qubit_order` or `clbit_order` parameters do not match the bits in the circuit.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if the `qubit_order` or `clbit_order` parameters do not match the bits in the circuit.
 
   **Example**
 
@@ -144,7 +144,7 @@ python_api_name: qiskit.converters
   **Parameters**
 
   *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the input dag.
-  *   **copy\_operations** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Deep copy the operation objects in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") for the output [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). This should only be set to `False` if the input [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will not be used anymore as the operations in the output [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will be shared instances and modifications to operations in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be reflected in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") (and vice versa).
+  *   **copy\_operations** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Deep copy the operation objects in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") for the output [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). This should only be set to `False` if the input [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will not be used anymore as the operations in the output [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will be shared instances and modifications to operations in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be reflected in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") (and vice versa).
 
   **Returns**
 
@@ -208,7 +208,7 @@ python_api_name: qiskit.converters
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
-  *   **create\_preds\_and\_succs** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether to construct lists of predecessors and successors for every node.
+  *   **create\_preds\_and\_succs** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to construct lists of predecessors and successors for every node.
 
   **Returns**
 
@@ -231,7 +231,7 @@ python_api_name: qiskit.converters
   **Parameters**
 
   *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the input dag.
-  *   **create\_preds\_and\_succs** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether to construct lists of predecessors and successors for every node.
+  *   **create\_preds\_and\_succs** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to construct lists of predecessors and successors for every node.
 
   **Returns**
 

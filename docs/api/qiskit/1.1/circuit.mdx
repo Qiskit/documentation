@@ -302,9 +302,9 @@ A collection bits of the same type can be encapsulated in a register of the matc
 
   **Parameters**
 
-  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of bits to include in the register.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
-  *   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Optional. The number of bits to include in the register.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
+  *   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Bit*](#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
 
   **Raises**
 
@@ -419,7 +419,7 @@ Subclassing [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"), Qiskit has a sp
 | -------------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")(name, num\_qubits, params\[, ...]) | Controlled unitary gate. |
 
-Each of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") and [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") has a corresponding singleton type, built using the machinery described in [`qiskit.circuit.singleton`](circuit_singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton"). The module-level documentation contains full details, along with descriptions of [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate") and [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate"). From a user’s perspective, little changes based on whether the base class is a singleton or not; the intention always remains that you should call [`to_mutable()`](qiskit.circuit.Instruction#to_mutable "qiskit.circuit.Instruction.to_mutable") first if you need to get a safe-to-mutate owned copy of an instruction (you cannot assume that an arbitrary instruction is mutable), and while direct [`type`](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)") inspection is discouraged, if you do need it, the reliable way to find the “base” type of a potentially singleton instruction is to use [`base_class`](qiskit.circuit.Instruction#base_class "qiskit.circuit.Instruction.base_class").
+Each of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") and [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") has a corresponding singleton type, built using the machinery described in [`qiskit.circuit.singleton`](circuit_singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton"). The module-level documentation contains full details, along with descriptions of [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate") and [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate"). From a user’s perspective, little changes based on whether the base class is a singleton or not; the intention always remains that you should call [`to_mutable()`](qiskit.circuit.Instruction#to_mutable "qiskit.circuit.Instruction.to_mutable") first if you need to get a safe-to-mutate owned copy of an instruction (you cannot assume that an arbitrary instruction is mutable), and while direct [`type`](https://docs.python.org/3/library/functions.html#type) inspection is discouraged, if you do need it, the reliable way to find the “base” type of a potentially singleton instruction is to use [`base_class`](qiskit.circuit.Instruction#base_class "qiskit.circuit.Instruction.base_class").
 
 [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") uses the same mechanisms as [subclassing gates](#circuit-custom-gates) to define a fixed, lazy synthesis for itself. This is naturally not hardware-aware, and harder to hook into the synthesis routines of the compiler, but works better as a concrete [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") that could potentially be run natively on hardware. For cases where synthesis and abstract optimization is more important, Qiskit offers a composable class called [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), which tracks “gate modifiers” (of which [`ControlModifier`](#qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier") is one) to apply to the inner [`base_op`](qiskit.circuit.AnnotatedOperation#base_op "qiskit.circuit.AnnotatedOperation.base_op").
 
@@ -520,8 +520,8 @@ it is forbidden for the optimizer to cancel out the two $X$ instructions.
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits for the barrier.
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – the optional label of this barrier.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of qubits for the barrier.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – the optional label of this barrier.
 </Class>
 
 The [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction is particularly special, in that it allows writing the result of a [real-time classical computation expression](#circuit-repr-real-time-classical) (an [`expr.Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) in a local classical variable (a [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")). It takes *neither* [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") nor [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") operands, but has an explicit [`lvalue`](#qiskit.circuit.Store.lvalue "qiskit.circuit.Store.lvalue") and [`rvalue`](#qiskit.circuit.Store.rvalue "qiskit.circuit.Store.rvalue").
@@ -696,7 +696,7 @@ Subclasses of [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") will also like
 <Function id="object.__array__" signature="object.__array__(dtype=None, copy=None)">
   Return a Numpy array representing the gate. This can use the gate’s [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") field, and may assume that these are numeric values (assuming the subclass expects that) and not [compile-time parameters](#circuit-compile-time-parameters).
 
-  For greatest efficiency, the returned array should default to a dtype of [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)").
+  For greatest efficiency, the returned array should default to a dtype of [`complex`](https://docs.python.org/3/library/functions.html#complex).
 </Function>
 
 If your custom subclass has natural representations of its controlled or inverse forms, you may also wish to override the [`inverse()`](qiskit.circuit.Instruction#inverse "qiskit.circuit.Instruction.inverse") and [`control()`](qiskit.circuit.Gate#control "qiskit.circuit.Gate.control") methods.
@@ -835,13 +835,13 @@ Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of quantum wires
-  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – layers of operations (i.e. critical path length)
-  *   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – maximum qubit operands of each gate (between 1 and 4)
-  *   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, measure all qubits at the end
-  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle measurements and conditionals
-  *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle resets
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – sets random seed (optional)
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of quantum wires
+  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int)) – layers of operations (i.e. critical path length)
+  *   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int)) – maximum qubit operands of each gate (between 1 and 4)
+  *   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, measure all qubits at the end
+  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, insert middle measurements and conditionals
+  *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, insert middle resets
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)) – sets random seed (optional)
 
   **Returns**
 
@@ -919,7 +919,7 @@ $$
    \leftrightarrow \begin{pmatrix} \alpha \\ \beta \end{pmatrix}
 $$
 
-where $\alpha$ and $\beta$ are complex numbers. We store the statevector as a 1D Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)") with data `sv = [alpha, beta]`, *i.e.* `sv[0] == alpha` and `sv[1] == beta`; note that the indices into the statevector match the ket labels.
+where $\alpha$ and $\beta$ are complex numbers. We store the statevector as a 1D Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) with data `sv = [alpha, beta]`, *i.e.* `sv[0] == alpha` and `sv[1] == beta`; note that the indices into the statevector match the ket labels.
 
 We construct [the tensor product of two qubit states](https://en.wikipedia.org/wiki/Tensor_product) in matrix algebra using [the Kronecker product](https://en.wikipedia.org/wiki/Kronecker_product), with qubit 0 on the right and qubit 1 on the left, such that the $Z$ basis state $\lvert x\rangle$ (where $x$ is the integer interpretation of the bitstring) has its non-zero term in the statevector `sv` at `sv[x]`:
 

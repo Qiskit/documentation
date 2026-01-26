@@ -9,7 +9,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 # CouplingMap
 
 <Class id="qiskit.transpiler.CouplingMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/transpiler/coupling.py#L31-L500" signature="qiskit.transpiler.CouplingMap(couplinglist=None, description=None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Directed graph specifying fixed coupling.
 
@@ -19,8 +19,8 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   **Parameters**
 
-  *   **couplinglist** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *or None*) – An initial coupling graph, specified as an adjacency list containing couplings, e.g. \[\[0,1], \[0,2], \[1,2]]. It is required that nodes are contiguously indexed starting at 0. Missed nodes will be added as isolated nodes in the coupling map.
-  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – A string to describe the coupling map.
+  *   **couplinglist** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – An initial coupling graph, specified as an adjacency list containing couplings, e.g. \[\[0,1], \[0,2], \[1,2]]. It is required that nodes are contiguously indexed starting at 0. Missed nodes will be added as isolated nodes in the coupling map.
+  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – A string to describe the coupling map.
 
   ## Attributes
 
@@ -137,7 +137,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")
+    [list](https://docs.python.org/3/library/stdtypes.html#list)
   </Function>
 
   ### distance
@@ -147,8 +147,8 @@ python_api_name: qiskit.transpiler.CouplingMap
 
     **Parameters**
 
-    *   **physical\_qubit1** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – A physical qubit
-    *   **physical\_qubit2** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Another physical qubit
+    *   **physical\_qubit1** ([*int*](https://docs.python.org/3/library/functions.html#int)) – A physical qubit
+    *   **physical\_qubit2** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Another physical qubit
 
     **Returns**
 
@@ -156,7 +156,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+    [int](https://docs.python.org/3/library/functions.html#int)
 
     **Raises**
 
@@ -168,7 +168,7 @@ python_api_name: qiskit.transpiler.CouplingMap
   <Function id="qiskit.transpiler.CouplingMap.draw" github="https://github.com/Qiskit/qiskit/tree/stable/2.1/qiskit/transpiler/coupling.py#L489-L500" signature="draw()">
     Draws the coupling map.
 
-    This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.17)") function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
+    This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw) function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
 
     **Returns**
 
@@ -210,8 +210,8 @@ python_api_name: qiskit.transpiler.CouplingMap
 
     **Parameters**
 
-    *   **distance** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The code distance for the generated heavy hex graph. The value for distance can be any odd positive integer. The distance relates to the number of qubits by: $n = \frac{5d^2 - 2d - 1}{2}$ where $n$ is the number of qubits and $d$ is the `distance` parameter.
-    *   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
+    *   **distance** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The code distance for the generated heavy hex graph. The value for distance can be any odd positive integer. The distance relates to the number of qubits by: $n = \frac{5d^2 - 2d - 1}{2}$ where $n$ is the number of qubits and $d$ is the `distance` parameter.
+    *   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
 
     **Returns**
 
@@ -233,8 +233,8 @@ python_api_name: qiskit.transpiler.CouplingMap
 
     **Parameters**
 
-    *   **distance** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The code distance for the generated heavy square graph. The value for distance can be any odd positive integer. The distance relates to the number of qubits by: $n = 3d^2 - 2d$ where $n$ is the number of qubits and $d$ is the `distance` parameter.
-    *   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
+    *   **distance** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The code distance for the generated heavy square graph. The value for distance can be any odd positive integer. The distance relates to the number of qubits by: $n = 3d^2 - 2d$ where $n$ is the number of qubits and $d$ is the `distance` parameter.
+    *   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
 
     **Returns**
 
@@ -252,9 +252,9 @@ python_api_name: qiskit.transpiler.CouplingMap
 
     **Parameters**
 
-    *   **rows** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of rows to generate the graph with.
-    *   **cols** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of columns to generate the graph with.
-    *   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
+    *   **rows** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of rows to generate the graph with.
+    *   **cols** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of columns to generate the graph with.
+    *   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
 
     **Returns**
 
@@ -296,7 +296,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
     **Return type**
 
-    Tuple([int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"),[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
+    Tuple([int](https://docs.python.org/3/library/functions.html#int),[int](https://docs.python.org/3/library/functions.html#int))
   </Function>
 
   ### is\_connected
@@ -334,8 +334,8 @@ python_api_name: qiskit.transpiler.CouplingMap
 
     **Parameters**
 
-    *   **mapping** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A mapping of reduced qubits to device qubits.
-    *   **check\_if\_connected** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, checks that the reduced coupling map is connected.
+    *   **mapping** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – A mapping of reduced qubits to device qubits.
+    *   **check\_if\_connected** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, checks that the reduced coupling map is connected.
 
     **Returns**
 
@@ -357,8 +357,8 @@ python_api_name: qiskit.transpiler.CouplingMap
 
     **Parameters**
 
-    *   **physical\_qubit1** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – A physical qubit
-    *   **physical\_qubit2** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Another physical qubit
+    *   **physical\_qubit1** ([*int*](https://docs.python.org/3/library/functions.html#int)) – A physical qubit
+    *   **physical\_qubit2** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Another physical qubit
 
     **Returns**
 

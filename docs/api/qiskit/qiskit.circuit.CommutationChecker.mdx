@@ -9,7 +9,7 @@ python_api_name: qiskit.circuit.CommutationChecker
 # CommutationChecker
 
 <Class id="qiskit.circuit.CommutationChecker" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/commutation_checker.py#L24-L149" signature="qiskit.circuit.CommutationChecker(standard_gate_commutations=None, cache_max_entries=1000000, *, gates=None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Check commutations of two operations.
 
@@ -33,9 +33,9 @@ $$
 
   **Parameters**
 
-  *   **standard\_gate\_commutations** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")) –
-  *   **cache\_max\_entries** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
-  *   **gates** (*Optional\[Set\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*]]*) –
+  *   **standard\_gate\_commutations** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) –
+  *   **cache\_max\_entries** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
+  *   **gates** (*Optional\[Set\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]]*) –
 
   ### check\_commutation\_entries
 
@@ -45,9 +45,9 @@ $$
     **Parameters**
 
     *   **first\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – first operation.
-    *   **first\_qargs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.14)")) – first operation’s qubits.
+    *   **first\_qargs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)) – first operation’s qubits.
     *   **second\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
-    *   **second\_qargs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.14)")) – second operation’s qubits.
+    *   **second\_qargs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)) – second operation’s qubits.
 
     **Returns**
 
@@ -55,7 +55,7 @@ $$
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### clear\_cached\_commutations
@@ -72,14 +72,14 @@ $$
     **Parameters**
 
     *   **op1** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – first operation.
-    *   **qargs1** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – first operation’s qubits.
-    *   **cargs1** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – first operation’s clbits.
+    *   **qargs1** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – first operation’s qubits.
+    *   **cargs1** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – first operation’s clbits.
     *   **op2** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
-    *   **qargs2** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – second operation’s qubits.
-    *   **cargs2** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – second operation’s clbits.
-    *   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – the maximum number of qubits to consider, the check may be skipped if the number of qubits for either operation exceeds this amount. Defaults to `None`, which means no limit. See also `matrix_max_num_qubits` to limit the dimension of matrices computed.
-    *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – If the average gate fidelity in between the two operations is above this number (up to `1e-12`) they are assumed to commute.
-    *   **matrix\_max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the maximum number of qubits for which it is allowed to compute the matrix representation. This is needed if there is no efficient heck readily available, e.g. for custom gates.
+    *   **qargs2** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – second operation’s qubits.
+    *   **cargs2** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – second operation’s clbits.
+    *   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – the maximum number of qubits to consider, the check may be skipped if the number of qubits for either operation exceeds this amount. Defaults to `None`, which means no limit. See also `matrix_max_num_qubits` to limit the dimension of matrices computed.
+    *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float)) – If the average gate fidelity in between the two operations is above this number (up to `1e-12`) they are assumed to commute.
+    *   **matrix\_max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the maximum number of qubits for which it is allowed to compute the matrix representation. This is needed if there is no efficient heck readily available, e.g. for custom gates.
 
     **Returns**
 
@@ -87,7 +87,7 @@ $$
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### commute\_nodes
@@ -97,12 +97,12 @@ $$
 
     **Parameters**
 
-    *   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) –
-    *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) –
+    *   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
+    *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float)) –
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### num\_cached\_entries

@@ -23,7 +23,7 @@ Whether a certain backend can be used depends on the availability of the underly
 ### HAS\_QUIMB
 
 <Attribute id="qiskit_addon_mpf.backends.HAS_QUIMB">
-  Indicates whether the optional [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)") dependency is installed.
+  Indicates whether the optional [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb) dependency is installed.
 </Attribute>
 
 ### HAS\_TENPY
@@ -36,13 +36,13 @@ Whether a certain backend can be used depends on the availability of the underly
 
 Depending on the availability (see above), the following backends are available:
 
-|                                                                                                                                    |                                                                                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd")             | A [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)")-based TEBD backend.                         |
-| [`quimb_layers`](backends-quimb-layers#module-qiskit_addon_mpf.backends.quimb_layers "qiskit_addon_mpf.backends.quimb_layers")     | A layer-wise time-evolution backend using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)").    |
-| [`quimb_circuit`](backends-quimb-circuit#module-qiskit_addon_mpf.backends.quimb_circuit "qiskit_addon_mpf.backends.quimb_circuit") | A circuit-based time-evolution backend using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)"). |
-| [`tenpy_tebd`](backends-tenpy-tebd#module-qiskit_addon_mpf.backends.tenpy_tebd "qiskit_addon_mpf.backends.tenpy_tebd")             | A [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)")-based TEBD backend.                                       |
-| [`tenpy_layers`](backends-tenpy-layers#module-qiskit_addon_mpf.backends.tenpy_layers "qiskit_addon_mpf.backends.tenpy_layers")     | A layer-wise time-evolution backend using [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)").                  |
+|                                                                                                                                    |                                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd")             | A [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb)-based TEBD backend.                           |
+| [`quimb_layers`](backends-quimb-layers#module-qiskit_addon_mpf.backends.quimb_layers "qiskit_addon_mpf.backends.quimb_layers")     | A layer-wise time-evolution backend using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb).      |
+| [`quimb_circuit`](backends-quimb-circuit#module-qiskit_addon_mpf.backends.quimb_circuit "qiskit_addon_mpf.backends.quimb_circuit") | A circuit-based time-evolution backend using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb).   |
+| [`tenpy_tebd`](backends-tenpy-tebd#module-qiskit_addon_mpf.backends.tenpy_tebd "qiskit_addon_mpf.backends.tenpy_tebd")             | A [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)")-based TEBD backend.                      |
+| [`tenpy_layers`](backends-tenpy-layers#module-qiskit_addon_mpf.backends.tenpy_layers "qiskit_addon_mpf.backends.tenpy_layers")     | A layer-wise time-evolution backend using [`tenpy`](https://tenpy.readthedocs.io/en/latest/main.html#module-tenpy "(in TeNPy v1.0.4)"). |
 
 ## Interface
 
@@ -51,7 +51,7 @@ The interface implemented by any one of these optional backends is made up of th
 ### Evolver
 
 <Class id="qiskit_addon_mpf.backends.Evolver" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/interface.py#L21-L52" signature="Evolver" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   The interface for the time-evolution algorithms used within [`DynamicMPF`](dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF").
 
@@ -85,7 +85,7 @@ The interface implemented by any one of these optional backends is made up of th
 ### State
 
 <Class id="qiskit_addon_mpf.backends.State" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/interface.py#L55-L117" signature="State" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   The interface for the [`DynamicMPF.evolution_state`](dynamic#evolution_state "qiskit_addon_mpf.dynamic.DynamicMPF.evolution_state").
 
@@ -127,16 +127,16 @@ The interface implemented by any one of these optional backends is made up of th
     Compute the overlap of this state with the provided initial state.
 
     <Admonition title="Warning" type="caution">
-      A concrete implementation of this method should raise a [`TypeError`](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") if the provided `initial_state` object is not supported by the implementing backend.
+      A concrete implementation of this method should raise a [`TypeError`](https://docs.python.org/3/library/exceptions.html#TypeError) if the provided `initial_state` object is not supported by the implementing backend.
     </Admonition>
 
     **Parameters**
 
-    **initial\_state** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – the initial state with which to compute the overlap.
+    **initial\_state** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – the initial state with which to compute the overlap.
 
     **Raises**
 
-    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – if the provided initial state has an incompatible type.
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – if the provided initial state has an incompatible type.
 
     **Returns**
 
@@ -144,7 +144,7 @@ The interface implemented by any one of these optional backends is made up of th
 
     **Return type**
 
-    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+    [complex](https://docs.python.org/3/library/functions.html#complex)
   </Function>
 </Class>
 
