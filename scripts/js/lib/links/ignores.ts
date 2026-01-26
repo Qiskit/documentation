@@ -168,16 +168,9 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json",
 
   // These links are from old IQP and do not work any more
-  "https://api.quantum-computing.ibm.com/runtime",
   "https://auth.quantum-computing.ibm.com/api",
   "https://auth.quantum.ibm.com/api",
   "https://quantum-computing.cloud.ibm.com",
-  "https://us-east.quantum-computing.cloud.ibm.com/",
-
-  // Other links that don't seem to exist any more
-  "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
-  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
-  "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
 
   // The pulse guide was removed in https://github.com/Qiskit/documentation/pull/4495 and should be fixed
   // in the Qiskit latest, dev, and some historical versions. In the meantime, the app will redirect the
