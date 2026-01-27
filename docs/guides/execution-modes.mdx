@@ -14,7 +14,9 @@ A single primitive request of the estimator or the sampler made without a contex
 <span id="batch-mode"></span>
 ## Batch mode
 
-A multi-job manager for efficiently running experiments comprising multi-job workloads. These workloads are made up of independently executable jobs that have no conditional relationship with each other. With batch mode, users submit their jobs all at once. The system parallelizes or threads the pre-processing step of each primitive job to more tightly package quantum execution across jobs, and then runs the quantum execution of each job in quick succession to deliver the most efficient results.
+A multi-job manager for efficiently running experiments comprising multi-job workloads. These workloads are made up of independently executable jobs that have no conditional relationship with each other. With batch mode, users submit their jobs all at once. 
+
+The system parallelizes or threads the pre-processing (classical computing) step of each primitive job to more tightly package quantum execution across jobs, and then runs the quantum execution of each job in quick succession to deliver the most efficient results. For further details about threading, see the [Execution mode FAQ page.](/docs/guides/execution-modes-faq#parallel)
 
 
 ![A sets of jobs being run in batch mode.  The classical computation part of each job happens simultaneously, then all jobs are sent to the QPU.  The QPU is locked for your use from the time the first job reaches the QPU until the last job is done processing on the QPU.  There is no gap between jobs where the QPU is idle.](/docs/images/guides/execution-modes/batch.svg 'How a batch works')
