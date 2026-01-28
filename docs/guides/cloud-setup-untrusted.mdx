@@ -31,10 +31,14 @@ To initialize the service in this situation, use code like the following:
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
 
-    # Saved accounts are not used when a token is passed in. The service is initialized with credentials that are not saved.
+    # The credentials you enter will override any saved
+    # account credentials that might be available locally.
     service = QiskitRuntimeService(
-      # Delete your key on the API keys page after entering this code:
-      token="<your-API-key>", # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
+      # Use the 44-character API_KEY you created and saved from
+      # the IBM Quantum Platform dashboard, and then delete
+      # the key on the API keys page after entering this code:
+      token="<your-API-key>", 
+      
       # Optionally specify an instance to use
       instance="<IBM Cloud CRN or instance name>"
       )
