@@ -47,7 +47,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   **Parameters**
 
-  *   **data** ([*PauliList*](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")  *or*[*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Pauli list of terms. A list of Pauli strings or a Pauli string is also allowed.
+  *   **data** ([*PauliList*](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")  *or*[*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list)  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Pauli list of terms. A list of Pauli strings or a Pauli string is also allowed.
 
   *   **coeffs** (*np.ndarray*) –
 
@@ -57,9 +57,9 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
           If `data` is a [`SparsePauliOp`](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") and `coeffs` is not `None`, the value of the `SparsePauliOp.coeffs` will be ignored, and only the passed keyword argument `coeffs` will be used.
         </Admonition>
 
-  *   **ignore\_pauli\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if true, any `phase` component of a given [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") will be assumed to be zero. This is more efficient in cases where a [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") has been constructed purely for this object, and it is already known that the phases in the ZX-convention are zero. It only makes sense to pass this option when giving [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") data. (Default: False)
+  *   **ignore\_pauli\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if true, any `phase` component of a given [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") will be assumed to be zero. This is more efficient in cases where a [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") has been constructed purely for this object, and it is already known that the phases in the ZX-convention are zero. It only makes sense to pass this option when giving [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") data. (Default: False)
 
-  *   **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – copy the input data if True, otherwise assign it directly, if possible. (Default: True)
+  *   **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – copy the input data if True, otherwise assign it directly, if possible. (Default: True)
 
   **Raises**
 
@@ -138,8 +138,8 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
     **Parameters**
 
-    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") *| List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – Either a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), a list of integers or None. If both layout and num\_qubits are none, a copy of the operator is returned.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits to expand the operator to. If not provided then if `layout` is a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") the number of the transpiler output circuit qubits will be used by default. If `layout` is a list of integers the permutation specified will be applied without any expansion. If layout is None, the operator will be expanded to the given number of qubits.
+    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") *| List\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – Either a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), a list of integers or None. If both layout and num\_qubits are none, a copy of the operator is returned.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits to expand the operator to. If not provided then if `layout` is a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") the number of the transpiler output circuit qubits will be used by default. If `layout` is a list of integers the permutation specified will be applied without any expansion. If layout is None, the operator will be expanded to the given number of qubits.
 
     **Returns**
 
@@ -205,7 +205,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
     **Parameters**
 
-    *   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – optionally sort by weight if True (Default: False).
+    *   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – optionally sort by weight if True (Default: False).
     *   **sorted** (*By using the weight kwarg the output can additionally be*) –
     *   **Pauli.** (*by the number of non-identity terms in the*) –
 
@@ -225,8 +225,8 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
     **Parameters**
 
-    *   **parameters** (*Mapping\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*] | Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – The values to bind the parameters to.
-    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `False`, a copy of the operator with the bound parameters is returned. If `True` the operator itself is modified.
+    *   **parameters** (*Mapping\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*] | Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – The values to bind the parameters to.
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `False`, a copy of the operator with the bound parameters is returned. If `True` the operator itself is modified.
 
     **Returns**
 
@@ -248,7 +248,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
     **Parameters**
 
-    **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The absolute tolerance to check whether a real or imaginary part should be set to 0.
+    **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The absolute tolerance to check whether a real or imaginary part should be set to 0.
 
     **Returns**
 
@@ -267,8 +267,8 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
     **Parameters**
 
     *   **other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – a SparsePauliOp object.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
     **Returns**
 
@@ -309,7 +309,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
     **Parameters**
 
     *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
     **Returns**
 
@@ -332,7 +332,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
     **Parameters**
 
     *   **other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – an operator object.
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – Absolute numerical tolerance for checking equivalence.
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Absolute numerical tolerance for checking equivalence.
 
     **Returns**
 
@@ -340,7 +340,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### expand
@@ -385,9 +385,9 @@ $$
 
     **Parameters**
 
-    *   **obj** (*Iterable\[Tuple\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")*]]*) – The list of 2-tuples specifying the Pauli terms.
-    *   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.13)")) – The dtype of coeffs (Default: complex).
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits of the operator (Default: None).
+    *   **obj** (*Iterable\[Tuple\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*complex*](https://docs.python.org/3/library/functions.html#complex)*]]*) – The list of 2-tuples specifying the Pauli terms.
+    *   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type)) – The dtype of coeffs (Default: complex).
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits of the operator (Default: None).
 
     **Returns**
 
@@ -415,8 +415,8 @@ $$
     **Parameters**
 
     *   **obj** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an N-qubit operator.
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8). Since the comparison is to zero, in effect the tolerance used is the maximum of `atol` and `rtol`.
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5). Since the comparison is to zero, in effect the tolerance used is the maximum of `atol` and `rtol`.
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8). Since the comparison is to zero, in effect the tolerance used is the maximum of `atol` and `rtol`.
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5). Since the comparison is to zero, in effect the tolerance used is the maximum of `atol` and `rtol`.
 
     **Returns**
 
@@ -458,11 +458,11 @@ $$
 
     **Parameters**
 
-    *   **obj** (*Iterable\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")*]]*) – The list 3-tuples specifying the Paulis.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits of the operator.
-    *   **do\_checks** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – The flag of checking if the input indices are not duplicated
+    *   **obj** (*Iterable\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*complex*](https://docs.python.org/3/library/functions.html#complex)*]]*) – The list 3-tuples specifying the Paulis.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits of the operator.
+    *   **do\_checks** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – The flag of checking if the input indices are not duplicated
     *   \*\*(\*\***Default** – True).
-    *   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.13)")) – The dtype of coeffs (Default: complex).
+    *   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type)) – The dtype of coeffs (Default: complex).
 
     **Returns**
 
@@ -485,7 +485,7 @@ $$
 
     **Parameters**
 
-    **qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+    **qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
 
     whether the commutation rule is applied to the whole operator, or on a per-qubit basis. For example:
 
@@ -509,7 +509,7 @@ $$
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")]
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")]
   </Function>
 
   ### input\_dims
@@ -525,8 +525,8 @@ $$
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5).
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5).
 
     **Returns**
 
@@ -534,7 +534,7 @@ $$
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### label\_iter
@@ -562,7 +562,7 @@ $$
 
     **Parameters**
 
-    **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
+    **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
 
     **Returns**
 
@@ -582,7 +582,7 @@ $$
 
     **Parameters**
 
-    **qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – whether the commutation rule is applied to the whole operator, or on a per-qubit basis.
+    **qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether the commutation rule is applied to the whole operator, or on a per-qubit basis.
 
     **Returns**
 
@@ -592,7 +592,7 @@ $$
 
     **Return type**
 
-    [rustworkx.PyGraph](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph "(in rustworkx v0.16)")
+    [rustworkx.PyGraph](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph)
   </Function>
 
   ### output\_dims
@@ -608,7 +608,7 @@ $$
 
     **Parameters**
 
-    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of times to compose with self (n>0).
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of times to compose with self (n>0).
 
     **Returns**
 
@@ -630,9 +630,9 @@ $$
 
     **Parameters**
 
-    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – reshape to an N-qubit operator \[Default: None].
+    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – reshape to an N-qubit operator \[Default: None].
 
     **Returns**
 
@@ -654,8 +654,8 @@ $$
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5).
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5).
 
     **Returns**
 
@@ -724,7 +724,7 @@ $$
 
     **Parameters**
 
-    *   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – optionally sort by weight if True (Default: False).
+    *   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – optionally sort by weight if True (Default: False).
     *   **sorted** (*By using the weight kwarg the output can additionally be*) –
     *   **Pauli.** (*by the number of non-identity terms in the*) –
 
@@ -746,7 +746,7 @@ $$
 
     **Parameters**
 
-    **ops** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*]*) – a list of SparsePauliOps.
+    **ops** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*]*) – a list of SparsePauliOps.
 
     **Returns**
 
@@ -796,7 +796,7 @@ $$
 
     **Parameters**
 
-    **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – return a Numpy array if True, otherwise return a list (Default: False).
+    **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – return a Numpy array if True, otherwise return a list (Default: False).
 
     **Returns**
 
@@ -804,7 +804,7 @@ $$
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") or array
+    [list](https://docs.python.org/3/library/stdtypes.html#list) or array
   </Function>
 
   ### to\_matrix
@@ -814,8 +814,8 @@ $$
 
     **Parameters**
 
-    *   **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if `True` return a sparse CSR matrix, otherwise return dense Numpy array (the default).
-    *   **force\_serial** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if `True`, use an unthreaded implementation, regardless of the state of the [Qiskit threading-control environment variables](/docs/guides/configure-qiskit-local#environment-variables). By default, this will use threaded parallelism over the available CPUs.
+    *   **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if `True` return a sparse CSR matrix, otherwise return dense Numpy array (the default).
+    *   **force\_serial** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if `True`, use an unthreaded implementation, regardless of the state of the [Qiskit threading-control environment variables](/docs/guides/configure-qiskit-local#environment-variables). By default, this will use threaded parallelism over the available CPUs.
 
     **Returns**
 

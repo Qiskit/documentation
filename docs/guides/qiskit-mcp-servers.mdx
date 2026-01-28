@@ -46,6 +46,14 @@ Provides access to IBM Quantum cloud services through Qiskit Runtime. This enabl
 
 Provides AI-powered circuit optimization through the [AI-powered transpiler passes](/docs/guides/ai-transpiler-passes). This server enables AI assistants to optimize quantum circuits using advanced routing and optimization algorithms.
 
+### Community servers
+
+The following community-contributed MCP servers are also available:
+
+#### Qiskit Gym MCP Server
+
+Provides reinforcement learning capabilities for quantum circuit synthesis using the [qiskit-gym](https://github.com/AI4quantum/qiskit-gym) library. This server enables AI assistants to use RL-based optimization techniques for quantum circuit transpilation and synthesis.
+
 ## Install Qiskit MCP Servers
 
 To use Qiskit MCP Servers, you need:
@@ -56,7 +64,7 @@ To use Qiskit MCP Servers, you need:
 Install all the available Qiskit MCP servers by running the following command from a terminal:
 
 ```bash
-pip install qiskit-mcp-servers
+pip install qiskit-mcp-servers[all]
 ```
 
 You can also install individual MCP servers:
@@ -66,6 +74,7 @@ pip install qiskit-mcp-server
 pip install qiskit-code-assistant-mcp-server
 pip install qiskit-ibm-runtime-mcp-server
 pip install qiskit-ibm-transpiler-mcp-server
+pip install qiskit-gym-mcp-server
 ```
 
 ## Configure Qiskit MCP Servers
@@ -100,6 +109,9 @@ You can configure an MCP-compatible client (such as Claude Desktop, Cursor, or o
     },
     "qiskit-ibm-transpiler": {
       "command": "qiskit-ibm-transpiler-mcp-server"
+    },
+    "qiskit-gym": {
+      "command": "qiskit-gym-mcp-server"
     }
   }
 }
@@ -123,6 +135,9 @@ npx @modelcontextprotocol/inspector qiskit-code-assistant-mcp-server
 
 # Test the Qiskit IBM Transpiler MCP Server
 npx @modelcontextprotocol/inspector qiskit-ibm-transpiler-mcp-server
+
+# Test the Qiskit Gym MCP Server
+npx @modelcontextprotocol/inspector qiskit-gym-mcp-server
 ```
 
 ## Next steps

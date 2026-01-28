@@ -61,11 +61,11 @@ $$
 
   **Parameters**
 
-  *   **coupling** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v2.2)")  *|*[*PyGraph*](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph "(in rustworkx v0.17)")  *|*[*PyDiGraph*](https://www.rustworkx.org/apiref/rustworkx.PyDiGraph.html#rustworkx.PyDiGraph "(in rustworkx v0.17)")) – The qubit subgraph on which to map the Hamiltonian. Directionality of graph edges will be ignored, and parallel edges will be treated as a single edge during generation of the operator.
-  *   **coupling\_constants** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")*]*) – The real-valued coupling constants, $J_i$, in each Cartesian axis.
-  *   **ext\_magnetic\_field** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.14)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")*]*) – The coefficients, $h_i$, representing a magnetic field along each Cartesian axis.
+  *   **coupling** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap)  *|*[*PyGraph*](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph)  *|*[*PyDiGraph*](https://www.rustworkx.org/apiref/rustworkx.PyDiGraph.html#rustworkx.PyDiGraph)) – The qubit subgraph on which to map the Hamiltonian. Directionality of graph edges will be ignored, and parallel edges will be treated as a single edge during generation of the operator.
+  *   **coupling\_constants** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The real-valued coupling constants, $J_i$, in each Cartesian axis.
+  *   **ext\_magnetic\_field** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The coefficients, $h_i$, representing a magnetic field along each Cartesian axis.
   *   **pauli\_order\_strategy** ([*PauliOrderStrategy*](#qiskit_addon_utils.problem_generators.PauliOrderStrategy "qiskit_addon_utils.problem_generators.generate_xyz_hamiltonian.PauliOrderStrategy")) – Indicates the iteration strategy in which the Pauli terms will be generated. See [`PauliOrderStrategy`](#qiskit_addon_utils.problem_generators.PauliOrderStrategy "qiskit_addon_utils.problem_generators.PauliOrderStrategy") for more details.
-  *   **coloring** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*],* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*] | None*) – An optional dictionary encoding the graph coloring that is used to sort the Hamiltonian terms. This dictionary maps edge labels (in the form of integer pairs) to color values (simple integers). Hamiltonian interaction terms will be added by increasing color value. Within each color, edges are sorted which does not change anything physically but results in easier to read results.
+  *   **coloring** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*],* [*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – An optional dictionary encoding the graph coloring that is used to sort the Hamiltonian terms. This dictionary maps edge labels (in the form of integer pairs) to color values (simple integers). Hamiltonian interaction terms will be added by increasing color value. Within each color, edges are sorted which does not change anything physically but results in easier to read results.
 
   **Returns**
 
@@ -73,12 +73,12 @@ $$
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – The coupling constants must be specified by a length-3 sequence of floating point values.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – The external magnetic field must be specified by a length-3 sequence of floating point values.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The coupling constants must be specified by a length-3 sequence of floating point values.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The external magnetic field must be specified by a length-3 sequence of floating point values.
 
   **Return type**
 
-  [*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)")
+  [*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)
 </Function>
 
 ### generate\_time\_evolution\_circuit
@@ -118,23 +118,23 @@ $$
 
   **Parameters**
 
-  *   **operator** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)")) – The operator for which to model the time evolution.
-  *   **synthesis** ([*EvolutionSynthesis*](/docs/api/qiskit/qiskit.synthesis.EvolutionSynthesis "(in Qiskit v2.2)") *| None*) – A synthesis strategy. If `None`, the default synthesis is the Lie-Trotter product formula with a single repetition.
-  *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – The evolution time.
+  *   **operator** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)) – The operator for which to model the time evolution.
+  *   **synthesis** ([*EvolutionSynthesis*](/docs/api/qiskit/qiskit.synthesis.EvolutionSynthesis) *| None*) – A synthesis strategy. If `None`, the default synthesis is the Lie-Trotter product formula with a single repetition.
+  *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The evolution time.
 
   **Returns**
 
-  A [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.2)") implementing a time-evolved operator.
+  A [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) implementing a time-evolved operator.
 
   **Return type**
 
-  [*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.2)")
+  [*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)
 </Function>
 
 ### PauliOrderStrategy
 
 <Class id="qiskit_addon_utils.problem_generators.PauliOrderStrategy" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.2/qiskit_addon_utils/problem_generators/generate_xyz_hamiltonian.py#L29-L53" signature="PauliOrderStrategy(value)" modifiers="class">
-  Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.14)")
+  Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
   Enumeration of different Pauli-orderings.
 
