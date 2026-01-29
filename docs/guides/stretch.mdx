@@ -100,16 +100,21 @@ qc.barrier()
 The concrete value of a stretch duration is resolved at compile time, after the circuit is scheduled. When running a Sampler job in Qiskit Runtime, you can view the resolved stretch values in the job result metadata.  Support for `stretch` in Qiskit Runtime is currently experimental, so you need to first set an experimental option to enable its retrieval, then access the data directly from the metadata as follows:
 
 ```python
-# enable stretch value retrieval
+# Enable stretch value retrieval.
 sampler.options.experimental = {
     "execution": {
         "stretch_values": True,
     },
 }
 
-# Access the stretch values from the metadata
+# Access the stretch values from the metadata.
 job_result = job.result()
 circuit_stretch_values = job_result[0].metadata["compilation"]["stretch_values"]
+
+# Visualize the timing.
+# Use the sliders at the bottom, the controls at the top, and the legend on the side 
+# of the output to customize the view.
+draw_circuit_schedule_timing(vulqan_job.result()[0].metadata['compilation']['scheduler_timing']['timing'])
 ```
 <Admonition type="note">
 Although the total circuit time is returned in the "compilation" metadata, this is NOT the time used for billing (quantum time).
