@@ -8,10 +8,10 @@ python_api_name: qiskit.circuit.library.TdgGate
 
 # TdgGate
 
-<Class id="qiskit.circuit.library.TdgGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/t.py#L102-L172" signature="qiskit.circuit.library.TdgGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
+<Class id="qiskit.circuit.library.TdgGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/t.py#L102-L175" signature="qiskit.circuit.library.TdgGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
   Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
-  Single qubit T-adjoint gate (\~Z\*\*0.25).
+  Single qubit T-adjoint gate ($T^\dagger$).
 
   It induces a $-\pi/4$ phase.
 
@@ -22,7 +22,7 @@ python_api_name: qiskit.circuit.library.TdgGate
   Matrix representation:
 
 $$
-Tdg = \begin{pmatrix}
+T^\dagger = \begin{pmatrix}
 1 & 0 \\
 0 & e^{-i\pi/4}
 \end{pmatrix}
@@ -38,7 +38,9 @@ $$
 
   Equivalent to a $-\pi/4$ radian rotation about the Z axis.
 
-  Create new Tdg gate.
+  **Parameters**
+
+  **label** – An optional label for the gate.
 
   ## Attributes
 
@@ -221,7 +223,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.TdgGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/t.py#L154-L166" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.TdgGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/t.py#L157-L169" signature="inverse(annotated=False)">
     Return inverse Tdg gate (i.e. T).
 
     **Parameters**
@@ -245,7 +247,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.TdgGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/t.py#L168-L169" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.TdgGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/t.py#L171-L172" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.

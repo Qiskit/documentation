@@ -8,10 +8,10 @@ python_api_name: qiskit.circuit.library.SdgGate
 
 # SdgGate
 
-<Class id="qiskit.circuit.library.SdgGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L148-L259" signature="qiskit.circuit.library.SdgGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
+<Class id="qiskit.circuit.library.SdgGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L148-L262" signature="qiskit.circuit.library.SdgGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
   Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
-  Single qubit S-adjoint gate (\~Z\*\*0.5).
+  Single qubit S-adjoint gate ($S^\dagger$).
 
   It induces a $-\pi/2$ phase.
 
@@ -38,7 +38,9 @@ $$
 
   Equivalent to a $-\pi/2$ radian rotation about the Z axis.
 
-  Create new Sdg gate.
+  **Parameters**
+
+  **label** – An optional label for the gate.
 
   ## Attributes
 
@@ -176,7 +178,7 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.SdgGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L200-L237" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.SdgGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L203-L240" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return a controlled version of the Sdg gate.
 
     For a single control qubit, the controlled gate is implemented as [`CSdgGate`](qiskit.circuit.library.CSdgGate "qiskit.circuit.library.CSdgGate"), regardless of the value of annotated.
@@ -215,7 +217,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.SdgGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L239-L251" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.SdgGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L242-L254" signature="inverse(annotated=False)">
     Return inverse of Sdg (SGate).
 
     **Parameters**
@@ -239,7 +241,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.SdgGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L253-L256" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.SdgGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L256-L259" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
