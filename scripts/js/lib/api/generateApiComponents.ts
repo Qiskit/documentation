@@ -256,10 +256,20 @@ function prepareAttributeOrPropertyProps(
   // between an attribute and property. However, we preserve the full string if it's `abstract property`.
   //
   // Meanwhile, we preserve the non-modifier `em.property` elements to be processed below.
-  const rawModifiers = $child
+  let rawModifiers = $child
     .find("em.property")
     .filter((i, el) => $(el).text().includes("property"));
-  const modifiersText = rawModifiers.text().trim();
+  let modifiersText = rawModifiers.text().trim();
+
+  // Temporary workaround: Sphinx 9 uses `span` instead of
+  // `em` to define the modifiers
+  if (!modifiersText) {
+    rawModifiers = $child
+      .find("span.property")
+      .filter((i, el) => $(el).text().includes("property"));
+    modifiersText = rawModifiers.text().trim();
+  }
+
   const filteredModifiers =
     modifiersText === "property" ? undefined : modifiersText;
   rawModifiers.remove();
@@ -432,8 +442,16 @@ export function findByText(
 }
 
 function getAndRemoveModifiers($child: Cheerio<any>): string {
-  const rawModifiers = $child.find("em.property");
-  const modifiers = rawModifiers.text().trim();
+  let rawModifiers = $child.find("em.property");
+  let modifiers = rawModifiers.text().trim();
+
+  // Temporary workaround: Sphinx 9 uses `span` instead of
+  // `em` to define the modifiers
+  if (!modifiers) {
+    rawModifiers = $child.find("span.property");
+    modifiers = rawModifiers.text().trim();
+  }
+
   rawModifiers.remove();
   return modifiers;
 }
