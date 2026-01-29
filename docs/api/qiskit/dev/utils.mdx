@@ -6,11 +6,11 @@ python_api_type: module
 python_api_name: qiskit.utils
 ---
 
+<span id="utilities-qiskit-utils" />
+
 <span id="module-qiskit.utils" />
 
 <span id="qiskit-utils" />
-
-<span id="utilities-qiskit-utils" />
 
 # Utilities
 
@@ -121,8 +121,8 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) –
-  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) –
+  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"))
+  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str))
 
   **Return type**
 
@@ -168,8 +168,8 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float)) –
-  *   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) –
+  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float))
+  *   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*)
 
   **Return type**
 
@@ -191,8 +191,8 @@ python_api_name: qiskit.utils
 
   *   **cls** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type)) – the class to modify.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the name of the method on the class to wrap.
-  *   **before** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable) *| None*) – a callable that should be called before the method that is being wrapped.
-  *   **after** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable) *| None*) – a callable that should be called after the method that is being wrapped.
+  *   **before** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)) – a callable that should be called before the method that is being wrapped.
+  *   **after** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)) – a callable that should be called after the method that is being wrapped.
 
   **Raises**
 
@@ -275,7 +275,7 @@ python_api_name: qiskit.utils
 
     **Parameters**
 
-    **value** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
+    **value** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
   </Function>
 
   ### ignore\_user\_settings
@@ -611,7 +611,7 @@ from qiskit.utils import LazyImportTester
 
   ##### \_is\_available
 
-  <Function id="qiskit.utils.LazyDependencyManager._is_available" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L104-L112" signature="_is_available()" modifiers="abstract">
+  <Function id="qiskit.utils.LazyDependencyManager._is_available" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L104-L112" signature="_is_available()" modifiers="abstractmethod">
     Subclasses of [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.LazyDependencyManager") should override this method to implement the actual test of availability. This method should return a Boolean, where `True` indicates that the dependency was available. This method will only ever be called once.
 
     **Return type**
@@ -686,10 +686,10 @@ from qiskit.utils import LazyImportTester
   **Parameters**
 
   *   **name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]] |* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) –
-  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*)
+  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
+  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
 
   **Raises**
 
@@ -706,10 +706,10 @@ from qiskit.utils import LazyImportTester
   **Parameters**
 
   *   **command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) –
-  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*)
+  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
+  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
 
   **Raises**
 

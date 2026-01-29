@@ -32,7 +32,7 @@ python_api_name: qiskit.passmanager.BaseController
 
     *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -40,12 +40,12 @@ python_api_name: qiskit.passmanager.BaseController
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### iter\_tasks
 
-  <Function id="qiskit.passmanager.BaseController.iter_tasks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L176-L200" signature="iter_tasks(state)" modifiers="abstract">
+  <Function id="qiskit.passmanager.BaseController.iter_tasks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L176-L200" signature="iter_tasks(state)" modifiers="abstractmethod">
     A custom logic to choose a next task to run.
 
     Controller subclass can consume the state to build a proper task pipeline. The updated state after a task execution will be fed back in as the “return” value of any `yield` statements. This indicates the order of task execution is only determined at running time. This method is not allowed to mutate the given state object.

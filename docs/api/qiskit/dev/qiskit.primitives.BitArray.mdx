@@ -15,7 +15,7 @@ python_api_name: qiskit.primitives.BitArray
 
   This object contains a single, contiguous block of data that represents an array of bitstrings. The last axis is over packed bits, the second last axis is over shots, and the preceding axes correspond to the shape of the pub that was executed to sample these bits.
 
-  You typically get this object back as one part of a [`DataBin`](qiskit.primitives.DataBin "qiskit.primitives.DataBin") accessed through a single `PubResult.data`. Users do not typically create this class themselves, however if you have bitstring-like data in an alternate form that you would like to convert to a [`BitArray`](#qiskit.primitives.BitArray "qiskit.primitives.BitArray"), you can use one of [`from_bool_array()`](#qiskit.primitives.BitArray.from_bool_array "qiskit.primitives.BitArray.from_bool_array"), [`from_counts()`](#qiskit.primitives.BitArray.from_counts "qiskit.primitives.BitArray.from_counts") or [`from_samples()`](#qiskit.primitives.BitArray.from_samples "qiskit.primitives.BitArray.from_samples").
+  You typically get this object back as one part of a [`DataBin`](qiskit.primitives.DataBin "qiskit.primitives.DataBin") accessed through a single [`PubResult.data`](qiskit.primitives.PubResult#data "qiskit.primitives.PubResult.data"). Users do not typically create this class themselves, however if you have bitstring-like data in an alternate form that you would like to convert to a [`BitArray`](#qiskit.primitives.BitArray "qiskit.primitives.BitArray"), you can use one of [`from_bool_array()`](#qiskit.primitives.BitArray.from_bool_array "qiskit.primitives.BitArray.from_bool_array"), [`from_counts()`](#qiskit.primitives.BitArray.from_counts "qiskit.primitives.BitArray.from_counts") or [`from_samples()`](#qiskit.primitives.BitArray.from_samples "qiskit.primitives.BitArray.from_samples").
 
   You can “unpack” the bitstrings into expanded array of [`bool`](https://docs.python.org/3/library/functions.html#bool) by using the [`to_bool_array()`](#qiskit.primitives.BitArray.to_bool_array "qiskit.primitives.BitArray.to_bool_array") method.
 
@@ -82,7 +82,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[*uint64*]]
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[*uint64*]]
   </Function>
 
   ### concatenate
@@ -174,7 +174,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    **observables** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")  *|*[*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*] | \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]]] |* [*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex)  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes) *| \_NestedSequence\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes)*]*) – The observable(s) to take the expectation value of. Must have a shape broadcastable with with this bit array and the same number of qubits as the number of bits of this bit array. The observables must be diagonal (I, Z, 0 or 1) too.
+    **observables** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")  *|*[*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*] | ArrayLike*) – The observable(s) to take the expectation value of. Must have a shape broadcastable with with this bit array and the same number of qubits as the number of bits of this bit array. The observables must be diagonal (I, Z, 0 or 1) too.
 
     **Returns**
 
@@ -188,7 +188,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[*float64*]]
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[*float64*]]
   </Function>
 
   ### from\_bool\_array
@@ -198,7 +198,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    *   **array** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[bool\_]]*) – The array to convert, with “bitstrings” along the last axis.
+    *   **array** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)*]]*) – The array to convert, with “bitstrings” along the last axis.
     *   **order** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['big', 'little']*) – One of `"big"` or `"little"`, indicating whether `array[..., 0]` correspond to the most significant bits or the least significant bits of each bitstring, respectively.
 
     **Returns**
@@ -439,7 +439,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[*bool\_*]]
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)]]
   </Function>
 
   ### transpose

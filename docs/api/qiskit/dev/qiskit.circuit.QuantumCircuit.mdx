@@ -683,7 +683,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Name for the copied circuit. If None, then the name stays the same.
 
-    *   **vars\_mode** (*Literal\['alike', 'captures', 'drop']*) –
+    *   **vars\_mode** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['alike', 'captures', 'drop']*) –
 
         The mode to handle realtime variables in.
 
@@ -810,7 +810,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    **bits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) –
+    **bits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*)
 
     **Return type**
 
@@ -830,7 +830,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    **regs** ([*Register*](circuit#qiskit.circuit.Register "qiskit.circuit.Register")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence)*\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) –
+    **regs** ([*Register*](circuit#qiskit.circuit.Register "qiskit.circuit.Register")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence)*\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*)
 
     **Return type**
 
@@ -916,8 +916,9 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **name\_or\_var** – either a string name, or an existing [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node to use as the input variable.
+    *   **name\_or\_var** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var")) – either a string name, or an existing [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node to use as the input variable.
     *   **type** – if the name is given as a string, then this must be a [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") to use for the variable. If the variable is given as an existing [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), then this must not be given, and will instead be read from the object itself.
+    *   **type\_** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit._accelerate.circuit.classical.types.Type") *| None*)
 
     **Returns**
 
@@ -926,6 +927,10 @@ python_api_name: qiskit.circuit.QuantumCircuit
     **Raises**
 
     [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the variable cannot be created due to shadowing an existing variable.
+
+    **Return type**
+
+    [*Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit._accelerate.circuit.classical.expr.Var")
   </Function>
 
   #### add\_stretch
@@ -1114,10 +1119,10 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **parameters** – Either a dictionary or iterable specifying the new parameter values.
-    *   **inplace** – If False, a copy of the circuit with the bound parameters is returned. If True the circuit instance itself is modified.
-    *   **flat\_input** – If `True` and `parameters` is a mapping type, it is assumed to be exactly a mapping of `{parameter: value}`. By default (`False`), the mapping may also contain [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") keys that point to a corresponding sequence of values, and these will be unrolled during the mapping, or string keys, which will be converted to [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances using [`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter").
-    *   **strict** – If `False`, any parameters given in the mapping that are not used in the circuit will be ignored. If `True` (the default), an error will be raised indicating a logic error.
+    *   **parameters** ([*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)*] |* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – Either a dictionary or iterable specifying the new parameter values.
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If False, a copy of the circuit with the bound parameters is returned. If True the circuit instance itself is modified.
+    *   **flat\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True` and `parameters` is a mapping type, it is assumed to be exactly a mapping of `{parameter: value}`. By default (`False`), the mapping may also contain [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") keys that point to a corresponding sequence of values, and these will be unrolled during the mapping, or string keys, which will be converted to [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances using [`get_parameter()`](#qiskit.circuit.QuantumCircuit.get_parameter "qiskit.circuit.QuantumCircuit.get_parameter").
+    *   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `False`, any parameters given in the mapping that are not used in the circuit will be ignored. If `True` (the default), an error will be raised indicating a logic error.
 
     **Raises**
 
@@ -1127,6 +1132,10 @@ python_api_name: qiskit.circuit.QuantumCircuit
     **Returns**
 
     A copy of the circuit with bound parameters if `inplace` is False, otherwise None.
+
+    **Return type**
+
+    [*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | None
 
     **Examples**
 
@@ -1206,8 +1215,8 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **name** – the name of the parameter to retrieve.
-    *   **default** – if given, this value will be returned if the parameter is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError) is raised instead.
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the name of the parameter to retrieve.
+    *   **default** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – if given, this value will be returned if the parameter is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError) is raised instead.
 
     **Returns**
 
@@ -1216,6 +1225,10 @@ python_api_name: qiskit.circuit.QuantumCircuit
     **Raises**
 
     [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError) – if no default is given, but the parameter does not exist in the circuit.
+
+    **Return type**
+
+    [*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")
 
     **Examples**
 
@@ -1278,8 +1291,8 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **name** – the name of the variable to retrieve.
-    *   **default** – if given, this value will be returned if the variable is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError) is raised instead.
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the name of the variable to retrieve.
+    *   **default** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – if given, this value will be returned if the variable is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError) is raised instead.
 
     **Returns**
 
@@ -1328,8 +1341,8 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **name** – the name of the stretch to retrieve.
-    *   **default** – if given, this value will be returned if the variable is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError) is raised instead.
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the name of the stretch to retrieve.
+    *   **default** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – if given, this value will be returned if the variable is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError) is raised instead.
 
     **Returns**
 
@@ -1374,8 +1387,8 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **name** – the name of the identifier to retrieve.
-    *   **default** – if given, this value will be returned if the variable is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError) is raised instead.
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the name of the identifier to retrieve.
+    *   **default** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – if given, this value will be returned if the variable is not present. If it is not given, a [`KeyError`](https://docs.python.org/3/library/exceptions.html#KeyError) is raised instead.
 
     **Returns**
 
@@ -1657,6 +1670,8 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     *   **cargs** – Legacy argument for clbits to attach the bare [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") to. Ignored if the first argument is in the preferential [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") form.
 
+    *   **\_standard\_gate** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
+
     **Returns**
 
     a handle to the instruction that was just added.
@@ -1800,8 +1815,8 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **other** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) –
-    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
+    *   **other** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"))
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
   </Function>
 
   As some rules of thumb:
@@ -3589,7 +3604,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **condition** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*qiskit.circuit.ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*qiskit.circuit.Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*qiskit.circuit.Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*bool*](https://docs.python.org/3/library/functions.html#bool)*]*) – A condition to be evaluated in real time at circuit execution, which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
+    *   **condition** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*bool*](https://docs.python.org/3/library/functions.html#bool)*]*) – A condition to be evaluated in real time at circuit execution, which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
     *   **true\_body** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit body to be run if `condition` is true.
     *   **false\_body** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit to be run if `condition` is false.
     *   **qubits** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence)*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice)  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence)*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – The circuit qubits over which the if/else should be run.
@@ -3611,7 +3626,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### if\_test
 
-  <Function id="qiskit.circuit.QuantumCircuit.if_test" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7244-L7330" signature="if_test(condition: tuple[qiskit.circuit.ClassicalRegister | qiskit.circuit.Clbit, int]) → IfContext" extraSignatures={["if_test(condition: tuple[qiskit.circuit.ClassicalRegister | qiskit.circuit.Clbit, int], true_body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.if_test" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7244-L7330" signature="if_test(condition: tuple[ClassicalRegister | Clbit, int]) → IfContext" extraSignatures={["if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet"]}>
     Create an `if` statement on this circuit.
 
     There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp") with the given `true_body`, and there will be no branch for the `false` condition (see also the [`if_else()`](#qiskit.circuit.QuantumCircuit.if_else "qiskit.circuit.QuantumCircuit.if_else") method). However, if `true_body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which can be used to build `if` statements. The return value of the `with` statement is a chainable context manager, which can be used to create subsequent `else` blocks. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
@@ -3712,7 +3727,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### while\_loop
 
-  <Function id="qiskit.circuit.QuantumCircuit.while_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7075-L7136" signature="while_loop(condition: tuple[qiskit.circuit.ClassicalRegister | qiskit.circuit.Clbit, int] | Expr, body: None, qubits: None, clbits: None, *, label: str | None) → WhileLoopContext" extraSignatures={["while_loop(condition: tuple[qiskit.circuit.ClassicalRegister | qiskit.circuit.Clbit, int] | Expr, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.while_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7075-L7136" signature="while_loop(condition: tuple[ClassicalRegister | Clbit, int] | Expr, body: None, qubits: None, clbits: None, *, label: str | None) → WhileLoopContext" extraSignatures={["while_loop(condition: tuple[ClassicalRegister | Clbit, int] | Expr, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
     Create a `while` loop on this circuit.
 
     There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a `WhileLoopOp` with the given `body`. If `body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which will automatically build a `WhileLoopOp` when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
@@ -3810,7 +3825,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*qiskit.\_accelerate.circuit.Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")*,* [*Union*](https://docs.python.org/3/library/typing.html#typing.Union)*\[*[*qiskit.\_accelerate.circuit.ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
+    *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
     *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Optional gate label.
 
     **Returns**
@@ -3837,7 +3852,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*qiskit.\_accelerate.circuit.Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")*,* [*Union*](https://docs.python.org/3/library/typing.html#typing.Union)*\[*[*qiskit.\_accelerate.circuit.ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If `None`, existing circuit parameters will also parameterize the gate.
+    *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If `None`, existing circuit parameters will also parameterize the gate.
     *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Optional gate label.
 
     **Returns**
@@ -4266,7 +4281,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
     **Parameters**
 
     *   **\*qubits** – Qubits within `self` to include. Integers are allowed for qubits, indicating
-    *   **self.qubits.** (*indices of*) –
+    *   **self.qubits.** (*indices of*)
 
     **Returns**
 
@@ -4291,7 +4306,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
     **Parameters**
 
     *   **\*qubits** – Qubits within `self` to include. Integers are allowed for qubits, indicating
-    *   **self.qubits.** (*indices of*) –
+    *   **self.qubits.** (*indices of*)
 
     **Returns**
 
@@ -4631,7 +4646,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **gates\_to\_decompose** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*] | Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]] | None*) – Optional subset of gates to decompose. Can be a gate type, such as `HGate`, or a gate name, such as “h”, or a gate label, such as “My H Gate”, or a list of any combination of these. If a gate name is entered, it will decompose all gates with that name, whether the gates have labels or not. Defaults to all gates in the circuit.
+    *   **gates\_to\_decompose** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Type*](https://docs.python.org/3/library/typing.html#typing.Type)*\[*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")*] |* [*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Type*](https://docs.python.org/3/library/typing.html#typing.Type)*\[*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")*]] | None*) – Optional subset of gates to decompose. Can be a gate type, such as `HGate`, or a gate name, such as “h”, or a gate label, such as “My H Gate”, or a list of any combination of these. If a gate name is entered, it will decompose all gates with that name, whether the gates have labels or not. Defaults to all gates in the circuit.
     *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Optional number of times the circuit should be decomposed. For instance, `reps=2` equals calling `circuit.decompose().decompose()`.
 
     **Returns**
@@ -4697,12 +4712,12 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   **Parameters**
 
-  *   **regs** ([*Register*](circuit#qiskit.circuit.Register "qiskit.circuit.Register")  *|*[*int*](https://docs.python.org/3/library/functions.html#int) *| Sequence\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) –
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
-  *   **global\_phase** (*ParameterValueType*) –
-  *   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict) *| None*) –
-  *   **inputs** (*Iterable\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*]*) –
-  *   **captures** (*Iterable\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")  *|*[*expr.Stretch*](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")*]*) –
-  *   **declarations** (*Mapping\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*,* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")*] | Iterable\[Tuple\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*,* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")*]]*) –
+  *   **regs** ([*Register*](circuit#qiskit.circuit.Register "qiskit.circuit.Register")  *|*[*int*](https://docs.python.org/3/library/functions.html#int) *| Sequence\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*)
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
+  *   **global\_phase** (*ParameterValueType*)
+  *   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict) *| None*)
+  *   **inputs** (*Iterable\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*]*)
+  *   **captures** (*Iterable\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")  *|*[*expr.Stretch*](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")*]*)
+  *   **declarations** (*Mapping\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*,* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")*] | Iterable\[Tuple\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*,* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")*]]*)
 </Class>
 
