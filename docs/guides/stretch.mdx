@@ -120,6 +120,31 @@ draw_circuit_schedule_timing(vulqan_job.result()[0].metadata['compilation']['sch
 Although the total circuit time is returned in the "compilation" metadata, this is NOT the time used for billing (quantum time).
 </Admonition>
 
+## Understand the metadata output
+
+The `stretch_values` metadata returns the following information:
+
+- **Name:** The name of the applied stretch
+- **Value:** The requested goal value
+- **Remainder:** The remainder from resolving the stretch
+- **Expanded values:** Sets of values that specify the stretch start and its duration
+
+### Example output
+
+``` python
+'stretch_values': 
+ [{'name': 'x_0',
+   'value': 5,
+   'remainder': 1,
+   'expanded_values': [[803, 6], [810, 5]]}
+   ]
+```   
+
+You can also use a visualization (requires plotly) to help understand the timing. Use the sliders at the bottom, the controls at the top (hover over the image to reveal these), and the legend on the side of the output to customize the view.
+
+![The output from the `draw_circuit_schedule_timing` command is shown.](/docs/images/guides/stretch/stretch-visualization.png)
+
+
 ## Qiskit Runtime limitations
 
 Support for `stretch` in Qiskit Runtime is currently experimental and has the following constraints:
