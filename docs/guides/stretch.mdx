@@ -21,6 +21,7 @@ The corresponding circuit would look like the following. Note that a pair of bar
 
 ```python
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.circuit.classical import expr
 
 qubits = QuantumRegister(2)
 clbits = ClassicalRegister(2)
@@ -97,23 +98,65 @@ qc.barrier()
 
 ## View stretch values in Qiskit Runtime
 
-The concrete value of a stretch duration is resolved at compile time, after the circuit is scheduled. When running a Sampler job in Qiskit Runtime, you can view the resolved stretch values in the job result metadata.  Support for `stretch` in Qiskit Runtime is currently experimental, so you need to first set an experimental option to enable its retrieval, then access the data directly from the metadata as follows:
+The actual value of a stretch duration is resolved at compile time, after the circuit is scheduled. When running a Sampler job in Qiskit Runtime, you can view the resolved stretch values in the job result metadata.  Support for `stretch` in Qiskit Runtime is currently experimental, so you need to first set an experimental option to enable its retrieval, then access the data directly from the metadata as follows:
 
 ```python
-# enable stretch value retrieval
+# Enable stretch value retrieval.
 sampler.options.experimental = {
     "execution": {
         "stretch_values": True,
+        "scheduler_timing": True,
     },
 }
 
-# Access the stretch values from the metadata
+# Access the stretch values from the metadata.
 job_result = job.result()
 circuit_stretch_values = job_result[0].metadata["compilation"]["stretch_values"]
+
+# Visualize the timing.
+# Use the sliders at the bottom, the controls at the top, and the legend on the side 
+# of the output to customize the view.
+draw_circuit_schedule_timing(vulqan_job.result()[0].metadata['compilation']['scheduler_timing']['timing'])
 ```
+
 <Admonition type="note">
 Although the total circuit time is returned in the "compilation" metadata, this is NOT the time used for billing (quantum time).
 </Admonition>
+
+### Understand the metadata output
+
+The `stretch_values` metadata returns the following information:
+
+- **Name:** The name of the applied stretch
+- **Value:** The requested goal value
+- **Remainder:** The remainder from resolving the stretch, which is added to the first delay that uses the stretch.
+- **Expanded values:** Sets of values that specify the stretch start and its duration
+
+### Example output
+
+``` python
+ [{'name': 'bar',
+  'value': 29,
+  'remainder': 1,
+  'expanded_values': [[1394, 30], [1404, 29]]},
+ {'name': 'foo',
+  'value': 8,
+  'remainder': 2,
+  'expanded_values': [[1405, 10], [1400, 24], [1417, 16]]}
+  ]
+```   
+
+You can also use a visualization (which requires plotly) to help understand and verify the timing. 
+
+```python
+draw_circuit_schedule_timing(vulqan_job.result()[0].metadata['compilation']['scheduler_timing']['timing'])
+```
+
+In the following image, based on the example output, `bar` corresponds to the stretches on Qubit 3. The first stretch delay that uses `bar` starts at the end of the `init_play` (1394). The stretch duration is 30 so that delay  ends when the `x` gate starts (1394+30 = 1424).
+
+![The output from the `draw_circuit_schedule_timing` command is shown.](/docs/images/guides/stretch/stretch-visualization.avif)
+
+Use the sliders at the bottom, the controls at the top (hover over the image to reveal these), and the legend on the side of the output to customize the view. Hover over the image to view exact data.
 
 ## Qiskit Runtime limitations
 
@@ -152,7 +195,7 @@ Support for `stretch` in Qiskit Runtime is currently experimental and has the fo
         circuit.barrier((q0, q1))
          ```
 
-        ![Illustration of the previous code output](/docs/images/guides/stretch/bad-barrier-region.png 'Invalid use of stretch in barrier regions')
+        ![Illustration of the previous code output](/docs/images/guides/stretch/bad-barrier-region.avif 'Invalid use of stretch in barrier regions')
 
      </TabItem>
      <TabItem value="Valid" label="Valid">
@@ -166,7 +209,7 @@ Support for `stretch` in Qiskit Runtime is currently experimental and has the fo
         circuit.barrier((q0, q1))
         ```
 
-        ![Illustration of the previous code output](/docs/images/guides/stretch/good-barrier-region.png 'Valid use of stretch in a barrier region')
+        ![Illustration of the previous code output](/docs/images/guides/stretch/good-barrier-region.avif 'Valid use of stretch in a barrier region')
 
      </TabItem>
     </Tabs>
