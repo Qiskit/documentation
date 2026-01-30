@@ -38,6 +38,7 @@ export async function sphinxHtmlToMarkdown(options: {
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;
+  hasRootNamespaceFile: boolean;
 }): Promise<HtmlToMdResult> {
   const processedHtml = await processHtml(options);
   const markdown = await generateMarkdownFile(
