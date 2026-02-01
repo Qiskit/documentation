@@ -115,6 +115,7 @@ async function convertFilesToMarkdown(
       releaseNotesTitle: pkg.releaseNotesTitle(),
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
       isCApi: pkg.isCApi(),
+      hasRootNamespaceFile: pkg.hasRootNamespaceFile,
     });
 
     // Avoid creating an empty markdown file for HTML files without content

@@ -33,6 +33,7 @@ async function toMd(
     html,
     isCApi,
     ...DEFAULT_ARGS,
+    hasRootNamespaceFile: false,
   });
   return withMetadata ? result : result.markdown;
 }
@@ -1020,6 +1021,7 @@ test("identify release notes", async () => {
       fileName: "release_notes.html",
       isCApi: false,
       ...DEFAULT_ARGS,
+      hasRootNamespaceFile: false,
     }),
   ).toEqual({
     images: [],
