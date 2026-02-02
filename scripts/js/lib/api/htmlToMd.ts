@@ -22,7 +22,7 @@ import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
-import { Emphasis, Root, Content } from "mdast";
+import { Emphasis, Root, Content, Link } from "mdast";
 
 import { processHtml } from "./processHtml.js";
 import { HtmlToMdResult } from "./HtmlToMdResult.js";
@@ -66,7 +66,10 @@ async function generateMarkdownFile(
       handlers,
     })
     .use(remarkStringify, remarkStringifyOptions)
-    .use(() => (root: Root) => visit(root, "emphasis", mergeContiguousEmphasis))
+    .use(() => (root: Root) => {
+      visit(root, "emphasis", mergeContiguousEmphasis);
+      visit(root, "link", removeVersionLinkTitle);
+    })
     .process(mainHtml);
 
   return mdFile.toString().replaceAll(`<!---->`, "");
@@ -147,6 +150,15 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
   };
 
   return handlers;
+}
+
+export function removeVersionLinkTitle(node: Link) {
+  // Intersphinx cross-references usually set link titles like "(in Python 3.14)".
+  // We remove these titles because they are noisy, low-value to our users, and
+  // they easily become out-of-sync.
+  if (node.title?.match(/^\(in [^ ]* v\d+\.\d+\)$/)) {
+    delete node.title;
+  }
 }
 
 function mergeContiguousEmphasis(

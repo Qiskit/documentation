@@ -15,7 +15,7 @@
     "fmt": "prettier --write .",
     "test": "playwright test",
     "typecheck": "tsc",
-    "check": "npm run check:patterns-index && npm run check:qiskit-bot && npm run check:markdown && npm run check:orphan-pages && npm run check:spelling && npm run check:internal-links",
+    "check": "npm run check:qiskit-bot && npm run check:markdown && npm run check:orphan-pages && npm run check:spelling && npm run check:internal-links",
     "check:markdown": "tsx scripts/js/commands/checkMarkdown.ts",
     "check:spelling": "tsx scripts/js/commands/checkSpelling.ts",
     "check:fmt": "prettier --check .",
@@ -34,6 +34,7 @@
     "save-internal-links": "tsx scripts/js/commands/saveInternalLinks.ts"
   },
   "dependencies": {
+    "@qiskit/mdx-link-extract": "^1.2.0",
     "cheerio": "^1.0.0-rc.12",
     "cspell": "^8.12.1",
     "fast-levenshtein": "^3.0.0",

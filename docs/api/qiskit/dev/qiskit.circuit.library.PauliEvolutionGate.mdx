@@ -72,9 +72,9 @@ $$
 
   **Parameters**
 
-  *   **operator** ([*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")*]*) – The operator to evolve. Can also be provided as list of non-commuting operators where the elements are sums of commuting operators. For example: `[XY + YX, ZZ + ZI + IZ, YY]`.
+  *   **operator** ([*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")*]*) – The operator to evolve. Can also be provided as list of non-commuting operators where the elements are sums of commuting operators. For example: `[XY + YX, ZZ + ZI + IZ, YY]`.
   *   **time** (*ParameterValueType*) – The evolution time.
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – A label for the gate to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – A label for the gate to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
   *   **synthesis** ([*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – A synthesis strategy. If None, the default synthesis is the Lie-Trotter product formula with a single repetition.
 
   ## Attributes
@@ -205,8 +205,8 @@ $$
 
     **Parameters**
 
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – List of quantum bit arguments.
-    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – List of classical bit arguments.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of classical bit arguments.
 
     **Returns**
 
@@ -218,7 +218,7 @@ $$
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.14)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")]]
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list), [list](https://docs.python.org/3/library/stdtypes.html#list)]]
   </Function>
 
   ### control
@@ -232,10 +232,10 @@ $$
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Number of controls to add. Defauls to `1`.
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – A label for the resulting Pauli evolution gate, to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)") *| None*) – Ignored.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add. Defauls to `1`.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – A label for the resulting Pauli evolution gate, to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – Ignored.
 
     **Returns**
 
@@ -253,7 +253,7 @@ $$
 
     **Parameters**
 
-    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – name to be given to the copied circuit, if `None` then the name stays the same.
 
     **Returns**
 
@@ -271,7 +271,7 @@ $$
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) –
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
   </Function>
 
   ### is\_parameterized
@@ -289,8 +289,8 @@ $$
 
     **Parameters**
 
-    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – The power to raise the gate to.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – Not applicable to this class. Usually, when this is `True` we return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with a power modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, we can efficiently represent powers of Pauli evolutions as [`PauliEvolutionGate`](#qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"), which is used here.
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The power to raise the gate to.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Not applicable to this class. Usually, when this is `True` we return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with a power modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, we can efficiently represent powers of Pauli evolutions as [`PauliEvolutionGate`](#qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"), which is used here.
 
     **Returns**
 
@@ -308,7 +308,7 @@ $$
 
     **Parameters**
 
-    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Number of times to repeat the instruction
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of times to repeat the instruction
 
     **Returns**
 
@@ -356,7 +356,7 @@ $$
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### to\_matrix
@@ -370,11 +370,11 @@ $$
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If the `time` parameters is not numeric.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the `time` parameters is not numeric.
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.4)")
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
   </Function>
 
   ### to\_mutable
@@ -392,11 +392,11 @@ $$
 
     **Parameters**
 
-    **parameter** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) –
+    **parameter** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)) –
 
     **Return type**
 
-    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")
+    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression") | [float](https://docs.python.org/3/library/functions.html#float)
   </Function>
 </Class>
 

@@ -164,8 +164,6 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
 // These external URLs cause actual 404s and should probably be fixed.
 const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // These schemas are not available any more. They might have moved, but we're not sure where.
-  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json",
-  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_status_schema.json",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json",
 
@@ -178,6 +176,12 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // in the Qiskit latest, dev, and some historical versions. In the meantime, the app will redirect the
   // page to pulse-migration so the links are not broken.
   "/docs/guides/pulse",
+  "https://us-east.quantum-computing.cloud.ibm.com/",
+
+  // Other links that don't seem to exist any more
+  "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
+  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
+  "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -425,11 +429,60 @@ function _runtimeLegacyReleaseNotes(): FilesToIgnores {
   };
 }
 
+function _runtimeHistoricalSchema(): FilesToIgnores {
+  return Object.fromEntries(
+    [
+      "0.25/",
+      "0.26/",
+      "0.27/",
+      "0.28/",
+      "0.29/",
+      "0.30/",
+      "0.31/",
+      "0.32/",
+      "0.33/",
+      "0.34/",
+      "0.35/",
+      "0.36/",
+      "0.37/",
+      "0.38/",
+      "0.39/",
+      "0.40/",
+      "0.41/",
+      "0.42/",
+      "0.43/",
+      "0.44/",
+    ].flatMap((vers) => [
+      [
+        `docs/api/qiskit-ibm-runtime/${vers}ibm-backend.mdx`,
+        [
+          "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json",
+          "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json",
+        ],
+      ],
+    ]),
+  );
+}
+
+function _qiskitPulseLink(): FilesToIgnores {
+  return Object.fromEntries(
+    ["1.2/", "1.3/", "1.4/", "2.0/", "2.1/", "2.2/"].flatMap((vers) => [
+      [`docs/api/qiskit/${vers}qpy.mdx`, ["/docs/guides/pulse"]],
+      [
+        `docs/api/qiskit/${vers}qiskit.transpiler.passes.ValidatePulseGates.mdx`,
+        ["/docs/guides/pulse"],
+      ],
+    ]),
+  );
+}
+
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
   _runtimeLegacyReleaseNotes(),
+  _runtimeHistoricalSchema(),
+  _qiskitPulseLink(),
 );
 
 function _qiskitCRegexes(): FilesToIgnores {

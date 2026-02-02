@@ -9,13 +9,13 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 # RuntimeJob
 
 <Class id="qiskit_ibm_runtime.RuntimeJob" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.40/qiskit_ibm_runtime/runtime_job.py#L47-L367" signature="RuntimeJob(backend, api_client, job_id, program_id, service, client_params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None, version=None)" modifiers="class">
-  Bases: [`JobV1`](/docs/api/qiskit/qiskit.providers.JobV1 "(in Qiskit v2.0)"), `BaseRuntimeJob`
+  Bases: [`JobV1`](/docs/api/qiskit/qiskit.providers.JobV1), `BaseRuntimeJob`
 
   Representation of a runtime primitive execution.
 
   A new `RuntimeJob` instance is returned when you call `QiskitRuntimeService.run` to execute a runtime primitive, or [`QiskitRuntimeService.job`](qiskit-runtime-service#job "qiskit_ibm_runtime.QiskitRuntimeService.job") to retrieve a previously executed job.
 
-  If the primitive execution is successful, you can inspect the job’s status by calling [`status()`](#qiskit_ibm_runtime.RuntimeJob.status "qiskit_ibm_runtime.RuntimeJob.status"). Job status can be one of the [`JobStatus`](/docs/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v2.0)") members.
+  If the primitive execution is successful, you can inspect the job’s status by calling [`status()`](#qiskit_ibm_runtime.RuntimeJob.status "qiskit_ibm_runtime.RuntimeJob.status"). Job status can be one of the [`JobStatus`](/docs/api/qiskit/qiskit.providers.JobStatus) members.
 
   Some of the methods in this class are blocking, which means control may not be returned immediately. [`result()`](#qiskit_ibm_runtime.RuntimeJob.result "qiskit_ibm_runtime.RuntimeJob.result") is an example of a blocking method:
 
@@ -33,7 +33,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
   **Parameters**
 
-  *   **backend** ([*Backend*](/docs/api/qiskit/qiskit.providers.Backend "(in Qiskit v2.0)")) – The backend instance used to run this job.
+  *   **backend** ([*Backend*](/docs/api/qiskit/qiskit.providers.Backend)) – The backend instance used to run this job.
   *   **api\_client** (*RuntimeClient*) – Object for connecting to the server.
   *   **client\_params** (*ClientParameters | None*) – (DEPRECATED) Parameters used for server connection.
   *   **job\_id** (*str*) – Job ID.
@@ -160,7 +160,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
     **Return type**
 
-    [*Backend*](/docs/api/qiskit/qiskit.providers.Backend "(in Qiskit v2.0)") | None
+    [*Backend*](/docs/api/qiskit/qiskit.providers.Backend) | None
   </Function>
 
   ### cancel
@@ -392,7 +392,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
     **Return type**
 
-    [*JobStatus*](/docs/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v2.0)")
+    [*JobStatus*](/docs/api/qiskit/qiskit.providers.JobStatus)
   </Function>
 
   ### submit

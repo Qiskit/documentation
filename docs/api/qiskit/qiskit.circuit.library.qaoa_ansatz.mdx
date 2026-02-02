@@ -31,12 +31,12 @@ python_api_name: qiskit.circuit.library.qaoa_ansatz
   **Parameters**
 
   *   **cost\_operator** (*BaseOperator*) – The operator representing the cost of the optimization problem, denoted as $U(C, \gamma)$ in \[1].
-  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The integer determining the depth of the circuit, called $p$ in \[1].
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The integer determining the depth of the circuit, called $p$ in \[1].
   *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") *| None*) – An optional initial state to use, which defaults to a layer of Hadamard gates preparing the $|+\rangle^{\otimes n}$ state. If a custom mixer is chosen, this circuit should be set to prepare its ground state, to appropriately fulfill the annealing conditions.
   *   **mixer\_operator** (*BaseOperator | None*) – An optional custom mixer, which defaults to global Pauli-$X$ rotations. This is denoted as $U(B, \beta)$ in \[1]. If this is set, the `initial_state` might also require modification.
-  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – Whether to insert barriers in-between the cost and mixer operators.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The name of the circuit.
-  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If `True`, a flat circuit is returned instead of nesting it inside multiple layers of gate objects. Setting this to `False` is significantly less performant, especially for parameter binding, but can be desirable for a cleaner visualization.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to insert barriers in-between the cost and mixer operators.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the circuit.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True`, a flat circuit is returned instead of nesting it inside multiple layers of gate objects. Setting this to `False` is significantly less performant, especially for parameter binding, but can be desirable for a cleaner visualization.
 
   **Return type**
 

@@ -9,7 +9,7 @@ python_api_name: qiskit.quantum_info.SparseObservable
 # SparseObservable
 
 <Class id="qiskit.quantum_info.SparseObservable" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.SparseObservable" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   An observable over Pauli bases that stores its data in a qubit-sparse format.
 
@@ -76,7 +76,7 @@ $$
   ### BitTerm
 
   <Class id="qiskit.quantum_info.SparseObservable.BitTerm" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/__init__.py" signature="BitTerm" modifiers="class">
-    An [`IntEnum`](https://docs.python.org/3/library/enum.html#enum.IntEnum "(in Python v3.13)") that provides named access to the numerical values used to represent each of the single-qubit alphabet terms enumerated in [Alphabet of single-qubit terms used in SparseObservable](#sparse-observable-alphabet).
+    An [`IntEnum`](https://docs.python.org/3/library/enum.html#enum.IntEnum) that provides named access to the numerical values used to represent each of the single-qubit alphabet terms enumerated in [Alphabet of single-qubit terms used in SparseObservable](#sparse-observable-alphabet).
 
     This class is attached to [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable"). Access it as [`SparseObservable.BitTerm`](#qiskit.quantum_info.SparseObservable.BitTerm "qiskit.quantum_info.SparseObservable.BitTerm"). If this is too much typing, and you are solely dealing with :class:¬SparseObservable\` objects and the `BitTerm` name is not ambiguous, you might want to shorten it as:
 
@@ -158,7 +158,7 @@ $$
     </Attribute>
   </Class>
 
-  Each of the array-like attributes behaves like a Python sequence. You can index and slice these with standard [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")-like semantics. Slicing an attribute returns a Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)") containing a copy of the relevant data with the natural `dtype` of the field; this lets you easily do mathematics on the results, like bitwise operations on [`bit_terms`](#qiskit.quantum_info.SparseObservable.bit_terms "qiskit.quantum_info.SparseObservable.bit_terms"). You can assign to indices or slices of each of the attributes, but beware that you must uphold [the data coherence rules](#sparse-observable-arrays) while doing this. For example:
+  Each of the array-like attributes behaves like a Python sequence. You can index and slice these with standard [`list`](https://docs.python.org/3/library/stdtypes.html#list)-like semantics. Slicing an attribute returns a Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) containing a copy of the relevant data with the natural `dtype` of the field; this lets you easily do mathematics on the results, like bitwise operations on [`bit_terms`](#qiskit.quantum_info.SparseObservable.bit_terms "qiskit.quantum_info.SparseObservable.bit_terms"). You can assign to indices or slices of each of the attributes, but beware that you must uphold [the data coherence rules](#sparse-observable-arrays) while doing this. For example:
 
   ```python
   >>> obs = SparseObservable.from_list([("XZY", 1.5j), ("+1r", -0.5)])
@@ -197,14 +197,14 @@ $$
 
   ### Indexing
 
-  [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") behaves as [a Python sequence](https://docs.python.org/3/glossary.html#term-sequence) (the standard form, not the expanded [`collections.abc.Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")). The observable can be indexed by integers, and iterated through to yield individual terms.
+  [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") behaves as [a Python sequence](https://docs.python.org/3/glossary.html#term-sequence) (the standard form, not the expanded [`collections.abc.Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)). The observable can be indexed by integers, and iterated through to yield individual terms.
 
   Each term appears as an instance a self-contained class. The individual terms are copied out of the base observable; mutations to them will not affect the observable.
 
   #### Term
 
   <Class id="qiskit.quantum_info.SparseObservable.Term" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/__init__.py" signature="Term" modifiers="class">
-    Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+    Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
     A single term from a complete [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
 
@@ -311,7 +311,7 @@ $$
     **Parameters**
 
     *   **data** – The data type of the input. This can be another [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable"), in which case the input is copied, a [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") or [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"), in which case [`from_pauli()`](#qiskit.quantum_info.SparseObservable.from_pauli "qiskit.quantum_info.SparseObservable.from_pauli") or [`from_sparse_pauli_op()`](#qiskit.quantum_info.SparseObservable.from_sparse_pauli_op "qiskit.quantum_info.SparseObservable.from_sparse_pauli_op") are called as appropriate, or it can be a list in a valid format for either [`from_list()`](#qiskit.quantum_info.SparseObservable.from_list "qiskit.quantum_info.SparseObservable.from_list") or [`from_sparse_list()`](#qiskit.quantum_info.SparseObservable.from_sparse_list "qiskit.quantum_info.SparseObservable.from_sparse_list").
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*|None*) – Optional number of qubits for the operator. For most data inputs, this can be inferred and need not be passed. It is only necessary for empty lists or the sparse-list format. If given unnecessarily, it must match the data input.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)*|None*) – Optional number of qubits for the operator. For most data inputs, this can be inferred and need not be passed. It is only necessary for empty lists or the sparse-list format. If given unnecessarily, it must match the data input.
   </Function>
 
   In addition to the conversion-based constructors, there are also helper methods that construct special forms of observables.
@@ -340,7 +340,7 @@ $$
 
   *   add two observables using `+`
   *   subtract two observables using `-`
-  *   multiply or divide by an [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"), [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") or [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)") using `*` and `/`
+  *   multiply or divide by an [`int`](https://docs.python.org/3/library/functions.html#int), [`float`](https://docs.python.org/3/library/functions.html#float) or [`complex`](https://docs.python.org/3/library/functions.html#complex) using `*` and `/`
   *   negate all the coefficients in an observable with unary `-`
 
   Each of the basic binary arithmetic operators has a corresponding specialized in-place method, which mutates the left-hand side in-place. Using these is typically more efficient than the infix operators, especially for building an observable in a loop.
@@ -432,8 +432,8 @@ $$
 
     **Parameters**
 
-    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – The layout to apply. Most uses of this function should pass the [`QuantumCircuit.layout`](qiskit.circuit.QuantumCircuit#layout "qiskit.circuit.QuantumCircuit.layout") field from a circuit that was transpiled for hardware. In addition, you can pass a list of new qubit indices. If given as explicitly `None`, no remapping is applied (but you can still use `num_qubits` to expand the observable).
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits to expand the observable to. If not supplied, the output will be as wide as the given [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), or the same width as the input if the `layout` is given in another form.
+    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – The layout to apply. Most uses of this function should pass the [`QuantumCircuit.layout`](qiskit.circuit.QuantumCircuit#layout "qiskit.circuit.QuantumCircuit.layout") field from a circuit that was transpiled for hardware. In addition, you can pass a list of new qubit indices. If given as explicitly `None`, no remapping is applied (but you can still use `num_qubits` to expand the observable).
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits to expand the observable to. If not supplied, the output will be as wide as the given [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), or the same width as the input if the `layout` is given in another form.
 
     **Returns**
 
@@ -598,7 +598,7 @@ $$
 
     **Parameters**
 
-    **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the dense label.
+    **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the dense label.
 
     **Examples**
 
@@ -628,8 +628,8 @@ $$
 
     **Parameters**
 
-    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")*]]*) – Pairs of labels and their associated coefficients to sum. The labels are interpreted the same way as in [`from_label()`](#qiskit.quantum_info.SparseObservable.from_label "qiskit.quantum_info.SparseObservable.from_label").
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – It is not necessary to specify this if you are sure that `iter` is not an empty sequence, since it can be inferred from the label lengths. If `iter` may be empty, you must specify this argument to disambiguate how many qubits the observable is for. If this is given and `iter` is not empty, the value must match the label lengths.
+    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*complex*](https://docs.python.org/3/library/functions.html#complex)*]]*) – Pairs of labels and their associated coefficients to sum. The labels are interpreted the same way as in [`from_label()`](#qiskit.quantum_info.SparseObservable.from_label "qiskit.quantum_info.SparseObservable.from_label").
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – It is not necessary to specify this if you are sure that `iter` is not an empty sequence, since it can be inferred from the label lengths. If `iter` may be empty, you must specify this argument to disambiguate how many qubits the observable is for. If this is given and `iter` is not empty, the value must match the label lengths.
 
     **Examples**
 
@@ -710,13 +710,13 @@ $$
 
     *   **num\_qubits** – number of qubits in the observable.
 
-    *   **coeffs** – complex coefficients of each term of the observable. This should be a Numpy array with dtype [`complex128`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.complex128 "(in NumPy v2.3)").
+    *   **coeffs** – complex coefficients of each term of the observable. This should be a Numpy array with dtype [`complex128`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.complex128).
 
-    *   **bit\_terms** – flattened list of the single-qubit terms comprising all complete terms. This should be a Numpy array with dtype [`uint8`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint8 "(in NumPy v2.3)") (which is compatible with [`BitTerm`](#qiskit.quantum_info.SparseObservable.BitTerm "qiskit.quantum_info.SparseObservable.BitTerm")).
+    *   **bit\_terms** – flattened list of the single-qubit terms comprising all complete terms. This should be a Numpy array with dtype [`uint8`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint8) (which is compatible with [`BitTerm`](#qiskit.quantum_info.SparseObservable.BitTerm "qiskit.quantum_info.SparseObservable.BitTerm")).
 
-    *   **indices** – flattened term-wise sorted list of the qubits each single-qubit term corresponds to. This should be a Numpy array with dtype [`uint32`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint32 "(in NumPy v2.3)").
+    *   **indices** – flattened term-wise sorted list of the qubits each single-qubit term corresponds to. This should be a Numpy array with dtype [`uint32`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint32).
 
-    *   **boundaries** – the indices that partition `bit_terms` and `indices` into terms. This should be a Numpy array with dtype [`uintp`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uintp "(in NumPy v2.3)").
+    *   **boundaries** – the indices that partition `bit_terms` and `indices` into terms. This should be a Numpy array with dtype [`uintp`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uintp).
 
     *   **check** –
 
@@ -752,8 +752,8 @@ $$
 
     **Parameters**
 
-    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")*]]*) – triples of labels, the qubits each single-qubit term applies to, and the coefficient of the entire term.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits in the operator.
+    *   **iter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*complex*](https://docs.python.org/3/library/functions.html#complex)*]]*) – triples of labels, the qubits each single-qubit term applies to, and the coefficient of the entire term.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of qubits in the operator.
 
     **Examples**
 
@@ -826,7 +826,7 @@ $$
     **Parameters**
 
     *   **obj** (*Iterable\[*[*Term*](#qiskit.quantum_info.SparseObservable.Term "qiskit.quantum_info.SparseObservable.Term")*]*) – Iterable of individual terms to build the observable from.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits the observable should act on. This is usually inferred from the input, but can be explicitly given to handle the case of an empty iterable.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits the observable should act on. This is usually inferred from the input, but can be explicitly given to handle the case of an empty iterable.
 
     **Returns**
 
@@ -879,7 +879,7 @@ $$
 
     **Parameters**
 
-    **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – after summing like terms, any coefficients whose absolute value is less than the given absolute tolerance will be suppressed from the output.
+    **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – after summing like terms, any coefficients whose absolute value is less than the given absolute tolerance will be suppressed from the output.
 
     **Examples**
 

@@ -128,7 +128,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 *   Added a cut-finder function, `circuit_knitting.cutting.find_cuts()`, for automatically identifying locations to place LO gate and wire cuts such that the circuit is separable and runnable, given the maximum number of qubits per subcircuit as a parameter. The cut-finder will search for cut schemes which minimize the sampling overhead. Note, however, that for larger circuits, the number of cuts needed to separate the circuit will naturally grow larger, leading to an exponentially increasing sampling overhead. For instances of wire cuts, the cut-finder assumes no qubit reuse. Therefore, for each wire cut, a new wire is added to the circuit. In addition, the cut-finder requires that every gate in an input circuit be at most a two qubit gate. The search algorithm used by the cut-finder to identify cut locations is Dijkstra’s best first search algorithm which is guaranteed to find solutions with the lowest sampling overhead, provided any user-specified value for the maximum number of allowed backjumps or for the maximum sampling overhead does not prematurely stop the search. If the user wishes to time-restrict the search when running the cut-finder on large circuits, they can specify a maximum sampling overhead and/or a maximum number of allowed backjumps, in which case the cut-finder will return a valid albeit suboptimal cut scheme.
 
-*   Circuit cutting reconstruction can now interpret the [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult "(in Qiskit v1.4)") object, which is returned by version 2 of the sampler primitive ([`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2 "(in Qiskit v1.4)")). See the [migration guide](/docs/guides/qiskit-1.0-features#qiskitprimitives) for details on upgrading to version 2 of the Qiskit primitives.
+*   Circuit cutting reconstruction can now interpret the [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) object, which is returned by version 2 of the sampler primitive ([`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2)). See the [migration guide](/docs/guides/qiskit-1.0-features#qiskitprimitives) for details on upgrading to version 2 of the Qiskit primitives.
 
 <span id="release-notes-0-7-0-upgrade-notes" />
 
@@ -152,7 +152,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 ### Other Notes
 
-*   The cutting tutorials have been rephrased with the goal of reconstructing the expectation value of a single [`SparsePauliOp`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)") with many terms, rather than multiple independent [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.4)") observables.
+*   The cutting tutorials have been rephrased with the goal of reconstructing the expectation value of a single [`SparsePauliOp`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp) with many terms, rather than multiple independent [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli) observables.
 
 *   The [circuit cutting explanation](https://qiskit.github.io/qiskit-addon-cutting/explanation/index.html) document has been expanded significantly.
 
@@ -182,7 +182,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 *   Removed the `circuit_knitting.cutting.qpd.qpdbasis_from_gate` function, which has been deprecated since the 0.3 release. [`qpdbasis_from_instruction()`](qpd#qpdbasis_from_instruction "qiskit_addon_cutting.qpd.qpdbasis_from_instruction") should be used instead.
 
-*   The [`generate_cutting_experiments()`](qiskit-addon-cutting#generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") function now performs some optimizations on the generated circuits before returning them to the user. In particular, it performs the [`RemoveResetInZeroState`](/docs/api/qiskit/qiskit.transpiler.passes.RemoveResetInZeroState "(in Qiskit v1.4)"), [`RemoveFinalReset`](utils-transpiler-passes-remove-final-reset "qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset"), and [`ConsolidateResets`](utils-transpiler-passes-consolidate-resets "qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets") passes, so that circuits with cut wires and no re-used qubits are transformed into subexperiments that contain no `Reset`s. This allows such circuits to work on a greater variety of hardware backends.
+*   The [`generate_cutting_experiments()`](qiskit-addon-cutting#generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") function now performs some optimizations on the generated circuits before returning them to the user. In particular, it performs the [`RemoveResetInZeroState`](/docs/api/qiskit/qiskit.transpiler.passes.RemoveResetInZeroState), [`RemoveFinalReset`](utils-transpiler-passes-remove-final-reset "qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset"), and [`ConsolidateResets`](utils-transpiler-passes-consolidate-resets "qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets") passes, so that circuits with cut wires and no re-used qubits are transformed into subexperiments that contain no `Reset`s. This allows such circuits to work on a greater variety of hardware backends.
 
 <span id="release-notes-0-6-0-bug-fixes" />
 
@@ -190,7 +190,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 ### Bug Fixes
 
-*   It is now possible to serialize [`SingleQubitQPDGate`](qpd-single-qubit-qpd-gate "qiskit_addon_cutting.qpd.SingleQubitQPDGate")s using [`qpy`](/docs/api/qiskit/qpy#module-qiskit.qpy "(in Qiskit v1.4)"), but some other issues with serialization and deserialization still remain. See issue [#455](https://github.com/Qiskit/qiskit-addon-cutting/issues/445) for details.
+*   It is now possible to serialize [`SingleQubitQPDGate`](qpd-single-qubit-qpd-gate "qiskit_addon_cutting.qpd.SingleQubitQPDGate")s using [`qpy`](/docs/api/qiskit/qpy#module-qiskit.qpy), but some other issues with serialization and deserialization still remain. See issue [#455](https://github.com/Qiskit/qiskit-addon-cutting/issues/445) for details.
 
 <span id="release-notes-0-6-0-other-notes" />
 
@@ -264,9 +264,9 @@ The primary goal of this release is to modify the circuit cutting workflow to en
 
 *   The `circuit-knitting-toolbox` Python package now depends on `qiskit` rather than `qiskit-terra`. This should have no user-visible effects, but it is something to keep in mind if one sees dependency errors when upgrading CKT.
 
-*   The `execute_experiments()` function now returns a [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult "(in Qiskit v1.4)") instance for each circuit partition, rather than the 3D list of quasi-distributions returned previously. The quasi-distribution for each subexperiment can be accessed via the `quasi_dists` field of [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult "(in Qiskit v1.4)"). The number of QPD bits contained in each subexperiment will be included in the `num_qpd_bits` field of the `metadata` dictionary for each experiment result. The output of this function is still valid as input to [`reconstruct_expectation_values()`](qiskit-addon-cutting#reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values").
+*   The `execute_experiments()` function now returns a [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult) instance for each circuit partition, rather than the 3D list of quasi-distributions returned previously. The quasi-distribution for each subexperiment can be accessed via the `quasi_dists` field of [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult). The number of QPD bits contained in each subexperiment will be included in the `num_qpd_bits` field of the `metadata` dictionary for each experiment result. The output of this function is still valid as input to [`reconstruct_expectation_values()`](qiskit-addon-cutting#reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values").
 
-*   [`reconstruct_expectation_values()`](qiskit-addon-cutting#reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values") now takes, as its first argument, a [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult "(in Qiskit v1.4)") instance or a dictionary mapping partition labels to [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult "(in Qiskit v1.4)") instances. This new `results` argument replaces the old `quasi_dists` argument. The [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult "(in Qiskit v1.4)") instances are expected to contain the number of QPD bits used in each circuit input to the Sampler. This should be specified in the `num_qpd_bits` field of the experiment result metadata.
+*   [`reconstruct_expectation_values()`](qiskit-addon-cutting#reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values") now takes, as its first argument, a [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult) instance or a dictionary mapping partition labels to [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult) instances. This new `results` argument replaces the old `quasi_dists` argument. The [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult) instances are expected to contain the number of QPD bits used in each circuit input to the Sampler. This should be specified in the `num_qpd_bits` field of the experiment result metadata.
 
 <span id="release-notes-0-4-0-deprecation-notes" />
 
@@ -300,16 +300,16 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
     Additionally, this release adds *explicit* support (i.e., without relying on a KAK decomposition) for the following gates:
 
-    *   [`CHGate`](/docs/api/qiskit/qiskit.circuit.library.CHGate "(in Qiskit v1.4)")
-    *   [`CYGate`](/docs/api/qiskit/qiskit.circuit.library.CYGate "(in Qiskit v1.4)")
-    *   [`CSGate`](/docs/api/qiskit/qiskit.circuit.library.CSGate "(in Qiskit v1.4)")
-    *   [`CSXGate`](/docs/api/qiskit/qiskit.circuit.library.CSXGate "(in Qiskit v1.4)")
-    *   [`CSdgGate`](/docs/api/qiskit/qiskit.circuit.library.CSdgGate "(in Qiskit v1.4)")
-    *   [`CPhaseGate`](/docs/api/qiskit/qiskit.circuit.library.CPhaseGate "(in Qiskit v1.4)")
-    *   [`ECRGate`](/docs/api/qiskit/qiskit.circuit.library.ECRGate "(in Qiskit v1.4)")
-    *   [`SwapGate`](/docs/api/qiskit/qiskit.circuit.library.SwapGate "(in Qiskit v1.4)")
-    *   [`iSwapGate`](/docs/api/qiskit/qiskit.circuit.library.iSwapGate "(in Qiskit v1.4)")
-    *   [`DCXGate`](/docs/api/qiskit/qiskit.circuit.library.DCXGate "(in Qiskit v1.4)")
+    *   [`CHGate`](/docs/api/qiskit/qiskit.circuit.library.CHGate)
+    *   [`CYGate`](/docs/api/qiskit/qiskit.circuit.library.CYGate)
+    *   [`CSGate`](/docs/api/qiskit/qiskit.circuit.library.CSGate)
+    *   [`CSXGate`](/docs/api/qiskit/qiskit.circuit.library.CSXGate)
+    *   [`CSdgGate`](/docs/api/qiskit/qiskit.circuit.library.CSdgGate)
+    *   [`CPhaseGate`](/docs/api/qiskit/qiskit.circuit.library.CPhaseGate)
+    *   [`ECRGate`](/docs/api/qiskit/qiskit.circuit.library.ECRGate)
+    *   [`SwapGate`](/docs/api/qiskit/qiskit.circuit.library.SwapGate)
+    *   [`iSwapGate`](/docs/api/qiskit/qiskit.circuit.library.iSwapGate)
+    *   [`DCXGate`](/docs/api/qiskit/qiskit.circuit.library.DCXGate)
 
 *   [`partition_problem()`](qiskit-addon-cutting#partition_problem "qiskit_addon_cutting.partition_problem") now works even if `partition_labels` is not explicitly provided. In this case, the labels are determined automatically from the connectivity of the input circuit. For the sake of determining connectivity, [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s are ignored, as these instructions are already marked for cutting. To support this workflow, this release also introduces a new method, [`TwoQubitQPDGate.from_instruction()`](qpd-two-qubit-qpd-gate#from_instruction "qiskit_addon_cutting.qpd.TwoQubitQPDGate.from_instruction"), which allows one to create a [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate") that wraps a given instruction.
 
@@ -317,7 +317,7 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 *   Users may now bypass experiments associated with the Hartree-Fock bitstring and replace their results with a specified Hartree-Fock value using the `hf_energy` class field in `circuit_knitting.forging.EntanglementForgingGroundStateSolver`. Refer to the `explanatory material <Fixing the Hartree-Fock Bitstring>` for more information.
 
-*   `generate_qpd_weights()` now returns a mixture of exact and sampled weights when appropriate. Specifically, it exactly evaluates all weights greater than or equal to `1 / num_samples` and samples from the remaining weights (ones which are below this threshold). Previously, this function would only return exact weights if *all* weights were greater than or equal to `1 / num_samples`; otherwise, all weights were sampled. The new behavior is expected to improve performance on non-uniform quasi-probability decompositions, e.g. for cut instantiations of [`RXXGate`](/docs/api/qiskit/qiskit.circuit.library.RXXGate "(in Qiskit v1.4)"), [`RYYGate`](/docs/api/qiskit/qiskit.circuit.library.RYYGate "(in Qiskit v1.4)"), [`RZZGate`](/docs/api/qiskit/qiskit.circuit.library.RZZGate "(in Qiskit v1.4)"), [`CRXGate`](/docs/api/qiskit/qiskit.circuit.library.CRXGate "(in Qiskit v1.4)"), [`CRYGate`](/docs/api/qiskit/qiskit.circuit.library.CRYGate "(in Qiskit v1.4)"), and [`CRZGate`](/docs/api/qiskit/qiskit.circuit.library.CRZGate "(in Qiskit v1.4)") away from $\theta=\pi/2$.
+*   `generate_qpd_weights()` now returns a mixture of exact and sampled weights when appropriate. Specifically, it exactly evaluates all weights greater than or equal to `1 / num_samples` and samples from the remaining weights (ones which are below this threshold). Previously, this function would only return exact weights if *all* weights were greater than or equal to `1 / num_samples`; otherwise, all weights were sampled. The new behavior is expected to improve performance on non-uniform quasi-probability decompositions, e.g. for cut instantiations of [`RXXGate`](/docs/api/qiskit/qiskit.circuit.library.RXXGate), [`RYYGate`](/docs/api/qiskit/qiskit.circuit.library.RYYGate), [`RZZGate`](/docs/api/qiskit/qiskit.circuit.library.RZZGate), [`CRXGate`](/docs/api/qiskit/qiskit.circuit.library.CRXGate), [`CRYGate`](/docs/api/qiskit/qiskit.circuit.library.CRYGate), and [`CRZGate`](/docs/api/qiskit/qiskit.circuit.library.CRZGate) away from $\theta=\pi/2$.
 
 *   The `circuit_knitting.cutting` module now supports wire cutting. There is a [new tutorial](https://qiskit.github.io/qiskit-addon-cutting/tutorials/index.html) that explains how to use it.
 
@@ -327,9 +327,9 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 ### Upgrade Notes
 
-*   `execute_experiments()` no longer creates separate jobs for each subcircuit by default. Now, separate jobs are only created if separate [BaseSampler](/docs/api/qiskit/1.4/qiskit.primitives.BaseSampler "(in Qiskit v1.4)") instances are provided for each circuit partition.
+*   `execute_experiments()` no longer creates separate jobs for each subcircuit by default. Now, separate jobs are only created if separate [BaseSampler](/docs/api/qiskit/1.4/qiskit.primitives.BaseSampler) instances are provided for each circuit partition.
 
-*   Numpy 1.23.0 or later is now required. The [`kron()`](https://numpy.org/doc/stable/reference/generated/numpy.kron.html#numpy.kron "(in NumPy v2.2)") method in earlier versions [has known performance issues](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/pull/70#issuecomment-1500514513), and this method is used heavily by the CutQC wire cutting module.
+*   Numpy 1.23.0 or later is now required. The [`kron()`](https://numpy.org/doc/stable/reference/generated/numpy.kron.html#numpy.kron) method in earlier versions [has known performance issues](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/pull/70#issuecomment-1500514513), and this method is used heavily by the CutQC wire cutting module.
 
 *   The dependency on the `qiskit.opflow` module has been removed from entanglement forging. With this change, Qiskit Nature 0.6.0 is now required. However, Qiskit Nature 0.6.0 is incompatible with Quantum Serverless, so users that wish to use entanglement forging with Quantum Serverless must remain on version 0.2 of the Circuit Knitting Toolbox until [issue #108](https://github.com/Qiskit/qiskit-addon-cutting/issues/108) is resolved.
 
@@ -378,7 +378,7 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 0.2.0 is centered around the addition of functions which allow for the easy implementation of a circuit cutting technique called gate cutting. For more details on circuit cutting, check out our [explanation guide](https://qiskit.github.io/qiskit-addon-cutting/explanation/index.html).
 
-The foundation of the `circuit_cutting` package is the `circuit_knitting_toolbox.circuit_cutting.qpd` sub-package. The `qpd` package allows for easy transformation of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") gates and wires into elements which may be decomposed to a probabilistic set of basis gates. See `QPDBasis` and `BaseQPDGate` classes for more information.
+The foundation of the `circuit_cutting` package is the `circuit_knitting_toolbox.circuit_cutting.qpd` sub-package. The `qpd` package allows for easy transformation of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) gates and wires into elements which may be decomposed to a probabilistic set of basis gates. See `QPDBasis` and `BaseQPDGate` classes for more information.
 
 Additionally, 0.2.0 includes a set of functions which allow for easy implementation of gate cutting workflows. These functions are built on top of the `circuit_knitting_toolbox.circuit_cutting.qpd` package. Like all circuit knitting techniques, gate cutting can be described as three consecutive stages: *decomposition* of a problem, *execution* of many subexperiments, and *reconstruction* of a simulated output of the original problem. These steps may be implemented with the `circuit_cutting` package using only a few primary functions, namely, the [`partition_problem()`](qiskit-addon-cutting#partition_problem "qiskit_addon_cutting.partition_problem"), `decompose_gates()`, `execute_experiments()`, and [`reconstruct_expectation_values()`](qiskit-addon-cutting#reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values") functions. Check out the [tutorials](https://qiskit.github.io/qiskit-addon-cutting/tutorials/index.html) for a look at a couple of example circuit cutting workflows.
 
@@ -388,7 +388,7 @@ Additionally, 0.2.0 includes a set of functions which allow for easy implementat
 
 ### New Features
 
-*   Addition of a `qpd` package which allows for easy transformation of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)") gates and wires into elements which may be decomposed to a probabilistic set of basis gates. See `QPDBasis` and `BaseQPDGate` classes for more information.
+*   Addition of a `qpd` package which allows for easy transformation of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) gates and wires into elements which may be decomposed to a probabilistic set of basis gates. See `QPDBasis` and `BaseQPDGate` classes for more information.
 
 *   Addition of `cutting_decomposition`, `cutting_execution`, and `cutting_reconstruction` modules. These modules provide several functions which allow for easy implementation of gate cutting workflows, namely, the [`partition_problem()`](qiskit-addon-cutting#partition_problem "qiskit_addon_cutting.partition_problem"), `decompose_gates()`, `execute_experiments()`, and [`reconstruct_expectation_values()`](qiskit-addon-cutting#reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values") functions.
 
@@ -396,9 +396,9 @@ Additionally, 0.2.0 includes a set of functions which allow for easy implementat
 
 ### Known Issues
 
-*   The `circuit_cutting` package only supports [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.4)") observables for calculating expectation values. Support for calculating expectation values for more observable types, including [`SparsePauliOp`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)"), is expected no sooner than 0.3.0.
+*   The `circuit_cutting` package only supports [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList) observables for calculating expectation values. Support for calculating expectation values for more observable types, including [`SparsePauliOp`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp), is expected no sooner than 0.3.0.
 
-*   The `Sampler`s from Qiskit and Qiskit Aer do not support mid-circuit measurements in statevector mode. For more on generating exact quasi-distributions using the [BaseSampler](/docs/api/qiskit/1.4/qiskit.primitives.BaseSampler "(in Qiskit v1.4)") interface, check out our [how-to guide](https://github.com/Qiskit/qiskit-addon-cutting/blob/stable/0.7/docs/circuit_cutting/how-tos/how_to_generate_exact_quasi_dists_from_sampler.ipynb).
+*   The `Sampler`s from Qiskit and Qiskit Aer do not support mid-circuit measurements in statevector mode. For more on generating exact quasi-distributions using the [BaseSampler](/docs/api/qiskit/1.4/qiskit.primitives.BaseSampler) interface, check out our [how-to guide](https://github.com/Qiskit/qiskit-addon-cutting/blob/stable/0.7/docs/circuit_cutting/how-tos/how_to_generate_exact_quasi_dists_from_sampler.ipynb).
 
 *   The `circuit_cutting` package generally does not yet support input circuits with user-added classical bits, so by extension, it does not yet support dynamic circuits.
 

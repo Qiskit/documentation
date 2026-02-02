@@ -9,7 +9,7 @@ python_api_name: qiskit.algorithms.gradients.BaseEstimatorGradient
 # BaseEstimatorGradient
 
 <Class id="qiskit.algorithms.gradients.BaseEstimatorGradient" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/gradients/base/base_estimator_gradient.py" signature="qiskit.algorithms.gradients.BaseEstimatorGradient(estimator, options=None, derivative_type=DerivativeType.REAL)" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   Base class for an `EstimatorGradient` to compute the gradients of the expectation value.
 
@@ -62,7 +62,7 @@ python_api_name: qiskit.algorithms.gradients.BaseEstimatorGradient
 
     *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the gradients.
     *   **observables** (*Sequence\[BaseOperator |* [*PauliSumOp*](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")*]*) – The list of observables.
-    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]]*) – The list of parameter values to be bound to the circuit.
     *   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated. None in the sequence means that the gradients of all parameters in the corresponding circuit are calculated.
     *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
@@ -72,7 +72,7 @@ python_api_name: qiskit.algorithms.gradients.BaseEstimatorGradient
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Invalid arguments are given.
 
     **Return type**
 

@@ -40,8 +40,8 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  *   **state** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]] | np.ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – $n \times n$ boolean invertible matrix, describing the state of the input circuit
-  *   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The size of each section in the Patel–Markov–Hayes algorithm \[1].
+  *   **state** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*]] | np.ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*]*) – $n \times n$ boolean invertible matrix, describing the state of the input circuit
+  *   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The size of each section in the Patel–Markov–Hayes algorithm \[1].
 
   **Returns**
 
@@ -69,7 +69,7 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – A boolean invertible matrix.
+  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*]*) – A boolean invertible matrix.
 
   **Returns**
 
@@ -99,7 +99,7 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – an upper-diagonal matrix representing the CZ circuit. `mat[i][j]=1 for i<j` represents a `cz(i,j)` gate
+  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – an upper-diagonal matrix representing the CZ circuit. `mat[i][j]=1 for i<j` represents a `cz(i,j)` gate
 
   **Returns**
 
@@ -121,8 +121,8 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  *   **mat\_z** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – a boolean symmetric matrix representing a CZ circuit. `mat_z[i][j]=1` represents a `cz(i,j)` gate
-  *   **mat\_x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – a boolean invertible matrix representing a CX circuit.
+  *   **mat\_z** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – a boolean symmetric matrix representing a CZ circuit. `mat_z[i][j]=1` represents a `cz(i,j)` gate
+  *   **mat\_x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – a boolean invertible matrix representing a CX circuit.
 
   **Returns**
 
@@ -151,7 +151,7 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  *   **cnots** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) –
+  *   **cnots** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]*) –
 
       A matrix whose columns are the parities to be synthesized e.g.:
 
@@ -168,9 +168,9 @@ python_api_name: qiskit.synthesis
       x1^x2 + x0 + x0^x3 + x0^x1^x2 + x0^x1^x3 + x0^x1
       ```
 
-  *   **angles** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – A list containing all the phase-shift gates which are to be applied, in the same order as in `cnots`. A number is interpreted as the angle of $p(angle)$, otherwise the elements have to be `'t'`, `'tdg'`, `'s'`, `'sdg'` or `'z'`.
+  *   **angles** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – A list containing all the phase-shift gates which are to be applied, in the same order as in `cnots`. A number is interpreted as the angle of $p(angle)$, otherwise the elements have to be `'t'`, `'tdg'`, `'s'`, `'sdg'` or `'z'`.
 
-  *   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The size of every section in the Patel–Markov–Hayes algorithm. `section_size` must be a factor of the number of qubits.
+  *   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The size of every section in the Patel–Markov–Hayes algorithm. `section_size` must be a factor of the number of qubits.
 
   **Returns**
 
@@ -200,7 +200,7 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  **pattern** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | np.ndarray\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+  **pattern** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | np.ndarray\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
   **Returns**
 
@@ -224,7 +224,7 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  **pattern** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | np.ndarray\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+  **pattern** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | np.ndarray\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
   **Returns**
 
@@ -246,7 +246,7 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  **pattern** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | np.ndarray\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+  **pattern** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | np.ndarray\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
   **Returns**
 
@@ -271,7 +271,7 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits.
+  **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits.
 
   **Returns**
 
@@ -298,7 +298,7 @@ python_api_name: qiskit.synthesis
   **Parameters**
 
   *   **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – A Clifford operator.
-  *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Optional, a synthesis method (`'AG'` or `'greedy'`). If set this overrides optimal decomposition for $N \leq 3$ qubits.
+  *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Optional, a synthesis method (`'AG'` or `'greedy'`). If set this overrides optimal decomposition for $N \leq 3$ qubits.
 
   **Returns**
 
@@ -573,9 +573,9 @@ python_api_name: qiskit.synthesis
   **Parameters**
 
   *   **stab** ([*StabilizerState*](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.states.stabilizerstate.StabilizerState")) – A stabilizer state.
-  *   **cz\_synth\_func** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)")*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – A function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
-  *   **cz\_func\_reverse\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – `True` only if `cz_synth_func` is [`synth_cz_depth_line_mr()`](#qiskit.synthesis.synth_cz_depth_line_mr "qiskit.synthesis.synth_cz_depth_line_mr"), since this function returns a circuit that reverts the order of qubits.
-  *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, validates the synthesis process.
+  *   **cz\_synth\_func** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – A function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+  *   **cz\_func\_reverse\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – `True` only if `cz_synth_func` is [`synth_cz_depth_line_mr()`](#qiskit.synthesis.synth_cz_depth_line_mr "qiskit.synthesis.synth_cz_depth_line_mr"), since this function returns a circuit that reverts the order of qubits.
+  *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True`, validates the synthesis process.
 
   **Returns**
 
@@ -624,10 +624,10 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  *   **stabilizers** ([*Collection*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Collection "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – List of stabilizer strings
-  *   **allow\_redundant** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Allow redundant stabilizers (i.e., some stabilizers can be products of the others)
-  *   **allow\_underconstrained** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Allow underconstrained set of stabilizers (i.e., the stabilizers do not specify a unique state)
-  *   **invert** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Return inverse circuit
+  *   **stabilizers** ([*Collection*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Collection)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – List of stabilizer strings
+  *   **allow\_redundant** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Allow redundant stabilizers (i.e., some stabilizers can be products of the others)
+  *   **allow\_underconstrained** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Allow underconstrained set of stabilizers (i.e., the stabilizers do not specify a unique state)
+  *   **invert** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Return inverse circuit
 
   **Returns**
 
@@ -660,9 +660,9 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gates from which to create the sequences of gates.
-  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum depth of the approximations.
-  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – If provided, the basic approximations are stored in this file.
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gates from which to create the sequences of gates.
+  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum depth of the approximations.
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – If provided, the basic approximations are stored in this file.
 
   **Returns**
 
@@ -670,11 +670,11 @@ python_api_name: qiskit.synthesis
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `basis_gates` contains an invalid gate identifier.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `basis_gates` contains an invalid gate identifier.
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[GateSequence]
+  [list](https://docs.python.org/3/library/stdtypes.html#list)\[GateSequence]
 </Function>
 
 ## Basis Change Synthesis
@@ -688,9 +688,9 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits on which the QFT acts.
-  *   **approximation\_degree** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The degree of approximation (0 for no approximation).
-  *   **do\_swaps** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to include the final swaps in the QFT.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits on which the QFT acts.
+  *   **approximation\_degree** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The degree of approximation (0 for no approximation).
+  *   **do\_swaps** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to include the final swaps in the QFT.
 
   **Returns**
 
@@ -745,8 +745,8 @@ $$
   **Parameters**
 
   *   **mat** (*np.ndarray*) – unitary matrix to decompose
-  *   **opt\_a1** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether to try optimization A.1 from Shende et al. \[1]. This should eliminate 1 `cx` per call. If `True`, [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate")s are left in the output. If desired these can be further decomposed to [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s.
-  *   **opt\_a2** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether to try optimization A.2 from Shende et al. \[1]. This decomposes two qubit unitaries into a diagonal gate and a two cx unitary and reduces overall cx count by $4^{n-2} - 1$.
+  *   **opt\_a1** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to try optimization A.1 from Shende et al. \[1]. This should eliminate 1 `cx` per call. If `True`, [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate")s are left in the output. If desired these can be further decomposed to [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s.
+  *   **opt\_a2** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to try optimization A.2 from Shende et al. \[1]. This decomposes two qubit unitaries into a diagonal gate and a two cx unitary and reduces overall cx count by $4^{n-2} - 1$.
   *   **decomposer\_1q** (*Callable\[\[np.ndarray],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – optional 1Q decomposer. If None, uses [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer").
   *   **decomposer\_2q** (*Callable\[\[np.ndarray],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – optional 2Q decomposer. If None, uses [`TwoQubitBasisDecomposer`](qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer").
 
@@ -787,8 +787,8 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
   **Parameters**
 
   *   **unitary** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or np.ndarray*) – The 4x4 unitary to synthesize.
-  *   **basis\_fidelity** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *or None*) – If given the assumed fidelity for applications of [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
-  *   **approximate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` approximate if `basis_fidelity` is less than 1.0.
+  *   **basis\_fidelity** ([*float*](https://docs.python.org/3/library/functions.html#float) *or None*) – If given the assumed fidelity for applications of [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+  *   **approximate** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True` approximate if `basis_fidelity` is less than 1.0.
 
   **Returns**
 

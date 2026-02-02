@@ -114,6 +114,7 @@ export class Pkg {
         await determineReleaseNotesSeparetePagesVersions(
           name,
           versionWithoutPatch,
+          type == "dev",
         );
       return new Pkg({
         ...args,

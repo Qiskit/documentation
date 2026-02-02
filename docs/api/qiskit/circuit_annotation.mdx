@@ -26,7 +26,7 @@ The main user-facing class is the base class [`qiskit.circuit.Annotation`](qiski
 
 The [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") class is intended to be subclassed. Subclasses must set their [`namespace`](qiskit.circuit.Annotation#namespace "qiskit.circuit.Annotation.namespace") field. This can be specific to an instance, or static for an entire subclass. The namespace is used as part of the dispatch mechanism, as described in [Namespacing](#circuit-annotation-namespacing).
 
-Circuit equality checks also compare annotations on objects in an order-dependent manner. You will likely want to implement the [`__eq__()`](https://docs.python.org/3/reference/datamodel.html#object.__eq__ "(in Python v3.14)") magic method on any subclasses.
+Circuit equality checks also compare annotations on objects in an order-dependent manner. You will likely want to implement the [`__eq__()`](https://docs.python.org/3/reference/datamodel.html#object.__eq__) magic method on any subclasses.
 
 If you intend your annotation to be able to be serialized via [QPY](qpy#qiskit-qpy) or :ref:\` OpenQASM 3 \<qiskit-qasm3>\`, you must provide separate implementations of the serialization and deserialization methods as discussed in [Serialization and deserialization](#circuit-annotation-serialization).
 
@@ -56,11 +56,11 @@ A stand-alone function allows iterating through namespaces and parent namespaces
 
   **Parameters**
 
-  **namespace** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) –
+  **namespace** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) –
 
   **Return type**
 
-  [*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator "(in Python v3.14)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")]
+  [*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator)\[[str](https://docs.python.org/3/library/stdtypes.html#str)]
 </Function>
 
 <span id="circuit-annotation-serialization" />
@@ -76,7 +76,7 @@ For all of these reasons, serialization and deserialization of annotations is ha
 #### QPYSerializer
 
 <Class id="qiskit.circuit.annotation.QPYSerializer" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/annotation.py#L227-L366" signature="qiskit.circuit.annotation.QPYSerializer" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.14)")
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   The interface for serializers and deserializers of [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects to QPY.
 
@@ -151,7 +151,7 @@ For all of these reasons, serialization and deserialization of annotations is ha
 #### OpenQASM3Serializer
 
 <Class id="qiskit.circuit.annotation.OpenQASM3Serializer" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/circuit/annotation.py#L369-L424" signature="qiskit.circuit.annotation.OpenQASM3Serializer" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.14)")
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   The interface for serializers and deserializers of [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects to OpenQASM 3.
 
