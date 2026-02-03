@@ -37,6 +37,14 @@ export const externalRedirects = {
     "https://pubs.aip.org/aip/jcp/article/148/16/164104/196134/Bravyi-Kitaev-Superfast-simulation-of-electronic",
   "https://aip.scitation.org/doi/10.1063/1.5141835":
     "https://pubs.aip.org/aip/jcp/article/152/12/124107/953761/Quantum-orbital-optimized-unitary-coupled-cluster",
+  "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf":
+    "https://www.semanticscholar.org/paper/Stochastic-ranking-for-constrained-evolutionary-Runarsson-Yao/827e3d01e52438e29aac1f6c4c8a2ed972a87c75",
+  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json":
+    "https://quantum.cloud.ibm.com/docs/api/qiskit-runtime-rest/tags/backends#tags__backends__operations__get_backend_configuration",
+  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json":
+    "https://quantum.cloud.ibm.com/docs/api/qiskit-runtime-rest/tags/backends#tags__backends__operations__get_backend_configuration",
+  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials":
+    "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-migrate-from-performance-management-on-ibm-cloud",
   ...Object.fromEntries(
     QISKIT_REMOVED_PAGES.map((link) => [
       `https://docs.quantum.ibm.com/api/qiskit/${link}`,
