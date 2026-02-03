@@ -158,7 +158,17 @@ export async function determineReleaseNotesSeparetePagesVersions(
 }
 
 export function generateReleaseNotesIndex(pkg: Pkg): string {
-  let markdown = `---
+  const grouped = groupByMajorVersion(
+    pkg.releaseNotesConfig.separatePagesVersions,
+  );
+  const groupsMarkdown = [...grouped.entries()]
+    .map(([majorVersion, versionList], idx) =>
+      renderVersionGroup(majorVersion, versionList, {
+        isLatestVersion: idx === 0,
+      }),
+    )
+    .join("\n\n");
+  return `---
 title: ${pkg.title} release notes
 description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 ---
@@ -169,18 +179,11 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 
 ## Release notes by version
 
-`;
+<Accordion>
+${groupsMarkdown}
+</Accordion>
 
-  const grouped = groupByMajorVersion(
-    pkg.releaseNotesConfig.separatePagesVersions,
-  );
-  [...grouped.entries()].forEach(([majorVersion, versionList], idx) => {
-    markdown +=
-      renderVersionGroup(majorVersion, versionList, {
-        isLatestVersion: idx === 0,
-      }) + "\n\n";
-  });
-  return markdown.trim();
+`.trim();
 }
 
 /**
@@ -287,11 +290,10 @@ function renderVersionGroup(
   const items = versions
     .map((version) => `- [v${version}](./${version})`)
     .join("\n");
-  const openAttr = kwargs.isLatestVersion ? " open" : "";
+  const maybeOpenProp = kwargs.isLatestVersion ? "open" : "";
   return `
-<details${openAttr}>
-<summary>v${majorVersion}</summary>
+<AccordionItem ${maybeOpenProp} title="v${majorVersion}">
 ${items}
-</details>
+</AccordionItem>
   `.trim();
 }
