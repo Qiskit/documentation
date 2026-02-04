@@ -101,6 +101,15 @@ async function getIndexModuleGroups(fp: string): Promise<ModuleGroup[]> {
     const isDedicatedClassPage = line.includes(" class](");
     if (isDedicatedClassPage) continue;
 
+    // Certain packages like Qiskit 2.4+ have a manually created root page.
+    // That page shows up in index.mdx as a top-level entry, but it is not
+    // a top-level entry in the left ToC. This is expected, so, we allow
+    // the index to diverge from the left ToC.
+    //
+    // This is looking for e.g. '[Root namespace (`qiskit`)](root)'
+    const isRootPage = line.includes("](root)");
+    if (isRootPage) continue;
+
     const module = extractModuleName(line);
     currentGroup.push(module);
   }
