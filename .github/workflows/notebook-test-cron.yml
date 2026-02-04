@@ -32,6 +32,9 @@ jobs:
 
       - name: Execute notebooks
         timeout-minutes: 350
+        env:
+          IBM_CLOUD_TEST_TOKEN: ${{ secrets.IBM_CLOUD_TEST_TOKEN }}
+          IBM_CLOUD_TEST_CRN: ${{ vars.IBM_CLOUD_TEST_CRN }}
         run: tox -- --write --test-strategy hardware
 
       - name: Normalize notebooks
