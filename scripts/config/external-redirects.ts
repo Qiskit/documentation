@@ -39,8 +39,6 @@ export const externalRedirects = {
     "https://pubs.aip.org/aip/jcp/article/152/12/124107/953761/Quantum-orbital-optimized-unitary-coupled-cluster",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json":
     "https://quantum.cloud.ibm.com/docs/api/qiskit-runtime-rest/tags/backends#tags__backends__operations__get_backend_configuration",
-  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials":
-    "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-migrate-from-performance-management-on-ibm-cloud",
   ...Object.fromEntries(
     QISKIT_REMOVED_PAGES.map((link) => [
       `https://docs.quantum.ibm.com/api/qiskit/${link}`,
