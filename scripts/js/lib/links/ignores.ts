@@ -178,11 +178,6 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
-
-  // The pulse guide was removed in https://github.com/Qiskit/documentation/pull/4495 and should be fixed
-  // in the Qiskit latest, dev, and some historical versions. In the meantime, the app will redirect the
-  // page to pulse-migration so the links are not broken.
-  "/docs/guides/pulse",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -465,12 +460,25 @@ function _runtimeHistoricalSchema(): FilesToIgnores {
   );
 }
 
+function _qiskitPulseLink(): FilesToIgnores {
+  return Object.fromEntries(
+    ["1.2/", "1.3/", "1.4/", "2.0/", "2.1/", "2.2/"].flatMap((vers) => [
+      [`docs/api/qiskit/${vers}qpy.mdx`, ["/docs/guides/pulse"]],
+      [
+        `docs/api/qiskit/${vers}qiskit.transpiler.passes.ValidatePulseGates.mdx`,
+        ["/docs/guides/pulse"],
+      ],
+    ]),
+  );
+}
+
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
   _runtimeLegacyReleaseNotes(),
   _runtimeHistoricalSchema(),
+  _qiskitPulseLink(),
 );
 
 function _qiskitCRegexes(): FilesToIgnores {
