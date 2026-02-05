@@ -10,7 +10,7 @@ in_page_toc_max_heading_level: 2
 
 # Latest updates
 
-*Last updated 29 October 2025*
+*Last updated 29 January 2026*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
@@ -19,7 +19,7 @@ Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 For all product announcements, visit the [Announcements](/announcements/product-updates) page on IBM Quantum Platform.
 
 
-Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit Serverless](#latest-qiskit-serverless) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca)
+Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit addons](#latest-qiskit-addons) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca)
 
 
 
@@ -27,6 +27,38 @@ Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-s
 ## IBM Quantum Platform
 
 This section summarizes the recent enhancements and new features for the new [IBM Quantum Platform.](https://quantum.cloud.ibm.com/)
+
+**January 2026**
+
+- The latest enhancements to the [Compute resources](https://quantum.cloud.ibm.com/computers) page include the following:
+
+  - **Unified QPU view** - All QPUs across regions are now displayed in a single table, making it easier to see status and calibrations of the shared fleet across the two regions. (You can still filter the Compute resources table by region using the funnel icon.)
+
+  - **Single maintenance schedule** - The maintenance schedule is now at the top of the page, even when no events are currently planned.
+
+  - **"Instance access" details** - When viewing a QPU's details, a new Instance access section shows all instances that grant the user access to that QPU for the selected account.
+
+- **The first Nighthawk QPU and latest Heron QPU are now available.** These two powerful new processors debuted at the [IBM Quantum Developer Conference](https://www.ibm.com/quantum/blog/qdc-2025) in November.
+
+  - Premium and Flex Plans now have early access to `ibm_miami`, the first IBM Quantum Nighthawk QPU. Our most advanced quantum processor to date, Nighthawk is a 120-qubit device with a square-lattice topology (218 couplers versus Heron's 176) that is designed to support more complex workloads. Nighthawk has the highest coherence of our fleet - even higher than what was reported at QDC - with a median T1 of 350 &#181;s.
+
+  - Note that `ibm_miami` is currently an exploratory QPU that is still being tested and optimized as part of our continual cycles of learning. As such, it temporarily has the following limitations:
+
+    - Default repetition time has been temporarily increased from 250 &#181;s to 4 ms, which will impact QPU time required to execute workloads
+    - Dynamic circuits are not yet supported, and quality of mid-circuit measurements is limited
+
+  - Additionally, Premium, Flex, and Pay-As-You-Go Plans now have access to `ibm_boston`, our most performant IBM Quantum Heron r3 to date. It has demonstrated an EPLG at 100 qubits of 2.15e-3, with 57 of 176 possible two-qubit gates below the 1e-3 error level.
+
+- **Introducing instance archiving for administrators on IBM Quantum Platform.** With this update, administrators can archive any instance within their account. Archiving an instance ensures that:
+
+    - Collaborators retain access to results and QPU metrics, properties, and calibrations from past workloads.
+    - No new workloads can be submitted to the archived instance, preventing unintended usage.
+    - Archived instances do not subtract anything from your account's plan allocation.
+    - All archived instances are neatly organized under a dedicated "Archived" tab.
+    - Administrators can reactivate an instance at any time.
+
+<details>
+<summary><b>Previous updates</b></summary>
 
 **October 2025**
 
@@ -47,9 +79,6 @@ This section summarizes the recent enhancements and new features for the new [IB
   *Note that there is a processing delay between the publication of new content and its translation, so you might only see the English version of recently released content for a few days while the translation is underway.*
 
 - **Learning in IBM Quantum Platform** now has an updated home page to help you navigate the educational resources available, as well as two new catalog pages to help browse courses and modules. [Check out the updates!](/learning)
-
-<details>
-<summary><b>Previous updates</b></summary>
 
 **24 June 2025**
 
@@ -129,17 +158,25 @@ For full details on the early access release and upcoming improvements, [check o
 
 
 <span id="latest-qiskit-sdk"></span>
-## Qiskit SDK v2.2
+## Qiskit SDK v2.3
 
-**October 2025**
+**January 2026**
 
-Qiskit v2.2 adds several enhancements for the C API and the transpiler, as well as many other improvements and bug fixes. The major features of this new release are:
+- Building on the momentum established across the v2.x series, which has centered on positioning Qiskit as the leading platform for hybrid quantum-HPC workflows, [Qiskit SDK v2.3](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) delivers a significant expansion of the C API alongside faster, more flexible tools for building and optimizing quantum circuits.
 
--  **C API transpile function:** The C API now includes a function for transpiling a quantum circuit: [`qk_transpile()`](/docs/api/qiskit-c/qk-transpiler). This function is equivalent to the Python [`transpile()`](/docs/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function for a standalone C context.
-- **Litinski transformation pass:** A new transformation pass [`LitinskiTransformation`](/docs/api/qiskit/qiskit.transpiler.passes.LitinskiTransformation "qiskit.transpiler.passes.LitinskiTransformation") that implements the transform described in [arXiv:1808.02892](https://arxiv.org/abs/1808.02892). This pass is typically used in compilation for fault-tolerant architectures.
-- **Angle bound support for targets:** The [`Target`](/docs/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") class now supports specifying bounds for the allowed values for parameterized operations added to the target. When an instruction is added to the [`Target`](/docs/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target"), you can add the optional argument `angle_bounds` to specify the upper and lower bounds for parameterized rotation gates. A new transpiler pass [`WrapAngles`](/docs/api/qiskit/qiskit.transpiler.passes.WrapAngles "qiskit.transpiler.passes.WrapAngles") was also added to enforce the angle constraints as part of a transpilation pipeline.
+  Major updates include:
 
-Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.2.0) and the [v2.2 release notes.](/docs/api/qiskit/release-notes/2.2)
+  - **Custom transpiler passes in C** - Write custom transpiler passes through Qiskit's C API using the new `QkDag` object and an expanded `QkTarget` object, which enable step-by-step inspection, modification, and extension of the compilation process - without rebuilding the entire compiler pipeline.
+
+  - **Faster hardware layout selection** - Upgrades and Rust-driven performance enhancements to `VF2Layout` and `VF2PostLayout` improve the speed and scalability of circuit-to-hardware layout selection, reducing compilation overhead and improving fidelity on quantum hardware.
+
+  - **New multi-qubit Pauli measurement** - The new `PauliProductMeasurement` instruction enables joint projective measurement across multiple qubits in a single operation, unlocking compilation to Pauli-based computation - a common representation in fault-tolerant quantum computing.
+
+  - **Improvements in early fault-tolerant transpilation** - Performance and feature enhancements for transpilation to early fault-tolerant targets - especially Clifford+T targets - help users more efficiently build transpilation pipelines for future QPUs.
+
+  These capabilities give developers greater flexibility to customize quantum circuit optimizations and integrate with existing HPC workflows. [Visit the blog](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) for the full technical summary.
+
+Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.3.0) and the [v2.3 release notes.](/docs/api/qiskit/release-notes/2.3)
 
 {/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
 
@@ -147,13 +184,15 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 
 <span id="latest-qiskit-runtime"></span>
-## Qiskit Runtime client 0.42.0
+## Qiskit Runtime client 0.45.0
 
-**September 2025**
+**January 2026**
 
-- Highlights: Since backends now support running jobs that contain both fractional gates and dynamic circuits, control flow instructions are no longer filtered out when using `use_fractional_gates=True`. As a result, there is a new translation state plugin, `IBMDynamicFractionalTranslationPlugin`, for targeting circuits with both dynamic circuits and fractional gates.
+- Highlights: 
+  - ``qiskit-ibm-runtime`` is now compatible with Qiskit v2.3.
+  - The ``delete_job()`` method has been reintroduced.
 
-- For all updates, bug fixes, and new features, see the full [0.42.0 release notes.](/docs/api/qiskit-ibm-runtime/release-notes#0420-2025-09-15)
+- For all updates, bug fixes, and new features, see the full [0.45.0 release notes.](/docs/api/qiskit-ibm-runtime/release-notes#0450-2026-01-08)
 
 {/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
 
@@ -163,6 +202,13 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 ## Qiskit Runtime service
 
 This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (by using `qiskit-ibm-runtime` or otherwise), or which version of the client SDK you use.
+
+**January 2026**
+
+- [**Directed execution model.**](/docs/guides/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](https://qiskit.github.io/samplomatic/index.html) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
+
+<details>
+<summary><b>Previous updates</b></summary>
 
 **October 2025**
 
@@ -178,9 +224,6 @@ This summary of the latest changes to the Qiskit Runtime service applies to anyo
   Additional features will be rolled out later this year.
 
   See  [Classical feedforward and control flow](/docs/guides/classical-feedforward-and-control-flow) and [Deferred timing resolution using stretch](/docs/guides/stretch) for more information and code examples.
-
-<details>
-<summary><b>Previous updates</b></summary>
 
 **5 June 2025**
 
@@ -246,11 +289,11 @@ Improvements include the following:
 </details>
 
 <span id="latest-qiskit-transpiler-service"></span>
-## Qiskit Transpiler Service client v0.11.0
+## Qiskit Transpiler Service client v0.15.2
 
-**25 March 2025**
+**January 2026**
 
-- See the [v0.11.0 release notes.](/docs/api/qiskit-ibm-transpiler/release-notes#0110-2025-03-25)
+- See the [v0.15.2 release notes.](/docs/api/qiskit-ibm-transpiler/release-notes#0152-2026-01-13)
 
 *To see the release notes for all versions, visit the [Qiskit Transpiler Service client release notes](/docs/api/qiskit-ibm-transpiler/release-notes).*
 
@@ -262,44 +305,14 @@ Improvements include the following:
   - The Qiskit Transpiler Service leverages IBM Cloud&reg; resources to provide users with the latest transpilation capabilities from the Qiskit SDK. It offers a Python library that helps users seamlessly integrate the service into their current Qiskit patterns and workflows. Perhaps most importantly, the service invites users to experiment with new and improved AI-powered transpiler passes — cutting-edge tools that might be faster and produce better results than traditional transpilation methods. Read the [blog](https://www.ibm.com/quantum/blog/ai-transpiler-passes) for more information.
 </details>
 
-<span id="latest-qiskit-serverless"></span>
-## Qiskit Serverless
+<span id="latest-qiskit-addons"></span>
+## Qiskit addons
 
-**16 May 2025**
+- We recently released two new addons that use classical resources to reduce the quantum resources needed for error mitigation:
 
-- [Developers can set detailed statuses and track what's happening across a workflow.](/docs/guides/serverless-manage-resources#set-detailed-statuses)
+  - [Propagated noise absorption (PNA)](https://qiskit.github.io/qiskit-addon-pna/) is a technique for mitigating errors in expectation values by absorbing the inverses of the learned noise channels into observables using Pauli propagation. 
 
-  Serverless workloads have several stages across a workflow. By default, the following statuses are viewable with `job.status()`:
-
-  - `QUEUED`: The workload is queued for classical resources.
-  - `INITIALIZING`: The workload is set up.
-  - `RUNNING`: The workload is currently running on classical resources.
-  - `DONE`: The workload has successfully completed.
-
-  Now, you can also set custom statuses that further describe the specific workflow stage, as in the following example.
-
-    <details>
-  <summary>Expand for code example</summary>
-
-    ```python
-    from qiskit_serverless import update_status, Job
-
-    ## If your function has a mapping stage, particularly application functions, you can set the status to "RUNNING: MAPPING" as follows:
-    update_status(Job.MAPPING)
-
-    ## While handling transpilation, error suppression, and so forth, you can set the status to "RUNNING: OPTIMIZING_FOR_HARDWARE":
-    update_status(Job.OPTIMIZING_HARDWARE)
-
-    ## After you submit jobs to Qiskit Runtime, the underlying quantum job will be queued. You can set status to "RUNNING: WAITING_FOR_QPU":
-    update_status(Job.WAITING_QPU)
-
-    ## When the Qiskit Runtime job starts running on the QPU, set the following status "RUNNING: EXECUTING_QPU":
-    update_status(Job.EXECUTING_QPU)
-
-    ## After the QPU is completed and post-processing has begun, set the status "RUNNING: POST_PROCESSING":
-    update_status(Job.POST_PROCESSING)
-    ```
-  </details>
+  - The [Shaded lightcones (SLC)](https://qiskit.github.io/qiskit-addon-slc/) addon uses classical simulations to more tightly bound the sensitivity to errors throughout the circuit. This allows for more efficient, targeted applications of Probabilistic Error Cancellation (PEC) with reduced variance.
 
 <span id="latest-qiskit-functions"></span>
 ## Qiskit Functions
@@ -309,7 +322,7 @@ Improvements include the following:
 - We're excited to roll out two new functions for finance and optimization:
   - [QUICK-PDE](https://quantum.cloud.ibm.com/functions?id=colibritd-quick-pde) by ColibriTD allows users to solve certain differential equations for material deformation and computational fluid dynamics problems. For example, one team of researchers has already begun using the QUICK-PDE function to study the dynamics of novel reactive fluids developed to transfer heat more efficiently in a type of nuclear reactor known as Small Modular Reactors.
 
-  - [Quantum Portfolio Optimizer](https://quantum.cloud.ibm.com/functions?id=global-data-quantum-quantum-portfolio-optimizer) by Global Data Quantum enables quantitative finance researchers to back-test portfolio optimization strategies. Running on over 100 qubits, this function calculates a portfolio’s Sharpe ratio versus return across a specified time period. Early users are exploring the optimizer’s ability to evaluate historical performance of an investment strategy and to enable comparisons of different portfolios under similar conditions.
+  - [Quantum Portfolio Optimizer](https://quantum.cloud.ibm.com/functions?id=global-data-quantum-quantum-portfolio-optimizer) by Global Data Quantum enables quantitative finance researchers to back-test portfolio optimization strategies. Running on over 100 qubits, this function calculates a portfolio's Sharpe ratio versus return across a specified time period. Early users are exploring the optimizer's ability to evaluate historical performance of an investment strategy and to enable comparisons of different portfolios under similar conditions.
 
 Check out the [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions) to request a free trial today.
 

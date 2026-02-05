@@ -45,6 +45,14 @@ description: Index of all the modules ${descriptionVersion}.
 
 ${markdown}
 `;
+    } else if (result.url.endsWith("/root") && pkg.hasRootNamespaceFile) {
+      result.markdown = `---
+title: ${removeSuffix(pkg.title, " API")} API documentation (${titleVersion})
+description: Re-exports in the root namespace ${descriptionVersion}.
+---
+
+${markdown}
+`;
     } else if (result.meta.apiName) {
       // For class, exception, and function pages, it's useful to have
       // the code object's own h1 show up in the page table of contents

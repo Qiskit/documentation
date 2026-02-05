@@ -374,3 +374,13 @@ Here's an example of what this might look like in your notebook source.
  ]
 }
 ```
+
+### LeftColoredBar
+
+The `LeftColoredBar` component adds a colored bar that wraps all the content inside it. Currently we support two colors (`blue` and `purple`) that can be picked by using the `color` property:
+
+```md
+<LeftColoredBar color="blue">
+  You can use any MDX inside this component.
+</LeftColoredBar>
+```

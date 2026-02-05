@@ -21,6 +21,7 @@ The corresponding circuit would look like the following. Note that a pair of bar
 
 ```python
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.circuit.classical import expr
 
 qubits = QuantumRegister(2)
 clbits = ClassicalRegister(2)
@@ -97,23 +98,101 @@ qc.barrier()
 
 ## View stretch values in Qiskit Runtime
 
-The concrete value of a stretch duration is resolved at compile time, after the circuit is scheduled. When running a Sampler job in Qiskit Runtime, you can view the resolved stretch values in the job result metadata.  Support for `stretch` in Qiskit Runtime is currently experimental, so you need to first set an experimental option to enable its retrieval, then access the data directly from the metadata as follows:
+The actual value of a stretch duration is resolved at compile time, after the circuit is scheduled. When running a Sampler job in Qiskit Runtime, you can view the resolved stretch values in the job result metadata.  Support for `stretch` in Qiskit Runtime is currently experimental, so you need to first set an experimental option to enable its retrieval, then access the data directly from the metadata as follows:
 
 ```python
-# enable stretch value retrieval
+# Enable stretch value retrieval.
 sampler.options.experimental = {
     "execution": {
         "stretch_values": True,
+        "scheduler_timing": True,
     },
 }
 
-# Access the stretch values from the metadata
+# Access the stretch values from the metadata.
 job_result = job.result()
 circuit_stretch_values = job_result[0].metadata["compilation"]["stretch_values"]
+
+# Visualize the timing.
+# Use the sliders at the bottom, the controls at the top, and the legend on the side 
+# of the output to customize the view.
+draw_circuit_schedule_timing(ob.result()[0].metadata['compilation']['scheduler_timing']['timing'])
 ```
+
 <Admonition type="note">
 Although the total circuit time is returned in the "compilation" metadata, this is NOT the time used for billing (quantum time).
 </Admonition>
+
+### Understand the metadata output
+
+The `stretch_values` metadata returns the following information:
+
+- **Name:** The name of the applied stretch.
+- **Value:** The requested goal value.
+- **Remainder:** The remainder from resolving the stretch, which is added to the first delay that uses the stretch.
+- **Expanded values:** Sets of values that specify the stretch start and its duration.
+
+### Example
+
+``` python
+# Define the circuit
+circuit = QuantumCircuit(4)
+foo = circuit.add_stretch("foo")
+bar = circuit.add_stretch("bar")
+circuit.barrier()
+circuit.cz(0, 1)
+circuit.cz(0, 1)
+circuit.cz(0, 1)
+circuit.cz(0, 1)
+
+circuit.delay(foo, 2)
+circuit.x(2)
+# 3*foo
+circuit.delay(expr.mul(3, foo), 2)
+circuit.x(2)
+# 2*foo
+circuit.delay(expr.mul(2, foo), 2)
+
+circuit.delay(bar, 3)
+circuit.x(3)
+circuit.delay(bar, 3)
+
+circuit.measure_all()
+```
+
+#### Metadata output
+
+``` python
+ [{'name': 'bar',
+  'value': 29,
+  'remainder': 1,
+  'expanded_values': [[1365, 30], [1404, 29]]},
+ {'name': 'foo',
+  'value': 8,
+  'remainder': 2,
+  'expanded_values': [[1365, 10], [1384, 24], [1417, 16]]}
+  ]
+```   
+
+The values returned for duration depend on the goal value and the calculated remainder.  For example, these are the durations returned for foo:
+
+- `foo value` + `remainder` (8+2 = 10) 
+- `foo value` * 3 (8 x 3 = 24)
+- `foo value` * 2 (8 x 2 = 16)
+
+You can use a visualization to help understand and verify the timing. 
+
+```python
+draw_circuit_schedule_timing(job.result()[0].metadata['compilation']['scheduler_timing']['timing'])
+```
+
+In the following image, based on the example output, `foo` corresponds to the stretches on Qubit 2. The first stretch delay that uses `foo` starts at the end of the `init_play` (1365). The stretch duration is 10, so that delay ends when the `x` gate starts (1365+10=1375). You can interpret the second and third stretches similarly.
+
+![The output from the `draw_circuit_schedule_timing` command is shown.](/docs/images/guides/stretch/stretch-visualization.avif)
+
+Use the sliders at the bottom, the controls at the top (hover over your output image to reveal these), and the legend on the side of the output to customize the view. Hover over the image to view exact data.
+
+For full details, see the [Visualize circuit timing](/docs/guides/visualize-circuit-timing#visualize-timings) topic.
 
 ## Qiskit Runtime limitations
 
@@ -152,7 +231,7 @@ Support for `stretch` in Qiskit Runtime is currently experimental and has the fo
         circuit.barrier((q0, q1))
          ```
 
-        ![Illustration of the previous code output](/docs/images/guides/stretch/bad-barrier-region.png 'Invalid use of stretch in barrier regions')
+        ![Illustration of the previous code output](/docs/images/guides/stretch/bad-barrier-region.avif 'Invalid use of stretch in barrier regions')
 
      </TabItem>
      <TabItem value="Valid" label="Valid">
@@ -166,7 +245,7 @@ Support for `stretch` in Qiskit Runtime is currently experimental and has the fo
         circuit.barrier((q0, q1))
         ```
 
-        ![Illustration of the previous code output](/docs/images/guides/stretch/good-barrier-region.png 'Valid use of stretch in a barrier region')
+        ![Illustration of the previous code output](/docs/images/guides/stretch/good-barrier-region.avif 'Valid use of stretch in a barrier region')
 
      </TabItem>
     </Tabs>
