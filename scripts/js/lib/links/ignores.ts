@@ -167,7 +167,6 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // but they will never be fixed in the old API docs.  We decided to leave these links as-is for archival purposes.
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_status_schema.json",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json",
-  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
 
   // These links are from old IQP and do not work any more
   "https://auth.quantum-computing.ibm.com/api",
@@ -176,7 +175,6 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
 
   // Other links that don't seem to exist any more
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
-  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
 ];
 
