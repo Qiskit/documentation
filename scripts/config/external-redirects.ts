@@ -37,8 +37,6 @@ export const externalRedirects = {
     "https://pubs.aip.org/aip/jcp/article/148/16/164104/196134/Bravyi-Kitaev-Superfast-simulation-of-electronic",
   "https://aip.scitation.org/doi/10.1063/1.5141835":
     "https://pubs.aip.org/aip/jcp/article/152/12/124107/953761/Quantum-orbital-optimized-unitary-coupled-cluster",
-  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json":
-    "https://quantum.cloud.ibm.com/docs/api/qiskit-runtime-rest/tags/backends#tags__backends__operations__get_backend_configuration",
   ...Object.fromEntries(
     QISKIT_REMOVED_PAGES.map((link) => [
       `https://docs.quantum.ibm.com/api/qiskit/${link}`,
