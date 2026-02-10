@@ -163,20 +163,18 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
 
 // These external URLs cause actual 404s and should probably be fixed.
 const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
-  // These schemas are not available any more. They might have moved, but we're not sure where.
+  // These schemas are not available any more. References to these in the new API docs have been fixed,
+  // but they will never be fixed in the old API docs.  We decided to leave these links as-is for archival purposes.
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_status_schema.json",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json",
 
   // These links are from old IQP and do not work any more
-  "https://api.quantum-computing.ibm.com/runtime",
   "https://auth.quantum-computing.ibm.com/api",
   "https://auth.quantum.ibm.com/api",
   "https://quantum-computing.cloud.ibm.com",
-  "https://us-east.quantum-computing.cloud.ibm.com/",
 
   // Other links that don't seem to exist any more
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
-  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
 ];
 
