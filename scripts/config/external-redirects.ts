@@ -3,12 +3,6 @@ import { QISKIT_REMOVED_PAGES } from "../js/lib/links/QiskitRemovedPages";
 export const externalRedirects = {
   "https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/issues/445":
     "https://github.com/Qiskit/qiskit-addon-cutting/issues/445",
-  "https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/issues/406":
-    "https://github.com/Qiskit/qiskit-addon-cutting/issues/406",
-  "https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/issues/108":
-    "https://github.com/Qiskit/qiskit-addon-cutting/issues/108",
-  "https://github.com/Qiskit/qiskit-terra/issues/14645":
-    "https://github.com/Qiskit/qiskit/issues/14645",
   "https://github.com/Qiskit/qiskit-terra/issues/14338":
     "https://github.com/Qiskit/qiskit/issues/14338",
   "https://github.com/Qiskit/qiskit-terra/issues/14407":
