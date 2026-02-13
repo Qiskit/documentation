@@ -41,7 +41,7 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
 <Function id="qk_target_entry_new" signature="QkTargetEntry *qk_target_entry_new(QkGate operation)">
   Creates an entry to the `QkTarget` based on a `QkGate` instance.
 
-  <span id="group__QkTargetEntry_1autotoc_md278" />
+  <span id="group__QkTargetEntry_1autotoc_md288" />
 
   #### Example
 
@@ -63,7 +63,7 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
 <Function id="qk_target_entry_new_measure" signature="QkTargetEntry *qk_target_entry_new_measure(void)">
   Creates a new entry for adding a measurement instruction to a `QkTarget`.
 
-  <span id="group__QkTargetEntry_1autotoc_md279" />
+  <span id="group__QkTargetEntry_1autotoc_md289" />
 
   #### Example
 
@@ -91,7 +91,7 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
 <Function id="qk_target_entry_new_reset" signature="QkTargetEntry *qk_target_entry_new_reset(void)">
   Creates a new entry for adding a reset instruction to a `QkTarget`.
 
-  <span id="group__QkTargetEntry_1autotoc_md280" />
+  <span id="group__QkTargetEntry_1autotoc_md290" />
 
   #### Example
 
@@ -119,7 +119,7 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
 <Function id="qk_target_entry_new_fixed" signature="QkTargetEntry *qk_target_entry_new_fixed(QkGate operation, double *params, const char *name)">
   Creates an entry in the `QkTarget` based on a `QkGate` instance with no parameters.
 
-  <span id="group__QkTargetEntry_1autotoc_md281" />
+  <span id="group__QkTargetEntry_1autotoc_md291" />
 
   #### Example
 
@@ -128,11 +128,11 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
   QkTargetEntry *entry = qk_target_entry_new_fixed(QkGate_CRX, crx_params, "crx_fixed")";
   ```
 
-  <span id="group__QkTargetEntry_1autotoc_md282" />
+  <span id="group__QkTargetEntry_1autotoc_md292" />
 
   #### Safety
 
-  <span id="group__QkTargetEntry_1autotoc_md282" />
+  <span id="group__QkTargetEntry_1autotoc_md292" />
 
   The `params` type is expected to be a pointer to an array of `double` where the length matches the expectations of the `QkGate`. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no params for a given gate. You can check `qk_gate_num_params` to determine how many qubits are required for a given gate.
 
@@ -158,7 +158,7 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
 <Function id="qk_target_entry_num_properties" signature="size_t qk_target_entry_num_properties(const QkTargetEntry *entry)">
   Retrieves the number of properties stored in the target entry.
 
-  <span id="group__QkTargetEntry_1autotoc_md283" />
+  <span id="group__QkTargetEntry_1autotoc_md293" />
 
   #### Example
 
@@ -168,11 +168,11 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
   size_t props_size = qk_target_entry_num_properties(entry);
   ```
 
-  <span id="group__QkTargetEntry_1autotoc_md284" />
+  <span id="group__QkTargetEntry_1autotoc_md294" />
 
   #### Safety
 
-  <span id="group__QkTargetEntry_1autotoc_md284" />
+  <span id="group__QkTargetEntry_1autotoc_md294" />
 
   The behavior is undefined if `entry` is not a valid, non-null pointer to a `QkTargetEntry` object.
 
@@ -190,7 +190,7 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
 <Function id="qk_target_entry_free" signature="void qk_target_entry_free(QkTargetEntry *entry)">
   Frees the entry.
 
-  <span id="group__QkTargetEntry_1autotoc_md285" />
+  <span id="group__QkTargetEntry_1autotoc_md295" />
 
   #### Example
 
@@ -199,11 +199,11 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
   qk_target_entry_free(entry);
   ```
 
-  <span id="group__QkTargetEntry_1autotoc_md286" />
+  <span id="group__QkTargetEntry_1autotoc_md296" />
 
   #### Safety
 
-  <span id="group__QkTargetEntry_1autotoc_md286" />
+  <span id="group__QkTargetEntry_1autotoc_md296" />
 
   The behavior is undefined if `entry` is not a valid, non-null pointer to a `QkTargetEntry` object.
 
@@ -221,7 +221,7 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
 <Function id="qk_target_entry_add_property" signature="QkExitCode qk_target_entry_add_property(QkTargetEntry *entry, uint32_t *qargs, uint32_t num_qubits, double duration, double error)">
   Adds an instruction property instance based on its assigned qargs.
 
-  <span id="group__QkTargetEntry_1autotoc_md287" />
+  <span id="group__QkTargetEntry_1autotoc_md297" />
 
   #### Example
 
@@ -231,11 +231,11 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
   qk_target_entry_add_property(entry, qargs, 2, 0.0, 0.1);
   ```
 
-  <span id="group__QkTargetEntry_1autotoc_md288" />
+  <span id="group__QkTargetEntry_1autotoc_md298" />
 
   #### Safety
 
-  <span id="group__QkTargetEntry_1autotoc_md288" />
+  <span id="group__QkTargetEntry_1autotoc_md298" />
 
   The behavior is undefined if `entry` is not a valid, non-null pointer to a `QkTargetEntry` object.
 
@@ -257,7 +257,7 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
 <Function id="qk_target_entry_set_name" signature="QkExitCode qk_target_entry_set_name(QkTargetEntry *entry, const char *name)">
   Sets a custom name to the target entry.
 
-  <span id="group__QkTargetEntry_1autotoc_md289" />
+  <span id="group__QkTargetEntry_1autotoc_md299" />
 
   #### Example
 
@@ -266,11 +266,11 @@ qk_target_entry_add_property(entry, NULL, 0, NAN, 0.003);
   qk_target_entry_set_name(entry, "cx_gate");
   ```
 
-  <span id="group__QkTargetEntry_1autotoc_md290" />
+  <span id="group__QkTargetEntry_1autotoc_md300" />
 
   #### Safety
 
-  <span id="group__QkTargetEntry_1autotoc_md290" />
+  <span id="group__QkTargetEntry_1autotoc_md300" />
 
   The behavior is undefined if `entry` is not a valid, non-null pointer to a `QkTargetEntry` object. The `name` pointer is expected to be either a C string comprising of valid UTF-8 characters or a null pointer.
 
