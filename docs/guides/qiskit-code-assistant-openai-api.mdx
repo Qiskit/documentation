@@ -12,33 +12,34 @@ description: Learn how to integrate Qiskit Code Assistant with other application
 
 # Qiskit Code Assistant - OpenAI API compatibility
 
-Qiskit Code Assistant offers compatibility with a subset of the OpenAI API specification, specifically with the [completions API endpoints](https://platform.openai.com/docs/api-reference/completions). The goal of this compatibility is to allow third-party packages to connect to Qiskit Code Assistant seamlessly by using well-known AI-related libraries and methods such as [OpenAI](https://github.com/openai/openai-python), [LiteLLM](https://github.com/BerriAI/litellm), or others.
+Qiskit Code Assistant offers compatibility with a subset of the OpenAI API specification, specifically with the [completions](https://platform.openai.com/docs/api-reference/completions) and [chat/completions](https://developers.openai.com/api/reference/resources/chat/subresources/completions/methods/create) API endpoints. The goal of this compatibility is to allow third-party packages to connect to Qiskit Code Assistant seamlessly by using well-known AI-related libraries and methods such as [OpenAI](https://github.com/openai/openai-python), [LiteLLM](https://github.com/BerriAI/litellm), or others.
 
 ## OpenAI API endpoints supported
 
 | Method | Path | Comment |
 |--|--|---|
 | **GET** | `/v1/models` | List all models |
-| **GET** | `/v1/model/{model}` | Get model detail |
+| **GET** | `/v1/models/{model}` | Get model detail |
 | **POST** | `/v1/completions` | Send prompt to model for completion |
+| **POST** | `/v1/chat/completions` | Send messages to model for completion |
 
 <Admonition type="note">
-The `/v1/completions` endpoint fails with a `403` error if the model disclaimer has been accepted. See the following for how to view and accept the model disclaimer.
+The `/v1/completions` and `/v1/chat/completions` endpoints fails with a `403` error if the model disclaimer has been accepted. See the following for how to view and accept the model disclaimer.
 </Admonition>
 
 Additional endpoints (not part of OpenAI schema, provided for convenience) include:
 
 | Method | Path | Comment |
 |--|--|---|
-| **GET** | `/v1/model/{model}/disclaimer` | Get model's disclaimer |
-| **POST** | `/v1/model/{model}/disclaimer` | Accept model's disclaimer |
+| **GET** | `/v1/models/{model}/disclaimer` | Get model's disclaimer |
+| **POST** | `/v1/models/{model}/disclaimer` | Accept model's disclaimer |
 | **POST** | `/v1/completions/accept` | Accept or reject completion |
 
 To retrieve/view the model disclaimer, make a **GET** request to the disclaimer endpoint. For example:
 
 ```
 curl -X 'GET' \
-  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/mistral-small-3.2-24b-qiskit/disclaimer' \
+  'https://qiskit-code-assistant.quantum.ibm.com/v1/models/mistral-small-3.2-24b-qiskit/disclaimer' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer <IBM Quantum Classic API key>'
 ```
@@ -47,7 +48,7 @@ If you agree with the model disclaimer, to accept it, **POST** to the disclaimer
 
 ```
 curl -X 'POST' \
-  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/mistral-small-3.2-24b-qiskit/disclaimer' \
+  'https://qiskit-code-assistant.quantum.ibm.com/v1/models/mistral-small-3.2-24b-qiskit/disclaimer' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer <IBM Quantum Classic API key>' \
   -H 'Content-Type: application/json' \
