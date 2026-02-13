@@ -5,9 +5,9 @@ description: Describes what calibration jobs are and how often they run
 
 # Monitoring, calibrations, and benchmarking
 
-Calibrating a quantum computer requires optimizing a plethora of parameters defining the electrical signals that are responsible for actuating the quantum gates and readout operations on the system. During the initial calibration process prior to a system’s release, we thoroughly tune each parameter to achieve the best possible performance on a set of benchmarks relevant to the system’s expected workloads. Once a system has been released, our primary goal is to maintain consistent performance for the lifetime of the system. The optimal values of many of the calibrated parameters remain stable indefinitely, but some vary over time as a result of factors such as changes in the environment of two-level systems (TLS) on the quantum processor chip, changes in the ambient conditions (e.g. temperature) in the data center, or instability within the control systems.
+Calibrating a quantum computer requires optimizing a plethora of parameters defining the electrical signals that are responsible for actuating the quantum gates and readout operations. During the initial calibration process prior to a quantum computer's release, we thoroughly tune each parameter to achieve the best possible performance on a set of benchmarks relevant to the quantum computer's expected workloads. Once a quantum computer has been released, our primary goal is to maintain consistent performance for the lifetime of the device. The optimal values of many of the calibrated parameters remain stable indefinitely, but some vary over time as a result of factors such as changes in the environment of two-level systems (TLS) on the quantum processor chip, changes in the ambient conditions (for example, temperature) in the data center, or instability within the control systems.
 
-To ensure consistent performance, IBM quantum systems frequently monitor parameters that may drift over time, run calibrations when needed, and perform daily benchmarking. Together, these three processes — monitoring, calibrating, and benchmarking — are designed to ensure that our quantum systems remain as stable, predictable, and available to users as possible. Details of each process are presented below.
+To ensure consistent performance, IBM quantum computers frequently monitor parameters that may drift over time, run calibrations when needed, and perform daily benchmarking. Together, these three processes — monitoring, calibrating, and benchmarking — are designed to ensure that our QPUs remain as stable, predictable, and available to users as possible. Details of each process are presented below.
 
 ---
 
@@ -15,7 +15,7 @@ To ensure consistent performance, IBM quantum systems frequently monitor paramet
 
 ### Parameter monitoring
 
-Brief parameter monitoring jobs are executed approximately once an hour, automatically interleaved between user jobs, using the full Qiskit Runtime software stack. The results of these jobs are analyzed to check whether any parameters are beginning to deviate from acceptable ranges, ideally catching issues before they become significant enough to affect system performance to a noticeable level.
+Brief parameter monitoring jobs are executed approximately once an hour, automatically interleaved between user jobs, using the full Qiskit Runtime software stack. The results of these jobs are analyzed to check whether any parameters are beginning to deviate from acceptable ranges, ideally catching issues before they become significant enough to affect performance to a noticeable level.
 
 Among the parameters monitored:
 
@@ -27,7 +27,7 @@ If the results of these monitoring jobs indicate modest deviations from their ex
 
 ### Holistic monitoring
 
-In addition to jobs monitoring individual parameters, we also run jobs that monitor the performance of the system more holistically, such as a variety of tests looking at the fidelity of generated Bell states, also incorporating tests of fractional gates and dynamic circuits on systems that support those features. The goal of these tests, which also run through the full Qiskit Runtime stack interleaved with user jobs, is to efficiently validate the overall behavior of the hardware and software. If these tests detect a significant drop in performance, the system will automatically pause the job queue until the issue is resolved, ensuring that user jobs won’t run until the system is performing as expected again.
+In addition to jobs monitoring individual parameters, we also run jobs that monitor the performance of the quantum computer more holistically, such as a variety of tests looking at the fidelity of generated Bell states, also incorporating tests of fractional gates and dynamic circuits on quantum computers that support those features. The goal of these tests, which also run through the full Qiskit Runtime stack interleaved with user jobs, is to efficiently validate the overall behavior of the hardware and software. If these tests detect a significant drop in performance, the quantum computer will automatically pause the job queue until the issue is resolved, ensuring that user jobs won’t run until the device is performing as expected again.
 
 ---
 
@@ -61,7 +61,7 @@ These calibrations are run simultaneously on qubits which require calibration.
 ### How calibrations are scheduled
 
 * A calibration job cannot run simultaneously while an external job or session is running.
-* As a result, during long sessions the system may experience reduced effective stability due to delayed or infrequent recalibration.
+* As a result, during long sessions the quantum computer may experience reduced effective stability due to delayed or infrequent recalibration.
 * Two jobs submitted at the same time may run under different calibration sets, depending on timing.
 * All circuits within a single job always use one consistent calibration.
 
@@ -69,7 +69,7 @@ These calibrations are run simultaneously on qubits which require calibration.
 
 ## Benchmarking
 
-Daily benchmarking gives a comprehensive view of system performance and generates the metrics sent to users through Qiskit. They help users choose qubits, optimize compilations, and better anticipate expected circuit performance. Details of the reported numbers is shown here:
+Daily benchmarking gives a comprehensive view of quantum computer performance and generates the metrics sent to users through Qiskit. They help users choose qubits, optimize compilations, and better anticipate expected circuit performance. Details of the reported numbers is shown here:
 
 https://quantum.cloud.ibm.com/docs/en/guides/qpu-information#qpu-details
 
