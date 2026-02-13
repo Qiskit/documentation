@@ -32,15 +32,15 @@ python_api_name: qiskit.algorithms.VQD
   **Parameters**
 
   *   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A parameterized circuit used as ansatz for the wave function.
-  *   **k** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of eigenvalues to return. Returns the lowest k eigenvalues.
-  *   **betas** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – beta parameters in the VQD paper. Should have length k - 1, with k the number of excited states. These hyperparameters balance the contribution of each overlap term to the cost function and have a default value computed as the mean square sum of the coefficients of the observable.
+  *   **k** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of eigenvalues to return. Returns the lowest k eigenvalues.
+  *   **betas** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – beta parameters in the VQD paper. Should have length k - 1, with k the number of excited states. These hyperparameters balance the contribution of each overlap term to the cost function and have a default value computed as the mean square sum of the coefficients of the observable.
   *   **optimizer** ([*Optimizer*](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")  *|*[*Minimizer*](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") *| None*) – A classical optimizer. Can either be a Qiskit optimizer or a callable that takes an array as input and returns a Qiskit or SciPy optimization result.
   *   **initial\_point** (*np.ndarray | None*) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then VQD will look to the ansatz for a preferred point and if not will simply compute a random one.
   *   **gradient** ([*GradientBase*](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.GradientBase") *| Callable | None*) – An optional gradient function or operator for optimizer. Only used to compute the ground state at the moment.
   *   **expectation** ([*ExpectationBase*](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase") *| None*) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When `None` (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQD performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
-  *   **include\_custom** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When expectation parameter here is None setting this to `True` will allow the factory to include the custom Aer pauli expectation.
-  *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that multiple points to compute the gradient can be passed and if computed in parallel potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that improve overall execution time. Deprecated if a gradient operator or function is given.
-  *   **callback** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, np.ndarray,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*], None] | None*) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean, the evaluated standard deviation, and the current step.
+  *   **include\_custom** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – When expectation parameter here is None setting this to `True` will allow the factory to include the custom Aer pauli expectation.
+  *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that multiple points to compute the gradient can be passed and if computed in parallel potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that improve overall execution time. Deprecated if a gradient operator or function is given.
+  *   **callback** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, np.ndarray,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean, the evaluated standard deviation, and the current step.
   *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Quantum Instance or Backend
 
   ## Attributes
@@ -133,7 +133,7 @@ python_api_name: qiskit.algorithms.VQD
 
     **Parameters**
 
-    *   **parameter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | np.ndarray*) – Parameters for the ansatz circuit.
+    *   **parameter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | np.ndarray*) – Parameters for the ansatz circuit.
     *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – Qubit operator of the Observable
 
     **Returns**
@@ -142,7 +142,7 @@ python_api_name: qiskit.algorithms.VQD
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
   </Function>
 
   ### construct\_expectation
@@ -152,9 +152,9 @@ python_api_name: qiskit.algorithms.VQD
 
     **Parameters**
 
-    *   **parameter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | np.ndarray*) – Parameters for the ansatz circuit.
+    *   **parameter** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | np.ndarray*) – Parameters for the ansatz circuit.
     *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – Qubit operator of the Observable
-    *   **return\_expectation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to compute the standard deviation of the expectation value.
+    *   **return\_expectation** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to compute the standard deviation of the expectation value.
 
     **Returns**
 
@@ -167,7 +167,7 @@ python_api_name: qiskit.algorithms.VQD
 
     **Return type**
 
-    [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase") | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase"), [ExpectationBase](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")]
+    [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase") | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase"), [ExpectationBase](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")]
   </Function>
 
   ### get\_energy\_evaluation
@@ -179,10 +179,10 @@ python_api_name: qiskit.algorithms.VQD
 
     **Parameters**
 
-    *   **step** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – level of energy being calculated. 0 for ground, 1 for first excited state…
+    *   **step** ([*int*](https://docs.python.org/3/library/functions.html#int)) – level of energy being calculated. 0 for ground, 1 for first excited state…
     *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")) – The operator whose energy to evaluate.
-    *   **return\_expectation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to evaluate other operators with the same expectation value converter.
-    *   **prev\_states** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[np.ndarray] | None*) – List of parameters from previous rounds of optimization.
+    *   **return\_expectation** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to evaluate other operators with the same expectation value converter.
+    *   **prev\_states** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[np.ndarray] | None*) – List of parameters from previous rounds of optimization.
 
     **Returns**
 
@@ -190,12 +190,12 @@ python_api_name: qiskit.algorithms.VQD
 
     **Raises**
 
-    *   [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError "(in Python v3.12)") – If the circuit is not parameterized (i.e. has 0 free parameters).
+    *   [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError) – If the circuit is not parameterized (i.e. has 0 free parameters).
     *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If operator was not provided.
 
     **Return type**
 
-    Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]] | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]], [ExpectationBase](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")]
+    Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float) | [list](https://docs.python.org/3/library/stdtypes.html#list)\[[float](https://docs.python.org/3/library/functions.html#float)]] | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[Callable\[\[np.ndarray], [float](https://docs.python.org/3/library/functions.html#float) | [list](https://docs.python.org/3/library/stdtypes.html#list)\[[float](https://docs.python.org/3/library/functions.html#float)]], [ExpectationBase](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")]
   </Function>
 
   ### print\_settings
@@ -209,7 +209,7 @@ python_api_name: qiskit.algorithms.VQD
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
   </Function>
 
   ### supports\_aux\_operators
@@ -223,7 +223,7 @@ python_api_name: qiskit.algorithms.VQD
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 </Class>
 

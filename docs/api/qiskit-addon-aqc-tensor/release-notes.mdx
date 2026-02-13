@@ -10,13 +10,35 @@ in_page_toc_max_heading_level: 2
 
 # Approximate quantum compilation (AQC-Tensor) release notes
 
-<span id="release-notes-0-1-2" />
+<span id="release-notes-0-2-0" />
 
 <span id="id2" />
 
-## 0.1.2
+## 0.2.0
 
-<span id="release-notes-0-1-2-bug-fixes" />
+<span id="release-notes-0-2-0-prelude" />
+
+### Prelude
+
+This release renames the primary objective to [`MaximizeStateFidelity`](objective#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity") and adds support for Qiskit 2.0.
+
+<span id="release-notes-0-2-0-new-features" />
+
+### New Features
+
+*   Adds the [`parametrize_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit "qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit") function for generating a parametrized version of a given circuit. In contrast to [`generate_ansatz_from_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"), `parametrize_circuit` does not change the types of gates in the circuit. It simply replaces numerical parameters with free parameters.
+
+*   Support for Python 3.13.
+
+<span id="release-notes-0-2-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   The `OneMinusFidelity` objective function has been renamed and is now known as [`MaximizeStateFidelity`](objective#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity"). As a related change, one should now call the [`loss_function()`](objective#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.loss_function "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.loss_function") method to obtain the value and gradient of the loss function, instead of calling the instance directly (through its `__call__` method).
+
+*   Qiskit SDK version 1.3 or higher is now required. Qiskit SDK version 2.0 is now supported.
+
+<span id="release-notes-0-2-0-bug-fixes" />
 
 ### Bug Fixes
 
@@ -30,17 +52,21 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-1-1-new-features" />
 
+<span id="id4" />
+
 ### New Features
 
 *   This release adds quimb-autograd as an optional dependency, so that one can now run `pip install 'qiskit-addon-aqc-tensor[quimb-autograd]'` to install the addon along with quimb and autograd.
 
 <span id="release-notes-0-1-0" />
 
-<span id="id4" />
+<span id="id5" />
 
 ## 0.1.0
 
 <span id="release-notes-0-1-0-prelude" />
+
+<span id="id6" />
 
 ### Prelude
 

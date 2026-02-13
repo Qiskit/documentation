@@ -52,6 +52,7 @@ zxMain(async () => {
 
   if (qiskitUrl) {
     await regenDocs("qiskit", qiskitVersion);
+    await regenDocs("qiskit-c", qiskitVersion);
   }
   if (runtimeUrl) {
     await regenDocs("qiskit-ibm-runtime", runtimeVersion);

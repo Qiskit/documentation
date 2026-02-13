@@ -12,8 +12,7 @@
 
 import { join } from "path/posix";
 
-import { findSeparateReleaseNotesVersions } from "./releaseNotes.js";
-import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage.js";
+import { determineReleaseNotesSeparetePagesVersions } from "./releaseNotes.js";
 import {
   TocGrouping,
   QISKIT_TOC_GROUPING,
@@ -22,15 +21,23 @@ import {
 
 export class ReleaseNotesConfig {
   readonly enabled: boolean;
+  /** A list of the release note versions in descending order. */
   readonly separatePagesVersions: string[];
+  readonly linkToPackage?: string;
 
-  constructor(kwargs: { enabled?: boolean; separatePagesVersions?: string[] }) {
+  constructor(kwargs: {
+    enabled?: boolean;
+    separatePagesVersions?: string[];
+    linkToPackage?: string;
+  }) {
     this.enabled = kwargs.enabled ?? true;
     this.separatePagesVersions = kwargs.separatePagesVersions ?? [];
+    this.linkToPackage = kwargs.linkToPackage;
   }
 }
 
 type PackageType = "latest" | "historical" | "dev";
+export type PackageLanguage = "Python" | "C";
 
 /**
  * Information about the specific package and version we're dealing with, e.g. qiskit 0.45.
@@ -42,10 +49,13 @@ export class Pkg {
   readonly version: string;
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
+  readonly language: PackageLanguage;
   readonly releaseNotesConfig: ReleaseNotesConfig;
   readonly tocGrouping?: TocGrouping;
   /// Convert URLs like `my_pkg.SomeClass` to `some-class` for better SEO.
   readonly kebabCaseAndShortenUrls: boolean;
+  readonly artifactPackageName: string;
+  readonly hasRootNamespaceFile: boolean;
 
   static VALID_NAMES = [
     "qiskit",
@@ -57,6 +67,7 @@ export class Pkg {
     "qiskit-addon-sqd",
     "qiskit-addon-cutting",
     "qiskit-addon-utils",
+    "qiskit-c",
   ];
 
   constructor(kwargs: {
@@ -66,9 +77,12 @@ export class Pkg {
     version: string;
     versionWithoutPatch: string;
     type: PackageType;
+    language: PackageLanguage;
     releaseNotesConfig?: ReleaseNotesConfig;
     tocGrouping?: TocGrouping;
     kebabCaseAndShortenUrls: boolean;
+    artifactPackageName?: string;
+    hasRootNamespaceFile?: boolean;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -76,10 +90,13 @@ export class Pkg {
     this.version = kwargs.version;
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
     this.type = kwargs.type;
+    this.language = kwargs.language;
     this.releaseNotesConfig =
       kwargs.releaseNotesConfig ?? new ReleaseNotesConfig({});
     this.tocGrouping = kwargs.tocGrouping;
     this.kebabCaseAndShortenUrls = kwargs.kebabCaseAndShortenUrls;
+    this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
+    this.hasRootNamespaceFile = kwargs.hasRootNamespaceFile ?? false;
   }
 
   static async fromArgs(
@@ -96,7 +113,12 @@ export class Pkg {
     };
 
     if (name === "qiskit") {
-      const releaseNoteEntries = await findSeparateReleaseNotesVersions(name);
+      const releaseNoteEntries =
+        await determineReleaseNotesSeparetePagesVersions(
+          name,
+          versionWithoutPatch,
+          type == "dev",
+        );
       return new Pkg({
         ...args,
         title: "Qiskit SDK",
@@ -106,6 +128,8 @@ export class Pkg {
         }),
         tocGrouping: QISKIT_TOC_GROUPING,
         kebabCaseAndShortenUrls: false,
+        language: "Python",
+        hasRootNamespaceFile: true,
       });
     }
 
@@ -114,16 +138,18 @@ export class Pkg {
         ...args,
         title: "Qiskit Runtime client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
-        kebabCaseAndShortenUrls: false,
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
       });
     }
 
     if (name === "qiskit-ibm-transpiler") {
       return new Pkg({
         ...args,
-        title: "Qiskit Transpiler Service client",
+        title: "Qiskit Transpiler Service",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
-        kebabCaseAndShortenUrls: false,
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
       });
     }
 
@@ -133,6 +159,7 @@ export class Pkg {
         title: "Approximate quantum compilation (AQC-Tensor)",
         githubSlug: "Qiskit/qiskit-addon-aqc-tensor",
         kebabCaseAndShortenUrls: true,
+        language: "Python",
       });
     }
     if (name === "qiskit-addon-obp") {
@@ -141,6 +168,7 @@ export class Pkg {
         title: "Operator backpropagation (OBP)",
         githubSlug: "Qiskit/qiskit-addon-obp",
         kebabCaseAndShortenUrls: true,
+        language: "Python",
       });
     }
     if (name === "qiskit-addon-mpf") {
@@ -150,6 +178,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-mpf",
         kebabCaseAndShortenUrls: true,
         tocGrouping: QISKIT_ADDON_MPF_GROUPING,
+        language: "Python",
       });
     }
     if (name === "qiskit-addon-sqd") {
@@ -158,6 +187,7 @@ export class Pkg {
         title: "Sample-based quantum diagonalization (SQD)",
         githubSlug: "Qiskit/qiskit-addon-sqd",
         kebabCaseAndShortenUrls: true,
+        language: "Python",
       });
     }
     if (name === "qiskit-addon-cutting") {
@@ -166,6 +196,7 @@ export class Pkg {
         title: "Circuit cutting",
         githubSlug: "Qiskit/qiskit-addon-cutting",
         kebabCaseAndShortenUrls: true,
+        language: "Python",
       });
     }
     if (name === "qiskit-addon-utils") {
@@ -174,6 +205,21 @@ export class Pkg {
         title: "Qiskit addon utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
         kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+
+    if (name === "qiskit-c") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit SDK C API",
+        kebabCaseAndShortenUrls: true,
+        language: "C",
+        releaseNotesConfig: new ReleaseNotesConfig({
+          enabled: true,
+          linkToPackage: "qiskit",
+        }),
+        artifactPackageName: "qiskit",
       });
     }
 
@@ -187,6 +233,7 @@ export class Pkg {
     version?: string;
     versionWithoutPatch?: string;
     type?: PackageType;
+    language?: PackageLanguage;
     releaseNotesConfig?: ReleaseNotesConfig;
     tocGrouping?: TocGrouping;
     kebabCaseAndShortenUrls?: boolean;
@@ -198,6 +245,7 @@ export class Pkg {
       version: kwargs.version ?? "0.1.0",
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
+      language: kwargs.language ?? "Python",
       releaseNotesConfig: kwargs.releaseNotesConfig,
       tocGrouping: kwargs.tocGrouping,
       kebabCaseAndShortenUrls: kwargs.kebabCaseAndShortenUrls ?? false,
@@ -230,8 +278,12 @@ export class Pkg {
     return this.type == "latest";
   }
 
-  hasObjectsInv(): boolean {
-    return this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45;
+  isCApi(): boolean {
+    return this.language === "C";
+  }
+
+  isProblematicLegacyQiskit(): boolean {
+    return this.name === "qiskit" && +this.versionWithoutPatch < 0.45;
   }
 
   hasSeparateReleaseNotes(): boolean {
@@ -243,6 +295,10 @@ export class Pkg {
       ? ` ${this.versionWithoutPatch}`
       : "";
     return `${this.title}${versionStr} release notes`;
+  }
+
+  releaseNotesPackageName(): string {
+    return this.releaseNotesConfig.linkToPackage ?? this.name;
   }
 
   /**
@@ -266,35 +322,19 @@ export class Pkg {
     const normalizeFile = (fp: string) =>
       convertToInitPy.has(fp) ? `${fp}/__init__` : fp;
 
-    // Runtime and Qiskit 0.45+ are simple: there is a branch called `stable/<version>`
-    // like `stable/0.45` in each GitHub project.
-    if (
-      this.name !== "qiskit" ||
-      this.type === "dev" ||
-      +this.versionWithoutPatch >= 0.45
-    ) {
-      const branchName =
-        this.type === "dev" && this.version.endsWith("-dev")
-          ? "main"
-          : `stable/${this.versionWithoutPatch}`;
-      const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
-      return (fileName) => {
-        if (!this.githubSlug) {
-          throw new Error(
-            `Encountered sphinx.ext.viewcode link, but Pkg.githubSlug is not set for ${this.name}`,
-          );
-        }
+    const branchName =
+      this.type === "dev" && this.version.endsWith("-dev")
+        ? "main"
+        : `stable/${this.versionWithoutPatch}`;
+    const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
+    return (fileName) => {
+      if (!this.githubSlug) {
+        throw new Error(
+          `Encountered sphinx.ext.viewcode link, but Pkg.githubSlug is not set for ${this.name}`,
+        );
+      }
 
-        return `${baseUrl}/${normalizeFile(fileName)}.py`;
-      };
-    }
-
-    // Otherwise, we have to deal with Qiskit <0.45, when we had the qiskit-metapackage comprised of
-    // multiple packages. Refer to the version table in api/qiskit/release-notes/0.44.mdx.
-    return (fileName) =>
-      determineHistoricalQiskitGithubUrl(
-        this.versionWithoutPatch,
-        normalizeFile(fileName),
-      );
+      return `${baseUrl}/${normalizeFile(fileName)}.py`;
+    };
   }
 }

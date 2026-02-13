@@ -91,15 +91,6 @@ async function getRedirectsForVersion(
 
     const pageName = removeSuffix(basename(path), ".mdx");
 
-    if (
-      versionPath.includes("qiskit-ibm-transpiler") &&
-      pageName.includes("qiskit_transpiler_service")
-    ) {
-      redirects[pageName] =
-        `/${pageName.replace("qiskit_transpiler_service", "qiskit_ibm_transpiler")}`;
-      continue;
-    }
-
     if (pageName.endsWith(".rst")) {
       redirects[pageName] =
         `/${pageName.replace("_class.rst", "").replace("_fun.rst", "")}`;

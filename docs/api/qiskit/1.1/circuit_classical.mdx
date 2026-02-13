@@ -70,7 +70,7 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
   ##### name
 
   <Attribute id="qiskit.circuit.classical.expr.Var.name" attributeTypeHint="str | None">
-    The name of the variable. This is required to exist if the backing [`var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attribute is a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.12)"), i.e. if it is a new-style variable, and must be `None` if it is an old-style variable.
+    The name of the variable. This is required to exist if the backing [`var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attribute is a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID), i.e. if it is a new-style variable, and must be `None` if it is an old-style variable.
   </Attribute>
 
   ##### new
@@ -80,13 +80,13 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
 
     **Return type**
 
-    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self "(in Python v3.12)")
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
   </Function>
 
   ##### var
 
   <Attribute id="qiskit.circuit.classical.expr.Var.var" attributeTypeHint="qiskit.circuit.Clbit | qiskit.circuit.ClassicalRegister | uuid.UUID">
-    A reference to the backing data storage of the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance. When lifting old-style [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instances into a [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), this is exactly the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"). If the variable is a new-style classical variable (one that owns its own storage separate to the old [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")/[`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") model), this field will be a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.12)") to uniquely identify it.
+    A reference to the backing data storage of the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance. When lifting old-style [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instances into a [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), this is exactly the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"). If the variable is a new-style classical variable (one that owns its own storage separate to the old [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")/[`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") model), this field will be a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID) to uniquely identify it.
   </Attribute>
 </Class>
 
@@ -807,7 +807,7 @@ For the convenience of simple visitors that only need to inspect the variables i
 
   **Return type**
 
-  [*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator "(in Python v3.12)")\[[*Var*](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+  [*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator)\[[*Var*](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
 </Function>
 
 Two expressions can be compared for direct structural equality by using the built-in Python `==` operator. In general, though, one might want to compare two expressions slightly more semantically, allowing that the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes inside them are bound to different memory-location descriptions between two different circuits. In this case, one can use [`structurally_equivalent()`](#qiskit.circuit.classical.expr.structurally_equivalent "qiskit.circuit.classical.expr.structurally_equivalent") with two suitable “key” functions to do the comparison.
@@ -825,12 +825,12 @@ Two expressions can be compared for direct structural equality by using the buil
 
   *   **left** ([*expr.Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) – one of the [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr") nodes.
   *   **right** ([*expr.Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) – the other [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr") node.
-  *   **left\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – a callable whose output should be used when comparing [`Var.var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attributes. If this argument is `None` or its output is `None` for a given variable in `left`, the variable will be used verbatim.
-  *   **right\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – same as `left_var_key`, but used on the variables in `right` instead.
+  *   **left\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) – a callable whose output should be used when comparing [`Var.var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attributes. If this argument is `None` or its output is `None` for a given variable in `left`, the variable will be used verbatim.
+  *   **right\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) – same as `left_var_key`, but used on the variables in `right` instead.
 
   **Return type**
 
-  [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  [bool](https://docs.python.org/3/library/functions.html#bool)
 
   **Examples**
 
@@ -900,7 +900,7 @@ Some expressions have associated memory locations, and others may be purely temp
 
   **Return type**
 
-  [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  [bool](https://docs.python.org/3/library/functions.html#bool)
 </Function>
 
 <span id="module-qiskit.circuit.classical.types" />
@@ -1020,7 +1020,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
   **Return type**
 
-  [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  [bool](https://docs.python.org/3/library/functions.html#bool)
 </Function>
 
 #### is\_supertype
@@ -1049,7 +1049,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
   **Return type**
 
-  [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  [bool](https://docs.python.org/3/library/functions.html#bool)
 </Function>
 
 #### greater
@@ -1063,7 +1063,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
   **Raises**
 
-  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – if there is no ordering relation between the two types.
+  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – if there is no ordering relation between the two types.
 
   **Return type**
 
@@ -1082,7 +1082,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
 ### Casting between types
 
-It is common to need to cast values of one type to another type. The casting rules for this are embedded into the [`types`](https://docs.python.org/3/library/types.html#module-types "(in Python v3.12)") module. You can query the casting kinds using [`cast_kind()`](#qiskit.circuit.classical.types.cast_kind "qiskit.circuit.classical.types.cast_kind"):
+It is common to need to cast values of one type to another type. The casting rules for this are embedded into the [`types`](https://docs.python.org/3/library/types.html#module-types) module. You can query the casting kinds using [`cast_kind()`](#qiskit.circuit.classical.types.cast_kind "qiskit.circuit.classical.types.cast_kind"):
 
 #### cast\_kind
 

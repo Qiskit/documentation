@@ -10,22 +10,25 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import fs from "fs/promises";
 import path from "path";
 
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { flattenDeep } from "lodash-es";
+import { flatten } from "lodash-es";
 
 import { TocEntry } from "../lib/api/generateToc.js";
+import { readJsonFile } from "../lib/fs";
 
 interface Arguments {
   [x: string]: unknown;
   apis: boolean;
 }
 
-const ALLOWED_ORPHAN_URLS: Set<string> = new Set([...qiskitLegacyIgnores()]);
+// URLs must start by `/` and exclude the file extension
+const ALLOWED_ORPHAN_URLS: Set<string> = new Set([
+  "/docs/api/qiskit/0.46/transpiler_builtin_plugins",
+]);
 
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
@@ -40,109 +43,66 @@ const readArgs = (): Arguments => {
 
 async function main() {
   const args = readArgs();
+  const tocFiles = await findTocFiles(args.apis);
 
-  const tocFiles = await determineTocFiles(args);
+  const orphanGroups = await Promise.all(tocFiles.map(findOrphans));
+  const orphans = flatten(orphanGroups);
 
-  const orphanPages = [];
-  for (const tocFile of tocFiles) {
-    console.log("Checking toc in:", tocFile);
-    const tocUrls = await getTocUrls(tocFile);
-    const dir = path.dirname(tocFile);
-    const existingUrls = await collectExistingUrls(dir);
-    orphanPages.push(
-      ...existingUrls.filter(
-        (file) => !tocUrls.has(file) && !ALLOWED_ORPHAN_URLS.has(file),
-      ),
-    );
-  }
-  if (orphanPages.length > 0) {
+  if (orphans.length > 0) {
     console.error(
-      "\n There are some orphaned pages!  These files need a home: \n",
-      orphanPages.join("\n"),
+      "\n❌ There are some orphaned pages! These URLs need to be included in a _toc.json: \n",
+      orphans.join("\n"),
     );
     process.exit(1);
   }
   console.log("\nNo orphan pages found ✅\n");
 }
 
-async function getTocUrls(filePath: string): Promise<Set<string>> {
-  const jsonFileContents = await fs.readFile(filePath, "utf-8");
-  const children = JSON.parse(jsonFileContents).children;
-
-  const fileContents = await collectTocFileContents(children);
-  const flatFileContents = flattenDeep(fileContents);
-
-  flatFileContents.push(`${flatFileContents[0]}/index`);
-
-  return new Set(flatFileContents);
-}
-
-async function collectExistingUrls(directory: string): Promise<string[]> {
-  const fileList = await globby([`${directory}/*.{mdx,ipynb}`]);
-  return fileList.map((fileName) =>
-    fileName.replace("docs", "").replace(".mdx", "").replace(".ipynb", ""),
+async function findOrphans(tocFile: string): Promise<string[]> {
+  console.log("Checking toc in:", tocFile);
+  const [tocUrls, existentUrls] = await Promise.all([
+    readTocUrls(tocFile),
+    findExistentUrls(path.dirname(tocFile)),
+  ]);
+  return existentUrls.filter(
+    (file) => !tocUrls.has(file) && !ALLOWED_ORPHAN_URLS.has(file),
   );
 }
 
-async function determineTocFiles(args: Arguments): Promise<string[]> {
-  const globs = [
-    "docs/**/_toc.json",
-    args.apis ? "docs/api/**/_toc.json" : "!docs/api/**",
-  ];
-  return await globby(globs);
+async function readTocUrls(filePath: string): Promise<Set<string>> {
+  const json = await readJsonFile(filePath);
+  const rootEntries = json.children;
+  const urls = parseTocUrls(rootEntries);
+  urls.push(`${urls[0]}/index`);
+  return new Set(urls);
 }
 
-function collectTocFileContents(children: TocEntry[]): string[] {
-  const urls = [];
+async function findExistentUrls(directory: string): Promise<string[]> {
+  const fileList = await globby([`${directory}/*.{mdx,ipynb}`]);
+  return fileList.map(
+    (fileName) => "/" + fileName.replace(".mdx", "").replace(".ipynb", ""),
+  );
+}
 
-  for (const child of children) {
-    if ("children" in child) {
-      const childUrls = collectTocFileContents(child.children || []);
+async function findTocFiles(includeApis: boolean): Promise<string[]> {
+  const globs = [
+    "{docs,learning}/**/_toc.json",
+    includeApis ? "docs/api/**/_toc.json" : "!docs/api/**",
+  ];
+  return globby(globs);
+}
+
+function parseTocUrls(entries: TocEntry[]): string[] {
+  const urls = [];
+  for (const entry of entries) {
+    if ("children" in entry) {
+      const childUrls = parseTocUrls(entry.children || []);
       urls.push(...childUrls);
-    } else if (child.url !== undefined) {
-      urls.push(child.url);
+    } else if (entry.url !== undefined) {
+      urls.push(entry.url);
     }
   }
   return urls;
-}
-
-function qiskitLegacyIgnores(): string[] {
-  const versions = [
-    "0.19/",
-    "0.24/",
-    "0.25/",
-    "0.26/",
-    "0.27/",
-    "0.28/",
-    "0.29/",
-    "0.30/",
-    "0.31/",
-    "0.32/",
-    "0.33/",
-    "0.35/",
-    "0.36/",
-    "0.37/",
-    "0.38/",
-    "0.39/",
-    "0.40/",
-    "0.41/",
-    "0.42/",
-    "0.43/",
-    "0.44/",
-    "0.45/",
-    "0.46/",
-  ];
-  return [
-    ...versions.flatMap((vers) => [
-      `/api/qiskit/${vers}aer`,
-      `/api/qiskit/${vers}aqua`,
-      `/api/qiskit/${vers}ibmq-provider`,
-      `/api/qiskit/${vers}ibmq_jupyter`,
-      `/api/qiskit/${vers}ibmq_visualization`,
-      `/api/qiskit/${vers}parallel`,
-      `/api/qiskit/${vers}transpiler_builtin_plugins`,
-    ]),
-  ];
 }
 
 main().then(() => process.exit());

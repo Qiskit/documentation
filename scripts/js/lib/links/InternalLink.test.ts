@@ -38,20 +38,21 @@ test.describe("Test the constructor of InternalLink", () => {
 
 test.describe("Validate links", () => {
   test("existing with absolute path", () => {
-    let testLink = new InternalLink("/testpath", ["/testorigin.mdx"]);
+    let testLink = new InternalLink("/docs/testpath", ["/testorigin.mdx"]);
     let testFile = new File("docs/testpath.mdx", new Set());
     const results = testLink.check([testFile]);
     expect(results).toBeUndefined();
   });
 
   test("non-existing with absolute path", () => {
-    let testLink = new InternalLink("/test-alternative-path", [
+    let testLink = new InternalLink("/docs/test-alternative-path", [
       "/testorigin.mdx",
     ]);
     let testFile = new File("docs/testpath.mdx", new Set());
     const results = testLink.check([testFile]);
     expect(results).toEqual(
-      "❌ Could not find link '/test-alternative-path'. Appears in:\n    /testorigin.mdx",
+      "❌ Could not find link '/docs/test-alternative-path'. Appears in:\n" +
+        "    /testorigin.mdx    ❓ Did you mean '/docs/testpath'?",
     );
   });
 
@@ -72,12 +73,12 @@ test.describe("Validate links", () => {
     const results = testLink.check([testFile]);
     expect(results).toEqual(
       "❌ Could not find link '../testpath'. Appears in:\n" +
-        "    docs/test1/test2/testorigin.mdx    ❓ Did you mean '/testpath'?",
+        "    docs/test1/test2/testorigin.mdx    ❓ Did you mean '/docs/testpath'?",
     );
   });
 
   test("existing absolute path and multiple origin files", () => {
-    let testLink = new InternalLink("/testpath", [
+    let testLink = new InternalLink("/docs/testpath", [
       "docs/test/testorigin.mdx",
       "docs/test/test2/testorigin.mdx",
       "docs/test/test3/testorigin.mdx",
@@ -90,7 +91,7 @@ test.describe("Validate links", () => {
   });
 
   test("non-existing with absolute path and multiple origin files", () => {
-    let testLink = new InternalLink("/testpath", [
+    let testLink = new InternalLink("/docs/testpath", [
       "docs/test/testorigin.mdx",
       "docs/test/test2/testorigin.mdx",
       "docs/test/test3/testorigin.mdx",
@@ -100,32 +101,32 @@ test.describe("Validate links", () => {
     let testFile2 = new File("docs/test2/test3/testpath.mdx", new Set());
     const results = testLink.check([testFile1, testFile2]);
     expect(results).toEqual(
-      "❌ Could not find link '/testpath'. Appears in:\n" +
-        "    docs/test/test2/test4/testorigin.mdx    ❓ Did you mean '/test/testpath'?\n" +
-        "    docs/test/test2/testorigin.mdx    ❓ Did you mean '/test/testpath'?\n" +
-        "    docs/test/test3/testorigin.mdx    ❓ Did you mean '/test/testpath'?\n" +
-        "    docs/test/testorigin.mdx    ❓ Did you mean '/test/testpath'?",
+      "❌ Could not find link '/docs/testpath'. Appears in:\n" +
+        "    docs/test/test2/test4/testorigin.mdx    ❓ Did you mean '/docs/test/testpath'?\n" +
+        "    docs/test/test2/testorigin.mdx    ❓ Did you mean '/docs/test/testpath'?\n" +
+        "    docs/test/test3/testorigin.mdx    ❓ Did you mean '/docs/test/testpath'?\n" +
+        "    docs/test/testorigin.mdx    ❓ Did you mean '/docs/test/testpath'?",
     );
   });
 
   test("existing image", () => {
-    let testLink = new InternalLink("/images/my-img.png", [
+    let testLink = new InternalLink("/docs/images/my-img.png", [
       "docs/test/testorigin.mdx",
     ]);
-    let imgFile = new File("public/images/my-img.png", new Set());
+    let imgFile = new File("public/docs/images/my-img.png", new Set());
     const results = testLink.check([imgFile]);
     expect(results).toBeUndefined();
   });
 
   test("non-existing image", () => {
-    let testLink = new InternalLink("/images/my-img.png", [
+    let testLink = new InternalLink("/docs/images/my-img.png", [
       "docs/test/testorigin.mdx",
     ]);
-    let imgFile = new File("public/images/another-img.png", new Set());
+    let imgFile = new File("public/docs/images/another-img.png", new Set());
     const results = testLink.check([imgFile]);
     expect(results).toEqual(
-      "❌ Could not find link '/images/my-img.png'. Appears in:\n" +
-        "    docs/test/testorigin.mdx    ❓ Did you mean '/images/another-img.png'?",
+      "❌ Could not find link '/docs/images/my-img.png'. Appears in:\n" +
+        "    docs/test/testorigin.mdx    ❓ Did you mean '/docs/images/another-img.png'?",
     );
   });
 
@@ -143,13 +144,13 @@ test.describe("Validate links", () => {
     const results = testLink.check([testFile1, testFile2]);
     expect(results).toEqual(
       "❌ Could not find link '../testpath'. Appears in:\n" +
-        "    docs/test/test2/testorigin.mdx    ❓ Did you mean '/testpath'?\n" +
-        "    docs/test/test3/testorigin.mdx    ❓ Did you mean '/testpath'?",
+        "    docs/test/test2/testorigin.mdx    ❓ Did you mean '/docs/testpath'?\n" +
+        "    docs/test/test3/testorigin.mdx    ❓ Did you mean '/docs/testpath'?",
     );
   });
 
   test("anchor with absolute path", () => {
-    let testLink = new InternalLink("/testpath#test_anchor", [
+    let testLink = new InternalLink("/docs/testpath#test_anchor", [
       "/testorigin.mdx",
     ]);
     let testFile = new File("docs/testpath.mdx", new Set(["#test_anchor"]));
@@ -158,7 +159,7 @@ test.describe("Validate links", () => {
   });
 
   test("non-existing anchor with absolute path", () => {
-    let testLink = new InternalLink("/testpath#test_anchor", [
+    let testLink = new InternalLink("/docs/testpath#test_anchor", [
       "/testorigin.mdx",
     ]);
     let testFile = new File(
@@ -167,7 +168,7 @@ test.describe("Validate links", () => {
     );
     const results = testLink.check([testFile]);
     expect(results).toEqual(
-      "❌ Could not find link '/testpath#test_anchor'. Appears in:\n    /testorigin.mdx    ❓ Did you mean '/testpath#test_diff_anchor'?",
+      "❌ Could not find link '/docs/testpath#test_anchor'. Appears in:\n    /testorigin.mdx    ❓ Did you mean '/docs/testpath#test_diff_anchor'?",
     );
   });
 
@@ -190,7 +191,7 @@ test.describe("Validate links", () => {
     );
     const results = testLink.check([testFile]);
     expect(results).toEqual(
-      "❌ Could not find link '../testpath#test-anchor'. Appears in:\n    docs/test/testorigin.mdx    ❓ Did you mean '/testpath#test_diff_anchor'?",
+      "❌ Could not find link '../testpath#test-anchor'. Appears in:\n    docs/test/testorigin.mdx    ❓ Did you mean '/docs/testpath#test_diff_anchor'?",
     );
   });
 });
@@ -213,7 +214,7 @@ test.describe("Generate the possible paths of a given link", () => {
   });
 
   test("Possible links with an absolute path", () => {
-    let testLink = new InternalLink("/testFile", [
+    let testLink = new InternalLink("/docs/testFile", [
       "docs/test/test2/testorigin.mdx",
     ]);
     let possiblePaths = testLink.possibleFilePaths(

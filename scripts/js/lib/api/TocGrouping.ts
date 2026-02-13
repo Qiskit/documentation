@@ -157,6 +157,7 @@ function qiskitModuleToSection(module: string): string | undefined {
       "qiskit.qobj",
       "qiskit.tools",
       "qiskit.utils",
+      "Root namespace",
     ])
   ) {
     return _OTHER;

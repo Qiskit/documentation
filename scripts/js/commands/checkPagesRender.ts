@@ -19,6 +19,12 @@ import { mean } from "lodash-es";
 
 import { zxMain } from "../lib/zx.js";
 
+// These are expected to 404 in the cloud app due to being legacy only.
+const LEGACY_ONLY_PAGES: Set<string> = new Set([
+  "docs/guides/setup-channel.mdx",
+  "docs/guides/estimate-job-run-time.mdx",
+]);
+
 const PORT = 3000;
 
 interface Arguments {
@@ -29,7 +35,6 @@ interface Arguments {
   devApis?: boolean;
   historicalApis?: boolean;
   qiskitReleaseNotes?: boolean;
-  translations?: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -44,7 +49,6 @@ const readArgs = (): Arguments => {
         "dev-apis",
         "historical-apis",
         "qiskit-release-notes",
-        "translations",
       ],
       description:
         "Read the file path for file paths and globs to check, like `docs/start/index.md`. " +
@@ -73,10 +77,6 @@ const readArgs = (): Arguments => {
       type: "boolean",
       description: "Check the pages in the `api/qiskit/release-notes` folder.",
     })
-    .option("translations", {
-      type: "boolean",
-      description: "Check the pages in the `translations/` subfolders.",
-    })
     .parseSync();
 };
 
@@ -102,7 +102,7 @@ zxMain(async () => {
     // This script can be slow, so log progress every 10 files.
     if (numFilesChecked % 10 == 0) {
       console.log(
-        `Checked ${numFilesChecked} / ${files.length} pages ` +
+        `⏳ Checked ${numFilesChecked} / ${files.length} pages ` +
           `(~${mean(renderTimes).toFixed(0)}ms per page)`,
       );
       renderTimes = [];
@@ -143,10 +143,7 @@ async function canRender(fp: string): Promise<RenderSuccess | RenderFailure> {
 }
 
 function pathToUrl(path: string): string {
-  const strippedPath = path
-    .replace("docs/", "")
-    .replace("translations/", "")
-    .replace(/\.(?:md|mdx|ipynb)$/g, "");
+  const strippedPath = path.replace(/\.(?:md|mdx|ipynb)$/g, "");
   return `http://localhost:${PORT}/${strippedPath}`;
 }
 
@@ -155,15 +152,14 @@ async function validateDockerRunning(): Promise<void> {
     const response = await fetch(`http://localhost:${PORT}`);
     if (response.status !== 200) {
       console.error(
-        "Failed to access http://localhost:3000. Have you started the Docker server with `./start`? " +
-          "Refer to the README for instructions.",
+        "Failed to access http://localhost:3000. Have you started the Docker server with `./start` in another shell? ",
       );
       process.exit(1);
     }
   } catch (error) {
     console.error(
       "Error when accessing http://localhost:3000. Make sure that you've started the Docker server " +
-        "with `./start`. Refer to the README for instructions.\n\n" +
+        "with `./start` in another shell.\n\n" +
         `${error}`,
     );
     process.exit(1);
@@ -173,12 +169,13 @@ async function validateDockerRunning(): Promise<void> {
 async function determineFilePaths(args: Arguments): Promise<string[]> {
   if (args.fromFile) {
     const content = await fs.readFile(args.fromFile, "utf-8");
-    return globby(content.split("\n").filter((entry) => entry));
+    const result = await globby(content.split("\n").filter((entry) => entry));
+    return result.filter((fp) => filterPlatformSpecificPage(fp));
   }
 
   const globs = [];
   if (args.nonApi) {
-    globs.push("docs/**/*.{ipynb,mdx}");
+    globs.push("{docs,learning}/**/*.{ipynb,mdx}");
   }
 
   for (const [isIncluded, glob] of [
@@ -186,10 +183,14 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
     [args.historicalApis, "docs/api/*/[0-9]*/*.mdx"],
     [args.devApis, "docs/api/*/dev/*.mdx"],
     [args.qiskitReleaseNotes, "docs/api/qiskit/release-notes/*.mdx"],
-    [args.translations, "translations/**/*.{ipynb,mdx}"],
   ]) {
     const prefix = isIncluded ? "" : "!";
     globs.push(`${prefix}${glob}`);
   }
-  return globby(globs);
+  const result = await globby(globs);
+  return result.filter((fp) => filterPlatformSpecificPage(fp));
+}
+
+function filterPlatformSpecificPage(page: string) {
+  return !LEGACY_ONLY_PAGES.has(page);
 }

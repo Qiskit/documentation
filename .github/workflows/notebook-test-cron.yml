@@ -19,18 +19,24 @@ jobs:
   execute:
     name: Execute notebooks
     runs-on: ubuntu-latest
+    if: github.repository_owner == 'Qiskit'
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup environment
         uses: ./.github/actions/set-up-notebook-testing
         with:
-          ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
-          instance: "client-enablement/documentation/qiskit-documenta"
+          ibm-cloud-token: ${{ secrets.IBM_CLOUD_TEST_TOKEN }}
+          instance: ${{ vars.IBM_CLOUD_TEST_CRN }}
+          install-linux-deps: true
 
       - name: Execute notebooks
         timeout-minutes: 350
-        run: tox -- --write --only-submit-jobs
+        run: tox -- --write --test-strategy hardware
+
+      - name: Normalize notebooks
+        if: "!cancelled()"
+        run: tox -e fix
 
       - name: Detect changed notebooks
         id: changed-notebooks
@@ -48,7 +54,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git switch -c actions/cron-${{ github.run_id }}
-          git commit -am "Re-run notebooks"
+          git add .
+          git commit -m "Re-run notebooks"
           git push origin actions/cron-${{ github.run_id }}
           gh pr create \
            -B main \
@@ -58,7 +65,8 @@ jobs:
             This PR updates all notebooks that ran successfully with the new cell outputs.
             > [!NOTE]
             > This pull request was created by a GitHub action." \
-           --reviewer frankharkins
+           --reviewer frankharkins \
+           --reviewer kaelynj
 
       - name: Upload executed notebooks
         if: "!cancelled()"
@@ -85,7 +93,7 @@ jobs:
             github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: "Weekly notebook test failed",
+              title: "Fortnightly notebook test failed",
               body: message,
-              assignees: ["frankharkins", "javabster",]
+              labels: ["needs triage 🤔"],
             })

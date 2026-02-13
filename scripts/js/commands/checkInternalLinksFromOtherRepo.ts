@@ -26,6 +26,7 @@ import { globby } from "globby";
 
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
+import { readJsonFile } from "../lib/fs";
 
 interface Arguments {
   [x: string]: unknown;
@@ -57,10 +58,7 @@ async function main() {
     (fp) => new File(fp, new Set()),
   );
 
-  const savedFilesContent = await readFile(args.savedLinks, {
-    encoding: "utf-8",
-  });
-  const savedFiles = JSON.parse(savedFilesContent).map(
+  const savedFiles = (await readJsonFile(args.savedLinks)).map(
     (entry: any) => new File(entry.path, new Set(entry.anchors)),
   );
 

@@ -1,0 +1,40 @@
+---
+title: TokenSwapperSynthesisPermutation (v1.4)
+description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.TokenSwapperSynthesisPermutation in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.TokenSwapperSynthesisPermutation
+---
+
+# TokenSwapperSynthesisPermutation
+
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.TokenSwapperSynthesisPermutation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L853-L929" signature="qiskit.transpiler.passes.synthesis.hls_plugins.TokenSwapperSynthesisPermutation" modifiers="class">
+  Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+
+  The permutation synthesis plugin based on the token swapper algorithm.
+
+  This plugin name is :`permutation.token_swapper` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  In more detail, this plugin is used to synthesize objects of type PermutationGate. When synthesis succeeds, the plugin outputs a quantum circuit consisting only of swap gates. When synthesis does not succeed, the plugin outputs None.
+
+  If either coupling\_map or qubits is None, then the synthesized circuit is not required to adhere to connectivity constraints, as is the case when the synthesis is done before layout/routing.
+
+  On the other hand, if both coupling\_map and qubits are specified, the synthesized circuit is supposed to adhere to connectivity constraints. At the moment, the plugin only creates swap gates between qubits in qubits, i.e. it does not use any other qubits in the coupling map (if such synthesis is not possible, the plugin outputs None).
+
+  The plugin supports the following plugin-specific options:
+
+  *   trials: The number of trials for the token swapper to perform the mapping. The circuit with the smallest number of SWAPs is returned.
+  *   seed: The argument to the token swapper specifying the seed for random trials.
+  *   parallel\_threshold: The argument to the token swapper specifying the number of nodes in the graph beyond which the algorithm will use parallel processing.
+
+  For more details on the token swapper algorithm, see to the paper: [arXiv:1902.09102](https://arxiv.org/abs/1902.09102).
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.TokenSwapperSynthesisPermutation.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L885-L929" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+    Run synthesis for the given Permutation.
+  </Function>
+</Class>
+

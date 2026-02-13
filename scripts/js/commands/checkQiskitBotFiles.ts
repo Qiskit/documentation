@@ -16,6 +16,7 @@ import { load } from "js-yaml";
 import { globby } from "globby";
 
 const ALLOWED_OWNERLESS_FILES = new Set([
+  "learning/index",
   "docs/guides/_toc",
   "docs/guides/bit-ordering",
   "docs/guides/operators-overview",
@@ -28,10 +29,8 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/using-ibm-quantum-simulators",
   "docs/guides/circuit-execution",
   "docs/guides/configure-runtime-compilation",
-  "docs/guides/execution-modes-faq",
-  "docs/guides/execution-modes",
-  "docs/guides/native-gates",
   "docs/guides/save-jobs",
+  "docs/guides/add-job-tags",
   "docs/guides/visualize-results",
   "docs/guides/create-transpiler-plugin",
   "docs/guides/intro-to-patterns",
@@ -40,15 +39,15 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/configure-error-suppression",
   "docs/guides/repetition-rate-execution",
   "docs/guides/n2_fci",
-  "docs/migration-guides/_toc",
-  "docs/migration-guides/qiskit-1.0",
-  "docs/migration-guides/qiskit-1.0-features",
-  "docs/migration-guides/qiskit-1.0-installation",
+  "docs/guides/_toc",
+  "docs/guides/qiskit-1.0",
+  "docs/guides/qiskit-1.0-features",
+  "docs/guides/qiskit-1.0-installation",
 ]);
 
 const ALLOWED_NONEXISTENT_FILES: Set<string> = new Set([]);
 
-const GLOBS = ["docs/guides/*", "docs/migration-guides/*"];
+const GLOBS = ["{docs,learning}/**/*.{ipynb,mdx}", "!docs/api/**/*"];
 
 async function main() {
   const qiskitBotFiles = await getQiskitBotFiles();

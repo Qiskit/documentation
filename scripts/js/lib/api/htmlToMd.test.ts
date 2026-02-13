@@ -11,8 +11,9 @@
 // that they have been altered from the originals.
 
 import { test, expect } from "@playwright/test";
+import { Link } from "mdast";
 
-import { sphinxHtmlToMarkdown } from "./htmlToMd.js";
+import { removeVersionLinkTitle, sphinxHtmlToMarkdown } from "./htmlToMd.js";
 
 const DEFAULT_ARGS = {
   imageDestination: "/images/qiskit",
@@ -22,11 +23,17 @@ const DEFAULT_ARGS = {
   hasSeparateReleaseNotes: false,
 };
 
-async function toMd(html: string, withMetadata: boolean = false) {
+async function toMd(
+  html: string,
+  withMetadata: boolean = false,
+  isCApi: boolean = false,
+) {
   const result = await sphinxHtmlToMarkdown({
     fileName: "stubs/qiskit_ibm_runtime.Sampler.html",
     html,
+    isCApi,
     ...DEFAULT_ARGS,
+    hasRootNamespaceFile: false,
   });
   return withMetadata ? result : result.markdown;
 }
@@ -474,6 +481,21 @@ test("parse deprecations warnings", async () => {
       `),
   ).toEqual(`<Admonition title="Deprecated since version 0.23.0" type="danger">
   The method \`qiskit.circuit.quantumregister.QuantumRegister.qasm()\` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
+</Admonition>
+`);
+});
+
+test("versionadded is rendered as admonition", async () => {
+  expect(
+    await toMd(`
+      <div role="main">
+      <div class="versionadded">
+        <p><span class="versionmodified added">Added in version 2.5: </span>The <em>velocity</em> parameter.</p>
+      </div>
+      </div>
+    `),
+  ).toEqual(`<Admonition title="Added in version 2.5" type="info">
+  The *velocity* parameter.
 </Admonition>
 `);
 });
@@ -997,7 +1019,9 @@ test("identify release notes", async () => {
             </ul>
             `,
       fileName: "release_notes.html",
+      isCApi: false,
       ...DEFAULT_ARGS,
+      hasRootNamespaceFile: false,
     }),
   ).toEqual({
     images: [],
@@ -1165,4 +1189,154 @@ test("generate correct heading level", async () => {
   Function 1
 </Function>
 `);
+});
+
+// ------------------------------------------------------------------
+// C API: Functions and structs
+// ------------------------------------------------------------------
+
+test("handle <dl> with className function", async () => {
+  expect(
+    await toMd(
+      `
+      <div role="main">
+      <p>Links of functions:</p>
+      <dl class="cpp function">
+      <dt class="sig sig-object cpp" id="_CPPv411qk_obs_zero8uint32_t">
+      <span id="_CPPv311qk_obs_zero8uint32_t"></span><span id="_CPPv211qk_obs_zero8uint32_t"></span><span id="qk_obs_zero__uint32_t"></span><span class="target" id="group__QkSparseObservable_1gaf6fff59681bd7c1dd6fc1164b5b1568d"></span><span class="n"><span class="pre">QkSparseObservable</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">qk_obs_zero</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">num_qubits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411qk_obs_zero8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+      <dd><p>Construct the zero observable (without any terms).</p>
+      <dl class="field-list simple">
+      <dt class="field-odd">Parameters<span class="colon">:</span></dt>
+      <dd class="field-odd"><p><strong>num_qubits</strong> – The number of qubits the observable is defined on.</p>
+      </dd>
+      <dt class="field-even">Returns<span class="colon">:</span></dt>
+      <dd class="field-even"><p>A pointer to the created observable.</p>
+      </dd>
+      </dl>
+      </dd></dl>
+      </div>
+  `,
+      undefined,
+      true,
+    ),
+  ).toEqual(`Links of functions:
+
+### qk\\_obs\\_zero
+
+<Function id="qk_obs_zero" signature="QkSparseObservable *qk_obs_zero(uint32_t num_qubits)">
+  Construct the zero observable (without any terms).
+
+  **Parameters**
+
+  **num\\_qubits** – The number of qubits the observable is defined on.
+
+  **Returns**
+
+  A pointer to the created observable.
+</Function>
+`);
+});
+
+test("handle <dl> with className struct", async () => {
+  expect(
+    await toMd(
+      `
+      <div role="main">
+      <p>Links of structs:</p>
+      <dl class="cpp struct">
+      <dt class="sig sig-object cpp" id="_CPPv412QkSparseTerm">
+      <span id="_CPPv312QkSparseTerm"></span><span id="_CPPv212QkSparseTerm"></span><span id="QkSparseTerm"></span><span class="target" id="structQkSparseTerm"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">QkSparseTerm</span></span></span><a class="headerlink" href="#_CPPv412QkSparseTerm" title="Permalink to this definition">¶</a><br /></dt>
+      <dd><div class="docutils container">
+      <em>#include &lt;qiskit.h&gt;</em></div>
+      <p>This is a struct.</p>
+      <section id="structQkSparseTerm_1autotoc_md2">
+      <h2>Safety<a class="headerlink" href="#structQkSparseTerm_1autotoc_md2" title="Permalink to this heading">¶</a></h2>
+      <ul class="simple">
+      <li><p><code class="docutils literal notranslate"><span class="pre">bit_terms</span></code> must be a non-null, aligned pointer to <code class="docutils literal notranslate"><span class="pre">len</span></code> elements of type <code class="docutils literal notranslate"><span class="pre">BitTerm</span></code>.</p></li>
+      <li><p><code class="docutils literal notranslate"><span class="pre">indices</span></code> must be a non-null, aligned pointer to <code class="docutils literal notranslate"><span class="pre">len</span></code> elements of type <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code>. </p></li>
+      </ul>
+      </section>
+      </dd></dl>
+      </div>
+  `,
+      undefined,
+      true,
+    ),
+  ).toEqual(`Links of structs:
+
+### QkSparseTerm
+
+<Class id="QkSparseTerm" signature="struct QkSparseTerm">
+  *#include \\<qiskit.h>*
+
+  This is a struct.
+
+  <span id=\"structQkSparseTerm_1autotoc_md2\" />
+
+  #### Safety
+
+  *   \`bit_terms\` must be a non-null, aligned pointer to \`len\` elements of type \`BitTerm\`.
+  *   \`indices\` must be a non-null, aligned pointer to \`len\` elements of type \`uint32_t\`.
+</Class>
+`);
+});
+
+test.describe("removeVersionLinkTitle()", () => {
+  const LINK_WITHOUT_TITLE: Link = {
+    type: "link",
+    url: "/not-used",
+    children: [{ type: "text", value: "Test link" }],
+  };
+
+  function createLinkNode(title?: string): Link {
+    return {
+      ...LINK_WITHOUT_TITLE,
+      title,
+    };
+  }
+
+  test("Links with titles to remove", () => {
+    const pythonLink = "(in Python v3.14)";
+    const link1 = createLinkNode(pythonLink);
+    removeVersionLinkTitle(link1);
+    expect(link1).toEqual(LINK_WITHOUT_TITLE);
+
+    const numpyLink = "(in NumPy v2.4)";
+    const link2 = createLinkNode(numpyLink);
+    removeVersionLinkTitle(link2);
+    expect(link2).toEqual(LINK_WITHOUT_TITLE);
+
+    const qiskitLink = "(in Qiskit v1.3)";
+    const link3 = createLinkNode(qiskitLink);
+    removeVersionLinkTitle(link3);
+    expect(link3).toEqual(LINK_WITHOUT_TITLE);
+  });
+
+  // We don't remove these titles because we use a conservative regex to reduce
+  // the risk of false positives. In the future, feel free to improve the regex
+  // to remove these titles.
+  test("Links with candidate titles to be removed that the regex doesn't catch", () => {
+    const titleWithMinor = "(in Qiskit v1.3.4)";
+    const link1 = createLinkNode(titleWithMinor);
+    removeVersionLinkTitle(link1);
+    expect(link1.title).toEqual(titleWithMinor);
+
+    const titleWithoutParenthesis = "in Qiskit v1.3";
+    const link2 = createLinkNode(titleWithoutParenthesis);
+    removeVersionLinkTitle(link2);
+    expect(link2.title).toEqual(titleWithoutParenthesis);
+  });
+
+  test("Link with a title to preserve", () => {
+    const standardTitle = "My title";
+    const link3 = createLinkNode(standardTitle);
+    removeVersionLinkTitle(link3);
+    expect(link3.title).toEqual(standardTitle);
+  });
+
+  test("Link with no title", () => {
+    const link = createLinkNode();
+    removeVersionLinkTitle(link);
+    expect(link.title).toBeUndefined();
+  });
 });

@@ -10,13 +10,13 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile } from "fs/promises";
+import { readJsonFile } from "./fs";
 
 export async function readApiFullVersion(
   versionFolder: string,
 ): Promise<string> {
-  return JSON.parse(await readFile(`${versionFolder}/_package.json`, "utf-8"))
-    .version;
+  const json = await readJsonFile(`${versionFolder}/_package.json`);
+  return json.version;
 }
 
 export async function readApiMinorVersion(
@@ -33,4 +33,12 @@ export async function readApiMinorVersion(
 export function parseMinorVersion(version: string): string | null {
   const versionMatch = version.match(/^(\d+\.\d+)/);
   return versionMatch ? versionMatch[0] : null;
+}
+
+export function isValidVersion(versionToCheck: string): boolean {
+  // The version must include a major, a minor, and a patch. Dev versions must also
+  // include the suffixes `rc` or `-dev` immediately following the patch version.
+  // E.g. 1.0.0rc1 or 1.0.0-dev`
+  const fullVersionFormat = new RegExp(/^(\d+\.\d+\.\d+)(-dev|rc\d+|)$/);
+  return !!versionToCheck.match(fullVersionFormat);
 }

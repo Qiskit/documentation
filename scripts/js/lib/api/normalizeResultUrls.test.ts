@@ -40,9 +40,11 @@ test.describe("normalizeResultUrls()", () => {
     { url: "/api/my-pkg/apidoc/my_pkg" },
     { url: "/api/my-pkg/apidoc/my_module" },
     { url: "/api/my-pkg/apidocs/my_module2" },
+    { url: "/api/my-pkg/apidocs/my_moduleV2" },
     { url: "/api/my-pkg/stubs/my_pkg.foo.Bar" },
     { url: "/api/my-pkg/stubs/my_pkg.a_function" },
     { url: "/api/my-pkg/release_notes" },
+    { url: "/api/my-pkg/cdoc/my_pkg.c_api" },
   ] as HtmlToMdResultWithUrl[];
 
   test("no kebab-case", () => {
@@ -54,9 +56,11 @@ test.describe("normalizeResultUrls()", () => {
       "/api/my-pkg/my_pkg",
       "/api/my-pkg/my_module",
       "/api/my-pkg/my_module2",
+      "/api/my-pkg/my_moduleV2",
       "/api/my-pkg/my_pkg.foo.Bar",
       "/api/my-pkg/my_pkg.a_function",
       "/api/my-pkg/release_notes",
+      "/api/my-pkg/my_pkg.c_api",
     ]);
   });
 
@@ -69,9 +73,11 @@ test.describe("normalizeResultUrls()", () => {
       "/api/my-pkg/my-pkg",
       "/api/my-pkg/my-module",
       "/api/my-pkg/my-module-2",
+      "/api/my-pkg/my-module-v2",
       "/api/my-pkg/foo-bar",
       "/api/my-pkg/a-function",
       "/api/my-pkg/release-notes",
+      "/api/my-pkg/c-api",
     ]);
   });
 });

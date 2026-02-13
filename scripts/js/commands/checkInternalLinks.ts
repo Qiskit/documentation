@@ -19,14 +19,28 @@ import { hideBin } from "yargs/helpers";
 import { readApiMinorVersion } from "../lib/apiVersions.js";
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
+import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
+  "learning/index.mdx",
+  "docs/index.mdx",
+  "docs/admin/analytics.mdx",
   "docs/errors.mdx",
-  "docs/api/runtime/index.mdx",
-  "docs/api/runtime/tags/jobs.mdx",
+  "docs/api/qiskit-ibm-runtime/index.mdx",
+  "docs/api/qiskit-ibm-runtime/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
+  "docs/api/qiskit-ibm-runtime/tags/usage.mdx",
+  "docs/api/qiskit-ibm-runtime/tags/sessions.mdx",
+  "docs/api/qiskit-runtime-rest/tags/instances.mdx",
+  "docs/api/qiskit-runtime-rest/tags/backends.mdx",
+  "docs/api/qiskit-runtime-rest/index.mdx",
+  "announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update.mdx",
+  "announcements/product-updates.mdx",
+  "announcements/index.mdx",
+  "announcements/product-updates/2025-03-03-new-version-dynamic-circuits.mdx",
+  "announcements/product-updates/2025-09-25-new-dynamic-circuits.mdx",
 ];
 
 interface Arguments {
@@ -70,9 +84,9 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("public/{images,videos}/**/*")).map(
-      (fp) => new File(fp, new Set()),
-    ),
+    ...(
+      await globby("public/{docs,learning}/{images,videos,open-source}/**/*")
+    ).map((fp) => new File(fp, new Set())),
     ...SYNTHETIC_FILES.map((fp) => new File(fp, new Set(), true)),
   ];
 
@@ -91,11 +105,18 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
+const QISKIT_REMOVED_PAGES_TO_LOAD = [
+  ...QISKIT_REMOVED_PAGES,
+  "qiskit.circuit.QuantumCircuit",
+  "compiler",
+].map((page) => `docs/api/qiskit/1.4/${page}.mdx`);
+
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
   "docs/guides/*.{mdx,ipynb}",
-  "docs/migration-guides/*.{mdx,ipynb}",
+  "docs/guides/*.{mdx,ipynb}",
+  ...QISKIT_REMOVED_PAGES_TO_LOAD,
 ];
 const TRANSPILER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const QISKIT_GLOBS_TO_LOAD = [
@@ -103,12 +124,28 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/0.45.mdx",
   "docs/api/qiskit/release-notes/0.46.mdx",
   "docs/api/qiskit/release-notes/index.mdx",
-  "docs/migration-guides/qiskit-1.0-features.mdx",
+  "docs/guides/qiskit-1.0-features.mdx",
   "docs/guides/construct-circuits.ipynb",
-  "docs/guides/bit-ordering.mdx",
-  "docs/guides/pulse.ipynb",
-  "docs/guides/primitives.mdx",
+  "docs/guides/bit-ordering.ipynb",
+  "docs/guides/primitives.ipynb",
   "docs/guides/configure-qiskit-local.mdx",
+  "docs/guides/transpiler-stages.ipynb",
+  "docs/api/qiskit/providers.mdx",
+  "docs/guides/qiskit-sdk-version-strategy.mdx",
+  "docs/guides/qiskit-backendv1-to-v2.mdx",
+  "docs/guides/install-qiskit.mdx",
+  "docs/api/qiskit-c/index.mdx",
+  "docs/api/qiskit-c/2.1/index.mdx",
+  "docs/api/qiskit-c/2.1/qk-complex-64.mdx",
+  "docs/api/qiskit-c/2.2/qk-transpiler.mdx",
+  "docs/api/qiskit-c/2.2/qk-transpiler-passes.mdx",
+  "docs/api/qiskit-c/2.2/qk-target-entry.mdx",
+  "docs/api/qiskit-c/2.2/qk-obs.mdx",
+  "docs/api/qiskit-c/2.2/qk-circuit.mdx",
+  "docs/api/qiskit-c/2.2/qk-obs-term.mdx",
+  "docs/api/qiskit-c/2.2/qk-target.mdx",
+  "docs/api/qiskit-ibm-runtime/estimator-v2.mdx",
+  "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
@@ -156,10 +193,15 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     ADDON_GLOBS_TO_LOAD,
     { check: args.historicalApis },
   );
+  const utils = await determineHistoricalFileBatches(
+    "qiskit-addon-utils",
+    ADDON_GLOBS_TO_LOAD,
+    { check: args.historicalApis },
+  );
 
   // This is intentionally ordered so that the smallest APIs are checked first,
   // since they are much faster to check.
-  result.push(...transpiler, ...sqd, ...mpf, ...runtime, ...qiskit);
+  result.push(...transpiler, ...sqd, ...mpf, ...utils, ...runtime, ...qiskit);
 
   if (args.qiskitLegacyReleaseNotes) {
     result.push(await determineQiskitLegacyReleaseNotes());
@@ -172,14 +214,14 @@ async function determineCurrentDocsFileBatch(
   args: Arguments,
 ): Promise<FileBatch> {
   const toCheck = [
-    "docs/**/*.{ipynb,mdx}",
-    "public/api/*/objects.inv",
+    "{docs,learning}/**/*.{ipynb,mdx}",
+    "public/docs/api/*/objects.inv",
     // Ignore historical versions
     "!docs/api/*/[0-9]*/*",
-    "!public/api/*/[0-9]*/*",
+    "!public/docs/api/*/[0-9]*/*",
     // Ignore dev version
     "!docs/api/*/dev/*",
-    "!public/api/*/dev/*",
+    "!public/docs/api/*/dev/*",
     // Ignore Qiskit release notes
     "!docs/api/qiskit/release-notes/*",
   ];
@@ -189,27 +231,32 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/0.46/qiskit.{algorithms,extensions,opflow}.*",
     "docs/api/qiskit/0.46/qiskit.utils.QuantumInstance.mdx",
     "docs/api/qiskit/0.46/qiskit.primitives.Base{Estimator,Sampler}.mdx",
-    "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.mdx",
-    "docs/api/qiskit-ibm-runtime/0.26/qiskit_ibm_runtime.{Sampler,Estimator}{,V1}.mdx",
+    "docs/api/qiskit-ibm-runtime/0.26/{sampler,estimator}{,-v1}.mdx",
     // Release notes referenced in files.
     "docs/api/qiskit/release-notes/index.mdx",
     "docs/api/qiskit/release-notes/0.45.mdx",
     "docs/api/qiskit/release-notes/1.*.mdx",
+    "docs/api/qiskit/release-notes/2.*.mdx",
     // Used by release notes.
-    "docs/api/qiskit-ibm-runtime/0.20/qiskit_ibm_runtime.Sampler.mdx",
-    "docs/api/qiskit-ibm-runtime/0.21/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
-    "docs/api/qiskit-ibm-runtime/0.25/qiskit_ibm_runtime.RuntimeOptions.mdx",
-    "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
-    "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
-    "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.Session.mdx",
-    "docs/api/qiskit-ibm-runtime/0.30/qiskit_ibm_runtime.RuntimeJob.mdx",
+    "docs/api/qiskit-ibm-runtime/0.25/runtime-options.mdx",
+    "docs/api/qiskit-ibm-runtime/0.27/options-resilience-options.mdx",
+    "docs/api/qiskit-ibm-runtime/0.29/qiskit-runtime-service.mdx",
+    "docs/api/qiskit-ibm-runtime/0.29/session.mdx",
+    "docs/api/qiskit-ibm-runtime/0.30/runtime-job.mdx",
+    "docs/api/qiskit-ibm-runtime/0.34/ibm-backend.mdx",
+    "docs/api/qiskit-ibm-runtime/0.41/runtime-job.mdx",
+    // Used by the latest updates page.
+    "docs/api/qiskit-ibm-runtime/0.40/ibm-backend.mdx",
+    // These pages were removed in Qiskit 2.0.
+    ...QISKIT_REMOVED_PAGES_TO_LOAD,
   ];
 
   if (args.currentApis) {
     const currentQiskitVersion = await readApiMinorVersion("docs/api/qiskit");
     toCheck.push(`docs/api/qiskit/release-notes/${currentQiskitVersion}.mdx`);
   } else {
-    toCheck.push(`!{public,docs}/api/*/*`);
+    toCheck.push(`!public/docs/api/*/*`);
+    toCheck.push(`!docs/api/*/*`);
     toLoad.push(`docs/api/*/*`);
   }
 
@@ -228,7 +275,10 @@ async function determineDevFileBatches(): Promise<FileBatch[]> {
   const result = [];
   for (const [project, toLoad] of projects) {
     const fileBatch = await FileBatch.fromGlobs(
-      [`docs/api/${project}/dev/*`, `public/api/${project}/dev/objects.inv`],
+      [
+        `docs/api/${project}/dev/*`,
+        `public/docs/api/${project}/dev/objects.inv`,
+      ],
       toLoad,
       `${project} dev docs`,
     );
@@ -265,7 +315,7 @@ async function determineHistoricalFileBatches(
 
     const toCheck: string[] = [
       `docs/api/${projectName}/${folder.name}/*`,
-      `public/api/${projectName}/${folder.name}/objects.inv`,
+      `public/docs/api/${projectName}/${folder.name}/objects.inv`,
     ];
     const toLoad = [...extraGlobsToLoad];
 
@@ -304,7 +354,7 @@ async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
 
   return await FileBatch.fromGlobs(
     toCheck,
-    [`docs/api/qiskit/0.45/*`, "docs/api/qiskit/release-notes/index.mdx"],
+    [`docs/api/qiskit/0.46/*`, "docs/api/qiskit/release-notes/index.mdx"],
     `qiskit legacy release notes`,
   );
 }

@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { getLastPartFromFullIdentifier } from "../stringUtils.js";
+import { getLastPartFromFullIdentifier, removeSuffix } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 
@@ -39,8 +39,16 @@ ${markdown}
 `;
     } else if (result.url.endsWith("index")) {
       result.markdown = `---
-title: ${pkg.title} API documentation (${titleVersion})
+title: ${removeSuffix(pkg.title, " API")} API documentation (${titleVersion})
 description: Index of all the modules ${descriptionVersion}.
+---
+
+${markdown}
+`;
+    } else if (result.url.endsWith("/root") && pkg.hasRootNamespaceFile) {
+      result.markdown = `---
+title: ${removeSuffix(pkg.title, " API")} API documentation (${titleVersion})
+description: Re-exports in the root namespace ${descriptionVersion}.
 ---
 
 ${markdown}
@@ -51,7 +59,8 @@ ${markdown}
       // so that people can quickly scroll up to the code object, since
       // it is non-trivial, like having the class constructor. But for
       // module pages, showing the h1 in the page ToC is noisy.
-      const toc_min_level = result.meta.apiType === "module" ? 2 : 1;
+      const toc_min_level =
+        pkg.isCApi() || result.meta.apiType === "module" ? 2 : 1;
       result.markdown = `---
 title: ${getLastPartFromFullIdentifier(result.meta.apiName)} (${titleVersion})
 description: API reference for ${result.meta.apiName} ${descriptionVersion}

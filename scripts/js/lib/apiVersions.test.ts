@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { parseMinorVersion } from "./apiVersions.js";
+import { isValidVersion, parseMinorVersion } from "./apiVersions.js";
 
 test("parseMinorVersion()", async () => {
   const normal = parseMinorVersion("1.2.2");
@@ -23,4 +23,24 @@ test("parseMinorVersion()", async () => {
   expect(rc).toEqual("1.2");
   const bad = parseMinorVersion("1");
   expect(bad).toBeNull();
+});
+
+test("isValidVersion()", async () => {
+  const validVersions = ["0.46.3", "2.0.0", "2.0.0rc1", "0.37.0-dev"];
+  validVersions.forEach((version) =>
+    expect(isValidVersion(version)).toBeTruthy(),
+  );
+
+  const invalidVersions = [
+    "0.46",
+    "2",
+    "2.0.0-rc1",
+    "2.0.0rc",
+    "0.37.0dev",
+    "0.37.0-dev1",
+    "1.0.0.0",
+  ];
+  invalidVersions.forEach((version) =>
+    expect(isValidVersion(version)).toBeFalsy(),
+  );
 });

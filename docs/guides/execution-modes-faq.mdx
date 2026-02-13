@@ -1,6 +1,6 @@
 ---
 title: Execution modes FAQs
-description: Answers to commonly asked questions about Qiskit Runtime execution modes
+description: Answers to commonly-asked questions about Qiskit Runtime execution modes
 
 ---
 # Qiskit Runtime execution modes FAQs
@@ -13,6 +13,7 @@ description: Answers to commonly asked questions about Qiskit Runtime execution 
 Local testing mode supports the syntax for the different execution modes, but because there is no scheduling involved when testing locally, the modes are ignored.
 </details>
 
+<span id="parallel"></span>
 <details>
   <summary>
     How many jobs can run in parallel for a specific backend?
@@ -26,7 +27,7 @@ The number of jobs running in parallel is based on the degree of parallelism con
     How is usage reported for failed or canceled jobs?
   </summary>
 
-See the [Failed and canceled jobs](execution-modes#failed-job) section on the Execution modes page.
+See the [Failed and canceled jobs](/docs/guides/estimate-job-run-time#failed-job) section on the Execution modes page.
 </details>
 
 ## Sessions
@@ -57,7 +58,7 @@ No. On-demand calibration is not available.
 
 <details>
   <summary>
-    Is there an interactive timeout (ITTL) with session mode?
+    Is there an interactive timeout (interactive TTL) with session mode?
   </summary>
 
 Yes. This reduces unwanted cost if a user forgets to close their session.
@@ -65,10 +66,10 @@ Yes. This reduces unwanted cost if a user forgets to close their session.
 
 <details>
   <summary>
-    Can I change the interactive timeout (ITTL) or the maximum timeout of a session?
+    Can I change the interactive TTL or the maximum TTL of a session?
   </summary>
 
-You cannot change the interactive timeout value. You can change the maximum timeout value of a session (see [Specify the session length](run-jobs-session#specify-length)), but it must be less than the system-defined maximum. Ask your administrator to contact IBM support if you need a different interactive TTL or system maximum TTL.
+You cannot change the interactive TTL value. You can change the maximum TTL value of a session (see [Specify the session length](/docs/guides/run-jobs-session#specify-length)), but it must be less than the system-defined maximum. Ask your administrator to contact IBM support if you need a different interactive TTL or system maximum TTL.
 
 </details>
 
@@ -77,7 +78,7 @@ You cannot change the interactive timeout value. You can change the maximum time
     How does session usage impact IBM Quantum Network members who are not billed by usage?
   </summary>
 
-IBM Quantum Network members gain reserved capacity on IBM Quantum&trade; QPUs. Usage is deducted from this capacity and hubs with lower capacity have longer queueing time.
+IBM Quantum Network members gain reserved capacity on IBM Quantum&reg; QPUs. Usage is deducted from this capacity and instances with lower capacity have longer queueing time.
 </details>
 
 <details>
@@ -101,7 +102,7 @@ No.  Sessions run in dedicated mode, which means that the user has total access 
     Is compilation time counted as usage in session mode?
   </summary>
 
-Yes.  In session mode, usage is the wall clock time the QPU is **committed to the session**. It starts when the first session job starts and ends when the session goes inactive, is closed, or when the last job completes, whichever happens **last**. Thus, usage continues to accumulate after a session ends if the QPU is still running a job. Additionally, time after a job completes while the QPU waits for another session job (the interactive time to live (ITTL)) counts as usage. This is why you should ensure the session is closed as soon as you are done submitting jobs to it.
+Yes.  In session mode, usage is the wall clock time the QPU is **committed to the session**. It starts when the first session job starts and ends when the session goes inactive, is closed, or when the last job completes, whichever happens **last**. Thus, usage continues to accumulate after a session ends if the QPU is still running a job. Additionally, time after a job completes while the QPU waits for another session job (the interactive TTL) counts as usage. This is why you should ensure the session is closed as soon as you are done submitting jobs to it.
 </details>
 
 ## Batch
@@ -145,7 +146,7 @@ In general, if your each of your jobs consumes less than a minute of QPU time, c
     How many jobs I can submit in a batch?
   </summary>
 
-While there are no limits to the number of jobs you can submit in a batch, there is a maximum time associated with a batch. That is, when a batch's wall clock time (which starts when the first batch job starts running) exceeds the system-defined maximum time, the batch will not accept any new jobs, and any jobs queued but not running are canceled. Additionally, there are limits on how much usage your jobs can consume based on your plan. To determine the maximum time associated with a batch, use the [`batch.details()`  method](run-jobs-batch#batch-details) and look for the `max_time` value.
+While there are no limits to the number of jobs you can submit in a batch, there is a maximum time associated with a batch. That is, when a batch's wall clock time (which starts when the first batch job starts running) exceeds the system-defined maximum time, the batch will not accept any new jobs, and any jobs queued but not running are canceled. Additionally, there are limits on how much usage your jobs can consume based on your plan. To determine the maximum time associated with a batch, use the [`batch.details()`  method](/docs/guides/run-jobs-batch#batch-details) and look for the `max_time` value.
 </details>
 
 <details>

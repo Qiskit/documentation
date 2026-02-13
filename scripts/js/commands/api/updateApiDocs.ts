@@ -15,7 +15,7 @@ import { hideBin } from "yargs/helpers";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
-import { parseMinorVersion } from "../../lib/apiVersions.js";
+import { parseMinorVersion, isValidVersion } from "../../lib/apiVersions.js";
 import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
 import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
 import { runConversionPipeline } from "../../lib/api/conversionPipeline.js";
@@ -46,6 +46,14 @@ const readArgs = (): Arguments => {
       type: "string",
       demandOption: true,
       description: "The full version string of the --package, e.g. 0.44.0",
+      coerce: (version) => {
+        if (!isValidVersion(version)) {
+          throw new Error(
+            "The version must include a major, a minor, and a patch. E.g. `-v 0.46.3`",
+          );
+        }
+        return version;
+      },
     })
     .option("historical", {
       type: "boolean",
@@ -79,10 +87,10 @@ export async function generateVersion(
   args: Arguments,
 ): Promise<void> {
   const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
-  await deleteExistingMarkdown(pkg);
+  await deleteExistingFiles(pkg);
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
-  await runConversionPipeline(sphinxArtifactFolder, "docs", "public", pkg);
+  await runConversionPipeline(sphinxArtifactFolder, "docs", "public/docs", pkg);
   await generateHistoricalRedirects();
 }
 
@@ -127,13 +135,18 @@ async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
   return `${sphinxArtifactFolder}/artifact`;
 }
 
-async function deleteExistingMarkdown(pkg: Pkg): Promise<void> {
+async function deleteExistingFiles(pkg: Pkg): Promise<void> {
   const markdownDir = pkg.outputDir("docs");
-  if (!(await pathExists(markdownDir))) return;
+  if (await pathExists(markdownDir)) {
+    await rmFilesInFolder(markdownDir);
+  }
+  const imagesDir = pkg.outputDir("public/docs/images");
+  if (await pathExists(imagesDir)) {
+    await rmFilesInFolder(imagesDir);
+  }
   console.log(
-    `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
+    `Deleted existing markdown & images for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
-  await rmFilesInFolder(markdownDir);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

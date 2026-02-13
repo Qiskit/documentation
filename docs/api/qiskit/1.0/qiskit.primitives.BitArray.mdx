@@ -18,12 +18,12 @@ python_api_name: qiskit.primitives.BitArray
   **Parameters**
 
   *   **array** (*NDArray\[np.uint8]*) – The `uint8` data array.
-  *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – How many bit are in each outcome.
+  *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – How many bit are in each outcome.
 
   **Raises**
 
-  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If the input is not a NumPy array with type `numpy.uint8`.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the input array has fewer than two axes, or the size of the last axis is not the smallest number of bytes that can contain `num_bits`.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If the input is not a NumPy array with type `numpy.uint8`.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the input array has fewer than two axes, or the size of the last axis is not the smallest number of bytes that can contain `num_bits`.
 
   ## Attributes
 
@@ -74,7 +74,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v1.26)")\[*uint64*]]
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[*uint64*]]
   </Function>
 
   ### from\_bool\_array
@@ -84,8 +84,8 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    *   **array** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*,* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v1.26)")*\[*[*bool\_*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool_ "(in NumPy v1.26)")*]]*) – The array to convert, with “bitstrings” along the last axis.
-    *   **order** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.12)")*\['big', 'little']*) – One of `"big"` or `"little"`, indicating whether `array[..., 0]` correspond to the most significant bits or the least significant bits of each bitstring, respectively.
+    *   **array** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*bool\_*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool_)*]]*) – The array to convert, with “bitstrings” along the last axis.
+    *   **order** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['big', 'little']*) – One of `"big"` or `"little"`, indicating whether `array[..., 0]` correspond to the most significant bits or the least significant bits of each bitstring, respectively.
 
     **Returns**
 
@@ -105,8 +105,8 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    *   **counts** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | Iterable\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – One or more counts-like mappings with the same number of shots.
-    *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The desired number of bits per shot. If unset, the biggest value found sets this value.
+    *   **counts** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] | Iterable\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – One or more counts-like mappings with the same number of shots.
+    *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The desired number of bits per shot. If unset, the biggest value found sets this value.
 
     **Returns**
 
@@ -114,8 +114,8 @@ python_api_name: qiskit.primitives.BitArray
 
     **Raises**
 
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If different mappings have different numbers of shots.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If no counts dictionaries are supplied.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If different mappings have different numbers of shots.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If no counts dictionaries are supplied.
 
     **Return type**
 
@@ -133,8 +133,8 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    *   **samples** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – A list of bitstrings, a list of integers, or a list of hexstrings.
-    *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The desired number of bits per sample. If unset, the biggest sample provided is used to determine this value.
+    *   **samples** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – A list of bitstrings, a list of integers, or a list of hexstrings.
+    *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The desired number of bits per sample. If unset, the biggest sample provided is used to determine this value.
 
     **Returns**
 
@@ -142,7 +142,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If no strings are given.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If no strings are given.
 
     **Return type**
 
@@ -156,7 +156,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    **loc** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
+    **loc** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
 
     **Returns**
 
@@ -164,7 +164,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[str](https://docs.python.org/3/library/stdtypes.html#str)]
   </Function>
 
   ### get\_counts
@@ -174,7 +174,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    **loc** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
+    **loc** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
 
     **Returns**
 
@@ -182,7 +182,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [int](https://docs.python.org/3/library/functions.html#int)]
   </Function>
 
   ### get\_int\_counts
@@ -192,7 +192,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    **loc** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
+    **loc** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...] | None*) – Which entry of this array to return a dictionary for. If `None`, counts from all positions in this array are unioned together.
 
     **Returns**
 
@@ -200,7 +200,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[int](https://docs.python.org/3/library/functions.html#int), [int](https://docs.python.org/3/library/functions.html#int)]
   </Function>
 
   ### reshape
@@ -212,7 +212,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    **\*shape** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| Iterable\[ShapeInput]]*) – The new desired shape.
+    **\*shape** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int) *| Iterable\[ShapeInput]]*) – The new desired shape.
 
     **Returns**
 
@@ -220,7 +220,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the size corresponding to your new shape is not equal to either [`size`](#qiskit.primitives.BitArray.size "qiskit.primitives.BitArray.size"), or the product of [`size`](#qiskit.primitives.BitArray.size "qiskit.primitives.BitArray.size") and [`num_shots`](#qiskit.primitives.BitArray.num_shots "qiskit.primitives.BitArray.num_shots").
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the size corresponding to your new shape is not equal to either [`size`](#qiskit.primitives.BitArray.size "qiskit.primitives.BitArray.size"), or the product of [`size`](#qiskit.primitives.BitArray.size "qiskit.primitives.BitArray.size") and [`num_shots`](#qiskit.primitives.BitArray.num_shots "qiskit.primitives.BitArray.num_shots").
 
     **Return type**
 

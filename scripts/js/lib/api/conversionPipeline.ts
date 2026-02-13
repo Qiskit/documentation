@@ -30,11 +30,15 @@ import addFrontMatter from "./addFrontMatter.js";
 import { dedupeHtmlIdsFromResults } from "./dedupeHtmlIds.js";
 import removeMathBlocksIndentation from "./removeMathBlocksIndentation.js";
 import { Pkg } from "./Pkg.js";
-import { pathExists } from "../fs.js";
 import {
   maybeUpdateReleaseNotesFolder,
   handleReleaseNotesFile,
 } from "./releaseNotes.js";
+
+// This is the folder that contains all C API docs in the Sphinx artifact.
+export const C_API_BASE_PATH = "cdoc" as const;
+
+export const DOCS_BASE_PATH = "/docs";
 
 export async function runConversionPipeline(
   htmlPath: string,
@@ -63,7 +67,7 @@ export async function runConversionPipeline(
 
   // Warning: the sequence of operations often matters.
   await writeMarkdownResults(pkg, docsBaseFolder, results);
-  await copyImages(pkg, htmlPath, publicBaseFolder, results);
+  await copyImages(pkg, htmlPath, "public", results);
   await maybeObjectsInv?.write(pkg.outputDir(publicBaseFolder));
   await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
   await writeTocFile(pkg, markdownPath, results);
@@ -75,17 +79,15 @@ async function determineFilePaths(
   docsBaseFolder: string,
   pkg: Pkg,
 ): Promise<[string[], string, ObjectsInv | undefined]> {
-  const maybeObjectsInv = await (pkg.hasObjectsInv()
-    ? ObjectsInv.fromFile(htmlPath)
-    : undefined);
+  const maybeObjectsInv = await (pkg.isProblematicLegacyQiskit()
+    ? undefined
+    : ObjectsInv.fromFile(htmlPath, pkg.language));
+
+  const extraFiles = pkg.isCApi()
+    ? [`${C_API_BASE_PATH}/**.html`]
+    : ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
   const files = await globby(
-    [
-      "apidocs/**.html",
-      "apidoc/**.html",
-      "stubs/**.html",
-      "release_notes.html",
-      "release-notes.html",
-    ],
+    [...extraFiles, "release_notes.html", "release-notes.html"],
     {
       cwd: htmlPath,
     },
@@ -109,9 +111,11 @@ async function convertFilesToMarkdown(
       html,
       fileName: file,
       determineGithubUrl: pkg.determineGithubUrlFn(),
-      imageDestination: pkg.outputDir("/images"),
+      imageDestination: pkg.outputDir(`${DOCS_BASE_PATH}/images`),
       releaseNotesTitle: pkg.releaseNotesTitle(),
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
+      isCApi: pkg.isCApi(),
+      hasRootNamespaceFile: pkg.hasRootNamespaceFile,
     });
 
     // Avoid creating an empty markdown file for HTML files without content
@@ -133,8 +137,6 @@ async function copyImages(
   publicBaseFolder: string,
   results: HtmlToMdResultWithUrl[],
 ): Promise<void> {
-  // Some historical versions don't have the `_images` folder in the artifact store in Box (https://ibm.ent.box.com/folder/246867452622)
-  if (pkg.isHistorical() && !(await pathExists(`${htmlPath}/_images`))) return;
   console.log("Saving images");
   const allImages = uniqBy(
     results.flatMap((result) => result.images),
@@ -156,7 +158,11 @@ async function postProcessResults(
   specialCaseResults(results);
   await updateLinks(
     results,
-    { kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls, pkgName: pkg.name },
+    {
+      kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
+      pkgName: pkg.name,
+      pkgOutputDir: pkg.outputDir(DOCS_BASE_PATH),
+    },
     maybeObjectsInv,
   );
   await dedupeHtmlIdsFromResults(results);
@@ -173,6 +179,8 @@ async function writeMarkdownResults(
   for (const result of results) {
     let path = `${docsBaseFolder}${result.url}.mdx`;
     if (path.endsWith("release-notes.mdx")) {
+      if (!pkg.releaseNotesConfig.enabled) continue;
+
       const shouldWriteResult = await handleReleaseNotesFile(result, pkg);
       if (!shouldWriteResult) continue;
     }

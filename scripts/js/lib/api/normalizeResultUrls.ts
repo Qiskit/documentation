@@ -13,10 +13,12 @@
 import { kebabCase, initial, last } from "lodash-es";
 
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { C_API_BASE_PATH } from "./conversionPipeline.js";
 import { removePart } from "../stringUtils.js";
 
 export function kebabCaseAndShortenPage(page: string, pkgName: string): string {
-  const kebab = kebabCase(page);
+  // Transform the URLs to kebab-case. We also replace values like -v-2 with -v2
+  const kebab = kebabCase(page).replace(/-v-([0-9]+)/g, `-v$1`);
   return kebab === pkgName ? kebab : kebab.replace(`${pkgName}-`, "");
 }
 
@@ -38,5 +40,5 @@ export function normalizeResultUrls(
 }
 
 function omitRootFolders(path: string): string {
-  return removePart(path, "/", ["stubs", "apidocs", "apidoc"]);
+  return removePart(path, "/", ["stubs", "apidocs", "apidoc", "cdoc"]);
 }

@@ -1,0 +1,41 @@
+---
+title: MCXSynthesisNDirtyI15 (v1.4)
+description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15 in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15
+---
+
+# MCXSynthesisNDirtyI15
+
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L932-L981" signature="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15" modifiers="class">
+  Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+
+  Synthesis plugin for a multi-controlled X gate based on the paper by Iten et al. (2016).
+
+  See \[1] for details.
+
+  This plugin name is :`mcx.n_dirty_i15` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  For a multi-controlled X gate with $k\ge 3$ control qubits this synthesis method requires $k - 2$ additional dirty auxiliary qubits. The synthesized circuit consists of $2 * k - 1$ qubits and at most $8 * k - 6$ CX gates.
+
+  The plugin supports the following plugin-specific options:
+
+  *   num\_clean\_ancillas: The number of clean auxiliary qubits available.
+  *   num\_dirty\_ancillas: The number of dirty auxiliary qubits available.
+  *   relative\_phase: When set to `True`, the method applies the optimized multi-controlled X gate up to a relative phase, in a way that, by lemma 8 of \[1], the relative phases of the `action part` cancel out with the phases of the `reset part`.
+  *   action\_only: when set to `True`, the method applies only the `action part` of lemma 8 of \[1].
+
+  **References**
+
+  1.  Iten et. al., *Quantum Circuits for Isometries*, Phys. Rev. A 93, 032318 (2016), [arXiv:1501.06911](http://arxiv.org/abs/1501.06911)
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNDirtyI15.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L960-L981" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+    Run synthesis for the given MCX gate.
+  </Function>
+</Class>
+

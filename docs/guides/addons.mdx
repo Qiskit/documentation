@@ -1,49 +1,104 @@
 ---
-title: Qiskit addons
+title: Advanced techniques - Qiskit addons
 description: Understand the Qiskit addon tools, which help you build utility-grade quantum workflows.
 ---
 
-# Qiskit addons
+{/* cspell:ignore lightcones */}
 
-Qiskit addons are a collection of research capabilities for enabling algorithm discovery at the utility scale. These capabilities build on Qiskit's performant foundation of tools for creating and running quantum algorithms. They are provided as modular software components that can plug into a [workflow](/guides/intro-to-patterns) to scale or design new quantum algorithms.
+# Advanced techniques - Qiskit addons
 
-## Addons for mapping
+Qiskit addons are a collection of research capabilities for enabling algorithm discovery at the utility scale. These modular software components can plug into a [workflow](/docs/guides/intro-to-patterns) to scale or design new quantum algorithms. Many of these addons are powered by the `qiskit-addon-utils` package. See the [Qiskit addon utilities documentation](https://qiskit.github.io/qiskit-addon-utils/) for more information.
 
-### Approximate quantum compilation with tensor networks
+<CardGroup>
+    <Card
+      title="AQC-Tensor"
+      description="Approximate quantum compilation with tensor networks (AQC-Tensor) enables the construction of high-fidelity circuits with reduced depth."
+      href="https://qiskit.github.io/qiskit-addon-aqc-tensor/"
+      analyticsName="Documentation page: AQC-Tensor"
+      linkText="Browse documentation"
+    />
 
-Approximate quantum compilation with tensor networks (AQC-Tensor) enables the construction of high-fidelity circuits with reduced depth.
+    <Card
+      title="Multi-product formulas"
+      description="Multi-product formulas (MPF) reduce the Trotter error of Hamiltonian dynamics through a weighted combination of several circuit executions."
+      href="https://qiskit.github.io/qiskit-addon-mpf/"
+      analyticsName="Documentation page: MPF"
+      linkText="Browse documentation"
+    />
 
-- Visit the [GitHub repository.](https://github.com/Qiskit/qiskit-addon-aqc-tensor)
-- Read the [documentation.](/guides/qiskit-addons-aqc)
+    <Card
+      title="Optimization Mapper"
+      description="The Optimization Mapper addon contains functionality to model optimization problems by formulating them in abstract models and then converting into representations that a quantum computer can understand."
+      href="https://qiskit.github.io/qiskit-addon-opt-mapper/"
+      analyticsName="Documentation page: Optimization mapper"
+      linkText="Browse documentation"
+    />
 
-### Multi-product formulas
 
-Multi-product formulas (MPF) reduce the Trotter error of Hamiltonian dynamics through a weighted combination of several circuit executions.
+    <Card
+      title="Operator backpropagation"
+      description="Operator backpropagation (OBP) reduces circuit depth by trimming operations from the end at the cost of more operator measurements."
+      href="https://qiskit.github.io/qiskit-addon-obp/"
+      analyticsName="Documentation page: OBP"
+      linkText="Browse documentation"
+    />
 
-- Visit the [GitHub repository.](https://github.com/Qiskit/qiskit-addon-mpf)
-- Read the [documentation.](https://qiskit.github.io/qiskit-addon-mpf)
+    <Card
+      title="Circuit cutting"
+      description="Circuit cutting reduces the depth of transpiled circuits by decomposing entangling gates between non-adjacent qubits."
+      href="https://qiskit.github.io/qiskit-addon-cutting"
+      analyticsName="Documentation page: Circuit cutting"
+      linkText="Browse documentation"
+    />
 
-## Addons for optimizing
 
-### Operator backpropagation
+    <Card
+      title="Matrix-free Measurement Mitigation"
+      description="Matrix-free Measurement Mitigation (M3) is a package for scalable quantum measurement error mitigation that can be computed in parallel."
+      href="https://qiskit.github.io/qiskit-addon-mthree/"
+      analyticsName="Documentation page: M3"
+      linkText="Browse documentation"
+    />
 
-Operator backpropagation (OBP) reduces circuit depth by trimming operations from the end at the cost of more operator measurements.
+    <Card
+      title="Shaded lightcones"
+      description="The shaded lightcones (SLC) addon uses Pauli propagation to reduce the number of error terms in a noise model that need to be mitigated. This has the effect of reducing the sampling overhead for probabilistic error cancellation (PEC) workflows."
+      href="https://qiskit.github.io/qiskit-addon-slc/"
+      analyticsName="Documentation page: SLC"
+      linkText="Browse documentation"
+    />
+    <Card
+      title="Propagated noise absorption"
+      description="Propagated noise absorption (PNA) uses Pauli propagation to absorb information from a noise model into a target observable. Measuring this modified observable has the effect of mitigating the noise as represented by the model."
+      href="https://qiskit.github.io/qiskit-addon-pna/"
+      analyticsName="Documentation page: PNA"
+      linkText="Browse documentation"
+    />
 
-- Visit the [GitHub repository.](https://github.com/Qiskit/qiskit-addon-obp)
-- Read the [documentation.](/guides/qiskit-addons-obp)
 
-### Circuit cutting
+    <Card
+      title="Sample-based quantum diagonalization"
+      description="Sample-based quantum diagonalization (SQD) classically post-processes noisy quantum samples to yield more accurate eigenvalue estimations of quantum system Hamiltonians."
+      href="/docs/guides/qiskit-addons-sqd"
+      analyticsName="Overview page: SQD"
+      linkText="Overview"
+    />
 
-Circuit cutting reduces the depth of transpiled circuits by decomposing entangling gates between non-adjacent qubits.
+    <Card
+      title="SQD for HPC"
+      description="This addon is an HPC-ready implementation of the SQD addon. It is written in modern C++17 standards and is designed to create a single compiled binary for use with MPI."
+      href="https://qiskit.github.io/qiskit-addon-sqd-hpc/"
+      analyticsName="Documentation page: SQD for HPC"
+      linkText="Browse documentation"
+    />
 
-- Visit the [GitHub repository.](https://github.com/Qiskit/qiskit-addon-cutting)
-- Read the [documentation.](https://qiskit.github.io/qiskit-addon-cutting)
+    <Card
+      title="Dice eigensolver"
+      description="This addon utilizes a more performant eigensolver to scale SQD chemistry workflows past 30 orbitals an HPC-ready implementation of the SQD addon."
+      href="https://qiskit.github.io/qiskit-addon-dice-solver/"
+      analyticsName="Documentation page: Dice"
+      linkText="Browse documentation"
+    />
+</CardGroup>
 
-##  Addons for post-processing
 
-### Sample-based quantum diagonalization
-
-Sample-based quantum diagonalization (SQD) classically post-processes noisy quantum samples to yield more accurate eigenvalue estimations of quantum system Hamiltonians, for example in chemistry applications.
-
-- Visit the [GitHub repository.](https://github.com/Qiskit/qiskit-addon-sqd)
-- Read the [documentation.](/guides/qiskit-addons-sqd)

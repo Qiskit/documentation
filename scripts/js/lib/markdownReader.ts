@@ -10,17 +10,27 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile } from "fs/promises";
 import path from "node:path";
+import { readFile } from "fs/promises";
+import { readJsonFile } from "./fs";
+import grayMatter from "gray-matter";
 
 export async function readMarkdown(
   filePath: string,
   options: { includeCodeCellSourceCode?: boolean } = {},
 ): Promise<string> {
-  const source = await readFile(filePath, { encoding: "utf8" });
-  return path.extname(filePath) === ".ipynb"
-    ? markdownFromNotebook(source, options)
-    : source;
+  const ext = path.extname(filePath);
+
+  if (ext === ".ipynb") {
+    const notebook = await readJsonFile(filePath);
+    return markdownFromNotebook(notebook, options);
+  }
+
+  if (ext === ".md" || ext === ".mdx") {
+    return await readFile(filePath, { encoding: "utf8" });
+  }
+
+  throw new Error(`Unsupported file type: ${ext} at path "${filePath}"`);
 }
 
 interface JupyterCell {
@@ -28,11 +38,15 @@ interface JupyterCell {
   source: string[];
 }
 
+type Notebook = {
+  cells: JupyterCell[];
+};
+
 export function markdownFromNotebook(
-  rawContent: string,
+  notebook: Notebook,
   options: { includeCodeCellSourceCode?: boolean },
 ): string {
-  const cells = JSON.parse(rawContent).cells as JupyterCell[];
+  const cells = notebook.cells as JupyterCell[];
   return cells
     .filter(
       (cell) =>
@@ -41,4 +55,31 @@ export function markdownFromNotebook(
     )
     .map((cell) => cell.source.join(""))
     .join("\n\n");
+}
+
+async function readFileMarkdown(
+  filePath: string,
+  options: { includeCodeCellSourceCode?: boolean } = {},
+): Promise<string> {
+  const ext = path.extname(filePath);
+
+  if (ext === ".ipynb") {
+    const notebook = await readJsonFile(filePath);
+    return markdownFromNotebook(notebook, options);
+  }
+
+  if (ext === ".md" || ext === ".mdx") {
+    return readFile(filePath, "utf8");
+  }
+
+  throw new Error(`Unexpected file type: ${ext} at path ${filePath}`);
+}
+
+export async function readMarkdownAndMetadata(
+  filePath: string,
+  options: { includeCodeCellSourceCode?: boolean } = {},
+): Promise<{ content: string; metadata: Record<string, any> }> {
+  const rawContent = await readFileMarkdown(filePath, options);
+  const parsed = grayMatter(rawContent);
+  return { content: parsed.content, metadata: parsed.data };
 }

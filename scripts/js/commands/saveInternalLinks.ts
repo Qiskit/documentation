@@ -17,13 +17,13 @@ import { FileBatch } from "../lib/links/FileBatch.js";
 async function main() {
   const fileBatch = await FileBatch.fromGlobs(
     [
-      "docs/**/*.{ipynb,mdx}",
+      "{docs,learning}/**/*.{ipynb,mdx}",
       "!docs/api/*/[0-9]*/*",
       "!docs/api/*/dev/*",
       "!docs/api/qiskit/release-notes/*",
     ],
     [],
-    "docs",
+    "docs and learning",
   );
   const [loadedFiles] = await fileBatch.load();
   const normalizedFiles = loadedFiles.map((file) => ({

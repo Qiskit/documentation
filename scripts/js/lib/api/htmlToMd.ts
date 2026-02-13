@@ -22,11 +22,11 @@ import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
-import { Emphasis, Root, Content } from "mdast";
+import { Emphasis, Root, Content, Link } from "mdast";
 
 import { processHtml } from "./processHtml.js";
 import { HtmlToMdResult } from "./HtmlToMdResult.js";
-import { Metadata, ApiType } from "./Metadata.js";
+import { Metadata, ApiTypeName } from "./Metadata.js";
 import { removePrefix, removeSuffix, capitalize } from "../stringUtils.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 
@@ -37,6 +37,8 @@ export async function sphinxHtmlToMarkdown(options: {
   determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
+  isCApi: boolean;
+  hasRootNamespaceFile: boolean;
 }): Promise<HtmlToMdResult> {
   const processedHtml = await processHtml(options);
   const markdown = await generateMarkdownFile(
@@ -65,7 +67,10 @@ async function generateMarkdownFile(
       handlers,
     })
     .use(remarkStringify, remarkStringifyOptions)
-    .use(() => (root: Root) => visit(root, "emphasis", mergeContiguousEmphasis))
+    .use(() => (root: Root) => {
+      visit(root, "emphasis", mergeContiguousEmphasis);
+      visit(root, "link", removeVersionLinkTitle);
+    })
     .process(mainHtml);
 
   return mdFile.toString().replaceAll(`<!---->`, "");
@@ -124,7 +129,10 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
       }
 
       if (nodeClasses.includes("deprecated")) {
-        return buildDeprecatedAdmonition(node, handlers);
+        return buildApiVersionAdmonition(node, handlers, "danger");
+      }
+      if (nodeClasses.includes("versionadded")) {
+        return buildApiVersionAdmonition(node, handlers, "info");
       }
 
       return node.properties.id && nodeClasses.includes("section")
@@ -143,6 +151,15 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
   };
 
   return handlers;
+}
+
+export function removeVersionLinkTitle(node: Link) {
+  // Intersphinx cross-references usually set link titles like "(in Python 3.14)".
+  // We remove these titles because they are noisy, low-value to our users, and
+  // they easily become out-of-sync.
+  if (node.title?.match(/^\(in [^ ]* v\d+\.\d+\)$/)) {
+    delete node.title;
+  }
 }
 
 function mergeContiguousEmphasis(
@@ -202,7 +219,7 @@ function findNodeWithProperty(nodeList: any[], propertyName: string) {
 function buildDt(
   h: H,
   node: any,
-  apiType?: ApiType,
+  apiType?: ApiTypeName,
 ): void | Content | Content[] {
   if (apiType === "class" || apiType === "module") {
     return [
@@ -256,15 +273,17 @@ function buildAdmonition(
   };
 }
 
-function buildDeprecatedAdmonition(
+function buildApiVersionAdmonition(
   node: any,
   handlers: Record<string, Handle>,
+  admonitionType: "info" | "danger",
 ): MdxJsxFlowElement {
   const titleNode = findNodeWithProperty(
     node.children[0].children,
     "versionmodified",
   );
   const title = toText(titleNode).trim().replace(/:$/, "");
+
   const otherChildren: Array<any> = without(
     node.children[0].children,
     titleNode,
@@ -282,7 +301,7 @@ function buildDeprecatedAdmonition(
       {
         type: "mdxJsxAttribute",
         name: "type",
-        value: "danger",
+        value: admonitionType,
       },
     ],
     children: [

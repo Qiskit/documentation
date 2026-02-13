@@ -12,12 +12,6 @@
 
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
-export const RUNTIME_INDEX_META = `title: Qiskit Runtime Client API Docs
-description: API documentation for the qiskit-ibm-runtime client`;
-
-export const TRANSPILER_SERVICE_INDEX_META = `title: Qiskit Transpiler Service Client Docs
-description: API documentation for the qiskit-ibm-transpiler client`;
-
 export function transformSpecialCaseUrl(url: string): string {
   return (
     url
