@@ -19,15 +19,15 @@ Functions for the study of fermionic systems.
 ### SCIState
 
 <Class id="qiskit_addon_sqd.fermion.SCIState" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.10/qiskit_addon_sqd/fermion.py#L32-L69" signature="SCIState(amplitudes, ci_strs_a, ci_strs_b)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   The amplitudes and determinants describing a quantum state.
 
   **Parameters**
 
-  *   **amplitudes** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
-  *   **ci\_strs\_a** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
-  *   **ci\_strs\_b** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
+  *   **amplitudes** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray))
+  *   **ci\_strs\_a** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray))
+  *   **ci\_strs\_b** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray))
 
   #### amplitudes
 
@@ -69,8 +69,8 @@ Functions for the study of fermionic systems.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
-  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether unique configurations from the left and right halves of the bitstrings should be kept separate. If `False`, configurations from the left and right halves of the bitstrings are combined into a single set of unique configurations. That combined set will be returned for both the left and right bitstrings.
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – A flag specifying whether unique configurations from the left and right halves of the bitstrings should be kept separate. If `False`, configurations from the left and right halves of the bitstrings are combined into a single set of unique configurations. That combined set will be returned for both the left and right bitstrings.
 
   **Returns**
 
@@ -78,7 +78,7 @@ Functions for the study of fermionic systems.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
 </Function>
 
 ### enlarge\_batch\_from\_transitions
@@ -88,8 +88,8 @@ Functions for the study of fermionic systems.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
-  *   **transition\_operators** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 1D or 2D array `I`, `+`, `-`, and `n` strings representing the action of the identity, creation, annihilation, or number operators. Each row represents a transition operator.
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
+  *   **transition\_operators** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 1D or 2D array `I`, `+`, `-`, and `n` strings representing the action of the identity, creation, annihilation, or number operators. Each row represents a transition operator.
 
   **Returns**
 
@@ -97,7 +97,7 @@ Functions for the study of fermionic systems.
 
   **Return type**
 
-  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")
+  [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
 </Function>
 
 ### solve\_fermion
@@ -107,23 +107,23 @@ Functions for the study of fermionic systems.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) –
+  *   **bitstring\_matrix** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) –
 
       A set of configurations defining the subspace onto which the Hamiltonian will be projected and diagonalized. This is a 2D array of `bool` representations of bit values such that each row represents a single bitstring. The spin-up configurations should be specified by column indices in range `(N, N/2]`, and the spin-down configurations should be specified by column indices in range `(N/2, 0]`, where `N` is the number of qubits.
 
       (DEPRECATED) The configurations may also be specified by a length-2 tuple of sorted 1D arrays containing unsigned integer representations of the determinants. The two lists should represent the spin-up and spin-down orbitals, respectively.
 
-  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – Core Hamiltonian matrix representing single-electron integrals
+  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – Core Hamiltonian matrix representing single-electron integrals
 
-  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – Electronic repulsion integrals representing two-electron integrals
+  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – Electronic repulsion integrals representing two-electron integrals
 
-  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether configurations from the left and right halves of the bitstrings should be kept separate. If `False`, CI strings from the left and right halves of the bitstrings are combined into a single set of unique configurations and used for both the alpha and beta subspaces.
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – A flag specifying whether configurations from the left and right halves of the bitstrings should be kept separate. If `False`, CI strings from the left and right halves of the bitstrings are combined into a single set of unique configurations and used for both the alpha and beta subspaces.
 
-  *   **spin\_sq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – Target value for the total spin squared for the ground state. If `None`, no spin will be imposed.
+  *   **spin\_sq** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Target value for the total spin squared for the ground state. If `None`, no spin will be imposed.
 
-  *   **max\_davidson** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of cycles of Davidson’s algorithm
+  *   **max\_davidson** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum number of cycles of Davidson’s algorithm
 
-  *   **verbose** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A verbosity level between 0 and 10
+  *   **verbose** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – A verbosity level between 0 and 10
 
   **Returns**
 
@@ -134,7 +134,7 @@ Functions for the study of fermionic systems.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [*SCIState*](#qiskit_addon_sqd.fermion.SCIState "qiskit_addon_sqd.fermion.SCIState"), [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[float](https://docs.python.org/3/library/functions.html#float), [*SCIState*](#qiskit_addon_sqd.fermion.SCIState "qiskit_addon_sqd.fermion.SCIState"), [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)], [float](https://docs.python.org/3/library/functions.html#float)]
 </Function>
 
 ### optimize\_orbitals
@@ -154,29 +154,29 @@ Functions for the study of fermionic systems.
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) –
+  *   **bitstring\_matrix** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) –
 
       A set of configurations defining the subspace onto which the Hamiltonian will be projected and diagonalized. This is a 2D array of `bool` representations of bit values such that each row represents a single bitstring. The spin-up configurations should be specified by column indices in range `(N, N/2]`, and the spin-down configurations should be specified by column indices in range `(N/2, 0]`, where `N` is the number of qubits.
 
       (DEPRECATED) The configurations may also be specified by a length-2 tuple of sorted 1D arrays containing unsigned integer representations of the determinants. The two lists should represent the spin-up and spin-down orbitals, respectively.
 
-  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – Core Hamiltonian matrix representing single-electron integrals
+  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – Core Hamiltonian matrix representing single-electron integrals
 
-  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – Electronic repulsion integrals representing two-electron integrals
+  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – Electronic repulsion integrals representing two-electron integrals
 
-  *   **k\_flat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – 1D array defining the orbital transform, `K`. The array should specify the upper triangle of the anti-symmetric transform operator in row-major order, excluding the diagonal.
+  *   **k\_flat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – 1D array defining the orbital transform, `K`. The array should specify the upper triangle of the anti-symmetric transform operator in row-major order, excluding the diagonal.
 
-  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether configurations from the left and right halves of the bitstrings should be kept separate. If `False`, CI strings from the left and right halves of the bitstrings are combined into a single set of unique configurations and used for both the alpha and beta subspaces.
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – A flag specifying whether configurations from the left and right halves of the bitstrings should be kept separate. If `False`, CI strings from the left and right halves of the bitstrings are combined into a single set of unique configurations and used for both the alpha and beta subspaces.
 
-  *   **spin\_sq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Target value for the total spin squared for the ground state
+  *   **spin\_sq** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Target value for the total spin squared for the ground state
 
-  *   **num\_iters** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of iterations of orbital optimization to perform
+  *   **num\_iters** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of iterations of orbital optimization to perform
 
-  *   **max\_davidson** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of cycles of Davidson’s algorithm to perform during diagonalization.
+  *   **max\_davidson** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum number of cycles of Davidson’s algorithm to perform during diagonalization.
 
-  *   **num\_steps\_grad** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of steps of gradient descent to perform during each optimization iteration
+  *   **num\_steps\_grad** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of steps of gradient descent to perform during each optimization iteration
 
-  *   **learning\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The learning rate to use during gradient descent
+  *   **learning\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The learning rate to use during gradient descent
 
   **Returns**
 
@@ -186,7 +186,7 @@ Functions for the study of fermionic systems.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[float](https://docs.python.org/3/library/functions.html#float), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]]
 </Function>
 
 ### rotate\_integrals
@@ -204,9 +204,9 @@ $$
 
   **Parameters**
 
-  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – Core Hamiltonian matrix representing single-electron integrals
-  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – Electronic repulsion integrals representing two-electron integrals
-  *   **k\_flat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – 1D array defining the orbital transform, `K`. The array should specify the upper triangle of the anti-symmetric transform operator in row-major order, excluding the diagonal.
+  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – Core Hamiltonian matrix representing single-electron integrals
+  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – Electronic repulsion integrals representing two-electron integrals
+  *   **k\_flat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – 1D array defining the orbital transform, `K`. The array should specify the upper triangle of the anti-symmetric transform operator in row-major order, excluding the diagonal.
 
   **Returns**
 
@@ -215,7 +215,7 @@ $$
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
 </Function>
 
 ### bitstring\_matrix\_to\_sorted\_addresses
@@ -231,8 +231,8 @@ $$
 
   **Parameters**
 
-  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
-  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether unique addresses from the left and right halves of the bitstrings should be kept separate. If `False`, addresses from the left and right halves of the bitstrings are combined into a single set of unique addresses. That combined set will be returned for both the left and right bitstrings.
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – A flag specifying whether unique addresses from the left and right halves of the bitstrings should be kept separate. If `False`, addresses from the left and right halves of the bitstrings are combined into a single set of unique addresses. That combined set will be returned for both the left and right bitstrings.
 
   **Returns**
 
@@ -240,6 +240,6 @@ $$
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
 </Function>
 

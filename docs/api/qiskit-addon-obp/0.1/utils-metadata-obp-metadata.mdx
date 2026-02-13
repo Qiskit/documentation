@@ -9,7 +9,7 @@ python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
 # OBPMetadata
 
 <Class id="qiskit_addon_obp.utils.metadata.OBPMetadata" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/metadata.py#L93-L259" signature="OBPMetadata(truncation_error_budget, num_slices, operator_budget, backpropagation_history, num_backpropagated_slices)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A container for metadata generated during the `backpropagate()` method.
 
@@ -18,10 +18,10 @@ python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
   **Parameters**
 
   *   **truncation\_error\_budget** ([*TruncationErrorBudget*](utils-truncating#truncationerrorbudget "qiskit_addon_obp.utils.truncating.TruncationErrorBudget"))
-  *   **num\_slices** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*)
+  *   **num\_slices** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*)
   *   **operator\_budget** ([*OperatorBudget*](utils-simplify#operatorbudget "qiskit_addon_obp.utils.simplify.OperatorBudget"))
-  *   **backpropagation\_history** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*SliceMetadata*](utils-metadata-slice-metadata "qiskit_addon_obp.utils.metadata.SliceMetadata")*]*)
-  *   **num\_backpropagated\_slices** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
+  *   **backpropagation\_history** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*SliceMetadata*](utils-metadata-slice-metadata "qiskit_addon_obp.utils.metadata.SliceMetadata")*]*)
+  *   **num\_backpropagated\_slices** ([*int*](https://docs.python.org/3/library/functions.html#int))
 
   ### truncation\_error\_budget
 
@@ -74,8 +74,8 @@ python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
 
     **Parameters**
 
-    *   **observable\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the index of the observable whose accumulated error to compute.
-    *   **slice\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – the index of the slice (the discrete “time” step) up to which to compute the accumulated error. If this is `None`, it will default to `self.num_backpropagated_slices` which is equivalent to computing the accumulated error of an observable at the latest point in time which has not surpassed any stopping criteria in the algorithm
+    *   **observable\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the index of the observable whose accumulated error to compute.
+    *   **slice\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – the index of the slice (the discrete “time” step) up to which to compute the accumulated error. If this is `None`, it will default to `self.num_backpropagated_slices` which is equivalent to computing the accumulated error of an observable at the latest point in time which has not surpassed any stopping criteria in the algorithm
 
     **Returns**
 
@@ -83,7 +83,7 @@ python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
 
     **Return type**
 
-    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+    [float](https://docs.python.org/3/library/functions.html#float)
   </Function>
 
   ### from\_json
@@ -93,7 +93,7 @@ python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
 
     **Parameters**
 
-    **json\_file** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the path to the file to be loaded.
+    **json\_file** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the path to the file to be loaded.
 
     **Returns**
 
@@ -123,8 +123,8 @@ python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
 
     **Parameters**
 
-    *   **observable\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the index of the observable whose left-over error budget to compute.
-    *   **slice\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – the index of the slice (the discrete “time” step) up to which to compute the left-over error budget. If this is `None`, it will default to `self.num_backpropagated_slices` which is equivalent to computing the left-over error budget of an observable at the latest point in time which has not surpassed any stopping criteria in the algorithm
+    *   **observable\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the index of the observable whose left-over error budget to compute.
+    *   **slice\_idx** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – the index of the slice (the discrete “time” step) up to which to compute the left-over error budget. If this is `None`, it will default to `self.num_backpropagated_slices` which is equivalent to computing the left-over error budget of an observable at the latest point in time which has not surpassed any stopping criteria in the algorithm
 
     **Returns**
 
@@ -132,7 +132,7 @@ python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
 
     **Return type**
 
-    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+    [float](https://docs.python.org/3/library/functions.html#float)
   </Function>
 
   ### to\_json
@@ -142,7 +142,7 @@ python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
 
     **Parameters**
 
-    *   **json\_file** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the path to the file into which to dump the metadata.
+    *   **json\_file** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the path to the file into which to dump the metadata.
     *   **kwargs** – keyword arguments to be passed on towards `json.dump()`.
 
     **Return type**

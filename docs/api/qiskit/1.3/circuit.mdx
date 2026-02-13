@@ -251,7 +251,7 @@ Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circu
 #### Bit
 
 <Class id="qiskit.circuit.Bit" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/bit.py#L21-L94" signature="qiskit.circuit.Bit(register=None, index=None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Implement a generic bit.
 
@@ -293,7 +293,7 @@ A collection bits of the same type can be encapsulated in a register of the matc
 #### Register
 
 <Class id="qiskit.circuit.Register" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/register.py#L26-L233" signature="qiskit.circuit.Register(size=None, name=None, bits=None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Implement a generic register.
 
@@ -307,9 +307,9 @@ A collection bits of the same type can be encapsulated in a register of the matc
 
   **Parameters**
 
-  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Optional. The number of bits to include in the register.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
-  *   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Bit*](#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Optional. The number of bits to include in the register.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
+  *   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Bit*](#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
 
   **Raises**
 
@@ -349,8 +349,8 @@ Each of the defined bit subtypes has an associated register, which have the same
 
   **Parameters**
 
-  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
 </Class>
 
 #### ClassicalRegister
@@ -362,8 +362,8 @@ Each of the defined bit subtypes has an associated register, which have the same
 
   **Parameters**
 
-  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
 </Class>
 
 #### AncillaRegister
@@ -375,8 +375,8 @@ Each of the defined bit subtypes has an associated register, which have the same
 
   **Parameters**
 
-  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
 </Class>
 
 A common way to instantiate several bits at once is to create a register, such as by `QuantumRegister("my_qreg", 5)`. This has the advantage that you can give that collection of bits a name, which will appear during circuit visualizations ([`QuantumCircuit.draw()`](qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw")) and exports to interchange languages (see [`qasm2`](qasm2#module-qiskit.qasm2 "qiskit.qasm2") and [`qasm3`](qasm3#module-qiskit.qasm3 "qiskit.qasm3")). You can also pass a name and a list of pre-constructed bits, but this creates an “aliasing register”, which are very poorly supported on hardware.
@@ -439,7 +439,7 @@ Subclassing [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"), Qiskit has a sp
 | -------------------------------------------------------------------------------------------------------------------- | ------------------------ |
 | [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")(name, num\_qubits, params\[, ...]) | Controlled unitary gate. |
 
-Each of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") and [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") has a corresponding singleton type, built using the machinery described in [`qiskit.circuit.singleton`](circuit_singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton"). The module-level documentation contains full details, along with descriptions of [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate") and [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate"). From a user’s perspective, little changes based on whether the base class is a singleton or not; the intention always remains that you should call [`to_mutable()`](qiskit.circuit.Instruction#to_mutable "qiskit.circuit.Instruction.to_mutable") first if you need to get a safe-to-mutate owned copy of an instruction (you cannot assume that an arbitrary instruction is mutable), and while direct [`type`](https://docs.python.org/3/library/functions.html#type "(in Python v3.13)") inspection is discouraged, if you do need it, the reliable way to find the “base” type of a potentially singleton instruction is to use [`base_class`](qiskit.circuit.Instruction#base_class "qiskit.circuit.Instruction.base_class").
+Each of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") and [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") has a corresponding singleton type, built using the machinery described in [`qiskit.circuit.singleton`](circuit_singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton"). The module-level documentation contains full details, along with descriptions of [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate") and [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate"). From a user’s perspective, little changes based on whether the base class is a singleton or not; the intention always remains that you should call [`to_mutable()`](qiskit.circuit.Instruction#to_mutable "qiskit.circuit.Instruction.to_mutable") first if you need to get a safe-to-mutate owned copy of an instruction (you cannot assume that an arbitrary instruction is mutable), and while direct [`type`](https://docs.python.org/3/library/functions.html#type) inspection is discouraged, if you do need it, the reliable way to find the “base” type of a potentially singleton instruction is to use [`base_class`](qiskit.circuit.Instruction#base_class "qiskit.circuit.Instruction.base_class").
 
 [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") uses the same mechanisms as [subclassing gates](#circuit-custom-gates) to define a fixed, lazy synthesis for itself. This is naturally not hardware-aware, and harder to hook into the synthesis routines of the compiler, but works better as a concrete [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") that could potentially be run natively on hardware. For cases where synthesis and abstract optimization is more important, Qiskit offers a composable class called [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), which tracks “gate modifiers” (of which [`ControlModifier`](#qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier") is one) to apply to the inner [`base_op`](qiskit.circuit.AnnotatedOperation#base_op "qiskit.circuit.AnnotatedOperation.base_op").
 
@@ -466,8 +466,8 @@ The available modifiers for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOpera
 
   **Parameters**
 
-  *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
-  *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
+  *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
 </Class>
 
 #### PowerModifier
@@ -479,7 +479,7 @@ The available modifiers for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOpera
 
   **Parameters**
 
-  **power** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
+  **power** ([*float*](https://docs.python.org/3/library/functions.html#float)) –
 </Class>
 
 For information on how to create custom gates and instructions, including how to build one-off objects, and re-usable parametric gates via subclassing, see [Creating custom instructions](#circuit-custom-gates) below. The Qiskit circuit library in [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") contains many predefined gates and circuits for you to use.
@@ -555,8 +555,8 @@ it is forbidden for the optimizer to cancel out the two $X$ instructions.
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits for the barrier.
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – the optional label of this barrier.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of qubits for the barrier.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – the optional label of this barrier.
 </Class>
 
 The [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction is particularly special, in that it allows writing the result of a [real-time classical computation expression](#circuit-repr-real-time-classical) (an [`expr.Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) in a local classical variable (a [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")). It takes *neither* [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") nor [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") operands, but has an explicit [`lvalue`](#qiskit.circuit.Store.lvalue "qiskit.circuit.Store.lvalue") and [`rvalue`](#qiskit.circuit.Store.rvalue "qiskit.circuit.Store.rvalue").
@@ -661,7 +661,7 @@ Within [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumC
 | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")(\*args, \*\*kwargs) | Abstract class to encapsulate all control flow operations. |
 
-For convenience, there is a [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset "(in Python v3.13)") instance containing the [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attributes of each of the control-flow operations.
+For convenience, there is a [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset) instance containing the [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attributes of each of the control-flow operations.
 
 #### qiskit.circuit.CONTROL\_FLOW\_OP\_NAMES
 
@@ -775,7 +775,7 @@ Subclasses of [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") will also like
 <Function id="object.__array__" signature="object.__array__(dtype=None, copy=None)">
   Return a Numpy array representing the gate. This can use the gate’s [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") field, and may assume that these are numeric values (assuming the subclass expects that) and not [compile-time parameters](#circuit-compile-time-parameters).
 
-  For greatest efficiency, the returned array should default to a dtype of [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)").
+  For greatest efficiency, the returned array should default to a dtype of [`complex`](https://docs.python.org/3/library/functions.html#complex).
 </Function>
 
 If your custom subclass has natural representations of its controlled or inverse forms, you may also wish to override the [`inverse()`](qiskit.circuit.Instruction#inverse "qiskit.circuit.Instruction.inverse") and [`control()`](qiskit.circuit.Gate#control "qiskit.circuit.Gate.control") methods.
@@ -914,14 +914,14 @@ Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of quantum wires
-  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – layers of operations (i.e. critical path length)
-  *   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – maximum qubit operands of each gate (between 1 and 4)
-  *   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, measure all qubits at the end
-  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, insert middle measurements and conditionals
-  *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, insert middle resets
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – sets random seed (optional)
-  *   **num\_operand\_distribution** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – a distribution of gates that specifies the ratio
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of quantum wires
+  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int)) – layers of operations (i.e. critical path length)
+  *   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int)) – maximum qubit operands of each gate (between 1 and 4)
+  *   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, measure all qubits at the end
+  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, insert middle measurements and conditionals
+  *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, insert middle resets
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)) – sets random seed (optional)
+  *   **num\_operand\_distribution** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – a distribution of gates that specifies the ratio
   *   **1-qubit** (*of*) –
   *   **2-qubit** –
   *   **3-qubit** –
@@ -961,9 +961,9 @@ Pauli twirling is a quantum error suppression technique that uses randomization 
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The circuit to twirl
-  *   **twirling\_gate** (*None |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gate to twirl, defaults to None which means twirl all default gates: [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"), [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"), [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"), and [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate"). If supplied it can either be a single gate or a list of gates either as either a gate object or its string name. Currently only the names “cx”, “cz”, “ecr”, and “iswap” are supported. If a gate object is provided outside the default gates it must have a matrix defined from its `to_matrix` method for the gate to potentially be twirled. If a valid twirling configuration can’t be computed that particular gate will be silently ignored and not twirled.
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – An integer seed for the random number generator used internally by this function. If specified this must be between 0 and 18,446,744,073,709,551,615.
-  *   **num\_twirls** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of twirling circuits to build. This defaults to `None` and will return a single circuit. If it is an integer a list of circuits with num\_twirls circuits will be returned.
+  *   **twirling\_gate** (*None |* [*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gate to twirl, defaults to None which means twirl all default gates: [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"), [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"), [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"), and [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate"). If supplied it can either be a single gate or a list of gates either as either a gate object or its string name. Currently only the names “cx”, “cz”, “ecr”, and “iswap” are supported. If a gate object is provided outside the default gates it must have a matrix defined from its `to_matrix` method for the gate to potentially be twirled. If a valid twirling configuration can’t be computed that particular gate will be silently ignored and not twirled.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – An integer seed for the random number generator used internally by this function. If specified this must be between 0 and 18,446,744,073,709,551,615.
+  *   **num\_twirls** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of twirling circuits to build. This defaults to `None` and will return a single circuit. If it is an integer a list of circuits with num\_twirls circuits will be returned.
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target") *| None*) – If specified an [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instance to use for running single qubit decomposition as part of the Pauli twirling to optimize and map the pauli gates added to the circuit to the specified target.
 
   **Returns**
@@ -972,7 +972,7 @@ Pauli twirling is a quantum error suppression technique that uses randomization 
 
   **Return type**
 
-  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | [list](https://docs.python.org/3/library/stdtypes.html#list)\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
 </Function>
 
 ## Exceptions
@@ -1040,7 +1040,7 @@ $$
    \leftrightarrow \begin{pmatrix} \alpha \\ \beta \end{pmatrix}
 $$
 
-where $\alpha$ and $\beta$ are complex numbers. We store the statevector as a 1D Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)") with data `sv = [alpha, beta]`, *i.e.* `sv[0] == alpha` and `sv[1] == beta`; note that the indices into the statevector match the ket labels.
+where $\alpha$ and $\beta$ are complex numbers. We store the statevector as a 1D Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) with data `sv = [alpha, beta]`, *i.e.* `sv[0] == alpha` and `sv[1] == beta`; note that the indices into the statevector match the ket labels.
 
 We construct [the tensor product of two qubit states](https://en.wikipedia.org/wiki/Tensor_product) in matrix algebra using [the Kronecker product](https://en.wikipedia.org/wiki/Kronecker_product), with qubit 0 on the right and qubit 1 on the left, such that the $Z$ basis state $\lvert x\rangle$ (where $x$ is the integer interpretation of the bitstring) has its non-zero term in the statevector `sv` at `sv[x]`:
 

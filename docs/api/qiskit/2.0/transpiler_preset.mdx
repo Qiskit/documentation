@@ -156,12 +156,12 @@ This module contains functions for generating the preset pass managers for the t
   **Parameters**
 
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the backend
-  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of str gate names that represent the basis gates on the backend target
-  *   **approximation\_degree** (*Optional\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – The heuristic approximation degree to use. Can be between 0 and 1.
-  *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The unitary synthesis method to use. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
-  *   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – The optional dictionary plugin configuration, this is plugin specific refer to the specified plugin’s documentation for how to use.
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – A list of str gate names that represent the basis gates on the backend target
+  *   **approximation\_degree** (*Optional\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The heuristic approximation degree to use. Can be between 0 and 1.
+  *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The unitary synthesis method to use. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
+  *   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – The optional dictionary plugin configuration, this is plugin specific refer to the specified plugin’s documentation for how to use.
   *   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig")) – An optional configuration class to use for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") pass. Specifies how to synthesize various high-level objects.
-  *   **qubits\_initially\_zero** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Indicates whether the input circuit is zero-initialized.
+  *   **qubits\_initially\_zero** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Indicates whether the input circuit is zero-initialized.
 
   **Returns**
 
@@ -204,11 +204,11 @@ This module contains functions for generating the preset pass managers for the t
   *   **routing\_pass** ([*TransformationPass*](qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass")) – The pass which will perform the routing
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the backend
   *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – The coupling map of the backend to route for
-  *   **vf2\_call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The internal call limit for the vf2 post layout pass. If this is `None` or `0` the vf2 post layout will not be run.
-  *   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Sets random seed for the stochastic parts of the transpiler. This is currently only used for [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") and the default value of `-1` is strongly recommended (which is no randomization). If a value of `None` is provided this will seed from system entropy.
-  *   **check\_trivial** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to true this will condition running the [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") pass after routing on whether a trivial layout was tried and was found to not be perfect. This is only needed if the constructed pass manager runs [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout") as a first layout attempt and uses it if it’s a perfect layout (as is the case with preset pass manager level 1).
-  *   **use\_barrier\_before\_measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If true (the default) the [`BarrierBeforeFinalMeasurements`](qiskit.transpiler.passes.BarrierBeforeFinalMeasurements "qiskit.transpiler.passes.BarrierBeforeFinalMeasurements") transpiler pass will be run prior to the specified pass in the `routing_pass` argument.
-  *   **vf2\_max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of trials to run VF2 when evaluating the vf2 post layout pass. If this is `None` or `0` the vf2 post layout will not be run.
+  *   **vf2\_call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The internal call limit for the vf2 post layout pass. If this is `None` or `0` the vf2 post layout will not be run.
+  *   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Sets random seed for the stochastic parts of the transpiler. This is currently only used for [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") and the default value of `-1` is strongly recommended (which is no randomization). If a value of `None` is provided this will seed from system entropy.
+  *   **check\_trivial** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If set to true this will condition running the [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") pass after routing on whether a trivial layout was tried and was found to not be perfect. This is only needed if the constructed pass manager runs [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout") as a first layout attempt and uses it if it’s a perfect layout (as is the case with preset pass manager level 1).
+  *   **use\_barrier\_before\_measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If true (the default) the [`BarrierBeforeFinalMeasurements`](qiskit.transpiler.passes.BarrierBeforeFinalMeasurements "qiskit.transpiler.passes.BarrierBeforeFinalMeasurements") transpiler pass will be run prior to the specified pass in the `routing_pass` argument.
+  *   **vf2\_max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum number of trials to run VF2 when evaluating the vf2 post layout pass. If this is `None` or `0` the vf2 post layout will not be run.
 
   **Returns**
 
@@ -234,7 +234,7 @@ This module contains functions for generating the preset pass managers for the t
 
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the backend
   *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – The coupling map to use
-  *   **remove\_reset\_in\_zero** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True` include the remove reset in zero pass in the generated PassManager
+  *   **remove\_reset\_in\_zero** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True` include the remove reset in zero pass in the generated PassManager
 
   **Returns**
 
@@ -253,14 +253,14 @@ This module contains functions for generating the preset pass managers for the t
   **Parameters**
 
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the backend
-  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of str gate names that represent the basis gates on the backend target
-  *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The basis translation method to use
-  *   **approximation\_degree** (*Optional\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – The heuristic approximation degree to use. Can be between 0 and 1.
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – A list of str gate names that represent the basis gates on the backend target
+  *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The basis translation method to use
+  *   **approximation\_degree** (*Optional\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The heuristic approximation degree to use. Can be between 0 and 1.
   *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – the coupling map of the backend in case synthesis is done on a physical circuit. The directionality of the coupling\_map will be taken into account if pulse\_optimize is True/None and natural\_direction is True/None.
-  *   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – The optional dictionary plugin configuration, this is plugin specific refer to the specified plugin’s documentation for how to use.
-  *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The unitary synthesis method to use. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
+  *   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – The optional dictionary plugin configuration, this is plugin specific refer to the specified plugin’s documentation for how to use.
+  *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The unitary synthesis method to use. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
   *   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig")) – An optional configuration class to use for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") pass. Specifies how to synthesize various high-level objects.
-  *   **qubits\_initially\_zero** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Indicates whether the input circuit is zero-initialized.
+  *   **qubits\_initially\_zero** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Indicates whether the input circuit is zero-initialized.
 
   **Returns**
 
@@ -282,8 +282,8 @@ This module contains functions for generating the preset pass managers for the t
 
   **Parameters**
 
-  *   **instruction\_durations** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – The dictionary of instruction durations
-  *   **scheduling\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The scheduling method to use, can either be `'asap'`/`'as_soon_as_possible'` or `'alap'`/`'as_late_as_possible'`
+  *   **instruction\_durations** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – The dictionary of instruction durations
+  *   **scheduling\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The scheduling method to use, can either be `'asap'`/`'as_soon_as_possible'` or `'alap'`/`'as_late_as_possible'`
   *   **timing\_constraints** (*TimingConstraints*) – Hardware time alignment restrictions.
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the backend
 

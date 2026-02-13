@@ -34,18 +34,11 @@ export class ExternalLink {
    * Returns an error message if link failed.
    */
   async check(): Promise<string | undefined> {
-    let error: string = "";
-    try {
-      const response = await fetch(this.value, {
-        headers: getHeaders(this.value),
-        method: "HEAD",
-      });
-      if (response.status >= 300) {
-        error = `Could not find link '${this.value}'`;
-      }
-    } catch (err) {
-      error = `Failed to fetch '${this.value}': ${(err as Error).message}`;
-    }
+    const result = await safeFetch(this.value);
+    const error =
+      "response" in result
+        ? responseToErrorMessage(this.value, result.response)
+        : `Failed to fetch '${this.value}': ${result.error.message}`;
 
     if (!error) {
       return;
@@ -56,6 +49,35 @@ export class ExternalLink {
       .map((originFile) => `    ${originFile}`);
     return `❌ ${error}. Appears in:\n${fileList.join("\n")}`;
   }
+}
+
+async function safeFetch(
+  link: string,
+): Promise<{ response: Response } | { error: Error }> {
+  try {
+    const response = await fetch(link, {
+      headers: getHeaders(link),
+      method: "HEAD",
+    });
+    return { response };
+  } catch (err) {
+    return { error: err as Error };
+  }
+}
+
+function responseToErrorMessage(
+  link: string,
+  response: Response,
+): string | undefined {
+  const httpCode = response.status;
+  const isOk = httpCode >= 100 && httpCode < 300;
+  if (isOk) return undefined;
+
+  if (httpCode === 404) return `Could not find link '${link}' (${httpCode})`;
+  if (httpCode === 410) return `Link '${link}' has been removed (${httpCode})`;
+  if (httpCode === 418) return `Link '${link}' is a teapot (${httpCode})`;
+
+  return `Link '${link}' returned unexpected code: ${httpCode}`;
 }
 
 export function getHeaders(link: string): HeadersInit {

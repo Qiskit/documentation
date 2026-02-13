@@ -43,7 +43,7 @@ $$
 
   **Parameters**
 
-  *   **num\_eval\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of evaluation qubits.
+  *   **num\_eval\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of evaluation qubits.
   *   **phase\_estimation\_circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The phase estimation circuit used to run the algorithm. Defaults to the standard phase estimation circuit from the circuit library, qiskit.circuit.library.PhaseEstimation when None.
   *   **iqft** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The inverse quantum Fourier transform component, defaults to using a standard implementation from qiskit.circuit.library.QFT when None.
   *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: The backend (or QuantumInstance) to execute the circuits on.
@@ -51,7 +51,7 @@ $$
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the number of evaluation qubits is smaller than 1.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the number of evaluation qubits is smaller than 1.
 
   ## Attributes
 
@@ -93,8 +93,8 @@ $$
     **Parameters**
 
     *   **result** ([*AmplitudeEstimationResult*](qiskit.algorithms.AmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.ae.AmplitudeEstimationResult")) – An amplitude estimation result for which to compute the confidence interval.
-    *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Confidence level: compute the (1 - alpha) confidence interval.
-    *   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The method to compute the confidence interval, can be ‘fisher’, ‘observed\_fisher’ or ‘likelihood\_ratio’ (default)
+    *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Confidence level: compute the (1 - alpha) confidence interval.
+    *   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The method to compute the confidence interval, can be ‘fisher’, ‘observed\_fisher’ or ‘likelihood\_ratio’ (default)
 
     **Returns**
 
@@ -102,11 +102,11 @@ $$
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If the confidence interval method kind is not implemented.
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – If the confidence interval method kind is not implemented.
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[float](https://docs.python.org/3/library/functions.html#float), [float](https://docs.python.org/3/library/functions.html#float)]
   </Function>
 
   ### compute\_mle
@@ -117,7 +117,7 @@ $$
     **Parameters**
 
     *   **result** ([*AmplitudeEstimationResult*](qiskit.algorithms.AmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.ae.AmplitudeEstimationResult")) – An amplitude estimation result object.
-    *   **apply\_post\_processing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, apply the post processing to the MLE before returning it.
+    *   **apply\_post\_processing** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True, apply the post processing to the MLE before returning it.
 
     **Returns**
 
@@ -125,7 +125,7 @@ $$
 
     **Return type**
 
-    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+    [float](https://docs.python.org/3/library/functions.html#float)
   </Function>
 
   ### construct\_circuit
@@ -136,7 +136,7 @@ $$
     **Parameters**
 
     *   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem for which to construct the QAE circuit.
-    *   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Boolean flag to indicate if measurements should be included in the circuit.
+    *   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Boolean flag to indicate if measurements should be included in the circuit.
 
     **Returns**
 
@@ -162,8 +162,8 @@ $$
 
     **Raises**
 
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If state\_preparation or objective\_qubits are not set in the estimation\_problem.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – A quantum instance or sampler must be provided.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If state\_preparation or objective\_qubits are not set in the estimation\_problem.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – A quantum instance or sampler must be provided.
     *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – Sampler job run error.
 
     **Return type**
@@ -180,8 +180,8 @@ $$
 
     **Parameters**
 
-    *   **circuit\_results** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | np.ndarray*) – The circuit result from the QAE circuit. Can be either a counts dict or a statevector or a quasi-probabilities dict.
-    *   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Measurements with probabilities below the threshold are discarded.
+    *   **circuit\_results** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] | np.ndarray*) – The circuit result from the QAE circuit. Can be either a counts dict or a statevector or a quasi-probabilities dict.
+    *   **threshold** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Measurements with probabilities below the threshold are discarded.
 
     **Returns**
 
@@ -191,7 +191,7 @@ $$
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")], [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[float](https://docs.python.org/3/library/functions.html#float), [float](https://docs.python.org/3/library/functions.html#float)], [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[int](https://docs.python.org/3/library/functions.html#int), [float](https://docs.python.org/3/library/functions.html#float)]]
   </Function>
 </Class>
 

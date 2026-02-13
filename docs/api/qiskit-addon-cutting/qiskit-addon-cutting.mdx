@@ -27,7 +27,7 @@ Circuit cutting.
 
   **Parameters**
 
-  **circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – Original circuit with [`CutWire`](instructions-cut-wire "qiskit_addon_cutting.instructions.CutWire") instructions
+  **circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – Original circuit with [`CutWire`](instructions-cut-wire "qiskit_addon_cutting.instructions.CutWire") instructions
 
   **Returns**
 
@@ -53,13 +53,13 @@ Circuit cutting.
 
   **Parameters**
 
-  *   **observables** ([`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.4)")) – Observables corresponding to `original_circuit`
-  *   **original\_circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – Original circuit
-  *   **final\_circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – Final circuit, whose qubits the original `observables` should be expanded to
+  *   **observables** ([`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList)) – Observables corresponding to `original_circuit`
+  *   **original\_circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – Original circuit
+  *   **final\_circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – Final circuit, whose qubits the original `observables` should be expanded to
 
   **Return type**
 
-  [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.4)")
+  [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList)
 
   **Returns**
 
@@ -67,8 +67,8 @@ Circuit cutting.
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `observables` and `original_circuit` have different number of qubits.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Qubit from `original_circuit` cannot be found in `final_circuit`.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `observables` and `original_circuit` have different number of qubits.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Qubit from `original_circuit` cannot be found in `final_circuit`.
 </Function>
 
 ### partition\_circuit\_qubits
@@ -80,13 +80,13 @@ Circuit cutting.
 
   **Parameters**
 
-  *   **circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – The circuit to partition
-  *   **partition\_labels** ([`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")\[[`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable "(in Python v3.13)")]) – A sequence containing a partition label for each qubit in the input circuit. Nonlocal gates belonging to more than one partition will be replaced with [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s.
-  *   **inplace** ([`bool`](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Flag denoting whether to copy the input circuit before acting on it
+  *   **circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The circuit to partition
+  *   **partition\_labels** ([`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)\[[`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable)]) – A sequence containing a partition label for each qubit in the input circuit. Nonlocal gates belonging to more than one partition will be replaced with [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s.
+  *   **inplace** ([`bool`](https://docs.python.org/3/library/functions.html#bool)) – Flag denoting whether to copy the input circuit before acting on it
 
   **Return type**
 
-  [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")
+  [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)
 
   **Returns**
 
@@ -94,8 +94,8 @@ Circuit cutting.
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The length of partition\_labels does not equal the number of qubits in the circuit.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Input circuit contains unsupported gate.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The length of partition\_labels does not equal the number of qubits in the circuit.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Input circuit contains unsupported gate.
 </Function>
 
 ### partition\_problem
@@ -127,11 +127,11 @@ Circuit cutting.
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The number of partition labels does not equal the number of qubits in the circuit.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – An input observable acts on a different number of qubits than the input circuit.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – An input observable has a phase not equal to 1.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – A qubit with a label of `None` is not idle
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The input circuit should contain no classical bits or registers.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The number of partition labels does not equal the number of qubits in the circuit.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – An input observable acts on a different number of qubits than the input circuit.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – An input observable has a phase not equal to 1.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – A qubit with a label of `None` is not idle
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The input circuit should contain no classical bits or registers.
 </Function>
 
 ### cut\_gates
@@ -141,13 +141,13 @@ Circuit cutting.
 
   **Parameters**
 
-  *   **circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – The circuit containing gates to be decomposed
-  *   **gate\_ids** ([`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")\[[`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]) – The indices of the gates to decompose
-  *   **inplace** ([`bool`](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Flag denoting whether to copy the input circuit before acting on it
+  *   **circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The circuit containing gates to be decomposed
+  *   **gate\_ids** ([`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)\[[`int`](https://docs.python.org/3/library/functions.html#int)]) – The indices of the gates to decompose
+  *   **inplace** ([`bool`](https://docs.python.org/3/library/functions.html#bool)) – Flag denoting whether to copy the input circuit before acting on it
 
   **Return type**
 
-  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)"), [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")]]
+  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit), [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")]]
 
   **Returns**
 
@@ -155,7 +155,7 @@ Circuit cutting.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The input circuit should contain no classical bits or registers.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The input circuit should contain no classical bits or registers.
 </Function>
 
 ### generate\_cutting\_experiments
@@ -191,10 +191,10 @@ $$
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `num_samples` must be at least one.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `circuits` and `observables` are incompatible types
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `SingleQubitQPDGate` instances must have their cut ID appended to the gate label so they may be associated with other gates belonging to the same cut.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `SingleQubitQPDGate` instances are not allowed in unseparated circuits.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `num_samples` must be at least one.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `circuits` and `observables` are incompatible types
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `SingleQubitQPDGate` instances must have their cut ID appended to the gate label so they may be associated with other gates belonging to the same cut.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `SingleQubitQPDGate` instances are not allowed in unseparated circuits.
 </Function>
 
 ### reconstruct\_expectation\_values
@@ -206,7 +206,7 @@ $$
 
   *   **results** (SamplerResult | PrimitiveResult | dict\[Hashable, SamplerResult | PrimitiveResult]) –
 
-      The results from running the cutting subexperiments. If the cut circuit was not partitioned between qubits and run separately, this argument should be a [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult "(in Qiskit v1.4)") instance or a dictionary mapping a single partition to the results. If the circuit was partitioned and its pieces were run separately, this argument should be a dictionary mapping partition labels to the results from each partition’s subexperiments.
+      The results from running the cutting subexperiments. If the cut circuit was not partitioned between qubits and run separately, this argument should be a [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult) instance or a dictionary mapping a single partition to the results. If the circuit was partitioned and its pieces were run separately, this argument should be a dictionary mapping partition labels to the results from each partition’s subexperiments.
 
       The subexperiment results are expected to be ordered in the same way the subexperiments are ordered in the output of [`generate_cutting_experiments()`](#qiskit_addon_cutting.generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") – one result for every sample and observable, as shown below. The Qiskit Sampler primitive will return the results in the same order the experiments are submitted, so users who do not use [`generate_cutting_experiments()`](#qiskit_addon_cutting.generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") to generate their experiments should take care to order their subexperiments as follows before submitting them to the sampler primitive:
 
@@ -216,7 +216,7 @@ $$
 
   *   **coefficients** (Sequence\[tuple\[float, WeightType]]) – A sequence containing the coefficient associated with each unique subexperiment. Each element is a tuple containing the coefficient (a `float`) together with its [`WeightType`](qpd#weighttype "qiskit_addon_cutting.qpd.WeightType"), which denotes how the value was generated. The contribution from each subexperiment will be multiplied by its corresponding coefficient, and the resulting terms will be summed to obtain the reconstructed expectation value.
 
-  *   **observables** (PauliList | dict\[Hashable, PauliList]) – The observable(s) for which the expectation values will be calculated. This should be a [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.4)") if `results` is a [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult "(in Qiskit v1.4)") instance. Otherwise, it should be a dictionary mapping partition labels to the observables associated with that partition.
+  *   **observables** (PauliList | dict\[Hashable, PauliList]) – The observable(s) for which the expectation values will be calculated. This should be a [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList) if `results` is a [`SamplerResult`](/docs/api/qiskit/qiskit.primitives.SamplerResult) instance. Otherwise, it should be a dictionary mapping partition labels to the observables associated with that partition.
 
   **Return type**
 
@@ -228,14 +228,14 @@ $$
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `observables` and `results` are of incompatible types.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – An input observable has a phase not equal to 1.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `observables` and `results` are of incompatible types.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – An input observable has a phase not equal to 1.
 </Function>
 
 ### PartitionedCuttingProblem
 
 <Class id="qiskit_addon_cutting.PartitionedCuttingProblem" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/cutting_decomposition.py" signature="PartitionedCuttingProblem(subcircuits, bases, subobservables=None)" modifiers="class">
-  Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple "(in Python v3.13)")
+  Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
 
   The result of decomposing and separating a circuit and observable(s).
 
@@ -243,9 +243,9 @@ $$
 
   **Parameters**
 
-  *   **subcircuits** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[Hashable, QuantumCircuit]*)
-  *   **bases** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*QPDBasis*](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis")*]*)
-  *   **subobservables** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[Hashable, PauliList] | None*)
+  *   **subcircuits** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[Hashable, QuantumCircuit]*)
+  *   **bases** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*QPDBasis*](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis")*]*)
+  *   **subobservables** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[Hashable, PauliList] | None*)
 
   #### bases
 
@@ -289,13 +289,13 @@ $$
 
   **Parameters**
 
-  *   **circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – The circuit to cut. The input circuit may not contain gates acting on more than two qubits.
+  *   **circuit** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The circuit to cut. The input circuit may not contain gates acting on more than two qubits.
   *   **optimization** ([`OptimizationParameters`](#qiskit_addon_cutting.OptimizationParameters "qiskit_addon_cutting.automated_cut_finding.OptimizationParameters")) – Options for controlling optimizer behavior. Currently, the optimal cuts are chosen using Dijkstra’s best-first search algorithm.
   *   **constraints** ([`DeviceConstraints`](#qiskit_addon_cutting.DeviceConstraints "qiskit_addon_cutting.automated_cut_finding.DeviceConstraints")) – Constraints on how the circuit may be partitioned
 
   **Return type**
 
-  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)"), [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]]
+  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit), [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str), [`float`](https://docs.python.org/3/library/functions.html#float)]]
 
   **Returns**
 
@@ -309,13 +309,13 @@ $$
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The input circuit contains a gate acting on more than 2 qubits.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The input circuit contains a gate acting on more than 2 qubits.
 </Function>
 
 ### OptimizationParameters
 
 <Class id="qiskit_addon_cutting.OptimizationParameters" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/automated_cut_finding.py" signature="OptimizationParameters(seed=None, max_gamma=1024, max_backjumps=10000, gate_lo=True, wire_lo=True)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Specify parameters that control the optimization.
 
@@ -323,11 +323,11 @@ $$
 
   **Parameters**
 
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*)
-  *   **max\_gamma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"))
-  *   **max\_backjumps** (*None |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
-  *   **gate\_lo** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)"))
-  *   **wire\_lo** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)"))
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*)
+  *   **max\_gamma** ([*float*](https://docs.python.org/3/library/functions.html#float))
+  *   **max\_backjumps** (*None |* [*int*](https://docs.python.org/3/library/functions.html#int))
+  *   **gate\_lo** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
+  *   **wire\_lo** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
 
   #### gate\_lo
 
@@ -363,13 +363,13 @@ $$
 ### DeviceConstraints
 
 <Class id="qiskit_addon_cutting.DeviceConstraints" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/automated_cut_finding.py" signature="DeviceConstraints(qubits_per_subcircuit)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Specify the constraints (qubits per subcircuit) that must be respected.
 
   **Parameters**
 
-  **qubits\_per\_subcircuit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
+  **qubits\_per\_subcircuit** ([*int*](https://docs.python.org/3/library/functions.html#int))
 
   #### get\_qpu\_width
 
@@ -378,7 +378,7 @@ $$
 
     **Return type**
 
-    [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+    [`int`](https://docs.python.org/3/library/functions.html#int)
   </Function>
 </Class>
 
