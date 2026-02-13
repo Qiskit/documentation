@@ -31,7 +31,7 @@ In addition to jobs monitoring individual parameters are jobs that monitor the p
 
 ## Calibrating
 
-Calibrations are triggered whenever monitoring jobs indicate that parameters such as pulse amplitudes or angles have deviated from their ideal values. They run throughout the day in between user jobs and therefore there is no set time period at which calibrations start and finish. These run only on the qubits/gates for which parameter monitoring has identified specific issues, along with any qubits required to run at the same time according to our batching rules. On Heron QPU based devices, the total time spent on calibrations typically stays below two hours per day.
+Calibrations are triggered whenever monitoring jobs indicate that parameters such as pulse amplitudes or angles have deviated from their ideal values. They run throughout the day in between user jobs, and therefore there is no set time period at which calibrations start and finish. These run only on the qubits/gates for which parameter monitoring has identified specific issues, along with any qubits required to run at the same time according to specific batching rules. On Heron QPUs, the total time spent on calibrations is typically under two hours per day.
 
 ### Single-qubit operations
 
@@ -54,39 +54,33 @@ These calibrations are run in batches of non-nearest-neighbor qubits to minimize
 * Readout pulse angles
 * Measurement discrimination parameters
 
-These calibrations are run simultaneously on qubits which require calibration.
+These calibrations are run simultaneously on qubits that require calibration.
 
 ### How calibrations are scheduled
 
 * A calibration job cannot run simultaneously while an external job or session is running.
-* As a result, during long sessions the quantum computer may experience reduced effective stability due to delayed or infrequent recalibration.
-* Two jobs submitted at the same time may run under different calibration sets, depending on timing.
+* Therefore, during long sessions, the quantum computer may experience reduced effective stability due to delayed or infrequent recalibration.
+* Two jobs submitted at the same time might run under different calibration sets, depending on timing.
 * All circuits within a single job always use one consistent calibration.
 
 ---
 
 ## Benchmarking
 
-Daily benchmarking gives a comprehensive view of quantum computer performance and generates the metrics sent to users through Qiskit. They help users choose qubits, optimize compilations, and better anticipate expected circuit performance. Details of the reported numbers is shown here:
-
-https://quantum.cloud.ibm.com/docs/en/guides/qpu-information#qpu-details
+Daily benchmarking gives a comprehensive view of quantum computer performance and generates the metrics sent to users through Qiskit. They help users choose qubits, optimize compilations, and better anticipate expected circuit performance. You can view reported numbers either programmatically or on the [Compute resources](https://quantum.cloud.ibm.com/computers) page (click any QPU to open its detailed information card). Find more details about each metric in the [documentation](docs/guides/qpu-information).
 
 ### Single-qubit performance
 
-* Randomized benchmarking (RB) in batched groups  
-  https://quantum.cloud.ibm.com/docs/en/guides/qpu-information#median-sx-error
-* T₁/T₂ coherence times  
-  https://quantum.cloud.ibm.com/docs/en/guides/qpu-information#median-t1-relaxation-time  
-  https://quantum.cloud.ibm.com/docs/en/guides/qpu-information#median-t2-dephasing-time
+* [Randomized benchmarking](/docs/guides/qpu-information#median-sx-error) (RB) in batched groups  
+* Coherence times for [$T_1$](/docs/guides/qpu-information#median-t1-relaxation-time) and [$T_2$](/docs/guides/qpu-information#median-t2-dephasing-time)
 * Measurement-fidelity metrics  
   https://quantum.cloud.ibm.com/docs/en/guides/qpu-information#median-readout-error
 
 ### Two-qubit performance
 
-* CZ and RZZ fractional gate EPG (Heron), ECR (Eagle) as measured by RB on those gates.  
-  https://quantum.cloud.ibm.com/docs/en/guides/qpu-information#median-2q-error-heron-cz-eagle-ecr
+* [CZ and RZZ fractional gate EPG (Heron), ECR (Eagle)](/docs/guides/qpu-information#median-2q-error-heron-cz-eagle-ecr
+) as measured by RB on those gates 
 
 ### System-level metrics
 
-* Layer fidelity (EPLG), for the best 100 qubit length string.  
-  https://quantum.cloud.ibm.com/docs/en/guides/qpu-information#2q-error-layered
+* [Layer fidelity (EPLG)](/docs/guides/qpu-information#2q-error-layered), for the best 100-qubit length string
