@@ -35,14 +35,14 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   **Parameters**
 
-  *   **data** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – Unitary operator.
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Unitary name for backend \[Default: `None`].
-  *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to `False` this asserts the input is known to be unitary and the checking to validate this will be skipped. This should only ever be used if you know the input is unitary, setting this to `False` and passing in a non-unitary matrix will result unexpected behavior and errors.
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – If given, the number of qubits in the matrix. If not given, it is inferred.
+  *   **data** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – Unitary operator.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Unitary name for backend \[Default: `None`].
+  *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If set to `False` this asserts the input is known to be unitary and the checking to validate this will be skipped. This should only ever be used if you know the input is unitary, setting this to `False` and passing in a non-unitary matrix will result unexpected behavior and errors.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – If given, the number of qubits in the matrix. If not given, it is inferred.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If input data is not an N-qubit unitary operator.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If input data is not an N-qubit unitary operator.
 
   ## Attributes
 
@@ -168,8 +168,8 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
     **Parameters**
 
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of quantum bit arguments.
-    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of classical bit arguments.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of classical bit arguments.
 
     **Returns**
 
@@ -181,7 +181,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")]]
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list), [list](https://docs.python.org/3/library/stdtypes.html#list)]]
   </Function>
 
   ### conjugate
@@ -197,10 +197,10 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of controls to add to gate (default is 1).
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Optional gate label.
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The control state in decimal or as a bit string (e.g. `"1011"`). If `None`, use `2**num_ctrl_qubits - 1`.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is handled as `False`.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add to gate (default is 1).
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Optional gate label.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state in decimal or as a bit string (e.g. `"1011"`). If `None`, use `2**num_ctrl_qubits - 1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is handled as `False`.
 
     **Returns**
 
@@ -218,7 +218,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
     **Parameters**
 
-    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – name to be given to the copied circuit, if `None` then the name stays the same.
 
     **Returns**
 
@@ -236,7 +236,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
   </Function>
 
   ### is\_parameterized
@@ -254,8 +254,8 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
     **Parameters**
 
-    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the power to raise the gate to
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
 
     **Returns**
 
@@ -273,7 +273,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
     **Parameters**
 
-    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of times to repeat the instruction
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of times to repeat the instruction
 
     **Returns**
 
@@ -321,7 +321,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### to\_matrix

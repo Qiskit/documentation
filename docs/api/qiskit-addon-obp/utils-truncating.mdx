@@ -19,7 +19,7 @@ Functions for truncating Pauli operators within given error budgets.
 ### TruncationErrorBudget
 
 <Class id="qiskit_addon_obp.utils.truncating.TruncationErrorBudget" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.3/qiskit_addon_obp/utils/truncating.py#L25-L58" signature="TruncationErrorBudget(per_slice_budget=<factory>, max_error_total=0.0, p_norm=1, tol=1e-08)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A class for storing the constants that determine the truncation error budget.
 
@@ -27,10 +27,10 @@ Functions for truncating Pauli operators within given error budgets.
 
   **Parameters**
 
-  *   **per\_slice\_budget** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*)
-  *   **max\_error\_total** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"))
-  *   **p\_norm** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
-  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"))
+  *   **per\_slice\_budget** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*)
+  *   **max\_error\_total** ([*float*](https://docs.python.org/3/library/functions.html#float))
+  *   **p\_norm** ([*int*](https://docs.python.org/3/library/functions.html#int))
+  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float))
 
   #### is\_active
 
@@ -39,13 +39,13 @@ Functions for truncating Pauli operators within given error budgets.
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   #### max\_error\_total
 
   <Attribute id="qiskit_addon_obp.utils.truncating.TruncationErrorBudget.max_error_total" attributeTypeHint="float" attributeValue="0.0">
-    The maximum total truncation error to allow for each observable during the entire backpropagation. This value may be [`numpy.inf`](https://numpy.org/doc/stable/reference/constants.html#numpy.inf "(in NumPy v2.2)"), for example when the maximum error was left unspecified during `setup_budget()`.
+    The maximum total truncation error to allow for each observable during the entire backpropagation. This value may be [`numpy.inf`](https://numpy.org/doc/stable/reference/constants.html#numpy.inf), for example when the maximum error was left unspecified during `setup_budget()`.
   </Attribute>
 
   #### p\_norm
@@ -91,10 +91,10 @@ Functions for truncating Pauli operators within given error budgets.
 
   **Parameters**
 
-  *   **max\_error\_per\_slice** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | None*) – Specifies the maximum error per backpropagated slice. See above for more details.
-  *   **max\_error\_total** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – Specifies the total maximum error for the entire backpropagation. See above for more details.
-  *   **num\_slices** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of slices over which to distribute the budget. See above for more details.
-  *   **p\_norm** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The Lp norm of the error. This affects the gradual distribution of `max_error_total` in the case of `num_slices` also being set (see above). Refer to the [how-to guide](https://qiskit.github.io/qiskit-addon-obp/how_tos/bound_error_using_p_norm.html) for a detailed conversation on bounding truncation error using higher Lp-norms.
+  *   **max\_error\_per\_slice** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – Specifies the maximum error per backpropagated slice. See above for more details.
+  *   **max\_error\_total** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Specifies the total maximum error for the entire backpropagation. See above for more details.
+  *   **num\_slices** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of slices over which to distribute the budget. See above for more details.
+  *   **p\_norm** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The Lp norm of the error. This affects the gradual distribution of `max_error_total` in the case of `num_slices` also being set (see above). Refer to the [how-to guide](https://qiskit.github.io/qiskit-addon-obp/how_tos/bound_error_using_p_norm.html) for a detailed conversation on bounding truncation error using higher Lp-norms.
 
   **Returns**
 
@@ -102,7 +102,7 @@ Functions for truncating Pauli operators within given error budgets.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – if `max_error_per_slice` and `max_error_total` are both `None`.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `max_error_per_slice` and `max_error_total` are both `None`.
 
   **Return type**
 
@@ -118,10 +118,10 @@ Functions for truncating Pauli operators within given error budgets.
 
   **Parameters**
 
-  *   **observable** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)")) – the `SparsePauliOp` to truncate terms from.
-  *   **budget** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the maximum permissable truncation error.
-  *   **p\_norm** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – an integer specifying what p-norm to use.
-  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – when the binary search thresholds differ by an amount smaller than `tol`, the threshold search will stop.
+  *   **observable** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)) – the `SparsePauliOp` to truncate terms from.
+  *   **budget** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the maximum permissable truncation error.
+  *   **p\_norm** ([*int*](https://docs.python.org/3/library/functions.html#int)) – an integer specifying what p-norm to use.
+  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – when the binary search thresholds differ by an amount smaller than `tol`, the threshold search will stop.
 
   **Returns**
 
@@ -133,6 +133,6 @@ Functions for truncating Pauli operators within given error budgets.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.0)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp), [float](https://docs.python.org/3/library/functions.html#float)]
 </Function>
 

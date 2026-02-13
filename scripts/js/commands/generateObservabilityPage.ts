@@ -56,8 +56,8 @@ async function main() {
   const endpoints = extractEndpoints(jsonstr);
   const table = generateObservabilityTable(endpoints);
   const mdx = `${PROSE}\n${table}`;
-  await writeFile("docs/security/observability.mdx", mdx, "utf8");
-  console.log("✅ Wrote docs/security/observability.mdx");
+  await writeFile("docs/guides/observability.mdx", mdx, "utf8");
+  console.log("✅ Wrote docs/guides/observability.mdx");
 }
 
 main().then(() => process.exit());

@@ -50,7 +50,7 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
   **Return type**
 
-  [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  [str](https://docs.python.org/3/library/stdtypes.html#str)
 </Function>
 
 Both of these exporter functions are single-use wrappers around the main [`Exporter`](#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") class. For more complex exporting needs, including dumping multiple circuits in a single session, it may be more convenient or faster to use the complete interface.
@@ -62,13 +62,13 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
   **Parameters**
 
-  *   **includes** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the filenames that should be emitted as includes. These files will be parsed for gates, and any objects dumped from this exporter will use those definitions where possible.
+  *   **includes** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the filenames that should be emitted as includes. These files will be parsed for gates, and any objects dumped from this exporter will use those definitions where possible.
 
-  *   **basis\_gates** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the basic defined gate set of the backend.
+  *   **basis\_gates** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the basic defined gate set of the backend.
 
-  *   **disable\_constants** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, always emit floating-point constants for numeric parameter values. If `False` (the default), then values close to multiples of OpenQASM 3 constants (`pi`, `euler`, and `tau`) will be emitted in terms of those constants instead, potentially improving accuracy in the output.
+  *   **disable\_constants** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if `True`, always emit floating-point constants for numeric parameter values. If `False` (the default), then values close to multiples of OpenQASM 3 constants (`pi`, `euler`, and `tau`) will be emitted in terms of those constants instead, potentially improving accuracy in the output.
 
-  *   **alias\_classical\_registers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
+  *   **alias\_classical\_registers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
 
       If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3.
 
@@ -78,13 +78,13 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
           A value for `allow_aliasing` overrides any value given here, and supersedes this parameter.
         </Admonition>
 
-  *   **allow\_aliasing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
+  *   **allow\_aliasing** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
 
       If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3. Defaults to `False` or the value of `alias_classical_registers`.
 
         <Admonition title="New in version 0.25.0." type="info" />
 
-  *   **indent** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the indentation string to use for each level within an indented block. Can be set to the empty string to disable indentation.
+  *   **indent** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the indentation string to use for each level within an indented block. Can be set to the empty string to disable indentation.
 
   *   **experimental** ([*ExperimentalFeatures*](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.experimental.ExperimentalFeatures")) – any experimental features to enable during the export. See [`ExperimentalFeatures`](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures") for more details.
 
@@ -179,7 +179,7 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
   **Parameters**
 
-  **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the filename to load the program from.
+  **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the filename to load the program from.
 
   **Returns**
 
@@ -201,7 +201,7 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
   **Parameters**
 
-  **program** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the OpenQASM 3 program.
+  **program** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the OpenQASM 3 program.
 
   **Returns**
 

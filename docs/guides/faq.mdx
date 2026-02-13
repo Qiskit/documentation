@@ -51,9 +51,18 @@ You will not be charged unless you create a Pay-As-You-Go [instance](/docs/guide
 
 There's no difference.  The terms API key and API token are used interchangeably. You'll see both terms in the documentation because different interfaces use different terms.
 
+<span id="bearer"></span>
+## What's the difference between an API token and a bearer token?
+
+An API token is a long-lived credential used to [authenticate to the Qiskit Runtime service.](/docs/guides/hello-world#install-and-authenticate)  A bearer token is a temporary credential that is used to [authenticate to the REST API in an untrusted environment.](/docs/guides/cloud-setup-untrusted#authenticate-to-the-rest-api-in-an-untrusted-environment)  A bearer token cannot be used to authenticate to the Qiskit Runtime service.
+
 ## Do I have to choose the region that I live in?
 
 No. You can use either region.  The region determines where jobs are run and where the data is kept.  Additionally, you can only see and use instances that were created in the instance that you are logged in to. Note that only the us-east region supports the Open Plan.
+
+## Can I connect through a proxy server?
+
+Yes, but you must use Qiskit Runtime v0.44.0 or later.
 
 ## What is the data retention policy?
 

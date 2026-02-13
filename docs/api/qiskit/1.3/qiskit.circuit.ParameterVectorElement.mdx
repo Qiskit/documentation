@@ -45,7 +45,7 @@ python_api_name: qiskit.circuit.ParameterVectorElement
   ### uuid
 
   <Attribute id="qiskit.circuit.ParameterVectorElement.uuid">
-    Returns the [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.13)") of the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter").
+    Returns the [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID) of the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter").
 
     In advanced use cases, this property can be passed to the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") constructor to produce an instance that compares equal to another instance.
   </Attribute>
@@ -104,8 +104,8 @@ python_api_name: qiskit.circuit.ParameterVectorElement
 
     **Parameters**
 
-    *   **parameter\_values** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – Mapping of Parameter instances to the numeric value to which they will be bound.
-    *   **allow\_unknown\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `False`, raises an error if `parameter_values` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
+    *   **parameter\_values** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – Mapping of Parameter instances to the numeric value to which they will be bound.
+    *   **allow\_unknown\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `False`, raises an error if `parameter_values` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
 
     **Raises**
 
@@ -113,7 +113,7 @@ python_api_name: qiskit.circuit.ParameterVectorElement
 
         *   If parameter\_values contains Parameters outside those in self. - If a non-numeric value is passed in parameter\_values.
 
-    *   [**ZeroDivisionError**](https://docs.python.org/3/library/exceptions.html#ZeroDivisionError "(in Python v3.13)") –
+    *   [**ZeroDivisionError**](https://docs.python.org/3/library/exceptions.html#ZeroDivisionError) –
 
         *   If binding the provided values requires division by zero.
 
@@ -163,7 +163,7 @@ python_api_name: qiskit.circuit.ParameterVectorElement
 
     **Return type**
 
-    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") | [complex](https://docs.python.org/3/library/functions.html#complex)
   </Function>
 
   ### is\_real
@@ -181,11 +181,11 @@ python_api_name: qiskit.circuit.ParameterVectorElement
   ### numeric
 
   <Function id="qiskit.circuit.ParameterVectorElement.numeric" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/parameterexpression.py#L629-L673" signature="numeric()">
-    Return a Python number representing this object, using the most restrictive of [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"), [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") and [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)") that is valid for this object.
+    Return a Python number representing this object, using the most restrictive of [`int`](https://docs.python.org/3/library/functions.html#int), [`float`](https://docs.python.org/3/library/functions.html#float) and [`complex`](https://docs.python.org/3/library/functions.html#complex) that is valid for this object.
 
-    In general, an [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") is only returned if the expression only involved symbolic integers. If floating-point values were used during the evaluation, the return value will be a [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") regardless of whether the represented value is an integer. This is because floating-point values “infect” symbolic computations by their inexact nature, and symbolic libraries will use inexact floating-point semantics not exact real-number semantics when they are involved. If you want to assert that all floating-point calculations *were* carried out at infinite precision (i.e. [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") could represent every intermediate value exactly), you can use [`float.is_integer()`](https://docs.python.org/3/library/stdtypes.html#float.is_integer "(in Python v3.13)") to check if the return float represents an integer and cast it using [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") if so. This would be an unusual pattern; typically one requires this by only ever using explicitly [`Rational`](https://docs.python.org/3/library/numbers.html#numbers.Rational "(in Python v3.13)") objects while working with symbolic expressions.
+    In general, an [`int`](https://docs.python.org/3/library/functions.html#int) is only returned if the expression only involved symbolic integers. If floating-point values were used during the evaluation, the return value will be a [`float`](https://docs.python.org/3/library/functions.html#float) regardless of whether the represented value is an integer. This is because floating-point values “infect” symbolic computations by their inexact nature, and symbolic libraries will use inexact floating-point semantics not exact real-number semantics when they are involved. If you want to assert that all floating-point calculations *were* carried out at infinite precision (i.e. [`float`](https://docs.python.org/3/library/functions.html#float) could represent every intermediate value exactly), you can use [`float.is_integer()`](https://docs.python.org/3/library/stdtypes.html#float.is_integer) to check if the return float represents an integer and cast it using [`int`](https://docs.python.org/3/library/functions.html#int) if so. This would be an unusual pattern; typically one requires this by only ever using explicitly [`Rational`](https://docs.python.org/3/library/numbers.html#numbers.Rational) objects while working with symbolic expressions.
 
-    This is more reliable and performant than using [`is_real()`](#qiskit.circuit.ParameterVectorElement.is_real "qiskit.circuit.ParameterVectorElement.is_real") followed by calling [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") or [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)"), as in some cases [`is_real()`](#qiskit.circuit.ParameterVectorElement.is_real "qiskit.circuit.ParameterVectorElement.is_real") needs to force a floating-point evaluation to determine an accurate result to work around bugs in the upstream symbolic libraries.
+    This is more reliable and performant than using [`is_real()`](#qiskit.circuit.ParameterVectorElement.is_real "qiskit.circuit.ParameterVectorElement.is_real") followed by calling [`float`](https://docs.python.org/3/library/functions.html#float) or [`complex`](https://docs.python.org/3/library/functions.html#complex), as in some cases [`is_real()`](#qiskit.circuit.ParameterVectorElement.is_real "qiskit.circuit.ParameterVectorElement.is_real") needs to force a floating-point evaluation to determine an accurate result to work around bugs in the upstream symbolic libraries.
 
     **Returns**
 
@@ -193,11 +193,11 @@ python_api_name: qiskit.circuit.ParameterVectorElement
 
     **Raises**
 
-    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – if there are unbound parameters.
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – if there are unbound parameters.
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+    [int](https://docs.python.org/3/library/functions.html#int) | [float](https://docs.python.org/3/library/functions.html#float) | [complex](https://docs.python.org/3/library/functions.html#complex)
   </Function>
 
   ### sign
@@ -219,8 +219,8 @@ python_api_name: qiskit.circuit.ParameterVectorElement
 
     **Parameters**
 
-    *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) –
-    *   **allow\_unknown\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+    *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) –
+    *   **allow\_unknown\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
   </Function>
 
   ### sympify

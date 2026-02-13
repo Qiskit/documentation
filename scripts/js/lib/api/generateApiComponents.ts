@@ -132,19 +132,28 @@ function prepareProps(
     );
 
   const preparePropsPerApiType: Record<ApiObjectName, () => ComponentProps> = {
+    // Python API types
     class: prepClassOrException,
     exception: prepClassOrException,
     property: prepAttributeOrProperty,
     attribute: prepAttributeOrProperty,
     method: prepMethod,
     function: prepFunction,
-    cFunction: prepFunction,
     data: prepAttributeOrProperty,
-    struct: prepClassOrException,
-    typedef: prepClassOrException,
-    enum: prepClassOrException,
-    enumerator: prepAttributeOrProperty,
-    structMember: prepAttributeOrProperty,
+    // C API types
+    cFunction: prepFunction,
+    cStruct: prepClassOrException,
+    cTypedef: prepClassOrException,
+    cEnum: prepClassOrException,
+    cEnumerator: prepAttributeOrProperty,
+    cStructMember: prepAttributeOrProperty,
+    // C++ types used by historical Qiskit C API versions
+    cppFunction: prepFunction,
+    cppStruct: prepClassOrException,
+    cppTypedef: prepClassOrException,
+    cppEnum: prepClassOrException,
+    cppEnumerator: prepAttributeOrProperty,
+    cppStructMember: prepAttributeOrProperty,
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");

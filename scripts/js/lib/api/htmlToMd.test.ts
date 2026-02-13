@@ -11,8 +11,9 @@
 // that they have been altered from the originals.
 
 import { test, expect } from "@playwright/test";
+import { Link } from "mdast";
 
-import { sphinxHtmlToMarkdown } from "./htmlToMd.js";
+import { removeVersionLinkTitle, sphinxHtmlToMarkdown } from "./htmlToMd.js";
 
 const DEFAULT_ARGS = {
   imageDestination: "/images/qiskit",
@@ -32,6 +33,7 @@ async function toMd(
     html,
     isCApi,
     ...DEFAULT_ARGS,
+    hasRootNamespaceFile: false,
   });
   return withMetadata ? result : result.markdown;
 }
@@ -1019,6 +1021,7 @@ test("identify release notes", async () => {
       fileName: "release_notes.html",
       isCApi: false,
       ...DEFAULT_ARGS,
+      hasRootNamespaceFile: false,
     }),
   ).toEqual({
     images: [],
@@ -1276,4 +1279,64 @@ test("handle <dl> with className struct", async () => {
   *   \`indices\` must be a non-null, aligned pointer to \`len\` elements of type \`uint32_t\`.
 </Class>
 `);
+});
+
+test.describe("removeVersionLinkTitle()", () => {
+  const LINK_WITHOUT_TITLE: Link = {
+    type: "link",
+    url: "/not-used",
+    children: [{ type: "text", value: "Test link" }],
+  };
+
+  function createLinkNode(title?: string): Link {
+    return {
+      ...LINK_WITHOUT_TITLE,
+      title,
+    };
+  }
+
+  test("Links with titles to remove", () => {
+    const pythonLink = "(in Python v3.14)";
+    const link1 = createLinkNode(pythonLink);
+    removeVersionLinkTitle(link1);
+    expect(link1).toEqual(LINK_WITHOUT_TITLE);
+
+    const numpyLink = "(in NumPy v2.4)";
+    const link2 = createLinkNode(numpyLink);
+    removeVersionLinkTitle(link2);
+    expect(link2).toEqual(LINK_WITHOUT_TITLE);
+
+    const qiskitLink = "(in Qiskit v1.3)";
+    const link3 = createLinkNode(qiskitLink);
+    removeVersionLinkTitle(link3);
+    expect(link3).toEqual(LINK_WITHOUT_TITLE);
+  });
+
+  // We don't remove these titles because we use a conservative regex to reduce
+  // the risk of false positives. In the future, feel free to improve the regex
+  // to remove these titles.
+  test("Links with candidate titles to be removed that the regex doesn't catch", () => {
+    const titleWithMinor = "(in Qiskit v1.3.4)";
+    const link1 = createLinkNode(titleWithMinor);
+    removeVersionLinkTitle(link1);
+    expect(link1.title).toEqual(titleWithMinor);
+
+    const titleWithoutParenthesis = "in Qiskit v1.3";
+    const link2 = createLinkNode(titleWithoutParenthesis);
+    removeVersionLinkTitle(link2);
+    expect(link2.title).toEqual(titleWithoutParenthesis);
+  });
+
+  test("Link with a title to preserve", () => {
+    const standardTitle = "My title";
+    const link3 = createLinkNode(standardTitle);
+    removeVersionLinkTitle(link3);
+    expect(link3.title).toEqual(standardTitle);
+  });
+
+  test("Link with no title", () => {
+    const link = createLinkNode();
+    removeVersionLinkTitle(link);
+    expect(link.title).toBeUndefined();
+  });
 });
