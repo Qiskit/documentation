@@ -8,16 +8,47 @@ python_api_name: qiskit_ibm_runtime.Executor
 
 # Executor
 
-<Class id="qiskit_ibm_runtime.Executor" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/executor.py#L38-L104" signature="Executor(mode)" modifiers="class">
+<Class id="qiskit_ibm_runtime.Executor" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/executor.py#L38-L155" signature="Executor(mode, *, options=None)" modifiers="class">
   Bases: `object`
 
-  Executor for `QuantumProgram`s.
+  Class for running `QuantumProgram`s.
 
-  ## Attributes
+  The [`run()`](#qiskit_ibm_runtime.Executor.run "qiskit_ibm_runtime.Executor.run") method can be used to submit a quantum program to be executed on a backend.
+
+  ```python
+  from qiskit_ibm_runtime import QiskitRuntimeService, Executor, QuantumProgram
+
+  service = QiskitRuntimeService()
+  backend = service.backend("ibm_boston")
+
+  program = QuantumProgram(shots=100)
+  ... # add program contents
+
+  executor = Executor(backend)
+  executor.options.environment.job_tags = ["my_tag"]
+  job = executor.run(program)
+  ```
 
   **Parameters**
 
-  **mode** ([*IBMBackend*](ibm-backend "qiskit_ibm_runtime.IBMBackend")  *|*[*Session*](session "qiskit_ibm_runtime.Session")  *|*[*Batch*](batch "qiskit_ibm_runtime.Batch") *| None*)
+  *   **mode** ([*IBMBackend*](ibm-backend "qiskit_ibm_runtime.IBMBackend")  *|*[*Session*](session "qiskit_ibm_runtime.Session")  *|*[*Batch*](batch "qiskit_ibm_runtime.Batch") *| None*) –
+
+      The execution mode used to make the query. It can be:
+
+      *   A [`IBMBackend`](ibm-backend "qiskit_ibm_runtime.IBMBackend") if you are using job mode.
+      *   A [`Session`](session "qiskit_ibm_runtime.Session") if you are using session execution mode.
+      *   A [`Batch`](batch "qiskit_ibm_runtime.Batch") if you are using batch execution mode.
+
+      Refer to the [Qiskit Runtime documentation](/docs/guides/execution-modes) for more information about the `Execution modes`.
+
+  *   **options** (*ExecutorOptions | dict | None*) – Executor options, see `ExecutorOptions` for detailed description. This can be an `ExecutorOptions` instance or a dictionary that will be used to construct one.
+
+  **Raises**
+
+  *   **TypeError** – If `options` is not a valid type.
+  *   **ValueError** – If local mode is used.
+
+  ## Attributes
 
   ### options
 
@@ -29,7 +60,7 @@ python_api_name: qiskit_ibm_runtime.Executor
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.Executor.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/executor.py#L95-L104" signature="run(program)">
+  <Function id="qiskit_ibm_runtime.Executor.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/executor.py#L146-L155" signature="run(program)">
     Run a quantum program.
 
     **Parameters**
