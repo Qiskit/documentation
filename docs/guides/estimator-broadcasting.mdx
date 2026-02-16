@@ -1,0 +1,83 @@
+---
+title: Broadcasting
+description: How the Estimator handles array inputs and outputs using broadcasting semantics
+
+---
+
+# Executor broadcasting semantics
+When invoking an Estimator primitive's [`run()`](/docs/api/qiskit-ibm-runtime/estimator-v2#run) method, the main argument that is required is a tuple called a [PUB.](/docs/guides/pubs) The data provided to these tuples can be arranged in a variety of shapes to provide flexibility in a workload through [broadcasting.](/docs/guides/broadcasting) This guide explains how the Estimator handles array inputs and outputs using broadcasting semantics.
+
+Following are some examples of common patterns expressed in terms of array broadcasting.  Their accompanying visual representation is shown in the figure that follows:
+
+
+Parameter value sets are represented by n x m arrays, and observable arrays are represented by one or more single-column arrays. For each example in the previous code, the parameter value sets are combined with their observable array to create the resulting expectation value estimates.
+
+- *Example 1*: (broadcast single observable) has a parameter value set that is a 5x1 array and a 1x1 observables array.  The one item in the observables array is combined with each item in the parameter value set to create a single 5x1 array where each item is a combination of the original item in the parameter value set with the item in the observables array.
+
+- *Example 2*: (zip) has a 5x1 parameter value set and a 5x1 observables array.  The output is a 5x1 array where each item is a combination of the nth item in the parameter value set with the nth item in the observables array.
+
+- *Example 3*: (outer/product) has a 1x6 parameter value set and a 4x1 observables array.  Their combination results in a 4x6 array that is created by combining each item in the parameter value set with *every* item in the observables array, and thus each parameter value becomes an entire column in the output.
+
+- *Example 4*: (Standard nd generalization) has a 3x6 parameter value set array and two 3x1 observables array.  These combine to create two 3x6 output arrays in a similar manner to the previous example.
+
+![This image illustrates several visual representations of array broadcasting](/docs/images/guides/pubs/broadcasting.avif "Visual representation of broadcasting")
+
+```python
+# Broadcast single observable
+parameter_values = np.random.uniform(size=(5,))  # shape (5,)
+observables = SparsePauliOp("ZZZ")  # shape ()
+# >> pub result has shape (5,)
+
+# Zip
+parameter_values = np.random.uniform(size=(5,))  # shape (5,)
+observables = [
+    SparsePauliOp(pauli) for pauli in ["III", "XXX", "YYY", "ZZZ", "XYZ"]
+]  # shape (5,)
+# >> pub result has shape (5,)
+
+# Outer/Product
+parameter_values = np.random.uniform(size=(1, 6))  # shape (1, 6)
+observables = [
+    [SparsePauliOp(pauli)] for pauli in ["III", "XXX", "YYY", "ZZZ"]
+]  # shape (4, 1)
+# >> pub result has shape (4, 6)
+
+# Standard nd generalization
+parameter_values = np.random.uniform(size=(3, 6))  # shape (3, 6)
+observables = [
+    [
+        [SparsePauliOp(["XII"])],
+        [SparsePauliOp(["IXI"])],
+        [SparsePauliOp(["IIX"])],
+    ],
+    [
+        [SparsePauliOp(["ZII"])],
+        [SparsePauliOp(["IZI"])],
+        [SparsePauliOp(["IIZ"])],
+    ],
+]  # shape (2, 3, 1)
+# >> pub result has shape (2, 3, 6)
+```
+
+<Admonition type="tip" title="SparsePauliOp">
+Each `SparsePauliOp` counts as a single element in this context, regardless of the number of Paulis contained in the `SparsePauliOp`. Thus, for the purpose of these broadcasting rules, all of the following elements have the same shape:
+
+```text
+a = SparsePauliOp("Z") # shape ()
+b = SparsePauliOp("IIIIZXYIZ") # shape ()
+c = SparsePauliOp.from_list(["XX", "XY", "IZ"]) # shape ()
+```
+
+The following lists of operators, while equivalent in terms of information contained, have different shapes:
+
+```text
+list1 = SparsePauliOp.from_list(["XX", "XY", "IZ"]) # shape ()
+list2 = [SparsePauliOp("XX"), SparsePauliOp("XY"), SparsePauliOp("IZ")] # shape (3, )
+```
+</Admonition>
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - See the [broadcasting guide](/docs/guides/broadcasting) for an overview of broadcasting.
+</Admonition>
