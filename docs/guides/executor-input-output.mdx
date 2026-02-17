@@ -1,0 +1,141 @@
+---
+title: Inputs and outputs
+description: Understand the inputs and outputs to the Executor primitive.
+
+---
+
+# Executor inputs and outputs
+
+The inputs and output of the Executor primitive are very different from those of the Sampler and Estimator primitives. As part of the [directed execution model,](/docs/guides/directed-execution-model) the Executor primitive helps provide more flexibility when customizing your error mitigation workflow.  This primitive takes a `QuantumProgram` as input, and outputs a Qiskit Runtime job, which is then run on an IBM quantum computer.
+
+## Quantum programs
+
+The input to an Executor primitive is a  [`QuantumProgram`](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgram.html#qiskit_ibm_runtime.quantum_program.QuantumProgram), which is an iterable of a
+[`qiskit_ibm_runtime.quantum_program.QuantumProgramItem`.](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgramItem.html) Each of these items represents a
+different task for the Executor to perform. Typically, each item owns one of the following options:
+
+* A `qiskit.circuit.QuantumCircuit` with static, non-parametrized gates
+* A parametrized `qiskit.circuit.QuantumCircuit` with an array of parameter values
+* A parametrized `qiskit.circuit.QuantumCircuit` with a `samplomatic.samplex.Samplex` to generate randomize arrays of parameter values
+
+Each of these items, including instructions to add them to a `QuantumProgram` is explained in more detail below.
+
+The following cell initializes a `QuantumProgram` and specifies that it should run 1024 shots for every configuration of each item in the program. Then it appends a version of the target circuit with set parameters, transpiled according to the backend's ISA.
+
+```python
+from qiskit.transpiler import generate_preset_pass_manager
+from qiskit_ibm_runtime.quantum_program import QuantumProgram
+
+# Initialize an empty program
+program = QuantumProgram(shots=1024)
+
+# Initialize circuit to generate and measure GHZ state
+circuit = QuantumCircuit(3)
+circuit.h(0)
+circuit.h(1)
+circuit.cz(0, 1)
+circuit.h(1)
+circuit.h(2)
+circuit.cz(1, 2)
+circuit.h(2)
+circuit.rz(0.1, 0)
+circuit.rz(0.2, 1)
+circuit.rz(0.3, 2)
+circuit.measure_all()
+
+# Transpile the circuit
+preset_pass_manager = generate_preset_pass_manager(
+    backend=backend, optimization_level=0
+)
+isa_circuit = preset_pass_manager.run(circuit)
+
+# Append the circuit to the program
+program.append_circuit_item(isa_circuit)
+```
+
+Next, append a second item that contains a parametrized `qiskit.circuit.QuantumCircuit` and an array containing 10 sets of parameter values. This amounts to a circuit task requiring a total of 10240 shots (1024 per set of parameter values).
+
+```python
+from qiskit.circuit import Parameter
+import numpy as np
+
+# Initialize circuit to generate a GHZ state, rotate it around the Pauli-Z
+# axis, and measure it
+circuit = QuantumCircuit(3)
+circuit.h(0)
+circuit.h(1)
+circuit.cz(0, 1)
+circuit.h(1)
+circuit.h(2)
+circuit.cz(1, 2)
+circuit.h(2)
+circuit.rz(Parameter("theta"), 0)
+circuit.rz(Parameter("phi"), 1)
+circuit.rz(Parameter("lam"), 2)
+circuit.measure_all()
+
+# Transpile the circuit
+isa_circuit = preset_pass_manager.run(circuit)
+
+# Append the circuit and the parameter value to the program
+program.append_circuit_item(
+    isa_circuit,
+    circuit_arguments=np.random.rand(10, 3),  # 10 sets of parameter values
+)
+```
+
+Finally, append a parametrized `qiskit.circuit.QuantumCircuit` and a `samplomatic.samplex.Samplex`, which is responsible for generating randomized sets of parameters for the given circuit. As part of the `samplomatic.samplex.Samplex` arguments, ``10`` sets of parameters for the parametric gates in the original circuit are provided. The ``shape`` request argument requests an extension of the implicit shape defined by the `samplomatic.samplex.Samplex` arguments. In particular, by setting ``shape``
+to ``(2, 14, 10)`` we request to randomize each of the ``10`` sets of parameters ``28`` times, and to arrange the randomized parameter sets in an array of be arranged in an array of shape ``(2, 14, 10)``.
+
+See the samplomatic [API](https://github.com/Qiskit/samplomatic/) documentation for full details about `samplomatic.samplex.Samplex` and its arguments.
+
+```python
+from samplomatic import build
+from samplomatic.transpiler import generate_boxing_pass_manager
+
+# Initialize circuit to generate a GHZ state, rotate it around the Pauli-Z
+# axis, and measure it
+circuit = QuantumCircuit(3)
+circuit.h(0)
+circuit.h(1)
+circuit.cz(0, 1)
+circuit.h(1)
+circuit.h(2)
+circuit.cz(1, 2)
+circuit.h(2)
+circuit.rz(Parameter("theta"), 0)
+circuit.rz(Parameter("phi"), 1)
+circuit.rz(Parameter("lam"), 2)
+circuit.measure_all()
+
+# Transpile the circuit, additionally grouping gates and measurements into annotated boxes
+preset_pass_manager = generate_preset_pass_manager(
+    backend=backend, optimization_level=0
+)
+preset_pass_manager.post_scheduling = generate_boxing_pass_manager(
+    enable_gates=True,
+    enable_measures=True,
+)
+boxed_circuit = preset_pass_manager.run(circuit)
+
+# Build the template and the samplex
+template, samplex = build(boxed_circuit)
+
+# Append the template and samplex as a samplex item
+program.append_samplex_item(
+    template,
+    samplex=samplex,
+    samplex_arguments={
+        # the arguments required by the samplex.sample method
+        "parameter_values": np.random.rand(10, 3),
+    },
+    shape=(2, 14, 10),
+)
+```
+
+  
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Review the overview of [broadcasting.](/docs/guides/broadcasting)
+</Admonition>
