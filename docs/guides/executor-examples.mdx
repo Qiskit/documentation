@@ -17,7 +17,12 @@ gates, and execute the program by using the  `Executor` class.
 
 ```python
 from qiskit.circuit import Parameter, QuantumCircuit
-from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import QiskitRuntimeService, Executor
+from qiskit_ibm_runtime.quantum_program import QuantumProgram
+from qiskit.transpiler import generate_preset_pass_manager
+import numpy as np
+from samplomatic import build
+from samplomatic.transpiler import generate_boxing_pass_manager
 
 # Generate the circuit
 circuit = QuantumCircuit(3)
@@ -33,12 +38,71 @@ circuit.rz(Parameter("phi"), 1)
 circuit.rz(Parameter("lam"), 2)
 circuit.measure_all()
 
+# Transpile the circuit
+preset_pass_manager = generate_preset_pass_manager(
+    backend=backend, optimization_level=0
+)
+isa_circuit = preset_pass_manager.run(circuit)
+
 # Initialize the service and choose a backend
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 ```
 
-The input to the `Executor` is a `QuantumProgram`. For full details, see [Executor input and output.](/docs/guides/executor-input-output)
+## Define a `QuantumProgram`
+
+The input to the Executor is a `QuantumProgram`. For full details, see [Executor input and output.](/docs/guides/executor-input-output#programs)
+
+```python
+# Initialize an empty program
+program = QuantumProgram(shots=1024)
+
+# Append the circuit to the program
+program.append_circuit_item(isa_circuit)
+
+# Append the circuit and the parameter value to the program
+program.append_circuit_item(
+    isa_circuit,
+    circuit_arguments=np.random.rand(10, 3),  # 10 sets of parameter values
+)
+# Transpile the circuit, additionally grouping gates and measurements into annotated boxes
+preset_pass_manager = generate_preset_pass_manager(
+    backend=backend, optimization_level=0
+)
+preset_pass_manager.post_scheduling = generate_boxing_pass_manager(
+    enable_gates=True,
+    enable_measures=True,
+)
+boxed_circuit = preset_pass_manager.run(circuit)
+
+# Build the template and the samplex
+template, samplex = build(boxed_circuit)
+
+# Append the template and samplex as a samplex item
+program.append_samplex_item(
+    template,
+    samplex=samplex,
+    samplex_arguments={
+        # the arguments required by the samplex.sample method
+        "parameter_values": np.random.rand(10, 3),
+    },
+    shape=(2, 14, 10),
+)
+```
+
+## Run the Executor job
+
+```python
+# initialize an Executor with the default options
+executor = Executor(backend)
+
+# Submit the job
+job = executor.run(program)
+
+# Retrieve the result
+result = job.result()
+```
+
 
 
 
@@ -46,4 +110,5 @@ The input to the `Executor` is a `QuantumProgram`. For full details, see [Execut
 
 <Admonition type="tip" title="Recommendations">
     - Review the overview of [broadcasting.](/docs/guides/broadcasting)
+    - Learn how to use [Executor options.](/docs/guides/executor-options)
 </Admonition>

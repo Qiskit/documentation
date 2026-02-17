@@ -51,7 +51,7 @@ Broadcasting only applies to _extrinsic_ axes. The intrinsic axes are always pre
 
 - **Intrinsic axes** (rightmost): Determined by the data type. For example, if your circuit
   has three parameters, then parameter values require three numbers, giving an intrinsic shape
-  of ``(3,)``.
+  of `(3,)`.
 
 - **Extrinsic axes** (leftmost): Your sweep dimensions. These define how many configurations you
   want to run.
@@ -120,8 +120,8 @@ formatted as an array of boolean values:
 
 ### Example
 
-If you provide inputs with extrinsic shapes ``(4, 1)`` and ``(3,)``, the broadcast extrinsic
-shape is ``(4, 3)``. For a circuit with 1024 shots and a 3-bit classical register:
+If you provide inputs with extrinsic shapes `(4, 1)` and `(3,)`, the broadcast extrinsic
+shape is `(4, 3)`. For a circuit with 1024 shots and a 3-bit classical register:
 
 ```python
 # Input extrinsic shapes: (4, 1) and (3,) → (4, 3)
@@ -142,29 +142,29 @@ config_2_1 = meas_data[2, 1, :, :]  # shape (1024, 3)
 Each configuration receives the full shot count specified in the quantum program. Shots are **not** divided among configurations. For example, if you request 1024 shots and have 10 configurations, each configuration runs 1024 shots (10,240 total shots executed).
 </Admonition>
 
-## Randomization and the ``shape`` parameter
+## Randomization and the `shape` parameter
 
 When using a [samplex,](/docs/guides/directed-execution-model) each element of the extrinsic shape corresponds to an independent circuit
 execution. The samplex typically injects randomness (for example, twirling gates) into each
 execution, so even without explicitly requesting multiple randomizations, each element naturally
 receives its own random realization.
 
-The ``shape`` parameter lets you augment the extrinsic shape for the item, effectively letting you
+The `shape` parameter lets you augment the extrinsic shape for the item, effectively letting you
 add axes that correspond specifically to randomizing the same configuration many times. It must be
-broadcastable from the shape implicit in your ``samplex_arguments``. Axes where ``shape`` exceeds
+broadcastable from the shape implicit in your `samplex_arguments`. Axes where `shape` exceeds
 the implicit shape enumerate additional independent randomizations.
 
 ### No explicit randomization axes
 
-If you omit ``shape`` (or set it to match your input shapes), you get one execution per
+If you omit `shape` (or set it to match your input shapes), you get one execution per
 input configuration. Each execution is still randomized by the samplex, but with only a
 single random realization you don't benefit from averaging over multiple randomizations.
 
 <Admonition type="note">
-If you're used to enabling twirling with a simple flag like ``twirling=True``, 
-the Executor requires you to explicitly request multiple randomizations with the ``shape`` argument to
+If you're used to enabling twirling with a simple flag like `twirling=True`, 
+the Executor requires you to explicitly request multiple randomizations with the `shape` argument to
 allow your post-processing routines to get the benefits of averaging over multiple 
-randomizations. A single randomization (the default when ``shape`` is omitted) applies 
+randomizations. A single randomization (the default when `shape` is omitted) applies 
 random gates but typically offers no advantage over running the base circuit without 
 randomization.
 </Admonition>
@@ -205,7 +205,7 @@ program.append(
 You can organize randomizations into a multi-dimensional grid. This is useful for structured
 analysis, for example, separating randomizations by type or grouping them for statistical processing.
 
-Here, the input extrinsic shape ``(10,)`` broadcasts to the requested shape ``(2, 14, 10)``,
+Here, the input extrinsic shape `(10,)` broadcasts to the requested shape `(2, 14, 10)`,
 with axes 0 and 1 filled by independent randomizations.
 
 ```python
@@ -222,13 +222,13 @@ program.append(
 
 ### How `shape` and input shapes interact
 
-The ``shape`` parameter must be broadcastable *from* your input extrinsic shapes. This means:
+The `shape` parameter must be broadcastable *from* your input extrinsic shapes. This means:
 
-- Input shapes with size-1 dimensions can expand to match ``shape``.
-- Input shapes must align from the right with ``shape``.
-- Axes in ``shape`` that exceed the input dimensions enumerate randomizations.
+- Input shapes with size-1 dimensions can expand to match `shape`.
+- Input shapes must align from the right with `shape`.
+- Axes in `shape` that exceed the input dimensions enumerate randomizations.
 
-Note that ``shape`` can contain size-1 dimensions
+Note that `shape` can contain size-1 dimensions
 that expand to match input dimensions, as is illustrated in the last row of the following table.
 
 Examples:

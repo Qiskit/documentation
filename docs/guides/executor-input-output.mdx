@@ -8,7 +8,8 @@ description: Understand the inputs and outputs to the Executor primitive.
 
 The inputs and output of the Executor primitive are very different from those of the Sampler and Estimator primitives. As part of the [directed execution model,](/docs/guides/directed-execution-model) the Executor primitive helps provide more flexibility when customizing your error mitigation workflow.  This primitive takes a `QuantumProgram` as input, and outputs a Qiskit Runtime job, which is then run on an IBM quantum computer.
 
-## Quantum programs
+<span id="programs"></span>
+## Inputs: Quantum programs
 
 The input to an Executor primitive is a  [`QuantumProgram`](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgram.html#qiskit_ibm_runtime.quantum_program.QuantumProgram), which is an iterable of a
 [`qiskit_ibm_runtime.quantum_program.QuantumProgramItem`.](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgramItem.html) Each of these items represents a
@@ -25,28 +26,16 @@ The following cell initializes a `QuantumProgram` and specifies that it should r
 ```python
 from qiskit.transpiler import generate_preset_pass_manager
 from qiskit_ibm_runtime.quantum_program import QuantumProgram
+import numpy as np
+from samplomatic import build
+from samplomatic.transpiler import generate_boxing_pass_manager
 
 # Initialize an empty program
 program = QuantumProgram(shots=1024)
 
-# Initialize circuit to generate and measure GHZ state
-circuit = QuantumCircuit(3)
-circuit.h(0)
-circuit.h(1)
-circuit.cz(0, 1)
-circuit.h(1)
-circuit.h(2)
-circuit.cz(1, 2)
-circuit.h(2)
-circuit.rz(0.1, 0)
-circuit.rz(0.2, 1)
-circuit.rz(0.3, 2)
-circuit.measure_all()
-
-# Transpile the circuit
-preset_pass_manager = generate_preset_pass_manager(
-    backend=backend, optimization_level=0
-)
+# Initialize and transpile a circuit
+circuit = ...
+...
 isa_circuit = preset_pass_manager.run(circuit)
 
 # Append the circuit to the program
@@ -56,27 +45,6 @@ program.append_circuit_item(isa_circuit)
 Next, append a second item that contains a parametrized `qiskit.circuit.QuantumCircuit` and an array containing 10 sets of parameter values. This amounts to a circuit task requiring a total of 10240 shots (1024 per set of parameter values).
 
 ```python
-from qiskit.circuit import Parameter
-import numpy as np
-
-# Initialize circuit to generate a GHZ state, rotate it around the Pauli-Z
-# axis, and measure it
-circuit = QuantumCircuit(3)
-circuit.h(0)
-circuit.h(1)
-circuit.cz(0, 1)
-circuit.h(1)
-circuit.h(2)
-circuit.cz(1, 2)
-circuit.h(2)
-circuit.rz(Parameter("theta"), 0)
-circuit.rz(Parameter("phi"), 1)
-circuit.rz(Parameter("lam"), 2)
-circuit.measure_all()
-
-# Transpile the circuit
-isa_circuit = preset_pass_manager.run(circuit)
-
 # Append the circuit and the parameter value to the program
 program.append_circuit_item(
     isa_circuit,
@@ -84,30 +52,12 @@ program.append_circuit_item(
 )
 ```
 
-Finally, append a parametrized `qiskit.circuit.QuantumCircuit` and a `samplomatic.samplex.Samplex`, which is responsible for generating randomized sets of parameters for the given circuit. As part of the `samplomatic.samplex.Samplex` arguments, ``10`` sets of parameters for the parametric gates in the original circuit are provided. The ``shape`` request argument requests an extension of the implicit shape defined by the `samplomatic.samplex.Samplex` arguments. In particular, by setting ``shape``
-to ``(2, 14, 10)`` we request to randomize each of the ``10`` sets of parameters ``28`` times, and to arrange the randomized parameter sets in an array of be arranged in an array of shape ``(2, 14, 10)``.
+Finally, append a parametrized `qiskit.circuit.QuantumCircuit` and a `samplomatic.samplex.Samplex`, which is responsible for generating randomized sets of parameters for the given circuit. As part of the `samplomatic.samplex.Samplex` arguments, `10` sets of parameters for the parametric gates in the original circuit are provided. The `shape` request argument requests an extension of the implicit shape defined by the `samplomatic.samplex.Samplex` arguments. In particular, by setting `shape`
+to `(2, 14, 10)` we request to randomize each of the `10` sets of parameters `28` times, and to arrange the randomized parameter sets in an array of be arranged in an array of shape `(2, 14, 10)`.
 
 See the samplomatic [API](https://github.com/Qiskit/samplomatic/) documentation for full details about `samplomatic.samplex.Samplex` and its arguments.
 
 ```python
-from samplomatic import build
-from samplomatic.transpiler import generate_boxing_pass_manager
-
-# Initialize circuit to generate a GHZ state, rotate it around the Pauli-Z
-# axis, and measure it
-circuit = QuantumCircuit(3)
-circuit.h(0)
-circuit.h(1)
-circuit.cz(0, 1)
-circuit.h(1)
-circuit.h(2)
-circuit.cz(1, 2)
-circuit.h(2)
-circuit.rz(Parameter("theta"), 0)
-circuit.rz(Parameter("phi"), 1)
-circuit.rz(Parameter("lam"), 2)
-circuit.measure_all()
-
 # Transpile the circuit, additionally grouping gates and measurements into annotated boxes
 preset_pass_manager = generate_preset_pass_manager(
     backend=backend, optimization_level=0
@@ -133,9 +83,65 @@ program.append_samplex_item(
 )
 ```
 
+## Outputs
+
+[`qiskit_ibm_runtime.quantum_program.QuantumProgramResult`](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgramResult.html#qiskit_ibm_runtime.quantum_program.QuantumProgramResult) is an iterable. It contains one
+item per circuit task, and the items are in the same order as those in the program. Each of
+these items is a dictionary where the keys are strings and the values are of type `np.ndarray`, with elements of type `bool`. 
+
+In the previous example, the result contains three items:
+
+### Result item 1. 
+The first item in `result` is the result of running the first task in the program, the circuit with static gates. 
+
+It contains a single key, `'meas'`, corresponding to the name of the input circuit's 
+classical register, mapped to the results collected for this
+classical register.  The information is stored in an `np.ndarray` of shape `(shots, register bits)`, for the above example, `(1024, 3)`. 
+
+The following code illustrates how to access this information:
+
+```python    
+# Access the results of the classical register of task #0
+result_0 = result[0]["meas"]
+print(f"Result shape: {result_0.shape}")
+```
+
+### Result item 2. 
+
+The second item contains the results of running the second task in the program, 
+the circuit with parametrized gates. 
+
+It contains a single key, `'meas'`, mapped to an `np.ndarray` of shape `(shots, parameter sets, register bits)`, for the above example,  `(1024, 10, 3)`. 
+
+The following code illustrates how to access this information:
+
+```python
+# Access the results of the classical register of task #1
+result_1 = result[1]["meas"]
+print(f"Result shape: {result_1.shape}")
+```
+
+### Result item 3. 
+The third item contains the results of running the third task in the program. This item
+contains multiple keys. In addition to the `'meas'` key (mapped to the array of results for
+that classical register), it contains `'measurement_flips.meas'`, the bit-flip corrections to undo
+the measurement twirling for the `'meas'` register, as follows:
+
+```python        
+# Access the results of the classical register of task #2
+result_2 = result[2]["meas"]
+print(f"Result shape: {result_2.shape}")
+
+# Access the bit-flip corrections
+flips_2 = result[2]["measurement_flips.meas"]
+print(f"Result shape: {result_0.shape}")
+
+# Undo the bit flips via classical XOR
+unflipped_result_2 = result_2 ^ flips_2
+```
   
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Review the overview of [broadcasting.](/docs/guides/broadcasting)
+    - Explore [examples](/docs/guides/executor-examples) that use Executor.
 </Admonition>
