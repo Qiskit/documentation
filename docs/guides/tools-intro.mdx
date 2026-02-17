@@ -41,60 +41,6 @@ pip install qiskit
 
 Benchmarking is important for comparing the relative performance of quantum software across different stages of a development workflow. Benchmarking tests for quantum software might, for example, look at the speed and quality of building, manipulating, and transpiling circuits. IBM Quantum is committed to delivering the most performant SDK possible, and to that end, the Qiskit SDK is benchmarked using over 1,000 tests developed by leading universities, national labs, and researchers at IBM. The benchmarking suite used for these tests, named Benchpress, is now available as [an open-source package](https://github.com/qiskit/benchpress). You can now use the Benchpress package to perform your own analysis of quantum SDK performance.
 
-## Qiskit Runtime
-
-Qiskit Runtime is a cloud-based service for executing quantum computations on IBM Quantum&reg; hardware. The `qiskit-ibm-runtime` package is a client for that service, and is the successor to the Qiskit IBM Provider. The Qiskit Runtime service streamlines quantum computations and provides optimal implementations of the Qiskit primitives for IBM Quantum hardware. To get started with Qiskit Runtime primitives, visit the [documentation](./get-started-with-primitives).
-
-Qiskit Runtime is designed to use additional classical and quantum compute resources, including techniques such as error suppression and error mitigation, to return a higher-quality result from executing quantum circuits on quantum processors. Examples include dynamical decoupling for error suppression, and readout mitigation and zero-noise extrapolation (ZNE) for error mitigation. Learn how to configure these options on the [Configure error mitigation](./configure-error-mitigation) page.
-
-
-Qiskit Runtime also includes three types of execution modes for running your quantum program on IBM hardware: [_Job_, _Session_, and _Batch_,](/docs/guides/execution-modes) each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. Note that Open Plan users cannot submit session jobs.
-
-To quickly install Qiskit Runtime, run the following command:
-```bash
-pip install qiskit-ibm-runtime
-```
-
-More details on setting up a development environment for building quantum programs can be found in the [installation page](./install-qiskit).
-
-### Is Qiskit Runtime open-source?
-The short answer is, _not all of it_. The Qiskit Runtime service software that handles the technicalities of running your quantum program on an IBM Quantum device (including any error mitigation and suppression) is **not** open-source. However, the Qiskit Runtime client (the interface for users to access the Qiskit Runtime service), the Qiskit SDK running on the server side, and some of the software used for error mitigation, **are** open-source.  To get involved with the Qiskit open-source efforts, visit our GitHub organization at [github.com/Qiskit](https://github.com/Qiskit) and [github.com/Qiskit-Extensions](https://github.com/Qiskit-Extensions/).
-
-## Qiskit Serverless
-
-Creating utility-scale quantum applications generally requires a variety of compute resource requirements. Qiskit Serverless (`qiskit-ibm-catalog.QiskitServerless`) provides a simple interface to run workloads across quantum-classical resources. This includes deploying programs to IBM Quantum Platform and running workloads remotely, as well as easy resource management for multi-cloud and quantum-centric supercomputing use cases. See more information in the [Qiskit Serverless documentation](/docs/guides/serverless) about how to use this collection of tools to:
-
-- Parallelize classical tasks, such as pre-processing and post-processing
-- Persist long-running workloads in the cloud, even if your laptop is turned off
-- Deploy reusable programs in the cloud
-
-To start using Qiskit Serverless right away, install it with pip:
-```bash
-pip install qiskit_serverless
-```
-
-
-## Qiskit Functions
-
-Qiskit Functions (`qiskit-ibm-catalog.QiskitFunctionsCatalog`) are abstracted services designed to accelerate algorithm discovery and application prototyping. Explore the [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions), including:
-
-- **Circuit functions**: Services that include transpilation, error suppression, error mitigation, and post-processing techniques that take abstract circuits and desired measurement observables as input. With Circuit functions, users can discover new algorithms and applications without needing to manage transpilation or quantum hardware performance.
-- **Application functions**: Services that include entire quantum workflows, from mapping classical to quantum, optimizing for hardware, execution on hardware, and post-processing. Users can prototype industry applications with domain-familiar inputs and outputs.
-
-Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan members can access IBM-provided functions right away, or purchase licenses for the partner-provided functions directly from those partners.
-
-The catalog can be installed with pip:
-```bash
-pip install qiskit-ibm-catalog
-```
-
-## Qiskit Transpiler Service
-The Qiskit Transpiler Service ([package name `qiskit-ibm-transpiler`](https://pypi.org/project/qiskit-ibm-transpiler/)) is a new experimental service that provides remote transpilation capabilities on the cloud to IBM Quantum Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. In addition to the local Qiskit SDK transpiler capabilities, your transpilation tasks can benefit from both IBM Quantum cloud resources and AI-powered transpiler passes using this service. To learn more about how to integrate cloud-based transpilation into your Qiskit workflow you can [check out the documentation](./qiskit-transpiler-service).
-
-The transpiler service can be installed with pip:
-```bash
-pip install qiskit-ibm-transpiler
-```
 
 ## Qiskit addons
 
