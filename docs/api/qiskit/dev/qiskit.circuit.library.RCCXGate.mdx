@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
 # RCCXGate
 
-<Class id="qiskit.circuit.library.RCCXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L446-L500" signature="qiskit.circuit.library.RCCXGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
+<Class id="qiskit.circuit.library.RCCXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L446-L514" signature="qiskit.circuit.library.RCCXGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
   Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
   The simplified Toffoli gate, also referred to as Margolus gate.
@@ -202,26 +202,20 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.RCCXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L373-L428" signature="inverse(annotated=False)">
-    Invert this instruction.
-
-    If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
-
-    If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
-
-    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+  <Function id="qiskit.circuit.library.RCCXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L502-L514" signature="inverse(annotated=False)">
+    Invert this gate. The RCCX gate is its own inverse.
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
 
     **Returns**
 
-    The inverse operation.
+    inverse gate (self-inverse).
 
-    **Raises**
+    **Return type**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+    [RCCXGate](#qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate")
   </Function>
 
   ### is\_parameterized
