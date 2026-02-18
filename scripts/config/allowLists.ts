@@ -37,7 +37,7 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/get-started-with-sampler.ipynb",
   "docs/guides/pubs.ipynb",
   "docs/guides/sampler-examples.ipynb",
-  "docs/guides/sampler-rest-api.ipynb",
+  "docs/guides/sampler-rest-api.mdx",
   "docs/guides/sampler-input-output.ipynb",
   "docs/guides/sampler-options.ipynb",
   "docs/guides/get-started-with-estimator.ipynb",
