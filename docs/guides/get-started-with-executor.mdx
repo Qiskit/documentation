@@ -5,22 +5,20 @@ description: How to use the Executor primitive in Qiskit Runtime.
 ---
 
 # Get started with the Executor primitive
-The steps in this topic describe how to set up primitives, explore the options you can use to configure them, and invoke them in a program.
-
 The Executor primitive is part of the directed execution model, which provides more flexibility when customizing your error mitigation workflow. See the [Directed execution model](/docs/guides/directed-execution-model) guide for more information.
 
 ## Steps to get started with Executor
 
 There are three basic steps involved in using the Executor primitive:
 1. Initialize a `QuantumProgram` with your workload.
-2. Run the `QuantumProgram` on IBM backends by using the `Executor` primitive.
+2. Run the `QuantumProgram` on IBM&reg; backends by using the `Executor` primitive.
 3. Interpret the outputs.
 
 See [Executor examples](/docs/guides/executor-examples) for a full walkthrough.
 
 ## Run an Executor job
 
-The following code shows how to initialize an Executor with the default options. See [Executor options](/docs/guides/executor-options) to learn more.
+The following code shows how to initialize an Executor with the default options. See [Executor options](/docs/guides/executor-options) to learn about the available options.
 
 ```python
 from qiskit_ibm_runtime import Executor
@@ -36,10 +34,12 @@ job = executor.run(program)
 result = job.result()
 ```
 
-Here, the result is of type [`QuantumProgramResult`.](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgramResult.html#qiskit_ibm_runtime.quantum_program.QuantumProgramResult) See [Executor input and output](/docs/guides/executor-input-output) to learn about the result object.
+The result is of type [`QuantumProgramResult`.](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgramResult.html#qiskit_ibm_runtime.quantum_program.QuantumProgramResult) See [Executor input and output](/docs/guides/executor-input-output) to learn about the result object.
 
 ## Next steps
 
-<Admonition type="tip" title="Recommendations">
-    - Understand [Executor input and output](/docs/guides/executor-input-output)
+<Admonition type="tip" title="Recommendations"> 
+    - Try some [Executor examples](/docs/guides/executor-examples)
+    - Understand [Executor input and output.](/docs/guides/executor-input-output)
+    - Learn about [Executor broadcasting semantics.](/docs/guides/executor-broadcasting)
 </Admonition>

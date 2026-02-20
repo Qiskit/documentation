@@ -6,7 +6,7 @@ description: Understand the inputs and outputs to the Executor primitive.
 
 # Executor inputs and outputs
 
-The inputs and output of the Executor primitive are very different from those of the Sampler and Estimator primitives. As part of the [directed execution model,](/docs/guides/directed-execution-model) the Executor primitive helps provide more flexibility when customizing your error mitigation workflow.  This primitive takes a `QuantumProgram` as input, and outputs a Qiskit Runtime job, which is then run on an IBM quantum computer.
+The inputs and output of the Executor primitive are very different from those of the Sampler and Estimator primitives. As part of the [directed execution model,](/docs/guides/directed-execution-model) the Executor primitive helps provide more flexibility when customizing your error mitigation workflow.  This primitive takes a `QuantumProgram` as input, and outputs a Qiskit Runtime job, which is then run on an IBM&reg; quantum computer.
 
 <span id="programs"></span>
 ## Inputs: Quantum programs
@@ -85,7 +85,7 @@ program.append_samplex_item(
 
 ## Outputs
 
-[`qiskit_ibm_runtime.quantum_program.QuantumProgramResult`](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgramResult.html#qiskit_ibm_runtime.quantum_program.QuantumProgramResult) is an iterable. It contains one
+Executor's output is a [`qiskit_ibm_runtime.quantum_program.QuantumProgramResult`,](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgramResult.html#qiskit_ibm_runtime.quantum_program.QuantumProgramResult) which is an iterable. It contains one
 item per circuit task, and the items are in the same order as those in the program. Each of
 these items is a dictionary where the keys are strings and the values are of type `np.ndarray`, with elements of type `bool`. 
 
