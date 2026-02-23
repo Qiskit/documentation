@@ -30,9 +30,9 @@ The earlier versions of the sampler and estimator abstractions are defined by [`
 
 Following construction, an estimator is used by calling its [`run()`](qiskit.primitives.BaseEstimatorV2#run "qiskit.primitives.BaseEstimatorV2.run") method with a list of pubs (Primitive Unified Blocs). Each pub contains three values that, together, define a computation unit of work for the estimator to complete:
 
-*   a single [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), possibly parametrized, whose final state we define as $\psi(\theta)$,
+*   a single [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), possibly parameterized, whose final state we define as $\psi(\theta)$,
 *   one or more observables (specified as any `ObservablesArrayLike`, including [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"), `str`) that specify which expectation values to estimate, denoted $H_j$, and
-*   a collection parameter value sets to bind the circuit against, $\theta_k$.
+*   a collection of parameter value sets to bind the circuit against, $\theta_k$.
 
 Running an estimator returns a [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob") object, where calling the method [`result()`](qiskit.primitives.BasePrimitiveJob#result "qiskit.primitives.BasePrimitiveJob.result") results in expectation value estimates and metadata for each pub:
 
@@ -91,7 +91,7 @@ Following construction, a sampler is used by calling its [`run()`](qiskit.primit
 *   A collection parameter value sets to bind the circuit against if it is parametric.
 *   Optionally, the number of shots to sample, determined in the run method if not set.
 
-Running an estimator returns a [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob") object, where calling the method [`result()`](qiskit.primitives.BasePrimitiveJob#result "qiskit.primitives.BasePrimitiveJob.result") results in output samples and metadata for each pub.
+Running a sampler returns a [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob") object, where calling the method [`result()`](qiskit.primitives.BasePrimitiveJob#result "qiskit.primitives.BasePrimitiveJob.result") results in output samples and metadata for each pub.
 
 Here is an example of how a sampler is used.
 
@@ -139,7 +139,7 @@ An `EstimatorV1` implementation is initialized with an empty parameter set. [`Ba
 *   observables ($H_j$): a list of [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") objects.
 *   parameter values ($\theta_k$): list of sets of values to be bound to the parameters of the quantum circuits (list of list of float).
 
-The method should return a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") object. Calling [`qiskit.providers.JobV1.result()`](qiskit.providers.JobV1#result "qiskit.providers.JobV1.result") yields the a list of expectation values plus optional metadata like confidence intervals for the estimation.
+The method should return a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") object. Calling [`qiskit.providers.JobV1.result()`](qiskit.providers.JobV1#result "qiskit.providers.JobV1.result") yields a list of expectation values plus optional metadata like confidence intervals for the estimation.
 
 $$
 \langle\psi_i(\theta_k)|H_j|\psi_i(\theta_k)\rangle
@@ -242,7 +242,7 @@ print([q.binary_probabilities() for q in job_result.quasi_dists])
 
 ## Migration from Primitives V1 to V2
 
-The formal distinction between the Primitives V1 and V2 APIs are the base classes from which primitives implementations inherit, which are all listed at the bottom of the page. At a conceptual level, however, here are some notable differences keep in mind when migrating from V1 to V2:
+The formal distinction between the Primitives V1 and V2 APIs are the base classes from which primitives implementations inherit, which are all listed at the bottom of the page. At a conceptual level, however, here are some notable differences to keep in mind when migrating from V1 to V2:
 
 1.  The V2 primitives favour vectorized inputs, where single circuits can be grouped with vector-valued (or more generally, array-valued) specifications. Each group is called a primitive unified bloc (pub), and each pub gets its own result. For example, in the estimator, you can compare the following differences:
 
@@ -292,7 +292,7 @@ The formal distinction between the Primitives V1 and V2 APIs are the base classe
     quasi_dist = QuasiDistribution({outcome: freq / shots for outcome, freq in counts.items()})
     ```
 
-3.  The V2 primitives have brought the concept of sampling overhead, inherent to all quantum systems via their inherent probabilistic nature, out of the options and into the API itself. For the sampler, this means that the `shots` argument is now part of the [`run()`](qiskit.primitives.BaseSamplerV2#run "qiskit.primitives.BaseSamplerV2.run") signature, and moreover that each pub is able to specify its own value for `shots`, which takes precedence over any value given to the method. The sampler has an analogous `precision` argument that specifies the error bars that the primitive implementation should target for expectation values estimates.
+3.  The V2 primitives have brought the concept of sampling overhead, inherent to all quantum systems via their inherent probabilistic nature, out of the options and into the API itself. For the sampler, this means that the `shots` argument is now part of the [`run()`](qiskit.primitives.BaseSamplerV2#run "qiskit.primitives.BaseSamplerV2.run") signature, and moreover that each pub is able to specify its own value for `shots`, which takes precedence over any value given to the method. The estimator has an analogous `precision` argument that specifies the error bars that the primitive implementation should target for expectation value estimates.
 
     This concept is not present in the API of the V1 primitives, though all implementations of the V1 primitives have related settings somewhere in their options.
 

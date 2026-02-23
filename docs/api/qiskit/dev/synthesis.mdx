@@ -143,7 +143,7 @@ python_api_name: qiskit.synthesis
 <Function id="qiskit.synthesis.synth_cnot_phase_aam" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear_phase/cnot_phase_synth.py#L27-L188" signature="qiskit.synthesis.synth_cnot_phase_aam(cnots, angles, section_size=2)">
   This function is an implementation of the GraySynth algorithm of Amy, Azimadeh and Mosca.
 
-  GraySynth is a heuristic algorithm from \[1] for synthesizing small parity networks. It is inspired by Gray codes. Given a set of binary strings $S$ (called `cnots` bellow), the algorithm synthesizes a parity network for $S$ by repeatedly choosing an index $i$ to expand and then effectively recursing on the co-factors $S_0$ and $S_1$, consisting of the strings $y \in S$, with $y_i = 0$ or $1$ respectively. As a subset $S$ is recursively expanded, `cx` gates are applied so that a designated target bit contains the (partial) parity $\chi_y(x)$ where $y_i = 1$ if and only if $y'_i = 1$ for all $y' \in S$. If $S$ contains a single element $\{y'\}$, then $y = y'$, and the target bit contains the value $\chi_{y'}(x)$ as desired.
+  GraySynth is a heuristic algorithm from \[1] for synthesizing small parity networks. It is inspired by Gray codes. Given a set of binary strings $S$ (called `cnots` below), the algorithm synthesizes a parity network for $S$ by repeatedly choosing an index $i$ to expand and then effectively recursing on the co-factors $S_0$ and $S_1$, consisting of the strings $y \in S$, with $y_i = 0$ or $1$ respectively. As a subset $S$ is recursively expanded, `cx` gates are applied so that a designated target bit contains the (partial) parity $\chi_y(x)$ where $y_i = 1$ if and only if $y'_i = 1$ for all $y' \in S$. If $S$ contains a single element $\{y'\}$, then $y = y'$, and the target bit contains the value $\chi_{y'}(x)$ as desired.
 
   Notably, rather than uncomputing this sequence of `cx` (CNOT) gates when a subset $S$ is finished being synthesized, the algorithm maintains the invariant that the remaining parities to be computed are expressed over the current state of bits. This allows the algorithm to avoid the ‘backtracking’ inherent in uncomputing-based methods.
 
@@ -983,7 +983,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_1\_clean\_kg24
 
-<Function id="qiskit.synthesis.synth_mcx_1_clean_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L469-L499" signature="qiskit.synthesis.synth_mcx_1_clean_kg24(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_1_clean_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L471-L501" signature="qiskit.synthesis.synth_mcx_1_clean_kg24(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k\ge 3$ controls using $1$ clean ancillary qubit producing a circuit with $2k-3$ Toffoli gates or $6k-6$ CX gates and depth $O(k)$ as described in Sec. 5.1 of \[1]. For $k\le 2$, the returned circuit consists of a single X, CX or CCX gate (corresponding to $k = 0, 1, 2$, respectively) and uses no ancillary qubits.
 
   **Parameters**
@@ -1009,7 +1009,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_1\_dirty\_kg24
 
-<Function id="qiskit.synthesis.synth_mcx_1_dirty_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L502-L531" signature="qiskit.synthesis.synth_mcx_1_dirty_kg24(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_1_dirty_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L504-L533" signature="qiskit.synthesis.synth_mcx_1_dirty_kg24(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k\ge 3$ controls using $1$ dirty ancillary qubit producing a circuit with $4k-8$ Toffoli gates or $12k-18$ CX gates and depth $O(k)$ as described in Sec. 5.3 of \[1]. For $k\le 2$, the returned circuit consists of a single X, CX or CCX gate (corresponding to $k = 0, 1, 2$, respectively) and uses no ancillary qubits.
 
   **Parameters**
@@ -1035,7 +1035,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_2\_clean\_kg24
 
-<Function id="qiskit.synthesis.synth_mcx_2_clean_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L668-L698" signature="qiskit.synthesis.synth_mcx_2_clean_kg24(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_2_clean_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L670-L700" signature="qiskit.synthesis.synth_mcx_2_clean_kg24(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k\ge 3$ controls using $2$ clean ancillary qubits producing a circuit with $2k-3$ Toffoli gates or $6k-6$ CX gates and depth $O(\log(k))$ as described in Sec. 5.2 of \[1]. For $k\le 2$, the returned circuit consists of a single X, CX or CCX gate (corresponding to $k = 0, 1, 2$, respectively) and uses no ancillary qubits.
 
   **Parameters**
@@ -1061,7 +1061,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_2\_dirty\_kg24
 
-<Function id="qiskit.synthesis.synth_mcx_2_dirty_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L701-L730" signature="qiskit.synthesis.synth_mcx_2_dirty_kg24(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_2_dirty_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L703-L732" signature="qiskit.synthesis.synth_mcx_2_dirty_kg24(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k\ge 3$ controls using $2$ dirty ancillary qubits producing a circuit with $4k-8$ Toffoli gates or $12k-18$ CX gates and depth $O(\log(k))$ as described in Sec. 5.4 of \[1]. For $k\le 2$, the returned circuit consists of a single X, CX or CCX gate (corresponding to $k = 0, 1, 2$, respectively) and uses no ancillary qubits.
 
   **Parameters**
@@ -1117,7 +1117,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_n\_clean\_m15
 
-<Function id="qiskit.synthesis.synth_mcx_n_clean_m15" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L98-L150" signature="qiskit.synthesis.synth_mcx_n_clean_m15(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_n_clean_m15" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L100-L152" signature="qiskit.synthesis.synth_mcx_n_clean_m15(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k\ge 3$ controls using $k - 2$ clean ancillary qubits with producing a circuit with $2 * k - 1$ qubits and at most $6 * k - 6$ CX gates, by Maslov \[1]. For $k\le 2$, the returned circuit consists of a single X, CX or CCX gate (corresponding to $k = 0, 1, 2$, respectively) and uses no ancillary qubits.
 
   **Parameters**
@@ -1143,7 +1143,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_1\_clean\_b95
 
-<Function id="qiskit.synthesis.synth_mcx_1_clean_b95" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L153-L220" signature="qiskit.synthesis.synth_mcx_1_clean_b95(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_1_clean_b95" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L155-L222" signature="qiskit.synthesis.synth_mcx_1_clean_b95(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k\ge 3$ controls using a single clean ancillary qubit producing a circuit with $k + 2$ qubits and at most $16 * k - 24$ CX gates, by \[1], \[2]. For $k\le 2$, the returned circuit consists of a single X, CX or CCX gate (corresponding to $k = 0, 1, 2$, respectively) and uses no ancillary qubits.
 
   **Parameters**
@@ -1170,7 +1170,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_noaux\_v24
 
-<Function id="qiskit.synthesis.synth_mcx_noaux_v24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L265-L296" signature="qiskit.synthesis.synth_mcx_noaux_v24(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_noaux_v24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L267-L298" signature="qiskit.synthesis.synth_mcx_noaux_v24(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k$ controls based on the implementation for MCPhaseGate.
 
   In turn, the MCPhase gate uses the decomposition for multi-controlled special unitaries described in \[1].
@@ -1200,7 +1200,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_noaux\_hp24
 
-<Function id="qiskit.synthesis.synth_mcx_noaux_hp24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L299-L327" signature="qiskit.synthesis.synth_mcx_noaux_hp24(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_noaux_hp24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L301-L329" signature="qiskit.synthesis.synth_mcx_noaux_hp24(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k$ controls based on the work by Huang and Palsberg.
 
   Produces a quantum circuit with $k + 1$ qubits. The number of CX-gates is linear in $k$.
@@ -1228,7 +1228,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_gray\_code
 
-<Function id="qiskit.synthesis.synth_mcx_gray_code" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L223-L262" signature="qiskit.synthesis.synth_mcx_gray_code(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_gray_code" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L225-L264" signature="qiskit.synthesis.synth_mcx_gray_code(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k\ge 3$ controls using the Gray code.
 
   Produces a quantum circuit with $k + 1$ qubits. This method produces exponentially many CX gates and should be used only for small values of $k$. For $k\le 2$, the returned circuit consists of a single X, CX or CCX gate (corresponding to $k = 0, 1, 2$, respectively) and uses no ancillary qubits.
@@ -1252,7 +1252,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_c3x
 
-<Function id="qiskit.synthesis.synth_c3x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L733-L735" signature="qiskit.synthesis.synth_c3x()">
+<Function id="qiskit.synthesis.synth_c3x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L735-L737" signature="qiskit.synthesis.synth_c3x()">
   Efficient synthesis of 3-controlled X-gate.
 
   **Return type**
@@ -1262,7 +1262,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_c4x
 
-<Function id="qiskit.synthesis.synth_c4x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L738-L740" signature="qiskit.synthesis.synth_c4x()">
+<Function id="qiskit.synthesis.synth_c4x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L740-L742" signature="qiskit.synthesis.synth_c4x()">
   Efficient synthesis of 4-controlled X-gate.
 
   **Return type**
