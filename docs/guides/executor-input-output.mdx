@@ -13,13 +13,13 @@ The inputs and output of the Executor primitive are very different from those of
 
 The input to an Executor primitive is a  [`QuantumProgram`](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgram.html#qiskit_ibm_runtime.quantum_program.QuantumProgram), which is an iterable of a
 [`qiskit_ibm_runtime.quantum_program.QuantumProgramItem`.](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgramItem.html) Each of these items represents a
-different task for the Executor to perform. Typically, each item owns one of the following options:
+different task for Executor to perform. Typically, each item owns one of the following options:
 
 * A `qiskit.circuit.QuantumCircuit` with static, non-parametrized gates
 * A parametrized `qiskit.circuit.QuantumCircuit` with an array of parameter values
-* A parametrized `qiskit.circuit.QuantumCircuit` with a `samplomatic.samplex.Samplex` to generate randomize arrays of parameter values
+* A parametrized `qiskit.circuit.QuantumCircuit` with a `samplomatic.samplex.Samplex` to generate randomized arrays of parameter values
 
-Each of these items, including instructions to add them to a `QuantumProgram` is explained in more detail below.
+Each of these items, including instructions to add them to a `QuantumProgram`, is explained in more detail below.
 
 The following cell initializes a `QuantumProgram` and specifies that it should run 1024 shots for every configuration of each item in the program. Then it appends a version of the target circuit with set parameters, transpiled according to the backend's ISA.
 
@@ -53,7 +53,7 @@ program.append_circuit_item(
 ```
 
 Finally, append a parametrized `qiskit.circuit.QuantumCircuit` and a `samplomatic.samplex.Samplex`, which is responsible for generating randomized sets of parameters for the given circuit. As part of the `samplomatic.samplex.Samplex` arguments, `10` sets of parameters for the parametric gates in the original circuit are provided. The `shape` request argument requests an extension of the implicit shape defined by the `samplomatic.samplex.Samplex` arguments. In particular, by setting `shape`
-to `(2, 14, 10)` we request to randomize each of the `10` sets of parameters `28` times, and to arrange the randomized parameter sets in an array of be arranged in an array of shape `(2, 14, 10)`.
+to `(2, 14, 10)` we request to randomize each of the `10` sets of parameters `28` times, and to arrange the randomized parameter sets in an array of shape `(2, 14, 10)`.
 
 See the samplomatic [API](https://github.com/Qiskit/samplomatic/) documentation for full details about `samplomatic.samplex.Samplex` and its arguments.
 
@@ -91,7 +91,7 @@ these items is a dictionary where the keys are strings and the values are of typ
 
 In the previous example, the result contains three items:
 
-### Result item 1. 
+### Result item 1
 The first item in `result` is the result of running the first task in the program, the circuit with static gates. 
 
 It contains a single key, `'meas'`, corresponding to the name of the input circuit's 
@@ -106,7 +106,7 @@ result_0 = result[0]["meas"]
 print(f"Result shape: {result_0.shape}")
 ```
 
-### Result item 2. 
+### Result item 2
 
 The second item contains the results of running the second task in the program, 
 the circuit with parametrized gates. 
@@ -121,7 +121,7 @@ result_1 = result[1]["meas"]
 print(f"Result shape: {result_1.shape}")
 ```
 
-### Result item 3. 
+### Result item 3
 The third item contains the results of running the third task in the program. This item
 contains multiple keys. In addition to the `'meas'` key (mapped to the array of results for
 that classical register), it contains `'measurement_flips.meas'`, the bit-flip corrections to undo

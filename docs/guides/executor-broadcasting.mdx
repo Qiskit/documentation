@@ -149,8 +149,8 @@ execution. The samplex typically injects randomness (for example, twirling gates
 execution, so even without explicitly requesting multiple randomizations, each element naturally
 receives its own random realization.
 
-The `shape` parameter lets you augment the extrinsic shape for the item, effectively letting you
-add axes that correspond specifically to randomizing the same configuration many times. It must be
+You can use the `shape` parameter to augment the extrinsic shape for the item, effectively
+adding axes that correspond specifically to randomizing the same configuration many times. It must be
 broadcastable from the shape implicit in your `samplex_arguments`. Axes where `shape` exceeds
 the implicit shape enumerate additional independent randomizations.
 
@@ -161,7 +161,7 @@ input configuration. Each execution is still randomized by the samplex, but with
 single random realization you don't benefit from averaging over multiple randomizations.
 
 <Admonition type="note">
-If you're used to enabling twirling with a simple flag like `twirling=True`, 
+If you're accustomed to enabling twirling with a simple flag like `twirling=True`, 
 the Executor requires you to explicitly request multiple randomizations with the `shape` argument to
 allow your post-processing routines to get the benefits of averaging over multiple 
 randomizations. A single randomization (the default when `shape` is omitted) applies 
@@ -262,7 +262,7 @@ averaged = meas_data[:, :, 5, :, 2].mean(axis=(0, 1))
 
 ## Common patterns
 
-### Sweeping a single parameter
+### Sweep a single parameter
 To sweep one parameter while holding others fixed:
 
 ```python
@@ -276,39 +276,10 @@ To sweep one parameter while holding others fixed:
         np.full(20, fixed_values[0]),
         np.full(20, fixed_values[1]),
     ])  # shape (20, 3)
-```
-
-### Creating a 2D grid sweep
-To create a grid over two parameters:
-
-```python
-
-# Sweep param 0 over 10 values, param 1 over 8 values, param 2 fixed
-p0 = np.linspace(0, np.pi, 10)[:, np.newaxis, np.newaxis]  # (10, 1, 1)
-p1 = np.linspace(0, np.pi, 8)[np.newaxis, :, np.newaxis]   # (1, 8, 1)
-p2 = np.array([[[0.5]]])                                   # (1, 1, 1)
-
-parameter_values = np.broadcast_arrays(p0, p1, p2)
-parameter_values = np.stack(parameter_values, axis=-1).squeeze()  # (10, 8, 3)
-
-# Extrinsic shape: (10, 8), intrinsic shape: (3,)
-```
-
-### Combining multiple inputs
-
-When combining inputs with different intrinsic shapes, align extrinsic dimensions using
-size-1 axes:
-
-```python
-# 4 parameter configurations, 3 noise scales → 4×3 = 12 total configurations
-parameter_values = np.random.rand(4, 1, 2)  # extrinsic (4, 1), intrinsic (2,)
-noise_scale = np.array([0.8, 1.0, 1.2])     # extrinsic (3,), intrinsic ()
-
-# Broadcasted extrinsic shape: (4, 3)
 ```    
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Review the overview of [broadcasting.](/docs/guides/broadcasting)
+    - Review the [broadcasting](/docs/guides/broadcasting) overview.
     - Understand [Executor inputs and outputs.](/docs/guides/executor-input-output)
 </Admonition>
