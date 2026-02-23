@@ -56,7 +56,7 @@ Broadcasting only applies to _extrinsic_ axes. The intrinsic axes are always pre
 - **Extrinsic axes** (leftmost): Your sweep dimensions. These define how many configurations you
   want to run.
 
-|                Input type                | Intrinsic shape |                  Example full shape                 |
+| Input type                               | Intrinsic shape | Example full shape                                  |
 |:----------------------------------------:|:---------------:|:---------------------------------------------------:|
 | Parameter values (n parameters)          | (n,)            | (5, 3) for five configurations and three parameters |
 | Scalar inputs (for example, noise scale) | ()              | (4,) for four configurations                        |
@@ -97,7 +97,7 @@ program.append(
 
 The shapes are as follows:
 
-|        Input       | Full shape | Extrinsic shape | Intrinsic shape |
+| Input              | Full shape | Extrinsic shape | Intrinsic shape |
 |:------------------:|:----------:|:---------------:|:---------------:|
 | `parameter_values` | (4, 1, 2)  | (4, 1)          | (2,)            |
 | `noise_scale`      | (3,)       | (3,)            | ()              |
@@ -113,7 +113,7 @@ Output arrays follow the same extrinsic/intrinsic pattern:
 The most common output is bitstring data from measurements, which is 
 formatted as an array of boolean values:
 
-|       Output type       |     Intrinsic shape    |            Description           |
+| Output type             | Intrinsic shape        | Description                      |
 |:-----------------------:|:----------------------:|:--------------------------------:|
 | Classical register data | (num_shots, creg_size) | Bitstring data from measurements |
 | Expectation values      | () or (n_obs,)         | Scalar or per-observable         |
@@ -233,7 +233,7 @@ that expand to match input dimensions, as is illustrated in the last row of the 
 
 Examples:
 
-| Input extrinsic |    shape   |                               Result                              |
+| Input extrinsic | Shape      | Result                                                            |
 |:---------------:|:----------:|:-----------------------------------------------------------------:|
 | (10,)           | (10,)      | 10 configurations, 1 randomization each                           |
 | (10,)           | (5, 10)    | 10 configurations, 5 randomizations each                          |
