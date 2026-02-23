@@ -57,14 +57,13 @@ The input to Executor is a `QuantumProgram`. For full details, see [Executor inp
 # Initialize an empty program
 program = QuantumProgram(shots=1024)
 
-# Append the circuit to the program
-program.append_circuit_item(isa_circuit)
 
-# Append the circuit and the parameter value to the program
+# Append the circuit and the parameter values to the program
 program.append_circuit_item(
     isa_circuit,
     circuit_arguments=np.random.rand(10, 3),  # 10 sets of parameter values
 )
+
 # Transpile the circuit, additionally grouping gates and measurements into annotated boxes
 preset_pass_manager = generate_preset_pass_manager(
     backend=backend, optimization_level=0

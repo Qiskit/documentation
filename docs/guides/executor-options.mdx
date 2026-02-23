@@ -40,14 +40,14 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
 options = ExecutorOptions(
-    environment={"log_level" = INFO},
+    environment={"log_level": INFO},
     execution={"init_qubits": True},
 )
 
 # or...
 options = ExecutorOptions()
-options.log_level = INFO
-options.init_qubits = True
+options.environment.log_level = INFO
+options.execution.init_qubits = True
 
 executor = Executor(mode=backend, options=options)
 ```
@@ -66,7 +66,7 @@ backend = service.least_busy(operational=True, simulator=False)
 executor = Executor(
     backend,
     options={
-        "environment"={"log_level" = INFO},
+        "environment"={"log_level": INFO},
         "execution"={"init_qubits": True},
     },
 )
@@ -88,9 +88,9 @@ executor = Executor(mode=backend)
 
 # Setting options after primitive initialization
 # This uses auto-complete.
-executor.options.log_level = INFO
+executor.options.environment.log_level = INFO
 # This does bulk update.
-sampler.options.update(environment={"log_level" = INFO}
+executor.options.update(environment={"log_level": INFO}
 )
 ```   
 ## Next steps
