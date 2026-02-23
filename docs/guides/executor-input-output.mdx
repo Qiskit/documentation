@@ -47,7 +47,7 @@ Next, append a second item that contains a parametrized `qiskit.circuit.QuantumC
 ```python
 # Append the circuit and the parameter values to the program
 program.append_circuit_item(
-    isa_circuit,
+    parametrized_isa_circuit,
     circuit_arguments=np.random.rand(10, 3),  # 10 sets of parameter values
 )
 ```
@@ -91,7 +91,7 @@ these items is a dictionary where the keys are strings and the values are of typ
 
 In the previous example, the result contains three items:
 
-### Result item 1
+### Result item 0
 The first item in `result` is the result of running the first task in the program, the circuit with static gates. 
 
 It contains a single key, `'meas'`, corresponding to the name of the input circuit's 
@@ -106,7 +106,7 @@ result_0 = result[0]["meas"]
 print(f"Result shape: {result_0.shape}")
 ```
 
-### Result item 2
+### Result item 1
 
 The second item contains the results of running the second task in the program, 
 the circuit with parametrized gates. 
@@ -121,7 +121,7 @@ result_1 = result[1]["meas"]
 print(f"Result shape: {result_1.shape}")
 ```
 
-### Result item 3
+### Result item 2
 The third item contains the results of running the third task in the program. This item
 contains multiple keys. In addition to the `'meas'` key (mapped to the array of results for
 that classical register), it contains `'measurement_flips.meas'`, the bit-flip corrections to undo
@@ -134,7 +134,7 @@ print(f"Result shape: {result_2.shape}")
 
 # Access the bit-flip corrections
 flips_2 = result[2]["measurement_flips.meas"]
-print(f"Result shape: {result_0.shape}")
+print(f"Bit-flip corrections: {result_2.flips_2}")
 
 # Undo the bit flips via classical XOR
 unflipped_result_2 = result_2 ^ flips_2
