@@ -158,7 +158,7 @@ $$
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.CSGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L199-L256" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.CSGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L206-L263" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -211,7 +211,7 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.CSGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L105-L156" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.CSGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L105-L163" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return the controlled version of itself.
 
     The controlled gate is implemented as [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") when `annotated` is `False`, and as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") when `annotated` is `True`.
@@ -222,7 +222,7 @@ $$
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add. Defauls to `1`.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add. Defaults to `1`.
     *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Optional gate label. Defaults to `None`. Ignored if the controlled gate is implemented as an annotated operation.
     *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
     *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – Indicates whether the controlled gate should be implemented as a controlled gate or as an annotated operation. If `None`, treated as `False`.
@@ -233,7 +233,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `ctrl_state`.
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `num_ctrl_qubits` or `ctrl_state`.
   </Function>
 
   ### copy
@@ -302,7 +302,7 @@ $$
   ### repeat
 
   <Function id="qiskit.circuit.library.CSGate.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L493-L523" signature="repeat(n)">
-    Creates an instruction with `self` repeated :math\`n\` times.
+    Creates an instruction with `self` repeated $n$ times.
 
     **Parameters**
 
@@ -385,7 +385,7 @@ $$
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.CSGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L258-L272" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.CSGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L265-L279" signature="validate_parameter(parameter)">
     Gate parameters should be int, float, or ParameterExpression
   </Function>
 </Class>

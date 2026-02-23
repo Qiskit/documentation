@@ -264,9 +264,36 @@ function _runtimeObjectsInv(): FilesToIgnores {
       `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [
         `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
+        // TODO: Remove these ignores when the executor guides are migrated to Qiskit/documentation
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#broadcast-semantics-of-the-executor`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#combining-multiple-inputs`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#common-patterns`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#creating-a-2d-grid-sweep`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#example-predicting-output-shapes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#example-understanding-extrinsic-shapes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#how-shape-and-input-shapes-interact`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#indexing-into-results`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#intrinsic-and-extrinsic-axes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#multiple-randomization-axes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#no-explicit-randomization-axes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#output-array-shapes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#quick-start-example`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#randomization-and-the-shape-parameter`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#single-randomization-axis`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#sweeping-a-single-parameter`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#what-is-broadcasting`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/executor-basic`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/executor-basic#running-an-executor-job`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/executor-basic#the-executor-a-quick-start-guide`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/executor-basic#the-inputs-to-the-executor-quantum-programs`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/executor-basic#the-outputs-of-the-executor`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/index`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/index#guides`,
       ],
     ]),
   );
+
   return { ...legacy, ...latest };
 }
 
