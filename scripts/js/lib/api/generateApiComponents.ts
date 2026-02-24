@@ -432,6 +432,15 @@ export function findByText(
 }
 
 function getAndRemoveModifiers($child: Cheerio<any>): string {
+  // `autodoc_pydantic` adds these two `em` tags that we want to
+  // remove from the signature.
+  //
+  // Example:
+  //      <modifier>  <signature>   <arrow>   <xref>
+  //      validator  cross_validate    >>    all fields
+  $child.find("em.autodoc_pydantic_validator_arrow").remove();
+  $child.find("em.xref").remove();
+
   const rawModifiers = $child.find("em.property");
   const modifiers = rawModifiers.text().trim();
   rawModifiers.remove();
