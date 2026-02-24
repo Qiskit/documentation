@@ -8,12 +8,12 @@ python_api_name: qiskit.transpiler.passes.SubstitutePi4Rotations
 
 # SubstitutePi4Rotations
 
-<Class id="qiskit.transpiler.passes.SubstitutePi4Rotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/substitute_pi4_rotations.py#L20-L84" signature="qiskit.transpiler.passes.SubstitutePi4Rotations(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.SubstitutePi4Rotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/substitute_pi4_rotations.py#L21-L95" signature="qiskit.transpiler.passes.SubstitutePi4Rotations(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-  Convert single-qubit rotation gates [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate"), [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") and [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate"), whose angles are integer multiples of $\pi/4$ into discrete sets of Clifford, [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate") and [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate") gates.
+  Convert rotation gates whose angles are integer multiples of $\pi/4$ into discrete sets of Clifford, [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate") and [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate") gates.
 
-  Note that odd multiples of $\pi/4$ require a single [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate") or [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate"), as well as some Clifford gates, while even multiples of $\pi/4$, or equivalently, integer multiples of $\pi/2$, can be written using only Clifford gates. The output contains at most one [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate") or [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate"), and an optimal number of Clifford gates.
+  For single-qubit rotation gates ([`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate"), [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate"), [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate")) and two-qubit rotation gates ([`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate"), [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate"), [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate"), [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate")), when the angle is a multiple of $\pi/4$, the decomposition requires a single [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate") or [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate") gate as well as some Clifford gates. For two-qubit controlled rotation gates ([`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate"), [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate"), [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate"), [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate")), when the angle is a multiple of $\pi/2$, the decomposition requires three [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate") or [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate") gates for [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate") and two otherwise, as well as some Clifford gates. Note that even multiples of $\pi/4$ (respectively, $\pi/2$ for controlled rotations), or equivalently, integer multiples of $\pi/2$ (respectively $\pi$ for controlled rotations) can be written using only Clifford gates.
 
   For example:
 
@@ -22,8 +22,9 @@ python_api_name: qiskit.transpiler.passes.SubstitutePi4Rotations
   from qiskit.transpiler.passes import SubstitutePi4Rotations
   from qiskit.quantum_info import Operator
 
-  # The following quantum circuit consists of 5 Clifford gates
-  # and three single-qubit rotation gates whose angles are integer multiples of pi/4.
+  # The following quantum circuit consists of 5 Clifford gates,
+  # four rotation gates whose angles are integer multiples of pi/4,
+  # and one controlled rotation gate whose angle is an integer multiple pf pi/2
 
   qc = QuantumCircuit(3)
   qc.cx(0, 1)
@@ -34,6 +35,8 @@ python_api_name: qiskit.transpiler.passes.SubstitutePi4Rotations
   qc.s(2)
   qc.ry(2*pi/4, 2)
   qc.cz(2, 0)
+  qc.rzz(pi/4, 0, 2)
+  qc.cry(3*pi/2, 2, 1)
 
   # The transformed circuit consists of Clifford, T and Tdg gates
   qct = SubstitutePi4Rotations()(qc)
@@ -75,9 +78,9 @@ python_api_name: qiskit.transpiler.passes.SubstitutePi4Rotations
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -85,7 +88,7 @@ python_api_name: qiskit.transpiler.passes.SubstitutePi4Rotations
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -95,12 +98,12 @@ python_api_name: qiskit.transpiler.passes.SubstitutePi4Rotations
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.SubstitutePi4Rotations.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/substitute_pi4_rotations.py#L69-L84" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.SubstitutePi4Rotations.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/substitute_pi4_rotations.py#L79-L95" signature="run(dag)">
     Run the Substitute Pi4-Rotations optimization pass on `dag`.
 
     **Parameters**

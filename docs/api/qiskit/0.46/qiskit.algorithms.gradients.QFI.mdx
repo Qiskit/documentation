@@ -9,7 +9,7 @@ python_api_name: qiskit.algorithms.gradients.QFI
 # QFI
 
 <Class id="qiskit.algorithms.gradients.QFI" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/gradients/qfi.py" signature="qiskit.algorithms.gradients.QFI(qgt, options=None)" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   Computes the Quantum Fisher Information (QFI) given a pure, parameterized quantum state. QFI is defined as:
 
@@ -45,7 +45,7 @@ $$
     **Parameters**
 
     *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the QFIs.
-    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]]*) – The list of parameter values to be bound to the circuit.
     *   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the QFIs of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the QFIs of all parameters in each circuit are calculated.
     *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > QFI’s default options > QGT’s default setting. Higher priority setting overrides lower priority setting.
 

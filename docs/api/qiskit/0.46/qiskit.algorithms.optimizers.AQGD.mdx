@@ -24,12 +24,12 @@ python_api_name: qiskit.algorithms.optimizers.AQGD
 
   **Parameters**
 
-  *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Maximum number of iterations (full gradient steps)
-  *   **eta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The coefficient of the gradient update. Increasing this value results in larger step sizes: param = previous\_param - eta \* deriv
-  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Tolerance for change in windowed average of objective values. Convergence occurs when either objective tolerance is met OR parameter tolerance is met.
-  *   **momentum** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Bias towards the previous gradient momentum in current update. Must be within the bounds: \[0,1)
-  *   **param\_tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Tolerance for change in norm of parameters.
-  *   **averaging** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Length of window over which to average objective values for objective convergence criterion
+  *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Maximum number of iterations (full gradient steps)
+  *   **eta** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The coefficient of the gradient update. Increasing this value results in larger step sizes: param = previous\_param - eta \* deriv
+  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Tolerance for change in windowed average of objective values. Convergence occurs when either objective tolerance is met OR parameter tolerance is met.
+  *   **momentum** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – Bias towards the previous gradient momentum in current update. Must be within the bounds: \[0,1)
+  *   **param\_tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Tolerance for change in norm of parameters.
+  *   **averaging** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Length of window over which to average objective values for objective convergence criterion
 
   **Raises**
 
@@ -134,7 +134,7 @@ python_api_name: qiskit.algorithms.optimizers.AQGD
 
     **Return type**
 
-    Dict\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+    Dict\[[str](https://docs.python.org/3/library/stdtypes.html#str), [int](https://docs.python.org/3/library/functions.html#int)]
   </Function>
 
   ### gradient\_num\_diff
@@ -146,8 +146,8 @@ python_api_name: qiskit.algorithms.optimizers.AQGD
 
     *   **x\_center** (*ndarray*) – point around which we compute the gradient
     *   **f** (*func*) – the function of which the gradient is to be computed.
-    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
-    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
+    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int)) – max evals grouped, defaults to 1 (i.e. no batching).
 
     **Returns**
 
@@ -165,10 +165,10 @@ python_api_name: qiskit.algorithms.optimizers.AQGD
 
     **Parameters**
 
-    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The scalar function to minimize.
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The scalar function to minimize.
     *   **x0** (*POINT*) – The initial point for the minimization.
     *   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
-    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
     **Returns**
 
@@ -200,7 +200,7 @@ python_api_name: qiskit.algorithms.optimizers.AQGD
 
     **Parameters**
 
-    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
+    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – options, given as name=value.
   </Function>
 
   ### wrap\_function
@@ -211,7 +211,7 @@ python_api_name: qiskit.algorithms.optimizers.AQGD
     **Parameters**
 
     *   **function** (*func*) – the target function
-    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
+    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – the args to be injected
 
     **Returns**
 

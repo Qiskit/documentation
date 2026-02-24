@@ -25,9 +25,9 @@ python_api_name: qiskit.opflow.converters.PauliBasisChange
 
   *   **destination\_basis** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.pauli_op.PauliOp") *| None*) – The Pauli into the basis of which the operators will be converted. If None is specified, the destination basis will be the diagonal (\{I, Z}^n) basis requiring only single qubit rotations.
 
-  *   **traverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If true and the operator passed into convert contains sub-Operators, such as ListOp, traverse the Operator and apply the conversion to every applicable sub-operator within it.
+  *   **traverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If true and the operator passed into convert contains sub-Operators, such as ListOp, traverse the Operator and apply the conversion to every applicable sub-operator within it.
 
-  *   **replacement\_fn** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) –
+  *   **replacement\_fn** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable) *| None*) –
 
       A function specifying what to do with the basis-change `CircuitOp` and destination `PauliOp` when converting an Operator and replacing converted values. By default, this will be
 
@@ -103,12 +103,12 @@ python_api_name: qiskit.opflow.converters.PauliBasisChange
 
     **Raises**
 
-    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Attempting to convert from non-Pauli origin.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Attempting to change a non-identity Pauli to an identity Pauli, or vice versa.
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – Attempting to convert from non-Pauli origin.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Attempting to change a non-identity Pauli to an identity Pauli, or vice versa.
 
     **Return type**
 
-    [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*PrimitiveOp*](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp"), [*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.pauli_op.PauliOp")]
+    [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple)\[[*PrimitiveOp*](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp"), [*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.pauli_op.PauliOp")]
   </Function>
 
   ### get\_diagonal\_pauli\_op
@@ -221,7 +221,7 @@ python_api_name: qiskit.opflow.converters.PauliBasisChange
 
     **Return type**
 
-    [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.pauli_op.PauliOp"), [*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.pauli_op.PauliOp")]
+    [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple)\[[*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.pauli_op.PauliOp"), [*PauliOp*](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.pauli_op.PauliOp")]
   </Function>
 
   ### statefn\_replacement\_fn

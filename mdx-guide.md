@@ -19,7 +19,6 @@ If your file will have non-trivial code in it, please create a Jupyter notebook 
 
 Add the file to these places:
 
-- The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits` AND the Tools section in the `_toc.json` file. Or, in the rare case that it doesn't belong on any of these pages, list it in `scripts/js/commands/checkPatternsIndex.ts` in the ALLOWLIST_MISSING_FROM_INDEX or the ALLOWLIST_MISSING_FROM_TOC section. For example, `"/guides/qiskit-code-assistant"`.
 - qiskit_bot.yaml. Everyone listed under the file name is notified any time the file is updated. If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes. For example, - "`@NoNotifications`"
 - The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension. If you want a "New" pill to appear next to the page in the side bar, add `"isNew": true` and `"isNewDate:"YYYY-MM-DD"`with the page's publish date to that page's entry.
   > [!NOTE]
@@ -374,4 +373,14 @@ Here's an example of what this might look like in your notebook source.
   "</Tabs>"
  ]
 }
+```
+
+### LeftColoredBar
+
+The `LeftColoredBar` component adds a colored bar that wraps all the content inside it. Currently we support two colors (`blue` and `purple`) that can be picked by using the `color` property:
+
+```md
+<LeftColoredBar color="blue">
+  You can use any MDX inside this component.
+</LeftColoredBar>
 ```

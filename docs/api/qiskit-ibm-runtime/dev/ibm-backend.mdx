@@ -8,8 +8,8 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
 # IBMBackend
 
-<Class id="qiskit_ibm_runtime.IBMBackend" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L62-L512" signature="IBMBackend(configuration, service, api_client, instance=None, calibration_id=None)" modifiers="class">
-  Bases: [`BackendV2`](/docs/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v2.3)")
+<Class id="qiskit_ibm_runtime.IBMBackend" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L78-L580" signature="IBMBackend(configuration, service, api_client, instance=None, calibration_id=None)" modifiers="class">
+  Bases: [`BackendV2`](/docs/api/qiskit/qiskit.providers.BackendV2)
 
   Backend class interfacing with an IBM Quantum backend.
 
@@ -33,7 +33,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   >
   > *   num\_qubits: number of qubits.
   >
-  > *   target: A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.3)") object for the backend.
+  > *   target: A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target) object for the backend.
   >
   > *   basis\_gates: list of basis gates names on the backend.
   >
@@ -140,7 +140,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### coupling\_map
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.coupling_map">
-    Return the [`CouplingMap`](/docs/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v2.3)") object
+    Return the [`CouplingMap`](/docs/api/qiskit/qiskit.transpiler.CouplingMap) object
   </Attribute>
 
   ### dt
@@ -176,7 +176,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### instruction\_durations
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.instruction_durations">
-    Return the [`InstructionDurations`](/docs/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v2.3)") object.
+    Return the [`InstructionDurations`](/docs/api/qiskit/qiskit.transpiler.InstructionDurations) object.
   </Attribute>
 
   ### instructions
@@ -222,7 +222,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### operations
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.operations">
-    A list of [`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v2.3)") instances that the backend supports.
+    A list of [`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction) instances that the backend supports.
   </Attribute>
 
   ### options
@@ -264,7 +264,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### target
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.target">
-    A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.3)") object for the backend.
+    A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target) object for the backend.
 
     **Returns**
 
@@ -303,7 +303,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   ### \_\_call\_\_
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.__call__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L442-L444" signature="__call__()">
+  <Function id="qiskit_ibm_runtime.IBMBackend.__call__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L510-L512" signature="__call__()">
     Call self as a function.
 
     **Return type**
@@ -313,12 +313,12 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   ### check\_faulty
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L446-L478" signature="check_faulty(circuit)">
+  <Function id="qiskit_ibm_runtime.IBMBackend.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L514-L546" signature="check_faulty(circuit)">
     Check if the input circuit uses faulty qubits or edges.
 
     **Parameters**
 
-    **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.3)")) – Circuit to check.
+    **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – Circuit to check.
 
     **Raises**
 
@@ -331,12 +331,12 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   ### configuration
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L413-L437" signature="configuration()">
+  <Function id="qiskit_ibm_runtime.IBMBackend.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L481-L505" signature="configuration()">
     Return the backend configuration.
 
     Backend configuration contains fixed information about the backend, such as its name, number of qubits, basis gates, coupling map, quantum volume, etc.
 
-    The schema for backend configuration can be found in [Qiskit/ibm-quantum-schemas/backend\_configuration](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json).
+    Information about backend configuration can be found in the [Get backend configuration REST API](/docs/api/qiskit-runtime-rest/tags/backends#tags__backends__operations__get_backend_configuration).
 
     More details about backend configuration properties can be found here [QasmBackendConfiguration](/docs/api/qiskit/1.4/qiskit.providers.models.QasmBackendConfiguration).
 
@@ -361,7 +361,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   ### get\_translation\_stage\_plugin
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.get_translation_stage_plugin" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L508-L512" signature="get_translation_stage_plugin()">
+  <Function id="qiskit_ibm_runtime.IBMBackend.get_translation_stage_plugin" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L576-L580" signature="get_translation_stage_plugin()">
     Return the default translation stage plugin name for IBM backends.
 
     **Return type**
@@ -371,12 +371,12 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   ### properties
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L333-L387" signature="properties(refresh=False, datetime=None)">
+  <Function id="qiskit_ibm_runtime.IBMBackend.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L401-L455" signature="properties(refresh=False, datetime=None)">
     Return the backend properties, subject to optional filtering.
 
     This data describes qubits properties (such as T1 and T2), gates properties (such as gate length and error), and other general properties of the backend.
 
-    The schema for backend properties can be found in [Qiskit/ibm-quantum-schemas/backend\_properties](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json).
+    Information about backend properties can be found in the [Get backend configuration REST API](/docs/api/qiskit-runtime-rest/tags/backends#tags__backends__operations__get_backend_configuration).
 
     **Parameters**
 
@@ -418,12 +418,12 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    [*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.3)") | *List*\[[*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.3)")]
+    [*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties) | *List*\[[*QubitProperties*](/docs/api/qiskit/qiskit.providers.QubitProperties)]
   </Function>
 
   ### refresh
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L320-L331" signature="refresh()">
+  <Function id="qiskit_ibm_runtime.IBMBackend.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L388-L399" signature="refresh()">
     Retrieve the newest backend configuration and refresh the current backend target.
 
     **Return type**
@@ -433,7 +433,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L496-L506" signature="run(*args, **kwargs)">
+  <Function id="qiskit_ibm_runtime.IBMBackend.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L564-L574" signature="run(*args, **kwargs)">
     **Raises**
 
     **IBMBackendError** – The run() method is no longer supported.
@@ -461,7 +461,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   ### status
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L389-L411" signature="status()">
+  <Function id="qiskit_ibm_runtime.IBMBackend.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L457-L479" signature="status()">
     Return the backend status.
 
     <Admonition title="Note" type="note">
@@ -481,10 +481,29 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     [*BackendStatus*](models-backend-status "qiskit_ibm_runtime.models.backend_status.BackendStatus")
   </Function>
 
+  ### submit
+
+  <Function id="qiskit_ibm_runtime.IBMBackend.submit" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L241-L291" signature="submit(program, options=None)">
+    Submit a quantum program for execution.
+
+    **Parameters**
+
+    *   **program** (*QuantumProgram*) – The program to execute.
+    *   **options** (*ExecutorOptions | None*) – Execution options.
+
+    **Returns**
+
+    A job.
+
+    **Return type**
+
+    [*RuntimeJobV2*](runtime-job-v2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")
+  </Function>
+
   ### target\_history
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.target_history" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L308-L318" signature="target_history(datetime=None)">
-    A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.3)") object for the backend.
+  <Function id="qiskit_ibm_runtime.IBMBackend.target_history" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L376-L386" signature="target_history(datetime=None)">
+    A [`qiskit.transpiler.Target`](/docs/api/qiskit/qiskit.transpiler.Target) object for the backend.
 
     **Returns**
 
@@ -496,7 +515,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    [*Target*](/docs/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.3)")
+    [*Target*](/docs/api/qiskit/qiskit.transpiler.Target)
   </Function>
 </Class>
 

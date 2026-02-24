@@ -127,6 +127,7 @@ export async function maybeUpdateReleaseNotesFolder(
 export async function determineReleaseNotesSeparetePagesVersions(
   pkgName: string,
   versionWithoutPatch: string,
+  isDev: boolean,
 ): Promise<string[]> {
   const versions = new Set(
     (await $`ls docs/api/${pkgName}/release-notes`.quiet()).stdout
@@ -135,7 +136,10 @@ export async function determineReleaseNotesSeparetePagesVersions(
       .map((x) => parse(x).name)
       .filter((x) => x.match(/^\d/)), // remove index
   );
-  versions.add(versionWithoutPatch);
+
+  // Dev versions don't include release notes
+  if (!isDev) versions.add(versionWithoutPatch);
+
   return Array.from(versions)
     .sort((a: string, b: string) => {
       const aParts = a.split(".").map((x) => Number(x));

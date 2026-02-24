@@ -57,7 +57,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
   **Parameters**
 
   *   **data** ([*StabilizerState*](#qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")  *|*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Data from which the stabilizer state can be constructed.
-  *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – validate that the stabilizer state data is a valid Clifford.
+  *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – validate that the stabilizer state data is a valid Clifford.
 
   ## Attributes
 
@@ -114,7 +114,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### evolve
@@ -125,7 +125,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
     **Parameters**
 
     *   **other** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The Clifford operator to evolve by.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – a list of stabilizer subsystem positions to apply the operator on.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – a list of stabilizer subsystem positions to apply the operator on.
 
     **Returns**
 
@@ -171,7 +171,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
     **Parameters**
 
     *   **oper** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – a Pauli operator to evaluate expval.
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to apply the operator on.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to apply the operator on.
 
     **Returns**
 
@@ -179,7 +179,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Return type**
 
-    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+    [complex](https://docs.python.org/3/library/functions.html#complex)
 
     **Raises**
 
@@ -193,9 +193,9 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Parameters**
 
-    *   **stabilizers** (*Collection\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – list of stabilizer strings
-    *   **allow\_redundant** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – allow redundant stabilizers (i.e., some stabilizers can be products of the others)
-    *   **allow\_underconstrained** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – allow underconstrained set of stabilizers (i.e., the stabilizers do not specify a unique state)
+    *   **stabilizers** (*Collection\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – list of stabilizer strings
+    *   **allow\_redundant** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – allow redundant stabilizers (i.e., some stabilizers can be products of the others)
+    *   **allow\_underconstrained** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – allow underconstrained set of stabilizers (i.e., the stabilizers do not specify a unique state)
 
     **Returns**
 
@@ -221,7 +221,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Parameters**
 
-    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
     **Returns**
 
@@ -231,7 +231,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)
   </Function>
 
   ### probabilities
@@ -243,8 +243,8 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Parameters**
 
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
     **Returns**
 
@@ -266,8 +266,8 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Parameters**
 
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
     **Returns**
 
@@ -275,7 +275,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)
   </Function>
 
   ### probabilities\_dict\_from\_bitstring
@@ -289,9 +289,9 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Parameters**
 
-    *   **outcome\_bitstring** (*None or* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – targeted outcome bitstring to perform a measurement calculation for, this will significantly reduce the number of calculation performed (Default: None)
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimal places to round values. If None no rounding is done (Default: None)
+    *   **outcome\_bitstring** (*None or* [*str*](https://docs.python.org/3/library/stdtypes.html#str)) – targeted outcome bitstring to perform a measurement calculation for, this will significantly reduce the number of calculation performed (Default: None)
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – the number of decimal places to round values. If None no rounding is done (Default: None)
 
     **Returns**
 
@@ -299,7 +299,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [float](https://docs.python.org/3/library/functions.html#float)]
   </Function>
 
   ### purity
@@ -313,7 +313,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Return type**
 
-    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+    [float](https://docs.python.org/3/library/functions.html#float)
 
     **Raises**
 
@@ -327,7 +327,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Parameters**
 
-    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
 
     **Returns**
 
@@ -349,8 +349,8 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Parameters**
 
-    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of samples to generate.
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of samples to generate.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
     **Returns**
 
@@ -374,8 +374,8 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Parameters**
 
-    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of samples to generate.
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of samples to generate.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
     **Returns**
 
@@ -441,7 +441,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
     **Return type**
 
-    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+    [float](https://docs.python.org/3/library/functions.html#float)
 
     **Raises**
 

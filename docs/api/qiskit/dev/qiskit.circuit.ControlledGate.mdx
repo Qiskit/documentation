@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
 # ControlledGate
 
-<Class id="qiskit.circuit.ControlledGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlledgate.py#L27-L273" signature="qiskit.circuit.ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None, *, _base_label=None)" modifiers="class">
+<Class id="qiskit.circuit.ControlledGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlledgate.py#L27-L275" signature="qiskit.circuit.ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None, *, _base_label=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Controlled unitary gate.
@@ -17,13 +17,13 @@ python_api_name: qiskit.circuit.ControlledGate
 
   **Parameters**
 
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The name of the gate.
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The number of qubits the gate acts on.
-  *   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – A list of parameters for the gate.
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – An optional label for the gate.
-  *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – Number of control qubits.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the gate.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits the gate acts on.
+  *   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – A list of parameters for the gate.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional label for the gate.
+  *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Number of control qubits.
   *   **definition** (*'QuantumCircuit' | None*) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
-  *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The control state in decimal or as a bitstring (e.g. ‘111’). If specified as a bitstring the length must equal num\_ctrl\_qubits, MSB on left. If None, use 2\*\*num\_ctrl\_qubits-1.
+  *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state in decimal or as a bitstring (e.g. ‘111’). If specified as a bitstring the length must equal num\_ctrl\_qubits, MSB on left. If None, use 2\*\*num\_ctrl\_qubits-1.
   *   **base\_gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| None*) – Gate object to be controlled.
 
   **Raises**
@@ -148,7 +148,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")
+    [int](https://docs.python.org/3/library/functions.html#int)
   </Attribute>
 
   ### num\_qubits
@@ -168,7 +168,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")
+    [list](https://docs.python.org/3/library/stdtypes.html#list)
 
     **Raises**
 
@@ -185,7 +185,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.ControlledGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L199-L256" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.ControlledGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L206-L263" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -220,8 +220,8 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Parameters**
 
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – List of quantum bit arguments.
-    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – List of classical bit arguments.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of classical bit arguments.
 
     **Returns**
 
@@ -233,12 +233,12 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.14)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")]]
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list), [list](https://docs.python.org/3/library/stdtypes.html#list)]]
   </Function>
 
   ### control
 
-  <Function id="qiskit.circuit.ControlledGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L105-L156" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.ControlledGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L105-L163" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return the controlled version of itself.
 
     The controlled gate is implemented as [`ControlledGate`](#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") when `annotated` is `False`, and as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") when `annotated` is `True`.
@@ -249,10 +249,10 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Number of controls to add. Defauls to `1`.
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – Optional gate label. Defaults to `None`. Ignored if the controlled gate is implemented as an annotated operation.
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)") *| None*) – Indicates whether the controlled gate should be implemented as a controlled gate or as an annotated operation. If `None`, treated as `False`.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add. Defaults to `1`.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Optional gate label. Defaults to `None`. Ignored if the controlled gate is implemented as an annotated operation.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – Indicates whether the controlled gate should be implemented as a controlled gate or as an annotated operation. If `None`, treated as `False`.
 
     **Returns**
 
@@ -260,7 +260,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `ctrl_state`.
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `num_ctrl_qubits` or `ctrl_state`.
   </Function>
 
   ### copy
@@ -270,7 +270,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Parameters**
 
-    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – name to be given to the copied circuit, if `None` then the name stays the same.
 
     **Returns**
 
@@ -283,12 +283,12 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### inverse
 
-  <Function id="qiskit.circuit.ControlledGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlledgate.py#L265-L273" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.ControlledGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlledgate.py#L267-L275" signature="inverse(annotated=False)">
     Invert this gate by calling inverse on the base gate.
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) –
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
 
     **Return type**
 
@@ -310,8 +310,8 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Parameters**
 
-    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – the power to raise the gate to
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
 
     **Returns**
 
@@ -325,11 +325,11 @@ python_api_name: qiskit.circuit.ControlledGate
   ### repeat
 
   <Function id="qiskit.circuit.ControlledGate.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L493-L523" signature="repeat(n)">
-    Creates an instruction with `self` repeated :math\`n\` times.
+    Creates an instruction with `self` repeated $n$ times.
 
     **Parameters**
 
-    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – Number of times to repeat the instruction
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of times to repeat the instruction
 
     **Returns**
 
@@ -377,7 +377,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### to\_matrix
@@ -408,7 +408,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.ControlledGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L258-L272" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.ControlledGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L265-L279" signature="validate_parameter(parameter)">
     Gate parameters should be int, float, or ParameterExpression
   </Function>
 </Class>

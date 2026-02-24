@@ -54,7 +54,7 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
   **Return type**
 
-  [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+  [str](https://docs.python.org/3/library/stdtypes.html#str)
 </Function>
 
 Both of these exporter functions are single-use wrappers around the main [`Exporter`](#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") class. For more complex exporting needs, including dumping multiple circuits in a single session, it may be more convenient or faster to use the complete interface.
@@ -62,13 +62,13 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 ### Exporter
 
 <Class id="qiskit.qasm3.Exporter" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/qasm3/exporter.py#L185-L277" signature="qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None, annotation_handlers=None, implicit_defcals=None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   QASM3 exporter main class.
 
   **Parameters**
 
-  *   **includes** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*]*) –
+  *   **includes** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) –
 
       the filenames that should be emitted as includes.
 
@@ -76,11 +76,11 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
           At present, only the standard-library file `stdgates.inc` is properly understood by the exporter, in the sense that it knows the gates it defines. You can specify other includes, but you will need to pass the names of the gates they define in the `basis_gates` argument to avoid the exporter outputting a separate `gate` definition.
         </Admonition>
 
-  *   **basis\_gates** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*]*) – the basic defined gate set of the backend.
+  *   **basis\_gates** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the basic defined gate set of the backend.
 
-  *   **disable\_constants** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – if `True`, always emit floating-point constants for numeric parameter values. If `False` (the default), then values close to multiples of OpenQASM 3 constants (`pi`, `euler`, and `tau`) will be emitted in terms of those constants instead, potentially improving accuracy in the output.
+  *   **disable\_constants** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if `True`, always emit floating-point constants for numeric parameter values. If `False` (the default), then values close to multiples of OpenQASM 3 constants (`pi`, `euler`, and `tau`) will be emitted in terms of those constants instead, potentially improving accuracy in the output.
 
-  *   **alias\_classical\_registers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) –
+  *   **alias\_classical\_registers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
 
       If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3.
 
@@ -90,19 +90,19 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
           A value for `allow_aliasing` overrides any value given here, and supersedes this parameter.
         </Admonition>
 
-  *   **allow\_aliasing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) –
+  *   **allow\_aliasing** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
 
       If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3. Defaults to `False` or the value of `alias_classical_registers`.
 
         <Admonition title="New in version 0.25.0." type="info" />
 
-  *   **indent** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – the indentation string to use for each level within an indented block. Can be set to the empty string to disable indentation.
+  *   **indent** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the indentation string to use for each level within an indented block. Can be set to the empty string to disable indentation.
 
   *   **experimental** ([*ExperimentalFeatures*](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures")) – any experimental features to enable during the export. See [`ExperimentalFeatures`](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures") for more details.
 
-  *   **annotation\_handlers** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*OpenQASM3Serializer*](circuit_annotation#qiskit.circuit.annotation.OpenQASM3Serializer "qiskit.circuit.annotation.OpenQASM3Serializer")*] | None*) – a mapping of namespaces to annotation serializers. When an [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") object is encountered, the most specific namespace in this mapping that matches the annotation’s [`namespace`](qiskit.circuit.Annotation#namespace "qiskit.circuit.Annotation.namespace") attribute will be used to serialize it.
+  *   **annotation\_handlers** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*OpenQASM3Serializer*](circuit_annotation#qiskit.circuit.annotation.OpenQASM3Serializer "qiskit.circuit.annotation.OpenQASM3Serializer")*] | None*) – a mapping of namespaces to annotation serializers. When an [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") object is encountered, the most specific namespace in this mapping that matches the annotation’s [`namespace`](qiskit.circuit.Annotation#namespace "qiskit.circuit.Annotation.namespace") attribute will be used to serialize it.
 
-  *   **implicit\_defcals** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*, DefcalInstruction] | None*) – mapping of [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name")s to an associated `DefcalInstruction` object. All instructions with the key name in the input circuit should be output as if there is a `defcal` statement corresponding to the given `DefcalInstruction` defined. The key name and the `DefcalInstruction.name` do not need to match. The `defcal` name cannot collide with an OpenQASM 3 keyword.
+  *   **implicit\_defcals** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, DefcalInstruction] | None*) – mapping of [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name")s to an associated `DefcalInstruction` object. All instructions with the key name in the input circuit should be output as if there is a `defcal` statement corresponding to the given `DefcalInstruction` defined. The key name and the `DefcalInstruction.name` do not need to match. The `defcal` name cannot collide with an OpenQASM 3 keyword.
 
   #### dump
 
@@ -136,7 +136,7 @@ The OpenQASM 3 language is still evolving as hardware capabilities improve, so t
 #### ExperimentalFeatures
 
 <Class id="qiskit.qasm3.ExperimentalFeatures" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/qasm3/experimental.py#L21-L70" signature="qiskit.qasm3.ExperimentalFeatures(value)" modifiers="class">
-  Bases: [`Flag`](https://docs.python.org/3/library/enum.html#enum.Flag "(in Python v3.14)")
+  Bases: [`Flag`](https://docs.python.org/3/library/enum.html#enum.Flag)
 
   Flags for experimental features that the OpenQASM 3 exporter supports.
 
@@ -236,9 +236,9 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
   **Parameters**
 
-  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – the filename to load the program from.
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – keyword argument which provides number of physical/virtual qubits.
-  *   **annotation\_handlers** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*annotation.OpenQASM3Serializer*](circuit_annotation#qiskit.circuit.annotation.OpenQASM3Serializer "qiskit.circuit.annotation.OpenQASM3Serializer")*] | None*) – a mapping whose keys are (parent) namespaces and values are serializers that can handle children of those namesapces. Requires `qiskit_qasm3_import>=0.6.0`.
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the filename to load the program from.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – keyword argument which provides number of physical/virtual qubits.
+  *   **annotation\_handlers** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*annotation.OpenQASM3Serializer*](circuit_annotation#qiskit.circuit.annotation.OpenQASM3Serializer "qiskit.circuit.annotation.OpenQASM3Serializer")*] | None*) – a mapping whose keys are (parent) namespaces and values are serializers that can handle children of those namesapces. Requires `qiskit_qasm3_import>=0.6.0`.
 
   **Returns**
 
@@ -284,9 +284,9 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
   **Parameters**
 
-  *   **program** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – the OpenQASM 3 program.
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – provides number of physical/virtual qubits.
-  *   **annotation\_handlers** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*annotation.OpenQASM3Serializer*](circuit_annotation#qiskit.circuit.annotation.OpenQASM3Serializer "qiskit.circuit.annotation.OpenQASM3Serializer")*] | None*) – a mapping whose keys are (parent) namespaces and values are serializers that can handle children of those namesapces. Requires `qiskit_qasm3_import>=0.6.0`.
+  *   **program** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the OpenQASM 3 program.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – provides number of physical/virtual qubits.
+  *   **annotation\_handlers** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*annotation.OpenQASM3Serializer*](circuit_annotation#qiskit.circuit.annotation.OpenQASM3Serializer "qiskit.circuit.annotation.OpenQASM3Serializer")*] | None*) – a mapping whose keys are (parent) namespaces and values are serializers that can handle children of those namesapces. Requires `qiskit_qasm3_import>=0.6.0`.
 
   **Returns**
 
@@ -299,7 +299,7 @@ Currently only two high-level functions are offered, as Qiskit support for impor
   **Raises**
 
   *   [**QASM3ImporterError**](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") – if the OpenQASM 3 file is invalid, or cannot be represented by a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – if number of qubits in qasm3\_ckt is more than num\_qubits.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if number of qubits in qasm3\_ckt is more than num\_qubits.
 
   <Admonition title="New in version 2.1" type="info">
     The `annotation_handlers` argument. This requires `qiskit_qasm3_import>=0.6.0`.
@@ -388,9 +388,9 @@ You can use the experimental interface immediately, with similar functions to th
 
   **Parameters**
 
-  *   **pathlike\_or\_filelike** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*os.PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.14)")  *|*[*io.TextIOBase*](https://docs.python.org/3/library/io.html#io.TextIOBase "(in Python v3.14)")) – the program source. This can either be given as a filepath, or an open text stream object. If the stream is already opened it is consumed in Python space, whereas filenames are opened and consumed in Rust space; there might be slightly different performance characteristics, depending on your system and how the streams are buffered by default.
+  *   **pathlike\_or\_filelike** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*os.PathLike*](https://docs.python.org/3/library/os.html#os.PathLike)  *|*[*io.TextIOBase*](https://docs.python.org/3/library/io.html#io.TextIOBase)) – the program source. This can either be given as a filepath, or an open text stream object. If the stream is already opened it is consumed in Python space, whereas filenames are opened and consumed in Rust space; there might be slightly different performance characteristics, depending on your system and how the streams are buffered by default.
   *   **custom\_gates** (*Iterable\[*[*CustomGate*](#qiskit.qasm3.CustomGate "qiskit.qasm3.CustomGate")*]*) – Python constructors to use for particular named gates. If not supplied, Qiskit will use its own standard-library constructors for gates defined in the OpenQASM 3.0 standard-library file `stdgates.inc`.
-  *   **include\_path** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*]*) – the path to search when resolving `include` statements. If not given, Qiskit will arrange for this to point to a location containing `stdgates.inc` only. Paths are tried in the sequence order.
+  *   **include\_path** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the path to search when resolving `include` statements. If not given, Qiskit will arrange for this to point to a location containing `stdgates.inc` only. Paths are tried in the sequence order.
 
   **Returns**
 
@@ -416,9 +416,9 @@ You can use the experimental interface immediately, with similar functions to th
 
   **Parameters**
 
-  *   **source** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – the program source in a Python string.
+  *   **source** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the program source in a Python string.
   *   **custom\_gates** (*Iterable\[*[*CustomGate*](#qiskit.qasm3.CustomGate "qiskit.qasm3.CustomGate")*]*) – Python constructors to use for particular named gates. If not supplied, Qiskit will use its own standard-library constructors for gates defined in the OpenQASM 3.0 standard-library file `stdgates.inc`.
-  *   **include\_path** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*]*) – the path to search when resolving `include` statements. If not given, Qiskit will arrange for this to point to a location containing `stdgates.inc` only. Paths are tried in the sequence order.
+  *   **include\_path** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the path to search when resolving `include` statements. If not given, Qiskit will arrange for this to point to a location containing `stdgates.inc` only. Paths are tried in the sequence order.
 
   **Returns**
 
@@ -447,7 +447,7 @@ These two functions allow for specifying include paths as an iterable of paths, 
 #### CustomGate
 
 <Class id="qiskit.qasm3.CustomGate" signature="qiskit.qasm3.CustomGate" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Information received from Python space about how to construct a Python-space object to represent a given gate that might be declared.
 

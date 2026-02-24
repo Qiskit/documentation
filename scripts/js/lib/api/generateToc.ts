@@ -80,7 +80,11 @@ function getModulesAndItems(
   // However, C does not have modules.
   const modules = options.isCApi
     ? resultsWithName
-    : resultsWithName.filter((result) => result.meta.apiType === "module");
+    : resultsWithName.filter(
+        (result) =>
+          result.meta.apiType === "module" ||
+          result.meta.apiType === "syntheticModule",
+      );
   const items = resultsWithName.filter(
     (result) =>
       result.meta.apiType &&

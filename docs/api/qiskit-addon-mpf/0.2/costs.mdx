@@ -21,7 +21,7 @@ This module provides a number of optimization problem generator functions, each 
 ### LSE
 
 <Class id="qiskit_addon_mpf.costs.LSE" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/costs/lse.py#L23-L73" signature="LSE(A, b)" modifiers="class">
-  Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple "(in Python v3.13)")
+  Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
 
   A `namedtuple` representing a linear system of equations.
 
@@ -33,8 +33,8 @@ $$
 
   **Parameters**
 
-  *   **A** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
-  *   **b** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
+  *   **A** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray))
+  *   **b** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray))
 
   #### A
 
@@ -73,18 +73,18 @@ $$
 
     **Raises**
 
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – if this LSE is parameterized with unassigned values.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – if this LSE does not include a row ensuring that $\sum_i x_i == 1$ which is a requirement for valid MPF coefficients.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if this LSE is parameterized with unassigned values.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if this LSE does not include a row ensuring that $\sum_i x_i == 1$ which is a requirement for valid MPF coefficients.
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
   </Function>
 
   #### x
 
   <Attribute id="qiskit_addon_mpf.costs.LSE.x" attributeTypeHint="Variable">
-    Returns the \$x\$ [`Variable`](https://www.cvxpy.org/api_reference/cvxpy.expressions.html#cvxpy.expressions.variable.Variable "(in CVXPY v1.6)").
+    Returns the \$x\$ [`Variable`](https://www.cvxpy.org/api_reference/cvxpy.expressions.html#cvxpy.expressions.variable.Variable).
   </Attribute>
 </Class>
 
@@ -93,7 +93,7 @@ $$
 ### setup\_exact\_problem
 
 <Function id="qiskit_addon_mpf.costs.setup_exact_problem" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/costs/exact.py#L22-L74" signature="setup_exact_problem(lse)">
-  Construct a [`cvxpy.Problem`](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.6)") for finding the exact MPF coefficients.
+  Construct a [`cvxpy.Problem`](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem) for finding the exact MPF coefficients.
 
   <Admonition title="Note" type="note">
     The coefficients found via this optimization problem will be identical to the analytical ones obtained from the [`LSE.solve()`](#qiskit_addon_mpf.costs.LSE.solve "qiskit_addon_mpf.costs.LSE.solve") method. This additional interface exists to highlight the parallel to the other cost functions provided by this module. It also serves educational purposes for how to approach optimization problems targeting MPF coefficients.
@@ -101,7 +101,7 @@ $$
 
   The optimization problem constructed by this function is defined as follows:
 
-  *   the cost function minimizes the L1-norm ([`norm1`](https://www.cvxpy.org/api_reference/cvxpy.atoms.other_atoms.html#cvxpy.atoms.norm1.norm1 "(in CVXPY v1.6)")) of the variables ([`LSE.x`](#qiskit_addon_mpf.costs.LSE.x "qiskit_addon_mpf.costs.LSE.x"))
+  *   the cost function minimizes the L1-norm ([`norm1`](https://www.cvxpy.org/api_reference/cvxpy.atoms.other_atoms.html#cvxpy.atoms.norm1.norm1)) of the variables ([`LSE.x`](#qiskit_addon_mpf.costs.LSE.x "qiskit_addon_mpf.costs.LSE.x"))
 
   *   the constraints correspond to each equation of the [`LSE`](#qiskit_addon_mpf.costs.LSE "qiskit_addon_mpf.costs.LSE"):
 
@@ -141,7 +141,7 @@ $$
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Problem*](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.6)"), [*Variable*](https://www.cvxpy.org/api_reference/cvxpy.expressions.html#cvxpy.expressions.variable.Variable "(in CVXPY v1.6)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Problem*](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem), [*Variable*](https://www.cvxpy.org/api_reference/cvxpy.expressions.html#cvxpy.expressions.variable.Variable)]
 
   **References**
 
@@ -153,11 +153,11 @@ $$
 ### setup\_sum\_of\_squares\_problem
 
 <Function id="qiskit_addon_mpf.costs.setup_sum_of_squares_problem" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/costs/sum_of_squares.py#L22-L77" signature="setup_sum_of_squares_problem(lse, *, max_l1_norm=10.0)">
-  Construct a [`cvxpy.Problem`](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.6)") for finding approximate MPF coefficients.
+  Construct a [`cvxpy.Problem`](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem) for finding approximate MPF coefficients.
 
   The optimization problem constructed by this function is defined as follows:
 
-  *   the cost function minimizes the sum of squares ([`sum_squares()`](https://www.cvxpy.org/api_reference/cvxpy.atoms.other_atoms.html#cvxpy.atoms.sum_squares.sum_squares "(in CVXPY v1.6)")) of the distances to an exact solution for all equations of the [`LSE`](#qiskit_addon_mpf.costs.LSE "qiskit_addon_mpf.costs.LSE"):
+  *   the cost function minimizes the sum of squares ([`sum_squares()`](https://www.cvxpy.org/api_reference/cvxpy.atoms.other_atoms.html#cvxpy.atoms.sum_squares.sum_squares)) of the distances to an exact solution for all equations of the [`LSE`](#qiskit_addon_mpf.costs.LSE "qiskit_addon_mpf.costs.LSE"):
 
 $$
 \sum_i \left( \sum_j A_{ij} x_j - b_i \right)^2
@@ -166,7 +166,7 @@ $$
   *   two constraints are set:
 
       1.  the variables must sum to 1: $\sum_i x_i == 1$
-      2.  the L1-norm ([`norm1`](https://www.cvxpy.org/api_reference/cvxpy.atoms.other_atoms.html#cvxpy.atoms.norm1.norm1 "(in CVXPY v1.6)")) of the variables is bounded by `max_l1_norm`
+      2.  the L1-norm ([`norm1`](https://www.cvxpy.org/api_reference/cvxpy.atoms.other_atoms.html#cvxpy.atoms.norm1.norm1)) of the variables is bounded by `max_l1_norm`
 
   Here is an example:
 
@@ -194,7 +194,7 @@ $$
   **Parameters**
 
   *   **lse** ([*LSE*](#qiskit_addon_mpf.costs.LSE "qiskit_addon_mpf.costs.lse.LSE")) – the linear system of equations from which to build the model.
-  *   **max\_l1\_norm** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the upper limit to use for the constrain of the L1-norm of the variables.
+  *   **max\_l1\_norm** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the upper limit to use for the constrain of the L1-norm of the variables.
 
   **Returns**
 
@@ -202,7 +202,7 @@ $$
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Problem*](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.6)"), [*Variable*](https://www.cvxpy.org/api_reference/cvxpy.expressions.html#cvxpy.expressions.variable.Variable "(in CVXPY v1.6)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Problem*](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem), [*Variable*](https://www.cvxpy.org/api_reference/cvxpy.expressions.html#cvxpy.expressions.variable.Variable)]
 
   **References**
 
@@ -214,7 +214,7 @@ $$
 ### setup\_frobenius\_problem
 
 <Function id="qiskit_addon_mpf.costs.setup_frobenius_problem" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/costs/frobenius.py#L22-L126" signature="setup_frobenius_problem(lse, *, max_l1_norm=10.0)">
-  Construct a [`cvxpy.Problem`](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.6)") for finding approximate MPF coefficients.
+  Construct a [`cvxpy.Problem`](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem) for finding approximate MPF coefficients.
 
   The optimization problem constructed by this function is defined as follows:
 
@@ -235,7 +235,7 @@ $$
   *   two constraints are set:
 
       1.  the variables must sum to 1: $\sum_i x_i == 1$
-      2.  the L1-norm ([`norm1`](https://www.cvxpy.org/api_reference/cvxpy.atoms.other_atoms.html#cvxpy.atoms.norm1.norm1 "(in CVXPY v1.6)")) of the variables is bounded by `max_l1_norm`
+      2.  the L1-norm ([`norm1`](https://www.cvxpy.org/api_reference/cvxpy.atoms.other_atoms.html#cvxpy.atoms.norm1.norm1)) of the variables is bounded by `max_l1_norm`
 
   Below is an example which uses the `lse` object constructed in the example for [`setup_dynamic_lse()`](dynamic#setup_dynamic_lse "qiskit_addon_mpf.dynamic.setup_dynamic_lse").
 
@@ -260,7 +260,7 @@ $$
   **Parameters**
 
   *   **lse** ([*LSE*](#qiskit_addon_mpf.costs.LSE "qiskit_addon_mpf.costs.lse.LSE")) – the linear system of equations from which to build the model.
-  *   **max\_l1\_norm** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the upper limit to use for the constrain of the L1-norm of the variables.
+  *   **max\_l1\_norm** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the upper limit to use for the constrain of the L1-norm of the variables.
 
   **Returns**
 
@@ -268,7 +268,7 @@ $$
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Problem*](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.6)"), [*Variable*](https://www.cvxpy.org/api_reference/cvxpy.expressions.html#cvxpy.expressions.variable.Variable "(in CVXPY v1.6)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Problem*](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem), [*Variable*](https://www.cvxpy.org/api_reference/cvxpy.expressions.html#cvxpy.expressions.variable.Variable)]
 
   **References**
 

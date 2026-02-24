@@ -26,9 +26,9 @@ python_api_name: qiskit.utils
   **Parameters**
 
   *   **func** (*Callable*) – The function to modify.
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The full deprecation message.
-  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The version the deprecation started at.
-  *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Is the deprecation still pending?
+  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The full deprecation message.
+  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The version the deprecation started at.
+  *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Is the deprecation still pending?
 
   **Return type**
 
@@ -44,15 +44,15 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the deprecated argument.
-  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
-  *   **deprecation\_description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – What is being deprecated? E.g. “Setting my\_func()’s my\_arg argument to None.” If not set, will default to “\{func\_name}’s argument \{name}”.
-  *   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Put here any additional information, such as what to use instead (if new\_alias is not set). For example, “Instead, use the argument new\_arg, which is similar but does not impact the circuit’s setup.”
-  *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Set to True if the deprecation is still pending.
-  *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The PyPI package name, e.g. “qiskit-nature”.
-  *   **new\_alias** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – If the arg has simply been renamed, set this to the new name. The decorator will dynamically update the kwargs so that when the user sets the old arg, it will be passed in as the new\_alias arg.
-  *   **predicate** (*Callable\[\[Any],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*] | None*) – Only log the runtime warning if the predicate returns True. This is useful to deprecate certain values or types for an argument, e.g. lambda my\_arg: isinstance(my\_arg, dict). Regardless of if a predicate is set, the runtime warning will only log when the user specifies the argument.
-  *   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the deprecated argument.
+  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
+  *   **deprecation\_description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – What is being deprecated? E.g. “Setting my\_func()’s my\_arg argument to None.” If not set, will default to “\{func\_name}’s argument \{name}”.
+  *   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Put here any additional information, such as what to use instead (if new\_alias is not set). For example, “Instead, use the argument new\_arg, which is similar but does not impact the circuit’s setup.”
+  *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Set to True if the deprecation is still pending.
+  *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The PyPI package name, e.g. “qiskit-nature”.
+  *   **new\_alias** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – If the arg has simply been renamed, set this to the new name. The decorator will dynamically update the kwargs so that when the user sets the old arg, it will be passed in as the new\_alias arg.
+  *   **predicate** (*Callable\[\[Any],* [*bool*](https://docs.python.org/3/library/functions.html#bool)*] | None*) – Only log the runtime warning if the predicate returns True. This is useful to deprecate certain values or types for an argument, e.g. lambda my\_arg: isinstance(my\_arg, dict). Regardless of if a predicate is set, the runtime warning will only log when the user specifies the argument.
+  *   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
 
   **Returns**
 
@@ -70,9 +70,9 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **kwarg\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None]*) – A dictionary of the old argument name to the new name.
-  *   **category** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Warning*](https://docs.python.org/3/library/exceptions.html#Warning "(in Python v3.13)")*]*) – Usually either DeprecationWarning or PendingDeprecationWarning.
-  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The version the deprecation started at. Only Optional for backwards compatibility - this should always be set. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
+  *   **kwarg\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None]*) – A dictionary of the old argument name to the new name.
+  *   **category** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Warning*](https://docs.python.org/3/library/exceptions.html#Warning)*]*) – Usually either DeprecationWarning or PendingDeprecationWarning.
+  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The version the deprecation started at. Only Optional for backwards compatibility - this should always be set. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
 
   **Returns**
 
@@ -94,13 +94,13 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update `since` to the new version.
-  *   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Put here any additional information, such as what to use instead. For example, “Instead, use the function `new_func` from the module `<my_module>.<my_submodule>`, which is similar but uses GPU acceleration.”
-  *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Set to `True` if the deprecation is still pending.
-  *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The PyPI package name, e.g. “qiskit-nature”.
-  *   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
-  *   **is\_property** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If the deprecated function is a @property, set this to True so that the generated message correctly describes it as such. (This isn’t necessary for property setters, as their docstring is ignored by Python.)
-  *   **stacklevel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Stack level passed to [`warnings.warn()`](https://docs.python.org/3/library/warnings.html#warnings.warn "(in Python v3.13)").
+  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update `since` to the new version.
+  *   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Put here any additional information, such as what to use instead. For example, “Instead, use the function `new_func` from the module `<my_module>.<my_submodule>`, which is similar but uses GPU acceleration.”
+  *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Set to `True` if the deprecation is still pending.
+  *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The PyPI package name, e.g. “qiskit-nature”.
+  *   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
+  *   **is\_property** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If the deprecated function is a @property, set this to True so that the generated message correctly describes it as such. (This isn’t necessary for property setters, as their docstring is ignored by Python.)
+  *   **stacklevel** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Stack level passed to [`warnings.warn()`](https://docs.python.org/3/library/warnings.html#warnings.warn).
 
   **Returns**
 
@@ -118,10 +118,10 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Warning message to emit.
-  *   **stacklevel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The warning stacklevel to use, defaults to 2.
-  *   **category** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Warning*](https://docs.python.org/3/library/exceptions.html#Warning "(in Python v3.13)")*]*) – Usually either DeprecationWarning or PendingDeprecationWarning.
-  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The version the deprecation started at. Only Optional for backwards compatibility - this should always be set. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
+  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Warning message to emit.
+  *   **stacklevel** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The warning stacklevel to use, defaults to 2.
+  *   **category** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Warning*](https://docs.python.org/3/library/exceptions.html#Warning)*]*) – Usually either DeprecationWarning or PendingDeprecationWarning.
+  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The version the deprecation started at. Only Optional for backwards compatibility - this should always be set. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
 
   **Returns**
 
@@ -141,8 +141,8 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The number to apply prefix to.
-  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – String prefix.
+  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The number to apply prefix to.
+  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – String prefix.
 
   **Returns**
 
@@ -150,7 +150,7 @@ python_api_name: qiskit.utils
 
   **Return type**
 
-  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") | [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+  [float](https://docs.python.org/3/library/functions.html#float) | [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
 
   <Admonition title="Note" type="note">
     This may induce tiny value error due to internal representation of float object. See [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) for details.
@@ -158,16 +158,16 @@ python_api_name: qiskit.utils
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the `units` aren’t recognized.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the `units` aren’t recognized.
 
   **Parameters**
 
-  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) –
-  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) –
+  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) –
 
   **Return type**
 
-  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") | [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+  [float](https://docs.python.org/3/library/functions.html#float) | [ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
 </Function>
 
 ### detach\_prefix
@@ -187,8 +187,8 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The number to find prefix.
-  *   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Optional. An arbitrary integer number to represent a precision of the value. If specified, it tries to round the mantissa and adjust the prefix to rounded value. For example, 999\_999.91 will become 999.9999 k with `decimal=4`, while 1.0 M with `decimal=3` or less.
+  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The number to find prefix.
+  *   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Optional. An arbitrary integer number to represent a precision of the value. If specified, it tries to round the mantissa and adjust the prefix to rounded value. For example, 999\_999.91 will become 999.9999 k with `decimal=4`, while 1.0 M with `decimal=3` or less.
 
   **Returns**
 
@@ -196,7 +196,7 @@ python_api_name: qiskit.utils
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[float](https://docs.python.org/3/library/functions.html#float), [str](https://docs.python.org/3/library/stdtypes.html#str)]
 
   <Admonition title="Note" type="note">
     This may induce tiny value error due to internal representation of float object. See [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) for details.
@@ -204,17 +204,17 @@ python_api_name: qiskit.utils
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the `value` is out of range.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the `value` is not real number.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the `value` is out of range.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the `value` is not real number.
 
   **Parameters**
 
-  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
-  *   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
+  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float)) –
+  *   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) –
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[float](https://docs.python.org/3/library/functions.html#float), [str](https://docs.python.org/3/library/stdtypes.html#str)]
 </Function>
 
 ## Class tools
@@ -230,14 +230,14 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **cls** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.13)")) – the class to modify.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the name of the method on the class to wrap.
-  *   **before** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)") *| None*) – a callable that should be called before the method that is being wrapped.
-  *   **after** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)") *| None*) – a callable that should be called after the method that is being wrapped.
+  *   **cls** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type)) – the class to modify.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the name of the method on the class to wrap.
+  *   **before** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable) *| None*) – a callable that should be called before the method that is being wrapped.
+  *   **after** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable) *| None*) – a callable that should be called after the method that is being wrapped.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – if the named method is not defined on the class or any parent class.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if the named method is not defined on the class or any parent class.
 </Function>
 
 ## Multiprocessing
@@ -255,7 +255,7 @@ python_api_name: qiskit.utils
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+  [dict](https://docs.python.org/3/library/stdtypes.html#dict)
 </Function>
 
 ### is\_main\_process
@@ -264,7 +264,7 @@ python_api_name: qiskit.utils
   Checks whether the current process is the main one
 </Function>
 
-A helper function for calling a custom function with Python [`ProcessPoolExecutor`](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor "(in Python v3.13)"). Tasks can be executed in parallel using this function.
+A helper function for calling a custom function with Python [`ProcessPoolExecutor`](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor). Tasks can be executed in parallel using this function.
 
 ### parallel\_map
 
@@ -281,9 +281,9 @@ A helper function for calling a custom function with Python [`ProcessPoolExecuto
 
   *   **task** (*func*) – Function that is to be called for each value in `values`.
   *   **values** (*array\_like*) – List or array of values for which the `task` function is to be evaluated.
-  *   **task\_args** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Optional additional arguments to the `task` function.
-  *   **task\_kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – Optional additional keyword argument to the `task` function.
-  *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of processes to spawn.
+  *   **task\_args** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – Optional additional arguments to the `task` function.
+  *   **task\_kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – Optional additional keyword argument to the `task` function.
+  *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of processes to spawn.
 
   **Returns**
 
@@ -526,7 +526,7 @@ from qiskit.utils import LazyImportTester
 #### LazyDependencyManager
 
 <Class id="qiskit.utils.LazyDependencyManager" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/utils/lazy_tester.py#L44-L238" signature="qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   A mananger for some optional features that are expensive to import, or to verify the existence of.
 
@@ -572,7 +572,7 @@ from qiskit.utils import LazyImportTester
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ##### disable\_locally
@@ -588,7 +588,7 @@ from qiskit.utils import LazyImportTester
 
     **Parameters**
 
-    **feature\_or\_callable** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *or Callable*) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_call` as opposed to `@HAS_X.require_in_call("my feature")`), then the feature name will be taken to be the function name, or class and method name as appropriate.
+    **feature\_or\_callable** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *or Callable*) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_call` as opposed to `@HAS_X.require_in_call("my feature")`), then the feature name will be taken to be the function name, or class and method name as appropriate.
 
     **Returns**
 
@@ -606,7 +606,7 @@ from qiskit.utils import LazyImportTester
 
     **Parameters**
 
-    **feature\_or\_class** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *or*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_instance` as opposed to `@HAS_X.require_in_instance("my feature")`), then the feature name will be taken as the name of the class.
+    **feature\_or\_class** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *or*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_instance` as opposed to `@HAS_X.require_in_instance("my feature")`), then the feature name will be taken as the name of the class.
 
     **Returns**
 
@@ -624,7 +624,7 @@ from qiskit.utils import LazyImportTester
 
     **Parameters**
 
-    **feature** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the name of the feature that is requiring these dependencies.
+    **feature** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the name of the feature that is requiring these dependencies.
 
     **Raises**
 
@@ -641,15 +641,15 @@ from qiskit.utils import LazyImportTester
 
   **Parameters**
 
-  *   **name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]] |* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*], None] | None*) –
-  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]] |* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) –
+  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
+  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – if no modules are given.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if no modules are given.
 </Class>
 
 #### LazySubprocessTester
@@ -661,14 +661,14 @@ from qiskit.utils import LazyImportTester
 
   **Parameters**
 
-  *   **command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*], None] | None*) –
-  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) –
+  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
+  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – if an empty command is given.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if an empty command is given.
 </Class>
 
