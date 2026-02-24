@@ -33,11 +33,11 @@ The configuration for the VF2 layout passes. This is an encapsulated configurati
 <Function id="qk_vf2_layout_configuration_free" signature="void qk_vf2_layout_configuration_free(QkVF2LayoutConfiguration *config)">
   Free a `QkVf2LayoutConfiguration` object.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md250" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md252" />
 
   #### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md250" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md252" />
 
   Behavior is undefined if `config` is a non-null pointer, but does not point to a valid, aligned `QkVF2LayoutConfiguration` object.
 
@@ -53,11 +53,11 @@ The configuration for the VF2 layout passes. This is an encapsulated configurati
 
   The VF2 algorithm keeps track of the number of steps it has taken, and terminates when it reaches the limit. After the first match is found, the limit swaps from the “before” limit to the “after” limit without resetting the number of steps taken.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md251" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md253" />
 
   #### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md251" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md253" />
 
   Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
 
@@ -75,11 +75,11 @@ The configuration for the VF2 layout passes. This is an encapsulated configurati
 
   This is not a hard limit; it is only checked when an improved layout is encountered. Using this option also makes the pass non-deterministic. It is generally recommended to use `qk_vf2_layout_configuration_set_call_limit` instead.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md252" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md254" />
 
   #### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md252" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md254" />
 
   Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
 
@@ -96,11 +96,11 @@ The configuration for the VF2 layout passes. This is an encapsulated configurati
 
   Since the VF2 search tree is pruned on-the-fly based on scoring in the `QkTarget`, this limit is not especially powerful. See `qk_vf2_layout_configuration_set_call_limit` for a tighter bound.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md253" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md255" />
 
   #### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md253" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md255" />
 
   Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
 
@@ -119,11 +119,11 @@ The configuration for the VF2 layout passes. This is an encapsulated configurati
 
   If this function was not called, no node shuffling takes place.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md254" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md256" />
 
   #### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md254" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md256" />
 
   Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `QkVF2LayoutConfiguration`.
 
@@ -140,11 +140,11 @@ The configuration for the VF2 layout passes. This is an encapsulated configurati
 
   You typically want to set this `true` if you are using the VF2 passes to improve a circuit that is already lowered to hardware, in order to set a baseline for the score-based pruning. If not, you can leave this as `false` (the default), to avoid a calculation that likely will not have any impact.
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md255" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md257" />
 
   #### Safety
 
-  <span id="group__QkVF2LayoutConfiguration_1autotoc_md255" />
+  <span id="group__QkVF2LayoutConfiguration_1autotoc_md257" />
 
   Behavior is undefined if `config` is not a valid, aligned, non-null pointer to a `VF2LayoutConfiguration`.
 
@@ -171,11 +171,11 @@ When running the `qk_transpiler_pass_standalone_vf2_layout` function it returns 
 
   A `true` value includes the situation where the configuration specified to try the “trivial” layout and it was found to be the best (and consequently no qubit relabelling is necessary, other than ancilla expansion if appropriate). See `qk_vf2_layout_result_has_improvement` to distinguish whether an explicit remapping is stored.
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md245" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md247" />
 
   ##### Safety
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md245" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md247" />
 
   Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`.
 
@@ -193,11 +193,11 @@ When running the `qk_transpiler_pass_standalone_vf2_layout` function it returns 
 <Function id="qk_vf2_layout_result_has_improvement" signature="bool qk_vf2_layout_result_has_improvement(const QkVF2LayoutResult *layout)">
   Check whether the result is an improvement to the trivial layout.
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md246" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md248" />
 
   ##### Safety
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md246" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md248" />
 
   Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult`.
 
@@ -215,11 +215,11 @@ When running the `qk_transpiler_pass_standalone_vf2_layout` function it returns 
 <Function id="qk_vf2_layout_result_map_virtual_qubit" signature="uint32_t qk_vf2_layout_result_map_virtual_qubit(const QkVF2LayoutResult *layout, uint32_t qubit)">
   Get the physical qubit for a given virtual qubit
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md247" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md249" />
 
   ##### Safety
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md247" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md249" />
 
   Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2LayoutResult` containing a result, or if the qubit is out of range for the initial circuit.
 
@@ -238,7 +238,7 @@ When running the `qk_transpiler_pass_standalone_vf2_layout` function it returns 
 <Function id="qk_vf2_layout_result_free" signature="void qk_vf2_layout_result_free(QkVF2LayoutResult *layout)">
   Free a `QkVF2LayoutResult` object
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md248" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md250" />
 
   ##### Example
 
@@ -246,11 +246,11 @@ When running the `qk_transpiler_pass_standalone_vf2_layout` function it returns 
   QkCircuit *qc = qk_circuit_new(1, 0);
   ```
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md249" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md251" />
 
   ##### Safety
 
-  <span id="group__QkVF2LayoutResult_1autotoc_md249" />
+  <span id="group__QkVF2LayoutResult_1autotoc_md251" />
 
   Behavior is undefined if `layout` is not a valid, non-null pointer to a `QkVF2Layout`.
 

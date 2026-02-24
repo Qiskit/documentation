@@ -28,13 +28,13 @@ python_api_name: qiskit.transpiler.StagedPassManager
     For backwards compatibility the relative positioning of these default stages will remain stable moving forward. However, new stages may be added to the default stage list in between current stages. For example, in a future release a new phase, something like `logical_optimization`, could be added immediately after the existing `init` stage in the default stage list. This would preserve compatibility for pre-existing `StagedPassManager` users as the relative positions of the stage are preserved so the behavior will not change between releases.
   </Admonition>
 
-  These stages will be executed in order and any stage set to `None` will be skipped. If a stage is provided multiple times (i.e. at diferent relative positions), the associated passes, including pre and post, will run once per declaration. If a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") input is being used for more than 1 stage here (for example in the case of a `Pass` that covers both Layout and Routing) you will want to set that to the earliest stage in sequence that it covers.
+  These stages will be executed in order and any stage set to `None` will be skipped. If a stage is provided multiple times (i.e. at different relative positions), the associated passes, including pre and post, will run once per declaration. If a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") input is being used for more than 1 stage here (for example in the case of a `Pass` that covers both Layout and Routing) you will want to set that to the earliest stage in sequence that it covers.
 
   Initialize a new StagedPassManager object
 
   **Parameters**
 
-  *   **stages** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – An optional list of stages to use for this instance. If this is not specified the default stages list `['init', 'layout', 'routing', 'translation', 'optimization', 'scheduling']` is used. After instantiation, the final list will be immutable and stored as tuple. If a stage is provided multiple times (i.e. at diferent relative positions), the associated passes, including pre and post, will run once per declaration.
+  *   **stages** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – An optional list of stages to use for this instance. If this is not specified the default stages list `['init', 'layout', 'routing', 'translation', 'optimization', 'scheduling']` is used. After instantiation, the final list will be immutable and stored as tuple. If a stage is provided multiple times (i.e. at different relative positions), the associated passes, including pre and post, will run once per declaration.
   *   **kwargs** – The initial [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") values for any stages defined in `stages`. If a argument is not defined the stages will default to `None` indicating an empty/undefined stage.
 
   **Raises**

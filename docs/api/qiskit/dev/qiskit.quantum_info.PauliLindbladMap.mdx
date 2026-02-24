@@ -21,7 +21,7 @@ $$
 \Lambda\bigl[\circ\bigr] = \exp\left(\sum_{P \in K} \lambda_P (P \circ P - \circ)\right)
 $$
 
-  where $K$ is a subset of $n$-qubit Pauli operators, and the rates, or coefficients, $\lambda_P$ are real numbers. When all the rates $\lambda_P$ are non-negative, this corresponds to a completely positive and trace preserving map. The sum in the exponential is called the generator, and each individual term the generators. To simplify notation in the rest of the documention, we denote $L(P)\bigl[\circ\bigr] = P \circ P - \circ$.
+  where $K$ is a subset of $n$-qubit Pauli operators, and the rates, or coefficients, $\lambda_P$ are real numbers. When all the rates $\lambda_P$ are non-negative, this corresponds to a completely positive and trace preserving map. The sum in the exponential is called the generator, and each individual term the generators. To simplify notation in the rest of the documentation, we denote $L(P)\bigl[\circ\bigr] = P \circ P - \circ$.
 
   ## Quasi-probability representation
 
@@ -213,7 +213,7 @@ $$
   <Function id="qiskit.quantum_info.PauliLindbladMap.clear" signature="clear()">
     Clear all the generator terms from this map, making it equal to the identity map again.
 
-    This does not change the capacity of the internal allocations, so subsequent addition or substraction operations resulting from composition may not need to reallocate.
+    This does not change the capacity of the internal allocations, so subsequent addition or subtraction operations resulting from composition may not need to reallocate.
 
     **Examples**
 
@@ -654,12 +654,12 @@ $$
   ### simplify
 
   <Function id="qiskit.quantum_info.PauliLindbladMap.simplify" signature="simplify(tol=1e-08)">
-    Sum any like terms in the generator, removing them if the resulting rate has an absolute value within tolerance of zero. This also removes terms whose Pauli operator is proportional to the identity, as the correponding generator is actually the zero map.
+    Sum any like terms in the generator, removing them if the resulting rate has an absolute value within tolerance of zero. This also removes terms whose Pauli operator is proportional to the identity, as the corresponding generator is actually the zero map.
 
     As a side effect, this sorts the generators into a fixed canonical order.
 
     <Admonition title="Note" type="note">
-      When using this for equality comparisons, note that floating-point rounding and the non-associativity fo floating-point addition may cause non-zero coefficients of summed terms to compare unequal. To compare two observables up to a tolerance, it is safest to compare the canonicalized difference of the two observables to zero.
+      When using this for equality comparisons, note that floating-point rounding and the non-associativity of floating-point addition may cause non-zero coefficients of summed terms to compare unequal. To compare two observables up to a tolerance, it is safest to compare the canonicalized difference of the two observables to zero.
     </Admonition>
 
     **Parameters**

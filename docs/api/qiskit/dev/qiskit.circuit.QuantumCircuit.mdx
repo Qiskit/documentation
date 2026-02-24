@@ -661,7 +661,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
     [QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
   </Function>
 
-  Similarly, if you want a circuit that contains all the same data objects (bits, registers, variables, etc) but with none of the instructions, you can use [`copy_empty_like()`](#qiskit.circuit.QuantumCircuit.copy_empty_like "qiskit.circuit.QuantumCircuit.copy_empty_like"). This is quite common when you want to build up a new layer of a circuit to then use apply onto the back with [`compose()`](#qiskit.circuit.QuantumCircuit.compose "qiskit.circuit.QuantumCircuit.compose"), or to do a full rewrite of a circuit’s instructions.
+  Similarly, if you want a circuit that contains all the same data objects (bits, registers, variables, etc) but with none of the instructions, you can use [`copy_empty_like()`](#qiskit.circuit.QuantumCircuit.copy_empty_like "qiskit.circuit.QuantumCircuit.copy_empty_like"). This is quite common when you want to build up a new layer of a circuit to then apply onto the back with [`compose()`](#qiskit.circuit.QuantumCircuit.compose "qiskit.circuit.QuantumCircuit.compose"), or to do a full rewrite of a circuit’s instructions.
 
   ### copy\_empty\_like
 
@@ -1004,7 +1004,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### Working with bits and registers
 
-  A [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") instance is, on its own, just a unique handle for circuits to use in their own contexts. If you have got a [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") instance and a circuit, just can find the contexts that the bit exists in using [`find_bit()`](#qiskit.circuit.QuantumCircuit.find_bit "qiskit.circuit.QuantumCircuit.find_bit"), such as its integer index in the circuit and any registers it is contained in.
+  A [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") instance is, on its own, just a unique handle for circuits to use in their own contexts. If you have got a [`Bit`](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit") instance and a circuit, you can find the contexts that the bit exists in using [`find_bit()`](#qiskit.circuit.QuantumCircuit.find_bit "qiskit.circuit.QuantumCircuit.find_bit"), such as its integer index in the circuit and any registers it is contained in.
 
   #### find\_bit
 
@@ -1819,7 +1819,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### Methods to add standard instructions
 
-  The [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class has helper methods to add many of the Qiskit standard-library instructions and gates onto a circuit. These are generally equivalent to manually constructing an instance of the relevent [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") object, then passing that to [`append()`](#qiskit.circuit.QuantumCircuit.append "qiskit.circuit.QuantumCircuit.append") with the remaining arguments placed into the `qargs` and `cargs` fields as appropriate.
+  The [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class has helper methods to add many of the Qiskit standard-library instructions and gates onto a circuit. These are generally equivalent to manually constructing an instance of the relevant [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") object, then passing that to [`append()`](#qiskit.circuit.QuantumCircuit.append "qiskit.circuit.QuantumCircuit.append") with the remaining arguments placed into the `qargs` and `cargs` fields as appropriate.
 
   The following methods apply special non-unitary [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") operations to the circuit:
 
@@ -2701,7 +2701,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)) – THe angle of the rotation.
+    *   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)) – The angle of the rotation.
     *   **qubit** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice)  *|*[*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence)*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The qubit(s) to apply the gate to.
 
     **Returns**
@@ -3397,7 +3397,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
   | [`break_loop()`](#qiskit.circuit.QuantumCircuit.break_loop "qiskit.circuit.QuantumCircuit.break_loop")          | [`BreakLoopOp`](qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp")                            |
   | [`continue_loop()`](#qiskit.circuit.QuantumCircuit.continue_loop "qiskit.circuit.QuantumCircuit.continue_loop") | [`ContinueLoopOp`](qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp")                   |
 
-  [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") has corresponding methods for all of the control-flow operations that are supported by Qiskit. These have two forms for calling them. The first is a very straightfowards convenience wrapper that takes in the block bodies of the instructions as [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") arguments, and simply constructs and appends the corresponding [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp").
+  [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") has corresponding methods for all of the control-flow operations that are supported by Qiskit. These have two forms for calling them. The first is a very straightforward convenience wrapper that takes in the block bodies of the instructions as [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") arguments, and simply constructs and appends the corresponding [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp").
 
   The second form, which we strongly recommend you use for constructing control flow, is called *the builder interface*. Here, the methods take only the real-time discriminant of the operation, and return [context managers](https://docs.python.org/3/library/stdtypes.html#typecontextmanager) that you enter using `with`. You can then use regular [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") methods within those blocks to build up the control-flow bodies, and Qiskit will automatically track which of the data resources are needed for the inner blocks, building the complete [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") as you leave the `with` statement. It is far simpler and less error-prone to build control flow programmatically this way.
 
@@ -3462,7 +3462,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     *   **body\_or\_annotations** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*Annotation*](qiskit.circuit.Annotation "qiskit.circuit.Annotation")*]*) – the first positional argument is unnamed. If a [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") is passed positionally, it is immediately used as the body of the box, and `qubits` and `clbits` must also be specified. If not given, or if given an iterable of [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects, the context-manager form of this method is triggered.
     *   **qubits** (*Sequence\[QubitSpecifier] | None*) – the qubits to apply the [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") to, in the explicit form.
-    *   **clbits** (*Sequence\[ClbitSpecifier] | None*) – the qubits to apply the [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") to, in the explicit form.
+    *   **clbits** (*Sequence\[ClbitSpecifier] | None*) – the clbits to apply the [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp") to, in the explicit form.
     *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – an optional string label for the instruction.
     *   **duration** (*None*) – an optional explicit duration for the [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp"). Scheduling passes are constrained to schedule the contained scope to match a given duration, including delay insertion if required.
     *   **unit** (*Literal\['dt', 's', 'ms', 'us', 'ns', 'ps', 'expr'] | None*) – the unit of the `duration`.
@@ -4112,7 +4112,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of instruction to.
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of instruction to get.
 
     **Returns**
 
@@ -4310,7 +4310,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ## Abstract and physical circuits
 
-  Circuits are a fairly low-level abstraction of quantum algorithms. However, even within this, there are distinctions. Quantum programmers often want to use a wide arrange of gates and instructions, and work in a regime where all qubits and interact with all others. Quantum hardware, however, typically has a restrictive set of native gates, and only certain pairs of hardware qubits can interact. We term these two regimes “abstract circuits” and “physical circuits”, respectively.
+  Circuits are a fairly low-level abstraction of quantum algorithms. However, even within this, there are distinctions. Quantum programmers often want to use a wide array of gates and instructions, and work in a regime where all qubits and interact with all others. Quantum hardware, however, typically has a restrictive set of native gates, and only certain pairs of hardware qubits can interact. We term these two regimes “abstract circuits” and “physical circuits”, respectively.
 
   Qiskit has two ways of distinguishing a circuit that is intended to be physical. This is a fuzzy check, for historical reasons; originally, Qiskit never made the distinction at all (which is why [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") is called that, and not called `compile`!). The most explicit way is through the [`layout`](#qiskit.circuit.QuantumCircuit.layout "qiskit.circuit.QuantumCircuit.layout") attribute of circuits; if this is set, the circuit is certainly intended to be physical. The older, more implicit, way is the metadata of the [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects and [`QuantumRegister`](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") instances in the circuit. A circuit can only be considered (as judged by several transpiler passes) as physical if it contains exactly one quantum register, which is called `q` and owns all the circuit qubits in index order. Again for historical reasons, this is the default for the `QuantumCircuit(int [, int])` form of the default constructor.
 
@@ -4365,7 +4365,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add. Defauls to `1`.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add. Defaults to `1`.
     *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional label to give the controlled gate for visualization. Defaults to `None`. Ignored if the controlled gate is implemented as an annotated operation.
     *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
     *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – Indicates whether the controlled gate should be implemented as a controlled gate or as an annotated operation.
@@ -4553,7 +4553,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
         *   The supported style names are `"iqp"` (default), `"iqp-dark"`, `"clifford"`, `"textbook"` and `"bw"`.
         *   If given a JSON file, e.g. `my_style.json` or `my_style` (the `.json` extension may be omitted), this function attempts to load the style dictionary from that location. Note, that the JSON file must completely specify the visualization specifications. The file is searched for in `qiskit/visualization/circuit/styles`, the current working directory, and the location specified in `~/.qiskit/settings.conf`.
-        *   If a dictionary, every entry overrides the default configuration. If the `"name"` key is given, the default configuration is given by that style. For example, `{"name": "textbook", "subfontsize": 5}` loads the `"texbook"` style and sets the subfontsize (e.g. the gate angles) to `5`.
+        *   If a dictionary, every entry overrides the default configuration. If the `"name"` key is given, the default configuration is given by that style. For example, `{"name": "textbook", "subfontsize": 5}` loads the `"textbook"` style and sets the subfontsize (e.g. the gate angles) to `5`.
         *   If `None` the default style `"iqp"` is used or, if given, the default style specified in `~/.qiskit/settings.conf`.
 
     *   **interactive** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – When set to `True`, show the circuit in a new window (for `mpl` this depends on the matplotlib backend being used supporting this). Note when used with either the text or the `latex_source` output type this has no effect and will be silently ignored. Defaults to `False`.
@@ -4566,7 +4566,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     *   **vertical\_compression** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – `high`, `medium` or `low`. It merges the lines generated by the text output so the drawing will take less vertical room. Default is `medium`. Only used by the `text` output, will be silently ignored otherwise.
 
-    *   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Include (or not) idle wires (wires with no circuit elements) in output visualization. The string `"auto"` is also possible, in which case idle wires are show except that the circuit has a layout attached. Default is `"auto"` unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative value set. For example, `circuit_idle_wires = False`.
+    *   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Include (or not) idle wires (wires with no circuit elements) in output visualization. The string `"auto"` is also possible, in which case idle wires are shown except when the circuit has a layout attached. Default is `"auto"` unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative value set. For example, `circuit_idle_wires = False`.
 
     *   **with\_layout** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Include layout information, with labels on the physical layout. Default is `True`.
 
@@ -4582,7 +4582,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     *   **expr\_len** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of characters to display if an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is used for the condition in a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"). If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
 
-    *   **measure\_arrows** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – If True, draw an arrow from each measure box down the the classical bit or register where the measure value is placed. If False, do not draw arrow, but instead place the name of the bit or register in the measure box. Default is `True` unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative value set. For example, `circuit_measure_arrows = False`.
+    *   **measure\_arrows** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – If True, draw an arrow from each measure box down to the classical bit or register where the measure value is placed. If False, do not draw arrow, but instead place the name of the bit or register in the measure box. Default is `True` unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative value set. For example, `circuit_measure_arrows = False`.
 
     **Returns**
 
