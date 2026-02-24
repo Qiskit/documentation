@@ -167,7 +167,9 @@ These are components that we expose through MDX. You can use them in both
 To use an `Admonition`, use the following syntax
 
 ```mdx
-<Admonition type="note">This is an example of a note.</Admonition>
+<Admonition type="note">
+This is an example of a note.
+</Admonition>
 ```
 
 Available types are `note, tip, info, caution, danger`. This is what they look like:
