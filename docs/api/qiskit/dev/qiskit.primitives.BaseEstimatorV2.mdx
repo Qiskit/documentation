@@ -19,7 +19,7 @@ python_api_name: qiskit.primitives.BaseEstimatorV2
   >
   >     or tuple of two to four elements that define the unit of work for the estimator. These are:
   >
-  >     *   **A single [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), possibly parametrized,**
+  >     *   **A single [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), possibly parameterized,**
   >
   >         whose final state we define as $\psi(\theta)$.
   >
@@ -30,9 +30,9 @@ python_api_name: qiskit.primitives.BaseEstimatorV2
   >     *   A collection parameter value sets to bind the circuit against, $\theta_k$
   >
   >     *   Optionally, the estimation precision.
-  > *   **precision: the estimation precision. This specification is optional and will be overriden by**
+  > *   **precision: the estimation precision. This specification is optional and will be overridden by**
   >
-  >     the pub-wise shots if provided.
+  >     the pub-wise precision if provided.
 
   All estimator implementations must implement default value for the `precision` in the [`run()`](#qiskit.primitives.BaseEstimatorV2.run "qiskit.primitives.BaseEstimatorV2.run") method. This default value will be used any time `precision=None` is specified, which can take place in the [`run()`](#qiskit.primitives.BaseEstimatorV2.run "qiskit.primitives.BaseEstimatorV2.run") kwargs or at the pub level.
 

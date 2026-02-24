@@ -13,7 +13,7 @@ python_api_name: qiskit.circuit.library.MCMT
 
   The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.
 
-  For example, the H gate controlled on 3 qubits and acting on 2 target qubit is represented as:
+  For example, the H gate controlled on 3 qubits and acting on 2 target qubits is represented as:
 
   ```text
   ───■────
@@ -28,7 +28,7 @@ python_api_name: qiskit.circuit.library.MCMT
   └──────┘
   ```
 
-  This default implementations requires no ancilla qubits, by broadcasting the target gate to the number of target qubits and using Qiskit’s generic control routine to control the broadcasted target on the control qubits. If ancilla qubits are available, a more efficient variant using the so-called V-chain decomposition can be used. This is implemented in [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain").
+  This default implementation requires no ancilla qubits, by broadcasting the target gate to the number of target qubits and using Qiskit’s generic control routine to control the broadcasted target on the control qubits. If ancilla qubits are available, a more efficient variant using the so-called V-chain decomposition can be used. This is implemented in [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain").
 
   Create a new multi-control multi-target gate.
 
@@ -38,13 +38,13 @@ python_api_name: qiskit.circuit.library.MCMT
 
   **Parameters**
 
-  *   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*circuit.Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*circuit.Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*],* [*circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]*) – The gate to be applied controlled on the control qubits and applied to the target qubits. Can be either a Gate or a circuit method. If it is a callable, it will be casted to a Gate.
+  *   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*circuit.Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*circuit.Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*],* [*circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]*) – The gate to be applied controlled on the control qubits and applied to the target qubits. Can be either a Gate or a circuit method. If it is a callable, it will be cast to a Gate.
   *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of control qubits.
   *   **num\_target\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of target qubits.
 
   **Raises**
 
-  *   [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError) – If the gate cannot be casted to a controlled gate.
+  *   [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError) – If the gate cannot be cast to a controlled gate.
   *   [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError) – If the number of controls or targets is 0.
 
   ## Attributes

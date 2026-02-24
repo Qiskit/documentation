@@ -178,7 +178,7 @@ $$
 
   For any given mathematical observable, there are several ways of representing it with [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable"). For example, the same set of single-bit terms and their corresponding indices might appear multiple times in the observable. Mathematically, this is equivalent to having only a single term with all the coefficients summed. Similarly, the terms of the sum in a [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") can be in any order while representing the same observable, since addition is commutative (although while floating-point addition is not associative, [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") makes no guarantees about the summation order).
 
-  These two categories of representation degeneracy can cause the `==` operator to claim that two observables are not equal, despite representating the same object. In these cases, it can be convenient to define some *canonical form*, which allows observables to be compared structurally.
+  These two categories of representation degeneracy can cause the `==` operator to claim that two observables are not equal, despite representing the same object. In these cases, it can be convenient to define some *canonical form*, which allows observables to be compared structurally.
 
   You can put a [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") in canonical form by using the [`simplify()`](#qiskit.quantum_info.SparseObservable.simplify "qiskit.quantum_info.SparseObservable.simplify") method. The precise ordering of terms in canonical ordering is not specified, and may change between versions of Qiskit. Within the same version of Qiskit, however, you can compare two observables structurally by comparing their simplified forms.
 
@@ -483,7 +483,7 @@ $$
   <Function id="qiskit.quantum_info.SparseObservable.clear" signature="clear()">
     Clear all the terms from this operator, making it equal to the zero operator again.
 
-    This does not change the capacity of the internal allocations, so subsequent addition or substraction operations may not need to reallocate.
+    This does not change the capacity of the internal allocations, so subsequent addition or subtraction operations may not need to reallocate.
 
     **Examples**
 
@@ -889,7 +889,7 @@ $$
     As a side effect, this sorts the operator into [canonical order](#sparse-observable-canonical-order).
 
     <Admonition title="Note" type="note">
-      When using this for equality comparisons, note that floating-point rounding and the non-associativity fo floating-point addition may cause non-zero coefficients of summed terms to compare unequal. To compare two observables up to a tolerance, it is safest to compare the canonicalized difference of the two observables to zero.
+      When using this for equality comparisons, note that floating-point rounding and the non-associativity of floating-point addition may cause non-zero coefficients of summed terms to compare unequal. To compare two observables up to a tolerance, it is safest to compare the canonicalized difference of the two observables to zero.
     </Admonition>
 
     **Parameters**

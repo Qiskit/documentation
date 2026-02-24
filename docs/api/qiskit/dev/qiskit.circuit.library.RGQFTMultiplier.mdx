@@ -8,12 +8,14 @@ python_api_name: qiskit.circuit.library.RGQFTMultiplier
 
 # RGQFTMultiplier
 
-<Class id="qiskit.circuit.library.RGQFTMultiplier" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py#L25-L108" signature="qiskit.circuit.library.RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')" modifiers="class">
+<Class id="qiskit.circuit.library.RGQFTMultiplier" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py#L25-L109" signature="qiskit.circuit.library.RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')" modifiers="class">
   Bases: `Multiplier`
 
   A QFT multiplication circuit to store product of two input registers out-of-place.
 
-  Multiplication in this circuit is implemented using the procedure of Fig. 3 in \[1], where weighted sum rotations are implemented as given in Fig. 5 in \[1]. QFT is used on the output register and is followed by rotations controlled by input registers. The rotations transform the state into the product of two input registers in QFT base, which is reverted from QFT base using inverse QFT. As an example, a circuit that performs a modular QFT multiplication on two 2-qubit sized input registers with an output register of 2 qubits, is as follows:
+  Multiplication in this circuit is implemented using the procedure of Fig. 3 in \[1], where weighted sum rotations are implemented as given in Fig. 5 in \[1]. The QFT is used on the output register and is followed by rotations controlled by input registers. The rotations transform the state into the product of two input registers in the QFT basis, which is reverted from the QFT basis using the inverse QFT.
+
+  As an example, a circuit that performs a modular QFT multiplication on two 2-qubit sized input registers with an output register of 2 qubits, is as follows:
 
   ```text
     a_0: ────────────────────────────────────────■───────■──────■──────■────────────────
@@ -31,7 +33,7 @@ python_api_name: qiskit.circuit.library.RGQFTMultiplier
   ```
 
   <Admonition title="See also" type="note">
-    The [`MultiplierGate`](qiskit.circuit.library.MultiplierGate "qiskit.circuit.library.MultiplierGate") objects represents a multiplication, like this circuit class, but allows the compiler to select the optimal decomposition based on the context. Specific implementations can be set via the [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), e.g. this circuit can be chosen via `Multiplier=["qft_r17"]`.
+    The [`MultiplierGate`](qiskit.circuit.library.MultiplierGate "qiskit.circuit.library.MultiplierGate") object represents a multiplication, like this circuit class, but allows the compiler to select the optimal decomposition based on the context. Specific implementations can be set via the [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), e.g. this circuit can be chosen via `Multiplier=["qft_r17"]`.
   </Admonition>
 
   References:

@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PauliProductMeasurement
 
 # PauliProductMeasurement
 
-<Class id="qiskit.circuit.library.PauliProductMeasurement" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_product_measurement.py#L29-L153" signature="qiskit.circuit.library.PauliProductMeasurement(pauli, label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.PauliProductMeasurement" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_product_measurement.py#L29-L156" signature="qiskit.circuit.library.PauliProductMeasurement(pauli, label=None)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   Pauli Product Measurement instruction.
@@ -27,6 +27,15 @@ python_api_name: qiskit.circuit.library.PauliProductMeasurement
   <Admonition title="Note" type="note">
     While Paulis involving `"I"`-terms are fully supported, it is recommended to remove `"I"`-terms from the Pauli when creating a `PauliProductMeasurement` instruction, as this does not change the actual measurement but specifies the instruction over a smaller set of qubits.
   </Admonition>
+
+  **Raises**
+
+  [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the Pauli is the all identity operator, has size 0, or a complex phase.
+
+  **Parameters**
+
+  *   **pauli** ([*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) –
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
 
   ## Attributes
 
@@ -148,7 +157,7 @@ python_api_name: qiskit.circuit.library.PauliProductMeasurement
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.PauliProductMeasurement.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_product_measurement.py#L114-L116" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.PauliProductMeasurement.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_product_measurement.py#L117-L119" signature="inverse(annotated=False)">
     Prevents from calling `inverse` on a PauliProductMeasurement instruction.
   </Function>
 
@@ -160,7 +169,7 @@ python_api_name: qiskit.circuit.library.PauliProductMeasurement
 
   ### pauli
 
-  <Function id="qiskit.circuit.library.PauliProductMeasurement.pauli" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_product_measurement.py#L142-L153" signature="pauli()">
+  <Function id="qiskit.circuit.library.PauliProductMeasurement.pauli" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_product_measurement.py#L145-L156" signature="pauli()">
     Return the Pauli product implemented by this measurement.
 
     This is a public accessor that reconstructs and returns the [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") corresponding to this instruction’s underlying tensor product of Pauli operators, including its global phase of `+1` or `-1`.
@@ -177,7 +186,7 @@ python_api_name: qiskit.circuit.library.PauliProductMeasurement
   ### repeat
 
   <Function id="qiskit.circuit.library.PauliProductMeasurement.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L493-L523" signature="repeat(n)">
-    Creates an instruction with `self` repeated :math\`n\` times.
+    Creates an instruction with `self` repeated $n$ times.
 
     **Parameters**
 

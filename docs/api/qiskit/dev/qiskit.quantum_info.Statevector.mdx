@@ -29,7 +29,7 @@ python_api_name: qiskit.quantum_info.Statevector
   The `dims` kwarg can be None, an integer, or an iterable of integers.
 
   *   `Iterable` – the subsystem dimensions are the values in the list with the total number of subsystems given by the length of the list.
-  *   `Int` or `None` – the length of the input vector specifies the total dimension of the density matrix. If it is a power of two the state will be initialized as an N-qubit state. If it is not a power of two the state will have a single d-dimensional subsystem.
+  *   `Int` or `None` – the length of the input vector specifies the total dimension of the state. If it is a power of two the state will be initialized as an N-qubit state. If it is not a power of two the state will have a single d-dimensional subsystem.
 
   ## Attributes
 
@@ -338,11 +338,11 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Parameters**
 
-    **label** (*string*) – a eigenstate string ket label (see table for allowed values).
+    **label** (*string*) – an eigenstate string ket label (see table for allowed values).
 
     **Returns**
 
-    The N-qubit basis state density matrix.
+    The N-qubit basis state statevector.
 
     **Return type**
 
@@ -535,7 +535,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Additional Information:**
 
-    If all subsystems are reset this will return the ground state on all subsystems. If only a some subsystems are reset this function will perform a measurement on those subsystems and evolve the subsystems so that the collapsed post-measurement states are rotated to the 0-state. The RNG seed for this sampling can be set using the [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
+    If all subsystems are reset this will return the ground state on all subsystems. If only some subsystems are reset this function will perform a measurement on those subsystems and evolve the subsystems so that the collapsed post-measurement states are rotated to the 0-state. The RNG seed for this sampling can be set using the [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
   </Function>
 
   ### reverse\_qargs
@@ -576,7 +576,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     > This function *samples* measurement outcomes using the measure [`probabilities()`](#qiskit.quantum_info.Statevector.probabilities "qiskit.quantum_info.Statevector.probabilities") for the current state and qargs. It does not actually implement the measurement so the current state is not modified.
     >
-    > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
+    > The seed for random number generator used for sampling can be set to a fixed value by using the state’s [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
   </Function>
 
   ### sample\_memory
@@ -591,7 +591,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Returns**
 
-    list of sampled counts if the order sampled.
+    list of sampled counts in the order sampled.
 
     **Return type**
 
@@ -601,7 +601,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     > This function *samples* measurement outcomes using the measure [`probabilities()`](#qiskit.quantum_info.Statevector.probabilities "qiskit.quantum_info.Statevector.probabilities") for the current state and qargs. It does not actually implement the measurement so the current state is not modified.
     >
-    > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
+    > The seed for random number generator used for sampling can be set to a fixed value by using the state’s [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
   </Function>
 
   ### seed

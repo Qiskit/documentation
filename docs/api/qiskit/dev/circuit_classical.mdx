@@ -189,7 +189,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
 
     The bitshift operations `SHIFT_LEFT` and `SHIFT_RIGHT` can take bit-like container types (e.g. unsigned integers) as the left operand, and any integer type as the right-hand operand. In all cases, the output bit width is the same as the input, and zeros fill in the “exposed” spaces.
 
-    The binary arithmetic operators `ADD`, ``SUB:, :data:`MUL``, and `DIV` can be applied to two floats or two unsigned integers, which should be made to be of the same width during construction via a cast. The `ADD`, `SUB`, and `DIV` operators can be applied on two durations yielding another duration, or a float in the case of `DIV`. The `MUL` operator can also be applied to a duration and a numeric type, yielding another duration. Finally, the `DIV` operator can be used to divide a duration by a numeric type, yielding a duration.
+    The binary arithmetic operators `ADD`, `SUB`, `MUL`, and `DIV` can be applied to two floats or two unsigned integers, which should be made to be of the same width during construction via a cast. The `ADD`, `SUB`, and `DIV` operators can be applied on two durations yielding another duration, or a float in the case of `DIV`. The `MUL` operator can also be applied to a duration and a numeric type, yielding another duration. Finally, the `DIV` operator can be used to divide a duration by a numeric type, yielding a duration.
   </Class>
 </Class>
 
@@ -249,7 +249,7 @@ The functions and methods described in this section are a more user-friendly way
   Var(ClassicalRegister(3, "c"), Uint(3))
   ```
 
-  The type of the return value can be influenced, if the given value could be interpreted losslessly as the given type (use [`cast()`](#qiskit.circuit.classical.expr.cast "qiskit.circuit.classical.expr.cast") to perform a full set of casting operations, include lossy ones):
+  The type of the return value can be influenced, if the given value could be interpreted losslessly as the given type (use [`cast()`](#qiskit.circuit.classical.expr.cast "qiskit.circuit.classical.expr.cast") to perform a full set of casting operations, including lossy ones):
 
   ```python
   >>> from qiskit.circuit import ClassicalRegister
@@ -444,7 +444,7 @@ Similarly, the binary operations and relations have helper functions defined.
   ```python
   >>> from qiskit.circuit import Clbit
   >>> from qiskit.circuit.classical import expr
-  >>> expr.logical_and(Clbit(), Clbit())
+  >>> expr.logic_and(Clbit(), Clbit())
   Binary(Binary.Op.LOGIC_AND, Var(<clbit 0>, Bool()), Var(<clbit 1>, Bool()), Bool())
   ```
 
@@ -470,7 +470,7 @@ Similarly, the binary operations and relations have helper functions defined.
   ```python
   >>> from qiskit.circuit import Clbit
   >>> from qiskit.circuit.classical import expr
-  >>> expr.logical_and(Clbit(), Clbit())
+  >>> expr.logic_or(Clbit(), Clbit())
   Binary(Binary.Op.LOGIC_OR, Var(<clbit 0>, Bool()), Var(<clbit 1>, Bool()), Bool())
   ```
 
@@ -574,7 +574,7 @@ Similarly, the binary operations and relations have helper functions defined.
   ```python
   >>> from qiskit.circuit import ClassicalRegister
   >>> from qiskit.circuit.classical import expr
-  >>> expr.less(ClassicalRegister(3, "a"), ClassicalRegister(3, "b"))
+  >>> expr.less_equal(ClassicalRegister(3, "a"), ClassicalRegister(3, "b"))
   Binary(Binary.Op.LESS_EQUAL, Var(ClassicalRegister(3, "a"), Uint(3)), Var(ClassicalRegister(3, "b"), Uint(3)), Uint(3))
   ```
 
@@ -600,7 +600,7 @@ Similarly, the binary operations and relations have helper functions defined.
   ```python
   >>> from qiskit.circuit import ClassicalRegister
   >>> from qiskit.circuit.classical import expr
-  >>> expr.less(ClassicalRegister(3, "c"), 5)
+  >>> expr.greater(ClassicalRegister(3, "c"), 5)
   Binary(Binary.Op.GREATER, Var(ClassicalRegister(3, "c"), Uint(3)), Value(5, Uint(3)), Uint(3))
   ```
 
@@ -626,7 +626,7 @@ Similarly, the binary operations and relations have helper functions defined.
   ```python
   >>> from qiskit.circuit import ClassicalRegister
   >>> from qiskit.circuit.classical import expr
-  >>> expr.less(ClassicalRegister(3, "a"), ClassicalRegister(3, "b"))
+  >>> expr.greater_equal(ClassicalRegister(3, "a"), ClassicalRegister(3, "b"))
   Binary(Binary.Op.GREATER_EQUAL, Var(ClassicalRegister(3, "a"), Uint(3)), Var(ClassicalRegister(3, "b"), Uint(3)), Uint(3))
   ```
 
@@ -1140,7 +1140,7 @@ Some expressions have associated memory locations, and others may be purely temp
 <Function id="qiskit.circuit.classical.expr.is_lvalue" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L341-L381" signature="qiskit.circuit.classical.expr.is_lvalue(node, /)">
   Return whether this expression can be used in l-value positions, that is, whether it has a well-defined location in memory, such as one that might be writeable.
 
-  Being an l-value is a necessary but not sufficient for this location to be writeable; it is permissible that a larger object containing this memory location may not allow writing from the scope that attempts to write to it. This would be an access property of the containing program, however, and not an inherent property of the expression system.
+  Being an l-value is necessary but not sufficient for this location to be writeable; it is permissible that a larger object containing this memory location may not allow writing from the scope that attempts to write to it. This would be an access property of the containing program, however, and not an inherent property of the expression system.
 
   A constant expression is never an lvalue.
 
