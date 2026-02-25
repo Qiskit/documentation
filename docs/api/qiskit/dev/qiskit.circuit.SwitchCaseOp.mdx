@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
 # SwitchCaseOp
 
-<Class id="qiskit.circuit.SwitchCaseOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L51-L186" signature="qiskit.circuit.SwitchCaseOp(target, cases, *, label=None)" modifiers="class">
+<Class id="qiskit.circuit.SwitchCaseOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L52-L187" signature="qiskit.circuit.SwitchCaseOp(target, cases, *, label=None)" modifiers="class">
   Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 
   A circuit operation that executes one particular circuit block based on matching a given `target` against an ordered list of `values`. The special value [`CASE_DEFAULT`](circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT") can be used to represent a default condition.
@@ -16,8 +16,8 @@ python_api_name: qiskit.circuit.SwitchCaseOp
   **Parameters**
 
   *   **target** ([*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")  *|*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")  *|*[*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the real-time value to switch on.
-  *   **cases** (*Iterable\[Tuple\[Any,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]]*) – an ordered iterable of the corresponding value of the `target` and the circuit block that should be executed if this is matched. There is no fall-through between blocks, and the order matters.
-  *   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) –
+  *   **cases** (*Iterable\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[Any,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]]*) – an ordered iterable of the corresponding value of the `target` and the circuit block that should be executed if this is matched. There is no fall-through between blocks, and the order matters.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
 
   ## Attributes
 
@@ -100,13 +100,13 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.SwitchCaseOp.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L320-L325" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.SwitchCaseOp.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L318-L323" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.SwitchCaseOp.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L454-L483" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.SwitchCaseOp.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L452-L481" signature="broadcast_arguments(qargs, cargs)">
     Validation of the arguments.
 
     **Parameters**
@@ -125,7 +125,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### cases
 
-  <Function id="qiskit.circuit.SwitchCaseOp.cases" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L166-L176" signature="cases()">
+  <Function id="qiskit.circuit.SwitchCaseOp.cases" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L167-L177" signature="cases()">
     Return a lookup table from case labels to the circuit that would be executed in that case. This object is not generally suitable for creating a new [`SwitchCaseOp`](#qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") because any keys that point to the same object will not be grouped.
 
     <Admonition title="See also" type="note">
@@ -137,7 +137,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### cases\_specifier
 
-  <Function id="qiskit.circuit.SwitchCaseOp.cases_specifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L152-L164" signature="cases_specifier()">
+  <Function id="qiskit.circuit.SwitchCaseOp.cases_specifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L153-L165" signature="cases_specifier()">
     Return an iterable where each element is a 2-tuple whose first element is a tuple of jump values, and whose second is the single circuit block that is associated with those values.
 
     This is an abstract specification of the jump table suitable for creating new [`SwitchCaseOp`](#qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") instances.
@@ -150,12 +150,12 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
     **Return type**
 
-    Iterable\[Tuple\[Tuple, [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]]
+    Iterable\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple), [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]]
   </Function>
 
   ### copy
 
-  <Function id="qiskit.circuit.SwitchCaseOp.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L430-L445" signature="copy(name=None)">
+  <Function id="qiskit.circuit.SwitchCaseOp.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L428-L443" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -173,7 +173,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### inverse
 
-  <Function id="qiskit.circuit.SwitchCaseOp.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L373-L428" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.SwitchCaseOp.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L371-L426" signature="inverse(annotated=False)">
     Invert this instruction.
 
     If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
@@ -197,7 +197,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.SwitchCaseOp.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L285-L290" signature="is_parameterized()">
+  <Function id="qiskit.circuit.SwitchCaseOp.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
     Return whether the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](circuit#circuit-compile-time-parameters).
   </Function>
 
@@ -223,7 +223,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### repeat
 
-  <Function id="qiskit.circuit.SwitchCaseOp.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L493-L523" signature="repeat(n)">
+  <Function id="qiskit.circuit.SwitchCaseOp.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L491-L521" signature="repeat(n)">
     Creates an instruction with `self` repeated $n$ times.
 
     **Parameters**
@@ -245,7 +245,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### replace\_blocks
 
-  <Function id="qiskit.circuit.SwitchCaseOp.replace_blocks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L182-L186" signature="replace_blocks(blocks)">
+  <Function id="qiskit.circuit.SwitchCaseOp.replace_blocks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L183-L187" signature="replace_blocks(blocks)">
     Return a new version of this control-flow operations with the [`blocks`](#qiskit.circuit.SwitchCaseOp.blocks "qiskit.circuit.SwitchCaseOp.blocks") mapped to the given new ones.
 
     Typically this is used in a workflow such as:
@@ -280,7 +280,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.SwitchCaseOp.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L347-L371" signature="reverse_ops()">
+  <Function id="qiskit.circuit.SwitchCaseOp.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L345-L369" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -298,7 +298,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.SwitchCaseOp.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L216-L256" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.SwitchCaseOp.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L214-L254" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -316,7 +316,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.SwitchCaseOp.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L145-L153" signature="to_mutable()">
+  <Function id="qiskit.circuit.SwitchCaseOp.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L144-L152" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -324,7 +324,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.SwitchCaseOp.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L281-L283" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.SwitchCaseOp.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L279-L281" signature="validate_parameter(parameter)">
     Instruction parameter has no validation or normalization.
   </Function>
 </Class>
