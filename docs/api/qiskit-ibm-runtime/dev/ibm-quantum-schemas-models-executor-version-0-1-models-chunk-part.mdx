@@ -1,0 +1,32 @@
+---
+title: ChunkPart (dev version)
+description: API reference for ibm_quantum_schemas.models.executor.version_0_1.models.ChunkPart in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.models.executor.version_0_1.models.ChunkPart
+---
+
+<span id="ibm-quantum-schemas-models-executor-version-0-1-models-chunkpart" />
+
+# ChunkPart
+
+<Class id="ibm_quantum_schemas.models.executor.version_0_1.models.ChunkPart" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.1.20260210.dev19/ibm_quantum_schemas/models/executor/version_0_1/models.py#L178-L189" signature="ChunkPart" modifiers="pydantic model">
+  Bases: `BaseModel`
+
+  A description of the contents of a single part of an execution chunk.
+
+  ### field idx\_item
+
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.ChunkPart.idx_item" attributeTypeHint="int [Required]">
+    The index of an item in a quantum program.
+  </Attribute>
+
+  ### field size
+
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.ChunkPart.size" attributeTypeHint="int [Required]">
+    The number of elements from the quantum program item that were executed.
+
+    For example, if a quantum program item has shape `(10, 5)`, then it has a total of `50` elements, so that if this `size` is `10`, it constitutes 20% of the total work for the item.
+  </Attribute>
+</Class>
+
