@@ -298,7 +298,7 @@ python_api_name: qiskit.synthesis
   **Parameters**
 
   *   **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.operators.symplectic.clifford.Clifford")) – A Clifford operator.
-  *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Optional, a synthesis method (`'AG'` or `'greedy'`). If set this overrides optimal decomposition for $N \leq 3$ qubits.
+  *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – a synthesis method (`'AG'` or `'greedy'`). If set this overrides optimal decomposition for $N \leq 3$ qubits.
 
   **Returns**
 
@@ -506,7 +506,7 @@ python_api_name: qiskit.synthesis
 
   **Raises**
 
-  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the element in not 1-qubit or 2-qubit [`CNOTDihedral`](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral").
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the element is not 1-qubit or 2-qubit [`CNOTDihedral`](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral").
 
   **Return type**
 
@@ -552,7 +552,7 @@ python_api_name: qiskit.synthesis
 <Function id="qiskit.synthesis.synth_stabilizer_layers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_decompose.py#L36-L120" signature="qiskit.synthesis.synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)">
   Synthesis of a stabilizer state into layers.
 
-  It provides a similar decomposition to the synthesis described in Lemma 8 of reference \[1], without the initial Hadamard-free sub-circuit which do not affect the stabilizer state.
+  It provides a similar decomposition to the synthesis described in Lemma 8 of reference \[1], without the initial Hadamard-free sub-circuit which does not affect the stabilizer state.
 
   For example, a 5-qubit stabilizer state is decomposed into the following layers:
 
@@ -596,7 +596,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_stabilizer\_depth\_lnn
 
-<Function id="qiskit.synthesis.synth_stabilizer_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_decompose.py#L169-L194" signature="qiskit.synthesis.synth_stabilizer_depth_lnn(stab)">
+<Function id="qiskit.synthesis.synth_stabilizer_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_decompose.py#L168-L193" signature="qiskit.synthesis.synth_stabilizer_depth_lnn(stab)">
   Synthesis of an n-qubit stabilizer state for linear-nearest neighbor connectivity, in 2-qubit depth $2n+2$ and two distinct CX layers, using [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s and phase gates ([`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") or [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")).
 
   **Parameters**
@@ -619,7 +619,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_circuit\_from\_stabilizers
 
-<Function id="qiskit.synthesis.synth_circuit_from_stabilizers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_circuit.py#L27-L149" signature="qiskit.synthesis.synth_circuit_from_stabilizers(stabilizers, allow_redundant=False, allow_underconstrained=False, invert=False)">
+<Function id="qiskit.synthesis.synth_circuit_from_stabilizers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_circuit.py#L27-L148" signature="qiskit.synthesis.synth_circuit_from_stabilizers(stabilizers, allow_redundant=False, allow_underconstrained=False, invert=False)">
   Synthesis of a circuit that generates a state stabilized by the stabilizers using Gaussian elimination with Clifford gates. If the stabilizers are underconstrained, and `allow_underconstrained` is `True`, the circuit will output one of the states stabilized by the stabilizers. Based on stim implementation.
 
   **Parameters**
@@ -800,7 +800,7 @@ Decomposition of general $2^n \times 2^n$ unitary matrices for any number of qub
 
 ### qs\_decomposition
 
-<Function id="qiskit.synthesis.qs_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/unitary/qsd.py#L37-L219" signature="qiskit.synthesis.qs_decomposition(mat, opt_a1=None, opt_a2=None, decomposer_1q=None, decomposer_2q=None, *, _depth=0)">
+<Function id="qiskit.synthesis.qs_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/unitary/qsd.py#L35-L217" signature="qiskit.synthesis.qs_decomposition(mat, opt_a1=None, opt_a2=None, decomposer_1q=None, decomposer_2q=None, *, _depth=0)">
   Decomposes a unitary matrix into one and two qubit gates using Quantum Shannon Decomposition, based on the Block ZXZ-Decomposition.
 
   This decomposition is described in Krol and Al-Ars \[2] and improves the method of Shende et al. \[1].
@@ -844,8 +844,8 @@ $$
   *   **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – unitary matrix to decompose
   *   **opt\_a1** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – whether to try optimization A.1 from \[1, 2]. This should eliminate 2 `cx` per call.
   *   **opt\_a2** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – whether to try optimization A.2 from \[1, 2]. This decomposes two qubit unitaries into a diagonal gate and a two `cx` unitary and reduces overall `cx` count by $4^{n-2} - 1$. This optimization should not be done if the original unitary is controlled.
-  *   **decomposer\_1q** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – optional 1Q decomposer. If None, uses [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer").
-  *   **decomposer\_2q** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – optional 2Q decomposer. If None, uses [`TwoQubitBasisDecomposer`](qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer").
+  *   **decomposer\_1q** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – optional 1Q decomposer. If None, uses [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer").
+  *   **decomposer\_2q** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – optional 2Q decomposer. If None, uses [`TwoQubitBasisDecomposer`](qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer").
 
   **Returns**
 
@@ -874,7 +874,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 |                                                                                                                                                          |                                                                                                                                                                                                                     |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`TwoQubitBasisDecomposer`](qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer")(gate\[, ...])                           | A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qubit basis gate.                                                                                                                      |
-| [`XXDecomposer`](qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer")(\[basis\_fidelity, euler\_basis, ...])                                   | A class for optimal decomposition of 2-qubit unitaries into 2-qubit basis gates of `XX` type (i.e., each locally equivalent to $CAN(\alpha, 0, 0)$ for a possibly varying $alpha$).                                 |
+| [`XXDecomposer`](qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer")(\[basis\_fidelity, euler\_basis, ...])                                   | A class for optimal decomposition of 2-qubit unitaries into 2-qubit basis gates of `XX` type (i.e., each locally equivalent to $CAN(\alpha, 0, 0)$ for a possibly varying $\alpha$).                                |
 | [`TwoQubitWeylDecomposition`](qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition")(unitary\_matrix\[, ...])          | Two-qubit Weyl decomposition.                                                                                                                                                                                       |
 | [`TwoQubitControlledUDecomposer`](qiskit.synthesis.TwoQubitControlledUDecomposer "qiskit.synthesis.TwoQubitControlledUDecomposer")(...\[, euler\_basis]) | Decompose two-qubit unitary in terms of a desired $U \sim U_d(\alpha, 0, 0) \sim \text{Ctrl-U}$ gate that is locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate"). |
 
@@ -1035,7 +1035,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_2\_clean\_kg24
 
-<Function id="qiskit.synthesis.synth_mcx_2_clean_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L670-L700" signature="qiskit.synthesis.synth_mcx_2_clean_kg24(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_2_clean_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L669-L699" signature="qiskit.synthesis.synth_mcx_2_clean_kg24(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k\ge 3$ controls using $2$ clean ancillary qubits producing a circuit with $2k-3$ Toffoli gates or $6k-6$ CX gates and depth $O(\log(k))$ as described in Sec. 5.2 of \[1]. For $k\le 2$, the returned circuit consists of a single X, CX or CCX gate (corresponding to $k = 0, 1, 2$, respectively) and uses no ancillary qubits.
 
   **Parameters**
@@ -1061,7 +1061,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_2\_dirty\_kg24
 
-<Function id="qiskit.synthesis.synth_mcx_2_dirty_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L703-L732" signature="qiskit.synthesis.synth_mcx_2_dirty_kg24(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_2_dirty_kg24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L702-L731" signature="qiskit.synthesis.synth_mcx_2_dirty_kg24(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k\ge 3$ controls using $2$ dirty ancillary qubits producing a circuit with $4k-8$ Toffoli gates or $12k-18$ CX gates and depth $O(\log(k))$ as described in Sec. 5.4 of \[1]. For $k\le 2$, the returned circuit consists of a single X, CX or CCX gate (corresponding to $k = 0, 1, 2$, respectively) and uses no ancillary qubits.
 
   **Parameters**
@@ -1252,7 +1252,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_c3x
 
-<Function id="qiskit.synthesis.synth_c3x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L735-L737" signature="qiskit.synthesis.synth_c3x()">
+<Function id="qiskit.synthesis.synth_c3x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L734-L736" signature="qiskit.synthesis.synth_c3x()">
   Efficient synthesis of 3-controlled X-gate.
 
   **Return type**
@@ -1262,7 +1262,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_c4x
 
-<Function id="qiskit.synthesis.synth_c4x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L740-L742" signature="qiskit.synthesis.synth_c4x()">
+<Function id="qiskit.synthesis.synth_c4x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L739-L741" signature="qiskit.synthesis.synth_c4x()">
   Efficient synthesis of 4-controlled X-gate.
 
   **Return type**
@@ -1441,7 +1441,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 #### adder\_ripple\_r25
 
-<Function id="qiskit.synthesis.adder_ripple_r25" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/adders/rv_ripple_carry_adder.py#L79-L156" signature="qiskit.synthesis.adder_ripple_r25(num_qubits)">
+<Function id="qiskit.synthesis.adder_ripple_r25" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/adders/rv_ripple_carry_adder.py#L79-L155" signature="qiskit.synthesis.adder_ripple_r25(num_qubits)">
   The RV ripple carry adder \[1]. Construct an ancilla-free quantum adder circuit with sublinear depth based on the RV ripple-carry adder shown in \[1]. The implementation has a depth of $O(\log^2 n)$ and uses math:O(n log n) gates.
 
   As an example, a ripple-carry adder circuit that performs addition on two 4-qubit sized registers is as follows:
@@ -1595,7 +1595,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 #### synth\_weighted\_sum\_carry
 
-<Function id="qiskit.synthesis.synth_weighted_sum_carry" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/weighted_sum.py#L26-L155" signature="qiskit.synthesis.synth_weighted_sum_carry(weighted_sum)">
+<Function id="qiskit.synthesis.synth_weighted_sum_carry" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/weighted_sum.py#L26-L153" signature="qiskit.synthesis.synth_weighted_sum_carry(weighted_sum)">
   Synthesize a weighted sum gate, by the number of state qubits and the qubit weights.
 
   This method is described in Appendix A of \[1].
@@ -1621,7 +1621,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 #### synth\_integer\_comparator\_2s
 
-<Function id="qiskit.synthesis.synth_integer_comparator_2s" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/comparators/compare_2s.py#L20-L98" signature="qiskit.synthesis.synth_integer_comparator_2s(num_state_qubits, value, geq=True)">
+<Function id="qiskit.synthesis.synth_integer_comparator_2s" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/comparators/compare_2s.py#L20-L95" signature="qiskit.synthesis.synth_integer_comparator_2s(num_state_qubits, value, geq=True)">
   Implement an integer comparison based on 2s complement.
 
   This is based on Appendix B of \[1].

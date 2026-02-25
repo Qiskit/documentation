@@ -8,10 +8,14 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
 # SabrePreLayout
 
-<Class id="qiskit.transpiler.passes.SabrePreLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/sabre_pre_layout.py#L25-L225" signature="qiskit.transpiler.passes.SabrePreLayout(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.SabrePreLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/sabre_pre_layout.py#L27-L168" signature="qiskit.transpiler.passes.SabrePreLayout(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Choose a starting layout to use for additional Sabre layout trials.
+
+  The pass works by augmenting the coupling map with more and more “extra” edges until VF2 succeeds to find a perfect graph isomorphism. More precisely, the augmented coupling map contains edges between nodes that are within a given distance `d` in the original coupling map. The original edges are noise-free while the additional edges have noise that scales exponentially with the distance. The value of `d` is increased until an isomorphism is found.
+
+  Intuitively, a better VF2 layout involves fewer and of shorter-distance extra edges.
 
   ## Property Set Values Written
 
@@ -23,63 +27,37 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
   \[1] Henry Zou and Matthew Treinish and Kevin Hartman and Alexander Ivrii and Jake Lishman. “LightSABRE: A Lightweight and Enhanced SABRE Algorithm” [arXiv:2409.08368](https://doi.org/10.48550/arXiv.2409.08368)
 
-  SabrePreLayout initializer.
-
-  The pass works by augmenting the coupling map with more and more “extra” edges until VF2 succeeds to find a perfect graph isomorphism. More precisely, the augmented coupling map contains edges between nodes that are within a given distance `d` in the original coupling map, and the value of `d` is increased until an isomorphism is found.
-
-  Intuitively, a better layout involves fewer extra edges. The pass also optionally minimizes the number of extra edges involved in the layout until a local minimum is found. This involves removing extra edges and running VF2 to see if an isomorphism still exists.
-
   **param coupling\_map**
 
-  directed graph representing the original coupling map or a target modelling the backend (including its connectivity).
-
-  **type coupling\_map**
-
-  Union\[CouplingMap, Target]
+  Directed graph representing the original coupling map or a target modelling the backend (including its connectivity).
 
   **param max\_distance**
 
-  the maximum distance to consider for augmented coupling maps.
-
-  **type max\_distance**
-
-  int
+  The maximum distance for running VF2 with the augmented coupling map. In particular, this also specifies the maximum distance between the original nodes that become connected in the augmented coupling map.
 
   **param error\_rate**
 
-  the error rate to assign to the “extra” edges. A non-zero error rate prioritizes VF2 to choose original edges over extra edges.
-
-  **type error\_rate**
-
-  float
+  The error rate to assign to the “extra” edges. A non-zero error rate prioritizes VF2 to choose original edges over extra edges.
 
   **param max\_trials\_vf2**
 
-  specifies the maximum number of VF2 trials. A larger number allows VF2 to explore more layouts, eventually choosing the one with the smallest error rate.
-
-  **type max\_trials\_vf2**
-
-  int
+  Specifies the maximum number of VF2 trials. This option remains primarily for legacy reasons since the introduction of on-the-fly scoring in VF2, which was introduced in Qiskit 2.3. To bound the time for the pass, set parameters `max_distance` and `call_limit_vf2` instead.
 
   **param call\_limit\_vf2**
 
-  limits each call to VF2 by bounding the number of VF2 state visits.
-
-  **type call\_limit\_vf2**
-
-  int
+  The maximum number of times that the inner VF2 isomorphism search will attempt to extend the mapping. If `None`, then no limit. If a 2-tuple, then the limit starts as the first item, and swaps to the second after the first match is found, without resetting the number of steps taken. This can be used to allow a long search for any mapping, but still terminate quickly with a small extension budget if one is found.
 
   **param improve\_layout**
 
-  whether to improve the layout by minimizing the number of extra edges involved. This might be time-consuming as this requires additional VF2 calls.
+  Unused (the option became obsolete with the introduction of on-the-fly scoring in VF2).
 
-  **type improve\_layout**
+  **param min\_distance**
 
-  bool
+  The distance for the first VF2 run with the augmented coupling map. Setting `min_distance > 1` skips all smaller-distance checks, and in particular skips the distance-1 check which corresponds to running the `VF2Layout` pass.
 
   **raises TranspilerError**
 
-  At runtime, if neither `coupling_map` or `target` are provided.
+  At runtime, if the argument `coupling_map` is not provided.
 
   ## Attributes
 
@@ -103,7 +81,7 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.SabrePreLayout.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L72-L118" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.SabrePreLayout.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L71-L117" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -123,7 +101,7 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.SabrePreLayout.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.SabrePreLayout.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -133,7 +111,7 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.SabrePreLayout.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/sabre_pre_layout.py#L97-L140" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.SabrePreLayout.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/sabre_pre_layout.py#L107-L147" signature="run(dag)">
     Run the SabrePreLayout pass on dag.
 
     The discovered starting layout is written to the property set value `sabre_starting_layouts`.
@@ -145,7 +123,7 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.SabrePreLayout.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L120-L138" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.SabrePreLayout.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L119-L137" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

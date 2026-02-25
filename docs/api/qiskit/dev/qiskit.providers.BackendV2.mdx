@@ -8,7 +8,7 @@ python_api_name: qiskit.providers.BackendV2
 
 # BackendV2
 
-<Class id="qiskit.providers.BackendV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L39-L337" signature="qiskit.providers.BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)" modifiers="class">
+<Class id="qiskit.providers.BackendV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L38-L330" signature="qiskit.providers.BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)" modifiers="class">
   Bases: [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   Abstract class for Backends
@@ -23,7 +23,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### \_default\_options
 
-  <Function id="qiskit.providers.BackendV2._default_options" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L184-L198" signature="_default_options()" modifiers="abstract classmethod">
+  <Function id="qiskit.providers.BackendV2._default_options" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L181-L194" signature="_default_options()" modifiers="abstract classmethod">
     Return the default options
 
     This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
@@ -44,10 +44,10 @@ python_api_name: qiskit.providers.BackendV2
   **Parameters**
 
   *   **provider** – An optional backwards reference to the provider object that the backend is from
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – An optional name for the backend
-  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – An optional description of the backend
-  *   **online\_date** ([*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime)) – An optional datetime the backend was brought online
-  *   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – An optional backend version string. This differs from the [`version`](#qiskit.providers.BackendV2.version "qiskit.providers.BackendV2.version") attribute as [`version`](#qiskit.providers.BackendV2.version "qiskit.providers.BackendV2.version") is for the abstract [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") abstract interface version of the object while `backend_version` is for versioning the backend itself.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional name for the backend
+  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional description of the backend
+  *   **online\_date** ([*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime) *| None*) – An optional datetime the backend was brought online
+  *   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional backend version string. This differs from the [`version`](#qiskit.providers.BackendV2.version "qiskit.providers.BackendV2.version") attribute as [`version`](#qiskit.providers.BackendV2.version "qiskit.providers.BackendV2.version") is for the abstract [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") abstract interface version of the object while `backend_version` is for versioning the backend itself.
   *   **fields** – kwargs for the values to use to override the default options.
 
   **Raises**
@@ -206,14 +206,14 @@ python_api_name: qiskit.providers.BackendV2
 
   ### qubit\_properties
 
-  <Function id="qiskit.providers.BackendV2.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L242-L274" signature="qubit_properties(qubit)">
+  <Function id="qiskit.providers.BackendV2.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L238-L268" signature="qubit_properties(qubit)">
     Return QubitProperties for a given qubit.
 
     If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
 
     **Parameters**
 
-    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
+    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
 
     **Returns**
 
@@ -225,12 +225,12 @@ python_api_name: qiskit.providers.BackendV2
 
     **Return type**
 
-    [*QubitProperties*](qiskit.providers.QubitProperties "qiskit._accelerate.target.QubitProperties") | [*List*](https://docs.python.org/3/library/typing.html#typing.List)\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit._accelerate.target.QubitProperties")]
+    [*QubitProperties*](qiskit.providers.QubitProperties "qiskit._accelerate.target.QubitProperties") | [list](https://docs.python.org/3/library/stdtypes.html#list)\[[qiskit.\_accelerate.target.QubitProperties](qiskit.providers.QubitProperties "qiskit._accelerate.target.QubitProperties")]
   </Function>
 
   ### run
 
-  <Function id="qiskit.providers.BackendV2.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L314-L337" signature="run(run_input, **options)" modifiers="abstract">
+  <Function id="qiskit.providers.BackendV2.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L308-L330" signature="run(run_input, **options)" modifiers="abstract">
     Run on the backend.
 
     This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object that runs circuits. Depending on the backend this may be either an async or sync call. It is at the discretion of the provider to decide whether running should block until the execution is finished or not: the Job class can handle either situation.
@@ -251,7 +251,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### set\_options
 
-  <Function id="qiskit.providers.BackendV2.set_options" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L276-L293" signature="set_options(**fields)">
+  <Function id="qiskit.providers.BackendV2.set_options" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L270-L287" signature="set_options(**fields)">
     Set the options fields for the backend
 
     This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.

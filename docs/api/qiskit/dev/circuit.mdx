@@ -403,7 +403,7 @@ The available modifiers for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOpera
 
 #### InverseModifier
 
-<Class id="qiskit.circuit.InverseModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L33-L37" signature="qiskit.circuit.InverseModifier" modifiers="class">
+<Class id="qiskit.circuit.InverseModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L31-L33" signature="qiskit.circuit.InverseModifier" modifiers="class">
   Bases: `Modifier`
 
   Inverse modifier: specifies that the operation is inverted.
@@ -411,7 +411,7 @@ The available modifiers for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOpera
 
 #### ControlModifier
 
-<Class id="qiskit.circuit.ControlModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L40-L53" signature="qiskit.circuit.ControlModifier(num_ctrl_qubits=0, ctrl_state=None)" modifiers="class">
+<Class id="qiskit.circuit.ControlModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L36-L49" signature="qiskit.circuit.ControlModifier(num_ctrl_qubits=0, ctrl_state=None)" modifiers="class">
   Bases: `Modifier`
 
   Control modifier: specifies that the operation is controlled by `num_ctrl_qubits` and has control state `ctrl_state`.
@@ -424,7 +424,7 @@ The available modifiers for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOpera
 
 #### PowerModifier
 
-<Class id="qiskit.circuit.PowerModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L56-L60" signature="qiskit.circuit.PowerModifier(power)" modifiers="class">
+<Class id="qiskit.circuit.PowerModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L52-L56" signature="qiskit.circuit.PowerModifier(power)" modifiers="class">
   Bases: `Modifier`
 
   Power modifier: specifies that the operation is raised to the power `power`.
@@ -472,7 +472,7 @@ Hardware can be instructed to apply a real-time idle period on a given qubit. A 
 
 #### Delay
 
-<Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/delay.py#L27-L159" signature="qiskit.circuit.Delay(duration, unit=None)" modifiers="class">
+<Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/delay.py#L27-L158" signature="qiskit.circuit.Delay(duration, unit=None)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   Do nothing and just delay/wait/idle for a specified duration.
@@ -797,7 +797,7 @@ Subclasses of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruc
 
 #### \_define
 
-<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L258-L265" signature="Instruction._define()">
+<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L256-L263" signature="Instruction._define()">
   Populate the cached `_definition` field of this [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction").
 
   Subclasses should implement this method to provide lazy construction of their public [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") attribute. A subclass can use its [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") at the time of the call. The method should populate `_definition` with a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and not return a value.
@@ -941,7 +941,7 @@ Pauli twirling is a quantum error suppression technique that uses randomization 
 
 #### pauli\_twirl\_2q\_gates
 
-<Function id="qiskit.circuit.pauli_twirl_2q_gates" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/twirling.py#L36-L145" signature="qiskit.circuit.pauli_twirl_2q_gates(circuit, twirling_gate=None, seed=None, num_twirls=None, target=None)">
+<Function id="qiskit.circuit.pauli_twirl_2q_gates" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/twirling.py#L36-L143" signature="qiskit.circuit.pauli_twirl_2q_gates(circuit, twirling_gate=None, seed=None, num_twirls=None, target=None)">
   Create copies of a given circuit with Pauli twirling applied around specified two qubit gates.
 
   If you’re running this function with the intent to twirl a circuit to run on hardware this may not be the most efficient way to perform twirling. Especially if the hardware vendor has implemented the [`primitives`](primitives#module-qiskit.primitives "qiskit.primitives") execution interface with `SamplerV2` and `EstimatorV2` this most likely is not the best way to apply twirling to your circuit and you’ll want to refer to the implementation of `SamplerV2` and/or `EstimatorV2` for the specified hardware vendor.

@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.InstructionDurations
 
 # InstructionDurations
 
-<Class id="qiskit.transpiler.InstructionDurations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/instruction_durations.py#L26-L253" signature="qiskit.transpiler.InstructionDurations(instruction_durations=None, dt=None)" modifiers="class">
+<Class id="qiskit.transpiler.InstructionDurations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/instruction_durations.py#L27-L254" signature="qiskit.transpiler.InstructionDurations(instruction_durations=None, dt=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Helper class to provide durations of instructions for scheduling.
@@ -19,12 +19,12 @@ python_api_name: qiskit.transpiler.InstructionDurations
 
   **Parameters**
 
-  *   **instruction\_durations** (*'InstructionDurationsType' | None*) –
-  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float)) –
+  *   **instruction\_durations** (*InstructionDurationsType | None*) –
+  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) –
 
   ### from\_backend
 
-  <Function id="qiskit.transpiler.InstructionDurations.from_backend" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/instruction_durations.py#L65-L82" signature="from_backend(backend)" modifiers="classmethod">
+  <Function id="qiskit.transpiler.InstructionDurations.from_backend" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/instruction_durations.py#L66-L83" signature="from_backend(backend)" modifiers="classmethod">
     Construct an [`InstructionDurations`](#qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") object from the backend.
 
     **Parameters**
@@ -47,7 +47,7 @@ python_api_name: qiskit.transpiler.InstructionDurations
 
   ### get
 
-  <Function id="qiskit.transpiler.InstructionDurations.get" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/instruction_durations.py#L150-L191" signature="get(inst, qubits, unit='dt', parameters=None)">
+  <Function id="qiskit.transpiler.InstructionDurations.get" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/instruction_durations.py#L151-L192" signature="get(inst, qubits, unit='dt', parameters=None)">
     Get the duration of the instruction with the name, qubits, and parameters.
 
     Some instructions may have a parameter dependent duration.
@@ -74,7 +74,7 @@ python_api_name: qiskit.transpiler.InstructionDurations
 
   ### units\_used
 
-  <Function id="qiskit.transpiler.InstructionDurations.units_used" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/instruction_durations.py#L242-L253" signature="units_used()">
+  <Function id="qiskit.transpiler.InstructionDurations.units_used" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/instruction_durations.py#L243-L254" signature="units_used()">
     Get the set of all units used in this instruction durations.
 
     **Returns**
@@ -88,13 +88,13 @@ python_api_name: qiskit.transpiler.InstructionDurations
 
   ### update
 
-  <Function id="qiskit.transpiler.InstructionDurations.update" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/instruction_durations.py#L84-L148" signature="update(inst_durations, dt=None)">
+  <Function id="qiskit.transpiler.InstructionDurations.update" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/instruction_durations.py#L85-L149" signature="update(inst_durations, dt=None)">
     Update self with inst\_durations (inst\_durations overwrite self).
 
     **Parameters**
 
-    *   **inst\_durations** (*'InstructionDurationsType' | None*) – Instruction durations to be merged into self (overwriting self).
-    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Sampling duration in seconds of the target backend.
+    *   **inst\_durations** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*collections.abc.Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*collections.abc.Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | None,* [*str*](https://docs.python.org/3/library/stdtypes.html#str)*]] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*collections.abc.Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*collections.abc.Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | None]] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*collections.abc.Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str)*]] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*collections.abc.Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None,* [*float*](https://docs.python.org/3/library/functions.html#float)*]] |* [*InstructionDurations*](#qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations") *| None*) – Instruction durations to be merged into self (overwriting self).
+    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Sampling duration in seconds of the target backend.
 
     **Returns**
 
