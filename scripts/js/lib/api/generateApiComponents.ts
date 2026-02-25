@@ -186,6 +186,13 @@ function prepareClassOrExceptionProps(
   // sometimes have ' class' in their h1.
   pageHeading = removeSuffix(pageHeading, " class");
   if (!options.isCApi && id.endsWith(pageHeading) && pageHeading != "") {
+    // qiskit-ibm-runtime includes classes from a different package. We want to
+    // ensure we use the last part of the ID as the main heading instead of the full
+    // import path.
+    if (id.startsWith("ibm_quantum_schemas")) {
+      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    }
+
     // Page is already dedicated to the class
     return {
       ...props,

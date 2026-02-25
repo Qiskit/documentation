@@ -217,6 +217,8 @@ export const QISKIT_ADDON_MPF_GROUPING: TocGrouping = {
 // qiskit-ibm-runtime
 // --------------------------------------------------------------------------------------------------
 
+const _SCHEMAS = "ibm_quantum_schemas";
+
 export const QISKIT_RUNTIME_GROUPING: TocGrouping = {
   entries: [
     // qiskit-ibm-runtime package
@@ -276,31 +278,10 @@ export const QISKIT_RUNTIME_GROUPING: TocGrouping = {
       kind: "module",
     },
     // ibm-quantum-schemas package
-    {
-      moduleId: "ibm_quantum_schemas.models",
-      title: "ibm_quantum_schemas.models",
-      kind: "module",
-    },
-    {
-      moduleId: "ibm_quantum_schemas.models.executor.version_0_1",
-      title: "ibm_quantum_schemas.models.executor.version_0_1",
-      kind: "module",
-    },
-    {
-      moduleId: "ibm_quantum_schemas.models.executor.version_0_2",
-      title: "ibm_quantum_schemas.models.executor.version_0_2",
-      kind: "module",
-    },
-    {
-      moduleId: "ibm_quantum_schemas.models.noise_learner_v3.version_0_1",
-      title: "ibm_quantum_schemas.models.noise_learner_v3.version_0_1",
-      kind: "module",
-    },
-    {
-      moduleId: "ibm_quantum_schemas.models.noise_learner_v3.version_0_2",
-      title: "ibm_quantum_schemas.models.noise_learner_v3.version_0_2",
-      kind: "module",
-    },
+    { name: _SCHEMAS, kind: "section" },
   ],
-  moduleToSection: () => undefined,
+  moduleToSection: (module) =>
+    hasPrefix(module, ["ibm_quantum_schemas", "IBM Quantum Schemas"])
+      ? _SCHEMAS
+      : undefined,
 };
