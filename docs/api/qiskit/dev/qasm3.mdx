@@ -61,7 +61,7 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
 ### Exporter
 
-<Class id="qiskit.qasm3.Exporter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L190-L282" signature="qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None, annotation_handlers=None, implicit_defcals=None)" modifiers="class">
+<Class id="qiskit.qasm3.Exporter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L191-L283" signature="qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None, annotation_handlers=None, implicit_defcals=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   QASM3 exporter main class.
@@ -80,7 +80,7 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
   *   **disable\_constants** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if `True`, always emit floating-point constants for numeric parameter values. If `False` (the default), then values close to multiples of OpenQASM 3 constants (`pi`, `euler`, and `tau`) will be emitted in terms of those constants instead, potentially improving accuracy in the output.
 
-  *   **alias\_classical\_registers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
+  *   **alias\_classical\_registers** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) –
 
       If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3.
 
@@ -90,7 +90,7 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
           A value for `allow_aliasing` overrides any value given here, and supersedes this parameter.
         </Admonition>
 
-  *   **allow\_aliasing** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
+  *   **allow\_aliasing** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) –
 
       If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3. Defaults to `False` or the value of `alias_classical_registers`.
 
@@ -106,13 +106,13 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
   #### dump
 
-  <Function id="qiskit.qasm3.Exporter.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L268-L282" signature="dump(circuit, stream)">
+  <Function id="qiskit.qasm3.Exporter.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L269-L283" signature="dump(circuit, stream)">
     Convert the circuit to OpenQASM 3, dumping the result to a file or text stream.
   </Function>
 
   #### dumps
 
-  <Function id="qiskit.qasm3.Exporter.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L262-L266" signature="dumps(circuit)">
+  <Function id="qiskit.qasm3.Exporter.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L263-L267" signature="dumps(circuit)">
     Convert the circuit to OpenQASM 3, returning the result as a string.
   </Function>
 </Class>

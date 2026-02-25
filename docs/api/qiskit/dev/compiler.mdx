@@ -39,18 +39,18 @@ python_api_name: qiskit.compiler
 
   *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend") *| None*) – If set, the transpiler will compile the input circuit to this target device. If any other option is explicitly set (e.g., `coupling_map`), it will override the backend’s.
 
-  *   **basis\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – List of basis gate names to unroll to (e.g: `['u1', 'u2', 'u3', 'cx']`). If `None`, do not unroll.
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – List of basis gate names to unroll to (e.g.: `['u1', 'u2', 'u3', 'cx']`). If `None`, do not unroll.
 
-  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]] | None*) –
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]] | None*) –
 
       Directed coupling map (perhaps custom) to target in mapping. If the coupling map is symmetric, both directions need to be specified.
 
       Multiple formats are supported:
 
       1.  `CouplingMap` instance
-      2.  List, must be given as an adjacency matrix, where each entry specifies all directed two-qubit interactions supported by backend, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
+      2.  List, must be given as an adjacency matrix, where each entry specifies all directed two-qubit interactions supported by backend, e.g.: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
 
-  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict)  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List) *| None*) –
+  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list) *| None*) –
 
       Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the coupling\_map constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler may permute qubits through swaps or other means. Multiple formats are supported:
 
@@ -88,7 +88,7 @@ python_api_name: qiskit.compiler
 
   *   **layout\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Name of layout selection pass (‘trivial’, ‘dense’, ‘sabre’). This can also be the external plugin name to use for the `layout` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"layout"` for the `stage_name` argument.
 
-  *   **routing\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’). Note This can also be the external plugin name to use for the `routing` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"routing"` for the `stage_name` argument.
+  *   **routing\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’). This can also be the external plugin name to use for the `routing` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"routing"` for the `stage_name` argument.
 
   *   **translation\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Name of translation pass (`"default"`, `"translator"` or `"synthesis"`). This can also be the external plugin name to use for the `translation` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"translation"` for the `stage_name` argument.
 
@@ -111,7 +111,7 @@ python_api_name: qiskit.compiler
 
       If `None`, level 2 will be chosen as default.
 
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[BasePass,* [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) –
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[BasePass,* [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) –
 
       A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments, | `pass_`: the pass being run. | `dag`: the dag output of the pass. | `time`: the time to execute the pass. | `property_set`: the property set. | `count`: the index for the pass execution. The exact arguments passed expose the internals of the pass manager, and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases, be sure to check that the arguments being passed are the same. To use the callback feature, define a function that will take in kwargs dict and access the variables. For example:
 
@@ -126,7 +126,7 @@ python_api_name: qiskit.compiler
       transpile(circ, callback=callback_func)
       ```
 
-  *   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – A list with strings to identify the output circuits. The length of the list should be exactly the length of the `circuits` parameter.
+  *   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – A list with strings to identify the output circuits. The length of the list should be exactly the length of the `circuits` parameter.
 
   *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the unitary synthesis method to use. By default `'default'` is used. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
 
@@ -134,7 +134,7 @@ python_api_name: qiskit.compiler
 
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.target.Target") *| None*) – A backend transpiler target. Normally this is specified as part of the `backend` argument, but if you have manually constructed a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object you can specify it manually here. This will override the target from `backend`.
 
-  *   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.synthesis.high_level_synthesis.HLSConfig") *| None*) – An optional configuration class `HLSConfig` that will be passed directly to `HighLevelSynthesis` transformation pass. This configuration class allows to specify for various high-level objects the lists of synthesis algorithms and their parameters.
+  *   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.synthesis.high_level_synthesis.HLSConfig") *| None*) – An optional configuration class `HLSConfig` that will be passed directly to `HighLevelSynthesis` transformation pass. This configuration class allows specifying the lists of synthesis algorithms and their parameters for various high-level objects.
 
   *   **init\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The plugin name to use for the `init` stage. By default an external plugin is not used. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"init"` for the stage name argument.
 

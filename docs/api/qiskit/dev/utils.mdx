@@ -180,7 +180,7 @@ python_api_name: qiskit.utils
 
 ### wrap\_method
 
-<Function id="qiskit.utils.wrap_method" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/classtools.py#L120-L146" signature="qiskit.utils.wrap_method(cls, name, *, before=None, after=None)">
+<Function id="qiskit.utils.wrap_method" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/classtools.py#L120-L148" signature="qiskit.utils.wrap_method(cls, name, *, before=None, after=None)">
   Wrap the functionality the instance- or class method `cls.name` with additional behavior `before` and `after`.
 
   This mutates `cls`, replacing the attribute `name` with the new functionality. This is useful when creating class decorators. The method is allowed to be defined on any parent class instead.
@@ -189,10 +189,10 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **cls** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type)) – the class to modify.
+  *   **cls** ([*type*](https://docs.python.org/3/library/functions.html#type)) – the class to modify.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the name of the method on the class to wrap.
-  *   **before** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable) *| None*) – a callable that should be called before the method that is being wrapped.
-  *   **after** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable) *| None*) – a callable that should be called after the method that is being wrapped.
+  *   **before** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – a callable that should be called before the method that is being wrapped.
+  *   **after** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – a callable that should be called after the method that is being wrapped.
 
   **Raises**
 
@@ -569,7 +569,7 @@ from qiskit.utils import LazyImportTester
 
 #### LazyDependencyManager
 
-<Class id="qiskit.utils.LazyDependencyManager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L44-L238" signature="qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)" modifiers="class">
+<Class id="qiskit.utils.LazyDependencyManager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L45-L239" signature="qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)" modifiers="class">
   Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   A manager for some optional features that are expensive to import, or to verify the existence of.
@@ -611,7 +611,7 @@ from qiskit.utils import LazyImportTester
 
   ##### \_is\_available
 
-  <Function id="qiskit.utils.LazyDependencyManager._is_available" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L104-L112" signature="_is_available()" modifiers="abstract">
+  <Function id="qiskit.utils.LazyDependencyManager._is_available" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L105-L113" signature="_is_available()" modifiers="abstract">
     Subclasses of [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.LazyDependencyManager") should override this method to implement the actual test of availability. This method should return a Boolean, where `True` indicates that the dependency was available. This method will only ever be called once.
 
     **Return type**
@@ -621,13 +621,13 @@ from qiskit.utils import LazyImportTester
 
   ##### disable\_locally
 
-  <Function id="qiskit.utils.LazyDependencyManager.disable_locally" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L225-L238" signature="disable_locally()">
+  <Function id="qiskit.utils.LazyDependencyManager.disable_locally" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L226-L239" signature="disable_locally()">
     Create a context, during which the value of the dependency manager will be `False`. This means that within the context, any calls to this object will behave as if the dependency is not available, including raising errors. It is valid to call this method whether or not the dependency has already been evaluated. This is most useful in tests.
   </Function>
 
   ##### require\_in\_call
 
-  <Function id="qiskit.utils.LazyDependencyManager.require_in_call" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L127-L167" signature="require_in_call(feature_or_callable: Callable) → Callable" extraSignatures={["require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]"]}>
+  <Function id="qiskit.utils.LazyDependencyManager.require_in_call" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L128-L168" signature="require_in_call(feature_or_callable: Callable) → Callable" extraSignatures={["require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]"]}>
     Create a decorator for callables that requires that the dependency is available when the decorated function or method is called.
 
     **Parameters**
@@ -645,7 +645,7 @@ from qiskit.utils import LazyImportTester
 
   ##### require\_in\_instance
 
-  <Function id="qiskit.utils.LazyDependencyManager.require_in_instance" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L175-L207" signature="require_in_instance(feature_or_class: Type) → Type" extraSignatures={["require_in_instance(feature_or_class: str) → Callable[[Type], Type]"]}>
+  <Function id="qiskit.utils.LazyDependencyManager.require_in_instance" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L176-L208" signature="require_in_instance(feature_or_class: type) → type" extraSignatures={["require_in_instance(feature_or_class: str) → Callable[[type], type]"]}>
     A class decorator that requires the dependency is available when the class is initialized. This decorator can be used even if the class does not define an `__init__` method.
 
     **Parameters**
@@ -663,7 +663,7 @@ from qiskit.utils import LazyImportTester
 
   ##### require\_now
 
-  <Function id="qiskit.utils.LazyDependencyManager.require_now" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L209-L223" signature="require_now(feature)">
+  <Function id="qiskit.utils.LazyDependencyManager.require_now" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L210-L224" signature="require_now(feature)">
     Eagerly attempt to import the dependencies in this object, and raise an exception if they cannot be imported.
 
     **Parameters**
@@ -678,16 +678,16 @@ from qiskit.utils import LazyImportTester
 
 #### LazyImportTester
 
-<Class id="qiskit.utils.LazyImportTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L241-L323" signature="qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
+<Class id="qiskit.utils.LazyImportTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L242-L324" signature="qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
   Bases: [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.lazy_tester.LazyDependencyManager")
 
   A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
 
   **Parameters**
 
-  *   **name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]] |* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
+  *   **name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*collections.abc.Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]] |* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) –
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) –
   *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
   *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
 
@@ -698,16 +698,16 @@ from qiskit.utils import LazyImportTester
 
 #### LazySubprocessTester
 
-<Class id="qiskit.utils.LazySubprocessTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L326-L363" signature="qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
+<Class id="qiskit.utils.LazySubprocessTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L327-L364" signature="qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
   Bases: [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.lazy_tester.LazyDependencyManager")
 
   A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
 
   **Parameters**
 
-  *   **command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
+  *   **command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) –
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) –
   *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
   *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) –
 

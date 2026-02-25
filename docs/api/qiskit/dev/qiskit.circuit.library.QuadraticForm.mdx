@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.QuadraticForm
 
 # QuadraticForm
 
-<Class id="qiskit.circuit.library.QuadraticForm" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/quadratic_form.py#L30-L195" signature="qiskit.circuit.library.QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)" modifiers="class">
+<Class id="qiskit.circuit.library.QuadraticForm" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/quadratic_form.py#L30-L193" signature="qiskit.circuit.library.QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   Implements a quadratic form on binary variables encoded in qubit registers.
@@ -43,10 +43,10 @@ $$
 
   **Parameters**
 
-  *   **num\_result\_qubits** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The number of qubits to encode the result. Called $m$ in the class documentation.
-  *   **quadratic** (*Optional\[Union\[np.ndarray, List\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]]]]]*) – A matrix containing the quadratic coefficients, $A$.
-  *   **linear** (*Optional\[Union\[np.ndarray, List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]]]]*) – An array containing the linear coefficients, $b$.
-  *   **offset** (*Optional\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]]*) – A constant offset, $c$.
+  *   **num\_result\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits to encode the result. Called $m$ in the class documentation.
+  *   **quadratic** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]] | None*) – A matrix containing the quadratic coefficients, $A$.
+  *   **linear** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*] | None*) – An array containing the linear coefficients, $b$.
+  *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – A constant offset, $c$.
   *   **little\_endian** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Encode the result in little endianness.
 
   **Raises**
@@ -79,13 +79,13 @@ $$
 
   ### required\_result\_qubits
 
-  <Function id="qiskit.circuit.library.QuadraticForm.required_result_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/quadratic_form.py#L178-L195" signature="required_result_qubits(quadratic, linear, offset)" modifiers="static">
+  <Function id="qiskit.circuit.library.QuadraticForm.required_result_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/quadratic_form.py#L176-L193" signature="required_result_qubits(quadratic, linear, offset)" modifiers="static">
     Get the number of required result qubits.
 
     **Parameters**
 
-    *   **quadratic** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]]*) – A matrix containing the quadratic coefficients.
-    *   **linear** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – An array containing the linear coefficients.
+    *   **quadratic** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]]*) – A matrix containing the quadratic coefficients.
+    *   **linear** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – An array containing the linear coefficients.
     *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float)) – A constant offset.
 
     **Returns**
