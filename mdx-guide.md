@@ -168,7 +168,7 @@ To use an `Admonition`, use the following syntax
 
 ```mdx
 <Admonition type="note">
-This is an example of a note.
+  This is an example of a note.
 </Admonition>
 ```
 
