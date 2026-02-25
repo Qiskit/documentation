@@ -45,12 +45,12 @@ python_api_name: qiskit.transpiler.passes.HighLevelSynthesis
 
   **Parameters**
 
-  *   **hls\_config** – Optional, the high-level-synthesis config that specifies synthesis methods and parameters for various high-level-objects in the circuit. If it is not specified, the default synthesis methods and parameters will be used.
-  *   **coupling\_map** – Optional, directed graph represented as a coupling map.
-  *   **target** – Optional, the backend target to use for this pass. If it is specified, it will be used instead of the coupling map.
+  *   **hls\_config** – the high-level-synthesis config that specifies synthesis methods and parameters for various high-level-objects in the circuit. If it is not specified, the default synthesis methods and parameters will be used.
+  *   **coupling\_map** – directed graph represented as a coupling map.
+  *   **target** – the backend target to use for this pass. If it is specified, it will be used instead of the coupling map.
   *   **use\_qubit\_indices** – a flag indicating whether this synthesis pass is running before or after the layout is set, that is, whether the qubit indices of higher-level-objects correspond to qubit indices on the target backend.
   *   **equivalence\_library** – The equivalence library used (instructions in this library will not be unrolled by this pass).
-  *   **basis\_gates** – Optional, target basis names to unroll to, e.g. \[‘u3’, ‘cx’]. Ignored if `target` is also specified.
+  *   **basis\_gates** – target basis names to unroll to, e.g. \[‘u3’, ‘cx’]. Ignored if `target` is also specified.
   *   **min\_qubits** – The minimum number of qubits for operations in the input dag to translate.
   *   **qubits\_initially\_zero** – Indicates whether the qubits are initially in the state $|0\rangle$. This allows the high-level-synthesis to use clean auxiliary qubits (i.e. in the zero state) to synthesize an operation.
   *   **optimization\_metric** – Specifies the optimization criterion used by the default synthesis methods for high-level-objects (when available).
@@ -97,7 +97,7 @@ python_api_name: qiskit.transpiler.passes.HighLevelSynthesis
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.HighLevelSynthesis.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.HighLevelSynthesis.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
     Name of the pass.
 
     **Return type**

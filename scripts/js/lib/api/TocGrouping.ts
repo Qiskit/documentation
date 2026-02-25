@@ -212,3 +212,76 @@ export const QISKIT_ADDON_MPF_GROUPING: TocGrouping = {
       ? "qiskit_addon_mpf.backends"
       : undefined,
 };
+
+// --------------------------------------------------------------------------------------------------
+// qiskit-ibm-runtime
+// --------------------------------------------------------------------------------------------------
+
+const _SCHEMAS = "ibm_quantum_schemas";
+
+export const QISKIT_RUNTIME_GROUPING: TocGrouping = {
+  entries: [
+    // qiskit-ibm-runtime package
+    {
+      moduleId: "qiskit_ibm_runtime",
+      title: "qiskit_ibm_runtime",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.debug_tools",
+      title: "qiskit_ibm_runtime.debug_tools",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.execution_span",
+      title: "qiskit_ibm_runtime.execution_span",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.fake_provider",
+      title: "qiskit_ibm_runtime.fake_provider",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.models",
+      title: "qiskit_ibm_runtime.models",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.noise_learner",
+      title: "qiskit_ibm_runtime.noise_learner",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.options",
+      title: "qiskit_ibm_runtime.options",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.transpiler.passes",
+      title: "qiskit_ibm_runtime.transpiler.passes",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.transpiler.passes.scheduling",
+      title: "qiskit_ibm_runtime.transpiler.passes.scheduling",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.utils.noise_learner_result",
+      title: "qiskit_ibm_runtime.utils.noise_learner_result",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.visualization",
+      title: "qiskit_ibm_runtime.visualization",
+      kind: "module",
+    },
+    // ibm-quantum-schemas package
+    { name: _SCHEMAS, kind: "section" },
+  ],
+  moduleToSection: (module) =>
+    hasPrefix(module, ["ibm_quantum_schemas", "IBM Quantum Schemas"])
+      ? _SCHEMAS
+      : undefined,
+};

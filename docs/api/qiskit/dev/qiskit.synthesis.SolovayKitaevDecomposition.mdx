@@ -8,7 +8,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
 # SolovayKitaevDecomposition
 
-<Class id="qiskit.synthesis.SolovayKitaevDecomposition" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L33-L274" signature="qiskit.synthesis.SolovayKitaevDecomposition(basic_approximations=None, *, basis_gates=None, depth=12, check_input=False)" modifiers="class">
+<Class id="qiskit.synthesis.SolovayKitaevDecomposition" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L33-L273" signature="qiskit.synthesis.SolovayKitaevDecomposition(basic_approximations=None, *, basis_gates=None, depth=12, check_input=False)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   The Solovay Kitaev discrete decomposition algorithm.
@@ -23,7 +23,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
   *   **basic\_approximations** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, np.ndarray] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[GateSequence] | None*) –
 
-      A specification of the basic SO(3) approximations in terms of discrete gates. At each iteration this algorithm, the remaining error is approximated with the closest sequence of gates in this set. If a `str`, this specifies a filename from which to load the approximation. If a `dict`, then this contains `{gates: effective_SO3_matrix}` pairs, e.g. `{"h t": np.array([[0, 0.7071, -0.7071], [0, -0.7071, -0.7071], [-1, 0, 0]]}`. If a list, this contains the same information as the dict, but already converted to `GateSequence` objects, which contain the SO(3) matrix and gates.
+      A specification of the basic SO(3) approximations in terms of discrete gates. At each iteration of this algorithm, the remaining error is approximated with the closest sequence of gates in this set. If a `str`, this specifies a filename from which to load the approximation. If a `dict`, then this contains `{gates: effective_SO3_matrix}` pairs, e.g. `{"h t": np.array([[0, 0.7071, -0.7071], [0, -0.7071, -0.7071], [-1, 0, 0]]}`. If a list, this contains the same information as the dict, but already converted to `GateSequence` objects, which contain the SO(3) matrix and gates.
 
       Either this parameter, or `basis_gates` and `depth` can be specified.
 
@@ -59,7 +59,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
   ### find\_basic\_approximation
 
-  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.find_basic_approximation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L260-L274" signature="find_basic_approximation(sequence)">
+  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.find_basic_approximation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L259-L273" signature="find_basic_approximation(sequence)">
     Find `GateSequence` in `self._basic_approximations` that approximates `sequence`.
 
     <Admonition title="Deprecated since version 2.3" type="danger">
@@ -81,7 +81,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
   ### load\_basic\_approximations
 
-  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.load_basic_approximations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L118-L177" signature="load_basic_approximations(data)" modifiers="static">
+  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.load_basic_approximations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L117-L176" signature="load_basic_approximations(data)" modifiers="static">
     Load basic approximations.
 
     <Admonition title="Note" type="note">
@@ -107,7 +107,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
   ### query\_basic\_approximation
 
-  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.query_basic_approximation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L250-L258" signature="query_basic_approximation(gate)">
+  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.query_basic_approximation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L249-L257" signature="query_basic_approximation(gate)">
     Query a basic approximation of a matrix.
 
     **Parameters**
@@ -121,7 +121,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
   ### run
 
-  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L207-L248" signature="run(gate_matrix, recursion_degree, return_dag=False, check_input=True)">
+  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L206-L247" signature="run(gate_matrix, recursion_degree, return_dag=False, check_input=True)">
     Run the algorithm.
 
     **Parameters**
@@ -142,7 +142,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
   ### save\_basic\_approximations
 
-  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.save_basic_approximations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L179-L205" signature="save_basic_approximations(filename)">
+  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.save_basic_approximations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L178-L204" signature="save_basic_approximations(filename)">
     Save the basic approximations into a file.
 
     This can then be loaded again via the class initializer (preferred) or via [`load_basic_approximations()`](#qiskit.synthesis.SolovayKitaevDecomposition.load_basic_approximations "qiskit.synthesis.SolovayKitaevDecomposition.load_basic_approximations"):
