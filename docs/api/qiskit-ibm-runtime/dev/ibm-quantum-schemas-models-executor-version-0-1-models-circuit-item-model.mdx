@@ -15,9 +15,9 @@ python_api_name: ibm_quantum_schemas.models.executor.version_0_1.models.CircuitI
 
   Execution specifications for a single quantum circuit.
 
-  ### field chunk\_size
+  ### chunk\_size
 
-  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.chunk_size" attributeTypeHint="Annotated[int, FieldInfo(annotation" attributeValue="NoneType, required=True, metadata=[Ge(ge=1)])] | Literal['auto'] = 'auto'">
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.chunk_size" attributeTypeHint="Annotated[int, FieldInfo(annotation" attributeValue="NoneType, required=True, metadata=[Ge(ge=1)])] | Literal['auto'] = 'auto'" modifiers="field">
     The maximum number circuit arguments to bind to the circuit per shot loop.
 
     When `"auto"`, the number is chosen server-side with heuristics designed to optimize execution speed. A quantum program must have items where either all chunk sizes are integer-valued, or all chunk sizes are `"auto"`. Integer values are only allowed inside of session exection mode.
@@ -27,9 +27,9 @@ python_api_name: ibm_quantum_schemas.models.executor.version_0_1.models.CircuitI
     *   [`cross_validate`](#ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.cross_validate "ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.cross_validate")
   </Attribute>
 
-  ### field circuit
+  ### circuit
 
-  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.circuit" attributeTypeHint="QpyModelV13ToV16 [Required]">
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.circuit" attributeTypeHint="QpyModelV13ToV16 [Required]" modifiers="field">
     A QPY-encoded circuit.
 
     **Validated by**
@@ -37,9 +37,9 @@ python_api_name: ibm_quantum_schemas.models.executor.version_0_1.models.CircuitI
     *   [`cross_validate`](#ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.cross_validate "ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.cross_validate")
   </Attribute>
 
-  ### field circuit\_arguments
+  ### circuit\_arguments
 
-  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.circuit_arguments" attributeTypeHint="F64TensorModel [Required]">
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.circuit_arguments" attributeTypeHint="F64TensorModel [Required]" modifiers="field">
     Arguments to the parameters of the circuit.
 
     The last axis is over `circuit.parameters`. Execution broadcasts over the preceding axes; expect one result per element of the leading shape.
@@ -49,9 +49,9 @@ python_api_name: ibm_quantum_schemas.models.executor.version_0_1.models.CircuitI
     *   [`cross_validate`](#ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.cross_validate "ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.cross_validate")
   </Attribute>
 
-  ### field item\_type
+  ### item\_type
 
-  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.item_type" attributeTypeHint="Literal['circuit']" attributeValue="'circuit'">
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.CircuitItemModel.item_type" attributeTypeHint="Literal['circuit']" attributeValue="'circuit'" modifiers="field">
     The type of quantum program item.
 
     **Validated by**
