@@ -14,12 +14,26 @@ from __future__ import annotations
 
 import logging
 import subprocess
+import time
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Iterator
 
 
 logger = logging.getLogger(__name__)
+
+
+def get_timestamp(dest: Path) -> int | None:
+    try:
+        return int(Path(dest / "last_modified.txt").read_text())
+    except (FileNotFoundError, ValueError):
+        return None
+
+
+def write_timestamp(dest: Path) -> None:
+    now = time.time()
+    Path(dest).mkdir(parents=True, exist_ok=True)
+    Path(dest / "last_modified.txt").write_text(str(int(now)))
 
 
 def configure_logging() -> None:
