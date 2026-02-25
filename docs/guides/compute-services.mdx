@@ -13,7 +13,7 @@ Qiskit Runtime is the cloud-based service for executing quantum computations on 
 Qiskit Runtime is designed to use additional classical and quantum compute resources, including techniques such as error suppression and error mitigation, to return a higher-quality result from executing quantum circuits on quantum processors. Examples include dynamical decoupling for error suppression, and readout mitigation and zero-noise extrapolation (ZNE) for error mitigation. Learn how to configure these options on the [Configure error mitigation](/docs/guides/configure-error-mitigation) page.
 
 
-Qiskit Runtime also includes three types of execution modes for running your quantum program on IBM hardware: [_Job_, _Session_, and _Batch_,](/docs/guides/execution-modes) each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. Note that Open Plan users cannot submit session jobs.
+Qiskit Runtime also includes three types of execution modes for running your quantum program on IBM&reg; hardware: [Job, Session, and Batch,](/docs/guides/execution-modes) each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. Note that Open Plan users cannot submit session jobs.
 
 To quickly install Qiskit Runtime, run the following command:
 ```bash
@@ -27,9 +27,11 @@ The short answer is, _not all of it_. The Qiskit Runtime service software that h
 
 ## IBM Quantum Platform
 
-IBM Quantum Platform provides a unified environment for managing users and organizations, configuring access plans, submitting quantum computing workloads, and monitoring system activity. Designed to support teams ranging from individual researchers to enterprise‑scale programs, the platform centralizes access to the IBM&reg; fleet of quantum processing units (QPUs) and associated services. Administrators can manage memberships and permissions, configure entitlements, and oversee usage, while developers benefit from a consistent interface for interacting with quantum systems.
+IBM Quantum Platform provides a unified environment for managing users and organizations, configuring access plans, submitting quantum computing workloads, and monitoring system activity. Designed to support teams ranging from individual researchers to enterprise-scale programs, the platform centralizes access to the IBM fleet of quantum processing units (QPUs) and associated services. Administrators can manage memberships and permissions, configure entitlements, and oversee usage, while developers benefit from a consistent interface for interacting with quantum systems.
 
-To run quantum jobs, users create a compute instance within the platform. Each instance provides its own Cloud Resource Name (CRN), which is required for submitting workloads to available QPUs. Once configured, users can select or adjust access plans, track job execution, analyze logs, and integrate the platform seamlessly into their development workflows. Together, these capabilities make the IBM Quantum Platform the control center for QPU access and quantum application execution.
+To run quantum jobs, users create an [instance](/docs/guides/instances) within the platform. Each instance provides its own Cloud Resource Name (CRN), which is required for submitting workloads to available QPUs. Once configured, users can select or adjust access plans, track job execution, analyze logs, and integrate the platform seamlessly into their development workflows. Together, these capabilities make IBM Quantum Platform the control center for QPU access and quantum application execution.
+
+For more details, read the [setup documentation](/docs/guides/cloud-setup) for getting started with IBM Quantum Platform.
 
 
 ## Qiskit Serverless
@@ -53,6 +55,8 @@ Qiskit Functions (`qiskit-ibm-catalog.QiskitFunctionsCatalog`) are abstracted se
 - **Circuit functions**: Services that include transpilation, error suppression, error mitigation, and post-processing techniques that take abstract circuits and desired measurement observables as input. With Circuit functions, users can discover new algorithms and applications without needing to manage transpilation or quantum hardware performance.
 - **Application functions**: Services that include entire quantum workflows, from mapping classical to quantum, optimizing for hardware, execution on hardware, and post-processing. Users can prototype industry applications with domain-familiar inputs and outputs.
 
+Find more details in the [Qiskit Functions documentation](/docs/guides/functions).
+
 Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan members can access IBM-provided functions right away, or purchase licenses for the partner-provided functions directly from those partners.
 
 The catalog can be installed with pip:
@@ -61,7 +65,7 @@ pip install qiskit-ibm-catalog
 ```
 
 ## Qiskit Transpiler Service
-The Qiskit Transpiler Service ([package name `qiskit-ibm-transpiler`](https://pypi.org/project/qiskit-ibm-transpiler/)) is a new experimental service that provides remote transpilation capabilities on the cloud to IBM Quantum Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. In addition to the local Qiskit SDK transpiler capabilities, your transpilation tasks can benefit from both IBM Quantum cloud resources and AI-powered transpiler passes using this service. To learn more about how to integrate cloud-based transpilation into your Qiskit workflow you can [check out the documentation](./qiskit-transpiler-service).
+The Qiskit Transpiler Service ([package name `qiskit-ibm-transpiler`](https://pypi.org/project/qiskit-ibm-transpiler/)) is a new experimental service that provides remote transpilation capabilities on the cloud to IBM Quantum Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. In addition to the local Qiskit SDK transpiler capabilities, your transpilation tasks can benefit from both IBM Quantum cloud resources and AI-powered transpiler passes using this service. To learn more about how to integrate cloud-based transpilation into your Qiskit workflow you can [check out the documentation](/docs/guides/qiskit-transpiler-service).
 
 The transpiler service can be installed with pip:
 ```bash
