@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
 # ControlledGate
 
-<Class id="qiskit.circuit.ControlledGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlledgate.py#L27-L275" signature="qiskit.circuit.ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None, *, _base_label=None)" modifiers="class">
+<Class id="qiskit.circuit.ControlledGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlledgate.py#L31-L279" signature="qiskit.circuit.ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None, *, _base_label=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Controlled unitary gate.
@@ -22,7 +22,7 @@ python_api_name: qiskit.circuit.ControlledGate
   *   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – A list of parameters for the gate.
   *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional label for the gate.
   *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Number of control qubits.
-  *   **definition** (*'QuantumCircuit' | None*) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
+  *   **definition** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
   *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state in decimal or as a bitstring (e.g. ‘111’). If specified as a bitstring the length must equal num\_ctrl\_qubits, MSB on left. If None, use 2\*\*num\_ctrl\_qubits-1.
   *   **base\_gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| None*) – Gate object to be controlled.
 
@@ -179,7 +179,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.ControlledGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L320-L325" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.ControlledGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L318-L323" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
@@ -233,7 +233,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list), [list](https://docs.python.org/3/library/stdtypes.html#list)]]
+    [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list), [list](https://docs.python.org/3/library/stdtypes.html#list)]]
   </Function>
 
   ### control
@@ -265,7 +265,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### copy
 
-  <Function id="qiskit.circuit.ControlledGate.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L430-L445" signature="copy(name=None)">
+  <Function id="qiskit.circuit.ControlledGate.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L428-L443" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -283,7 +283,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### inverse
 
-  <Function id="qiskit.circuit.ControlledGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlledgate.py#L267-L275" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.ControlledGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlledgate.py#L271-L279" signature="inverse(annotated=False)">
     Invert this gate by calling inverse on the base gate.
 
     **Parameters**
@@ -292,12 +292,12 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Return type**
 
-    ControlledGate’ | ‘AnnotatedOperation
+    [ControlledGate](#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") | [AnnotatedOperation](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")
   </Function>
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.ControlledGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L285-L290" signature="is_parameterized()">
+  <Function id="qiskit.circuit.ControlledGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
     Return whether the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](circuit#circuit-compile-time-parameters).
   </Function>
 
@@ -324,7 +324,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### repeat
 
-  <Function id="qiskit.circuit.ControlledGate.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L493-L523" signature="repeat(n)">
+  <Function id="qiskit.circuit.ControlledGate.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L491-L521" signature="repeat(n)">
     Creates an instruction with `self` repeated $n$ times.
 
     **Parameters**
@@ -346,7 +346,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.ControlledGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L347-L371" signature="reverse_ops()">
+  <Function id="qiskit.circuit.ControlledGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L345-L369" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -364,7 +364,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.ControlledGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L216-L256" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.ControlledGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L214-L254" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -400,7 +400,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.ControlledGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L145-L153" signature="to_mutable()">
+  <Function id="qiskit.circuit.ControlledGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L144-L152" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.

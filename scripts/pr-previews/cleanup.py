@@ -15,10 +15,7 @@
 import json
 import logging
 import shutil
-import time
 from pathlib import Path
-from datetime import datetime
-from typing import TypedDict
 
 logger = logging.getLogger(__name__)
 
@@ -31,9 +28,6 @@ from utils import (
 )
 
 INITIAL_COMMIT = "499a5040585d02593cdd8237e19c9ee4a84ae126"
-
-SEVEN_DAYS_IN_SECONDS = 60 * 60 * 24 * 7
-PR_EXPIRATION_TIME_SECONDS = SEVEN_DAYS_IN_SECONDS
 
 
 def main() -> None:
@@ -63,137 +57,22 @@ def main() -> None:
         logger.info("Cleaned up closed PR previews")
 
 
-class PrFolders(TypedDict):
-    all_open: set[str]
-    open_stale: set[str]
-
-
-def determine_stale(
-    api_response: str, current_time: int, expiration_period: int
-) -> PrFolders:
-    # We parse the JSON into `{ number: int, updatedAt: int }[]`
-    def parse_updated_at(data):
-        """Converts "updatedAt" fields from iso strings into unix timestamps"""
-        if "updatedAt" in data:
-            iso_format = data["updatedAt"]
-            timestamp = datetime.fromisoformat(iso_format).timestamp()
-            data["updatedAt"] = timestamp
-        return data
-
-    parsed = json.loads(api_response, object_hook=parse_updated_at)
-    all_pr_numbers = (pr["number"] for pr in parsed)
-
-    # ========================================================
-    # Extract stale PRs
-    # ========================================================
-
-    def is_stale(updated_at: int) -> bool:
-        return (current_time - updated_at) > expiration_period
-
-    stale_pr_numbers = (pr["number"] for pr in parsed if is_stale(pr["updatedAt"]))
-
-    # === Return folder names ===
-    def number_to_folder(num: int) -> str:
-        return f"pr-{num}"
-
-    return {
-        "all_open": set(map(number_to_folder, all_pr_numbers)),
-        "open_stale": set(map(number_to_folder, stale_pr_numbers)),
-    }
-
-
-def get_pr_folders() -> PrFolders:
-    api_response = run_subprocess(
-        [
-            "gh",
-            "pr",
-            "list",
-            "--state",
-            "open",
-            "--json",
-            "number,updatedAt",
-            "--limit",
-            "1000",
-        ]
+def get_active_pr_folders() -> 'set[str]':
+    raw = run_subprocess(
+        ["gh", "pr", "list", "--state", "open", "--json", "number", "--limit", "1000"]
     ).stdout
-    return determine_stale(api_response, int(time.time()), PR_EXPIRATION_TIME_SECONDS)
-
+    # `raw` is JSON string of form: { number: int }[]
+    return {f"pr-{obj['number']}" for obj in json.loads(raw)}
 
 def delete_closed_pr_folders() -> None:
-    pr_folders = get_pr_folders()
-
+    active_pr_folders = get_active_pr_folders()
     for folder in Path(".").glob("pr-*"):
-        is_closed = folder.name not in pr_folders["all_open"]
+        is_closed = folder.name not in active_pr_folders
         if is_closed:
             logger.info(f"Deleting {folder} as PR is closed")
             shutil.rmtree(folder)
-            continue
-
-        is_stale = folder.name in pr_folders["open_stale"]
-        if is_stale:
-            logger.info(f"Deleting {folder} as it is stale")
-            shutil.rmtree(folder)
-            continue
 
 
 if __name__ == "__main__":
     configure_logging()
     main()
-
-
-# =====
-# TESTS
-# =====
-
-
-def test_determine_stale_empty_list():
-    assert determine_stale("[]", 0, 1) == {"all_open": set(), "open_stale": set()}
-
-
-def test_determine_stale_active_pr():
-    api_response = """[{
-      "number": 1,
-      "updatedAt": "1970-01-01T01:00:00"
-    }]"""
-    assert determine_stale(api_response, current_time=0, expiration_period=1) == {
-        "all_open": {"pr-1"},
-        "open_stale": set(),
-    }
-
-
-def test_determine_stale_stale_pr():
-    # unix_epoch = "1970-01-01T01:00:00"
-    # (checked wih `datetime.fromtimestamp(0).isoformat()`)
-    api_response = """[{
-      "number": 1,
-      "updatedAt": "1970-01-01T01:00:00"
-    }]"""
-    assert determine_stale(api_response, current_time=100, expiration_period=10) == {
-        "all_open": {"pr-1"},
-        "open_stale": {"pr-1"},
-    }
-
-
-def test_determine_stale_many_results():
-    api_response = """[
-      {
-        "number": 1,
-        "updatedAt": "1970-01-01T01:00:00"
-      },
-      {
-        "number": 2,
-        "updatedAt": "1970-01-02T01:00:00"
-      },
-      {
-        "number": 3,
-        "updatedAt": "1970-01-03T01:00:00"
-      }
-    ]"""
-    current_time = int(datetime(1970, 1, 4, 1, 0).timestamp())  # 4th Jan, 1970
-    two_days_in_seconds = 60 * 60 * 24 * 2
-    assert determine_stale(
-        api_response, current_time, expiration_period=two_days_in_seconds
-    ) == {
-        "all_open": {"pr-1", "pr-2", "pr-3"},
-        "open_stale": {"pr-1"},
-    }
