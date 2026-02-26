@@ -1,0 +1,62 @@
+---
+title: PUBs and broadcasting
+description: Understand what PUBs are and how primitives handle array inputs and outputs using broadcasting semantics
+
+---
+
+# Introduction to PUBs and broadcasting
+
+<span id="pubs"></span>
+## Introduction to PUBs
+
+The Estimator and Sampler primitives help you efficiently define vectorized workloads by using a data structure known as a _Primitive Unified Bloc (PUB)_. (Executor does not use PUBs.) These PUBs are the fundamental unit of work a QPU needs to execute these workloads. They are used as inputs to the `run()` method for the primitives, which execute the defined workload as a job. Then, after the job has completed, the results are returned in a format that is dependent on both the PUBs used as well as the runtime options specified from the Sampler or Estimator primitives.
+
+When invoking an Estimator or Sampler primitive's [`run()`](/docs/api/qiskit-ibm-runtime/estimator-v2#run) method, the main argument that is required is a `list` of one or more tuples -- one for each circuit being executed by the primitive. Each of these tuples is considered a PUB, and the required elements of each tuple in the list depends on the primitive used. The data provided to these tuples can also be arranged in a variety of shapes to provide flexibility in a workload through [broadcasting.](/docs/guides/pubs_broadcasting#broadcasting)
+
+<span id="broadcasting"></span>
+## Primitive broadcasting
+
+The Estimator and Executor primitives aggregate elements from multiple arrays (observables and parameter values) by following the same broadcasting rules as NumPy. (Sampler does not use broadcasting.) This section briefly summarizes those rules.  For a detailed explanation, see the [NumPy broadcasting rules documentation](https://numpy.org/doc/stable/user/basics.broadcasting.html).
+
+<span id="rules"></span>
+### Rules
+
+* Input arrays do not need to have the same number of dimensions.
+  * The resulting array will have the same number of dimensions as the input array with the largest dimension.
+  * The size of each dimension is the largest size of the corresponding dimension.
+  * Missing dimensions are assumed to have size one.
+* Shape comparisons start with the rightmost dimension and continue to the left.
+* Two dimensions are compatible if their sizes are equal or if one of them is one.
+
+Examples of array pairs that broadcast:
+
+```text
+A1     (1d array):      1
+A2     (2d array):  3 x 5
+Result (2d array):  3 x 5
+
+
+A1     (3d array):  11 x 2 x 7
+A2     (3d array):  11 x 1 x 7
+Result (3d array):  11 x 2 x 7
+```
+
+Examples of array pairs that do not broadcast:
+
+```text
+A1     (1d array):  5
+A2     (1d array):  3
+
+A1     (2d array):      2 x 1
+A2     (3d array):  6 x 5 x 4 # This would work if the middle dimension were 2, but it is 5.
+```
+
+The primitives return one value for each element of the broadcasted shape.
+
+## Next Steps
+
+<Admonition type="tip" title="Recommendations">
+- Learn about [Estimator input and output](/docs/guides/estimator-input-output) in depth.
+- Learn about [Sampler input and output](/docs/guides/sampler-input-output) in depth.
+- Learn about [Executor input and output](/docs/guides/executor-input-output) in depth.
+</Admonition>

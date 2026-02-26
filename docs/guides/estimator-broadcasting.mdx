@@ -5,7 +5,7 @@ description: How the Estimator handles array inputs and outputs using broadcasti
 ---
 
 # Estimator broadcasting semantics
-When invoking an Estimator primitive's [`run()`](/docs/api/qiskit-ibm-runtime/estimator-v2#run) method, the main argument that is required is a tuple called a [PUB.](/docs/guides/pubs) The data provided to these tuples can be arranged in a variety of shapes to provide flexibility in a workload through [broadcasting.](/docs/guides/broadcasting) This guide explains how the Estimator handles array inputs and outputs using broadcasting semantics.
+When invoking an Estimator primitive's [`run()`](/docs/api/qiskit-ibm-runtime/estimator-v2#run) method, the main argument that is required is a tuple called a [PUB.](/docs/guides/pubs_broadcasting#pubs) The data provided to these tuples can be arranged in a variety of shapes to provide flexibility in a workload through [broadcasting.](/docs/guides/pubs_broadcasting#broadcasting) This guide explains how the Estimator handles array inputs and outputs using broadcasting semantics.
 
 Following are some examples of common patterns expressed in terms of array broadcasting.  Their accompanying visual representation is shown in the figure that follows:
 
@@ -20,7 +20,7 @@ Parameter value sets are represented by `n x m` arrays, and observable arrays ar
 
 - *Example 4*: (Standard `nd` generalization) has a 3x6 parameter value set array and two 3x1 observables array.  These combine to create two 3x6 output arrays in a similar manner to the previous example.
 
-![This image illustrates several visual representations of array broadcasting](/docs/images/guides/pubs/broadcasting.avif "Visual representation of broadcasting")
+![This image illustrates several visual representations of array broadcasting](/docs/images/guides/pubs_broadcasting#pubs/broadcasting.avif "Visual representation of broadcasting")
 
 ```python
 # Broadcast single observable
@@ -87,7 +87,7 @@ list2 = [SparsePauliOp("XX"), SparsePauliOp("XY"), SparsePauliOp("IZ")]
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - See the [broadcasting guide](/docs/guides/broadcasting) for an overview of broadcasting.
-    - Learn about [PUBs.](/docs/guides/pubs)
+    - See the [broadcasting guide](/docs/guides/pubs_broadcasting#broadcasting) for an overview of broadcasting.
+    - Learn about [PUBs.](/docs/guides/pubs_broadcasting#pubs)
     - Understand [Estimator inputs and outputs.](/docs/guides/estimator-input-output)
 </Admonition>
