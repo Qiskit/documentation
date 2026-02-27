@@ -22,7 +22,7 @@ All Qiskit-related exceptions raised by Qiskit are subclasses of the base:
 
 ### QiskitError
 
-<Class id="qiskit.exceptions.QiskitError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L92-L102" signature="qiskit.exceptions.QiskitError(*message)" modifiers="exception">
+<Class id="qiskit.exceptions.QiskitError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L90-L100" signature="qiskit.exceptions.QiskitError(*message)" modifiers="exception">
   Bases: [`Exception`](https://docs.python.org/3/library/exceptions.html#Exception)
 
   Base class for errors raised by Qiskit.
@@ -40,7 +40,7 @@ Qiskit has several optional features that depend on other packages that are not 
 
 ### MissingOptionalLibraryError
 
-<Class id="qiskit.exceptions.MissingOptionalLibraryError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L111-L135" signature="qiskit.exceptions.MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)" modifiers="exception">
+<Class id="qiskit.exceptions.MissingOptionalLibraryError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L109-L133" signature="qiskit.exceptions.MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)" modifiers="exception">
   Bases: [`QiskitError`](#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError"), [`ImportError`](https://docs.python.org/3/library/exceptions.html#ImportError)
 
   Raised when an optional library is missing.
@@ -63,7 +63,7 @@ Two more uncommon errors relate to failures in reading user-configuration files,
 
 ### QiskitUserConfigError
 
-<Class id="qiskit.exceptions.QiskitUserConfigError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L105-L108" signature="qiskit.exceptions.QiskitUserConfigError(*message)" modifiers="exception">
+<Class id="qiskit.exceptions.QiskitUserConfigError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L103-L106" signature="qiskit.exceptions.QiskitUserConfigError(*message)" modifiers="exception">
   Bases: [`QiskitError`](#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Raised when an error is encountered reading a user config file.
@@ -73,7 +73,7 @@ Two more uncommon errors relate to failures in reading user-configuration files,
 
 ### InvalidFileError
 
-<Class id="qiskit.exceptions.InvalidFileError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L138-L139" signature="qiskit.exceptions.InvalidFileError(*message)" modifiers="exception">
+<Class id="qiskit.exceptions.InvalidFileError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L136-L137" signature="qiskit.exceptions.InvalidFileError(*message)" modifiers="exception">
   Bases: [`QiskitError`](#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Raised when the file provided is not valid for the specific task.
@@ -87,7 +87,7 @@ Some particular features of Qiskit may raise custom warnings. In general, Qiskit
 
 ### QiskitWarning
 
-<Class id="qiskit.exceptions.QiskitWarning" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L142-L143" signature="qiskit.exceptions.QiskitWarning" modifiers="exception">
+<Class id="qiskit.exceptions.QiskitWarning" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L140-L141" signature="qiskit.exceptions.QiskitWarning" modifiers="exception">
   Bases: [`UserWarning`](https://docs.python.org/3/library/exceptions.html#UserWarning)
 
   Common subclass of warnings for Qiskit-specific warnings being raised.
@@ -97,7 +97,7 @@ Related to [`MissingOptionalLibraryError`](#qiskit.exceptions.MissingOptionalLib
 
 ### OptionalDependencyImportWarning
 
-<Class id="qiskit.exceptions.OptionalDependencyImportWarning" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L146-L149" signature="qiskit.exceptions.OptionalDependencyImportWarning" modifiers="exception">
+<Class id="qiskit.exceptions.OptionalDependencyImportWarning" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L144-L147" signature="qiskit.exceptions.OptionalDependencyImportWarning" modifiers="exception">
   Bases: [`QiskitWarning`](#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning")
 
   Raised when an optional library raises errors during its import.
@@ -111,7 +111,7 @@ When experimental features are being used, Qiskit will raise [`ExperimentalWarni
 
 ### ExperimentalWarning
 
-<Class id="qiskit.exceptions.ExperimentalWarning" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L152-L153" signature="qiskit.exceptions.ExperimentalWarning" modifiers="exception">
+<Class id="qiskit.exceptions.ExperimentalWarning" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/exceptions.py#L150-L151" signature="qiskit.exceptions.ExperimentalWarning" modifiers="exception">
   Bases: [`QiskitWarning`](#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning")
 
   Raised when an experimental feature is being used.
@@ -119,7 +119,7 @@ When experimental features are being used, Qiskit will raise [`ExperimentalWarni
 
 ### Filtering warnings
 
-Python has built-in mechanisms to filter warnings, described in the documentation of the [`warnings`](https://docs.python.org/3/library/warnings.html#module-warnings) module. You can use these subclasses in your warning filters from within Python to silence warnings you are not interested in. For example, if you are knowingly using experimental features and are comfortable that they make break in later versions, you can silence [`ExperimentalWarning`](#qiskit.exceptions.ExperimentalWarning "qiskit.exceptions.ExperimentalWarning") like this:
+Python has built-in mechanisms to filter warnings, described in the documentation of the [`warnings`](https://docs.python.org/3/library/warnings.html#module-warnings) module. You can use these subclasses in your warning filters from within Python to silence warnings you are not interested in. For example, if you are knowingly using experimental features and are comfortable that they may break in later versions, you can silence [`ExperimentalWarning`](#qiskit.exceptions.ExperimentalWarning "qiskit.exceptions.ExperimentalWarning") like this:
 
 ```python
 import warnings

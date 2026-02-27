@@ -30,8 +30,8 @@ VERSION_INFO = """\
   a new cell before or after this one.
 */}}
 
-<details>
-<summary><b>Package versions</b></summary>
+<Accordion>
+<AccordionItem title="Package versions">
 
 The code on this page was developed using the following requirements.
 We recommend using these versions or newer.
@@ -39,7 +39,8 @@ We recommend using these versions or newer.
 ```
 {packages}
 ```
-</details>
+</AccordionItem>
+</Accordion>
 """
 
 

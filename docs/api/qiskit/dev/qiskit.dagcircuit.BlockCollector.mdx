@@ -8,10 +8,10 @@ python_api_name: qiskit.dagcircuit.BlockCollector
 
 # BlockCollector
 
-<Class id="qiskit.dagcircuit.BlockCollector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/collect_blocks.py#L29-L260" signature="qiskit.dagcircuit.BlockCollector(dag)" modifiers="class">
+<Class id="qiskit.dagcircuit.BlockCollector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/collect_blocks.py#L29-L254" signature="qiskit.dagcircuit.BlockCollector(dag)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
-  This class implements various strategies of dividing a DAG (directed acyclic graph) into blocks of nodes that satisfy certain criteria. It works both with the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") and [`DAGDependency`](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency") representations of a DAG, where DagDependency takes into account commutativity between nodes.
+  This class implements various strategies of dividing a DAG (directed acyclic graph) into blocks of nodes that satisfy certain criteria. It works both with the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") and [`DAGDependency`](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency") representations of a DAG, where the latter takes into account commutativity between nodes.
 
   Collecting nodes from DAGDependency generally leads to more optimal results, but is slower, as it requires to construct a DAGDependency beforehand. Thus, DAGCircuit should be used with lower transpiler settings, and DAGDependency should be used with higher transpiler settings.
 
@@ -29,7 +29,7 @@ python_api_name: qiskit.dagcircuit.BlockCollector
 
   ### collect\_all\_matching\_blocks
 
-  <Function id="qiskit.dagcircuit.BlockCollector.collect_all_matching_blocks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/collect_blocks.py#L190-L260" signature="collect_all_matching_blocks(filter_fn, split_blocks=True, min_block_size=2, split_layers=False, collect_from_back=False, max_block_width=None)">
+  <Function id="qiskit.dagcircuit.BlockCollector.collect_all_matching_blocks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/collect_blocks.py#L184-L254" signature="collect_all_matching_blocks(filter_fn, split_blocks=True, min_block_size=2, split_layers=False, collect_from_back=False, max_block_width=None)">
     Collects all blocks that match a given filtering function filter\_fn. This iteratively finds the largest block that does not match filter\_fn, then the largest block that matches filter\_fn, and so on, until no more uncollected nodes remain. Intuitively, finding larger blocks of non-matching nodes helps to find larger blocks of matching nodes later on.
 
     After the blocks are collected, they can be optionally refined. The option `split_blocks` allows to split collected blocks into sub-blocks over disjoint qubit subsets. The option `split_layers` allows to split collected blocks into layers of non-overlapping instructions. The option `min_block_size` specifies the minimum number of gates in the block for the block to be collected. The option `max_block_width` specifies the maximum number of qubits over which a block can be defined.
@@ -41,7 +41,7 @@ python_api_name: qiskit.dagcircuit.BlockCollector
 
   ### collect\_matching\_block
 
-  <Function id="qiskit.dagcircuit.BlockCollector.collect_matching_block" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/collect_blocks.py#L143-L188" signature="collect_matching_block(filter_fn, max_block_width)">
+  <Function id="qiskit.dagcircuit.BlockCollector.collect_matching_block" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/collect_blocks.py#L137-L182" signature="collect_matching_block(filter_fn, max_block_width)">
     Iteratively collects the largest block of input nodes (that is, nodes with `_in_degree` equal to 0) that match a given filtering function. Examples of this include collecting blocks of swap gates, blocks of linear gates (CXs and SWAPs), blocks of Clifford gates, blocks of single-qubit gates, blocks of two-qubit gates, etc. Here ‘iteratively’ means that once a node is collected, the `_in_degree` of each of its immediate successor is decreased by 1, allowing more nodes to become input and to be eligible for collecting into the current block. Returns the block of collected nodes.
 
     **Parameters**

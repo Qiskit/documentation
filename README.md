@@ -2,6 +2,8 @@
 
 The documentation content home for https://quantum.cloud.ibm.com/docs and https://docs.quantum.ibm.com (excluding API reference).
 
+Preview the main branch at the staging link: https://qiskit.github.io/documentation/main
+
 Refer to:
 
 - Our [MDX guide](./mdx-guide.md) for how to write documentation and use our variant of markdown.
