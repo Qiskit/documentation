@@ -98,7 +98,7 @@ qc.h(0)
 qc.cx(0, 1)
 qc.measure_all()
 
-# Run the sampler job locally using FakeManilaV2
+# Run the Sampler job locally using FakeManilaV2
 fake_manila = FakeManilaV2()
 pm = generate_preset_pass_manager(backend=fake_manila, optimization_level=1)
 isa_qc = pm.run(qc)
@@ -138,7 +138,7 @@ qc.h(0)
 qc.cx(0, 1)
 qc.measure_all()
 
-# Run the sampler job locally using AerSimulator.
+# Run the Sampler job locally using AerSimulator.
 # Session syntax is supported but ignored because local mode doesn't support sessions.
 aer_sim = AerSimulator()
 pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
@@ -172,7 +172,7 @@ qc.measure_all()
 real_backend = service.backend("ibm_brisbane")
 aer = AerSimulator.from_backend(real_backend)
 
-# Run the sampler job locally using AerSimulator.
+# Run the Sampler job locally using AerSimulator.
 pm = generate_preset_pass_manager(backend=aer, optimization_level=1)
 isa_qc = pm.run(qc)
 sampler = Sampler(mode=aer)

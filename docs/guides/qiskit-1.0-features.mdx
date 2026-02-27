@@ -335,7 +335,7 @@ sampler_v2 = StatevectorSampler()
 </Admonition>
 
 1. `Sampler and Estimator`: The new V2 primitives are designed to accept **vectorized inputs**, where single circuits can be grouped with array-valued specifications. That is, one circuit can be executed
-  for arrays of `n` parameter sets, `n` observables, or both (in the case of the estimator). Each group is called a **primitive unified bloc (pub)**, and can be represented as a tuple: `(1 x circuit, [n x observables], [n x parameters])`. The V1 interface didn't allow for the same flexibility.  Instead, the number of input circuits had to match the number of observables and
+  for arrays of `n` parameter sets, `n` observables, or both (in the case of Estimator). Each group is called a **primitive unified bloc (pub)**, and can be represented as a tuple: `(1 x circuit, [n x observables], [n x parameters])`. The V1 interface didn't allow for the same flexibility.  Instead, the number of input circuits had to match the number of observables and
   parameter sets, as shown in the following examples (select a tab to see each example):
 
 <Tabs>
@@ -409,7 +409,7 @@ sampler_v2 = StatevectorSampler()
    returns measurement outcome samples in the form of **bitstrings** or
    **counts**, instead of the quasi-probability distributions from the V1
    interface. The bitstrings show the measurement outcomes, preserving the shot
-   order in which they were measured. The V2 sampler result objects organize
+   order in which they were measured. The V2 Sampler result objects organize
    data in terms of their input circuits' classical register names, for
    compatibility with dynamic circuits.
 
@@ -436,7 +436,7 @@ sampler_v2 = StatevectorSampler()
     </Admonition>
 
     ```python
-    # Run using V1 sampler
+    # Run using V1 Sampler
     result = sampler_v1.run(circuit).result()
     quasi_dist = result.quasi_dists[0]
     print(f"The quasi-probability distribution is: {quasi_dist}")
@@ -445,7 +445,7 @@ sampler_v2 = StatevectorSampler()
     The quasi-probability distribution is: {0: 0.5, 3: 0.5}
     ```
     ```python
-    # Run using V2 sampler
+    # Run using V2 Sampler
     result = sampler_v2.run([circuit]).result()
     # Access result data for pub 0
     data_pub = result[0].data
