@@ -9,22 +9,33 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  warm:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        binder:
+          - name: 2i2c
+            url: https://2i2c.mybinder.org/build/gh/JanLahmann/Qiskit-documentation/main
+          - name: BIDS
+            url: https://bids.mybinder.org/build/gh/JanLahmann/Qiskit-documentation/main
+          - name: GESIS
+            url: https://notebooks.gesis.org/binder/build/gh/JanLahmann/Qiskit-documentation/main
+    name: Warm ${{ matrix.binder.name }}
     steps:
-      - name: Trigger Binder build
+      - name: Trigger Binder build on ${{ matrix.binder.name }}
         run: |
           # The /build endpoint is SSE; curl it until we see success or failure.
           curl -s --max-time 1200 \
-            "https://mybinder.org/build/gh/JanLahmann/Qiskit-documentation/main" \
+            "${{ matrix.binder.url }}" \
           | while IFS= read -r line; do
               echo "$line"
               if echo "$line" | grep -q '"phase": "ready"'; then
-                echo "Binder image is ready."
+                echo "Binder image is ready on ${{ matrix.binder.name }}."
                 exit 0
               fi
               if echo "$line" | grep -q '"phase": "failed"'; then
-                echo "::error::Binder build failed."
+                echo "::error::Binder build failed on ${{ matrix.binder.name }}."
                 exit 1
               fi
             done
