@@ -181,9 +181,7 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 
 <Accordion>
 ${groupsMarkdown}
-</Accordion>
-
-`.trim();
+</Accordion>`;
 }
 
 /**
@@ -290,10 +288,8 @@ function renderVersionGroup(
   const items = versions
     .map((version) => `- [v${version}](./${version})`)
     .join("\n");
-  const maybeOpenProp = kwargs.isLatestVersion ? "open" : "";
-  return `
-<AccordionItem ${maybeOpenProp} title="v${majorVersion}">
+  const maybeOpenProp = kwargs.isLatestVersion ? "open " : "";
+  return `<AccordionItem ${maybeOpenProp}title="v${majorVersion}">
 ${items}
-</AccordionItem>
-  `.trim();
+</AccordionItem>`;
 }
