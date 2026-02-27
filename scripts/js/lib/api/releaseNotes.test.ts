@@ -40,8 +40,7 @@ test.describe("generateReleaseNotesIndex", () => {
     });
     const result = generateReleaseNotesIndex(pkg);
     expect(result).toEqual(
-      `
----
+      `---
 title: My Quantum Project release notes
 description: New features, bug fixes, and other changes in previous versions of My Quantum Project.
 ---
@@ -57,12 +56,11 @@ New features, bug fixes, and other changes in previous versions of My Quantum Pr
 - [v2.0](./2.0)
 </AccordionItem>
 
-<AccordionItem  title="v1">
+<AccordionItem title="v1">
 - [v1.3](./1.3)
 - [v1.2](./1.2)
 </AccordionItem>
-</Accordion>
-`.trim(),
+</Accordion>`,
     );
   });
 });
