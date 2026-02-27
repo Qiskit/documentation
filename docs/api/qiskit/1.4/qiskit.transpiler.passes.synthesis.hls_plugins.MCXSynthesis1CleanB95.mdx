@@ -1,0 +1,38 @@
+---
+title: MCXSynthesis1CleanB95 (v1.4)
+description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95 in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95
+---
+
+# MCXSynthesis1CleanB95
+
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1027-L1072" signature="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95" modifiers="class">
+  Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+
+  Synthesis plugin for a multi-controlled X gate based on the paper by Barenco et al. (1995).
+
+  See \[1] for details.
+
+  This plugin name is :`mcx.1_clean_b95` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  For a multi-controlled X gate with $k\ge 5$ control qubits this synthesis method requires a single additional clean auxiliary qubit. The synthesized circuit consists of $k + 2$ qubits and at most $16 * k - 8$ CX gates.
+
+  The plugin supports the following plugin-specific options:
+
+  *   num\_clean\_ancillas: The number of clean auxiliary qubits available.
+
+  **References**
+
+  1.  Barenco et. al., Phys.Rev. A52 3457 (1995), [arXiv:quant-ph/9503016](https://arxiv.org/abs/quant-ph/9503016)
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1049-L1072" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+    Run synthesis for the given MCX gate.
+  </Function>
+</Class>
+

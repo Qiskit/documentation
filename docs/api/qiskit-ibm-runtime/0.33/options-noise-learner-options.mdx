@@ -1,0 +1,135 @@
+---
+title: NoiseLearnerOptions (v0.33)
+description: API reference for qiskit_ibm_runtime.options.NoiseLearnerOptions in qiskit-ibm-runtime v0.33
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options.NoiseLearnerOptions
+---
+
+# NoiseLearnerOptions
+
+<Class id="qiskit_ibm_runtime.options.NoiseLearnerOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/options/noise_learner_options.py#L25-L124" signature="NoiseLearnerOptions(_VERSION=2, max_execution_time=Unset, environment=<factory>, simulator=<factory>, max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset, twirling_strategy=Unset, experimental=Unset)" modifiers="class">
+  Bases: `OptionsV2`
+
+  Options for [`NoiseLearner`](noise-learner-noise-learner "qiskit_ibm_runtime.noise_learner.NoiseLearner").
+
+  <Admonition title="Note" type="note">
+    The total number of unique circuits implemented to learn the noise of a single layer depends solely on [`layer_pair_depths`](#qiskit_ibm_runtime.options.NoiseLearnerOptions.layer_pair_depths "qiskit_ibm_runtime.options.NoiseLearnerOptions.layer_pair_depths") and [`num_randomizations`](#qiskit_ibm_runtime.options.NoiseLearnerOptions.num_randomizations "qiskit_ibm_runtime.options.NoiseLearnerOptions.num_randomizations"). For example, if `layer_pair_depths` contains six depths and `num_randomizations` is set to `32`, the noise learning stage executes a total of `6 * 9` unique circuits per layer, each one with `32` randomizations (at [`shots_per_randomization`](#qiskit_ibm_runtime.options.NoiseLearnerOptions.shots_per_randomization "qiskit_ibm_runtime.options.NoiseLearnerOptions.shots_per_randomization") each).
+
+    The number `9` above is the number of unique circuits that need to be implemented to learn the noise for all the two-qubit subsystem in the given layer by performing local measurements. Indeed, learning the noise for a single one of these subsystems requires measuring all the `16` two-qubit Paulis on that subsystem. Taking advantage of commutation relations to measure more than one of these Paulis (for example, `XI`, `IX`, and `XX`) with a single circuit, it is possible to measure all these `16` Paulis by implementing only `9` circuits. Parallelizing these measurement tasks in the optimal way allows then measuring the `16` Paulis for all of the layer’s two-qubit subsystems with only `9` circuits. More details in Ref. \[1].
+  </Admonition>
+
+  **References**
+
+  1.  E. van den Berg, Z. Minev, A. Kandala, K. Temme, *Probabilistic error cancellation with sparse Pauli–Lindblad models on noisy quantum processors*, Nature Physics volume 19, pages 1116–1121 (2023). [arXiv:2201.09866 \[quant-ph\]](https://arxiv.org/abs/2201.09866)
+
+  ## Attributes
+
+  **Parameters**
+
+  *   **\_VERSION** (*int*)
+  *   **max\_execution\_time** (*UnsetType | int*)
+  *   **environment** ([*EnvironmentOptions*](options-environment-options "qiskit_ibm_runtime.options.environment_options.EnvironmentOptions") *| Dict*)
+  *   **simulator** ([*SimulatorOptions*](options-simulator-options "qiskit_ibm_runtime.options.simulator_options.SimulatorOptions") *| Dict*)
+  *   **max\_layers\_to\_learn** (*UnsetType | int | None*)
+  *   **shots\_per\_randomization** (*UnsetType | int*)
+  *   **num\_randomizations** (*UnsetType | int*)
+  *   **layer\_pair\_depths** (*UnsetType | List\[int]*)
+  *   **twirling\_strategy** (*UnsetType | Literal\['active', 'active-accum', 'active-circuit', 'all']*)
+  *   **experimental** (*UnsetType | dict*)
+
+  ### environment
+
+  <Attribute id="qiskit_ibm_runtime.options.NoiseLearnerOptions.environment" attributeTypeHint="EnvironmentOptions | Dict" attributeValue="FieldInfo(annotation=Union[EnvironmentOptions, Dict], required=False, default_factory=EnvironmentOptions)" />
+
+  ### experimental
+
+  <Attribute id="qiskit_ibm_runtime.options.NoiseLearnerOptions.experimental" attributeTypeHint="UnsetType | dict" attributeValue="Unset">
+    Experimental options.
+
+    These options are subject to change without notification, and stability is not guaranteed.
+  </Attribute>
+
+  ### layer\_pair\_depths
+
+  <Attribute id="qiskit_ibm_runtime.options.NoiseLearnerOptions.layer_pair_depths" attributeTypeHint="UnsetType | List[int]" attributeValue="Unset">
+    The circuit depths (measured in number of pairs) to use in learning experiments.
+
+    Pairs are used as the unit because we exploit the order-2 nature of our entangling gates in the noise learning implementation. For example, a value of `3` corresponds to 6 repetitions of the layer of interest. Default: (0, 1, 2, 4, 16, 32).
+  </Attribute>
+
+  ### max\_execution\_time
+
+  <Attribute id="qiskit_ibm_runtime.options.NoiseLearnerOptions.max_execution_time" attributeTypeHint="UnsetType | int" attributeValue="Unset" />
+
+  ### max\_layers\_to\_learn
+
+  <Attribute id="qiskit_ibm_runtime.options.NoiseLearnerOptions.max_layers_to_learn" attributeTypeHint="UnsetType | int | None" attributeValue="Unset">
+    The max number of unique layers to learn.
+
+    A `None` value indicates that there is no limit. If there are more unique layers present, then some layers will not be learned or mitigated. The learned layers are prioritized based on the number of times they occur, and for equally occurring layers are further sorted by the number of two-qubit gates in the layer. Default: 4.
+  </Attribute>
+
+  ### num\_randomizations
+
+  <Attribute id="qiskit_ibm_runtime.options.NoiseLearnerOptions.num_randomizations" attributeTypeHint="UnsetType | int" attributeValue="Unset">
+    The number of random circuits to use per learning circuit configuration.
+
+    A configuration is a measurement basis and depth setting. For example, if your experiment has six depths, then setting this value to 32 will result in a total of `32 * 9 * 6` circuits that need to be executed (where `9` is the number of circuits that need to be implemented to measure all the required observables, see the note in the docstring for [`NoiseLearnerOptions`](#qiskit_ibm_runtime.options.NoiseLearnerOptions "qiskit_ibm_runtime.options.NoiseLearnerOptions") for mode details), at [`shots_per_randomization`](#qiskit_ibm_runtime.options.NoiseLearnerOptions.shots_per_randomization "qiskit_ibm_runtime.options.NoiseLearnerOptions.shots_per_randomization") each.
+  </Attribute>
+
+  ### shots\_per\_randomization
+
+  <Attribute id="qiskit_ibm_runtime.options.NoiseLearnerOptions.shots_per_randomization" attributeTypeHint="UnsetType | int" attributeValue="Unset">
+    The total number of shots to use per random learning circuit.
+
+    A learning circuit is a random circuit at a specific learning depth with a specific measurement basis that is executed on hardware. Default: 128.
+  </Attribute>
+
+  ### simulator
+
+  <Attribute id="qiskit_ibm_runtime.options.NoiseLearnerOptions.simulator" attributeTypeHint="SimulatorOptions | Dict" attributeValue="FieldInfo(annotation=Union[SimulatorOptions, Dict], required=False, default_factory=SimulatorOptions)" />
+
+  ### twirling\_strategy
+
+  <Attribute id="qiskit_ibm_runtime.options.NoiseLearnerOptions.twirling_strategy" attributeTypeHint="UnsetType | Literal['active', 'active-accum', 'active-circuit', 'all']" attributeValue="Unset">
+    The twirling strategy in the identified layers of two-qubit twirled gates.
+
+    The allowed values are:
+
+    > *   `"active"`: in each individual twirled layer, only the instruction qubits are twirled.
+    >
+    > *   **`"active-circuit"`: in each individual twirled layer, the union of all instruction**
+    >
+    >     qubits in the circuit are twirled.
+    >
+    > *   **`"active-accum"`: in each individual twirled layer, the union of instructions qubits**
+    >
+    >     in the circuit up to the current twirled layer are twirled.
+    >
+    > *   `"all"`: in each individual twirled layer, all qubits in the input circuit are twirled.
+
+    <Admonition title="Note" type="note">
+      Barriers and delay instructions are ignored when determining whether a qubit is active.
+    </Admonition>
+
+    Default: “active-accum”.
+  </Attribute>
+
+  ## Methods
+
+  ### update
+
+  <Function id="qiskit_ibm_runtime.options.NoiseLearnerOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/options/options.py#L146-L155" signature="update(**kwargs)">
+    Update the options.
+
+    **Parameters**
+
+    **kwargs** (*Any*)
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+

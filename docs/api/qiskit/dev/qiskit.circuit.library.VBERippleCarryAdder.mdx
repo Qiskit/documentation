@@ -1,0 +1,89 @@
+---
+title: VBERippleCarryAdder (dev version)
+description: API reference for qiskit.circuit.library.VBERippleCarryAdder in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.VBERippleCarryAdder
+---
+
+# VBERippleCarryAdder
+
+<Class id="qiskit.circuit.library.VBERippleCarryAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/adders/vbe_ripple_carry_adder.py#L20-L95" signature="qiskit.circuit.library.VBERippleCarryAdder(num_state_qubits, kind='full', name='VBERippleCarryAdder')" modifiers="class">
+  Bases: `Adder`
+
+  The VBE ripple carry adder \[1].
+
+  This circuit performs inplace addition of two equally-sized quantum registers. As an example, a classical adder circuit that performs full addition (i.e. including a carry-in bit) on two 2-qubit sized registers is as follows:
+
+  ```text
+            ┌────────┐                       ┌───────────┐┌──────┐
+     cin_0: ┤0       ├───────────────────────┤0          ├┤0     ├
+            │        │                       │           ││      │
+       a_0: ┤1       ├───────────────────────┤1          ├┤1     ├
+            │        │┌────────┐     ┌──────┐│           ││  Sum │
+       a_1: ┤        ├┤1       ├──■──┤1     ├┤           ├┤      ├
+            │        ││        │  │  │      ││           ││      │
+       b_0: ┤2 Carry ├┤        ├──┼──┤      ├┤2 Carry_dg ├┤2     ├
+            │        ││        │┌─┴─┐│      ││           │└──────┘
+       b_1: ┤        ├┤2 Carry ├┤ X ├┤2 Sum ├┤           ├────────
+            │        ││        │└───┘│      ││           │
+    cout_0: ┤        ├┤3       ├─────┤      ├┤           ├────────
+            │        ││        │     │      ││           │
+  helper_0: ┤3       ├┤0       ├─────┤0     ├┤3          ├────────
+            └────────┘└────────┘     └──────┘└───────────┘
+  ```
+
+  Here *Carry* and *Sum* gates correspond to the gates introduced in \[1]. *Carry\_dg* correspond to the inverse of the *Carry* gate. Note that in this implementation the input register qubits are ordered as all qubits from the first input register, followed by all qubits from the second input register. This is different ordering as compared to Figure 2 in \[1], which leads to a different drawing of the circuit.
+
+  <Admonition title="See also" type="note">
+    The following generic gate objects perform additions, like this circuit class, but allow the compiler to select the optimal decomposition based on the context. Specific implementations can be set via the [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), e.g. this circuit can be chosen via `Adder=["ripple_v95"]`.
+
+    **[`ModularAdderGate`](qiskit.circuit.library.ModularAdderGate "qiskit.circuit.library.ModularAdderGate"): A generic inplace adder, modulo $2^n$. This**
+
+    is functionally equivalent to `kind="fixed"`.
+
+    **`AdderGate`: A generic inplace adder. This**
+
+    is functionally equivalent to `kind="half"`.
+
+    **[`FullAdderGate`](qiskit.circuit.library.FullAdderGate "qiskit.circuit.library.FullAdderGate"): A generic inplace adder, with a carry-in bit. This**
+
+    is functionally equivalent to `kind="full"`.
+  </Admonition>
+
+  References:
+
+  \[1] Vedral et al., Quantum Networks for Elementary Arithmetic Operations, 1995. [arXiv:quant-ph/9511018](https://arxiv.org/pdf/quant-ph/9511018.pdf)
+
+  **Parameters**
+
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The size of the register.
+  *   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The kind of adder, can be `'full'` for a full adder, `'half'` for a half adder, or `'fixed'` for a fixed-sized adder. A full adder includes both carry-in and carry-out, a half only carry-out, and a fixed-sized adder neither carry-in nor carry-out.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the circuit.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `num_state_qubits` is lower than 1.
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+
+    **Example**
+
+    ```python
+    from qiskit import QuantumCircuit
+
+    qc = QuantumCircuit(2, 2, name="my_circuit")
+    print(qc.name)
+    ```
+
+    ```text
+    my_circuit
+    ```
+  </Attribute>
+</Class>
+

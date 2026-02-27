@@ -1,0 +1,40 @@
+---
+title: draw_layer_error_map (v0.39)
+description: API reference for qiskit_ibm_runtime.visualization.draw_layer_error_map in qiskit-ibm-runtime v0.39
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_ibm_runtime.visualization.draw_layer_error_map
+---
+
+<span id="qiskit-ibm-runtime-visualization-draw-layer-error-map" />
+
+# qiskit\_ibm\_runtime.visualization.draw\_layer\_error\_map
+
+<Function id="qiskit_ibm_runtime.visualization.draw_layer_error_map" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.39/qiskit_ibm_runtime/visualization/draw_layer_error.py#L30-L264" signature="draw_layer_error_map(layer_error, embedding, colorscale='Bluered', color_no_data='lightgray', color_out_of_scale='lightgreen', num_edge_segments=16, edge_width=4, height=500, highest_rate=None, background_color='white', radius=0.25, width=800)">
+  Draw a map view of a [`LayerError`](utils-noise-learner-result-layer-error "qiskit_ibm_runtime.utils.noise_learner_result.LayerError").
+
+  **Parameters**
+
+  *   **layer\_error** ([*LayerError*](utils-noise-learner-result-layer-error "qiskit_ibm_runtime.utils.noise_learner_result.LayerError")) – The [`LayerError`](utils-noise-learner-result-layer-error "qiskit_ibm_runtime.utils.noise_learner_result.LayerError") to draw.
+  *   **embedding** (*Union\[Embedding, BackendV2]*) – An `Embedding` object containing the coordinates and coupling map to draw the layer error on, or a backend to generate an `Embedding` for.
+  *   **colorscale** (*str*) – The colorscale used to show the rates of `layer_error`.
+  *   **color\_no\_data** (*str*) – The color used for qubits and edges for which no data is available.
+  *   **color\_out\_of\_scale** (*str*) – The color used for rates with value greater than `highest_rate`.
+  *   **num\_edge\_segments** (*int*) – The number of equal-sized segments that edges are made of.
+  *   **edge\_width** (*float*) – The line width of the edges in pixels.
+  *   **height** (*int*) – The height of the returned figure.
+  *   **highest\_rate** (*Optional\[float]*) – The highest rate, used to normalize all other rates before choosing their colors. If `None`, it defaults to the highest value found in the `layer_error`.
+  *   **background\_color** (*str*) – The background color.
+  *   **radius** (*float*) – The radius of the pie charts representing the qubits.
+  *   **width** (*int*) – The width of the returned figure.
+
+  **Raises**
+
+  *   **ValueError** – If the given coordinates are incompatible with the specified backend.
+  *   **ValueError** – If `backend` has no coupling map.
+
+  **Return type**
+
+  PlotlyFigure
+</Function>
+

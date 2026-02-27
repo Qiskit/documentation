@@ -1,0 +1,138 @@
+---
+title: SubstitutePi4Rotations (latest version)
+description: API reference for qiskit.transpiler.passes.SubstitutePi4Rotations in the latest version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.SubstitutePi4Rotations
+---
+
+# SubstitutePi4Rotations
+
+<Class id="qiskit.transpiler.passes.SubstitutePi4Rotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passes/optimization/substitute_pi4_rotations.py#L20-L84" signature="qiskit.transpiler.passes.SubstitutePi4Rotations(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Convert single-qubit rotation gates [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate"), [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") and [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate"), whose angles are integer multiples of $\pi/4$ into discrete sets of Clifford, [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate") and [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate") gates.
+
+  Note that odd multiples of $\pi/4$ require a single [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate") or [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate"), as well as some Clifford gates, while even multiples of $\pi/4$, or equivalently, integer multiples of $\pi/2$, can be written using only Clifford gates. The output contains at most one [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate") or [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate"), and an optimal number of Clifford gates.
+
+  For example:
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.transpiler.passes import SubstitutePi4Rotations
+  from qiskit.quantum_info import Operator
+
+  # The following quantum circuit consists of 5 Clifford gates
+  # and three single-qubit rotation gates whose angles are integer multiples of pi/4.
+
+  qc = QuantumCircuit(3)
+  qc.cx(0, 1)
+  qc.rz(pi/4, 0)
+  qc.cz(0, 1)
+  qc.rx(3*pi/4, 1)
+  qc.h(1)
+  qc.s(2)
+  qc.ry(2*pi/4, 2)
+  qc.cz(2, 0)
+
+  # The transformed circuit consists of Clifford, T and Tdg gates
+  qct = SubstitutePi4Rotations()(qc)
+  clifford_t_names = get_clifford_gate_names() + ["t"] + ["tdg"]
+  assert(set(qct.count_ops().keys()).issubset(set(clifford_t_names)))
+
+  # The circuits before and after the transformation are equivalent
+  assert Operator(qc) == Operator(qct)
+  ```
+
+  **Parameters**
+
+  **approximation\_degree** – Used in the tolerance computations. This gives the threshold for the average gate fidelity.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.SubstitutePi4Rotations.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.SubstitutePi4Rotations.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.SubstitutePi4Rotations.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.SubstitutePi4Rotations.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.SubstitutePi4Rotations.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passes/optimization/substitute_pi4_rotations.py#L69-L84" signature="run(dag)">
+    Run the Substitute Pi4-Rotations optimization pass on `dag`.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – the input DAG.
+
+    **Returns**
+
+    The output DAG.
+
+    **Return type**
+
+    [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.SubstitutePi4Rotations.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

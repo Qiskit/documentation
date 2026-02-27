@@ -1,0 +1,159 @@
+<!-- Keep in sync with 00-q-docs--START-HERE.md -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>q-docs: Interactive Execution for IBM's Qiskit Documentation</title>
+  <base target="_blank">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1a1a2e; background: #f8f9fa; line-height: 1.6; }
+    .container { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem; }
+    h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .subtitle { color: #555; margin-bottom: 1.5rem; }
+    .subtitle a { color: #6929c4; }
+    .badge { display: inline-block; margin-bottom: 1.5rem; }
+    .badge img { height: 28px; }
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+    .card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.2rem; text-decoration: none; color: inherit; transition: box-shadow 0.15s; }
+    .card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .card h2 { font-size: 1.1rem; color: #6929c4; margin-bottom: 0.3rem; }
+    .card p { font-size: 0.9rem; color: #555; }
+    h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 0.4rem 0.6rem; border-bottom: 1px solid #e0e0e0; }
+    th { font-weight: 600; }
+    code { background: #f0f0f0; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.85rem; }
+    pre { background: #1a1a2e; color: #e0e0e0; padding: 1rem; border-radius: 6px; overflow-x: auto; margin-bottom: 1rem; font-size: 0.85rem; }
+    pre code { background: none; padding: 0; color: inherit; }
+    pre.editable { outline: 1px dashed #6929c4; }
+    .toggle { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: #555; float: right; margin-top: 0.2rem; cursor: pointer; }
+    .toggle input { accent-color: #6929c4; cursor: pointer; }
+    .footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; font-size: 0.8rem; color: #888; }
+    .footer a { color: #6929c4; }
+    @media (max-width: 500px) { .cards { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>q-docs: Interactive Execution for IBM's Qiskit Documentation</h1>
+    <p class="subtitle"><strong>We recommend</strong> IBM's official <a href="https://quantum.cloud.ibm.com/">Quantum Platform</a>
+      and their <a href="https://github.com/Qiskit/documentation">Qiskit documentation</a> for reading and learning —
+      always current, comprehensive, and well-designed:<br>
+      <a href="https://quantum.cloud.ibm.com/learning/">Learning (13 courses)</a> ·
+      <a href="https://quantum.cloud.ibm.com/docs/en/tutorials">Tutorials (40+)</a> ·
+      <a href="https://quantum.cloud.ibm.com/docs/en/guides">Guides</a> ·
+      <a href="https://quantum.cloud.ibm.com/docs/en/api">API Reference</a> ·
+      <a href="https://github.com/Qiskit/documentation">Source repo</a></p>
+    <p class="subtitle">This fork (<a href="https://github.com/JanLahmann/Qiskit-documentation">q-docs</a>)
+      adds <a href="https://mybinder.org">Binder</a> support so you can
+      <strong>run every notebook in your browser</strong> — no local Python installation, no environment setup.
+      Useful for hands-on learning, workshops, and experimentation:</p>
+
+    <a class="badge" href="https://mybinder.org/v2/gh/JanLahmann/Qiskit-documentation/main">
+      <img src="https://mybinder.org/badge_logo.svg" alt="Launch Binder">
+    </a>
+
+    <div class="cards">
+      <a class="card" href="https://mybinder.org/v2/gh/JanLahmann/Qiskit-documentation/main?filepath=hello-world.ipynb">
+        <h2>Hello World (q-docs)</h2>
+        <p>Your first quantum circuit — build a Bell state and run it on a simulator or real hardware.</p>
+      </a>
+      <a class="card" href="https://mybinder.org/v2/gh/JanLahmann/Qiskit-documentation/main?filepath=docs/tutorials">
+        <h2>Tutorials</h2>
+        <p>Step-by-step guides covering algorithms, error mitigation, transpilation, and more.</p>
+      </a>
+      <a class="card" href="https://mybinder.org/v2/gh/JanLahmann/Qiskit-documentation/main?filepath=learning/courses">
+        <h2>Courses</h2>
+        <p>Structured learning paths from quantum information basics to utility-scale computing.</p>
+      </a>
+      <a class="card" href="https://mybinder.org/v2/gh/JanLahmann/Qiskit-documentation/main?filepath=docs/guides">
+        <h2>Guides</h2>
+        <p>Practical how-to notebooks for transpilation, error mitigation, circuit building, and more.</p>
+      </a>
+    </div>
+
+    <h3>Running notebooks on Binder
+      <label class="toggle"><input type="checkbox" id="editToggle"> Edit code blocks</label>
+    </h3>
+
+    <h3 id="setting-up-your-ibm-quantum-account" style="font-size:1rem; margin-top:0.5rem;">Setting up your IBM Quantum account</h3>
+    <p>Many notebooks connect to IBM Quantum backends. To set this up:</p>
+    <ol style="font-size:0.9rem; margin: 0.5rem 0 0.5rem 1.2rem; color:#555;">
+      <li><strong>Register</strong> at <a href="https://quantum.cloud.ibm.com/registration" style="color:#6929c4;">quantum.cloud.ibm.com/registration</a> — no credit card required for the first 30 days</li>
+      <li><strong>Sign in</strong> at <a href="https://quantum.cloud.ibm.com/" style="color:#6929c4;">quantum.cloud.ibm.com</a> and select region <strong>us-east</strong> (required for the free Open Plan)</li>
+      <li><strong>Create an instance</strong> (free Open Plan) at <a href="https://quantum.cloud.ibm.com/instances" style="color:#6929c4;">Instances</a> if you don't have one yet</li>
+      <li><strong>Create an API key</strong> at <a href="https://quantum.cloud.ibm.com/" style="color:#6929c4;">quantum.cloud.ibm.com</a> (or at <a href="https://cloud.ibm.com/iam/apikeys" style="color:#6929c4;">cloud.ibm.com/iam/apikeys</a>)</li>
+      <li><strong>Copy your CRN</strong> (Cloud Resource Name) from your <a href="https://quantum.cloud.ibm.com/instances" style="color:#6929c4;">Instances</a> page</li>
+      <li><strong>Save your credentials once per Binder session</strong> — in any notebook, add a new cell and run:</li>
+    </ol>
+    <pre><code>from qiskit_ibm_runtime import QiskitRuntimeService
+QiskitRuntimeService.save_account(
+    token="&lt;your-api-key&gt;",
+    instance="&lt;your-crn&gt;",
+    overwrite=True
+)</code></pre>
+    <p>Binder sessions are ephemeral, so you need to re-enter your credentials each time.</p>
+    <p><strong>Troubleshooting:</strong> If you can't see any instances or backends, check that your region is set to <strong>us-east</strong> and try switching accounts (menu in the upper-right corner). See the IBM guides on <a href="https://quantum.cloud.ibm.com/docs/en/guides/cloud-setup" style="color:#6929c4;">cloud setup</a>, <a href="https://quantum.cloud.ibm.com/docs/en/guides/initialize-account" style="color:#6929c4;">initializing your account</a>, and <a href="https://quantum.cloud.ibm.com/docs/en/guides/save-credentials" style="color:#6929c4;">saving credentials</a> for more details.</p>
+
+    <h3 id="no-token-use-local-testing-mode" style="font-size:1rem;">No token? Use local testing mode</h3>
+    <p>You can run most notebooks without an IBM Quantum account by replacing the backend with a local simulator. Replace <code>service = QiskitRuntimeService()</code> and <code>backend = service.least_busy(...)</code> with one of:</p>
+    <p><strong>FakeBackend</strong> (simulates real device noise):</p>
+    <pre><code>from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+backend = FakeManilaV2()</code></pre>
+    <p><strong>AerSimulator</strong> (ideal, no noise):</p>
+    <pre><code>from qiskit_aer import AerSimulator
+backend = AerSimulator()</code></pre>
+    <p>Both work with <code>SamplerV2</code> and <code>EstimatorV2</code> from <code>qiskit_ibm_runtime</code> — no other code changes needed. See the <a href="https://quantum.cloud.ibm.com/docs/en/guides/local-testing-mode" style="color:#6929c4;">local testing mode guide</a> for more details.</p>
+
+    <h3 style="font-size:1rem;">doQumentation — Open-source website for IBM Quantum's tutorials and learning content</h3>
+    <p class="subtitle">IBM's Qiskit tutorials and documentation are open-source, but the web application serving them is not.
+      <a href="https://doQumentation.org">doQumentation</a> provides an open-source frontend for IBM's Qiskit documentation content —
+      independently hostable, runnable offline, and deployable on <a href="https://github.com/JanLahmann/RasQberry-Two">RasQberry</a>.
+      See it live at <a href="https://doQumentation.org">doQumentation.org</a> — browse tutorials and courses,
+      execute code via <a href="https://mybinder.org">Binder</a>, no install required.</p>
+
+    <h3>Pre-installed packages</h3>
+    <table>
+      <tr><th>Package</th><th>Version</th></tr>
+      <tr><td>qiskit (with visualization extras)</td><td>~2.3.0</td></tr>
+      <tr><td>qiskit-aer</td><td>~0.17</td></tr>
+      <tr><td>qiskit-ibm-runtime</td><td>~0.43.1</td></tr>
+      <tr><td>qiskit-ibm-catalog</td><td>latest</td></tr>
+      <tr><td>qiskit-ibm-transpiler</td><td>latest</td></tr>
+      <tr><td>qiskit-addon-cutting</td><td>latest</td></tr>
+      <tr><td>pylatexenc</td><td>latest</td></tr>
+    </table>
+    <p>This also includes <strong>matplotlib</strong>, <strong>numpy</strong>, <strong>scipy</strong>, and other standard scientific Python libraries via Qiskit dependencies.</p>
+
+    <h3>Need more packages?</h3>
+    <p>Some notebooks need extras. Install them in a cell:</p>
+    <pre><code>!pip install -q scipy scikit-learn plotly</code></pre>
+    <p>Or install everything at once:</p>
+    <pre><code>!pip install -q scipy scikit-learn qiskit-experiments \
+  plotly sympy qiskit-serverless qiskit-addon-sqd \
+  qiskit-addon-utils qiskit-addon-mpf qiskit-addon-aqc-tensor[aer,quimb-jax] \
+  qiskit-addon-obp pyscf ffsim gem-suite python-sat</code></pre>
+
+    <div class="footer">
+      <a href="https://github.com/JanLahmann/Qiskit-documentation">GitHub repo</a> ·
+      <a href="https://github.com/JanLahmann/Qiskit-documentation/blob/main/00-q-docs--START-HERE.md">00-q-docs--START-HERE.md</a>
+      <p style="margin-top: 1rem;">
+        <a href="https://github.com/Qiskit/documentation">Qiskit documentation</a> content &copy; IBM Corp, licensed under CC BY-SA 4.0.<br>
+        IBM, IBM Quantum, and Qiskit are trademarks of IBM Corporation.<br>
+        q-docs is part of the <a href="https://rasqberry.org">RasQberry</a> project and the basis for <a href="https://doQumentation.org">doQumentation.org</a>.<br>
+        It is not affiliated with, endorsed by, or sponsored by IBM Corporation.
+      </p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('editToggle').addEventListener('change', function () {
+      document.querySelectorAll('pre').forEach(function (el) {
+        el.querySelector('code').contentEditable = this.checked;
+        el.classList.toggle('editable', this.checked);
+      }.bind(this));
+    });
+  </script>
+</body>
+</html>

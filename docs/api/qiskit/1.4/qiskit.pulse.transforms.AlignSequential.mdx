@@ -1,0 +1,48 @@
+---
+title: AlignSequential (v1.4)
+description: API reference for qiskit.pulse.transforms.AlignSequential in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.transforms.AlignSequential
+---
+
+# AlignSequential
+
+<Class id="qiskit.pulse.transforms.AlignSequential" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/transforms/alignments.py#L225-L256" signature="qiskit.pulse.transforms.AlignSequential" modifiers="class">
+  Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+
+  Align instructions sequentially.
+
+  Instructions played on different channels are also arranged in a sequence. No buffer time is inserted in between instructions.
+
+  Create new sequential context.
+
+  ## Attributes
+
+  ### is\_sequential
+
+  <Attribute id="qiskit.pulse.transforms.AlignSequential.is_sequential" />
+
+  ## Methods
+
+  ### align
+
+  <Function id="qiskit.pulse.transforms.AlignSequential.align" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/transforms/alignments.py#L240-L256" signature="align(schedule)">
+    Reallocate instructions according to the policy.
+
+    Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+
+    **Parameters**
+
+    **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
+
+    **Returns**
+
+    Schedule with reallocated instructions.
+
+    **Return type**
+
+    [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  </Function>
+</Class>
+
