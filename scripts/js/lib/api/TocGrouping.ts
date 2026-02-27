@@ -253,8 +253,18 @@ export const QISKIT_RUNTIME_GROUPING: TocGrouping = {
       kind: "module",
     },
     {
+      moduleId: "qiskit_ibm_runtime.noise_learner_v3",
+      title: "qiskit_ibm_runtime.noise_learner_v3",
+      kind: "module",
+    },
+    {
       moduleId: "qiskit_ibm_runtime.options",
       title: "qiskit_ibm_runtime.options",
+      kind: "module",
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.quantum_program",
+      title: "qiskit_ibm_runtime.quantum_program",
       kind: "module",
     },
     {
