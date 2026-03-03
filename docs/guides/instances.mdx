@@ -101,6 +101,32 @@ Find the instance on the [Instances](https://quantum.cloud.ibm.com/instances) pa
 Only administrators and owners can edit the instance.  See the [Create access policies and access groups](/docs/guides/access-groups) guide for information about assigning access.
 </Admonition>
 
+## Archived instances
+
+An archived instance is the result of one of the following scenarios.
+
+### A privileged user has archived the account
+
+A user with sufficient privileges for the account has archived the instance.
+    - Any pending jobs in the instance are canceled.
+    - Archived instances appear in a separate "Archive" section on the Instances page.
+    - Jobs can still be retrieved.
+    - Users cannot submit new jobs to the archived instance.
+    - The archived instance does not count against your plan's allocation.
+    - A user with sufficient privileges can reactivate an instance that they (or another privileged user) archived at any time.
+
+To archive an instance you manage, go to the [Instances](https://quantum.cloud.ibm.com/instances) page. At the end of the row for that instance, click the three-dot overflow menu on the right, then select *Archive instance*.
+
+### Account no longer has access to the instance's plan
+
+The account no longer has access to the plan under which the instance was created.
+
+- Archived instances appear in a separate "Archive" section on the Instances page.
+- Jobs can still be retrieved.
+- Users cannot submit new jobs to the archived instance.
+- The archived instance does not count against your plan's allocation.
+- Instances that have been archived because they no longer have visibility into the instance's plan can't be reactivated.
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">

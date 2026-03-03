@@ -186,6 +186,13 @@ function prepareClassOrExceptionProps(
   // sometimes have ' class' in their h1.
   pageHeading = removeSuffix(pageHeading, " class");
   if (!options.isCApi && id.endsWith(pageHeading) && pageHeading != "") {
+    // qiskit-ibm-runtime includes classes from a different package. We want to
+    // ensure we use the last part of the ID as the main heading instead of the full
+    // import path.
+    if (id.startsWith("ibm_quantum_schemas")) {
+      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    }
+
     // Page is already dedicated to the class
     return {
       ...props,
@@ -251,14 +258,15 @@ function prepareAttributeOrPropertyProps(
   //
   // We need to remove the modifiers `em.property` to not mess up creating the heading, although
   // we must first extract any modifiers. Attributes will not have modifiers, whereas
-  // properties will have `property` or possibly `abstract property`. If the modifier is simply
+  // properties will have `field` (Pydantic), `property` or possibly `abstract property`. If the modifier is simply
   // `property`, then we do not save its value because there is no practical difference for end-users
-  // between an attribute and property. However, we preserve the full string if it's `abstract property`.
+  // between an attribute and property. However, we preserve the full string if it's `abstract property` or `field`.
   //
   // Meanwhile, we preserve the non-modifier `em.property` elements to be processed below.
-  const rawModifiers = $child
-    .find("em.property")
-    .filter((i, el) => $(el).text().includes("property"));
+  const rawModifiers = $child.find("em.property").filter((i, el) => {
+    const text = $(el).text();
+    return text.includes("property") || text.includes("field");
+  });
   const modifiersText = rawModifiers.text().trim();
   const filteredModifiers =
     modifiersText === "property" ? undefined : modifiersText;
@@ -432,6 +440,15 @@ export function findByText(
 }
 
 function getAndRemoveModifiers($child: Cheerio<any>): string {
+  // `autodoc_pydantic` adds these two `em` tags that we want to
+  // remove from the signature.
+  //
+  // Example:
+  //      <modifier>  <signature>   <arrow>   <xref>
+  //      validator  cross_validate    >>    all fields
+  $child.find("em.autodoc_pydantic_validator_arrow").remove();
+  $child.find("em.xref").remove();
+
   const rawModifiers = $child.find("em.property");
   const modifiers = rawModifiers.text().trim();
   rawModifiers.remove();

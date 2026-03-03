@@ -83,8 +83,8 @@ with open('twenty_bells.qpy', 'rb') as fd:
   **Parameters**
 
   *   **file\_obj** (*BinaryIO*) – A file like object that contains the QPY binary data for a circuit.
-  *   **metadata\_deserializer** (*Optional\[*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[JSONDecoder]]*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
-  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the loading of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects.
+  *   **metadata\_deserializer** ([*type*](https://docs.python.org/3/library/functions.html#type)*\[JSONDecoder] | None*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
+  *   **annotation\_factories** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]] | None*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the loading of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects.
 
   **Returns**
 
@@ -99,7 +99,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   **Return type**
 
-  List\[QPY\_SUPPORTED\_TYPES]
+  [list](https://docs.python.org/3/library/stdtypes.html#list)\[QPY\_SUPPORTED\_TYPES]
 </Function>
 
 ### dump
@@ -141,11 +141,11 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   **Parameters**
 
-  *   **programs** (*Union\[List\[QPY\_SUPPORTED\_TYPES], QPY\_SUPPORTED\_TYPES]*) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+  *   **programs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[QPY\_SUPPORTED\_TYPES] | QPY\_SUPPORTED\_TYPES*) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
   *   **file\_obj** (*BinaryIO*) – The file like object to write the QPY data too
 
-  *   **metadata\_serializer** (*Optional\[*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[JSONEncoder]]*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
+  *   **metadata\_serializer** ([*type*](https://docs.python.org/3/library/functions.html#type)*\[JSONEncoder] | None*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
 
   *   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – This flag is no longer used by QPY versions supported by this function and will have no impact on the generated QPY payload except to set a field in a QPY v13 file header which is unused.
 
@@ -161,7 +161,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
           If serializing a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that contains [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects with `version` set low with the intent to load the payload using a historical release of Qiskit, it is safest to set the `use_symengine` flag to `False`. Versions of Qiskit prior to 1.2.4 cannot load QPY files containing `symengine`-serialized [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects unless the version of `symengine` used between the loading and generating environments matches.
         </Admonition>
 
-  *   **annotation\_factories** (*Optional\[Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]]]*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the dumping of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects. The subsequent call to [`load()`](#qiskit.qpy.load "qiskit.qpy.load") will need to use similar serializer objects, that understand the custom output format of those serializers.
+  *   **annotation\_factories** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]] | None*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the dumping of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects. The subsequent call to [`load()`](#qiskit.qpy.load "qiskit.qpy.load") will need to use similar serializer objects, that understand the custom output format of those serializers.
 
   **Raises**
 

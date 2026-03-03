@@ -58,6 +58,9 @@ export async function processHtml(
   const isIndex = fileName.endsWith("index.html");
   const isRoot =
     options.hasRootNamespaceFile && fileName.endsWith("/root.html");
+  const isIbmQuantumSchemasPage = fileName.endsWith(
+    "/ibm_quantum_schemas.html",
+  );
   const images = loadImages(
     $,
     $main,
@@ -86,7 +89,11 @@ export async function processHtml(
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
-  await processMembersAndSetMeta($, $main, meta, { ...options, isRoot });
+  await processMembersAndSetMeta($, $main, meta, {
+    ...options,
+    isRoot,
+    isIbmQuantumSchemasPage,
+  });
   if (options.isCApi) maybeSetCMetadata($main, meta, isReleaseNotes, isIndex);
   else maybeSetPythonModuleMetadata($, $main, meta);
 
@@ -368,13 +375,25 @@ export async function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
-  options: { isCApi: boolean; isRoot: boolean },
+  options: {
+    isCApi: boolean;
+    isRoot: boolean;
+    isIbmQuantumSchemasPage: boolean;
+  },
 ): Promise<void> {
   // Some packages might include a root page where all the re-exports
   // in the root namespace are explained.
   if (options.isRoot) {
     meta.apiType = "syntheticModule";
     meta.apiName = "Root namespace";
+    return;
+  }
+
+  // qiskit-ibm-runtime documents the ibm-quantum-schemas package index page
+  // manuall, so we create a synthetic module to add it to the left nav bar
+  if (options.isIbmQuantumSchemasPage) {
+    meta.apiType = "syntheticModule";
+    meta.apiName = "IBM Quantum Schemas";
     return;
   }
 
