@@ -89,7 +89,7 @@ python_api_name: qiskit.passmanager.BasePassManager
 
     *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) –
 
-        A callback function that will be called after each pass execution. The function will be called with 4 keyword arguments:
+        A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments:
 
         ```python
         task (GenericPass): the pass being run
@@ -99,7 +99,7 @@ python_api_name: qiskit.passmanager.BasePassManager
         count (int): the index for the pass execution
         ```
 
-        The exact arguments pass expose the internals of the pass manager and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases be sure to check that the arguments being passed are the same.
+        The exact arguments passed expose the internals of the pass manager and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases be sure to check that the arguments being passed are the same.
 
         To use the callback feature you define a function that will take in kwargs dict and access the variables. For example:
 
