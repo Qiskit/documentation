@@ -1,0 +1,48 @@
+---
+title: QuantumProgramModel (dev version)
+description: API reference for ibm_quantum_schemas.models.executor.version_0_1.models.QuantumProgramModel in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.models.executor.version_0_1.models.QuantumProgramModel
+---
+
+<span id="ibm-quantum-schemas-models-executor-version-0-1-models-quantumprogrammodel" />
+
+# QuantumProgramModel
+
+<Class id="ibm_quantum_schemas.models.executor.version_0_1.models.QuantumProgramModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.3.20260226/ibm_quantum_schemas/models/executor/version_0_1/models.py#L146-L165" signature="QuantumProgramModel" modifiers="pydantic model">
+  Bases: `BaseModel`
+
+  Model to store a quantum program.
+
+  ### items
+
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.QuantumProgramModel.items" attributeTypeHint="list[Annotated[CircuitItemModel | SamplexItemModel, FieldInfo(annotation" attributeValue="NoneType, required=True, discriminator='item_type')]] [Required]" modifiers="field">
+    Items of the program.
+
+    **Validated by**
+
+    *   [`check_chunk_sizes_are_consistent`](#ibm_quantum_schemas.models.executor.version_0_1.models.QuantumProgramModel.check_chunk_sizes_are_consistent "ibm_quantum_schemas.models.executor.version_0_1.models.QuantumProgramModel.check_chunk_sizes_are_consistent")
+  </Attribute>
+
+  ### shots
+
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_1.models.QuantumProgramModel.shots" attributeTypeHint="int [Required]" modifiers="field">
+    The number of shots for each individually bound circuit.
+
+    **Constraints**
+
+    *   **ge** = 1
+
+    **Validated by**
+
+    *   [`check_chunk_sizes_are_consistent`](#ibm_quantum_schemas.models.executor.version_0_1.models.QuantumProgramModel.check_chunk_sizes_are_consistent "ibm_quantum_schemas.models.executor.version_0_1.models.QuantumProgramModel.check_chunk_sizes_are_consistent")
+  </Attribute>
+
+  ### check\_chunk\_sizes\_are\_consistent
+
+  <Function id="ibm_quantum_schemas.models.executor.version_0_1.models.QuantumProgramModel.check_chunk_sizes_are_consistent" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.3.20260226/ibm_quantum_schemas/models/executor/version_0_1/models.py#L155-L165" signature="check_chunk_sizes_are_consistent" modifiers="validator">
+    Check that all program items set chunk sizes consistently.
+  </Function>
+</Class>
+
