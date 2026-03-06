@@ -20,7 +20,6 @@ jobs:
     outputs:
       all-changed-files: ${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
       run-notebook-tester: ${{ steps.decide.outputs.RUN_NOTEBOOK_TESTER }}
-      run-api-checks: ${{ steps.decide.outputs.RUN_API_CHECKS }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
@@ -62,26 +61,9 @@ jobs:
           #  docs/api/thing.mdx
           #  docs/api/thing.ipynb
           #  scripts/js/lib/thing.ts
-
-          API_CHECKS_REGEX: (\.github\/workflows\/main\.yml|(docs\/api|public\/docs\/api|scripts\/js)\/.*)
-          #  -- Should match:
-          #  docs/api/qiskit/index.mdx
-          #  public/docs/api/qiskit-ibm-runtime/objects.inv
-          #  public/docs/api/qiskit/thing.avif
-          #  scripts/js/lib/links/thing.ts
-          #  .github/workflows/main.yml
-          #
-          #  -- Should not match:
-          #  scripts/nb-tester/file.py
-          #  docs/guides/thing.ipynb
-          #  public/learning/image.svg
-          #  .github/workflows/notebook-test-cron.yml
         run: |
           if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(grep -P "$NOTEBOOK_TEST_REGEX" .github/outputs/changed-files.txt)" ]]; then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
-          fi
-          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(grep -P "$API_CHECKS_REGEX" .github/outputs/changed-files.txt)" ]]; then
-            echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
           fi
       - name: Save changed files artifact
         uses: actions/upload-artifact@v4
@@ -118,8 +100,6 @@ jobs:
         run: npm run check:qiskit-bot
       - name: Check tutorials index
         run: python scripts/ci/check-tutorials-index.py
-      - name: Internal link checker
-        run: npm run check:internal-links
       - name: Check orphaned pages
         run: npm run check:orphan-pages
       - name: Check stale images
@@ -270,9 +250,8 @@ jobs:
 
   api-checks:
     name: API checks
-    needs: [decide-jobs]
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'Qiskit' && needs.decide-jobs.outputs.run-api-checks == 'true'
+    if: github.repository_owner == 'Qiskit'
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
