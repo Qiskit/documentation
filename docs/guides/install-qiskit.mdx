@@ -33,16 +33,15 @@ Whether you will work locally or in a cloud environment, the first step for all 
     These instructions use the standard Python distribution from [pypi.org](https://pypi.org/). However, you can use other Python distributions, such as [Anaconda](https://docs.anaconda.com/anaconda/) or [miniconda](https://docs.anaconda.com/miniconda/), along with other dependency management workflows like [Poetry](https://python-poetry.org/docs/).
     </Admonition>
 
-    <details>
-    <summary>
-    If you're new to virtual environments, click here for more information.
-    </summary>
+    <Accordion>
+    <AccordionItem title="If you're new to virtual environments, click to expand for more information.">
     A virtual Python environment is an isolated space to work with Python for a specific purpose — so you can install whatever packages you wish, and set up libraries, dependencies, and so on, without affecting the "base" Python environment on your machine.
 
     One important advantage of a virtual environment is that if your Python environment becomes corrupted somewhere along the way, you can easily delete the virtual environment and start over!
 
     Choose a preferred location in which to store information about your virtual environments. Typically they're stored in a directory named `.venv` within each project directory you're working in.
-    </details>
+    </AccordionItem>
+    </Accordion>
 
     First, navigate to your project directory and create a minimal environment with only Python installed in it.
 
@@ -147,10 +146,8 @@ If you are planning to work locally and use simulators built into Qiskit, then y
 
 ## Troubleshooting
 
-<details>
-  <summary>
-    "No Module 'qiskit'" error with Jupyter Notebook
-  </summary>
+<Accordion>
+<AccordionItem title="`No Module 'qiskit'` error with Jupyter Notebook">
   If you used ``pip install qiskit`` and set up your virtual environment in
   Anaconda, then you may get the ``No Module 'qiskit'`` error when you run a tutorial
   in Jupyter Notebook. If you have not installed Qiskit or set up your
@@ -165,12 +162,10 @@ If you are planning to work locally and use simulators built into Qiskit, then y
   all of the virtual environments within Anaconda, and you can
   select the environment where you have Qiskit installed to launch Jupyter
   Notebook.
-</details>
+</AccordionItem>
 
-<details>
-  <summary>
-    Compilation errors during installation
-  </summary>
+
+<AccordionItem title="Compilation errors during installation">
   Qiskit depends on a number of other open-source Python packages, which
   are automatically installed when doing ``pip install qiskit``. Depending on
   your system's platform and Python version, it is possible that a particular
@@ -194,7 +189,8 @@ If you are planning to work locally and use simulators built into Qiskit, then y
   please check the documentation of the package that failed to install (in the
   example code, ``SOME_PACKAGE``) for information on how to install the libraries
   needed for compiling from source.
-</details>
+</AccordionItem>
+</Accordion>
 
 <span id="os-support"></span>
 ## Operating system support
@@ -207,10 +203,8 @@ Additionally, Qiskit only supports the CPython implementation of the Python lang
 
 In the Qiskit v2.x release series, the supported platforms are:
 
-<details>
-  <summary>
-    Tier 1
-  </summary>
+<Accordion>
+<AccordionItem title="Tier 1">
   Tier 1 operating systems are fully tested as part of the development processes to ensure any proposed change will function correctly. Pre-compiled binaries are built, tested, and published to PyPI as part of the release process. Typically, as long as there is a functioning Python environment installed, Qiskit can be installed on these operating systems without needing to install further dependencies.
 
   Tier 1 operating systems:
@@ -219,31 +213,24 @@ In the Qiskit v2.x release series, the supported platforms are:
   - macOS ARM64 (11.0 or newer)
   - Windows 64-bit (Windows 10 and later supported)
   - Linux AArch64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
-</details>
-
-<details>
-  <summary>
-    Tier 2
-  </summary>
+</AccordionItem>
+<AccordionItem title="Tier 2">
   Tier 2 operating systems are not tested as part of the development process. However, pre-compiled binaries are built, tested, and published to PyPI as part of the release process, and these packages can be expected to be installed with only a functioning Python environment.
   There might be a delay in releasing packages for these systems, since test failures might not be detected until much later, and failures during publishing will not block the publication of the package for Tier 1 systems.
 
   Tier 2 operating systems:
 
   - macOS x86_64 (10.12 or later)
-</details>
-
-<details>
-  <summary>
-    Tier 3
-  </summary>
+</AccordionItem>
+<AccordionItem title="Tier 3">
   Tier 3 operating systems are not tested as part of the development process. Pre-compiled binaries are built and published to PyPI as part of the release process but are not tested. They may not be installable with only a functioning Python environment and might require a C/C++ compiler or additional programs to build dependencies from source as part of the installation process. Support for these operating systems are best effort only.
 
   Tier 3 operating systems:
 
   - Linux ppc64le (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/)packaging specification)
   - Linux s390x (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
-</details>
+</AccordionItem>
+</Accordion>
 
 Starting in Qiskit v2.0.0, only 64-bit platforms are supported and 32-bit platforms are not supported. You will not be able to build from source
 on 32-bit platforms either, as internally the Qiskit Rust code assumes a 64-bit pointer width.
@@ -252,10 +239,8 @@ on 32-bit platforms either, as internally the Qiskit Rust code assumes a 64-bit 
 
 In the Qiskit v1.x release series, the supported platforms are:
 
-<details>
-  <summary>
-    Tier 1
-  </summary>
+<Accordion>
+<AccordionItem title="Tier 1">
   Tier 1 operating systems are fully tested as part of the development processes to ensure any proposed change will function correctly. Pre-compiled binaries are built, tested, and published to PyPI as part of the release process. Typically, as long as there is a functioning Python environment installed, Qiskit can be installed on these operating systems without needing to install further dependencies.
 
   Tier 1 operating systems:
@@ -264,23 +249,15 @@ In the Qiskit v1.x release series, the supported platforms are:
   - macOS x86_64 (10.12 or later)
   - macOS ARM64 (11.0 or newer)
   - Windows 64-bit (Windows 10 and later supported)
-</details>
-
-<details>
-  <summary>
-    Tier 2
-  </summary>
+</AccordionItem>
+<AccordionItem title="Tier 2">
   Tier 2 operating systems are not tested as part of development process. However, pre-compiled binaries are built, tested, and published to PyPI as part of the release process and these packages can be expected to be installed with just a functioning Python environment.
 
   Tier 2 operating systems:
 
   - Linux AArch64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
-</details>
-
-<details>
-  <summary>
-    Tier 3
-  </summary>
+</AccordionItem>
+<AccordionItem title="Tier 3">
   Tier 3 operating systems are not tested as part of the development process. Pre-compiled binaries are built and published to PyPI as part of the release process but are not tested. They may not be installable with just a functioning Python environment and might require a C/C++ compiler or additional programs to build dependencies from source as part of the installation process. Support for these operating systems are best effort only.
 
   Tier 3 operating systems:
@@ -289,16 +266,17 @@ In the Qiskit v1.x release series, the supported platforms are:
   - Linux s390x (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
   - Linux i686 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
   - Windows 10 32-bit
-</details>
+</AccordionItem>
+</Accordion>
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
 
 
-  - Set up your [IBM Cloud account.](/docs/guides/cloud-setup)
+  - Set up your [IBM Cloud account](/docs/guides/cloud-setup).
 
-  -  [Configure Qiskit locally.](configure-qiskit-local)
+  -  [Configure Qiskit locally](configure-qiskit-local).
   -  Follow the steps in the [Run your first circuit on hardware](/docs/guides/hello-world) guide to write and run a quantum program.
-  -  Try an IBM Quantum Learning [tutorial.](/docs/tutorials)
+  -  Try an IBM Quantum Learning [tutorial](/docs/tutorials).
 </Admonition>

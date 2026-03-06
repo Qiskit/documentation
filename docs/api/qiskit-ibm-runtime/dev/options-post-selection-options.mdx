@@ -1,0 +1,63 @@
+---
+title: PostSelectionOptions (dev version)
+description: API reference for qiskit_ibm_runtime.options.PostSelectionOptions in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options.PostSelectionOptions
+---
+
+# PostSelectionOptions
+
+<Class id="qiskit_ibm_runtime.options.PostSelectionOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/post_selection_options.py#L24-L71" signature="PostSelectionOptions(enable=False, x_pulse_type='xslow', strategy='node')" modifiers="class">
+  Bases: `BaseOptions`
+
+  Options for post selecting results.
+
+  ## Attributes
+
+  **Parameters**
+
+  *   **enable** (*bool*)
+  *   **x\_pulse\_type** (*Literal\['xslow', 'rx']*)
+  *   **strategy** (*Literal\['node', 'edge']*)
+
+  ### enable
+
+  <Attribute id="qiskit_ibm_runtime.options.PostSelectionOptions.enable" attributeTypeHint="bool" attributeValue="False">
+    Whether to enable Post Selection when performing learning experiments.
+
+    If `True`, Post Selection is applied to all the learning circuits. In particular, the following steps are undertaken:
+
+    > *   Using the passes in `qiskit_addon_utils.noise_management.post_selection.transpiler.passes`, the learning circuits are modified by adding measurements on the spectator qubits, as well as post selection measurements.
+    > *   The results of each individual learning circuits are post selected by discarding the shots where one or more bits failed to flip, as explained in the docstring of `qiskit_addon_utils.noise_management.post_selection.PostSelector.compute_mask()`.
+
+    If `False`, all the other Post Selection options will be ignored.
+  </Attribute>
+
+  ### strategy
+
+  <Attribute id="qiskit_ibm_runtime.options.PostSelectionOptions.strategy" attributeTypeHint="Literal['node', 'edge']" attributeValue="'node'">
+    The strategy used to decide if a shot should be kept or discarded.
+
+    The available startegies are:
+
+    *   `'node'`: Discard every shot where one or more bits failed to flip. Keep every other shot.
+
+    *   **`'edge'`: Discard every shot where there exists a pair of neighbouring qubits for which both of**
+
+        the bits failed to flip. Keep every other shot.
+
+    See the dosctrings of `PostSelector` and `PostSelector.compute_mask()` for more details.
+
+    Defaults to `node`.
+  </Attribute>
+
+  ### x\_pulse\_type
+
+  <Attribute id="qiskit_ibm_runtime.options.PostSelectionOptions.x_pulse_type" attributeTypeHint="Literal['xslow', 'rx']" attributeValue="'xslow'">
+    The type of the X-pulse used for the post selection measurements.
+  </Attribute>
+
+  ## Methods
+</Class>
+
