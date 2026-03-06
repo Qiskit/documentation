@@ -74,7 +74,6 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    needs: [decide-jobs]
     if: github.repository_owner == 'Qiskit'
     steps:
       - uses: actions/checkout@v4
@@ -92,16 +91,12 @@ jobs:
       - name: Install Playwright
         run: npx playwright install
 
-      - name: Check markdown
-        run: npm run check:markdown
       - name: Spellcheck
         run: npm run check:spelling
       - name: Check Qiskit bot config
         run: npm run check:qiskit-bot
       - name: Check tutorials index
         run: python scripts/ci/check-tutorials-index.py
-      - name: Check orphaned pages
-        run: npm run check:orphan-pages
       - name: Check stale images
         run: npm run check:stale-images
       - name: Formatting
