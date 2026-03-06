@@ -58,10 +58,8 @@ The following table documents options from the latest version of `qiskit-ibm-run
 
 <Tabs>
   <TabItem value="Estimator" label="Estimator">
-<details>
-<summary>
-### `default_shots`
-</summary>
+<Accordion>
+<AccordionItem title="`default_shots`">
 
 The total number of shots to use per circuit per configuration.
 
@@ -70,12 +68,10 @@ The total number of shots to use per circuit per configuration.
 **Default**: None
 
 [`default_shots` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_shots)
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-### `default_precision`
-</summary>
+
+<AccordionItem title="`default_precision`">
 
 The default precision to use for any PUB or `run()` call that does not specify one.
 
@@ -84,389 +80,340 @@ The default precision to use for any PUB or `run()` call that does not specify o
 **Default**: 0.015625 (1 / sqrt(4096))
 
 [`default_precision` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#default_precision)
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-### `dynamical_decoupling`
-</summary>
+
+<AccordionItem title="`dynamical_decoupling`">
 
 Control dynamical decoupling error mitigation settings.
 
 [`dynamical_decoupling` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#dynamical_decoupling)
-<details>
-<summary>
-#### `dynamical_decoupling.enable`
-</summary>
+<Accordion>
+<AccordionItem title="`dynamical_decoupling.enable`">
 
 **Choices**: `True`, `False`
 
 **Default**: `False`
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `dynamical_decoupling.extra_slack_distribution`
-</summary>
+
+<AccordionItem title="`dynamical_decoupling.extra_slack_distribution`">
 
 **Choices**: `middle`, `edges`
 
 **Default**: `middle`
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `dynamical_decoupling.scheduling_method`
-</summary>
+
+<AccordionItem title="`dynamical_decoupling.scheduling_method`">
 
 Choices: `asap`, `alap`
 Default: `alap`
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `dynamical_decoupling.sequence_type`
-</summary>
+
+<AccordionItem title="`dynamical_decoupling.sequence_type`">
 
 Choices: `XX`, `XpXm`, `XY4`
 Default: `XX`
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `dynamical_decoupling.skip_reset_qubits`
-</summary>
+
+<AccordionItem title="`dynamical_decoupling.skip_reset_qubits`">
 
 Choices: `True`, `False`
 Default: `False`
-</details>
+  </AccordionItem>
 
-</details>
+</Accordion>
+
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `environment`
-</summary>
+
+<AccordionItem title="`environment`">
 
 [`environment` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#environment)
-<details>
-<summary>
-#### `environment.callback`
-</summary>
+<Accordion>
+<AccordionItem title="`environment.callback`">
 
 Callable function that receives the `Job ID` and `Job result`.
 
 **Choices**: None
 
 **Default**: None
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `environment.job_tags`
-</summary>
+
+<AccordionItem title="`environment.job_tags`">
 
 List of tags.
 
 **Choices**: None
 
 **Default**: None
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `environment.log_level`
-</summary>
+
+<AccordionItem title="`environment.log_level`">
 
 **Choices**: DEBUG, INFO, WARNING, ERROR, CRITICAL
 
 **Default**: WARNING
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `environment.private`
-</summary>
+
+<AccordionItem title="`environment.private`">
 
 **Choices**: `True`, `False`
 
 **Default**: `False`
-</details>
+  </AccordionItem>
 
-</details>
+</Accordion>
+
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `execution`
-</summary>
+
+<AccordionItem title="`execution`">
 
 [`execution` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#execution)
-<details>
-<summary>
-#### `execution.init_qubits`
-</summary>
+<Accordion>
+<AccordionItem title="`execution.init_qubits`">
 Whether to reset the qubits to the ground state for each shot.
 
 **Choices**: `True`, `False`
 
 **Default**: `True`
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `execution.rep_delay`
-</summary>
+
+<AccordionItem title="`execution.rep_delay`">
 The delay between a measurement and the subsequent quantum circuit.
 
 **Choices**: Value in the range supplied by `backend.rep_delay_range`
 
 **Default**: Given by `backend.default_rep_delay`
-</details>
+  </AccordionItem>
 
-</details>
+</Accordion>
+
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `max_execution_time`
-</summary>
+
+<AccordionItem title="`max_execution_time`">
 **Choices**: Integer number of seconds in the range [1, 10800]
 
 **Default**: 10800 (3 hours)
 
 [`max_execution_time` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#max_execution_time)
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-### `resilience`
-</summary>
+
+<AccordionItem title="`resilience`">
 Advanced resilience options to fine tune the resilience strategy.
 
 [`resilience` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#resilience)
-<details>
-<summary>
-#### `resilience.layer_noise_learning`
-</summary>
+<Accordion>
+<AccordionItem title="`resilience.layer_noise_learning`">
 
 Options for learning layer noise.
 
 [`resilience.layer_noise_learning` API documentation](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.layer_noise_learning.layer_pair_depths`
-</summary>
+
+<AccordionItem title="`resilience.layer_noise_learning.layer_pair_depths`">
 
 **Choices**: list[int] of 2-10 values in the range [0, 200]
 
 **Default**: `(0, 1, 2, 4, 16, 32)`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.layer_noise_learning.max_layers_to_learn`
-</summary>
+
+
+<AccordionItem title="`resilience.layer_noise_learning.max_layers_to_learn`">
 
 **Choices**: None, Integer >= 1
 
 **Default**: `4`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.layer_noise_learning.num_randomizations`
-</summary>
+
+
+<AccordionItem title="`resilience.layer_noise_learning.num_randomizations`">
 
 **Choices**: Integer >= 1
 
 **Default**: `32`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.layer_noise_learning.shots_per_randomization`
-</summary>
+
+
+<AccordionItem title="`resilience.layer_noise_learning.shots_per_randomization`">
 
 **Choices**: Integer >= 1
 
 **Default**: `128`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `resilience.layer_noise_model`
-</summary>
+
+
+<AccordionItem title="`resilience.layer_noise_model`">
 
 **Choices**: `NoiseLearnerResult`, `Sequence[LayerError]`
 
 **Default**: None
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `resilience.measure_mitigation`
-</summary>
+
+
+<AccordionItem title="`resilience.measure_mitigation`">
 
 **Choices**: `True`, `False`
 
 **Default**: `True`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `resilience.measure_noise_learning`
-</summary>
+
+
+<AccordionItem title="`resilience.measure_noise_learning`">
 
 Options for measurement noise learning.
 
 [`resilience.measure_noise_learning` API documentation](/docs/api/qiskit-ibm-runtime/options-measure-noise-learning-options)
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.measure_noise_learning.num_randomizations`
-</summary>
+
+<AccordionItem title="`resilience.measure_noise_learning.num_randomizations`">
 
 **Choices**: Integer >= 1
 
 **Default**: `32`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.measure_noise_learning.shots_per_randomization`
-</summary>
+
+
+<AccordionItem title="`resilience.measure_noise_learning.shots_per_randomization`">
 
 **Choices**: Integer, `auto`
 
 **Default**: `auto`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `resilience.pec_mitigation`
-</summary>
+
+
+<AccordionItem title="`resilience.pec_mitigation`">
 
 **Choices**: `True`, `False`
 
 **Default**: `False`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `resilience.pec`
-</summary>
+
+
+<AccordionItem title="`resilience.pec`">
 
 Probabilistic error cancellation mitigation options.
 
 [`resilience.pec` API documentation](/docs/api/qiskit-ibm-runtime/options-pec-options)
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.pec.max_overhead`
-</summary>
+
+<AccordionItem title="`resilience.pec.max_overhead`">
 
 **Choices**: `None`, Integer >= 1
 
 
 **Default**: `100`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.pec.noise_gain`
-</summary>
+
+
+<AccordionItem title="`resilience.pec.noise_gain`">
 
 **Choices**: `auto`, float in the range [0, 1]
 
 **Default**: `auto`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `resilience.zne_mitigation`
-</summary>
+
+
+<AccordionItem title="`resilience.zne_mitigation`">
 
 **Choices**: `True`, `False`
 
 **Default**: `False`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `resilience.zne`
-</summary>
+
+
+<AccordionItem title="`resilience.zne`">
 
 [`resilience.zne` API documentation](/docs/api/qiskit-ibm-runtime/options-zne-options)
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.zne.amplifier`
-</summary>
+
+<AccordionItem title="`resilience.zne.amplifier`">
 
 **Choices**: `gate_folding`, `gate_folding_front`, `gate_folding_back`, `pea`
 
 **Default**: `gate_folding`
 
-</details>
-<details>
-<summary>
-##### `resilience.zne.extrapolated_noise_factors`
-</summary>
+  </AccordionItem>
+
+
+
+<AccordionItem title="`resilience.zne.extrapolated_noise_factors`">
 
 **Choices**: List of floats
 
 **Default**: `[0, *noise_factors]`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.zne.extrapolator`
-</summary>
+
+
+<AccordionItem title="`resilience.zne.extrapolator`">
 
 **Choices**: One or more of: `exponential`, `linear`, `double_exponential`, `polynomial_degree_(1 <= k <= 7)`, `fallback`
 
 **Default**: `(exponential, linear)`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-##### `resilience.zne.noise_factors`
-</summary>
+
+
+<AccordionItem title="`resilience.zne.noise_factors`">
 
 **Choices**: List of floats; each float >= 1
 
 **Default**: `(1, 1.5, 2)` for `PEA`, and `(1, 3, 5)` otherwise
 
-</details>
-
-</details>
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `resilience_level`
-</summary>
+</Accordion>
+
+  </AccordionItem>
+
+
+
+<AccordionItem title="`resilience_level`">
 
 How much resilience to build against errors. Higher levels generate more accurate results at the expense of longer processing times.
 
@@ -475,157 +422,146 @@ How much resilience to build against errors. Higher levels generate more accurat
 **Default**: `1`
 
 [`resilience_level` API documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options#resilience_level)
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-### `seed_estimator`
-</summary>
+
+<AccordionItem title="`seed_estimator`">
 
 **Choices**: Integer
 
 **Default**: None
 
 [`seed_estimator`](/docs/api/qiskit-ibm-runtime/options-estimator-options#seed_estimator)
-</details>
-<details>
-<summary>
-### `simulator`
-</summary>
+  </AccordionItem>
+
+
+<AccordionItem title="`simulator`">
 
 Options to pass when simulating a backend
 
 [`simulator` API documentation](/docs/api/qiskit-ibm-runtime/options-simulator-options)
-<details>
-<summary>
-#### `simulator.basis_gates`
-</summary>
+<Accordion>
+<AccordionItem title="`simulator.basis_gates`">
 
 **Choices**: List of basis gate names to unroll to
 
 **Default**: The set of all basis gates supported by [Qiskit Aer simulator](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html)
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `simulator.coupling_map`
-</summary>
+
+
+<AccordionItem title="`simulator.coupling_map`">
 
 **Choices**: List of directed two-qubit interactions
 
 **Default**: None, which implies no connectivity constraints (full connectivity).
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `simulator.noise_model`
-</summary>
+
+
+<AccordionItem title="`simulator.noise_model`">
 
 **Choices**: [Qiskit Aer NoiseModel](/docs/guides/build-noise-models), or its representation
 
 **Default**: None
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `simulator.seed_simulator`
-</summary>
+
+
+<AccordionItem title="`simulator.seed_simulator`">
 
 **Choices**: Integer
 
 **Default**: None
 
-</details>
-
-</details>
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `twirling`
-</summary>
+</Accordion>
+
+  </AccordionItem>
+
+
+
+<AccordionItem title="`twirling`">
 
 Twirling options
 
 [`twirling` API documentation](/docs/api/qiskit-ibm-runtime/options-twirling-options)
-<details>
-<summary>
-#### `twirling.enable_gates`
-</summary>
+<Accordion>
+<AccordionItem title="`twirling.enable_gates`">
 
 **Choices**: True, False
 
 **Default**: False
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `twirling.enable_measure`
-</summary>
+
+
+<AccordionItem title="`twirling.enable_measure`">
 
 **Choices**: True, False
 
 **Default**: True
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `twirling.num_randomizations`
-</summary>
 
-**Choices**: `auto`, Integer >= 1
 
-**Default**: `auto`
-
-</details>
-
-<details>
-<summary>
-#### `twirling.shots_per_randomization`
-</summary>
+<AccordionItem title="`twirling.num_randomizations`">
 
 **Choices**: `auto`, Integer >= 1
 
 **Default**: `auto`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `twirling.strategy`
-</summary>
+
+
+<AccordionItem title="`twirling.shots_per_randomization`">
+
+**Choices**: `auto`, Integer >= 1
+
+**Default**: `auto`
+
+  </AccordionItem>
+
+
+
+<AccordionItem title="`twirling.strategy`">
 
 **Choices**: `active`, `active-circuit`, `active-accum`, `all`
 
 **Default**: `active-accum`
 
-</details>
-
-</details>
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `experimental`
-</summary>
+</Accordion>
+
+  </AccordionItem>
+
+
+
+<AccordionItem title="`experimental`">
 
 Experimental options, when available.
 
-</details>
+  </AccordionItem>
+
+
+</Accordion>
 
 
 
   </TabItem>
   <TabItem value="Sampler" label="Sampler">
-  <details>
-<summary>
-### `default_shots`
-</summary>
+  <Accordion>
+<AccordionItem title="`default_shots`">
 
 The total number of shots to use per circuit per configuration.
 
@@ -634,285 +570,254 @@ The total number of shots to use per circuit per configuration.
 **Default**: None
 
 [`default_shots` API documentation](/docs/api/qiskit-ibm-runtime/options-sampler-options#default_shots)
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-### `dynamical_decoupling`
-</summary>
+
+<AccordionItem title="`dynamical_decoupling`">
 
 Control dynamical decoupling error mitigation settings.
 
 [`dynamical_decoupling` API documentation](/docs/api/qiskit-ibm-runtime/options-sampler-options#dynamical_decoupling)
-<details>
-<summary>
-#### `dynamical_decoupling.enable`
-</summary>
+<Accordion>
+<AccordionItem title="`dynamical_decoupling.enable`">
 
 **Choices**: `True`, `False`
 
 **Default**: `False`
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `dynamical_decoupling.extra_slack_distribution`
-</summary>
+
+<AccordionItem title="`dynamical_decoupling.extra_slack_distribution`">
 
 **Choices**: `middle`, `edges`
 
 **Default**: `middle`
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `dynamical_decoupling.scheduling_method`
-</summary>
+
+<AccordionItem title="`dynamical_decoupling.scheduling_method`">
 
 Choices: `asap`, `alap`
 Default: `alap`
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `dynamical_decoupling.sequence_type`
-</summary>
+
+<AccordionItem title="`dynamical_decoupling.sequence_type`">
 
 Choices: `XX`, `XpXm`, `XY4`
 Default: `XX`
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `dynamical_decoupling.skip_reset_qubits`
-</summary>
+
+<AccordionItem title="`dynamical_decoupling.skip_reset_qubits`">
 
 Choices: `True`, `False`
 Default: `False`
-</details>
+  </AccordionItem>
 
-</details>
+</Accordion>
+
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `environment`
-</summary>
+
+<AccordionItem title="`environment`">
 [`environment` API documentation](/docs/api/qiskit-ibm-runtime/options-sampler-options#environment)
-<details>
-<summary>
-#### `environment.job_tags`
-</summary>
+<Accordion>
+<AccordionItem title="`environment.job_tags`">
 
 List of tags.
 
 **Choices**: None
 
 **Default**: None
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `environment.log_level`
-</summary>
+
+<AccordionItem title="`environment.log_level`">
 
 **Choices**: DEBUG, INFO, WARNING, ERROR, CRITICAL
 
 **Default**: WARNING
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `environment.private`
-</summary>
+
+<AccordionItem title="`environment.private`">
 
 **Choices**: `True`, `False`
 
 **Default**: `False`
-</details>
+  </AccordionItem>
 
-</details>
+</Accordion>
+
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `execution`
-</summary>
+
+<AccordionItem title="`execution`">
 [`execution` API documentation](/docs/api/qiskit-ibm-runtime/options-sampler-options#execution)
-<details>
-<summary>
-#### `execution.init_qubits`
-</summary>
+<Accordion>
+<AccordionItem title="`execution.init_qubits`">
 Whether to reset the qubits to the ground state for each shot.
 
 **Choices**: `True`, `False`
 
 **Default**: `True`
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `execution.rep_delay`
-</summary>
+
+<AccordionItem title="`execution.rep_delay`">
 The delay between a measurement and the subsequent quantum circuit.
 
 **Choices**: Value in the range supplied by `backend.rep_delay_range`
 
 **Default**: Given by `backend.default_rep_delay`
-</details>
-<details>
-<summary>
-#### `execution.meas_type`
-</summary>
+  </AccordionItem>
+
+
+<AccordionItem title="`execution.meas_type`">
 
 **Choices**: `classified`, `kerneled`, `avg_kerneled`
 
 **Default**: `classified`
-</details>
+  </AccordionItem>
 
-</details>
+</Accordion>
+
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `max_execution_time`
-</summary>
+
+<AccordionItem title="`max_execution_time`">
 **Choices**: Integer number of seconds in the range [1, 10800]
 
 **Default**: 10800 (3 hours)
 
 [`max_execution_time` API documentation](/docs/api/qiskit-ibm-runtime/options-sampler-options#max_execution_time)
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-### `simulator`
-</summary>
+
+<AccordionItem title="`simulator`">
 
 Options to pass when simulating a backend
 
 [`simulator` API documentation](/docs/api/qiskit-ibm-runtime/options-simulator-options)
-<details>
-<summary>
-#### `simulator.basis_gates`
-</summary>
+<Accordion>
+<AccordionItem title="`simulator.basis_gates`">
 
 **Choices**: List of basis gate names to unroll to
 
 **Default**: The set of all basis gates supported by [Qiskit Aer simulator](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html)
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `simulator.coupling_map`
-</summary>
+
+
+<AccordionItem title="`simulator.coupling_map`">
 
 **Choices**: List of directed two-qubit interactions
 
 **Default**: None, which implies no connectivity constraints (full connectivity).
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `simulator.noise_model`
-</summary>
+
+
+<AccordionItem title="`simulator.noise_model`">
 
 **Choices**: [Qiskit Aer NoiseModel](/docs/guides/build-noise-models), or its representation
 
 **Default**: None
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `simulator.seed_simulator`
-</summary>
+
+
+<AccordionItem title="`simulator.seed_simulator`">
 
 **Choices**: Integer
 
 **Default**: None
 
-</details>
-
-</details>
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `twirling`
-</summary>
+</Accordion>
+
+  </AccordionItem>
+
+
+
+<AccordionItem title="`twirling`">
 
 Twirling options
 
 [`twirling` API documentation](/docs/api/qiskit-ibm-runtime/options-twirling-options)
-<details>
-<summary>
-#### `twirling.enable_gates`
-</summary>
+<Accordion>
+<AccordionItem title="`twirling.enable_gates`">
 
 **Choices**: True, False
 
 **Default**: False
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `twirling.enable_measure`
-</summary>
+
+
+<AccordionItem title="`twirling.enable_measure`">
 
 **Choices**: True, False
 
 **Default**: False
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `twirling.num_randomizations`
-</summary>
 
-**Choices**: `auto`, Integer >= 1
 
-**Default**: `auto`
-
-</details>
-
-<details>
-<summary>
-#### `twirling.shots_per_randomization`
-</summary>
+<AccordionItem title="`twirling.num_randomizations`">
 
 **Choices**: `auto`, Integer >= 1
 
 **Default**: `auto`
 
-</details>
+  </AccordionItem>
 
-<details>
-<summary>
-#### `twirling.strategy`
-</summary>
+
+
+<AccordionItem title="`twirling.shots_per_randomization`">
+
+**Choices**: `auto`, Integer >= 1
+
+**Default**: `auto`
+
+  </AccordionItem>
+
+
+
+<AccordionItem title="`twirling.strategy`">
 
 **Choices**: `active`, `active-circuit`, `active-accum`, `all`
 
 **Default**: `active-accum`
 
-</details>
-
-</details>
+  </AccordionItem>
 
 
-<details>
-<summary>
-### `experimental`
-</summary>
+</Accordion>
+
+  </AccordionItem>
+
+
+
+<AccordionItem title="`experimental`">
 
 Experimental options, when available.
 
-</details>
+  </AccordionItem>
+
+
+</Accordion>
 
 
   </TabItem>
