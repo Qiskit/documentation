@@ -91,6 +91,17 @@ jobs:
       - name: Install Playwright
         run: npx playwright install
 
+      - name: Check internal links
+        run: >
+          npm run check:internal-links --
+          --current-apis
+          --dev-apis
+          --historical-apis
+          --qiskit-legacy-release-notes
+      - name: Check for orphan pages
+        run: npm run check:orphan-pages -- --apis
+      - name: Check markdown
+        run: npm run check:markdown -- --apis
       - name: Spellcheck
         run: npm run check:spelling
       - name: Check Qiskit bot config
@@ -242,27 +253,3 @@ jobs:
         with:
           name: Executed notebooks
           path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS || 'no-changes' }}
-
-  api-checks:
-    name: API checks
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'Qiskit'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - name: Install Node.js dependencies
-        run: npm ci
-      - name: Check internal links
-        run: >
-          npm run check:internal-links --
-          --current-apis
-          --dev-apis
-          --historical-apis
-          --qiskit-legacy-release-notes
-      - name: Check for orphan pages
-        run: npm run check:orphan-pages -- --apis
-      - name: Check markdown
-        run: npm run check:markdown -- --apis
