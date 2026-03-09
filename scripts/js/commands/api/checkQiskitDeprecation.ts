@@ -10,6 +10,16 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+
+// The version selector has the following rule for grouping Qiskit versions:
+//
+// > When a new major series like v2.0 comes out, the latest minor version
+// > of the prior major release, e.g. v1.4, is still stable but then EOL six
+// > months later
+//
+// We don't store or propogate date information through our docs pipeline so
+// this script makes an issue to remind us to deprecate it manually.
+
 import { $ } from "zx";
 import { parse, compare } from "semver";
 import { groupBy } from "lodash-es";
