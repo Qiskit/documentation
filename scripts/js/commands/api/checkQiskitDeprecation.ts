@@ -42,8 +42,7 @@ export function processVersions(rawVersions: string[]): {
   const versionsByMajor = groupBy(versions, (v) => v.major);
   const [latestMajorNumber, previousMajorNumber] = Object.keys(versionsByMajor)
     .map((n) => Number(n))
-    .sort()
-    .reverse();
+    .sort((a, b) => b - a);
 
   const firstReleaseOfLatestMajor =
     versionsByMajor[latestMajorNumber].sort(compare)[0].raw;
