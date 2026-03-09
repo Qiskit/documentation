@@ -1,55 +1,53 @@
 ---
-title: SdgGate (dev version)
-description: API reference for qiskit.circuit.library.SdgGate in the dev version of qiskit
+title: PauliProductRotationGate (dev version)
+description: API reference for qiskit.circuit.library.PauliProductRotationGate in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit.circuit.library.SdgGate
+python_api_name: qiskit.circuit.library.PauliProductRotationGate
 ---
 
-# SdgGate
+# PauliProductRotationGate
 
-<Class id="qiskit.circuit.library.SdgGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L147-L261" signature="qiskit.circuit.library.SdgGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
-  Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
+<Class id="qiskit.circuit.library.PauliProductRotationGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/pauli_product_rotation.py#L29-L182" signature="qiskit.circuit.library.PauliProductRotationGate(pauli, angle, label=None)" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-  Single qubit S-adjoint gate ($S^\dagger$).
+  A generic Pauli rotation.
 
-  It induces a $-\pi/2$ phase.
-
-  This is a Clifford gate and a square-root of Pauli-Z.
-
-  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`sdg()`](qiskit.circuit.QuantumCircuit#sdg "qiskit.circuit.QuantumCircuit.sdg") method.
-
-  Matrix representation:
+  This implements the unitary operation
 
 $$
-Sdg = \begin{pmatrix}
-1 & 0 \\
-0 & -i
-\end{pmatrix}
+R_P(\theta) = e^{-i \theta / 2 P}
 $$
 
-  Circuit symbol:
+  for a Pauli $P \in \{I, X, Y, Z\}^{\otimes n}$ and a rotation angle $\theta \in \mathbb R$, which could be represented by an unbound parameter.
 
-  ```text
-       ┌─────┐
-  q_0: ┤ Sdg ├
-       └─────┘
+  Example:
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import PauliProductRotationGate
+  from qiskit.quantum_info import Pauli
+
+  pauli = Pauli("XYZ")
+  ppr = PauliProductRotationGate(pauli, angle=0.2)
+  circuit = QuantumCircuit(10)
+  circuit.append(ppr, [1, 2, 6])
   ```
-
-  Equivalent to a $-\pi/2$ radian rotation about the Z axis.
 
   **Parameters**
 
-  **label** – An optional label for the gate.
+  *   **pauli** ([*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – The Pauli defining the rotation axis. May include a phase of $-1$, but not $i$ or $-i$.
+  *   **angle** (*ParameterValueType*) – The rotation angle.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional label for the gate to display in circuit visualizations.
 
   ## Attributes
 
   ### base\_class
 
-  <Attribute id="qiskit.circuit.library.SdgGate.base_class">
+  <Attribute id="qiskit.circuit.library.PauliProductRotationGate.base_class">
     Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.SdgGate.base_class "qiskit.circuit.library.SdgGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.PauliProductRotationGate.base_class "qiskit.circuit.library.PauliProductRotationGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
 
     This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
@@ -67,25 +65,25 @@ $$
 
   ### decompositions
 
-  <Attribute id="qiskit.circuit.library.SdgGate.decompositions">
+  <Attribute id="qiskit.circuit.library.PauliProductRotationGate.decompositions">
     Get the decompositions of the instruction from the SessionEquivalenceLibrary.
   </Attribute>
 
   ### definition
 
-  <Attribute id="qiskit.circuit.library.SdgGate.definition">
+  <Attribute id="qiskit.circuit.library.PauliProductRotationGate.definition">
     Return definition in terms of other basic gates.
   </Attribute>
 
   ### label
 
-  <Attribute id="qiskit.circuit.library.SdgGate.label">
+  <Attribute id="qiskit.circuit.library.PauliProductRotationGate.label">
     Return instruction label
   </Attribute>
 
   ### mutable
 
-  <Attribute id="qiskit.circuit.library.SdgGate.mutable">
+  <Attribute id="qiskit.circuit.library.PauliProductRotationGate.mutable">
     Is this instance is a mutable unique instance or not.
 
     If this attribute is `False` the gate instance is a shared singleton and is not mutable.
@@ -93,25 +91,25 @@ $$
 
   ### name
 
-  <Attribute id="qiskit.circuit.library.SdgGate.name">
+  <Attribute id="qiskit.circuit.library.PauliProductRotationGate.name">
     Return the name.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.SdgGate.num_clbits">
+  <Attribute id="qiskit.circuit.library.PauliProductRotationGate.num_clbits">
     Return the number of clbits.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.SdgGate.num_qubits">
+  <Attribute id="qiskit.circuit.library.PauliProductRotationGate.num_qubits">
     Return the number of qubits.
   </Attribute>
 
   ### params
 
-  <Attribute id="qiskit.circuit.library.SdgGate.params">
+  <Attribute id="qiskit.circuit.library.PauliProductRotationGate.params">
     The parameters of this `Instruction`. Ideally these will be gate angles.
   </Attribute>
 
@@ -119,13 +117,13 @@ $$
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.library.SdgGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L318-L323" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L318-L323" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.SdgGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L206-L263" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L206-L263" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -178,12 +176,10 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.SdgGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L202-L239" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
-    Return a controlled version of the Sdg gate.
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/pauli_product_rotation.py#L108-L143" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return the controlled version of itself.
 
-    For a single control qubit, the controlled gate is implemented as [`CSdgGate`](qiskit.circuit.library.CSdgGate "qiskit.circuit.library.CSdgGate"), regardless of the value of annotated.
-
-    For more than one control qubit, the controlled gate is implemented as [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") when `annotated` is `False`, and as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") when `annotated` is `True`.
+    The returned gate represents $e^{-i \theta / 2 P_C}$, where $P_C$ is the original Pauli $P$, tensored with $|0\rangle\langle 0|$ and $|1\rangle\langle 1|$ projectors (depending on the control state).
 
     **Parameters**
 
@@ -195,11 +191,15 @@ $$
     **Returns**
 
     A controlled version of this gate.
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `num_ctrl_qubits` or `ctrl_state`.
   </Function>
 
   ### copy
 
-  <Function id="qiskit.circuit.library.SdgGate.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L428-L443" signature="copy(name=None)">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L428-L443" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -217,31 +217,35 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.SdgGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L241-L253" signature="inverse(annotated=False)">
-    Return inverse of Sdg (SGate).
-
-    **Parameters**
-
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always a [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
-
-    **Returns**
-
-    inverse of [`SdgGate`](#qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate")
-
-    **Return type**
-
-    [SGate](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate")
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/pauli_product_rotation.py#L104-L106" signature="inverse(annotated=False)">
+    Return the inverse; a rotation about the negative angle.
   </Function>
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.library.SdgGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
     Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+  </Function>
+
+  ### pauli
+
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.pauli" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/pauli_product_rotation.py#L165-L177" signature="pauli()">
+    Return the Pauli rotation axis.
+
+    Note that this does not include any potential sign in the [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") object used to construct this gate, since the sign is absorbed into the rotation angle, which is accessible via the `params` attribute.
+
+    **Returns**
+
+    The Pauli rotation axis.
+
+    **Return type**
+
+    [qiskit.quantum\_info.Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
   </Function>
 
   ### power
 
-  <Function id="qiskit.circuit.library.SdgGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L255-L258" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L63-L94" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
@@ -262,7 +266,7 @@ $$
 
   ### repeat
 
-  <Function id="qiskit.circuit.library.SdgGate.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L491-L521" signature="repeat(n)">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L491-L521" signature="repeat(n)">
     Creates an instruction with `self` repeated $n$ times.
 
     **Parameters**
@@ -284,7 +288,7 @@ $$
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.library.SdgGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L345-L369" signature="reverse_ops()">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L345-L369" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -302,7 +306,7 @@ $$
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.library.SdgGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L214-L254" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L214-L254" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -320,7 +324,7 @@ $$
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.library.SdgGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/pauli_product_rotation.py#L179-L182" signature="to_matrix()">
     Return a Numpy.array for the gate unitary matrix.
 
     **Returns**
@@ -338,7 +342,7 @@ $$
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.library.SdgGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L144-L152" signature="to_mutable()">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L144-L152" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -346,7 +350,7 @@ $$
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.SdgGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L265-L279" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L265-L279" signature="validate_parameter(parameter)">
     Gate parameters should be int, float, or ParameterExpression
   </Function>
 </Class>

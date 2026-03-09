@@ -6,11 +6,11 @@ python_api_type: module
 python_api_name: qiskit.qasm2
 ---
 
+<span id="openqasm-2-qiskit-qasm2" />
+
 <span id="module-qiskit.qasm2" />
 
 <span id="qiskit-qasm2" />
-
-<span id="openqasm-2-qiskit-qasm2" />
 
 # OpenQASM 2
 
@@ -35,7 +35,7 @@ This module contains two public functions, both of which create a [`QuantumCircu
 
   **Parameters**
 
-  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike)) – The OpenQASM 2 program in a string.
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike)) – The path to the OpenQASM 2 file.
   *   **include\_path** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike)*]*) – order of directories to search when evaluating `include` statements.
   *   **include\_input\_directory** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['append', 'prepend'] | None*) – Whether to add the directory of the input file to the `include_path`, and if so, whether to *append* it to search last, or *prepend* it to search first. Pass `None` to suppress adding this directory entirely.
   *   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
@@ -123,11 +123,11 @@ You can extend the quantum components of the OpenQASM 2 language by passing an i
 
   **Parameters**
 
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) –
-  *   **num\_params** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
-  *   **constructor** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Unpack],* [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")*]*) –
-  *   **builtin** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str))
+  *   **num\_params** ([*int*](https://docs.python.org/3/library/functions.html#int))
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int))
+  *   **constructor** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Unpack*](https://docs.python.org/3/library/typing.html#typing.Unpack)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*, ...]]],* [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")*]*)
+  *   **builtin** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
 </Class>
 
 This can be particularly useful when trying to resolve ambiguities in the global-phase conventions of an OpenQASM 2 program. See [OpenQASM 2 Phase Conventions](#qasm2-phase-conventions) for more details.
