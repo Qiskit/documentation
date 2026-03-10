@@ -27,6 +27,7 @@ jobs:
         run: |
           # The /build endpoint is SSE; curl it until we see success or failure.
           curl -s --max-time 1200 \
+            -H "Accept: text/event-stream" \
             "${{ matrix.binder.url }}" \
           | while IFS= read -r line; do
               echo "$line"
