@@ -10,7 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-
 // The version selector has the following rule for grouping Qiskit versions:
 //
 // > When a new major series like v2.0 comes out, the latest minor version
