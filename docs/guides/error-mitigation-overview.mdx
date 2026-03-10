@@ -1,0 +1,130 @@
+---
+title: Overview of noise management techniques
+description: Discover tools that help manage noise through the available error mitigation and suppression techniques
+---
+
+{/* cspell:ignore lightcones */}
+
+# Overview of noise management techniques
+
+When executing quantum workloads, there are multiple ways to reduce the impact of noise. The open-source Qiskit addons provide error mitigation and suppression techniques that integrate directly into your development workflow, while Qiskit Runtime applies advanced error mitigation strategies automatically when jobs are submitted for execution. This page indexes all available tools and features across both options to help you choose the right approach to manage noise when building quantum workloads.
+
+
+## General noise management techniques
+
+<CardGroup>
+    <Card
+      title="Directed execution model"
+      description="Provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side, so that you can fine-tune error mitigation and other techniques without sacrificing performance."
+      href="/docs/guides/directed-execution-model"
+      analyticsName="Documentation page: Directed execution model"
+      linkText="Browse documentation"
+    />
+
+    <Card
+      title="Dynamical decoupling"
+      description="Inserts pulse sequences on idling qubits to suppress coherence errors caused by unwanted interactions between qubits during circuit execution."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#dynamical-decoupling"
+      analyticsName="Documentation page: Dynamical decoupling"
+      linkText="Learn more"
+    />
+
+    <Card
+      title="Pauli twirling"
+      description="Noise tailoring technique that transforms any noise channel into a Pauli channel which has a more specific structure. It is often combined with other error mitigation techniques that work well with Pauli noise."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#pauli-twirling"
+      analyticsName="Documentation page: Pauli twirling"
+      linkText="Learn more"
+    />
+
+    <Card
+      title="AQC-Tensor Qiskit addons"
+      description="Enables users to compile the initial portion of a circuit into a nearly equivalent approximation of that circuit, but with fewer layers."
+      href="https://qiskit.github.io/qiskit-addon-aqc-tensor/"
+      analyticsName="Documentation page: Pauli twirling"
+      linkText="Browse documentation"
+    />
+</CardGroup>
+
+## Error mitigation for expectation value estimation
+
+<CardGroup>
+    <Card
+      title="Twirled readout error extinction (TREX)"
+      description="Mitigates the effect of measurement errors for the estimation of Pauli observable expectation values."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex"
+      analyticsName="Documentation page: TREX"
+      linkText="Learn more"
+    />
+    <Card
+      title="Zero-noise extrapolation (ZNE)"
+      description="Error mitigation technique that computes the expectation value at different noise levels, and then estimates the ideal result by extrapolating the noisy expectation value results to the zero-noise limit."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#zero-noise-extrapolation-zne"
+      analyticsName="Documentation page: ZNE"
+      linkText="Learn more"
+    />
+    <Card
+      title="Probabilistic error amplification (PEA)"
+      description="ZNE technique that involves running preliminary experiments to learn a twirled noise model of the circuit and then uses this model to perform a more accurate error amplification."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea"
+      analyticsName="Documentation page: PEA"
+      linkText="Learn more"
+    />
+    <Card
+      title="Probabilistic error cancellation (PEC)"
+      description="Returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It reproduces the output of the ideal circuit by executing different noisy circuit instances drawn from a random ensemble defined by the linear combination."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#pauli-twirling"
+      analyticsName="Documentation page: PEC"
+      linkText="Learn more"
+    />
+
+    <Card
+      title="PEC with shaded lightcones"
+      description="A modified PEC technique which uses Pauli propagation to reduce the number of error terms accounted for in a noise model according to the specifics of the target observable. Useful for reducing the sampling overhead for running PEC-based workloads."
+      href="https://qiskit.github.io/qiskit-addon-slc/"
+      analyticsName="Documentation page: Shaded lightcones"
+      linkText="Browse documentation"
+    />
+    <Card
+      title="Operator backpropagation (OBP)"
+      description="Uses a method based on Clifford perturbation theory to reduce circuit depth by trimming operations from its end at the cost of more operator measurements."
+      href="https://qiskit.github.io/qiskit-addon-obp/"
+      analyticsName="Documentation page: Operator backpropagation"
+      linkText="Browse documentation"
+    />
+    <Card
+      title="Propagated noise absorption (PNA)"
+      description="Technique for mitigating errors in observable expectation values by 'absorbing' the inverses of learned noise channels into an observable using Pauli propagation."
+      href="https://qiskit.github.io/qiskit-addon-pna/"
+      analyticsName="Documentation page: Propagated noise absorption"
+      linkText="Browse documentation"
+    />
+</CardGroup>
+
+## Error mitigation for sampling results
+
+<CardGroup>
+    <Card
+      title="Sample-based quantum diagonalization (SQD)"
+      description="Implements a technique for finding eigenvalues and eigenvectors of quantum operators, such as a quantum system Hamiltonian, using quantum and distributed classical computing together."
+      href="https://qiskit.github.io/qiskit-addon-pna/"
+      analyticsName="Documentation page: SQD"
+      linkText="Browse documentation"
+    />
+
+    <Card
+      title="SQD for HPC"
+      description="This addon is an HPC-ready implementation of the SQD addon. It is written in modern C++17 standards and is designed to create a single compiled binary for use with MPI."
+      href="https://qiskit.github.io/qiskit-addon-sqd-hpc/"
+      analyticsName="Documentation page: SQD for HPC"
+      linkText="Browse documentation"
+    />
+
+    <Card
+      title="Matrix-free Measurement Mitigation"
+      description="Matrix-free Measurement Mitigation (M3) is a package for scalable quantum measurement error mitigation that can be computed in parallel."
+      href="https://qiskit.github.io/qiskit-addon-mthree/"
+      analyticsName="Documentation page: M3"
+      linkText="Browse documentation"
+    />
+</CardGroup>
