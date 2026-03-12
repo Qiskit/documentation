@@ -133,9 +133,9 @@ class Config:
         Create config from args, including loading the paths from the TOML file if needed.
         """
         if (args.config_path or args.test_strategy) and args.patch:
-            raise ValueError("Can't set --patch with --config-file or --test-strategy")
+            print("Patch explicitly specified, running notebook tester without a config file...")
 
-        if not args.config_path:
+        if args.patch:
             groups = []
             if args.filenames:
                 groups.append(
