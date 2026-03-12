@@ -9,16 +9,16 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver
 # TEBDEvolver
 
 <Class id="qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_tebd/evolver.py#L25-L175" signature="TEBDEvolver(evolution_state, *args, order=2, **kwargs)" modifiers="class">
-  Bases: [`TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d_tebd/index.html#quimb.tensor.tensor_1d_tebd.TEBD "(in quimb v1.10)"), [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.interface.Evolver")
+  Bases: [`TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d_tebd/index.html#quimb.tensor.tensor_1d_tebd.TEBD), [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.interface.Evolver")
 
   A TEBD algorithm for evolving an internal MPO.
 
-  As discussed in more detail in [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd"), this extension of `quimb`’s existing [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD "(in quimb v1.10)") implementation time-evolves an internal matrix product operator (MPO) rather than the conventional matrix product state (MPS).
+  As discussed in more detail in [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd"), this extension of `quimb`’s existing [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD) implementation time-evolves an internal matrix product operator (MPO) rather than the conventional matrix product state (MPS).
 
   More concretely, the internal object is expected to be an [`MPOState`](backends-quimb-tebd-mpo-state "qiskit_addon_mpf.backends.quimb_tebd.MPOState").
 
   <Admonition title="Warning" type="caution">
-    The API of this class is actually much larger than shown here, because it inherits additional methods from the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD "(in quimb v1.10)") base class. However, we do not duplicate that API here.
+    The API of this class is actually much larger than shown here, because it inherits additional methods from the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD) base class. However, we do not duplicate that API here.
   </Admonition>
 
   Initialize a [`TEBDEvolver`](#qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") instance.
@@ -27,17 +27,17 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver
 
   *   **evolution\_state** ([*MPOState*](backends-quimb-tebd-mpo-state "qiskit_addon_mpf.backends.quimb_tebd.MPOState") *| MatrixProductState*) –
 
-      a reference to the time-evolution state. This overwrites the `p0` argument of the underlying [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD "(in quimb v1.10)") class.
+      a reference to the time-evolution state. This overwrites the `p0` argument of the underlying [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD) class.
 
         <Admonition title="Warning" type="caution">
           In contrast to the default behavior, this state will **NOT** be canonicalized. Instead, it is taken as is and is kept **by reference** (i.e. no copy is created). This ensures that the same object can be shared between two instances of this class, as required by the [`DynamicMPF`](dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm.
         </Admonition>
 
-  *   **args** – any further positional arguments will be forwarded to the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD "(in quimb v1.10)") constructor.
+  *   **args** – any further positional arguments will be forwarded to the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD) constructor.
 
-  *   **order** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the order of the builtin Suzuki-Trotter formula to use during time evolution. This will be the value forwarded to the [`quimb.tensor.TEBD.step()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD.step "(in quimb v1.10)") method.
+  *   **order** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the order of the builtin Suzuki-Trotter formula to use during time evolution. This will be the value forwarded to the [`quimb.tensor.TEBD.step()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD.step) method.
 
-  *   **kwargs** – any further keyword arguments will be forwarded to the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD "(in quimb v1.10)") constructor.
+  *   **kwargs** – any further keyword arguments will be forwarded to the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD) constructor.
 
   ## Attributes
 
@@ -60,7 +60,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver
   <Function id="qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver.step" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_tebd/evolver.py#L83-L89" signature="step()">
     Perform a single time step of TEBD.
 
-    This essentially calls [`quimb.tensor.TEBD.step()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD.step "(in quimb v1.10)") and forwards the value of the `order` attribute that was provided upon construction.
+    This essentially calls [`quimb.tensor.TEBD.step()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD.step) and forwards the value of the `order` attribute that was provided upon construction.
 
     **Return type**
 
@@ -72,23 +72,23 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver
   <Function id="qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver.sweep" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_tebd/evolver.py#L91-L175" signature="sweep(direction, dt_frac, dt=None, queue=False)">
     Perform a single sweep of the TEBD algorithm \[1].
 
-    The TEBD algorithm updates the even and odd bonds of the underlying tensor network in alternating fashion. In the implementation of the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD "(in quimb v1.10)") base class, this is realized in the form of alternating “sweeps” in left and right directions over the internal state.
+    The TEBD algorithm updates the even and odd bonds of the underlying tensor network in alternating fashion. In the implementation of the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD) base class, this is realized in the form of alternating “sweeps” in left and right directions over the internal state.
 
     We are overwriting the behavior of this method in this subclass, in order to call the specialized [`gate_split()`](backends-quimb-tebd-mpo-state#gate_split "qiskit_addon_mpf.backends.quimb_tebd.MPOState.gate_split") method.
 
     **Parameters**
 
-    *   **direction** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.13)")*\['left', 'right']*) – the direction of the sweep. This must be either of the literal strings, `"left"` or `"right"`.
-    *   **dt\_frac** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – what fraction of the internal time step (`dt`) to time-evolve for. This is how any builtin Suzuki-Trotter formula specifies its splitting.
-    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – an optional value to overwrite the internal time step.
-    *   **queue** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – setting this to `True` will raise a [`NotImplementedError`](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)").
+    *   **direction** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['left', 'right']*) – the direction of the sweep. This must be either of the literal strings, `"left"` or `"right"`.
+    *   **dt\_frac** ([*float*](https://docs.python.org/3/library/functions.html#float)) – what fraction of the internal time step (`dt`) to time-evolve for. This is how any builtin Suzuki-Trotter formula specifies its splitting.
+    *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – an optional value to overwrite the internal time step.
+    *   **queue** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – setting this to `True` will raise a [`NotImplementedError`](https://docs.python.org/3/library/exceptions.html#NotImplementedError).
 
     **Raises**
 
-    *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if `queue=True`.
-    *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if [`cyclic`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD.cyclic "(in quimb v1.10)") is `True`.
-    *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if [`imag`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD.imag "(in quimb v1.10)") is `True`.
-    *   [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError "(in Python v3.13)") – if an invalid `direction` is provided.
+    *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if `queue=True`.
+    *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if [`cyclic`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD.cyclic) is `True`.
+    *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if [`imag`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD.imag) is `True`.
+    *   [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError) – if an invalid `direction` is provided.
 
     **Return type**
 

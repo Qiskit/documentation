@@ -1,0 +1,45 @@
+---
+title: QuantumProgramItem (dev version)
+description: API reference for qiskit_ibm_runtime.quantum_program.QuantumProgramItem in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.quantum_program.QuantumProgramItem
+---
+
+# QuantumProgramItem
+
+<Class id="qiskit_ibm_runtime.quantum_program.QuantumProgramItem" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/quantum_program/quantum_program.py#L39-L74" signature="QuantumProgramItem(circuit, chunk_size=None)" modifiers="class">
+  Bases: `ABC`
+
+  An item of a [`QuantumProgram`](quantum-program-quantum-program "qiskit_ibm_runtime.quantum_program.QuantumProgram").
+
+  Each item has a [`shape`](#qiskit_ibm_runtime.quantum_program.QuantumProgramItem.shape "qiskit_ibm_runtime.quantum_program.QuantumProgramItem.shape") that determines the number of circuit executions. This shape is computed by broadcasting the *extrinsic* shapes of all input arrays. Input arrays have both extrinsic axes (leftmost, defining the sweep grid) and intrinsic axes (rightmost, determined by the data type). For example, `circuit_arguments` for a circuit with `n` parameters has intrinsic shape `(n,)`, so an array of shape `(5, 3, n)` has extrinsic shape `(5, 3)`.
+
+  Output arrays returned by the executor follow the same convention: extrinsic axes match the item’s [`shape`](#qiskit_ibm_runtime.quantum_program.QuantumProgramItem.shape "qiskit_ibm_runtime.quantum_program.QuantumProgramItem.shape"), and intrinsic axes are determined by the output type (e.g., `(num_shots, creg_size)` for classical register data).
+
+  **Parameters**
+
+  *   **circuit** (*QuantumCircuit*) – The circuit to be executed.
+  *   **chunk\_size** (*int | None*) – The maximum number of bound circuits in each shot loop execution, or `None` to use a server-side heuristic to optimize speed. When not executing in a session, the server-side heuristic is always used and this value is ignored.
+
+  ## Attributes
+
+  ### shape
+
+  <Attribute id="qiskit_ibm_runtime.quantum_program.QuantumProgramItem.shape">
+    The extrinsic shape of this item, i.e., the broadcasted extrinsic shapes of all inputs.
+  </Attribute>
+
+  ## Methods
+
+  ### size
+
+  <Function id="qiskit_ibm_runtime.quantum_program.QuantumProgramItem.size" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/quantum_program/quantum_program.py#L72-L74" signature="size()">
+    The total number elements in this item; the product of the entries of [`shape`](#qiskit_ibm_runtime.quantum_program.QuantumProgramItem.shape "qiskit_ibm_runtime.quantum_program.QuantumProgramItem.shape").
+
+    **Return type**
+
+    int
+  </Function>
+</Class>
+

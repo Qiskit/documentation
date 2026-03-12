@@ -9,7 +9,7 @@ python_api_name: qiskit.algorithms.gradients.BaseQGT
 # BaseQGT
 
 <Class id="qiskit.algorithms.gradients.BaseQGT" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/gradients/base/base_qgt.py" signature="qiskit.algorithms.gradients.BaseQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   Base class to computes the Quantum Geometric Tensor (QGT) given a pure, parameterized quantum state. QGT is defined as:
 
@@ -22,7 +22,7 @@ $$
 
   *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the QGT.
 
-  *   **phase\_fix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to calculate the second term (phase fix) of the QGT, which is $\langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle$. Defaults to `True`.
+  *   **phase\_fix** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to calculate the second term (phase fix) of the QGT, which is $\langle\partial_i \psi | \psi \rangle \langle\psi | \partial_j \psi \rangle$. Defaults to `True`.
 
   *   **derivative\_type** (*DerivativeType*) –
 
@@ -79,7 +79,7 @@ $$
     **Parameters**
 
     *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the QGTs.
-    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]]*) – The list of parameter values to be bound to the circuit.
     *   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the QGTs of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the QGTs of all parameters in each circuit are calculated.
     *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > QGT’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
 
@@ -89,7 +89,7 @@ $$
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Invalid arguments are given.
 
     **Return type**
 

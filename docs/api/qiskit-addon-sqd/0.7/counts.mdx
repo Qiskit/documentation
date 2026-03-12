@@ -23,7 +23,7 @@ Functions for transforming counts dictionaries.
 
   **Parameters**
 
-  **counts** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The counts dictionary to convert
+  **counts** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The counts dictionary to convert
 
   **Returns**
 
@@ -32,7 +32,7 @@ Functions for transforming counts dictionaries.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
 </Function>
 
 ### generate\_counts\_uniform
@@ -42,9 +42,9 @@ Functions for transforming counts dictionaries.
 
   **Parameters**
 
-  *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of samples to draw
-  *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of bits in the bitstrings
-  *   **rand\_seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for controlling randomness
+  *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of samples to draw
+  *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of bits in the bitstrings
+  *   **rand\_seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – A seed for controlling randomness
 
   **Returns**
 
@@ -52,11 +52,11 @@ Functions for transforming counts dictionaries.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `num_samples` and `num_bits` must be positive integers.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `num_samples` and `num_bits` must be positive integers.
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
+  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [int](https://docs.python.org/3/library/functions.html#int)]
 </Function>
 
 ### generate\_counts\_bipartite\_hamming
@@ -66,11 +66,11 @@ Functions for transforming counts dictionaries.
 
   **Parameters**
 
-  *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of samples to draw
-  *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of bits in the bitstrings
-  *   **hamming\_right** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The hamming weight on the right half of each bitstring
-  *   **hamming\_left** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The hamming weight on the left half of each bitstring
-  *   **rand\_seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for controlling randomness
+  *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of samples to draw
+  *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of bits in the bitstrings
+  *   **hamming\_right** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The hamming weight on the right half of each bitstring
+  *   **hamming\_left** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The hamming weight on the left half of each bitstring
+  *   **rand\_seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – A seed for controlling randomness
 
   **Returns**
 
@@ -78,13 +78,13 @@ Functions for transforming counts dictionaries.
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `num_bits` and `num_samples` must be positive integers.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Hamming weights must be specified as non-negative integers.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `num_bits` must be even.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `num_bits` and `num_samples` must be positive integers.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Hamming weights must be specified as non-negative integers.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `num_bits` must be even.
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
+  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [int](https://docs.python.org/3/library/functions.html#int)]
 </Function>
 
 ### normalize\_counts\_dict
@@ -94,10 +94,10 @@ Functions for transforming counts dictionaries.
 
   **Parameters**
 
-  **counts** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*)
+  **counts** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*]*)
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
+  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [float](https://docs.python.org/3/library/functions.html#float)]
 </Function>
 

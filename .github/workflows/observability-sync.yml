@@ -25,17 +25,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24
       - name: Install dependencies
-        run: |
-          run: npm ci
+        run: npm ci
 
       - name: Run observability script
         run: npx tsx scripts/js/commands/generateObservabilityPage.ts
 
       - name: Get all changed docs files
         id: changed-docs-files
-
         run: |
           echo "CHANGED_FILES<<EOF" >> $GITHUB_OUTPUT
           git diff --name-only docs >> $GITHUB_OUTPUT

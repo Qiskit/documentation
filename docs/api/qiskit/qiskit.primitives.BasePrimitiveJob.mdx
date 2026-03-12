@@ -8,69 +8,90 @@ python_api_name: qiskit.primitives.BasePrimitiveJob
 
 # BasePrimitiveJob
 
-<Class id="qiskit.primitives.BasePrimitiveJob" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/primitives/base/base_primitive_job.py#L26-L78" signature="qiskit.primitives.BasePrimitiveJob(job_id, **kwargs)" modifiers="class">
-  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.14)"), [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.14)")\[`ResultT`, `StatusT`]
+<Class id="qiskit.primitives.BasePrimitiveJob" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/primitives/base/base_primitive_job.py#L26-L116" signature="qiskit.primitives.BasePrimitiveJob(job_id, **kwargs)" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC), [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`ResultT`, `StatusT`]
 
   Primitive job abstract base class.
 
+  This defines the functionality of the “job handle” object you get by a call to `primitive.run()`. Typically this object represents a handle to an asynchronous task, where the [`status()`](#qiskit.primitives.BasePrimitiveJob.status "qiskit.primitives.BasePrimitiveJob.status"), [`done()`](#qiskit.primitives.BasePrimitiveJob.done "qiskit.primitives.BasePrimitiveJob.done"), [`running()`](#qiskit.primitives.BasePrimitiveJob.running "qiskit.primitives.BasePrimitiveJob.running"), [`cancelled()`](#qiskit.primitives.BasePrimitiveJob.cancelled "qiskit.primitives.BasePrimitiveJob.cancelled") and [`in_final_state()`](#qiskit.primitives.BasePrimitiveJob.in_final_state "qiskit.primitives.BasePrimitiveJob.in_final_state") methods return non-blocking information on the state of the task.
+
+  The method [`result()`](#qiskit.primitives.BasePrimitiveJob.result "qiskit.primitives.BasePrimitiveJob.result") is typically implemented as a blocking call that waits for the execution result to return. Use of this job object almost invariably ends in a call to [`result()`](#qiskit.primitives.BasePrimitiveJob.result "qiskit.primitives.BasePrimitiveJob.result").
+
+  <Admonition title="Note" type="note">
+    This is an abstract base class, defining an interface. Each primitives provider (for example, [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.17.1)") or [`qiskit_ibm_runtime`](/docs/api/qiskit-ibm-runtime/runtime-service#module-qiskit_ibm_runtime "(in Qiskit Runtime IBM Client)")) will have its own subclass of this object, which may provide additional functionality on top of this interface.
+  </Admonition>
+
+  ## Subclassing
+
+  Each implementer of the primitives should provide a concrete implementation of this interface. There are no provided methods on the base implementation, other than the [`job_id()`](#qiskit.primitives.BasePrimitiveJob.job_id "qiskit.primitives.BasePrimitiveJob.job_id") getter, since a string key uniquely identifying jobs is a requirement of all primitives.
+
+  The `ResultT` generic type should be set to a subclass of the appropriate versioned primitive result. This typically will mean setting it to [`PrimitiveResult`](qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult") (for V2), or an implementation-specific subclass of this.
+
+  The `StatusT` generic type is completely freeform; your implementation can provide any status object you like and there is no defined interface. Instead, the [`done()`](#qiskit.primitives.BasePrimitiveJob.done "qiskit.primitives.BasePrimitiveJob.done"), [`running()`](#qiskit.primitives.BasePrimitiveJob.running "qiskit.primitives.BasePrimitiveJob.running"), [`cancelled()`](#qiskit.primitives.BasePrimitiveJob.cancelled "qiskit.primitives.BasePrimitiveJob.cancelled") and [`in_final_state()`](#qiskit.primitives.BasePrimitiveJob.in_final_state "qiskit.primitives.BasePrimitiveJob.in_final_state") methods of this interface should be implemented to give the user simple programmatic access to coarse-grained status information. You can provide additional details in the complete `StatusT` generic.
+
+  Creating this “job” handle is conventionally expected (but not strictly *required*) to be fast and non-blocking, and for this object to hold an internal asynchronous handle to the actual job. The [`result()`](#qiskit.primitives.BasePrimitiveJob.result "qiskit.primitives.BasePrimitiveJob.result") method should typically block until ready, if called before the job has completed.
+
   Initializes the primitive job.
 
-  **Parameters**
+  **param job\_id**
 
-  *   **job\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – A unique id in the context of the primitive used to run the job.
-  *   **kwargs** – Any key value metadata to associate with this job.
+  A unique id in the context of the primitive used to run the job.
+
+  **param kwargs**
+
+  Any key value metadata to associate with this job.
 
   ## Methods
 
   ### cancel
 
-  <Function id="qiskit.primitives.BasePrimitiveJob.cancel" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/primitives/base/base_primitive_job.py#L75-L78" signature="cancel()" modifiers="abstract">
+  <Function id="qiskit.primitives.BasePrimitiveJob.cancel" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/primitives/base/base_primitive_job.py#L113-L116" signature="cancel()" modifiers="abstract">
     Attempt to cancel the job.
   </Function>
 
   ### cancelled
 
-  <Function id="qiskit.primitives.BasePrimitiveJob.cancelled" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/primitives/base/base_primitive_job.py#L63-L66" signature="cancelled()" modifiers="abstract">
+  <Function id="qiskit.primitives.BasePrimitiveJob.cancelled" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/primitives/base/base_primitive_job.py#L101-L104" signature="cancelled()" modifiers="abstract">
     Return whether the job has been cancelled.
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### done
 
-  <Function id="qiskit.primitives.BasePrimitiveJob.done" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/primitives/base/base_primitive_job.py#L53-L56" signature="done()" modifiers="abstract">
+  <Function id="qiskit.primitives.BasePrimitiveJob.done" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/primitives/base/base_primitive_job.py#L91-L94" signature="done()" modifiers="abstract">
     Return whether the job has successfully run.
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### in\_final\_state
 
-  <Function id="qiskit.primitives.BasePrimitiveJob.in_final_state" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/primitives/base/base_primitive_job.py#L68-L73" signature="in_final_state()" modifiers="abstract">
+  <Function id="qiskit.primitives.BasePrimitiveJob.in_final_state" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/primitives/base/base_primitive_job.py#L106-L111" signature="in_final_state()" modifiers="abstract">
     Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### job\_id
 
-  <Function id="qiskit.primitives.BasePrimitiveJob.job_id" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/primitives/base/base_primitive_job.py#L39-L41" signature="job_id()">
+  <Function id="qiskit.primitives.BasePrimitiveJob.job_id" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/primitives/base/base_primitive_job.py#L77-L79" signature="job_id()">
     Return a unique id identifying the job.
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
   </Function>
 
   ### result
 
-  <Function id="qiskit.primitives.BasePrimitiveJob.result" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/primitives/base/base_primitive_job.py#L43-L46" signature="result()" modifiers="abstract">
+  <Function id="qiskit.primitives.BasePrimitiveJob.result" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/primitives/base/base_primitive_job.py#L81-L84" signature="result()" modifiers="abstract">
     Return the results of the job.
 
     **Return type**
@@ -80,22 +101,26 @@ python_api_name: qiskit.primitives.BasePrimitiveJob
 
   ### running
 
-  <Function id="qiskit.primitives.BasePrimitiveJob.running" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/primitives/base/base_primitive_job.py#L58-L61" signature="running()" modifiers="abstract">
+  <Function id="qiskit.primitives.BasePrimitiveJob.running" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/primitives/base/base_primitive_job.py#L96-L99" signature="running()" modifiers="abstract">
     Return whether the job is actively running.
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### status
 
-  <Function id="qiskit.primitives.BasePrimitiveJob.status" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/primitives/base/base_primitive_job.py#L48-L51" signature="status()" modifiers="abstract">
+  <Function id="qiskit.primitives.BasePrimitiveJob.status" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/primitives/base/base_primitive_job.py#L86-L89" signature="status()" modifiers="abstract">
     Return the status of the job.
 
     **Return type**
 
     *StatusT*
   </Function>
+
+  **Parameters**
+
+  **job\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) –
 </Class>
 

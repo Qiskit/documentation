@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { generateToc, generateReleaseNotesEntry } from "./generateToc.js";
+import { generateToc } from "./generateToc.js";
 import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
 import type { TocGroupingEntry } from "./TocGrouping.js";
 
@@ -98,6 +98,11 @@ test("generate a basic toc", () => {
         url: "/docs/api/my-quantum-project",
       },
       {
+        title: "Release notes",
+        useDivider: true,
+        url: "/docs/api/my-quantum-project/release-notes",
+      },
+      {
         title: "my_quantum_project.options",
         url: "/docs/api/my-quantum-project/options",
       },
@@ -108,10 +113,6 @@ test("generate a basic toc", () => {
       {
         title: "my_quantum_project.single",
         url: "/docs/api/my-quantum-project/single",
-      },
-      {
-        title: "Release notes",
-        url: "/docs/api/my-quantum-project/release-notes",
       },
     ],
     collapsed: true,
@@ -187,6 +188,11 @@ test("TOC with grouped modules", () => {
         url: "/docs/api/my-quantum-project",
       },
       {
+        title: "Release notes",
+        useDivider: true,
+        url: "/docs/api/my-quantum-project/release-notes",
+      },
+      {
         title: "Group 2",
         children: [
           {
@@ -207,10 +213,6 @@ test("TOC with grouped modules", () => {
       {
         title: "dedicated module",
         url: "/docs/api/my-quantum-project/my_quantum_project.another",
-      },
-      {
-        title: "Release notes",
-        url: "/docs/api/my-quantum-project/release-notes",
       },
     ],
   });
@@ -244,6 +246,7 @@ test("TOC with separate release note files", () => {
       },
       {
         title: "Release notes",
+        useDivider: true,
         children: [
           {
             title: "v2",

@@ -35,19 +35,19 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
 
   **Parameters**
 
-  *   **epsilon\_target** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Target precision for estimation target a, has values between 0 and 0.5
-  *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Confidence level, the target probability is 1 - alpha, has values between 0 and 1
-  *   **confint\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Statistical method used to estimate the confidence intervals in each iteration, can be ‘chernoff’ for the Chernoff intervals or ‘beta’ for the Clopper-Pearson intervals (default)
-  *   **min\_ratio** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Minimal q-ratio ($K_{i+1} / K_i$) for FindNextK
+  *   **epsilon\_target** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Target precision for estimation target a, has values between 0 and 0.5
+  *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Confidence level, the target probability is 1 - alpha, has values between 0 and 1
+  *   **confint\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Statistical method used to estimate the confidence intervals in each iteration, can be ‘chernoff’ for the Chernoff intervals or ‘beta’ for the Clopper-Pearson intervals (default)
+  *   **min\_ratio** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Minimal q-ratio ($K_{i+1} / K_i$) for FindNextK
   *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: Quantum Instance or Backend
   *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A sampler primitive to evaluate the circuits.
 
   **Raises**
 
   *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – if the method to compute the confidence intervals is not supported
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the target epsilon is not in (0, 0.5]
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If alpha is not in (0, 1)
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If confint\_method is not supported
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the target epsilon is not in (0, 0.5]
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If alpha is not in (0, 1)
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If confint\_method is not supported
 
   ## Attributes
 
@@ -97,8 +97,8 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
     **Parameters**
 
     *   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem for which to construct the QAE circuit.
-    *   **k** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The power of the Q operator.
-    *   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Boolean flag to indicate if measurements should be included in the circuits.
+    *   **k** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The power of the Q operator.
+    *   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Boolean flag to indicate if measurements should be included in the circuits.
 
     **Returns**
 
@@ -124,7 +124,7 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
 
     **Raises**
 
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – A quantum instance or Sampler must be provided.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – A quantum instance or Sampler must be provided.
     *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – Sampler job run error.
 
     **Return type**

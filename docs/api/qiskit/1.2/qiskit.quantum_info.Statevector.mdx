@@ -17,8 +17,8 @@ python_api_name: qiskit.quantum_info.Statevector
 
   **Parameters**
 
-  *   **or** (*data (np.array or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *or*[*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – qiskit.circuit.Instruction): Data from which the statevector can be constructed. This can be either a complex vector, another statevector, a `Operator` with only one column or a `QuantumCircuit` or `Instruction`. If the data is a circuit or instruction, the statevector is constructed by assuming that all qubits are initialized to the zero state.
-  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Optional. The subsystem dimension of the state (See additional information).
+  *   **or** (*data (np.array or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)  *or*[*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – qiskit.circuit.Instruction): Data from which the statevector can be constructed. This can be either a complex vector, another statevector, a `Operator` with only one column or a `QuantumCircuit` or `Instruction`. If the data is a circuit or instruction, the statevector is constructed by assuming that all qubits are initialized to the zero state.
+  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int)  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list)) – Optional. The subsystem dimension of the state (See additional information).
 
   **Raises**
 
@@ -114,16 +114,16 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Parameters**
 
-    *   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, qsphere, hinton, bloch, city, or paulivec. Default is repr. Default can be changed by adding the line `state_drawer = <default>` to `~/.qiskit/settings.conf` under `[default]`.
+    *   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, qsphere, hinton, bloch, city, or paulivec. Default is repr. Default can be changed by adding the line `state_drawer = <default>` to `~/.qiskit/settings.conf` under `[default]`.
     *   **drawer\_args** – Arguments to be passed directly to the relevant drawing function or constructor (TextMatrix(), array\_to\_latex(), plot\_state\_qsphere(), plot\_state\_hinton() or plot\_bloch\_multivector()). See the relevant function under qiskit.visualization for that function’s documentation.
 
     **Returns**
 
-    `matplotlib.Figure` or [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") or `TextMatrix` or `IPython.display.Latex`: Drawing of the Statevector.
+    `matplotlib.Figure` or [`str`](https://docs.python.org/3/library/stdtypes.html#str) or `TextMatrix` or `IPython.display.Latex`: Drawing of the Statevector.
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – when an invalid output method is selected.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – when an invalid output method is selected.
 
     **Examples**
 
@@ -151,8 +151,8 @@ python_api_name: qiskit.quantum_info.Statevector
     **Parameters**
 
     *   **other** ([*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – an object from which a `Statevector` can be constructed.
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – relative tolerance value for comparison.
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – absolute tolerance value for comparison.
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – relative tolerance value for comparison.
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – absolute tolerance value for comparison.
 
     **Returns**
 
@@ -160,7 +160,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### evolve
@@ -171,7 +171,7 @@ python_api_name: qiskit.quantum_info.Statevector
     **Parameters**
 
     *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The operator to evolve by.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – a list of Statevector subsystem positions to apply the operator on.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – a list of Statevector subsystem positions to apply the operator on.
 
     **Returns**
 
@@ -216,7 +216,7 @@ python_api_name: qiskit.quantum_info.Statevector
     **Parameters**
 
     *   **oper** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator to evaluate expval of.
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to apply operator on.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to apply operator on.
 
     **Returns**
 
@@ -224,7 +224,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Return type**
 
-    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+    [complex](https://docs.python.org/3/library/functions.html#complex)
   </Function>
 
   ### from\_instruction
@@ -258,8 +258,8 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Parameters**
 
-    *   **i** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the basis state element.
-    *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – The subsystem dimensions of the statevector (See additional information).
+    *   **i** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the basis state element.
+    *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int)  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list)) – The subsystem dimensions of the statevector (See additional information).
 
     **Returns**
 
@@ -337,7 +337,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### measure
@@ -349,7 +349,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Parameters**
 
-    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
     **Returns**
 
@@ -359,7 +359,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)
   </Function>
 
   ### probabilities
@@ -371,8 +371,8 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Parameters**
 
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
     **Returns**
 
@@ -444,8 +444,8 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Parameters**
 
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
     **Returns**
 
@@ -453,7 +453,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)
   </Function>
 
   ### purity
@@ -473,7 +473,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Parameters**
 
-    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
 
     **Returns**
 
@@ -511,8 +511,8 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Parameters**
 
-    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of samples to generate.
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of samples to generate.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
     **Returns**
 
@@ -536,8 +536,8 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Parameters**
 
-    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of samples to generate.
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of samples to generate.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
     **Returns**
 
@@ -591,7 +591,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Parameters**
 
-    **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+    **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
     **Returns**
 
@@ -599,7 +599,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)
 
     **Example**
 

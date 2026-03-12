@@ -33,15 +33,15 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
 
   **Parameters**
 
-  *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Maximum number of iterations
-  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Tolerance for termination
-  *   **lr** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Value >= 0, Learning rate.
-  *   **beta\_1** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Value in range 0 to 1, Generally close to 1.
-  *   **beta\_2** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Value in range 0 to 1, Generally close to 1.
-  *   **noise\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Value >= 0, Noise factor
-  *   **eps** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Value >=0, Epsilon to be used for finite differences if no analytic gradient method is given.
-  *   **amsgrad** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True to use AMSGRAD, False if not
-  *   **snapshot\_dir** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – If not None save the optimizer’s parameter after every step to the given directory
+  *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Maximum number of iterations
+  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Tolerance for termination
+  *   **lr** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Value >= 0, Learning rate.
+  *   **beta\_1** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Value in range 0 to 1, Generally close to 1.
+  *   **beta\_2** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Value in range 0 to 1, Generally close to 1.
+  *   **noise\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Value >= 0, Noise factor
+  *   **eps** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Value >=0, Epsilon to be used for finite differences if no analytic gradient method is given.
+  *   **amsgrad** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – True to use AMSGRAD, False if not
+  *   **snapshot\_dir** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – If not None save the optimizer’s parameter after every step to the given directory
 
   ## Attributes
 
@@ -144,8 +144,8 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
 
     *   **x\_center** (*ndarray*) – point around which we compute the gradient
     *   **f** (*func*) – the function of which the gradient is to be computed.
-    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
-    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
+    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int)) – max evals grouped, defaults to 1 (i.e. no batching).
 
     **Returns**
 
@@ -163,7 +163,7 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
 
     **Parameters**
 
-    **load\_dir** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The directory containing `adam_params.csv`.
+    **load\_dir** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The directory containing `adam_params.csv`.
   </Function>
 
   ### minimize
@@ -185,13 +185,13 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
 
     **Parameters**
 
-    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The scalar function to minimize.
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The scalar function to minimize.
     *   **x0** (*POINT*) – The initial point for the minimization.
     *   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
-    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
-    *   **objective\_function** (*Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – DEPRECATED. A function handle to the objective function.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+    *   **objective\_function** (*Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – DEPRECATED. A function handle to the objective function.
     *   **initial\_point** (*np.ndarray | None*) – DEPRECATED. The initial iteration point.
-    *   **gradient\_function** (*Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – DEPRECATED. A function handle to the gradient of the objective function.
+    *   **gradient\_function** (*Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – DEPRECATED. A function handle to the gradient of the objective function.
 
     **Returns**
 
@@ -219,7 +219,7 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
 
     **Parameters**
 
-    **snapshot\_dir** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The directory to store the file in.
+    **snapshot\_dir** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The directory to store the file in.
   </Function>
 
   ### set\_max\_evals\_grouped
@@ -237,7 +237,7 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
 
     **Parameters**
 
-    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
+    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – options, given as name=value.
   </Function>
 
   ### wrap\_function
@@ -248,7 +248,7 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
     **Parameters**
 
     *   **function** (*func*) – the target function
-    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
+    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – the args to be injected
 
     **Returns**
 

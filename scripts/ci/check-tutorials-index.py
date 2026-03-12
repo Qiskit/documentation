@@ -38,10 +38,24 @@ def is_hidden(path: Path) -> bool:
 
 def get_notebook_title(path: Path) -> str:
     data = json.loads(path.read_text())
-    try:
-        return data['metadata']['title'].strip()
-    except KeyError as err:
-        raise Exception("Make sure your notebook has a 'title' metadata!") from err
+    info_message = "Check the MDX guide (https://github.com/Qiskit/documentation/blob/main/mdx-guide.md#page-metadata) for more information."
+
+    first_md_cell = next((item for item in data['cells'] if item['cell_type'] == 'markdown'), None)
+    if first_md_cell is None:
+        raise Exception(f"{path}: Make sure your notebook defined the metadata in a markdown cell! {info_message}")
+
+    if first_md_cell['source'][0] != '---\n':
+        raise Exception(f"{path}: The metadata must be defined at the top of the first markdown cell! {info_message}")
+
+    title_line = next((item for item in first_md_cell['source'] if item.startswith("title:")), None)
+    if title_line is None:
+        raise Exception(f"{path}: Make sure your notebook has a 'title' in the metadata! {info_message}")
+
+    title_text = title_line.split("title:", 1)[1].strip()
+    if not title_text:
+        raise Exception(f"{path}: Make sure your notebook's 'title' is not empty! {info_message}")
+
+    return title_text
 
 def get_expected_links() -> Iterator[Link]:
     notebook_paths = TUTORIALS_ROOT.rglob("**/*.ipynb")

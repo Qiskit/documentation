@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
 # SparsePauliOp
 
-<Class id="qiskit.quantum_info.SparsePauliOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L51-L1238" signature="qiskit.quantum_info.SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)" modifiers="class">
+<Class id="qiskit.quantum_info.SparsePauliOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L51-L1238" signature="qiskit.quantum_info.SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)" modifiers="class">
   Bases: `LinearOp`
 
   Sparse N-qubit operator in a Pauli basis representation.
@@ -49,7 +49,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   **Parameters**
 
-  *   **data** ([*PauliList*](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")  *or*[*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – Pauli list of terms. A list of Pauli strings or a Pauli string is also allowed.
+  *   **data** ([*PauliList*](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")  *or*[*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list)  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Pauli list of terms. A list of Pauli strings or a Pauli string is also allowed.
 
   *   **coeffs** (*np.ndarray*) –
 
@@ -59,9 +59,9 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
           If `data` is a [`SparsePauliOp`](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") and `coeffs` is not `None`, the value of the `SparsePauliOp.coeffs` will be ignored, and only the passed keyword argument `coeffs` will be used.
         </Admonition>
 
-  *   **ignore\_pauli\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – if true, any `phase` component of a given [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") will be assumed to be zero. This is more efficient in cases where a [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") has been constructed purely for this object, and it is already known that the phases in the ZX-convention are zero. It only makes sense to pass this option when giving [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") data. (Default: False)
+  *   **ignore\_pauli\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if true, any `phase` component of a given [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") will be assumed to be zero. This is more efficient in cases where a [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") has been constructed purely for this object, and it is already known that the phases in the ZX-convention are zero. It only makes sense to pass this option when giving [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") data. (Default: False)
 
-  *   **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – copy the input data if True, otherwise assign it directly, if possible. (Default: True)
+  *   **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – copy the input data if True, otherwise assign it directly, if possible. (Default: True)
 
   **Raises**
 
@@ -129,19 +129,19 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### adjoint
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.adjoint" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L323-L328" signature="adjoint()">
+  <Function id="qiskit.quantum_info.SparsePauliOp.adjoint" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L323-L328" signature="adjoint()">
     Return the adjoint of the Operator.
   </Function>
 
   ### apply\_layout
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.apply_layout" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1193-L1238" signature="apply_layout(layout, num_qubits=None)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.apply_layout" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1193-L1238" signature="apply_layout(layout, num_qubits=None)">
     Apply a transpiler layout to this [`SparsePauliOp`](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
 
     **Parameters**
 
-    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") *| List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*] | None*) – Either a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), a list of integers or None. If both layout and num\_qubits are none, a copy of the operator is returned.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)") *| None*) – The number of qubits to expand the operator to. If not provided then if `layout` is a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") the number of the transpiler output circuit qubits will be used by default. If `layout` is a list of integers the permutation specified will be applied without any expansion. If layout is None, the operator will be expanded to the given number of qubits.
+    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") *| List\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – Either a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), a list of integers or None. If both layout and num\_qubits are none, a copy of the operator is returned.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits to expand the operator to. If not provided then if `layout` is a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") the number of the transpiler output circuit qubits will be used by default. If `layout` is a list of integers the permutation specified will be applied without any expansion. If layout is None, the operator will be expanded to the given number of qubits.
 
     **Returns**
 
@@ -154,7 +154,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### argsort
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.argsort" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L534-L602" signature="argsort(weight=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.argsort" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L534-L602" signature="argsort(weight=False)">
     Return indices for sorting the rows of the table.
 
     Returns the composition of permutations in the order of sorting by coefficient and sorting by Pauli. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Pauli’s of a given weight are still ordered lexicographically.
@@ -207,7 +207,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
     **Parameters**
 
-    *   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – optionally sort by weight if True (Default: False).
+    *   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – optionally sort by weight if True (Default: False).
     *   **sorted** (*By using the weight kwarg the output can additionally be*) –
     *   **Pauli.** (*by the number of non-identity terms in the*) –
 
@@ -222,17 +222,17 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### assign\_parameters
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1139-L1191" signature="assign_parameters(parameters, inplace=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1139-L1191" signature="assign_parameters(parameters, inplace=False)">
     Bind the free `Parameter`s in the coefficients to provided values.
 
     <Admonition title="Note" type="note">
-      If all the parameters in the circuit are bound to numeric values, the coefficients array will be returned with a [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)") dtype.
+      If all the parameters in the circuit are bound to numeric values, the coefficients array will be returned with a [`complex`](https://docs.python.org/3/library/functions.html#complex) dtype.
     </Admonition>
 
     **Parameters**
 
-    *   **parameters** (*Mapping\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*] | Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – The values to bind the parameters to.
-    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If `False`, a copy of the operator with the bound parameters is returned. If `True` the operator itself is modified.
+    *   **parameters** ([*Mapping*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")*] |* [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex)  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")*]*) – The values to bind the parameters to.
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `False`, a copy of the operator with the bound parameters is returned. If `True` the operator itself is modified.
 
     **Returns**
 
@@ -240,12 +240,12 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
     **Return type**
 
-    [SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") | None
+    [*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp") | None
   </Function>
 
   ### chop
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.chop" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L676-L714" signature="chop(tol=1e-14)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.chop" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L676-L714" signature="chop(tol=1e-14)">
     Set real and imaginary parts of the coefficients to 0 if `< tol` in magnitude.
 
     For example, the operator representing `1+1e-17j X + 1e-17 Y` with a tolerance larger than `1e-17` will be reduced to `1 X` whereas [`SparsePauliOp.simplify()`](#qiskit.quantum_info.SparsePauliOp.simplify "qiskit.quantum_info.SparsePauliOp.simplify") would return `1+1e-17j X`.
@@ -254,7 +254,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
     **Parameters**
 
-    **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – The absolute tolerance to check whether a real or imaginary part should be set to 0.
+    **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The absolute tolerance to check whether a real or imaginary part should be set to 0.
 
     **Returns**
 
@@ -267,14 +267,14 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### compose
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.compose" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L330-L381" signature="compose(other, qargs=None, front=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.compose" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L330-L381" signature="compose(other, qargs=None, front=False)">
     Return the operator composition with another SparsePauliOp.
 
     **Parameters**
 
     *   **other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – a SparsePauliOp object.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
     **Returns**
 
@@ -297,25 +297,25 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### conjugate
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L305-L312" signature="conjugate()">
+  <Function id="qiskit.quantum_info.SparsePauliOp.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L305-L312" signature="conjugate()">
     Return the conjugate of the SparsePauliOp.
   </Function>
 
   ### copy
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/base_operator.py#L143-L145" signature="copy()">
+  <Function id="qiskit.quantum_info.SparsePauliOp.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/base_operator.py#L143-L145" signature="copy()">
     Make a deep copy of current operator.
   </Function>
 
   ### dot
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.dot" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/mixins/group.py#L133-L149" signature="dot(other, qargs=None)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.dot" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/mixins/group.py#L136-L152" signature="dot(other, qargs=None)">
     Return the right multiplied operator self \* other.
 
     **Parameters**
 
     *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
     **Returns**
 
@@ -332,13 +332,13 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### equiv
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.equiv" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L220-L234" signature="equiv(other, atol=None)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.equiv" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L220-L234" signature="equiv(other, atol=None)">
     Check if two SparsePauliOp operators are equivalent.
 
     **Parameters**
 
     *   **other** ([*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – an operator object.
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)") *| None*) – Absolute numerical tolerance for checking equivalence.
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Absolute numerical tolerance for checking equivalence.
 
     **Returns**
 
@@ -346,12 +346,12 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### expand
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.expand" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L388-L391" signature="expand(other)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.expand" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L388-L391" signature="expand(other)">
     Return the reverse-order tensor product with another SparsePauliOp.
 
     **Parameters**
@@ -371,7 +371,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### from\_list
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.from_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L799-L859" signature="from_list(obj, dtype=<class 'complex'>, *, num_qubits=None)" modifiers="static">
+  <Function id="qiskit.quantum_info.SparsePauliOp.from_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L799-L859" signature="from_list(obj, dtype=<class 'complex'>, *, num_qubits=None)" modifiers="static">
     Construct from a list of Pauli strings and coefficients.
 
     For example, the 5-qubit Hamiltonian
@@ -391,9 +391,9 @@ $$
 
     **Parameters**
 
-    *   **obj** (*Iterable\[Tuple\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")*]]*) – The list of 2-tuples specifying the Pauli terms.
-    *   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.14)")) – The dtype of coeffs (Default: complex).
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The number of qubits of the operator (Default: None).
+    *   **obj** (*Iterable\[Tuple\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*complex*](https://docs.python.org/3/library/functions.html#complex)*]]*) – The list of 2-tuples specifying the Pauli terms.
+    *   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type)) – The dtype of coeffs (Default: complex).
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits of the operator (Default: None).
 
     **Returns**
 
@@ -411,7 +411,7 @@ $$
 
   ### from\_operator
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.from_operator" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L752-L797" signature="from_operator(obj, atol=None, rtol=None)" modifiers="static">
+  <Function id="qiskit.quantum_info.SparsePauliOp.from_operator" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L752-L797" signature="from_operator(obj, atol=None, rtol=None)" modifiers="static">
     Construct from an Operator objector.
 
     Note that the cost of this construction is exponential in general because the number of possible Pauli terms in the decomposition is exponential in the number of qubits.
@@ -421,8 +421,8 @@ $$
     **Parameters**
 
     *   **obj** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an N-qubit operator.
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8). Since the comparison is to zero, in effect the tolerance used is the maximum of `atol` and `rtol`.
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5). Since the comparison is to zero, in effect the tolerance used is the maximum of `atol` and `rtol`.
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8). Since the comparison is to zero, in effect the tolerance used is the maximum of `atol` and `rtol`.
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5). Since the comparison is to zero, in effect the tolerance used is the maximum of `atol` and `rtol`.
 
     **Returns**
 
@@ -439,7 +439,7 @@ $$
 
   ### from\_sparse\_list
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.from_sparse_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L861-L933" signature="from_sparse_list(obj, num_qubits, do_checks=True, dtype=<class 'complex'>)" modifiers="static">
+  <Function id="qiskit.quantum_info.SparsePauliOp.from_sparse_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L861-L933" signature="from_sparse_list(obj, num_qubits, do_checks=True, dtype=<class 'complex'>)" modifiers="static">
     Construct from a list of local Pauli strings and coefficients.
 
     Each list element is a 3-tuple of a local Pauli string, indices where to apply it, and a coefficient.
@@ -464,11 +464,11 @@ $$
 
     **Parameters**
 
-    *   **obj** (*Iterable\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*],* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")*]]*) – The list 3-tuples specifying the Paulis.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The number of qubits of the operator.
-    *   **do\_checks** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – The flag of checking if the input indices are not duplicated
+    *   **obj** (*Iterable\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*complex*](https://docs.python.org/3/library/functions.html#complex)*]]*) – The list 3-tuples specifying the Paulis.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits of the operator.
+    *   **do\_checks** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – The flag of checking if the input indices are not duplicated
     *   \*\*(\*\***Default** – True).
-    *   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.14)")) – The dtype of coeffs (Default: complex).
+    *   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type)) – The dtype of coeffs (Default: complex).
 
     **Returns**
 
@@ -486,7 +486,7 @@ $$
 
   ### from\_sparse\_observable
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.from_sparse_observable" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L935-L954" signature="from_sparse_observable(obs)" modifiers="static">
+  <Function id="qiskit.quantum_info.SparsePauliOp.from_sparse_observable" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L935-L954" signature="from_sparse_observable(obs)" modifiers="static">
     Initialize from a [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
 
     <Admonition title="Warning" type="caution">
@@ -508,12 +508,12 @@ $$
 
   ### group\_commuting
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.group_commuting" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1102-L1128" signature="group_commuting(qubit_wise=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.group_commuting" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1102-L1128" signature="group_commuting(qubit_wise=False)">
     Partition a SparsePauliOp into sets of commuting Pauli strings.
 
     **Parameters**
 
-    **qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) –
+    **qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
 
     whether the commutation rule is applied to the whole operator, or on a per-qubit basis. For example:
 
@@ -537,26 +537,26 @@ $$
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")\[[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")]
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")]
   </Function>
 
   ### input\_dims
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.input_dims" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/base_operator.py#L135-L137" signature="input_dims(qargs=None)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.input_dims" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/base_operator.py#L135-L137" signature="input_dims(qargs=None)">
     Return tuple of input dimension for specified subsystems.
   </Function>
 
   ### is\_unitary
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.is_unitary" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L433-L463" signature="is_unitary(atol=None, rtol=None)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.is_unitary" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L433-L463" signature="is_unitary(atol=None, rtol=None)">
     Return True if operator is a unitary matrix.
 
     This method checks whether the operator composed with its adjoint equals the identity, up to the provided tolerance. The tolerance is used when simplifying the composed operator and checking if the result is the identity.
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Optional. Relative tolerance for checking if coefficients are zero (Default: 1e-5).
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. Relative tolerance for checking if coefficients are zero (Default: 1e-5).
 
     **Returns**
 
@@ -564,12 +564,12 @@ $$
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### label\_iter
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.label_iter" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1031-L1053" signature="label_iter()">
+  <Function id="qiskit.quantum_info.SparsePauliOp.label_iter" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1031-L1053" signature="label_iter()">
     Return a label representation iterator.
 
     This is a lazy iterator that converts each term in the SparsePauliOp into a tuple (label, coeff). To convert the entire table to labels use the `to_labels()` method.
@@ -585,14 +585,14 @@ $$
 
   ### matrix\_iter
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.matrix_iter" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1055-L1082" signature="matrix_iter(sparse=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.matrix_iter" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1055-L1082" signature="matrix_iter(sparse=False)">
     Return a matrix representation iterator.
 
     This is a lazy iterator that converts each term in the SparsePauliOp into a matrix as it is used. To convert to a single matrix use the [`to_matrix()`](#qiskit.quantum_info.SparsePauliOp.to_matrix "qiskit.quantum_info.SparsePauliOp.to_matrix") method.
 
     **Parameters**
 
-    **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
+    **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
 
     **Returns**
 
@@ -605,14 +605,14 @@ $$
 
   ### noncommutation\_graph
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.noncommutation_graph" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1084-L1100" signature="noncommutation_graph(qubit_wise)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.noncommutation_graph" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1084-L1100" signature="noncommutation_graph(qubit_wise)">
     Create the non-commutation graph of this SparsePauliOp.
 
     This transforms the measurement operator grouping problem into graph coloring problem. The constructed graph contains one node for each Pauli. The nodes will be connecting for any two Pauli terms that do \_not\_ commute.
 
     **Parameters**
 
-    **qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – whether the commutation rule is applied to the whole operator, or on a per-qubit basis.
+    **qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether the commutation rule is applied to the whole operator, or on a per-qubit basis.
 
     **Returns**
 
@@ -622,23 +622,23 @@ $$
 
     **Return type**
 
-    [rustworkx.PyGraph](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph "(in rustworkx v0.17)")
+    [rustworkx.PyGraph](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph)
   </Function>
 
   ### output\_dims
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.output_dims" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/base_operator.py#L139-L141" signature="output_dims(qargs=None)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.output_dims" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/base_operator.py#L139-L141" signature="output_dims(qargs=None)">
     Return tuple of output dimension for specified subsystems.
   </Function>
 
   ### power
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/mixins/group.py#L151-L171" signature="power(n)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/mixins/group.py#L154-L174" signature="power(n)">
     Return the compose of a operator with itself n times.
 
     **Parameters**
 
-    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the number of times to compose with self (n>0).
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of times to compose with self (n>0).
 
     **Returns**
 
@@ -655,14 +655,14 @@ $$
 
   ### reshape
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.reshape" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/base_operator.py#L106-L133" signature="reshape(input_dims=None, output_dims=None, num_qubits=None)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.reshape" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/base_operator.py#L106-L133" signature="reshape(input_dims=None, output_dims=None, num_qubits=None)">
     Return a shallow copy with reshaped input and output subsystem dimensions.
 
     **Parameters**
 
-    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – reshape to an N-qubit operator \[Default: None].
+    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – reshape to an N-qubit operator \[Default: None].
 
     **Returns**
 
@@ -679,13 +679,13 @@ $$
 
   ### simplify
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.simplify" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L465-L532" signature="simplify(atol=None, rtol=None)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.simplify" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L465-L532" signature="simplify(atol=None, rtol=None)">
     Simplify PauliList by combining duplicates and removing zeros.
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5).
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. Absolute tolerance for checking if coefficients are zero (Default: 1e-8).
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Optional. relative tolerance for checking if coefficients are zero (Default: 1e-5).
 
     **Returns**
 
@@ -698,7 +698,7 @@ $$
 
   ### sort
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.sort" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L604-L674" signature="sort(weight=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.sort" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L604-L674" signature="sort(weight=False)">
     Sort the rows of the table.
 
     After sorting the coefficients using numpy’s argsort, sort by Pauli. Pauli sort takes precedence. If Pauli is the same, it will be sorted by coefficient. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Pauli’s of a given weight are still ordered lexicographically.
@@ -754,7 +754,7 @@ $$
 
     **Parameters**
 
-    *   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – optionally sort by weight if True (Default: False).
+    *   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – optionally sort by weight if True (Default: False).
     *   **sorted** (*By using the weight kwarg the output can additionally be*) –
     *   **Pauli.** (*by the number of non-identity terms in the*) –
 
@@ -769,14 +769,14 @@ $$
 
   ### sum
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.sum" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L716-L746" signature="sum(ops)" modifiers="static">
+  <Function id="qiskit.quantum_info.SparsePauliOp.sum" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L716-L746" signature="sum(ops)" modifiers="static">
     Sum of SparsePauliOps.
 
     This is a specialized version of the builtin `sum` function for SparsePauliOp with smaller overhead.
 
     **Parameters**
 
-    **ops** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*]*) – a list of SparsePauliOps.
+    **ops** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*SparsePauliOp*](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*]*) – a list of SparsePauliOps.
 
     **Returns**
 
@@ -795,7 +795,7 @@ $$
 
   ### tensor
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.tensor" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L383-L386" signature="tensor(other)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.tensor" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L383-L386" signature="tensor(other)">
     Return the tensor product with another SparsePauliOp.
 
     **Parameters**
@@ -819,14 +819,14 @@ $$
 
   ### to\_list
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.to_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L956-L979" signature="to_list(array=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.to_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L956-L979" signature="to_list(array=False)">
     Convert to a list Pauli string labels and coefficients.
 
     For operators with a lot of terms converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
 
     **Parameters**
 
-    **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – return a Numpy array if True, otherwise return a list (Default: False).
+    **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – return a Numpy array if True, otherwise return a list (Default: False).
 
     **Returns**
 
@@ -834,18 +834,18 @@ $$
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") or array
+    [list](https://docs.python.org/3/library/stdtypes.html#list) or array
   </Function>
 
   ### to\_matrix
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L989-L1021" signature="to_matrix(sparse=False, force_serial=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L989-L1021" signature="to_matrix(sparse=False, force_serial=False)">
     Convert to a dense or sparse matrix.
 
     **Parameters**
 
-    *   **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – if `True` return a sparse CSR matrix, otherwise return dense Numpy array (the default).
-    *   **force\_serial** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – if `True`, use an unthreaded implementation, regardless of the state of the [Qiskit threading-control environment variables](/docs/guides/configure-qiskit-local#environment-variables). By default, this will use threaded parallelism over the available CPUs.
+    *   **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if `True` return a sparse CSR matrix, otherwise return dense Numpy array (the default).
+    *   **force\_serial** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if `True`, use an unthreaded implementation, regardless of the state of the [Qiskit threading-control environment variables](/docs/guides/configure-qiskit-local#environment-variables). By default, this will use threaded parallelism over the available CPUs.
 
     **Returns**
 
@@ -858,7 +858,7 @@ $$
 
   ### to\_operator
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.to_operator" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1023-L1025" signature="to_operator()">
+  <Function id="qiskit.quantum_info.SparsePauliOp.to_operator" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1023-L1025" signature="to_operator()">
     Convert to a matrix Operator object
 
     **Return type**
@@ -868,13 +868,13 @@ $$
 
   ### to\_sparse\_list
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.to_sparse_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L981-L987" signature="to_sparse_list()">
+  <Function id="qiskit.quantum_info.SparsePauliOp.to_sparse_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L981-L987" signature="to_sparse_list()">
     Convert to a sparse Pauli list format with elements (pauli, qubits, coefficient).
   </Function>
 
   ### transpose
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.transpose" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L314-L321" signature="transpose()">
+  <Function id="qiskit.quantum_info.SparsePauliOp.transpose" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L314-L321" signature="transpose()">
     Return the transpose of the SparsePauliOp.
   </Function>
 </Class>

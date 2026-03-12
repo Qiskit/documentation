@@ -33,7 +33,7 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
             └────────┘└────────┘     └──────┘└───────────┘
   ```
 
-  Here *Carry* and *Sum* gates correspond to the gates introduced in \[1]. *Carry\_dg* correspond to the inverse of the *Carry* gate. Note that in this implementation the input register qubits are ordered as all qubits from the first input register, followed by all qubits from the second input register. This is different ordering as compared to Figure 2 in \[1], which leads to a different drawing of the circuit.
+  Here *Carry* and *Sum* gates correspond to the gates introduced in \[1]. *Carry\_dg* correspond to the inverse of the *Carry* gate. Note that in this implementation the input register qubits are ordered as all qubits from the first input register, followed by all qubits from the second input register. This is a different ordering as compared to Figure 2 in \[1], which leads to a different drawing of the circuit.
 
   <Admonition title="See also" type="note">
     The following generic gate objects perform additions, like this circuit class, but allow the compiler to select the optimal decomposition based on the context. Specific implementations can be set via the [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), e.g. this circuit can be chosen via `Adder=["ripple_v95"]`.
@@ -57,13 +57,13 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
   **Parameters**
 
-  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The size of the register.
-  *   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The kind of adder, can be `'full'` for a full adder, `'half'` for a half adder, or `'fixed'` for a fixed-sized adder. A full adder includes both carry-in and carry-out, a half only carry-out, and a fixed-sized adder neither carry-in nor carry-out.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The name of the circuit.
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The size of the register.
+  *   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The kind of adder, can be `'full'` for a full adder, `'half'` for a half adder, or `'fixed'` for a fixed-sized adder. A full adder includes both carry-in and carry-out, a half only carry-out, and a fixed-sized adder neither carry-in nor carry-out.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the circuit.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If `num_state_qubits` is lower than 1.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `num_state_qubits` is lower than 1.
 
   ## Attributes
 

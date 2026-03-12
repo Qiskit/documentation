@@ -9,7 +9,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 # ParameterExpression
 
 <Class id="qiskit.circuit.ParameterExpression" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/parameterexpression.py" signature="qiskit.circuit.ParameterExpression(symbol_map, expr)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   ParameterExpression class to enable creating expressions of Parameters.
 
@@ -19,7 +19,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
   **Parameters**
 
-  *   **symbol\_map** (*Dict\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*, \[*[*ParameterExpression*](#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*, or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – Mapping of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances to the `sympy.Symbol` serving as their placeholder in expr.
+  *   **symbol\_map** (*Dict\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*, \[*[*ParameterExpression*](#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*, or* [*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – Mapping of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances to the `sympy.Symbol` serving as their placeholder in expr.
   *   **expr** (*sympy.Expr*) – Expression of `sympy.Symbol` s.
 
   ## Attributes
@@ -64,7 +64,7 @@ python_api_name: qiskit.circuit.ParameterExpression
     **Parameters**
 
     *   **parameter** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – A parameter in this expression whose value will be updated.
-    *   **value** ([*ParameterExpression*](#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The new value to bind to.
+    *   **value** ([*ParameterExpression*](#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)) – The new value to bind to.
 
     **Returns**
 
@@ -82,8 +82,8 @@ python_api_name: qiskit.circuit.ParameterExpression
 
     **Parameters**
 
-    *   **parameter\_values** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Mapping of Parameter instances to the numeric value to which they will be bound.
-    *   **allow\_unknown\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `False`, raises an error if `parameter_values` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
+    *   **parameter\_values** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – Mapping of Parameter instances to the numeric value to which they will be bound.
+    *   **allow\_unknown\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `False`, raises an error if `parameter_values` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
 
     **Raises**
 
@@ -91,7 +91,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
         *   If parameter\_values contains Parameters outside those in self. - If a non-numeric value is passed in parameter\_values.
 
-    *   [**ZeroDivisionError**](https://docs.python.org/3/library/exceptions.html#ZeroDivisionError "(in Python v3.12)") –
+    *   [**ZeroDivisionError**](https://docs.python.org/3/library/exceptions.html#ZeroDivisionError) –
 
         *   If binding the provided values requires division by zero.
 
@@ -141,7 +141,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
     **Return type**
 
-    [*ParameterExpression*](#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") | [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
+    [*ParameterExpression*](#qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") | [complex](https://docs.python.org/3/library/functions.html#complex)
   </Function>
 
   ### is\_real
@@ -175,8 +175,8 @@ python_api_name: qiskit.circuit.ParameterExpression
 
     **Parameters**
 
-    *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Mapping from Parameters in self to the ParameterExpression instances with which they should be replaced.
-    *   **allow\_unknown\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `False`, raises an error if `parameter_map` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
+    *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – Mapping from Parameters in self to the ParameterExpression instances with which they should be replaced.
+    *   **allow\_unknown\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `False`, raises an error if `parameter_map` contains Parameters in the keys outside those present in the expression. If `True`, any such parameters are simply ignored.
 
     **Raises**
 

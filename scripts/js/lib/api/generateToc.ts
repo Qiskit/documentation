@@ -25,6 +25,7 @@ export type TocEntry = {
   children?: TocEntry[];
   isNew?: string;
   isNewDate?: string;
+  useDivider?: boolean;
 };
 
 type Toc = {
@@ -58,7 +59,9 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
 
   const maybeReleaseNotes = generateReleaseNotesEntry(pkg);
   if (maybeReleaseNotes) {
-    orderedEntries.push(maybeReleaseNotes);
+    // We add the release notes entry in the second position of the TOC.
+    // We assume the first position will always be used by the API index.
+    orderedEntries.splice(1, 0, maybeReleaseNotes);
   }
 
   return {
@@ -80,7 +83,11 @@ function getModulesAndItems(
   // However, C does not have modules.
   const modules = options.isCApi
     ? resultsWithName
-    : resultsWithName.filter((result) => result.meta.apiType === "module");
+    : resultsWithName.filter(
+        (result) =>
+          result.meta.apiType === "module" ||
+          result.meta.apiType === "syntheticModule",
+      );
   const items = resultsWithName.filter(
     (result) =>
       result.meta.apiType &&
@@ -235,6 +242,7 @@ export function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
   const releaseNotesUrl = `${DOCS_BASE_PATH}/api/${pkg.releaseNotesPackageName()}/release-notes`;
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
+    useDivider: true,
   };
   if (!pkg.hasSeparateReleaseNotes()) {
     return { ...releaseNotesEntry, url: releaseNotesUrl };

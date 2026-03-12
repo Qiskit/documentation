@@ -14,7 +14,13 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES: Set<string> = new Set([]);
+export const IGNORED_FILES: Set<string> = new Set([
+  // TODO(#4200):
+  // The Qiskit C API objects.inv has a lot of broken links that we should fix.
+  // When working on this, we should also try to fix the links in `_qiskitCRegexes()`
+  // at the end of this file.
+  "public/docs/api/qiskit-c/objects.inv",
+]);
 
 // -----------------------------------------------------------------------------------
 // Always ignored URLs - prefer to use more precise ignores
@@ -157,22 +163,18 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
 
 // These external URLs cause actual 404s and should probably be fixed.
 const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
-  // These schemas are not available any more. They might have moved, but we're not sure where.
-  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json",
-  "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json",
+  // These schemas are not available any more. References to these in the new API docs have been fixed,
+  // but they will never be fixed in the old API docs.  We decided to leave these links as-is for archival purposes.
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_status_schema.json",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json",
 
   // These links are from old IQP and do not work any more
-  "https://api.quantum-computing.ibm.com/runtime",
   "https://auth.quantum-computing.ibm.com/api",
   "https://auth.quantum.ibm.com/api",
   "https://quantum-computing.cloud.ibm.com",
-  "https://us-east.quantum-computing.cloud.ibm.com/",
 
   // Other links that don't seem to exist any more
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
-  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-authenticate-with-ibm-credentials",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
 ];
 
@@ -255,13 +257,43 @@ function _runtimeObjectsInv(): FilesToIgnores {
       "0.40/",
       "0.41/",
       "0.42/",
+      "0.43/",
+      "0.44/",
+      "0.45/",
     ].map((vers) => [
       `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [
         `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
+        // TODO: Remove these ignores when the executor guides are migrated to Qiskit/documentation
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#broadcast-semantics-of-the-executor`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#combining-multiple-inputs`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#common-patterns`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#creating-a-2d-grid-sweep`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#example-predicting-output-shapes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#example-understanding-extrinsic-shapes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#how-shape-and-input-shapes-interact`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#indexing-into-results`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#intrinsic-and-extrinsic-axes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#multiple-randomization-axes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#no-explicit-randomization-axes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#output-array-shapes`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#quick-start-example`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#randomization-and-the-shape-parameter`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#single-randomization-axis`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#sweeping-a-single-parameter`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/broadcasting#what-is-broadcasting`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/executor-basic`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/executor-basic#running-an-executor-job`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/executor-basic#the-executor-a-quick-start-guide`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/executor-basic#the-inputs-to-the-executor-quantum-programs`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/executor-basic#the-outputs-of-the-executor`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/index`,
+        `/docs/api/qiskit-ibm-runtime/${vers}guides/index#guides`,
       ],
     ]),
   );
+
   return { ...legacy, ...latest };
 }
 
@@ -418,11 +450,60 @@ function _runtimeLegacyReleaseNotes(): FilesToIgnores {
   };
 }
 
+function _runtimeHistoricalSchema(): FilesToIgnores {
+  return Object.fromEntries(
+    [
+      "0.25/",
+      "0.26/",
+      "0.27/",
+      "0.28/",
+      "0.29/",
+      "0.30/",
+      "0.31/",
+      "0.32/",
+      "0.33/",
+      "0.34/",
+      "0.35/",
+      "0.36/",
+      "0.37/",
+      "0.38/",
+      "0.39/",
+      "0.40/",
+      "0.41/",
+      "0.42/",
+      "0.43/",
+      "0.44/",
+    ].flatMap((vers) => [
+      [
+        `docs/api/qiskit-ibm-runtime/${vers}ibm-backend.mdx`,
+        [
+          "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json",
+          "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json",
+        ],
+      ],
+    ]),
+  );
+}
+
+function _qiskitPulseLink(): FilesToIgnores {
+  return Object.fromEntries(
+    ["1.2/", "1.3/", "1.4/", "2.0/", "2.1/", "2.2/"].flatMap((vers) => [
+      [`docs/api/qiskit/${vers}qpy.mdx`, ["/docs/guides/pulse"]],
+      [
+        `docs/api/qiskit/${vers}qiskit.transpiler.passes.ValidatePulseGates.mdx`,
+        ["/docs/guides/pulse"],
+      ],
+    ]),
+  );
+}
+
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
   _runtimeLegacyReleaseNotes(),
+  _runtimeHistoricalSchema(),
+  _qiskitPulseLink(),
 );
 
 function _qiskitCRegexes(): FilesToIgnores {
@@ -445,7 +526,14 @@ function _qiskitCRegexes(): FilesToIgnores {
       "/docs/api/qiskit-c/version#qiskit_version_minor",
       "/docs/api/qiskit-c/version#qiskit_version_patch",
     ],
-    "docs/api/qiskit-c/qk-transpiler.mdx": ["#structqktranspileoptions"],
+    "docs/api/qiskit-c/qk-transpiler.mdx": [
+      "#structqktranspileoptions",
+      "#c.qk_transpile",
+    ],
+    "docs/api/qiskit-c/qk-dag.mdx": ["#structqkdagneighbors"],
+    "docs/api/qiskit-c/qk-transpiler-passes.mdx": [
+      "#c.qk_transpiler_pass_standalone_vf2_layout_average",
+    ],
   };
 }
 

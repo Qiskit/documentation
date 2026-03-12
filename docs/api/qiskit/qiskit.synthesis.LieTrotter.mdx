@@ -8,7 +8,7 @@ python_api_name: qiskit.synthesis.LieTrotter
 
 # LieTrotter
 
-<Class id="qiskit.synthesis.LieTrotter" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/synthesis/evolution/lie_trotter.py#L26-L123" signature="qiskit.synthesis.LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, wrap=False, preserve_order=True, *, atomic_evolution_sparse_observable=False)" modifiers="class">
+<Class id="qiskit.synthesis.LieTrotter" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/synthesis/evolution/lie_trotter.py#L26-L123" signature="qiskit.synthesis.LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, wrap=False, preserve_order=True, *, atomic_evolution_sparse_observable=False)" modifiers="class">
   Bases: [`SuzukiTrotter`](qiskit.synthesis.SuzukiTrotter "qiskit.synthesis.evolution.suzuki_trotter.SuzukiTrotter")
 
   The Lie-Trotter product formula.
@@ -31,13 +31,13 @@ $$
 
   **Parameters**
 
-  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – The number of time steps.
-  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – Whether to insert barriers between the atomic evolutions.
-  *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – How to arrange the CX gates for the Pauli evolutions, can be `"chain"`, where next neighbor connections are used, or `"fountain"`, where all qubits are connected to one. This only takes effect when `atomic_evolution is None`.
-  *   **atomic\_evolution** (*Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")*], None] | None*) – A function to apply the evolution of a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), or [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") of only commuting terms, to a circuit. The function takes in three arguments: the circuit to append the evolution to, the Pauli operator to evolve, and the evolution time. By default, a single Pauli evolution is decomposed into a chain of `CX` gates and a single `RZ` gate.
-  *   **wrap** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – Whether to wrap the atomic evolutions into custom gate objects. This only takes effect when `atomic_evolution is None`.
-  *   **preserve\_order** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If `False`, allows reordering the terms of the operator to potentially yield a shallower evolution circuit. Not relevant when synthesizing operator with a single term.
-  *   **atomic\_evolution\_sparse\_observable** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")) – If a custom `atomic_evolution` is passed, which does not yet support [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")s as input, set this argument to `False` to automatically apply a conversion to [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"). This argument is supported until Qiskit 2.2, at which point all atomic evolutions are required to support [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")s as input.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of time steps.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to insert barriers between the atomic evolutions.
+  *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – How to arrange the CX gates for the Pauli evolutions, can be `"chain"`, where next neighbor connections are used, or `"fountain"`, where all qubits are connected to one. This only takes effect when `atomic_evolution is None`.
+  *   **atomic\_evolution** (*Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*], None] | None*) – A function to apply the evolution of a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), or [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") of only commuting terms, to a circuit. The function takes in three arguments: the circuit to append the evolution to, the Pauli operator to evolve, and the evolution time. By default, a single Pauli evolution is decomposed into a chain of `CX` gates and a single `RZ` gate.
+  *   **wrap** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to wrap the atomic evolutions into custom gate objects. This only takes effect when `atomic_evolution is None`.
+  *   **preserve\_order** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `False`, allows reordering the terms of the operator to potentially yield a shallower evolution circuit. Not relevant when synthesizing operator with a single term.
+  *   **atomic\_evolution\_sparse\_observable** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If a custom `atomic_evolution` is passed, which does not yet support [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")s as input, set this argument to `False` to automatically apply a conversion to [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"). This argument is supported until Qiskit 2.2, at which point all atomic evolutions are required to support [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")s as input.
 
   ## Attributes
 
@@ -52,14 +52,14 @@ $$
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.14)") – If a custom atomic evolution is set, which cannot be serialized.
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – If a custom atomic evolution is set, which cannot be serialized.
   </Attribute>
 
   ## Methods
 
   ### expand
 
-  <Function id="qiskit.synthesis.LieTrotter.expand" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/synthesis/evolution/suzuki_trotter.py#L122-L178" signature="expand(evolution)">
+  <Function id="qiskit.synthesis.LieTrotter.expand" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/synthesis/evolution/suzuki_trotter.py#L122-L178" signature="expand(evolution)">
     Expand the Hamiltonian into a Suzuki-Trotter sequence of sparse gates.
 
     For example, the Hamiltonian `H = IX + ZZ` for an evolution time `t` and 1 repetition for an order 2 formula would get decomposed into a list of 3-tuples containing `(pauli, indices, rz_rotation_angle)`, that is:
@@ -82,12 +82,12 @@ $$
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")], ParameterValueType]]
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)], ParameterValueType]]
   </Function>
 
   ### synthesize
 
-  <Function id="qiskit.synthesis.LieTrotter.synthesize" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/synthesis/evolution/product_formula.py#L128-L150" signature="synthesize(evolution)">
+  <Function id="qiskit.synthesis.LieTrotter.synthesize" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/synthesis/evolution/product_formula.py#L128-L150" signature="synthesize(evolution)">
     Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate").
 
     **Parameters**

@@ -15,7 +15,6 @@ Use these tutorials to learn how to apply Qiskit to common quantum computing use
 
 These tutorials are for beginners who are ready to explore running quantum algorithms on a quantum computer.
 
-* [Hello world](/docs/tutorials/hello-world)
 * [CHSH inequality](/docs/tutorials/chsh-inequality)
 
 ## Explore workflows toward advantage
@@ -23,8 +22,8 @@ These tutorials are for beginners who are ready to explore running quantum algor
 Tutorials in this section cover large-scale demonstrations of quantum algorithms.
 
 
-<details>
-  <summary>**Verifiable sampling algorithms**</summary>
+<Accordion>
+<AccordionItem title="**Verifiable sampling algorithms**">
 
 The algorithms in this category focus on quantum circuits whose output distributions encode solutions to structured problems with verifiable output. Verifiability means that you can check the consistency between measured data, either through evaluating the chosen bitstring or by knowing that false positives do not occur.
 
@@ -40,10 +39,9 @@ The tutorials highlight techniques where repeated sampling enables estimation of
 
 * [Pauli Correlation Encoding to reduce Maxcut requirements](/docs/tutorials/pauli-correlation-encoding-for-qaoa)
 
-</details>
+</AccordionItem>
 
-<details>
-  <summary>**Observable estimation**</summary>
+<AccordionItem title="**Observable estimation**">
 
 These tutorials focus on estimating physically meaningful quantities, such as energy or correlation values, by preparing quantum states and measuring observables. Techniques include both variational and Trotterized circuit approaches that balance circuit expressiveness with circuit-depth efficiency. Emphasis is placed on workflows that reduce quantum resource demands while maintaining accuracy, and enabling practical estimation of observables in chemical and physical systems.
 
@@ -59,27 +57,29 @@ These tutorials focus on estimating physically meaningful quantities, such as en
 
 * [CHSH inequality](/docs/tutorials/chsh-inequality)
 
-</details>
+</AccordionItem>
 
-<details>
-  <summary>**Fault-tolerant algorithms**</summary>
+<AccordionItem title="**Fault-tolerant algorithms**">
 
-This section features algorithms with well-defined theoretical guarantees that are designed to run on future error-corrected quantum hardware. The circuits or sampling overhead for these algorithms scale in a manner that is not depth-efficient and are thereby are more likely to demonstrate quantum advantage when fault-tolerant quantum computers exist. These tutorials illustrate how the methods operate in idealized settings and demonstrate small scale examples.
+This section features algorithms with well-defined theoretical guarantees that are designed to run on future error-corrected quantum hardware. The circuits or sampling overhead for these algorithms scale in a manner that is not depth-efficient and thereby are more likely to demonstrate quantum advantage when fault-tolerant quantum computers exist. These tutorials illustrate how the methods operate in idealized settings and demonstrate small scale examples.
 
 * [Shor's algorithm](/docs/tutorials/shors-algorithm)
 * [Grover's algorithm](/docs/tutorials/grovers-algorithm)
 
-</details>
+</AccordionItem>
+</Accordion>
 
 ## Leverage Qiskit capabilities
 
 This section introduces advanced capabilities within the Qiskit ecosystem that enhance performance, reliability, and speed when executing quantum algorithms.
 
 
-<details>
-  <summary>**Workload optimization**</summary>
+<Accordion>
+<AccordionItem title="**Workload optimization**">
 
 Workload optimization focuses on either efficient orchestration of classical and quantum resources or tailored methods for improving quantum circuit manipulation.
+
+* [Benchmark dynamic circuits with cut Bell pairs](/docs/tutorials/edc-cut-bell-pair-benchmarking)
 
 * [Introduction to fractional gates](/docs/tutorials/fractional-gates)
 
@@ -87,16 +87,15 @@ Workload optimization focuses on either efficient orchestration of classical and
 
 * [Transpilation optimizations with SABRE](/docs/tutorials/transpilation-optimizations-with-sabre)
 
-* [Compare transpiler settings](/docs/tutorials/circuit-transpilation-settings)
-
 * [Compilation methods for Hamiltonian simulation circuits](/docs/tutorials/compilation-methods-for-hamiltonian-simulation-circuits)
 
 * [Long-range entanglement with dynamic circuits](/docs/tutorials/long-range-entanglement)
 
-</details>
+* [Simulation of kicked Ising Hamiltonian with dynamic circuits](/docs/tutorials/dc-hex-ising)
 
-<details>
-<summary>**Qiskit Functions**</summary>
+</AccordionItem>
+
+<AccordionItem title="**Qiskit Functions**">
 
 Qiskit Functions are a collection of pre-packaged error management and application tools, making it easy to design large-scale experiments with circuits, molecules, QUBOs, and more.
 
@@ -109,6 +108,8 @@ Qiskit Functions are a collection of pre-packaged error management and applicati
   * [Quantum Phase Estimation with Q-CTRL's Qiskit Functions](/docs/tutorials/quantum-phase-estimation-qctrl)
 
   * [Simulate 2D tilted-field Ising with the QESEM function](/docs/tutorials/qedma-2d-ising-with-qesem)
+
+  * [Simulate a kicked Ising model with the TEM function](/docs/tutorials/simulate-kicked-ising-tem)
 
 - Experiment with domain-specific problems with **Application functions** -- with familiar inputs and outputs to classical solvers.
 
@@ -124,10 +125,9 @@ Qiskit Functions are a collection of pre-packaged error management and applicati
   
   * [Solve the Market Split problem with Kipu Quantum's Iskay Quantum Optimizer](/docs/tutorials/solve-market-split-problem-with-iskay-quantum-optimizer)
 
-</details>
+</AccordionItem>
 
-<details>
-  <summary>**Qiskit addons**</summary>
+<AccordionItem title="**Qiskit addons**">
 
 Addons enable advanced circuit manipulation, such as cutting, backpropagating observables, or approximating circuits, that allow users to sidestep hardware limitations at the cost of increased classical compute overhead.
 
@@ -145,11 +145,9 @@ Addons enable advanced circuit manipulation, such as cutting, backpropagating ob
 
 * [Readout error mitigation for the Sampler primitive using M3](/docs/tutorials/readout-error-mitigation-sampler)
 
-</details>
+</AccordionItem>
 
-
-<details>
-  <summary>**Error mitigation**</summary>
+<AccordionItem title="**Error mitigation**">
 
 Error mitigation addresses the challenge of noise without full fault tolerance by recovering accurate expectation values through controlled circuit manipulation and post-processing.
 
@@ -161,17 +159,18 @@ Error mitigation addresses the challenge of noise without full fault tolerance b
 
 
 
-</details>
+</AccordionItem>
 
-
-<details>
-  <summary>**Error detection**</summary>
+<AccordionItem title="**Error detection**">
 
 Error detection identifies faulty operations to return noise-free results shot-by-shot by post-processing.
 
-[Repetition codes](/docs/tutorials/repetition-codes)
+* [Repetition codes](/docs/tutorials/repetition-codes)
 
-</details>
+* [Low-overhead error detection with spacetime codes](/docs/tutorials/ghz-spacetime-codes)
+
+</AccordionItem>
+</Accordion>
 
 
 
