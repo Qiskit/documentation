@@ -116,6 +116,10 @@ The C API currently only supports building DAGs that contain operations defined 
   <Attribute id="QkOperationKind_Unknown">
     This variant is used as an opaque type for operations not yet implemented in the native data model.
   </Attribute>
+
+  #### enumerator QkOperationKind\_PauliProductRotation
+
+  <Attribute id="QkOperationKind_PauliProductRotation" />
 </Class>
 
 ### QkDagNeighbors
@@ -1350,5 +1354,114 @@ The C API currently only supports building DAGs that contain operations defined 
   **Returns**
 
   The pointer to the copied DAG circuit.
+</Function>
+
+### qk\_dag\_replace\_block\_with\_unitary
+
+<Function id="qk_dag_replace_block_with_unitary" signature="uint32_t qk_dag_replace_block_with_unitary(QkDag *dag, uint32_t num_block_ids, const uint32_t *block_ids, const QkComplex64 *matrix, uint32_t num_qubits, const uint32_t *qubits, bool cycle_check)">
+  Replace a non-empty contiguous block of nodes in a `QkDag` with a single unitary gate corresponding to the specified unitary matrix.
+
+  Upon replacement, the nodes in the block are removed and substituted by a new node acting on the given qubits.
+
+  <span id="group__QkDag_1autotoc_md116" />
+
+  #### Example
+
+  ```c
+  // Create a DAG with H, T, S, T, H gates on the second qubit
+  QkDag *dag = qk_dag_new();
+  QkQuantumRegister *qr = qk_quantum_register_new(2, "qr");
+  qk_dag_add_quantum_register(dag, qr);
+  uint32_t qubit[1] = {1};
+  qk_dag_apply_gate(dag, QkGate_H, qubit, NULL, false);
+  uint32_t idx1 = qk_dag_apply_gate(dag, QkGate_T, qubit, NULL, false);
+  uint32_t idx2 = qk_dag_apply_gate(dag, QkGate_S, qubit, NULL, false);
+  uint32_t idx3 = qk_dag_apply_gate(dag, QkGate_T, qubit, NULL, false);
+  qk_dag_apply_gate(dag, QkGate_H, qubit, NULL, false);
+
+  // Replace the inner T, S, T gates by a unitary gate (representing Z)
+  uint32_t replaced_ids[3] = {idx1, idx2, idx3};
+  static const QkComplex64 mat_z[4] = {{1, 0}, {0, 0}, {0, 0}, {-1, 0}};
+  uint32_t new_node_idx =
+      qk_dag_replace_block_with_unitary(dag, 3, replaced_ids, mat_z, 1, qubit, false);
+
+  // free the register and dag pointer when done
+  qk_quantum_register_free(qr);
+  qk_dag_free(dag);
+  ```
+
+  <span id="group__QkDag_1autotoc_md117" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md117" />
+
+  Behavior is undefined if any of:
+
+  *   `dag` is not an aligned, non-null pointer to a valid `QkDag`,
+  *   `qubits` is not an aligned pointer to `num_qubits` initialized values.
+  *   `matrix` is not an aligned pointer to `4**num_qubits` initialized values,
+  *   `block_ids` is not an aligned pointer to `num_block_ids` initialized values.
+
+  **Parameters**
+
+  *   **dag** – Pointer to the DAG.
+  *   **num\_block\_ids** – Number of entries in `block_ids`. This number must be nonzero.
+  *   **block\_ids** – Pointer to a non-empty array of nodes to replace.
+  *   **matrix** – Pointer to an initialized row-major unitary matrix of size `4**num_qubits`.
+  *   **num\_qubits** – The number of qubits the resulting unitary gate acts on.
+  *   **qubits** – Pointer to an array of distinct `uint32_t` qubit indices. Each entry specifies the index of the DAG qubit that corresponds to the respective argument position in the unitary gate.
+  *   **cycle\_check** – If `true`, the function checks whether replacing the provided `block_ids` with a single node would introduce a cycle in the DAG (which would invalidate the DAG). If a cycle would be created, the DAG is left unchanged and `UINT32_MAX` is returned. This checking comes with a run time penalty. If you can guarantee that the provided `block_ids` is a contiguous block and won’t introduce a cycle when contracted to a single node, this can be set to `false`.
+
+  **Returns**
+
+  The index of the newly added operation node, or `UINT32_MAX` if `cycle_check` is `true` and the replacement would introduce a cycle.
+</Function>
+
+### qk\_dag\_substitute\_node\_with\_unitary
+
+<Function id="qk_dag_substitute_node_with_unitary" signature="void qk_dag_substitute_node_with_unitary(QkDag *dag, uint32_t node, const QkComplex64 *matrix, uint32_t num_qubits)">
+  Substitute an operation in a node in a `QkDag` with a unitary gate corresponding to the specified unitary matrix.
+
+  The new operation should match the shape of the replaced operation. The qargs and cargs for the node will remain the same.
+
+  <span id="group__QkDag_1autotoc_md118" />
+
+  #### Example
+
+  ```c
+  // Create a DAG with a Z-gate
+  QkDag *dag = qk_dag_new();
+  QkQuantumRegister *qr = qk_quantum_register_new(2, "qr");
+  qk_dag_add_quantum_register(dag, qr);
+  uint32_t idx_z = qk_dag_apply_gate(dag, QkGate_Z, (uint32_t[]){1}, NULL, false);
+
+  static const QkComplex64 mat[4] = {{1, 0}, {0, 0}, {0, 0}, {-1, 0}};
+
+  // Replace the Z-gate by a unitary matrix
+  qk_dag_substitute_node_with_unitary(dag, idx_z, mat, 1);
+
+  // free the register and dag pointer when done
+  qk_quantum_register_free(qr);
+  qk_dag_free(dag);
+  ```
+
+  <span id="group__QkDag_1autotoc_md119" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md119" />
+
+  Behavior is undefined if any of:
+
+  *   `dag` is not an aligned, non-null pointer to a valid `QkDag`,
+  *   `matrix` is not an aligned pointer to `4**num_qubits` initialized values,
+
+  **Parameters**
+
+  *   **dag** – Pointer to the DAG.
+  *   **node** – The node whose operation is substituted. The number of qubits in the substituted operation should equal to `num_qubits` and the number of clbits should be `0`.
+  *   **matrix** – Pointer to an initialized row-major unitary matrix of size `4**num_qubits`.
+  *   **num\_qubits** – The number of qubits the unitary acts on.
 </Function>
 

@@ -27,7 +27,7 @@ If the results of these monitoring jobs indicate modest deviations from their ex
 
 In addition to jobs monitoring individual parameters are jobs that monitor the performance of the quantum computer more holistically, such as tests that look at the fidelity of generated Bell states, as well as tests of fractional gates and dynamic circuits on quantum computers that support those features. The goal of these tests, which also run through the full Qiskit Runtime stack interleaved with user jobs, is to efficiently validate the overall behavior of the hardware and software. If these tests detect a significant drop in performance, the quantum computer will automatically pause the job queue until the issue is resolved, ensuring that user jobs won't run until the device is performing as expected again.
 
----
+
 
 ## Calibrating
 
@@ -58,11 +58,11 @@ These calibrations are run simultaneously on qubits that require calibration.
 
 ### How calibrations are scheduled
 
-* A calibration job cannot run simultaneously while an external job or session is running.
+* A calibration job cannot run simultaneously while a job or session is running.
 * Therefore, during long sessions, the quantum computer may experience reduced effective stability due to delayed or infrequent recalibration.
 * Two jobs submitted at the same time might run under different calibration sets, depending on timing.
 
----
+
 
 ## Benchmarking
 

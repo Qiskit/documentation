@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
 # LitinskiTransformation
 
-<Class id="qiskit.transpiler.passes.LitinskiTransformation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/litinski_transformation.py#L21-L83" signature="qiskit.transpiler.passes.LitinskiTransformation(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.LitinskiTransformation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/litinski_transformation.py#L21-L94" signature="qiskit.transpiler.passes.LitinskiTransformation(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Applies Litinski transform to a circuit.
@@ -31,6 +31,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
   *   **fix\_clifford** – If `False` (non-default), the returned circuit contains only `PauliEvolution` gates, with the final Clifford gates omitted. Note that in this case the operators of the original and synthesized circuits will generally not be equivalent.
   *   **insert\_barrier** – If `True` and `fix_clifford=True`, insert a barrier between the circuit and the final cliffords. This argument has no effect if `fix_clifford=False`.
+  *   **legacy\_pauli\_evolution** – If `True`, use [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") to represent the Pauli rotation gates. Otherwise, use [`PauliProductRotationGate`](qiskit.circuit.library.PauliProductRotationGate "qiskit.circuit.library.PauliProductRotationGate") (the default), which uses a more efficient, fully Rust-backed path.
 
   ## Attributes
 
@@ -69,7 +70,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -84,7 +85,7 @@ python_api_name: qiskit.transpiler.passes.LitinskiTransformation
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.LitinskiTransformation.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/litinski_transformation.py#L65-L83" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.LitinskiTransformation.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/litinski_transformation.py#L74-L94" signature="run(dag)">
     Run the LitinskiTransformation pass on `dag`.
 
     **Parameters**
