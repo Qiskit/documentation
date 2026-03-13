@@ -30,7 +30,6 @@ QiskitRuntimeService.least_busy = patched_least_busy
 
 
 def test_no_config_file():
-    print("Testing with no config file:")
     filenames = ["path/to/notebook.ipynb", "path/to/another.ipynb"]
     args = parser.parse_args(filenames)
     with pytest.raises(ValueError):
