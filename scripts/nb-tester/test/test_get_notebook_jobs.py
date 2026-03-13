@@ -1,12 +1,14 @@
 from pathlib import Path
 from textwrap import dedent
 from unittest import mock
+import pytest
 
 from qiskit_docs_notebook_tester.config import (
     get_notebook_jobs,
     NotebookJob,
     Result,
     get_parser,
+    Config,
     PRE_EXECUTE_CODE,
 )
 
@@ -28,25 +30,17 @@ QiskitRuntimeService.least_busy = patched_least_busy
 
 
 def test_no_config_file():
+    print("Testing with no config file:")
     filenames = ["path/to/notebook.ipynb", "path/to/another.ipynb"]
     args = parser.parse_args(filenames)
-    jobs = list(get_notebook_jobs(args))
-    assert jobs == [
-        NotebookJob(
-            path=Path(path),
-            pre_execute_code=PRE_EXECUTE_CODE,
-            backend_patch=None,
-            cell_timeout=None,
-            write=Result(False, "--write arg not set"),
-            log_cell_outputs=False,
-        )
-        for path in filenames
-    ]
+    with pytest.raises(ValueError):
+        list(get_notebook_jobs(args))
 
 
 def test_no_config_file_no_filenames():
     args = parser.parse_args([])
-    assert list(get_notebook_jobs(args)) == []
+    with pytest.raises(ValueError):
+        list(get_notebook_jobs(args))
 
 
 def test_cli_patch():
@@ -94,12 +88,12 @@ def test_config_file():
         """
         default-strategy="ci"
         test-strategies.ci = { timeout = 350 }
-        
+
         [groups]
         [groups.default]
         test-strategies.ci = { patch="qiskit-fake-provider", num_qubits=5 }
         notebooks = ["path/to/notebook.ipynb"]
-                         
+
         [groups.other]
         notebooks = ["path/to/another.ipynb"]
         """
@@ -138,7 +132,7 @@ def test_config_file_with_filenames():
     config_file = dedent(
         """
         default-strategy="main"
-        
+
         [groups]
         [groups.default]
         test-strategies.main = {}
