@@ -23,7 +23,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
   *   **basic\_approximations** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, np.ndarray] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[GateSequence] | None*) –
 
-      A specification of the basic SO(3) approximations in terms of discrete gates. At each iteration this algorithm, the remaining error is approximated with the closest sequence of gates in this set. If a `str`, this specifies a filename from which to load the approximation. If a `dict`, then this contains `{gates: effective_SO3_matrix}` pairs, e.g. `{"h t": np.array([[0, 0.7071, -0.7071], [0, -0.7071, -0.7071], [-1, 0, 0]]}`. If a list, this contains the same information as the dict, but already converted to `GateSequence` objects, which contain the SO(3) matrix and gates.
+      A specification of the basic SO(3) approximations in terms of discrete gates. At each iteration of this algorithm, the remaining error is approximated with the closest sequence of gates in this set. If a `str`, this specifies a filename from which to load the approximation. If a `dict`, then this contains `{gates: effective_SO3_matrix}` pairs, e.g. `{"h t": np.array([[0, 0.7071, -0.7071], [0, -0.7071, -0.7071], [-1, 0, 0]]}`. If a list, this contains the same information as the dict, but already converted to `GateSequence` objects, which contain the SO(3) matrix and gates.
 
       Either this parameter, or `basis_gates` and `depth` can be specified.
 

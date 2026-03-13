@@ -96,11 +96,11 @@ The optimization level affects which implementations are used for a given stage 
 
 ### Reproducibility of the preset pipelines
 
-Quantum compilation often involves solving problems that are knownn to be non-polynomial in complexity, and so are intractable to globally optimize. In these cases, stochastic and heuristic algorithms are often more appropriate. This leads to problems of reproducibility, however.
+Quantum compilation often involves solving problems that are known to be non-polynomial in complexity, and so are intractable to globally optimize. In these cases, stochastic and heuristic algorithms are often more appropriate. This leads to problems of reproducibility, however.
 
 The preset pass managers almost always include stochastic, heuristic-based passes. If you need to ensure reproducibility of a compilation, pass a known integer to the `seed_transpiler` argument of the generator functions.
 
-All built-in plugins to Qiskit are required to produce their analyses and modify the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") in deterministic ways if they randomization (if any) is seeded, so that a compilation can be repeated later. There are limits on this:
+All built-in plugins to Qiskit are required to produce their analyses and modify the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") in deterministic ways if their randomization (if any) is seeded, so that a compilation can be repeated later. There are limits on this:
 
 *   All built-in passes with stochastic components must provide a way to seed the randomization, and if seeded, they must respect the rules of deterministic output.
 *   All built-in passes without stochastic components must respect the rules of deterministic output for identical input. It is permissible to keep a cache for efficiency, but given the same set of inputs, the pass’s returns must be the same if the pass is called multiple times, unless something outside the pass’s control mutates one of its inputs in-place (for example, the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") uses the [`SessionEquivalenceLibrary`](circuit#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary") by default in the preset pass managers, and it is not a bug to get different results if new entries are added to the equivalence library). An “output” is anything the pass writes out for further consumption; this can be the explicit `return` value from the pass, but also includes properties intended for later consumption in the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet").
@@ -638,7 +638,7 @@ Some tips for ensuring this include:
 
     In Rust, use `indexmap` and its structs `IndexMap` and `IndexSet` as replacements for `HashMap` and `HashSet`, respectively; they have similar deterministic-iteration properties to Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict).
 
-*   If your pass as stochastic components, ensure that you accept a `seed` input, and make your output pure if this is supplied as an integer. Typically this means storing the seed, and instantiating a new pRNG from this seed at the start of each call to `BasePass.run()`.
+*   If your pass has stochastic components, ensure that you accept a `seed` input, and make your output pure if this is supplied as an integer. Typically this means storing the seed, and instantiating a new pRNG from this seed at the start of each call to `BasePass.run()`.
 
 *   If using threaded parallelism, take care that your output is not dependent on the order that threads do their work or return their partial results. For example, if distributing work across a thread pool and collecting the results at the end, ensure that the output is arranged in a corresponding order to the input. In Python, functions like `concurrent.futures.ThreadPoolExecutor.map()` ensure this. Similarly, in Rust, `rayon`’s parallel iterators will collect their output in the same order as the input.
 
