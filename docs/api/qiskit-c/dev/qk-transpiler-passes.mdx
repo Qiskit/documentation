@@ -14,142 +14,9 @@ Most circuits must undergo a series of transformations that make them compatible
 
 In Qiskit, the transpiler is built up by executing as a series of passes that each perform a singular task to analyze or transform a quantum circuit. The Python [`transpiler`](/docs/api/qiskit/dev/transpiler#module-qiskit.transpiler "qiskit.transpiler") documentation contains a more detailed explanation of the transpilation process.
 
-The Qiskit C API provides functions that execute transpiler passes in a standalone mode, where you provide the pass with a `QkCircuit` and then any necessary configuration for the execution of the pass, typically at least a `QkTarget`. These functions return either a new `QkCircuit` pointer or the analysis results of running the pass. While this can be used to create a custom workflow, the functions following the naming convention `qk_transpiler_pass_standalone_*` will have higher overhead as internally they’re converting from the quantum circuit to the dag circuit IR on the input, and if the function returns a new circuit it will convert back before returning. These standalone functions are intended to execute single passes in isolation rather than building a custom transpilation pipeline.
+The Qiskit C API provides transpiler pass functions in two forms: ones that operate on a `QkDag` and another set that operate on a `QkCircuit`. The DAG‑based functions, which follow the naming convention `qk_transpiler_pass_*`, accept a `QkDag` along with a `QkTarget` and any pass‑specific configuration parameters. These functions are the recommended choice when chaining multiple passes, e.g. when creating a custom transpilation pipeline, because they operate directly on the DAG object and allow it to be passed efficiently from one pass to the next within a transpilation session. By contrast, the circuit‑based functions, following the `qk_transpiler_pass_standalone_*` naming convention, operate on a `QkCircuit` and are intended for executing individual passes in isolation. While they can also be used to build custom workflows, each call incurs additional overhead because the input circuit must be converted to a DAG internally and, if a transformed circuit is returned, the resulting DAG must then be converted back to a circuit.
 
-## Functions
-
-### qk\_transpiler\_pass\_standalone\_basis\_translator
-
-<Function id="qk_transpiler_pass_standalone_basis_translator" signature="void qk_transpiler_pass_standalone_basis_translator(QkCircuit *circuit, const QkTarget *target, size_t min_qubits)">
-  Run the BasisTranslator transpiler pass on a circuit.
-
-  The BasisTranslator transpiler pass translates gates to a target basis by searching for a set of translations from the standard EquivalenceLibrary.
-
-  <span id="group__QkTranspilerPasses_1autotoc_md229" />
-
-  #### Example
-
-  ```c
-  #include <qiskit.h>
-
-  QkCircuit *circuit = qk_circuit_new(3, 0);
-  qk_circuit_gate(circuit, QkGate_CCX, (uint32_t[3]){0, 1, 2}, NULL);
-
-  // Create a Target with global properties.
-  QkTarget *target = qk_target_new(3);
-  qk_target_add_instruction(target, qk_target_entry_new(QkGate_H));
-  qk_target_add_instruction(target, qk_target_entry_new(QkGate_T));
-  qk_target_add_instruction(target, qk_target_entry_new(QkGate_Tdg));
-  qk_target_add_instruction(target, qk_target_entry_new(QkGate_CX));
-
-  // Run pass
-  qk_transpiler_pass_standalone_basis_translator(circuit, target, 0);
-
-  // Free the circuit and target pointers once you're done
-  qk_circuit_free(circuit);
-  qk_target_free(target);
-  ```
-
-  <span id="group__QkTranspilerPasses_1autotoc_md230" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md230" />
-
-  Behavior is undefined if `circuit` and/or `target` are not valid, non-null pointers to a `QkCircuit` or `QkTarget`.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the circuit to run BasisTranslator on. The circuit will be mutated in-place, unless the circuit is already in the target basis, in which case the circuit remains unchanged.
-  *   **target** – The target where we will obtain basis gates from.
-  *   **min\_qubits** – The minimum number of qubits for operations in the input circuit to translate.
-</Function>
-
-### qk\_transpiler\_pass\_standalone\_commutative\_cancellation
-
-<Function id="qk_transpiler_pass_standalone_commutative_cancellation" signature="QkExitCode qk_transpiler_pass_standalone_commutative_cancellation(QkCircuit *circuit, const QkTarget *target, double approximation_degree)">
-  Run the CommutativeCancellation transpiler pass on a circuit.
-
-  This pass cancels the redundant (self-adjoint) gates through commutation relations.
-
-  <span id="group__QkTranspilerPasses_1autotoc_md231" />
-
-  #### Example
-
-  ```c
-  QkCircuit *qc = qk_circuit_new(4, 0);
-  uint32_t cx_qargs[2] = {0, 1};
-  qk_circuit_gate(qc, QkGate_CX, cx_qargs, NULL);
-  qk_circuit_gate(qc, QkGate_Z, (uint32_t[]){0}, NULL);
-  qk_circuit_gate(qc, QkGate_CX, cx_qargs, NULL);
-  qk_transpiler_pass_standalone_commutative_cancellation(qc, NULL, 1.0);
-  ```
-
-  <span id="group__QkTranspilerPasses_1autotoc_md232" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md232" />
-
-  Behavior is undefined if `circuit` or `target` is not a valid, `QkCircuit` and `QkTarget`. `QkCircuit` is not expected to be null and behavior is undefined if it is.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the circuit to run CommutativeCancellation on. This circuit pointer to will be updated with the modified circuit if the pass is able to remove any gates.
-  *   **target** – This pass will attempt to accumulate all Z rotations into either an RZ, P or U1 gate, depending on which is already used in the circuit. If none is present in the circuit, this (optional) target argument is used as fallback to decide which gate to use. If none of RZ, P or U1 are in the circuit or the target, single-qubit Z rotations will not be optimized.
-  *   **approximation\_degree** – The approximation degree used when analyzing commutations. Must be within `(0, 1]`.
-
-  **Returns**
-
-  The integer return code where 0 represents no error and 1 is used to indicate an error was encountered during the execution of the pass.
-</Function>
-
-### qk\_transpiler\_pass\_standalone\_consolidate\_blocks
-
-<Function id="qk_transpiler_pass_standalone_consolidate_blocks" signature="void qk_transpiler_pass_standalone_consolidate_blocks(QkCircuit *circuit, const QkTarget *target, double approximation_degree, bool force_consolidate)">
-  Run the ConsolidateBlocks pass on a circuit.
-
-  ConsolidateBlocks is a transpiler pass that consolidates consecutive blocks of gates operating on the same qubits into a Unitary gate, to later on be resynthesized, which leads to a more optimal subcircuit.
-
-  <span id="group__QkTranspilerPasses_1autotoc_md233" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md233" />
-
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `target` is not a valid pointer to a `QkTarget`.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the circuit to run ConsolidateBlocks on.
-  *   **target** – A pointer to the target to run ConsolidateBlocks on.
-  *   **approximation\_degree** – A float between `[0.0, 1.0]` or a `NaN` which defaults to `1.0`. Lower approximates more.
-  *   **force\_consolidate** – Force block consolidation.
-</Function>
-
-### qk\_transpiler\_pass\_standalone\_elide\_permutations
-
-<Function id="qk_transpiler_pass_standalone_elide_permutations" signature="QkTranspileLayout *qk_transpiler_pass_standalone_elide_permutations(QkCircuit *circuit)">
-  Run the ElidePermutations transpiler pass on a circuit.
-
-  Refer to the `qk_transpiler_pass_elide_permutations` function for more details about the pass.
-
-  <span id="group__QkTranspilerPasses_1autotoc_md234" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md234" />
-
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the circuit to run ElidePermutations on. If there are changes made the object pointed to is changed in place. In case of gates being elided the original circuit’s allocations are freed by this function.
-
-  **Returns**
-
-  the layout object containing the output permutation induced by the elided gates in the circuit. If no elisions are performed this will be a null pointer and the input circuit is unchanged. The caller is responsible for freeing the returned layout by calling `qk_transpile_layout_free`.
-</Function>
+## DAG-based Functions
 
 ### qk\_transpiler\_pass\_elide\_permutations
 
@@ -160,7 +27,7 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
 
   This pass is intended to be run before a layout (mapping virtual qubits to physical qubits) is set during the transpilation pipeline. This pass iterates over the DAG and when a Swap gate is encountered it permutes the virtual qubits in the DAG and removes the swap gate. This will effectively remove any swap gates in the DAG prior to running layout. This optimization is not valid after a layout has been set and should not be run in this case.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md235" />
+  <span id="group__QkTranspilerPasses_1autotoc_md248" />
 
   #### Example
 
@@ -182,11 +49,11 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md236" />
+  <span id="group__QkTranspilerPasses_1autotoc_md249" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md236" />
+  <span id="group__QkTranspilerPasses_1autotoc_md249" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDAG`.
 
@@ -199,52 +66,6 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
   the layout object containing the output permutation induced by the elided gates in the DAG. If no elisions are performed this will be a null pointer and the input DAG is unchanged. The caller is responsible for freeing the returned layout by calling `qk_transpile_layout_free`.
 </Function>
 
-### qk\_transpiler\_pass\_standalone\_check\_gate\_direction
-
-<Function id="qk_transpiler_pass_standalone_check_gate_direction" signature="bool qk_transpiler_pass_standalone_check_gate_direction(const QkCircuit *circuit, const QkTarget *target)">
-  Run the `CheckGateDirection` pass on a circuit.
-
-  Refer to the `qk_transpiler_pass_check_gate_direction` function for more details about the pass.
-
-  <span id="group__QkTranspilerPasses_1autotoc_md237" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md237" />
-
-  Behavior is undefined if `circuit` or `target` are not valid, non-null pointers to `QkCircuit` and `QkTarget` objects, respectively.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the circuit on which to run the pass.
-  *   **target** – A pointer to the target used for checking gate directions.
-
-  **Returns**
-
-  True iff all two-qubit gate directions comply with target constraints.
-</Function>
-
-### qk\_transpiler\_pass\_standalone\_gate\_direction
-
-<Function id="qk_transpiler_pass_standalone_gate_direction" signature="void qk_transpiler_pass_standalone_gate_direction(QkCircuit *circuit, const QkTarget *target)">
-  Run the `GateDirection` pass on a circuit.
-
-  Refer to the `qk_transpiler_pass_gate_direction` function for more details about the pass.
-
-  <span id="group__QkTranspilerPasses_1autotoc_md238" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md238" />
-
-  Behavior is undefined if `circuit` or `target` are not valid, non-null pointers to `QkCircuit` and `QkTarget` objects, respectively.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the circuit to modify in place.
-  *   **target** – A pointer to the target used for gate directions.
-</Function>
-
 ### qk\_transpiler\_pass\_check\_gate\_direction
 
 <Function id="qk_transpiler_pass_check_gate_direction" signature="bool qk_transpiler_pass_check_gate_direction(const QkDag *dag, const QkTarget *target)">
@@ -252,7 +73,7 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
 
   The pass checks if the directions of two-qubit gates comply with the gate directions specified in a given target.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md239" />
+  <span id="group__QkTranspilerPasses_1autotoc_md252" />
 
   #### Example
 
@@ -275,11 +96,11 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
   qk_target_free(target);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md240" />
+  <span id="group__QkTranspilerPasses_1autotoc_md253" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md240" />
+  <span id="group__QkTranspilerPasses_1autotoc_md253" />
 
   Behavior is undefined if `dag` or `target` are not valid, non-null pointers to `QkDag` and `QkTarget` objects, respectively.
 
@@ -300,7 +121,7 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
 
   The GateDirection pass modifies asymmetric gates to match the hardware coupling directions. This pass supports replacements for the `cx`, `cz`, `ecr`, `swap`, `rzx`, `rxx`, `ryy` and `rzz` gates, using predefined identities.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md241" />
+  <span id="group__QkTranspilerPasses_1autotoc_md254" />
 
   #### Example
 
@@ -324,11 +145,11 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
   qk_target_free(target);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md242" />
+  <span id="group__QkTranspilerPasses_1autotoc_md255" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md242" />
+  <span id="group__QkTranspilerPasses_1autotoc_md255" />
 
   Behavior is undefined if `dag` or `target` are not valid, non-null pointers to `QkDag` and `QkTarget` objects, respectively.
 
@@ -336,107 +157,6 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
 
   *   **dag** – A pointer to the DAG Circuit on which to run the GateDirection pass. The DAG will be modified in place by the pass.
   *   **target** – A pointer to the target used for checking gate directions.
-</Function>
-
-### qk\_transpiler\_pass\_standalone\_inverse\_cancellation
-
-<Function id="qk_transpiler_pass_standalone_inverse_cancellation" signature="void qk_transpiler_pass_standalone_inverse_cancellation(QkCircuit *circuit)">
-  Run the InverseCancellation transpiler pass on a circuit.
-
-  Cancels pairs of consecutive gates that are inverses of each other. The cancelled gates consist of pairs of self-inverse gates:
-
-  *   QkGate\_H
-  *   QkGate\_X
-  *   QkGate\_Y
-  *   QkGate\_Z
-  *   QkGate\_CH
-  *   QkGate\_CX
-  *   QkGate\_CY
-  *   QkGate\_CZ
-  *   QkGate\_ECR
-  *   QkGate\_Swap
-  *   QkGate\_CCX
-  *   QkGate\_CCZ
-  *   QkGate\_CSwap
-  *   QkGate\_RCCX
-  *   QkGate\_C3X
-
-  and pairs of inverse gates:
-
-  *   (QkGate\_T, QkGate\_Tdg)
-  *   (QkGate\_S, QkGate\_Sdg)
-  *   (QkGate\_SX, QkGate\_SXdg)
-  *   (QkGate\_CS, QkGate\_CSdg)
-
-  <span id="group__QkTranspilerPasses_1autotoc_md243" />
-
-  #### Example
-
-  ```c
-  QkCircuit *qc = qk_circuit_new(2, 2);
-  uint32_t qargs[1] = {0};
-  qk_circuit_gate(qc, QkGate_X, qargs, NULL);
-  qk_circuit_gate(qc, QkGate_H, qargs, NULL);
-  qk_circuit_gate(qc, QkGate_H, qargs, NULL);
-  qk_circuit_gate(qc, QkGate_Y, qargs, NULL);
-  qk_transpiler_pass_standalone_inverse_cancellation(qc);
-  ```
-
-  <span id="group__QkTranspilerPasses_1autotoc_md244" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md244" />
-
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the circuit to run InverseCancellation on. If the pass is able to remove any gates, the original circuit will be replaced by the circuit produced by this pass.
-</Function>
-
-### qk\_transpiler\_standalone\_optimize\_1q\_sequences
-
-<Function id="qk_transpiler_standalone_optimize_1q_sequences" signature="void qk_transpiler_standalone_optimize_1q_sequences(QkCircuit *circuit, const QkTarget *target)">
-  Runs the Optimize1qGatesDecomposition pass in standalone mode on a circuit.
-
-  <Admonition title="Deprecated since version 2.4.0" type="danger">
-    use [`qk_transpiler_pass_standalone_optimize_1q_sequences()`](#c.qk_transpiler_pass_standalone_optimize_1q_sequences "qk_transpiler_pass_standalone_optimize_1q_sequences") instead.
-  </Admonition>
-
-  <span id="group__QkTranspilerPasses_1autotoc_md245" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md245" />
-
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `target` is not a valid pointer to a `QkTarget`.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the `QkCircuit` object to transform.
-  *   **target** – A pointer to the `QkTarget` object or a null pointer. In the case a null pointer is provided and gate errors are unknown the pass will choose the sequence with the least amount of gates, and will support all basis gates on its Euler basis set.
-</Function>
-
-### qk\_transpiler\_pass\_standalone\_optimize\_1q\_sequences
-
-<Function id="qk_transpiler_pass_standalone_optimize_1q_sequences" signature="void qk_transpiler_pass_standalone_optimize_1q_sequences(QkCircuit *circuit, const QkTarget *target)">
-  Runs the Optimize1qGatesDecomposition pass in standalone mode on a circuit.
-
-  Refer to the `qk_transpiler_pass_optimize_1q_sequences` function for more details about the pass.
-
-  <span id="group__QkTranspilerPasses_1autotoc_md246" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md246" />
-
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `target` is not a valid pointer to a `QkTarget`.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the `QkCircuit` object to transform.
-  *   **target** – A pointer to the `QkTarget` object or a null pointer. In the case a null pointer is provided and gate errors are unknown the pass will choose the sequence with the least amount of gates, and will support all basis gates on its Euler basis set.
 </Function>
 
 ### qk\_transpiler\_pass\_optimize\_1q\_sequences
@@ -454,7 +174,7 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
 
   The error is the combined multiplication of the errors of individual gates on the qubit it operates on.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md247" />
+  <span id="group__QkTranspilerPasses_1autotoc_md260" />
 
   #### Example
 
@@ -486,11 +206,11 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
   qk_quantum_register_free(qr);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md248" />
+  <span id="group__QkTranspilerPasses_1autotoc_md261" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md248" />
+  <span id="group__QkTranspilerPasses_1autotoc_md261" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `target` is not a valid pointer to a `QkTarget`.
 
@@ -500,26 +220,6 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
   *   **target** – A pointer to the `QkTarget` object or a null pointer. In the case a null pointer is provided and gate errors are unknown the pass will choose the sequence with the least amount of gates, and will support all basis gates on its Euler basis set.
 </Function>
 
-### qk\_transpiler\_pass\_standalone\_remove\_diagonal\_gates\_before\_measure
-
-<Function id="qk_transpiler_pass_standalone_remove_diagonal_gates_before_measure" signature="void qk_transpiler_pass_standalone_remove_diagonal_gates_before_measure(QkCircuit *circuit)">
-  Run the `RemoveDiagonalGatesBeforeMeasure` pass on a circuit.
-
-  Refer to the `qk_transpiler_pass_remove_diagonal_gates_before_measure` function for more details about the pass.
-
-  <span id="group__QkTranspilerPasses_1autotoc_md249" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md249" />
-
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the circuit to run this pass on.
-</Function>
-
 ### qk\_transpiler\_pass\_remove\_diagonal\_gates\_before\_measure
 
 <Function id="qk_transpiler_pass_remove_diagonal_gates_before_measure" signature="void qk_transpiler_pass_remove_diagonal_gates_before_measure(QkDag *dag)">
@@ -527,7 +227,7 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
 
   Transpiler pass to remove diagonal gates (like RZ, T, Z, etc) before a measurement. Including diagonal 2Q gates.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md250" />
+  <span id="group__QkTranspilerPasses_1autotoc_md263" />
 
   #### Example
 
@@ -546,39 +246,17 @@ The Qiskit C API provides functions that execute transpiler passes in a standalo
   qk_classical_register_free(cr);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md251" />
+  <span id="group__QkTranspilerPasses_1autotoc_md264" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md251" />
+  <span id="group__QkTranspilerPasses_1autotoc_md264" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
   **Parameters**
 
   *   **dag** – A pointer to the DAG to run this pass on. The DAG will be modified in place by the pass.
-</Function>
-
-### qk\_transpiler\_pass\_standalone\_remove\_identity\_equivalent
-
-<Function id="qk_transpiler_pass_standalone_remove_identity_equivalent" signature="void qk_transpiler_pass_standalone_remove_identity_equivalent(QkCircuit *circuit, const QkTarget *target, double approximation_degree)">
-  Run the RemoveIdentityEquivalent transpiler pass on a circuit.
-
-  Refer to the `qk_transpiler_pass_remove_identity_equivalent` function for more details about the pass.
-
-  <span id="group__QkTranspilerPasses_1autotoc_md252" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md252" />
-
-  Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`.
-
-  **Parameters**
-
-  *   **circuit** – A pointer to the circuit to run RemoveIdentityEquivalent on. This circuit pointed to will be updated with the modified circuit if the pass is able to remove any gates.
-  *   **target** – The target for the RemoveIdentityEquivalent pass. If `approximation_degree` is set to `NAN` the tolerance for determining whether an operation is equivalent to identity will be set to the reported error rate in the target. Otherwise the `target` is not used as the tolerance is independent of the target.
-  *   **approximation\_degree** – The degree to approximate for the equivalence check. This can be a floating point value between 0 and 1, or `NAN`. If the value is 1 this does not approximate above the floating point precision. For a value \< 1 this is used as a scaling factor for the cutoff fidelity. If the value is `NAN` this approximates up to the fidelity for the gate specified in `target`.
 </Function>
 
 ### qk\_transpiler\_pass\_remove\_identity\_equivalent
@@ -599,7 +277,9 @@ $$
 
   where $d = 2^n$ is the dimension of the gate for $n$ qubits.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md253" />
+  This function is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the RAYON\_NUM\_THREADS environment variable. For example, setting RAYON\_NUM\_THREADS=4 would limit the thread pool to 4 threads.
+
+  <span id="group__QkTranspilerPasses_1autotoc_md266" />
 
   #### Example
 
@@ -632,17 +312,367 @@ $$
   qk_target_free(target);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md254" />
+  <span id="group__QkTranspilerPasses_1autotoc_md267" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md254" />
+  <span id="group__QkTranspilerPasses_1autotoc_md267" />
 
   Behavior is undefined if `dag` or `target` is not a valid, non-null pointer to a `QkDag` and `QkTarget`.
 
   **Parameters**
 
   *   **dag** – A pointer to the DAG to run RemoveIdentityEquivalent on. This DAG pointed to will be updated with the modified DAG if the pass is able to remove any gates.
+  *   **target** – The target for the RemoveIdentityEquivalent pass. If `approximation_degree` is set to `NAN` the tolerance for determining whether an operation is equivalent to identity will be set to the reported error rate in the target. Otherwise the `target` is not used as the tolerance is independent of the target.
+  *   **approximation\_degree** – The degree to approximate for the equivalence check. This can be a floating point value between 0 and 1, or `NAN`. If the value is 1 this does not approximate above the floating point precision. For a value \< 1 this is used as a scaling factor for the cutoff fidelity. If the value is `NAN` this approximates up to the fidelity for the gate specified in `target`.
+</Function>
+
+### qk\_transpiler\_pass\_split\_2q\_unitaries
+
+<Function id="qk_transpiler_pass_split_2q_unitaries" signature="QkTranspileLayout *qk_transpiler_pass_split_2q_unitaries(QkDag *dag, double requested_fidelity, bool split_swaps)">
+  Run the Split2QUnitaries transpiler pass on a DAG Circuit
+
+  <span id="group__QkTranspilerPasses_1autotoc_md271" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPasses_1autotoc_md271" />
+
+  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDAG`.
+
+  **Parameters**
+
+  *   **dag** – A mutable pointer to the DAG Circuit to run Split2QUnitaries on. This will be replaced with the new DAG if any gates are optimized.
+  *   **requested\_fidelity** – Allowed tolerance for splitting two-qubit unitaries and gate decompositions.
+  *   **split\_swaps** – Whether to attempt to split swap gates, resulting in a permutation of the qubits.
+
+  **Returns**
+
+  If any swap equivalent unitaries are split this function returns a pointer to a `TranspileLayout` that contains the permutation induced by this DAG optimization. If no swap equivalent unitaries are split this will be a null pointer.
+</Function>
+
+## Circuit-based Functions
+
+### qk\_transpiler\_pass\_standalone\_basis\_translator
+
+<Function id="qk_transpiler_pass_standalone_basis_translator" signature="void qk_transpiler_pass_standalone_basis_translator(QkCircuit *circuit, const QkTarget *target, size_t min_qubits)">
+  Run the BasisTranslator transpiler pass on a circuit.
+
+  The BasisTranslator transpiler pass translates gates to a target basis by searching for a set of translations from the standard EquivalenceLibrary.
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md242" />
+
+  #### Example
+
+  ```c
+  #include <qiskit.h>
+
+  QkCircuit *circuit = qk_circuit_new(3, 0);
+  qk_circuit_gate(circuit, QkGate_CCX, (uint32_t[3]){0, 1, 2}, NULL);
+
+  // Create a Target with global properties.
+  QkTarget *target = qk_target_new(3);
+  qk_target_add_instruction(target, qk_target_entry_new(QkGate_H));
+  qk_target_add_instruction(target, qk_target_entry_new(QkGate_T));
+  qk_target_add_instruction(target, qk_target_entry_new(QkGate_Tdg));
+  qk_target_add_instruction(target, qk_target_entry_new(QkGate_CX));
+
+  // Run pass
+  qk_transpiler_pass_standalone_basis_translator(circuit, target, 0);
+
+  // Free the circuit and target pointers once you're done
+  qk_circuit_free(circuit);
+  qk_target_free(target);
+  ```
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md243" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md243" />
+
+  Behavior is undefined if `circuit` and/or `target` are not valid, non-null pointers to a `QkCircuit` or `QkTarget`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to run BasisTranslator on. The circuit will be mutated in-place, unless the circuit is already in the target basis, in which case the circuit remains unchanged.
+  *   **target** – The target where we will obtain basis gates from.
+  *   **min\_qubits** – The minimum number of qubits for operations in the input circuit to translate.
+</Function>
+
+### qk\_transpiler\_pass\_standalone\_commutative\_cancellation
+
+<Function id="qk_transpiler_pass_standalone_commutative_cancellation" signature="QkExitCode qk_transpiler_pass_standalone_commutative_cancellation(QkCircuit *circuit, const QkTarget *target, double approximation_degree)">
+  Run the CommutativeCancellation transpiler pass on a circuit.
+
+  This pass cancels the redundant (self-adjoint) gates through commutation relations.
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md244" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(4, 0);
+  uint32_t cx_qargs[2] = {0, 1};
+  qk_circuit_gate(qc, QkGate_CX, cx_qargs, NULL);
+  qk_circuit_gate(qc, QkGate_Z, (uint32_t[]){0}, NULL);
+  qk_circuit_gate(qc, QkGate_CX, cx_qargs, NULL);
+  qk_transpiler_pass_standalone_commutative_cancellation(qc, NULL, 1.0);
+  ```
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md245" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md245" />
+
+  Behavior is undefined if `circuit` or `target` is not a valid, `QkCircuit` and `QkTarget`. `QkCircuit` is not expected to be null and behavior is undefined if it is.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to run CommutativeCancellation on. This circuit pointer to will be updated with the modified circuit if the pass is able to remove any gates.
+  *   **target** – This pass will attempt to accumulate all Z rotations into either an RZ, P or U1 gate, depending on which is already used in the circuit. If none is present in the circuit, this (optional) target argument is used as fallback to decide which gate to use. If none of RZ, P or U1 are in the circuit or the target, single-qubit Z rotations will not be optimized.
+  *   **approximation\_degree** – The approximation degree used when analyzing commutations. Must be within `(0, 1]`.
+
+  **Returns**
+
+  The integer return code where 0 represents no error and 1 is used to indicate an error was encountered during the execution of the pass.
+</Function>
+
+### qk\_transpiler\_pass\_standalone\_consolidate\_blocks
+
+<Function id="qk_transpiler_pass_standalone_consolidate_blocks" signature="void qk_transpiler_pass_standalone_consolidate_blocks(QkCircuit *circuit, const QkTarget *target, double approximation_degree, bool force_consolidate)">
+  Run the ConsolidateBlocks pass on a circuit.
+
+  ConsolidateBlocks is a transpiler pass that consolidates consecutive blocks of gates operating on the same qubits into a Unitary gate, to later on be resynthesized, which leads to a more optimal subcircuit.
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md246" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md246" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `target` is not a valid pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to run ConsolidateBlocks on.
+  *   **target** – A pointer to the target to run ConsolidateBlocks on.
+  *   **approximation\_degree** – A float between `[0.0, 1.0]` or a `NaN` which defaults to `1.0`. Lower approximates more.
+  *   **force\_consolidate** – Force block consolidation.
+</Function>
+
+### qk\_transpiler\_pass\_standalone\_elide\_permutations
+
+<Function id="qk_transpiler_pass_standalone_elide_permutations" signature="QkTranspileLayout *qk_transpiler_pass_standalone_elide_permutations(QkCircuit *circuit)">
+  Run the ElidePermutations transpiler pass on a circuit.
+
+  Refer to the `qk_transpiler_pass_elide_permutations` function for more details about the pass.
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md247" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md247" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to run ElidePermutations on. If there are changes made the object pointed to is changed in place. In case of gates being elided the original circuit’s allocations are freed by this function.
+
+  **Returns**
+
+  the layout object containing the output permutation induced by the elided gates in the circuit. If no elisions are performed this will be a null pointer and the input circuit is unchanged. The caller is responsible for freeing the returned layout by calling `qk_transpile_layout_free`.
+</Function>
+
+### qk\_transpiler\_pass\_standalone\_check\_gate\_direction
+
+<Function id="qk_transpiler_pass_standalone_check_gate_direction" signature="bool qk_transpiler_pass_standalone_check_gate_direction(const QkCircuit *circuit, const QkTarget *target)">
+  Run the `CheckGateDirection` pass on a circuit.
+
+  Refer to the `qk_transpiler_pass_check_gate_direction` function for more details about the pass.
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md250" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md250" />
+
+  Behavior is undefined if `circuit` or `target` are not valid, non-null pointers to `QkCircuit` and `QkTarget` objects, respectively.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit on which to run the pass.
+  *   **target** – A pointer to the target used for checking gate directions.
+
+  **Returns**
+
+  True iff all two-qubit gate directions comply with target constraints.
+</Function>
+
+### qk\_transpiler\_pass\_standalone\_gate\_direction
+
+<Function id="qk_transpiler_pass_standalone_gate_direction" signature="void qk_transpiler_pass_standalone_gate_direction(QkCircuit *circuit, const QkTarget *target)">
+  Run the `GateDirection` pass on a circuit.
+
+  Refer to the `qk_transpiler_pass_gate_direction` function for more details about the pass.
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md251" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md251" />
+
+  Behavior is undefined if `circuit` or `target` are not valid, non-null pointers to `QkCircuit` and `QkTarget` objects, respectively.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to modify in place.
+  *   **target** – A pointer to the target used for gate directions.
+</Function>
+
+### qk\_transpiler\_pass\_standalone\_inverse\_cancellation
+
+<Function id="qk_transpiler_pass_standalone_inverse_cancellation" signature="void qk_transpiler_pass_standalone_inverse_cancellation(QkCircuit *circuit)">
+  Run the InverseCancellation transpiler pass on a circuit.
+
+  Cancels pairs of consecutive gates that are inverses of each other. The cancelled gates consist of pairs of self-inverse gates:
+
+  *   QkGate\_H
+  *   QkGate\_X
+  *   QkGate\_Y
+  *   QkGate\_Z
+  *   QkGate\_CH
+  *   QkGate\_CX
+  *   QkGate\_CY
+  *   QkGate\_CZ
+  *   QkGate\_ECR
+  *   QkGate\_Swap
+  *   QkGate\_CCX
+  *   QkGate\_CCZ
+  *   QkGate\_CSwap
+  *   QkGate\_RCCX
+  *   QkGate\_C3X
+
+  and pairs of inverse gates:
+
+  *   (QkGate\_T, QkGate\_Tdg)
+  *   (QkGate\_S, QkGate\_Sdg)
+  *   (QkGate\_SX, QkGate\_SXdg)
+  *   (QkGate\_CS, QkGate\_CSdg)
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md256" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(2, 2);
+  uint32_t qargs[1] = {0};
+  qk_circuit_gate(qc, QkGate_X, qargs, NULL);
+  qk_circuit_gate(qc, QkGate_H, qargs, NULL);
+  qk_circuit_gate(qc, QkGate_H, qargs, NULL);
+  qk_circuit_gate(qc, QkGate_Y, qargs, NULL);
+  qk_transpiler_pass_standalone_inverse_cancellation(qc);
+  ```
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md257" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md257" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to run InverseCancellation on. If the pass is able to remove any gates, the original circuit will be replaced by the circuit produced by this pass.
+</Function>
+
+### qk\_transpiler\_standalone\_optimize\_1q\_sequences
+
+<Function id="qk_transpiler_standalone_optimize_1q_sequences" signature="void qk_transpiler_standalone_optimize_1q_sequences(QkCircuit *circuit, const QkTarget *target)">
+  Runs the Optimize1qGatesDecomposition pass in standalone mode on a circuit.
+
+  <Admonition title="Deprecated since version 2.4.0" type="danger">
+    use [`qk_transpiler_pass_standalone_optimize_1q_sequences()`](#c.qk_transpiler_pass_standalone_optimize_1q_sequences "qk_transpiler_pass_standalone_optimize_1q_sequences") instead.
+  </Admonition>
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md258" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md258" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `target` is not a valid pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the `QkCircuit` object to transform.
+  *   **target** – A pointer to the `QkTarget` object or a null pointer. In the case a null pointer is provided and gate errors are unknown the pass will choose the sequence with the least amount of gates, and will support all basis gates on its Euler basis set.
+</Function>
+
+### qk\_transpiler\_pass\_standalone\_optimize\_1q\_sequences
+
+<Function id="qk_transpiler_pass_standalone_optimize_1q_sequences" signature="void qk_transpiler_pass_standalone_optimize_1q_sequences(QkCircuit *circuit, const QkTarget *target)">
+  Runs the Optimize1qGatesDecomposition pass in standalone mode on a circuit.
+
+  Refer to the `qk_transpiler_pass_optimize_1q_sequences` function for more details about the pass.
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md259" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md259" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `target` is not a valid pointer to a `QkTarget`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the `QkCircuit` object to transform.
+  *   **target** – A pointer to the `QkTarget` object or a null pointer. In the case a null pointer is provided and gate errors are unknown the pass will choose the sequence with the least amount of gates, and will support all basis gates on its Euler basis set.
+</Function>
+
+### qk\_transpiler\_pass\_standalone\_remove\_diagonal\_gates\_before\_measure
+
+<Function id="qk_transpiler_pass_standalone_remove_diagonal_gates_before_measure" signature="void qk_transpiler_pass_standalone_remove_diagonal_gates_before_measure(QkCircuit *circuit)">
+  Run the `RemoveDiagonalGatesBeforeMeasure` pass on a circuit.
+
+  Refer to the `qk_transpiler_pass_remove_diagonal_gates_before_measure` function for more details about the pass.
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md262" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md262" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to run this pass on.
+</Function>
+
+### qk\_transpiler\_pass\_standalone\_remove\_identity\_equivalent
+
+<Function id="qk_transpiler_pass_standalone_remove_identity_equivalent" signature="void qk_transpiler_pass_standalone_remove_identity_equivalent(QkCircuit *circuit, const QkTarget *target, double approximation_degree)">
+  Run the RemoveIdentityEquivalent transpiler pass on a circuit.
+
+  Refer to the `qk_transpiler_pass_remove_identity_equivalent` function for more details about the pass.
+
+  This function is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the RAYON\_NUM\_THREADS environment variable. For example, setting RAYON\_NUM\_THREADS=4 would limit the thread pool to 4 threads.
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md265" />
+
+  #### Safety
+
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md265" />
+
+  Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to run RemoveIdentityEquivalent on. This circuit pointed to will be updated with the modified circuit if the pass is able to remove any gates.
   *   **target** – The target for the RemoveIdentityEquivalent pass. If `approximation_degree` is set to `NAN` the tolerance for determining whether an operation is equivalent to identity will be set to the reported error rate in the target. Otherwise the `target` is not used as the tolerance is independent of the target.
   *   **approximation\_degree** – The degree to approximate for the equivalence check. This can be a floating point value between 0 and 1, or `NAN`. If the value is 1 this does not approximate above the floating point precision. For a value \< 1 this is used as a scaling factor for the cutoff fidelity. If the value is `NAN` this approximates up to the fidelity for the gate specified in `target`.
 </Function>
@@ -662,11 +692,11 @@ $$
 
   This function is multithreaded and will launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md255" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md268" />
 
   #### References
 
-  <span id="group__QkTranspilerPasses_1autotoc_md255" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md268" />
 
   \[1] Henry Zou and Matthew Treinish and Kevin Hartman and Alexander Ivrii and Jake Lishman. “LightSABRE: A Lightweight and Enhanced SABRE Algorithm” [arXiv:2409.08368](https://doi.org/10.48550/arXiv.2409.08368)
 
@@ -676,11 +706,11 @@ $$
 
   [arXiv:1809.02573](https://arxiv.org/pdf/1809.02573.pdf)
 
-  <span id="group__QkTranspilerPasses_1autotoc_md256" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md269" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md256" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md269" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`.
 
@@ -702,11 +732,11 @@ $$
 
   Refer to the `qk_transpiler_pass_split_2q_unitaries` function for more details about the pass.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md257" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md270" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md257" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md270" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -721,30 +751,6 @@ $$
   If any swap equivalent unitaries are split this function returns a pointer to a `TranspileLayout` that contains the permutation induced by this circuit optimization. If no swap equivalent unitaries are split this will be a null pointer.
 </Function>
 
-### qk\_transpiler\_pass\_split\_2q\_unitaries
-
-<Function id="qk_transpiler_pass_split_2q_unitaries" signature="QkTranspileLayout *qk_transpiler_pass_split_2q_unitaries(QkDag *dag, double requested_fidelity, bool split_swaps)">
-  Run the Split2QUnitaries transpiler pass on a DAG Circuit
-
-  <span id="group__QkTranspilerPasses_1autotoc_md258" />
-
-  #### Safety
-
-  <span id="group__QkTranspilerPasses_1autotoc_md258" />
-
-  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDAG`.
-
-  **Parameters**
-
-  *   **dag** – A mutable pointer to the DAG Circuit to run Split2QUnitaries on. This will be replaced with the new DAG if any gates are optimized.
-  *   **requested\_fidelity** – Allowed tolerance for splitting two-qubit unitaries and gate decompositions.
-  *   **split\_swaps** – Whether to attempt to split swap gates, resulting in a permutation of the qubits.
-
-  **Returns**
-
-  If any swap equivalent unitaries are split this function returns a pointer to a `TranspileLayout` that contains the permutation induced by this DAG optimization. If no swap equivalent unitaries are split this will be a null pointer.
-</Function>
-
 ### qk\_transpiler\_pass\_standalone\_unitary\_synthesis
 
 <Function id="qk_transpiler_pass_standalone_unitary_synthesis" signature="void qk_transpiler_pass_standalone_unitary_synthesis(QkCircuit *circuit, const QkTarget *target, size_t min_qubits, double approximation_degree)">
@@ -752,7 +758,7 @@ $$
 
   The UnitarySynthesis transpiler pass will synthesize any UnitaryGates in the circuit into gates available in the target.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md259" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md272" />
 
   #### Example
 
@@ -779,11 +785,11 @@ $$
   qk_transpiler_pass_standalone_unitary_synthesis(qc, target, 0, 1.0);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md260" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md273" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md260" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md273" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`.
 
@@ -806,7 +812,7 @@ $$
 
   If this pass finds a solution that means there is a “perfect layout” and that no further swap mapping or routing is needed. However, there is not always a possible solution, or a solution might exist but it is not found within the limits specified when the pass is called.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md272" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md285" />
 
   #### Example
 
@@ -835,11 +841,11 @@ $$
   qk_vf2_layout_configuration_free(config);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md273" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md286" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md273" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md286" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`. Behavior is undefined if `config` is a non-null pointer that does not point to a valid `QkVF2LayoutConfiguration` object (but a null pointer is fine).
 
@@ -872,7 +878,7 @@ $$
 
   In both of the first two cases, `qk_vf2_layout_has_match` will return `true`. In only the first case, `qk_vf2_layout_has_improvement` will return `true`.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md274" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md287" />
 
   #### Example
 
@@ -900,11 +906,11 @@ $$
   qk_vf2_layout_configuration_free(config);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md275" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md288" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md275" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md288" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`. Behavior is undefined if `config` is a non-null pointer that does not point to a valid `QkVF2LayoutConfiguration` object (but a null pointer is fine).
 
@@ -930,11 +936,11 @@ $$
     Replaced by [`qk_transpiler_pass_standalone_vf2_layout_average()`](#c.qk_transpiler_pass_standalone_vf2_layout_average "qk_transpiler_pass_standalone_vf2_layout_average").
   </Admonition>
 
-  <span id="group__QkTranspilerPasses_1autotoc_md276" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md289" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md276" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md289" />
 
   The safety requirements of `qk_transpiler_pass_standalone_vf2_layout_average` must be respected for `circuit` and `target`.
 
