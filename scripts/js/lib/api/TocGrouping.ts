@@ -152,6 +152,7 @@ function qiskitModuleToSection(module: string): string | undefined {
   if (
     hasPrefix(module, [
       "qiskit.assembler",
+      "qiskit.capi",
       "qiskit.compiler",
       "qiskit.exceptions",
       "qiskit.qobj",
