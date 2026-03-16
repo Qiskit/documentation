@@ -62,27 +62,27 @@ jobs:
            -H actions/cron-${{ github.run_id }} \
            --title "Update notebook outputs" \
            --body "An action recently executed the notebooks in this repo. \
-            This PR updates all notebooks that ran successfully with the new cell outputs.
+          This PR updates all notebooks that ran successfully with the new cell outputs.
 
-            > [!NOTE]
-            > This pull request was created by a GitHub action.
+          > [!NOTE]
+          > This pull request was created by a GitHub action.
 
-            ## How to deal with this PR
+          ## How to deal with this PR
 
-            1. Check through the changed files tab to make sure all outputs look sensible and that nothing unexpected has happened (such as content being deleted).
+          1. Check through the changed files tab to make sure all outputs look sensible and that nothing unexpected has happened (such as content being deleted).
 
-               If you see anything unexpected, the easiest thing to do is usually to reset that specific notebook. You may find the following commands helpful.
+             If you see anything unexpected, the easiest thing to do is usually to reset that specific notebook. You may find the following commands helpful.
 
-               ```sh
-               gh pr checkout <pr-number>
-               # Reset notebooks (you may also need to reset images too if they've changed)
-               git restore <path/to/notebook(s)> --source HEAD~1
-               git commit -am "Reset notebooks"
-               git push
-               ```
+             ```sh
+             gh pr checkout <pr-number>
+             # Reset notebooks (you may also need to reset images too if they've changed)
+             git restore <path/to/notebook(s)> --source HEAD~1
+             git commit -am "Reset notebooks"
+             git push
+             ```
 
-            2. Close and re-open the PR to trigger CI (events caused by GitHub actions can't trigger other GitHub actions)
-            3. If CI passes, you can approve and merge the PR
+          2. Close and re-open the PR to trigger CI (events caused by GitHub actions can't trigger other GitHub actions)
+          3. If CI passes, you can approve and merge the PR
 
             " \
            --reviewer kaelynj
