@@ -9,7 +9,7 @@ python_api_name: qiskit.opflow.expectations.ExpectationFactory
 # ExpectationFactory
 
 <Class id="qiskit.opflow.expectations.ExpectationFactory" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/expectations/expectation_factory.py" signature="qiskit.opflow.expectations.ExpectationFactory" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Deprecated: factory class for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
 
@@ -28,7 +28,7 @@ python_api_name: qiskit.opflow.expectations.ExpectationFactory
 
     *   **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator whose expectation value will be taken.
     *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend")  *|*[*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance") *| None*) – The backend which will be used to sample the expectation value.
-    *   **include\_custom** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether the factory will include the (Aer) specific custom expectations if their behavior against the backend might not be as expected. For instance when using Aer qasm\_simulator with paulis the Aer snapshot can be used but the outcome lacks shot noise and hence does not intuitively behave overall as people might expect when choosing a qasm\_simulator. It is however fast as long as the more state vector like behavior is acceptable.
+    *   **include\_custom** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether the factory will include the (Aer) specific custom expectations if their behavior against the backend might not be as expected. For instance when using Aer qasm\_simulator with paulis the Aer snapshot can be used but the outcome lacks shot noise and hence does not intuitively behave overall as people might expect when choosing a qasm\_simulator. It is however fast as long as the more state vector like behavior is acceptable.
 
     **Returns**
 
@@ -36,7 +36,7 @@ python_api_name: qiskit.opflow.expectations.ExpectationFactory
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If operator is not of a composition for which we know the best Expectation method.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If operator is not of a composition for which we know the best Expectation method.
 
     **Return type**
 

@@ -22,8 +22,8 @@ Ensure that you have completed these steps:
 2. Create (or have access to) at least one instance. Follow these steps to verify:
     1. Log in to [IBM Quantum Platform](https://quantum.cloud.ibm.com).
     1. Make sure that the correct account and region are selected in the account switcher in the header.
-    1. If you have one or more instances shown, you're done with this step. Otherwise, [create an instance.](/docs/guides/instances#add-instance)
-1. Ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed.](/docs/guides/install-qiskit#local)
+    1. If you have one or more instances shown, you're done with this step. Otherwise, [create an instance](/docs/guides/instances#add-instance).
+1. Ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](/docs/guides/install-qiskit#local).
 1. Activate the Python virtual environment and run Python in your virtual environment.
 
 
@@ -73,7 +73,7 @@ Although the `instance` input parameter is optional, it is recommended that you 
 <span id="saved"></span>
 ### Quick start path: Specify saved credentials
 
-If you have already saved your credentials, use the following code to apply your default credentials. For instructions to save credentials, see [Save your access credentials.](/docs/guides/save-credentials)
+If you have already saved your credentials, use the following code to apply your default credentials. For instructions to save credentials, see [Save your access credentials](/docs/guides/save-credentials).
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -127,6 +127,7 @@ service = QiskitRuntimeService(name="<name_of_saved_credentials>")
 
     service = QiskitRuntimeService()
     ```
+- If you are persistently getting the error "401 Unauthorized", you might be trying to use a [bearer token](/docs/guides/cloud-setup-untrusted#authenticate-to-the-rest-api-in-an-untrusted-environment) instead of your API key.
 
 <span id="auto-select"></span>
 ### Automatically select the instance
@@ -144,7 +145,7 @@ You can set up your [saved credentials](/docs/guides/save-credentials) to automa
 The instance is found and used in this order:
 
 1. If your account only has access to one instance, it is selected by default.
-1. If saved credentials are being used and an instance was specified with the credentials, that instance is used. See [Considerations when loading saved credentials.](#considerations-when-loading-saved-credentials)
+1. If saved credentials are being used and an instance was specified with the credentials, that instance is used. See [Considerations when loading saved credentials](#considerations-when-loading-saved-credentials).
 3. If your account has multiple instances that can access the requested QPU, the system uses your specified plan preferences to choose a plan and instance. For Qiskit Runtime v0.42 and later, free plans are prioritized by default.
 2. If your account has access to multiple instances but only one can access the requested QPU, the instance with access is selected. If this instance is not associated with a free plan, a cost will be incurred.
 
@@ -193,9 +194,9 @@ service = QiskitRuntimeService(channel="local")
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-   - [Create and manage instances.](/docs/guides/instances)
-   - [Initialize the service in an untrusted environment.](/docs/guides/cloud-setup-untrusted)
-   - [Set up to use IBM Quantum Platform with REST API.](/docs/guides/cloud-setup-rest-api)
-   - Follow the steps in [Hello world](/docs/tutorials/hello-world) to write and run a quantum program.
+   - [Create and manage instances](/docs/guides/instances).
+   - [Initialize the service in an untrusted environment](/docs/guides/cloud-setup-untrusted).
+   - [Set up to use IBM Quantum Platform with REST API](/docs/guides/cloud-setup-rest-api).
+   - Follow the steps in the [Run your first circuit on hardware](/docs/guides/hello-world) guide to write and run a quantum program.
 
 </Admonition>

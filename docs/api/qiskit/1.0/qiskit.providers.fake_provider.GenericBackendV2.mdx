@@ -15,11 +15,11 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of qubits that will be used to construct the backend’s target. Note that, while there is no limit in the size of the target that can be constructed, this backend runs on local noisy simulators, and these might present limitations in the number of qubits that can be simulated.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of qubits that will be used to construct the backend’s target. Note that, while there is no limit in the size of the target that can be constructed, this backend runs on local noisy simulators, and these might present limitations in the number of qubits that can be simulated.
 
-  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | None*) – List of basis gate names to be supported by the target. These must be part of the standard qiskit circuit library. The default set of basis gates is `["id", "rz", "sx", "x", "cx"]` The `"reset"`, `"delay"`, and `"measure"` instructions are always supported by default, even if not specified via `basis_gates`.
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – List of basis gate names to be supported by the target. These must be part of the standard qiskit circuit library. The default set of basis gates is `["id", "rz", "sx", "x", "cx"]` The `"reset"`, `"delay"`, and `"measure"` instructions are always supported by default, even if not specified via `basis_gates`.
 
-  *   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] |* [*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") *| None*) –
+  *   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]] |* [*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") *| None*) –
 
       Optional coupling map for the backend. Multiple formats are supported:
 
@@ -28,9 +28,9 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
       If `coupling_map` is specified, it must match the number of qubits specified in `num_qubits`. If `coupling_map` is not specified, a fully connected coupling map will be generated with `num_qubits` qubits.
 
-  *   **control\_flow** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Flag to enable control flow directives on the target (defaults to False).
+  *   **control\_flow** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Flag to enable control flow directives on the target (defaults to False).
 
-  *   **calibrate\_instructions** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")  *|*[*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") *| None*) –
+  *   **calibrate\_instructions** ([*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") *| None*) –
 
       Instruction calibration settings, this argument supports both boolean and [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") as input types, and is `None` by default:
 
@@ -48,9 +48,9 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
           in this instruction schedule map will be appended to the target instead of the default pulse schedules (this allows for custom calibrations).
 
-  *   **dtm** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – System time resolution of output signals in nanoseconds. None by default.
+  *   **dtm** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – System time resolution of output signals in nanoseconds. None by default.
 
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional seed for generation of default values.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Optional seed for generation of default values.
 
   ## Attributes
 
@@ -195,7 +195,7 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the measurement mapping
   </Function>
 
   ### control\_channel
@@ -209,7 +209,7 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
     **Parameters**
 
-    **qubits** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+    **qubits** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
 
     **Returns**
 
@@ -221,7 +221,7 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the measurement mapping
   </Function>
 
   ### drive\_channel
@@ -241,7 +241,7 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the measurement mapping
   </Function>
 
   ### measure\_channel
@@ -261,7 +261,7 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the measurement mapping
   </Function>
 
   ### qubit\_properties
@@ -273,7 +273,7 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
     **Parameters**
 
-    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
+    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
 
     **Returns**
 
@@ -281,11 +281,11 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the qubit properties
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the qubit properties
 
     **Return type**
 
-    [*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties") | [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties")]
+    [*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties") | [*List*](https://docs.python.org/3/library/typing.html#typing.List)\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties")]
   </Function>
 
   ### run
@@ -301,7 +301,7 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
     **Parameters**
 
-    *   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"), or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
+    *   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list)) – An individual or a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"), or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
     *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object, then the expectation is that the value specified will be used instead of what’s set in the options object.
 
     **Returns**
@@ -330,7 +330,7 @@ python_api_name: qiskit.providers.fake_provider.GenericBackendV2
 
     **Raises**
 
-    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError) – If the field passed in is not part of the options
   </Function>
 </Class>
 

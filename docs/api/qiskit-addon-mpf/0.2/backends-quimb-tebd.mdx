@@ -14,7 +14,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd
 
 `qiskit_addon_mpf.backends.quimb_tebd`
 
-A [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)")-based TEBD backend.
+A [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb)-based TEBD backend.
 
 <Admonition title="Warning" type="caution">
   This backend is only available if the optional dependencies have been installed:
@@ -31,20 +31,20 @@ A [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#modu
 
 ## Underlying method
 
-This module provides a time-evolution backend for computing dynamic MPF coefficients based on the time-evolving block decimation (TEBD) algorithm \[1] implemented in the [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)") tensor network library.
+This module provides a time-evolution backend for computing dynamic MPF coefficients based on the time-evolving block decimation (TEBD) algorithm \[1] implemented in the [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb) tensor network library.
 
 The classes provided by this module serve two purposes:
 
-1.  Connecting [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)")’s implementation to the interface set out by [`qiskit_addon_mpf.backends`](backends#module-qiskit_addon_mpf.backends "qiskit_addon_mpf.backends").
-2.  Extending [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)")’s TEBD implementation to handle an internal MPO (rather than MPS) state (see also [`State`](backends#state "qiskit_addon_mpf.backends.State") for more details).
+1.  Connecting [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb)’s implementation to the interface set out by [`qiskit_addon_mpf.backends`](backends#module-qiskit_addon_mpf.backends "qiskit_addon_mpf.backends").
+2.  Extending [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb)’s TEBD implementation to handle an internal MPO (rather than MPS) state (see also [`State`](backends#state "qiskit_addon_mpf.backends.State") for more details).
 
-In the simplest sense, this module provides a straight-forward extension of the TEBD algorithm to evolve an internal MPO state. As such, if you wish to use this backend for your dynamic MPF algorithm, you must encode the Hamiltonian that you wish to time-evolve, in a [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)")-native form. To be more concrete, the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") class (which is a subclass of [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD "(in quimb v1.10)")) works with a Hamiltonian in the form of a [`quimb.tensor.LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.LocalHam1D "(in quimb v1.10)"). Quimb provides a number of convenience methods for constructing such Hamiltonians in its [`quimb.tensor.tensor_builder`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_builder/index.html#module-quimb.tensor.tensor_builder "(in quimb v1.10)") module. If none of those fulfill your needs, you can consider using the [`LayerModel`](backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel") class which implements some conversion methods from Qiskit-native objects.
+In the simplest sense, this module provides a straight-forward extension of the TEBD algorithm to evolve an internal MPO state. As such, if you wish to use this backend for your dynamic MPF algorithm, you must encode the Hamiltonian that you wish to time-evolve, in a [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb)-native form. To be more concrete, the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") class (which is a subclass of [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD)) works with a Hamiltonian in the form of a [`quimb.tensor.LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.LocalHam1D). Quimb provides a number of convenience methods for constructing such Hamiltonians in its [`quimb.tensor.tensor_builder`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_builder/index.html#module-quimb.tensor.tensor_builder) module. If none of those fulfill your needs, you can consider using the [`LayerModel`](backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel") class which implements some conversion methods from Qiskit-native objects.
 
 ## Code example
 
 This section shows a simple example to get you started with using this backend. The example shows how to create the three factory functions required for the [`setup_dynamic_lse()`](dynamic#setup_dynamic_lse "qiskit_addon_mpf.dynamic.setup_dynamic_lse").
 
-First, we create the `identity_factory` which has to match the [`IdentityStateFactory`](dynamic#identitystatefactory "qiskit_addon_mpf.dynamic.IdentityStateFactory") protocol. We do so simply by using the [`quimb.tensor.MPO_identity()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MPO_identity "(in quimb v1.10)") function and wrapping the resulting [`quimb.tensor.MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductOperator "(in quimb v1.10)") with our custom [`MPOState`](backends-quimb-tebd-mpo-state "qiskit_addon_mpf.backends.quimb_tebd.MPOState") interface.
+First, we create the `identity_factory` which has to match the [`IdentityStateFactory`](dynamic#identitystatefactory "qiskit_addon_mpf.dynamic.IdentityStateFactory") protocol. We do so simply by using the [`quimb.tensor.MPO_identity()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MPO_identity) function and wrapping the resulting [`quimb.tensor.MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductOperator) with our custom [`MPOState`](backends-quimb-tebd-mpo-state "qiskit_addon_mpf.backends.quimb_tebd.MPOState") interface.
 
 ```python
 >>> from qiskit_addon_mpf.backends.quimb_tebd import MPOState
@@ -53,14 +53,14 @@ First, we create the `identity_factory` which has to match the [`IdentityStateFa
 >>> identity_factory = lambda: MPOState(MPO_identity(num_qubits))
 ```
 
-Next, before being able to define the [`ExactEvolverFactory`](dynamic#exactevolverfactory "qiskit_addon_mpf.dynamic.ExactEvolverFactory") and [`ApproxEvolverFactory`](dynamic#approxevolverfactory "qiskit_addon_mpf.dynamic.ApproxEvolverFactory") protocols, we must define the Hamiltonian which we would like to time-evolve. Here, we simply choose one of [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)")’s convenience methods.
+Next, before being able to define the [`ExactEvolverFactory`](dynamic#exactevolverfactory "qiskit_addon_mpf.dynamic.ExactEvolverFactory") and [`ApproxEvolverFactory`](dynamic#approxevolverfactory "qiskit_addon_mpf.dynamic.ApproxEvolverFactory") protocols, we must define the Hamiltonian which we would like to time-evolve. Here, we simply choose one of [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb)’s convenience methods.
 
 ```python
 >>> from quimb.tensor import ham_1d_heis
 >>> hamil = ham_1d_heis(num_qubits, 0.8, 0.3, cyclic=False)
 ```
 
-We can now construct the exact and approximate time-evolution instance factories. To do so, we can simply use [`functools.partial()`](https://docs.python.org/3/library/functools.html#functools.partial "(in Python v3.13)") to bind the pre-defined values of the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") initializer, reducing it to the correct interface as expected by the [`ExactEvolverFactory`](dynamic#exactevolverfactory "qiskit_addon_mpf.dynamic.ExactEvolverFactory") and [`ApproxEvolverFactory`](dynamic#approxevolverfactory "qiskit_addon_mpf.dynamic.ApproxEvolverFactory") protocols, respectively.
+We can now construct the exact and approximate time-evolution instance factories. To do so, we can simply use [`functools.partial()`](https://docs.python.org/3/library/functools.html#functools.partial) to bind the pre-defined values of the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") initializer, reducing it to the correct interface as expected by the [`ExactEvolverFactory`](dynamic#exactevolverfactory "qiskit_addon_mpf.dynamic.ExactEvolverFactory") and [`ApproxEvolverFactory`](dynamic#approxevolverfactory "qiskit_addon_mpf.dynamic.ApproxEvolverFactory") protocols, respectively.
 
 ```python
 >>> from functools import partial
@@ -86,7 +86,7 @@ Below, we do not fix the `dt` value and use only a second-order Suzuki-Trotter f
 ... )
 ```
 
-Of course, you are not limited to the examples shown here, and we encourage you to play around with the other settings provided by the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD "(in quimb v1.10)") implementation.
+Of course, you are not limited to the examples shown here, and we encourage you to play around with the other settings provided by the [`quimb.tensor.TEBD`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.TEBD) implementation.
 
 ## Limitations
 

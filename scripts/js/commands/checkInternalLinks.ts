@@ -34,6 +34,7 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/qiskit-ibm-runtime/tags/usage.mdx",
   "docs/api/qiskit-ibm-runtime/tags/sessions.mdx",
   "docs/api/qiskit-runtime-rest/tags/instances.mdx",
+  "docs/api/qiskit-runtime-rest/tags/backends.mdx",
   "docs/api/qiskit-runtime-rest/index.mdx",
   "announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update.mdx",
   "announcements/product-updates.mdx",

@@ -23,7 +23,7 @@ A circuit scheduler compiles a circuit program to a pulse program.
 ### ScheduleConfig
 
 <Class id="qiskit.scheduler.ScheduleConfig" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/scheduler/config.py#L22-L37" signature="qiskit.scheduler.ScheduleConfig(inst_map, meas_map, dt)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Configuration for pulse scheduling.
 
@@ -36,8 +36,8 @@ A circuit scheduler compiles a circuit program to a pulse program.
   **Parameters**
 
   *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")) – The schedule definition of all gates supported on a backend.
-  *   **meas\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.14)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]]*) – A list of groups of qubits which have to be measured together.
-  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Sample duration.
+  *   **meas\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – A list of groups of qubits which have to be measured together.
+  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Sample duration.
 </Class>
 
 ### schedule\_circuit
@@ -58,7 +58,7 @@ A circuit scheduler compiles a circuit program to a pulse program.
 
   *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
   *   **schedule\_config** ([*ScheduleConfig*](#qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
-  *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| None*) – The scheduling pass method to use.
+  *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The scheduling pass method to use.
   *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2") *| None*) – A backend used to build the Schedule, the backend could be BackendV1 or BackendV2.
 
   **Returns**

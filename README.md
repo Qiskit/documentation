@@ -2,6 +2,8 @@
 
 The documentation content home for https://quantum.cloud.ibm.com/docs and https://docs.quantum.ibm.com (excluding API reference).
 
+Preview the main branch at the staging link: https://qiskit.github.io/documentation/main
+
 Refer to:
 
 - Our [MDX guide](./mdx-guide.md) for how to write documentation and use our variant of markdown.
@@ -178,51 +180,58 @@ When adding a new notebook, you'll need to tell the testing tools how to handle 
 To do this, add the file path to `scripts/config/notebook-testing.toml`. There are
 four categories:
 
-- `notebooks_normal_test`: Notebooks to be run normally in CI. These notebooks
+- `[groups.normal]`: Notebooks to be run normally in CI. These notebooks
   can't submit jobs as the queue times are too long and it will waste
   resources. You _can_ interact with IBM Quantum to retrieve jobs and backend
   information.
-- `notebooks_that_submit_jobs`: Notebooks that submit jobs, but that are small
+- `[groups.local-sim]`: Notebooks that submit jobs, but that are small
   enough to run on a 5-qubit simulator. We will test these notebooks in CI by
   patching `least_busy` to return a 5-qubit fake backend.
-- `notebooks_no_mock`: For notebooks that can't be tested using the 5-qubit
+- `[groups.test-eagle]`: These notebooks can't run with a local simulator, but
+  _can_ be mocked with the `test-eagle` device, which returns nonsense results.
+  We can trigger a manual job to test these with `test-eagle`.
+- `[groups.cron-job-only]`: For notebooks that can't be tested using the 5-qubit
   simulator patch. We skip testing these in CI and instead run them twice per
   month. Any notebooks with cells that take more than five minutes to run are
   also deemed too big for CI. Try to avoid adding notebooks to this category if
   possible.
-- `notebooks_exclude`: Notebooks to be ignored.
-
-If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
-also add it to the "Check for notebooks that require LaTeX" step in
-`.github/workflows/notebook-test.yml`.
+- `[groups.exclude]`: We never test these notebooks.
 
 If you don't do this step, you will get the error "FAILED scripts/nb-tester/test/test_notebook_classification.py::test_all_notebooks_are_classified".
 
+If your notebook requires extra dependencies (such as latex or graphviz), you
+must also add it to the `EXTRA_DEPS_NOTEBOOKS` list in
+`.github/workflows/main.yml`. We don't install these for every job because they
+take a while to install and only a handful of notebooks use them. You will know
+when you need them because CI will fail.
+
 ### Add package version information
 
-Add a new markdown cell under your title with a `version-info` tag.
-When you execute the notebook (see the next section), the script will populate
-this cell with the package versions so users can reproduce the results.
+Add a new markdown cell under your title with a `version-info` tag. When you
+execute the notebook (see the next section), the script will populate this cell
+with the package versions so users can reproduce the results. Do not add
+anything else to this cell as the contents of the cell will be completely
+overwritten when it's next executed.
 
 ### Execute notebooks
 
 Before submitting a new notebook or code changes to a notebook, you must run
 the notebook using `tox -- --write <path-to-notebook>` and commit the results.
-If the notebook submits jobs, also use the argument `--submit-jobs`. This means
-we can be sure all notebooks work and that users will see the same results when
-they run using the environment we recommend.
+If the notebook submits jobs, also use the argument `--test-strategy=hardware`.
+This means we can be sure all notebooks work and that users will see the same
+results when they run using the environment we recommend.
 
-To execute notebooks in a fixed Python environment, first install `tox` using
-[pipx](https://pipx.pypa.io/stable/):
+We use `tox` to execute notebooks in a reproducible Python environment. First,
+install `tox` using [pipx](https://pipx.pypa.io/stable/):
 
 ```sh
 pipx install tox
 ```
 
-You also need to install a few system dependencies: TeX, Poppler, and graphviz.
-On macOS, you can run `brew install mactex-no-gui poppler graphviz`. On Ubuntu,
-you can run `apt-get install texlive-pictures texlive-latex-extra poppler-utils
-graphviz`.
+You may also need to install a few system dependencies: TeX, Poppler, and
+graphviz. On macOS, you can run `brew install mactex-no-gui poppler graphviz`.
+On Ubuntu, you can run `apt-get install texlive-pictures texlive-latex-extra
+poppler-utils graphviz`.
 
 - To execute all notebooks, run tox.
   ```sh
@@ -372,7 +381,7 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 
 When a new version of an API is released, we should also update `nb-tester/requirements.txt` to ensure that our notebooks still work with the latest version of the API. You can do this upgrade either manually or wait for Dependabot's automated PR.
 
-Dependabot will fail to run at first due to not having access to the token. To fix this, have someone with write access trigger CI for the PR, such as by merging main or closing then reopening the issue.
+CI will fail on Dependabot's PR at first due to not having access to the token. To fix this, have someone with write access close and then immediately reopen the PR to trigger CI.
 
 You can land the API generation separately from the `requirements.txt` version upgrade. It's high priority to get out new versions of the API docs ASAP, so you should not block that on the notebook version upgrade if you run into any complications like failing notebooks.
 

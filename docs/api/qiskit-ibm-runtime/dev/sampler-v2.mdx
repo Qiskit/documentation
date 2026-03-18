@@ -8,8 +8,8 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
 # SamplerV2
 
-<Class id="qiskit_ibm_runtime.SamplerV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L44-L125" signature="SamplerV2(mode=None, options=None)" modifiers="class">
-  Bases: `BasePrimitiveV2`\[[`SamplerOptions`](options-sampler-options "qiskit_ibm_runtime.options.sampler_options.SamplerOptions")], `Sampler`, [`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2 "(in Qiskit v2.2)")
+<Class id="qiskit_ibm_runtime.SamplerV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L42-L123" signature="SamplerV2(mode=None, options=None)" modifiers="class">
+  Bases: `BasePrimitiveV2`\[[`SamplerOptions`](options-sampler-options "qiskit_ibm_runtime.options.sampler_options.SamplerOptions")], `Sampler`, [`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2)
 
   Class for interacting with Qiskit Runtime Sampler primitive service.
 
@@ -23,7 +23,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   **Parameters**
 
-  *   **mode** (*BackendV2 |* [*Session*](session "qiskit_ibm_runtime.Session")  *|*[*Batch*](batch "qiskit_ibm_runtime.Batch") *| None*) –
+  *   **mode** ([*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2)  *|*[*Session*](session "qiskit_ibm_runtime.session.Session")  *|*[*Batch*](batch "qiskit_ibm_runtime.batch.Batch") *| None*) –
 
       The execution mode used to make the primitive query. It can be:
 
@@ -33,7 +33,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
       Refer to the [Qiskit Runtime documentation](/docs/guides/execution-modes) for more information about the `Execution modes`.
 
-  *   **options** (*dict |* [*SamplerOptions*](options-sampler-options "qiskit_ibm_runtime.options.SamplerOptions") *| None*) – Sampler options, see `SamplerOptions` for detailed description.
+  *   **options** (*dict |* [*SamplerOptions*](options-sampler-options "qiskit_ibm_runtime.options.sampler_options.SamplerOptions") *| None*) – Sampler options, see `SamplerOptions` for detailed description.
 
   ## Attributes
 
@@ -61,22 +61,22 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.SamplerV2.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_primitive.py#L210-L212" signature="backend()">
+  <Function id="qiskit_ibm_runtime.SamplerV2.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_primitive.py#L209-L211" signature="backend()">
     Return the backend the primitive query will be run on.
 
     **Return type**
 
-    [*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v2.2)")
+    [*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2)
   </Function>
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.SamplerV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L89-L111" signature="run(pubs, *, shots=None)">
+  <Function id="qiskit_ibm_runtime.SamplerV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L87-L109" signature="run(pubs, *, shots=None)">
     Submit a request to the sampler primitive.
 
     **Parameters**
 
-    *   **pubs** (*Iterable\[SamplerPubLike]*) – An iterable of pub-like objects. For example, a list of circuits or tuples `(circuit, parameter_values)`.
+    *   **pubs** (*Iterable\[*[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) *| Tuple\[*[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)*] | Tuple\[*[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)*, Mapping\[*[*Parameter*](/docs/api/qiskit/qiskit.circuit.Parameter) *| str | Tuple\[*[*Parameter*](/docs/api/qiskit/qiskit.circuit.Parameter) *| str, ...], \_Buffer | \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[Any]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[Any]]] | bool | int | float | complex | str | bytes | \_NestedSequence\[bool | int | float | complex | str | bytes]]] | Tuple\[*[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)*, Mapping\[*[*Parameter*](/docs/api/qiskit/qiskit.circuit.Parameter) *| str | Tuple\[*[*Parameter*](/docs/api/qiskit/qiskit.circuit.Parameter) *| str, ...], \_Buffer | \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[Any]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[Any]]] | bool | int | float | complex | str | bytes | \_NestedSequence\[bool | int | float | complex | str | bytes]], Integral | None]]*) – An iterable of pub-like objects. For example, a list of circuits or tuples `(circuit, parameter_values)`.
     *   **shots** (*int | None*) – The total number of shots to sample for each sampler pub that does not specify its own shots. If `None`, the primitive’s default shots value will be used, which can vary by implementation.
 
     **Returns**

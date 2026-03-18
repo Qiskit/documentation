@@ -20,7 +20,6 @@ jobs:
     outputs:
       all-changed-files: ${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
       run-notebook-tester: ${{ steps.decide.outputs.RUN_NOTEBOOK_TESTER }}
-      run-api-checks: ${{ steps.decide.outputs.RUN_API_CHECKS }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
@@ -41,16 +40,12 @@ jobs:
             PR_NUMBER="${{ github.event.number }}"
           fi
 
+          mkdir -p .github/outputs
           CHANGED_FILES=$(node scripts/ci/determine-changed-files.ts "${PR_NUMBER}")
-          {
-            echo "ALL_CHANGED_FILES<<__GH_OUTPUT__"
-            printf '%s\n' "$CHANGED_FILES"
-            echo "__GH_OUTPUT__"
-          } >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$CHANGED_FILES" > .github/outputs/changed-files.txt
       - name: Decide which jobs to run
         id: decide
         env:
-          CHANGED_FILES: ${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
@@ -66,27 +61,15 @@ jobs:
           #  docs/api/thing.mdx
           #  docs/api/thing.ipynb
           #  scripts/js/lib/thing.ts
-
-          API_CHECKS_REGEX: (\.github\/workflows\/main\.yml|(docs\/api|public\/docs\/api|scripts\/js)\/.*)
-          #  -- Should match:
-          #  docs/api/qiskit/index.mdx
-          #  public/docs/api/qiskit-ibm-runtime/objects.inv
-          #  public/docs/api/qiskit/thing.avif
-          #  scripts/js/lib/links/thing.ts
-          #  .github/workflows/main.yml
-          #
-          #  -- Should not match:
-          #  scripts/nb-tester/file.py
-          #  docs/guides/thing.ipynb
-          #  public/learning/image.svg
-          #  .github/workflows/notebook-test-cron.yml
         run: |
-          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES}" | grep -P "$NOTEBOOK_TEST_REGEX")" ]]; then
+          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(grep -P "$NOTEBOOK_TEST_REGEX" .github/outputs/changed-files.txt)" ]]; then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
           fi
-          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(printf '%s\n' "${CHANGED_FILES}" | grep -P "$API_CHECKS_REGEX")" ]]; then
-            echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
-          fi
+      - name: Save changed files artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: changed-files-artifact
+          path: .github/outputs
 
   lint:
     name: Lint
@@ -102,25 +85,29 @@ jobs:
         run: npm ci
       - name: Install ImageMagick
         run: |
+          sudo apt-get update
           sudo apt-get install -y imagemagick
           sudo ln -s /usr/bin/convert /usr/bin/magick
       - name: Install Playwright
         run: npx playwright install
 
+      - name: Check internal links
+        run: >
+          npm run check:internal-links --
+          --current-apis
+          --dev-apis
+          --historical-apis
+          --qiskit-legacy-release-notes
+      - name: Check for orphan pages
+        run: npm run check:orphan-pages -- --apis
       - name: Check markdown
-        run: npm run check:markdown
+        run: npm run check:markdown -- --apis
       - name: Spellcheck
         run: npm run check:spelling
       - name: Check Qiskit bot config
         run: npm run check:qiskit-bot
-      - name: Check Patterns index
-        run: npm run check:patterns-index
       - name: Check tutorials index
         run: python scripts/ci/check-tutorials-index.py
-      - name: Internal link checker
-        run: npm run check:internal-links
-      - name: Check orphaned pages
-        run: npm run check:orphan-pages
       - name: Check stale images
         run: npm run check:stale-images
       - name: Formatting
@@ -130,9 +117,13 @@ jobs:
       - name: Infrastructure tests
         run: npm test
 
+      - name: Get changed files artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: changed-files-artifact
+          path: .github/outputs
       - name: Get all changed content files
         env:
-          CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
           # If changing these regexes, test them on https://regex101.com/ with the
           # following paths (you can paste the block in and uncomment it):
           # Add new tests if necessary
@@ -148,13 +139,13 @@ jobs:
           #  scripts/nb-tester/example-notebook.ipynb
         id: changed-content-files
         run: |
-          CHANGED_CONTENT_FILES=$(echo "${CHANGED_FILES}" | grep -P $CONTENT_FILE_REGEX || true)
+          CHANGED_CONTENT_FILES=$(grep -P $CONTENT_FILE_REGEX .github/outputs/changed-files.txt || true)
           if [ "$CHANGED_CONTENT_FILES" != '' ]
           then
             echo "ANY_CHANGED=true" >> "$GITHUB_OUTPUT"
           fi
           mkdir -p .github/outputs
-          echo $CHANGED_CONTENT_FILES >> .github/outputs/changed-content-files.txt
+          printf '%s\n' "$CHANGED_CONTENT_FILES" >> .github/outputs/changed-content-files.txt
       - name: Pull preview image
         if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: ./start --pull-only
@@ -205,13 +196,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Get changed files
-        env:
-          CHANGED_FILES: ${{needs.decide-jobs.outputs.all-changed-files}}
-        run: |
-          mkdir -p .github/outputs
-          echo "${CHANGED_FILES}" > .github/outputs/changed-files.txt
-
+      - name: Get changed files artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: changed-files-artifact
+          path: .github/outputs
       - name: Check if extra linux deps needed
         id: check-deps
         shell: python
@@ -264,28 +253,3 @@ jobs:
         with:
           name: Executed notebooks
           path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS || 'no-changes' }}
-
-  api-checks:
-    name: API checks
-    needs: [decide-jobs]
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'Qiskit' && needs.decide-jobs.outputs.run-api-checks == 'true'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - name: Install Node.js dependencies
-        run: npm ci
-      - name: Check internal links
-        run: >
-          npm run check:internal-links --
-          --current-apis
-          --dev-apis
-          --historical-apis
-          --qiskit-legacy-release-notes
-      - name: Check for orphan pages
-        run: npm run check:orphan-pages -- --apis
-      - name: Check markdown
-        run: npm run check:markdown -- --apis

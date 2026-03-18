@@ -31,7 +31,7 @@ test("groupByMajorVersion()", () => {
 });
 
 test.describe("generateReleaseNotesIndex", () => {
-  test("renders grouped versions as Markdown details with list items", () => {
+  test("renders grouped versions as Markdown accordion with list items", () => {
     const pkg = Pkg.mock({
       releaseNotesConfig: {
         enabled: true,
@@ -39,17 +39,28 @@ test.describe("generateReleaseNotesIndex", () => {
       },
     });
     const result = generateReleaseNotesIndex(pkg);
-    expect(result).toContain(`# My Quantum Project release notes`);
-    expect(result).toContain(`
-<details open>
-<summary>v2</summary>
-- [v2.0](./2.0)
-</details>
+    expect(result).toEqual(
+      `---
+title: My Quantum Project release notes
+description: New features, bug fixes, and other changes in previous versions of My Quantum Project.
+---
 
-<details>
-<summary>v1</summary>
+# My Quantum Project release notes
+
+New features, bug fixes, and other changes in previous versions of My Quantum Project.
+
+## Release notes by version
+
+<Accordion>
+<AccordionItem open title="v2">
+- [v2.0](./2.0)
+</AccordionItem>
+
+<AccordionItem title="v1">
 - [v1.3](./1.3)
 - [v1.2](./1.2)
-</details>`);
+</AccordionItem>
+</Accordion>`,
+    );
   });
 });

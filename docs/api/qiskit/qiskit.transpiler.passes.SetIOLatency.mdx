@@ -21,8 +21,8 @@ python_api_name: qiskit.transpiler.passes.SetIOLatency
 
   **Parameters**
 
-  *   **clbit\_write\_latency** – A control flow constraints. Because standard superconducting quantum processor implement dispersive QND readout, the actual data transfer to the clbit happens after the round-trip stimulus signal is buffered and discriminated into quantum state. The interval `[t0, t0 + clbit_write_latency]` is regarded as idle time for clbits associated with the measure instruction. This defaults to 0 dt which is identical to Qiskit Pulse scheduler.
-  *   **conditional\_latency** – A control flow constraints. This value represents a latency of reading a classical register for the conditional operation. The gate operation occurs after this latency. This appears as a delay in front of the DAGOpNode of the gate. This defaults to 0 dt.
+  *   **clbit\_write\_latency** – A control flow constraint. Because standard superconducting quantum processor implement dispersive QND readout, the actual data transfer to the clbit happens after the round-trip stimulus signal is buffered and discriminated into quantum state. The interval `[t0, t0 + clbit_write_latency]` is regarded as idle time for clbits associated with the measure instruction. This defaults to 0 dt which is identical to Qiskit Pulse scheduler.
+  *   **conditional\_latency** – A control flow constraint. This value represents a latency of reading a classical register for the conditional operation. The gate operation occurs after this latency. This appears as a delay in front of the DAGOpNode of the gate. This defaults to 0 dt.
 
   ## Attributes
 
@@ -51,9 +51,9 @@ python_api_name: qiskit.transpiler.passes.SetIOLatency
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -61,7 +61,7 @@ python_api_name: qiskit.transpiler.passes.SetIOLatency
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -71,7 +71,7 @@ python_api_name: qiskit.transpiler.passes.SetIOLatency
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
   </Function>
 
   ### run

@@ -17,8 +17,8 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   **Parameters**
 
-  *   **data** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") *| QuantumState*) – A statevector, quantum instruction or an object with a `to_operator` or `to_matrix` method from which the density matrix can be constructed. If a vector the density matrix is constructed as the projector of that vector. If a quantum instruction, the density matrix is constructed by assuming all qubits are initialized in the zero state.
-  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") *| None*) – The subsystem dimension of the state (See additional information).
+  *   **data** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") *| QuantumState*) – A statevector, quantum instruction or an object with a `to_operator` or `to_matrix` method from which the density matrix can be constructed. If a vector the density matrix is constructed as the projector of that vector. If a quantum instruction, the density matrix is constructed by assuming all qubits are initialized in the zero state.
+  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list) *| None*) – The subsystem dimension of the state (See additional information).
 
   **Raises**
 
@@ -88,7 +88,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
   ### draw
 
   <Function id="qiskit.quantum_info.DensityMatrix.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/densitymatrix.py#L138-L178" signature="draw(output=None, **drawer_args)">
-    Return a visualization of the Statevector.
+    Return a visualization of the density matrix.
 
     **repr**: ASCII TextMatrix of the state’s `__repr__`.
 
@@ -106,16 +106,16 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Parameters**
 
-    *   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, qsphere, hinton, or bloch. Default is repr. Default can be changed by adding the line `state_drawer = <default>` to `~/.qiskit/settings.conf` under `[default]`.
+    *   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, qsphere, hinton, or bloch. Default is repr. Default can be changed by adding the line `state_drawer = <default>` to `~/.qiskit/settings.conf` under `[default]`.
     *   **drawer\_args** – Arguments to be passed directly to the relevant drawing function or constructor (TextMatrix(), array\_to\_latex(), plot\_state\_qsphere(), plot\_state\_hinton() or plot\_bloch\_multivector()). See the relevant function under qiskit.visualization for that function’s documentation.
 
     **Returns**
 
-    `matplotlib.Figure` or [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") or `TextMatrix` or `IPython.display.Latex`: Drawing of the Statevector.
+    `matplotlib.Figure` or [`str`](https://docs.python.org/3/library/stdtypes.html#str) or `TextMatrix` or `IPython.display.Latex`: Drawing of the density matrix.
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – when an invalid output method is selected.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – when an invalid output method is selected.
   </Function>
 
   ### evolve
@@ -126,7 +126,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
     **Parameters**
 
     *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *| QuantumChannel |*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The operator to evolve by.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*] | None*) – a list of QuantumState subsystem positions to apply the operator on.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – a list of QuantumState subsystem positions to apply the operator on.
 
     **Returns**
 
@@ -171,7 +171,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
     **Parameters**
 
     *   **oper** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator to evaluate expval.
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – subsystems to apply the operator on.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to apply the operator on.
 
     **Returns**
 
@@ -179,7 +179,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Return type**
 
-    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")
+    [complex](https://docs.python.org/3/library/functions.html#complex)
   </Function>
 
   ### from\_instruction
@@ -213,8 +213,8 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Parameters**
 
-    *   **i** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the basis state element.
-    *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – The subsystem dimensions of the statevector (See additional information).
+    *   **i** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the basis state element.
+    *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int)  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list)) – The subsystem dimensions of the statevector (See additional information).
 
     **Returns**
 
@@ -248,7 +248,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Parameters**
 
-    **label** (*string*) – a eigenstate string ket label (see table for allowed values).
+    **label** (*string*) – an eigenstate string ket label (see table for allowed values).
 
     **Returns**
 
@@ -271,14 +271,14 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### measure
 
-  <Function id="qiskit.quantum_info.DensityMatrix.measure" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L306-L341" signature="measure(qargs=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.measure" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L296-L331" signature="measure(qargs=None)">
     Measure subsystems and return outcome and post-measure state.
 
     Note that this function uses the QuantumStates internal random number generator for sampling the measurement outcome. The RNG seed can be set using the [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
 
     **Parameters**
 
-    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
     **Returns**
 
@@ -288,7 +288,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)
   </Function>
 
   ### partial\_transpose
@@ -298,7 +298,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Parameters**
 
-    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – The subsystems to be transposed.
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – The subsystems to be transposed.
 
     **Returns**
 
@@ -318,8 +318,8 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Parameters**
 
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
     **Returns**
 
@@ -382,7 +382,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### probabilities\_dict
 
-  <Function id="qiskit.quantum_info.DensityMatrix.probabilities_dict" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L220-L244" signature="probabilities_dict(qargs=None, decimals=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.probabilities_dict" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L210-L234" signature="probabilities_dict(qargs=None, decimals=None)">
     Return the subsystem measurement probability dictionary.
 
     Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
@@ -391,8 +391,8 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Parameters**
 
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
     **Returns**
 
@@ -400,7 +400,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)
   </Function>
 
   ### purity
@@ -416,7 +416,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Parameters**
 
-    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)") *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
 
     **Returns**
 
@@ -428,7 +428,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Additional Information:**
 
-    If all subsystems are reset this will return the ground state on all subsystems. If only a some subsystems are reset this function will perform evolution by the reset [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") of the reset subsystems.
+    If all subsystems are reset this will return the ground state on all subsystems. If only some subsystems are reset this function will perform evolution by the reset [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") of the reset subsystems.
   </Function>
 
   ### reverse\_qargs
@@ -449,13 +449,13 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### sample\_counts
 
-  <Function id="qiskit.quantum_info.DensityMatrix.sample_counts" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L277-L304" signature="sample_counts(shots, qargs=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.sample_counts" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L267-L294" signature="sample_counts(shots, qargs=None)">
     Sample a dict of qubit measurement outcomes in the computational basis.
 
     **Parameters**
 
-    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – number of samples to generate.
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of samples to generate.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
     **Returns**
 
@@ -469,22 +469,22 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     > This function *samples* measurement outcomes using the measure [`probabilities()`](#qiskit.quantum_info.DensityMatrix.probabilities "qiskit.quantum_info.DensityMatrix.probabilities") for the current state and qargs. It does not actually implement the measurement so the current state is not modified.
     >
-    > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
+    > The seed for random number generator used for sampling can be set to a fixed value by using the state’s [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
   </Function>
 
   ### sample\_memory
 
-  <Function id="qiskit.quantum_info.DensityMatrix.sample_memory" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L246-L275" signature="sample_memory(shots, qargs=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.sample_memory" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L236-L265" signature="sample_memory(shots, qargs=None)">
     Sample a list of qubit measurement outcomes in the computational basis.
 
     **Parameters**
 
-    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – number of samples to generate.
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of samples to generate.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list)) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
     **Returns**
 
-    list of sampled counts if the order sampled.
+    list of sampled counts in the order sampled.
 
     **Return type**
 
@@ -494,7 +494,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     > This function *samples* measurement outcomes using the measure [`probabilities()`](#qiskit.quantum_info.DensityMatrix.probabilities "qiskit.quantum_info.DensityMatrix.probabilities") for the current state and qargs. It does not actually implement the measurement so the current state is not modified.
     >
-    > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
+    > The seed for random number generator used for sampling can be set to a fixed value by using the state’s [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
   </Function>
 
   ### seed
@@ -534,7 +534,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Parameters**
 
-    **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+    **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
     **Returns**
 
@@ -542,7 +542,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)
 
     **Examples**
 
@@ -618,8 +618,8 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Absolute tolerance for checking operation validity.
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")) – Relative tolerance for checking operation validity.
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Absolute tolerance for checking operation validity.
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Relative tolerance for checking operation validity.
 
     **Returns**
 

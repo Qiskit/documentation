@@ -17,6 +17,7 @@ import {
   TocGrouping,
   QISKIT_TOC_GROUPING,
   QISKIT_ADDON_MPF_GROUPING,
+  QISKIT_RUNTIME_GROUPING,
 } from "./TocGrouping.js";
 
 export class ReleaseNotesConfig {
@@ -55,6 +56,7 @@ export class Pkg {
   /// Convert URLs like `my_pkg.SomeClass` to `some-class` for better SEO.
   readonly kebabCaseAndShortenUrls: boolean;
   readonly artifactPackageName: string;
+  readonly hasRootNamespaceFile: boolean;
 
   static VALID_NAMES = [
     "qiskit",
@@ -81,6 +83,7 @@ export class Pkg {
     tocGrouping?: TocGrouping;
     kebabCaseAndShortenUrls: boolean;
     artifactPackageName?: string;
+    hasRootNamespaceFile?: boolean;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -94,6 +97,7 @@ export class Pkg {
     this.tocGrouping = kwargs.tocGrouping;
     this.kebabCaseAndShortenUrls = kwargs.kebabCaseAndShortenUrls;
     this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
+    this.hasRootNamespaceFile = kwargs.hasRootNamespaceFile ?? false;
   }
 
   static async fromArgs(
@@ -114,6 +118,7 @@ export class Pkg {
         await determineReleaseNotesSeparetePagesVersions(
           name,
           versionWithoutPatch,
+          type == "dev",
         );
       return new Pkg({
         ...args,
@@ -125,6 +130,7 @@ export class Pkg {
         tocGrouping: QISKIT_TOC_GROUPING,
         kebabCaseAndShortenUrls: false,
         language: "Python",
+        hasRootNamespaceFile: true,
       });
     }
 
@@ -135,6 +141,7 @@ export class Pkg {
         githubSlug: "qiskit/qiskit-ibm-runtime",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        tocGrouping: QISKIT_RUNTIME_GROUPING,
       });
     }
 

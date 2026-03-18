@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
 
 # ResilienceOptionsV2
 
-<Class id="qiskit_ibm_runtime.options.ResilienceOptionsV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/resilience_options.py#L38-L113" signature="ResilienceOptionsV2(measure_mitigation=Unset, measure_noise_learning=<factory>, zne_mitigation=Unset, zne=<factory>, pec_mitigation=Unset, pec=<factory>, layer_noise_learning=<factory>, layer_noise_model=Unset)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.ResilienceOptionsV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/resilience_options.py#L40-L119" signature="ResilienceOptionsV2(measure_mitigation=Unset, measure_noise_learning=<factory>, zne_mitigation=Unset, zne=<factory>, pec_mitigation=Unset, pec=<factory>, layer_noise_learning=<factory>, layer_noise_model=Unset)" modifiers="class">
   Bases: `object`
 
   Resilience options for V2 Estimator.
@@ -45,7 +45,7 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
   <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.measure_mitigation" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
     Whether to enable measurement error mitigation method. If you enable measurement mitigation, you can fine-tune its noise learning by using [`measure_noise_learning`](#qiskit_ibm_runtime.options.ResilienceOptionsV2.measure_noise_learning "qiskit_ibm_runtime.options.ResilienceOptionsV2.measure_noise_learning"). See [`MeasureNoiseLearningOptions`](options-measure-noise-learning-options "qiskit_ibm_runtime.options.MeasureNoiseLearningOptions") for all measurement mitigation noise learning options.
 
-    Default: True.
+    If `measure_mitigation` is `Unset`, it is determined by the server according to the resilience level: it is `False` for resilience level 0, and `True` for resilience levels 1 and 2.
   </Attribute>
 
   ### measure\_noise\_learning
@@ -79,7 +79,7 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
   <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.zne_mitigation" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
     Whether to turn on Zero-Noise Extrapolation error mitigation method. If you enable ZNE, you can fine-tune its options by using [`zne`](#qiskit_ibm_runtime.options.ResilienceOptionsV2.zne "qiskit_ibm_runtime.options.ResilienceOptionsV2.zne"). See [`ZneOptions`](options-zne-options "qiskit_ibm_runtime.options.ZneOptions") for additional ZNE related options.
 
-    Default: False.
+    If `zne_mitigation` is `Unset`, it is determined by the server according to the resilience level: it is `False` for resilience levels 0 and 1, and `True` for resilience level 2.
   </Attribute>
 
   ## Methods

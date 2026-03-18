@@ -8,7 +8,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
 # BindingsArray
 
-<Class id="qiskit.primitives.BindingsArray" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L54-L319" signature="qiskit.primitives.BindingsArray(data=None, shape=None)" modifiers="class">
+<Class id="qiskit.primitives.BindingsArray" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L55-L320" signature="qiskit.primitives.BindingsArray(data=None, shape=None)" modifiers="class">
   Bases: `ShapedMixin`
 
   Stores parameter binding value sets for a `qiskit.QuantumCircuit`.
@@ -48,9 +48,9 @@ python_api_name: qiskit.primitives.BindingsArray
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If all inputs are `None`.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If the shape cannot be automatically inferred from the arrays, or if there is some inconsistency in the shape of the given arrays.
-  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.14)") – If some of the values can’t be cast to a float type.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If all inputs are `None`.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the shape cannot be automatically inferred from the arrays, or if there is some inconsistency in the shape of the given arrays.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If some of the values can’t be cast to a float type.
 
   ## Attributes
 
@@ -82,14 +82,14 @@ python_api_name: qiskit.primitives.BindingsArray
 
   ### as\_array
 
-  <Function id="qiskit.primitives.BindingsArray.as_array" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L171-L215" signature="as_array(parameters=None)">
+  <Function id="qiskit.primitives.BindingsArray.as_array" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L172-L216" signature="as_array(parameters=None)">
     Return the contents of this bindings array as a single NumPy array.
 
     The parameters are indexed along the last dimension of the returned array.
 
     **Parameters**
 
-    **parameters** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.14)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*] | None*) – Optional parameters that determine the order of the output.
+    **parameters** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – Optional parameters that determine the order of the output.
 
     **Returns**
 
@@ -97,22 +97,22 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If `parameters` are provided, but do not match those found in `data`.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `parameters` are provided, but do not match those found in `data`.
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.4)")
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
   </Function>
 
   ### bind
 
-  <Function id="qiskit.primitives.BindingsArray.bind" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L217-L238" signature="bind(circuit, loc)">
+  <Function id="qiskit.primitives.BindingsArray.bind" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L218-L239" signature="bind(circuit, loc)">
     Return a new circuit bound to the values at the provided index.
 
     **Parameters**
 
     *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit to bind.
-    *   **loc** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*, ...]*) – A tuple of indices, on for each dimension of this array.
+    *   **loc** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...]*) – A tuple of indices, one for each dimension of this array.
 
     **Returns**
 
@@ -120,7 +120,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If the index doesn’t have the right number of values.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the index doesn’t have the right number of values.
 
     **Return type**
 
@@ -129,7 +129,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
   ### bind\_all
 
-  <Function id="qiskit.primitives.BindingsArray.bind_all" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L240-L252" signature="bind_all(circuit)">
+  <Function id="qiskit.primitives.BindingsArray.bind_all" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L241-L253" signature="bind_all(circuit)">
     Return an object array of bound circuits with the same shape.
 
     **Parameters**
@@ -142,17 +142,17 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.4)")
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
   </Function>
 
   ### coerce
 
-  <Function id="qiskit.primitives.BindingsArray.coerce" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L292-L310" signature="coerce(bindings_array)" modifiers="classmethod">
+  <Function id="qiskit.primitives.BindingsArray.coerce" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L293-L311" signature="coerce(bindings_array)" modifiers="classmethod">
     Coerce an input that is `BindingsArrayLike` into a new [`BindingsArray`](#qiskit.primitives.BindingsArray "qiskit.primitives.BindingsArray").
 
     **Parameters**
 
-    **bindings\_array** ([*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping "(in Python v3.14)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.14)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*, ...], \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.4)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")*]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.4)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")*]]] |* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes "(in Python v3.14)") *| \_NestedSequence\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.14)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.14)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes "(in Python v3.14)")*]]*) – An object to be bindings array.
+    **bindings\_array** ([*Mapping*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, ...], ArrayLike]*) – An object to be bindings array.
 
     **Returns**
 
@@ -165,7 +165,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
   ### ravel
 
-  <Function id="qiskit.primitives.BindingsArray.ravel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L254-L263" signature="ravel()">
+  <Function id="qiskit.primitives.BindingsArray.ravel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L255-L264" signature="ravel()">
     Return a new [`BindingsArray`](#qiskit.primitives.BindingsArray "qiskit.primitives.BindingsArray") with one dimension.
 
     The returned bindings array has a [`shape`](#qiskit.primitives.BindingsArray.shape "qiskit.primitives.BindingsArray.shape") given by `(size, )`, where the size is the [`size`](#qiskit.primitives.BindingsArray.size "qiskit.primitives.BindingsArray.size") of this bindings array.
@@ -181,14 +181,14 @@ python_api_name: qiskit.primitives.BindingsArray
 
   ### reshape
 
-  <Function id="qiskit.primitives.BindingsArray.reshape" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L265-L290" signature="reshape(*shape)">
+  <Function id="qiskit.primitives.BindingsArray.reshape" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L266-L291" signature="reshape(*shape)">
     Return a new [`BindingsArray`](#qiskit.primitives.BindingsArray "qiskit.primitives.BindingsArray") with a different shape.
 
     This results in a new view of the same arrays.
 
     **Parameters**
 
-    **shape** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")  *|*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]*) – The shape of the returned bindings array.
+    **shape** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The shape of the returned bindings array.
 
     **Returns**
 
@@ -196,7 +196,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.14)") – If the provided shape has a different product than the current size.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the provided shape has a different product than the current size.
 
     **Return type**
 
@@ -205,7 +205,7 @@ python_api_name: qiskit.primitives.BindingsArray
 
   ### validate
 
-  <Function id="qiskit.primitives.BindingsArray.validate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L312-L319" signature="validate()">
+  <Function id="qiskit.primitives.BindingsArray.validate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/containers/bindings_array.py#L313-L320" signature="validate()">
     Validate the consistency in bindings\_array.
   </Function>
 </Class>

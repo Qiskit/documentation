@@ -9,7 +9,7 @@ python_api_name: qiskit.quantum_info.Z2Symmetries
 # Z2Symmetries
 
 <Class id="qiskit.quantum_info.Z2Symmetries" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/analysis/z2_symmetries.py#L29-L416" signature="qiskit.quantum_info.Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, *, tol=1e-14)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   The \$Z\_2\$ symmetry converter identifies symmetries from the problem hamiltonian and uses them to provide a tapered - more efficient - representation of operators as Paulis for this problem. For each identified symmetry, one qubit can be eliminated in the Pauli representation at the cost of having to test two symmetry sectors (for the two possible eigenvalues - tapering values - of the symmetry). In certain problems such as the finding of the main operator’s ground state, one can a priori identify the symmetry sector of the solution and thus effectively reduce the computational overhead.
 
@@ -22,7 +22,7 @@ python_api_name: qiskit.quantum_info.Z2Symmetries
 
     **Type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")] or None
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)] or None
   </Attribute>
 
   ### tol
@@ -32,7 +32,7 @@ python_api_name: qiskit.quantum_info.Z2Symmetries
 
     **Type**
 
-    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+    [float](https://docs.python.org/3/library/functions.html#float)
   </Attribute>
 
   **References**
@@ -45,9 +45,9 @@ python_api_name: qiskit.quantum_info.Z2Symmetries
 
   *   **symmetries** (*Iterable\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – Object representing the list of \$Z\_2\$ symmetries. These correspond to the generators of the symmetry group \$langle tau\_1, tau\_2dots rangle>\$.
   *   **sq\_paulis** (*Iterable\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – Object representing the list of single-qubit Pauli \$sigma^x\_\{q(i)}\$ anti-commuting with the symmetry \$tau\_i\$ and commuting with all the other symmetries \$tau\_\{jneq i}\$. These operators are used to construct the unitary Clifford operators.
-  *   **sq\_list** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The list of indices \$q(i)\$ of the single-qubit Pauli operators used to build the Clifford operators.
-  *   **tapering\_values** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – List of eigenvalues determining the symmetry sector for each symmetry.
-  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Tolerance threshold for ignoring real and complex parts of a coefficient.
+  *   **sq\_list** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The list of indices \$q(i)\$ of the single-qubit Pauli operators used to build the Clifford operators.
+  *   **tapering\_values** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – List of eigenvalues determining the symmetry sector for each symmetry.
+  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Tolerance threshold for ignoring real and complex parts of a coefficient.
 
   **Raises**
 
@@ -138,7 +138,7 @@ python_api_name: qiskit.quantum_info.Z2Symmetries
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### taper
