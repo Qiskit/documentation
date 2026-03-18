@@ -203,8 +203,10 @@ If you don't do this step, you will get the error "FAILED scripts/nb-tester/test
 ### Add package version information
 
 Add a new markdown cell under your title with a `version-info` tag.
-When you execute the notebook (see the next section), the script will populate
+When you execute the notebook locally with either When you execute the notebook locally with either `tox -- docs/guides/circuit-transpilation-settings.ipynb --test-strategy=hardware --write` or `tox -- docs/guides/circuit-transpilation-settings.ipynb --test-strategy=hardware --write --patch '{patch="qiskit-ibm-runtime"}'`, the script will populate
 this cell with the package versions so users can reproduce the results.
+
+It will also update during the cron jobs.
 
 ### Execute notebooks
 
@@ -234,7 +236,7 @@ graphviz`.
   ```sh
   tox -- <path/to/notebook.ipynb> <path/to/another-notebook.ipynb>
   ```
-- To write the execution results to the file, pass the `--write` argument.
+- To write the execution results to the file, pass the `--write` argument. (Note this generates the package version info cell mentioned in [this section](#add-package-version-information).)
   Since we only allow writing results from real hardware, you will usually also
   need to pass `--test-strategy=hardware`. Note this means the run will use QPU
   time.
