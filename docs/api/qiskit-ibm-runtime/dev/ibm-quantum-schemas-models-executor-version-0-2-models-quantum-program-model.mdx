@@ -1,0 +1,82 @@
+---
+title: QuantumProgramModel (dev version)
+description: API reference for ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel
+---
+
+<span id="ibm-quantum-schemas-models-executor-version-0-2-models-quantumprogrammodel" />
+
+# QuantumProgramModel
+
+<Class id="ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.4.20260309/ibm_quantum_schemas/models/executor/version_0_2/models.py#L179-L218" signature="QuantumProgramModel" modifiers="pydantic model">
+  Bases: `BaseModel`
+
+  Model to store a quantum program.
+
+  ### items
+
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.items" attributeTypeHint="list[Annotated[CircuitItemModel | SamplexItemModel, Field(discriminator" attributeValue="'item_type')]] [Required]" modifiers="field">
+    Items of the program.
+
+    **Validated by**
+
+    *   [`check_chunk_sizes_are_consistent`](#ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.check_chunk_sizes_are_consistent "ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.check_chunk_sizes_are_consistent")
+  </Attribute>
+
+  ### meas\_level
+
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.meas_level" attributeTypeHint="Literal['classified', 'kerneled', 'avg_kerneled']" attributeValue="'classified'" modifiers="field">
+    The level at which to return all classical register measurement results.
+
+    This option sets the return type of all classical registers in all quantum program items and determines whether the raw complex data from low-level measurement devices is discriminated into bits or not.
+
+    > *   **“classified”: Classical register data is returned as boolean arrays with the intrinsic shape**
+    >
+    >     `(num_shots, creg_size)`.
+    >
+    > *   **“kerneled”: Classical register data is returned as a complex array with the intrinsic shape**
+    >
+    >     `(num_shots, creg_size)`, where each entry represents an IQ data point (resulting from kerneling the measurement trace) in arbitrary units.
+    >
+    > *   **“avg\_kerneled”: Classical register data is returned as a complex array with the intrinsic**
+    >
+    >     shape `(creg_size,)`, where data is equivalent to “kerneled” except additionally averaged over shots.
+
+    **Validated by**
+
+    *   [`check_chunk_sizes_are_consistent`](#ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.check_chunk_sizes_are_consistent "ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.check_chunk_sizes_are_consistent")
+  </Attribute>
+
+  ### passthrough\_data
+
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.passthrough_data" attributeTypeHint="DataTree" attributeValue="None" modifiers="field">
+    Arbitrary nested data passed through execution without modification.
+
+    **Validated by**
+
+    *   [`check_chunk_sizes_are_consistent`](#ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.check_chunk_sizes_are_consistent "ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.check_chunk_sizes_are_consistent")
+  </Attribute>
+
+  ### shots
+
+  <Attribute id="ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.shots" attributeTypeHint="int [Required]" modifiers="field">
+    The number of shots for each individually bound circuit.
+
+    **Constraints**
+
+    *   **ge** = 1
+
+    **Validated by**
+
+    *   [`check_chunk_sizes_are_consistent`](#ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.check_chunk_sizes_are_consistent "ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.check_chunk_sizes_are_consistent")
+  </Attribute>
+
+  ### check\_chunk\_sizes\_are\_consistent
+
+  <Function id="ibm_quantum_schemas.models.executor.version_0_2.models.QuantumProgramModel.check_chunk_sizes_are_consistent" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.4.20260309/ibm_quantum_schemas/models/executor/version_0_2/models.py#L188-L198" signature="check_chunk_sizes_are_consistent" modifiers="validator">
+    Check that all program items set chunk sizes consistently.
+  </Function>
+</Class>
+

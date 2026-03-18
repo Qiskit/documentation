@@ -123,14 +123,14 @@ $$
 
   **Parameters**
 
-  *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of iterations.
-  *   **learning\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | np.ndarray | Callable\[\[], Generator\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*, None, None]]*) – A constant, list, array or factory of generators yielding learning rates for the parameter updates. See the docstring for an example.
-  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – If the norm of the parameter update is smaller than this threshold, the optimizer has converged.
-  *   **perturbation** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – If no gradient is passed to [`minimize()`](#qiskit.algorithms.optimizers.GradientDescent.minimize "qiskit.algorithms.optimizers.GradientDescent.minimize") the gradient is approximated with a forward finite difference scheme with `perturbation` perturbation in both directions (defaults to 1e-2 if required). Ignored when we have an explicit function for the gradient.
+  *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum number of iterations.
+  *   **learning\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | np.ndarray | Callable\[\[], Generator\[*[*float*](https://docs.python.org/3/library/functions.html#float)*, None, None]]*) – A constant, list, array or factory of generators yielding learning rates for the parameter updates. See the docstring for an example.
+  *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – If the norm of the parameter update is smaller than this threshold, the optimizer has converged.
+  *   **perturbation** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – If no gradient is passed to [`minimize()`](#qiskit.algorithms.optimizers.GradientDescent.minimize "qiskit.algorithms.optimizers.GradientDescent.minimize") the gradient is approximated with a forward finite difference scheme with `perturbation` perturbation in both directions (defaults to 1e-2 if required). Ignored when we have an explicit function for the gradient.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `learning_rate` is an array and its length is less than `maxiter`.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `learning_rate` is an array and its length is less than `maxiter`.
 
   ## Attributes
 
@@ -265,7 +265,7 @@ $$
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   ### create\_result
@@ -319,8 +319,8 @@ $$
 
     *   **x\_center** (*ndarray*) – point around which we compute the gradient
     *   **f** (*func*) – the function of which the gradient is to be computed.
-    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
-    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
+    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int)) – max evals grouped, defaults to 1 (i.e. no batching).
 
     **Returns**
 
@@ -340,10 +340,10 @@ $$
 
     **Parameters**
 
-    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Function to minimize.
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – Function to minimize.
     *   **x0** (*POINT*) – Initial point.
     *   **jac** (*Callable\[\[POINT], POINT] | None*) – Function to compute the gradient.
-    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds of the search space.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – Bounds of the search space.
 
     **Returns**
 
@@ -375,7 +375,7 @@ $$
 
     **Parameters**
 
-    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
+    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – options, given as name=value.
   </Function>
 
   ### start
@@ -385,10 +385,10 @@ $$
 
     **Parameters**
 
-    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Function to minimize.
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – Function to minimize.
     *   **x0** (*POINT*) – Initial point.
     *   **jac** (*Callable\[\[POINT], POINT] | None*) – Function to compute the gradient.
-    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds of the search space.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]] | None*) – Bounds of the search space.
   </Function>
 
   ### step
@@ -411,7 +411,7 @@ $$
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the gradient passed doesn’t have the right dimension.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the gradient passed doesn’t have the right dimension.
   </Function>
 
   ### wrap\_function
@@ -422,7 +422,7 @@ $$
     **Parameters**
 
     *   **function** (*func*) – the target function
-    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
+    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – the args to be injected
 
     **Returns**
 

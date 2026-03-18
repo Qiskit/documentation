@@ -57,19 +57,19 @@ def main() -> None:
         logger.info("Cleaned up closed PR previews")
 
 
-def get_active_pr_folders() -> set[str]:
+def get_active_pr_folders() -> 'set[str]':
     raw = run_subprocess(
         ["gh", "pr", "list", "--state", "open", "--json", "number", "--limit", "1000"]
     ).stdout
     # `raw` is JSON string of form: { number: int }[]
     return {f"pr-{obj['number']}" for obj in json.loads(raw)}
 
-
 def delete_closed_pr_folders() -> None:
     active_pr_folders = get_active_pr_folders()
     for folder in Path(".").glob("pr-*"):
-        if folder.name not in active_pr_folders:
-            logger.info(f"Deleting {folder}")
+        is_closed = folder.name not in active_pr_folders
+        if is_closed:
+            logger.info(f"Deleting {folder} as PR is closed")
             shutil.rmtree(folder)
 
 

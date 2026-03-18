@@ -24,6 +24,10 @@ To use visualization functions, you are required to install visualization option
 pip install 'qiskit[visualization]'
 ```
 
+<Admonition title="Warning" type="caution">
+  In general, the visualization tooling in Qiskit may call system programs on arbitrary user input, and should only be used on trusted inputs. The visualization tooling provided in Qiskit is mostly intended for local visualization, and deliberately allows user code injection in several places, such as Graphviz node labels like register names in [`DAGCircuit.draw()`](qiskit.dagcircuit.DAGCircuit#draw "qiskit.dagcircuit.DAGCircuit.draw"), or LaTeX instruction labels from [`Instruction.label`](qiskit.circuit.Instruction#label "qiskit.circuit.Instruction.label") in the `latex` mode of [`QuantumCircuit.draw()`](qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw").
+</Admonition>
+
 ## Common Keyword Arguments
 
 Many of the figures created by visualization functions in this module are created by [Matplotlib](https://matplotlib.org/) and accept a subset of the following common arguments. Consult the individual documentation for exact details.
@@ -223,7 +227,7 @@ You can find code examples for each visualization functions on the individual fu
 
 ### VisualizationError
 
-<Class id="qiskit.visualization.VisualizationError" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/visualization/exceptions.py#L18-L21" signature="qiskit.visualization.VisualizationError(*message)" modifiers="exception">
+<Class id="qiskit.visualization.VisualizationError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/visualization/exceptions.py#L18-L21" signature="qiskit.visualization.VisualizationError(*message)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   For visualization specific errors.

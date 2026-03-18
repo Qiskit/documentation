@@ -9,15 +9,15 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 # LayerModel
 
 <Class id="qiskit_addon_mpf.backends.quimb_layers.LayerModel" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_layers/model.py#L25-L150" signature="LayerModel(L, H2, H1=None, cyclic=False, keep_only_odd=None)" modifiers="class">
-  Bases: [`LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d_tebd/index.html#quimb.tensor.tensor_1d_tebd.LocalHam1D "(in quimb v1.10)")
+  Bases: [`LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d_tebd/index.html#quimb.tensor.tensor_1d_tebd.LocalHam1D)
 
   A model for representing a layer of time-evolution interactions.
 
-  Essentially, this class is a simple wrapper of [`quimb.tensor.LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.LocalHam1D "(in quimb v1.10)"). Its main purpose is to provide a simple interface for constructing a Quimb-compatible Hamiltonian from Qiskit objects.
+  Essentially, this class is a simple wrapper of [`quimb.tensor.LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.LocalHam1D). Its main purpose is to provide a simple interface for constructing a Quimb-compatible Hamiltonian from Qiskit objects.
 
   Initialize a [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") instance.
 
-  Most of the arguments below are simply forwarded to [`quimb.tensor.LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.LocalHam1D "(in quimb v1.10)") so check out its documentation for more details.
+  Most of the arguments below are simply forwarded to [`quimb.tensor.LocalHam1D`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.LocalHam1D) so check out its documentation for more details.
 
   **Parameters**
 
@@ -40,15 +40,15 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
   ### from\_quantum\_circuit
 
   <Function id="qiskit_addon_mpf.backends.quimb_layers.LayerModel.from_quantum_circuit" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_layers/model.py#L73-L150" signature="from_quantum_circuit(circuit, *, scaling_factor=1.0, keep_only_odd=None, **kwargs)" modifiers="classmethod">
-    Construct a [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") from a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)").
+    Construct a [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") from a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit).
 
     You can see an example of this function in action in the docs of `quimb_layers`.
 
     **Parameters**
 
-    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")) – the quantum circuit to parse.
-    *   **scaling\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – a factor with which to scale the term strengths. This can be used to apply (for example) a time step scaling factor. It may also be used (e.g.) to split onsite terms into two layers (even and odd) with \$0.5\$ of the strength, each.
-    *   **keep\_only\_odd** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – the value to use for [`keep_only_odd`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd "qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd").
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the quantum circuit to parse.
+    *   **scaling\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float)) – a factor with which to scale the term strengths. This can be used to apply (for example) a time step scaling factor. It may also be used (e.g.) to split onsite terms into two layers (even and odd) with \$0.5\$ of the strength, each.
+    *   **keep\_only\_odd** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – the value to use for [`keep_only_odd`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd "qiskit_addon_mpf.backends.quimb_layers.LayerModel.keep_only_odd").
     *   **kwargs** – any additional keyword arguments to pass to the [`LayerModel`](#qiskit_addon_mpf.backends.quimb_layers.LayerModel "qiskit_addon_mpf.backends.quimb_layers.LayerModel") constructor.
 
     **Returns**
@@ -57,7 +57,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if an unsupported quantum gate is encountered.
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if an unsupported quantum gate is encountered.
 
     **Return type**
 
@@ -73,8 +73,8 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 
     **Parameters**
 
-    *   **where** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – the pair of site indices of the local term to get. This identifies the bond index.
-    *   **x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the value with which to matrix exponentiate the interaction term.
+    *   **where** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the pair of site indices of the local term to get. This identifies the bond index.
+    *   **x** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the value with which to matrix exponentiate the interaction term.
 
     **Returns**
 
@@ -82,7 +82,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerModel
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)") | None
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) | None
   </Function>
 </Class>
 

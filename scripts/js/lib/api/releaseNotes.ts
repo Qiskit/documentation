@@ -127,6 +127,7 @@ export async function maybeUpdateReleaseNotesFolder(
 export async function determineReleaseNotesSeparetePagesVersions(
   pkgName: string,
   versionWithoutPatch: string,
+  isDev: boolean,
 ): Promise<string[]> {
   const versions = new Set(
     (await $`ls docs/api/${pkgName}/release-notes`.quiet()).stdout
@@ -135,7 +136,10 @@ export async function determineReleaseNotesSeparetePagesVersions(
       .map((x) => parse(x).name)
       .filter((x) => x.match(/^\d/)), // remove index
   );
-  versions.add(versionWithoutPatch);
+
+  // Dev versions don't include release notes
+  if (!isDev) versions.add(versionWithoutPatch);
+
   return Array.from(versions)
     .sort((a: string, b: string) => {
       const aParts = a.split(".").map((x) => Number(x));
@@ -154,7 +158,17 @@ export async function determineReleaseNotesSeparetePagesVersions(
 }
 
 export function generateReleaseNotesIndex(pkg: Pkg): string {
-  let markdown = `---
+  const grouped = groupByMajorVersion(
+    pkg.releaseNotesConfig.separatePagesVersions,
+  );
+  const groupsMarkdown = [...grouped.entries()]
+    .map(([majorVersion, versionList], idx) =>
+      renderVersionGroup(majorVersion, versionList, {
+        isLatestVersion: idx === 0,
+      }),
+    )
+    .join("\n\n");
+  return `---
 title: ${pkg.title} release notes
 description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 ---
@@ -165,18 +179,9 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 
 ## Release notes by version
 
-`;
-
-  const grouped = groupByMajorVersion(
-    pkg.releaseNotesConfig.separatePagesVersions,
-  );
-  [...grouped.entries()].forEach(([majorVersion, versionList], idx) => {
-    markdown +=
-      renderVersionGroup(majorVersion, versionList, {
-        isLatestVersion: idx === 0,
-      }) + "\n\n";
-  });
-  return markdown.trim();
+<Accordion>
+${groupsMarkdown}
+</Accordion>`;
 }
 
 /**
@@ -283,11 +288,8 @@ function renderVersionGroup(
   const items = versions
     .map((version) => `- [v${version}](./${version})`)
     .join("\n");
-  const openAttr = kwargs.isLatestVersion ? " open" : "";
-  return `
-<details${openAttr}>
-<summary>v${majorVersion}</summary>
+  const maybeOpenProp = kwargs.isLatestVersion ? "open " : "";
+  return `<AccordionItem ${maybeOpenProp}title="v${majorVersion}">
 ${items}
-</details>
-  `.trim();
+</AccordionItem>`;
 }

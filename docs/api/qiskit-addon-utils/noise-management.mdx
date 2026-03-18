@@ -25,8 +25,8 @@ Noise management tools.
 
   **Parameters**
 
-  *   **measurement\_noise\_map** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap "(in Qiskit v2.2)")) – Learned measurement noise in PauliLindbladMap format.
-  *   **basis\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v2.2)")*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v2.2)") *| None]]*) – Mapping between measure bases and observables in which the TREX algorithm mitigates their
+  *   **measurement\_noise\_map** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)) – Learned measurement noise in PauliLindbladMap format.
+  *   **basis\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp) *| None]]*) – Mapping between measure bases and observables in which the TREX algorithm mitigates their
   *   **calculation.** (*expectation value*)
 
   **Returns**
@@ -43,9 +43,9 @@ Noise management tools.
 
   **Parameters**
 
-  *   **noise\_models** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap "(in Qiskit v2.2)")*]*) – Dict of noise-model IDs (strings) and learned noise models for each unique noisy box in the circuit.
-  *   **box\_id\_to\_noise\_id** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*]*) – Dict of box IDs and noise-model IDs.
-  *   **noise\_scales\_each\_box** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")*] | None*) – Dict of box IDs and factors by which to rescale the Lindblad error rates of each generator in the associated noise model.
+  *   **noise\_models** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*]*) – Dict of noise-model IDs (strings) and learned noise models for each unique noisy box in the circuit.
+  *   **box\_id\_to\_noise\_id** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – Dict of box IDs and noise-model IDs.
+  *   **noise\_scales\_each\_box** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*] | None*) – Dict of box IDs and factors by which to rescale the Lindblad error rates of each generator in the associated noise model.
 
   **Returns**
 
@@ -57,13 +57,13 @@ Noise management tools.
 
   **Return type**
 
-  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.14)")
+  [float](https://docs.python.org/3/library/functions.html#float)
 </Function>
 
 ### PostSelectionSummary
 
 <Class id="qiskit_addon_utils.noise_management.PostSelectionSummary" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/post_selection/post_selection_summary.py#L28-L117" signature="PostSelectionSummary(primary_cregs, measure_map, edges, *, post_selection_suffix='_ps')" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A helper class to store the properties of a quantum circuit required to post select the results.
 
@@ -71,10 +71,10 @@ Noise management tools.
 
   **Parameters**
 
-  *   **primary\_cregs** ([*set*](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*]*) – The names of the “primary” classical registers, namely those that do not end with the post selection suffix.
-  *   **measure\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*,* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]]*) – A map between qubit indices to the register and clbits that uniquely define a measurement on those qubits.
-  *   **edges** ([*set*](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.14)")*\[*[*frozenset*](https://docs.python.org/3/library/stdtypes.html#frozenset "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]]*) – A list of tuples defining pairs of neighboring qubits.
-  *   **post\_selection\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – The suffix of the post selection registers.
+  *   **primary\_cregs** ([*set*](https://docs.python.org/3/library/stdtypes.html#set)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – The names of the “primary” classical registers, namely those that do not end with the post selection suffix.
+  *   **measure\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – A map between qubit indices to the register and clbits that uniquely define a measurement on those qubits.
+  *   **edges** ([*set*](https://docs.python.org/3/library/stdtypes.html#set)*\[*[*frozenset*](https://docs.python.org/3/library/stdtypes.html#frozenset)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – A list of tuples defining pairs of neighboring qubits.
+  *   **post\_selection\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The suffix of the post selection registers.
 
   #### edges
 
@@ -89,9 +89,9 @@ Noise management tools.
 
     **Parameters**
 
-    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.2)")) – The circuit to create a summary of.
-    *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v2.2)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]]*) – A coupling map or a list of tuples indicating pairs of neighboring qubits.
-    *   **post\_selection\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – A fixed suffix to append to the names of the classical registers when copying them.
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The circuit to create a summary of.
+    *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – A coupling map or a list of tuples indicating pairs of neighboring qubits.
+    *   **post\_selection\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – A fixed suffix to append to the names of the classical registers when copying them.
 
     **Return type**
 
@@ -120,7 +120,7 @@ Noise management tools.
 ### PostSelector
 
 <Class id="qiskit_addon_utils.noise_management.PostSelector" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/post_selection/post_selector.py#L41-L109" signature="PostSelector(summary)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.14)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A class to process the results of quantum programs based on the outcome of post selection measurements.
 
@@ -141,12 +141,12 @@ Noise management tools.
 
     **Parameters**
 
-    *   **result** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.14)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.3)")*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.3)")*]]]*) – The result to post-process. It must be a `QuantumProgramResult` containing a single item or a dictionary.
-    *   **strategy** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)") *| PostSelectionStrategy*) – The post selection strategy used to process the result.
+    *   **result** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)*]]]*) – The result to post-process. It must be a `QuantumProgramResult` containing a single item or a dictionary.
+    *   **strategy** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| PostSelectionStrategy*) – The post selection strategy used to process the result.
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.3)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)"), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.3)")\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.3)")]]
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[int](https://docs.python.org/3/library/functions.html#int), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)]]
   </Function>
 
   #### from\_circuit
@@ -157,9 +157,9 @@ Noise management tools.
     **Parameters**
 
     *   **circuits** – The circuits to process the results of.
-    *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v2.2)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.14)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.14)")*]]*) – A coupling map or a list of tuples indicating pairs of neighboring qubits.
-    *   **post\_selection\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")) – A fixed suffix to append to the names of the classical registers when copying them.
-    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.2)"))
+    *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – A coupling map or a list of tuples indicating pairs of neighboring qubits.
+    *   **post\_selection\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – A fixed suffix to append to the names of the classical registers when copying them.
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit))
 
     **Return type**
 

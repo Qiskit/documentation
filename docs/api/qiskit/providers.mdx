@@ -36,11 +36,11 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 ### Backend
 
-|                                                                                                             |                                                              |
-| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend")()                                          | Base common type for all versioned Backend abstract classes. |
-| [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")(\[provider, name, description, ...]) | Abstract class for Backends                                  |
-| [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties")                    | A representation of a `QubitProperties` object.              |
+|                                                                                                                |                                                              |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend")()                                             | Base common type for all versioned Backend abstract classes. |
+| [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")(\[provider, name, description, ...])    | Abstract class for Backends                                  |
+| [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties")(\[t1, t2, frequency]) | A representation of a `QubitProperties` object.              |
 
 ### Options
 
@@ -65,7 +65,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### QiskitBackendNotFoundError
 
-<Class id="qiskit.providers.QiskitBackendNotFoundError" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/providers/exceptions.py#L30-L33" signature="qiskit.providers.QiskitBackendNotFoundError(*message)" modifiers="exception">
+<Class id="qiskit.providers.QiskitBackendNotFoundError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/providers/exceptions.py#L30-L33" signature="qiskit.providers.QiskitBackendNotFoundError(*message)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Base class for errors raised while looking for a backend.
@@ -75,7 +75,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### JobError
 
-<Class id="qiskit.providers.JobError" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/providers/exceptions.py#L18-L21" signature="qiskit.providers.JobError(*message)" modifiers="exception">
+<Class id="qiskit.providers.JobError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/providers/exceptions.py#L18-L21" signature="qiskit.providers.JobError(*message)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Base class for errors raised by Jobs.
@@ -85,7 +85,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### JobTimeoutError
 
-<Class id="qiskit.providers.JobTimeoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/providers/exceptions.py#L24-L27" signature="qiskit.providers.JobTimeoutError(*message)" modifiers="exception">
+<Class id="qiskit.providers.JobTimeoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/providers/exceptions.py#L24-L27" signature="qiskit.providers.JobTimeoutError(*message)" modifiers="exception">
   Bases: [`JobError`](#qiskit.providers.JobError "qiskit.providers.exceptions.JobError")
 
   Base class for timeout errors raised by jobs.
@@ -130,7 +130,7 @@ class MyProvider:
         return filter_backends(backends, filters=filters, **kwargs)
 ```
 
-Ensure that any necessary information for authentication (if required) are present in the class and that the backends method matches the required interface. The rest is up to the specific provider on how to implement.
+Ensure that any necessary information for authentication (if required) is present in the class and that the backend’s method matches the required interface. The rest is up to the specific provider on how to implement.
 
 <span id="id1" />
 
@@ -188,20 +188,20 @@ class Mybackend(Backend):
     def _default_options(cls):
         return Options(shots=1024, memory=False)
 
-    def run(circuits, **kwargs):
+    def run(self, circuits, **kwargs):
         # serialize circuits submit to backend and create a job
         for kwarg in kwargs:
-            if not hasattr(kwarg, self.options):
+            if not hasattr(self.options, kwarg):
                 warnings.warn(
                     "Option %s is not used by this backend" % kwarg,
                     UserWarning, stacklevel=2)
         options = {
             'shots': kwargs.get('shots', self.options.shots),
-            'memory': kwargs.get('memory', self.options.shots),
+            'memory': kwargs.get('memory', self.options.memory),
         }
         job_json = convert_to_wire_format(circuit, options)
-        job_handle = submit_to_backend(job_jsonb)
-        return MyJob(self. job_handle, job_json, circuit)
+        job_handle = submit_to_backend(job_json)
+        return MyJob(self.job_handle, job_json, circuit)
 ```
 
 <span id="backend-s-transpiler-interface" />
@@ -240,10 +240,10 @@ The key piece of the [`Backend`](qiskit.providers.Backend "qiskit.providers.Back
     from qiskit.transpiler import InstructionProperties
 
     sy_props = {
-        (0,): InstructionProperties(duration=2.3e-6, error=0.0002)
-        (1,): InstructionProperties(duration=2.1e-6, error=0.0001)
-        (2,): InstructionProperties(duration=2.5e-6, error=0.0003)
-        (3,): InstructionProperties(duration=2.2e-6, error=0.0004)
+        (0,): InstructionProperties(duration=2.3e-6, error=0.0002),
+        (1,): InstructionProperties(duration=2.1e-6, error=0.0001),
+        (2,): InstructionProperties(duration=2.5e-6, error=0.0003),
+        (3,): InstructionProperties(duration=2.2e-6, error=0.0004),
     }
     self.target.add_instruction(SYGate(), sy_props)
     ```
@@ -351,7 +351,7 @@ self._target.add_instruction(PhaseGate(lam), p_props, angle_bounds=[(0, math.pi)
 will set the bounds on [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate") to be between 0 and $\pi$ (inclusive). This models the angle constraint in the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") on the angle values for the `lam` parameter on [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate"). The [`WrapAngles`](qiskit.transpiler.passes.WrapAngles "qiskit.transpiler.passes.WrapAngles") transpiler pass is used to transform any [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate") outside the specified angle bounds. You will need to write a function that takes in the angle values for the gate and returns a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"). For example:
 
 ```python
-from qiskit.transpiler.passes.utils.wrap_angles import WRAP_ANGLE_REGISTRY
+from qiskit.transpiler.passes import WrapAngles
 
 def fold_phase(angles: List[float], qubits: List[int]) -> DAGCircuit:
     angle = angles[0]
@@ -365,7 +365,7 @@ def fold_phase(angles: List[float], qubits: List[int]) -> DAGCircuit:
         dag.apply_operation_back(PhaseGate(math.pi), [dag.qubits[0]])
     return dag
 
-WRAP_ANGLE_REGISTRY.add_wrapper("phase", fold_phase)
+WrapAngles.DEFAULT_REGISTRY.add_wrapper("phase", fold_phase)
 ```
 
 This function will transform the out of bounds gates into one that respects the angle bounds in the target and the target’s other constraints (although not particularly well).
@@ -376,29 +376,29 @@ This function will transform the out of bounds gates into one that respects the 
 
 ### Backend.run Method
 
-Of key importance is the [`run()`](qiskit.providers.BackendV2#run "qiskit.providers.BackendV2.run") method, which is used to actually submit circuits to a device or simulator. The run method handles submitting the circuits to the backend to be executed and returning a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object. Depending on the type of backend this typically involves serializing the circuit object into the API format used by a backend. For example, on IBM backends from the `qiskit-ibm-provider` package this involves converting from a quantum circuit and options into a [`qpy`](qpy#module-qiskit.qpy "qiskit.qpy") payload embedded in JSON and submitting that to the IBM Quantum API. Since every backend interface is different (and in the case of the local simulators serialization may not be needed) it is expected that the backend’s [`run`](qiskit.providers.BackendV2#run "qiskit.providers.BackendV2.run") method will handle this conversion.
+Of key importance is the [`run()`](qiskit.providers.BackendV2#run "qiskit.providers.BackendV2.run") method, which is used to actually submit circuits to a device or simulator. The run method handles submitting the circuits to the backend to be executed and returning a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object. Depending on the type of backend this typically involves serializing the circuit object into the API format used by a backend. Since backend serialization needs might differ (and, in the case of local simulators, serialization may not even be needed), it is expected that the backend’s [`run`](qiskit.providers.BackendV2#run "qiskit.providers.BackendV2.run") method will handle this conversion.
 
 An example run method would be something like:
 
 ```python
-def run(self, circuits. **kwargs):
+def run(self, circuits, **kwargs):
     for kwarg in kwargs:
-        if not hasattr(kwarg, self.options):
+        if not hasattr(self.options, kwarg):
             warnings.warn(
                 "Option %s is not used by this backend" % kwarg,
                 UserWarning, stacklevel=2)
     options = {
-        'shots': kwargs.get('shots', self.options.shots)
-        'memory': kwargs.get('memory', self.options.shots),
+        'shots': kwargs.get('shots', self.options.shots),
+        'memory': kwargs.get('memory', self.options.memory),
     }
     job_json = convert_to_wire_format(circuit, options)
-    job_handle = submit_to_backend(job_jsonb)
-    return MyJob(self. job_handle, job_json, circuit)
+    job_handle = submit_to_backend(job_json)
+    return MyJob(self.job_handle, job_json, circuit)
 ```
 
 ### Backend Options
 
-There are often several options for a backend that control how a circuit is run. The typical example of this is something like the number of `shots` which is how many times the circuit is to be executed. The options available for a backend are defined using an [`Options`](qiskit.providers.Options "qiskit.providers.Options") object. This object is initially created by the [`_default_options`](qiskit.providers.BackendV2#_default_options "qiskit.providers.BackendV2._default_options") method of a Backend class. The default options returns an initialized [`Options`](qiskit.providers.Options "qiskit.providers.Options") object with all the default values for all the options a backend supports. For example, if the backend supports only supports `shots` the [`_default_options`](qiskit.providers.BackendV2#_default_options "qiskit.providers.BackendV2._default_options") method would look like:
+There are often several options for a backend that control how a circuit is run. The typical example of this is something like the number of `shots` which is how many times the circuit is to be executed. The options available for a backend are defined using an [`Options`](qiskit.providers.Options "qiskit.providers.Options") object. This object is initially created by the [`_default_options`](qiskit.providers.BackendV2#_default_options "qiskit.providers.BackendV2._default_options") method of a Backend class. The default options returns an initialized [`Options`](qiskit.providers.Options "qiskit.providers.Options") object with all the default values for all the options a backend supports. For example, if the backend only supports `shots` the [`_default_options`](qiskit.providers.BackendV2#_default_options "qiskit.providers.BackendV2._default_options") method would look like:
 
 ```python
 @classmethod
@@ -476,8 +476,8 @@ class MyJob(Job):
             status = JobStatus.ERROR
         return status
 
-def submit(self):
-    raise NotImplementedError
+    def submit(self):
+        raise NotImplementedError
 ```
 
 and for a sync job:

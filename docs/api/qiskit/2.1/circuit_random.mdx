@@ -40,14 +40,14 @@ These circuits can be used for benchmarking existing quantum hardware and estima
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of quantum wires
-  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – layers of operations (i.e. critical path length)
-  *   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – maximum qubit operands of each gate (between 1 and 4)
-  *   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, measure all qubits at the end
-  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, insert middle measurements and conditionals
-  *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, insert middle resets
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – sets random seed (optional)
-  *   **num\_operand\_distribution** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – a distribution of gates that specifies the ratio of 1-qubit, 2-qubit, 3-qubit, …, n-qubit gates in the random circuit. Expect a deviation from the specified ratios that depends on the size of the requested random circuit. (optional)
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of quantum wires
+  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int)) – layers of operations (i.e. critical path length)
+  *   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int)) – maximum qubit operands of each gate (between 1 and 4)
+  *   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, measure all qubits at the end
+  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, insert middle measurements and conditionals
+  *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, insert middle resets
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)) – sets random seed (optional)
+  *   **num\_operand\_distribution** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – a distribution of gates that specifies the ratio of 1-qubit, 2-qubit, 3-qubit, …, n-qubit gates in the random circuit. Expect a deviation from the specified ratios that depends on the size of the requested random circuit. (optional)
 
   **Returns**
 
@@ -97,16 +97,16 @@ These circuits can be used for benchmarking existing quantum hardware and estima
 
   **Parameters**
 
-  *   **interaction\_graph** (*PyGraph | PyDiGraph | List\[Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]*) – Interaction Graph
-  *   **min\_2q\_gate\_per\_edge** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Minimum number of times every qubit-pair must be used in the random circuit. (optional, default:1)
-  *   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – maximum qubit operands of each gate(should be 1 or 2) (optional, default:2)
-  *   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, measure all qubits at the end. (optional, default: False)
-  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, insert middle measurements and conditionals. (optional, default: False)
-  *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, insert middle resets. (optional, default: False)
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – sets random seed. (If None, a random seed is chosen) (optional)
-  *   **insert\_1q\_oper** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Insert 1Q operations to the circuit. (optional, default: True)
-  *   **prob\_conditional** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Probability less than 1.0, this is used to control the occurrence of conditionals in the circuit. (optional, default: 0.1)
-  *   **prob\_reset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Probability less than 1.0, this is used to control the occurrence of reset in the circuit. (optional, default: 0.1)
+  *   **interaction\_graph** (*PyGraph | PyDiGraph | List\[Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]]*) – Interaction Graph
+  *   **min\_2q\_gate\_per\_edge** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Minimum number of times every qubit-pair must be used in the random circuit. (optional, default:1)
+  *   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int)) – maximum qubit operands of each gate(should be 1 or 2) (optional, default:2)
+  *   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, measure all qubits at the end. (optional, default: False)
+  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, insert middle measurements and conditionals. (optional, default: False)
+  *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, insert middle resets. (optional, default: False)
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)) – sets random seed. (If None, a random seed is chosen) (optional)
+  *   **insert\_1q\_oper** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Insert 1Q operations to the circuit. (optional, default: True)
+  *   **prob\_conditional** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Probability less than 1.0, this is used to control the occurrence of conditionals in the circuit. (optional, default: 0.1)
+  *   **prob\_reset** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Probability less than 1.0, this is used to control the occurrence of reset in the circuit. (optional, default: 0.1)
 
   **Returns**
 
@@ -122,7 +122,7 @@ These circuits can be used for benchmarking existing quantum hardware and estima
   *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – When max\_operands is set to 1, but no 1Q operations are allowed by setting insert\_1q\_oper to false.
   *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – When the interaction graph has no edges, so only 1Q gates are possible in the circuit, but insert\_1q\_oper is set to False.
   *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – When an invalid interaction graph object is passed.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Given max\_operands=2, when any edge have probability None but not all, or any of the probabilities are negative.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Given max\_operands=2, when any edge have probability None but not all, or any of the probabilities are negative.
 </Function>
 
 ### Generating arbitrary circuits with clifford gates
@@ -145,10 +145,10 @@ These circuits can be used for benchmarking existing quantum hardware and estima
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of quantum wires.
-  *   **num\_gates** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of gates in the circuit.
-  *   **gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – optional list of Clifford gate names to randomly sample from. If `"all"` (default), use all Clifford gates in the standard library.
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| np.random.Generator*) – sets random seed/generator (optional).
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of quantum wires.
+  *   **num\_gates** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of gates in the circuit.
+  *   **gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – optional list of Clifford gate names to randomly sample from. If `"all"` (default), use all Clifford gates in the standard library.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *| np.random.Generator*) – sets random seed/generator (optional).
 
   **Returns**
 

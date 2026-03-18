@@ -23,8 +23,15 @@ from squeaky import clean_notebook
 
 # This markdown replaces cells with tag 'version-info'
 VERSION_INFO = """\
-<details>
-<summary><b>Package versions</b></summary>
+{{/*
+  DO NOT EDIT THIS CELL!!!
+  This cell's content is generated automatically by a script. Anything you add
+  here will be removed next time the notebook is run. To add new content, create
+  a new cell before or after this one.
+*/}}
+
+<Accordion>
+<AccordionItem title="Package versions">
 
 The code on this page was developed using the following requirements.
 We recommend using these versions or newer.
@@ -32,7 +39,8 @@ We recommend using these versions or newer.
 ```
 {packages}
 ```
-</details>
+</AccordionItem>
+</Accordion>
 """
 
 

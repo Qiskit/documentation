@@ -19,7 +19,7 @@ Functions for simplifying Pauli operators.
 ### OperatorBudget
 
 <Class id="qiskit_addon_obp.utils.simplify.OperatorBudget" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/simplify.py#L43-L77" signature="OperatorBudget(max_paulis=None, max_qwc_groups=None, simplify=True, atol=None, rtol=None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A class for storing the constants that determine how large an operator may grow.
 
@@ -30,16 +30,16 @@ Functions for simplifying Pauli operators.
 
   **Parameters**
 
-  *   **max\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*)
-  *   **max\_qwc\_groups** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*)
-  *   **simplify** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)"))
-  *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*)
-  *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*)
+  *   **max\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*)
+  *   **max\_qwc\_groups** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*)
+  *   **simplify** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
+  *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
+  *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
 
   #### atol
 
   <Attribute id="qiskit_addon_obp.utils.simplify.OperatorBudget.atol" attributeTypeHint="float | None" attributeValue="None">
-    Absolute tolerance for checking if coefficients are zero. Defaults to the [`atol`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp#atol "(in Qiskit v1.4)") value of `SparsePauliOp`.
+    Absolute tolerance for checking if coefficients are zero. Defaults to the [`atol`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp#atol) value of `SparsePauliOp`.
   </Attribute>
 
   #### is\_active
@@ -49,7 +49,7 @@ Functions for simplifying Pauli operators.
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+    [bool](https://docs.python.org/3/library/functions.html#bool)
   </Function>
 
   #### max\_paulis
@@ -67,7 +67,7 @@ Functions for simplifying Pauli operators.
   #### rtol
 
   <Attribute id="qiskit_addon_obp.utils.simplify.OperatorBudget.rtol" attributeTypeHint="float | None" attributeValue="None">
-    Relative tolerance for checking if coefficients are zero. Defaults to the [`rtol`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp#rtol "(in Qiskit v1.4)") value of `Sparse`.
+    Relative tolerance for checking if coefficients are zero. Defaults to the [`rtol`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp#rtol) value of `Sparse`.
   </Attribute>
 
   #### simplify
@@ -80,16 +80,16 @@ Functions for simplifying Pauli operators.
 ### SimplifyMetadata
 
 <Class id="qiskit_addon_obp.utils.simplify.SimplifyMetadata" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.2/qiskit_addon_obp/utils/simplify.py#L26-L40" signature="SimplifyMetadata(num_unique_paulis, num_duplicate_paulis, num_trimmed_paulis, sum_trimmed_coeffs)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A simple dataclass for returning the tracked attributes during operator simplification.
 
   **Parameters**
 
-  *   **num\_unique\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
-  *   **num\_duplicate\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
-  *   **num\_trimmed\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
-  *   **sum\_trimmed\_coeffs** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"))
+  *   **num\_unique\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int))
+  *   **num\_duplicate\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int))
+  *   **num\_trimmed\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int))
+  *   **sum\_trimmed\_coeffs** ([*float*](https://docs.python.org/3/library/functions.html#float))
 
   #### num\_duplicate\_paulis
 
@@ -125,9 +125,9 @@ Functions for simplifying Pauli operators.
 
   **Parameters**
 
-  *   **operator** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)")) – the `SparsePauliOp` to simplify.
-  *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – the absolute tolerance for checking if coefficients are zero. If `None`, this will fallback to using `SparsePauliOp.atol`.
-  *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – the relative tolerance for checking if coefficients are zero. If `None`, this will fallback to using `SparsePauliOp.rtol`.
+  *   **operator** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)) – the `SparsePauliOp` to simplify.
+  *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – the absolute tolerance for checking if coefficients are zero. If `None`, this will fallback to using `SparsePauliOp.atol`.
+  *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – the relative tolerance for checking if coefficients are zero. If `None`, this will fallback to using `SparsePauliOp.rtol`.
 
   **Returns**
 
@@ -135,6 +135,6 @@ Functions for simplifying Pauli operators.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.4)"), [*SimplifyMetadata*](#qiskit_addon_obp.utils.simplify.SimplifyMetadata "qiskit_addon_obp.utils.simplify.SimplifyMetadata")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp), [*SimplifyMetadata*](#qiskit_addon_obp.utils.simplify.SimplifyMetadata "qiskit_addon_obp.utils.simplify.SimplifyMetadata")]
 </Function>
 

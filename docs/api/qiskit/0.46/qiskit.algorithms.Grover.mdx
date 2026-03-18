@@ -72,16 +72,16 @@ $$
 
   **Parameters**
 
-  *   **iterations** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | Iterator\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Specify the number of iterations/power of Grover’s operator to be checked. \* If an int, only one circuit is run with that power of the Grover operator. If the number of solutions is known, this option should be used with the optimal power. The optimal power can be computed with `Grover.optimal_num_iterations`. \* If a list, all the powers in the list are run in the specified order. \* If an iterator, the powers yielded by the iterator are checked, until a maximum number of iterations or maximum power is reached. \* If `None`, the [`AmplificationProblem`](qiskit.algorithms.AmplificationProblem "qiskit.algorithms.AmplificationProblem") provided must have an `is_good_state`, and circuits are run until that good state is reached.
-  *   **growth\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – If specified, the iterator is set to increasing powers of `growth_rate`, i.e. to `int(growth_rate ** 1), int(growth_rate ** 2), ...` until a maximum number of iterations is reached.
-  *   **sample\_from\_iterations** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, instead of taking the values in `iterations` as powers of the Grover operator, a random integer sample between 0 and smaller value than the iteration is used as a power, see \[1], Section 4.
+  *   **iterations** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | Iterator\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Specify the number of iterations/power of Grover’s operator to be checked. \* If an int, only one circuit is run with that power of the Grover operator. If the number of solutions is known, this option should be used with the optimal power. The optimal power can be computed with `Grover.optimal_num_iterations`. \* If a list, all the powers in the list are run in the specified order. \* If an iterator, the powers yielded by the iterator are checked, until a maximum number of iterations or maximum power is reached. \* If `None`, the [`AmplificationProblem`](qiskit.algorithms.AmplificationProblem "qiskit.algorithms.AmplificationProblem") provided must have an `is_good_state`, and circuits are run until that good state is reached.
+  *   **growth\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – If specified, the iterator is set to increasing powers of `growth_rate`, i.e. to `int(growth_rate ** 1), int(growth_rate ** 2), ...` until a maximum number of iterations is reached.
+  *   **sample\_from\_iterations** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True, instead of taking the values in `iterations` as powers of the Grover operator, a random integer sample between 0 and smaller value than the iteration is used as a power, see \[1], Section 4.
   *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: A Quantum Instance or Backend to run the circuits.
   *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A Sampler to use for sampling the results of the circuits.
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `growth_rate` is a float but not larger than 1.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If both `iterations` and `growth_rate` is set.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `growth_rate` is a float but not larger than 1.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If both `iterations` and `growth_rate` is set.
 
   **References**
 
@@ -132,9 +132,9 @@ $$
 
     **Raises**
 
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If a quantum instance or sampler is not set.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If a quantum instance or sampler is not set.
     *   [**AlgorithmError**](algorithms#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a sampler job fails.
-    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If `is_good_state` is not provided and is required (i.e. when iterations
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If `is_good_state` is not provided and is required (i.e. when iterations
     *   **is None**\*\* or ****a list****)\*\* –
 
     **Return type**
@@ -150,8 +150,8 @@ $$
     **Parameters**
 
     *   **problem** ([*AmplificationProblem*](qiskit.algorithms.AmplificationProblem "qiskit.algorithms.AmplificationProblem")) – The amplification problem for the algorithm.
-    *   **power** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of times the Grover operator is repeated. If None, this argument is set to the first item in `iterations`.
-    *   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Boolean flag to indicate if measurement should be included in the circuit.
+    *   **power** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of times the Grover operator is repeated. If None, this argument is set to the first item in `iterations`.
+    *   **measurement** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Boolean flag to indicate if measurement should be included in the circuit.
 
     **Returns**
 
@@ -163,7 +163,7 @@ $$
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If no power is passed and the iterations are not an integer.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If no power is passed and the iterations are not an integer.
   </Function>
 
   ### optimal\_num\_iterations
@@ -173,8 +173,8 @@ $$
 
     **Parameters**
 
-    *   **num\_solutions** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of solutions.
-    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits used to encode the states.
+    *   **num\_solutions** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of solutions.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits used to encode the states.
 
     **Returns**
 
@@ -182,7 +182,7 @@ $$
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [int](https://docs.python.org/3/library/functions.html#int)
   </Function>
 </Class>
 

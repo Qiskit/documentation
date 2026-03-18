@@ -19,7 +19,6 @@ If your file will have non-trivial code in it, please create a Jupyter notebook 
 
 Add the file to these places:
 
-- The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits` AND the Tools section in the `_toc.json` file. Or, in the rare case that it doesn't belong on any of these pages, list it in `scripts/js/commands/checkPatternsIndex.ts` in the ALLOWLIST_MISSING_FROM_INDEX or the ALLOWLIST_MISSING_FROM_TOC section. For example, `"/guides/qiskit-code-assistant"`.
 - qiskit_bot.yaml. Everyone listed under the file name is notified any time the file is updated. If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes. For example, - "`@NoNotifications`"
 - The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension. If you want a "New" pill to appear next to the page in the side bar, add `"isNew": true` and `"isNewDate:"YYYY-MM-DD"`with the page's publish date to that page's entry.
   > [!NOTE]
@@ -32,28 +31,13 @@ Every page must set a `title` and `description`:
 - The title is used for browser tabs and the top line of search results. It should usually match the title used in the `_toc.json` file.
 - The description should describe the page in at least 50 but no more than 160 characters, ideally using some keywords. The description is what shows up as the text in search results. See https://github.com/Qiskit/documentation/issues/131 for some tips.
 
-In MDX files, set the metadata at the top of the file like this:
+Set the metadata at the top of the file like this:
 
 ```
 ---
 title: Representing quantum computers
 description: Learn about coupling maps, basis gates, and backend errors for transpiling
 ---
-```
-
-In Jupyter notebooks, set `title` and `description` in the `metadata` section for the file. In VSCode, you can set up the metadata with these instructions:
-
-1. Open up the file with the "Open With..." option (one way to do this is to right-click the file name to find the "Open With..." option) and then "Text Editor".
-2. Scroll down to the bottom of the file for the top-level key "metadata". Ensure that this is the metadata for the entire file and not for a single code block. You should see in the "metadata" section other entries like "language_info" and "nbconvert_exporter".
-3. Add new keys in the "metadata" section for "title" and "description".
-
-```json
-"metadata": {
-  "description": "Get started using Qiskit with IBM Quantum hardware in this Hello World example",
-  "title": "Hello world",
-  "celltoolbar": "Raw Cell Format",
-  "kernelspec": { ...
-}
 ```
 
 Avoid using hyphens, colons, semicolons, backticks, and pipes when writing the `title` and `description`. These characters might be used differently in other languages, and their use might complicate the translation process. Our translation tooling often replaces them with other symbols that could change their meaning or even break the page.
@@ -119,9 +103,23 @@ $$
 
 ## Tables
 
-Tables are supported: https://www.markdownguide.org/extended-syntax/.
+Tables are supported: https://www.markdownguide.org/extended-syntax/#tables
 
-Warning: do not use `|` inside LaTeX/math expressions. Markdown will incorrectly interpret `|` as the divider between cells. Instead, use `\vert`.
+To include lists inside a cell, use `<ul>` or `<ol>`, along with `<li>`. You can also use normal Markdown links and the `Admonition` component. For example:
+
+```
+| Header |
+| -- |
+| <ol><li>Entry 1</li><li>Entry 2</li></ol> |
+| [a link](https://ibm.com) |
+| <Admonition title="A warning">Some content.</Admonition> |
+```
+
+However, be careful to not add overly complex components like `<Tabs>` because they can make the site hard to interact with and be bad for accessibility. 
+
+With LaTex and math expressions, do not use `|` because Markdown will incorrectly interpret `|` as the divider between cells. Instead, use `\vert`.
+
+Be careful to avoid overly wide tables, as they do not render well on small screens. Instead, consider alternative content layout like using [collapsible sections](#collapsible-sections).
 
 ## Comments
 
@@ -169,7 +167,9 @@ These are components that we expose through MDX. You can use them in both
 To use an `Admonition`, use the following syntax
 
 ```mdx
-<Admonition type="note">This is an example of a note.</Admonition>
+<Admonition type="note">
+  This is an example of a note.
+</Admonition>
 ```
 
 Available types are `note, tip, info, caution, danger`. This is what they look like:
@@ -375,4 +375,14 @@ Here's an example of what this might look like in your notebook source.
   "</Tabs>"
  ]
 }
+```
+
+### LeftColoredBar
+
+The `LeftColoredBar` component adds a colored bar that wraps all the content inside it. Currently we support two colors (`blue` and `purple`) that can be picked by using the `color` property:
+
+```md
+<LeftColoredBar color="blue">
+  You can use any MDX inside this component.
+</LeftColoredBar>
 ```

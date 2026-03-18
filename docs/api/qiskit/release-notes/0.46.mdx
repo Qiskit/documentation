@@ -133,7 +133,7 @@ The 0.46.x release series will continue to be supported and recieve bugfix and s
 
 The packaging structure of Qiskit is changing in Qiskit 1.0, and unfortunately the changed requirements cannot be fully communicated to `pip`, especially if `pip install --upgrade` commands are run after the environment has been initially configured. All versions of Qiskit prior to 1.0 (including this one) have an installation conflict with Qiskit 1.0 that `pip` will not resolve.
 
-If `import qiskit` raises an [`ImportError`](https://docs.python.org/3/library/exceptions.html#ImportError "(in Python v3.12)") for you, your environment is in an invalid state, and versions of Qiskit 0.45/0.46 and 1.0 are both reachable, which will result in subtly broken code. You will need to create a new virtual environment, and ensure that *only* one of the two versions are installed. In particular, if you are intending to install Qiskit 1.0, you must have no packages that depend on `qiskit-terra` installed; these packages are incompatible with Qiskit 1.0 and must be updated. If you are intending to install Qiskit 0.45 or 0.46, you must ensure that you have nothing attempting to install `qiskit>=1.0`.
+If `import qiskit` raises an [`ImportError`](https://docs.python.org/3/library/exceptions.html#ImportError) for you, your environment is in an invalid state, and versions of Qiskit 0.45/0.46 and 1.0 are both reachable, which will result in subtly broken code. You will need to create a new virtual environment, and ensure that *only* one of the two versions are installed. In particular, if you are intending to install Qiskit 1.0, you must have no packages that depend on `qiskit-terra` installed; these packages are incompatible with Qiskit 1.0 and must be updated. If you are intending to install Qiskit 0.45 or 0.46, you must ensure that you have nothing attempting to install `qiskit>=1.0`.
 
 If you develop a library based on Qiskit and you still have a dependency on `qiskit-terra`, you should urgently release a new package that depends only on `qiskit`. Since version 0.44, the `qiskit` package contained only the `qiskit-terra` compiler core (the component that is now simply called “Qiskit”), so if your minimum version is `0.44`, you can safely switch a `qiskit-terra>=0.44` dependency to `qiskit>=0.44` with no change in what will be installed. For more detail and recommendations for testing and preparation, see the [section for developers of the migration guide](https://qisk.it/1-0-packaging-migration#for-developers).
 
@@ -571,7 +571,7 @@ If you develop a library based on Qiskit and you still have a dependency on `qis
 
 ### Critical Issues
 
-*   When updating Qiskit from `0.46.x` to `1.0.0` you will not be able to update in place. For example, `pip install -U qiskit` or `pip install --upgrade qiskit` is not supported and likely will **not** work. To upgrade `qiskit` the recommended path is to create a new virtual environment ([`venv`](https://docs.python.org/3/library/venv.html#module-venv "(in Python v3.12)")) to build a new separate environment for Qiskit>=1.0.0. For example:
+*   When updating Qiskit from `0.46.x` to `1.0.0` you will not be able to update in place. For example, `pip install -U qiskit` or `pip install --upgrade qiskit` is not supported and likely will **not** work. To upgrade `qiskit` the recommended path is to create a new virtual environment ([`venv`](https://docs.python.org/3/library/venv.html#module-venv)) to build a new separate environment for Qiskit>=1.0.0. For example:
 
     ```python
     python -m venv qiskit_1.0

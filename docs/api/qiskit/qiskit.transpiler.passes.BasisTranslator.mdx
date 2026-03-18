@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.BasisTranslator
 
 # BasisTranslator
 
-<Class id="qiskit.transpiler.passes.BasisTranslator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/basis/basis_translator.py#L24-L129" signature="qiskit.transpiler.passes.BasisTranslator(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.BasisTranslator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passes/basis/basis_translator.py#L24-L129" signature="qiskit.transpiler.passes.BasisTranslator(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Translates gates to a target basis by searching for a set of translations from a given EquivalenceLibrary.
@@ -20,7 +20,7 @@ python_api_name: qiskit.transpiler.passes.BasisTranslator
   *   The found path, as a set of rules from the EquivalenceLibrary, is composed into a set of gate replacement rules.
   *   The composed replacement rules are applied in-place to each op node which is not already in the target\_basis.
 
-  If the target keyword argument is specified and that [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") objects contains operations which are non-global (i.e. they are defined only for a subset of qubits), as calculated by [`get_non_global_operation_names()`](qiskit.transpiler.Target#get_non_global_operation_names "qiskit.transpiler.Target.get_non_global_operation_names"), this pass will attempt to match the output translation to those constraints. For 1 qubit operations this is straightforward, the pass will perform a search using the union of the set of global operations with the set of operations defined solely on that qubit. For multi-qubit gates this is a bit more involved, while the behavior is initially similar to the single qubit case, just using all the qubits the operation is run on (where order is not significant) isn’t sufficient. We also need to consider any potential local qubits defined on subsets of the quantum arguments for the multi-qubit operation. This means the target used for the search of a non-global multi-qubit gate is the union of global operations, non-global multi-qubit gates sharing the same qubits, and any non-global gates defined on any subset of the qubits used.
+  If the target keyword argument is specified and that [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object contains operations which are non-global (i.e. they are defined only for a subset of qubits), as calculated by [`get_non_global_operation_names()`](qiskit.transpiler.Target#get_non_global_operation_names "qiskit.transpiler.Target.get_non_global_operation_names"), this pass will attempt to match the output translation to those constraints. For 1 qubit operations this is straightforward, the pass will perform a search using the union of the set of global operations with the set of operations defined solely on that qubit. For multi-qubit gates this is a bit more involved, while the behavior is initially similar to the single qubit case, just using all the qubits the operation is run on (where order is not significant) isn’t sufficient. We also need to consider any potential local qubits defined on subsets of the quantum arguments for the multi-qubit operation. This means the target used for the search of a non-global multi-qubit gate is the union of global operations, non-global multi-qubit gates sharing the same qubits, and any non-global gates defined on any subset of the qubits used.
 
   <Admonition title="Note" type="note">
     In the case of non-global operations it is possible for a single execution of this pass to output an incomplete translation if any non-global gates are defined on qubits that are a subset of a larger multi-qubit gate. For example, if you have a `u` gate only defined on qubit 0 and an `x` gate only on qubit 1 it is possible when translating a 2 qubit operation on qubit 0 and 1 that the output might have `u` on qubit 1 and `x` on qubit 0. Typically running this pass a second time will correct these issues.
@@ -90,14 +90,14 @@ python_api_name: qiskit.transpiler.passes.BasisTranslator
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.BasisTranslator.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.BasisTranslator.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.14)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -105,22 +105,22 @@ python_api_name: qiskit.transpiler.passes.BasisTranslator
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.14)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.14)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.BasisTranslator.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.BasisTranslator.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.14)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.BasisTranslator.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/passes/basis/basis_translator.py#L107-L129" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.BasisTranslator.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/passes/basis/basis_translator.py#L107-L129" signature="run(dag)">
     Translate an input DAGCircuit to the target basis.
 
     **Parameters**
@@ -142,7 +142,7 @@ python_api_name: qiskit.transpiler.passes.BasisTranslator
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.BasisTranslator.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.2/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.BasisTranslator.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**
