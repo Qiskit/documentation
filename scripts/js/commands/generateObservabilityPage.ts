@@ -18,7 +18,7 @@ import {
 } from "../lib/observabilityPage";
 
 export const RUNTIME_API_TITLE = "Qiskit Runtime";
-export const QUANTUM_SYSTEM_API_TITLE = "Quantum System";
+export const QUANTUM_SYSTEM_API_TITLE = "the IBM Quantum System service";
 type OpenapiPkgTitle =
   | typeof RUNTIME_API_TITLE
   | typeof QUANTUM_SYSTEM_API_TITLE;
