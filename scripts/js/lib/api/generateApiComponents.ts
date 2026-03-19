@@ -250,23 +250,27 @@ function prepareAttributeOrPropertyProps(
   id: string,
   headerLevel: number,
 ): ComponentProps {
-  // Properties/attributes have multiple `em.property` values to set:
+  // Properties/attributes have multiple `span.property` values to set:
   //
   //  - the modifiers, like `property` or `abstract property`
   //  - the type hint
   //  - the default value
   //
-  // We need to remove the modifiers `em.property` to not mess up creating the heading, although
+  // We need to remove the modifiers `span.property` to not mess up creating the heading, although
   // we must first extract any modifiers. Attributes will not have modifiers, whereas
   // properties will have `field` (Pydantic), `property` or possibly `abstract property`. If the modifier is simply
   // `property`, then we do not save its value because there is no practical difference for end-users
   // between an attribute and property. However, we preserve the full string if it's `abstract property` or `field`.
   //
-  // Meanwhile, we preserve the non-modifier `em.property` elements to be processed below.
-  const rawModifiers = $child.find("em.property").filter((i, el) => {
-    const text = $(el).text();
-    return text.includes("property") || text.includes("field");
-  });
+  // Meanwhile, we preserve the non-modifier `span.property` elements to be processed below.
+  //
+  // Notice that we also search for `em.property` for compatibility with Sphinx 8
+  const rawModifiers = $child
+    .find("em.property, span.property")
+    .filter((i, el) => {
+      const text = $(el).text();
+      return text.includes("property") || text.includes("field");
+    });
   const modifiersText = rawModifiers.text().trim();
   const filteredModifiers =
     modifiersText === "property" ? undefined : modifiersText;
@@ -449,7 +453,8 @@ function getAndRemoveModifiers($child: Cheerio<any>): string {
   $child.find("em.autodoc_pydantic_validator_arrow").remove();
   $child.find("em.xref").remove();
 
-  const rawModifiers = $child.find("em.property");
+  // Sphinx 8 uses `em.property` while Sphinx 9 uses `span.property`
+  const rawModifiers = $child.find("em.property, span.property");
   const modifiers = rawModifiers.text().trim();
   rawModifiers.remove();
   return modifiers;

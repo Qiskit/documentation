@@ -5,9 +5,9 @@ description: Learn how to install the development version of Qiskit.
 ---
 {/* cspell:ignore rustup */}
 
-# Install the Qiskit SDK and Qiskit Runtime from source
+# Install the Qiskit SDK from source
 
-Installing the Qiskit SDK from source allows you to access the current development version, instead of using the version in the Python Package Index (PyPI) repository. This lets you inspect and extend the latest version of the Qiskit code more efficiently.
+When you install the Qiskit SDK from source, you can access the current development version, instead of using the version in the Python Package Index (PyPI) repository. You can therefore inspect and extend the latest version of the Qiskit code more efficiently.
 
 ## Create and activate a new virtual environment
 
@@ -57,7 +57,7 @@ Installing the Qiskit SDK from source allows you to access the current developme
 
 ## Install the Rust compiler
 
-A Rust compiler must be installed on your system to compile Qiskit. To install the Rust compiler, use the cross-platform Rust installer [`rustup`](https://rustup.rs/) or [another install method.](https://forge.rust-lang.org/infra/other-installation-methods.html)
+A Rust compiler must be installed on your system to compile Qiskit. To install the Rust compiler, use the cross-platform Rust installer [`rustup`](https://rustup.rs/) or [another install method](https://forge.rust-lang.org/infra/other-installation-methods.html).
 
 ## Install Qiskit
 
@@ -105,49 +105,11 @@ pip install -r requirements-dev.txt
     If you are working on Rust code in Qiskit, you need to rebuild the extension code every time you make a local change. In editable mode, the Rust extension is only built when the install command is run, so local changes you make to the Rust code are not reflected in the installed package unless you rebuild the extension by rerunning `build_rust` (with or without `--release`, depending on whether you want to build in release or debug mode).
     </Admonition>
 
-## Install Qiskit Runtime
-
-Follow these steps if you want to install Qiskit Runtime:
-
-1. Clone the Qiskit Runtime repository.
-
-```bash
-git clone https://github.com/Qiskit/qiskit-ibm-runtime.git
-```
-
-2. Change to the `qiskit-ibm-runtime` directory.
-
-```bash
-cd qiskit-ibm-runtime
-```
-
-3. Install `qiskit-runtime`. We recommend using a [virtual environment](https://docs.python.org/3/library/venv.html) to avoid polluting your global Python installation.
-
-  * **Standard install**:
-
-    ```bash
-    pip install .
-    ```
-
-  * **Editable mode**: In this mode, you don't need to reinstall Qiskit when there are code changes to the project.
-
-    ```bash
-    pip install -e .
-    ```
-
-    In editable mode, the compiled extensions are built in _debug mode_ without optimizations.
-
-4. (Optional) If you want to run tests or linting checks, install the developer requirements. We recommend using a [virtual environment](https://docs.python.org/3/library/venv.html) to avoid polluting your global Python installation.
-
-```bash
-pip install -e ".[dev]"
-```
-
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
   - Read the [contributing guidelines](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md) to contribute to the open-source Qiskit SDK.
-  - [Run the Hello world program](/docs/guides/hello-world).
+  - [Run your first quantum circuit](/docs/guides/quick-start).
   - Try a tutorial, such as [Grover's algorithm](/docs/tutorials/grovers-algorithm).
 </Admonition>

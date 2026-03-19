@@ -23,7 +23,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
        4
   ```
 
-  To do this we use a line swap strategy for qubits 0, 1, 3, and 4 defined it in terms of virtual qubits 0, 1, 2, and 3.
+  To do this we use a line swap strategy for qubits 0, 1, 3, and 4 defined in terms of virtual qubits 0, 1, 2, and 3.
 
   ```python
   from qiskit import QuantumCircuit
@@ -49,7 +49,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
   # Define the swap strategy on qubits before the initial_layout is applied.
   swap_strat = SwapStrategy.from_line([0, 1, 2, 3])
 
-  # Chose qubits 0, 1, 3, and 4 from the backend coupling map shown above.
+  # Choose qubits 0, 1, 3, and 4 from the backend coupling map shown above.
   backend_cmap = CouplingMap(couplinglist=[(0, 1), (1, 2), (1, 3), (3, 4)])
   initial_layout = Layout.from_intlist([0, 1, 3, 4], *circ.qregs)
 
@@ -104,7 +104,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
     *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -112,7 +112,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name

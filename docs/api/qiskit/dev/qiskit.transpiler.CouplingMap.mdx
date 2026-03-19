@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
 # CouplingMap
 
-<Class id="qiskit.transpiler.CouplingMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/coupling.py#L30-L503" signature="qiskit.transpiler.CouplingMap(couplinglist=None, description=None)" modifiers="class">
+<Class id="qiskit.transpiler.CouplingMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/coupling.py#L30-L508" signature="qiskit.transpiler.CouplingMap(couplinglist=None, description=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Directed graph specifying fixed coupling.
@@ -117,7 +117,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
     For a connected [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object there is only a single connected component, the entire [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap").
 
-    This method will return a list of [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") objects, one for each connected component in this [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap"). The data payload of each node in the [`graph`](#qiskit.transpiler.CouplingMap.graph "qiskit.transpiler.CouplingMap.graph") attribute will contain the qubit number in the original graph. This will enables mapping the qubit index in a component subgraph to the original qubit in the combined [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap"). For example:
+    This method will return a list of [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") objects, one for each connected component in this [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap"). The data payload of each node in the [`graph`](#qiskit.transpiler.CouplingMap.graph "qiskit.transpiler.CouplingMap.graph") attribute will contain the qubit number in the original graph. This will enable mapping the qubit index in a component subgraph to the original qubit in the combined [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap"). For example:
 
     ```python
     from qiskit.transpiler import CouplingMap
@@ -165,10 +165,14 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### draw
 
-  <Function id="qiskit.transpiler.CouplingMap.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/coupling.py#L488-L503" signature="draw(method='neato')">
+  <Function id="qiskit.transpiler.CouplingMap.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/coupling.py#L488-L508" signature="draw(method='neato')">
     Draws the coupling map.
 
     This function calls the [`graphviz_draw()`](https://www.rustworkx.org/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw) function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
+
+    <Admonition title="Warning" type="caution">
+      This function will call the system Graphviz tool on a file involving user-controllable strings (such as qubit objects). It is recommended to only call this function on trusted input.
+    </Admonition>
 
     **Parameters**
 

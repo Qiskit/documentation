@@ -81,11 +81,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md328" />
+  <span id="group__QkTranspiler_1autotoc_md358" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md328" />
+  <span id="group__QkTranspiler_1autotoc_md358" />
 
   Behavior is undefined if `dag`, `target`, or `layout`, are not valid, non-null pointers to a `QkDag`, `QkTarget`, or a `QkTranspileLayout` pointer respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`. The value of the inner pointer for `layout` will be overwritten by this function. If the value pointed to needs to be freed this must be done outside of this function as it will not be freed by this function.
 
@@ -113,11 +113,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md329" />
+  <span id="group__QkTranspiler_1autotoc_md359" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md329" />
+  <span id="group__QkTranspiler_1autotoc_md359" />
 
   Behavior is undefined if `dag`, `target`, or `layout`, are not valid, non-null pointers to a `QkDag`, `QkTarget`, or a `QkTranspileLayout` pointer respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -126,7 +126,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
   *   **dag** â€“ A pointer to the circuit to run the transpiler on.
   *   **target** â€“ A pointer to the target to compile the circuit for.
   *   **options** â€“ A pointer to an options object that defines user options. If this is a null pointer the default values will be used. See `qk_transpile_default_options` for more details on the default values.
-  *   **layout** â€“ A pointer to a pointer to a `QkTranspileLayout` object. Typically you will need to run the `qk_transpile_stage_layout` prior to this function and that will provide a `QkTranspileLayout` object with the initial layout set you want to take that output layout from that function and use this as the input for this. If you donâ€™t have a layout object (e.g. you ran your own layout pass). You can run `qk_transpile_layout_generate_from_mapping` to generate a trivial layout (where virtual qubit 0 in the circuit is mapped to physical qubit 0 in the target, 1->1, 2->2, etc) for the dag at itâ€™s current state. This will enable you to generate a layout object for the routing stage if you generate your own layout. Note that while this makes a valid layout object to track the permutation caused by routing it does not correctly reflect the initial layout if your custom layout pass is not a trivial layout. You will need to track the initial layout independently in this case.
+  *   **layout** â€“ A pointer to a pointer to a `QkTranspileLayout` object. Typically you will need to run the `qk_transpile_stage_layout` prior to this function and that will provide a `QkTranspileLayout` object with the initial layout set you want to take that output layout from that function and use this as the input for this. If you donâ€™t have a layout object (e.g. you ran your own layout pass). You can run `qk_transpile_layout_generate_from_mapping` to generate a trivial layout (where virtual qubit 0 in the circuit is mapped to physical qubit 0 in the target, 1->1, 2->2, etc) for the dag at itâ€™s current state. This will enable you to generate a layout object for the routing stage if you generate your own layout.
   *   **error** â€“ A pointer to a pointer with an nul terminated string with an error description. If the transpiler fails a pointer to the string with the error description will be written to this pointer. That pointer needs to be freed with `qk_str_free`. This can be a null pointer in which case the error will not be written out.
 
   **Returns**
@@ -136,7 +136,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
 
 ### qk\_transpile\_stage\_optimization
 
-<Function id="qk_transpile_stage_optimization" signature="QkExitCode qk_transpile_stage_optimization(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, char **error)">
+<Function id="qk_transpile_stage_optimization" signature="QkExitCode qk_transpile_stage_optimization(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, char **error, QkTranspileLayout *layout)">
   Run the preset optimization stage of the transpiler on a circuit
 
   The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the fourth stage of the preset pass manager, **optimization**, which optimizes the circuit for the given target after the circuit has been transformed into a physical circuit. You can refer to [Optimization stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-optimization) for more details.
@@ -145,11 +145,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md330" />
+  <span id="group__QkTranspiler_1autotoc_md360" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md330" />
+  <span id="group__QkTranspiler_1autotoc_md360" />
 
   Behavior is undefined if `dag` and `target` are not valid, non-null pointers to a `QkDag`, or a `QkTarget` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -159,6 +159,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
   *   **target** â€“ A pointer to the target to compile the circuit for.
   *   **options** â€“ A pointer to an options object that defines user options. If this is a null pointer the default values will be used. See `qk_transpile_default_options` for more details on the default values.
   *   **error** â€“ A pointer to a pointer with an nul terminated string with an error description. If the transpiler fails a pointer to the string with the error description will be written to this pointer. That pointer needs to be freed with `qk_str_free`. This can be a null pointer in which case the error will not be written out.
+  *   **layout** â€“ A pointer to a `QkTranspileLayout` object. Typically you will need to run the `qk_transpile_stage_layout` prior to this function and that will provide a `QkTranspileLayout` object with the initial layout set you want to take that output layout from that function and use this as the input for this. If you donâ€™t have a layout object (e.g. you ran your own layout pass). You can run `qk_transpile_layout_generate_from_mapping` to generate a trivial layout (where virtual qubit 0 in the circuit is mapped to physical qubit 0 in the target, 1->1, 2->2, etc) for the dag at itâ€™s current state. This will enable you to generate a layout object for the optimization stage if you generate your own layout.
 
   **Returns**
 
@@ -176,11 +177,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md331" />
+  <span id="group__QkTranspiler_1autotoc_md361" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md331" />
+  <span id="group__QkTranspiler_1autotoc_md361" />
 
   Behavior is undefined if `dag` and `target` are not valid, non-null pointers to a `QkDag`, `QkTarget` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -207,11 +208,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md332" />
+  <span id="group__QkTranspiler_1autotoc_md362" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md332" />
+  <span id="group__QkTranspiler_1autotoc_md362" />
 
   Behavior is undefined if `dag` or `target`, are not valid, non-null pointers to a `QkDag`, or a `QkTarget` respectively. Behavior is also undefined if `layout` is not a valid, aligned, pointer to a pointer to a `QkTranspileLayout` or a pointer to a `NULL` pointer. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -237,11 +238,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskitâ€
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md333" />
+  <span id="group__QkTranspiler_1autotoc_md363" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md333" />
+  <span id="group__QkTranspiler_1autotoc_md363" />
 
   Behavior is undefined if `circuit`, `target`, or `result`, are not valid, non-null pointers to a `QkCircuit`, `QkTarget`, or `QkTranspileResult` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
