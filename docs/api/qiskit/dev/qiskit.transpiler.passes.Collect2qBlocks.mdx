@@ -8,10 +8,14 @@ python_api_name: qiskit.transpiler.passes.Collect2qBlocks
 
 # Collect2qBlocks
 
-<Class id="qiskit.transpiler.passes.Collect2qBlocks" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/collect_2q_blocks.py#L20-L35" signature="qiskit.transpiler.passes.Collect2qBlocks(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.Collect2qBlocks" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/collect_2q_blocks.py#L28-L56" signature="qiskit.transpiler.passes.Collect2qBlocks(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Collect two-qubit subcircuits.
+
+  **Parameters**
+
+  **filter\_fn** – An optional function that filters collected two-qubit blocks.
 
   ## Attributes
 
@@ -65,10 +69,10 @@ python_api_name: qiskit.transpiler.passes.Collect2qBlocks
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.Collect2qBlocks.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/collect_2q_blocks.py#L23-L35" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.Collect2qBlocks.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/collect_2q_blocks.py#L39-L56" signature="run(dag)">
     Run the Collect2qBlocks pass on dag.
 
-    The blocks contain “op” nodes in topological order such that all gates in a block act on the same qubits and are adjacent in the circuit.
+    The blocks contain “op” nodes in topological order such that all gates in a block act on the same qubits, are adjacent in the circuit, and satisfy the filtering condition (when specified).
 
     After the execution, `property_set['block_list']` is set to a list of tuples of “op” node.
   </Function>
