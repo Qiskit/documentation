@@ -157,6 +157,8 @@ The operations traditionally associated with pre-, post- or infix operators in p
     The bitwise negation `BIT_NOT` takes a single bit or an unsigned integer of known width, and returns a value of the same type.
 
     The logical negation `LOGIC_NOT` takes an input that is implicitly coerced to a Boolean, and returns a Boolean.
+
+    The arithmetic negation `NEGATE` takes an input that is either float or duration and returns a value of the same type.
   </Class>
 </Class>
 
@@ -341,6 +343,39 @@ There are helper constructor functions for each of the unary operations.
   >>> from qiskit.circuit.classical import expr
   >>> expr.logic_not(ClassicalRegister(3, "c"))
   Unary(Unary.Op.LOGIC_NOT, Cast(Var(ClassicalRegister(3, 'c'), Uint(3)), Bool(), implicit=True), Bool())
+  ```
+
+  **Parameters**
+
+  **operand** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any))
+
+  **Return type**
+
+  [*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit._accelerate.circuit.classical.expr.Expr")
+</Function>
+
+#### negate
+
+<Function id="qiskit.circuit.classical.expr.negate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L766-L793" signature="qiskit.circuit.classical.expr.negate(operand, /)">
+  Negate an expression node from the given value, resolving any implicit casts and lifting the value into a [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") node if required.
+
+  **Examples**
+
+  Negation of a floating point number:
+
+  ```python
+  >>> from qiskit.circuit.classical import expr
+  >>> expr.negate(5.0)
+  Unary(Unary.Op.NEGATE, Value(5.0, Float()), Float())
+  ```
+
+  Negation of a duration:
+
+  ```python
+  >>> from qiskit.circuit import Duration
+  >>> from qiskit.circuit.classical import expr
+  >>> expr.negate(Duration.dt(1000))
+  Unary(Unary.Op.NEGATE, Value(Duration.dt(1000), Duration()), Duration())
   ```
 
   **Parameters**
