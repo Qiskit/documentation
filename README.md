@@ -353,7 +353,7 @@ Use this process when we want to publish new API docs, such as when we release a
 
 For example, if the current docs were for `0.45.0`, and `0.45.1` was just released.
 
-1. Run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g. `npm run gen-api -- -p qiskit -v 0.45.1`. 
+1. Run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g. `npm run gen-api -- -p qiskit -v 0.45.1`.
    - If the patch release is for a minor version before the latest one, add `--historical` to the command. For example, if the latest docs are v1.3.0, but you're generating docs for v1.2.5.
    - If the patch release is for the dev release, add `--dev` to the command. For example, if you are replacing `1.2.0rc1` with `1.2.0rc2`.
 2. Save the commit and open a pull request. Look for any weirdness in the diff, such as if files are unexpectedly deleted.
