@@ -324,8 +324,14 @@ In this case, no commit will be automatically created.
 
 Use this process when we want to publish new API docs, such as when we release a new version of a package like Qiskit SDK.
 
-1. In Git, check out the main branch and pull any updates. Then, create a new Git branch.
-2. Determine which documentation you want to generate (e.g. `qiskit` or `qiskit-ibm-runtime`) and its full version, e.g. `v0.45.2`.
+The process depends on which type of release you are generating:
+
+* TODO: explain key terms like "latest"
+
+All release types start with the following steps:
+
+1. In Git, check out the main branch of `Qiskit/documentation` and pull any updates. Then, create a new Git branch.
+2. Determine which documentation you want to generate (e.g. `qiskit` or `qiskit-ibm-runtime`) and its full version, e.g. `0.45.2` or `1.2.0rc1`.
 3. Download a CI artifact with the project's documentation. To find this:
    1. Find the relevant GitHub Actions workflow for the project:
       - Qiskit SDK: https://github.com/Qiskit/qiskit/actions/workflows/docs_deploy.yml
@@ -337,32 +343,52 @@ Use this process when we want to publish new API docs, such as when we release a
       - qiskit-addon-sqd: https://github.com/Qiskit/qiskit-addon-sqd/actions/workflows/docs.yml
       - qiskit-addon-cutting: https://github.com/Qiskit/qiskit-addon-cutting/actions/workflows/docs.yml
       - qiskit-addon-utils: https://github.com/Qiskit/qiskit-addon-utils/actions/workflows/docs.yml
-   2. Find the run for the release by looking at the middle column with the blue text; look for the version number, like `0.45.2`.
-   3. Click the CI run in the left column to open it up. (Not the middle column with the blue link!)
-   4. In the left navbar, it should show you on the "Summary" page with the house.
+   2. Find the run for the release by looking at the middle column with the blue text; look for the version number, like `0.45.2`. For the `rc1` release, look for `main` in blue text and a run description like "Prepare 2.3.0rc1".
+   3. Click the CI run name. (Not the middle column with the blue link!)
+   4. In the left navbar, it should show as selected the "Summary" page with the house.
    5. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
    6. Download the artifact by clicking on its name.
 4. On some operating systems, the downloaded zip file will be auto-expanded rather than staying a zip file. If this happens, compress it back to a zip file. On macOS, secondary-click on the folder in Finder and use the "Compress" option.
-5. Rename the downloaded zip file with its version number minor-version number. For example, rename `html_docs.zip` to `0.45.zip` for the release `v0.45.2`.
-6. Upload the renamed zip file to https://ibm.ent.box.com/folder/246867452622. If this is a patch release, this step will overwrite the prior file; if it's a new minor version, it will be a new file.
-
-> [!WARNING]
-> Qiskit SDK is special. While there is only one Box artifact, you need to run `npm run gen-api` with both `-p qiskit` and `-p qiskit-c`. For example, to generate v2.3.1 docs, you would run `npm run gen-api -- -p qiskit -v 2.3.1` and `npm run gen-api -- -p qiskit-c -v 2.3.1`.
+5. Rename the downloaded zip file with its minor-version number. For example, for the release `0.45.2`, rename `html_docs.zip` to `0.45.zip`. For release candidates (rc), use a value like `2.3-rc.zip`.
+6. Upload the renamed zip file to https://ibm.ent.box.com/folder/246867452622. If this is a patch release, this step will overwrite the prior file; if it's the `rc1` release or a new minor version like `2.3.0`, it will be a new file.
 
 ### Final steps for patch releases
 
-For example, if the current docs were for `0.45.0`, and `0.45.1` was just released.
+Examples of when to use this process:
 
-1. Run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g. `npm run gen-api -- -p qiskit -v 0.45.1`.
-   - If the patch release is for a minor version before the latest one, add `--historical` to the command. For example, if the latest docs are v1.3.0, but you're generating docs for v1.2.5.
-   - If the patch release is for the dev release, add `--dev` to the command. For example, if you are replacing `1.2.0rc1` with `1.2.0rc2`.
-2. Save the commit and open a pull request. Look for any weirdness in the diff, such as if files are unexpectedly deleted.
+* The latest docs are `2.3.0`, and `2.3.1` was released
+* An earlier historical release has an update, like `2.3.2` to `2.3.3`
+* For Qiskit SDK, the dev docs are `2.3.1rc1`, and `2.3.1.rc2` was released
+
+Steps:
+
+1. Run the script:
+  - For release candidates (rc), run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc2 --dev`.
+  - For historical releases, run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2 --historical`.
+  - For the latest release, run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2`.
+2. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+3. Save the commit and open a pull request. Look for any weirdness in the diff, such as if files are unexpectedly deleted.
+
+### Final steps for the rc1 release
+
+1. In Box, share the recently uploaded zip file:
+   1. Click the `Copy shared link` button.
+   2. Select `People with the link` and go to `Link Settings`.
+   3. Under `Link Expiration`, select `Disable Shared Link on` and set an expiration date of ~10 years into the future. (There _must_ be an expiration date.)
+   4. Copy the direct link at the end of the `Shared Link Settings` tab. Do not use the link from the prior screen.
+2. Save the Box link.
+   1. Open `scripts/config/api-html-artifacts.json` and find the `dev` entry for the package, like `qiskit`.
+   2. Replace the `dev` link with the Box link, rather than the GitHub link.
+   2. Save a commit with the message "Set up Box link".
+3. Run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc1 --dev`.
+4. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+5. Save the commit and open a pull request. Look for any weirdness in the diff, such as if files are unexpectedly deleted.
 
 ### Final steps for a new minor version
 
 For example, if the latest docs were for `0.2.1`, but `0.3.0` was just released.
 
-1. In Box, share the recently uploaded file:
+1. In Box, share the recently uploaded zip file:
    1. Click the `Copy shared link` button.
    2. Select `People with the link` and go to `Link Settings`.
    3. Under `Link Expiration`, select `Disable Shared Link on` and set an expiration date of ~10 years into the future. (There _must_ be an expiration date.)
@@ -373,21 +399,24 @@ For example, if the latest docs were for `0.2.1`, but `0.3.0` was just released.
 3. Save the prior latest docs to instead be historical docs.
    1. Identify the full version. You can find it by either looking at the docs website, or by looking at the `_pkg.json` file in the package's top-level folder, such as `docs/api/qiskit/_pkg.json`.
    2. Run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, using the version from the _previous step_. For example, `npm run gen-api -- -p qiskit -v 0.2.1 --historical`.
-   3. Save a commit with the message "Save historical docs". This commit should solely have new files, rather than updating existing docs.
+   3. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+   4. Save a commit with the message "Save historical docs". This commit should solely have new files, rather than updating existing docs.
 4. Update the latest docs.
    1. Run `npm run gen-api -- -p <pkg-name> -v <version>`, using the version from the _new release_. For example, `npm run gen-api -- -p qiskit -v 0.3.0 --historical`.
-   2. Save a commit with the message "Update latest docs". This commit should mostly be updating existing files, although there may be some new files or deleted files.
+   2. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+   3. Save a commit with the message "Update latest docs". This commit should mostly be updating existing files, although there may be some new files or deleted files.
 5. For Qiskit SDK and Runtime, update the dev docs.
    1. For Qiskit SDK, go to https://github.com/Qiskit/qiskit/actions/workflows/docs_deploy.yml; for Runtime, go to https://github.com/Qiskit/qiskit-ibm-runtime/actions/workflows/docs.yml.
    2. Find the latest run for the `main` branch by looking at the middle column with the blue text; look for `main`.
-   3. Click the CI run in the left column to open it up. (Not the middle column with the blue link!)
-   4. In the left navbar, it should show you on the "Summary" page with the house.
+   3. Click the CI run name. (Not the middle column with the blue link!)
+   4. In the left navbar, it should show as selected the "Summary" page with the house.
    5. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
    6. Secondary-click to copy the link. Copy it somewhere to look at the result. Save the final set of numbers at the end, such as `6026447195` from the link `https://github.com/Qiskit/qiskit/actions/runs/23345366690/artifacts/6026447195`.
    7. In `api-html-artifacts.json`, update the `dev` entry with the following value. Replace `<NUMBER>` with the number from the prior step. Qiskit: `https://api.github.com/repos/Qiskit/qiskit/actions/artifacts/<NUMBER>/zip`. Qiskit Runtime: `https://api.github.com/repos/Qiskit/qiskit-ibm-runtime/actions/artifacts/<NUMBER>/zip`
    8. Identify the version for the upcoming dev docs. This should be the _next_ minor release, followed by `-dev`. For example, if the latest release was `2.3.0`, then the dev version would be `2.4.0-dev`.
-   9. Run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.4.0-dev --dev`. (Reminder that you need to run this command for Qiskit SDK needs both `qiskit` and `qiskit-c`.)
-   10. Save a commit with the message "Update dev docs". This commit should only modify the `/dev` folder.
+   9. Run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.4.0-dev --dev`.
+   10. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+   11. Save a commit with the message "Update dev docs". This commit should only modify the `/dev` folder.
 6. Open a pull request. When reviewing, it is easiest to look at each individual commit for a smaller diff. Look for any weirdness in the diff, such as if files are unexpectedly deleted.
 
 ### View diff for `objects.inv` (advanced)
