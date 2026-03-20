@@ -378,7 +378,16 @@ For example, if the latest docs were for `0.2.1`, but `0.3.0` was just released.
    1. Run `npm run gen-api -- -p <pkg-name> -v <version>`, using the version from the _new release_. For example, `npm run gen-api -- -p qiskit -v 0.3.0 --historical`.
    2. Save a commit with the message "Update latest docs". This commit should mostly be updating existing files, although there may be some new files or deleted files.
 5. For Qiskit SDK and Runtime, update the dev docs.
-   1. TODO: figure this out. Qiskit SDK is tricky because the dev doc for a new release will be the rc, so we need a new artifact. Runtime could simply reuse the prior artifact & bump the version.
+   1. For Qiskit SDK, go to https://github.com/Qiskit/qiskit/actions/workflows/docs_deploy.yml; for Runtime, go to https://github.com/Qiskit/qiskit-ibm-runtime/actions/workflows/docs.yml.
+   2. Find the latest run for the `main` branch by looking at the middle column with the blue text; look for `main`.
+   3. Click the CI run in the left column to open it up. (Not the middle column with the blue link!)
+   4. In the left navbar, it should show you on the "Summary" page with the house.
+   5. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
+   6. Secondary-click to copy the link. Copy it somewhere to look at the result. Save the final set of numbers at the end, such as `6026447195` from the link `https://github.com/Qiskit/qiskit/actions/runs/23345366690/artifacts/6026447195`.
+   7. In `api-html-artifacts.json`, update the `dev` entry with the following value. Replace `<NUMBER>` with the number from the prior step. Qiskit: `https://api.github.com/repos/Qiskit/qiskit/actions/artifacts/<NUMBER>/zip`. Qiskit Runtime: `https://api.github.com/repos/Qiskit/qiskit-ibm-runtime/actions/artifacts/<NUMBER>/zip`
+   8. Identify the version for the upcoming dev docs. This should be the _next_ minor release, followed by `-dev`. For example, if the latest release was `2.3.0`, then the dev version would be `2.4.0-dev`.
+   9. Run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.4.0-dev --dev`. (Reminder that you need to run this command for Qiskit SDK needs both `qiskit` and `qiskit-c`.)
+   10. Save a commit with the message "Update dev docs". This commit should only modify the `/dev` folder.
 6. Open a pull request. When reviewing, it is easiest to look at each individual commit for a smaller diff. Look for any weirdness in the diff, such as if files are unexpectedly deleted.
 
 ### View diff for `objects.inv` (advanced)
