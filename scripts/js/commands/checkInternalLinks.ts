@@ -137,8 +137,8 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit-ibm-runtime/estimator-v2.mdx",
   "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
   // Qiskit sometimes links to the C API, so we load every
-  // qiskit-c page to avoid having errors in the future.
-  "docs/api/qiskit-c/**/*",
+  // qiskit-c latest version page to avoid having errors in the future.
+  "docs/api/qiskit-c/*",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
@@ -311,6 +311,12 @@ async function determineHistoricalFileBatches(
       `public/docs/api/${projectName}/${folder.name}/objects.inv`,
     ];
     const toLoad = [...extraGlobsToLoad];
+
+    // Qiskit sometimes links to the C API, so we load every
+    // qiskit-c historical page for the specific qiskit version we check.
+    if (projectName == "qiskit") {
+      toLoad.push(`docs/api/qiskit-c/${folder.name}/*`);
+    }
 
     // Also check the release note file for this version, if the package has
     // separate release notes per version.
