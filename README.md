@@ -326,7 +326,7 @@ Use this process when we want to publish new API docs, such as when we release a
 
 The process depends on which type of release you are generating:
 
-* TODO: explain key terms like "latest"
+- TODO: explain key terms like "latest"
 
 All release types start with the following steps:
 
@@ -356,20 +356,24 @@ All release types start with the following steps:
 
 Examples of when to use this process:
 
-* The latest docs are `2.3.0`, and `2.3.1` was released
-* An earlier historical release has an update, like `2.3.2` to `2.3.3`
-* For Qiskit SDK, the dev docs are `2.3.1rc1`, and `2.3.1.rc2` was released
+- The latest docs are `2.3.0`, and `2.3.1` was released
+- An earlier historical release has an update, like `2.3.2` to `2.3.3`
+- For Qiskit SDK, the dev docs are `2.3.1rc1`, and `2.3.1.rc2` was released
 
 Steps:
 
 1. Run the script:
-  - For release candidates (rc), run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc2 --dev`.
-  - For historical releases, run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2 --historical`.
-  - For the latest release, run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2`.
+
+- For release candidates (rc), run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc2 --dev`.
+- For historical releases, run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2 --historical`.
+- For the latest release, run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2`.
+
 2. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
 3. Save the commit and open a pull request. Look for any weirdness in the diff, such as if files are unexpectedly deleted.
 
 ### Final steps for the rc1 release
+
+This process is only for the _first_ release candidate (rc1). Subsequent release candidates like rc2 should use the [process for patch releases](#final-steps-for-patch-releases).
 
 1. In Box, share the recently uploaded zip file:
    1. Click the `Copy shared link` button.
@@ -379,14 +383,17 @@ Steps:
 2. Save the Box link.
    1. Open `scripts/config/api-html-artifacts.json` and find the `dev` entry for the package, like `qiskit`.
    2. Replace the `dev` link with the Box link, rather than the GitHub link.
-   2. Save a commit with the message "Set up Box link".
+   3. Save a commit with the message "Set up Box link".
 3. Run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc1 --dev`.
 4. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
 5. Save the commit and open a pull request. Look for any weirdness in the diff, such as if files are unexpectedly deleted.
 
-### Final steps for a new minor version
+### Final steps for a new minor or major version
 
-For example, if the latest docs were for `0.2.1`, but `0.3.0` was just released.
+Examples of when to use this process:
+
+- The latest docs are `2.3.1`, and `2.4.0` was released
+- The latest docs are `2.3.1`, and `3.0.0` was released
 
 1. In Box, share the recently uploaded zip file:
    1. Click the `Copy shared link` button.
@@ -397,12 +404,12 @@ For example, if the latest docs were for `0.2.1`, but `0.3.0` was just released.
    1. Modify `scripts/config/api-html-artifacts.json` by adding the new version with the direct link from step 9.
    2. Save a commit with the message "Set up Box link".
 3. Save the prior latest docs to instead be historical docs.
-   1. Identify the full version. You can find it by either looking at the docs website, or by looking at the `_pkg.json` file in the package's top-level folder, such as `docs/api/qiskit/_pkg.json`.
+   1. Identify the full version. You can find it by either looking at the docs website, or by looking at the `_package.json` file in the package's top-level folder, such as `docs/api/qiskit/_package.json`.
    2. Run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, using the version from the _previous step_. For example, `npm run gen-api -- -p qiskit -v 0.2.1 --historical`.
    3. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
    4. Save a commit with the message "Save historical docs". This commit should solely have new files, rather than updating existing docs.
 4. Update the latest docs.
-   1. Run `npm run gen-api -- -p <pkg-name> -v <version>`, using the version from the _new release_. For example, `npm run gen-api -- -p qiskit -v 0.3.0 --historical`.
+   1. Run `npm run gen-api -- -p <pkg-name> -v <version>`, using the version from the _new release_. For example, `npm run gen-api -- -p qiskit -v 0.3.0`.
    2. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
    3. Save a commit with the message "Update latest docs". This commit should mostly be updating existing files, although there may be some new files or deleted files.
 5. For Qiskit SDK and Runtime, update the dev docs.
