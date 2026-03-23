@@ -260,8 +260,15 @@ async function determineCurrentDocsFileBatch(
 }
 
 async function determineDevFileBatches(): Promise<FileBatch[]> {
+  const qiskitDevGlobsToLoad = [
+    ...QISKIT_GLOBS_TO_LOAD,
+    // Qiskit sometimes links to the C API, so we load every
+    // qiskit-c dev version page.
+    "docs/api/qiskit-c/dev/*",
+  ];
+
   const projects: [string, string[]][] = [
-    ["qiskit", QISKIT_GLOBS_TO_LOAD],
+    ["qiskit", qiskitDevGlobsToLoad],
     ["qiskit-ibm-runtime", RUNTIME_GLOBS_TO_LOAD],
   ];
 
