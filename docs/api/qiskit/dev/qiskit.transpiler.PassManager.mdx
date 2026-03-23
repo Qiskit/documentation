@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.PassManager
 
 # PassManager
 
-<Class id="qiskit.transpiler.PassManager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L37-L228" signature="qiskit.transpiler.PassManager(passes=(), max_iteration=1000)" modifiers="class">
+<Class id="qiskit.transpiler.PassManager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L37-L233" signature="qiskit.transpiler.PassManager(passes=(), max_iteration=1000)" modifiers="class">
   Bases: [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.passmanager.BasePassManager")
 
   Manager for a set of Passes and their scheduling during transpilation.
@@ -29,7 +29,7 @@ python_api_name: qiskit.transpiler.PassManager
 
     **Parameters**
 
-    **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[qiskit.passmanager.base\_tasks.Task]*) – A set of transpiler passes to be added to schedule.
+    **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[Task]*) – A set of transpiler passes to be added to schedule.
 
     **Raises**
 
@@ -42,10 +42,14 @@ python_api_name: qiskit.transpiler.PassManager
 
   ### draw
 
-  <Function id="qiskit.transpiler.PassManager.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L204-L228" signature="draw(filename=None, style=None, raw=False)">
+  <Function id="qiskit.transpiler.PassManager.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L204-L233" signature="draw(filename=None, style=None, raw=False)">
     Draw the pass manager.
 
     This function needs [pydot](https://github.com/erocarrera/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed.
+
+    <Admonition title="Warning" type="caution">
+      This function will call the system Graphviz tool on a file involving user-controllable strings (such as pass names). It is recommended to only call this function on trusted input.
+    </Admonition>
 
     **Parameters**
 
@@ -92,7 +96,7 @@ python_api_name: qiskit.transpiler.PassManager
     **Parameters**
 
     *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Pass index to replace, based on the position in passes().
-    *   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[qiskit.passmanager.base\_tasks.Task]*) – A pass set to be added to the pass manager schedule.
+    *   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[Task]*) – A pass set to be added to the pass manager schedule.
 
     **Return type**
 

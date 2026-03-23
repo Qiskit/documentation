@@ -1,0 +1,72 @@
+---
+title: CircuitItemModel (dev version)
+description: API reference for ibm_quantum_schemas.executor.version_0_1.CircuitItemModel in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.executor.version_0_1.CircuitItemModel
+---
+
+<span id="ibm-quantum-schemas-executor-version-0-1-circuititemmodel" />
+
+# CircuitItemModel
+
+<Class id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.5.20260320/ibm_quantum_schemas/executor/version_0_1/models.py#L59-L96" signature="CircuitItemModel" modifiers="pydantic model">
+  Bases: `BaseModel`
+
+  Execution specifications for a single quantum circuit.
+
+  ### chunk\_size
+
+  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.chunk_size" attributeTypeHint="Annotated[int, FieldInfo(annotation" attributeValue="NoneType, required=True, metadata=[Ge(ge=1)])] | Literal['auto'] = 'auto'" modifiers="field">
+    The maximum number circuit arguments to bind to the circuit per shot loop.
+
+    When `"auto"`, the number is chosen server-side with heuristics designed to optimize execution speed. A quantum program must have items where either all chunk sizes are integer-valued, or all chunk sizes are `"auto"`. Integer values are only allowed inside of session exection mode.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### circuit
+
+  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.circuit" attributeTypeHint="QpyModelV13ToV16 [Required]" modifiers="field">
+    A QPY-encoded circuit.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### circuit\_arguments
+
+  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.circuit_arguments" attributeTypeHint="F64TensorModel [Required]" modifiers="field">
+    Arguments to the parameters of the circuit.
+
+    The last axis is over `circuit.parameters`. Execution broadcasts over the preceding axes; expect one result per element of the leading shape.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### item\_type
+
+  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.item_type" attributeTypeHint="Literal['circuit']" attributeValue="'circuit'" modifiers="field">
+    The type of quantum program item.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### cross\_validate
+
+  <Function id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.cross_validate" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.5.20260320/ibm_quantum_schemas/executor/version_0_1/models.py#L84-L96" signature="cross_validate" modifiers="validator">
+    Check for mutual compatibility of types and shapes of attributes.
+
+    **Return type**
+
+    *Self*
+  </Function>
+</Class>
+

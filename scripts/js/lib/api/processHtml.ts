@@ -394,6 +394,7 @@ export async function processMembersAndSetMeta(
   if (options.isIbmQuantumSchemasPage) {
     meta.apiType = "syntheticModule";
     meta.apiName = "IBM Quantum Schemas";
+    meta.untranslatable = true;
     return;
   }
 

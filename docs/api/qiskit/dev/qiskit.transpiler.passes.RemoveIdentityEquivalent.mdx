@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.RemoveIdentityEquivalent
 
 # RemoveIdentityEquivalent
 
-<Class id="qiskit.transpiler.passes.RemoveIdentityEquivalent" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/remove_identity_equiv.py#L23-L70" signature="qiskit.transpiler.passes.RemoveIdentityEquivalent(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.RemoveIdentityEquivalent" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/remove_identity_equiv.py#L23-L75" signature="qiskit.transpiler.passes.RemoveIdentityEquivalent(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Remove gates with negligible effects.
@@ -24,6 +24,8 @@ F_{\text{process}} = \frac{|\mathrm{Tr}(G)|^2}{d^2}
 $$
 
   where $d = 2^n$ is the dimension of the gate for $n$ qubits.
+
+  This function is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
   Initialize the transpiler pass.
 
@@ -69,7 +71,7 @@ $$
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -84,7 +86,7 @@ $$
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.RemoveIdentityEquivalent.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/remove_identity_equiv.py#L68-L70" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.RemoveIdentityEquivalent.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/remove_identity_equiv.py#L73-L75" signature="run(dag)">
     Run a pass on the DAGCircuit. This is implemented by the pass developer.
 
     **Parameters**

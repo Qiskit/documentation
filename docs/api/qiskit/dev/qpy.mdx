@@ -6,11 +6,11 @@ python_api_type: module
 python_api_name: qiskit.qpy
 ---
 
+<span id="qpy-serialization-qiskit-qpy" />
+
 <span id="module-qiskit.qpy" />
 
 <span id="qiskit-qpy" />
-
-<span id="qpy-serialization-qiskit-qpy" />
 
 # QPY serialization
 
@@ -56,7 +56,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L277-L444" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L277-L443" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
@@ -83,7 +83,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
   **Parameters**
 
   *   **file\_obj** (*BinaryIO*) – A file like object that contains the QPY binary data for a circuit.
-  *   **metadata\_deserializer** ([*type*](https://docs.python.org/3/library/functions.html#type)*\[JSONDecoder] | None*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
+  *   **metadata\_deserializer** ([*type*](qiskit.dagcircuit.DAGDepNode#type "qiskit.dagcircuit.DAGDepNode.type")*\[JSONDecoder] | None*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
   *   **annotation\_factories** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]] | None*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the loading of custom [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects.
 
   **Returns**
@@ -145,7 +145,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
   *   **file\_obj** (*BinaryIO*) – The file like object to write the QPY data too
 
-  *   **metadata\_serializer** ([*type*](https://docs.python.org/3/library/functions.html#type)*\[JSONEncoder] | None*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
+  *   **metadata\_serializer** ([*type*](qiskit.dagcircuit.DAGDepNode#type "qiskit.dagcircuit.DAGDepNode.type")*\[JSONEncoder] | None*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
 
   *   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – This flag is no longer used by QPY versions supported by this function and will have no impact on the generated QPY payload except to set a field in a QPY v13 file header which is unused.
 
@@ -171,7 +171,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### get\_qpy\_version
 
-<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L447-L474" signature="qiskit.qpy.get_qpy_version(file_obj)">
+<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L446-L473" signature="qiskit.qpy.get_qpy_version(file_obj)">
   This function identifies the QPY version of the file.
 
   This function will read the header of `file_obj` and will return the QPY format version. It will **not** advance the cursor of `file_obj`. If you are using this for a subsequent read, such as to call [`load()`](#qiskit.qpy.load "qiskit.qpy.load"), you can pass `file_obj` directly. For example:

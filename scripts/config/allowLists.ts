@@ -59,6 +59,7 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/v2-primitives.mdx",
   "docs/guides/execution-modes.mdx",
   "docs/guides/install-qiskit-source.mdx",
+  "docs/guides/install-qiskit-runtime-source.mdx",
   "docs/guides/manage-cost.mdx",
   "docs/guides/plans-overview.mdx",
   "docs/guides/qiskit-addons-aqc.mdx",
