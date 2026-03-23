@@ -4,25 +4,25 @@ import { diff } from "jest-diff";
 import { getDevVersion, getReleasedVersions } from "../lib/apiVersions";
 
 async function main() {
-  const [QiskitHistoricalVersions, QiskitCurrentVersion] =
+  const [qiskitHistoricalVersions, qiskitCurrentVersion] =
     await getReleasedVersions("qiskit", false);
-  const QiskitDevVersion = await getDevVersion("qiskit");
+  const qiskitDevVersion = await getDevVersion("qiskit");
   const allQiskitVersions = [
-    QiskitDevVersion,
-    QiskitCurrentVersion,
+    qiskitDevVersion,
+    qiskitCurrentVersion,
     // The Qiskit package introduced the C docs in 2.0, so we filter out the versions with major < 2
-    ...QiskitHistoricalVersions.filter(
+    ...qiskitHistoricalVersions.filter(
       (version: string) => +version.split(".")[0] >= 2,
     ),
   ];
 
-  const [QiskitCHistoricalVersions, QiskitCCurrentVersion] =
+  const [qiskitCHistoricalVersions, qiskitCCurrentVersion] =
     await getReleasedVersions("qiskit-c", false);
-  const QiskitCDevVersion = await getDevVersion("qiskit-c");
+  const qiskitCDevVersion = await getDevVersion("qiskit-c");
   const allQiskitCVersions = [
-    QiskitCDevVersion,
-    QiskitCCurrentVersion,
-    ...QiskitCHistoricalVersions,
+    qiskitCDevVersion,
+    qiskitCCurrentVersion,
+    ...qiskitCHistoricalVersions,
   ];
 
   if (!isEqual(allQiskitVersions, allQiskitCVersions)) {
