@@ -1,0 +1,330 @@
+---
+title: Qiskit addon utilities API documentation (latest version)
+description: Index of all the modules in the latest version of qiskit-addon-utils.
+---
+
+## Parameters
+
+<Admonition type="caution">
+  TEM currently has the following limitations:
+
+  - Parametrized circuits are not supported. The parameters argument should be set to `None` if precision is specified. This restriction will be removed in future versions.
+  - Only circuits without loops are supported. This restriction will be removed in future versions.
+  - Non-unitary gates, such as reset, measure, and all forms of control flow are not supported. Support for reset will be added in upcoming releases.
+</Admonition>
+
+
+### pubs
+<Function id="Iterable[EstimatorPubLike]" signature="Iterable[EstimatorPubLike]">
+
+  **Description**
+
+  An iterable of PUB-like (primitive unified bloc) objects, such as tuples `(circuit, observables)` or `(circuit, observables, parameters, precision)`. See [Overview of PUBs](/docs/guides/primitive-input-output#overview-of-pubs) for more information. If a non-ISA circuit is passed, it will be transpiled with optimal settings. If an ISA circuit is passed, it will not be transpiled; in this case, the observable must be defined on the whole QPU. 
+
+  **Required** 
+
+  Yes
+  
+  **Default**
+
+  N/A
+  
+  **Example**
+
+  `(circuit, observables)`
+</Function>
+
+### backend_name
+<Function id="str" signature="str">
+
+  **Description**
+  
+  Name of the backend to make the query.
+
+  **Required** 
+
+  No
+  
+  **Default**
+
+  If not provided, the least-busy backend will be used
+  
+  **Example**
+  
+  `"ibm_fez"`
+</Function>
+
+### options
+<Function id="options" signature="options">
+ dict
+
+  **Description**
+  
+    A dictionary containing the advanced options for the TEM. The dictionary may contain the keys in the following table. If any of the options are not provided, the default value listed in the table will be used. The default values are good for typical use of TEM.
+
+  **Required** 
+
+  No
+
+  **Example**
+
+  `{"max_bond_dimension": 100}`
+
+<Accordion>
+<AccordionItem title="**Available options**">
+
+  <Function id="tem_max_bond_dimension" signature="tem_max_bond_dimension">
+  int
+
+  **Description**
+
+  The maximum bond dimension for the tensor networks.
+
+  **Default**
+
+  128
+
+  </Function>
+
+
+  <Function id="tem_compression_cutoff" signature="tem_compression_cutoff">
+  float
+
+  **Description**
+
+  The cutoff value to be used for the tensor networks.
+
+  **Default**
+
+  1e-10
+
+  </Function>
+
+  <Function id="compute_shadows_bias_from_observable" signature="compute_shadows_bias_from_observable">
+  bool
+
+  **Description**
+
+   Whether the bias for the classical shadows measurement protocol should be tailored to the PUB observable. If False, the classical shadows protocol (equal probability of measuring Z, X, Y) will be used. 
+
+  **Default**
+
+  False
+
+  </Function>
+
+  <Function id="shadows_bias" signature="shadows_bias">
+  `np.ndarray`
+
+  **Description**
+
+   The bias to be used for the randomized classical shadows measurement protocol, a 1D or 2D array of size 3 or shape (num_qubits, 3) respectively. Order is ZXY. 
+
+  **Default**
+
+  `np.array([1 / 3, 1 / 3, 1 / 3])`
+
+  </Function>
+
+
+  <Function id="max_execution_time" signature="max_execution_time">
+  int or None
+
+  **Description**
+
+   The maximum execution time on the QPU in seconds. If the runtime exceeds this value, the job will be canceled. If None, the default limit set by Qiskit Runtime will apply. 
+
+  **Default**
+
+  None
+
+  </Function>
+
+
+  <Function id="num_randomizations" signature="num_randomizations">
+  int
+
+  **Description**
+
+   The number of randomizations to be used for noise learning and gate twirling. 
+
+  **Default**
+
+  32
+
+  </Function>
+
+
+  <Function id="max_layers_to_learn" signature="max_layers_to_learn">
+  int
+
+  **Description**
+
+   The maximum number of unique layers to learn.
+
+  **Default**
+
+  4
+
+  </Function>
+
+  <Function id="mitigate_readout_error" signature="mitigate_readout_error">
+  bool
+
+  **Description**
+
+   Whether to perform readout error mitigation
+
+  **Default**
+
+  True
+
+  </Function>
+
+
+  <Function id="num_readout_calibration_shots" signature="num_readout_calibration_shots">
+  int
+
+  **Description**
+
+   The number of shots to be used for readout error mitigation
+
+  **Default**
+
+  10000
+
+  </Function>
+
+  <Function id="default_precision" signature="default_precision">
+  float
+
+  **Description**
+
+   The default precision to be used for any PUBs for which the precision is not specified
+
+  **Default**
+
+  0.05
+
+  </Function>
+
+  <Function id="default_shots" signature="default_shots">
+  int or None
+
+  **Description**
+
+   The number of shots to use per PUB. If provided, this overrides the specified precision. Otherwise, the number of shots is estimated to provide the precision requested. 
+
+  **Default**
+
+  None
+
+  </Function>
+
+
+  <Function id="seed" signature="seed">
+  int or None
+
+  **Description**
+
+   Set the seed for the random number generator for reproducibility.
+
+  **Default**
+
+  None
+
+  </Function>
+
+  <Function id="shots_per_randomization" signature="shots_per_randomization">
+  int
+
+  **Description**
+
+   The total number of shots to use per random learning circuit
+
+  **Default**
+
+  128
+
+  </Function>
+
+  <Function id="layer_pair_depths" signature="layer_pair_depths">
+  list[int]
+
+  **Description**
+
+    The circuit depths (measured in number of pairs) to use in learning experiments.
+
+  **Default**
+
+  [0, 1, 2, 4, 16, 32]
+
+  </Function>
+
+
+  <Function id="layer_noise_model" signature="layer_noise_model">
+  NoiseLearnerResult, Sequence[LayerError], or None
+
+  **Description**
+
+    The precomputed noise learner result from a previously executed run. 
+
+  **Default**
+
+  None
+
+  </Function>
+
+  <Function id="private" signature="private">
+  bool
+
+  **Description**
+
+    Whether the QPU jobs should be private. Setting it to True will prevent subsequent downloads of the experiment data and is recommended for confidential jobs. 
+
+  **Default**
+
+  False
+
+  </Function>
+
+
+  <Function id="tem_enforce_linear_circuit" signature="tem_enforce_linear_circuit">
+  bool
+
+  **Description**
+
+    Whether to enforce the circuit to be in linear topology.
+
+  **Default**
+
+  False
+
+  </Function>
+  </AccordionItem>
+  </Accordion>
+</Function>
+
+### Precision
+
+The precision of the results can be requested in three ways. The precision can be passed in the PUB, and it will apply to that PUB only. Otherwise, a `default_precision` can be passed in the options as specified above. Finally, for advanced use, the specific number of shots per PUB can be passed in the options with `default_shots`, and it will override any other precision option.
+
+If a `default_precision` or a per-PUB value is passed, the number of shots is estimated in order to achieve the desired precision. This is done based on the chosen QPU parameters and error rates as follows:
+
+- Calculating the error per layered gate (EPLG), which quantifies the noise introduced by layers of two-qubit gates. If backend properties are available, it extracts the relevant fidelity; otherwise, it uses a default value.
+- Counting the number of two-qubit gates in the circuit, as these are typically the main contributors to noise.
+- Computing a noise prefactor based on the number of two-qubit gates and the EPLG.
+- Using the requested precision, it estimates the required number of shots by scaling with the noise prefactor and the inverse of the square of the precision.
+
+This approach ensures that the number of shots is sufficient to achieve the desired precision, taking into account both the circuit structure and the backend's noise characteristics.
+
+
+## Outputs
+
+A Qiskit [PrimitiveResults](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) containing the TEM-mitigated result. The result for each PUB is returned as a [PubResult](/docs/api/qiskit/qiskit.primitives.PubResult) containing the following fields:
+
+
+Name |Type | Description
+-- | -- | --
+data | DataBin | A Qiskit [DataBin](/docs/api/qiskit/qiskit.primitives.DataBin) containing the TEM mitigated observable and its standard error. The DataBin has the following fields: <ul><li>`evs`: The TEM-mitigated observable value.</li><li>`stds`: The standard error of the TEM-mitigated observable.</li></ul>
+metadata | dict | A dictionary containing additional results. The dictionary contains the following keys: <ul><li>`"evs_non_mitigated"`: The observable value without error mitigation.</li><li>`"stds_non_mitigated"`: The standard error of the result without error mitigation.</li><li>`"evs_mitigated_no_readout_mitigation"`: The observable value with error mitigation but without readout error mitigation.</li><li>`"stds_mitigated_no_readout_mitigation"`: The standard error of the result with error mitigation but without readout error mitigation.</li><li>`"evs_non_mitigated_with_readout_mitigation"`: The observable value without error mitigation but with readout error mitigation.</li><li>`"stds_non_mitigated_with_readout_mitigation"`: The standard error of the result without error mitigation but with readout error mitigation.</li><li>`"resource_usage"`: A dictionary containing the time resources used by the TEM.  </li></ul>
