@@ -178,3 +178,17 @@ How much optimization to perform on the circuits. [Higher levels](/docs/guides/s
         - Choices: True/False
         </Attribute>
 </LeftColoredBar>
+
+## Outputs
+
+The output of a Circuit function is a [PrimitiveResult](/docs/api/qiskit/qiskit.primitives.PrimitiveResult), which contains two fields:
+
+- One or more [PubResult](/docs/api/qiskit/qiskit.primitives.PubResult) objects. These can be indexed directly from the `PrimitiveResult`.
+
+- Job-level metadata.
+
+Each `PubResult` contains a `data` and a `metadata` field.
+
+- The `data` field contains at least an array of expectation values (`PubResult.data.evs`) and an array of standard errors (`PubResult.data.stds`). It can also contain more data, depending on the options used.
+
+- The `metadata` field contains PUB-level metadata (`PubResult.metadata`).
