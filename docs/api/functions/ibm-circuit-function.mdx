@@ -41,14 +41,6 @@ Similar to ``resilience_level`` in Qiskit Runtime Estimator, ``mitigation_level`
 | 2 | Level 1 + gate twirling + ZNE via gate folding |
 | 3 | Level 1 + gate twirling + ZNE via PEA |
 
-The following example demonstrates setting the mitigation level:
-
-```python
-options = {"mitigation_level": 2}
-
-job = function.run(backend_name=backend.name, pubs=pubs, options=options)
-```
-
 #### All available options
 
 In addition to `mitigation_level`, the IBM Circuit function also provides a select number of advanced options that allow you to fine-tune the cost/accuracy trade-off. The following table shows all the available options:
@@ -71,12 +63,6 @@ In addition to `mitigation_level`, the IBM Circuit function also provides a sele
 |  | pec_mitigation |  | Whether to turn on Probabilistic Error Cancellation error mitigation method. Refer to [Error suppression and mitigation techniques](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec) for the explanation of the method.  | True/False | False |
 |  | pec | max_overhead | The maximum circuit sampling overhead allowed, or `None` for no maximum. | None/ integer >1 | 100 |
 
-In the following example, setting the mitigation level to 1 initially turns off ZNE mitigation, but setting `zne_mitigation` to `True` overrides the relevant setup from `mitigation_level`.
-
-```python
-options = {"mitigation_level": 1, "resilience": {"zne_mitigation": True}}
-```
-
 The output of a Circuit function is a [PrimitiveResult](/docs/api/qiskit/qiskit.primitives.PrimitiveResult), which contains two fields:
 
 - One or more [PubResult](/docs/api/qiskit/qiskit.primitives.PubResult) objects. These can be indexed directly from the `PrimitiveResult`.
@@ -88,20 +74,3 @@ Each `PubResult` contains a `data` and a `metadata` field.
 - The `data` field contains at least an array of expectation values (`PubResult.data.evs`) and an array of standard errors (`PubResult.data.stds`). It can also contain more data, depending on the options used.
 
 - The `metadata` field contains PUB-level metadata (`PubResult.metadata`).
-
-The following code snippet describes the `PrimitiveResult` (and associated `PubResult`) format.
-
-```python
-print(f"The result of the submitted job had {len(result)} PUB")
-print(
-    f"The expectation values measured from this PUB are: \n{result[0].data.evs}"
-)
-print(f"And the associated metadata is: \n{result[0].metadata}")
-```
-```text
-The result of the submitted job had 1 PUB
-The expectation values measured from this PUB are: 
-1.02116704805492
-And the associated metadata is: 
-{'shots': 4096, 'target_precision': 0.015625, 'circuit_metadata': {}, 'resilience': {}, 'num_randomizations': 32}
-```
