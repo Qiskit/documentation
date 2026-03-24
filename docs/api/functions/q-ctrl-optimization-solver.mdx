@@ -1,0 +1,109 @@
+---
+title: Q-CTRL Optimization Solver API reference
+description: API reference for Optimization Solver, A Qiskit Function by Q-CTRL Fire Opal
+---
+# Q-CTRL Optimization Solver API reference
+
+## Inputs
+
+### `problem`
+
+<Attribute attributeTypeHint="str or SparsePauliOp" attributeValue="None">
+
+One of the representations listed under "Accepted problem formats".
+- Required: Yes
+- Example: `Poly(2.0*n[0]*n[1] + 2.0*n[0]*n[2] - 3.13520241298341*n[0] + 2.0*n[1]*n[2] - 3.14469748506794*n[1] - 3.18897660121566*n[2] + 6.0, n[0], n[1], n[2], domain='RR')`
+</Attribute>
+
+### `problem_type`
+
+<Attribute attributeTypeHint="str" attributeValue="None">
+    Name of the problem class; only used for graph and spin chain problem definitions, which are limited to `"maxcut"` or `"spin_chain"`; not required for arbitrary objective function problem definitions.
+    - Required: No
+    - Example: `"maxcut"`
+</Attribute>
+
+### `backend_name`
+
+<Attribute attributeTypeHint="str" attributeValue="Least busy backend">
+    Name of the backend to use.
+    - Required: No
+    - Example: `"ibm_fez"`
+</Attribute>
+
+
+### `options`
+
+<Attribute attributeTypeHint="dict" attributeValue="None">
+    Input options, including the following: (Optional) `session_id`: `str`; default behavior creates a new Session.
+    - Required: No
+    - Example: `{"session_id": "cw2q70c79ws0008z6g4g"}`
+</Attribute>
+
+### Options
+
+#### `session_id`
+
+<Attribute attributeTypeHint="str" attributeValue="None">
+An existing Qiskit Runtime session ID.
+- Default: `None`
+- Example: `"cw4r3je6f0t010870y3g"`
+</Attribute>
+
+#### `job_tags`
+<Attribute attributeTypeHint="list[str]" attributeValue="None">
+A list of job tags.
+- Default: `None`
+- Example: `["job_tag1", "job_tag2"]`
+</Attribute>
+
+
+## Outputs
+
+### `result`
+<Attribute attributeTypeHint="dict[str, Any]">
+
+Solution and metadata listed under "Result dictionary contents".
+
+Example: `{'solution_bitstring_cost': 3.0, ‘final_bitstring_distribution’: {‘000001’: 100, ‘000011’: 2}, ‘iteration_count’: 3, 'solution_bitstring': ‘000001’,  'variables_to_bitstring_index_map': {n[1]': 5, 'n[2]': 4, 'n[3]': 3, 'n[4]': 2, 'n[5]': 1}, 'best_parameters': [0.19628831763697097, -1.047052334523102], 'warnings': []}`
+</Attribute>
+
+### Result dictionary contents
+
+#### `solution_bitstring_cost`
+
+<Attribute attributeTypeHint="float">
+The best minimum cost across all iterations.
+</Attribute>
+
+
+#### `final_bitstring_distribution`
+
+<Attribute attributeTypeHint="CountsDict">
+The bitstring counts dictionary associated with the minimum cost.
+</Attribute>
+
+#### `solution_bitstring`
+<Attribute attributeTypeHint="str">
+Bitstring with the best cost in the final distribution.
+</Attribute>
+
+#### `iteration_count`
+<Attribute attributeTypeHint="int">
+The total number of QAOA iterations performed by the Solver.
+</Attribute>
+
+#### `variables_to_bitstring_index_map`
+<Attribute attributeTypeHint="float">
+The mapping from the variables to the equivalent bit in the bitstring.
+</Attribute>
+
+#### `best_parameters`
+<Attribute attributeTypeHint="list[float]">
+The optimized beta and gamma parameters across all iterations.
+</Attribute>
+
+#### `warnings`
+<Attribute attributeTypeHint="list[str]" attributeValue="None">
+The warnings produced while compiling or running QAOA.
+</Attribute>
