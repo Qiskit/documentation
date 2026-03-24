@@ -351,7 +351,7 @@ The process depends on which type of release you are generating. Some key terms 
 All release types start with the following steps:
 
 1. In Git, check out the main branch of `Qiskit/documentation` and pull any updates. Then, create a new Git branch.
-2. Determine which documentation you want to generate (e.g. `qiskit` or `qiskit-ibm-runtime`) and its full version, e.g. `0.45.2` or `1.2.0rc1`.
+2. Determine which documentation you want to generate (e.g., `qiskit` or `qiskit-ibm-runtime`) and its full version, e.g., `0.45.2` or `1.2.0rc1`.
 3. Download a CI artifact with the project's documentation. To find this:
    1. Find the relevant GitHub Actions workflow for the project:
       - Qiskit SDK: https://github.com/Qiskit/qiskit/actions/workflows/docs_deploy.yml
@@ -371,7 +371,7 @@ All release types start with the following steps:
 4. On some operating systems, the downloaded zip file will be auto-expanded rather than staying a zip file. If this happens, compress it back to a zip file. On macOS, secondary-click on the folder in Finder and use the "Compress" option.
 5. Rename the downloaded zip file with its minor-version number. For example, for the release `0.45.2`, rename `html_docs.zip` to `0.45.zip`. For release candidates (rc), use a value like `2.3-rc.zip`.
 6. Upload the renamed zip file to https://ibm.ent.box.com/folder/246867452622. If this is a patch release, this step will overwrite the prior file; if it's the `rc1` release or a new minor version like `2.3.0`, it will be a new file.
-7. Proceed with the final steps for the type of release.
+7. Proceed with the final steps for the type of release (patch, rc1, or major/minor; see the relevant section below).
 
 ### Final steps for patch releases
 
@@ -384,7 +384,7 @@ Examples of when to use this process:
 Steps:
 
 1. Run the script:
-   - For release candidates (rc), run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc2 --dev`.
+   - For release candidates (any rc other than rc1), run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc2 --dev`.
    - For historical releases, run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2 --historical`.
    - For the latest release, run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2`.
 2. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
@@ -398,7 +398,7 @@ This process is only for the _first_ release candidate (rc1). Subsequent release
 
 1. In Box, share the recently uploaded zip file:
    1. Click the `Copy shared link` button.
-   2. Select `People with the link` and go to `Link Settings`.
+   2. Select `People with the link` from the menu under "Share Link" (default is `Invited people only`) and go to `Link Settings`.
    3. Under `Link Expiration`, select `Disable Shared Link on` and set an expiration date of ~10 years into the future. (There _must_ be an expiration date.)
    4. Copy the "Direct link" at the end of the `Shared Link Settings` tab. Do not use the link from the prior screen.
 2. Save the Box link.
@@ -420,7 +420,7 @@ Examples of when to use this process:
 
 1. In Box, share the recently uploaded zip file:
    1. Click the `Copy shared link` button.
-   2. Select `People with the link` and go to `Link Settings`.
+   2. Select `People with the link` from the menu under "Share Link" (default is `Invited people only`) and go to `Link Settings`.
    3. Under `Link Expiration`, select `Disable Shared Link on` and set an expiration date of ~10 years into the future. (There _must_ be an expiration date.)
    4. Copy the "Direct link" at the end of the `Shared Link Settings` tab. Do not use the link from the prior screen.
 2. Save the Box link.
@@ -441,12 +441,12 @@ Examples of when to use this process:
    3. Click the CI run name. (Not the middle column with the blue link!)
    4. In the left navbar, it should show as selected the "Summary" page with the house.
    5. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
-   6. Secondary-click to copy the link. Copy it somewhere to look at the result. Save the final set of numbers at the end, such as `6026447195` from the link `https://github.com/Qiskit/qiskit/actions/runs/23345366690/artifacts/6026447195`.
+   6. Secondary-click to copy the link. Paste it somewhere to look at the result. Save the final set of numbers at the end, such as `6026447195` from the link `https://github.com/Qiskit/qiskit/actions/runs/23345366690/artifacts/6026447195`.
    7. In `api-html-artifacts.json`, update the `dev` entry with the following value. Replace `<NUMBER>` with the number from the prior step. Qiskit: `https://api.github.com/repos/Qiskit/qiskit/actions/artifacts/<NUMBER>/zip`. Qiskit Runtime: `https://api.github.com/repos/Qiskit/qiskit-ibm-runtime/actions/artifacts/<NUMBER>/zip`
    8. Identify the version for the upcoming dev docs. This should be the _next_ minor release, followed by `-dev`. For example, if the latest release is `2.3.0`, then the dev version would be `2.4.0-dev`.
-   9. Run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.4.0-dev --dev`.
-   10. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
-   11. Save a commit with the message "Update dev docs". This commit should only modify the `/dev` folder.
+   9. Run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.4.0-dev --dev`.
+   10. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+   11. Save a commit with the message "Update dev docs". This commit should only modify files in the `/dev` folder.
 6. Open a pull request.
    - Add the commands that you ran to the PR description.
    - When reviewing, it is easiest to look at each individual commit for a smaller diff. Look for any weirdness in the diff, such as if files are unexpectedly deleted.
