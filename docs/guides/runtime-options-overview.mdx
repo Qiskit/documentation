@@ -7,17 +7,15 @@ in_page_toc_max_heading_level: 2
 
 # Introduction to options
 
- You can pass options to primitives to customize them to meet your needs. This section focuses on Qiskit Runtime primitive options. While the interface of the primitives' `run()`  method is common across all implementations, their options are not. Consult the corresponding API references for information about the [`qiskit.primitives`](/docs/api/qiskit/primitives#primitives) and [`qiskit_aer.primitives`](https://qiskit.github.io/qiskit-aer/apidocs/aer_primitives.html) options.
-
-## Overview
+ You can pass options to Qiskit Runtime primitives to customize them to meet your needs.
 
 <span id="options-structure"></span>
-### Structure
+## Structure
 
-When calling the primitives, you can pass in options by using an options class or a dictionary. Commonly-used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See [Estimator options,](/docs/guides/estimator-options) [Sampler options,](/docs/guides/sampler-options) and [Executor options](/docs/guides/executor-options) for full details.
+When calling the primitives, you can pass in options by using an options class or a dictionary. Commonly-used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. Specify the options in this format:  `options.option.sub-option.sub-sub-option = choice`.  For example: `options.dynamical_decoupling.enable = True`.
 
 <span id="options-defaults"></span>
-### Defaults
+## Defaults
 
 If you do not specify a value for an option, it is given a special value of `Unset` and the server default value is used. Thus, the default value will be the same regardless of your code version.
 
@@ -26,7 +24,7 @@ The tables in the Options classes summary sections on each primitive's options g
 <span id="options-precedence"></span>
 ## Set options
 
-Options can be defined before a primitive is constructed and passed to the primitive, which makes a copy of them. This can be done either as a nested dictionary, or by using the options classes. Additionally, after the primitive is constructed, its options can be changed. Use the workflow that works best for your application. 
+Options can be defined before a primitive is constructed and passed to the primitive, which makes a copy of them. Additionally, after the primitive is constructed, its options can be changed. Use the workflow that works best for your application. 
 
 ## Next steps
 
