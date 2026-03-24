@@ -13,21 +13,29 @@
 # that they have been altered from the originals.
 
 import logging
+from pathlib import Path
 
-from scripts.tool_runner import configure_logging, run_cmd
+from scripts.tool_runner import (
+    configure_logging,
+    run_cmd,
+    check_packages,
+    install_node_dependencies,
+)
 
 logger = logging.getLogger(__name__)
 
 # Note that these are ordered from fastest to slowest.
 CHECKS = {
     "notebook linters": ["tox", "-e", "lint"],
-    "metadata": ["npm", "run", "check:metadata"],
-    "images": ["npm", "run", "check:images"],
+    "markdown": ["npm", "run", "check:markdown"],
     "spelling": ["npm", "run", "check:spelling"],
 }
 
 
 def main() -> None:
+    check_packages()
+    if not Path("./node_modules").exists():
+        install_node_dependencies()
     for i, (name, cmd) in enumerate(CHECKS.items()):
         run_cmd(name, cmd, progress=f"{i + 1}/{len(CHECKS)}")
     logger.info("🎉 All checks passed!")
