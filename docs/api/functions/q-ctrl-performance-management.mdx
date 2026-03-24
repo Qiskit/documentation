@@ -1,0 +1,67 @@
+---
+title: Q-CTRL Performance Management API reference
+description: API reference for Performance Management, A Qiskit Function by Q-CTRL Fire Opal
+---
+
+# Q-CTRL Performance Management API reference
+
+<Admonition type="caution">
+   Fire Opal Performance Management accepts abstract circuits, in contrast to the native Qiskit Runtime primitives, which only accept circuits that are written in the target backend's Instruction Set Architecture (ISA). For best results, do not transpile circuits before submitting via the Performance Management function.
+</Admonition>
+
+## Estimator
+
+### Estimator inputs
+
+| Name  | Type  | Description | Required | Default  | Example |
+|------|------|----------|----------|-----------|-----------|
+| pubs       | `QctrlEstimatorPubLike` or `list[QctrlEstimatorPubLike]` | One or more tuples containing the inputs listed under `EstimatorPubLike` components   | Yes   | N/A   | `(circuit, observables, parameter_values)`   |
+| backend_name| `str`  | The name of the backend | No  |  The least busy backend that your instance has access to | `"ibm_fez"` |
+| options| `dict`  | Input options; see Options section for more details | No  |  See the Options section for details | `{"default_shots": 2048}` |
+
+**`QctrlEstimatorPubLike` components (derived from the [Qiskit Runtime PUB definition](/docs/guides/primitive-input-output#estimator-pub)):**
+- A single circuit defined as a `QuantumCircuit` or in OpenQASM 2.0 or 3.0 string format.
+- One or more observables that specify the expectation values to estimate, in any of the formats denoted in the list "Supported observables formats".
+- (Optional) A collection of parameter values to bind the circuit against, which follow the same [array broadcasting rules](./primitive-input-output#broadcasting-rules) as the `QiskitRuntime` primitives.
+- (Optional) A target precision for expectation values to estimate.
+- (Optional) A real number representing the precision, or a dictionary of run options containing the shot count. For example: `{"shots": <int>}`.
+
+**Options:**
+| Name   | Type   | Description  | Default |
+|--------|----------|-----------------------|---------------------|
+| session_id | `str`  | An existing Qiskit Runtime session ID  | `"cw4r3je6f0t010870y3g"` |
+| default_shots | `int`  | The number of shots to use for each circuit  | `2048` |
+| default_precision | `float`  | The target precision for expectation values to estimate for each circuit  | `0.015625` |
+| job_tags | `list[str]` | A list of job tags | `[]`|
+
+### Estimator outputs
+| Name   | Type   | Description  | Example |
+|--------|---------------------------------|------------------------------------|---------------------|
+| N/A | `PrimitiveResult`  | The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs | `PubResult(data=DataBin(evs=[0.1234], stds=[0.1]))` |
+
+## Sampler
+
+### Sampler inputs
+
+| Name       | Type            | Description | Required | Default | Example |
+|------------|---------------|------------------|----------|----------|--------------------|
+| pubs       | `QctrlSamplerPubLike` or `list[QctrlSamplerPubLike]`   | One or more tuples containing the inputs listed under `SamplerPubLike` components     | Yes      | N/A | `(circuit, parameter_values)`            |
+| backend_name| `str`  | The name of the backend | No  |  The least busy backend that your instance has access to | `"ibm_fez"` |
+| options| `dict`  | Input options; see Options section for more details | No  |  See the Options section for details | `{"default_shots": 2048}` |
+
+**`QctrlSamplerPubLike` components (derived from the [Qiskit Runtime PUB definition](/docs/guides/primitive-input-output#sampler-pub)):**
+- A single circuit defined as a `QuantumCircuit` or in OpenQASM 2.0 or 3.0 string format.
+- (Optional) A collection of parameter values to bind the circuit against.
+- (Optional) An integer representing the shot count, or a dictionary of runtime options containing the shot count. For example: `(circ, None, 123)` or `(circ, None, {"shots": 123})`.
+
+**Options:**
+| Name   | Type   | Description  | Default |
+|--------|----------|-----------------------|---------------------|
+| session_id | `str`  | An existing Qiskit Runtime session ID  | `"cw4r3je6f0t010870y3g"` |
+| default_shots | `int`  | The number of shots to use for each circuit  | `2048` |
+| job_tags | `list[str]` | The list of desired job tags | `[]` |
+
+### Sampler outputs
+| Name   | Type                                   | Description                                                                                                         | Example                                                                                                                                                             |
+|--------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| N/A | `PrimitiveResult`  | The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs | `PrimitiveResult([PubResult(data=DataBin(c=BitArray(<shape=(), num_shots=2048, num_bits=35>)), metadata={'shots': 2048})], metadata={`provider_job_ids`: 1234678})` |
