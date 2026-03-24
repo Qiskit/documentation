@@ -351,7 +351,7 @@ The process depends on which type of release you are generating. Some key terms 
 All release types start with the following steps:
 
 1. In Git, check out the main branch of `Qiskit/documentation` and pull any updates. Then, create a new Git branch.
-2. Determine which documentation you want to generate (e.g. `qiskit` or `qiskit-ibm-runtime`) and its full version, e.g. `0.45.2` or `1.2.0rc1`.
+2. Determine which documentation you want to generate (e.g., `qiskit` or `qiskit-ibm-runtime`) and its full version, e.g., `0.45.2` or `1.2.0rc1`.
 3. Download a CI artifact with the project's documentation. To find this:
    1. Find the relevant GitHub Actions workflow for the project:
       - Qiskit SDK: https://github.com/Qiskit/qiskit/actions/workflows/docs_deploy.yml
@@ -371,7 +371,7 @@ All release types start with the following steps:
 4. On some operating systems, the downloaded zip file will be auto-expanded rather than staying a zip file. If this happens, compress it back to a zip file. On macOS, secondary-click on the folder in Finder and use the "Compress" option.
 5. Rename the downloaded zip file with its minor-version number. For example, for the release `0.45.2`, rename `html_docs.zip` to `0.45.zip`. For release candidates (rc), use a value like `2.3-rc.zip`.
 6. Upload the renamed zip file to https://ibm.ent.box.com/folder/246867452622. If this is a patch release, this step will overwrite the prior file; if it's the `rc1` release or a new minor version like `2.3.0`, it will be a new file.
-7. Proceed with the final steps for the type of release.
+7. Proceed with the final steps for the type of release (patch, rc1, or major/minor; see the relevant section below).
 
 ### Final steps for patch releases
 
@@ -384,7 +384,7 @@ Examples of when to use this process:
 Steps:
 
 1. Run the script:
-   - For release candidates (rc), run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc2 --dev`.
+   - For release candidates (any rc other than rc1), run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc2 --dev`.
    - For historical releases, run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2 --historical`.
    - For the latest release, run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2`.
 2. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
