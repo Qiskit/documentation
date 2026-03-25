@@ -6,7 +6,13 @@ description: Understand the inputs and outputs to the Executor primitive.
 
 # Executor inputs and outputs
 
-The inputs and output of the Executor primitive are very different from those of the Sampler and Estimator primitives. As part of the [directed execution model,](/docs/guides/directed-execution-model) the Executor primitive helps provide more flexibility when customizing your error mitigation workflow.  This primitive takes a `QuantumProgram` as input, and outputs a Qiskit Runtime job, which is then run on an IBM&reg; quantum computer.
+The Executor primitive is part of the [directed execution model](/docs/guides/directed-execution-model), which helps provide more flexibility when customizing your error mitigation workflow. This workflow introduces some new terminology:
+
+- A **program** is a list of program items, where each item is either a circuit item or a samplex item.
+- A **samplex item** is a pair that consists of a template circuit and a samplex pair.
+- **Samplex** is the core type of the [Samplomatic library.](/docs/guides/directed-execution-model#samplomatic)
+
+The inputs and output of the Executor primitive are very different from those of the [Sampler](/docs/guides/sampler-input-output) and [Estimator](/docs/guides/estimator-input-output) primitives. This primitive takes a `QuantumProgram` as input, and then outputs a Qiskit Runtime job, which is then run on an IBM&reg; quantum computer.
 
 <span id="programs"></span>
 ## Inputs: Quantum programs
