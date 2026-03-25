@@ -78,13 +78,13 @@ The next table describes the keys of the `qubo_settings` dictionary. Build the d
 
 | Name                | Type    | Description                                                                 | Required | Default | Example |
 |---------------------|---------|-----------------------------------------------------------------------------|----------|---------|---------|
-| nt                  | int     | Number of time steps                                                         | Yes      | -       | 4       |
-| nq                  | int     | Number of resolution qubits                                                                | Yes      | -       | 4       |
-| max_investment      | float   | Maximum number of invested currency units across all assets                           | Yes      | -       | 10      |
-| dt*                  | int     | Time window considered in each time step. The unit matches the time intervals between the keys in the asset data                                                 | No       | 30      | -       |
-| risk_aversion       | float     | Risk aversion coefficient                                   | No       | 1000    | -       |
-| transaction_fee     | float     | Transaction fee coefficient                                                 | No       | 0.01   | -       |
-| restriction_coeff   | float   | Lagrange multiplier used to enforce the problem constraint within the QUBO formulation | No       | 1       | -       |
+| `nt`                  | int     | Number of time steps                                                         | Yes      | -       | 4       |
+| `nq`                  | int     | Number of resolution qubits                                                                | Yes      | -       | 4       |
+| `max_investment`      | float   | Maximum number of invested currency units across all assets                           | Yes      | -       | 10      |
+| `dt`*                  | int     | Time window considered in each time step. The unit matches the time intervals between the keys in the asset data                                                 | No       | 30      | -       |
+| `risk_aversion`       | float     | Risk aversion coefficient                                   | No       | 1000    | -       |
+| `transaction_fee`     | float     | Transaction fee coefficient                                                 | No       | 0.01   | -       |
+| `restriction_coeff`   | float   | Lagrange multiplier used to enforce the problem constraint within the QUBO formulation | No       | 1       | -       |
 
 ### `ansatz_settings`
 
@@ -92,9 +92,9 @@ To modify the default options, create a dictionary for the `ansatz_settings` par
 
 | Name                  | Type     | Description                                                                 | Required | Default |
 |-----------------------|----------|-----------------------------------------------------------------------------|----------|---------|
-| ansatz[*](#single-star)                | str      | Ansatz to be used                                             | No      | `"real_amplitudes"` |
-| multiple_passmanager[**](#double-star)  | bool     |Enables multiple passmanager subroutine (not available for Tailored ansatz) | No       | `False`   |
-| dd_enable   | bool     | Adds dynamical decoupling                                    | No       | `False`   |
+| `ansatz`[*](#single-star)                | str      | Ansatz to be used                                             | No      | `"real_amplitudes"` |
+| `multiple_passmanager`[**](#double-star)  | bool     |Enables multiple passmanager subroutine (not available for Tailored ansatz) | No       | `False`   |
+| `dd_enable`   | bool     | Adds dynamical decoupling                                    | No       | `False`   |
 
 <span id="single-star"></span>
 \* Available ansatzes
@@ -112,9 +112,9 @@ This parameter is a dictionary with some tunable options of the optimizing proce
 
 | Name               | Type   | Description                                     | Required | Default               |
 |--------------------|--------|-------------------------------------------------|----------|-----------------------|
-| primitive_options  | json   | Settings of the primitive               | No      | -                     |
-| optimizer          | str    | Selected classical optimizer                            | No       | `"differential_evolution"` |
-| optimizer_options  | json   | Configuration of the optimizer                  | No       | -                     |
+| `primitive_options`  | json   | Settings of the primitive               | No      | -                     |
+| `optimizer`          | str    | Selected classical optimizer                            | No       | `"differential_evolution"` |
+| `optimizer_options`  | json   | Configuration of the optimizer                  | No       | -                     |
 
 <Admonition type="note" title="Note">
 Currently, the only optimizer option available is `"differential_evolution"`.
@@ -126,21 +126,21 @@ Under `primitive_options` and `optimizer_options` keys we set dictionaries with 
 
 | Name              | Type   | Description                                | Required | Default                    | Example                    |
 |-------------------|--------|--------------------------------------------|----------|----------------------------|----------------------------|
-| sampler_shots     | int    | Number of shots of the Sampler.            | No       | 100000                     | -                          |
-| estimator_shots   | int    | Number of shots of the Estimator.          | No       | 25000                      | -                          |
-| estimator_precision | float | Desired precision of the expected value. If specified, the precision will be used instead of the `estimator_shots`. | No | `None` | 0.015625 · (1 / sqrt(4096)) |
-| max_time          | int or str | Maximum amount of time a runtime session can remain open before being forcibly closed. Can be given in seconds (int) or as a string, like `"2h 30m 40s"`. Must be less than the system-imposed maximum. | No | `None` | `"1h 15m"`                |
+| `sampler_shots`     | int    | Number of shots of the Sampler.            | No       | 100000                     | -                          |
+| `estimator_shots`   | int    | Number of shots of the Estimator.          | No       | 25000                      | -                          |
+| `estimator_precision` | float | Desired precision of the expected value. If specified, the precision will be used instead of the `estimator_shots`. | No | `None` | 0.015625 · (1 / sqrt(4096)) |
+| `max_time`          | int or str | Maximum amount of time a runtime session can remain open before being forcibly closed. Can be given in seconds (int) or as a string, like `"2h 30m 40s"`. Must be less than the system-imposed maximum. | No | `None` | `"1h 15m"`                |
 
 #### `optimizer_options`
 
 | Name              | Type     | Description                              | Required | Default       |
 |-------------------|----------|------------------------------------------|----------|---------------|
-| num_generations   | int      | Number of generations                    | No       | 20            |
-| population_size   | int      | Size of the population                    | No       | 20            |
-| mutation_range    | list   | Maximum and minimum mutation factor              | No       | [0, 0.25]     |
-| recombination     | float      | Recombination factor                     | No       | 0.4           |
-| max_parallel_jobs | int      | Maximum number of QPU jobs executed in parallel  | No       | 3             |
-| max_batchsize | int      | Maximum batch size  | No       | 200     |
+| `num_generations`   | int      | Number of generations                    | No       | 20            |
+| `population_size`   | int      | Size of the population                    | No       | 20            |
+| `mutation_range`    | list   | Maximum and minimum mutation factor              | No       | [0, 0.25]     |
+| `recombination`     | float      | Recombination factor                     | No       | 0.4           |
+| `max_parallel_jobs` | int      | Maximum number of QPU jobs executed in parallel  | No       | 3             |
+| `max_batchsize` | int      | Maximum batch size  | No       | 200     |
 
 <Admonition type="note" title="Note">
 
@@ -170,29 +170,29 @@ The first dictionary focuses on the best-performing solution, while the second p
 
 | **Name**    | **Type**                     | **Description**                                                                 | **Example**  |
 |-------------|------------------------------|---------------------------------------------------------------------------------|--------------|
-| result      | dict[str, dict[str, float]]  | Contains the investment strategy over time, with each time-stamp mapping to asset-specific investment weights (each weight is the investment amount normalized by the total investment amount). | `{'time_1': {'asset_1': 0.2, 'asset_2': 0.3, ...}, ...}` |
-| metadata    | dict[str, Any]               | Data generated during the analysis, including solutions, costs, and metrics.    | See examples below |
+| `result`      | dict[str, dict[str, float]]  | Contains the investment strategy over time, with each time-stamp mapping to asset-specific investment weights (each weight is the investment amount normalized by the total investment amount). | `{'time_1': {'asset_1': 0.2, 'asset_2': 0.3, ...}, ...}` |
+| `metadata`    | dict[str, Any]               | Data generated during the analysis, including solutions, costs, and metrics.    | See examples below |
 
 #### Description of the `metadata` dictionary
 
 | **Name**                 | **Type**              | **Description**                                                                                     | **Example**                  |
 |--------------------------|-----------------------|-----------------------------------------------------------------------------------------------------|------------------------------|
-| session_id               | str                   | Unique identifier for the IBM Quantum session.                          | `"d0h30qjvpqf00084fgw0"`        |
-| all_samples_metrics | dict                 | Dictionary containing various metrics for each postprocessed sample, such as costs or constraints. | See description below        |
-| sampler_counts           | dict[str, int]        | Dictionary where keys are bitstring representations of sampled solutions and values are their counts. | `{"101010": 3, "111000": 1}` |
-| asset_order              | list[str]             | List with the corresponding investment order of assets at each time step within the investment strategies. | `["Asset_0", "Asset_1", "Asset_3"]`     |
-| QUBO                     | list[list[float]]     | QUBO matrix of the problem.                                                                         | `[[-6.96e-01, 5.81e-01, -1.26e-02, 0.00e+00], ...]`     |
-| resource_summary           | dict[str, dict[str, float]] | Summary of CPU and QPU usage times (in seconds) across different stages of the process.                | `{'RUNNING: EXECUTING_QPU': {'CPU_TIME': 412.84, 'QPU_TIME': 87.22}, ...}` |
+| `session_id`               | str                   | Unique identifier for the IBM Quantum session.                          | `"d0h30qjvpqf00084fgw0"`        |
+| `all_samples_metrics` | dict                 | Dictionary containing various metrics for each postprocessed sample, such as costs or constraints. | See description below        |
+| `sampler_counts`           | dict[str, int]        | Dictionary where keys are bitstring representations of sampled solutions and values are their counts. | `{"101010": 3, "111000": 1}` |
+| `asset_order`              | list[str]             | List with the corresponding investment order of assets at each time step within the investment strategies. | `["Asset_0", "Asset_1", "Asset_3"]`     |
+| `QUBO`                     | list[list[float]]     | QUBO matrix of the problem.                                                                         | `[[-6.96e-01, 5.81e-01, -1.26e-02, 0.00e+00], ...]`     |
+| `resource_summary`           | dict[str, dict[str, float]] | Summary of CPU and QPU usage times (in seconds) across different stages of the process.                | `{'RUNNING: EXECUTING_QPU': {'CPU_TIME': 412.84, 'QPU_TIME': 87.22}, ...}` |
 
 #### Description of the `all_samples_metrics` dictionary
 
 | **Name**                | **Type**       | **Description**                                                                                                  | **Example**                  |
 |-------------------------|----------------|------------------------------------------------------------------------------------------------------------------|------------------------------|
-| investment_trajectories | list[list]     | Investment strategies derived from decoded quantum states. | `[[1, 2, 2], [1, 2, 1]]`     |
-| counts                  | list[int]      | Number of times each investment trajectory was sampled. Index matches `investment_trajectories`.                | `[5, 3]`                     |
-| objective_costs         | list[float]    | Value of the objective function for each investment trajectory, ordered from lowest to highest.                 | `[0.98, 1.25]`               |
-| sharpe_ratios           | list[float]    | Risk-adjusted performance (Sharpe ratio) for each investment trajectory. Aligned by index.                      | `[1.1, 0.7]`                 |
-| returns                 | list[float]    | Expected return for each investment trajectory. Aligned by index.                                               | `[0.15, 0.10]`               |
-| rest_breaches           | list[float]    | Maximum constraint deviation within each investment trajectory. Aligned by index.                               | `[0.0, 0.25]`                |
-| transaction_costs       | list[float]    | Estimated transaction cost associated with each investment trajectory. Aligned by index.                        | `[0.01, 0.02]`               |
+| `investment_trajectories` | list[list]     | Investment strategies derived from decoded quantum states. | `[[1, 2, 2], [1, 2, 1]]`     |
+| `counts`                  | list[int]      | Number of times each investment trajectory was sampled. Index matches `investment_trajectories`.                | `[5, 3]`                     |
+| `objective_costs`         | list[float]    | Value of the objective function for each investment trajectory, ordered from lowest to highest.                 | `[0.98, 1.25]`               |
+| `sharpe_ratios`           | list[float]    | Risk-adjusted performance (Sharpe ratio) for each investment trajectory. Aligned by index.                      | `[1.1, 0.7]`                 |
+| `returns`                 | list[float]    | Expected return for each investment trajectory. Aligned by index.                                               | `[0.15, 0.10]`               |
+| `rest_breaches`           | list[float]    | Maximum constraint deviation within each investment trajectory. Aligned by index.                               | `[0.0, 0.25]`                |
+| `transaction_costs`       | list[float]    | Estimated transaction cost associated with each investment trajectory. Aligned by index.                        | `[0.01, 0.02]`               |
 
