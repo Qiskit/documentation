@@ -10,14 +10,14 @@ The input arguments of the function are described in the following table. The as
 
 | **Name**               | **Type**           | **Description**                                          | **Required** | **Default**                          | **Example**                              |
 |------------------------|--------------------|----------------------------------------------------------|--------------|--------------------------------------|------------------------------------------|
-| assets                 | json               | Dictionary with the asset prices                         | Yes          | -                                    | -                                        |
-| qubo_settings          | json               | Settings of the QUBO                                     | Yes          | -                                    | See the examples in the table below     |
-| ansatz_settings        | json               | Settings of the ansatz                                   | No           | `None`                                | See the examples in the table below.     |
-| optimizer_settings     | json               | Settings of the optimizer                                | No           | `None`                                | See the examples in the table below.     |
-| backend                | str                | The QPU backend name                                     | No           |  -    | `"ibm_torino"`                           |
-| previous_session_id    | list of str        | List of session IDs to retrieve data from previous runs[(*)](#1-note) | No           | Empty list                           | `["session_id_1", "session_id_2"]`      |
-| apply_postprocess      | bool               | Apply noise-aware SQD post-processing                      | No           | `True`                                | `True`                                   |
-| tags                   | list of strings    | List of tags to identify the experiment                  | No           | Empty list                           | `["optimization", "quantum_computing"]`  |
+| `assets`                 | json               | Dictionary with the asset prices                         | Yes          | -                                    | -                                        |
+| `qubo_settings`          | json               | Settings of the QUBO                                     | Yes          | -                                    | See the examples in the table below     |
+| `ansatz_settings`        | json               | Settings of the ansatz                                   | No           | `None`                                | See the examples in the table below.     |
+| `optimizer_settings`     | json               | Settings of the optimizer                                | No           | `None`                                | See the examples in the table below.     |
+| `backend`                | str                | The QPU backend name                                     | No           |  -    | `"ibm_torino"`                           |
+| `previous_session_id`    | list of str        | List of session IDs to retrieve data from previous runs[(*)](#1-note) | No           | Empty list                           | `["session_id_1", "session_id_2"]`      |
+| `apply_postprocess`      | bool               | Apply noise-aware SQD post-processing                      | No           | `True`                                | `True`                                   |
+| `tags`                   | list of strings    | List of tags to identify the experiment                  | No           | Empty list                           | `["optimization", "quantum_computing"]`  |
 
 <span id="1-note"></span>
 *To resume an execution or retrieve jobs that were processed in one or more previous sessions, the list of session IDs must be passed in the `previous_session_id` parameter. This is particularly useful in cases where an optimization task failed to complete due to any error in the process, and execution needs to finish. To achieve this, you must provide the same arguments used in the initial execution, along with the `previous_session_id` list as described.
@@ -26,6 +26,8 @@ The input arguments of the function are described in the following table. The as
 Loading data from previous sessions (to resume an optimization) can take up to one hour of classical computational time. This does not consume quantum runtime resources.
 </Admonition>
 
+### `assets`
+
 The data must be structured as a JSON object that stores information about the closing prices of financial assets on specific dates. The format is as follows:
 
 - Primary key (string): The name or ticker symbol of the financial asset (for example, "8801.T").
@@ -33,6 +35,42 @@ The data must be structured as a JSON object that stores information about the c
 - Value (number): The closing price of the asset on the specified date. Prices can be entered either normalized or non-normalized.
 
 *Note that all dictionaries must have the same secondary key (dates). If a specific asset lacks a date that others have, the data must be filled to ensure consistency. For example, this can be done by using the last tracked closing price of that asset.*
+
+#### Example
+
+``` py
+{
+    "8801.T": {
+        "2023-01-01": 2374.0,
+        "2023-01-02": 2374.0,
+        "2023-01-03": 2374.0,
+        "2023-01-04": 2356.5,
+        ...
+    },
+    "AAPL": {
+        "2023-01-01": 145.2,
+        "2023-01-02": 146.5,
+        "2023-01-03": 147.3,
+        "2023-01-04": 148.1,
+        ...
+    },
+    ...
+}
+```
+
+```py
+{
+    "asset_name": {
+        "date": closing_value,
+        ...
+    },
+    ...
+}
+```
+
+<Admonition type="note" title="Note">
+The asset data must contain, at least, the closing prices at ``(nt+1) * dt`` (see the [`qubo_settings`](#qubo_settings) input section) time stamps (for example, days).
+</Admonition>
 
 ### `qubo_settings`
 
