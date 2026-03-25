@@ -21,7 +21,11 @@ different task for Executor to perform. Typically, each item owns one of the fol
 
 Each of these items, including instructions to add them to a `QuantumProgram`, is explained in more detail below.
 
-The following cell initializes a `QuantumProgram` and specifies that it should run 1024 shots for every configuration of each item in the program. Then it appends a version of the target circuit with set parameters, transpiled according to the backend's ISA.
+### Example: Initialize a `QuantumProgram` and append circuits
+
+You must first initialize your quantum program, then append circuits to the program, as shown in the following examples. 
+
+The following cell initializes a `QuantumProgram` and specifies that it should run 1024 shots for every configuration of each item in the program. Then it appends a version of the target circuit with parameters, transpiled according to the backend's ISA.
 
 ```python
 from qiskit.transpiler import generate_preset_pass_manager
