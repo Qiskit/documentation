@@ -15,11 +15,27 @@ This is the main input. The `Pub` contains 2-4 elements: a circuit, one or more 
 - Required: Yes
 - Example: `[(circuit, [obs1,obs2,obs3], parameter_values, 0.03)]`
 </Attribute>
-| Name |  Type | Description | Required | Default |  Example |
-| `backend_name`| string|Name of the backend to use |No | QESEM will get least busy device reported by IBM| `"ibm_fez"`|
-| `instance` | string|  The cloud resource name of the instance to use in that format |  No |  N/A | `“CRN”`  |
-| `options` | dictionary |Input options. See **Options** section for more details. | No |  See the **Options** section for details.    |  `{ default_precision = 0.03, "max_execution_time" = 3600, "transpilation_level" = 0}`  |
 
+### `backend_name`
+<Attribute attributeTypeHint="`str`" attributeValue="QESEM will get least busy device reported by IBM">
+Name of the backend to use
+- Required: No
+- Example: `"ibm_fez"`
+</Attribute>
+
+### `instance`
+<Attribute attributeTypeHint="`str`">
+The cloud resource name of the instance to use in that format
+- Required: No 
+- Example: `"CRN"`
+</Attribute>
+
+### `options`
+<Attribute attributeTypeHint="`dict`">
+Input options. See the [Options](#options) section for more details.
+- Required: No
+- Example: `{ default_precision = 0.03, "max_execution_time" = 3600, "transpilation_level" = 0}`
+</Attribute>
 
 
 ### Options
