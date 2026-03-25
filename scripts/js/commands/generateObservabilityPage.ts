@@ -40,6 +40,10 @@ async function main() {
   );
 }
 
+function maybeAddPkgTitleRegisteredIcon(pkgTitle: string) {
+  return pkgTitle.replace("IBM", "IBM&reg;");
+}
+
 async function writeObservabilityFile(
   pkgTitle: OpenapiPkgTitle,
   destPath: string,
@@ -70,7 +74,7 @@ description: Learn about activity tracking events for ${pkgTitle}.
 
 # Activity tracking events for ${pkgTitle}
 
-IBM Cloud&reg; services, such as ${pkgTitle}, generate activity tracking events.
+IBM Cloud&reg; services, such as ${maybeAddPkgTitleRegisteredIcon(pkgTitle)}, generate activity tracking events.
 
 Activity tracking events report on activities that change the state of a service in IBM Cloud. You can use the events to investigate abnormal activity and critical actions and to comply with regulatory audit requirements.
 
