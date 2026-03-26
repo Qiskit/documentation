@@ -12,7 +12,7 @@
 
 import { readdir } from "fs/promises";
 
-import { pathExists, readJsonFile } from "./fs";
+import { pathExists, readJsonFile } from "./fs.js";
 
 export async function readApiFullVersion(
   versionFolder: string,
