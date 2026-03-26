@@ -30,7 +30,7 @@ tl;dr:
 * [Tables are supported](https://www.markdownguide.org/extended-syntax/).
 * To add relative links, use paths without the file extension, like `[Other page](/docs/guides/other-page#optional-anchor-in-other-page)`
 * See [the style guide](https://github.com/Qiskit/documentation/blob/main/style-guide.md). We will help you with any questions, too.
-* Add metadata inside the `metadata` section of your Jupyter notebook near the bottom of the file. Run `./check` to validate it.
+* Add metadata block starting with `---` at the top of the file. Run `./check` to validate it.
 
 ### Setting up your environment
 
@@ -46,10 +46,10 @@ When writing your guide, you must use the same Python requirements we use in the
 
 3. Activate that environment.
 
-   For OSX/Linux
+   For macOS/Linux
 
    ```sh
-   # OSX / Linux
+   # macOS / Linux
    source .venv/bin/activate
 
    # Windows
