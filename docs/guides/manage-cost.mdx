@@ -6,7 +6,7 @@ description: How to manage costs of running jobs on QPUs when using the Pay-As-Y
 
 # Manage cost
 
-This guide describes how to set a cost limit on your Pay-As-You-Go Plan instance.  You can also manage cost by [minimizing a workload's quantum time](/docs/guides/minimize-time), and setting a [maximum execution time](/docs/guides/max-execution-time) on your workloads.
+This guide describes how to set a cost limit on your Pay-As-You-Go Plan instance.  You can also manage cost by [minimizing a workload's quantum usage](/docs/guides/minimize-time), and setting a [maximum execution time](/docs/guides/max-execution-time) on your workloads.
 
 The _cost limit_ refers to the total cost of all workloads run with this instance since it was created, and it will always be greater than or equal to the total cost. After the instance reaches the specified number of total seconds, no further workloads can be run and no more cost is incurred.
 
@@ -89,33 +89,19 @@ No further jobs can be submitted by using this instance until the cost limit is 
 
 You will receive a monthly invoice that provides details about your resource charges. You can check how much has been spent at any time on the [IBM Cloud Billing and usage](https://cloud.ibm.com/billing) page.
 
-Additionally, you can determine cost per instance or per job at any time.
+The [Analytics](https://quantum.cloud.ibm.com/analytics) page displays usage according to the filters you set. Additionally, you can determine cost per instance or per job at any time from the [Instances](https://quantum.cloud.ibm.com/instances) page, as detailed below.
 
-### View usage
+### View instance usage
 
-View the instance's usage on the [Analytics](https://quantum.cloud.ibm.com/analytics) page.
-
-### View instance cost
-
-To determine how much has been billed to an instance during the current billing cycle, from the [Instances](https://quantum.cloud.ibm.com/instances) page, click the instance to open its details page.
-
-These are the fields relevant to cost:
-
-- **Billing cycle usage**: The amount of _quantum time_ used by this instance during the current billing cycle. Quantum time is the duration a QPU is committed to fulfilling a user request.
-- **Billing cycle cost**: The total cost of running jobs during the current billing cycle.
-- **Total usage**: The amount of quantum time used by this instance since it was created.
-- **Total cost**: The total cost of running jobs on this instance since it was created. Only administrators can set this value.
+To determine how much has been billed to an instance during the current billing cycle, from the [Instances](https://quantum.cloud.ibm.com/instances) page, click the instance to open its details page. The **Total usage** field displays the total amount of this instance's quantum usage since it was created.
 
 You can view your billing cycle on the [Billing and usage page](https://cloud.ibm.com/billing).
 
-### View job cost
+### View job usage
 
 To determine how much has been billed to each job associated with an instance, from the [Instances](https://quantum.cloud.ibm.com/instances) page, click the instance to open its details page. Next, on the left side, click Jobs.
 
-These are the columns relevant to cost:
-
-- **Usage**: The amount of quantum time used by this job. Quantum time is the duration a QPU is committed to fulfilling a user request.
-- **Cost**: The total cost of running this job.
+The **Usage** field displays the amount of capacity used by this job. Quantum usage is the duration a QPU is committed to fulfilling a user request.
 
 ## Set up spending notifications
 
@@ -129,6 +115,6 @@ You can set up spending notifications to get notified when your account or a par
 
 <Admonition type="tip" title="Recommendations">
     - Review the [plans](/docs/guides/plans-overview) available to IBM Quantum users.
-    - Review suggestions to [minimize job quantum time](/docs/guides/minimize-time).
+    - Review suggestions to [minimize job quantum usage](/docs/guides/minimize-time).
     - Learn how to set a [maximum execution time](/docs/guides/max-execution-time) on jobs.
 </Admonition>
