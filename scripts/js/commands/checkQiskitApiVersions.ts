@@ -1,7 +1,7 @@
 import { isEqual } from "lodash-es";
 import { diff } from "jest-diff";
 
-import { getDevVersion, getReleasedVersions } from "../lib/apiVersions";
+import { getDevVersion, getReleasedVersions } from "../lib/apiVersions.js";
 
 async function main() {
   const [qiskitHistoricalVersions, qiskitCurrentVersion] =
