@@ -17,7 +17,7 @@ import { hideBin } from "yargs/helpers";
 import { collectInvalidImageErrors } from "../lib/markdownImages.js";
 import { readMarkdownAndMetadata } from "../lib/markdownReader.js";
 import { collectHeadingTitleMismatch } from "../lib/markdownTitles.js";
-import { parseMarkdown } from "../lib/markdownUtils";
+import { parseMarkdown } from "../lib/markdownUtils.js";
 import { checkMetadata } from "../lib/metadataChecker.js";
 import {
   METADATA_ALLOWLIST,

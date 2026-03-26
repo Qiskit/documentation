@@ -18,15 +18,13 @@
  * and public/, the other repositories use a snapshot.
  */
 
-import { readFile } from "fs/promises";
-
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { globby } from "globby";
 
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
-import { readJsonFile } from "../lib/fs";
+import { readJsonFile } from "../lib/fs.js";
 
 interface Arguments {
   [x: string]: unknown;
