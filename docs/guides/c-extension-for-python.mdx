@@ -30,7 +30,7 @@ pass with a real use case in the Qiskit addons.
 </Admonition>
 
 <Admonition type="warning">
-  The Qiskit C API is still experimental. Thus, there is not yet a fully stable programming or 
+  The Qiskit C API is still experimental. Thus, there is not yet a fully stable programming or
   binary interface, and there might be breaking changes between minor versions.
 
   For example, an extension module using Qiskit v2.4.0 at build time is guaranteed to work with
@@ -218,7 +218,7 @@ project, so we will split it into stages.
 
 ### Configure the header files
 
-When building a Python extension module, you must include `Python.h` before any other file.  
+When building a Python extension module, you must include `Python.h` before any other file.
 To use the Qiskit C API in an extension module, you must define the macro
 `QISKIT_PYTHON_EXTENSION` before including `qiskit.h`.
 
@@ -238,7 +238,7 @@ Our includes then look like:
 
 ### Write the pure C API code
 
-Next, write all of the business logic as pure Qiskit C API code.  We will expose 
+Next, write all of the business logic as pure Qiskit C API code.  We will expose
 this logic to Python space in the following section.
 
 This section contains only pure Qiskit C API code.  It uses the C API types:
@@ -367,7 +367,7 @@ static uint32_t add_spectator_measures(QkDag *dag,
 
 All of the business logic is now defined in pure C.  Next, it needs to be safely exposed to Python.
 
-To begin, define the only function that will be exposed to Python.  This must 
+To begin, define the only function that will be exposed to Python.  This must
 follow a defined signature, which is purely in terms of Python types that look like a
 `fn(self, *args, **kwargs)` method.  We have to return a `PyObject *`, which is the generic form of
 any Python object.
