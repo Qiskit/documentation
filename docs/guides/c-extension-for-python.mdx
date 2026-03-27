@@ -86,8 +86,8 @@ Begin by defining the `pyproject.toml` file. This is standard for a `setuptools`
 project, although  `qiskit` is an additional requirement in the `build-system.requires` array,
 in addition to `setuptools`.
 
+<CellTitle title="pyproject.toml" />
 ```toml
-# file: pyproject.toml
 [build-system]
 requires = [
     "setuptools",
@@ -122,8 +122,8 @@ its build process.   Starting with v2.4, these are included in the Qiskit SDK Py
 To locate the directory containing them, run `qiskit.capi.get_include()`.
 This leads us to a `setup.py` file that looks like:
 
+<CellTitle title="setup.py" />
 ```python
-# file: setup.py
 import qiskit
 from setuptools import setup, Extension
 
@@ -159,8 +159,8 @@ Our package will define a custom transpiler pass that derives from the Python-sp
 `qiskit.transpiler.TransformationPass` class, but uses a function from the C extension module for
 all of its business logic.  This looks like:
 
+<CellTitle title="src/spectator_measures/__init__.py" />
 ```python
-# file: src/spectator_measures/__init__.py
 from qiskit.transpiler import TransformationPass, Target
 from . import _core
 
@@ -224,8 +224,8 @@ To use the Qiskit C API in an extension module, you must define the macro
 
 Our includes then look like:
 
+<CellTitle title="src/spectator_measures/_coremodule.c" />
 ```c
-# file: src/spectator_measures/_coremodule.c
 #define QISKIT_PYTHON_EXTENSION
 #include <Python.h>
 #include <qiskit.h>
@@ -260,8 +260,8 @@ We will not dwell on the algorithmic details of this code; it is instructive to 
 transpiler pass for the demonstration, but the precise implementation of the algorithm is not
 important to this guide.
 
+<CellTitle title="src/spectator_measures/_coremodule.c (appended)" />
 ```c
-# file: src/spectator_measures/_coremodule.c
 /**
  * The default name to use for `creg_name` if none is supplied.
  */
@@ -374,8 +374,8 @@ any Python object.
 
 The complete function looks like:
 
+<CellTitle title="src/spectator_measures/_coremodule.c (appended)" />
 ```c
-# file: src/spectator_measures/_coremodule.c
 static PyObject *py_add_spectator_measures(PyObject *self,
                                            PyObject *args,
                                            PyObject *kwargs) {
@@ -434,8 +434,8 @@ the result.  This is standard for Python C API programming.
 Next, we define the information about our module and the function it contains, so we can pass it to
 Python space:
 
+<CellTitle title="src/spectator_measures/_coremodule.c (appended)" />
 ```c
-# file: src/spectator_measures/_coremodule.c
 static PyMethodDef core_methods[] = {
     // This entry is our function, cast to the correct type.
     {"add_spectator_measures",
@@ -461,8 +461,8 @@ file that is exported.  Its name _must_ exactly match the pattern
 qualified module name is `spectator_measures._core`, and the unqualified name is `_core`, so our
 function must be called `PyInit__core`, with the double underscore.
 
+<CellTitle title="src/spectator_measures/_coremodule.c (appended)" />
 ```c
-# file: src/spectator_measures/_coremodule.c
 PyMODINIT_FUNC PyInit__core(void) {
     // This line is critical to use the Qiskit C API. Your code will
     // likely be immediately terminated by the operating system if you
