@@ -11,8 +11,8 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
-import { ObjectsInv } from "./objectsInv";
 
+import { ObjectsInv } from "./objectsInv.js";
 import { updateLinks, normalizeUrl, relativizeLink } from "./updateLinks.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 

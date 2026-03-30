@@ -1,0 +1,200 @@
+---
+title: Quantum Portfolio Optimizer API reference
+description: API reference for Quantum Portfolio Optimizer, a Qiskit Function by Global Data Quantum
+---
+# Quantum Portfolio Optimizer Learning API reference
+
+*See the [guide](/docs/guides/global-data-quantum-optimizer)*
+
+## Input
+
+The input arguments of the function are described in the following table. The assets data and other problem specifications must be provided; additionally, the VQE settings can be included to customize the optimization process.
+
+| **Name**               | **Type**           | **Description**                                          | **Required** | **Default**                          | **Example**                              |
+|------------------------|--------------------|----------------------------------------------------------|--------------|--------------------------------------|------------------------------------------|
+| `assets`                 | json               | Dictionary with the asset prices                         | Yes          | -                                    | -                                        |
+| `qubo_settings`          | json               | Settings of the QUBO                                     | Yes          | -                                    | See the examples in the table below     |
+| `ansatz_settings`        | json               | Settings of the ansatz                                   | No           | `None`                                | See the examples in the table below.     |
+| `optimizer_settings`     | json               | Settings of the optimizer                                | No           | `None`                                | See the examples in the table below.     |
+| `backend`                | str                | The QPU backend name                                     | No           |  -    | `"ibm_torino"`                           |
+| `previous_session_id`    | list of str        | List of session IDs to retrieve data from previous runs[(*)](#1-note) | No           | Empty list                           | `["session_id_1", "session_id_2"]`      |
+| `apply_postprocess`      | bool               | Apply noise-aware SQD post-processing                      | No           | `True`                                | `True`                                   |
+| `tags`                   | list of strings    | List of tags to identify the experiment                  | No           | Empty list                           | `["optimization", "quantum_computing"]`  |
+
+<span id="1-note"></span>
+*To resume an execution or retrieve jobs that were processed in one or more previous sessions, the list of session IDs must be passed in the `previous_session_id` parameter. This is particularly useful in cases where an optimization task failed to complete due to any error in the process, and execution needs to finish. To achieve this, you must provide the same arguments used in the initial execution, along with the `previous_session_id` list as described.
+
+<Admonition type="caution" title="Warning">
+Loading data from previous sessions (to resume an optimization) can take up to one hour of classical computational time. This does not consume quantum runtime resources.
+</Admonition>
+
+### `assets`
+
+The data must be structured as a JSON object that stores information about the closing prices of financial assets on specific dates. The format is as follows:
+
+- Primary key (string): The name or ticker symbol of the financial asset (for example, "8801.T").
+- Secondary key (string): The date in YYYY-MM-DD format.
+- Value (number): The closing price of the asset on the specified date. Prices can be entered either normalized or non-normalized.
+
+*Note that all dictionaries must have the same secondary key (dates). If a specific asset lacks a date that others have, the data must be filled to ensure consistency. For example, this can be done by using the last tracked closing price of that asset.*
+
+#### Example
+
+``` py
+{
+    "8801.T": {
+        "2023-01-01": 2374.0,
+        "2023-01-02": 2374.0,
+        "2023-01-03": 2374.0,
+        "2023-01-04": 2356.5,
+        ...
+    },
+    "AAPL": {
+        "2023-01-01": 145.2,
+        "2023-01-02": 146.5,
+        "2023-01-03": 147.3,
+        "2023-01-04": 148.1,
+        ...
+    },
+    ...
+}
+```
+
+```py
+{
+    "asset_name": {
+        "date": closing_value,
+        ...
+    },
+    ...
+}
+```
+
+<Admonition type="note" title="Note">
+The asset data must contain, at least, the closing prices at ``(nt+1) * dt`` (see the [`qubo_settings`](#qubo_settings) input section) time stamps (for example, days).
+</Admonition>
+
+### `qubo_settings`
+
+The next table describes the keys of the `qubo_settings` dictionary. Build the dictionary specifying the number of time steps `nt`, the number of resolution qubits `nq`, and the `max_investment` - or change other default values.
+
+| Name                | Type    | Description                                                                 | Required | Default | Example |
+|---------------------|---------|-----------------------------------------------------------------------------|----------|---------|---------|
+| `nt`                  | int     | Number of time steps                                                         | Yes      | -       | 4       |
+| `nq`                  | int     | Number of resolution qubits                                                                | Yes      | -       | 4       |
+| `max_investment`      | float   | Maximum number of invested currency units across all assets                           | Yes      | -       | 10      |
+| `dt`*                  | int     | Time window considered in each time step. The unit matches the time intervals between the keys in the asset data                                                 | No       | 30      | -       |
+| `risk_aversion`       | float     | Risk aversion coefficient                                   | No       | 1000    | -       |
+| `transaction_fee`     | float     | Transaction fee coefficient                                                 | No       | 0.01   | -       |
+| `restriction_coeff`   | float   | Lagrange multiplier used to enforce the problem constraint within the QUBO formulation | No       | 1       | -       |
+
+### `ansatz_settings`
+
+To modify the default options, create a dictionary for the `ansatz_settings` parameter with the following keys. By default, the ansatz is set to `"real_amplitudes"`, and both extra options (see the following table) are set to `False`.
+
+| Name                  | Type     | Description                                                                 | Required | Default |
+|-----------------------|----------|-----------------------------------------------------------------------------|----------|---------|
+| `ansatz`[*](#single-star)                | str      | Ansatz to be used                                             | No      | `"real_amplitudes"` |
+| `multiple_passmanager`[**](#double-star)  | bool     |Enables multiple passmanager subroutine (not available for Tailored ansatz) | No       | `False`   |
+| `dd_enable`   | bool     | Adds dynamical decoupling                                    | No       | `False`   |
+
+<span id="single-star"></span>
+\* Available ansatzes
+- `real_amplitudes`
+- `cyclic`
+- `optimized_real_amplitudes`
+- `tailored` (Only for `ibm_torino` backend, 7 assets, 4 time steps, and 4 resolution qubits)
+
+<span id="double-star"></span>
+** If ``multiple_passmanager`` is set to ``False``, the function uses the default Qiskit pass manager with `optimization_level=3`. If set to ``True``, the ``multiple_passmanager`` subroutine compares three pass managers: the previous default Qiskit pass manager, a pass manager mapping qubits over the QPU first neighbors chain, and the [AI transpiler](/docs/guides/ai-transpiler-passes) services. Then, the pass manager with the estimated lower cumulative error is selected.
+
+### `optimizer_settings`
+
+This parameter is a dictionary with some tunable options of the optimizing process.
+
+| Name               | Type   | Description                                     | Required | Default               |
+|--------------------|--------|-------------------------------------------------|----------|-----------------------|
+| `primitive_options`  | json   | Settings of the primitive               | No      | -                     |
+| `optimizer`          | str    | Selected classical optimizer                            | No       | `"differential_evolution"` |
+| `optimizer_options`  | json   | Configuration of the optimizer                  | No       | -                     |
+
+<Admonition type="note" title="Note">
+Currently, the only optimizer option available is `"differential_evolution"`.
+</Admonition>
+
+Under `primitive_options` and `optimizer_options` keys we set dictionaries with the following parameters:
+
+#### `primitive_options`
+
+| Name              | Type   | Description                                | Required | Default                    | Example                    |
+|-------------------|--------|--------------------------------------------|----------|----------------------------|----------------------------|
+| `sampler_shots`     | int    | Number of shots of the Sampler.            | No       | 100000                     | -                          |
+| `estimator_shots`   | int    | Number of shots of the Estimator.          | No       | 25000                      | -                          |
+| `estimator_precision` | float | Desired precision of the expected value. If specified, the precision will be used instead of the `estimator_shots`. | No | `None` | 0.015625 · (1 / sqrt(4096)) |
+| `max_time`          | int or str | Maximum amount of time a runtime session can remain open before being forcibly closed. Can be given in seconds (int) or as a string, like `"2h 30m 40s"`. Must be less than the system-imposed maximum. | No | `None` | `"1h 15m"`                |
+
+#### `optimizer_options`
+
+| Name              | Type     | Description                              | Required | Default       |
+|-------------------|----------|------------------------------------------|----------|---------------|
+| `num_generations`   | int      | Number of generations                    | No       | 20            |
+| `population_size`   | int      | Size of the population                    | No       | 20            |
+| `mutation_range`    | list   | Maximum and minimum mutation factor              | No       | [0, 0.25]     |
+| `recombination`     | float      | Recombination factor                     | No       | 0.4           |
+| `max_parallel_jobs` | int      | Maximum number of QPU jobs executed in parallel  | No       | 3             |
+| `max_batchsize` | int      | Maximum batch size  | No       | 200     |
+
+<Admonition type="note" title="Note">
+
+- The number of generations evaluated by the differential evolution is `num_generations` + 1 since the initial population is included.
+- The total number of circuits is calculated as `(num_generations + 1) * population_size`.
+- Using a larger population size and more generations generally improves the quality of the optimization results. However, it is not recommended to exceed a population size of 120 and a number of generations greater than 20 (for example, ``120 * 21 = 2520`` total circuits), as this would generate an excessive number of circuits, which can be computationally expensive and time-consuming to process.
+
+- The function allows you to resume previous optimization, and it is always possible to increase the number of generations (by providing the same input except for `previous_session_id` and an increased ``num_generations``).
+</Admonition>
+
+<Admonition type="note" title="Note">
+Ensure compliance with Qiskit Runtime job limits.
+
+- Sampler: `sampler_shots <= 10_000_000`.
+- Estimator: `max_batchsize * estimator_shots * observable_size <= 10_000_000` (for this function, all the terms of the observable commute, so `observable_size=1`).
+
+See the [Job limits](/docs/guides/job-limits) guide for more information.
+</Admonition>
+
+## Output
+
+The function returns two dictionaries: `"result"` dictionary, containing the best optimization results, including the optimal solution and its associated minimum objective cost; and `"metadata"`, with data from all results obtained during the optimization process, along with their respective metrics.
+
+The first dictionary focuses on the best-performing solution, while the second provides detailed information about all solutions, including objective costs and other relevant metrics.
+
+### Output dictionaries
+
+| **Name**    | **Type**                     | **Description**                                                                 | **Example**  |
+|-------------|------------------------------|---------------------------------------------------------------------------------|--------------|
+| `result`      | dict[str, dict[str, float]]  | Contains the investment strategy over time, with each time-stamp mapping to asset-specific investment weights (each weight is the investment amount normalized by the total investment amount). | `{'time_1': {'asset_1': 0.2, 'asset_2': 0.3, ...}, ...}` |
+| `metadata`    | dict[str, Any]               | Data generated during the analysis, including solutions, costs, and metrics.    | See examples below |
+
+#### Description of the `metadata` dictionary
+
+| **Name**                 | **Type**              | **Description**                                                                                     | **Example**                  |
+|--------------------------|-----------------------|-----------------------------------------------------------------------------------------------------|------------------------------|
+| `session_id`               | str                   | Unique identifier for the IBM Quantum session.                          | `"d0h30qjvpqf00084fgw0"`        |
+| `all_samples_metrics` | dict                 | Dictionary containing various metrics for each postprocessed sample, such as costs or constraints. | See description below        |
+| `sampler_counts`           | dict[str, int]        | Dictionary where keys are bitstring representations of sampled solutions and values are their counts. | `{"101010": 3, "111000": 1}` |
+| `asset_order`              | list[str]             | List with the corresponding investment order of assets at each time step within the investment strategies. | `["Asset_0", "Asset_1", "Asset_3"]`     |
+| `QUBO`                     | list[list[float]]     | QUBO matrix of the problem.                                                                         | `[[-6.96e-01, 5.81e-01, -1.26e-02, 0.00e+00], ...]`     |
+| `resource_summary`           | dict[str, dict[str, float]] | Summary of CPU and QPU usage times (in seconds) across different stages of the process.                | `{'RUNNING: EXECUTING_QPU': {'CPU_TIME': 412.84, 'QPU_TIME': 87.22}, ...}` |
+
+#### Description of the `all_samples_metrics` dictionary
+
+| **Name**                | **Type**       | **Description**                                                                                                  | **Example**                  |
+|-------------------------|----------------|------------------------------------------------------------------------------------------------------------------|------------------------------|
+| `investment_trajectories` | list[list]     | Investment strategies derived from decoded quantum states. | `[[1, 2, 2], [1, 2, 1]]`     |
+| `counts`                  | list[int]      | Number of times each investment trajectory was sampled. Index matches `investment_trajectories`.                | `[5, 3]`                     |
+| `objective_costs`         | list[float]    | Value of the objective function for each investment trajectory, ordered from lowest to highest.                 | `[0.98, 1.25]`               |
+| `sharpe_ratios`           | list[float]    | Risk-adjusted performance (Sharpe ratio) for each investment trajectory. Aligned by index.                      | `[1.1, 0.7]`                 |
+| `returns`                 | list[float]    | Expected return for each investment trajectory. Aligned by index.                                               | `[0.15, 0.10]`               |
+| `rest_breaches`           | list[float]    | Maximum constraint deviation within each investment trajectory. Aligned by index.                               | `[0.0, 0.25]`                |
+| `transaction_costs`       | list[float]    | Estimated transaction cost associated with each investment trajectory. Aligned by index.                        | `[0.01, 0.02]`               |
+

@@ -83,13 +83,6 @@ jobs:
           node-version: 24
       - name: Install Node.js dependencies
         run: npm ci
-      - name: Install ImageMagick
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick
-          sudo ln -s /usr/bin/convert /usr/bin/magick
-      - name: Install Playwright
-        run: npx playwright install
 
       - name: Check internal links
         run: >
@@ -98,24 +91,26 @@ jobs:
           --dev-apis
           --historical-apis
           --qiskit-legacy-release-notes
-      - name: Check for orphan pages
-        run: npm run check:orphan-pages -- --apis
+      - name: Check stale images
+        run: npm run check:stale-images
       - name: Check markdown
         run: npm run check:markdown -- --apis
       - name: Spellcheck
         run: npm run check:spelling
       - name: Check Qiskit bot config
         run: npm run check:qiskit-bot
-      - name: Check tutorials index
-        run: python scripts/ci/check-tutorials-index.py
-      - name: Check stale images
-        run: npm run check:stale-images
       - name: Formatting
         run: npm run check:fmt
-      - name: Typecheck
-        run: npm run typecheck
+      - name: Check for orphan pages
+        run: npm run check:orphan-pages -- --apis
+      - name: Check Qiskit and Qiskit C API versions
+        run: npm run check:qiskit-versions
+      - name: Check tutorials index
+        run: python scripts/ci/check-tutorials-index.py
       - name: Infrastructure tests
         run: npm test
+      - name: Typecheck
+        run: npm run typecheck
 
       - name: Get changed files artifact
         uses: actions/download-artifact@v4
@@ -146,6 +141,8 @@ jobs:
           fi
           mkdir -p .github/outputs
           printf '%s\n' "$CHANGED_CONTENT_FILES" >> .github/outputs/changed-content-files.txt
+      - name: Install Playwright
+        run: npx playwright install
       - name: Pull preview image
         if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: ./start --pull-only
@@ -166,6 +163,11 @@ jobs:
         if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: docker ps -q | xargs docker stop
 
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          sudo ln -s /usr/bin/convert /usr/bin/magick
       - name: Setup Python environment
         uses: ./.github/actions/set-up-notebook-testing
         with:
