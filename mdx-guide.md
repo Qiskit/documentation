@@ -197,6 +197,39 @@ We also have a specialized admonition for Qiskit Code Assistant prompt suggestio
 />
 ```
 
+### Accordions
+
+Sometimes called "twisties", accordions contain hidden content that is uncovered when a user clicks them. There are two parts to this component:
+
+* `<Accordion>`: A group of accordion items. Items in this component will be grouped together.
+* `<AccordionItem>`: The actual expandable part.
+
+Here's an example:
+
+```mdx
+<Accordion>
+  <AccordionItem title="My title">
+    Some content
+  </AccordionItem>
+  <AccordionItem title="My *second* title">
+    Some content
+  </AccordionItem>
+</Accordion>
+```
+
+Note that the titles can include markdown, but for accessibility reasons:
+
+* Titles *must* be a single line
+* Titles *must only* use the following markdown features:
+  * Inline math (`$math$`)
+  * Inline code (`` `code` ``)
+  * Strong (`*bold*`)
+  * Emphasis (`_italic_`)
+
+  All other markdown features (blockquotes, display equations, links, html) are banned.
+
+Everything else is banned.
+
 ### Figures
 
 Use this component for proofs, theorems, definitions, or anything that is
