@@ -54,7 +54,7 @@ Input options; see [Options](#est-options) section for more details
 
 <span id="est-options"></span>
 **Options**
-
+<LeftColoredBar>
 #### `session_id`
 <Attribute attributeTypeHint="`str`">
 An existing Qiskit Runtime session ID
@@ -76,12 +76,15 @@ The target precision for expectation values to estimate for each circuit
 <Attribute attributeTypeHint="`list[str]`" attributeValue="`[]`">
 A list of job tags
 </Attribute>
+</LeftColoredBar>
 
 ## Estimator outputs
 
-| Name   | Type   | Description  | Example |
-| --- | --- | --- | --- |
-| N/A | `PrimitiveResult`  | The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs | `PubResult(data=DataBin(evs=[0.1234], stds=[0.1]))` |
+<Attribute attributeTypeHint="`PrimitiveResult`">
+The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs
+
+- Example: `PubResult(data=DataBin(evs=[0.1234], stds=[0.1]))`
+</Attribute>
 
 ## Sampler inputs
 
@@ -115,7 +118,7 @@ Input options; see [Options](#sam-options) section for more details
 
 <span id="sam-options"></span>
 **Options**
-
+<LeftColoredBar color="blue">
 
 #### `session_id`
 <Attribute attributeTypeHint="`str`">
@@ -132,12 +135,13 @@ The number of shots to use for each circuit
 #### `job_tags`
 <Attribute attributeTypeHint="`list[str]`" attributeValue="`[]`">
 The list of desired job tags
-- Required: 
-- Example:
 </Attribute>
+</LeftColoredBar>
 
 ## Sampler outputs
 
-| Name   | Type  | Description | Example   |
-| --- | --- | --- | --- |
-| N/A | `PrimitiveResult`  | The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs | `PrimitiveResult([PubResult(data=DataBin(c=BitArray(<shape=(), num_shots=2048, num_bits=35>)), metadata={'shots': 2048})], metadata={`provider_job_ids`: 1234678})` |
+<Attribute attributeTypeHint="`PrimitiveResult`">
+The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs
+
+- Example: `PrimitiveResult([PubResult(data=DataBin(c=BitArray(<shape=(), num_shots=2048, num_bits=35>)), metadata={'shots': 2048})], metadata={`provider_job_ids`: 1234678})`
+</Attribute>
