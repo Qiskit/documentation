@@ -1,63 +1,83 @@
 ---
-title: Calibration jobs
+title: Monitoring, calibrations, and benchmarking
 description: Describes what calibration jobs are and how often they run
-
 ---
-# Calibration jobs
 
-## What is calibrated?
+# Monitoring, calibrations, and benchmarking
 
-Multiple aspects of the QPU are affected by the many different calibrations that IBM&reg; runs daily and hourly.
+Calibrating a quantum computer requires optimizing a plethora of parameters defining the electrical signals that actuate the quantum gates and readout operations. Before a quantum computer is released, its initial calibration process involves thoroughly tuning each parameter to achieve the best possible performance based on benchmarks relevant to the quantum computer's expected workloads. Once a quantum computer has been released, the primary goal is to maintain consistent performance for the lifetime of the device. The optimal values of many of the calibrated parameters remain stable indefinitely, but some vary over time as a result of factors such as changes in the environment of two-level systems (TLS) on the quantum processor chip, changes in the ambient conditions (for example, temperature) in the data center, or instability within the control systems.
 
-### Daily calibrations
+To ensure consistent performance, IBM&reg; quantum computers are frequently monitored to track parameters that may drift over time, run calibrations when needed, and perform daily benchmarking. This page details three processes — monitoring, calibrating, and benchmarking — that work together to ensure that the IBM fleet of quantum computers remains as stable, predictable, and available to users as possible.
 
-These calibrations run once every day and last 30-90 minutes, depending on the size of the QPU. The devices start this daily calibration at midnight ET, with the calibration jobs interleaving one-for-one with jobs from external users. This causes the calibration jobs to spread out across several hours, sometimes more than half a day. They include the following:
+## Monitoring
 
-*   **Single-qubit calibrations**
+### Parameter monitoring
 
-The frequency, pulse amplitudes, and “DRAG” parameter of each qubit are calibrated.
+Brief parameter monitoring jobs are executed approximately once an hour, automatically interleaved between user jobs, using the full Qiskit Runtime software stack. The results of these jobs are analyzed to check whether any parameters have begun to deviate from acceptable ranges, ideally catching issues before they become significant enough to affect performance to a noticeable level.
 
-*   **Single-qubit benchmarking**
+Some of the parameters monitored include the following:
 
-    The T1/T2 coherence times and measurement error rates are measured, and randomized benchmarking is run in batches of non-adjacent qubits.
+* Readout angles, amplitudes, and discriminator threshold, ensuring accurate state discrimination, low leakage and stable operation. This includes the operational parameters of our quantum limited amplifiers.
+* Single- and two-qubit gate operations, confirming they behave as expected to maintain correct rotation angles and minimize phase and amplitude errors.
+* Signatures of TLS activity.
 
-*   **Two-qubit gate calibrations and benchmarking**
+If the results of these monitoring jobs indicate modest deviations from their expected performance, then appropriate calibration jobs are launched. If severe TLS activity is detected, then the calibration strategy for gates associated with affected qubits might be automatically modified (and could include pausing calibrations) until such TLS activity decreases back to acceptable levels.
 
-    The amplitude and phase of each pulse is calibrated, and randomized benchmarking in batches of well-separated gates of similar length is run.
+### Holistic monitoring
 
-### Hourly calibrations/monitoring
+In addition to jobs monitoring individual parameters are jobs that monitor the performance of the quantum computer more holistically, such as tests that look at the fidelity of generated Bell states, as well as tests of fractional gates and dynamic circuits on quantum computers that support those features. The goal of these tests, which also run through the full Qiskit Runtime stack interleaved with user jobs, is to efficiently validate the overall behavior of the hardware and software. If these tests detect a significant drop in performance, the quantum computer will automatically pause the job queue until the issue is resolved, ensuring that user jobs won't run until the device is performing as expected again.
 
-These calibrations attempt to run hourly and last 2-3 minutes. They are interleaved with jobs from external users and will try to run in as close to one-hour intervals as possible. They include the following:
 
-*   Readout angle of each qubit
-*   Stability checks
 
-This ensures proper state discrimination.
+## Calibrating
 
-The system health is also monitored by using a quick test to confirm all single- and two-qubit gates are working at a basic level. This ensures the proper operation of gates and allows us to automatically close the queue if we notice a serious system failure.
+Calibrations are triggered whenever monitoring jobs indicate that parameters such as pulse amplitudes or angles have deviated from their ideal values. They run throughout the day in between user jobs, and therefore there is no set time period at which calibrations start and finish. These run only on the qubits/gates for which parameter monitoring has identified specific issues, along with any qubits required to run at the same time according to specific batching rules. On Heron QPUs, the total time spent on calibrations is typically under two hours per day.
 
-## Why are calibrations run?
+### Single-qubit operations
 
-Calibrations ensure that the QPUs are stable and return accurate results. It also allows IBM to find and resolve any system failures as soon as possible. They also provide users with the most up-to-date error rates and coherence times, allowing them to make better choices when choosing which qubits to use or how to compile their circuits.
+These calibrations ensure accurate implementation of the single-qubit gates: sx, x, rx (fractional). We adjust:
 
-## Multiple circuits in the same job
+* Qubit frequencies
+* Pulse amplitudes and phases
 
-**If I have multiple circuits in the same job, is it possible for some of those circuits to run under a different calibration?**
+These calibrations are batched across the affected qubits and executed concurrently where appropriate, with batching strategies tailored to each calibration type.
 
-No; since the circuits are bundled into a single job, the entire job will run with the same calibration. A calibration job cannot run simultaneously while an external job is running.
+### Two-qubit operations
 
-## How long do calibration jobs run for?
+* CZ and RZZ gate amplitudes and phases (for Heron and Nighthawk processors)
+* ECR gate amplitudes and phases (for Eagle processors)
 
-We run both daily and hourly calibration jobs. Daily calibrations on a smaller device (5-7 qubits) may take about 30 minutes, while for larger devices (7+ qubits) they could take about 90 minutes. The hourly calibrations run for about 2-3 minutes each hour.
+These calibrations are run in batches of non-nearest-neighbor qubits to minimize crosstalk.
 
-## Simultaneously-submitted jobs with different calibrations
+### Readout
 
-**Is it possible for two jobs that were submitted simultaneously to run under different calibrations?**
+* Readout pulse angles
+* Measurement discrimination parameters
 
-Yes, it is possible. In this scenario, the first job would run and a calibration job would be interleaved between the end of the first job and the start of the second job. The second job would run under these new calibrations.
+These calibrations are run simultaneously on qubits that require calibration.
+
+### How calibrations are scheduled
+
+* A calibration job cannot run simultaneously while a job or session is running.
+* Therefore, during long sessions, the quantum computer may experience reduced effective stability due to delayed or infrequent recalibration.
+* Two jobs submitted at the same time might run under different calibration sets, depending on timing.
+
+
 
 ## Benchmarking
 
-**Do you run benchmarking for each single qubit, or are qubits benchmarked in parallel?**
+Daily benchmarking gives a comprehensive view of quantum computer performance and generates the metrics sent to users through Qiskit. They help users choose qubits, optimize compilations, and better anticipate expected circuit performance. You can view reported numbers either programmatically or on the [Compute resources](https://quantum.cloud.ibm.com/computers) page (click any QPU to open its detailed information card). Find more details about each metric in the [documentation](/docs/guides/qpu-information).
 
-All single-qubit calibrations and benchmarking are done in batches of non-nearest-neighbor qubits for efficiency.
+### Single-qubit performance
+
+* [Randomized benchmarking](/docs/guides/qpu-information#median-sx-error) (RB) in batched groups  
+* Coherence times for [$T_1$](/docs/guides/qpu-information#t1) and [$T_2$](/docs/guides/qpu-information#t2)
+* [Measurement-fidelity metrics](/docs/guides/qpu-information#median-readout-error)  
+
+### Two-qubit performance
+
+* [CZ and RZZ fractional gate EPG (Heron), ECR (Eagle)](/docs/guides/qpu-information#2q-error-median) as measured by RB on those gates 
+
+### System-level metrics
+
+* [Layer fidelity (EPLG)](/docs/guides/qpu-information#2q-error-layered), for the best 100-qubit length string

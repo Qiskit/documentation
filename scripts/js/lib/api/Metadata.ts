@@ -75,4 +75,5 @@ export type Metadata = {
   apiName?: string;
   apiType?: ApiTypeName;
   hardcodedFrontmatter?: string;
+  untranslatable?: boolean;
 };

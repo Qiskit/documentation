@@ -36,7 +36,7 @@ The main public interface of this module is reached by passing `unitary_synthesi
 
 We are interested in compiling a quantum circuit, which we formalize as finding the best circuit representation in terms of an ordered gate sequence of a target unitary matrix $U\in U(d)$, with some additional hardware constraints. In particular, we look at representations that could be constrained in terms of hardware connectivity, as well as gate depth, and we choose a gate basis in terms of CNOT and rotation gates. We recall that the combination of CNOT and rotation gates is universal in $SU(d)$ and therefore it does not limit compilation.
 
-To properly define what we mean by best circuit representation, we define the metric as the Frobenius norm between the unitary matrix of the compiled circuit $V$ and the target unitary matrix $U$, i.e., $\|V - U\|_{\mathrm{F}}$. This choice is motivated by mathematical programming considerations, and it is related to other formulations that appear in the literature. Let’s take a look at the problem in more details.
+To properly define what we mean by best circuit representation, we define the metric as the Frobenius norm between the unitary matrix of the compiled circuit $V$ and the target unitary matrix $U$, i.e., $\|V - U\|_{\mathrm{F}}$. This choice is motivated by mathematical programming considerations, and it is related to other formulations that appear in the literature. Let’s take a look at the problem in more detail.
 
 Let $n$ be the number of qubits and $d=2^n$. Given a CNOT structure $ct$ and a vector of rotation angles $\theta$, the parametric circuit forms a matrix $Vct(\theta)\in SU(d)$. If we are given a target circuit forming a matrix $U\in SU(d)$, then we would like to compute
 

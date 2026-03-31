@@ -11,7 +11,7 @@ python_api_name: qiskit.transpiler.passes.Split2QUnitaries
 <Class id="qiskit.transpiler.passes.Split2QUnitaries" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/split_2q_unitaries.py#L21-L63" signature="qiskit.transpiler.passes.Split2QUnitaries(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-  Attempt to splits two-qubit unitaries in a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") into two single-qubit gates.
+  Attempt to split two-qubit unitaries in a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") into two single-qubit gates.
 
   This pass will analyze all [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate") instances and determine whether the matrix is actually a product of 2 single qubit gates. In these cases the 2q gate can be simplified into two single qubit gates and this pass will perform this optimization and will replace the two qubit gate with two single qubit [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate").
 
@@ -51,7 +51,7 @@ python_api_name: qiskit.transpiler.passes.Split2QUnitaries
 
     *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -59,12 +59,12 @@ python_api_name: qiskit.transpiler.passes.Split2QUnitaries
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.Split2QUnitaries.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.Split2QUnitaries.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -79,7 +79,7 @@ python_api_name: qiskit.transpiler.passes.Split2QUnitaries
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) –
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit"))
 
     **Return type**
 

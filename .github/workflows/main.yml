@@ -20,7 +20,6 @@ jobs:
     outputs:
       all-changed-files: ${{ steps.changed-files.outputs.ALL_CHANGED_FILES }}
       run-notebook-tester: ${{ steps.decide.outputs.RUN_NOTEBOOK_TESTER }}
-      run-api-checks: ${{ steps.decide.outputs.RUN_API_CHECKS }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
@@ -62,26 +61,9 @@ jobs:
           #  docs/api/thing.mdx
           #  docs/api/thing.ipynb
           #  scripts/js/lib/thing.ts
-
-          API_CHECKS_REGEX: (\.github\/workflows\/main\.yml|(docs\/api|public\/docs\/api|scripts\/js)\/.*)
-          #  -- Should match:
-          #  docs/api/qiskit/index.mdx
-          #  public/docs/api/qiskit-ibm-runtime/objects.inv
-          #  public/docs/api/qiskit/thing.avif
-          #  scripts/js/lib/links/thing.ts
-          #  .github/workflows/main.yml
-          #
-          #  -- Should not match:
-          #  scripts/nb-tester/file.py
-          #  docs/guides/thing.ipynb
-          #  public/learning/image.svg
-          #  .github/workflows/notebook-test-cron.yml
         run: |
           if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(grep -P "$NOTEBOOK_TEST_REGEX" .github/outputs/changed-files.txt)" ]]; then
             echo "RUN_NOTEBOOK_TESTER=true" >> "$GITHUB_OUTPUT"
-          fi
-          if [[ "${{ github.event_name }}" == 'pull_request' && -n "$(grep -P "$API_CHECKS_REGEX" .github/outputs/changed-files.txt)" ]]; then
-            echo "RUN_API_CHECKS=true" >> "$GITHUB_OUTPUT"
           fi
       - name: Save changed files artifact
         uses: actions/upload-artifact@v4
@@ -92,7 +74,6 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    needs: [decide-jobs]
     if: github.repository_owner == 'Qiskit'
     steps:
       - uses: actions/checkout@v4
@@ -102,33 +83,34 @@ jobs:
           node-version: 24
       - name: Install Node.js dependencies
         run: npm ci
-      - name: Install ImageMagick
-        run: |
-          sudo apt-get install -y imagemagick
-          sudo ln -s /usr/bin/convert /usr/bin/magick
-      - name: Install Playwright
-        run: npx playwright install
 
+      - name: Check internal links
+        run: >
+          npm run check:internal-links --
+          --current-apis
+          --dev-apis
+          --historical-apis
+          --qiskit-legacy-release-notes
+      - name: Check stale images
+        run: npm run check:stale-images
       - name: Check markdown
-        run: npm run check:markdown
+        run: npm run check:markdown -- --apis
       - name: Spellcheck
         run: npm run check:spelling
       - name: Check Qiskit bot config
         run: npm run check:qiskit-bot
-      - name: Check tutorials index
-        run: python scripts/ci/check-tutorials-index.py
-      - name: Internal link checker
-        run: npm run check:internal-links
-      - name: Check orphaned pages
-        run: npm run check:orphan-pages
-      - name: Check stale images
-        run: npm run check:stale-images
       - name: Formatting
         run: npm run check:fmt
-      - name: Typecheck
-        run: npm run typecheck
+      - name: Check for orphan pages
+        run: npm run check:orphan-pages -- --apis
+      - name: Check Qiskit and Qiskit C API versions
+        run: npm run check:qiskit-versions
+      - name: Check tutorials index
+        run: python scripts/ci/check-tutorials-index.py
       - name: Infrastructure tests
         run: npm test
+      - name: Typecheck
+        run: npm run typecheck
 
       - name: Get changed files artifact
         uses: actions/download-artifact@v4
@@ -159,6 +141,8 @@ jobs:
           fi
           mkdir -p .github/outputs
           printf '%s\n' "$CHANGED_CONTENT_FILES" >> .github/outputs/changed-content-files.txt
+      - name: Install Playwright
+        run: npx playwright install
       - name: Pull preview image
         if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: ./start --pull-only
@@ -179,6 +163,11 @@ jobs:
         if: steps.changed-content-files.outputs.ANY_CHANGED == 'true'
         run: docker ps -q | xargs docker stop
 
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+          sudo ln -s /usr/bin/convert /usr/bin/magick
       - name: Setup Python environment
         uses: ./.github/actions/set-up-notebook-testing
         with:
@@ -266,28 +255,3 @@ jobs:
         with:
           name: Executed notebooks
           path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS || 'no-changes' }}
-
-  api-checks:
-    name: API checks
-    needs: [decide-jobs]
-    runs-on: ubuntu-latest
-    if: github.repository_owner == 'Qiskit' && needs.decide-jobs.outputs.run-api-checks == 'true'
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - name: Install Node.js dependencies
-        run: npm ci
-      - name: Check internal links
-        run: >
-          npm run check:internal-links --
-          --current-apis
-          --dev-apis
-          --historical-apis
-          --qiskit-legacy-release-notes
-      - name: Check for orphan pages
-        run: npm run check:orphan-pages -- --apis
-      - name: Check markdown
-        run: npm run check:markdown -- --apis
