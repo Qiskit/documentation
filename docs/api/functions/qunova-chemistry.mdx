@@ -51,21 +51,21 @@ The following table details all keys and values that can be set in the `molecule
 
 | Key (type) | Default Value | Valid range | Explanation |
 |---|---|---|---|
-| `"charge"` (`int`)        | `0`       | Various              | An integer specifying the total net charge of the molecular system. The default value is 0; however, it can be any integer.       |
-| `"basis"`  (`str`)        | `'sto-3g'`                       | Various              | A string specifying the basis type; these are passed to pyscf. (eg: `"sto-3g"`, `"3-21g"`, `"6-31g"`, `"cc-pvdz"`)               |
-| `"active_orbitals"` (`List[int]`)  | Every orbital index.             | The spatial orbital indices valid for the problem.                 | A list of active orbital indices in the interval [0, n) where n is the number of qubits used in the problem. If this is specified, then the frozen_orbitals argument must also be specified.          |
-| `"frozen_orbitals"` (`List[int]`)  | No indices.                      | The spatial orbital indices valid for the problem, excluding active orbitals.             | A list of frozen orbital indices in the same range as active_orbitals. If specified, then active_orbitals must also be specified. Note that only occupied orbitals should be frozen as the number of active electrons is reduced by 2 for every occupied orbital that is frozen.                  |
-| `"orbital_coeffs"` (`List[List[float]]`)                 | Hartree-Fock molecular orbitals. | Various.             | The coefficients for the spatial orbitals used in the calculation of the electronic repulsion integrals for the system. Some valid examples are Hartree-Fock molecular orbitals, natural orbitals, and AVAS orbitals.        |
-| `"symmetry"` (`Union[str, bool]`)                  | `False`   | `True` or `False`    | Used to invoke point group symmetry for the initial molecular calculations to construct the symmetry adapted orbital basis. These symmetry-adapted orbitals are used as basis functions for the following SCF calculations. The default value is False; if set to True, then it will be invoked and arbitrary point groups will automatically be detected and used. If a particular symmetry is assigned, for example, symmetry = “Dooh”, then an error will be raised if the molecular geometry is not subject to this required symmetry. |
-| `"symmetry_subgroup"` (`Optional[str]`)                     | `None`    | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).        | Can be used to generate a subgroup of the detected symmetry. This has no effect when symmetry is specified using the symmetry keyword argument.         |
-| `"unit"` (`str`)        | `"angstrom"`                     | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).        | Specifies the measurement unit to use for atomic coordinates and distances. The default is to use angstrom units.                |
-| `"nucmod"` (`Optional[Union[dict, str]]`)        | `None`    | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).        | Specifies the nuclear model to be used. By default it uses the point nuclear model, and other values enable Gaussian nuclear model. If a function is given, it will be used with the Gaussian nuclear model to generate the nuclear charge distribution value 'zeta'.      |
-| `"pseudo"` (`Optional[Union[dict, str]]`)        | `None`    | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).        | Specifies the pseudopotential for the atoms in the molecule. This is None by default, indicating that no pseudopotentials are applied and all electrons are explicitly included in the calculations.              |
-| `"cart"` (`bool`)       | `False`   | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).        | Specifies whether to use cartesian GTOs as the angular momentum basis functions in the calculation. The default value of False will use spherical GTOs.                      |
-| `"magmom"` (`Optional[List[Union[int, float]]]`) | `None`    | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).        | Sets the colinear spin magnetic moment of each atom. By default, this is None and each atom is initialized with a spin of zero.  |
-| `"avas_aolabels"` (`Optional[List[str]]`)               | `None`    | i.e. ["H 1s", "O 2p"] for H2O                   | This defines Atomic Orbital to be included in AVAS scheme. See [AVAS documentation](https://arxiv.org/abs/1701.07862) .               |
-| `"avas_threshold"`  (`float`)      | `0.2`     |  Between 0.0 and 2.0            |  This specifies the cutoff value used to determine which Atomic Orbitals (AOs) are retained in the active space.     |
-| `"noons_level"` (`Optional[str]`)                     | `None`    | `"mp2"` or `"ccsd"`  | This defines the theoretical approach for preparing natural orbitals and selecting active orbitals based on the Natural Orbital Occupation Numbers (NOONs) scheme. See [NOONs documentation](https://doi.org/10.1063/5.0042147). Both the active and frozen orbital indices must be provided to control the number of orbitals (and the number of qubits).                   |
+| `"charge"` (`int`)  | `0`       | Various  | An integer specifying the total net charge of the molecular system. The default value is 0; however, it can be any integer.       |
+| `"basis"`  (`str`)  | `'sto-3g'`     | Various  | A string specifying the basis type; these are passed to pyscf. (eg: `"sto-3g"`, `"3-21g"`, `"6-31g"`, `"cc-pvdz"`)   |
+| `"active_orbitals"` (`List[int]`)  | Every orbital index.       | The spatial orbital indices valid for the problem.     | A list of active orbital indices in the interval [0, n) where n is the number of qubits used in the problem. If this is specified, then the frozen_orbitals argument must also be specified.    |
+| `"frozen_orbitals"` (`List[int]`)  | No indices.    | The spatial orbital indices valid for the problem, excluding active orbitals.       | A list of frozen orbital indices in the same range as active_orbitals. If specified, then active_orbitals must also be specified. Note that only occupied orbitals should be frozen as the number of active electrons is reduced by 2 for every occupied orbital that is frozen.      |
+| `"orbital_coeffs"` (`List[List[float]]`)     | Hartree-Fock molecular orbitals. | Various.       | The coefficients for the spatial orbitals used in the calculation of the electronic repulsion integrals for the system. Some valid examples are Hartree-Fock molecular orbitals, natural orbitals, and AVAS orbitals.  |
+| `"symmetry"` (`Union[str, bool]`)      | `False`   | `True` or `False`    | Used to invoke point group symmetry for the initial molecular calculations to construct the symmetry adapted orbital basis. These symmetry-adapted orbitals are used as basis functions for the following SCF calculations. The default value is False; if set to True, then it will be invoked and arbitrary point groups will automatically be detected and used. If a particular symmetry is assigned, for example, symmetry = “Dooh”, then an error will be raised if the molecular geometry is not subject to this required symmetry. |
+| `"symmetry_subgroup"` (`Optional[str]`)   | `None`    | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).  | Can be used to generate a subgroup of the detected symmetry. This has no effect when symmetry is specified using the symmetry keyword argument.   |
+| `"unit"` (`str`)  | `"angstrom"`   | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).  | Specifies the measurement unit to use for atomic coordinates and distances. The default is to use angstrom units.    |
+| `"nucmod"` (`Optional[Union[dict, str]]`)  | `None`    | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).  | Specifies the nuclear model to be used. By default it uses the point nuclear model, and other values enable Gaussian nuclear model. If a function is given, it will be used with the Gaussian nuclear model to generate the nuclear charge distribution value 'zeta'.      |
+| `"pseudo"` (`Optional[Union[dict, str]]`)  | `None`    | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).  | Specifies the pseudopotential for the atoms in the molecule. This is None by default, indicating that no pseudopotentials are applied and all electrons are explicitly included in the calculations.  |
+| `"cart"` (`bool`)       | `False`   | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).  | Specifies whether to use cartesian GTOs as the angular momentum basis functions in the calculation. The default value of False will use spherical GTOs.    |
+| `"magmom"` (`Optional[List[Union[int, float]]]`) | `None`    | See [pyscf documentation](https://pyscf.org/pyscf_api_docs/pyscf.gto.html#pyscf.gto.mole.MoleBase.build).  | Sets the colinear spin magnetic moment of each atom. By default, this is None and each atom is initialized with a spin of zero.  |
+| `"avas_aolabels"` (`Optional[List[str]]`)   | `None`    | i.e. ["H 1s", "O 2p"] for H2O       | This defines Atomic Orbital to be included in AVAS scheme. See [AVAS documentation](https://arxiv.org/abs/1701.07862) .   |
+| `"avas_threshold"`  (`float`)      | `0.2`     |  Between 0.0 and 2.0      |  This specifies the cutoff value used to determine which Atomic Orbitals (AOs) are retained in the active space.     |
+| `"noons_level"` (`Optional[str]`)   | `None`    | `"mp2"` or `"ccsd"`  | This defines the theoretical approach for preparing natural orbitals and selecting active orbitals based on the Natural Orbital Occupation Numbers (NOONs) scheme. See [NOONs documentation](https://doi.org/10.1063/5.0042147). Both the active and frozen orbital indices must be provided to control the number of orbitals (and the number of qubits).       |
 - Required: No
 - Example: `{"basis": "sto3g", "unit": "angstrom" }`
 </Attribute>
@@ -75,20 +75,77 @@ The following table details all keys and values that can be set in the `molecule
 Options controlling the behavior of the HI-VQE algorithm.
 The following table details all keys and values that can be set in the `hivqe_options` dictionary, as well as their data types and default values. All keys are optional.
 
-| Key        | Value type   | Default Value                    | Valid range          | Explanation  |
-|:----------------------------------|:-----------------------------------:|:--------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `"shots"`  | `int`        | `1_000`   | Between 1 and 10 000.                       | Number of shots to use on the quantum device per iteration. |
-| `"max_iter"`                      | `int`        | `25`      | Between 1 and 50.    | The maximum number of iterations to run to optimize the ansatz. The algorithm may use fewer iterations if convergence is achieved early.                 |
-| `"initial_basis_states"`          | `List[str]`  | The Hartree-Fock state.          | Binary strings with the number of bits matching the required number of qubits for the problem.                   | Can be used to restart the algorithm with classical states from a previous result. |
-| `"ansatz"` | `str`        | `"epa"`   | `"epa"`, `"hea"`, or `"lucj"`               | This specifies the quantum ansatz to optimize to generate new states. `"epa"` selects the excitation-preserving ansatz. `"hea"` selects the hardware-efficient ansatz. `"lucj"` selects the local unitary cluster Jastrow ansatz.                   |
-| `"convergence_count"`             | `int`        | `3`       | At least 2.          | The number of iterations without significant change of the computed energy that should elapse before the algorithm is deemed to have converged.         |
-| `"convergence_abstol"`            | `float`      | `1e-4`    | More than 0 and at most 1.                  | The magnitude of change in computed energy that is considered significant for the purposes of convergence checks.                |
-| `"reset_convergence_count"`       | `bool`       | `True`    | `True` or `False`    | If `True`, the `convergence_count` iterations must occur without an interrupting significant change to qualify as converging. If `False`, then the algorithm will stop after `convergence_count` if insignificant changes have occurred at any iterations during the optimization process.           |
-| `"configuration_recovery"`        | `bool`       | `True`    | `True` or `False`.   | Whether or not to use configuration recovery from the `qiskit-addon-sqd` package. If True, invalid states sampled from the quantum device are corrected classically. If False, they are discarded.    |
-| `"ansatz_entanglement"`           | `str`        | `"circular"`                     | Any one of `"linear"`, `"reverse_linear"`, `"pairwise"`, `"circular"`, `"full"`, or `"sca"`. If using the `"lucj"` ansatz, `"lucj_default"` is also an option. | This specifies the entanglement scheme that should be used within the quantum circuit, following common Qiskit and [ffsim conventions for the LUCJ ansatz](https://qiskit-community.github.io/ffsim/how-to-guides/simulate-lucj.html). |
-| `"ansatz_reps"`                   | `int`        | `2`       | Greater than 0.      | The number of repetitions of each layer in the quantum circuit.                    |
-| `"amplitude_screening_tolerance"` | `Union[float,int]`                  | `0`       | At least 0, and less than 1.                | The tolerance for deciding which states should be screened out of the subspace after diagonalization. It specifies the inclusion threshold for the subspace states based on their computed amplitudes.                       |
-| `"overlap_screening_tolerance"`   | `float`      | `1e-2`    | Between `1e-4` and `1e-1`, inclusive.       | The tolerance for predicting which states should be screened out of the subspace prior to diagonalization. It controls the accuracy of the predicted amplitudes for each state, with a smaller value resulting in more accurate predictions.        |
+#### `shots`
+<Attribute attributeTypeHint="`int`" attributeValue="`1_000`">
+Number of shots to use on the quantum device per iteration.
+- Valid range: Between 1 and 10 000.
+</Attribute>
+
+#### `max_iter`
+<Attribute attributeTypeHint="`int`" attributeValue="`25`">
+The maximum number of iterations to run to optimize the ansatz. The algorithm may use fewer iterations if convergence is achieved early.
+- Valid range: Between 1 and 50.
+</Attribute>
+
+#### `initial_basis_states`
+<Attribute attributeTypeHint="`List[str]`" attributeValue="The Hartree-Fock state">
+Can be used to restart the algorithm with classical states from a previous result.
+- Valid range: Binary strings with the number of bits matching the required number of qubits for the problem. 
+</Attribute>
+
+#### `ansatz`
+<Attribute attributeTypeHint="`str`" attributeValue="`epa`">
+This specifies the quantum ansatz to optimize to generate new states. `"epa"` selects the excitation-preserving ansatz. `"hea"` selects the hardware-efficient ansatz. `"lucj"` selects the local unitary cluster Jastrow ansatz.
+- Valid range: `"epa"`, `"hea"`, or `"lucj"`
+</Attribute>
+
+#### `convergence_count`
+<Attribute attributeTypeHint="`int`" attributeValue="`3`">
+The number of iterations without significant change of the computed energy that should elapse before the algorithm is deemed to have converged. 
+- At least 2
+</Attribute>
+
+#### `convergence_abstol`
+<Attribute attributeTypeHint="`float`" attributeValue="`1e-4`">
+The magnitude of change in computed energy that is considered significant for the purposes of convergence checks.
+- Valid range: More than 0 and at most 1
+</Attribute>
+
+#### `reset_convergence_count`
+<Attribute attributeTypeHint="`bool`" attributeValue="`True`">
+If `True`, the `convergence_count` iterations must occur without an interrupting significant change to qualify as converging. If `False`, then the algorithm will stop after `convergence_count` if insignificant changes have occurred at any iterations during the optimization process.
+- Valid range: `True` or `False`
+</Attribute>
+
+#### `configuration_recovery`
+<Attribute attributeTypeHint="`bool`" attributeValue="`True`">
+Whether or not to use configuration [`recovery`](/docs/api/qiskit-addon-sqd/configuration-recovery) from the `qiskit-addon-sqd` package. If True, invalid states sampled from the quantum device are corrected classically. If False, they are discarded.
+- Valid range: `True` or `False`
+</Attribute>
+
+#### `ansatz_entanglement`
+<Attribute attributeTypeHint="`str`" attributeValue="`circular`">
+This specifies the entanglement scheme that should be used within the quantum circuit, following common Qiskit and [ffsim conventions for the LUCJ ansatz](https://qiskit-community.github.io/ffsim/how-to-guides/simulate-lucj.html).
+- Valid range: Any one of `"linear"`, `"reverse_linear"`, `"pairwise"`, `"circular"`, `"full"`, or `"sca"`. If using the `"lucj"` ansatz, `"lucj_default"` is also an option.
+</Attribute>
+
+#### `ansatz_reps`
+<Attribute attributeTypeHint="`int`" attributeValue="`2`">
+The number of repetitions of each layer in the quantum circuit.
+- Valid range: Greater than 0
+</Attribute>
+
+#### `amplitude_screening_tolerance`
+<Attribute attributeTypeHint="`Union[float,int]`" attributeValue="`0`">
+The tolerance for deciding which states should be screened out of the subspace after diagonalization. It specifies the inclusion threshold for the subspace states based on their computed amplitudes.
+- Valid range: At least 0, and less than 1
+</Attribute>
+
+#### `overlap_screening_tolerance`
+<Attribute attributeTypeHint="`float`" attributeValue="`1e-2`">
+The tolerance for predicting which states should be screened out of the subspace prior to diagonalization. It controls the accuracy of the predicted amplitudes for each state, with a smaller value resulting in more accurate predictions.
+- Valid range: Between `1e-4` and `1e-1`, inclusive
+</Attribute>
 
 - Required: No
 - Example: `{"shots": 10_000, "max_iter": 10 }`
@@ -101,10 +158,10 @@ The following table details all keys and values that can be set in the `hivqe_op
 
 The function returns a dictionary with four keys and values. The keys and values are documented in the following table:
 
-| Key             | Value Type    | Explanation                   |
-|:----------------|---------------|---------------------------------------------------------------------------------------------------------------------------|
-| `"energy"`      | `float`       | The approximate ground state energy of the molecule. |
-| `"states"`      | `List[str]`   | The selected determinants that form the subspace used to solve for the energy. They are in alternating alpha-beta format. |
-| `"eigenvector"` | `List[float]` | The eigenvector corresponding to the ground state of the subspace composed of `"states"`.          |
+| Key   | Value Type| Explanation   |
+|-----|---------------|---------------------------------------------------------------------------------------------------------------------------|
+| `"energy"`  | `float`   | The approximate ground state energy of the molecule. |
+| `"states"`  | `List[str]`   | The selected determinants that form the subspace used to solve for the energy. They are in alternating alpha-beta format. |
+| `"eigenvector"` | `List[float]` | The eigenvector corresponding to the ground state of the subspace composed of `"states"`.|
 | `"energy_variance"` | `float` | The energy variance of the ground state of the subspace composed of `"states"`, giving an indication of the quality of the solution. This value is non-negative and a lower value means that the ground state of the subspace more closely approximates an eigenstate of the system's Hamiltonian. |
 | `"energy_history"` | `List[float]` | The energies computed each iteration during the hybrid optimization process, in the same order that they were computed. Two energies are computed per iteration as part of the SPSA optimization process. |
