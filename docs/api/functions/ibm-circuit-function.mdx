@@ -32,13 +32,6 @@ An iterable of abstract PUB-like (primitive unified bloc) objects, such as tuple
 - Example: `(circuit, observables, parameter_values)`
 </Attribute>
 
-### `options`
-<Attribute attributeTypeHint="dict" attributeValue="See the Options section that follows for details.">
-Input options. See the [Options](#options) section for more details.
-- Required:No
-- Example: `{"optimization_level": 3}`
-</Attribute>
-
 ### `instance`
 <Attribute attributeTypeHint="str" attributeValue="One is randomly picked if your account has access to multiple instances">
 The cloud resource name of the instance to use in that format.
@@ -47,6 +40,12 @@ The cloud resource name of the instance to use in that format.
 </Attribute>
 
 ### Options
+
+<Attribute attributeTypeHint="dict">
+Input options. See the [Options list](#options-list) for more details.
+- Required:No
+- Example: `{"optimization_level": 3}`
+</Attribute>
 
 #### Structure
 
@@ -78,7 +77,8 @@ While the names are similar, `mitigation_level` applies different techniques tha
 </Admonition>
 
 
-#### All available options
+#### Options list
+<LeftColoredBar color="blue">
 
 In addition to `mitigation_level`, the IBM Circuit function also provides a select number of advanced options that allow you to fine-tune the cost/accuracy trade-off. 
 
@@ -185,6 +185,7 @@ How much optimization to perform on the circuits. [Higher levels](/docs/guides/s
         Whether to turn on Zero Noise Extrapolation error mitigation method. Refer to [Error suppression and mitigation techniques](/docs/guides/error-mitigation-and-suppression-techniques#zero-noise-extrapolation-zne) for the explanation of the method.
         - Choices: True/False
         </Attribute>
+</LeftColoredBar>
 </LeftColoredBar>
 
 ## Outputs
