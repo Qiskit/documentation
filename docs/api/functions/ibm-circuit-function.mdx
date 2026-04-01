@@ -4,7 +4,15 @@ description: API reference for the IBM Circuit function, one of the Qiskit Funct
 ---
 # IBM Circuit function API reference
 
-*See the [guide](/docs/guides/ibm-circuit-function)*
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/ibm-circuit-function"
+      analyticsName="Functions API: ibm-circuit-function"
+      linkText="IBM Circuit function guide"
+    />
+</CardGroup>
 
 ## Inputs
 
@@ -24,13 +32,6 @@ An iterable of abstract PUB-like (primitive unified bloc) objects, such as tuple
 - Example: `(circuit, observables, parameter_values)`
 </Attribute>
 
-### `options`
-<Attribute attributeTypeHint="dict" attributeValue="See the Options section that follows for details.">
-Input options. See the [Options](#options) section for more details.
-- Required:No
-- Example: `{"optimization_level": 3}`
-</Attribute>
-
 ### `instance`
 <Attribute attributeTypeHint="str" attributeValue="One is randomly picked if your account has access to multiple instances">
 The cloud resource name of the instance to use in that format.
@@ -39,6 +40,11 @@ The cloud resource name of the instance to use in that format.
 </Attribute>
 
 ### Options
+
+<Attribute attributeTypeHint="dict">
+Input options. See the [Options list](#options-list) for more details.
+- Required:No
+- Example: `{"optimization_level": 3}`
 
 #### Structure
 
@@ -70,7 +76,7 @@ While the names are similar, `mitigation_level` applies different techniques tha
 </Admonition>
 
 
-#### All available options
+#### Options list
 
 In addition to `mitigation_level`, the IBM Circuit function also provides a select number of advanced options that allow you to fine-tune the cost/accuracy trade-off. 
 
@@ -178,6 +184,7 @@ How much optimization to perform on the circuits. [Higher levels](/docs/guides/s
         - Choices: True/False
         </Attribute>
 </LeftColoredBar>
+</Attribute>
 
 ## Outputs
 

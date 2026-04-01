@@ -5,7 +5,15 @@ description: API reference for Performance Management, A Qiskit Function by Q-CT
 
 # Q-CTRL Performance Management API reference
 
-*See the [guide](/docs/guides/q-ctrl-performance-management)*
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/q-ctrl-performance-management"
+      analyticsName="Functions API: q-ctrl-performance-management"
+      linkText="Performance Management Qiskit Function guide"
+    />
+</CardGroup>
 
 <Admonition type="caution">
    Fire Opal Performance Management accepts abstract circuits, in contrast to the native Qiskit Runtime primitives, which only accept circuits that are written in the target backend's Instruction Set Architecture (ISA). For best results, do not transpile circuits before submitting via the Performance Management function.
@@ -45,46 +53,46 @@ The name of the backend
 - Example: `"ibm_fez"`
 </Attribute>
 
-### `options`
+### Options
 <Attribute attributeTypeHint="`dict`" attributeValue="See Options section for more details">
-Input options; see [Options](#est-options) section for more details
+Input options for this function are specified as a nested dictionary. See the full [list of options](#est-options) and their default values.
 - Required: No
 - Example: `{"default_shots": 2048}`
-</Attribute>
 
 <span id="est-options"></span>
-**Options**
-
-#### `session_id`
+#### Options list
+##### `session_id`
 <Attribute attributeTypeHint="`str`">
 An existing Qiskit Runtime session ID
 - Example: `"cw4r3je6f0t010870y3g"`
 </Attribute>
 
-#### `default_shots`
+##### `default_shots`
 <Attribute attributeTypeHint="`int`" attributeValue="`2048`">
 The number of shots to use for each circuit
 </Attribute>
 
-#### `default_precision`
+##### `default_precision`
 <Attribute attributeTypeHint="`float`">
 The target precision for expectation values to estimate for each circuit
 - Example: `0.015625` 
 </Attribute>
 
-#### `job_tags`
+##### `job_tags`
 <Attribute attributeTypeHint="`list[str]`" attributeValue="`[]`">
 A list of job tags
+</Attribute>
 </Attribute>
 
 ## Estimator outputs
 
-| Name   | Type   | Description  | Example |
-| --- | --- | --- | --- |
-| N/A | `PrimitiveResult`  | The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs | `PubResult(data=DataBin(evs=[0.1234], stds=[0.1]))` |
+<Attribute attributeTypeHint="`PrimitiveResult`">
+The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs
+
+- Example: `PubResult(data=DataBin(evs=[0.1234], stds=[0.1]))`
+</Attribute>
 
 ## Sampler inputs
-
 
 **`QctrlSamplerPubLike` components (derived from the [Qiskit Runtime PUB definition](/docs/guides/primitive-input-output#sampler-pub)):**
 - A single circuit defined as a `QuantumCircuit` or in OpenQASM 2.0 or 3.0 string format.
@@ -105,39 +113,36 @@ The name of the backend
 - Example: `"ibm_fez"`
 </Attribute>
 
-### `options`
+### Options
 <Attribute attributeTypeHint="`dict`" attributeValue="See the Options section for details">
-Input options; see [Options](#sam-options) section for more details
+Input options for this function are specified as a nested dictionary. See the full [list of options](#sam-options) and their default values.
 
 - Required: No
 - Example: `{"default_shots": 2048}`
-</Attribute>
 
 <span id="sam-options"></span>
-**Options**
-
-
-#### `session_id`
+#### Options list
+##### `session_id`
 <Attribute attributeTypeHint="`str`">
 An existing Qiskit Runtime session ID
 - Example: `"cw4r3je6f0t010870y3g"`
 </Attribute>
 
-#### `default_shots`
+##### `default_shots`
 <Attribute attributeTypeHint="`int`" attributeValue="`2048`">
 The number of shots to use for each circuit
-
 </Attribute>
 
-#### `job_tags`
+##### `job_tags`
 <Attribute attributeTypeHint="`list[str]`" attributeValue="`[]`">
 The list of desired job tags
-- Required: 
-- Example:
+</Attribute>
 </Attribute>
 
 ## Sampler outputs
 
-| Name   | Type  | Description | Example   |
-| --- | --- | --- | --- |
-| N/A | `PrimitiveResult`  | The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs | `PrimitiveResult([PubResult(data=DataBin(c=BitArray(<shape=(), num_shots=2048, num_bits=35>)), metadata={'shots': 2048})], metadata={`provider_job_ids`: 1234678})` |
+<Attribute attributeTypeHint="`PrimitiveResult`">
+The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs
+
+- Example: `PrimitiveResult([PubResult(data=DataBin(c=BitArray(<shape=(), num_shots=2048, num_bits=35>)), metadata={'shots': 2048})], metadata={`provider_job_ids`: 1234678})`
+</Attribute>

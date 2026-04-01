@@ -2,34 +2,25 @@
 title: Quantum Portfolio Optimizer API reference
 description: API reference for Quantum Portfolio Optimizer, a Qiskit Function by Global Data Quantum
 ---
-# Quantum Portfolio Optimizer Learning API reference
+# Quantum Portfolio Optimizer API reference
 
-*See the [guide](/docs/guides/global-data-quantum-optimizer)*
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/global-data-quantum-optimizer"
+      analyticsName="Functions API: global-data-quantum-optimizer"
+      linkText="Quantum Portfolio Optimizer Qiskit Function guide"
+    />
+</CardGroup>
 
 ## Input
 
-The input arguments of the function are described in the following table. The assets data and other problem specifications must be provided; additionally, the VQE settings can be included to customize the optimization process.
-
-| **Name**               | **Type**           | **Description**                                          | **Required** | **Default**                          | **Example**                              |
-|------------------------|--------------------|----------------------------------------------------------|--------------|--------------------------------------|------------------------------------------|
-| `assets`                 | json               | Dictionary with the asset prices                         | Yes          | -                                    | -                                        |
-| `qubo_settings`          | json               | Settings of the QUBO                                     | Yes          | -                                    | See the examples in the table below     |
-| `ansatz_settings`        | json               | Settings of the ansatz                                   | No           | `None`                                | See the examples in the table below.     |
-| `optimizer_settings`     | json               | Settings of the optimizer                                | No           | `None`                                | See the examples in the table below.     |
-| `backend`                | str                | The QPU backend name                                     | No           |  -    | `"ibm_torino"`                           |
-| `previous_session_id`    | list of str        | List of session IDs to retrieve data from previous runs[(*)](#1-note) | No           | Empty list                           | `["session_id_1", "session_id_2"]`      |
-| `apply_postprocess`      | bool               | Apply noise-aware SQD post-processing                      | No           | `True`                                | `True`                                   |
-| `tags`                   | list of strings    | List of tags to identify the experiment                  | No           | Empty list                           | `["optimization", "quantum_computing"]`  |
-
-<span id="1-note"></span>
-*To resume an execution or retrieve jobs that were processed in one or more previous sessions, the list of session IDs must be passed in the `previous_session_id` parameter. This is particularly useful in cases where an optimization task failed to complete due to any error in the process, and execution needs to finish. To achieve this, you must provide the same arguments used in the initial execution, along with the `previous_session_id` list as described.
-
-<Admonition type="caution" title="Warning">
-Loading data from previous sessions (to resume an optimization) can take up to one hour of classical computational time. This does not consume quantum runtime resources.
-</Admonition>
+The input arguments of the function are described in the following list. The assets data and other problem specifications must be provided; additionally, the VQE settings can be included to customize the optimization process.
 
 ### `assets`
-
+<Attribute attributeTypeHint="`json`">
+Dictionary with the asset prices.
 The data must be structured as a JSON object that stores information about the closing prices of financial assets on specific dates. The format is as follows:
 
 - Primary key (string): The name or ticker symbol of the financial asset (for example, "8801.T").
@@ -37,9 +28,8 @@ The data must be structured as a JSON object that stores information about the c
 - Value (number): The closing price of the asset on the specified date. Prices can be entered either normalized or non-normalized.
 
 *Note that all dictionaries must have the same secondary key (dates). If a specific asset lacks a date that others have, the data must be filled to ensure consistency. For example, this can be done by using the last tracked closing price of that asset.*
-
-#### Example
-
+- Required: Yes
+- Example:
 ``` py
 {
     "8801.T": {
@@ -73,10 +63,11 @@ The data must be structured as a JSON object that stores information about the c
 <Admonition type="note" title="Note">
 The asset data must contain, at least, the closing prices at ``(nt+1) * dt`` (see the [`qubo_settings`](#qubo_settings) input section) time stamps (for example, days).
 </Admonition>
+</Attribute>
 
 ### `qubo_settings`
-
-The next table describes the keys of the `qubo_settings` dictionary. Build the dictionary specifying the number of time steps `nt`, the number of resolution qubits `nq`, and the `max_investment` - or change other default values.
+<Attribute attributeTypeHint="`json`">
+Settings of the QUBO. The following table describes the keys of the `qubo_settings` dictionary. Build the dictionary specifying the number of time steps `nt`, the number of resolution qubits `nq`, and the `max_investment` - or change other default values.
 
 | Name                | Type    | Description                                                                 | Required | Default | Example |
 |---------------------|---------|-----------------------------------------------------------------------------|----------|---------|---------|
@@ -88,9 +79,12 @@ The next table describes the keys of the `qubo_settings` dictionary. Build the d
 | `transaction_fee`     | float     | Transaction fee coefficient                                                 | No       | 0.01   | -       |
 | `restriction_coeff`   | float   | Lagrange multiplier used to enforce the problem constraint within the QUBO formulation | No       | 1       | -       |
 
-### `ansatz_settings`
+- Required: Yes
+</Attribute>
 
-To modify the default options, create a dictionary for the `ansatz_settings` parameter with the following keys. By default, the ansatz is set to `"real_amplitudes"`, and both extra options (see the following table) are set to `False`.
+### `ansatz_settings`
+<Attribute attributeTypeHint="`json`" attributeValue="`None`">
+Settings of the ansatz. To modify the default options, create a dictionary for the `ansatz_settings` parameter with the following keys. By default, the ansatz is set to `"real_amplitudes"`, and both extra options (see the following table) are set to `False`.
 
 | Name                  | Type     | Description                                                                 | Required | Default |
 |-----------------------|----------|-----------------------------------------------------------------------------|----------|---------|
@@ -108,9 +102,12 @@ To modify the default options, create a dictionary for the `ansatz_settings` par
 <span id="double-star"></span>
 ** If ``multiple_passmanager`` is set to ``False``, the function uses the default Qiskit pass manager with `optimization_level=3`. If set to ``True``, the ``multiple_passmanager`` subroutine compares three pass managers: the previous default Qiskit pass manager, a pass manager mapping qubits over the QPU first neighbors chain, and the [AI transpiler](/docs/guides/ai-transpiler-passes) services. Then, the pass manager with the estimated lower cumulative error is selected.
 
-### `optimizer_settings`
+- Required: No
+</Attribute>
 
-This parameter is a dictionary with some tunable options of the optimizing process.
+### `optimizer_settings`
+<Attribute attributeTypeHint="`json`" attributeValue="`None`">
+Settings of the optimizer. This parameter is a dictionary with some tunable options of the optimizing process.
 
 | Name               | Type   | Description                                     | Required | Default               |
 |--------------------|--------|-------------------------------------------------|----------|-----------------------|
@@ -153,6 +150,45 @@ Under `primitive_options` and `optimizer_options` keys we set dictionaries with 
 - The function allows you to resume previous optimization, and it is always possible to increase the number of generations (by providing the same input except for `previous_session_id` and an increased ``num_generations``).
 </Admonition>
 
+- Required: No
+
+</Attribute>
+
+### `backend`
+<Attribute attributeTypeHint="`str`">
+The QPU backend name
+- Required: No
+- Example: `ibm_torino`
+</Attribute>
+
+### `previous_session_id`
+<Attribute attributeTypeHint="`list` of `str`" attributeValue="Empty list">
+List of session IDs to retrieve data from previous runs. To resume an execution or retrieve jobs that were processed in one or more previous sessions, the list of session IDs must be passed in the `previous_session_id` parameter. This is particularly useful in cases where an optimization task failed to complete due to any error in the process, and execution needs to finish. To achieve this, you must provide the same arguments used in the initial execution, along with the `previous_session_id` list as described.
+
+- Required: No
+- Example: `["session_id_1", "session_id_2"]`
+</Attribute>
+
+
+### `apply_postprocess`
+<Attribute attributeTypeHint="`bool`" attributeValue="`True`">
+Apply noise-aware SQD post-processing.
+- Required: No
+- Example: `True`
+</Attribute>
+
+### `tags`
+<Attribute attributeTypeHint="`list` of `str`" attributeValue="Empty list">
+List of tags to identify the experiment.
+
+- Required: No
+- Example: `["optimization", "quantum_computing"]`
+</Attribute>
+
+<Admonition type="caution" title="Warning">
+Loading data from previous sessions (to resume an optimization) can take up to one hour of classical computational time. This does not consume quantum runtime resources.
+</Admonition>
+
 <Admonition type="note" title="Note">
 Ensure compliance with Qiskit Runtime job limits.
 
@@ -168,24 +204,26 @@ The function returns two dictionaries: `"result"` dictionary, containing the bes
 
 The first dictionary focuses on the best-performing solution, while the second provides detailed information about all solutions, including objective costs and other relevant metrics.
 
-### Output dictionaries
+### `result` dictionary
+<Attribute attributeTypeHint="dict[str, dict[str, float]]">
+Contains the investment strategy over time, with each time-stamp mapping to asset-specific investment weights (each weight is the investment amount normalized by the total investment amount).
+- Example: `{'time_1': {'asset_1': 0.2, 'asset_2': 0.3, ...}, ...}`
+</Attribute>
 
-| **Name**    | **Type**                     | **Description**                                                                 | **Example**  |
-|-------------|------------------------------|---------------------------------------------------------------------------------|--------------|
-| `result`      | dict[str, dict[str, float]]  | Contains the investment strategy over time, with each time-stamp mapping to asset-specific investment weights (each weight is the investment amount normalized by the total investment amount). | `{'time_1': {'asset_1': 0.2, 'asset_2': 0.3, ...}, ...}` |
-| `metadata`    | dict[str, Any]               | Data generated during the analysis, including solutions, costs, and metrics.    | See examples below |
-
-#### Description of the `metadata` dictionary
+### `metadata` dictionary
+<Attribute attributeTypeHint="dict[str, Any]">
+Data generated during the analysis, including solutions, costs, and metrics.
 
 | **Name**                 | **Type**              | **Description**                                                                                     | **Example**                  |
 |--------------------------|-----------------------|-----------------------------------------------------------------------------------------------------|------------------------------|
 | `session_id`               | str                   | Unique identifier for the IBM Quantum session.                          | `"d0h30qjvpqf00084fgw0"`        |
-| `all_samples_metrics` | dict                 | Dictionary containing various metrics for each postprocessed sample, such as costs or constraints. | See description below        |
+| `all_samples_metrics` | dict                 | Dictionary containing various metrics for each postprocessed sample, such as costs or constraints. | See [description](#all-samples-metrics)        |
 | `sampler_counts`           | dict[str, int]        | Dictionary where keys are bitstring representations of sampled solutions and values are their counts. | `{"101010": 3, "111000": 1}` |
 | `asset_order`              | list[str]             | List with the corresponding investment order of assets at each time step within the investment strategies. | `["Asset_0", "Asset_1", "Asset_3"]`     |
 | `QUBO`                     | list[list[float]]     | QUBO matrix of the problem.                                                                         | `[[-6.96e-01, 5.81e-01, -1.26e-02, 0.00e+00], ...]`     |
 | `resource_summary`           | dict[str, dict[str, float]] | Summary of CPU and QPU usage times (in seconds) across different stages of the process.                | `{'RUNNING: EXECUTING_QPU': {'CPU_TIME': 412.84, 'QPU_TIME': 87.22}, ...}` |
 
+<span id="all-samples-metrics"></span>
 #### Description of the `all_samples_metrics` dictionary
 
 | **Name**                | **Type**       | **Description**                                                                                                  | **Example**                  |
@@ -197,4 +235,4 @@ The first dictionary focuses on the best-performing solution, while the second p
 | `returns`                 | list[float]    | Expected return for each investment trajectory. Aligned by index.                                               | `[0.15, 0.10]`               |
 | `rest_breaches`           | list[float]    | Maximum constraint deviation within each investment trajectory. Aligned by index.                               | `[0.0, 0.25]`                |
 | `transaction_costs`       | list[float]    | Estimated transaction cost associated with each investment trajectory. Aligned by index.                        | `[0.01, 0.02]`               |
-
+</Attribute>
