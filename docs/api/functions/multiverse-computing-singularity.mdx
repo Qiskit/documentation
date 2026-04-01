@@ -22,22 +22,25 @@ description: API reference for Singularity Machine Learning, a Qiskit Function b
 The function uses an action-based approach. You can think of it as a virtual environment where you use actions to perform tasks or change its state. Currently, it offers the following actions: [`list`](#list), [`create`](#create), [`delete`](#delete), [`fit`](#fit), [`predict`](#predict), [`fit_predict`](#fit_predict), and [`create_fit_predict`](#create_fit_predict). The following example demonstrates the `create_fit_predict` action.
 
 ### `list`
-
+<LeftColoredBar color="blue">
 The `list` action retrieves all stored classifiers in `*.pkl.tar` format from the shared data directory. You can also access the contents of this directory by using the `catalog.files()` method. In general, the list action searches for files with the `*.pkl.tar` extension in the shared data directory and returns them in a list format.
 
-#### Inputs
+- Inputs:
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action from among `create`, `list`, `fit`, `predict`, `fit_predict`, `create_fit_predict` and `delete`.
+Required: Yes
+</Attribute>
 
-|     Name    |    Type     | Description |   Required  |
-|-------------|-------------|-------------|-------------|
-| `action` | `str` | The name of the action from among `create`, `list`, `fit`, `predict`, `fit_predict`, `create_fit_predict` and `delete`. | Yes |
-
-#### Usage
+- Usage:
 
 ```python
 job = singularity.run(action="list")
 ```
+</LeftColoredBar>
 
 ### `create`
+<LeftColoredBar color="blue">
 
 The `create` action creates a classifier of the specified `quantum_classifier` type by using the provided parameters, and saves it in the shared data directory.
 
@@ -45,33 +48,108 @@ The `create` action creates a classifier of the specified `quantum_classifier` t
 The function currently supports only the `QuantumEnhancedEnsembleClassifier`.
 </Admonition>
 
-#### Inputs
+- Inputs:
 
-|     Name    |    Type     | Description | Required  | Default |
-|-------------|-------------|-------------|-----------|---------|
-| `action` | `str` | The name of the action from among `create`, `list`, `fit`, `predict`, `fit_predict`, `create_fit_predict` and `delete`. | Yes | - |
-| `name` | `str` | The name of the quantum classifier, e.g., `spam_classifier`. | Yes | - |
-| `instance` | `str` | IBM instance. | Yes | - |
-| `backend_name` | `str` | IBM compute resource. Default is `None`, which means the backend with the fewest pending jobs will be used. | No | `None` |
-| `quantum_classifier` | `str` | The type of the quantum classifier, i.e., `QuantumEnhancedEnsembleClassifier`. | No | `QuantumEnhancedEnsembleClassifier` |
-| `num_learners` | `integer` | The number of learners in the ensemble. | No | `10` |
-| `learners_types` | `list` | Types of learners. Among supported types are: `DecisionTreeClassifier`, `GaussianNB`, `KNeighborsClassifier`, `MLPClassifier`, and `LogisticRegression`. Further details related to each can be found in the [scikit-learn documentation](https://scikit-learn.org/stable/supervised_learning.html). | No | `[DecisionTreeClassifier]` |
-| `learners_proportions` | `list` | Proportions of each learner type in the ensemble. | No | `[1.0]` |
-| `learners_options` | `list` | Options for each learner type in the ensemble. For a complete list of options corresponding to the chosen learner type/s, consult [scikit-learn documentation](https://scikit-learn.org/stable/supervised_learning.html). | No | `[{"max_depth": 3, "splitter": "random", "class_weight": None}]` |
-| `regularization_type` | `str` or `list` | Type/s of regularization to be used: `onsite` or `alpha`. `onsite` controls the onsite term where higher values lead to sparser ensembles. `alpha` controls trade-off between interaction and onsite terms where lower values lead to sparser ensembles. If a list is provided, models will be trained for each type and the best performing one will be selected. | No | `onsite` |
-| `regularization` | `str` or `float` or `list` | Regularization value. Bounded between `0` and `+inf` if regularization_type is `onsite`. Bounded between `0` and `1` if regularization_type is `alpha`. If set to `auto`, auto-regularization is used - optimal regularization parameter is found by binary search with the desired ratio of selected classifiers to total classifiers (`regularization_desired_ratio`) and the upper bound for the regularization parameter (`regularization_upper_bound`). If a list is provided, models will be trained for each value and the best performing one will be selected. | No | `0.01` |
-| `regularization_desired_ratio` | `float` or `list` | Desired ratio/s of selected classifiers to total classifiers for auto-regularization. If a list is provided, models will be trained for each ratio and the best performing one will be selected. | No | `0.75` |
-| `regularization_upper_bound` | `float` or `list` | Upper bound/s for the regularization parameter when using auto-regularization. If a list is provided, models will be trained for each upper bound and the best performing one will be selected. | No | `200` |
-| `weight_update_method` | `str` | Method for update of sample weights from among `logarithmic` and `quadratic`. | No | `logarithmic` |
-| `sample_scaling` | `boolean` | Whether sample scaling should be applied. | No | `False` |
-| `prediction_scaling` | `float` | Scaling factor for predictions. | No | `None` |
-| `optimizer_options` | `dictionary` | QAOA optimizer options. A list of available options is presented later in this documentation. | No | ... |
-| `voting` | `str` | Use majority voting (`hard`) or average of probabilities (`soft`) for aggregating learners' predictions/probabilities. | No | `hard` |
-| `prob_threshold` | `float` | Optimal probability threshold. | No | `0.5` |
-| `random_state` | `integer` | Control randomness for repeatability. | No | `None` |
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action from among `create`, `list`, `fit`, `predict`, `fit_predict`, `create_fit_predict` and `delete`.
+- Required: Yes
+</Attribute>
 
-- Additionally, `optimizer_options` are enlisted as follows:
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the quantum classifier, for example, `spam_classifier`.
+- Required: Yes
+</Attribute>
 
+#### `instance`
+<Attribute attributeTypeHint="`str`">
+IBM instance.
+- Required: Yes
+</Attribute>
+
+#### `backend_name`
+<Attribute attributeTypeHint="`str`" attributeValue="`None`">
+IBM compute resource. Default is `None`, which means the backend with the fewest pending jobs will be used. 
+- Required: No
+</Attribute>
+
+
+#### `quantum_classifier`
+<Attribute attributeTypeHint="`str`">
+The type of the quantum classifier, for example, `QuantumEnhancedEnsembleClassifier`.
+- Required: No
+</Attribute>
+
+#### `num_learners`
+<Attribute attributeTypeHint="`int`" attributeValue="10">
+ The number of learners in the ensemble.
+- Required: No
+</Attribute>
+
+#### `learners_types`
+<Attribute attributeTypeHint="`list`" attributeValue="`[DecisionTreeClassifier]`">
+Types of learners. Among supported types are: `DecisionTreeClassifier`, `GaussianNB`, `KNeighborsClassifier`, `MLPClassifier`, and `LogisticRegression`. Further details related to each can be found in the [scikit-learn documentation](https://scikit-learn.org/stable/supervised_learning.html).
+- Required: No
+</Attribute>
+
+#### `learners_proportions`
+<Attribute attributeTypeHint="`list`" attributeValue="`[1.0]`">
+Proportions of each learner type in the ensemble.
+- Required: No
+</Attribute>
+
+#### `learners_options`
+<Attribute attributeTypeHint="`list`" attributeValue="`[{`max_depth`: 3, `splitter`: `random`, `class_weight`: None}]`">
+ Options for each learner type in the ensemble. For a complete list of options corresponding to the chosen learner type/s, consult [scikit-learn documentation](https://scikit-learn.org/stable/supervised_learning.html).
+- Required: No
+</Attribute>
+
+#### `regularization_type`
+<Attribute attributeTypeHint="`str` or `list`" attributeValue="`onsite`">
+Type(s) of regularization to be used: `onsite` or `alpha`. `onsite` controls the onsite term where higher values lead to sparser ensembles. `alpha` controls trade-off between interaction and onsite terms where lower values lead to sparser ensembles. If a list is provided, models will be trained for each type and the best performing one will be selected.
+- Required: No
+</Attribute>
+
+#### `regularization`
+<Attribute attributeTypeHint="`str` or `float` or `list`" attributeValue="`0.01`">
+Regularization value. Bounded between `0` and `+inf` if regularization_type is `onsite`. Bounded between `0` and `1` if regularization_type is `alpha`. If set to `auto`, auto-regularization is used - optimal regularization parameter is found by binary search with the desired ratio of selected classifiers to total classifiers (`regularization_desired_ratio`) and the upper bound for the regularization parameter (`regularization_upper_bound`). If a list is provided, models will be trained for each value and the best performing one will be selected.
+- Required: No
+</Attribute>
+
+#### `regularization_desired_ratio`
+<Attribute attributeTypeHint="`float` or `list`" attributeValue="`0.75`">
+Desired ratio(s) of selected classifiers to total classifiers for auto-regularization. If a list is provided, models will be trained for each ratio and the best performing one will be selected.
+- Required: No
+</Attribute>
+
+#### `regularization_upper_bound`
+<Attribute attributeTypeHint="`float` or `list`" attributeValue="200">
+Upper bound(s) for the regularization parameter when using auto-regularization. If a list is provided, models will be trained for each upper bound and the best performing one will be selected.
+- Required: No
+</Attribute>
+
+#### `weight_update_method`
+<Attribute attributeTypeHint="`str`" attributeValue="`logarithmic`">
+Method for update of sample weights from among `logarithmic` and `quadratic`.
+- Required: No
+</Attribute>
+
+#### `sample_scaling`
+<Attribute attributeTypeHint="`boolean`" attributeValue="False`">
+Whether sample scaling should be applied.
+- Required: No
+</Attribute>
+
+#### `prediction_scaling`
+<Attribute attributeTypeHint="`float`" attributeValue="`None`">
+Scaling factor for predictions.
+- Required: No
+</Attribute>
+
+#### `optimizer_options`
+<Attribute attributeTypeHint="`dict`">
+QAOA optimizer options. 
 |     Name    |    Type     | Description | Required  | Default |
 |-------------|-------------|-------------|-----------|---------|
 | `num_solutions` | `integer` | The number of solutions | No | `1024` |
@@ -106,7 +184,29 @@ The function currently supports only the `QuantumEnhancedEnsembleClassifier`.
 | `twirling` | `dictionary` | `{"enable_gates": True}` |
 | `dynamical_decoupling` | `dictionary` | `{"enable": True}` |
 
-#### Usage
+- Required: No
+</Attribute>
+
+#### `voting`
+<Attribute attributeTypeHint="`str`" attributeValue="`hard`">
+Use majority voting (`hard`) or average of probabilities (`soft`) for aggregating learners' predictions/probabilities.
+- Required: No
+</Attribute>
+
+#### `prob_threshold`
+<Attribute attributeTypeHint="`float`" attributeValue="`0.5`">
+Optimal probability threshold.
+- Required: No
+</Attribute>
+
+
+#### `random_state`
+<Attribute attributeTypeHint="`int`" attributeValue="`None`">
+Control randomness for repeatability.
+- Required: No
+</Attribute>
+
+- Usage:
 
 ```python
 job = singularity.run(
@@ -118,25 +218,35 @@ job = singularity.run(
 )
 ```
 
-#### Validations
+- Validations:
 
-- `name`:
-    - The name must be unique, a string up to 64 characters long.
-    - It can only include alphanumeric characters and underscores.
-    - It must start with a letter and cannot end with an underscore.
-    - No classifier with the same name should already exist in the shared data directory.
-    
+    - `name`:
+        - The name must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - No classifier with the same name should already exist in the shared data directory.
+</LeftColoredBar>
+  
 ### `delete`
+<LeftColoredBar color="blue">
 
 The `delete` action removes a classifier from the shared data directory.
 
-#### Inputs
-|     Name    |    Type     | Description |   Required  |
-|-------------|-------------|-------------|-------------|
-| `action`    | `str`    | The name of the action. Must be `delete`. | Yes |
-| `name`      | `str`    | The name of the classifier to delete. | Yes |
+- Inputs:
 
-#### Usage
+#### `action`
+<Attribute attributeTypeHint="`str`">
+he name of the action. Must be `delete`.
+- Required: Yes
+</Attribute>
+
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the classifier to delete.
+- Required: Yes
+</Attribute>
+
+- Usage:
 
 ```python
 job = singularity.run(
@@ -144,36 +254,60 @@ job = singularity.run(
     name="classifier_name",  # specify the name of the classifier to delete here
 )
 ```
-#### Validations
+- Validations:
 
-- `name`:
-    - The name must be unique, a string up to 64 characters long.
-    - It can only include alphanumeric characters and underscores.
-    - It must start with a letter and cannot end with an underscore.
-    - A classifier with the same name should already exist in the shared data directory.
+    - `name`:
+        - The name must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - A classifier with the same name should already exist in the shared data directory.
+</LeftColoredBar>
 
 ### `fit`
+<LeftColoredBar color="blue">
 
 The `fit` action trains a classifier using the provided training data.
 
-#### Inputs
+- Inputs:
 
-|     Name    |    Type     | Description |   Required  |
-|-------------|-------------|-------------|-------------|
-| `action`    | `str`    | The name of the action. Must be `fit`. | Yes |
-| `name`      | `str`    | The name of the classifier to train. | Yes |
-| `X`         | `array` or `list` or `str` | The training data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory. | Yes |
-| `y`         | `array` or `list` or `str` | The training target values. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory. | Yes |
-| `fit_params`| `dictionary`| Additional parameters to pass to the `fit` method of the classifier. | No |
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action. Must be `fit`.
+- Required: Yes
+</Attribute>
 
-##### fit_params
+
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the classifier to train.
+- Required: Yes
+</Attribute>
+
+#### `X`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `y`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training target values. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `fit_params`
+<Attribute attributeTypeHint="`dict`">
+Additional parameters to pass to the `fit` method of the classifier. See dictionary below.
+- Required: No
+
 |     Name    |    Type     | Description |   Required  |   Default   |
 |-------------|-------------|-------------|-------------|-------------|
 | `validation_data` | `tuple` | The validation data and labels. | No | `None` |
 | `pos_label` | `integer` or `str` | The class label to be mapped to 1. | No | `None` |
 | `optimization_data` | `str` | Dataset to optimize the ensemble on. Can be one of: `train`, `validation`, `both`. | No | `train` |
+</Attribute>
 
-#### Usage
+- Usage:
 ```python
 job = singularity.run(
     action="fit",
@@ -183,28 +317,47 @@ job = singularity.run(
     fit_params={},  # define the fit parameters here
 )
 ```
-#### Validations
+- Validations:
 
-- `name`:
-    - The name must be unique, a string up to 64 characters long.
-    - It can only include alphanumeric characters and underscores.
-    - It must start with a letter and cannot end with an underscore.
-    - A classifier with the same name should already exist in the shared data directory.
+    - `name`:
+        - The name must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - A classifier with the same name should already exist in the shared data directory.
+</LeftColoredBar>
 
 ### `predict`
+<LeftColoredBar color="blue">
 
 The `predict` action is used to obtain hard and soft predictions (probabilities).
 
-#### Inputs
+- Inputs:
 
-|     Name    |    Type     | Description |   Required  |
-|-------------|-------------|-------------|-------------|
-| `action`    | `str`    | The name of the action. Must be `predict`. | Yes |
-| `name`      | `str`    | The name of the classifier to be used. | Yes |
-| `X`         | `array` or `list` or `str` | The test data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory. | Yes |
-| `options["out"]` | `str` | The output JSON filename to save the predictions in the shared data directory. If not provided, the predictions are returned in the job result. | No |
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action. Must be `predict`.
+- Required: Yes
+</Attribute>
 
-#### Usage
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the classifier to be used.
+- Required: Yes
+</Attribute>
+
+#### `X`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The test data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `options["out"]`
+<Attribute attributeTypeHint="`str`">
+The output JSON filename to save the predictions in the shared data directory. If not provided, the predictions are returned in the job result.
+- Required: No
+</Attribute>
+
+- Usage:
 
 ```python
 job = singularity.run(
@@ -217,36 +370,71 @@ job = singularity.run(
 )
 ```
 
-#### Validations
+- Validations:
 
-- `name`:
-    - The name must be unique, a string up to 64 characters long.
-    - It can only include alphanumeric characters and underscores.
-    - It must start with a letter and cannot end with an underscore.
-    - A classifier with the same name should already exist in the shared data directory.
-- `options["out"]`:
-    - The filename must be unique, a string up to 64 characters long.
-    - It can only include alphanumeric characters and underscores.
-    - It must start with a letter and cannot end with an underscore.
-    - It must have the `.json` extension.
+    - `name`:
+        - The name must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - A classifier with the same name should already exist in the shared data directory.
+    - `options["out"]`:
+        - The filename must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - It must have the `.json` extension.
+</LeftColoredBar>
 
 ### `fit_predict`
+<LeftColoredBar color="blue">
 
 The `fit_predict` action trains a classifier using the training data and then uses it to obtain hard and soft predictions (probabilities).
 
-#### Inputs
+- Inputs:
 
-|     Name    |    Type     | Description |   Required  |
-|-------------|-------------|-------------|-------------|
-| `action`    | `str`    | The name of the action. Must be `fit_predict`. | Yes |
-| `name`      | `str`    | The name of the classifier to be used. | Yes |
-| `X_train`   | `array` or `list` or `str` | The training data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory. | Yes |
-| `y_train`   | `array` or `list` or `str` | The training target values. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory. | Yes |
-| `X_test`    | `array` or `list` or `str` | The test data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory. | Yes |
-| `fit_params`| `dictionary`| Additional parameters to pass to the `fit` method of the classifier. | No |
-| `options["out"]` | `str` | The output JSON filename to save the predictions in the shared data directory. If not provided, the predictions are returned in the job result. | No |
 
-#### Usage
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action. Must be `fit_predict`.
+- Required: Yes
+</Attribute>
+
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the classifier to be used.
+- Required: Yes
+</Attribute>
+
+#### `X_train`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `y_train`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training target values. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `X_test`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The test data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `fit_params`
+<Attribute attributeTypeHint="`dict`">
+Additional parameters to pass to the `fit` method of the classifier.
+- Required: No
+</Attribute>
+
+#### `options["out"]`
+<Attribute attributeTypeHint="`str`">
+The output JSON filename to save the predictions in the shared data directory. If not provided, the predictions are returned in the job result.
+- Required: No
+</Attribute>
+
+- Usage:
 ```python
 job = singularity.run(
     action="fit_predict",
@@ -261,41 +449,85 @@ job = singularity.run(
 )
 ```
 
-#### Validations
+- Validations:
 
-- `name`:
-    - The name must be unique, a string up to 64 characters long.
-    - It can only include alphanumeric characters and underscores.
-    - It must start with a letter and cannot end with an underscore.
-    - A classifier with the same name should already exist in the shared data directory.
+    - `name`:
+        - The name must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - A classifier with the same name should already exist in the shared data directory.
 
-- `options["out"]`:
-    - The filename must be unique, a string up to 64 characters long.
-    - It can only include alphanumeric characters and underscores.
-    - It must start with a letter and cannot end with an underscore.
-    - It must have the `.json` extension.
+    - `options["out"]`:
+        - The filename must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - It must have the `.json` extension.
+</LeftColoredBar>
 
 ### `create_fit_predict`
+<LeftColoredBar color="blue">
 
 The `create_fit_predict` action creates a classifier, trains it using the provided training data, and then uses it to obtain hard and soft predictions (probabilities).
 
-See an example in of the `create_fit_predict` action in the [documentation](/docs/guides/multiverse-computing-singularity#create_fit_predict-example).
+See an example in of the `create_fit_predict` action in the [guide](/docs/guides/multiverse-computing-singularity#create_fit_predict-example).
 
-#### Inputs
+- Inputs:
 
-| Name | Type | Description | Required |
-|------|------|-------------|-----------|
-| `action` | `str` | The name of the action from among `create`, `list`, `fit`, `predict`, `fit_predict`, `create_fit_predict` and `delete`. | Yes |
-| `name` | `str` | The name of the classifier to be used. | Yes |
-| `quantum_classifier` | `str` | The type of the classifier, i.e., `QuantumEnhancedEnsembleClassifier`. Default is `QuantumEnhancedEnsembleClassifier`. | No |
-| `X_train` | `array` or `list` or `str` | The training data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory. | Yes |
-| `y_train` | `array` or `list` or `str` | The training target values. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory. | Yes |
-| `X_test` | `array` or `list` or `str` | The test data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory. | Yes |
-| `fit_params` | `dictionary` | Additional parameters to pass to the `fit` method of the classifier. | No |
-| `options["save"]` | `boolean` | Whether to save to trained classifier in the shared data directory. Default is `True`. | No |
-| `options["out"]` | `str` | The output JSON filename to save the predictions in the shared data directory. If not provided, the predictions are returned in the job result. | No |
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action from among `create`, `list`, `fit`, `predict`, `fit_predict`, `create_fit_predict` and `delete`.
+- Required: Yes
+</Attribute>
 
-#### Usage
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the classifier to be used.
+- Required: Yes
+</Attribute>
+
+#### `quantum_classifier`
+<Attribute attributeTypeHint="`str`" attributeValue="`QuantumEnhancedEnsembleClassifier`">
+The type of the classifier, for example, `QuantumEnhancedEnsembleClassifier`.
+- Required: No
+</Attribute>
+
+#### `X_train`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `y_train`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training target values. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `X_test`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The test data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `fit_params`
+<Attribute attributeTypeHint="`dict`">
+Additional parameters to pass to the `fit` method of the classifier.
+- Required: No
+</Attribute>
+
+#### `options["save"]`
+<Attribute attributeTypeHint="`bool`" attributeValue="`True`">
+Whether to save to trained classifier in the shared data directory.
+- Required: No
+</Attribute>
+
+#### `options["out"]`
+<Attribute attributeTypeHint="`str`">
+The output JSON filename to save the predictions in the shared data directory. If not provided, the predictions are returned in the job result.
+- Required: No
+</Attribute>
+
+- Usage:
 
 ```python
 job = singularity.run(
@@ -315,17 +547,18 @@ job = singularity.run(
 )
 ```
 
-#### Validations
+- Validations:
 
-- `name`:
-    - If `options["save"]` is set to `True`:
-        - The name must be unique, a string up to 64 characters long.
+    - `name`:
+        - If `options["save"]` is set to `True`:
+            - The name must be unique, a string up to 64 characters long.
+            - It can only include alphanumeric characters and underscores.
+            - It must start with a letter and cannot end with an underscore.
+            - No classifier with the same name should already exist in the shared data directory.
+
+    - `options["out"]`:
+        - The filename must be unique, a string up to 64 characters long.
         - It can only include alphanumeric characters and underscores.
         - It must start with a letter and cannot end with an underscore.
-        - No classifier with the same name should already exist in the shared data directory.
-
-- `options["out"]`:
-    - The filename must be unique, a string up to 64 characters long.
-    - It can only include alphanumeric characters and underscores.
-    - It must start with a letter and cannot end with an underscore.
-    - It must have the `.json` extension.
+        - It must have the `.json` extension.
+</LeftColoredBar>
