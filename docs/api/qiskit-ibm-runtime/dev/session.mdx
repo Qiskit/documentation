@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
 # Session
 
-<Class id="qiskit_ibm_runtime.Session" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L46-L399" signature="Session(backend, max_time=None, *, create_new=True)" modifiers="class">
+<Class id="qiskit_ibm_runtime.Session" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L46-L413" signature="Session(backend, max_time=None, *, create_new=True)" modifiers="class">
   Bases: `object`
 
   Class for creating a Qiskit Runtime session.
@@ -147,7 +147,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### from\_id
 
-  <Function id="qiskit_ibm_runtime.Session.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L324-L386" signature="from_id(session_id, service)" modifiers="classmethod">
+  <Function id="qiskit_ibm_runtime.Session.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L324-L400" signature="from_id(session_id, service, use_fractional_gates=False, calibration_id=None)" modifiers="classmethod">
     Construct a Session object with a given `session_id`. For example:
 
     ```python
@@ -161,11 +161,17 @@ python_api_name: qiskit_ibm_runtime.Session
 
     **Parameters**
 
-    *   **session\_id** (*str*) – the id of the session to be created. This must be an already existing session id.
+    *   **session\_id** (*str*) – The id of the session to be created. This must be an already existing session id.
 
-    *   **service** ([*QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) –
+    *   **service** ([*QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Instance of the `QiskitRuntimeService` class.
 
-        instance of the `QiskitRuntimeService` class.
+    *   **use\_fractional\_gates** (*bool*) – Whether or not to allow fractional gates for the backend that is used to create the session.
+
+    *   **calibration\_id** (*str | None*) –
+
+        **The calibration id for the backend that is used to create the**
+
+        session.
 
         **Raises:**
 
