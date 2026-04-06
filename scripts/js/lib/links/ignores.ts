@@ -111,6 +111,7 @@ const FORBIDS_OUR_USER_AGENT = [
   "https://www.science.org/doi/full/10.1126/science.aad9480",
   "https://www.science.org/doi/full/10.1126/science.abq0225",
   "https://www.science.org/doi/full/10.1126/science.abq0225#supplementary-materials",
+  "https://dl.acm.org/doi/abs/10.5555/3179330.3179331",
 ];
 
 // These links work when last tested in a browser
@@ -120,6 +121,16 @@ const FETCH_RETURNS_405 = [
   "https://forms.cloud.microsoft/e/3Wi9cbjQPK",
   "https://forms.office.com/r/zN3hvMTqJ1",
   "https://pmc.ncbi.nlm.nih.gov/articles/PMC4878865/",
+  "https://crates.io/crates/log",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.033193",
+  "https://medium.com/qiskit/improving-a-quantum-compiler-48410d7a7084",
+  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-migrate-from-performance-management-on-ibm-cloud",
+  "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/", // redirects
+  "https://optuna.readthedocs.io/en/stable/tutorial/20\_recipes/009\_ask\_and\_tell.html", // this appears in brackets as the hyperlink text, but the link checker still looks at it
+  "https://qiskit.org/ecosystem/aer/apidocs/aer\_library.html#saving-simulator-data",  // this appears in brackets as the hyperlink text, but the link checker still looks at it
+  "https://medium.com/qiskit/qiskit-and-its-fundamental-elements-bcd7ead80492",
+  "https://github.com/Qiskit/openqasm3\_parser", // this appears in brackets as the hyperlink text, but the link checker still looks at it
+  "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin\_l\_bfgs\_b.html", // this appears in brackets as the hyperlink text, but the link checker still looks at it
 ];
 
 // Fetching these links throws an error, but they work in-browser. Not sure why.
@@ -176,6 +187,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // Other links that don't seem to exist any more
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
+  "https://www.cs.tau.ac.il/\~nogaa/PDFS/r.pdf",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
