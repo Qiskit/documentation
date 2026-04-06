@@ -1,14 +1,80 @@
 ---
-title: Cirucit Library (dev version)
-description: API reference for Cirucit Library in the dev version of qiskit-c
+title: Circuit Library (dev version)
+description: API reference for Circuit Library in the dev version of qiskit-c
 in_page_toc_min_heading_level: 2
 python_api_type: module
-python_api_name: Cirucit Library
+python_api_name: Circuit Library
 ---
 
-# Cirucit Library
+# Circuit Library
 
-The Qiskit circuit library contains functions for building commonly used quantum circuits.
+The Qiskit circuit library contains functions and higher-level building blocks for building commonly used quantum circuits.
+
+## Data types
+
+### QkPauliProductRotation
+
+<Class id="QkPauliProductRotation" signature="struct QkPauliProductRotation">
+  A representation of Pauli product rotation data.
+
+  A Pauli product rotation implements a rotation of an `angle` about an axis defined by a Pauli product on `len` qubits. The Pauli here is represented in ZX format with two Boolean arrays representing the Z and X components.
+
+  #### bool \*z
+
+  <Attribute id="z">
+    Pointer to an length-`len` array of Z components.
+  </Attribute>
+
+  #### bool \*x
+
+  <Attribute id="x">
+    Pointer to an length-`len` array of X components.
+  </Attribute>
+
+  #### size\_t len
+
+  <Attribute id="len">
+    The number of Pauli terms.
+  </Attribute>
+
+  #### QkParam \*angle
+
+  <Attribute id="angle">
+    The rotation angle.
+  </Attribute>
+</Class>
+
+### QkPauliProductMeasurement
+
+<Class id="QkPauliProductMeasurement" signature="struct QkPauliProductMeasurement">
+  A representation of Pauli product measurement data.
+
+  A Pauli product measurement implements a projection onto the eigenspace of the defined Pauli product on `len` qubits. The Pauli here is represented in ZX format with two Boolean arrays representing the Z and X components and can include a minus sign, indicated by `flip_outcome`.
+
+  #### bool \*z
+
+  <Attribute id="z">
+    Pointer to an length-`len` array of Z components.
+  </Attribute>
+
+  #### bool \*x
+
+  <Attribute id="x">
+    Pointer to an length-`len` array of X components.
+  </Attribute>
+
+  #### size\_t len
+
+  <Attribute id="len">
+    The number of Pauli terms.
+  </Attribute>
+
+  #### bool flip\_outcome
+
+  <Attribute id="flip_outcome">
+    Whether the measurement outcome has a minus sign.
+  </Attribute>
+</Class>
 
 ## Functions
 
@@ -19,11 +85,11 @@ The Qiskit circuit library contains functions for building commonly used quantum
 
   The `interactions` matrix is interpreted as an `n × n` row-major array of 64-bit integers, where `n = num_qubits`. The diagonal entries set T-like phase powers, and the upper triangle encodes two-qubit CPhase interactions.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md53" />
+  <span id="group__QkCircuitLibrary_1autotoc_md72" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md53" />
+  <span id="group__QkCircuitLibrary_1autotoc_md72" />
 
   If `num_qubits > 0`, `interactions` **must** be a valid, non-null pointer to at least `num_qubits * num_qubits` contiguous `int64_t` values in row-major order. The memory pointed to by `interactions` must be properly aligned, readable for the duration of this call, and not mutably aliased. Passing an invalid pointer or a buffer that is too small results in undefined behaviour.
 
@@ -55,6 +121,101 @@ The Qiskit circuit library contains functions for building commonly used quantum
   A newly allocated `QkCircuit*` (caller must free with `qk_circuit_free`).
 </Function>
 
+### qk\_pauli\_product\_rotation\_clear
+
+<Function id="qk_pauli_product_rotation_clear" signature="void qk_pauli_product_rotation_clear(QkPauliProductRotation *inst)">
+  Clear the internal data of Rust-allocated `QkPauliProductRotation`.
+
+  This frees the memory of the `z` and `x` arrays and frees the `angle`. This function should only be called for `QkPauliProductRotation` objects whose data has been populated by Rust.
+
+  <span id="group__QkCircuitLibrary_1autotoc_md73" />
+
+  #### Example
+
+  ```c
+  // let `circuit` be a QkCircuit* and `index` a size_t at the position of a QkPauliProductRotation
+  QkPauliProductRotation inst;
+
+  // query the QkPauliProductRotation data
+  assert(qk_circuit_operation_kind(circuit, index) == QkOperationKind_PauliProductRotation);
+  qk_circuit_inst_pauli_product_rotation(circuit, index, &inst);
+
+  // do something with `inst`, and then clear the Rust-allocated data
+  qk_pauli_product_rotation_clear(&inst);
+  ```
+
+  In contrast, this function should not be called if C already takes care of clearing the data.
+
+  ```c
+  bool z[4] = {false, false, true, true};
+  bool x[4] = {false, true, true, false};
+  QkParam *angle = qk_param_from_double(1.0);
+  QkPauliProductRotation rotation = {z, x, 4, angle};
+
+  // since this data is allocated by C, we do not call `qk_pauli_product_rotation_clear(&rotation)`!
+  qk_param_free(angle);
+  ```
+
+  <span id="group__QkCircuitLibrary_1autotoc_md74" />
+
+  #### Safety
+
+  <span id="group__QkCircuitLibrary_1autotoc_md74" />
+
+  Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkPauliProductRotation`, or if the internal data of `QkPauliProductRotation` is incoherent.
+
+  **Parameters**
+
+  *   **inst** – A pointer to the `QkPauliProductRotation` to clear.
+</Function>
+
+### qk\_pauli\_product\_measurement\_clear
+
+<Function id="qk_pauli_product_measurement_clear" signature="void qk_pauli_product_measurement_clear(QkPauliProductMeasurement *inst)">
+  Clear the internal data of Rust-allocated `QkPauliProductMeasurement`.
+
+  This frees the memory of the `z` and `x` arrays. This function should only be called for `QkPauliProductMeasurement` objects whose data has been populated by Rust.
+
+  <span id="group__QkCircuitLibrary_1autotoc_md75" />
+
+  #### Example
+
+  ```c
+  // let `circuit` be a QkCircuit* and `index` a size_t at the position
+  // of a QkPauliProductMeasurement
+  QkPauliProductMeasurement inst;
+
+  // query the QkPauliProductMeasurement data
+  assert(qk_circuit_operation_kind(circuit, index) == QkOperationKind_PauliProductMeasurement);
+  qk_circuit_inst_pauli_product_measurement(circuit, index, &inst);
+
+  // do something with `inst`, and then clear the Rust-allocated data
+  qk_pauli_product_measurement_clear(&inst);
+  ```
+
+  In contrast, this function should not be called if C already takes care of clearing the data.
+
+  ```c
+  bool z[4] = {false, false, true, true};
+  bool x[4] = {false, true, true, false};
+  QkPauliProductMeasurement inst = {z, x, 4, true};
+
+  // since this data is allocated by C, we do not call `qk_pauli_product_measurement_clear(&inst)`
+  ```
+
+  <span id="group__QkCircuitLibrary_1autotoc_md76" />
+
+  #### Safety
+
+  <span id="group__QkCircuitLibrary_1autotoc_md76" />
+
+  Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkPauliProductMeasurement`, or if the internal data of `QkPauliProductMeasurement` is incoherent.
+
+  **Parameters**
+
+  *   **inst** – A pointer to the `QkPauliProductMeasurement` to clear.
+</Function>
+
 ### qk\_circuit\_library\_quantum\_volume
 
 <Function id="qk_circuit_library_quantum_volume" signature="QkCircuit *qk_circuit_library_quantum_volume(uint32_t num_qubits, size_t depth, int64_t seed)">
@@ -66,7 +227,7 @@ The Qiskit circuit library contains functions for building commonly used quantum
 
   \[1] A. Cross et al. Validating quantum computers using randomized model circuits, Phys. Rev. A 100, 032328 (2019). [arXiv:1811.12926](https://arxiv.org/abs/1811.12926)
 
-  <span id="group__QkCircuitLibrary_1autotoc_md54" />
+  <span id="group__QkCircuitLibrary_1autotoc_md77" />
 
   #### Example
 
@@ -83,5 +244,65 @@ The Qiskit circuit library contains functions for building commonly used quantum
   **Returns**
 
   A pointer to the quantum volume circuit.
+</Function>
+
+### qk\_circuit\_library\_suzuki\_trotter
+
+<Function id="qk_circuit_library_suzuki_trotter" signature="QkCircuit *qk_circuit_library_suzuki_trotter(const QkObs *op, uint32_t order, uint32_t reps, double time, bool preserve_order, bool insert_barriers)">
+  Generate a circuit using the higher order Suzuki-Trotter product formula from an observable.
+
+  The Suzuki-Trotter formulas improve the error of the Lie-Trotter approximation. In this implementation, the operators are provided as sum terms of a Pauli operator. Higher order decompositions are based on recursions, see Ref. \[1] for more details.
+
+  <span id="group__QkCircuitLibrary_1autotoc_md78" />
+
+  #### Example
+
+  ```c
+  QkObs *obs = qk_obs_zero(1);
+
+  QkBitTerm op1_bits[1] = {QkBitTerm_X};
+  QkObsTerm term1 = {(QkComplex64){1.0, 0.0}, 1, op1_bits, (uint32_t[1]){0}, 1};
+  qk_obs_add_term(obs, &term1);
+
+  QkBitTerm op2_bits[1] = {QkBitTerm_Y};
+  QkObsTerm term2 = {(QkComplex64){1.0, 0.0}, 1, op2_bits, (uint32_t[1]){0}, 1};
+  qk_obs_add_term(obs, &term2);
+
+  QkCircuit *qc = qk_circuit_library_suzuki_trotter(obs, 2, 1, 0.1, true, false);
+
+  qk_obs_free(obs);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuitLibrary_1autotoc_md79" />
+
+  #### Safety
+
+  <span id="group__QkCircuitLibrary_1autotoc_md79" />
+
+  Behavior is undefined `op` is not a valid, non-null pointer to a `QkObs`.
+
+  <span id="group__QkCircuitLibrary_1autotoc_md80" />
+
+  #### References
+
+  <span id="group__QkCircuitLibrary_1autotoc_md80" />
+
+  \[1]: D. Berry, G. Ahokas, R. Cleve and B. Sanders, “Efficient quantum algorithms for simulating sparse Hamiltonians” (2006). [arXiv:quant-ph/0508139](https://arxiv.org/abs/quant-ph/0508139)
+
+  \[2]: N. Hatano and M. Suzuki, “Finding Exponential Product Formulas of Higher Orders” (2005). [arXiv:math-ph/0506007](https://arxiv.org/pdf/math-ph/0506007.pdf)
+
+  **Parameters**
+
+  *   **op** – The `QkObs` containing the sum of the Pauli terms.
+  *   **order** – The order of the product formula.
+  *   **reps** – The number of time steps.
+  *   **time** – The evolution time.
+  *   **preserve\_order** – If `false`, allows reordering the terms of the operator to potentially yield a shallower evolution circuit. Not relevant when synthesizing an observable with a single term.
+  *   **insert\_barriers** – Whether to insert barriers between the terms evolutions.
+
+  **Returns**
+
+  A pointer to the generated circuit.
 </Function>
 

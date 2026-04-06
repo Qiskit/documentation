@@ -14,9 +14,10 @@
 import subprocess
 import sys
 from pathlib import Path
+from typing import Iterable
 
 # Get the latest digest by running `docker pull icr.io/qc-open-source-docs-public/preview:latest`.
-IMAGE_DIGEST = "sha256:c34e723d09de6310331b0843edcb722ed5d24743779f605e8f3b2b4892278333"
+IMAGE_DIGEST = "sha256:5336ed8710d3822e6409381e7c4a6d60d7860a2228e22a0f2b2de26c68f54a0b"
 
 # Docker on Windows uses `/` rather than `\`, so we need to call `.as_posix()`:
 # https://medium.com/@kale.miller96/how-to-mount-your-current-working-directory-to-your-docker-container-in-windows-74e47fa104d7
@@ -25,12 +26,16 @@ PWD = Path(__file__).parent.as_posix()
 IMAGE = f"icr.io/qc-open-source-docs-public/preview@{IMAGE_DIGEST}"
 
 
-def skip_apis() -> tuple[str]:
+def skip_apis(working_directory: str) -> Iterable[str]:
     """Mounts an empty directory to /docs/api/ to effectively exclude it"""
     if "--apis" in sys.argv:
         return ()
-    print("Skipping API docs for speed; use --apis to include them")
-    return ("-v", "/home/node/app/docs/api")
+    print("Skipping non-functions API docs for speed; use --apis to include them")
+    return (
+        "-v", "/home/node/app/docs/api",
+        # Even when skipping APIs, we still include the functions APIs
+        "-v", f"{working_directory}/docs/api/functions:/home/node/app/docs/api/functions"
+    )
 
 def main() -> None:
     if "--pull-only" in sys.argv:
@@ -45,7 +50,7 @@ def main() -> None:
         f"{PWD}/docs:/home/node/app/content/docs",
         "-v",
         f"{PWD}/learning:/home/node/app/content/learning",
-        *skip_apis(),
+        *skip_apis(PWD),
         "-v",
         f"{PWD}/public:/home/node/app/packages/preview/public",
         "-p",

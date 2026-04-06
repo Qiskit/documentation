@@ -167,7 +167,9 @@ These are components that we expose through MDX. You can use them in both
 To use an `Admonition`, use the following syntax
 
 ```mdx
-<Admonition type="note">This is an example of a note.</Admonition>
+<Admonition type="note">
+  This is an example of a note.
+</Admonition>
 ```
 
 Available types are `note, tip, info, caution, danger`. This is what they look like:
@@ -194,6 +196,39 @@ We also have a specialized admonition for Qiskit Code Assistant prompt suggestio
   ]}
 />
 ```
+
+### Accordions
+
+Sometimes called "twisties", accordions contain hidden content that is uncovered when a user clicks them. There are two parts to this component:
+
+* `<Accordion>`: A group of accordion items. Items in this component will be grouped together.
+* `<AccordionItem>`: The actual expandable part.
+
+Here's an example:
+
+```mdx
+<Accordion>
+  <AccordionItem title="My title">
+    Some content
+  </AccordionItem>
+  <AccordionItem title="My *second* title">
+    Some content
+  </AccordionItem>
+</Accordion>
+```
+
+Note that the titles can include markdown, but for accessibility reasons:
+
+* Titles *must* be a single line
+* Titles *must only* use the following markdown features:
+  * Inline math (`$math$`)
+  * Inline code (`` `code` ``)
+  * Strong (`*bold*`)
+  * Emphasis (`_italic_`)
+
+  All other markdown features (blockquotes, display equations, links, html) are banned.
+
+Everything else is banned.
 
 ### Figures
 
@@ -373,4 +408,14 @@ Here's an example of what this might look like in your notebook source.
   "</Tabs>"
  ]
 }
+```
+
+### LeftColoredBar
+
+The `LeftColoredBar` component adds a colored bar that wraps all the content inside it. Currently we support two colors (`blue` and `purple`) that can be picked by using the `color` property:
+
+```md
+<LeftColoredBar color="blue">
+  You can use any MDX inside this component.
+</LeftColoredBar>
 ```

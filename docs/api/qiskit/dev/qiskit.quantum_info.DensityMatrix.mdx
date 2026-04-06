@@ -88,7 +88,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
   ### draw
 
   <Function id="qiskit.quantum_info.DensityMatrix.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/densitymatrix.py#L138-L178" signature="draw(output=None, **drawer_args)">
-    Return a visualization of the Statevector.
+    Return a visualization of the density matrix.
 
     **repr**: ASCII TextMatrix of the state’s `__repr__`.
 
@@ -111,7 +111,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Returns**
 
-    `matplotlib.Figure` or [`str`](https://docs.python.org/3/library/stdtypes.html#str) or `TextMatrix` or `IPython.display.Latex`: Drawing of the Statevector.
+    `matplotlib.Figure` or [`str`](https://docs.python.org/3/library/stdtypes.html#str) or `TextMatrix` or `IPython.display.Latex`: Drawing of the density matrix.
 
     **Raises**
 
@@ -248,7 +248,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Parameters**
 
-    **label** (*string*) – a eigenstate string ket label (see table for allowed values).
+    **label** (*string*) – an eigenstate string ket label (see table for allowed values).
 
     **Returns**
 
@@ -271,7 +271,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### measure
 
-  <Function id="qiskit.quantum_info.DensityMatrix.measure" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L306-L341" signature="measure(qargs=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.measure" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L296-L331" signature="measure(qargs=None)">
     Measure subsystems and return outcome and post-measure state.
 
     Note that this function uses the QuantumStates internal random number generator for sampling the measurement outcome. The RNG seed can be set using the [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
@@ -382,7 +382,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### probabilities\_dict
 
-  <Function id="qiskit.quantum_info.DensityMatrix.probabilities_dict" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L220-L244" signature="probabilities_dict(qargs=None, decimals=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.probabilities_dict" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L210-L234" signature="probabilities_dict(qargs=None, decimals=None)">
     Return the subsystem measurement probability dictionary.
 
     Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
@@ -428,7 +428,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Additional Information:**
 
-    If all subsystems are reset this will return the ground state on all subsystems. If only a some subsystems are reset this function will perform evolution by the reset [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") of the reset subsystems.
+    If all subsystems are reset this will return the ground state on all subsystems. If only some subsystems are reset this function will perform evolution by the reset [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") of the reset subsystems.
   </Function>
 
   ### reverse\_qargs
@@ -449,7 +449,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### sample\_counts
 
-  <Function id="qiskit.quantum_info.DensityMatrix.sample_counts" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L277-L304" signature="sample_counts(shots, qargs=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.sample_counts" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L267-L294" signature="sample_counts(shots, qargs=None)">
     Sample a dict of qubit measurement outcomes in the computational basis.
 
     **Parameters**
@@ -469,12 +469,12 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     > This function *samples* measurement outcomes using the measure [`probabilities()`](#qiskit.quantum_info.DensityMatrix.probabilities "qiskit.quantum_info.DensityMatrix.probabilities") for the current state and qargs. It does not actually implement the measurement so the current state is not modified.
     >
-    > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
+    > The seed for random number generator used for sampling can be set to a fixed value by using the state’s [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
   </Function>
 
   ### sample\_memory
 
-  <Function id="qiskit.quantum_info.DensityMatrix.sample_memory" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L246-L275" signature="sample_memory(shots, qargs=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.sample_memory" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/states/quantum_state.py#L236-L265" signature="sample_memory(shots, qargs=None)">
     Sample a list of qubit measurement outcomes in the computational basis.
 
     **Parameters**
@@ -484,7 +484,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     **Returns**
 
-    list of sampled counts if the order sampled.
+    list of sampled counts in the order sampled.
 
     **Return type**
 
@@ -494,7 +494,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     > This function *samples* measurement outcomes using the measure [`probabilities()`](#qiskit.quantum_info.DensityMatrix.probabilities "qiskit.quantum_info.DensityMatrix.probabilities") for the current state and qargs. It does not actually implement the measurement so the current state is not modified.
     >
-    > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
+    > The seed for random number generator used for sampling can be set to a fixed value by using the state’s [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
   </Function>
 
   ### seed

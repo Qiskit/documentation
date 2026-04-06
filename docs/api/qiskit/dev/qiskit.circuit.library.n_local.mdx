@@ -41,7 +41,7 @@ python_api_name: qiskit.circuit.library.n_local
 
   The entanglement describes the connections of the gates in the entanglement layer. For a two-qubit gate for example, the entanglement contains pairs of qubits on which the gate should acts, e.g. `[[ctrl0, target0], [ctrl1, target1], ...]`. A set of default entanglement strategies is provided and can be selected by name:
 
-  *   `"full"` entanglement is each qubit is entangled with all the others.
+  *   `"full"` entanglement is where each qubit is entangled with all the others.
 
   *   ## `"linear"` entanglement is qubit $i$ entangled with qubit $i + 1$,
 
@@ -121,7 +121,7 @@ python_api_name: qiskit.circuit.library.n_local
 
   ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/qiskit-circuit-library-n_local-4.avif)
 
-  We can set different entanglements per layer, by specifing a callable that takes as input the current layer index, and returns the entanglement structure. For example, the following uses different entanglements for odd and even layers:
+  We can set different entanglements per layer, by specifying a callable that takes as input the current layer index, and returns the entanglement structure. For example, the following uses different entanglements for odd and even layers:
 
   ```python
   def entanglement(layer_index):

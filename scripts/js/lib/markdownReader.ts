@@ -12,8 +12,10 @@
 
 import path from "node:path";
 import { readFile } from "fs/promises";
-import { readJsonFile } from "./fs";
+
 import grayMatter from "gray-matter";
+
+import { readJsonFile } from "./fs.js";
 
 export async function readMarkdown(
   filePath: string,
