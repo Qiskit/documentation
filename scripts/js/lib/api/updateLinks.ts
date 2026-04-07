@@ -57,7 +57,6 @@ function lowerCaseIfMarkdownAnchor(url: string): string {
   return `${base}#${newAnchor}`;
 }
 
-
 function hasDefinitionAncestor(node: any): boolean {
   let current = node.parent;
 
@@ -240,10 +239,7 @@ export async function updateLinks(
               : undefined;
 
           // ✅ NEW: Skip external links inside reference definitions
-          if (
-            /^https?:\/\//.test(node.url) &&
-            hasDefinitionAncestor(node)
-          ) {
+          if (/^https?:\/\//.test(node.url) && hasDefinitionAncestor(node)) {
             return;
           }
 
@@ -259,14 +255,8 @@ export async function updateLinks(
             }
           }
 
-          node.url = normalizeUrl(
-            node.url,
-            resultsByName,
-            itemNames,
-            kwargs
-          );
+          node.url = normalizeUrl(node.url, resultsByName, itemNames, kwargs);
         });
-
       })
       .use(remarkStringify, remarkStringifyOptions)
       .process(result.markdown);

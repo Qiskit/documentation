@@ -131,7 +131,7 @@ const FETCH_RETURNS_405 = [
   "https://www.biorxiv.org/content/early/2024/02/17/2024.01.08.574600.full.pdf", // Points to a PDF, which the link checker does not seem to like
   "https://qiskit.github.io/qiskit-serverless/migration/migration_from_qiskit_runtime_programs.html", // broken link in very old API ref release notes for Qiskit Runtime, so ignoring
   "https://qureca.com/quantum-initiatives-worldwide", // link works sometimes, and times out other times
-  "https://www.gao.gov/assets/gao-22-104422.pdf",  // Points to a PDF, which the link checker does not seem to like
+  "https://www.gao.gov/assets/gao-22-104422.pdf", // Points to a PDF, which the link checker does not seem to like
   "https://www.eurekanetwork.org/programmes-and-calls/network-projects/network-projects-applied-quantum-technologies-2025/", // loads a popup, which might be breaking the checker
   "https://www.eurekanetwork.org/programmes-and-calls/network-projects/network-projects-applied-quantum-technologies-2025/", // loads a popup, which might be breaking the checker
   "https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/solving-chemistrys-toughest-problems-the-quantum-computing-advantage", // loads a popup, which might be breaking the checker
