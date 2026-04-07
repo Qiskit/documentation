@@ -126,17 +126,15 @@ const FETCH_RETURNS_405 = [
   "https://medium.com/qiskit/improving-a-quantum-compiler-48410d7a7084",
   "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-migrate-from-performance-management-on-ibm-cloud",
   "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/", // redirects
-  "https://optuna.readthedocs.io/en/stable/tutorial/20\_recipes/009\_ask\_and\_tell.html", // this appears in brackets as the hyperlink text, but the link checker still looks at it
-  "https://qiskit.org/ecosystem/aer/apidocs/aer\_library.html#saving-simulator-data",  // this appears in brackets as the hyperlink text, but the link checker still looks at it
-  "https://medium.com/qiskit/qiskit-and-its-fundamental-elements-bcd7ead80492",
-  "https://github.com/Qiskit/openqasm3\_parser", // this appears in brackets as the hyperlink text, but the link checker still looks at it
-  "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin\_l\_bfgs\_b.html", // this appears in brackets as the hyperlink text, but the link checker still looks at it
-  "https://journals.aps.org/prresearch/pdf/10.1103/PhysRevResearch.5.043117", // Jumps to a PDF, which the link checker does not seem to like
-  "https://en.wikipedia.org/wiki/Time-evolving\_block\_decimation", // this appears in brackets as the hyperlink text, but the link checker still looks at it
+  "https://journals.aps.org/prresearch/pdf/10.1103/PhysRevResearch.5.043117", // Points to a PDF, which the link checker does not seem to like
+  "https://www.cs.tau.ac.il/\~nogaa/PDFS/r.pdf", // Points to a PDF, which the link checker does not seem to like
+  "https://qiskit.github.io/qiskit-serverless/migration/migration_from_qiskit_runtime_programs.html", // broken link in very old API ref release notes for Qiskit Runtime, so ignoring
 ];
 
 // Fetching these links throws an error, but they work in-browser. Not sure why.
 const FETCH_FAILS = [
+  "https://www.science.org/doi/10.1126/sciadv.adu9991",
+  "https://www.hpcwire.com/off-the-wire/gordon-bell-prize-awarded-to-ibm-and-leading-university-researchers/",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/quantum-computing-use-cases-are-getting-real-what-you-need-to-know",
   "https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/quantum-computing-just-might-save-the-planet",
