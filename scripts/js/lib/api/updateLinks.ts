@@ -210,11 +210,28 @@ export async function updateLinks(
       .use(remarkGfm)
       .use(remarkMdx)
       .use(() => async (tree: Root) => {
+        function isBracketedLiteralLink(textNode?: { value?: string }) {
+          if (!textNode?.value) {
+            return false;
+          }
+
+          const value = textNode.value.trim();
+          return value.startsWith("[") && value.endsWith("]");
+        }
         visit(tree, "link", (node) => {
           const textNode =
             node.children?.[0]?.type === "text"
               ? node.children?.[0]
               : undefined;
+          
+  // ✅ NEW: skip bracketed literal external links
+          if (
+            textNode &&
+            isBracketedLiteralLink(textNode) &&
+            /^https?:\/\//.test(node.url)
+          ) {
+            return;
+          }
           const relativizedLink = relativizeLink({
             url: node.url,
             text: textNode?.value,
