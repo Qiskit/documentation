@@ -131,6 +131,8 @@ const FETCH_RETURNS_405 = [
   "https://medium.com/qiskit/qiskit-and-its-fundamental-elements-bcd7ead80492",
   "https://github.com/Qiskit/openqasm3\_parser", // this appears in brackets as the hyperlink text, but the link checker still looks at it
   "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin\_l\_bfgs\_b.html", // this appears in brackets as the hyperlink text, but the link checker still looks at it
+  "https://journals.aps.org/prresearch/pdf/10.1103/PhysRevResearch.5.043117", // Jumps to a PDF, which the link checker does not seem to like
+  "https://en.wikipedia.org/wiki/Time-evolving\_block\_decimation", // this appears in brackets as the hyperlink text, but the link checker still looks at it
 ];
 
 // Fetching these links throws an error, but they work in-browser. Not sure why.
