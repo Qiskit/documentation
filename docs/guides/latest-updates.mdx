@@ -148,6 +148,40 @@ This section summarizes the recent enhancements and new features for the new [IB
   - Addressed an issue that prevented QPU metrics to be displayed for the QPUs in the eu-de region.
 - Deprecation reminder: The deprecation date for IBM Quantum Platform Classic has been set for 1 July 2025.
 
+**10 April 2025**
+
+- Updated navigation to remove duplicated pages:
+  - The Administration section has been renamed "Access management" and now only focuses on managing users and access groups.
+  - There is only one page each for managing instances and workloads; there are no longer separate pages for each in the Administration section.  Instead, what you can view and manage on each page is dependent on your access and permissions.
+  - The analytics page (visible only to those with certain access) has been moved into the main navigation menu, to make it easier to find.
+- Launched two new QPUs: ibm_aachen (eu-de region) and ibm_kingston (us-east region)
+- Individuals who can view the analytics page can now filter the data to view information per plan.
+- Administrators can now more easily add multiple individuals to an access group due to the addition of an existing account members table.
+- Premium plan instance administrators can set the instance allocation as a usage limit, so that usage in those instances cannot exceed the time alloted. See the [Set instance allocation limits](/docs/guides/allocation-limits) guide for instructions.
+- Note that the sunset date for IBM Quantum Platform Classic has been set for 1 July 2025.
+
+**27 March 2025**
+
+- **Cost limits for Pay-As-You-Go Plan** - Pay-As-You-Go Plan users with sufficient access can now view and edit [maximum cost limits](/docs/guides/manage-cost#cost-limit) for their instances.
+
+- **Job management updates** - Now only administrators can delete workloads created by other users in an account, and collaborators will only be able to delete their own workloads.
+
+- **Updated authentication error messages** - Error messaging has been improved for account and authentication processes to reduce issues with signup flow. The [Support page](/docs/guides/support) has been expanded with recommendations for troubleshooting and resolving common errors.
+
+- **Increased default data retention** - The default data retention period for the new IBM Quantum Platform has been increased to three years, up from one year on IBM Quantum Platform Classic.
+
+- **Resolved inconsistent behavior due to caching** - Some inconsistent behavior seen when updating instance limits, tags, and QPU resources has been resolved, which was due to caching.
+
+For full details on the early access release and upcoming improvements, [check out the blog](https://www.ibm.com/quantum/blog/iqp-upgrade).
+
+**26 February 2025**
+
+- Today, we are releasing an early access version of the upgraded experience, and invite you to [open an account and explore the new interface](https://quantum.cloud.ibm.com). We will continue to roll out updates over the coming months, with the end goal of creating an experience that looks and feels like the classic version of IBM Quantum Platform, but with greater functionality. We will eventually sunset IBM Quantum Platform classic, so stay tuned for updates.
+
+- Please note: If your IBM Quantum Platform access falls under a plan administrator (Premium Plan, On-Prem Plan, Startup Program, etc.), you will receive guided migration support through your administrator in the coming months. In the meantime, you are welcome to [create a free Open Plan account to explore the new platform](https://quantum.cloud.ibm.com).
+
+- For full details on the early access release and upcoming improvements, [check out the blog](https://www.ibm.com/quantum/blog/iqp-upgrade).
+
 </AccordionItem>
 </Accordion>
 
@@ -390,6 +424,41 @@ Check out the [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions
 </Accordion>
 
   We're hoping these changes make it easier to use Qiskit Functions, and [you can get started with free trials in the catalog today](https://quantum.cloud.ibm.com/functions).
+
+**10 March 2025**
+
+- Latest additions to the Qiskit Functions Catalog
+
+  - [Iskay Quantum Optimizer - A Qiskit Function by Kipu Quantum](/docs/guides/kipu-optimization)
+  - [Singularity Machine Learning - Classification: A Qiskit Function by Multiverse Computing](/docs/guides/multiverse-computing-singularity)
+  - [HI-VQE Chemistry - A Qiskit Function by Qunova Computing](/docs/guides/qunova-chemistry)
+
+
+To get started, explore the [Qiskit Functions documentation](/docs/guides/functions).
+
+**16 September 2024**
+
+- Introducing the Qiskit Functions preview, for IBM Quantum Premium Plan users. To get started, `pip install qiskit-ibm-catalog` and explore the [Qiskit Functions documentation](/docs/guides/functions). With the Qiskit Functions Catalog client, you can submit workloads to abstracted services designed to accelerate your research. Sign in with your existing IBM Quantum Platform credentials.
+
+  The Qiskit Functions Catalog preview provides access to Premium Plan users to explore the available functions, including those written by IBM and those written by other members of our ecosystem. The catalog contains two kinds of functions: circuit functions and application functions.
+
+    - **Circuit functions** provide a simplified interface for running circuits. They receive user-provided abstract circuits and observables as input, then manage synthesis, optimization, and execution of the representative ISA circuit. Circuit functions bring together the latest capabilities in transpilation, error suppression, and error mitigation to make utility-grade performance accessible out of the box. This allows computational scientists to focus on mapping their problems to circuits, rather than building the pattern for each problem from scratch.
+
+    - **Application functions** cover higher-level tasks, like exploring algorithms and domain-specific use cases. Enterprise developers and data scientists may not have the background quantum information science knowledge for working with circuits, and instead hope to bring their domain knowledge to advance quantum computing algorithms and applications. With application functions, users can enter their classical inputs and receive solutions so they can more easily experiment with plugging quantum into their domain-specific workflows.
+
+- With the launch of the Qiskit Functions Catalog, Premium Plan developers can explore the IBM Circuit function. The IBM Circuit function includes the latest AI-powered extensions to Qiskit for circuit synthesis, optimization, and scheduling, as well as advanced error mitigation methods to return the most accurate estimations possible with today's hardware.
+
+  Users can purchase licenses for the following functions contributed by our partners at Q-CTRL, QEDMA, and Algorithmiq.
+
+- **Circuit functions**
+
+  - Q-CTRL is releasing a circuit function that applies AI-driven quantum control techniques, with which users can scale successfully to larger problems.
+  - Algorithmiq is releasing a circuit function that applies TEM (tensor-network error mitigation), an error mitigation method for obtaining estimators with fewer shots than the PEC (probabilistic error cancellation) method.
+  - QEDMA is releasing a circuit function that uses proprietary protocols for efficient and accurate characterization of the noisy QPU operations, and applies error suppression and error mitigation based on the characterization data.
+
+- **Application functions**
+
+  - Q-CTRL is releasing an optimization solver with which users can pass a graph or an objective, and receive solution costs.
 
 </AccordionItem>
 </Accordion>
