@@ -11,9 +11,9 @@ multiple experimental configurations, and interpret the shape of returned data.
 
 ## Quick start example
 
-This example demonstrates the core idea.  It creates a parametric circuit and and five different parameter configurations. The executor automatically runs all five configurations and returns data organized by configuration, with one result per classical register in each quantum program item. 
+This example demonstrates the core idea.  It creates a parametric circuit and and five different parameter configurations. The executor runs all five configurations and returns data organized by configuration, with one result per classical register in each quantum program item. 
 
-The rest of this guide explains how this works in detail and how to build more complex sweeps, including samplomatic-based randomization and inputs.
+The rest of this guide explains how this works and how to build more complex sweeps, including samplomatic-based randomization and inputs.
 
 ```python
 import numpy as np
@@ -36,8 +36,8 @@ program.append(circuit, circuit_arguments=parameter_values)
 # Run and get results
 result = executor.run(program).result()
 
-# result is a list with one entry per program item
-# result[0] is a dict mapping classical register names to data arrays
+# 'result' is a list with one entry per program item
+# 'result[0]' is a dict mapping classical register names to data arrays
 # Output bool arrays have shape (5, 1024, 3)
 #   5 = number of parameter configurations
 #   1024 = number of shots
@@ -64,7 +64,7 @@ Broadcasting only applies to _extrinsic_ axes. The intrinsic axes are always pre
 
 ### Example
 
-Consider a circuit with two parameters that you want to sweep over a 4x3 grid of configurations, varying both parameter values and a noise scale factor:
+Consider a circuit with two parameters that you want to sweep over a 4x3 grid of configurations, varying parameter values and a noise scale factor:
 
 ```python
 import numpy as np
@@ -121,7 +121,7 @@ formatted as an array of boolean values:
 ### Example
 
 If you provide inputs with extrinsic shapes `(4, 1)` and `(3,)`, the broadcast extrinsic
-shape is `(4, 3)`. For a circuit with 1024 shots and a 3-bit classical register:
+shape is `(4, 3)`. The followins code uses a circuit with 1024 shots and a 3-bit classical register:
 
 ```python
 # Input extrinsic shapes: (4, 1) and (3,) → (4, 3)
@@ -139,15 +139,15 @@ config_2_1 = meas_data[2, 1, :, :]  # shape (1024, 3)
 ```
 
 <Admonition type="note">
-Each configuration receives the full shot count specified in the quantum program. Shots are **not** divided among configurations. For example, if you request 1024 shots and have 10 configurations, each configuration runs 1024 shots (10,240 total shots executed).
+Each configuration runs the full shot count specified in the quantum program. Shots are **not** divided among configurations. For example, if you request 1024 shots and have 10 configurations, each configuration runs 1024 shots (10,240 total shots executed).
 </Admonition>
 
 ## Randomization and the `shape` parameter
 
 When using a [samplex,](/docs/guides/directed-execution-model) each element of the extrinsic shape corresponds to an independent circuit
-execution. The samplex typically injects randomness (for example, twirling gates) into each
-execution, so even without explicitly requesting multiple randomizations, each element naturally
-receives its own random realization.
+execution. The samplex typically injects randomness (for example, gate twirling) into each
+execution, so even without explicitly requesting multiple randomizations, each element 
+receives a random realization.
 
 You can use the `shape` parameter to augment the extrinsic shape for the item, effectively
 adding axes that correspond specifically to randomizing the same configuration many times. It must be
@@ -161,7 +161,7 @@ input configuration. Each execution is still randomized by the samplex, but with
 single random realization you don't benefit from averaging over multiple randomizations.
 
 <Admonition type="note">
-If you're accustomed to enabling twirling with a simple flag like `twirling=True`, 
+If you're accustomed to enabling twirling with a simple flag like `twirling=True`, note that 
 the Executor requires you to explicitly request multiple randomizations with the `shape` argument to
 allow your post-processing routines to get the benefits of averaging over multiple 
 randomizations. A single randomization (the default when `shape` is omitted) applies 
@@ -178,7 +178,7 @@ program.append(
     samplex_arguments={
         "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
     },
-    # shape defaults to (10,) - one randomized execution per config
+    # shape defaults to (10,) - one randomized execution per configuration
 )
 # Output shape for "meas": (10, num_shots, creg_size)
 ```
@@ -213,7 +213,7 @@ program.append(
     template,
     samplex=samplex,
     samplex_arguments={
-        "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
+        "parameter_values": np.random.rand(10, 3),  # extrinsic  (10,)
     },
     shape=(2, 14, 10),  # 2×14=28 randomizations per configuration, 10 configurations
 )
@@ -253,17 +253,17 @@ With randomization axes, you can index into specific randomization/parameter com
 result = executor.run(program).result()
 meas_data = result[0]["meas"]  # shape (2, 14, 10, 1024, 3)
 
-# Get all shots for randomization (0, 7) and parameter config 3
+# Get all shots for randomization (0, 7) and parameter configuration 3
 specific = meas_data[0, 7, 3, :, :]  # shape (1024, 3)
 
-# Average over all randomizations for parameter config 5 on bit 2
+# Average over all randomizations for parameter configuration 5 on bit 2
 averaged = meas_data[:, :, 5, :, 2].mean(axis=(0, 1))
 ```
 
 ## Common patterns
 
 ### Sweep a single parameter
-To sweep one parameter while holding others fixed:
+Use code like the following to sweep one parameter while holding others fixed:
 
 ```python
 
