@@ -9,6 +9,9 @@ description: Understand the Qiskit addon tools, which help you build utility-gra
 
 Qiskit addons are a collection of research capabilities for enabling algorithm discovery at the utility scale. These modular software components can plug into a [workflow](/docs/guides/intro-to-patterns) to scale or design new quantum algorithms. Many of these addons are powered by the `qiskit-addon-utils` package. See the [Qiskit addon utilities documentation](https://qiskit.github.io/qiskit-addon-utils/) for more information.
 
+
+## Addons for mapping domain problems
+These addons are particularly useful for preparing efficient quantum circuits based on the application you are building for.
 <CardGroup>
     <Card
       title="AQC-Tensor"
@@ -34,7 +37,12 @@ Qiskit addons are a collection of research capabilities for enabling algorithm d
       linkText="Browse documentation"
     />
 
+</CardGroup>
 
+
+## Optimizing circuits for hardware execution
+The following addons are useful for reducing circuit depth, both generally (for the circuit cutting addon) and when your workload estimates the expectation value of an observable using operator backpropagation.
+<CardGroup>
     <Card
       title="Operator backpropagation"
       description="Operator backpropagation (OBP) reduces circuit depth by trimming operations from the end at the cost of more operator measurements."
@@ -50,16 +58,19 @@ Qiskit addons are a collection of research capabilities for enabling algorithm d
       analyticsName="Documentation page: Circuit cutting"
       linkText="Browse documentation"
     />
+</CardGroup>
 
+## Noise management for expectation value estimation
+These addons are useful for managing noise when building quantum workloads which estimate expectation values of one or more observables.
 
-    <Card
-      title="Matrix-free Measurement Mitigation"
-      description="Matrix-free Measurement Mitigation (M3) is a package for scalable quantum measurement error mitigation that can be computed in parallel."
-      href="https://qiskit.github.io/qiskit-addon-mthree/"
-      analyticsName="Documentation page: M3"
+<CardGroup>
+  <Card
+      title="Propagated noise absorption"
+      description="Propagated noise absorption (PNA) uses Pauli propagation to absorb information from a noise model into a target observable. Measuring this modified observable has the effect of mitigating the noise as represented by the model."
+      href="https://qiskit.github.io/qiskit-addon-pna/"
+      analyticsName="Documentation page: PNA"
       linkText="Browse documentation"
     />
-
     <Card
       title="Shaded lightcones"
       description="The shaded lightcones (SLC) addon uses Pauli propagation to reduce the number of error terms in a noise model that need to be mitigated. This has the effect of reducing the sampling overhead for probabilistic error cancellation (PEC) workflows."
@@ -67,15 +78,20 @@ Qiskit addons are a collection of research capabilities for enabling algorithm d
       analyticsName="Documentation page: SLC"
       linkText="Browse documentation"
     />
-    <Card
-      title="Propagated noise absorption"
-      description="Propagated noise absorption (PNA) uses Pauli propagation to absorb information from a noise model into a target observable. Measuring this modified observable has the effect of mitigating the noise as represented by the model."
-      href="https://qiskit.github.io/qiskit-addon-pna/"
-      analyticsName="Documentation page: PNA"
+    
+</CardGroup>
+
+## Noise management for sampling results
+These addons are useful for managing noise when building sample-based quantum workloads.
+
+<CardGroup>
+<Card
+      title="Matrix-free Measurement Mitigation"
+      description="Matrix-free Measurement Mitigation (M3) is a package for scalable quantum measurement error mitigation that can be computed in parallel."
+      href="https://qiskit.github.io/qiskit-addon-mthree/"
+      analyticsName="Documentation page: M3"
       linkText="Browse documentation"
     />
-
-
     <Card
       title="Sample-based quantum diagonalization"
       description="Sample-based quantum diagonalization (SQD) classically post-processes noisy quantum samples to yield more accurate eigenvalue estimations of quantum system Hamiltonians."
@@ -97,6 +113,18 @@ Qiskit addons are a collection of research capabilities for enabling algorithm d
       description="This addon utilizes a more performant eigensolver to scale SQD chemistry workflows past 30 orbitals an HPC-ready implementation of the SQD addon."
       href="https://qiskit.github.io/qiskit-addon-dice-solver/"
       analyticsName="Documentation page: Dice"
+      linkText="Browse documentation"
+    />
+</CardGroup>
+
+## Supplemental addons
+Lastly, this addon contains many useful helper functions to speed up your development process when using the other addons.
+<CardGroup>
+<Card
+      title="Addon utilities"
+      description="This addon contains functionality which is meant to supplement workflows involving one or more Qiskit addons. For example, this package contains functions for creating Hamiltonians, generating Trotter time evolution circuits, and slicing and combining quantum circuits in time-wise partitions."
+      href="https://qiskit.github.io/qiskit-addon-utils/"
+      analyticsName="Documentation page: addon utilities"
       linkText="Browse documentation"
     />
 </CardGroup>
