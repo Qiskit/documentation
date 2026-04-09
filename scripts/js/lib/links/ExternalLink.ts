@@ -75,8 +75,12 @@ function responseToErrorMessage(
   response: Response,
 ): string | undefined {
   const httpCode = response.status;
-  const isOk = httpCode >= 100 && httpCode < 300;
-  if (isOk) return undefined;
+
+  // ✅ Existence-only validation:
+  // Treat any successful response or redirect as valid.
+  if (httpCode >= 200 && httpCode < 400) {
+    return undefined;
+  }
 
   if (httpCode === 404) return `Could not find link '${link}' (${httpCode})`;
   if (httpCode === 410) return `Link '${link}' has been removed (${httpCode})`;
