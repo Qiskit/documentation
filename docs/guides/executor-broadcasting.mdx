@@ -9,11 +9,11 @@ description: How the Executor handles array inputs and outputs using broadcastin
 The data provided to the Executor primitive can be arranged in a variety of shapes to provide flexibility in a workload through [broadcasting](/docs/guides/primitive-input-output#broadcasting). This guide explains how the Executor handles array inputs and outputs using broadcasting semantics. Understanding these concepts will help you efficiently sweep over parameter values, combine
 multiple experimental configurations, and interpret the shape of returned data.
 
-## Quick start example
+## Quickstart example
 
 This example demonstrates the core idea.  It creates a parametric circuit and and five different parameter configurations. The executor runs all five configurations and returns data organized by configuration, with one result per classical register in each quantum program item. 
 
-The rest of this guide explains how this works and how to build more complex sweeps, including samplomatic-based randomization and inputs.
+The rest of this guide explains how this works and how to build more complex sweeps, including Samplomatic-based randomization and inputs.
 
 ```python
 import numpy as np
@@ -85,7 +85,7 @@ noise_scale = np.array([0.8, 1.0, 1.2])  # shape (3,)
 # Extrinsic shapes: (4, 1) and (3,) → broadcast to (4, 3)
 # Result: 12 total configurations in a 4×3 grid
 
-program.append(
+program.append_samplex_item(
     template,
     samplex=samplex,
     samplex_arguments={
@@ -189,7 +189,7 @@ To run multiple randomizations per configuration, extend the shape with addition
 For example, the following code runs 20 randomizations for each of 10 parameter configurations:
 
 ```python
-program.append(
+program.append_samplex_item(
     template,
     samplex=samplex,
     samplex_arguments={
@@ -209,7 +209,7 @@ Here, the input extrinsic shape `(10,)` broadcasts to the requested shape `(2, 1
 with axes 0 and 1 filled by independent randomizations.
 
 ```python
-program.append(
+program.append_samplex_item(
     template,
     samplex=samplex,
     samplex_arguments={
@@ -234,7 +234,7 @@ that expand to match input dimensions, as is illustrated in the last row of the 
 Examples:
 
 | Input extrinsic | Shape      | Result                                                            |
-|:---------------:|:----------:|:-----------------------------------------------------------------:|
+|---------------|----------|-----------------------------------------------------------------|
 | (10,)           | (10,)      | 10 configurations, 1 randomization each                           |
 | (10,)           | (5, 10)    | 10 configurations, 5 randomizations each                          |
 | (10,)           | (2, 3, 10) | 10 configurations, 2×3=6 randomizations each                      |
