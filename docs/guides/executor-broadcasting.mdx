@@ -3,11 +3,13 @@ title: Broadcasting
 description: How the Executor handles array inputs and outputs using broadcasting semantics
 
 ---
-{/* cspell:ignore broadcastable  */}
 
-# Executor broadcasting semantics
 The data provided to the Executor primitive can be arranged in a variety of shapes to provide flexibility in a workload through [broadcasting](/docs/guides/primitive-input-output#broadcasting). This guide explains how the Executor handles array inputs and outputs using broadcasting semantics. Understanding these concepts will help you efficiently sweep over parameter values, combine
 multiple experimental configurations, and interpret the shape of returned data.
+
+<Admonition type="note">
+The examples in this topic use pseudocode and assume you have defined appropriate circuits, used the Samplomatic pass manager to add boxes and annotations, and used the Samplomatic `build` method to get a template and samplex for each code block, as necessary.
+</Admonition>
 
 ## Quickstart example
 
@@ -31,13 +33,13 @@ circuit.measure_all()
 parameter_values = np.linspace(0, np.pi, 15).reshape(5, 3)
 
 program = QuantumProgram(shots=1024)
-program.append(circuit, circuit_arguments=parameter_values)
+program.append.circuit_item(circuit, circuit_arguments=parameter_values)
 
 # Run and get results
 result = executor.run(program).result()
 
-# 'result' is a list with one entry per program item
-# 'result[0]' is a dict mapping classical register names to data arrays
+# result is a list with one entry per program item
+# result[0] is a dict mapping classical register names to data arrays
 # Output bool arrays have shape (5, 1024, 3)
 #   5 = number of parameter configurations
 #   1024 = number of shots
@@ -57,7 +59,7 @@ Broadcasting only applies to _extrinsic_ axes. The intrinsic axes are always pre
   want to run.
 
 | Input type                               | Intrinsic shape | Example full shape                                  |
-|:----------------------------------------:|:---------------:|:---------------------------------------------------:|
+|----------------------------------------|---------------|---------------------------------------------------|
 | Parameter values (n parameters)          | (n,)            | (5, 3) for five configurations and three parameters |
 | Scalar inputs (for example, noise scale) | ()              | (4,) for four configurations                        |
 | Observables (if applicable)              | varies          | Depends on observable type                          |
@@ -85,7 +87,7 @@ noise_scale = np.array([0.8, 1.0, 1.2])  # shape (3,)
 # Extrinsic shapes: (4, 1) and (3,) → broadcast to (4, 3)
 # Result: 12 total configurations in a 4×3 grid
 
-program.append_samplex_item(
+program.append.samplex_item(
     template,
     samplex=samplex,
     samplex_arguments={
@@ -98,7 +100,7 @@ program.append_samplex_item(
 The shapes are as follows:
 
 | Input              | Full shape | Extrinsic shape | Intrinsic shape |
-|:------------------:|:----------:|:---------------:|:---------------:|
+|------------------|----------|---------------|---------------|
 | `parameter_values` | (4, 1, 2)  | (4, 1)          | (2,)            |
 | `noise_scale`      | (3,)       | (3,)            | ()              |
 | Broadcast          | None       | (4, 3)          | None            |
@@ -114,7 +116,7 @@ The most common output is bitstring data from measurements, which is
 formatted as an array of boolean values:
 
 | Output type             | Intrinsic shape        | Description                      |
-|:-----------------------:|:----------------------:|:--------------------------------:|
+|-----------------------|----------------------|--------------------------------|
 | Classical register data | (num_shots, creg_size) | Bitstring data from measurements |
 | Expectation values      | () or (n_obs,)         | Scalar or per-observable         |
 
@@ -137,7 +139,6 @@ print(meas_data.shape)  # (4, 3, 1024, 3)
 # Access a specific configuration
 config_2_1 = meas_data[2, 1, :, :]  # shape (1024, 3)
 ```
-
 <Admonition type="note">
 Each configuration runs the full shot count specified in the quantum program. Shots are **not** divided among configurations. For example, if you request 1024 shots and have 10 configurations, each configuration runs 1024 shots (10,240 total shots executed).
 </Admonition>
@@ -172,13 +173,13 @@ randomization.
 The following example demonstrates the default behavior:
 
 ```python
-program.append(
+program.append.samplex_item(
     template,
     samplex=samplex,
     samplex_arguments={
         "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
     },
-    # shape defaults to (10,) - one randomized execution per configuration
+    # shape defaults to (10,) - one randomized execution per config
 )
 # Output shape for "meas": (10, num_shots, creg_size)
 ```
@@ -189,7 +190,7 @@ To run multiple randomizations per configuration, extend the shape with addition
 For example, the following code runs 20 randomizations for each of 10 parameter configurations:
 
 ```python
-program.append_samplex_item(
+program.append.samplex_item(
     template,
     samplex=samplex,
     samplex_arguments={
@@ -209,11 +210,11 @@ Here, the input extrinsic shape `(10,)` broadcasts to the requested shape `(2, 1
 with axes 0 and 1 filled by independent randomizations.
 
 ```python
-program.append_samplex_item(
+program.append(
     template,
     samplex=samplex,
     samplex_arguments={
-        "parameter_values": np.random.rand(10, 3),  # extrinsic  (10,)
+        "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
     },
     shape=(2, 14, 10),  # 2×14=28 randomizations per configuration, 10 configurations
 )
@@ -253,10 +254,10 @@ With randomization axes, you can index into specific randomization/parameter com
 result = executor.run(program).result()
 meas_data = result[0]["meas"]  # shape (2, 14, 10, 1024, 3)
 
-# Get all shots for randomization (0, 7) and parameter configuration 3
+# Get all shots for randomization (0, 7) and parameter config 3
 specific = meas_data[0, 7, 3, :, :]  # shape (1024, 3)
 
-# Average over all randomizations for parameter configuration 5 on bit 2
+# Average over all randomizations for parameter config 5 on bit 2
 averaged = meas_data[:, :, 5, :, 2].mean(axis=(0, 1))
 ```
 
@@ -276,7 +277,37 @@ Use code like the following to sweep one parameter while holding others fixed:
         np.full(20, fixed_values[0]),
         np.full(20, fixed_values[1]),
     ])  # shape (20, 3)
+```
+
+### Creating a 2D grid sweep
+To create a grid over two parameters:
+
+```python
+
+# Sweep param 0 over 10 values, param 1 over 8 values, param 2 fixed
+p0 = np.linspace(0, np.pi, 10)[:, np.newaxis, np.newaxis]  # (10, 1, 1)
+p1 = np.linspace(0, np.pi, 8)[np.newaxis, :, np.newaxis]   # (1, 8, 1)
+p2 = np.array([[[0.5]]])                                   # (1, 1, 1)
+
+parameter_values = np.broadcast_arrays(p0, p1, p2)
+parameter_values = np.stack(parameter_values, axis=-1).squeeze()  # (10, 8, 3)
+
+# Extrinsic shape: (10, 8), intrinsic shape: (3,)
+```
+
+### Combining multiple inputs
+
+When combining inputs with different intrinsic shapes, align extrinsic dimensions using
+size-1 axes:
+
+```python
+# 4 parameter configurations, 3 noise scales → 4×3 = 12 total configurations
+parameter_values = np.random.rand(4, 1, 2)  # extrinsic (4, 1), intrinsic (2,)
+noise_scale = np.array([0.8, 1.0, 1.2])     # extrinsic (3,), intrinsic ()
+
+# Broadcasted extrinsic shape: (4, 3)
 ```    
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
