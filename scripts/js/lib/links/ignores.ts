@@ -34,6 +34,7 @@ const FORBIDS_OUR_USER_AGENT = [
   "http://dx.doi.org/10.1145/1278349.1278355",
   "https://academic.oup.com/book/36426",
   "https://crates.io/crates/faer",
+  "https://crates.io/crates/log",
   "https://dl.acm.org/doi/10.1145/237814.237838",
   "https://dl.acm.org/doi/10.1145/237814.237866",
   "https://dl.acm.org/doi/10.1145/3445814.3446706",
@@ -173,6 +174,12 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://auth.quantum.ibm.com/api",
   "https://quantum-computing.cloud.ibm.com",
 
+  // Contains escape characters, but is only the hyperlink text anyway; the actual hyperlink is properly formatted and works
+  "https://en.wikipedia.org/wiki/Time-evolving\_block\_decimation",
+
+  // In an old version of qiskit-ibm-runtime that we won't update
+  "https://qiskit.github.io/qiskit-serverless/migration/migration_from_qiskit_runtime_programs.html",
+  "https://qiskit.github.io/qiskit-serverless/migration/migration\_from\_qiskit\_runtime\_programs.html",
   // Other links that don't seem to exist any more
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
