@@ -127,6 +127,7 @@ const FETCH_RETURNS_405 = [
 const FETCH_FAILS = [
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "https://www.cs.tau.ac.il/\\~nogaa/PDFS/r.pdf", // Escaped version from markdown
+  "https://www.epo.org/en/news-events/press-centre/press-release/2025/1361562",
   "https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/quantum-computing-use-cases-are-getting-real-what-you-need-to-know",
   "https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/quantum-computing-just-might-save-the-planet",
   "https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/solving-chemistrys-toughest-problems-the-quantum-computing-advantage",
@@ -184,7 +185,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://quantum-computing.cloud.ibm.com",
 
   // Contains escape characters, but is only the hyperlink text anyway; the actual hyperlink is properly formatted and works
-  "https://en.wikipedia.org/wiki/Time-evolving\_block\_decimation",
+  "https://en.wikipedia.org/wiki/Time-evolving\\_block\\_decimation",
 
   // In an old version of qiskit-ibm-runtime that we won't update
   "https://qiskit.github.io/qiskit-serverless/migration/migration_from_qiskit_runtime_programs.html",
