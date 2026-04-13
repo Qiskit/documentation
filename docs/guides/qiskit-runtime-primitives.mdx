@@ -1,0 +1,72 @@
+---
+title: Introduction to primitives
+description: Introduction to primitives in Qiskit Runtime, and an explanation of available primitives
+---
+
+# Introduction to primitives
+
+Primitives were created to simplify the most common tasks for quantum computers: namely, sampling quantum states and calculating expectation values. The first Qiskit Runtime primitives ([`EstimatorV2`](/docs/api/qiskit-ibm-runtime/estimator-v2) and [`SamplerV2`](/docs/api/qiskit-ibm-runtime/sampler-v2)) are implementations of the Qiskit [primitives base classes](/docs/guides/primitives). They provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service and are used to access IBM Quantum&reg; hardware.
+
+The newest Qiskit Runtime primitive, [Executor](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.Executor.html) (which is in beta), provides a lower-level interface that gives more visibility and control without sacrificing performance.
+
+<CardGroup>
+    <Card
+      title="Estimator"
+      description="The Estimator primitive computes the expectation values for one or more observables with respect to states prepared by quantum circuits. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
+
+      This primitive has several built-in [error mitigation and suppression techniques](/docs/guides/error-mitigation-and-suppression-techniques) techniques, including dynamical decoupling, Pauli-twirling, gate-folding ZNE, PEA, and PEC. It also supports a `resilience_level` option that allows you to easily configure the cost and accuracy tradeoff."
+      href="/docs/guides/estimator-examples"
+      analyticsName="Qiskit overview page: Estimator examples"
+      linkText="Estimator examples"
+    />
+
+    <Card
+      title="Sampler"
+      description="The Sampler's core task is sampling the output register from the execution of one or more quantum circuits. [Dynamic circuits](/docs/guides/execute-dynamic-circuits) and parameterized circuits are accepted as input (if parametrized circuits are submitted, the parameter values must also be provided). Sampler also supports built-in dynamical decoupling and twirling for [error mitigation and suppression](/docs/guides/error-mitigation-and-suppression-techniques)."
+      href="/docs/sampler-examples"
+      analyticsName="Qiskit overview page: Sampler examples"
+      linkText="Sampler examples"
+    />
+
+        <Card
+      title="Executor (beta)"
+      description="Executor also samples output registers from quantum circuit executions, but it does not have any built in error suppression or mitigation. Instead, it's part of the [directed execution model](/docs/guides/directed-execution-model) that provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side. Executor follows the directives provided in circuit annotations and options, generates and binds parameter values, executes the bound circuits on the hardware, and returns the execution results and metadata. It does not make any implicit decisions for you and gives you full control and transparency."
+      href="/docs/executor-examples"
+      analyticsName="Qiskit overview page: Executor examples"
+      linkText="Executor examples"
+    />
+</CardGroup>
+
+<span id="estimator"></span>
+### Estimator
+
+The Estimator primitive computes the expectation values for one or more observables with respect to states prepared by quantum circuits. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
+
+This primitive has several built-in [error mitigation and suppression techniques](/docs/guides/error-mitigation-and-suppression-techniques) techniques, including dynamical decoupling, Pauli-twirling, gate-folding ZNE, PEA, and PEC. It also supports a `resilience_level` option that allows you to easily configure the cost and accuracy tradeoff.
+
+<span id="sampler"></span>
+### Sampler
+
+The Sampler's core task is sampling the output register from the execution of one or more quantum circuits. [Dynamic circuits](/docs/guides/execute-dynamic-circuits) and parameterized circuits are accepted as input (if parametrized circuits are submitted, the parameter values must also be provided). Sampler also supports built-in dynamical decoupling and twirling for [error mitigation and suppression](/docs/guides/error-mitigation-and-suppression-techniques).
+
+
+<span id="executor"></span>
+### Executor (beta)
+
+Executor also samples output registers from quantum circuit executions, but it does not have any built in error suppression or mitigation. Instead, it's part of the [directed execution model](/docs/guides/directed-execution-model) that provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side. Executor follows the directives provided in circuit annotations and options, generates and binds parameter values, executes the bound circuits on the hardware, and returns the execution results and metadata. It does not make any implicit decisions for you and gives you full control and transparency.
+
+<Admonition type="note">
+The Qiskit package does not yet have a base class for the Executor primitive.
+</Admonition>
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Learn about the [Qiskit primitives](/docs/guides/primitives) that the Qiskit Runtime primitives are based on.
+    - Read [Get started with Estimator](get-started-with-estimator), [Get started with Sampler](get-started-with-sampler), and [Get started with Executor](get-started-with-executor) to implement primitives in your work.
+    - Review detailed [Estimator](/docs/guides/estimator-examples), [Sampler](/docs/guides/sampler-examples), or [Executor](/docs/guides/executor-examples) examples.
+    - See the input and output details for [Estimator](/docs/guides/estimator-input-output), [Executor](/docs/guides/executor-input-output), and [Sampler](/docs/guides/sampler-input-output).
+    - Practice with primitives by working through the [Cost function lesson](/learning/courses/variational-algorithm-design/cost-functions) in IBM Quantum Learning.
+    - See the [EstimatorV2 API reference](/docs/api/qiskit-ibm-runtime/estimator-v2), [SamplerV2 API reference](/docs/api/qiskit-ibm-runtime/sampler-v2), and [Executor API reference](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.Executor.html).
+    - Read [Migrate to V2 primitives](/docs/guides/v2-primitives).
+</Admonition>
