@@ -19,7 +19,7 @@ When you send a job to an IBM&reg; QPU, it is first sent to the job validation s
 <span id="max-shots"></span>
 ## Maximum executions
 
-At most, **10 million** executions are allowed for Sampler jobs (Estimator jobs can be split into smaller sub-jobs, so this limit doesn't apply).  The number of executions is the number of circuits times the number of shots, where the circuits are those generated after PUB elements are broadcasted.
+At most, **10 million** executions are allowed for Sampler jobs due to output size.  The number of executions is the number of circuits times the number of shots, where the circuits are those generated after PUB elements are broadcasted.
 
 For example, if you have a PUB with one circuit and parameters with shape (4, 1), this would render 4 circuits. If you requested 2,000 shots, then the total number of executions is $4 \times 2,000 = 8,000$.
 
