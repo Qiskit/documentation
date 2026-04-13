@@ -126,9 +126,12 @@ const FETCH_RETURNS_405 = [
 // Fetching these links throws an error, but they work in-browser. Not sure why.
 const FETCH_FAILS = [
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
+  "https://www.cs.tau.ac.il/\\~nogaa/PDFS/r.pdf", // Escaped version from markdown
   "https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/quantum-computing-use-cases-are-getting-real-what-you-need-to-know",
   "https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/quantum-computing-just-might-save-the-planet",
+  "https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/solving-chemistrys-toughest-problems-the-quantum-computing-advantage",
   "https://www.mckinsey.com/industries/chemicals/our-insights/the-next-big-thing-quantum-computings-potential-impact-on-chemicals?cid=eml-web",
+  "https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-year-of-quantum-from-concept-to-reality-in-2025",
   // The following link is only accessible through IBM VPN
   "https://w3.ibm.com/w3publisher/w3-privacy-notice",
 ];
@@ -146,6 +149,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   
   // Markdown reference definitions with escaped characters that are extracted as links
   "https://nlopt.readthedocs.io/en/latest/NLopt\\_Algorithms/#controlled-random-search-crs-with-local-mutation",
+  "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin\\_l\\_bfgs\\_b.html",
+  "https://qiskit.org/ecosystem/aer/apidocs/aer\\_library.html",
+  "https://github.com/Qiskit/openqasm3\\_parser",
   "https://csrc.nist.gov/pubs/fips/205/ipd",
   "https://doi.org/10.6028/jres.104.027",
   "https://eprint.iacr.org/2012/090",
@@ -182,7 +188,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
 
   // In an old version of qiskit-ibm-runtime that we won't update
   "https://qiskit.github.io/qiskit-serverless/migration/migration_from_qiskit_runtime_programs.html",
-  "https://qiskit.github.io/qiskit-serverless/migration/migration\_from\_qiskit\_runtime\_programs.html",
+  "https://qiskit.github.io/qiskit-serverless/migration/migration\\_from\\_qiskit\\_runtime\\_programs.html",
   // Other links that don't seem to exist any more
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
