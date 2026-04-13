@@ -143,6 +143,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   // the same status code. Sometimes it's 404, sometimes 503, sometimes 200 etc.
   // They do work whenever I've tested them in a browser.
   "https://csrc.nist.gov/news/2023/three-draft-fips-for-post-quantum-cryptography",
+  
+  // Markdown reference definitions with escaped characters that are extracted as links
+  "https://nlopt.readthedocs.io/en/latest/NLopt\\_Algorithms/#controlled-random-search-crs-with-local-mutation",
   "https://csrc.nist.gov/pubs/fips/205/ipd",
   "https://doi.org/10.6028/jres.104.027",
   "https://eprint.iacr.org/2012/090",
