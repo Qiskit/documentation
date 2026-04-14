@@ -125,6 +125,7 @@ const FETCH_RETURNS_405 = [
 
 // Fetching these links throws an error, but they work in-browser. Not sure why.
 const FETCH_FAILS = [
+  "https://sphincs.org/",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "https://www.cs.tau.ac.il/\\~nogaa/PDFS/r.pdf", // Escaped version from markdown
   "https://www.epo.org/en/news-events/press-centre/press-release/2025/1361562",
