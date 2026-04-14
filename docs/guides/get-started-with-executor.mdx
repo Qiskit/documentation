@@ -5,7 +5,12 @@ description: How to use the Executor primitive in Qiskit Runtime.
 ---
 
 # Get started with the Executor primitive
-The Executor primitive is part of the [directed execution model](/docs/guides/directed-execution-model), which provides more flexibility when customizing error mitigation workflows.
+
+Similar to the [Sampler](/docs/guides/get-started-with-sampler) primitive, Executor samples output registers from quantum circuit executions, but it does not have any built in error suppression or mitigation. Instead, it's part of the [directed execution model](/docs/guides/directed-execution-model) that provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side. Executor follows the directives provided in circuit annotations and options, generates and binds parameter values, executes the bound circuits on the hardware, and returns the execution results and metadata. It does not make any implicit decisions for you and gives you full control and transparency.
+
+<Admonition type="note">
+The Qiskit package does not yet have a base class for the Executor primitive.
+</Admonition>
 
 ## Steps to get started with Executor
 

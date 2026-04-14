@@ -35,33 +35,10 @@ The newest Qiskit Runtime primitive, [Executor](https://qiskit.github.io/qiskit-
     />
 </CardGroup>
 
-<span id="estimator"></span>
-### Estimator
-
-The Estimator primitive computes the expectation values for one or more observables with respect to states prepared by quantum circuits. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
-
-This primitive has several built-in [error mitigation and suppression techniques](/docs/guides/error-mitigation-and-suppression-techniques) techniques, including dynamical decoupling, Pauli-twirling, gate-folding ZNE, PEA, and PEC. It also supports a `resilience_level` option that allows you to easily configure the cost and accuracy tradeoff.
-
-<span id="sampler"></span>
-### Sampler
-
-The Sampler's core task is sampling the output register from the execution of one or more quantum circuits. [Dynamic circuits](/docs/guides/execute-dynamic-circuits) and parameterized circuits are accepted as input (if parametrized circuits are submitted, the parameter values must also be provided). Sampler also supports built-in dynamical decoupling and twirling for [error mitigation and suppression](/docs/guides/error-mitigation-and-suppression-techniques).
-
-
-<span id="executor"></span>
-### Executor (beta)
-
-Executor also samples output registers from quantum circuit executions, but it does not have any built in error suppression or mitigation. Instead, it's part of the [directed execution model](/docs/guides/directed-execution-model) that provides the ingredients to capture design intents on the client side, and shifts the costly generation of circuit variants to the server side. Executor follows the directives provided in circuit annotations and options, generates and binds parameter values, executes the bound circuits on the hardware, and returns the execution results and metadata. It does not make any implicit decisions for you and gives you full control and transparency.
-
-<Admonition type="note">
-The Qiskit package does not yet have a base class for the Executor primitive.
-</Admonition>
-
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
     - Learn about the [Qiskit primitives](/docs/guides/primitives) that the Qiskit Runtime primitives are based on.
-    - Read [Get started with Estimator](get-started-with-estimator), [Get started with Sampler](get-started-with-sampler), and [Get started with Executor](get-started-with-executor) to implement primitives in your work.
     - Review detailed [Estimator](/docs/guides/estimator-examples), [Sampler](/docs/guides/sampler-examples), or [Executor](/docs/guides/executor-examples) examples.
     - See the input and output details for [Estimator](/docs/guides/estimator-input-output), [Executor](/docs/guides/executor-input-output), and [Sampler](/docs/guides/sampler-input-output).
     - Practice with primitives by working through the [Cost function lesson](/learning/courses/variational-algorithm-design/cost-functions) in IBM Quantum Learning.
