@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2
 
 # FakeJohannesburgV2
 
-<Class id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/johannesburg/fake_johannesburg.py#L21-L38" signature="FakeJohannesburgV2" modifiers="class">
+<Class id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/johannesburg/fake_johannesburg.py#L19-L36" signature="FakeJohannesburgV2" modifiers="class">
   Bases: `FakeBackendV2`
 
   A fake Johannesburg V2 backend.
@@ -23,7 +23,20 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2
   15 ↔ 16 ↔ 17 ↔ 18 ↔ 19
   ```
 
-  FakeBackendV2 initializer.
+  Initialize a BackendV2 based backend
+
+  **Parameters**
+
+  *   **provider** – An optional backwards reference to the provider object that the backend is from
+  *   **name** – An optional name for the backend
+  *   **description** – An optional description of the backend
+  *   **online\_date** – An optional datetime the backend was brought online
+  *   **backend\_version** – An optional backend version string. This differs from the [`version`](/docs/api/qiskit/qiskit.providers.BackendV2#version) attribute as [`version`](/docs/api/qiskit/qiskit.providers.BackendV2#version) is for the abstract `Backend` abstract interface version of the object while `backend_version` is for versioning the backend itself.
+  *   **fields** – kwargs for the values to use to override the default options.
+
+  **Raises**
+
+  **AttributeError** – If a field is specified that’s outside the backend’s options
 
   ## Attributes
 
@@ -60,7 +73,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2
   ### dtm
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.dtm">
-    Return the system time resolution of output signals
+    Return the system time resolution of output signals.
 
     **Returns**
 
@@ -82,6 +95,8 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2
   ### max\_circuits
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.max_circuits">
+    Return the maximum number of circuits that can be run in a single job.
+
     This property used to return the max\_experiments value from the backend configuration but this value is no longer an accurate representation of backend circuit limits. New fields will be added to indicate new limits.
   </Attribute>
 
@@ -187,7 +202,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2
 
   ### check\_faulty
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L172-L204" signature="check_faulty(circuit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L163-L195" signature="check_faulty(circuit)">
     Check if the input circuit uses faulty qubits or edges.
 
     **Parameters**
@@ -205,7 +220,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2
 
   ### configuration
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L168-L170" signature="configuration()">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L159-L161" signature="configuration()">
     Return the backend configuration.
 
     **Return type**
@@ -215,8 +230,8 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2
 
   ### properties
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L155-L166" signature="properties(refresh=False)">
-    Return the backend properties
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L146-L157" signature="properties(refresh=False)">
+    Return the backend properties.
 
     **Parameters**
 
@@ -257,8 +272,8 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2
 
   ### refresh
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L388-L459" signature="refresh(service, use_fractional_gates=False)">
-    Update the data files from its real counterpart
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L379-L451" signature="refresh(service, use_fractional_gates=False)">
+    Update the data files from its real counterpart.
 
     This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation:
 
@@ -285,7 +300,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L274-L303" signature="run(run_input, **options)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L266-L295" signature="run(run_input, **options)">
     Run on the fake backend using a simulator.
 
     This method runs circuit jobs (an individual or a list of QuantumCircuit) using BasicSimulator or Aer simulator and returns a [`Job`](/docs/api/qiskit/qiskit.providers.Job) object.
@@ -326,7 +341,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2
 
   ### status
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L137-L153" signature="status()">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L129-L144" signature="status()">
     Return the backend status.
 
     **Returns**
