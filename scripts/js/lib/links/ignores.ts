@@ -151,9 +151,13 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://csrc.nist.gov/news/2023/three-draft-fips-for-post-quantum-cryptography",
   
   // Markdown reference definitions with escaped characters that are extracted as links
+  // Note: Some URLs are extracted with /_ instead of \_ depending on the markdown parser
   "http://nlopt.readthedocs.io/en/latest/NLopt\\_Algorithms/",
+  "http://nlopt.readthedocs.io/en/latest/NLopt/_Algorithms/",
   "https://nlopt.readthedocs.io/en/latest/NLopt\\_Algorithms/#controlled-random-search-crs-with-local-mutation",
   "https://qiskit.org/ecosystem/aer/apidocs/aer\\_library.html",
+  "https://qiskit.org/ecosystem/aer/apidocs/aer/_library.html",
+  "https://optuna.readthedocs.io/en/stable/tutorial/20/_recipes/009/_ask/_and/_tell.html",
   "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin\\_l\\_bfgs\\_b.html",
   "https://github.com/Qiskit/openqasm3\\_parser",
   "https://csrc.nist.gov/pubs/fips/205/ipd",
