@@ -25,8 +25,14 @@ export class ExternalLink {
       );
     }
 
-    // We strip anchors.
-    this.value = linkString.split("#", 2)[0];
+    // Normalize URL to handle escape characters, then strip anchors
+    try {
+      const normalized = new URL(linkString).href;
+      this.value = normalized.split("#", 2)[0];
+    } catch {
+      // If URL parsing fails, fall back to original behavior
+      this.value = linkString.split("#", 2)[0];
+    }
     this.originFiles = new Set(originFiles);
   }
 

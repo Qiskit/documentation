@@ -16,7 +16,7 @@ import { ExternalLink } from "./ExternalLink.js";
 
 test("ExternalLink constructor ignores anchors", () => {
   const link = new ExternalLink("https://ibm.com#my-anchor", []);
-  expect(link.value).toEqual("https://ibm.com");
+  expect(link.value).toEqual("https://ibm.com/");
 });
 
 test.describe("ExternalLink.check()", () => {
@@ -42,7 +42,7 @@ test.describe("ExternalLink.check()", () => {
     let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
     const result = await link.check();
     expect(result).toEqual(
-      "❌ Could not find link 'https://bad-link.com' (404). Appears in:\n    /testorigin.mdx",
+      "❌ Could not find link 'https://bad-link.com/' (404). Appears in:\n    /testorigin.mdx",
     );
   });
 
@@ -51,7 +51,7 @@ test.describe("ExternalLink.check()", () => {
     let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
     const result = await link.check();
     expect(result).toEqual(
-      "❌ Link 'https://bad-link.com' has been removed (410). Appears in:\n    /testorigin.mdx",
+      "❌ Link 'https://bad-link.com/' has been removed (410). Appears in:\n    /testorigin.mdx",
     );
   });
 
@@ -60,7 +60,7 @@ test.describe("ExternalLink.check()", () => {
     let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
     const result = await link.check();
     expect(result).toEqual(
-      "❌ Link 'https://bad-link.com' returned unexpected code: 502. Appears in:\n    /testorigin.mdx",
+      "❌ Link 'https://bad-link.com/' returned unexpected code: 502. Appears in:\n    /testorigin.mdx",
     );
   });
 
@@ -69,7 +69,7 @@ test.describe("ExternalLink.check()", () => {
     let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
     const result = await link.check();
     expect(result).toEqual(
-      "❌ Failed to fetch 'https://bad-link.com': some issue. Appears in:\n    /testorigin.mdx",
+      "❌ Failed to fetch 'https://bad-link.com/': some issue. Appears in:\n    /testorigin.mdx",
     );
   });
 
