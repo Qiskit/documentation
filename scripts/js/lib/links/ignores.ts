@@ -168,6 +168,10 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_status_schema.json",
   "https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json",
 
+  // These links should work when redirects are in place.
+  "/docs/guides/configure-error-mitigation",
+  "/docs/guides/configure-error-suppression",
+
   // These links are from old IQP and do not work any more
   "https://auth.quantum-computing.ibm.com/api",
   "https://auth.quantum.ibm.com/api",
