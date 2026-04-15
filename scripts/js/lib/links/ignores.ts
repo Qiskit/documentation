@@ -134,6 +134,7 @@ const FETCH_FAILS = [
   "https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/solving-chemistrys-toughest-problems-the-quantum-computing-advantage",
   "https://www.mckinsey.com/industries/chemicals/our-insights/the-next-big-thing-quantum-computings-potential-impact-on-chemicals?cid=eml-web",
   "https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-year-of-quantum-from-concept-to-reality-in-2025",
+  "https://thequantuminsider.com/2024/10/12/ibm-quantum-roadmap-guide-scaling-and-expanding-the-usefulness-of-quantum-computing/",
   // The following link is only accessible through IBM VPN
   "https://w3.ibm.com/w3publisher/w3-privacy-notice",
 ];
@@ -150,7 +151,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://csrc.nist.gov/news/2023/three-draft-fips-for-post-quantum-cryptography",
   
   // Markdown reference definitions with escaped characters that are extracted as links
+  "http://nlopt.readthedocs.io/en/latest/NLopt\\_Algorithms/",
   "https://nlopt.readthedocs.io/en/latest/NLopt\\_Algorithms/#controlled-random-search-crs-with-local-mutation",
+  "https://qiskit.org/ecosystem/aer/apidocs/aer\\_library.html",
   "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin\\_l\\_bfgs\\_b.html",
   "https://github.com/Qiskit/openqasm3\\_parser",
   "https://csrc.nist.gov/pubs/fips/205/ipd",
