@@ -10,9 +10,25 @@ description: Understand the Qiskit addon tools, which help you build utility-gra
 Qiskit addons are a collection of research capabilities for enabling algorithm discovery at the utility scale. These modular software components build upon Qiskit’s performant foundation and can plug into a [workflow](/docs/guides/intro-to-patterns) to scale or design new quantum algorithms.
 
 
-## Addons for mapping domain problems
-These capabilities are useful for mapping domain problems into quantum operators and circuits for execution on quantum computer.
+## Map domain problems
+These capabilities specialize in mapping domain problems into quantum operators and circuits for execution on a quantum computer.
 <CardGroup>
+    <Card
+      title="Optimization Mapper"
+      description="Model optimization problems and map them down into representations that can be understood by a quantum computer."
+      href="https://qiskit.github.io/qiskit-addon-opt-mapper/"
+      analyticsName="Documentation page: Optimization mapper"
+      linkText="Browse documentation"
+    />
+
+    <Card
+      title="Fermionic mapper"
+      description="Model fermionic quantum systems and map their representation to qubit operators and circuits."
+      href="https://qiskit.github.io/qiskit-fermions/"
+      analyticsName="Documentation page: Fermionic mapper"
+      linkText="Browse documentation"
+    />
+
     <Card
       title="AQC-Tensor"
       description="Approximate quantum compilation with tensor networks (AQC-Tensor) enables the construction of high-fidelity circuits with reduced depth."
@@ -29,18 +45,10 @@ These capabilities are useful for mapping domain problems into quantum operators
       linkText="Browse documentation"
     />
 
-    <Card
-      title="Optimization Mapper"
-      description="Model optimization problems and map them down into representations that can be understood by a quantum computer."
-      href="https://qiskit.github.io/qiskit-addon-opt-mapper/"
-      analyticsName="Documentation page: Optimization mapper"
-      linkText="Browse documentation"
-    />
-
 </CardGroup>
 
 
-## Optimizing circuits for hardware execution
+## Optimize circuits for hardware execution
 These capabilities are useful for reducing circuit depth and typically come with an increased sampling overhead.
 <CardGroup>
     <Card
@@ -60,8 +68,8 @@ These capabilities are useful for reducing circuit depth and typically come with
     />
 </CardGroup>
 
-## Noise management for expectation value estimation
-These addons are useful for managing noise when building quantum workloads which estimate expectation values of one or more observables.
+## Manage noise for expectation value estimation
+Use the following addons to manage noise when building quantum workloads that estimate expectation values of observables.
 
 <CardGroup>
   <Card
@@ -81,17 +89,11 @@ These addons are useful for managing noise when building quantum workloads which
     
 </CardGroup>
 
-## Noise management for sampling results
-These capabilities are useful for managing noise on sampling results.
+## Manage noise for sampling results
+Manage noise when sampling results with the following addons.
 
 <CardGroup>
-<Card
-      title="Matrix-free Measurement Mitigation"
-      description="Matrix-free Measurement Mitigation (M3) is a package for scalable quantum measurement error mitigation that can be computed in parallel."
-      href="https://qiskit.github.io/qiskit-addon-mthree/"
-      analyticsName="Documentation page: M3"
-      linkText="Browse documentation"
-    />
+
     <Card
       title="Sample-based quantum diagonalization"
       description="Sample-based quantum diagonalization (SQD) classically post-processes noisy quantum samples to yield more accurate eigenvalue estimations of quantum system Hamiltonians."
@@ -109,12 +111,22 @@ These capabilities are useful for managing noise on sampling results.
     />
 
     <Card
-      title="Dice eigensolver"
-      description="This addon utilizes a more performant eigensolver to scale SQD chemistry workflows past 30 orbitals an HPC-ready implementation of the SQD addon."
-      href="https://qiskit.github.io/qiskit-addon-dice-solver/"
-      analyticsName="Documentation page: Dice"
+      title="Measurement post-selection"
+      description="Incorporate measurement post selection transpiler passes to filter out non-Markovian noise in your circuits with the utilities addon."
+      href="https://qiskit.github.io/qiskit-addon-utils/apidocs/qiskit_addon_utils.noise_management.post_selection.transpiler.passes.html"
+      analyticsName="Documentation page for post-selection"
+      linkText="Read API reference"
+    />
+
+    <Card
+      title="Matrix-free Measurement Mitigation"
+      description="Matrix-free Measurement Mitigation (M3) is a package for scalable quantum measurement error mitigation that can be computed in parallel."
+      href="https://qiskit.github.io/qiskit-addon-mthree/"
+      analyticsName="Documentation page: M3"
       linkText="Browse documentation"
     />
+
+    
 </CardGroup>
 
 ## Supplemental addons
