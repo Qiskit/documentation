@@ -33,7 +33,7 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
             └────────┘└────────┘     └──────┘└───────────┘
   ```
 
-  Here *Carry* and *Sum* gates correspond to the gates introduced in \[1]. *Carry\_dg* correspond to the inverse of the *Carry* gate. Note that in this implementation the input register qubits are ordered as all qubits from the first input register, followed by all qubits from the second input register. This is different ordering as compared to Figure 2 in \[1], which leads to a different drawing of the circuit.
+  Here *Carry* and *Sum* gates correspond to the gates introduced in \[1]. *Carry\_dg* correspond to the inverse of the *Carry* gate. Note that in this implementation the input register qubits are ordered as all qubits from the first input register, followed by all qubits from the second input register. This is a different ordering as compared to Figure 2 in \[1], which leads to a different drawing of the circuit.
 
   <Admonition title="See also" type="note">
     The following generic gate objects perform additions, like this circuit class, but allow the compiler to select the optimal decomposition based on the context. Specific implementations can be set via the [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), e.g. this circuit can be chosen via `Adder=["ripple_v95"]`.

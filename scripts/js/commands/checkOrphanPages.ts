@@ -18,7 +18,7 @@ import { hideBin } from "yargs/helpers";
 import { flatten } from "lodash-es";
 
 import { TocEntry } from "../lib/api/generateToc.js";
-import { readJsonFile } from "../lib/fs";
+import { readJsonFile } from "../lib/fs.js";
 
 interface Arguments {
   [x: string]: unknown;
@@ -86,9 +86,11 @@ async function findExistentUrls(directory: string): Promise<string[]> {
 
 async function findTocFiles(includeApis: boolean): Promise<string[]> {
   const globs = [
-    "{docs,learning}/**/_toc.json",
-    includeApis ? "docs/api/**/_toc.json" : "!docs/api/**",
-  ];
+    ["{docs,learning}/**/_toc.json"],
+    includeApis
+      ? ["docs/api/**/_toc.json"]
+      : ["!docs/api/**", "docs/api/functions/_toc.json"],
+  ].flat();
   return globby(globs);
 }
 

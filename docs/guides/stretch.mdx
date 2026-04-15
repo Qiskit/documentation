@@ -15,7 +15,7 @@ A common use case of `stretch` is to apply dynamical decoupling to an idling qub
 
 For example, we can use `stretch` to apply an XX dynamical decoupling sequence to qubit 1, for the duration of the conditional block applied to qubit 0, as illustrated by the following diagram:
 
-![Image illustrating the following circuit](/docs/images/guides/stretch/stretch.avif)
+![Image illustrating the following circuit](/docs/images/guides/stretch/stretch.svg)
 
 The corresponding circuit would look like the following. Note that a pair of barriers is needed to define the boundaries of this relative timing.
 
@@ -192,7 +192,7 @@ In the following image, based on the example output, `foo` corresponds to the st
 
 Use the sliders at the bottom, the controls at the top (hover over your output image to reveal these), and the legend on the side of the output to customize the view. Hover over the image to view exact data.
 
-For full details, see the [Visualize circuit timing](/docs/guides/visualize-circuit-timing#visualize-timings) topic.
+For full details, see the [Visualize circuit timing](/docs/guides/qiskit-runtime-circuit-timing) topic.
 
 ## Qiskit Runtime limitations
 
@@ -231,7 +231,7 @@ Support for `stretch` in Qiskit Runtime is currently experimental and has the fo
         circuit.barrier((q0, q1))
          ```
 
-        ![Illustration of the previous code output](/docs/images/guides/stretch/bad-barrier-region.avif 'Invalid use of stretch in barrier regions')
+        ![Illustration of the previous code output](/docs/images/guides/stretch/bad-barrier-region.svg 'Invalid use of stretch in barrier regions')
 
      </TabItem>
      <TabItem value="Valid" label="Valid">
@@ -245,7 +245,7 @@ Support for `stretch` in Qiskit Runtime is currently experimental and has the fo
         circuit.barrier((q0, q1))
         ```
 
-        ![Illustration of the previous code output](/docs/images/guides/stretch/good-barrier-region.avif 'Valid use of stretch in a barrier region')
+        ![Illustration of the previous code output](/docs/images/guides/stretch/good-barrier-region.svg 'Valid use of stretch in a barrier region')
 
      </TabItem>
     </Tabs>

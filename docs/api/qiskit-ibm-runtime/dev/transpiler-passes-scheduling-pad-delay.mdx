@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
 # PadDelay
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py#L27-L110" signature="PadDelay(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py#L27-L109" signature="PadDelay(*args, **kwargs)" modifiers="class">
   Bases: [`BlockBasePadder`](transpiler-passes-scheduling-block-base-padder "qiskit_ibm_runtime.transpiler.passes.scheduling.block_base_padder.BlockBasePadder")
 
   Padding idle time with Delay instructions.
@@ -29,14 +29,13 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
   See [`BlockBasePadder`](transpiler-passes-scheduling-block-base-padder "qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder") pass for details.
 
-  Create new padding delay pass.
-
   **Parameters**
 
   *   **durations** – Durations of instructions to be used in scheduling.
   *   **fill\_very\_end** – Set `True` to fill the end of circuit with delay.
   *   **schedule\_idle\_qubits** – Set to true if you’d like a delay inserted on idle qubits. This is useful for timeline visualizations, but may cause issues for execution on large backends.
   *   **block\_ordering\_callable** – A callable used to produce an ordering of the nodes to minimize the number of blocks needed. If not provided, `block_order_op_nodes()` will be used.
+  *   **target** – The backend compilation target.
 
   ## Attributes
 
@@ -70,7 +69,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
     **Returns**
 
-    If on transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
+    If a transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
 
     **Return type**
 
@@ -86,7 +85,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
     *   **passmanager\_ir** (*Any*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
-    *   **callback** (*Callable | None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** (*Callable | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -109,7 +108,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L107-L131" signature="run(dag)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L106-L130" signature="run(dag)">
     Run the padding pass on `dag`.
 
     **Parameters**

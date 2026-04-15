@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.options.TwirlingOptions
 
 # TwirlingOptions
 
-<Class id="qiskit_ibm_runtime.options.TwirlingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/twirling_options.py#L28-L109" signature="TwirlingOptions(enable_gates=Unset, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.TwirlingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/twirling_options.py#L28-L122" signature="TwirlingOptions(enable_gates=Unset, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset)" modifiers="class">
   Bases: `object`
 
   Twirling options.
@@ -28,7 +28,7 @@ python_api_name: qiskit_ibm_runtime.options.TwirlingOptions
   <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.enable_gates" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
     Whether to apply 2-qubit Clifford gate twirling.
 
-    Default: `False`.
+    Default: - For the Sampler: `False`. - For the Estimator: If `enables_gates` is `Unset`, it is determined by the server according to the resilience level: it is `False` for resilience levels 0 and 1, and `True` for resilience level 2.
   </Attribute>
 
   ### enable\_measure
@@ -36,7 +36,7 @@ python_api_name: qiskit_ibm_runtime.options.TwirlingOptions
   <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.enable_measure" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
     Whether to enable twirling to measurement instructions, as long as the measurement is not involved within a conditional block.
 
-    Default: `True` for `Estimator`, `False` for `Sampler`.
+    Default: - For the Sampler: `False`. - For the Estimator: If `enable_measure` is `Unset`, it is determined by the server according to the resilience level: it is `False` for resilience level 0, and `True` for resilience levels 1 and 2.
   </Attribute>
 
   ### num\_randomizations
