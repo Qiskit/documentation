@@ -152,7 +152,6 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   // Markdown reference definitions with escaped characters that are extracted as links
   "https://nlopt.readthedocs.io/en/latest/NLopt\\_Algorithms/#controlled-random-search-crs-with-local-mutation",
   "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin\\_l\\_bfgs\\_b.html",
-  "https://qiskit.org/ecosystem/aer/apidocs/aer\\_library.html",
   "https://github.com/Qiskit/openqasm3\\_parser",
   "https://csrc.nist.gov/pubs/fips/205/ipd",
   "https://doi.org/10.6028/jres.104.027",
