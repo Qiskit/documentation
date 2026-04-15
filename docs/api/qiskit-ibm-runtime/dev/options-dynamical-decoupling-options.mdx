@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
 
 # DynamicalDecouplingOptions
 
-<Class id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/dynamical_decoupling_options.py#L20-L63" signature="DynamicalDecouplingOptions(enable=Unset, sequence_type=Unset, extra_slack_distribution=Unset, scheduling_method=Unset, skip_reset_qubits=Unset)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/dynamical_decoupling_options.py#L20-L67" signature="DynamicalDecouplingOptions(enable=Unset, sequence_type=Unset, extra_slack_distribution=Unset, scheduling_method=Unset, skip_reset_qubits=Unset)" modifiers="class">
   Bases: `object`
 
   Options for dynamical decoupling (DD).
@@ -34,12 +34,17 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
   ### extra\_slack\_distribution
 
   <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.extra_slack_distribution" attributeTypeHint="UnsetType | Literal['middle', 'edges']" attributeValue="Unset">
-    Where to put extra timing delays due to rounding issues. Rounding issues arise because the discrete time step `dt` of the system cannot be divided. This option takes following values.
+    Where to put extra timing delays due to rounding issues.
+
+    Rounding issues arise because the discrete time step `dt` of the system cannot be divided. This option takes following values.
 
     Default: `"middle"`.
 
     *   `"middle"`: Put the extra slack to the interval at the middle of the sequence.
-    *   `"edges"`: Divide the extra slack as evenly as possible into intervals at beginning and end of the sequence.
+
+    *   **`"edges"`: Divide the extra slack as evenly as possible into intervals at**
+
+        beginning and end of the sequence.
   </Attribute>
 
   ### scheduling\_method
