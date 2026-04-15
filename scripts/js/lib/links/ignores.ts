@@ -161,6 +161,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin\\_l\\_bfgs\\_b.html",
   "https://github.com/Qiskit/openqasm3\\_parser",
   "https://csrc.nist.gov/pubs/fips/205/ipd",
+  "https://csrc.nist.gov/pubs/fips/203/ipd",
   "https://doi.org/10.6028/jres.104.027",
   "https://eprint.iacr.org/2012/090",
   "https://finance.yahoo.com/quote/8801.T",
