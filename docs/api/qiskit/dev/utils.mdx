@@ -678,7 +678,7 @@ from qiskit.utils import LazyImportTester
 
 #### LazyImportTester
 
-<Class id="qiskit.utils.LazyImportTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L242-L324" signature="qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
+<Class id="qiskit.utils.LazyImportTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L242-L330" signature="qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
   Bases: [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.lazy_tester.LazyDependencyManager")
 
   A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
@@ -686,10 +686,10 @@ from qiskit.utils import LazyImportTester
   **Parameters**
 
   *   **name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]] |* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*)
-  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – the name of this optional dependency.
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) – a callback that is called immediately after the availability of the library is tested with the result. This will only be called once.
+  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – how to install this optional dependency. Passed to [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") as the `pip_install` parameter.
+  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – an extra message to include in the error raised if this is required.
 
   **Raises**
 
@@ -698,7 +698,7 @@ from qiskit.utils import LazyImportTester
 
 #### LazySubprocessTester
 
-<Class id="qiskit.utils.LazySubprocessTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L327-L364" signature="qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
+<Class id="qiskit.utils.LazySubprocessTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L333-L376" signature="qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
   Bases: [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.lazy_tester.LazyDependencyManager")
 
   A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
@@ -706,10 +706,10 @@ from qiskit.utils import LazyImportTester
   **Parameters**
 
   *   **command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*)
-  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – the name of this optional dependency.
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) – a callback that is called immediately after the availability of the library is tested with the result. This will only be called once.
+  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – how to install this optional dependency. Passed to [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") as the `pip_install` parameter.
+  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – an extra message to include in the error raised if this is required.
 
   **Raises**
 
