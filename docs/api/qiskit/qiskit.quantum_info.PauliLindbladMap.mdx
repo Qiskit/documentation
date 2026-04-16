@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.PauliLindbladMap
 
 # PauliLindbladMap
 
-<Class id="qiskit.quantum_info.PauliLindbladMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.PauliLindbladMap(data, /, num_qubits=None)" modifiers="class">
+<Class id="qiskit.quantum_info.PauliLindbladMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.PauliLindbladMap(data, /, num_qubits=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A Pauli Lindblad map stored in a qubit-sparse format.
@@ -21,7 +21,7 @@ $$
 \Lambda\bigl[\circ\bigr] = \exp\left(\sum_{P \in K} \lambda_P (P \circ P - \circ)\right)
 $$
 
-  where $K$ is a subset of $n$-qubit Pauli operators, and the rates, or coefficients, $\lambda_P$ are real numbers. When all the rates $\lambda_P$ are non-negative, this corresponds to a completely positive and trace preserving map. The sum in the exponential is called the generator, and each individual term the generators. To simplify notation in the rest of the documention, we denote $L(P)\bigl[\circ\bigr] = P \circ P - \circ$.
+  where $K$ is a subset of $n$-qubit Pauli operators, and the rates, or coefficients, $\lambda_P$ are real numbers. When all the rates $\lambda_P$ are non-negative, this corresponds to a completely positive and trace preserving map. The sum in the exponential is called the generator, and each individual term the generators. To simplify notation in the rest of the documentation, we denote $L(P)\bigl[\circ\bigr] = P \circ P - \circ$.
 
   ## Quasi-probability representation
 
@@ -61,7 +61,7 @@ $$
 
   #### GeneratorTerm
 
-  <Class id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/__init__.py" signature="GeneratorTerm(rate, qubit_sparse_pauli)" modifiers="class">
+  <Class id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/quantum_info/__init__.py" signature="GeneratorTerm(rate, qubit_sparse_pauli)" modifiers="class">
     Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
     A single term from a complete [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap").
@@ -213,7 +213,7 @@ $$
   <Function id="qiskit.quantum_info.PauliLindbladMap.clear" signature="clear()">
     Clear all the generator terms from this map, making it equal to the identity map again.
 
-    This does not change the capacity of the internal allocations, so subsequent addition or substraction operations resulting from composition may not need to reallocate.
+    This does not change the capacity of the internal allocations, so subsequent addition or subtraction operations resulting from composition may not need to reallocate.
 
     **Examples**
 
@@ -431,6 +431,22 @@ $$
     Calculate the $\gamma$ for the map.
   </Function>
 
+  ### generators
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.generators" signature="generators()">
+    Get the generators of the map.
+
+    This is an alias for [`get_qubit_sparse_pauli_list_copy()`](#qiskit.quantum_info.PauliLindbladMap.get_qubit_sparse_pauli_list_copy "qiskit.quantum_info.PauliLindbladMap.get_qubit_sparse_pauli_list_copy"), providing a more convenient name that aligns with the naming conventions used in Aer and Runtime for similar classes.
+
+    **Returns**
+
+    A copy of the map’s generator terms.
+
+    **Return type**
+
+    [QubitSparsePauliList](qiskit.quantum_info.QubitSparsePauliList "qiskit.quantum_info.QubitSparsePauliList")
+  </Function>
+
   ### get\_qubit\_sparse\_pauli\_list\_copy
 
   <Function id="qiskit.quantum_info.PauliLindbladMap.get_qubit_sparse_pauli_list_copy" signature="get_qubit_sparse_pauli_list_copy()">
@@ -638,12 +654,12 @@ $$
   ### simplify
 
   <Function id="qiskit.quantum_info.PauliLindbladMap.simplify" signature="simplify(tol=1e-08)">
-    Sum any like terms in the generator, removing them if the resulting rate has an absolute value within tolerance of zero. This also removes terms whose Pauli operator is proportional to the identity, as the correponding generator is actually the zero map.
+    Sum any like terms in the generator, removing them if the resulting rate has an absolute value within tolerance of zero. This also removes terms whose Pauli operator is proportional to the identity, as the corresponding generator is actually the zero map.
 
     As a side effect, this sorts the generators into a fixed canonical order.
 
     <Admonition title="Note" type="note">
-      When using this for equality comparisons, note that floating-point rounding and the non-associativity fo floating-point addition may cause non-zero coefficients of summed terms to compare unequal. To compare two observables up to a tolerance, it is safest to compare the canonicalized difference of the two observables to zero.
+      When using this for equality comparisons, note that floating-point rounding and the non-associativity of floating-point addition may cause non-zero coefficients of summed terms to compare unequal. To compare two observables up to a tolerance, it is safest to compare the canonicalized difference of the two observables to zero.
     </Admonition>
 
     **Parameters**
