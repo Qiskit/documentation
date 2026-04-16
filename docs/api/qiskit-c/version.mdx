@@ -12,11 +12,15 @@ Qiskit’s version can be queried using a set of compiler macros.
 
 **QISKIT\_VERSION**
 
-A human-readable version as `char*`. For example: `"2.1.0rc1"`.
+A human-readable version as `char*`. For example: `"2.1.0-rc1"`.
 
 **QISKIT\_VERSION\_HEX**
 
-The version number as 4-byte hexadecimal. The format is `0xMMmmppls`, where `M` is the major, `m` is the minor, `p` is the patch, `l` is the release level and `s` is the serial. For example, 2.1.0rc1 is `0x020100C1`.
+The version number as 4-byte hexadecimal. The format is `0xMMmmppls`, where `M` is the major, `m` is the minor, `p` is the patch, `l` is the release level and `s` is the serial. For example, 2.1.0-rc1 is `0x020100C1`.
+
+Note that final versions, such as `2.1.0`, will always end with `0xF0` in the last byte.
+
+See [`qk_api_version()`](#c.qk_api_version "qk_api_version") for the runtime version of this.
 
 **QISKIT\_VERSION\_MAJOR**
 
@@ -32,11 +36,16 @@ The patch release version.
 
 **QISKIT\_RELEASE\_LEVEL**
 
-The release level: `0xA` for the unreleased dev (or alpha) version, `0xC` for the release candidate, and `0xF` for the stable (or final) version.
+The release level:
+
+*   `0xA` for an unreleased dev (or alpha) version
+*   `0xB` for a beta version
+*   `0xC` for a release candidate
+*   `0xF` for a stable (or final) version.
 
 **QISKIT\_RELEASE\_SERIAL**
 
-This can be used to indicate the pre-release number in a pre-release series. For example, this would be set to `1` for `2.1.0rc1`. This is `0` for the final version.
+This can be used to indicate the pre-release number in a pre-release series. For example, this would be set to `4` for `2.1.0-rc4`. This is `0` for the final version.
 
 **QISKIT\_GET\_VERSION\_HEX(major, minor, patch, level, serial)**
 
@@ -47,4 +56,16 @@ if (QISKIT_VERSION_HEX >= QISKIT_GET_VERSION_HEX(2, 1, 0, 0xF, 0)) {
     // Code for version 2.1.0 (final) or later
 }
 ```
+
+### qk\_api\_version
+
+<Function id="qk_api_version" signature="uint32_t qk_api_version(void)">
+  Get the C API version of the loaded library.
+
+  If you are dynamically linking against Qiskit, in either a stand-alone or Python-extension build, this function can be useful to check the version of the library actually loaded at runtime. The header-file macro `QISKIT_VERSION_HEX` is the equivalent of this function, but for the version of the headers used at build time.
+
+  **Returns**
+
+  The version of the compiled Qiskit C API library, in the same format as the `QISKIT_VERSION_HEX` header-file macro.
+</Function>
 
