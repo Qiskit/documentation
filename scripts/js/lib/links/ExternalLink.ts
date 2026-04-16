@@ -72,7 +72,7 @@ async function safeFetch(
   try {
     // Normalize URL to handle encoding issues
     const normalizedUrl = new URL(link).href;
-    
+
     const response = await fetch(normalizedUrl, {
       headers: getHeaders(link),
       method: method,
@@ -91,11 +91,12 @@ function responseToErrorMessage(
   response: Response,
 ): string | undefined {
   const httpCode = response.status;
-  
+
   // Accept 1xx-3xx as valid (including redirects)
   // Accept 403 as potentially valid (resource exists but access is forbidden)
   // Accept 429 as valid (resource exists but we're being rate limited)
-  const isOk = (httpCode >= 100 && httpCode < 400) || httpCode === 403 || httpCode === 429;
+  const isOk =
+    (httpCode >= 100 && httpCode < 400) || httpCode === 403 || httpCode === 429;
   if (isOk) return undefined;
 
   if (httpCode === 404) return `Could not find link '${link}' (${httpCode})`;
