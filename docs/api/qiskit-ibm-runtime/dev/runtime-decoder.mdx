@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeDecoder
 
 # RuntimeDecoder
 
-<Class id="qiskit_ibm_runtime.RuntimeDecoder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/json.py#L427-L574" signature="RuntimeDecoder(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.RuntimeDecoder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/json.py#L429-L603" signature="RuntimeDecoder(*args, **kwargs)" modifiers="class">
   Bases: `JSONDecoder`
 
   JSON Decoder used by runtime service.
@@ -34,13 +34,23 @@ python_api_name: qiskit_ibm_runtime.RuntimeDecoder
 
   ### decode
 
-  <Function id="qiskit_ibm_runtime.RuntimeDecoder.decode" signature="decode(s, _w=<built-in method match of re.Pattern object>)">
-    Return the Python representation of `s` (a `str` instance containing a JSON document).
+  <Function id="qiskit_ibm_runtime.RuntimeDecoder.decode" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/json.py#L437-L463" signature="decode(s)">
+    Return the Python representation of a string `s` containing a JSON document.
+
+    Applies additional conversion for executor program’s `params`, preserving the superclass `decode()` output in all other cases.
+
+    **Parameters**
+
+    **s** (*str*) – a string containing a JSON document.
+
+    **Return type**
+
+    *Any*
   </Function>
 
   ### object\_hook
 
-  <Function id="qiskit_ibm_runtime.RuntimeDecoder.object_hook" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/json.py#L435-L574" signature="object_hook(obj)">
+  <Function id="qiskit_ibm_runtime.RuntimeDecoder.object_hook" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/json.py#L465-L603" signature="object_hook(obj)">
     Called to decode object.
 
     **Parameters**

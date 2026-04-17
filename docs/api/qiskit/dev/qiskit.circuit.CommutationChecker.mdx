@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.CommutationChecker
 
 # CommutationChecker
 
-<Class id="qiskit.circuit.CommutationChecker" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L24-L149" signature="qiskit.circuit.CommutationChecker(standard_gate_commutations=None, cache_max_entries=1000000, *, gates=None)" modifiers="class">
+<Class id="qiskit.circuit.CommutationChecker" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L25-L158" signature="qiskit.circuit.CommutationChecker(standard_gate_commutations=None, cache_max_entries=1000000, *, gates=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Check commutations of two operations.
@@ -27,27 +27,31 @@ $$
 
   and we set $\varepsilon$ to $10^{-12}$ to account for round-off errors on few-qubit systems. This metric is chosen for consistency with other closeness checks in Qiskit.
 
-  When possible, commutation relations are queried from a lookup table. This is the case for standard gates without parameters (such as [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") or [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")) or gates with free parameters (such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") with a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") as angle). Otherwise, a matrix-based check is performed, where two operations are said to commute, if the average gate fidelity of performing the commutation is above a certain threshold (see `approximation_degree`). The result of this commutation is then added to the cached lookup table.
+  When possible, commutation relations are queried from a lookup table. This is the case for standard gates without parameters (such as [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") or [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")) or gates with free parameters (such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") with a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") as angle). Otherwise, a matrix-based check is performed, where two operations are said to commute, if the average gate fidelity of performing the commutation is above a certain threshold (see `approximation_degree`).
+
+  <Admonition title="Deprecated since version 2.5.0" type="danger">
+    `qiskit.circuit.commutation_checker.CommutationChecker.__init__()`’s argument `cache_max_entries` is deprecated as of Qiskit 2.5.0. It will be removed in Qiskit 3.0.
+  </Admonition>
 
   ## Methods
 
   **Parameters**
 
-  *   **standard\_gate\_commutations** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) –
-  *   **cache\_max\_entries** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
-  *   **gates** (*Optional\[Set\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]]*) –
+  *   **standard\_gate\_commutations** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict) *| None*)
+  *   **cache\_max\_entries** ([*int*](https://docs.python.org/3/library/functions.html#int))
+  *   **gates** ([*set*](https://docs.python.org/3/library/stdtypes.html#set)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*)
 
   ### check\_commutation\_entries
 
-  <Function id="qiskit.circuit.CommutationChecker.check_commutation_entries" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L129-L149" signature="check_commutation_entries(first_op, first_qargs, second_op, second_qargs)">
+  <Function id="qiskit.circuit.CommutationChecker.check_commutation_entries" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L138-L158" signature="check_commutation_entries(first_op, first_qargs, second_op, second_qargs)">
     Returns stored commutation relation if any
 
     **Parameters**
 
     *   **first\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – first operation.
-    *   **first\_qargs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)) – first operation’s qubits.
+    *   **first\_qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – first operation’s qubits.
     *   **second\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
-    *   **second\_qargs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List)) – second operation’s qubits.
+    *   **second\_qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – second operation’s qubits.
 
     **Returns**
 
@@ -60,13 +64,19 @@ $$
 
   ### clear\_cached\_commutations
 
-  <Function id="qiskit.circuit.CommutationChecker.clear_cached_commutations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L125-L127" signature="clear_cached_commutations()">
+  <Function id="qiskit.circuit.CommutationChecker.clear_cached_commutations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L131-L136" signature="clear_cached_commutations()">
     Clears the dictionary holding cached commutations
+
+    This method is a no-op as there is no longer an internal cache
+
+    <Admonition title="Deprecated since version 2.5" type="danger">
+      The method `qiskit.circuit.commutation_checker.CommutationChecker.clear_cached_commutations()` is deprecated as of Qiskit 2.5. It will be removed in Qiskit 3.0.
+    </Admonition>
   </Function>
 
   ### commute
 
-  <Function id="qiskit.circuit.CommutationChecker.commute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L71-L119" signature="commute(op1, qargs1, cargs1, op2, qargs2, cargs2, max_num_qubits=None, approximation_degree=1.0, matrix_max_num_qubits=3)">
+  <Function id="qiskit.circuit.CommutationChecker.commute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L72-L120" signature="commute(op1, qargs1, cargs1, op2, qargs2, cargs2, max_num_qubits=None, approximation_degree=1.0, matrix_max_num_qubits=3)">
     Checks if two Operations commute. The return value of `True` means that the operations truly commute, and the return value of `False` means that either the operations do not commute or that the commutation check was skipped (for example, when the operations have conditions or have too many qubits).
 
     **Parameters**
@@ -92,13 +102,13 @@ $$
 
   ### commute\_nodes
 
-  <Function id="qiskit.circuit.CommutationChecker.commute_nodes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L61-L69" signature="commute_nodes(op1, op2, max_num_qubits=3, approximation_degree=1.0)">
+  <Function id="qiskit.circuit.CommutationChecker.commute_nodes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L62-L70" signature="commute_nodes(op1, op2, max_num_qubits=3, approximation_degree=1.0)">
     Checks if two DAGOpNodes commute.
 
     **Parameters**
 
-    *   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
-    *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float)) –
+    *   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int))
+    *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float))
 
     **Return type**
 
@@ -107,8 +117,14 @@ $$
 
   ### num\_cached\_entries
 
-  <Function id="qiskit.circuit.CommutationChecker.num_cached_entries" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L121-L123" signature="num_cached_entries()">
+  <Function id="qiskit.circuit.CommutationChecker.num_cached_entries" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/commutation_checker.py#L122-L129" signature="num_cached_entries()">
     Returns number of cached entries
+
+    This method will always return 0 because there is no longer an internal cache.
+
+    <Admonition title="Deprecated since version 2.5" type="danger">
+      The method `qiskit.circuit.commutation_checker.CommutationChecker.num_cached_entries()` is deprecated as of Qiskit 2.5. It will be removed in Qiskit 3.0.
+    </Admonition>
   </Function>
 </Class>
 

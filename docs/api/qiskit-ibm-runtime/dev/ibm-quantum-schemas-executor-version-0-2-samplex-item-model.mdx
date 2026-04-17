@@ -1,0 +1,92 @@
+---
+title: SamplexItemModel (dev version)
+description: API reference for ibm_quantum_schemas.executor.version_0_2.SamplexItemModel in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.executor.version_0_2.SamplexItemModel
+---
+
+<span id="ibm-quantum-schemas-executor-version-0-2-samplexitemmodel" />
+
+# SamplexItemModel
+
+<Class id="ibm_quantum_schemas.executor.version_0_2.SamplexItemModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.6.20260414/ibm_quantum_schemas/executor/version_0_2/models.py#L132-L179" signature="SamplexItemModel" modifiers="pydantic model">
+  Bases: `BaseModel`
+
+  Execution specifications for a single quantum circuit.
+
+  ### chunk\_size
+
+  <Attribute id="ibm_quantum_schemas.executor.version_0_2.SamplexItemModel.chunk_size" attributeTypeHint="Annotated[int, Field(ge" attributeValue="1)] | Literal['auto'] = 'auto'" modifiers="field">
+    The maximum number circuit arguments to bind to the circuit per shot loop.
+
+    When `"auto"`, the number is chosen server-side with heuristics designed to optimize execution speed. A quantum program must have items where either all chunk sizes are integer-valued, or all chunk sizes are `"auto"`. Integer values are only allowed inside of session exection mode.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### circuit
+
+  <Attribute id="ibm_quantum_schemas.executor.version_0_2.SamplexItemModel.circuit" attributeTypeHint="QpyModelV13ToV17 [Required]" modifiers="field">
+    A QPY-encoded circuit.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### item\_type
+
+  <Attribute id="ibm_quantum_schemas.executor.version_0_2.SamplexItemModel.item_type" attributeTypeHint="Literal['samplex']" attributeValue="'samplex'" modifiers="field">
+    The type of quantum program item.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### samplex
+
+  <Attribute id="ibm_quantum_schemas.executor.version_0_2.SamplexItemModel.samplex" attributeTypeHint="SamplexModel [Required]" modifiers="field">
+    A JSON-encoded samplex.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### samplex\_arguments
+
+  <Attribute id="ibm_quantum_schemas.executor.version_0_2.SamplexItemModel.samplex_arguments" attributeTypeHint="dict[str, bool | int | PauliLindbladMapModel | TensorModel] [Required]" modifiers="field">
+    Arguments to the samplex.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### shape
+
+  <Attribute id="ibm_quantum_schemas.executor.version_0_2.SamplexItemModel.shape" attributeTypeHint="list[int] [Required]" modifiers="field">
+    The shape of this item.
+
+    This shape must extend (via broadcasting) the implicit shape of the :attr:\~samplex\_arguments\`. The non-trivial axes it introduces enumerate randomizations.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### cross\_validate
+
+  <Function id="ibm_quantum_schemas.executor.version_0_2.SamplexItemModel.cross_validate" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.6.20260414/ibm_quantum_schemas/executor/version_0_2/models.py#L163-L179" signature="cross_validate" modifiers="validator">
+    Check for mutual compatibility of types and shapes of attributes.
+
+    **Return type**
+
+    *Self*
+  </Function>
+</Class>
+

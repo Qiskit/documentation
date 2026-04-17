@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.SparseObservable
 
 # SparseObservable
 
-<Class id="qiskit.quantum_info.SparseObservable" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.SparseObservable(data, /, num_qubits=None)" modifiers="class">
+<Class id="qiskit.quantum_info.SparseObservable" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.SparseObservable(data, /, num_qubits=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   An observable over Pauli bases that stores its data in a qubit-sparse format.
@@ -75,7 +75,7 @@ $$
 
   ### BitTerm
 
-  <Class id="qiskit.quantum_info.SparseObservable.BitTerm" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/__init__.py" signature="BitTerm" modifiers="class">
+  <Class id="qiskit.quantum_info.SparseObservable.BitTerm" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/quantum_info/__init__.py" signature="BitTerm" modifiers="class">
     An [`IntEnum`](https://docs.python.org/3/library/enum.html#enum.IntEnum) that provides named access to the numerical values used to represent each of the single-qubit alphabet terms enumerated in [Alphabet of single-qubit terms used in SparseObservable](#sparse-observable-alphabet).
 
     This class is attached to [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable"). Access it as [`SparseObservable.BitTerm`](#qiskit.quantum_info.SparseObservable.BitTerm "qiskit.quantum_info.SparseObservable.BitTerm"). If this is too much typing, and you are solely dealing with :class:¬SparseObservable\` objects and the `BitTerm` name is not ambiguous, you might want to shorten it as:
@@ -178,7 +178,7 @@ $$
 
   For any given mathematical observable, there are several ways of representing it with [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable"). For example, the same set of single-bit terms and their corresponding indices might appear multiple times in the observable. Mathematically, this is equivalent to having only a single term with all the coefficients summed. Similarly, the terms of the sum in a [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") can be in any order while representing the same observable, since addition is commutative (although while floating-point addition is not associative, [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") makes no guarantees about the summation order).
 
-  These two categories of representation degeneracy can cause the `==` operator to claim that two observables are not equal, despite representating the same object. In these cases, it can be convenient to define some *canonical form*, which allows observables to be compared structurally.
+  These two categories of representation degeneracy can cause the `==` operator to claim that two observables are not equal, despite representing the same object. In these cases, it can be convenient to define some *canonical form*, which allows observables to be compared structurally.
 
   You can put a [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") in canonical form by using the [`simplify()`](#qiskit.quantum_info.SparseObservable.simplify "qiskit.quantum_info.SparseObservable.simplify") method. The precise ordering of terms in canonical ordering is not specified, and may change between versions of Qiskit. Within the same version of Qiskit, however, you can compare two observables structurally by comparing their simplified forms.
 
@@ -203,7 +203,7 @@ $$
 
   #### Term
 
-  <Class id="qiskit.quantum_info.SparseObservable.Term" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/quantum_info/__init__.py" signature="Term(num_qubits, coeff, bit_terms, indices)" modifiers="class">
+  <Class id="qiskit.quantum_info.SparseObservable.Term" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/quantum_info/__init__.py" signature="Term(num_qubits, coeff, bit_terms, indices)" modifiers="class">
     Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
     A single term from a complete [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
@@ -483,7 +483,7 @@ $$
   <Function id="qiskit.quantum_info.SparseObservable.clear" signature="clear()">
     Clear all the terms from this operator, making it equal to the zero operator again.
 
-    This does not change the capacity of the internal allocations, so subsequent addition or substraction operations may not need to reallocate.
+    This does not change the capacity of the internal allocations, so subsequent addition or subtraction operations may not need to reallocate.
 
     **Examples**
 
@@ -574,6 +574,35 @@ $$
     >>> assert obs == obs.copy()
     >>> assert obs is not obs.copy()
     ```
+  </Function>
+
+  #### evolve
+
+  <Function id="qiskit.quantum_info.SparseObservable.evolve" signature="evolve(other, /, qargs=None)">
+    Evolve this observable by a Pauli term.
+
+    An evolution of the observable $O$ by a Pauli $P$ corresponds to $P^\dagger O P$.
+
+    Unlike a literal implementation via two full compositions, this method performs the conjugation directly at the single-qubit level using a fixed lookup table. This avoids materializing any intermediate [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") and computes the evolved observable in a single pass over the terms. `self` and `other` must have the same number of qubits, unless `qargs` is given, in which case `other` can be smaller than `self`, provided the number of qubits in `other` and the length of `qargs` match. `qargs` specifies which qubits of `self` are evolved by `other`.
+
+    Currently, this method supports evolution only by a *single-term* operator, meaning that `other` must be a Pauli represented by [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
+
+    **Parameters**
+
+    *   **other** – the Pauli Operator used to conjugate `self`.
+    *   **qargs** – if given, the qubits in `self` to be evolved by `other`. The length must match the number of qubits in `other`.
+
+    **Returns**
+
+    A new evolved [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") with applied conjugations.
+
+    **Raises**
+
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – if `other` is not of Type [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `self` and `other` have different numbers of qubits (and `qargs` is not given).
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `qargs` length doesn’t match `other` number of qubits.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `qargs` contains duplicates or out-of-range indices.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `other` contains more than one term.
   </Function>
 
   #### expand
@@ -889,7 +918,7 @@ $$
     As a side effect, this sorts the operator into [canonical order](#sparse-observable-canonical-order).
 
     <Admonition title="Note" type="note">
-      When using this for equality comparisons, note that floating-point rounding and the non-associativity fo floating-point addition may cause non-zero coefficients of summed terms to compare unequal. To compare two observables up to a tolerance, it is safest to compare the canonicalized difference of the two observables to zero.
+      When using this for equality comparisons, note that floating-point rounding and the non-associativity of floating-point addition may cause non-zero coefficients of summed terms to compare unequal. To compare two observables up to a tolerance, it is safest to compare the canonicalized difference of the two observables to zero.
     </Admonition>
 
     **Parameters**
