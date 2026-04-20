@@ -134,6 +134,32 @@ Take a moment to reflect on the industry applications of quantum computing in th
 
 </Accordion>
 
+### Simulators
+
+Many companies, including IBM, offer quantum simulators: classical computers that can emulate quantum computers up to a certain scale to enable early training and debugging. It is critical to understand where such simulators are useful, where they are not, and where they are misleading.
+
+#### Possible simulator uses:
+
+It is very reasonable to want to catch bugs in your code before submitting a job to a real quantum computer. This is the ideal use of a simulator. But note that you will typically need to scale down your problem in order for a simulator to accept your job. More on this in a moment.
+
+It is also very reasonable to want to explore freely to learn about quantum computing without incurring too much cost. So you might want to use simulators very early in your introduction to quantum computing. But you have to be careful with this. 
+
+#### Where simulators are not useful:
+
+Simulators can model very small quantum systems effectively, and these may be useful for seeing how an algorithm works for the first time. However, most applications expected to deliver a clear, sustained  value for industry are believed to require on the order of 100+ physical qubits, with many more applications opening up as these are combined into logical qubits. To understand why a simulator cannot possibly ever run a quantum calculation useful to industry, consider two things. (1) If a classical computer could do that, we would not need quantum computers. (2) A 100-qubit quantum computer can be in a superposition of $2^{100}$ basis states. Interactions between those states and actions of quantum gates can be carried out on all those states simultaneously. Even a drastically oversimplified classical encoding such as assigning a single bit to each computational basis state would require $10^{30}$ classical bits of information. This is several orders of magnitude more bits of digital information than are estimated to be available in all existing classical storage media on Earth. To fully represent such a quantum state, you would need more bits, because you would need to record the sign and magnitude of each coefficient. Quantum simulators physically cannot be implemented at the qubit scale that is useful to industry. Most state vector simulators are practically limited to around 30–35 qubits on typical hardware. 
+
+Do be careful not to confuse the statement above with “exponential parallelism”. The claim is not that you can read out results from all $2^{100}$ states (ridiculous, since you would need all those bits we discussed to record your answer). You also can’t perform all classical processes on those states. The claim, instead, is that the many quantum states in superposition can be manipulated in some ways and can interfere with each other, sometimes in a useful way. This makes quantum computers fundamentally different from classical computers, and opens up new possibilities.
+
+#### Where simulators are dangerous:
+
+Simulators are not quantum computers. Many simulators (or certain settings on many simulators) do not adequately model noise and errors in modern quantum computers. If you use noiseless simulators, or simulators with inadequate noise models, you may develop overly optimistic views of certain algorithms.
+
+Further, noise gets worse with the number of qubits used in many algorithms. The layers used to entangle many qubits make the circuits very complex / deep, and this often results in higher noise levels. So if you are only experimenting at the scale of simulators, you may think that an approach will scale on modern quantum computers, when it really does not.
+
+#### Key takeaways on simulators:
+
+As long as you and your leadership are aware of these caveats, it is fine to use simulators for early education and debugging. But sharing results with leadership that come from noiseless simulators at best runs the risk of creating unrealistic expectations on precision. At worst, it can lead a team down a path that will not be fruitful for several years to come. The best strategy is the experiment with real quantum computers early in your training, possibly supplemented with some use of simulators. Use simulators with noise models to debug code and make sure you are submitted a job to the real quantum computer that runs the way you expect it to. You may occasionally use noise-free simulators to benchmark small scale results to help you better understand the effects of noise. 
+
 
 ### Responsible Quantum Computing
 
