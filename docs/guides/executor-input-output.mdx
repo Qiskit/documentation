@@ -8,11 +8,13 @@ description: Understand the inputs and outputs to the Executor primitive.
 
 The Executor primitive is part of the [directed execution model](/docs/guides/directed-execution-model), which helps provide more flexibility when customizing an error mitigation workflow. This workflow introduces some new terminology:
 
-- A **program** is a list of program items, where each item is either a circuit item or a samplex item.
-- A **samplex item** is a pair that consists of a template circuit and a samplex.
-- **Samplex** is the core type of the [Samplomatic library.](/docs/guides/directed-execution-model#samplomatic)
+The inputs and output of the Executor primitive are very different from those of the [Sampler](/docs/guides/sampler-input-output) and [Estimator](/docs/guides/estimator-input-output) primitives. 
 
-The inputs and output of the Executor primitive are very different from those of the [Sampler](/docs/guides/sampler-input-output) and [Estimator](/docs/guides/estimator-input-output) primitives. This primitive takes a `QuantumProgram` as input, and then outputs a Qiskit Runtime job, which is then run on an IBM&reg; quantum computer.
+Instead of taking a list of PUBs as the input, Executor takes a `QuantumProgram`, which contains a list of `QuantumProgramItem` objects. These container classes give you more flexibility than a PUB, which is a simple tuple data structure.
+
+Executor's output is a `QuantumProgramResult`, which is an iterable and contains one element for each input `QuantumProgramItem`. Each element is a dictionary whose keys correspond the classical registers' names in the input circuits (among others), so you no longer need to memorize these names like you did with Sampler output.
+
+This primitive takes a `QuantumProgram` as input, and then outputs a Qiskit Runtime job, which is then run on an IBM&reg; quantum computer.
 
 <span id="programs"></span>
 ## Inputs: Quantum programs
@@ -33,6 +35,10 @@ You must first initialize your quantum program, then append circuits to the prog
 
 The below cell initializes a `QuantumProgram` and specifies that it should run 1024 shots for every configuration of each item in the program. Then it appends a version of the target circuit with parameters, transpiled according to the backend's instruction set architecture (ISA).
 
+<Admonition type="note">
+Unlike with Sampler, a `QuantumProgram` takes only a single shot value. If you want a different shot value, you need a separate `QuantumProgram`, which would be a separate job.
+</Admonition>
+
 ```python
 from qiskit.transpiler import generate_preset_pass_manager
 from qiskit_ibm_runtime.quantum_program import QuantumProgram
@@ -43,9 +49,12 @@ from samplomatic.transpiler import generate_boxing_pass_manager
 # Initialize an empty program
 program = QuantumProgram(shots=1024)
 
-# Initialize and transpile a circuit
+# Initialize and transpile a 3-qubit quantum circuit with 3 parameters.
 circuit = ...
 ...
+# When the circuit is measured in this way, a 3-bit classical register is added.
+circuit.measure_all()
+
 isa_circuit = preset_pass_manager.run(circuit)
 
 # Append the circuit to the program
