@@ -6,11 +6,12 @@ description: Understand the inputs and outputs to the Executor primitive.
 
 # Executor inputs and outputs
 
-The Executor primitive is part of the [directed execution model](/docs/guides/directed-execution-model), which helps provide more flexibility when customizing an error mitigation workflow. This workflow introduces some new terminology:
+The Executor primitive is part of the [directed execution model](/docs/guides/directed-execution-model), which helps provide more flexibility when customizing an error mitigation workflow. 
 
-The inputs and output of the Executor primitive are very different from those of the [Sampler](/docs/guides/sampler-input-output) and [Estimator](/docs/guides/estimator-input-output) primitives. 
-
-Instead of taking a list of PUBs as the input, Executor takes a `QuantumProgram`, which contains a list of `QuantumProgramItem` objects. These container classes give you more flexibility than a PUB, which is a simple tuple data structure.
+The inputs and output of the Executor primitive are very different from those of the [Sampler](/docs/guides/sampler-input-output) and [Estimator](/docs/guides/estimator-input-output) primitives. For example, instead of taking a list of PUBs as the input, Executor takes a `QuantumProgram`, which contains a list of `QuantumProgramItem` objects. `QuantumProgramItem`s can be of two types:
+- `CircuitItem`, which typically stores a circuit and its parameters.
+- `SamplexItem`, which typically stores a circuit and a `Samplex` object, capable of generating (randomized) sets of parameters at runtime.
+These container classes give you more flexibility than a PUB, which is a simple tuple data structure. Indeed, they allow you to specify where and how a set of circuit instructions should be randomized before execution, for example to perform twirling or injecting noise.
 
 Executor's output is a `QuantumProgramResult`, which is an iterable and contains one element for each input `QuantumProgramItem`. Each element is a dictionary whose keys correspond the classical registers' names in the input circuits (among others), so you no longer need to memorize these names like you did with Sampler output.
 
@@ -20,7 +21,7 @@ This primitive takes a `QuantumProgram` as input, and then outputs a Qiskit Runt
 ## Inputs: Quantum programs
 
 The input to an Executor primitive is a  [`QuantumProgram`](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgram.html#qiskit_ibm_runtime.quantum_program.QuantumProgram), which is an iterable of a
-[`qiskit_ibm_runtime.quantum_program.QuantumProgramItem`](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgramItem.html). Each of these items represents a
+[`QuantumProgramItem`](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.quantum_program.QuantumProgramItem.html). Each of these items represents a
 different task for Executor to perform. Typically, each item owns one of the following options:
 
 * A `qiskit.circuit.QuantumCircuit` with static, non-parametrized gates
@@ -50,9 +51,15 @@ from samplomatic.transpiler import generate_boxing_pass_manager
 program = QuantumProgram(shots=1024)
 
 # Initialize and transpile a 3-qubit quantum circuit with 3 parameters.
-circuit = ...
+circuit = QuantumCircuit(3)
+circuit.h(0)
+circuit.cx(0, 1)
+circuit.cx(1, 2)
+circuit.rz(Parameter("theta"), 0)
+circuit.rz(Parameter("phi"), 1)
+circuit.rz(Parameter("lam"), 2)
 ...
-# When the circuit is measured in this way, a 3-bit classical register is added.
+# `measure_all` adds a 3-bit classical register named "meas"
 circuit.measure_all()
 
 isa_circuit = preset_pass_manager.run(circuit)
@@ -71,7 +78,7 @@ program.append_circuit_item(
 )
 ```
 
-Finally, append a parametrized `qiskit.circuit.QuantumCircuit` and a `samplomatic.samplex.Samplex`, which is responsible for generating randomized sets of parameters for the given circuit. As part of the `samplomatic.samplex.Samplex` arguments, 10 sets of parameters for the parametric gates in the original circuit are provided. The `shape` request argument requests an extension of the implicit shape defined by the `samplomatic.samplex.Samplex` arguments. 
+Circuit items are executed without any sort of randomization. On the contrary, samplex items allows users to specify how to randomize their content. In the next cell, we show how to generate a samplex items for the GHZ circuit above that adds twirling to all the gates and measurements in it.
 
 See the Samplomatic [API](https://github.com/Qiskit/samplomatic/) documentation for full details about `samplomatic.samplex.Samplex` and its arguments.
 
@@ -80,13 +87,18 @@ See the Samplomatic [API](https://github.com/Qiskit/samplomatic/) documentation 
 preset_pass_manager = generate_preset_pass_manager(
     backend=backend, optimization_level=0
 )
+# the boxing pass manager is a convenient way to group gates
+# and measurements into boxes and request that they be annotated; in this example, we request that these boxes
+# be annotated with a`Twirl` annotation
 preset_pass_manager.post_scheduling = generate_boxing_pass_manager(
     enable_gates=True,
     enable_measures=True,
 )
 boxed_circuit = preset_pass_manager.run(circuit)
 
-# Build the template and the samplex
+# Build the template and the samplex. The template circuit is a
+# parametric circuit, and the samplex is an object that can generate
+# randomized sets of parameters at runtime to perform twirling
 template, samplex = build(boxed_circuit)
 
 # Append the template and samplex as a samplex item
@@ -97,7 +109,7 @@ program.append_samplex_item(
         # the arguments required by the samplex.sample method
         "parameter_values": np.random.rand(10, 3),
     },
-    shape=(2, 14, 10),
+    shape=(28, 10),   # 28 randomizations 
 )
 ```
 
