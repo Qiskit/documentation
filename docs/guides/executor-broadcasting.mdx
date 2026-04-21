@@ -219,7 +219,9 @@ program.append(
     samplex_arguments={
         "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
     },
-    shape=(2, 14, 10),  # 2×14=28 randomizations per configuration, 10 configurations
+    # 2×14=28 randomizations per configuration, 10 configurations
+    # Or you could set shape=(28, 10) for the same effect
+    shape=(2, 14, 10),  
 )
 # Output shape for "meas": (2, 14, 10, num_shots, creg_size)
 ```
