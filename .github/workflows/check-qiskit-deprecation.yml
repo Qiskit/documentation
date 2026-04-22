@@ -29,4 +29,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Check release age and make issue
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: npm run check:qiskit-deprecation
