@@ -10,8 +10,9 @@ The Executor primitive is part of the [directed execution model](/docs/guides/di
 
 The inputs and output of the Executor primitive are very different from those of the [Sampler](/docs/guides/sampler-input-output) and [Estimator](/docs/guides/estimator-input-output) primitives. For example, instead of taking a list of PUBs as the input, Executor takes a `QuantumProgram`, which contains a list of `QuantumProgramItem` objects. `QuantumProgramItem`s can be of two types:
 - `CircuitItem`, which typically stores a circuit and its parameters.
-- `SamplexItem`, which typically stores a circuit and a `Samplex` object, capable of generating (randomized) sets of parameters at runtime.
-These container classes give you more flexibility than a PUB, which is a simple tuple data structure. Indeed, they allow you to specify where and how a set of circuit instructions should be randomized before execution, for example to perform twirling or injecting noise.
+- `SamplexItem`, which typically stores a circuit, its parameters, and a `Samplex` object. The samplex is capable of generating randomized sets of parameters at runtime, for example to perform twirling or inject noise.
+
+These container classes give you more flexibility than a PUB, which is a simple tuple data structure. For example, they allow you to specify where and how a set of circuit instructions should be randomized before execution.
 
 Executor's output is a `QuantumProgramResult`, which is an iterable and contains one element for each input `QuantumProgramItem`. Each element is a dictionary whose keys correspond the classical registers' names in the input circuits (among others), so you no longer need to memorize these names like you did with Sampler output.
 
