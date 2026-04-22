@@ -1,6 +1,6 @@
 # Adding courses to Qiskit/documentation
 
-This guide walks through the full process of adding a course to the documentation site. 
+This guide walks through the full process of adding a course to the documentation site.
 
 This guide assumes you have a local clone of Qiskit/documentation, Node 18+ (via [NVM](https://github.com/nvm-sh/nvm)), [tox](https://pipx.pypa.io/stable/) (via pipx), and [Rancher Desktop](https://rancherdesktop.io/) installed.
 
@@ -25,9 +25,10 @@ This guide assumes you have a local clone of Qiskit/documentation, Node 18+ (via
    ```
 
 5. Run `./fix` to lint the notebooks. Ruff might complain about your code: you can either fix it if it's easy enough, or ignore specific rules using the following instructions:
-   * Create a new code cell at the top of the notebook.
-   * Add a `remove-cell` tag to the cell. This prevents the cell from displaying on the website.
-   * Use a comment in that cell to disable specific rules in that notebook. For example, if you wanted to disable rules `E402` and `F811`:
+
+   - Create a new code cell at the top of the notebook.
+   - Add a `remove-cell` tag to the cell. This prevents the cell from displaying on the website.
+   - Use a comment in that cell to disable specific rules in that notebook. For example, if you wanted to disable rules `E402` and `F811`:
 
      ```python
      # This cell is hidden from users, it disables some lint rules
@@ -35,9 +36,10 @@ This guide assumes you have a local clone of Qiskit/documentation, Node 18+ (via
      ```
 
 6. Move any images to `/public/learning/images/courses/<your-course-name>/`:
-   * If the images are not `.avif` or `.svg`, you must convert them to `.avif`. Use [ImageMagick](https://imagemagick.org/index.php) for this. You should be able to run `magick path/to/file.png path/to/file.avif` then delete the original file.
-   * If the images are attachments in the notebook, you'll need to extract them to separate files. Speak to @Frank if you have any questions.
-   * With the image files in the correct place, update the markdown to point to the new images, leaving off the `public` part of the path. For example, if your file lives in `public/learning/images/courses/my-course/image.avif`, then your markdown should be:
+
+   - If the images are not `.avif` or `.svg`, you must convert them to `.avif`. Use [ImageMagick](https://imagemagick.org/index.php) for this. You should be able to run `magick path/to/file.png path/to/file.avif` then delete the original file.
+   - If the images are attachments in the notebook, you'll need to extract them to separate files. Speak to @Frank if you have any questions.
+   - With the image files in the correct place, update the markdown to point to the new images, leaving off the `public` part of the path. For example, if your file lives in `public/learning/images/courses/my-course/image.avif`, then your markdown should be:
      ```markdown
      ![alt-text](/learning/images/courses/my-course/image.avif)
      ```
