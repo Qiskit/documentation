@@ -14,9 +14,35 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 2.4.1
+
+<span id="relnotes-2-4-1-prelude" />
+
+### Prelude
+
+Qiskit v2.4.1 fixes a small number of bugs identified since the release of Qiskit v2.4.0.
+
+<span id="relnotes-2-4-1-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a panic in [`RemoveIdentityEquivalent`](/docs/api/qiskit/qiskit.transpiler.passes.RemoveIdentityEquivalent "qiskit.transpiler.passes.RemoveIdentityEquivalent") when the global phase of the circuit contained [`ParameterVectorElement`](/docs/api/qiskit/qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") objects. The message was:
+
+    > Cannot clone pointer into Python heap without the thread being attached.
+
+    See [#16053](https://github.com/Qiskit/qiskit/issues/16053).
+
+*   Fixed [`qpy.load()`](/docs/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load") for QPY versions >=13, where [`Delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay "qiskit.circuit.Delay") instructions with integer durations could deserialize to incorrect types. This could cause later code to raise errors, such as `qasm3.dumps_experimental()` returning an error saying “Failed to parse parameter value”. See [#16076](https://github.com/Qiskit/qiskit/pull/16076) for more detail.
+
+<span id="relnotes-2-4-0" />
+
+<span id="id2" />
+
 ## 2.4.0
 
 <span id="relnotes-2-4-0-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
@@ -391,6 +417,8 @@ Qiskit 2.4.0 is a new feature release of the Qiskit SDK. The highlights of this 
     This error will typically appear (in Qiskit v2.4, at least) as a [`QpyError`](/docs/api/qiskit/qpy#qiskit.qpy.QpyError "qiskit.qpy.QpyError") with a message such as “malformed expression: stack was empty before expression completed”.
 
 <span id="relnotes-2-4-0-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
