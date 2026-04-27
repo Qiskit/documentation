@@ -24,19 +24,36 @@ Open Plan users can run quantum circuits on the world's best QPUs for free (up t
 <span id="standard-plan"></span>
 ## Pay-As-You-Go Plan instance
 
-The Pay-As-You-Go Plan is a paid plan. To use this plan, you must create an instance and assign it to the plan. All workloads sent to QPUs by using this plan incur a charge.
+The Pay-As-You-Go Plan is a paid plan. To use this plan, you must create an instance and assign it to the plan. All workloads sent to QPUs by using this plan incur a charge. Pay-as-you-go instances have a total cost limit.
 
-The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page, or, for those with the proper authority, the [Analytics](https://quantum.cloud.ibm.com/analytics) page.  Note that the pages might show different usage numbers because the Instance page shows usage in a 28-day rolling window prior to the current timestamp, while the Analytics page uses full-day boundaries.
+The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page, or, for those with the proper authority, the [Analytics](https://quantum.cloud.ibm.com/analytics) page.  Note that the pages might show different usage numbers because the Instance page shows total usage prior to the current timestamp, while the Analytics page uses full-day boundaries.
 
+<span id="flex-plan"></span>
+## Flex Plan instance
 
-If an instance has been marked as "limited" by your administrator (you will see a "Remaining" column in the usage area) and the instance exceeds its allocation (defined by your administrator) within the 28-day rolling window, any active workload will continue running (including sessions) but pending workloads will remain in the queue until more time is available. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
+The Flex Plan is a paid plan. To use this plan, you must first [Contact IBM](https://www.ibm.com/account/reg/us-en/signup?formid=MAIL-quantum) to sign up. Then, create an instance and assign it to the plan. All workloads sent to QPUs by using this plan count toward your alloted subscription. 
+
+The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page, or, for those with the proper authority, the [Analytics](https://quantum.cloud.ibm.com/analytics) page.  Note that the pages might show different usage numbers because the the Analytics page uses full-day boundaries.
+
+An administrator can set a usage limit on a Flex Plan instance that applies for the duration of the contract. If an instance has been marked as "limited" by your administrator (you will see a "Remaining" column in the usage area) and the instance exceeds its allocation (defined by your administrator), any active workload will continue running (including sessions) but pending workloads will remain in the queue until more time is available. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
+
+An alert displays on an instance's usage when it has exceeded its allocation.
+
+<span id="premium-plan"></span>
+## Premium Plan instance
+
+The Premium Plan is a paid plan. To use this plan, you must first [Contact IBM](https://www.ibm.com/account/reg/us-en/signup?formid=MAIL-quantum) to sign up. Then, create an instance and assign it to the plan. All workloads sent to QPUs by using this plan count toward your alloted subscription. 
+
+The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page, or, for those with the proper authority, the [Analytics](https://quantum.cloud.ibm.com/analytics) page.  Note that the pages might show different usage numbers because the the Analytics page uses full-day boundaries.
+
+An administrator can set a usage limit on a Premium Plan instance that applies for the plan's 28-day rolling usage window.  If an instance has been marked as "limited" by your administrator (you will see a "Remaining" column in the usage area) and the instance exceeds its allocation (defined by your administrator), any active workload will continue running (including sessions) but pending workloads will remain in the queue until more time is available. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
 
 An alert displays on an instance's usage when it has exceeded its allocation.
 
 <span id="connect-instance"></span>
 ## Specify an instance in your code
 
-You can use the CRN or instance name to specify an instance to use - either when initializing the service, or when sending the workload to a QPU (for example, with [`QiskitRuntimeServicee.backend()](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backend)). For instructions to specify an instance in your code, see [Initialize your account](/docs/guides/initialize-account).
+You can use the CRN or instance name to specify an instance to use - either when initializing the service, or when sending the workload to a QPU (for example, with [`QiskitRuntimeService.backend()](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#backend)). For instructions to specify an instance in your code, see [Initialize your account](/docs/guides/initialize-account).
 
 When an instance is passed in, only backends and jobs from that instance are available (allowed in Qiskit Runtime v0.40.1 and later).
 
@@ -92,6 +109,10 @@ Follow these steps to create an instance and add it to your account. If you are 
         </Admonition>
 1. The Access group pane opens. A "collaborators" access group is automatically created for this instance. Users added to this access group can use the time allocated to this instance. You can [modify or create additional access groups](/docs/guides/access-groups) by using the [IBM Cloud console](https://cloud.ibm.com/iam/groups). See [Setting up access groups](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) for instructions.
 1. Click **Create instance**. You can now view the instance on the [Instances](https://quantum.cloud.ibm.com/instances) page. If you have set up multiple plans on your account, each plan type has its own tab on the Instances table.
+
+<Admonition type="note" title="Pending workloads">
+The Pending workloads column on the Instances table shows the number of workloads currently queued in this instance across all QPUs.
+</Admonition>
 
 ## Edit an instance and its allocation
 
