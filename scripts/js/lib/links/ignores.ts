@@ -111,6 +111,7 @@ const FORBIDS_OUR_USER_AGENT = [
   "https://www.science.org/doi/full/10.1126/science.aad9480",
   "https://www.science.org/doi/full/10.1126/science.abq0225",
   "https://www.science.org/doi/full/10.1126/science.abq0225#supplementary-materials",
+  "https://dl.acm.org/doi/abs/10.5555/3179330.3179331",
 ];
 
 // These links work when last tested in a browser
@@ -120,14 +121,40 @@ const FETCH_RETURNS_405 = [
   "https://forms.cloud.microsoft/e/3Wi9cbjQPK",
   "https://forms.office.com/r/zN3hvMTqJ1",
   "https://pmc.ncbi.nlm.nih.gov/articles/PMC4878865/",
+  "https://crates.io/crates/log",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.033193",
+  "https://medium.com/qiskit/improving-a-quantum-compiler-48410d7a7084",
+  "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-migrate-from-performance-management-on-ibm-cloud",
+  "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/", // redirects
+  "https://journals.aps.org/prresearch/pdf/10.1103/PhysRevResearch.5.043117", // Points to a PDF, which the link checker does not seem to like
+  "https://www.cs.tau.ac.il/\~nogaa/PDFS/r.pdf", // Points to a PDF, which the link checker does not seem to like
+  "https://www.biorxiv.org/content/early/2024/02/17/2024.01.08.574600.full.pdf", // Points to a PDF, which the link checker does not seem to like
+  "https://qiskit.github.io/qiskit-serverless/migration/migration_from_qiskit_runtime_programs.html", // broken link in very old API ref release notes for Qiskit Runtime, so ignoring
+  "https://qureca.com/quantum-initiatives-worldwide", // link works sometimes, and times out other times
+  "https://www.gao.gov/assets/gao-22-104422.pdf", // Points to a PDF, which the link checker does not seem to like
+  "https://www.eurekanetwork.org/programmes-and-calls/network-projects/network-projects-applied-quantum-technologies-2025/", // loads a popup, which might be breaking the checker
+  "https://www.eurekanetwork.org/programmes-and-calls/network-projects/network-projects-applied-quantum-technologies-2025/", // loads a popup, which might be breaking the checker
+  "https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/solving-chemistrys-toughest-problems-the-quantum-computing-advantage", // loads a popup, which might be breaking the checker
+  "http://www.ibm.com/downloads/documents/us-en/131cf87ab63319bf", // PDF
 ];
 
 // Fetching these links throws an error, but they work in-browser. Not sure why.
 const FETCH_FAILS = [
+  "https://catalog.skills.network/2766",
+  "https://www.sciencedirect.com/science/article/pii/S0045790622003743",
+  "https://medium.com/qiskit/the-variational-quantum-eigensolver-43f7718c2747",
+  "https://pyqml.medium.com/what-problem-does-a-variational-quantum-eigensolver-solve-3b91c47af23b",
+  "https://mitpress.mit.edu/9780262539531/quantum-computing-for-everyone/",
+  "https://www.science.org/doi/10.1126/sciadv.adu9991",
+  "https://www.hpcwire.com/off-the-wire/gordon-bell-prize-awarded-to-ibm-and-leading-university-researchers/",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/quantum-computing-use-cases-are-getting-real-what-you-need-to-know",
   "https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/quantum-computing-just-might-save-the-planet",
   "https://www.mckinsey.com/industries/chemicals/our-insights/the-next-big-thing-quantum-computings-potential-impact-on-chemicals?cid=eml-web",
+  "https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-year-of-quantum-from-concept-to-reality-in-2025",
+  "https://www.eda.gov/funding/programs/regional-technology-and-innovation-hubs", // performed security verification in a popup first, probably what broke it
+  "https://www.oecd.org/en/publications/a-quantum-technologies-policy-primer_fd1153c3-en.html",
+  "https://medium.com/qiskit/what-can-a-quantum-computer-actually-do-4daed0691f6b",
   // The following link is only accessible through IBM VPN
   "https://w3.ibm.com/w3publisher/w3-privacy-notice",
 ];
@@ -176,6 +203,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // Other links that don't seem to exist any more
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
+  "https://www.cs.tau.ac.il/\~nogaa/PDFS/r.pdf",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([

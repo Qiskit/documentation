@@ -25,8 +25,13 @@ export class ExternalLink {
       );
     }
 
-    // We strip anchors.
-    this.value = linkString.split("#", 2)[0];
+    // Strip anchors and unescape Markdown-only escapes.
+    // Markdown allows escaping characters like `_` in link text.
+    // These escapes are not valid in actual URLs and must be removed
+    // before performing external validation.
+    this.value = linkString.split("#", 2)[0].replace(/\\([_*()[\]])/g, "$1");
+    ``;
+
     this.originFiles = new Set(originFiles);
   }
 
