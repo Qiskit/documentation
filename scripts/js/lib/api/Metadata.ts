@@ -27,6 +27,7 @@ export type ApiObjectName =
   | "cEnum"
   | "cEnumerator"
   | "cStructMember"
+  | "cMacro"
   // C++ types used by historical Qiskit C API versions
   | "cppStruct"
   | "cppFunction"
@@ -62,6 +63,7 @@ export const API_OBJECTS: { [K in ApiObjectName]: ApiObjectInfo } = {
   cEnum: { htmlSelector: "dl.c.enum", tagName: "class" },
   cEnumerator: { htmlSelector: "dl.c.enumerator", tagName: "attribute" },
   cStructMember: { htmlSelector: "dl.c.var", tagName: "attribute" },
+  cMacro: { htmlSelector: "dl.c.macro", tagName: "attribute" },
   // C++ types used by historical Qiskit C API versions
   cppFunction: { htmlSelector: "dl.cpp.function", tagName: "function" },
   cppStruct: { htmlSelector: "dl.cpp.struct", tagName: "class" },
