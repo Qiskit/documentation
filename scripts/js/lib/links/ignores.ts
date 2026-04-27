@@ -34,6 +34,7 @@ const FORBIDS_OUR_USER_AGENT = [
   "http://dx.doi.org/10.1145/1278349.1278355",
   "https://academic.oup.com/book/36426",
   "https://crates.io/crates/faer",
+  "https://crates.io/crates/log",
   "https://dl.acm.org/doi/10.1145/237814.237838",
   "https://dl.acm.org/doi/10.1145/237814.237866",
   "https://dl.acm.org/doi/10.1145/3445814.3446706",
@@ -124,10 +125,16 @@ const FETCH_RETURNS_405 = [
 
 // Fetching these links throws an error, but they work in-browser. Not sure why.
 const FETCH_FAILS = [
+  "https://sphincs.org/",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
+  "https://www.cs.tau.ac.il/\\~nogaa/PDFS/r.pdf", // Escaped version from markdown
+  "https://www.epo.org/en/news-events/press-centre/press-release/2025/1361562",
   "https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/quantum-computing-use-cases-are-getting-real-what-you-need-to-know",
   "https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/quantum-computing-just-might-save-the-planet",
+  "https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/solving-chemistrys-toughest-problems-the-quantum-computing-advantage",
   "https://www.mckinsey.com/industries/chemicals/our-insights/the-next-big-thing-quantum-computings-potential-impact-on-chemicals?cid=eml-web",
+  "https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-year-of-quantum-from-concept-to-reality-in-2025",
+  "https://thequantuminsider.com/2024/10/12/ibm-quantum-roadmap-guide-scaling-and-expanding-the-usefulness-of-quantum-computing/",
   // The following link is only accessible through IBM VPN
   "https://w3.ibm.com/w3publisher/w3-privacy-notice",
 ];
@@ -142,7 +149,19 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   // the same status code. Sometimes it's 404, sometimes 503, sometimes 200 etc.
   // They do work whenever I've tested them in a browser.
   "https://csrc.nist.gov/news/2023/three-draft-fips-for-post-quantum-cryptography",
+
+  // Markdown reference definitions with escaped characters that are extracted as links
+  // Note: Some URLs are extracted with /_ instead of \_ depending on the markdown parser
+  "http://nlopt.readthedocs.io/en/latest/NLopt\\_Algorithms/",
+  "http://nlopt.readthedocs.io/en/latest/NLopt/_Algorithms/",
+  "https://nlopt.readthedocs.io/en/latest/NLopt\\_Algorithms/#controlled-random-search-crs-with-local-mutation",
+  "https://qiskit.org/ecosystem/aer/apidocs/aer\\_library.html",
+  "https://qiskit.org/ecosystem/aer/apidocs/aer/_library.html",
+  "https://optuna.readthedocs.io/en/stable/tutorial/20/_recipes/009/_ask/_and/_tell.html",
+  "https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin\\_l\\_bfgs\\_b.html",
+  "https://github.com/Qiskit/openqasm3\\_parser",
   "https://csrc.nist.gov/pubs/fips/205/ipd",
+  "https://csrc.nist.gov/pubs/fips/203/ipd",
   "https://doi.org/10.6028/jres.104.027",
   "https://eprint.iacr.org/2012/090",
   "https://finance.yahoo.com/quote/8801.T",
@@ -173,6 +192,12 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://auth.quantum.ibm.com/api",
   "https://quantum-computing.cloud.ibm.com",
 
+  // Contains escape characters, but is only the hyperlink text anyway; the actual hyperlink is properly formatted and works
+  "https://en.wikipedia.org/wiki/Time-evolving\\_block\\_decimation",
+
+  // In an old version of qiskit-ibm-runtime that we won't update
+  "https://qiskit.github.io/qiskit-serverless/migration/migration_from_qiskit_runtime_programs.html",
+  "https://qiskit.github.io/qiskit-serverless/migration/migration\\_from\\_qiskit\\_runtime\\_programs.html",
   // Other links that don't seem to exist any more
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",

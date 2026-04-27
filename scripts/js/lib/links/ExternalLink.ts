@@ -25,8 +25,14 @@ export class ExternalLink {
       );
     }
 
-    // We strip anchors.
-    this.value = linkString.split("#", 2)[0];
+    // Normalize URL to handle escape characters, then strip anchors
+    try {
+      const normalized = new URL(linkString).href;
+      this.value = normalized.split("#", 2)[0];
+    } catch {
+      // If URL parsing fails, fall back to original behavior
+      this.value = linkString.split("#", 2)[0];
+    }
     this.originFiles = new Set(originFiles);
   }
 
@@ -34,7 +40,15 @@ export class ExternalLink {
    * Returns an error message if link failed.
    */
   async check(): Promise<string | undefined> {
-    const result = await safeFetch(this.value);
+    // Try HEAD request first (faster, less bandwidth)
+    let result = await safeFetch(this.value, "HEAD");
+
+    // If HEAD returns 405 (Method Not Allowed) or 501 (Not Implemented),
+    // retry with GET as many servers don't support HEAD for PDFs and binary files
+    if ("response" in result && shouldRetryWithGet(result.response.status)) {
+      result = await safeFetch(this.value, "GET");
+    }
+
     const error =
       "response" in result
         ? responseToErrorMessage(this.value, result.response)
@@ -53,11 +67,18 @@ export class ExternalLink {
 
 async function safeFetch(
   link: string,
+  method: "HEAD" | "GET" = "HEAD",
 ): Promise<{ response: Response } | { error: Error }> {
   try {
-    const response = await fetch(link, {
+    // Normalize URL to handle encoding issues
+    const normalizedUrl = new URL(link).href;
+
+    const response = await fetch(normalizedUrl, {
       headers: getHeaders(link),
-      method: "HEAD",
+      method: method,
+      // For GET requests, we only need headers to check if link is valid
+      // Using signal to abort after receiving headers saves bandwidth
+      signal: method === "GET" ? AbortSignal.timeout(10000) : undefined,
     });
     return { response };
   } catch (err) {
@@ -70,14 +91,23 @@ function responseToErrorMessage(
   response: Response,
 ): string | undefined {
   const httpCode = response.status;
-  const isOk = httpCode >= 100 && httpCode < 300;
+
+  // Accept 1xx-3xx as valid (including redirects)
+  // Accept 403 as potentially valid (resource exists but access is forbidden)
+  // Accept 429 as valid (resource exists but we're being rate limited)
+  const isOk =
+    (httpCode >= 100 && httpCode < 400) || httpCode === 403 || httpCode === 429;
   if (isOk) return undefined;
 
   if (httpCode === 404) return `Could not find link '${link}' (${httpCode})`;
   if (httpCode === 410) return `Link '${link}' has been removed (${httpCode})`;
-  if (httpCode === 418) return `Link '${link}' is a teapot (${httpCode})`;
 
   return `Link '${link}' returned unexpected code: ${httpCode}`;
+}
+
+function shouldRetryWithGet(status: number): boolean {
+  // Retry with GET when HEAD is not supported
+  return status === 405 || status === 501;
 }
 
 export function getHeaders(link: string): HeadersInit {
