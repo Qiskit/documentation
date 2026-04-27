@@ -1,4 +1,4 @@
-// This code is a Qiskit project.
+// This code is a Qiskit project.session
 //
 // (C) Copyright IBM 2025.
 //

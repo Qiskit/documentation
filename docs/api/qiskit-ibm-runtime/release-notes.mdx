@@ -1043,7 +1043,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
     `qiskit_ibm_runtime.RuntimeJob.program_id()` is deprecated and will be replaced by `qiskit_ibm_runtime.RuntimeJob.primitive_id()`. ([1238](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1238))
 
-*   The `backend` argument in [Sampler](/docs/guides/get-started-with-primitives#3-initialize-the-qiskit-runtime-sampler) and [Estimator](/docs/guides/get-started-with-primitives#3-initialize-qiskit-runtime-estimator) has been deprecated. Please use `mode` instead. The `session` argument in [Sampler](/docs/guides/get-started-with-primitives#3-initialize-the-qiskit-runtime-sampler) and [Estimator](/docs/guides/get-started-with-primitives#3-initialize-qiskit-runtime-estimator) has also been deprecated. Please use `mode` instead. ([1556](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1556))
+*   The `backend` argument in [Sampler](/docs/guides/get-started-with-sampler) and [Estimator](/docs/guides/get-started-with-estimator) has been deprecated. Please use `mode` instead. The `session` argument in [Sampler](/docs/guides/get-started-with-sampler) and [Estimator](/docs/guides/get-started-with-estimator) has also been deprecated. Please use `mode` instead. ([1556](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1556))
 
 *   `qiskit_ibm_runtime.QiskitRuntimeService.get_backend()` is deprecated. Please [`qiskit_ibm_runtime.QiskitRuntimeService.backend()`](qiskit-runtime-service#backend "qiskit_ibm_runtime.QiskitRuntimeService.backend") use instead. The V1 fake backends, `FakeBackend`, along with `FakeProvider` are also being deprecated in favor of the V2 fake backends and [`FakeProviderForBackendV2`](fake-provider-fake-provider-for-backend-v2 "qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2"). ([1689](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1689))
 
@@ -1182,7 +1182,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### Upgrade Notes
 
-*   Circuits that do not match the target hardware definition are no longer supported by Qiskit Runtime primitives, unless `channel_strategy="q-ctrl"` is used. See the transpilation documentation ([transpile](/docs/guides/transpile)) for instructions to transform circuits and the primitive examples ([run/primitives-examples](/docs/guides/primitives-examples)) to see this coupled with operator transformations.
+*   Circuits that do not match the target hardware definition are no longer supported by Qiskit Runtime primitives, unless `channel_strategy="q-ctrl"` is used. See the transpilation documentation ([transpile](/docs/guides/transpile)) for instructions to transform circuits and the primitive examples ([run/primitives-examples](/docs/guides/estimator-examples)) to see this coupled with operator transformations.
 
 <span id="id123" />
 
@@ -1226,7 +1226,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### Deprecation Notes
 
-*   Circuits that do not match the target hardware definition will no longer be supported after March 1, 2024. See the transpilation documentation ([transpile](/docs/guides/transpile)) for instructions to transform circuits and the primitive examples ([run/primitives-examples](/docs/guides/primitives-examples)) to see this coupled with operator transformations.
+*   Circuits that do not match the target hardware definition will no longer be supported after March 1, 2024. See the transpilation documentation ([transpile](/docs/guides/transpile)) for instructions to transform circuits and the primitive examples ([run/primitives-examples](/docs/guides/estimator-examples)) to see this coupled with operator transformations.
 
 <span id="id128" />
 

@@ -1,0 +1,40 @@
+---
+title: Introduction to primitives
+description: Introduction to primitives in Qiskit Runtime, and an explanation of available primitives
+---
+
+# Introduction to primitives
+
+Primitives were created to simplify the most common tasks for quantum computers: namely, sampling quantum states and calculating expectation values. The first Qiskit Runtime primitives ([`EstimatorV2`](/docs/api/qiskit-ibm-runtime/estimator-v2) and [`SamplerV2`](/docs/api/qiskit-ibm-runtime/sampler-v2)) are implementations of the Qiskit [primitives base classes](/docs/guides/primitives). They provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service and are used to access IBM Quantum&reg; hardware.
+
+The newest Qiskit Runtime primitive, [Executor](https://qiskit.github.io/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.Executor.html) (which is in beta), provides a lower-level interface that gives more visibility and control without sacrificing performance.
+
+<CardGroup>
+    <Card
+      title="Estimator"
+      description="Computes the expectation values for one or more observables with respect to states prepared by quantum circuits.  Has built-in error suppression and mitigation methods."
+      href="/docs/guides/get-started-with-estimator"
+      analyticsName="Get started with Estimator"
+      linkText="Get started with Estimator"
+    />
+
+    <Card
+      title="Sampler"
+      description="Samples the output register from the execution of one or more quantum circuits."
+      href="/docs/guides/get-started-with-sampler"
+      analyticsName="Get started with Sampler"
+      linkText="Get started with Sampler"
+    />
+
+</CardGroup>
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Learn about the [Qiskit primitives](/docs/guides/primitives) that the Qiskit Runtime primitives are based on.
+    - Review detailed [Estimator](/docs/guides/estimator-examples) or [Sampler](/docs/guides/sampler-examples) examples.
+    - See the input and output details for [Estimator](/docs/guides/estimator-input-output) or [Sampler](/docs/guides/sampler-input-output).
+    - Practice with primitives by working through the [Cost function lesson](/learning/courses/variational-algorithm-design/cost-functions) in IBM Quantum Learning.
+    - See the [EstimatorV2 API reference](/docs/api/qiskit-ibm-runtime/estimator-v2) and [SamplerV2 API reference](/docs/api/qiskit-ibm-runtime/sampler-v2).
+    - Read [Migrate to V2 primitives](/docs/guides/v2-primitives).
+</Admonition>

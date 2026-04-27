@@ -11,14 +11,13 @@ test-strategies.extended = {}
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
   "docs/guides/DAG-representation.ipynb",
-  "docs/guides/qiskit-runtime-primitives.ipynb",
   "docs/guides/bit-ordering.ipynb",
   "docs/guides/build-noise-models.ipynb",
   "docs/guides/circuit-library.ipynb",
   "docs/guides/classical-feedforward-and-control-flow.ipynb",
   "docs/guides/common-parameters.ipynb",
-  "docs/guides/configure-error-mitigation.ipynb",
-  "docs/guides/configure-error-suppression.ipynb",
+  "docs/guides/estimator-noise-management.ipynb",
+  "docs/guides/sampler-noise-management.ipynb",
   "docs/guides/construct-circuits.ipynb",
   "docs/guides/create-transpiler-plugin.ipynb",
   "docs/guides/custom-backend.ipynb",
@@ -51,7 +50,6 @@ notebooks = [
   "docs/guides/transpiler-plugins.ipynb",
   "docs/guides/transpiler-stages.ipynb",
   "docs/guides/visualize-circuits.ipynb",
-  "docs/guides/circuit-transpilation-settings.ipynb",
 ]
 
 # Mock the following notebooks using a 6-qubit local simulator
@@ -60,7 +58,6 @@ test-strategies.ci = { patch = "qiskit-fake-provider", num_qubits = 6 }
 test-strategies.extended = { patch = "qiskit-fake-provider", num_qubits = 6 }
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
-  "docs/guides/specify-runtime-options.ipynb",
   "docs/guides/visualize-results.ipynb",
 ]
 
@@ -68,6 +65,9 @@ notebooks = [
 # test-eagle device, which returns nonsense results. Use this to test notebooks
 # that submit large jobs to test notebooks that use functions, which accept
 # only a backend name (string) rather than a `Backend` object.
+# Use this ANY time the results (postprocessing) are not important.  For example,
+# for showing how to format & run a job. Don't use it if you're trying to explain
+# something about the results. Put a notebook here if it's timing out in CI.
 [groups.test-eagle]
 test-strategies.extended = { patch = "qiskit-ibm-runtime", backend = "test_eagle_us-east", qiskit_runtime_service_args = "" }
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
@@ -78,8 +78,16 @@ notebooks = [
   "docs/guides/functions.ipynb",
   "docs/guides/get-started-with-primitives.ipynb",
   "docs/guides/ibm-circuit-function.ipynb",
-  "docs/guides/primitives-examples.ipynb",
+  "docs/guides/sampler-examples.ipynb",
+  "docs/guides/estimator-examples.ipynb",
   "docs/guides/execute-dynamic-circuits.ipynb",
+  "docs/guides/estimator-rest-api.ipynb",
+  "docs/guides/get-started-with-sampler.ipynb",
+  "docs/guides/sampler-input-output.ipynb",
+  "docs/guides/sampler-options.ipynb",
+  "docs/guides/estimator-input-output.ipynb",
+  "docs/guides/estimator-options.ipynb",
+  "docs/guides/get-started-with-estimator.ipynb",
   "docs/guides/qiskit-addons-sqd-get-started.ipynb",
   "docs/guides/multiverse-computing-singularity.ipynb",
   "docs/guides/qunova-chemistry.ipynb",
@@ -91,16 +99,14 @@ notebooks = [
   "docs/guides/add-job-tags.ipynb",
   "docs/guides/qiskit-runtime-circuit-timing.ipynb",
   "docs/guides/visualize-circuit-timing.ipynb",
+  "docs/guides/circuit-transpilation-settings.ipynb",
 ]
 
 # Only run the following notebooks in our fortnightly cron job on real hardware.
 [groups.cron-job-only]
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
-  "docs/guides/primitives-rest-api.ipynb",
   "docs/guides/hello-world.ipynb",
-  # The following notebook takes >300s to run and should be executed in the
-  # cron job. Even though it does not use real hardware
 
   # The following notebooks don't seem to work with `test-eagle`, but I'm not
   # sure why. I've added them here to run on the next cron job so we can
