@@ -8,7 +8,7 @@ description: Understand the inputs and outputs to the Executor primitive.
 
 The Executor primitive is part of the [directed execution model](/docs/guides/directed-execution-model), which helps provide more flexibility when customizing an error mitigation workflow. 
 
-The inputs and output of the Executor primitive are very different from those of the [Sampler](/docs/guides/sampler-input-output) and [Estimator](/docs/guides/estimator-input-output) primitives. For example, instead of taking a list of PUBs as the input, Executor takes a `QuantumProgram`, which contains a list of `QuantumProgramItem` objects. `QuantumProgramItem`s can be of two types:
+The inputs and output of the Executor primitive are very different from those of the [Sampler](/docs/guides/sampler-input-output) and [Estimator](/docs/guides/estimator-input-output) primitives. For example, instead of taking a list of PUBs as the input, Executor takes a `QuantumProgram`, which contains a list of `QuantumProgramItem` objects. `QuantumProgramItem` objects can be of two types:
 - `CircuitItem`, which typically stores a circuit and its parameters.
 - `SamplexItem`, which typically stores a circuit, its parameters, and a `Samplex` object. The samplex is capable of generating randomized sets of parameters at runtime, for example to perform twirling or inject noise.
 
@@ -27,7 +27,7 @@ different task for Executor to perform. Typically, each item owns one of the fol
 
 * A `qiskit.circuit.QuantumCircuit` with static, non-parametrized gates
 * A parametrized `qiskit.circuit.QuantumCircuit` with an array of parameter values
-* A parametrized `qiskit.circuit.QuantumCircuit` with a `samplomatic.samplex.Samplex`. A Samplex is a core type of the [Samplomatic library](https://github.com/Qiskit/samplomatic) and encodes all the information about the randomization process itself.
+* A parametrized `qiskit.circuit.QuantumCircuit` with a `samplomatic.samplex.Samplex`. A samplex is a core type of the [Samplomatic library](https://github.com/Qiskit/samplomatic) and encodes all the information about the randomization process itself.
 
 Each of these items, including instructions to add them to a `QuantumProgram`, is explained in more detail below.
 
@@ -79,7 +79,7 @@ program.append_circuit_item(
 )
 ```
 
-Circuit items are executed without any sort of randomization. On the contrary, samplex items allows users to specify how to randomize their content. In the next cell, we show how to generate a samplex items for the GHZ circuit above that adds twirling to all the gates and measurements in it.
+Circuit items are executed without any sort of randomization. On the contrary, samplex items allows users to specify how to randomize their content. In the next cell, we show how to generate a samplex item for the GHZ circuit above that adds twirling to all the gates and measurements in it.
 
 See the Samplomatic [API](https://github.com/Qiskit/samplomatic/) documentation for full details about `samplomatic.samplex.Samplex` and its arguments.
 
