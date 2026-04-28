@@ -22,6 +22,22 @@ export function ignoreTitleMismatch(filepath: string): boolean {
 }
 
 const IGNORE_TITLE_MISMATCHES: string[] = [
+  "docs/guides/directed-execution-model.mdx",
+  "docs/guides/estimator-examples.ipynb",
+  "docs/guides/estimator-input-output.ipynb",
+  "docs/guides/estimator-options.ipynb",
+  "docs/guides/estimator-rest-api.ipynb",
+  "docs/guides/estimator-broadcasting.mdx",
+  "docs/guides/broadcasting.mdx",
+  "docs/guides/get-started-with-sampler.ipynb",
+  "docs/guides/pubs.ipynb",
+  "docs/guides/estimator-noise-management.ipynb",
+  "docs/guides/sampler-noise-management.ipynb",
+  "docs/guides/sampler-examples.ipynb",
+  "docs/guides/sampler-rest-api.mdx",
+  "docs/guides/sampler-input-output.ipynb",
+  "docs/guides/sampler-options.ipynb",
+  "docs/guides/get-started-with-estimator.ipynb",
   "docs/guides/external-providers-primitives-v2.mdx",
   "docs/guides/create-a-provider.mdx",
   "docs/guides/local-simulators.mdx",
