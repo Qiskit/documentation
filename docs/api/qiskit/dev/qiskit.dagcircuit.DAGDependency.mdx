@@ -8,7 +8,7 @@ python_api_name: qiskit.dagcircuit.DAGDependency
 
 # DAGDependency
 
-<Class id="qiskit.dagcircuit.DAGDependency" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagdependency.py#L55-L595" signature="qiskit.dagcircuit.DAGDependency" modifiers="class">
+<Class id="qiskit.dagcircuit.DAGDependency" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagdependency.py#L55-L600" signature="qiskit.dagcircuit.DAGDependency" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Object to represent a quantum circuit as a Directed Acyclic Graph (DAG) via operation dependencies (i.e. lack of commutation).
@@ -133,10 +133,14 @@ python_api_name: qiskit.dagcircuit.DAGDependency
 
   ### draw
 
-  <Function id="qiskit.dagcircuit.DAGDependency.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagdependency.py#L504-L522" signature="draw(scale=0.7, filename=None, style='color')">
+  <Function id="qiskit.dagcircuit.DAGDependency.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagdependency.py#L504-L527" signature="draw(scale=0.7, filename=None, style='color')">
     Draws the DAGDependency graph.
 
-    This function needs pydot \<[https://github.com/erocarrera/pydot](https://github.com/erocarrera/pydot)>, which in turn needs Graphviz \<[https://www.graphviz.org/](https://www.graphviz.org/)>\` to be installed.
+    This function needs [pydot](https://github.com/erocarrera/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed.
+
+    <Admonition title="Warning" type="caution">
+      This function will call the system Graphviz tool on a file involving user-controllable strings (such as gate labels or register names). It is recommended to only call this function on trusted input.
+    </Admonition>
 
     **Parameters**
 
@@ -150,7 +154,7 @@ python_api_name: qiskit.dagcircuit.DAGDependency
 
     **Return type**
 
-    Ipython.display.Image
+    IPython.display.Image
   </Function>
 
   ### get\_all\_edges
@@ -270,7 +274,7 @@ python_api_name: qiskit.dagcircuit.DAGDependency
 
   ### replace\_block\_with\_op
 
-  <Function id="qiskit.dagcircuit.DAGDependency.replace_block_with_op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagdependency.py#L524-L595" signature="replace_block_with_op(node_block, op, wire_pos_map, cycle_check=True)">
+  <Function id="qiskit.dagcircuit.DAGDependency.replace_block_with_op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagdependency.py#L529-L600" signature="replace_block_with_op(node_block, op, wire_pos_map, cycle_check=True)">
     Replace a block of nodes with a single node.
 
     This is used to consolidate a block of DAGDepNodes into a single operation. A typical example is a block of CX and SWAP gates consolidated into a LinearFunction. This function is an adaptation of a similar function from DAGCircuit.

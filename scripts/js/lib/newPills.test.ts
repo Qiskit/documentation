@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
-import { collectNewPills } from "./newPills";
-import { TocEntry } from "./api/generateToc.js";
+
+import { collectNewPills } from "./newPills.js";
+import { type TocEntry } from "./api/generateToc.js";
+
 test("collectNewPills()", () => {
   const input: TocEntry[] = [
     {

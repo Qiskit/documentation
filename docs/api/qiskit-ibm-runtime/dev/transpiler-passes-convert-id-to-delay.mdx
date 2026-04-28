@@ -8,12 +8,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
 # ConvertIdToDelay
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/basis/convert_id_to_delay.py#L26-L86" signature="ConvertIdToDelay(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/basis/convert_id_to_delay.py#L25-L87" signature="ConvertIdToDelay(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass)
 
-  Convert `qiskit.circuit.library.standard_gates.IGate` to a delay of the corresponding length.
+  Convert `qiskit.circuit.library.standard_gates.IGate` to a corresponding delay.
 
-  Convert [`qiskit.circuit.library.IGate`](/docs/api/qiskit/qiskit.circuit.library.IGate) to a Convert [`qiskit.circuit.Delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay).
+  Convert [`qiskit.circuit.library.IGate`](/docs/api/qiskit/qiskit.circuit.library.IGate) to a [`qiskit.circuit.Delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay) of corresponding length.
 
   **Parameters**
 
@@ -52,7 +52,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
     **Returns**
 
-    If on transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
+    If a transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
 
     **Return type**
 
@@ -68,7 +68,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
     *   **passmanager\_ir** (*Any*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
-    *   **callback** (*Callable | None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** (*Callable | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -91,16 +91,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/basis/convert_id_to_delay.py#L45-L47" signature="run(dag)">
-    Run a pass on the DAGCircuit. This is implemented by the pass developer.
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/basis/convert_id_to_delay.py#L43-L46" signature="run(dag)">
+    Run the pass on the DAGCircuit.
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the dag on which the pass is run.
-
-    **Raises**
-
-    **NotImplementedError** – when this is left unimplemented for a pass.
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit))
 
     **Return type**
 

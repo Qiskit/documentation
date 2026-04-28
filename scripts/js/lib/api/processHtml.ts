@@ -58,6 +58,9 @@ export async function processHtml(
   const isIndex = fileName.endsWith("index.html");
   const isRoot =
     options.hasRootNamespaceFile && fileName.endsWith("/root.html");
+  const isIbmQuantumSchemasPage = fileName.endsWith(
+    "/ibm_quantum_schemas.html",
+  );
   const images = loadImages(
     $,
     $main,
@@ -71,6 +74,7 @@ export async function processHtml(
 
   // Warning: the sequence of operations often matters.
   removeHtmlExtensionsInRelativeLinks($, $main);
+  if (options.isCApi) removeCDomainPrefixFromAnchors($, $main);
   removePermalinks($main);
   removeDownloadSourceCode($main);
   removePublicMembersRubric($main);
@@ -86,7 +90,11 @@ export async function processHtml(
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
-  await processMembersAndSetMeta($, $main, meta, { ...options, isRoot });
+  await processMembersAndSetMeta($, $main, meta, {
+    ...options,
+    isRoot,
+    isIbmQuantumSchemasPage,
+  });
   if (options.isCApi) maybeSetCMetadata($main, meta, isReleaseNotes, isIndex);
   else maybeSetPythonModuleMetadata($, $main, meta);
 
@@ -139,6 +147,24 @@ export function removeHtmlExtensionsInRelativeLinks(
     const href = $link.attr("href");
     if (href && !href.startsWith("http")) {
       $link.attr("href", href.replaceAll(".html", ""));
+    }
+  });
+}
+
+/**
+ * Sphinx's C domain emits cross-reference hrefs like `#c.symbol_name`, but our
+ * <Function> components use bare IDs (e.g. `symbol_name`). Strip the `c.` prefix
+ * so the anchors resolve correctly.
+ */
+export function removeCDomainPrefixFromAnchors(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
+  $main.find("a").each((_, link) => {
+    const $link = $(link);
+    const href = $link.attr("href");
+    if (href && href.startsWith("#c.")) {
+      $link.attr("href", `#${href.slice(3)}`);
     }
   });
 }
@@ -368,13 +394,26 @@ export async function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
-  options: { isCApi: boolean; isRoot: boolean },
+  options: {
+    isCApi: boolean;
+    isRoot: boolean;
+    isIbmQuantumSchemasPage: boolean;
+  },
 ): Promise<void> {
   // Some packages might include a root page where all the re-exports
   // in the root namespace are explained.
   if (options.isRoot) {
     meta.apiType = "syntheticModule";
     meta.apiName = "Root namespace";
+    return;
+  }
+
+  // qiskit-ibm-runtime documents the ibm-quantum-schemas package index page
+  // manuall, so we create a synthetic module to add it to the left nav bar
+  if (options.isIbmQuantumSchemasPage) {
+    meta.apiType = "syntheticModule";
+    meta.apiName = "IBM Quantum Schemas";
+    meta.untranslatable = true;
     return;
   }
 

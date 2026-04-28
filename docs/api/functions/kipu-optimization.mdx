@@ -1,0 +1,262 @@
+---
+title: Iskay Quantum Optimizer API reference
+description: API reference for Iskay Quantum Optimizer, a Qiskit Function by Kipu Quantum
+---
+
+# Iskay Quantum Optimizer API reference
+
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/kipu-optimization"
+      analyticsName="Functions API: kipu-optimization"
+      linkText="Iskay Quantum Optimizer Qiskit Function guide"
+    />
+</CardGroup>
+
+## Inputs
+
+### `problem`
+<Attribute attributeTypeHint="Dict[str, float]">
+The coefficients of the optimization problem formulated as QUBO/HUBO or spin format. For more information on the problem specification, see [Accepted problem formats](#accepted-problem-formats).
+- Required: Yes
+- Example: `{"()": -21.0, "(0, 4)": 0.5,"(0, 2)": 0.5,"(0, 1)": 0.5,"(1, 3)": 0.5}`
+</Attribute>
+
+### `problem_type`
+<Attribute attributeTypeHint="str">
+Specify whether the problem coefficients are in binary (QUBO/HUBO) or spin format. The two possibilities are `"spin"` or `"binary"`. For more information on the problem specification, see [Accepted problem formats](#accepted-problem-formats).
+- Required: Yes
+- Example: `"spin"`
+</Attribute>
+
+### `backend_name`
+<Attribute attributeTypeHint="str">
+Name of the backend to make the query
+- Required: Yes
+- Example: `"ibm_fez"`
+</Attribute>
+
+### Options
+<Attribute attributeTypeHint="Dict[str, Any]">
+Options to handle the hardware submission, such as number of shots. Options for this function are specified as a nested dictionary. See the full [list of options](#kipu-options) and their default values.
+- Required: No
+- Example: `{"shots": 5000, "num_iterations": 3, "use_session": True, "seed_transpiler": 42}`
+
+<span id="accepted-problem-formats"></span>
+<Admonition type="tip" title="Accepted problem formats">
+The `problem` and `problem_type` arguments encode an optimization problem of the form
+
+$$
+\begin{align}
+\min_{(x_1, x_2, \ldots, x_n) \in D} C(x_1, x_2, \ldots, x_n) \nonumber
+\end{align}
+$$
+where
+
+$$
+C(x_1, ... , x_n) = a + \sum_{i} b_i x_i + \sum_{i, j} c_{i, j} x_i x_j + ... + \sum_{k_1, ..., k_m} g_{k_1, ..., k_m} x_{k_1} ... x_{k_m}
+$$
+
+- By choosing `problem_type = "binary"`, you specify that the cost function is in `binary` format, which means that $D = \{0,  1\}^{n}$, as in, the cost function is written in QUBO/HUBO formulation.
+- On the other hand, by choosing `problem_type = "spin"`, the cost function is written in Ising formulation, where $D = \{-1, 1\}^{n}$.
+
+The coefficients of the problem should be encoded in a dictionary as follows:
+$$
+\begin{align} \nonumber
+&\texttt{\{} \\ \nonumber
+&\texttt{"()"}&: \quad &a, \\ \nonumber
+&\texttt{"(i,)"}&: \quad &b_i, \\ \nonumber
+&\texttt{"(i, j)"}&: \quad &c_{i, j}, \\ \nonumber
+&\quad  \vdots \\ \nonumber
+&\texttt{"(} k_1, ..., k_m  \texttt{)"} &: \quad &g_{k_1, ..., k_m}, \\ \nonumber
+&\texttt{\}}
+\end{align}
+$$
+
+- Please note that the keys of the dictionary must be strings containing a valid tuple of non-repeating integers.
+</Admonition>
+
+<span id="kipu-options"></span>
+#### Options list
+
+Iskay provides fine-tuning capabilities through optional parameters. While the defaults work well for most problems, you can customize the behavior for specific requirements:
+
+##### `shots`
+<Attribute attributeTypeHint="`int`" attributeValue="10000">
+Quantum measurements per iteration (higher = more accurate)
+</Attribute>
+
+##### `num_iterations`
+<Attribute attributeTypeHint="`int`" attributeValue="10">
+Algorithm iterations (more iterations can improve solution quality)
+</Attribute>
+
+##### `use_session`
+<Attribute attributeTypeHint="`bool`" attributeValue="True">
+Use IBM sessions for reduced queue times
+</Attribute>
+
+##### `seed_transpiler`
+<Attribute attributeTypeHint="`int`" attributeValue="None">
+Set for reproducible quantum circuit compilation.
+
+**Seed optimization**: Note that `seed_transpiler` is set to `None` by default. This enables the transpiler's automatic optimization process. When `None`, the system will start a trial with multiple seeds and select the one that produces the best circuit depth, leveraging the full power of the `max_trials` parameter for each transpilation level.
+</Attribute>
+
+##### `direct_qubit_mapping`
+<Attribute attributeTypeHint="`bool`" attributeValue="False">
+Map virtual qubits directly to physical num_qubits
+</Attribute>
+
+##### `job_tags`
+<Attribute attributeTypeHint="`List[str]`" attributeValue="None">
+Custom tags for job tracking
+</Attribute>
+
+##### `preprocessing_level`
+<Attribute attributeTypeHint="`int`" attributeValue="0">
+Problem preprocessing intensity (0-3).
+
+**Preprocessing Levels (0-3)**: Specially important for larger problems that cannot currently fit on the coherence times of the hardware. Higher preprocessing levels achieve shallower circuit depths by approximations in the problem transpilation:
+- **Level 0**: Exact, longer circuits
+- **Level 1**: Good balance between accuracy and approximation, cutting out only the gates with angles in the lowest 10th percentile
+- **Level 2**: Slightly higher approximation, cutting out the gates with angles in the lowest 20th percentile and using `approximation_degree=0.95` in the transpilation
+- **Level 3**: Maximum approximation level, cutting out the gates in the lowest 30th percentile and using `approximation_degree=0.90` in the transpilation
+</Attribute>
+
+##### `postprocessing_level`
+<Attribute attributeTypeHint="`int`" attributeValue="2">
+Solution refinement level (0-2).
+
+**Postprocessing Levels (0-2)**: Control how much classical optimization, compensating for bit-flip errors with different number of greedy passes of a local search:
+- **Level 0**: 1 pass
+- **Level 1**: 2 passes
+- **Level 2**: 3 passes
+</Attribute>
+
+##### `transpilation_level`
+<Attribute attributeTypeHint="`int`" attributeValue="0">
+Transpiler optimization trials (0-5).
+
+**Transpilation Levels (0-5)**: Control the advanced transpiler optimization trials for quantum circuit compilation. This can lead to an increase in classical overhead, and for some cases it might not change the circuit depth. The default value `2` in general leads to the smallest circuit and is relatively fast.
+- **Level 0**: Optimization of the decomposed DCQO circuit (layout, routing, scheduling)
+- **Level 1**: Optimization of `PauliEvolutionGate` and then the decomposed DCQO circuit (max_trials=10)
+- **Level 2**: Optimization of `PauliEvolutionGate` and then the decomposed DCQO circuit (max_trials=15)
+- **Level 3**: Optimization of `PauliEvolutionGate` and then the decomposed DCQO circuit (max_trials=20)
+- **Level 4**: Optimization of `PauliEvolutionGate` and then the decomposed DCQO circuit (max_trials=25)
+- **Level 5**: Optimization of `PauliEvolutionGate` and then the decomposed DCQO circuit (max_trials=50)
+</Attribute>
+
+##### `transpile_only`
+<Attribute attributeTypeHint="`bool`" attributeValue="False">
+Available for users who want to analyze circuit optimization without running the full quantum algorithm execution. Useful for circuit analysis, depth optimization studies, and understanding transpilation effects before committing to full execution.
+</Attribute>
+</Attribute>
+
+<Admonition type="tip" title="Transpilation level performance">
+Increasing the number of `max_trials` with higher values for [`transpilation_level`](#transpilation_level) will unavoidably increase the transpilation time, but it might not always change the final circuit - this depends heavily on the specific circuit structure and complexity. For some circuits/problems, however, the difference between 10 trials (level 1) and 50 trials (level 5) can be dramatic, so exploring these parameters might be the key to successfully finding a solution.
+</Admonition>
+
+## Output
+
+<Attribute attributeTypeHint="`Dict[str, Any]`">
+Solution and metadata. Structure varies based on [`transpile_only`](#transpile_only) option.
+
+<span id="result-dict"></span>
+### Result dictionary
+
+The result dictionary structure depends on the execution mode:
+
+#### `solution`
+<Attribute attributeTypeHint="`Dict[str, int]`">
+The sorted mapped solution where keys are variable indices (as strings) sorted numerically and values are the corresponding variable values (1/-1 for spin problems, 1/0 for binary problems).
+- Mode: Standard
+- Example: `{'0': -1, '1': -1, '2': -1, '3': 1, '4': 1}`
+</Attribute>
+
+#### `solution_info`
+<Attribute attributeTypeHint="`Dict[str, Any]`">
+Detailed information about the solution.
+- Mode: Standard
+- Example: `{'bitstring': '11100', 'cost': -13.8, 'seed_transpiler': 42, 'mapping': {0: 0, 1: 1, 2: 2, 3: 3, 4: 4}}`
+- **Standard execution**: When the optional parameter [`transpile_only=False`](#transpile_only), see the dictionary that follows.
+
+##### `bitstring`
+<Attribute attributeTypeHint="`str`">
+The raw bitstring representation of the solution.
+</Attribute>
+##### `cost`
+<Attribute attributeTypeHint="`float`">
+The cost/energy value associated with the solution.
+</Attribute>
+##### `seed_transpiler`
+<Attribute attributeTypeHint="`int`">
+The random seed used for the transpiler that produced this result.
+</Attribute>
+##### `mapping`
+<Attribute attributeTypeHint="`Dict[int, int]`">
+The original qubit-to-variable mapping used in the computation.
+</Attribute>
+##### `qpu_time`
+<Attribute attributeTypeHint="`float`, optional">
+The QPU execution time in seconds.
+</Attribute>
+<Admonition type="note" title="Variable mapping notes">
+- The `solution` dictionary is obtained from the solution bitstring, using the `mapping` object for indexing the variables.
+- When `problem_type=spin` we use the assignment $1 \rightarrow -1, \quad 0 \rightarrow 1$.
+- Keys in the solution dictionary are variable indices sorted numerically as strings.
+</Admonition>
+</Attribute>
+
+#### `prob_type`
+<Attribute attributeTypeHint="`str`">
+The type of optimization problem (`spin` or `binary`)
+- Mode: Standard
+- Example: `'spin'`
+</Attribute>
+
+#### `transpilation_info`
+<Attribute attributeTypeHint="`Dict[str, Any]`">
+Circuit analysis and transpilation details.
+
+- Mode: Transpile-only
+- Example: `{'best_seed': 42, 'transpilation_time_seconds': 50.06, 'transpiled_circuit': {'depth': 576, 'gate_count': 4177, 'num_qubits': 156, 'width': 176, 'operations': {'sx': 1325, 'rx': 891, 'cz': 783, 'rz': 650, 'rzz': 466, 'x': 42, 'measure': 20}}}`
+- **Transpilation analysis**: When the optional parameter [`transpile_only=True`](#transpile_only), see the dictionary that follows:
+
+##### `best_seed`
+<Attribute attributeTypeHint="`int`">
+The optimal seed found for transpilation.
+</Attribute>
+##### `transpilation_time_seconds`
+<Attribute attributeTypeHint="`float`">
+Time taken for transpilation process.
+</Attribute>
+##### `transpiled_circuit`
+<Attribute attributeTypeHint="`Dict`">
+Circuit analysis containing the following:
+- `depth`
+<Attribute attributeTypeHint="`int`">
+Circuit depth (number of layers)
+</Attribute>
+- `gate_count`
+<Attribute attributeTypeHint="`int`">
+Total number of gates in the circuit.
+</Attribute>
+- `num_qubits`
+<Attribute attributeTypeHint="`int`">
+Number of qubits used.
+</Attribute>
+- `width`
+<Attribute attributeTypeHint="`int`">
+Circuit width.
+</Attribute>
+- `operations`
+<Attribute attributeTypeHint="`Dict[str, int]`">
+Count of each gate type used.
+</Attribute>
+</Attribute>
+</Attribute>
+
+</Attribute>

@@ -6,11 +6,11 @@ python_api_type: module
 python_api_name: qiskit.transpiler
 ---
 
+<span id="transpiler-qiskit-transpiler" />
+
 <span id="module-qiskit.transpiler" />
 
 <span id="qiskit-transpiler" />
-
-<span id="transpiler-qiskit-transpiler" />
 
 # Transpiler
 
@@ -52,6 +52,26 @@ backend = QiskitRuntimeService().backend("some-backend")
 pm = generate_preset_pass_manager(backend=backend)
 # ... and use it (as many times as you like).
 physical = pm.run(abstract)
+```
+
+For early experiments towards fault tolerance, the function [`generate_preset_pass_manager()`](qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") invokes a specialized transpilation pipeline when the target basis consists of Clifford+T gates, see [`clifford_t_pass_manager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.clifford_t_pass_manager "qiskit.transpiler.preset_passmanagers.clifford_t_pass_manager") for documentation. For example:
+
+```python
+from qiskit.circuit import QuantumCircuit
+from qiskit.circuit.library import QFTGate
+from qiskit.transpiler import generate_preset_pass_manager
+from qiskit.quantum_info import get_clifford_gate_names
+
+# Any abstract circuit you want:
+abstract = QuantumCircuit(4)
+abstract.append(QFTGate(4), [0, 1, 2, 3])
+
+# Use all Clifford+T basis gates
+basis_gates = get_clifford_gate_names() + ["t", "tdg"]
+
+# Create and run the pass manager
+pm = generate_preset_pass_manager(basis_gates=basis_gates)
+transpiled = pm.run(abstract)
 ```
 
 For most use cases, this is all you need. All of Qiskit’s transpiler infrastructure is highly extensible and configurable, however. The rest of this page details how to harness the low-level capabilities of the transpiler stack.
@@ -96,11 +116,11 @@ The optimization level affects which implementations are used for a given stage 
 
 ### Reproducibility of the preset pipelines
 
-Quantum compilation often involves solving problems that are knownn to be non-polynomial in complexity, and so are intractable to globally optimize. In these cases, stochastic and heuristic algorithms are often more appropriate. This leads to problems of reproducibility, however.
+Quantum compilation often involves solving problems that are known to be non-polynomial in complexity, and so are intractable to globally optimize. In these cases, stochastic and heuristic algorithms are often more appropriate. This leads to problems of reproducibility, however.
 
 The preset pass managers almost always include stochastic, heuristic-based passes. If you need to ensure reproducibility of a compilation, pass a known integer to the `seed_transpiler` argument of the generator functions.
 
-All built-in plugins to Qiskit are required to produce their analyses and modify the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") in deterministic ways if they randomization (if any) is seeded, so that a compilation can be repeated later. There are limits on this:
+All built-in plugins to Qiskit are required to produce their analyses and modify the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") in deterministic ways if their randomization (if any) is seeded, so that a compilation can be repeated later. There are limits on this:
 
 *   All built-in passes with stochastic components must provide a way to seed the randomization, and if seeded, they must respect the rules of deterministic output.
 *   All built-in passes without stochastic components must respect the rules of deterministic output for identical input. It is permissible to keep a cache for efficiency, but given the same set of inputs, the pass’s returns must be the same if the pass is called multiple times, unless something outside the pass’s control mutates one of its inputs in-place (for example, the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") uses the [`SessionEquivalenceLibrary`](circuit#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary") by default in the preset pass managers, and it is not a bug to get different results if new entries are added to the equivalence library). An “output” is anything the pass writes out for further consumption; this can be the explicit `return` value from the pass, but also includes properties intended for later consumption in the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet").
@@ -111,7 +131,7 @@ All built-in plugins to Qiskit are required to produce their analyses and modify
 *   The output of a pass for a fixed seed must be the same, regardless of the number of threads it is allowed to use, unless the user specifically opts out of this behavior. For example in the preset passmanagers, the Sabre layout and routing methods need to run the same number of trials by default, no matter if there is a single thread allowed or even more threads than trials, though this behavior can be explicitly overridden by setting the `QISKIT_SABRE_ALL_THREADS` environment variable to opt in to becoming sensitive to the thread count.
 *   All the above rules apply even between separate Python interpreter sessions, even when `PYTHONHASHSEED` has not been explicitly set.
 
-In general, a consumer of the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") should be able to assume, after any combination of built-in, seeded if appropriate, Qiskit passes have run with fixed inputs, that the exact output of all `DAGCircuit()` methods is deterministic. This includes the order of output even of methods that do not make any promise about the order; while the semantics and precide order cannot be relied on, the determinism of it for fixed inputs can.
+In general, a consumer of the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") should be able to assume, after any combination of built-in, seeded if appropriate, Qiskit passes have run with fixed inputs, that the exact output of all `DAGCircuit()` methods is deterministic. This includes the order of output even of methods that do not make any promise about the order; while the semantics and precise order cannot be relied on, the determinism of it for fixed inputs can.
 
 Transpiler-pass authors should consult [Randomness and determinism](#transpiler-custom-passes-determinism) for a discussion of how to make a transpiler pass deterministic.
 
@@ -209,7 +229,7 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 #### Built-in `default` plugin
 
-At optimization level 0, no abstract optimization is done. The default plugin simply “unrolls” operations with more than three qubits by accessing their hierarchical `definition` fields.
+At optimization level 0, no abstract optimization is done. The default plugin simply “unrolls” operations with more than three qubits by accessing their hierarchical [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") fields.
 
 At optimization levels 1 and above, the default plugin also does simple cancellation of adjacent inverse gates, such as two back-to-back `cx` gates.
 
@@ -458,8 +478,6 @@ The optimization level has no effect on this plugin.
 
 Uses the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") algorithm to symbolically translate gates into the target basis. At a high level, this starts from the set of gates requested by the circuit, and uses rules from a given [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") (typically the [`SessionEquivalenceLibrary`](circuit#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary")) to move towards the ISA.
 
-For a Clifford+T basis set, the single-qubit rotation gates are approximated using the [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") pass. By default (when `unitary_synthesis_method='default'`), this invokes the [`SolovayKitaevDecomposition`](qiskit.synthesis.SolovayKitaevDecomposition "qiskit.synthesis.SolovayKitaevDecomposition") algorithm. A custom synthesis method may be also specified, and it should either return the synthesized circuit in the Clifford+T basis set or return `None` in which case the default method would be called as fallback.
-
 This is the default translation method.
 
 The optimization level has no effect on this plugin.
@@ -492,9 +510,9 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 #### Built-in `default` plugin
 
-This varies significantly depending on the optimization level and whether the basis set is of the form Clifford+T.
+This varies significantly depending on the optimization level.
 
-The specifics of this pipeline are subject to change between Qiskit versions. The broad principles are described below. First, consider the more common case that the basis set is not of the form Clifford+T.
+The specifics of this pipeline are subject to change between Qiskit versions. The broad principles are described below.
 
 At optimization level 0, the stage is empty.
 
@@ -503,8 +521,6 @@ At optimization level 1, the stage does matrix-based resynthesis of runs of sing
 At optimization level 2, in addition the optimizations of level 1, the loop contains commutation analysis of sets of gates to widen the range of gates that can be considered for cancellation. Before the loop, runs of both one- and two-qubit gates undergo a single matrix-based resynthesis.
 
 At optimization level 3, the two-qubit matrix-based resynthesis runs inside the optimization loop. The optimization loop condition also tries multiple runs and chooses the minimum point in the case of fluctuating output; this is necessary because matrix-based resynthesis is relatively unstable in terms of concrete gates.
-
-For a Clifford+T basis set, two-qubit matrix based resynthesis is not applied.
 
 Optimization level 3 is typically very expensive for large circuits.
 
@@ -638,7 +654,7 @@ Some tips for ensuring this include:
 
     In Rust, use `indexmap` and its structs `IndexMap` and `IndexSet` as replacements for `HashMap` and `HashSet`, respectively; they have similar deterministic-iteration properties to Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict).
 
-*   If your pass as stochastic components, ensure that you accept a `seed` input, and make your output pure if this is supplied as an integer. Typically this means storing the seed, and instantiating a new pRNG from this seed at the start of each call to `BasePass.run()`.
+*   If your pass has stochastic components, ensure that you accept a `seed` input, and make your output pure if this is supplied as an integer. Typically this means storing the seed, and instantiating a new pRNG from this seed at the start of each call to `BasePass.run()`.
 
 *   If using threaded parallelism, take care that your output is not dependent on the order that threads do their work or return their partial results. For example, if distributing work across a thread pool and collecting the results at the end, ensure that the output is arranged in a corresponding order to the input. In Python, functions like `concurrent.futures.ThreadPoolExecutor.map()` ensure this. Similarly, in Rust, `rayon`’s parallel iterators will collect their output in the same order as the input.
 
@@ -1010,7 +1026,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### TranspilerError
 
-<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
   Bases: [`TranspilerAccessError`](#qiskit.transpiler.TranspilerAccessError "qiskit.transpiler.exceptions.TranspilerAccessError")
 
   Exceptions raised during transpilation.
@@ -1020,7 +1036,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### TranspilerAccessError
 
-<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
   Bases: [`PassManagerError`](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.exceptions.PassManagerError")
 
   DEPRECATED: Exception of access error in the transpiler passes.
@@ -1030,7 +1046,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### CouplingError
 
-<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Base class for errors raised by the coupling graph object.
@@ -1040,7 +1056,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### LayoutError
 
-<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Errors raised by the layout object.
@@ -1050,7 +1066,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### CircuitTooWideForTarget
 
-<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
   Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
 
   Error raised if the circuit is too wide for the target.
@@ -1060,7 +1076,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 #### InvalidLayoutError
 
-<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
   Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
 
   Error raised when a user provided layout is invalid.
@@ -1070,7 +1086,7 @@ The scheduling of a circuit involves two parts: analysis and constraint mapping,
 
 ### Optimization metric
 
-|                                                                                                            |                                                      |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [`OptimizationMetric`](qiskit.transpiler.OptimizationMetric "qiskit.transpiler.OptimizationMetric")(value) | Optimization metric considered during transpilation. |
+|                                                                                                               |                                                      |
+| ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`OptimizationMetric`](qiskit.transpiler.OptimizationMetric "qiskit.transpiler.OptimizationMetric")(\*values) | Optimization metric considered during transpilation. |
 

@@ -17,7 +17,7 @@ import { mkdirp } from "mkdirp";
 
 import { removePrefix, removeSuffix } from "../stringUtils.js";
 import { C_API_BASE_PATH } from "./conversionPipeline.js";
-import { PackageLanguage } from "./Pkg";
+import { PackageLanguage } from "./Pkg.js";
 
 /**
  * Some pages exist in the sphinx docs but not in our docs

@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 # PauliFeatureMap
 
-<Class id="qiskit.circuit.library.PauliFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L327-L644" signature="qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')" modifiers="class">
+<Class id="qiskit.circuit.library.PauliFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L387-L703" signature="qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')" modifiers="class">
   Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
   The Pauli Expansion circuit.
@@ -102,15 +102,15 @@ $$
 
   **Parameters**
 
-  *   **feature\_dimension** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Number of qubits in the circuit.
-  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of repeated circuits.
-  *   **entanglement** (*Union\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Dict\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, List\[Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]], Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int)*], Union\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Dict\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, List\[Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]]]]]*) – Specifies the entanglement structure. Can be a string (`'full'`, `'linear'`, `'reverse_linear'`, `'circular'` or `'sca'`) or can be a dictionary where the keys represent the number of qubits and the values are list of integer-pairs specifying the indices of qubits that are entangled with one another, for example: `{1: [(0,), (2,)], 2: [(0,1), (2,0)]}` or can be a `Callable[[int], Union[str | Dict[...]]]` to return an entanglement specific for a repetition
+  *   **feature\_dimension** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Number of qubits in the circuit.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of times the evolution layers are repeated.
+  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]]]*) – Specifies the entanglement structure. Can be a string (`'full'`, `'linear'`, `'reverse_linear'`, `'circular'` or `'sca'`) or can be a dictionary where the keys represent the number of qubits and the values are list of integer-pairs specifying the indices of qubits that are entangled with one another, for example: `{1: [(0,), (2,)], 2: [(0,1), (2,0)]}` or can be a `Callable[[int], Union[str | Dict[...]]]` to return an entanglement specific for a repetition
   *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The Pauli rotation factor, multiplicative to the pauli rotations
-  *   **paulis** (*Optional\[List\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]]*) – A list of strings for to-be-used paulis. If None are provided, `['Z', 'ZZ']` will be used.
-  *   **data\_map\_func** (*Optional\[Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/library/functions.html#float)*]]*) – A mapping function for data x which can be supplied to override the default mapping from `self_product()`.
+  *   **paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – A list of strings for to-be-used paulis. If None are provided, `['Z', 'ZZ']` will be used.
+  *   **data\_map\_func** (*Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – A mapping function for the data `x` which can be supplied to override the default mapping.
   *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The prefix used if default parameters are generated.
-  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True, barriers are inserted in between the evolution instructions and Hadamard layers.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) –
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True`, barriers are inserted in between the evolution instructions and Hadamard layers.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Name of the circuit.
 
   ## Attributes
 
@@ -183,7 +183,7 @@ $$
 
   ### get\_entangler\_map
 
-  <Function id="qiskit.circuit.library.PauliFeatureMap.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L607-L644" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
+  <Function id="qiskit.circuit.library.PauliFeatureMap.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L666-L703" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
     Get the entangler map for in the repetition `rep_num` and the block `block_num`.
 
     The entangler map for the current block is derived from the value of `self.entanglement`. Below the different cases are listed, where `i` and `j` denote the repetition number and the block number, respectively, and `n` the number of qubits in the block.
@@ -224,13 +224,13 @@ $$
 
   ### pauli\_block
 
-  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_block" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L561-L565" signature="pauli_block(pauli_string)">
+  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_block" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L620-L624" signature="pauli_block(pauli_string)">
     Get the Pauli block for the feature map circuit.
   </Function>
 
   ### pauli\_evolution
 
-  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L567-L605" signature="pauli_evolution(pauli_string, time)">
+  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L626-L664" signature="pauli_evolution(pauli_string, time)">
     Get the evolution block for the given pauli string.
   </Function>
 </Class>

@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { parseMarkdown } from "./markdownUtils";
+import { parseMarkdown } from "./markdownUtils.js";
 import { collectInvalidImageErrors } from "./markdownImages.js";
 
 test("Test the finding of invalid images", async () => {

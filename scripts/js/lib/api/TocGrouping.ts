@@ -16,6 +16,7 @@ import { hasPrefix } from "../stringUtils.js";
 type Section = {
   name: string;
   kind: "section";
+  untranslatable?: boolean;
 };
 
 /** A single module that should be shown as top-level in the left ToC. */
@@ -26,6 +27,7 @@ type TopLevelModule = {
    * to give a custom name like 'Quantum information (qiskit.quantum_info)'. */
   title: string;
   kind: "module";
+  untranslatable?: boolean;
 };
 
 export type TocGroupingEntry = Section | TopLevelModule;
@@ -79,11 +81,17 @@ const QISKIT_ENTRIES = [
   { name: _OPFLOW, kind: "section" },
   { name: _SERIALIZATION, kind: "section" },
   { name: _PULSE, kind: "section" },
-  { moduleId: "qiskit.execute", title: "qiskit.execute", kind: "module" },
+  {
+    moduleId: "qiskit.execute",
+    title: "qiskit.execute",
+    kind: "module",
+    untranslatable: true,
+  },
   {
     moduleId: "qiskit.execute_function",
     title: "qiskit.execute_function",
     kind: "module",
+    untranslatable: true,
   },
   { name: _OTHER, kind: "section" },
   { name: _AER, kind: "section" },
@@ -152,6 +160,7 @@ function qiskitModuleToSection(module: string): string | undefined {
   if (
     hasPrefix(module, [
       "qiskit.assembler",
+      "qiskit.capi",
       "qiskit.compiler",
       "qiskit.exceptions",
       "qiskit.qobj",
@@ -191,24 +200,124 @@ export const QISKIT_ADDON_MPF_GROUPING: TocGrouping = {
       moduleId: "qiskit_addon_mpf.static",
       title: "qiskit_addon_mpf.static",
       kind: "module",
+      untranslatable: true,
     },
     {
       moduleId: "qiskit_addon_mpf.dynamic",
       title: "qiskit_addon_mpf.dynamic",
       kind: "module",
+      untranslatable: true,
     },
     {
       moduleId: "qiskit_addon_mpf.costs",
       title: "qiskit_addon_mpf.costs",
       kind: "module",
+      untranslatable: true,
     },
     {
       name: "qiskit_addon_mpf.backends",
       kind: "section",
+      untranslatable: true,
     },
   ],
   moduleToSection: (module) =>
     hasPrefix(module, ["qiskit_addon_mpf.backends"])
       ? "qiskit_addon_mpf.backends"
+      : undefined,
+};
+
+// --------------------------------------------------------------------------------------------------
+// qiskit-ibm-runtime
+// --------------------------------------------------------------------------------------------------
+
+const _SCHEMAS = "ibm_quantum_schemas";
+
+export const QISKIT_RUNTIME_GROUPING: TocGrouping = {
+  entries: [
+    // qiskit-ibm-runtime package
+    {
+      moduleId: "qiskit_ibm_runtime",
+      title: "qiskit_ibm_runtime",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.debug_tools",
+      title: "qiskit_ibm_runtime.debug_tools",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.execution_span",
+      title: "qiskit_ibm_runtime.execution_span",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.fake_provider",
+      title: "qiskit_ibm_runtime.fake_provider",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.models",
+      title: "qiskit_ibm_runtime.models",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.noise_learner",
+      title: "qiskit_ibm_runtime.noise_learner",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.noise_learner_v3",
+      title: "qiskit_ibm_runtime.noise_learner_v3",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.options",
+      title: "qiskit_ibm_runtime.options",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.quantum_program",
+      title: "qiskit_ibm_runtime.quantum_program",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.transpiler.passes",
+      title: "qiskit_ibm_runtime.transpiler.passes",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.transpiler.passes.scheduling",
+      title: "qiskit_ibm_runtime.transpiler.passes.scheduling",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.utils.noise_learner_result",
+      title: "qiskit_ibm_runtime.utils.noise_learner_result",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.visualization",
+      title: "qiskit_ibm_runtime.visualization",
+      kind: "module",
+      untranslatable: true,
+    },
+    // ibm-quantum-schemas package
+    { name: _SCHEMAS, kind: "section", untranslatable: true },
+  ],
+  moduleToSection: (module) =>
+    hasPrefix(module, ["ibm_quantum_schemas", "IBM Quantum Schemas"])
+      ? _SCHEMAS
       : undefined,
 };

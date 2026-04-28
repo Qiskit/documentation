@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { generateToc, generateReleaseNotesEntry } from "./generateToc.js";
+import { generateToc } from "./generateToc.js";
 import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
 import type { TocGroupingEntry } from "./TocGrouping.js";
 
@@ -96,26 +96,32 @@ test("generate a basic toc", () => {
       {
         title: "my_quantum_project",
         url: "/docs/api/my-quantum-project",
+        untranslatable: true,
+      },
+      {
+        title: "Release notes",
+        useDivider: true,
+        url: "/docs/api/my-quantum-project/release-notes",
       },
       {
         title: "my_quantum_project.options",
         url: "/docs/api/my-quantum-project/options",
+        untranslatable: true,
       },
       {
         title: "my_quantum_project.options.submodule",
         url: "/docs/api/my-quantum-project/my_quantum_project.options.submodule",
+        untranslatable: true,
       },
       {
         title: "my_quantum_project.single",
         url: "/docs/api/my-quantum-project/single",
-      },
-      {
-        title: "Release notes",
-        url: "/docs/api/my-quantum-project/release-notes",
+        untranslatable: true,
       },
     ],
     collapsed: true,
     title: "My Quantum Project",
+    untranslatable: true,
   });
 });
 
@@ -133,6 +139,7 @@ test("TOC with grouped modules", () => {
       moduleId: "my_quantum_project.another",
       title: "dedicated module",
       kind: "module",
+      untranslatable: true,
     },
     // Ensure we can handle unused entries.
     { moduleId: "unused_module", title: "unused", kind: "module" },
@@ -185,34 +192,42 @@ test("TOC with grouped modules", () => {
       {
         title: "API index (custom)",
         url: "/docs/api/my-quantum-project",
+        untranslatable: undefined,
+      },
+      {
+        title: "Release notes",
+        useDivider: true,
+        url: "/docs/api/my-quantum-project/release-notes",
       },
       {
         title: "Group 2",
+        untranslatable: undefined,
         children: [
           {
             title: "my_quantum_project.module.submodule",
             url: "/docs/api/my-quantum-project/my_quantum_project.module.submodule",
+            untranslatable: true,
           },
         ],
       },
       {
         title: "Group 1",
+        untranslatable: undefined,
         children: [
           {
             title: "my_quantum_project.module",
+            untranslatable: true,
             url: "/docs/api/my-quantum-project/my_quantum_project.module",
           },
         ],
       },
       {
         title: "dedicated module",
+        untranslatable: true,
         url: "/docs/api/my-quantum-project/my_quantum_project.another",
       },
-      {
-        title: "Release notes",
-        url: "/docs/api/my-quantum-project/release-notes",
-      },
     ],
+    untranslatable: true,
   });
 });
 
@@ -240,10 +255,12 @@ test("TOC with separate release note files", () => {
     children: [
       {
         title: "my_quantum_project",
+        untranslatable: true,
         url: "/docs/api/my-quantum-project",
       },
       {
         title: "Release notes",
+        useDivider: true,
         children: [
           {
             title: "v2",
@@ -285,6 +302,7 @@ test("TOC with separate release note files", () => {
     ],
     collapsed: true,
     title: "My Quantum Project",
+    untranslatable: true,
   });
 });
 
@@ -339,5 +357,6 @@ test("generate a toc without modules and releaes notes", () => {
     ],
     collapsed: true,
     title: "My Quantum Project",
+    untranslatable: true,
   });
 });

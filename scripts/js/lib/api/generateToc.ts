@@ -25,6 +25,8 @@ export type TocEntry = {
   children?: TocEntry[];
   isNew?: string;
   isNewDate?: string;
+  useDivider?: boolean;
+  untranslatable?: boolean;
 };
 
 type Toc = {
@@ -32,6 +34,7 @@ type Toc = {
   subtitle?: string;
   children: TocEntry[];
   collapsed: boolean;
+  untranslatable?: boolean;
 };
 
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
@@ -58,13 +61,16 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
 
   const maybeReleaseNotes = generateReleaseNotesEntry(pkg);
   if (maybeReleaseNotes) {
-    orderedEntries.push(maybeReleaseNotes);
+    // We add the release notes entry in the second position of the TOC.
+    // We assume the first position will always be used by the API index.
+    orderedEntries.splice(1, 0, maybeReleaseNotes);
   }
 
   return {
     title: pkg.title,
     children: orderedEntries,
     collapsed: true,
+    untranslatable: true,
   };
 }
 
@@ -112,6 +118,10 @@ function generateTocModules(modules: HtmlToMdResultWithUrl[]): TocEntry[] {
       title: module.meta.apiName!,
       // Remove the final /index from the url
       url: `${DOCS_BASE_PATH}${module.url.replace(/\/index$/, "")}`,
+      untranslatable:
+        module.meta.apiType == "syntheticModule"
+          ? module.meta.untranslatable
+          : true,
     }),
   );
 }
@@ -134,6 +144,7 @@ function addItemsToModules(
       const itemTocEntry: TocEntry = {
         title: getLastPartFromFullIdentifier(item.meta.apiName!),
         url: `${DOCS_BASE_PATH}${item.url}`,
+        untranslatable: true,
       };
       itemModule.children.push(itemTocEntry);
     }
@@ -189,6 +200,7 @@ function groupAndSortModules(
       const module = tocModulesByTitle.get(entry.moduleId);
       if (!module) return;
       module.title = entry.title;
+      module.untranslatable = entry.untranslatable;
       result.push(module);
     } else {
       const modules = sectionsToModules.get(entry.name);
@@ -197,6 +209,7 @@ function groupAndSortModules(
         title: entry.name,
         // Within a section, sort alphabetically.
         children: orderEntriesByTitle(modules),
+        untranslatable: entry.untranslatable,
       });
     }
   });
@@ -239,6 +252,7 @@ export function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
   const releaseNotesUrl = `${DOCS_BASE_PATH}/api/${pkg.releaseNotesPackageName()}/release-notes`;
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
+    useDivider: true,
   };
   if (!pkg.hasSeparateReleaseNotes()) {
     return { ...releaseNotesEntry, url: releaseNotesUrl };

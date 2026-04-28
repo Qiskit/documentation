@@ -56,6 +56,93 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
   </Attribute>
 </Class>
 
+### QkTranspilerStageState
+
+<Class id="QkTranspilerStageState" signature="struct QkTranspilerStageState" />
+
+A container collecting individual attributes shared by the transpiler stages. When transpiling correctly, each individual stage writes specific attributes to this container that will be needed by other stages in sequence. If the container is not initialized, each stage will initialize a new object when necessary.
+
+> ### qk\_transpile\_state\_new
+>
+> <Function id="qk_transpile_state_new" signature="void qk_transpile_state_new(QkTranspilerStageState **state)">
+>   Create a pointer to an empty `QkTranspilerStageState` object
+>
+>   <span id="group__QkTranspilerStageState_1autotoc_md370" />
+>
+>   #### Safety
+>
+>   <span id="group__QkTranspilerStageState_1autotoc_md370" />
+>
+>   Behavior is undefined if `state` is not a valid pointer allocated.
+>
+>   **Parameters**
+>
+>   *   **state** – a pointer to the allocated memory space to store the pointer in.
+> </Function>
+>
+> ### qk\_transpile\_state\_free
+>
+> <Function id="qk_transpile_state_free" signature="void qk_transpile_state_free(QkTranspilerStageState *state)">
+>   Free a `QkTranspilerStageState` object
+>
+>   <span id="group__QkTranspilerStageState_1autotoc_md371" />
+>
+>   #### Safety
+>
+>   <span id="group__QkTranspilerStageState_1autotoc_md371" />
+>
+>   Behavior is undefined if `state` is not a valid, non-null pointer to a `QkTranspilerStageState`.
+>
+>   **Parameters**
+>
+>   *   **state** – a pointer to the state to free
+> </Function>
+>
+> ### qk\_transpile\_state\_layout
+>
+> <Function id="qk_transpile_state_layout" signature="QkTranspileLayout *qk_transpile_state_layout(QkTranspilerStageState *state)">
+>   Obtains a `QkTranspileLayout` object from a `QkTranspilerStageState` object.
+>
+>   This pointer is owned by the `state` object and should not be freed using `qk_transpile_layout_free`. Instead, free the original `state` object using `qk_transpile_state_free`.
+>
+>   <span id="group__QkTranspilerStageState_1autotoc_md372" />
+>
+>   #### Safety
+>
+>   <span id="group__QkTranspilerStageState_1autotoc_md372" />
+>
+>   Behavior is undefined if `state` is not a valid, non-null pointer to a `QkTranspilerStageState`.
+>
+>   **Parameters**
+>
+>   *   **state** – a pointer to the state to retrieve the layout from.
+>
+>   **Returns**
+>
+>   a pointer to a `QkTranspileLayout` object owned by the state.
+> </Function>
+>
+> ### qk\_transpile\_state\_layout\_set
+>
+> <Function id="qk_transpile_state_layout_set" signature="void qk_transpile_state_layout_set(QkTranspilerStageState *state, QkTranspileLayout *layout)">
+>   Sets a `QkTranspileLayout` object as the layout for a `QkTranspilerStageState` object.
+>
+>   Calling this method consumes the `QkTranspileLayout` object which means the user will not need to call `qk_transpile_layout_free`. The user should still de-allocate the space allotted for it using `free`.
+>
+>   <span id="group__QkTranspilerStageState_1autotoc_md373" />
+>
+>   #### Safety
+>
+>   <span id="group__QkTranspilerStageState_1autotoc_md373" />
+>
+>   Behavior is undefined if `state` is not a valid, non-null pointer to a `QkTranspilerStageState`. Behavior is undefined if `state` is not a valid pointer to a `QkTranspileLayout`.
+>
+>   **Parameters**
+>
+>   *   **state** – a pointer to the state to set the layout for.
+>   *   **layout** – a pointer to the layout to use. May be `NULL` to unset the layout.
+> </Function>
+
 ## Functions
 
 ### qk\_transpiler\_default\_options
@@ -72,7 +159,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
 
 ### qk\_transpile\_stage\_init
 
-<Function id="qk_transpile_stage_init" signature="QkExitCode qk_transpile_stage_init(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspileLayout **layout, char **error)">
+<Function id="qk_transpile_stage_init" signature="QkExitCode qk_transpile_stage_init(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspilerStageState **state, char **error)">
   Run the preset init stage of the transpiler on a circuit
 
   The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the first stage of the transpiler, **init**, which runs abstract-circuit optimizations, and reduces multi-qubit operations into one- and two-qubit operations. You can refer to [Initialization stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-init) for more details.
@@ -81,20 +168,20 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md328" />
+  <span id="group__QkTranspiler_1autotoc_md374" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md328" />
+  <span id="group__QkTranspiler_1autotoc_md374" />
 
-  Behavior is undefined if `dag`, `target`, or `layout`, are not valid, non-null pointers to a `QkDag`, `QkTarget`, or a `QkTranspileLayout` pointer respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`. The value of the inner pointer for `layout` will be overwritten by this function. If the value pointed to needs to be freed this must be done outside of this function as it will not be freed by this function.
+  Behavior is undefined if `dag`, `target`, or `state`, are not valid, non-null pointers to a `QkDag`, `QkTarget`, or a `QkTranspileLayout` pointer respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`. The value of the inner pointer for `state` will be overwritten by this function. If the value pointed to needs to be freed this must be done outside of this function as it will not be freed by this function.
 
   **Parameters**
 
   *   **dag** – A pointer to the circuit to run the transpiler on.
   *   **target** – A pointer to the target to compile the circuit for.
   *   **options** – A pointer to an options object that defines user options. If this is a null pointer the default values will be used. See `qk_transpile_default_options` for more details on the default values.
-  *   **layout** – A pointer to a pointer to a `QkTranspileLayout` object. On a successful execution (return code 0) a pointer to the layout object created transpiler will be written to this pointer.
+  *   **state** – A pointer to a pointer to a `QkTranspilerStageState` object. On a successful execution (return code 0) a pointer to the state object created transpiler will be written to this pointer.
   *   **error** – A pointer to a pointer with an nul terminated string with an error description. If the transpiler fails a pointer to the string with the error description will be written to this pointer. That pointer needs to be freed with `qk_str_free`. This can be a null pointer in which case the error will not be written out.
 
   **Returns**
@@ -104,7 +191,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
 
 ### qk\_transpile\_stage\_routing
 
-<Function id="qk_transpile_stage_routing" signature="QkExitCode qk_transpile_stage_routing(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspileLayout *layout, char **error)">
+<Function id="qk_transpile_stage_routing" signature="QkExitCode qk_transpile_stage_routing(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspilerStageState *state, char **error)">
   Run the preset routing stage of the transpiler on a circuit
 
   The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the third stage of the preset pass manager, **routing**, which translates all the instructions in the circuit into those supported by the target. You can refer to [Routing stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-routing) for more details.
@@ -113,11 +200,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md329" />
+  <span id="group__QkTranspiler_1autotoc_md375" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md329" />
+  <span id="group__QkTranspiler_1autotoc_md375" />
 
   Behavior is undefined if `dag`, `target`, or `layout`, are not valid, non-null pointers to a `QkDag`, `QkTarget`, or a `QkTranspileLayout` pointer respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -126,7 +213,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
   *   **dag** – A pointer to the circuit to run the transpiler on.
   *   **target** – A pointer to the target to compile the circuit for.
   *   **options** – A pointer to an options object that defines user options. If this is a null pointer the default values will be used. See `qk_transpile_default_options` for more details on the default values.
-  *   **layout** – A pointer to a pointer to a `QkTranspileLayout` object. Typically you will need to run the `qk_transpile_stage_layout` prior to this function and that will provide a `QkTranspileLayout` object with the initial layout set you want to take that output layout from that function and use this as the input for this. If you don’t have a layout object (e.g. you ran your own layout pass). You can run `qk_transpile_layout_generate_from_mapping` to generate a trivial layout (where virtual qubit 0 in the circuit is mapped to physical qubit 0 in the target, 1->1, 2->2, etc) for the dag at it’s current state. This will enable you to generate a layout object for the routing stage if you generate your own layout. Note that while this makes a valid layout object to track the permutation caused by routing it does not correctly reflect the initial layout if your custom layout pass is not a trivial layout. You will need to track the initial layout independently in this case.
+  *   **state** – A pointer to a pointer to a `QkTranspilerStageState` object containing the layout. Typically you will need to run the `qk_transpile_stage_layout` prior to this function and that will provide a `QkTranspilerStageState` object with the initial layout set. You want to take that output state from that function and use it as the input for this. If you don’t have a layout object (e.g. you ran your own layout pass). You can run `qk_transpile_layout_generate_from_mapping` to generate a trivial layout (where virtual qubit 0 in the circuit is mapped to physical qubit 0 in the target, 1->1, 2->2, etc) for the dag at it’s current state. This will enable you to generate a layout object for the routing stage if you generate your own layout.
   *   **error** – A pointer to a pointer with an nul terminated string with an error description. If the transpiler fails a pointer to the string with the error description will be written to this pointer. That pointer needs to be freed with `qk_str_free`. This can be a null pointer in which case the error will not be written out.
 
   **Returns**
@@ -136,7 +223,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
 
 ### qk\_transpile\_stage\_optimization
 
-<Function id="qk_transpile_stage_optimization" signature="QkExitCode qk_transpile_stage_optimization(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, char **error)">
+<Function id="qk_transpile_stage_optimization" signature="QkExitCode qk_transpile_stage_optimization(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, char **error, QkTranspilerStageState *state)">
   Run the preset optimization stage of the transpiler on a circuit
 
   The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the fourth stage of the preset pass manager, **optimization**, which optimizes the circuit for the given target after the circuit has been transformed into a physical circuit. You can refer to [Optimization stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-optimization) for more details.
@@ -145,11 +232,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md330" />
+  <span id="group__QkTranspiler_1autotoc_md376" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md330" />
+  <span id="group__QkTranspiler_1autotoc_md376" />
 
   Behavior is undefined if `dag` and `target` are not valid, non-null pointers to a `QkDag`, or a `QkTarget` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -159,6 +246,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
   *   **target** – A pointer to the target to compile the circuit for.
   *   **options** – A pointer to an options object that defines user options. If this is a null pointer the default values will be used. See `qk_transpile_default_options` for more details on the default values.
   *   **error** – A pointer to a pointer with an nul terminated string with an error description. If the transpiler fails a pointer to the string with the error description will be written to this pointer. That pointer needs to be freed with `qk_str_free`. This can be a null pointer in which case the error will not be written out.
+  *   **state** – A pointer to a `QkTranspilerStageState` object contiaining the layout. Typically you will need to run the `qk_transpile_stage_layout` prior to this function and that will provide a `QkTranspileLayout` object with the initial layout set you want to take that output layout from that function and use this as the input for this. If you don’t have a layout object (e.g. you ran your own layout pass). You can run `qk_transpile_layout_generate_from_mapping` to generate a trivial layout (where virtual qubit 0 in the circuit is mapped to physical qubit 0 in the target, 1->1, 2->2, etc) for the dag at it’s current state. This will enable you to generate a layout object for the optimization stage if you generate your own layout.
 
   **Returns**
 
@@ -176,11 +264,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md331" />
+  <span id="group__QkTranspiler_1autotoc_md377" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md331" />
+  <span id="group__QkTranspiler_1autotoc_md377" />
 
   Behavior is undefined if `dag` and `target` are not valid, non-null pointers to a `QkDag`, `QkTarget` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -198,7 +286,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
 
 ### qk\_transpile\_stage\_layout
 
-<Function id="qk_transpile_stage_layout" signature="QkExitCode qk_transpile_stage_layout(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspileLayout **layout, char **error)">
+<Function id="qk_transpile_stage_layout" signature="QkExitCode qk_transpile_stage_layout(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspilerStageState **state, char **error)">
   Run the preset layout stage of the transpiler on a circuit
 
   The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the second stage of the preset pass manager **layout**, which chooses the initial mapping of virtual qubits to physical qubits, including expansion of the circuit to contain explicit ancillas. You can refer to [Layout stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-layout) for more details.
@@ -207,11 +295,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md332" />
+  <span id="group__QkTranspiler_1autotoc_md378" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md332" />
+  <span id="group__QkTranspiler_1autotoc_md378" />
 
   Behavior is undefined if `dag` or `target`, are not valid, non-null pointers to a `QkDag`, or a `QkTarget` respectively. Behavior is also undefined if `layout` is not a valid, aligned, pointer to a pointer to a `QkTranspileLayout` or a pointer to a `NULL` pointer. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -220,7 +308,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
   *   **dag** – A pointer to the circuit to run the transpiler on.
   *   **target** – A pointer to the target to compile the circuit for.
   *   **options** – A pointer to an options object that defines user options. If this is a null pointer the default values will be used. See `qk_transpile_default_options` for more details on the default values.
-  *   **layout** – A pointer to a pointer to a `QkTranspileLayout` object. On a successful execution (return code 0) a pointer to the layout object created transpiler will be written to this pointer. The inner pointer for this can be null if there is no existing layout object. Typically if you run `qk_transpile_stage_init` you would take the output layout from that function and use this as the input for this. But if you don’t have a layout the inner pointer can be null and a new `QkTranspileLayout` will be allocated and that pointer will be set for the inner value of the layout here.
+  *   **state** – A pointer to a pointer to a `QkTranspilerStageState` object. On a successful execution (return code 0) the layout object created by the transpiler will be written to the state object in this pointer. The inner pointer for this can be null if there is no existing state or layout object. Typically if you run `qk_transpile_stage_init` you would take the output state from that function and use its layout as the input for this. But if you don’t have a layout, the inner pointer can be null and a new `QkTranspilerStageState`, with a layout, will be allocated and that pointer will be set for the inner value of the layout here.
   *   **error** – A pointer to a pointer with an nul terminated string with an error description. If the transpiler fails a pointer to the string with the error description will be written to this pointer. That pointer needs to be freed with `qk_str_free`. This can be a null pointer in which case the error will not be written out.
 
   **Returns**
@@ -237,11 +325,11 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md333" />
+  <span id="group__QkTranspiler_1autotoc_md379" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md333" />
+  <span id="group__QkTranspiler_1autotoc_md379" />
 
   Behavior is undefined if `circuit`, `target`, or `result`, are not valid, non-null pointers to a `QkCircuit`, `QkTarget`, or `QkTranspileResult` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 

@@ -5,7 +5,7 @@ description: Job limits imposed by the job validation service for jobs sent to I
 ---
 # Job limits
 
-When you send a job to an IBM&reg; QPU, it is first sent to the job validation service.  This service tries to ensure that the job will be able to run on the QPU so you don't have to wait for it to go through the queue and then have the job fail.  These checks include enforcing the following described limits. If these limits are exceeded, that workload cannot be handled by the quantum software stack and will usually fail.
+When you send a job to an IBM&reg; QPU, it is first validated to try to ensure that the job can run on the QPU, to decrease the likelihood that your job fails after you've waited for it to go through the queue. These checks include enforcing the following described limits. If these limits are exceeded, that workload cannot be handled by the quantum software stack and will usually fail.
 
 
 <Admonition type="note" title="Notes">
@@ -19,7 +19,7 @@ When you send a job to an IBM&reg; QPU, it is first sent to the job validation s
 <span id="max-shots"></span>
 ## Maximum executions
 
-At most, **10 million** executions are allowed for Sampler jobs (Estimator jobs can be split into smaller sub-jobs, so this limit doesn't apply).  The number of executions is the number of circuits times the number of shots, where the circuits are those generated after PUB elements are broadcasted.
+At most, **10 million** executions are allowed for Sampler jobs due to output size.  The number of executions is the number of circuits times the number of shots, where the circuits are those generated after PUB elements are broadcasted.
 
 For example, if you have a PUB with one circuit and parameters with shape (4, 1), this would render 4 circuits. If you requested 2,000 shots, then the total number of executions is $4 \times 2,000 = 8,000$.
 
@@ -74,7 +74,7 @@ op_counts = transpiled_ghz.count_ops()
 
 print(f"Post-Transpilation gates: {op_counts}")
 ```
-For full details, see [Transpile against custom backends.](/docs/guides/custom-backend#ex-count-ops)
+For full details, see [Transpile against custom backends](/docs/guides/custom-backend#ex-count-ops).
 
 <span id="2-qubit-limit"></span>
 ## Maximum number of single- and two-qubit gates per circuit

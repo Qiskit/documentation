@@ -73,7 +73,6 @@ class NotebookJob:
     log_cell_outputs: bool | None
     write: Result
 
-
 def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
     """
     Handle all CLI arguments and config files and outputs NotebookJobs for the executor to handle.
@@ -132,10 +131,13 @@ class Config:
         """
         Create config from args, including loading the paths from the TOML file if needed.
         """
-        if (args.config_path or args.test_strategy) and args.patch:
-            raise ValueError("Can't set --patch with --config-file or --test-strategy")
+        if args.config_path is None and args.patch is None:
+            raise ValueError("No config path or patch was specified")
 
-        if not args.config_path:
+        if (args.config_path or args.test_strategy) and args.patch:
+            print("Patch explicitly specified, running notebook tester without a config file...")
+
+        if args.patch:
             groups = []
             if args.filenames:
                 groups.append(

@@ -1,0 +1,52 @@
+---
+title: Configuration (dev version)
+description: API reference for Configuration in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Configuration
+---
+
+# Configuration
+
+The Qiskit C API has minimal configuration.
+
+**QISKIT\_PYTHON\_EXTENSION**
+
+If defined before including `qiskit.h`, the header files will define all of symbols in a mode safe for use with Python extension modules. This means that all API functions will evaluate to function-pointer dereferences from a lookup table.
+
+This is a user-defined macro and not defined by Qiskit itself.
+
+### qk\_import
+
+<Function id="qk_import" signature="int qk_import(void)">
+  Import the Qiskit C API from the Python-space [`qiskit`](/docs/api/qiskit/dev/index#module-qiskit "qiskit") package.
+
+  You must call this once per compilation unit, before attempting to call any C API functions. Failure to do so will typically result in null-pointer dereferences at runtime.
+
+  You typically will want to do this inside your `PyInit_*` module initialization function. For example, in `my_extension.c`:
+
+  ```c
+  #define QISKIT_PYTHON_EXTENSION
+  #include <Python.h>
+  #include <qiskit.h>
+
+  static struct PyModuleDef my_extension_mod = {
+     .m_base = PyModuleDef_HEAD_INIT,
+     .m_name = "my_extension",
+  };
+
+  PyMODINIT_FUNC PyInit_my_extension(void) {
+     if (qk_import() < 0) {
+        return NULL;
+     }
+     return PyModuleDef_Init(&my_extension_mod);
+  }
+  ```
+
+  This function is only defined when [`QISKIT_PYTHON_EXTENSION`](#c.QISKIT_PYTHON_EXTENSION "QISKIT_PYTHON_EXTENSION") was defined prior to including `qiskit.h`.
+
+  **Returns**
+
+  0 on success, negative on failure.
+</Function>
+

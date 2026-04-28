@@ -1,0 +1,148 @@
+---
+title: Q-CTRL Performance Management API reference
+description: API reference for Performance Management, A Qiskit Function by Q-CTRL Fire Opal
+---
+
+# Q-CTRL Performance Management API reference
+
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/q-ctrl-performance-management"
+      analyticsName="Functions API: q-ctrl-performance-management"
+      linkText="Performance Management Qiskit Function guide"
+    />
+</CardGroup>
+
+<Admonition type="caution">
+   Fire Opal Performance Management accepts abstract circuits, in contrast to the native Qiskit Runtime primitives, which only accept circuits that are written in the target backend's Instruction Set Architecture (ISA). For best results, do not transpile circuits before submitting via the Performance Management function.
+</Admonition>
+
+## Estimator inputs
+
+
+**`QctrlEstimatorPubLike` components (derived from the [Qiskit Runtime PUB definition](/docs/guides/primitive-input-output#estimator-pub)):**
+
+- A single circuit defined as a `QuantumCircuit` or in OpenQASM 2.0 or 3.0 string format.
+- One or more observables that specify the expectation values to estimate, in any of the formats denoted in the list "Supported observables formats".
+- (Optional) A collection of parameter values to bind the circuit against, which follow the same [array broadcasting rules](/docs/guides/primitive-input-output#broadcasting-rules) as the `QiskitRuntime` primitives.
+- (Optional) A target precision for expectation values to estimate.
+- (Optional) A real number representing the precision, or a dictionary of run options containing the shot count. For example: `{"shots": <int>}`.
+
+**Supported observables formats:**
+- Any one of the `ObservablesArrayLike` formats, such as `Pauli`, `SparsePauliOp`, `PauliList`, or `str`
+- A Pauli string: `"XY"`
+- A dictionary - Pauli strings with coefficients: `{"XY": 0.5, "YZ": 0.3}`
+- A list of Pauli strings: `["XY", "YZ", "ZX"]`
+- A list of Pauli strings with coefficients: `[("XY", 0.5), ("YZ", 0.3)]`
+- A nested list of Pauli strings: `[["XY", "YZ"], ["ZX", "XX"]]`
+- A nested list of Pauli strings with coefficients: `[[("XY", 0.1), ("YZ", 0.2)], [("ZX", 0.3), ("XX", 0.4)]]`
+
+### `pubs`
+<Attribute attributeTypeHint="`QctrlEstimatorPubLike` or `list[QctrlEstimatorPubLike]`" attributeValue="N/A">
+One or more tuples containing the inputs listed under `EstimatorPubLike` components
+- Required: Yes
+- Example: `(circuit, observables, parameter_values)`
+</Attribute>
+
+### `backend_name`
+<Attribute attributeTypeHint="`str`" attributeValue="The least busy backend that your instance has access to">
+The name of the backend
+- Required: No
+- Example: `"ibm_fez"`
+</Attribute>
+
+### Options
+<Attribute attributeTypeHint="`dict`" attributeValue="See Options section for more details">
+Input options for this function are specified as a nested dictionary. See the full [list of options](#est-options) and their default values.
+- Required: No
+- Example: `{"default_shots": 2048}`
+
+<span id="est-options"></span>
+#### Options list
+##### `session_id`
+<Attribute attributeTypeHint="`str`">
+An existing Qiskit Runtime session ID
+- Example: `"cw4r3je6f0t010870y3g"`
+</Attribute>
+
+##### `default_shots`
+<Attribute attributeTypeHint="`int`" attributeValue="`2048`">
+The number of shots to use for each circuit
+</Attribute>
+
+##### `default_precision`
+<Attribute attributeTypeHint="`float`">
+The target precision for expectation values to estimate for each circuit
+- Example: `0.015625` 
+</Attribute>
+
+##### `job_tags`
+<Attribute attributeTypeHint="`list[str]`" attributeValue="`[]`">
+A list of job tags
+</Attribute>
+</Attribute>
+
+## Estimator outputs
+
+<Attribute attributeTypeHint="`PrimitiveResult`">
+The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs
+
+- Example: `PubResult(data=DataBin(evs=[0.1234], stds=[0.1]))`
+</Attribute>
+
+## Sampler inputs
+
+**`QctrlSamplerPubLike` components (derived from the [Qiskit Runtime PUB definition](/docs/guides/primitive-input-output#sampler-pub)):**
+- A single circuit defined as a `QuantumCircuit` or in OpenQASM 2.0 or 3.0 string format.
+- (Optional) A collection of parameter values to bind the circuit against.
+- (Optional) An integer representing the shot count, or a dictionary of runtime options containing the shot count. For example: `(circ, None, 123)` or `(circ, None, {"shots": 123})`.
+
+### `pubs`
+<Attribute attributeTypeHint="`QctrlSamplerPubLike` or `list[QctrlSamplerPubLike]`">
+One or more tuples containing the inputs listed under `SamplerPubLike` components
+- Required: Yes
+- Example: `(circuit, parameter_values)`
+</Attribute>
+
+### `backend_name`
+<Attribute attributeTypeHint="`str`" attributeValue="The least busy backend that your instance has access to">
+The name of the backend
+- Required: No
+- Example: `"ibm_fez"`
+</Attribute>
+
+### Options
+<Attribute attributeTypeHint="`dict`" attributeValue="See the Options section for details">
+Input options for this function are specified as a nested dictionary. See the full [list of options](#sam-options) and their default values.
+
+- Required: No
+- Example: `{"default_shots": 2048}`
+
+<span id="sam-options"></span>
+#### Options list
+##### `session_id`
+<Attribute attributeTypeHint="`str`">
+An existing Qiskit Runtime session ID
+- Example: `"cw4r3je6f0t010870y3g"`
+</Attribute>
+
+##### `default_shots`
+<Attribute attributeTypeHint="`int`" attributeValue="`2048`">
+The number of shots to use for each circuit
+</Attribute>
+
+##### `job_tags`
+<Attribute attributeTypeHint="`list[str]`" attributeValue="`[]`">
+The list of desired job tags
+</Attribute>
+</Attribute>
+
+## Sampler outputs
+
+<Attribute attributeTypeHint="`PrimitiveResult`">
+The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corresponding to the list of input PUBs
+
+- Example: `PrimitiveResult([PubResult(data=DataBin(c=BitArray(<shape=(), num_shots=2048, num_bits=35>)), metadata={'shots': 2048})], metadata={`provider_job_ids`: 1234678})`
+</Attribute>

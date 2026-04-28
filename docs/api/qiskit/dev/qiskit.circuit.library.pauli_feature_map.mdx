@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.pauli_feature_map
 
 # qiskit.circuit.library.pauli\_feature\_map
 
-<Function id="qiskit.circuit.library.pauli_feature_map" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L43-L167" signature="qiskit.circuit.library.pauli_feature_map(feature_dimension, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')">
+<Function id="qiskit.circuit.library.pauli_feature_map" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L44-L191" signature="qiskit.circuit.library.pauli_feature_map(feature_dimension, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')">
   The Pauli expansion circuit.
 
   The Pauli expansion circuit is a data encoding circuit that transforms input data $\vec{x} \in \mathbb{R}^n$, where $n$ is the `feature_dimension`, as
@@ -48,6 +48,26 @@ $$
   The circuit contains `reps` repetitions of this transformation.
 
   Please refer to [`z_feature_map()`](qiskit.circuit.library.z_feature_map "qiskit.circuit.library.z_feature_map") for the case of single-qubit Pauli-$Z$ rotations and to [`zz_feature_map()`](qiskit.circuit.library.zz_feature_map "qiskit.circuit.library.zz_feature_map") for the single- and two-qubit Pauli-$Z$ rotations.
+
+  **Parameters**
+
+  *   **feature\_dimension** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of qubits in the circuit.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of times the evolution layers are repeated.
+  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Mapping*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]] |* [*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Mapping*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]]]*) – Specifies the entanglement structure. Can be a string (`'full'`, `'linear'`, `'reverse_linear'`, `'circular'` or `'sca'`) or can be a dictionary where the keys represent the number of qubits and the values are list of integer-pairs specifying the indices of qubits that are entangled with one another, for example: `{1: [(0,), (2,)], 2: [(0,1), (2,0)]}` or can be a `Callable[[int], Union[str | Dict[...]]]` to return an entanglement specific for a repetition.
+  *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The Pauli rotation factor, multiplicative to the pauli rotations.
+  *   **paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – A list of strings for to-be-used paulis. If None are provided, `['Z', 'ZZ']` will be used.
+  *   **data\_map\_func** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")*],* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")*] | None*) – A mapping function for the data `x` which can be supplied to override the default mapping.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The prefix used if default parameters are generated.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True`, barriers are inserted in between the evolution instructions and Hadamard layers.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the circuit.
+
+  **Returns**
+
+  A quantum circuit implementing the Pauli feature map.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   **Examples**
 
@@ -95,21 +115,5 @@ $$
   References:
 
   \[1] Havlicek et al. Supervised learning with quantum enhanced feature spaces, [Nature 567, 209-212 (2019)](https://www.nature.com/articles/s41586-019-0980-2).
-
-  **Parameters**
-
-  *   **feature\_dimension** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
-  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) –
-  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Mapping*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]] |* [*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Mapping*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]]]*) –
-  *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float)) –
-  *   **paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) –
-  *   **data\_map\_func** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable)*\[\[*[*Parameter*](qiskit.circuit.Parameter "qiskit._accelerate.circuit.Parameter")*],* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")*] | None*) –
-  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) –
-  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) –
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) –
-
-  **Return type**
-
-  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 </Function>
 

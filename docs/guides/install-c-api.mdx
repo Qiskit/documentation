@@ -23,7 +23,8 @@ int main(int argc, char *argv[]) {
 
     // add the term 2 * (X0 Y1 Z2) to the observable
     QkComplex64 coeff = {2, 0};
-    QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};  // bit terms: X Y Z
+    QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z}; 
+    // bit terms: X Y Z
     uint32_t indices[3] = {0, 1, 2};  // indices: 0 1 2
     QkObsTerm term = {coeff, 3, bit_terms, indices, num_qubits};
     qk_obs_add_term(obs, &term);  // append the term
@@ -65,7 +66,7 @@ make --version  # optional, but recommended
 ### Build
 
 To build the C header and library, you can run the following Make command[^1] in Qiskit root,
-[^1]: If you did not install Make, check the `Makefile` in Qiskit root for the required commands - or simply install Make; it's not too late.)
+[^1]: If you did not install Make, check the `Makefile` in Qiskit root for the required commands - or simply install Make; it's not too late.
 ```bash
 make c
 ```
@@ -83,7 +84,8 @@ include `/path/to/dist/c/lib`. If the Python library is not available per defaul
 this also needs to be added. These commands depend on the platform. On Linux:
 ```bash
 export LD_LIBRARY_PATH=/path/to/dist/c/lib:$LD_LIBRARY_PATH
-# on Linux, the Python library is typically included in the dynamic library path per default
+# On Linux, the Python library is typically included 
+# in the dynamic library path by default.
 export LD_LIBRARY_PATH=/path/to/python/lib:$LD_LIBRARY_PATH
 ```
 On MacOS:
@@ -108,7 +110,11 @@ which, if using the example snippet shown previously, should print
 ```
 num_qubits: 100
 num_terms: 1
-observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 0.0 }], bit_terms: [X, Y, Z], indices: [0, 1, 2], boundaries: [0, 3] }
+observable: SparseObservable { num_qubits: 100, 
+coeffs: [Complex { re: 2.0, im: 0.0 }], 
+bit_terms: [X, Y, Z], 
+indices: [0, 1, 2], 
+boundaries: [0, 3] }
 ```
 
 ## Windows
@@ -154,5 +160,9 @@ should then print
 ```
 num_qubits: 100
 num_terms: 1
-observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 0.0 }], bit_terms: [X, Y, Z], indices: [0, 1, 2], boundaries: [0, 3] }
+observable: SparseObservable { num_qubits: 100, 
+coeffs: [Complex { re: 2.0, im: 0.0 }], 
+bit_terms: [X, Y, Z], 
+indices: [0, 1, 2], 
+boundaries: [0, 3] }
 ```

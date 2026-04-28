@@ -17,6 +17,7 @@ import {
   TocGrouping,
   QISKIT_TOC_GROUPING,
   QISKIT_ADDON_MPF_GROUPING,
+  QISKIT_RUNTIME_GROUPING,
 } from "./TocGrouping.js";
 
 export class ReleaseNotesConfig {
@@ -140,6 +141,7 @@ export class Pkg {
         githubSlug: "qiskit/qiskit-ibm-runtime",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        tocGrouping: QISKIT_RUNTIME_GROUPING,
       });
     }
 

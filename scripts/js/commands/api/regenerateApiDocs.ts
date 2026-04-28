@@ -18,8 +18,7 @@ import { $ } from "zx";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
-import { pathExists } from "../../lib/fs.js";
-import { readApiFullVersion } from "../../lib/apiVersions.js";
+import { getDevVersion, getReleasedVersions } from "../../lib/apiVersions.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
 interface Arguments {
@@ -130,40 +129,6 @@ async function regenerateVersion(
     await gitRestore(".");
     console.error(`❌ ${pkgName} ${version} failed to regenerate`);
   }
-}
-
-async function getDevVersion(pkgName: string): Promise<string | undefined> {
-  const devPath = `docs/api/${pkgName}/dev`;
-
-  if (await pathExists(devPath)) {
-    return await readApiFullVersion(devPath);
-  }
-
-  return undefined;
-}
-
-async function getReleasedVersions(
-  pkgName: string,
-  currentApisOnly: boolean,
-): Promise<[string[], string]> {
-  const pkgDocsPath = `docs/api/${pkgName}`;
-  const historicalVersions: string[] = [];
-
-  if (!currentApisOnly) {
-    const historicalFolders = (
-      await readdir(`${pkgDocsPath}`, { withFileTypes: true })
-    ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
-
-    for (const folder of historicalFolders) {
-      const historicalVersion = await readApiFullVersion(
-        `${pkgDocsPath}/${folder.name}`,
-      );
-      historicalVersions.push(historicalVersion);
-    }
-  }
-
-  const currentVersion = await readApiFullVersion(pkgDocsPath);
-  return [historicalVersions, currentVersion];
 }
 
 async function validateGitStatus(): Promise<void> {

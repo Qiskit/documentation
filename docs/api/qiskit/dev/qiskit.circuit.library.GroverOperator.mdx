@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.GroverOperator
 
 # GroverOperator
 
-<Class id="qiskit.circuit.library.GroverOperator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/grover_operator.py#L288-L563" signature="qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')" modifiers="class">
+<Class id="qiskit.circuit.library.GroverOperator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/grover_operator.py#L288-L564" signature="qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   The Grover operator.
@@ -154,10 +154,10 @@ $$
 
   **Parameters**
 
-  *   **oracle** (*Union\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")*]*) – The phase oracle implementing a reflection about the bad state. Note that this is not a bitflip oracle, see the docstring for more information.
-  *   **state\_preparation** (*Optional\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The operator preparing the good and bad state. For Grover’s algorithm, this is a n-qubit Hadamard gate and for amplitude amplification or estimation the operator $\mathcal{A}$.
-  *   **zero\_reflection** (*Optional\[Union\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")*,* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")*]]*) – The reflection about the zero state, $\mathcal{S}_0$.
-  *   **reflection\_qubits** (*Optional\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – Qubits on which the zero reflection acts on.
+  *   **oracle** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – The phase oracle implementing a reflection about the bad state. Note that this is not a bitflip oracle, see the docstring for more information.
+  *   **state\_preparation** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The operator preparing the good and bad state. For Grover’s algorithm, this is a n-qubit Hadamard gate and for amplitude amplification or estimation the operator $\mathcal{A}$.
+  *   **zero\_reflection** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")  *|*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *| None*) – The reflection about the zero state, $\mathcal{S}_0$.
+  *   **reflection\_qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – Qubits on which the zero reflection acts on.
   *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether barriers should be inserted between the reflections and A.
   *   **mcx\_mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The mode to use for building the default zero reflection.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the circuit.

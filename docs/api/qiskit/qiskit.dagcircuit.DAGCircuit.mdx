@@ -455,7 +455,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   <Function id="qiskit.dagcircuit.DAGCircuit.descendants" signature="descendants(node)">
     Returns set of the descendants of a node as [`DAGOpNode`](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")s and [`DAGOutNode`](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")s.
 
-    The descendants are the set of all nodes that can be reached from the target node. In comparison, [`DAGCircuit.successors()`](#qiskit.dagcircuit.DAGCircuit.successors "qiskit.dagcircuit.DAGCircuit.successors") is an iterator over the immediate successors, whereas this method contains all the successors’ succesors.
+    The descendants are the set of all nodes that can be reached from the target node. In comparison, [`DAGCircuit.successors()`](#qiskit.dagcircuit.DAGCircuit.successors "qiskit.dagcircuit.DAGCircuit.successors") is an iterator over the immediate successors, whereas this method contains all the successors’ successors.
   </Function>
 
   ### draw
@@ -464,6 +464,10 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     Draws the dag circuit.
 
     This function needs [Graphviz](https://www.graphviz.org/) to be installed. Graphviz is not a python package and can’t be pip installed (the `graphviz` package on PyPI is a Python interface library for Graphviz and does not actually install Graphviz). You can refer to [the Graphviz documentation](https://www.graphviz.org/download/) on how to install it.
+
+    <Admonition title="Warning" type="caution">
+      This function will call the system Graphviz tool on a file involving user-controllable strings (such as gate labels or register names). It is recommended to only call this function on trusted input.
+    </Admonition>
 
     **Parameters**
 
@@ -556,7 +560,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### has\_stretch
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.has_stretch" signature="has_stretch(var)">
+  <Function id="qiskit.dagcircuit.DAGCircuit.has_stretch" signature="has_stretch(stretch)">
     Is this stretch in the DAG?
 
     **Parameters**
