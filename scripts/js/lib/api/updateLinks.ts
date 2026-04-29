@@ -164,26 +164,6 @@ export function normalizeUrl(
 }
 
 export function relativizeLink(link: Link): Link | undefined {
-  // Handle qiskit.github.io addon links before the generic github.io rules.
-  // stubs/ and apidocs/ map to /docs/api/<pkg>; everything else maps to /docs/addons/<pkg>.
-  const githubIoMatch = link.url.match(
-    /^https:\/\/qiskit\.github\.io\/(qiskit[^/]+)\/(stubs|apidocs|apidoc)\/(.+)$/,
-  );
-  if (githubIoMatch) {
-    const [, pkg, , rest] = githubIoMatch;
-    const page = rest.replace(/\.html$/, "");
-    return { url: `/docs/api/${pkg}/${page}` };
-  }
-  const githubIoProseMatch = link.url.match(
-    /^https:\/\/qiskit\.github\.io\/(qiskit[^/]+)\/?(.*)$/,
-  );
-  if (githubIoProseMatch) {
-    const [, pkg, rest] = githubIoProseMatch;
-    const page = rest.replace(/\.html$/, "").replace(/\/$/, "");
-    const url = page ? `/docs/addons/${pkg}/${page}` : `/docs/addons/${pkg}`;
-    return { url };
-  }
-
   const priorPrefixToNewPrefix = new Map([
     ["https://qiskit.org/documentation/apidoc/", "/api/qiskit"],
     ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],

@@ -22,8 +22,10 @@ import { sphinxHtmlToMarkdown } from "../api/htmlToMd.js";
 import { generateAddonToc } from "./generateAddonToc.js";
 import { HtmlToMdResultWithUrl } from "../api/HtmlToMdResult.js";
 import { Pkg } from "../api/Pkg.js";
+import { pathExists } from "../fs.js";
 import { updateLinks, relativizeLink } from "../api/updateLinks.js";
 import { DOCS_BASE_PATH } from "../api/conversionPipeline.js";
+import { kebabCaseAndShortenPage } from "../api/normalizeResultUrls.js";
 import addFrontMatter from "../api/addFrontMatter.js";
 import { dedupeHtmlIdsFromResults } from "../api/dedupeHtmlIds.js";
 import removeMathBlocksIndentation from "../api/removeMathBlocksIndentation.js";
@@ -39,6 +41,7 @@ export async function runAddonContentPipeline(
   const outputDir = `${docsBaseFolder}/addons/${pkg.name}`;
   await mkdirp(outputDir);
 
+  const stubsMap = await buildStubsMap(htmlPath, pkg.name);
   const allFiles = await globby(include, { cwd: htmlPath });
   const htmlFiles = allFiles.filter((f) => f.endsWith(".html"));
   const notebookFiles = allFiles.filter((f) => f.endsWith(".ipynb"));
@@ -56,6 +59,9 @@ export async function runAddonContentPipeline(
     htmlFiles,
   );
 
+  for (const result of results) {
+    result.markdown = resolveGithubIoLinks(result.markdown, stubsMap, pkg.name);
+  }
   await updateLinks(results, {
     kebabCaseAndShorten: false,
     pkgName: pkg.name,
@@ -72,7 +78,7 @@ export async function runAddonContentPipeline(
     publicBaseFolder,
     pkg,
   );
-  await copyNotebooks(htmlPath, outputDir, notebookFiles);
+  await copyNotebooks(htmlPath, outputDir, notebookFiles, stubsMap, pkg.name);
   await writeTocFile(htmlPath, outputDir, pkg, docsBaseFolder);
 }
 
@@ -149,6 +155,8 @@ async function copyNotebooks(
   htmlPath: string,
   outputDir: string,
   notebookFiles: string[],
+  stubsMap: Map<string, string>,
+  pkgName: string,
 ): Promise<void> {
   if (notebookFiles.length === 0) return;
 
@@ -161,15 +169,66 @@ async function copyNotebooks(
       const lines: string[] = Array.isArray(cell.source)
         ? cell.source
         : [cell.source];
-      cell.source = lines.map((line) =>
-        line.replace(/\[([^\]]*)\]\(([^)]+)\)/g, (match, text, url) => {
+      cell.source = lines.map((line) => {
+        const resolved = resolveGithubIoLinks(line, stubsMap, pkgName);
+        return resolved.replace(/\[([^\]]*)\]\(([^)]+)\)/g, (match, text, url) => {
           const rewritten = relativizeLink({ url, text });
           return rewritten ? `[${rewritten.text ?? text}](${rewritten.url})` : match;
-        }),
-      );
+        });
+      });
     }
     await writeFile(dest, JSON.stringify(notebook, null, 1));
   }
+}
+
+async function buildStubsMap(
+  htmlPath: string,
+  pkgName: string,
+): Promise<Map<string, string>> {
+  const stubsDir = `${htmlPath}/stubs`;
+  const map = new Map<string, string>();
+  if (!(await pathExists(stubsDir))) return map;
+
+  const files = await globby("*.html", { cwd: stubsDir });
+  for (const file of files) {
+    const html = await readFile(`${stubsDir}/${file}`, "utf-8");
+    const match = html.match(/var target = "([^"]+)"/);
+    if (!match) continue;
+    const apidocsMatch = match[1].match(/\.\.\/apidocs\/([^#"]+\.html)(#.*)?/);
+    if (!apidocsMatch) continue;
+    const modulePage = apidocsMatch[1].replace(/\.html$/, "");
+    const anchor = apidocsMatch[2] ?? "";
+    const kebabPage = kebabCaseAndShortenPage(modulePage, pkgName);
+    const symbolName = file.replace(/\.html$/, "");
+    map.set(symbolName, `/docs/api/${pkgName}/${kebabPage}${anchor}`);
+  }
+  return map;
+}
+
+function resolveGithubIoLinks(
+  text: string,
+  stubsMap: Map<string, string>,
+  pkgName: string,
+): string {
+  return text.replace(
+    /https:\/\/qiskit\.github\.io\/([^/"#)\s]+)\/?([^"#)\s]*)/g,
+    (match, pkg, rest) => {
+      // Stubs links for this package — resolve via artifact redirect map
+      if (pkg === pkgName) {
+        const stubsPrefix = "stubs/";
+        if (rest.startsWith(stubsPrefix)) {
+          const symbol = rest
+            .slice(stubsPrefix.length)
+            .replace(/\.html$/, "");
+          const resolved = stubsMap.get(symbol);
+          if (resolved) return resolved;
+        }
+      }
+      // All other github.io links → /docs/addons/<pkg>/<page>
+      const page = rest.replace(/\.html$/, "").replace(/\/$/, "");
+      return page ? `/docs/addons/${pkg}/${page}` : `/docs/addons/${pkg}`;
+    },
+  );
 }
 
 async function writeTocFile(
