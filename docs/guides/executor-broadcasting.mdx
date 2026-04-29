@@ -8,7 +8,7 @@ description: How the Executor handles array inputs and outputs using broadcastin
 # Executor broadcasting
 
 The data provided to the Executor primitive can be arranged in a variety of shapes to provide flexibility in a workload through broadcasting. This guide explains how the Executor handles array inputs and outputs using broadcasting semantics. Understanding these concepts will help you efficiently sweep over parameter values, combine
-multiple experimental configurations, and interpret the shape of returned data.
+multiple configurations, and interpret the shape of returned data.
 
 <Admonition type="note">
 The examples in this topic cannot be run on their own.  They assume you have defined appropriate circuits, used the Samplomatic pass manager to add boxes and annotations, and used the Samplomatic `build` method to get a template and samplex for each code block, as necessary.
@@ -273,16 +273,15 @@ averaged = meas_data[:, :, 5, :, 2].mean(axis=(0, 1))
 Use code like the following to sweep one parameter while holding others fixed:
 
 ```python
+# Circuit has 3 parameters, sweep first one over 20 values
+sweep_values = np.linspace(0, 2*np.pi, 20)
+fixed_values = [0.5, 0.3]
 
-    # Circuit has 3 parameters, sweep first one over 20 values
-    sweep_values = np.linspace(0, 2*np.pi, 20)
-    fixed_values = [0.5, 0.3]
-
-    parameter_values = np.column_stack([
-        sweep_values,
-        np.full(20, fixed_values[0]),
-        np.full(20, fixed_values[1]),
-    ])  # shape (20, 3)
+parameter_values = np.column_stack([
+    sweep_values,
+    np.full(20, fixed_values[0]),
+    np.full(20, fixed_values[1]),
+])  # shape (20, 3)
 ```
 
 ### Creating a 2D grid sweep
