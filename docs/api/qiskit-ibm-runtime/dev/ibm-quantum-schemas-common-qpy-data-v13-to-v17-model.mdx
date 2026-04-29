@@ -1,0 +1,104 @@
+---
+title: QpyDataV13ToV17Model (dev version)
+description: API reference for ibm_quantum_schemas.common.QpyDataV13ToV17Model in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.common.QpyDataV13ToV17Model
+---
+
+<span id="ibm-quantum-schemas-common-qpydatav13tov17model" />
+
+# QpyDataV13ToV17Model
+
+<Class id="ibm_quantum_schemas.common.QpyDataV13ToV17Model" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.7.20260419/ibm_quantum_schemas/common/qpy.py#L224-L227" signature="QpyDataV13ToV17Model" modifiers="pydantic model">
+  Bases: [`QpyDataModel`](ibm-quantum-schemas-common-qpy-data-model "ibm_quantum_schemas.common.qpy.QpyDataModel"), `Generic`\[`T`]
+
+  QPY encoded circuit list with restricted version range.
+
+  ### b64\_data
+
+  <Attribute id="ibm_quantum_schemas.common.QpyDataV13ToV17Model.b64_data" attributeTypeHint="str [Required]" modifiers="field">
+    Base-64 encoded data of the QPY serialization of some Qiskit objects.
+
+    **Validated by**
+
+    *   `cross_validate_qpy_info`
+  </Attribute>
+
+  ### num\_programs
+
+  <Attribute id="ibm_quantum_schemas.common.QpyDataV13ToV17Model.num_programs" attributeTypeHint="int [Required]" modifiers="field">
+    The number of distinct elements in the Python encoding.
+
+    **Constraints**
+
+    *   **ge** = 1
+
+    **Validated by**
+
+    *   `cross_validate_qpy_info`
+  </Attribute>
+
+  ### qpy\_version
+
+  <Attribute id="ibm_quantum_schemas.common.QpyDataV13ToV17Model.qpy_version" attributeTypeHint="int [Required]" modifiers="field">
+    The QPY encoding version.
+
+    **Constraints**
+
+    *   **ge** = 13
+    *   **le** = 17
+
+    **Validated by**
+
+    *   `cross_validate_qpy_info`
+  </Attribute>
+
+  ### cross\_validate\_qpy\_info
+
+  <Function id="ibm_quantum_schemas.common.QpyDataV13ToV17Model.cross_validate_qpy_info" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.7.20260419/ibm_quantum_schemas/common/qpy.py#L80-L94" signature="cross_validate_qpy_info" modifiers="validator">
+    Check that the encoded qpy information matches expectations.
+  </Function>
+
+  ### from\_python
+
+  <Function id="ibm_quantum_schemas.common.QpyDataV13ToV17Model.from_python" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.7.20260419/ibm_quantum_schemas/common/qpy.py#L115-L137" signature="from_python(data, qpy_version=17)" modifiers="classmethod">
+    Create a model instance from Python data of the correct type.
+
+    The returned instance owns a reference to the provided data. This instance may be returned by [`to_python()`](#ibm_quantum_schemas.common.QpyDataV13ToV17Model.to_python "ibm_quantum_schemas.common.QpyDataV13ToV17Model.to_python") depending on the value of `use_cached`. Users of this class are responsible for managing cached instances of the data and possible side-effects of their mutations.
+
+    **Parameters**
+
+    *   **data** (*list\[T]*) – The data to base64 encode in the new model instance.
+    *   **qpy\_version** (*int*) – The QPY version to encode with.
+
+    **Returns**
+
+    A new model instance.
+
+    **Return type**
+
+    *Self*
+  </Function>
+
+  ### to\_python
+
+  <Function id="ibm_quantum_schemas.common.QpyDataV13ToV17Model.to_python" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.7.20260419/ibm_quantum_schemas/common/qpy.py#L96-L113" signature="to_python(use_cached=False)">
+    Return a Python representation of the encoded data in the model.
+
+    When `use_cached` is false, or when no cached version exists, [`b64_data`](#ibm_quantum_schemas.common.QpyDataV13ToV17Model.b64_data "ibm_quantum_schemas.common.QpyDataV13ToV17Model.b64_data") is decoded and loaded into a new Python instance. Users of this class are responsible for managing cached instances of the Python data and possible side-effects of their mutations.
+
+    **Parameters**
+
+    **use\_cached** (*bool*) – Whether to return the cached instance (if it exists).
+
+    **Returns**
+
+    Python data.
+
+    **Return type**
+
+    list\[*T*]
+  </Function>
+</Class>
+
