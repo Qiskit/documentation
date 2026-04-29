@@ -171,8 +171,6 @@ export function relativizeLink(link: Link): Link | undefined {
     ["https://docs.quantum-computing.ibm.com/", ""],
     ["https://quantum.cloud.ibm.com/docs", "/docs"],
     ["https://quantum.cloud.ibm.com/learning", "/learning"],
-    ["https://quantum.test.cloud.ibm.com/docs", "/docs"],
-    ["https://quantum.test.cloud.ibm.com/learning", "/learning"],
   ]);
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
     link.url.startsWith(prefix),
