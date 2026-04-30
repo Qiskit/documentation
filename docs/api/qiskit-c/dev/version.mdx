@@ -10,52 +10,68 @@ python_api_name: Versioning
 
 Qiskit’s version can be queried using a set of compiler macros.
 
-**QISKIT\_VERSION**
+### QISKIT\_VERSION
 
-A human-readable version as `char*`. For example: `"2.1.0-rc1"`.
+<Attribute id="QISKIT_VERSION">
+  A human-readable version as `char*`. For example: `"2.1.0-rc1"`.
+</Attribute>
 
-**QISKIT\_VERSION\_HEX**
+### QISKIT\_VERSION\_HEX
 
-The version number as 4-byte hexadecimal. The format is `0xMMmmppls`, where `M` is the major, `m` is the minor, `p` is the patch, `l` is the release level and `s` is the serial. For example, 2.1.0-rc1 is `0x020100C1`.
+<Attribute id="QISKIT_VERSION_HEX">
+  The version number as 4-byte hexadecimal. The format is `0xMMmmppls`, where `M` is the major, `m` is the minor, `p` is the patch, `l` is the release level and `s` is the serial. For example, 2.1.0-rc1 is `0x020100C1`.
 
-Note that final versions, such as `2.1.0`, will always end with `0xF0` in the last byte.
+  Note that final versions, such as `2.1.0`, will always end with `0xF0` in the last byte.
 
-See [`qk_api_version()`](#c.qk_api_version "qk_api_version") for the runtime version of this.
+  See [`qk_api_version()`](#qk_api_version "qk_api_version") for the runtime version of this.
+</Attribute>
 
-**QISKIT\_VERSION\_MAJOR**
+### QISKIT\_VERSION\_MAJOR
 
-The major release version.
+<Attribute id="QISKIT_VERSION_MAJOR">
+  The major release version.
+</Attribute>
 
-**QISKIT\_VERSION\_MINOR**
+### QISKIT\_VERSION\_MINOR
 
-The minor release version.
+<Attribute id="QISKIT_VERSION_MINOR">
+  The minor release version.
+</Attribute>
 
-**QISKIT\_VERSION\_PATCH**
+### QISKIT\_VERSION\_PATCH
 
-The patch release version.
+<Attribute id="QISKIT_VERSION_PATCH">
+  The patch release version.
+</Attribute>
 
-**QISKIT\_RELEASE\_LEVEL**
+### QISKIT\_RELEASE\_LEVEL
 
-The release level:
+<Attribute id="QISKIT_RELEASE_LEVEL">
+  The release level:
 
-*   `0xA` for an unreleased dev (or alpha) version
-*   `0xB` for a beta version
-*   `0xC` for a release candidate
-*   `0xF` for a stable (or final) version.
+  *   `0xA` for an unreleased dev (or alpha) version
+  *   `0xB` for a beta version
+  *   `0xC` for a release candidate
+  *   `0xF` for a stable (or final) version.
+</Attribute>
 
-**QISKIT\_RELEASE\_SERIAL**
+### QISKIT\_RELEASE\_SERIAL
 
-This can be used to indicate the pre-release number in a pre-release series. For example, this would be set to `4` for `2.1.0-rc4`. This is `0` for the final version.
+<Attribute id="QISKIT_RELEASE_SERIAL">
+  This can be used to indicate the pre-release number in a pre-release series. For example, this would be set to `4` for `2.1.0-rc4`. This is `0` for the final version.
+</Attribute>
 
-**QISKIT\_GET\_VERSION\_HEX(major, minor, patch, level, serial)**
+### QISKIT\_GET\_VERSION\_HEX(major, minor, patch, level, serial)
 
-A macro to pack the version numbers into hexadecimal format. This can be used as tool to compare numbers, for example to ensure the current version is at least the stable 2.1.0 release do:
+<Attribute id="QISKIT_GET_VERSION_HEX">
+  A macro to pack the version numbers into hexadecimal format. This can be used as tool to compare numbers, for example to ensure the current version is at least the stable 2.1.0 release do:
 
-```c
-if (QISKIT_VERSION_HEX >= QISKIT_GET_VERSION_HEX(2, 1, 0, 0xF, 0)) {
-    // Code for version 2.1.0 (final) or later
-}
-```
+  ```c
+  if (QISKIT_VERSION_HEX >= QISKIT_GET_VERSION_HEX(2, 1, 0, 0xF, 0)) {
+      // Code for version 2.1.0 (final) or later
+  }
+  ```
+</Attribute>
 
 ### qk\_api\_version
 
