@@ -72,7 +72,7 @@ export const ADDON_DOCS_CONFIG: AddonDocsConfig = {
       "index.html",
       "install.html",
       "release-notes.html",
-      "how-tos/*.ipynb",
+      "how_tos/*.ipynb",
     ],
   },
 };
