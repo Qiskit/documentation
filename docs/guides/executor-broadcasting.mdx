@@ -11,7 +11,7 @@ The data provided to the Executor primitive can be arranged in a variety of shap
 multiple configurations, and interpret the shape of returned data.
 
 <Admonition type="note">
-The examples in this topic cannot be run on their own.  They assume you have defined appropriate circuits, used the Samplomatic pass manager to add boxes and annotations, and used the Samplomatic `build` method to get a template and samplex for each code block, as necessary.
+The examples in this topic cannot be run on their own.  They assume you have defined appropriate circuits, used the Samplomatic pass manager to add boxes and annotations, and used the Samplomatic `build` method to get a template circuit and samplex for each code block, as necessary.
 </Admonition>
 
 ## Quickstart example
@@ -91,7 +91,7 @@ noise_scale = np.array([0.8, 1.0, 1.2])  # shape (3,)
 # Result: 12 total configurations in a 4×3 grid
 
 program.append.samplex_item(
-    template,
+    template_circuit,
     samplex=samplex,
     samplex_arguments={
         "parameter_values": parameter_values,
@@ -121,7 +121,6 @@ formatted as an array of boolean values:
 | Output type             | Intrinsic shape        | Description                      |
 |-----------------------|----------------------|--------------------------------|
 | Classical register data | (num_shots, creg_size) | Bitstring data from measurements |
-| Expectation values      | () or (n_obs,)         | Scalar or per-observable         |
 
 ### Example
 
@@ -177,7 +176,7 @@ The following example demonstrates the default behavior:
 
 ```python
 program.append.samplex_item(
-    template,
+    template_circuit,
     samplex=samplex,
     samplex_arguments={
         "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
@@ -194,7 +193,7 @@ For example, the following code runs 20 randomizations for each of 10 parameter 
 
 ```python
 program.append.samplex_item(
-    template,
+    template_circuit,
     samplex=samplex,
     samplex_arguments={
         "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
@@ -214,7 +213,7 @@ with axes 0 and 1 filled by independent randomizations.
 
 ```python
 program.append(
-    template,
+    template_circuit,
     samplex=samplex,
     samplex_arguments={
         "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
