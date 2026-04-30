@@ -114,7 +114,11 @@ export function loadImages(
   return $main
     .find("img")
     .toArray()
-    .filter((img) => $(img).attr("src"))
+    .filter((img) => {
+      // filter out external URLs before processing:
+      const src = $(img).attr("src");
+      return !!src && !src.startsWith("http://") && !src.startsWith("https://");
+    })
     .map((img) => {
       const $img = $(img);
 
@@ -526,6 +530,9 @@ export function preserveMathBlockWhitespace(
     .toArray()
     .map((el) => {
       const $el = $(el);
+      // Remove equation number labels — the anchor IDs are on the parent divs,
+      // not the eqno span, so links to equations still resolve correctly.
+      $el.find("span.eqno").remove();
       $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
     });
 }

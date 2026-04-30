@@ -13,6 +13,17 @@
 type AddonDocsConfig = Record<string, { version: string; include: string[] }>;
 
 export const ADDON_DOCS_CONFIG: AddonDocsConfig = {
+  "qiskit-addon-aqc-tensor": {
+    version: "0.2.0",
+    include: [
+      "index.html",
+      "install.html",
+      "release-notes.html",
+      "how-tos/*.ipynb",
+      "tutorials/*.ipynb",
+      "explanation/index.html",
+    ],
+  },
   "qiskit-addon-mpf": {
     version: "0.3.0",
     include: [
@@ -24,6 +35,16 @@ export const ADDON_DOCS_CONFIG: AddonDocsConfig = {
       "explanations/*.ipynb",
     ],
   },
+  "qiskit-addon-sqd": {
+    version: "0.12.0",
+    include: [
+      "index.html",
+      "install.html",
+      "release-notes.html",
+      "how_tos/*.ipynb",
+      "tutorials/*.ipynb",
+    ],
+  },
   "qiskit-addon-obp": {
     version: "0.3.0",
     include: [
@@ -32,6 +53,26 @@ export const ADDON_DOCS_CONFIG: AddonDocsConfig = {
       "release-notes.html",
       "how_tos/*.ipynb",
       "tutorials/*.ipynb",
+    ],
+  },
+  "qiskit-addon-cutting": {
+    version: "0.10.0",
+    include: [
+      "index.html",
+      "install.html",
+      "release-notes.html",
+      "how-tos/*.ipynb",
+      "tutorials/*.ipynb",
+      "explanation/index.html",
+    ],
+  },
+  "qiskit-addon-utils": {
+    version: "0.3.1",
+    include: [
+      "index.html",
+      "install.html",
+      "release-notes.html",
+      "how-tos/*.ipynb",
     ],
   },
 };

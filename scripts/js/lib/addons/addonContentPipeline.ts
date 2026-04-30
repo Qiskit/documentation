@@ -75,7 +75,7 @@ export async function runAddonContentPipeline(
   await saveImages(
     uniqBy(results.flatMap((r) => r.images), (img) => img.fileName),
     `${htmlPath}/_images`,
-    publicBaseFolder,
+    "public",
     pkg,
   );
   await copyNotebooks(htmlPath, outputDir, notebookFiles, stubsMap, pkg.name);
@@ -91,7 +91,7 @@ async function convertProseFiles(
 ): Promise<HtmlToMdResultWithUrl[]> {
   const results: HtmlToMdResultWithUrl[] = [];
   const outputDir = `${docsBaseFolder}/addons/${pkg.name}`;
-  const imageDestination = `${publicBaseFolder}/images/addons/${pkg.name}`;
+  const imageDestination = `docs/images/addons/${pkg.name}`;
 
   for (const file of filePaths) {
     const html = await readFile(`${htmlPath}/${file}`, "utf-8");

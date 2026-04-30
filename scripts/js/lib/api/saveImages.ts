@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { copyFile } from "fs/promises";
-import { extname } from "node:path";
+import { dirname, extname } from "node:path";
 
 import pMap from "p-map";
 import { $ } from "zx";
@@ -64,6 +64,7 @@ export async function saveImages(
     const source = `${originalImagesFolderPath}/${img.fileName}`;
     const dest = `${publicBaseFolder}/${img.dest}`;
 
+    await mkdirp(dirname(dest));
     if (extname(source) === extname(dest)) {
       await copyFile(source, dest);
     } else {
