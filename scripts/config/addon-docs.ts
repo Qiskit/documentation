@@ -21,8 +21,7 @@ export const ADDON_DOCS_CONFIG: AddonDocsConfig = {
       "release-notes.html",
       "how_tos/*.ipynb",
       "tutorials/*.ipynb",
-      "explainations/index.html",
-      "explainations/*.ipynb",
+      "explanations/*.ipynb",
     ],
   },
   "qiskit-addon-obp": {
