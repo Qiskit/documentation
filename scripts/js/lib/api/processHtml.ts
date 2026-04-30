@@ -74,6 +74,7 @@ export async function processHtml(
 
   // Warning: the sequence of operations often matters.
   removeHtmlExtensionsInRelativeLinks($, $main);
+  if (options.isCApi) removeCDomainPrefixFromAnchors($, $main);
   removePermalinks($main);
   removeDownloadSourceCode($main);
   removePublicMembersRubric($main);
@@ -146,6 +147,24 @@ export function removeHtmlExtensionsInRelativeLinks(
     const href = $link.attr("href");
     if (href && !href.startsWith("http")) {
       $link.attr("href", href.replaceAll(".html", ""));
+    }
+  });
+}
+
+/**
+ * Sphinx's C domain emits cross-reference hrefs like `#c.symbol_name`, but our
+ * <Function> components use bare IDs (e.g. `symbol_name`). Strip the `c.` prefix
+ * so the anchors resolve correctly.
+ */
+export function removeCDomainPrefixFromAnchors(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
+  $main.find("a").each((_, link) => {
+    const $link = $(link);
+    const href = $link.attr("href");
+    if (href && href.startsWith("#c.")) {
+      $link.attr("href", `#${href.slice(3)}`);
     }
   });
 }
