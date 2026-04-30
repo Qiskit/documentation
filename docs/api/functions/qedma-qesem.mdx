@@ -44,7 +44,7 @@ The cloud resource name of the instance to use in that format
 <Attribute attributeTypeHint="`dict`">
 Input options for this function are specified as a nested dictionary. See the full [list of options](#options-list) and their default values.
 - Required: No
-- Example: `{ default_precision = 0.03, "max_execution_time" = 3600, "transpilation_level" = 0}`
+- Example: `{ "default_precision": 0.03, "max_execution_time": 3600, "transpilation_level": 0}`
 
 #### Options list
 ##### `estimate_time_only`
@@ -92,6 +92,20 @@ The user can choose to run the QESEM job in either a dedicated [IBM session](/do
 -   **Batch Mode**: In batch mode, the QPU is released during classical computations, leading to lower QPU usage. As batch jobs typically span a longer period, there is a greater risk of hardware drifts; QESEM incorporates measures to detect and compensate for drifts, retaining reliability over extended runs.
 
 - Choices: `"session"` / `"batch"`
+</Attribute>
+
+#### 'parallel_execution'
+<Attribute attributeValue="False">
+
+This flag allows the user to execute the input circuit in parallel on the QPU. QESEM checks whether other patches on the QPU have sufficient fidelity.
+If such patches reduce QPU time, QESEM runs the input circuit on those patches in parallel.
+The results from the patches are combined using inverse variance weighting.
+
+- Example: A user wants to run an 8-qubit circuit on `ibm_marrakesh`, a 156-qubit device, with `parallel_execution=True`.
+QESEM creates nine copies of the transpiled circuit, each mapped to a distinct 8-qubit patch on Marrakesh’s connectivity graph.
+After execution, the user receives a single expectation value and error bar for each input observable.
+
+- Choices: `"False"` / `"True"`
 </Attribute>
 </Attribute>
 
