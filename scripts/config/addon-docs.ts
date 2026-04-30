@@ -13,11 +13,24 @@
 type AddonDocsConfig = Record<string, { version: string; include: string[] }>;
 
 export const ADDON_DOCS_CONFIG: AddonDocsConfig = {
+  "qiskit-addon-mpf": {
+    version: "0.3.0",
+    include: [
+      "index.html",
+      "install.html",
+      "release-notes.html",
+      "how_tos/*.ipynb",
+      "tutorials/*.ipynb",
+      "explainations/index.html",
+      "explainations/*.ipynb",
+    ],
+  },
   "qiskit-addon-obp": {
     version: "0.3.0",
     include: [
       "index.html",
       "install.html",
+      "release-notes.html",
       "how_tos/*.ipynb",
       "tutorials/*.ipynb",
     ],
