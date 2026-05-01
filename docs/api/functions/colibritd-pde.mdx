@@ -5,26 +5,28 @@ description: API reference for QUICK-PDE, A Qiskit Function by ColibriTD
 
 # QUICK-PDE API reference
 
-*See the [guide](/docs/guides/colibritd-pde)*
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/colibritd-pde"
+      analyticsName="Functions API: colibritd-pde"
+      linkText="QUICK-PDE Qiskit Function guide"
+    />
+</CardGroup>
 
 ## Inputs
 
-In order to run the QUICK-PDE Qiskit Function, you can adjust the following parameters:
+### `use_case`
+<Attribute attributeTypeHint="`Literal['MD', 'CFD']`">
+Toggle to select the system of differential equations to solve
+- Use-case specific: No
+- Example: `"CFD"`
+</Attribute>
 
-| Name              | Type                                                 | Description                                                                                                                                                                                                                                                                     | Use-case specific | Example                  |
-| ----------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------------ |
-| use_case          | `Literal["MD", "CFD"]`                               | Toggle to select the system of differential equations to solve                                                                                                                                                                                                                  | No                | `"CFD"`                  |
-| parameters        | `dict[str, Any]`                                     | Parameters of the differential equation (see the next table for more detail)                                                                                                                                                                                              | No                | `{"a": 1.0, "b": 1.0}`   |
-| nb_qubits         | `Optional[dict[str, dict[str, int]]]`                | Number of qubits per function and per variable. Optimized values are chosen by the function, but if you want to try to find a better combination, you can override the default values                                                                         | No                | `{"u": {"x": 1, "t":3}}` |
-| depth             | `Optional[dict[str, int]]`                           | Depth of ansatz per function. Optimized values are chosen by the function, but if you want to try to find a better combination, you can override the default values                                                                                           | No                | `{"u": 4}`               |
-| optimizer         | `Optional[list[str]]`                                | Optimizers to be used, either "CMAES" from the [`cma` python library](https://github.com/CMA-ES/pycma) or one of the [optimizers of scipy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)                                                   | MD                | `"SLSQP"`                |
-| shots             | `Optional[list[int]]`                                | Number of shots used to run each circuit. Since several optimization steps are needed, the length of the list must be equal to the number of optimizers used (4 in the case of CFD). Defaults to `[50_000] * nb_optimizers` for MD and `[5_00, 2_000, 5_000, 10_000]` for CFD | No                | `[15_000, 30_000]`       |
-| optimizer_options | `Optional[dict[str, Any]]`                           | Options to pass to the optimizer. The details of this input depends on the optimizer used; for specifics, refer to the documentation of the optimizer used                                                                                              | MD                | `{"maxiter": 50 }`       |
-| initialization    | `Optional[Literal["RANDOM", "PHYSICALLY_INFORMED"]]` | Whether to start with random angles or smartly chosen angles. Beware that smartly chosen angles may not work in 100% of the cases. Defaults to `"PHYSICALLY_INFORMED"`.                                                                                                         | No                | `"RANDOM"`               |
-| backend_name      | `Optional[str]`                                      | The backend name to use.                                                                                                                                                                                                              | No                | `"ibm_torino"`           |
-| mode              | `Optional[Literal["job", "session", "batch"]]`        | The execution mode to use. Defaults to `"job"`.                                                                                                                                                                                                                                       | No                | `"job"`                  |
-
-The parameters of the differential equation (physical parameters and boundary condition) should follow the given format:
+### `parameters`
+<Attribute attributeTypeHint="`dict[str, Any]`">
+The parameters of the differential equation (physical parameters and boundary condition), which should follow the given format:
 
 | Use case | Key         | Value type | Description                              | Example |
 | -------- | ----------- | ---------- | ---------------------------------------- | ------- |
@@ -36,6 +38,66 @@ The parameters of the differential equation (physical parameters and boundary co
 | MD       | `b`         | `float`    | force per unit mass                      | `10.0`  |
 | MD       | `epsilon_0` | `float`    | proportional stress limit                | `0.1`   |
 | MD       | `sigma_0`   | `float`    | proportional strain limit                | `5.0`   |
+
+- Use-case specific: No
+- Example: `{"a": 1.0, "b": 1.0}`
+</Attribute>
+
+### `nb_qubits`
+<Attribute attributeTypeHint="`Optional[dict[str, dict[str, int]]]`">
+Number of qubits per function and per variable. Optimized values are chosen by the function, but if you want to try to find a better combination, you can override the default values.
+- Use-case specific: No
+- Example: `{"u": {"x": 1, "t":3}}`
+</Attribute>
+
+### `depth`
+<Attribute attributeTypeHint="`Optional[dict[str, int]]`">
+Depth of ansatz per function. Optimized values are chosen by the function, but if you want to try to find a better combination, you can override the default values.
+- Use-case specific: No
+- Example: `{"u": 4}`
+</Attribute>
+
+### `optimizer`
+<Attribute attributeTypeHint="`Optional[list[str]]`">
+Optimizers to be used, either "CMAES" from the [`cma` python library](https://github.com/CMA-ES/pycma) or one of the [optimizers of scipy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)
+- Use-case specific: MD
+- Example: `"SLSQP"`
+</Attribute>
+
+### `shots`
+<Attribute attributeTypeHint="`Optional[list[int]]`">
+Number of shots used to run each circuit. Since several optimization steps are needed, the length of the list must be equal to the number of optimizers used (4 in the case of CFD). Defaults to `[50_000] * nb_optimizers` for MD and `[5_00, 2_000, 5_000, 10_000]` for CFD.
+- Use-case specific: No
+- Example: `[15_000, 30_000]`
+</Attribute>
+
+### `optimizer_options`
+<Attribute attributeTypeHint="`Optional[dict[str, Any]]`">
+Options to pass to the optimizer. The details of this input depends on the optimizer used; for specifics, refer to the documentation of the optimizer used.
+- Use-case specific: MD
+- Example: `{"maxiter": 50 }`
+</Attribute>
+
+### `initialization`
+<Attribute attributeTypeHint="`Optional[Literal['RANDOM', 'PHYSICALLY_INFORMED']]`" attributeValue="`PHYSICALLY_INFORMED`">
+Whether to start with random angles or smartly chosen angles. Beware that smartly chosen angles may not work in 100% of the cases.
+- Use-case specific: No
+- Example: `"RANDOM"`
+</Attribute>
+
+### `backend_name`
+<Attribute attributeTypeHint="`Optional[str]`">
+The backend name to use.
+- Use-case specific: No
+- Example: `ibm_torino`
+</Attribute>
+
+### `mode`
+<Attribute attributeTypeHint="`Optional[Literal['job', 'session', 'batch']]`" attributeValue="`job`">
+The execution mode to use.
+- Use-case specific: No
+- Example: `"job"`
+</Attribute>
 
 ## Output
 

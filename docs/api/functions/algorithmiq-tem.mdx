@@ -4,7 +4,15 @@ description: API reference for the Algorithmiq Tensor-network error mitigation Q
 ---
 # Algorithmiq Tensor-network error mitigation API reference
 
-*See the [guide](/docs/guides/algorithmiq-tem)*
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/algorithmiq-tem"
+      analyticsName="Functions API: algorithmiq-tem"
+      linkText="Algorithmiq TEM Qiskit Function guide"
+    />
+</CardGroup>
 
 ## Inputs
 
@@ -32,103 +40,104 @@ Name of the backend to make the query
 - Example: `"ibm_fez"`
 </Attribute>
 
-### `options`
+### Options
 <Attribute attributeTypeHint="dict">
-Input options. See the [Options](#options) section for more details.
+Input options for this function are specified as a nested dictionary. See the full [list of options](#options-list) and their default values.
 - Required: No
 - Example: `{"max_bond_dimension": 100}`
-</Attribute>
 
-### Options
+A dictionary containing the advanced options for the TEM. The dictionary may contain the keys in the following list. If any of the options are not provided, the default value listed in the list will be used. The default values are good for typical use of TEM.
 
-A dictionary containing the advanced options for the TEM. The dictionary may contain the keys in the following table. If any of the options are not provided, the default value listed in the table will be used. The default values are good for typical use of TEM.
+<span id="options-list"></span>
+#### Options list
 
-#### `tem_max_bond_dimension`
+##### `tem_max_bond_dimension`
 <Attribute attributeTypeHint="int" attributeValue="500">
 The maximum bond dimension to be used for the tensor networks.
 </Attribute>
 
-#### `tem_compression_cutoff`
+##### `tem_compression_cutoff`
 <Attribute attributeTypeHint="float" attributeValue="1e-16">
 The cutoff value to be used for the tensor networks.
 </Attribute>
 
-####  `compute_shadows_bias_from_observable`
+#####  `compute_shadows_bias_from_observable`
 <Attribute attributeTypeHint="bool" attributeValue="False">
 A boolean flag indicating whether the bias for the classical shadows measurement protocol should be tailored to the PUB observable or not. If False, the classical shadows protocol (equal probability of measuring Z, X, Y) will be used.
 </Attribute>
 
-#### `shadows_bias`
+##### `shadows_bias`
 <Attribute attributeTypeHint="np.ndarray" attributeValue="np.array([1 / 3, 1 / 3, 1 / 3])">
 The bias to be used for the randomized classical shadows measurement protocol, a 1d or 2d array of size 3 or shape (`num_qubits`, 3) respectively. Order is ZXY.
 </Attribute>
 
-#### `max_execution_time`
+##### `max_execution_time`
 <Attribute attributeTypeHint="int or None" attributeValue="None">
 The maximum execution time on the QPU in seconds. If the runtime exceeds this value, the job will be canceled. If `None`, a default limit set by Qiskit Runtime will apply.
 </Attribute>
 
-#### `num_randomizations`
+##### `num_randomizations`
 <Attribute attributeTypeHint="int" attributeValue="32">
 The number of randomizations to be used for noise learning and gate twirling.
 </Attribute>
 
-#### `max_layers_to_learn`
+##### `max_layers_to_learn`
 <Attribute attributeTypeHint="int" attributeValue="True">
 The maximum number of unique layers to learn.
 </Attribute>
 
-#### `mitigate_readout_error`
+##### `mitigate_readout_error`
 <Attribute attributeTypeHint="bool" attributeValue="True">
 A boolean flag indicating whether to perform readout error mitigation or not.
 </Attribute>
 
-#### `num_readout_calibration_shots`
+##### `num_readout_calibration_shots`
 <Attribute attributeTypeHint="int" attributeValue="10000">
- The number of shots to be used for readout error mitigation.
- </Attribute>
+The number of shots to be used for readout error mitigation.
+</Attribute>
 
-#### `default_precision`
+##### `default_precision`
 <Attribute attributeTypeHint="float" attributeValue="0.02">
 The default precision to be used for the PUBs for which the precision is not specified.
 </Attribute>
 
-#### `seed`
+##### `seed`
 <Attribute attributeTypeHint="int or None" attributeValue="None">
 Set the seed of the random number generator for reproducibility. If `None`, don't set the seed.
 </Attribute>
 
-#### `shots_per_randomization`
+##### `shots_per_randomization`
 <Attribute attributeTypeHint="int" attributeValue="128">
 The total number of shots to use per random learning circuit.
 </Attribute>
 
-
-#### `layer_pair_depths`
+##### `layer_pair_depths`
 <Attribute attributeTypeHint="list[int]" attributeValue="[0, 1, 2, 4, 16, 32]">
 The circuit depths (measured in number of pairs) to use in learning experiments.
 </Attribute>
 
-#### `layer_noise_model`
+##### `layer_noise_model`
 <Attribute attributeTypeHint="NoiseLearnerResult, Sequence[LayerError], or None" attributeValue="None">
 The precomputed noise learner result from a previously executed run. 
 </Attribute>
 
-#### `private` 
+##### `private` 
 <Attribute attributeTypeHint="bool" attributeValue="False">
 Whether the QPU jobs should be private. Setting it to True will prevent subsequent downloads of the experiment data and is recommended for confidential jobs. 
 </Attribute>
 
-#### `tem_enforce_linear_circuit`
+##### `tem_enforce_linear_circuit`
 <Attribute attributeTypeHint="bool" attributeValue="False">
 Whether to enforce the circuit to be in linear topology.
 </Attribute>
 
+</Attribute>
+
 ### Precision
 
-The precision of the results can be requested in three ways. The precision can be passed in the PUB, and it will apply to that PUB only. Otherwise, a `default_precision` can be passed in the options as specified above. Finally, for advanced use, the specific number of shots per PUB can be passed in the options with `default_shots`, and it will override any other precision option.
+The precision of the results can be requested in three ways. The precision can be passed in the PUB, and it will apply to that PUB only. Otherwise, a [`default_precision`](#default_precision) can be passed in the options as specified above. Finally, for advanced use, the specific number of shots per PUB can be passed in the options with `default_shots`, and it will override any other precision option.
 
-If a `default_precision` or a per-PUB value is passed, the number of shots is estimated in order to achieve the desired precision. This is done based on the chosen QPU parameters and error rates as follows:
+If a [`default_precision`](#default_precision) or a per-PUB value is passed, the number of shots is estimated in order to achieve the desired precision. This is done based on the chosen QPU parameters and error rates as follows:
 
 - Calculating the error per layered gate (EPLG), which quantifies the noise introduced by layers of two-qubit gates. If backend properties are available, it extracts the relevant fidelity; otherwise, it uses a default value.
 - Counting the number of two-qubit gates in the circuit, as these are typically the main contributors to noise.
@@ -140,11 +149,11 @@ This approach ensures that the number of shots is sufficient to achieve the desi
 
 ## Outputs
 
-A Qiskit [PrimitiveResults](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) containing the TEM-mitigated result. The result for each PUB is returned as a [PubResult](/docs/api/qiskit/qiskit.primitives.PubResult) containing the following fields:
+A Qiskit [`PrimitiveResults`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) containing the TEM-mitigated result. The result for each PUB is returned as a [`PubResult`](/docs/api/qiskit/qiskit.primitives.PubResult) containing the following fields:
 
 ### data
 <Attribute attributeTypeHint="Databin">
-A Qiskit [DataBin](/docs/api/qiskit/qiskit.primitives.DataBin) containing the TEM mitigated observable and its standard error. The DataBin has the following fields:
+A Qiskit [`DataBin`](/docs/api/qiskit/qiskit.primitives.DataBin) containing the TEM mitigated observable and its standard error. The DataBin has the following fields:
 - `evs`: The TEM-mitigated observable value.
 - `stds`: The standard error of the TEM-mitigated observable.
 </Attribute>
