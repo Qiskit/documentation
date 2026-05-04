@@ -147,7 +147,6 @@ const FETCH_FAILS = [
   "https://mitpress.mit.edu/9780262539531/quantum-computing-for-everyone/",
   "https://www.science.org/doi/10.1126/sciadv.adu9991",
   "https://www.hpcwire.com/off-the-wire/gordon-bell-prize-awarded-to-ibm-and-leading-university-researchers/",
-  "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/quantum-computing-use-cases-are-getting-real-what-you-need-to-know",
   "https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/quantum-computing-just-might-save-the-planet",
   "https://www.mckinsey.com/industries/chemicals/our-insights/the-next-big-thing-quantum-computings-potential-impact-on-chemicals?cid=eml-web",
@@ -205,9 +204,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://quantum-computing.cloud.ibm.com",
 
   // Other links that don't seem to exist any more
-  "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
-  "https://www.cs.tau.ac.il/\~nogaa/PDFS/r.pdf",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -240,6 +237,8 @@ export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
 // Always ignored URL suffixes - be careful using this
 // -----------------------------------------------------------------------------------
 
+// PDF files are skipped because the link checker doesn't handle them well
+// (they often return 405 or fail to fetch even when they work in browsers)
 export const ALWAYS_IGNORED_URL_SUFFIXES: string[] = [".pdf"];
 
 // -----------------------------------------------------------------------------------
