@@ -144,7 +144,7 @@ const FETCH_RETURNS_405 = [
   "http://www.ibm.com/downloads/documents/us-en/131cf87ab63319bf", // PDF
   "https://github.com/Qiskit/qiskit-terra/issues/15664", // redirects
   "https://github.com/Qiskit/qiskit-terra/issues/15665", // redirects
-  "https://github.com/Qiskit/qiskit-terra/issues/15666" // redirects
+  "https://github.com/Qiskit/qiskit-terra/issues/15666", // redirects
 ];
 
 // Fetching these links throws an error, but they work in-browser. Not sure why.
