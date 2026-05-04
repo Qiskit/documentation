@@ -30,6 +30,14 @@ export const IGNORED_FILES: Set<string> = new Set([
 // the website's preference and avoid checking automatically. Might be a good
 // idea to click on these every now and again to check they still work.
 const FORBIDS_OUR_USER_AGENT = [
+  "https://www.sciencedirect.com/science/article/pii/S0167739X24002012",
+  "https://www.sciencedirect.com/science/article/pii/S0167739X24002012",
+  "https://medium.com/qiskit/qiskit-and-its-fundamental-elements-bcd7ead80492",
+  "https://ibm-research.medium.com/quantum-computing-gains-a-first-foothold-in-investment-banking-2806b280b8f",
+  "https://medium.com/qiskit/a-novel-quantum-algorithm-for-protein-folding-paving-the-way-toward-resolving-one-of-the-biggest-861112139ff0 ",
+  "https://pyqml.medium.com/the-comprehensive-guide-to-the-variational-quantum-eigensolver-ee6775e8279e",
+  "https://csrc.nist.gov/pubs/fips/203/ipd",
+  "https://www.sciencedirect.com/science/article/pii/S0304397514004241?via%3Dihub",
   "http://dx.doi.org/10.1103/PhysRevA.83.012308",
   "http://dx.doi.org/10.1145/1278349.1278355",
   "https://academic.oup.com/book/36426",
@@ -127,8 +135,6 @@ const FETCH_RETURNS_405 = [
   "https://docs.q-ctrl.com/fire-opal/discover/hardware-providers/how-to-migrate-from-performance-management-on-ibm-cloud",
   "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/", // redirects
   "https://journals.aps.org/prresearch/pdf/10.1103/PhysRevResearch.5.043117", // Points to a PDF, which the link checker does not seem to like
-  "https://www.cs.tau.ac.il/\~nogaa/PDFS/r.pdf", // Points to a PDF, which the link checker does not seem to like
-  "https://www.biorxiv.org/content/early/2024/02/17/2024.01.08.574600.full.pdf", // Points to a PDF, which the link checker does not seem to like
   "https://qiskit.github.io/qiskit-serverless/migration/migration_from_qiskit_runtime_programs.html", // broken link in very old API ref release notes for Qiskit Runtime, so ignoring
   "https://qureca.com/quantum-initiatives-worldwide", // link works sometimes, and times out other times
   "https://www.gao.gov/assets/gao-22-104422.pdf", // Points to a PDF, which the link checker does not seem to like
@@ -136,10 +142,14 @@ const FETCH_RETURNS_405 = [
   "https://www.eurekanetwork.org/programmes-and-calls/network-projects/network-projects-applied-quantum-technologies-2025/", // loads a popup, which might be breaking the checker
   "https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/solving-chemistrys-toughest-problems-the-quantum-computing-advantage", // loads a popup, which might be breaking the checker
   "http://www.ibm.com/downloads/documents/us-en/131cf87ab63319bf", // PDF
+  "https://github.com/Qiskit/qiskit-terra/issues/15664", // redirects
+  "https://github.com/Qiskit/qiskit-terra/issues/15665", // redirects
+  "https://github.com/Qiskit/qiskit-terra/issues/15666" // redirects
 ];
 
 // Fetching these links throws an error, but they work in-browser. Not sure why.
 const FETCH_FAILS = [
+  "https://sphincs.org",
   "https://catalog.skills.network/2766",
   "https://www.sciencedirect.com/science/article/pii/S0045790622003743",
   "https://medium.com/qiskit/the-variational-quantum-eigensolver-43f7718c2747",
