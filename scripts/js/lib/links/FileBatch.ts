@@ -16,6 +16,7 @@ import { InternalLink, File } from "./InternalLink.js";
 import {
   ALWAYS_IGNORED_URLS,
   ALWAYS_IGNORED_URL_PREFIXES,
+  ALWAYS_IGNORED_URL_SUFFIXES,
   FILES_TO_IGNORES,
   IGNORED_FILES,
   ALWAYS_IGNORED_URL_REGEXES,
@@ -123,6 +124,7 @@ export function addLinksToMap(
     if (
       ALWAYS_IGNORED_URLS.has(link) ||
       ALWAYS_IGNORED_URL_PREFIXES.some((prefix) => link.startsWith(prefix)) ||
+      ALWAYS_IGNORED_URL_SUFFIXES.some((suffix) => link.endsWith(suffix)) ||
       FILES_TO_IGNORES[filePath]?.includes(link) ||
       ignoreUrlsRegex.test(link)
     ) {
