@@ -1,0 +1,93 @@
+<span id="Scale-SQD-chemistry-workflows-with-Dice-solver" />
+
+# Scale SQD chemistry workflows with Dice solver
+
+For information on how to install and use `qiskit-addon-dice-solver`, [visit the docs](https://qiskit.github.io/qiskit-addon-dice-solver/).
+
+For more details on the SQD code used in this example, check out [tutorial 1](/docs/addons/qiskit-addon-sqd/tutorials/01_chemistry_hamiltonian).
+
+```
+[1]:
+```
+
+```python
+import numpy as np
+import pyscf
+import pyscf.cc
+import pyscf.mcscf
+from qiskit_addon_dice_solver import solve_sci_batch
+from qiskit_addon_sqd.counts import generate_bit_array_uniform
+from qiskit_addon_sqd.fermion import diagonalize_fermionic_hamiltonian
+
+# Specify molecule properties
+num_orbitals = 16
+num_elec_a = num_elec_b = 5
+spin_sq = 0
+
+# Build N2 molecule
+mol = pyscf.gto.Mole()
+mol.build(
+    atom=[["N", (0, 0, 0)], ["N", (1.0, 0, 0)]],
+    basis="6-31g",
+    symmetry="Dooh",
+)
+
+# Define active space
+n_frozen = 2
+active_space = range(n_frozen, mol.nao_nr())
+
+# Get molecular integrals
+scf = pyscf.scf.RHF(mol).run()
+num_orbitals = len(active_space)
+n_electrons = int(sum(scf.mo_occ[active_space]))
+num_elec_a = (n_electrons + mol.spin) // 2
+num_elec_b = (n_electrons - mol.spin) // 2
+cas = pyscf.mcscf.CASCI(scf, num_orbitals, (num_elec_a, num_elec_b))
+mo = cas.sort_mo(active_space, base=0)
+hcore, nuclear_repulsion_energy = cas.get_h1cas(mo)
+eri = pyscf.ao2mo.restore(1, cas.get_h2cas(mo), num_orbitals)
+
+# Compute exact energy
+exact_energy = cas.run().e_tot
+
+# Create a seed to control randomness throughout this workflow
+rng = np.random.default_rng(24)
+
+
+# Generate random samples
+bit_array = generate_bit_array_uniform(10_000, num_orbitals * 2, rand_seed=rng)
+
+# Run SQD
+result = diagonalize_fermionic_hamiltonian(
+    hcore,
+    eri,
+    bit_array,
+    samples_per_batch=300,
+    norb=num_orbitals,
+    nelec=(num_elec_a, num_elec_b),
+    num_batches=5,
+    max_iterations=5,
+    sci_solver=solve_sci_batch,
+    symmetrize_spin=True,
+    seed=rng,
+)
+```
+
+```python
+converged SCF energy = -108.835236570774
+CASCI E = -109.046671778080  E(CI) = -32.8155692383187  S^2 = 0.0000000
+```
+
+```
+[2]:
+```
+
+```python
+print(f"Exact energy: {exact_energy}")
+print(f"Estimated energy: {result.energy + nuclear_repulsion_energy}")
+```
+
+```python
+Exact energy: -109.04667177808028
+Estimated energy: -109.03402667558743
+```

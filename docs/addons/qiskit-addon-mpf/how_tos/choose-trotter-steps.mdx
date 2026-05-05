@@ -1,0 +1,136 @@
+<span id="How-to-choose-the-Trotter-steps-for-an-MPF" />
+
+# How to choose the Trotter steps for an MPF
+
+This guide teaches you how to find a good set of Trotter steps for an MPF. We assume that you have already read and understood the [Getting started](/docs/addons/qiskit-addon-mpf/tutorials/01_getting_started) tutorial.
+
+<span id="Understanding-some-heuristics" />
+
+## Understanding some heuristics
+
+In principle, any $k_j$ values can be chosen but some choices of Trotter steps will lead to a larger noise amplification on real devices than others. Thus, it is important that one tries to find *“good”* values of $k_j$. In the following we will discuss some heuristics to help guide you in doing so.
+
+1.  In practice, our **largest** $k_j$ ($k_{\text{max}}$) value is simply bound by the depth of quantum circuit we can reliably execute.
+2.  Since the Trotter error is only well behaved for $\text{d}t = t/k \lt 1$ (see [Understanding the stability of MPFs](/docs/addons/qiskit-addon-mpf/explanations/mpf_stability)), our **smallest** $k_j$ ($k_{\text{min}}$) should satisfy: $t/k_{\text{min}} \lt 1$ (Note: empirically $\text{d}t \leq 1$ seems to work fine, too).
+3.  None of our $x_j$ values should be close to $0$, as this would imply that we might as well exclude the corresponding $k_j$ from the expansion.
+4.  Similarly, we do not want the $x_j$ for $k_{\text{max}}$ to be the only dominant one, since that implies that we are essentially just recovering a single product formula with $k=k_{\text{max}}$.
+5.  Finally, we want the L1-norm of our coefficients, $x_j$, to be small, as this indicates a well-conditioned MPF (see [Carrera Vazquez et al., 2023](https://quantum-journal.org/papers/q-2023-07-25-1067/)). Furthermore, small coefficients minimize the variance amplification of the MPF.
+
+<span id="Applying-these-heuristics" />
+
+## Applying these heuristics
+
+Reusing the example from the [Getting started](/docs/addons/qiskit-addon-mpf/tutorials/01_getting_started) tutorial, we want to simulate up to time $t=8.0$. Thus, $k_{\text{min}}=8$.
+
+For the sake of this example, let us assume that our deepest circuit is bound by $k_{\text{max}}=20$.
+
+In addition to the constraints above, we will follow the heuristic presented by [Zhuk et al., 2023](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.033309), where they minimize a re-weighted L1-norm of the coefficients:
+
+$$
+\text{min}_{k_j} \sum_j \frac{|c_j|}{k_j^{2\chi}} \, ,
+$$
+
+where $\chi$ is the order of our individual product formulas.
+
+<span id="Preparing-our-LSE" />
+
+### Preparing our LSE
+
+In a first step, we prepare the LSE, $Ax=b$, leveraging a feature of the [setup\_static\_lse](/docs/api/qiskit-addon-mpf/static#qiskit_addon_mpf.static.setup_static_lse) function that allows us to use a [cvxpy.Parameter](https://www.cvxpy.org/api_reference/cvxpy.expressions.html#parameter) object for our $k_j$ values.
+
+```
+[30]:
+```
+
+```python
+order = 2
+symmetric = True
+
+min_k = 8
+max_k = 20
+
+max_l1_norm = 5.0
+min_coeff = 0.01
+```
+
+```
+[31]:
+```
+
+```python
+import cvxpy as cp
+from qiskit_addon_mpf.static import setup_static_lse
+
+ks = cp.Parameter(3, integer=True)
+lse = setup_static_lse(ks, order=order, symmetric=symmetric)
+```
+
+Next, we loop over all possible 3-tuples of $k_j$ values within our specified range. For each one, we compute the analytical coefficients, $x_j$, and then apply our filter criteria. We keep track of those $k_j$ tuples which satisfy our criteria.
+
+```
+[32]:
+```
+
+```python
+import numpy as np
+
+possible_ks = {}
+
+for k1 in range(min_k, max_k):
+    for k2 in range(k1 + 1, max_k):
+        for k3 in range(k2 + 1, max_k):
+            ks.value = [k1, k2, k3]
+            coeffs = lse.solve()
+
+            if np.any(np.isclose(coeffs, 0.0, atol=min_coeff)):
+                continue
+
+            norm1 = np.linalg.norm(coeffs, ord=1)
+            if norm1 > max_l1_norm:
+                continue
+
+            weighted = np.sum([np.abs(c) / k ** (2 * order) for c, k in zip(coeffs, ks.value)])
+            possible_ks[tuple(int(k) for k in ks.value)] = {
+                "coeffs": tuple(coeffs),
+                "weighted": float(weighted),
+                "norm1": float(norm1),
+            }
+```
+
+Finally, we sort our $k_j$ by the re-weighted L1-norm presented by [Zhuk et al., 2023](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.033309):
+
+```
+[33]:
+```
+
+```python
+for ks_val in sorted(possible_ks, key=lambda ks_val: possible_ks[ks_val].get("weighted")):
+    print(ks_val, possible_ks[ks_val])
+```
+
+```python
+(8, 14, 19) {'coeffs': (0.10447913478216586, -1.7638200183654775, 2.6593408835833117), 'weighted': 9.182736455463762e-05, 'norm1': 4.527640036730955}
+(8, 13, 19) {'coeffs': (0.13134519801186473, -1.4167162698412699, 2.285371071829405), 'weighted': 9.920634920634922e-05, 'norm1': 3.8334325396825397}
+(8, 12, 19) {'coeffs': (0.17239057239057254, -1.1944700460829496, 2.022079473692377), 'weighted': 0.00011520737327188946, 'norm1': 3.388940092165899}
+(9, 13, 19) {'coeffs': (0.2662743506493499, -1.6904000946969673, 2.4241257440476174), 'weighted': 0.00011837121212121191, 'norm1': 4.380800189393934}
+(8, 13, 18) {'coeffs': (0.15003663003663004, -1.7549001536098316, 2.6048635235732016), 'weighted': 0.00012288786482334872, 'norm1': 4.509800307219663}
+(8, 12, 18) {'coeffs': (0.19692307692307653, -1.4399999999999984, 2.243076923076922), 'weighted': 0.0001388888888888887, 'norm1': 3.879999999999997}
+(8, 11, 19) {'coeffs': (0.24195168054817162, -1.070248538011695, 1.8282968574635234), 'weighted': 0.00014619883040935662, 'norm1': 3.14049707602339}
+(9, 12, 19) {'coeffs': (0.37193877551020393, -1.5167873601053319, 2.144848584595128), 'weighted': 0.00014629507717065315, 'norm1': 4.033574720210664}
+(8, 12, 17) {'coeffs': (0.22755555555555573, -1.7875862068965531, 2.5600306513409974), 'weighted': 0.00017241379310344843, 'norm1': 4.575172413793107}
+(8, 11, 18) {'coeffs': (0.27638326585694917, -1.265318468585254, 1.988935202728305), 'weighted': 0.00017284590787313073, 'norm1': 3.530636937170508}
+(9, 12, 18) {'coeffs': (0.42857142857142816, -1.8285714285714276, 2.3999999999999995), 'weighted': 0.00017636684303350958, 'norm1': 4.657142857142855}
+(9, 11, 19) {'coeffs': (0.5858035714285708, -1.5251041666666654, 1.9393005952380946), 'weighted': 0.00020833333333333313, 'norm1': 4.05020833333333}
+(8, 11, 17) {'coeffs': (0.3193762183235871, -1.5289264828738525, 2.2095502645502654), 'weighted': 0.00020885547201336693, 'norm1': 4.0578529657477045}
+(8, 10, 19) {'coeffs': (0.383090160867938, -1.0642826734780744, 1.6811925126101364), 'weighted': 0.00021285653469561486, 'norm1': 3.1285653469561487}
+(9, 11, 18) {'coeffs': (0.6750000000000009, -1.8030788177339916, 2.1280788177339907), 'weighted': 0.0002463054187192121, 'norm1': 4.606157635467984}
+(8, 10, 18) {'coeffs': (0.43760683760683694, -1.2400793650793638, 1.8024725274725268), 'weighted': 0.0002480158730158727, 'norm1': 3.4801587301587276}
+(8, 11, 16) {'coeffs': (0.3742690058479534, -1.9026640675763484, 2.528395061728395), 'weighted': 0.0002599090318388565, 'norm1': 4.805328135152697}
+(8, 10, 17) {'coeffs': (0.5056790123456789, -1.4697236919459142, 1.9640446796002353), 'weighted': 0.00029394473838918284, 'norm1': 3.9394473838918285}
+(8, 10, 16) {'coeffs': (0.592592592592593, -1.7806267806267817, 2.1880341880341887), 'weighted': 0.0003561253561253563, 'norm1': 4.561253561253563}
+(8, 9, 19) {'coeffs': (0.8112497524262232, -1.3783613445378153, 1.5671115921115921), 'weighted': 0.00042016806722689084, 'norm1': 3.756722689075631}
+(8, 9, 18) {'coeffs': (0.9266968325791858, -1.5882352941176474, 1.6615384615384616), 'weighted': 0.00048414427499394834, 'norm1': 4.176470588235295}
+(8, 9, 17) {'coeffs': (1.0708496732026151, -1.855486425339368, 1.7846367521367528), 'weighted': 0.0005656108597285072, 'norm1': 4.710972850678736}
+```
+
+Recalling the [Getting started](/docs/addons/qiskit-addon-mpf/tutorials/01_getting_started) tutorial, from these possible values we picked `ks=(8, 12, 19)` since it strikes a good balance of minimizing the re-weighted and plain L1-norms.

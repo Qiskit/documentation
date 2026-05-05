@@ -1,0 +1,288 @@
+<span id="Optimize-Hamiltonian-basis-with-orbital-optimization" />
+
+# Optimize Hamiltonian basis with orbital optimization
+
+In this tutorial, we will show how to use the `sqd` package to post-process quantum samples using the [self-consistent configuration recovery technique](https://arxiv.org/abs/2405.05068) and then further optimize the ground state approximation using orbital optimization
+
+Refer to [Sec. II A 4](https://arxiv.org/pdf/2405.05068) for a more detailed discussion on this technique.
+
+<span id="Specify-the-molecule-and-generate-samples" />
+
+## Specify the molecule and generate samples
+
+In this example, we will approximate the ground state energy of an $N_2$ molecule and then improve the answer using orbital optimization. This guide studies $N_2$ at equilibrium, which is mean-field dominated. This means the MO basis is already a good choice for our integrals; therefore, we will rotate our integrals **out** of the MO basis in order to illustrate the effects of orbital optimization.
+
+```
+[1]:
+```
+
+```python
+%%capture
+import numpy as np
+import pyscf
+import pyscf.cc
+import pyscf.mcscf
+from qiskit_addon_sqd.fermion import rotate_integrals
+
+# Specify molecule properties
+open_shell = False
+spin_sq = 0
+
+# Build N2 molecule
+mol = pyscf.gto.Mole()
+mol.build(
+    atom=[["N", (0, 0, 0)], ["N", (1.0, 0, 0)]],
+    basis="6-31g",
+    symmetry="Dooh",
+)
+
+# Define active space
+n_frozen = 2
+active_space = range(n_frozen, mol.nao_nr())
+
+# Get molecular integrals
+scf = pyscf.scf.RHF(mol).run()
+num_orbitals = len(active_space)
+n_electrons = int(sum(scf.mo_occ[active_space]))
+num_elec_a = (n_electrons + mol.spin) // 2
+num_elec_b = (n_electrons - mol.spin) // 2
+cas = pyscf.mcscf.CASCI(scf, num_orbitals, (num_elec_a, num_elec_b))
+mo = cas.sort_mo(active_space, base=0)
+hcore, nuclear_repulsion_energy = cas.get_h1cas(mo)
+eri = pyscf.ao2mo.restore(1, cas.get_h2cas(mo), num_orbitals)
+
+# Compute exact energy
+exact_energy = cas.run().e_tot
+```
+
+The MO basis is already a good basis for this problem, so we will rotate out of that basis in this guide in order to highlight the effect of orbital optimization.
+
+```
+[2]:
+```
+
+```python
+# Rotate our integrals out of MO basis
+rng = np.random.default_rng(24)
+num_params = (num_orbitals**2 - num_orbitals) // 2  # antisymmetric, specified by upper triangle
+k_rot = (rng.random(num_params) - 0.5) * 0.5
+hcore_rot, eri_rot = rotate_integrals(hcore, eri, k_rot)
+```
+
+Generate samples
+
+```
+[3]:
+```
+
+```python
+from qiskit_addon_sqd.counts import counts_to_arrays, generate_counts_uniform
+
+# Generate random samples
+counts_dict = generate_counts_uniform(10_000, num_orbitals * 2, rand_seed=rng)
+
+# Convert counts into bitstring and probability arrays
+bitstring_matrix_full, probs_arr_full = counts_to_arrays(counts_dict)
+```
+
+<span id="Iteratively-refine-the-samples-using-SQD-and-approximate-the-ground-state" />
+
+## Iteratively refine the samples using SQD and approximate the ground state
+
+```
+[4]:
+```
+
+```python
+from qiskit_addon_sqd.configuration_recovery import recover_configurations
+from qiskit_addon_sqd.fermion import solve_fermion
+from qiskit_addon_sqd.subsampling import postselect_and_subsample
+
+# SQSD options
+iterations = 5
+
+# Eigenstate solver options
+n_batches = 3
+samples_per_batch = 100
+max_davidson_cycles = 200
+
+# Self-consistent configuration recovery loop
+e_hist = np.zeros((iterations, n_batches))  # energy history
+s_hist = np.zeros((iterations, n_batches))  # spin history
+occupancy_hist = []
+avg_occupancy = None
+for i in range(iterations):
+    print(f"Starting configuration recovery iteration {i}")
+    # On the first iteration, we have no orbital occupancy information from the
+    # solver, so we just post-select from the full bitstring set based on hamming weight.
+    if avg_occupancy is None:
+        bs_mat_tmp = bitstring_matrix_full
+        probs_arr_tmp = probs_arr_full
+
+    # In following iterations, we use both the occupancy info and the target hamming
+    # weight to refine bitstrings.
+    else:
+        bs_mat_tmp, probs_arr_tmp = recover_configurations(
+            bitstring_matrix_full,
+            probs_arr_full,
+            avg_occupancy,
+            num_elec_a,
+            num_elec_b,
+            rand_seed=rng,
+        )
+
+    # Throw out samples with incorrect hamming weight and create batches of subsamples.
+    batches = postselect_and_subsample(
+        bs_mat_tmp,
+        probs_arr_tmp,
+        hamming_right=num_elec_a,
+        hamming_left=num_elec_b,
+        samples_per_batch=samples_per_batch,
+        num_batches=n_batches,
+        rand_seed=rng,
+    )
+
+    # Run eigenstate solvers in a loop. This loop should be parallelized for larger problems.
+    int_e = np.zeros(n_batches)
+    int_s = np.zeros(n_batches)
+    int_occs = []
+    cs = []
+    for j in range(n_batches):
+        energy_sci, coeffs_sci, avg_occs, spin = solve_fermion(
+            batches[j],
+            hcore_rot,
+            eri_rot,
+            open_shell=open_shell,
+            spin_sq=spin_sq,
+            max_cycle=max_davidson_cycles,
+        )
+        energy_sci += nuclear_repulsion_energy
+        int_e[j] = energy_sci
+        int_s[j] = spin
+        int_occs.append(avg_occs)
+        cs.append(coeffs_sci)
+
+    # Combine batch results
+    avg_occupancy = tuple(np.mean(int_occs, axis=0))
+
+    # Track optimization history
+    e_hist[i, :] = int_e
+    s_hist[i, :] = int_s
+    occupancy_hist.append(avg_occupancy)
+```
+
+```python
+Starting configuration recovery iteration 0
+Starting configuration recovery iteration 1
+Starting configuration recovery iteration 2
+Starting configuration recovery iteration 3
+Starting configuration recovery iteration 4
+```
+
+<span id="Refine-the-subspace" />
+
+## Refine the subspace
+
+To refine the subspace, we will take the CI strings of the batch with the lowest energy from the last configuration recovery step. Other strategies may be used, like taking the union of the CI strings of the batches in the last configuration recovery iteration.
+
+```
+[5]:
+```
+
+```python
+from qiskit_addon_sqd.fermion import bitstring_matrix_to_ci_strs
+
+best_batch = batches[np.argmin(e_hist[-1])]
+ci_strs_up, ci_strs_dn = bitstring_matrix_to_ci_strs(best_batch, open_shell=open_shell)
+print(f"Subspace dimension: {len(ci_strs_up) * len(ci_strs_dn)}")
+print(f"Energy of that batch from SQD: {e_hist[-1, np.argmin(e_hist[-1])]}")
+
+# Union strategy
+
+# batches_union = np.concatenate((batches[0], batches[1]), axis = 0)
+# for i in range(n_batches-2):
+#    batches_union = np.concatenate((batches_union, batches[ i+ 2]))
+# ci_strs_up, ci_strs_dn = bitstring_matrix_to_ci_strs(
+#            batches_union, open_shell=open_shell
+#            )
+# print (f"Subspace dimension: {len(ci_strs_up) * len(ci_strs_dn)}")
+```
+
+```python
+Subspace dimension: 32761
+Energy of that batch from SQD: -108.7531706601421
+```
+
+<span id="Perform-orbital-optimization-to-improve-the-energy-approximation" />
+
+## Perform orbital optimization to improve the energy approximation
+
+We now describe how to optimize the orbitals to further improve the quality of the sqd calculation.
+
+The orbital rotations that are implemented in this package are those described by:
+
+$$
+U(\kappa) = e^{\sum_{pq, \sigma} \kappa_{pq} c^\dagger_{p\sigma} c_{q\sigma}},
+$$
+
+where $\kappa_{p, q} \in \mathbb{R}$ and $\kappa_{p, q} = -\kappa_{q, p}$. The orbitals are optimized to minimize the variational energy:
+
+$$
+E(\kappa) = \langle \psi | U^\dagger(\kappa) H U(\kappa)  |\psi \rangle,
+$$
+
+with respect to $\kappa$ using gradient descent with momentum. Recall that $|\psi\rangle$ is spanned in a subspace defined by determinants.
+
+Since the change of basis alters the Hamiltonian, we allow $|\psi\rangle$ to respond to the change in the Hamiltonian. This is done by performing a number of alternating self-consistent optimizations of $\kappa$ and $|\psi\rangle$. We recall that the optimal $|\psi\rangle$ is given by the lowest eigenvector of the Hamiltonian projected into the subspace.
+
+The `sqd.fermion.fermion` module provides the tools to perform this alternating optimization. In particular, the function `sqd.fermion.optimize_orbitals()`.
+
+Some of the arguments that define the optimization are:
+
+*   `num_iters`: number of self-consistent iterations.
+*   `num_steps_grad`: number of gradient step updates performed when optimizing $\kappa$ on each self-consistent iteration.
+*   `learning_rate`: step-size in the gradient descent optimization of $\kappa$.
+
+```
+[6]:
+```
+
+```python
+from qiskit_addon_sqd.fermion import optimize_orbitals
+
+k_flat = (rng.random(num_params) - 0.5) * 0.1
+num_iters = 20
+num_steps_grad = 10_000  # relatively cheap to execute
+learning_rate = 0.05
+
+e_improved, k_flat, orbital_occupancies = optimize_orbitals(
+    best_batch,
+    hcore_rot,
+    eri_rot,
+    k_flat,
+    open_shell=open_shell,
+    spin_sq=spin_sq,
+    num_iters=num_iters,
+    num_steps_grad=num_steps_grad,
+    learning_rate=learning_rate,
+    max_cycle=max_davidson_cycles,
+)
+```
+
+Here we see that by optimizing rotation parameters for our Hamiltonian, we can improve the result from SQD.
+
+```
+[7]:
+```
+
+```python
+print(f"Exact energy: {exact_energy}")
+print(f"SQD energy: {np.min(e_hist[-1])}")
+print(f"Energy after OO: {e_improved + nuclear_repulsion_energy}")
+```
+
+```python
+Exact energy: -109.04667177808032
+SQD energy: -108.7531706601421
+Energy after OO: -108.80400806164377
+```

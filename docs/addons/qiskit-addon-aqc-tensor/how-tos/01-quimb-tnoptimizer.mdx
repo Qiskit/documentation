@@ -1,0 +1,220 @@
+<span id="How-to-use-quimb.tensor.TNOptimizer-directly" />
+
+# How to use `quimb.tensor.TNOptimizer` directly
+
+Quimb provides [a mechanism for optimizing tensor networks](https://quimb.readthedocs.io/en/latest/tensor-optimization.html) through its `TNOptimizer` interface. The Quimb backend provided by this addon uses this under the hood. This how-to guide demonstrates how to work with this object directly, in case some users want more direct access to it.
+
+<span id="Set-up-a-model-Hamiltonian" />
+
+## Set up a model Hamiltonian
+
+```
+[1]:
+```
+
+```python
+from qiskit.transpiler import CouplingMap
+from qiskit_addon_utils.problem_generators import generate_xyz_hamiltonian
+
+# Generate some coupling map to use for this example
+coupling_map = CouplingMap.from_heavy_hex(3, bidirectional=False)
+
+# Choose a 10-qubit circle on this coupling map
+reduced_coupling_map = coupling_map.reduce([0, 13, 1, 14, 10, 16, 4, 15, 3, 9])
+
+# Get a qubit operator describing the Ising field model
+hamiltonian = generate_xyz_hamiltonian(
+    reduced_coupling_map,
+    coupling_constants=(0.0, 0.0, 1.0),
+    ext_magnetic_field=(0.4, 0.0, 0.0),
+)
+```
+
+<span id="Set-up-quimb-simulator-with-default-options" />
+
+## Set up quimb simulator with default options
+
+```
+[2]:
+```
+
+```python
+import quimb.tensor as qtn
+
+from qiskit_addon_aqc_tensor.simulation.quimb import (
+    QuimbSimulator,
+    qiskit_ansatz_to_quimb,
+    recover_parameters_from_quimb,
+)
+
+simulator = QuimbSimulator(qtn.Circuit)
+```
+
+```python
+/home/runner/work/qiskit-addon-aqc-tensor/qiskit-addon-aqc-tensor/.tox/docs/lib/python3.9/site-packages/cotengra/hyperoptimizers/hyper.py:57: UserWarning: Couldn't find `optuna`, `cmaes`, or `nevergrad` so will use completely random sampling in place of hyper-optimization.
+  warnings.warn(
+/home/runner/work/qiskit-addon-aqc-tensor/qiskit-addon-aqc-tensor/.tox/docs/lib/python3.9/site-packages/cotengra/hyperoptimizers/hyper.py:76: UserWarning: Couldn't find `optuna`, `cmaes`, or `nevergrad` so will use completely random sampling in place of hyper-optimization.
+  warnings.warn(
+```
+
+<span id="Generate-target-circuit" />
+
+## Generate target circuit
+
+```
+[3]:
+```
+
+```python
+from qiskit.synthesis import SuzukiTrotter
+from qiskit_addon_utils.problem_generators import generate_time_evolution_circuit
+
+from qiskit_addon_aqc_tensor.simulation import (
+    compute_overlap,
+    tensornetwork_from_circuit,
+)
+
+evolution_time = 0.4
+
+target_circuit = generate_time_evolution_circuit(
+    hamiltonian,
+    synthesis=SuzukiTrotter(reps=8),
+    time=evolution_time,
+)
+
+target_tns = tensornetwork_from_circuit(target_circuit, simulator)
+```
+
+<span id="Generate-ansatz-from-a-shallower-circuit" />
+
+## Generate ansatz from a shallower circuit
+
+```
+[4]:
+```
+
+```python
+from qiskit_addon_aqc_tensor.ansatz_generation import (
+    AnsatzBlock,
+    generate_ansatz_from_circuit,
+)
+
+initial_shallow_circuit = generate_time_evolution_circuit(
+    hamiltonian,
+    synthesis=SuzukiTrotter(reps=2),
+    time=evolution_time,
+)
+ansatz, initial_parameters = generate_ansatz_from_circuit(initial_shallow_circuit)
+ansatz = ansatz.decompose(AnsatzBlock)
+ansatz.draw("mpl", fold=-1)
+```
+
+```
+[4]:
+```
+
+![../\_images/how-tos\_01\_quimb\_tnoptimizer\_7\_0.png](/docs/images/api/qiskit-addon-aqc-tensor/how-tos_01_quimb_tnoptimizer_7_0.avif)
+
+<span id="Initialize-objective-function" />
+
+## Initialize objective function
+
+```
+[5]:
+```
+
+```python
+from qiskit_addon_aqc_tensor.objective import MaximizeStateFidelity
+
+objective = MaximizeStateFidelity(target_tns, None, None)
+```
+
+<span id="Convert-Qiskit-ansatz-and-initial-parameters-to-a-Quimb-parametrized-circuit" />
+
+## Convert Qiskit ansatz and initial parameters to a Quimb parametrized circuit
+
+```
+[6]:
+```
+
+```python
+circ, conversion_context = qiskit_ansatz_to_quimb(ansatz, initial_parameters)
+```
+
+<span id="Perform-optimization-of-Quimb-circuit-using-automatic-differentiation" />
+
+## Perform optimization of Quimb circuit using automatic differentiation
+
+```
+[7]:
+```
+
+```python
+from qiskit_addon_aqc_tensor.simulation.quimb import tnoptimizer_objective_kwargs
+
+tnopt = qtn.TNOptimizer(
+    circ,
+    **tnoptimizer_objective_kwargs(objective),
+    autodiff_backend="jax",  # OPTIONS: jax, autograd, torch, etc.
+)
+circ_opt = tnopt.optimize(20)
+```
+
+```python
++0.000019788644 [best: +0.000019788644] : : 36it [00:36,  1.00s/it]
+```
+
+<span id="Recover-final-parameters-from-the-quimb-circuit" />
+
+## Recover final parameters from the quimb circuit
+
+```
+[8]:
+```
+
+```python
+final_parameters = recover_parameters_from_quimb(circ_opt, conversion_context)
+```
+
+<span id="Check-fidelity-of-final,-compressed-state-w/-respect-to-target-state" />
+
+## Check fidelity of final, compressed state w/ respect to target state
+
+```
+[9]:
+```
+
+```python
+compressed_circuit = ansatz.assign_parameters(final_parameters)
+compressed_state = tensornetwork_from_circuit(compressed_circuit, simulator)
+abs(compute_overlap(target_tns, compressed_state)) ** 2
+```
+
+```
+[9]:
+```
+
+```python
+0.9999984444299815
+```
+
+<span id="Compare-with-fidelity-of-initial-shallow-state-w/-respect-to-target-state" />
+
+## Compare with fidelity of initial shallow state w/ respect to target state
+
+```
+[10]:
+```
+
+```python
+initial_shallow_state = tensornetwork_from_circuit(initial_shallow_circuit, simulator)
+abs(compute_overlap(target_tns, initial_shallow_state)) ** 2
+```
+
+```
+[10]:
+```
+
+```python
+0.9998389457702321
+```

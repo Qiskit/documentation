@@ -38,6 +38,7 @@ const SPHINX_INTERNALS = [
   "_static/**",
   "_sources/**",
   "_downloads/**",
+  "_modules/**",
   "genindex.html",
   "py-modindex.html",
   "search.html",

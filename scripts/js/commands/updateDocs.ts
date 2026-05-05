@@ -10,18 +10,45 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { basename } from "path";
-import { fileURLToPath, pathToFileURL } from "url";
-
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { globby } from "globby";
 
+import { Pkg } from "../lib/api/Pkg.js";
+import { parseMinorVersion } from "../lib/apiVersions.js";
+import { pathExists } from "../lib/fs.js";
+import { downloadSphinxArtifact } from "../lib/api/sphinxArtifacts.js";
+import { runSphinxPipeline } from "../lib/sphinx/conversionPipeline.js";
 import { zxMain } from "../lib/zx.js";
+import { $ } from "zx";
 
-const COMMANDS_DIR = new URL("./docs/", import.meta.url);
+const DOCS_FOLDER = "docs";
+const PUBLIC_FOLDER = "public";
 
-const VALID_PACKAGES = await discoverPackages();
+// Glob patterns excluded from prose runs. Release notes link heavily to API
+// pages and don't belong in the prose output.
+const PROSE_EXCLUDE = [
+  "apidocs/**",
+  "apidoc/**",
+  "stubs/**",
+  "release_notes.html",
+  "release-notes.html",
+];
+
+type AddonConfig = {
+  name: string;
+  version: string;
+};
+
+const ADDONS: AddonConfig[] = [
+  { name: "qiskit-addon-aqc-tensor", version: "0.2.0" },
+  { name: "qiskit-addon-cutting", version: "0.10.0" },
+  { name: "qiskit-addon-mpf", version: "0.3.0" },
+  { name: "qiskit-addon-obp", version: "0.3.0" },
+  { name: "qiskit-addon-sqd", version: "0.12.0" },
+  { name: "qiskit-addon-utils", version: "0.3.1" },
+];
+
+const VALID_NAMES = ADDONS.map((a) => a.name);
 
 const readArgs = () => {
   return yargs(hideBin(process.argv))
@@ -29,41 +56,56 @@ const readArgs = () => {
     .option("package", {
       alias: "p",
       type: "string",
-      choices: VALID_PACKAGES,
-      description: "Which package to update. Defaults to all packages.",
+      choices: VALID_NAMES,
+      description:
+        "Which addon to update. Defaults to all configured addons.",
     })
     .option("skip-download", {
       type: "boolean",
       default: false,
-      description: "Reuse already-downloaded artifacts instead of downloading again.",
+      description:
+        "Reuse already-downloaded artifacts instead of downloading again.",
     })
     .parseSync();
 };
 
-async function discoverPackages(): Promise<string[]> {
-  const dir = fileURLToPath(COMMANDS_DIR);
-  const files = await globby("*.ts", { cwd: dir });
-  return files
-    .map((f) => basename(f, ".ts"))
-    .filter((name) => name !== "utils")
-    .sort();
-}
+async function runForAddon(
+  config: AddonConfig,
+  skipDownload: boolean,
+): Promise<void> {
+  const minorVersion = parseMinorVersion(config.version)!;
+  const pkg = await Pkg.fromArgs(
+    config.name,
+    config.version,
+    minorVersion,
+    "latest",
+  );
 
-async function loadAndRun(pkgName: string, skipDownload: boolean): Promise<void> {
-  const moduleUrl = new URL(`${pkgName}.ts`, COMMANDS_DIR);
-  const mod = await import(moduleUrl.toString().replace(/\.ts$/, ".js"));
-  if (typeof mod.run !== "function") {
-    throw new Error(`Package command ${pkgName}.ts does not export a run() function`);
+  const artifactFolder = pkg.sphinxArtifactFolder();
+  const artifactPath = `${artifactFolder}/artifact`;
+
+  if (skipDownload && (await pathExists(artifactPath))) {
+    console.log(`Reusing cached artifact for ${config.name}`);
+  } else {
+    await downloadSphinxArtifact(pkg, artifactFolder);
   }
-  console.log(`\n=== ${pkgName} ===`);
-  await mod.run(skipDownload);
+
+  const proseOutput = `docs/addons/${config.name}`;
+  if (await pathExists(proseOutput)) await $`rm -rf ${proseOutput}`;
+  await runSphinxPipeline(artifactPath, DOCS_FOLDER, PUBLIC_FOLDER, {
+    exclude: PROSE_EXCLUDE,
+    output: proseOutput,
+    pkg,
+  });
 }
 
 zxMain(async () => {
   const args = readArgs();
-  const packages = args.package ? [args.package] : VALID_PACKAGES;
+  const addons = args.package
+    ? ADDONS.filter((a) => a.name === args.package)
+    : ADDONS;
 
-  for (const pkgName of packages) {
-    await loadAndRun(pkgName, args.skipDownload);
+  for (const addon of addons) {
+    await runForAddon(addon, args.skipDownload);
   }
 });

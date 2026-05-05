@@ -245,10 +245,8 @@ function detectLanguage(
 ): string | null {
   const defaultLanguage = options.isCApi ? "c" : "python";
   // Two levels up from `pre` should have class `highlight-<language>`
-  const detectedLanguage = $pre
-    .parent()
-    .parent()[0]
-    .attribs.class.match(/(?<=highlight-)\w+/);
+  const grandparentClass = $pre.parent().parent()[0]?.attribs?.class ?? "";
+  const detectedLanguage = grandparentClass.match(/(?<=highlight-)\w+/);
   if (!detectedLanguage) return defaultLanguage;
   const langName = detectedLanguage[0];
   if (langName === "none") return null;

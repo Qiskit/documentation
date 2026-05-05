@@ -1,5 +1,6 @@
 ---
-title: "Explanatory material"
+title: Circuit cutting API documentation (latest version)
+description: Index of all the modules in the latest version of qiskit-addon-cutting.
 ---
 
 <span id="circuit-cutting-explanation" />
@@ -12,9 +13,9 @@ Circuit cutting is a technique to increase the size of circuits we can run on qu
 
 ## Key terms
 
-*   subcircuits: The set of circuits resulting from cutting gates in a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) and then separating the disconnected qubit subsets into smaller circuits. These circuits contain [`SingleQubitQPDGate`](qiskit_addon_cutting.qpd.SingleQubitQPDGate#qiskit_addon_cutting.qpd.SingleQubitQPDGate "qiskit_addon_cutting.qpd.SingleQubitQPDGate")s and will be used to instantiate each unique subexperiment.
-*   subexperiments: A term used to describe the unique circuit samples associated with a subcircuit. These circuits have had their [`BaseQPDGate`](qiskit_addon_cutting.qpd.BaseQPDGate#qiskit_addon_cutting.qpd.BaseQPDGate "qiskit_addon_cutting.qpd.BaseQPDGate")s decomposed into local Qiskit gates and measurements. Subexperiments are the circuits sent to the backend for execution.
-*   decompose: We try to honor the Qiskit notion of “decompose” in the documentation and API, which loosely means transforming a gate into a less-abstracted representation. *Occasionally*, we may use the term “decompose” to refer to the act of inserting [`BaseQPDGate`](qiskit_addon_cutting.qpd.BaseQPDGate#qiskit_addon_cutting.qpd.BaseQPDGate "qiskit_addon_cutting.qpd.BaseQPDGate") instances into quantum circuits as “decomposing” a gate or wire; however, we try to use terms like “partition” and “cut” when referring to this to avoid ambiguity with Qiskit language.
+*   subcircuits: The set of circuits resulting from cutting gates in a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) and then separating the disconnected qubit subsets into smaller circuits. These circuits contain [`SingleQubitQPDGate`](qpd-single-qubit-qpd-gate#qiskit_addon_cutting.qpd.SingleQubitQPDGate "qiskit_addon_cutting.qpd.SingleQubitQPDGate")s and will be used to instantiate each unique subexperiment.
+*   subexperiments: A term used to describe the unique circuit samples associated with a subcircuit. These circuits have had their [`BaseQPDGate`](qpd-base-qpd-gate#qiskit_addon_cutting.qpd.BaseQPDGate "qiskit_addon_cutting.qpd.BaseQPDGate")s decomposed into local Qiskit gates and measurements. Subexperiments are the circuits sent to the backend for execution.
+*   decompose: We try to honor the Qiskit notion of “decompose” in the documentation and API, which loosely means transforming a gate into a less-abstracted representation. *Occasionally*, we may use the term “decompose” to refer to the act of inserting [`BaseQPDGate`](qpd-base-qpd-gate#qiskit_addon_cutting.qpd.BaseQPDGate "qiskit_addon_cutting.qpd.BaseQPDGate") instances into quantum circuits as “decomposing” a gate or wire; however, we try to use terms like “partition” and “cut” when referring to this to avoid ambiguity with Qiskit language.
 
 ## Circuit cutting as a quasiprobability decomposition (QPD)
 
@@ -63,7 +64,7 @@ As shown in \[[2](https://arxiv.org/abs/1909.07534)], a quantum circuit which im
 
 Equation [(1)](#equation-eq-qpd) for [`RZZGate`](/docs/api/qiskit/qiskit.circuit.library.RZZGate) can thus be written as a sum of the six terms listed above. The following plot shows the magnitude of each coeffient (negative coefficients are in orange) as a function of $\theta$. The square root of the optimal sampling overhead, denoted by $\gamma$, is given by the sum of the absolute coefficients.
 
-![../\_images/index-1.svg](docs/images/addons/qiskit-addon-cutting/index-1.svg)
+![../\_images/index-1.svg](/docs/images/api/qiskit-addon-cutting/index-1.svg)
 
 Let’s consider some special points in this plot:
 
@@ -89,15 +90,15 @@ The code that generates subexperiments from the KAK decomposition currently foll
 
 <span id="wire-cutting-as-move" />
 
-## Wire cutting phrased as a two-qubit [`Move`](qiskit_addon_cutting.instructions.Move#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") operation
+## Wire cutting phrased as a two-qubit [`Move`](instructions-move#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") operation
 
-A wire cut is represented fundamentally by this package as a two-qubit [`Move`](qiskit_addon_cutting.instructions.Move#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") instruction, which is defined as a reset of the second qubit followed by a swap of both qubits. Equivalently, the operation is defined as transferring the state of the first qubit wire to the second qubit wire, while simultaneously discarding the state of the second qubit wire (the first qubit ends up in state $\lvert 0 \rangle$).
+A wire cut is represented fundamentally by this package as a two-qubit [`Move`](instructions-move#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") instruction, which is defined as a reset of the second qubit followed by a swap of both qubits. Equivalently, the operation is defined as transferring the state of the first qubit wire to the second qubit wire, while simultaneously discarding the state of the second qubit wire (the first qubit ends up in state $\lvert 0 \rangle$).
 
-We have chosen to represent wire cuts in this way primarily because it is consistent with the way one must treat wire cuts when acting on physical qubits: for instance, a wire cut might take the state of physical qubit $n$ and continue it as physical qubit $m$ after the cut. Our choice also has the benefit of allowing us to think of “instruction cutting” as a unified framework for considering both wire cuts and gate cuts in the same formalism, being that a wire cut is just a cut [`Move`](qiskit_addon_cutting.instructions.Move#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") instruction.
+We have chosen to represent wire cuts in this way primarily because it is consistent with the way one must treat wire cuts when acting on physical qubits: for instance, a wire cut might take the state of physical qubit $n$ and continue it as physical qubit $m$ after the cut. Our choice also has the benefit of allowing us to think of “instruction cutting” as a unified framework for considering both wire cuts and gate cuts in the same formalism, being that a wire cut is just a cut [`Move`](instructions-move#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") instruction.
 
 More information on this formalism is given in Sec. 3 of Ref. \[[4](https://arxiv.org/abs/2302.03366)]
 
-If you prefer to place cut wires abstractly on a single qubit wire, please see the [how-to guide on placing wire cuts using a single-qubit instruction](how-tos/how_to_specify_cut_wires), which explains how to use the [`cut_wires()`](qiskit_addon_cutting#qiskit_addon_cutting.cut_wires "qiskit_addon_cutting.cut_wires") function to convert a circuit with [`CutWire`](qiskit_addon_cutting.instructions.CutWire#qiskit_addon_cutting.instructions.CutWire "qiskit_addon_cutting.instructions.CutWire") instructions to a circuit with [`Move`](qiskit_addon_cutting.instructions.Move#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move")s on additional qubits.
+If you prefer to place cut wires abstractly on a single qubit wire, please see the [how-to guide on placing wire cuts using a single-qubit instruction](how-tos/how-to-specify-cut-wires), which explains how to use the [`cut_wires()`](qiskit-addon-cutting#qiskit_addon_cutting.cut_wires "qiskit_addon_cutting.cut_wires") function to convert a circuit with [`CutWire`](instructions-cut-wire#qiskit_addon_cutting.instructions.CutWire "qiskit_addon_cutting.instructions.CutWire") instructions to a circuit with [`Move`](instructions-move#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move")s on additional qubits.
 
 ## Sample weights in the Qiskit addon for circuit cutting
 
@@ -118,7 +119,7 @@ The below table provides the sampling overhead factor for a variety of two-qubit
 | [`RXXGate`](/docs/api/qiskit/qiskit.circuit.library.RXXGate), [`RYYGate`](/docs/api/qiskit/qiskit.circuit.library.RYYGate), [`RZZGate`](/docs/api/qiskit/qiskit.circuit.library.RZZGate), [`RZXGate`](/docs/api/qiskit/qiskit.circuit.library.RZXGate)                                                       | \$(                      | \theta/2                    | , 0, 0)\$ | \$\left\[1 + 2 \left | \sin(\theta)\right   | \right]^2\$       |                      |                                                                |
 | [`CRXGate`](/docs/api/qiskit/qiskit.circuit.library.CRXGate), [`CRYGate`](/docs/api/qiskit/qiskit.circuit.library.CRYGate), [`CRZGate`](/docs/api/qiskit/qiskit.circuit.library.CRZGate), [`CPhaseGate`](/docs/api/qiskit/qiskit.circuit.library.CPhaseGate)                                                 | \$(                      | \theta/4                    | , 0, 0)\$ | \$\left\[1 + 2 \left | \sin(\theta/2)\right | \right]^2\$       |                      |                                                                |
 | [`XXPlusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXPlusYYGate), [`XXMinusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXMinusYYGate)                                                                                                                                                             | \$(                      | \theta/4                    | ,         | \theta/4             | ,0)\$                | \$\left\[1+4\left | \sin(\theta/2)\right | +2\sin^2(\theta/2)\right]^2$(independent of$\beta\$ parameter) |
-| [`Move`](qiskit_addon_cutting.instructions.Move#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") (cut wire) without classical communication (i.e., in the LO setting)                                                                                                        | not applicable           | $4^2=16$                    |           |                      |                      |                   |                      |                                                                |
+| [`Move`](instructions-move#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") (cut wire) without classical communication (i.e., in the LO setting)                                                                                                                             | not applicable           | $4^2=16$                    |           |                      |                      |                   |                      |                                                                |
 
 ## Current limitations
 

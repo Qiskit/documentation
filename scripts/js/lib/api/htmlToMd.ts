@@ -243,7 +243,7 @@ function buildAdmonition(
   handlers: Record<string, Handle>,
 ): MdxJsxFlowElement {
   const titleNode = findNodeWithProperty(node.children, "admonition-title");
-  const children: Array<any> = without(node.children, titleNode).map(
+  const children: Array<any> = without(node.children, titleNode ?? undefined).map(
     (node: any) => toMdast(node, { handlers }),
   );
 
@@ -261,7 +261,7 @@ function buildAdmonition(
       {
         type: "mdxJsxAttribute",
         name: "title",
-        value: toText(titleNode),
+        value: titleNode ? toText(titleNode) : "",
       },
       {
         type: "mdxJsxAttribute",

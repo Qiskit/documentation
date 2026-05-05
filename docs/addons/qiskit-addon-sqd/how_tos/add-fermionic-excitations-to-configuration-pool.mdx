@@ -1,0 +1,129 @@
+<span id="Add-fermionic-transitions-to-the-pool-of-configurations" />
+
+# Add fermionic transitions to the pool of configurations
+
+Here we demonstrate the functionalities to augment the pool of electronic configurations obtained by the action of transition operators on each electronic configuration.
+
+We demonstrate how to add single-electron hops of the type:
+
+$$
+c^\dagger_{p\sigma} c_{q\sigma} |\textbf{x} \rangle
+$$
+
+for $p, q = 1, ..., N_\textrm{orb}$ and $\sigma \in \{ \uparrow, \downarrow\}$, and for all $|\textbf{x} \rangle$ in the batch of electronic configurations.
+
+Let’s begin by generating a batch of random electronic configurations
+
+```
+[1]:
+```
+
+```python
+import numpy as np
+
+n_qubits = 8
+n_orb = n_qubits // 2
+
+rand_seed = 22
+np.random.seed(rand_seed)
+
+
+# Generate some random bitstrings for testing
+def random_bitstrings(n_samples, n_qubits):
+    return np.round(np.random.rand(n_samples, n_qubits)).astype("int").astype("bool")
+
+
+bitstring_matrix = random_bitstrings(100, n_qubits)
+```
+
+The excitation operators are specified inside a numpy array whose length is equal to the number of fermionic nodes (or qubits). Each element of the array must be a string that can take values:
+
+*   `'I'`: Identity
+*   `'+'`: Creation operator
+*   `'-'`: Annihilation operator
+
+Let’s generate all possible single-electron transitions (amongst same spin species).
+
+```
+[2]:
+```
+
+```python
+transitions_single = np.array(
+    [["I" for i in range(2 * n_orb)] for j in range(4 * (n_orb**2 - n_orb) // 2 + 1)]
+)
+count = 1
+for i in range(n_orb):
+    for j in range(i + 1, n_orb):
+        # spin up
+        transitions_single[count, i] = "+"
+        transitions_single[count, j] = "-"
+        count += 1
+        transitions_single[count, i] = "-"
+        transitions_single[count, j] = "+"
+        count += 1
+
+        # spin down
+        transitions_single[count, i + n_orb] = "+"
+        transitions_single[count, j + n_orb] = "-"
+        count += 1
+        transitions_single[count, i + n_orb] = "-"
+        transitions_single[count, j + n_orb] = "+"
+        count += 1
+
+print(transitions_single)
+```
+
+```python
+[['I' 'I' 'I' 'I' 'I' 'I' 'I' 'I']
+ ['+' '-' 'I' 'I' 'I' 'I' 'I' 'I']
+ ['-' '+' 'I' 'I' 'I' 'I' 'I' 'I']
+ ['I' 'I' 'I' 'I' '+' '-' 'I' 'I']
+ ['I' 'I' 'I' 'I' '-' '+' 'I' 'I']
+ ['+' 'I' '-' 'I' 'I' 'I' 'I' 'I']
+ ['-' 'I' '+' 'I' 'I' 'I' 'I' 'I']
+ ['I' 'I' 'I' 'I' '+' 'I' '-' 'I']
+ ['I' 'I' 'I' 'I' '-' 'I' '+' 'I']
+ ['+' 'I' 'I' '-' 'I' 'I' 'I' 'I']
+ ['-' 'I' 'I' '+' 'I' 'I' 'I' 'I']
+ ['I' 'I' 'I' 'I' '+' 'I' 'I' '-']
+ ['I' 'I' 'I' 'I' '-' 'I' 'I' '+']
+ ['I' '+' '-' 'I' 'I' 'I' 'I' 'I']
+ ['I' '-' '+' 'I' 'I' 'I' 'I' 'I']
+ ['I' 'I' 'I' 'I' 'I' '+' '-' 'I']
+ ['I' 'I' 'I' 'I' 'I' '-' '+' 'I']
+ ['I' '+' 'I' '-' 'I' 'I' 'I' 'I']
+ ['I' '-' 'I' '+' 'I' 'I' 'I' 'I']
+ ['I' 'I' 'I' 'I' 'I' '+' 'I' '-']
+ ['I' 'I' 'I' 'I' 'I' '-' 'I' '+']
+ ['I' 'I' '+' '-' 'I' 'I' 'I' 'I']
+ ['I' 'I' '-' '+' 'I' 'I' 'I' 'I']
+ ['I' 'I' 'I' 'I' 'I' 'I' '+' '-']
+ ['I' 'I' 'I' 'I' 'I' 'I' '-' '+']]
+```
+
+Let’s now apply the transition operators to the configurations in `bitstring_matrix`
+
+```
+[3]:
+```
+
+```python
+from qiskit_addon_sqd.fermion import enlarge_batch_from_transitions
+
+bitstring_matrix_aug = enlarge_batch_from_transitions(bitstring_matrix, transitions_single)
+
+print(bitstring_matrix_aug.shape)
+print(bitstring_matrix_aug)
+```
+
+```python
+(723, 8)
+[[False False False ... False False  True]
+ [False  True False ...  True False False]
+ [ True  True  True ...  True False  True]
+ ...
+ [ True False  True ... False False  True]
+ [ True  True  True ...  True False  True]
+ [False False False ... False False  True]]
+```

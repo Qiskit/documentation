@@ -62,8 +62,12 @@ export async function saveImages(
       return;
     }
     const source = `${originalImagesFolderPath}/${img.fileName}`;
-    const dest = `${publicBaseFolder}/${img.dest}`;
+    const dest = `${publicBaseFolder}/${img.dest.replace(/^\//, "")}`;
 
+    if (!(await pathExists(source))) {
+      console.warn(`Skipping missing image: ${source}`);
+      return;
+    }
     await mkdirp(dirname(dest));
     if (extname(source) === extname(dest)) {
       await copyFile(source, dest);

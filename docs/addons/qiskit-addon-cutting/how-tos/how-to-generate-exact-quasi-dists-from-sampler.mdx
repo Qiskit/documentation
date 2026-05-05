@@ -1,0 +1,76 @@
+<span id="How-to-generate-exact-quasiprobability-distributions-from-Sampler" />
+
+# How to generate exact quasiprobability distributions from Sampler
+
+This how-to guide is intended to show users how they can generate statevector-based quasiprobability distributions through the `qiskit.primitives.BaseSampler` interface.
+
+```
+[1]:
+```
+
+```python
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import SparsePauliOp
+
+from qiskit_addon_cutting import (
+    partition_problem,
+    generate_cutting_experiments,
+)
+```
+
+Prepare inputs to `generate_cutting_experiments`
+
+```
+[2]:
+```
+
+```python
+circuit = QuantumCircuit(2)
+circuit.h(0)
+circuit.cx(0, 1)
+observable = SparsePauliOp(["ZZ"])
+partitioned_problem = partition_problem(
+    circuit=circuit, partition_labels="AB", observables=observable.paulis
+)
+subcircuits = partitioned_problem.subcircuits
+subobservables = partitioned_problem.subobservables
+```
+
+Call `generate_cutting_experiments`
+
+```
+[3]:
+```
+
+```python
+subexperiments, coefficients = generate_cutting_experiments(
+    circuits=subcircuits,
+    observables=subobservables,
+    num_samples=1000,
+)
+```
+
+In order to calculate exact quasiprobability distributions for circuits with mid-circuit measurements, users will need to use the `ExactSampler` class from `qiskit_addon_cutting.utils.simulation`. The Qiskit Samplers do not support mid-circuit measurements in statevector mode.
+
+```
+[4]:
+```
+
+```python
+from qiskit_addon_cutting.utils.simulation import ExactSampler
+
+exact_sampler = ExactSampler()
+```
+
+If `ExactSampler` is used, the quasiprobability distributions returned from `generate_cutting_experiments` will be exact and generated from the statevectors of the subexperiments.
+
+```
+[5]:
+```
+
+```python
+results = {
+    label: exact_sampler.run(subexperiment).result()
+    for label, subexperiment in subexperiments.items()
+}
+```

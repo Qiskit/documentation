@@ -1,5 +1,6 @@
 ---
-title: "Explanatory Material on AQC-Tensor"
+title: Approximate quantum compilation (AQC-Tensor) API documentation (latest version)
+description: Index of all the modules in the latest version of qiskit-addon-aqc-tensor.
 ---
 
 <span id="explanation" />
@@ -24,9 +25,9 @@ The technique is to then use an iterative optimization method to make the *good*
 
 ## Ansatz generation (motivation)
 
-As mentioned in the previous section, three closely related things are needed as input to AQC-Tensor. Rather than code all three individually, this package provides a [`generate_ansatz_from_circuit()`](ansatz_generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit") function that can generate (2) and (3) from a circuit. In the case of Trotter evolution (and likely other circuit classes of interest), one can use the same circuit-generation function to generate (1) as well as the input to [`generate_ansatz_from_circuit()`](ansatz_generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"), thus enabling the generation of all three inputs from a single function. The tutorial is a good demonstration of this re-use of a single circuit-generation function.
+As mentioned in the previous section, three closely related things are needed as input to AQC-Tensor. Rather than code all three individually, this package provides a [`generate_ansatz_from_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit") function that can generate (2) and (3) from a circuit. In the case of Trotter evolution (and likely other circuit classes of interest), one can use the same circuit-generation function to generate (1) as well as the input to [`generate_ansatz_from_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"), thus enabling the generation of all three inputs from a single function. The tutorial is a good demonstration of this re-use of a single circuit-generation function.
 
-Specifically, [`generate_ansatz_from_circuit()`](ansatz_generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit") will take an input circuit and generate the ansatz circuit (2) and initial parameters (3) that follow the two-qubit connectivity of the input circuit. However, the returned circuit will be parametrized, based on generalized one- and two-qubit rotations. The initial parameters returned by the function, when plugged into the ansatz, will result in a circuit that is exactly equivalent to the circuit passed as input, up to a global phase.
+Specifically, [`generate_ansatz_from_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit") will take an input circuit and generate the ansatz circuit (2) and initial parameters (3) that follow the two-qubit connectivity of the input circuit. However, the returned circuit will be parametrized, based on generalized one- and two-qubit rotations. The initial parameters returned by the function, when plugged into the ansatz, will result in a circuit that is exactly equivalent to the circuit passed as input, up to a global phase.
 
 Given the ansatz generation function, the user must provide only two things in order to use AQC-Tensor:
 
@@ -65,7 +66,7 @@ This package provides a few different methods for calculating the gradient.
 
 The Aer backend always uses the explicit gradient code in the `explicit_gradient` module.
 
-The Quimb backend will typically be used with an automatic differentiation backend; the user is to select a backend from among those supported by Quimb. Alternatively, one can instead pass `"explicit"` as the `autodiff_backend` when instantiating the [`QuimbSimulator`](qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator#qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator "qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator") object; in this case, the `explicit_gradient` module will be used. It is only recommended to use explicit gradients with Quimb’s eager [`CircuitMPS`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.CircuitMPS) simulator, not the lazy [`Circuit`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.Circuit) simulator.
+The Quimb backend will typically be used with an automatic differentiation backend; the user is to select a backend from among those supported by Quimb. Alternatively, one can instead pass `"explicit"` as the `autodiff_backend` when instantiating the [`QuimbSimulator`](simulation-quimb-quimb-simulator#qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator "qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator") object; in this case, the `explicit_gradient` module will be used. It is only recommended to use explicit gradients with Quimb’s eager [`CircuitMPS`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.CircuitMPS) simulator, not the lazy [`Circuit`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.Circuit) simulator.
 
 Regardless of which backend is chosen, the gradient code can understand linear parameter expressions (ParameterExpression objects). This support is essential, as linear expressions are returned by the ansatz generation code.
 
