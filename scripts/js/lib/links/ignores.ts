@@ -32,6 +32,7 @@ export const IGNORED_FILES: Set<string> = new Set([
 const FORBIDS_OUR_USER_AGENT = [
   "https://www.sciencedirect.com/science/article/pii/S0167739X24002012",
   "https://www.sciencedirect.com/science/article/pii/S0167739X24002012",
+  "https://csrc.nist.gov/pubs/fips/204/ipd",
   "https://medium.com/qiskit/qiskit-and-its-fundamental-elements-bcd7ead80492",
   "https://ibm-research.medium.com/quantum-computing-gains-a-first-foothold-in-investment-banking-2806b280b8f",
   "https://medium.com/qiskit/a-novel-quantum-algorithm-for-protein-folding-paving-the-way-toward-resolving-one-of-the-biggest-861112139ff0",
