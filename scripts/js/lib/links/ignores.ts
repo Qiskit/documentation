@@ -150,6 +150,7 @@ const FETCH_RETURNS_405 = [
 // Fetching these links throws an error, but they work in-browser. Not sure why.
 const FETCH_FAILS = [
   "https://sphincs.org",
+  "https://sphincs.org/",
   "https://catalog.skills.network/2766",
   "https://www.sciencedirect.com/science/article/pii/S0045790622003743",
   "https://medium.com/qiskit/the-variational-quantum-eigensolver-43f7718c2747",
