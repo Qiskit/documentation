@@ -34,7 +34,7 @@ const FORBIDS_OUR_USER_AGENT = [
   "https://www.sciencedirect.com/science/article/pii/S0167739X24002012",
   "https://medium.com/qiskit/qiskit-and-its-fundamental-elements-bcd7ead80492",
   "https://ibm-research.medium.com/quantum-computing-gains-a-first-foothold-in-investment-banking-2806b280b8f",
-  "https://medium.com/qiskit/a-novel-quantum-algorithm-for-protein-folding-paving-the-way-toward-resolving-one-of-the-biggest-861112139ff0 ",
+  "https://medium.com/qiskit/a-novel-quantum-algorithm-for-protein-folding-paving-the-way-toward-resolving-one-of-the-biggest-861112139ff0",
   "https://pyqml.medium.com/the-comprehensive-guide-to-the-variational-quantum-eigensolver-ee6775e8279e",
   "https://csrc.nist.gov/pubs/fips/203/ipd",
   "https://www.sciencedirect.com/science/article/pii/S0304397514004241?via%3Dihub",
