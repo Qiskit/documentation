@@ -8,7 +8,7 @@ python_api_name: QkTranspiler
 
 # QkTranspiler
 
-The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit’s tranpsiler ([`qiskit.transpiler`](/docs/api/qiskit/dev/transpiler#module-qiskit.transpiler "qiskit.transpiler")) to C. The basic functionality is using the same underlying code as the Python-space version, but the transpiler as exposed to C has more limitations than what is exposed to Python. The transpiler assumes a circuit built constructed using solely the C API and is intended to work solely in the case of a standalone C API. It will potentially not work correctly when in a mixed Python/C use case. If you’re mixing C and Python you should call the [`generate_preset_pass_manager()`](/docs/api/qiskit/dev/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") or [`transpile()`](/docs/api/qiskit/dev/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") functions for those circuits.
+The [`qk_transpile()`](#qk_transpile "qk_transpile") function exposes Qiskit’s tranpsiler ([`qiskit.transpiler`](/docs/api/qiskit/dev/transpiler#module-qiskit.transpiler "qiskit.transpiler")) to C. The basic functionality is using the same underlying code as the Python-space version, but the transpiler as exposed to C has more limitations than what is exposed to Python. The transpiler assumes a circuit built constructed using solely the C API and is intended to work solely in the case of a standalone C API. It will potentially not work correctly when in a mixed Python/C use case. If you’re mixing C and Python you should call the [`generate_preset_pass_manager()`](/docs/api/qiskit/dev/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") or [`transpile()`](/docs/api/qiskit/dev/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") functions for those circuits.
 
 ## Data Types
 
@@ -52,7 +52,7 @@ The [`qk_transpile()`](#c.qk_transpile "qk_transpile") function exposes Qiskit�
   #### double approximation\_degree
 
   <Attribute id="approximation_degree">
-    The approximation degree a heurstic dial where 1.0 means no approximation (up to numerical tolerance) and 0.0 means the maximum approximation. A `NAN` value indicates that approximation is allowed up to the reported error rate for an operation in the target.
+    The approximation degree a heuristic dial where 1.0 means no approximation (up to numerical tolerance) and 0.0 means the maximum approximation. A `NAN` value indicates that approximation is allowed up to the reported error rate for an operation in the target.
   </Attribute>
 </Class>
 
