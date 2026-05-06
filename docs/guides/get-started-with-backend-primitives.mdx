@@ -1,0 +1,50 @@
+---
+title: Get started with the backend primitives
+description: How to use the Qiskit Estimator and Sampler backend primitives.
+
+---
+
+# Get started with the backend primitives
+
+Unlike provider-specific primitives, backend primitives are generic implementations that can be used with an arbitrary
+`backend` object, as long as it implements the [`BackendV2`](/docs/api/qiskit/qiskit.providers.BackendV2) interface.  Some providers implement primitives natively.  See the [Qiskit Ecosystem page](https://www.ibm.com/quantum/ecosystem?tag=provider) for details.
+
+<span id="estimator"></span>
+## Get started with the Estimator backend primitive
+
+The Estimator primitive can be run with any provider by using the [`qiskit.primitives.BackendEstimatorV2`](/docs/api/qiskit/qiskit.primitives.BackendEstimatorV2) class. However, it offers no measurement or gate error mitigation implementations "out-of-the-box", as backend primitives are designed to run locally in the user's machine.
+
+### Example:
+
+```python
+from qiskit.primitives import BackendEstimatorV2
+from <some_qiskit_provider> import QiskitProvider
+
+provider = QiskitProvider()
+backend = provider.get_backend('backend_name')
+estimator = BackendEstimatorV2(backend)
+```
+
+<span id="sampler"></span>
+## Get started with the Sampler backend primitive
+
+The Sampler primitive can be run with any provider by using [`qiskit.primitives.BackendSamplerV2`](/docs/api/qiskit/qiskit.primitives.BackendSamplerV2). However, it requires a backend that supports the `memory` option.
+
+
+### Example:
+
+```python
+from qiskit.primitives import BackendSamplerV2
+from <some_qiskit_provider> import QiskitProvider
+
+provider = QiskitProvider()
+backend = provider.get_backend('backend_name')
+sampler = BackendSamplerV2(backend)
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations"> 
+    -  Review the [`qiskit.primitives.BackendSamplerV2`](/docs/api/qiskit/qiskit.primitives.BackendSamplerV2) API documentation.
+    - Review the [`qiskit.primitives.BackendEstimatorV2`](/docs/api/qiskit/qiskit.primitives.BackendEstimatorV2) API documentation.
+</Admonition>
