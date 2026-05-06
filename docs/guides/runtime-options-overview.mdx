@@ -28,9 +28,9 @@ Options can be defined before a primitive is constructed and passed to the primi
 
 Additionally, after the primitive is constructed, its options can be changed. Use the workflow that works best for your application. 
 
-### Set options during primitive initialization by using the `options` class
+### `options` class
 
-When creating an instance of the primitive class, you can pass in an instance of the `options` class. Those options will then be applied when you use `run()` to perform the calculation.  Specify the options in this format:  `options.option.sub-option.sub-sub-option = choice`.  For example: `options.dynamical_decoupling.enable = True`
+When creating an instance of the primitive class, you can pass in an instance of the `options` class. Those options will then be applied when you use `run()` to perform the calculation.  Specify the options in this format:  `options.option.sub-option.sub-sub-option = choice`.  For example: `options.dynamical_decoupling.enable = True`.
 
 See [`SamplerOptions`](/docs/api/qiskit-ibm-runtime/options-sampler-options) or [`EstimatorOptions`](/docs/api/qiskit-ibm-runtime/options-estimator-options)for full details about the options class.
 
@@ -58,7 +58,7 @@ options.resilience.zne.noise_factors = [1, 3, 5]
 estimator = Estimator(mode=backend, options=options)
 ```
 
-### Set options during primitive initialization by using a dictionary
+### Dictionary
 
 You can specify options as a dictionary when initializing a primitive.
 
