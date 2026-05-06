@@ -130,7 +130,6 @@ export async function runSphinxPipeline(
 
   await copyNotebooks(artifactPath, output, notebookFiles, objectsInv, pkg.name);
   await writeTocFile(artifactPath, output, pkg, docsBaseFolder, config);
-  await writePackageFile(output, pkg);
 }
 
 async function loadObjectsInv(
@@ -250,13 +249,6 @@ async function writeTocFile(
   );
 }
 
-async function writePackageFile(outputDir: string, pkg: Pkg): Promise<void> {
-  const pkgJson = { name: pkg.name, version: pkg.version };
-  await writeFile(
-    `${outputDir}/_package.json`,
-    JSON.stringify(pkgJson, null, 2) + "\n",
-  );
-}
 
 /**
  * Resolve qiskit.github.io links to internal paths.
