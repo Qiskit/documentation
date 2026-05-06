@@ -28,6 +28,12 @@ Options can be defined before a primitive is constructed and passed to the primi
 
 Additionally, after the primitive is constructed, its options can be changed. Use the workflow that works best for your application. 
 
+<Admonition type="note" title="Notes about specifying primitive options">
+- You can see the available options during or after primitive initialization.
+- If you do not specify a value for an option, it is given a special value of `Unset` and the server defaults are used.
+- The `options` attribute is the `dataclass` Python type.  You can use the built-in `asdict` method to convert it to a dictionary.
+</Admonition>
+
 ### `options` class
 
 When creating an instance of the primitive class, you can pass in an instance of the `options` class. Those options will then be applied when you use `run()` to perform the calculation.  Specify the options in this format:  `options.option.sub-option.sub-sub-option = choice`.  For example: `options.dynamical_decoupling.enable = True`.
