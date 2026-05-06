@@ -380,30 +380,141 @@ To ensure proper functionality of our Qiskit models, we recommend using the syst
 
 </AccordionItem>
 
-<AccordionItem title="Manually connect extensions to local deployment">
+<AccordionItem title="Manually connect Continue (VS Code)">
 
-Use the VS Code extension and JupyterLab extension for the Qiskit Code Assistant to prompt the locally deployed Qiskit Code Assistant model. Once you have the Ollama application [set up with the model](#using-the-ollama-application), you can configure the extensions to connect to the local service.
+#### [Continue](https://marketplace.visualstudio.com/items?itemName=Continue.continue) (VS Code)
 
+##### 1. Install the extension
 
-#### Connect with the Qiskit Code Assistant VS Code extension
+Open VS Code, go to Extensions (`Cmd+Shift+X`), search **Continue**, install it.
 
-With the Qiskit Code Assistant VS Code extension, you can interact with the model and perform code completion while writing your code. This can work well for users looking for assistance writing Qiskit code for their Python applications.
+##### 2. Open the config
 
-1. Install the [Qiskit Code Assistant VS Code extension](/docs/guides/qiskit-code-assistant-vscode).
-1. In VS Code, go to the **User Settings** and set the **Qiskit Code Assistant: Url** to the URL of your local Ollama deployment (for example, `http://localhost:11434`).
-1. Reload VS Code by going to **View > Command Palette...** and selecting **Developer: Reload Window**.
+Click the Continue icon in the sidebar, then click the gear icon, or open the command palette (`Cmd+Shift+P`) and run **Continue: Open Config File**.
 
-The Qiskit Code Assistant model configured in Ollama should appear in the status bar and is then ready to use.
+This opens `~/.continue/config.yaml` (or `config.json` in older versions).
 
-#### Connect with the Qiskit Code Assistant JupyterLab extension
+##### 3. Configure the model
 
-With the Qiskit Code Assistant JupyterLab extension, you can interact with the model and perform code completion directly in your Jupyter Notebook. Users who predominantly work with Jupyter Notebooks can take advantage of this extension to further enhance their experience writing Qiskit code.
+Add the following to `config.yaml`:
 
-1. Install the [Qiskit Code Assistant JupyterLab extension](/docs/guides/qiskit-code-assistant-jupyterlab).
-1. In JupyterLab, go to the **Settings Editor** and set the **Qiskit Code Assistant Service API** to the URL of your local Ollama deployment (for example, `http://localhost:11434`).
+```yaml
+models:
+  - name: Qiskit Code Assistant
+    provider: ollama
+    model: mistral-small-3.2-24b-qiskit
+    apiBase: http://localhost:11434
+```
 
-The Qiskit Code Assistant model configured in Ollama should appear in the status bar and is then ready to use.
+This makes the Qiskit model available in the **chat panel** (sidebar conversations, inline Q&A) and for **inline edit** commands.
 
+##### 4. Test it
+
+- **Chat:** Open the Continue panel in the sidebar and ask a question (e.g., "How do I create a parameterized circuit in Qiskit?")
+- **Inline edit:** Select a block of code, press `Cmd+I` (Mac) or `Ctrl+I` (Linux/Windows)
+  
+  
+  
+  
+  
+</AccordionItem>
+
+<AccordionItem title="Manually connect Jupyter AI (JupyterLab)">
+
+#### [Jupyter AI](https://jupyter-ai.readthedocs.io/en/v3/index.html) (JupyterLab)
+
+**Note:** These instructions cover Jupyter AI v2.x.
+
+##### 1. Install Jupyter AI and the Ollama provider
+
+```bash
+pip install "jupyter-ai<3" langchain-ollama
+```
+
+The `"jupyter-ai<3"` pin ensures you get v2.x. The `langchain-ollama` package is required for Jupyter AI to detect Ollama as a provider. Without it, Ollama will not appear in the settings panel.
+
+Then restart JupyterLab.
+
+##### 2. Configure the chat model
+
+Open JupyterLab and click the **chat icon** in the left sidebar. In the settings panel:
+
+1. Under **Language model**, select **Ollama** as the provider.
+2. Enter `mistral-small-3.2-24b-qiskit` as the model name.
+3. No API key is needed for Ollama (leave the field empty).
+4. Click the back arrow to start chatting.
+
+##### 3. Use the `%%ai` magic command
+
+The `%%ai` magic lets you query the model directly in notebook cells.
+
+```python
+%load_ext jupyter_ai_magics
+```
+
+Then in a cell:
+
+```python
+%%ai ollama:mistral-small-3.2-24b-qiskit
+Write a function that implements Grover's algorithm using Qiskit
+```
+
+##### 4. Custom Ollama host (optional)
+
+By default, Jupyter AI connects to `http://127.0.0.1:11434`. If your Ollama server runs on a different address or port:
+
+**In the chat UI:** Set the "Base API URL" field in the AI settings panel.
+
+</AccordionItem>
+
+<AccordionItem title="Manually connect OpenCode (Terminal)">
+
+#### [OpenCode](https://opencode.ai/) (Terminal)
+
+##### 1. Install OpenCode
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+##### 2. Configure the Qiskit model
+
+Create an `opencode.json` file in your project root (or `~/.config/opencode/opencode.json` for a global config):
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "mistral-small-3.2-24b-qiskit": {
+          "name": "Qiskit Code Assistant"
+        }
+      }
+    }
+  }
+}
+```
+
+##### 3. Select the model
+
+Launch OpenCode in your project directory:
+
+```bash
+opencode
+```
+
+Inside the TUI, run the `/models` command and select **Qiskit Code Assistant** from the list.
+
+##### 4. Test it
+
+Ask a question directly in the chat, for example: "Define a Bell circuit and run it using QiskitRuntimeService"
+  
 </AccordionItem>
 </Accordion>
 
