@@ -52,7 +52,7 @@ export async function saveImages(
   publicBaseFolder: string,
   pkg: Pkg,
 ) {
-  const destFolder = pkg.outputDir(`${publicBaseFolder}/docs/images`);
+  const destFolder = pkg.apiOutputDir(`${publicBaseFolder}/docs/images`);
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
   }

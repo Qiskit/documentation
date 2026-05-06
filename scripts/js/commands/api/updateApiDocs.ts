@@ -136,11 +136,11 @@ async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
 }
 
 async function deleteExistingFiles(pkg: Pkg): Promise<void> {
-  const markdownDir = pkg.outputDir("docs");
+  const markdownDir = pkg.apiOutputDir("docs");
   if (await pathExists(markdownDir)) {
     await rmFilesInFolder(markdownDir);
   }
-  const imagesDir = pkg.outputDir("public/docs/images");
+  const imagesDir = pkg.apiOutputDir("public/docs/images");
   if (await pathExists(imagesDir)) {
     await rmFilesInFolder(imagesDir);
   }

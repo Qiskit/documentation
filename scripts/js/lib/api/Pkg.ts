@@ -255,6 +255,10 @@ export class Pkg {
   }
 
   outputDir(parentDir: string): string {
+    return join(parentDir, this.name);
+  }
+
+  apiOutputDir(parentDir: string): string {
     let path = join(parentDir, "api", this.name);
     if (this.isHistorical()) {
       path = join(path, this.versionWithoutPatch);

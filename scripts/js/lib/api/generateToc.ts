@@ -226,7 +226,7 @@ function ensureIndexPage(
   pkg: Pkg,
   tocModules: TocEntry[],
 ): TocEntry | undefined {
-  const docsFolder = pkg.outputDir(`${DOCS_BASE_PATH}/`);
+  const docsFolder = pkg.apiOutputDir(`${DOCS_BASE_PATH}/`);
   return tocModules.some((entry) => entry.url === docsFolder)
     ? undefined
     : {

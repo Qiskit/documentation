@@ -16,7 +16,9 @@ export function transformSpecialCaseUrl(url: string): string {
   return (
     url
       // We use `-` rather than `_` as our delimiter.
-      .replace(/(?<=^|\/)release_notes(?=#|$)/g, "release-notes")
+      .replace(/(?<=^|\/)release_notes(?=\/|#|$)/g, "release-notes")
+      .replace(/(?<=^|\/)how_tos(?=\/|#|$)/g, "how-tos")
+      .replace(/(?<=^|\/)explanations(?=\/|#|$)/g, "explanation")
       .replace(/(?<=^|\/)terra(?=#|$)/g, "index")
       .replace(/(?<=^|\/)ibm-runtime(?=#|$)/g, "index")
   );

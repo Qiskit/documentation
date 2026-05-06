@@ -66,7 +66,7 @@ test("qiskit-sphinx-theme", async ({}, testInfo) => {
     releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
     kebabCaseAndShortenUrls: false,
   });
-  const markdownFolder = pkg.outputDir(docsBaseFolder);
+  const markdownFolder = pkg.apiOutputDir(docsBaseFolder);
 
   await runConversionPipeline(
     "scripts/js/lib/api/testdata/qiskit-sphinx-theme",

@@ -190,6 +190,58 @@ export class ObjectsInv {
     return uri;
   }
 
+  /**
+   * Load all published objects.inv files from public/docs/api/ and return
+   * a map of package name → ObjectsInv. These inventories have already been
+   * normalized by the API pipeline so URIs are ready to use directly.
+   */
+  static async loadPublishedApis(
+    publicBaseFolder: string,
+  ): Promise<Map<string, ObjectsInv>> {
+    const { readdir } = await import("fs/promises");
+    const apiDir = join(publicBaseFolder, "api");
+    const map = new Map<string, ObjectsInv>();
+    let pkgDirs: string[];
+    try {
+      pkgDirs = await readdir(apiDir);
+    } catch {
+      return map;
+    }
+    await Promise.all(
+      pkgDirs.map(async (pkgName) => {
+        try {
+          const inv = await ObjectsInv.fromFile(join(apiDir, pkgName), "any");
+          map.set(pkgName, inv);
+        } catch {
+          // No objects.inv for this package — skip.
+        }
+      }),
+    );
+    return map;
+  }
+
+  /**
+   * Resolve a qiskit.github.io/stubs/<symbol> URL to an internal docs path.
+   *
+   * Pass allInvs (from loadPublishedApis) for cross-package resolution.
+   * Requires updateUris() to have been called on same-package inventory first.
+   */
+  resolveStubUrl(
+    url: string,
+    allObjectInvs?: Map<string, ObjectsInv>,
+  ): string | undefined {
+    const match = url.match(
+      /^https:\/\/qiskit\.github\.io\/([^/]+)\/stubs\/([^"#)\s]+?)(?:\.html)?(?:#.*)?$/,
+    );
+    if (!match) return undefined;
+    const [, pkg, symbol] = match;
+    const inv = allObjectInvs?.get(pkg) ?? this;
+    const entry = inv.entries.find((e) => e.name === symbol);
+    if (!entry) return undefined;
+    // Published URIs are relative to the package's API base — prepend full path.
+    return `/docs/api/${pkg}/${entry.uri}`;
+  }
+
   updateUris(transformLink: (uri: string) => string): void {
     for (const entry of this.entries) {
       entry.uri = entry.uri.replace(/\.html/, "");

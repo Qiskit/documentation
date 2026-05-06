@@ -68,7 +68,7 @@ export async function runConversionPipeline(
   // Warning: the sequence of operations often matters.
   await writeMarkdownResults(pkg, docsBaseFolder, results);
   await copyImages(pkg, htmlPath, "public", results);
-  await maybeObjectsInv?.write(pkg.outputDir(publicBaseFolder));
+  await maybeObjectsInv?.write(pkg.apiOutputDir(publicBaseFolder));
   await maybeUpdateReleaseNotesFolder(pkg, markdownPath);
   await writeTocFile(pkg, markdownPath, results);
   await writeVersionFile(pkg, markdownPath);
@@ -92,7 +92,7 @@ async function determineFilePaths(
       cwd: htmlPath,
     },
   );
-  const markdownPath = pkg.outputDir(docsBaseFolder);
+  const markdownPath = pkg.apiOutputDir(docsBaseFolder);
   await mkdirp(markdownPath);
   return [files, markdownPath, maybeObjectsInv];
 }
@@ -111,7 +111,7 @@ async function convertFilesToMarkdown(
       html,
       fileName: file,
       determineGithubUrl: pkg.determineGithubUrlFn(),
-      imageDestination: pkg.outputDir(`${DOCS_BASE_PATH}/images`),
+      imageDestination: pkg.apiOutputDir(`${DOCS_BASE_PATH}/images`),
       releaseNotesTitle: pkg.releaseNotesTitle(),
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
       isCApi: pkg.isCApi(),
@@ -161,7 +161,7 @@ async function postProcessResults(
     {
       kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
       pkgName: pkg.name,
-      pkgOutputDir: pkg.outputDir(DOCS_BASE_PATH),
+      pkgOutputDir: pkg.apiOutputDir(DOCS_BASE_PATH),
     },
     maybeObjectsInv,
   );

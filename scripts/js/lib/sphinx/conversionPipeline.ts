@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { dirname, parse, relative } from "path";
+import { dirname, join, parse, relative } from "path";
 import { readFile, writeFile } from "fs/promises";
 
 import { globby } from "globby";
@@ -22,16 +22,23 @@ import { ObjectsInv } from "../api/objectsInv.js";
 import { HtmlToMdResultWithUrl } from "../api/HtmlToMdResult.js";
 import { Pkg } from "../api/Pkg.js";
 import { saveImages } from "../api/saveImages.js";
-import { normalizeResultUrls } from "../api/normalizeResultUrls.js";
+import {
+  normalizeResultUrls,
+  kebabCaseAndShortenPage,
+} from "../api/normalizeResultUrls.js";
 import { updateLinks, relativizeLink } from "../api/updateLinks.js";
 import { mergeClassMembers } from "../api/mergeClassMembers.js";
-import { specialCaseResults } from "../api/specialCaseResults.js";
+import { specialCaseResults, transformSpecialCaseUrl } from "../api/specialCaseResults.js";
 import addFrontMatter from "../api/addFrontMatter.js";
 import { dedupeHtmlIdsFromResults } from "../api/dedupeHtmlIds.js";
 import removeMathBlocksIndentation from "../api/removeMathBlocksIndentation.js";
 import { generateSphinxToc } from "./generateToc.js";
-import { DOCS_BASE_PATH } from "../api/conversionPipeline.js";
-import { kebabCaseAndShortenPage } from "../api/normalizeResultUrls.js";
+import {
+  handleReleaseNotesFile,
+  maybeUpdateReleaseNotesFolder,
+} from "../api/releaseNotes.js";
+
+export const DOCS_BASE_PATH = "/docs";
 
 // Sphinx build artifacts that are never content.
 const SPHINX_INTERNALS = [
@@ -45,167 +52,194 @@ const SPHINX_INTERNALS = [
   "objects.inv",
 ];
 
-export type SphinxPipelineConfig = {
-  /** Glob patterns to include relative to artifact root. Defaults to everything. */
-  include?: string[];
-  /** Glob patterns to exclude relative to artifact root. */
-  exclude?: string[];
-  /** Output directory, e.g. "docs/api/qiskit-addon-aqc-tensor" */
-  output: string;
-  pkg: Pkg;
-};
-
 export async function runSphinxPipeline(
   artifactPath: string,
   docsBaseFolder: string,
   publicBaseFolder: string,
-  config: SphinxPipelineConfig,
+  pkg: Pkg,
 ): Promise<void> {
-  const { output, pkg } = config;
-  await mkdirp(output);
-
-  const objectsInv = await loadObjectsInv(artifactPath, pkg);
-  const allFiles = await selectFiles(artifactPath, config);
-  const htmlFiles = allFiles.filter((f) => f.endsWith(".html"));
-  const notebookFiles = allFiles.filter((f) => f.endsWith(".ipynb"));
-
-  if (htmlFiles.length === 0 && notebookFiles.length === 0) {
-    console.log(`No content files found for ${pkg.name} at ${output}`);
-    return;
-  }
-
-  console.log(
-    `Processing ${htmlFiles.length} HTML + ${notebookFiles.length} notebooks for ${pkg.name} → ${output}`,
+  const [files, outputPath, objectsInv] = await determineFilePaths(
+    artifactPath,
+    docsBaseFolder,
+    pkg,
   );
 
-  // Convert HTML files.
-  let results = await convertHtmlFiles(
+  const allObjectInvs = await ObjectsInv.loadPublishedApis(publicBaseFolder);
+
+  const htmlFiles = files.filter((f) => f.endsWith(".html"));
+  const notebookFiles = files.filter((f) => f.endsWith(".ipynb"));
+
+  const initialResults = await convertFilesToMarkdown(
     pkg,
     artifactPath,
     docsBaseFolder,
-    output,
+    outputPath,
     htmlFiles,
   );
 
-  results = await mergeClassMembers(results);
-
-  normalizeResultUrls(results, {
-    kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
-    pkgName: pkg.name,
-  });
-
-  specialCaseResults(results);
-
-  // Rewrite github.io links to internal paths before updateLinks runs.
-  for (const result of results) {
-    result.markdown = resolveGithubIoLinks(
-      result.markdown,
-      objectsInv,
-      pkg.name,
-      output,
-    );
-  }
-
-  await updateLinks(
-    results,
-    {
-      kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
-      pkgName: pkg.name,
-      pkgOutputDir: `${DOCS_BASE_PATH}/${output.replace(/^docs\//, "")}`,
-    },
-    objectsInv,
-  );
-
-  await dedupeHtmlIdsFromResults(results);
-  addFrontMatter(results, pkg);
-  removeMathBlocksIndentation(results);
-
-  await writeMdxFiles(results);
-  await saveImages(
-    uniqBy(results.flatMap((r) => r.images), (img) => img.fileName),
-    `${artifactPath}/_images`,
-    publicBaseFolder,
+  const results = await postProcessResults(
     pkg,
+    objectsInv,
+    allObjectInvs,
+    initialResults,
   );
 
-  await copyNotebooks(artifactPath, output, notebookFiles, objectsInv, pkg.name);
-  await writeTocFile(artifactPath, output, pkg, docsBaseFolder, config);
+  await writeMarkdownResults(pkg, docsBaseFolder, results);
+  await copyImages(pkg, artifactPath, "public", results);
+  await objectsInv.write(pkg.apiOutputDir(publicBaseFolder));
+
+  await copyNotebooks(artifactPath, outputPath, notebookFiles, pkg);
+  // await writeTocFile(artifactPath, output, pkg, docsBaseFolder, config);
 }
 
-async function loadObjectsInv(
-  artifactPath: string,
+async function determineFilePaths(
+  htmlPath: string,
+  docsBaseFolder: string,
   pkg: Pkg,
-): Promise<ObjectsInv | undefined> {
-  try {
-    return await ObjectsInv.fromFile(artifactPath, pkg.language);
-  } catch {
-    return undefined;
-  }
-}
+): Promise<[string[], string, ObjectsInv]> {
+  const objectsInv = await ObjectsInv.fromFile(htmlPath, pkg.language);
 
-async function selectFiles(
-  artifactPath: string,
-  config: SphinxPipelineConfig,
-): Promise<string[]> {
-  const include = config.include ?? ["**"];
-  const exclude = [...SPHINX_INTERNALS, ...(config.exclude ?? [])];
-  return globby(include, {
-    cwd: artifactPath,
-    ignore: exclude,
+  const allFiles = await globby(["**"], {
+    cwd: htmlPath,
+    ignore: ["apidocs/**", "apidoc/**", "stubs/**", ...SPHINX_INTERNALS],
   });
+
+  // Prefer .ipynb over .html when both exist for the same base path.
+  const notebookBases = new Set(
+    allFiles
+      .filter((f) => f.endsWith(".ipynb"))
+      .map((f) => f.slice(0, -".ipynb".length)),
+  );
+  const files = allFiles.filter(
+    (f) =>
+      !f.endsWith(".html") || !notebookBases.has(f.slice(0, -".html".length)),
+  );
+  const outputPath = pkg.outputDir(docsBaseFolder);
+  await mkdirp(outputPath);
+  return [files, outputPath, objectsInv];
 }
 
-async function convertHtmlFiles(
+async function convertFilesToMarkdown(
   pkg: Pkg,
   artifactPath: string,
   docsBaseFolder: string,
-  outputDir: string,
+  outputPath: string,
   filePaths: string[],
 ): Promise<HtmlToMdResultWithUrl[]> {
-  const results: HtmlToMdResultWithUrl[] = [];
-
+  const results = [];
   for (const file of filePaths) {
-    const html = await readFile(`${artifactPath}/${file}`, "utf-8");
+    const html = await readFile(join(artifactPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
       html,
       fileName: file,
       determineGithubUrl: pkg.determineGithubUrlFn(),
-      imageDestination: pkg.outputDir(`${DOCS_BASE_PATH}/images`),
+      imageDestination: pkg.apiOutputDir(`${DOCS_BASE_PATH}/images`),
       releaseNotesTitle: pkg.releaseNotesTitle(),
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
       isCApi: pkg.isCApi(),
       hasRootNamespaceFile: pkg.hasRootNamespaceFile,
     });
 
-    if (result.markdown === "") continue;
+    // Avoid creating an empty markdown file for HTML files without content
+    // (e.g. HTML redirects)
+    if (result.markdown == "") {
+      continue;
+    }
 
-    const { dir, name } = parse(`${outputDir}/${file}`);
-    const url = `/${relative(docsBaseFolder, dir)}/${name}`;
+    const { dir, name } = parse(`${outputPath}/${file}`);
+    let url = `/${relative(docsBaseFolder, dir)}/${name}`;
     results.push({ ...result, url });
   }
-
   return results;
 }
 
-async function writeMdxFiles(
+async function copyImages(
+  pkg: Pkg,
+  htmlPath: string,
+  publicBaseFolder: string,
+  results: HtmlToMdResultWithUrl[],
+): Promise<void> {
+  console.log("Saving images");
+  const allImages = uniqBy(
+    results.flatMap((result) => result.images),
+    (image) => image.fileName,
+  );
+  await saveImages(allImages, `${htmlPath}/_images`, publicBaseFolder, pkg);
+}
+
+async function postProcessResults(
+  pkg: Pkg,
+  objectsInv: ObjectsInv,
+  allInvs: Map<string, ObjectsInv>,
+  initialResults: HtmlToMdResultWithUrl[],
+): Promise<HtmlToMdResultWithUrl[]> {
+  const results = await mergeClassMembers(initialResults);
+  normalizeResultUrls(results, {
+    kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
+    pkgName: pkg.name,
+  });
+  specialCaseResults(results);
+  // Rewrite relative apidocs/ links to absolute /docs/api/<pkg>/ paths before
+  // updateLinks runs, so they are correctly resolved as internal API links.
+  const apiBase = pkg.apiOutputDir(DOCS_BASE_PATH);
+  for (const result of results) {
+    result.markdown = result.markdown.replace(
+      /\]\((?:\.\.\/)*?(apidocs|apidoc|stubs)\/([^)]+)\)/g,
+      `](${apiBase}/$2)`,
+    );
+  }
+  await updateLinks(
+    results,
+    {
+      kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
+      pkgName: pkg.name,
+      pkgOutputDir: pkg.apiOutputDir(DOCS_BASE_PATH),
+    },
+    objectsInv,
+    allInvs,
+  );
+  await dedupeHtmlIdsFromResults(results);
+  addFrontMatter(results, pkg);
+  removeMathBlocksIndentation(results);
+  return results;
+}
+
+async function writeMarkdownResults(
+  pkg: Pkg,
+  docsBaseFolder: string,
   results: HtmlToMdResultWithUrl[],
 ): Promise<void> {
   for (const result of results) {
-    const filePath = `docs${result.url}.mdx`;
-    await mkdirp(dirname(filePath));
-    await writeFile(filePath, result.markdown);
+    let path = `${docsBaseFolder}${result.url}.mdx`;
+    if (path.endsWith("release-notes.mdx")) {
+      if (!pkg.releaseNotesConfig.enabled) continue;
+
+      const shouldWriteResult = await handleReleaseNotesFile(result, pkg);
+      if (!shouldWriteResult) continue;
+    }
+
+    await mkdirp(dirname(path));
+    await writeFile(path, result.markdown);
   }
 }
 
 async function copyNotebooks(
   artifactPath: string,
-  outputDir: string,
+  outputPath: string,
   notebookFiles: string[],
-  objectsInv: ObjectsInv | undefined,
-  pkgName: string,
+  pkg: Pkg,
 ): Promise<void> {
   for (const file of notebookFiles) {
-    const dest = `${outputDir}/${file}`;
+    // Apply the same kebab-case transformation as normalizeResultUrls so
+    // notebook filenames match the links generated from HTML conversion.
+    const destFile = pkg.kebabCaseAndShortenUrls
+      ? transformSpecialCaseUrl(
+          file.replace(/([^/]+)\.ipynb$/, (_, base) =>
+            `${kebabCaseAndShortenPage(base, pkg.name)}.ipynb`,
+          ),
+        )
+      : file;
+    const dest = `${outputPath}/${destFile}`;
     await mkdirp(dirname(dest));
     const raw = await readFile(`${artifactPath}/${file}`, "utf-8");
     const notebook = JSON.parse(raw);
@@ -214,94 +248,38 @@ async function copyNotebooks(
       const lines: string[] = Array.isArray(cell.source)
         ? cell.source
         : [cell.source];
-      cell.source = lines.map((line) => {
-        const resolved = resolveGithubIoLinks(line, objectsInv, pkgName, outputDir);
-        return resolved.replace(/\[([^\]]*)\]\(([^)]+)\)/g, (match, text, url) => {
+      cell.source = lines.map((line) =>
+        line.replace(/\[([^\]]*)\]\(([^)]+)\)/g, (match, text, url) => {
           const rewritten = relativizeLink({ url, text });
-          return rewritten ? `[${rewritten.text ?? text}](${rewritten.url})` : match;
-        });
-      });
+          return rewritten
+            ? `[${rewritten.text ?? text}](${rewritten.url})`
+            : match;
+        }),
+      );
     }
 
     await writeFile(dest, JSON.stringify(notebook, null, 1));
   }
 }
 
-async function writeTocFile(
-  artifactPath: string,
-  outputDir: string,
-  pkg: Pkg,
-  docsBaseFolder: string,
-  config: SphinxPipelineConfig,
-): Promise<void> {
-  console.log(`Generating TOC for ${outputDir}`);
-  const toc = await generateSphinxToc(
-    artifactPath,
-    outputDir,
-    pkg.title,
-    docsBaseFolder,
-    config.include,
-    config.exclude,
-  );
-  await writeFile(
-    `${outputDir}/_toc.json`,
-    JSON.stringify(toc, null, 2) + "\n",
-  );
-}
-
-
-/**
- * Resolve qiskit.github.io links to internal paths.
- *
- * For stubs links (symbol references), use objects.inv for resolution —
- * it has complete symbol→URL mappings. For other github.io links (prose
- * page links), rewrite to the configured output path.
- */
-function resolveGithubIoLinks(
-  text: string,
-  objectsInv: ObjectsInv | undefined,
-  pkgName: string,
-  outputDir: string,
-): string {
-  return text.replace(
-    /https:\/\/qiskit\.github\.io\/([^/"#)\s]+)\/?([^"#)\s]*)/g,
-    (match, pkg, rest) => {
-      const stubsPrefix = "stubs/";
-      if (rest.startsWith(stubsPrefix)) {
-        const symbol = rest.slice(stubsPrefix.length).replace(/\.html$/, "");
-        // Look up in objects.inv entries for this package.
-        if (objectsInv) {
-          const resolved = resolveSymbolFromObjectsInv(objectsInv, symbol, pkg);
-          if (resolved) return resolved;
-        }
-        // Fallback: derive URL from symbol name using kebab-case convention.
-        const kebabPage = kebabCaseAndShortenPage(symbol, pkg);
-        return `/docs/api/${pkg}/${kebabPage}`;
-      }
-      // Non-stubs github.io link — only rewrite for the package currently
-      // being processed. Links to other packages' github.io pages are left
-      // as external URLs since we may not have their prose content.
-      if (pkg !== pkgName) return match;
-      const page = rest.replace(/\.html$/, "").replace(/\/$/, "");
-      return page ? `/docs/addons/${pkg}/${page}` : `/docs/addons/${pkg}`;
-    },
-  );
-}
-
-function resolveSymbolFromObjectsInv(
-  objectsInv: ObjectsInv,
-  symbol: string,
-  pkgName: string,
-): string | undefined {
-  const entry = objectsInv.entries.find((e) => e.name === symbol);
-  if (!entry) return undefined;
-  // URI format: "apidocs/qiskit_addon_obp.utils.truncating.html#symbol"
-  // Strip .html (which appears before the # fragment, not at the end).
-  const uri = entry.uri.replace(/\.html(?=#|$)/, "");
-  const [rawPage, anchor] = uri.split("#");
-  // Strip Sphinx artifact root folders (apidocs/, stubs/, etc.) before kebab-casing,
-  // matching the same normalization applied to converted API pages.
-  const strippedPage = rawPage.replace(/^(apidocs|apidoc|stubs|cdoc)\//, "");
-  const kebabPage = kebabCaseAndShortenPage(strippedPage, pkgName);
-  return `/docs/api/${pkgName}/${kebabPage}${anchor ? `#${anchor}` : ""}`;
-}
+// async function writeTocFile(
+//   artifactPath: string,
+//   outputDir: string,
+//   pkg: Pkg,
+//   docsBaseFolder: string,
+//   config: SphinxPipelineConfig,
+// ): Promise<void> {
+//   console.log(`Generating TOC for ${outputDir}`);
+//   const toc = await generateSphinxToc(
+//     artifactPath,
+//     outputDir,
+//     pkg.title,
+//     docsBaseFolder,
+//     config.include,
+//     config.exclude,
+//   );
+//   await writeFile(
+//     `${outputDir}/_toc.json`,
+//     JSON.stringify(toc, null, 2) + "\n",
+//   );
+// }

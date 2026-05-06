@@ -12,34 +12,99 @@
 
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { $ } from "zx";
 
 import { Pkg } from "../lib/api/Pkg.js";
-import { parseMinorVersion } from "../lib/apiVersions.js";
 import { pathExists } from "../lib/fs.js";
 import { downloadSphinxArtifact } from "../lib/api/sphinxArtifacts.js";
 import { runSphinxPipeline } from "../lib/sphinx/conversionPipeline.js";
 import { zxMain } from "../lib/zx.js";
-import { $ } from "zx";
+import { parseMinorVersion } from "../lib/apiVersions.js";
 
-const DOCS_FOLDER = "docs";
-const PUBLIC_FOLDER = "public";
+export interface Arguments {
+  [x: string]: unknown;
+  package?: string;
+  skipDownload: boolean;
+  sphinxArtifactFolder?: string;
+}
 
-// Glob patterns excluded from prose runs. Release notes link heavily to API
-// pages and don't belong in the prose output.
-const PROSE_EXCLUDE = [
-  "apidocs/**",
-  "apidoc/**",
-  "stubs/**",
-  "release_notes.html",
-  "release-notes.html",
-];
-
-type AddonConfig = {
-  name: string;
-  version: string;
+const readArgs = (): Arguments => {
+  return yargs(hideBin(process.argv))
+    .version(false)
+    .option("package", {
+      alias: "p",
+      type: "string",
+      choices: Pkg.VALID_NAMES,
+      description: "Which package to update",
+    })
+    .option("skip-download", {
+      type: "boolean",
+      default: false,
+      description:
+        "Rather than downloading the artifact from Box, reuse what is already downloaded. This can save time, but it risks using an outdated version of the docs.",
+    })
+    .option("sphinx-artifact-folder", {
+      alias: "a",
+      type: "string",
+      implies: "skip-download",
+      normalize: true,
+      description:
+        "Skip downloading the artifact from Box and instead use the given directory as the root of the Sphinx HTML output.",
+    })
+    .parseSync();
 };
 
-const ADDONS: AddonConfig[] = [
+async function runForAddon(pkg: Pkg, args: Arguments): Promise<void> {
+  const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
+  await deleteExistingFiles(pkg);
+
+  console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
+  await runSphinxPipeline(
+    sphinxArtifactFolder,
+    "docs/addons",
+    "public/docs",
+    pkg,
+  );
+}
+
+async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
+  if (args.sphinxArtifactFolder) {
+    if (!(await pathExists(args.sphinxArtifactFolder))) {
+      throw new Error(
+        `Explicit artifact path '${args.sphinxArtifactFolder}' does not exist.`,
+      );
+    }
+    return args.sphinxArtifactFolder;
+  }
+  const sphinxArtifactFolder = pkg.sphinxArtifactFolder();
+  if (
+    args.skipDownload &&
+    (await pathExists(`${sphinxArtifactFolder}/artifact`))
+  ) {
+    console.log(
+      `Skip downloading sources for ${pkg.name}:${pkg.versionWithoutPatch}`,
+    );
+  } else {
+    await downloadSphinxArtifact(pkg, sphinxArtifactFolder);
+  }
+  return `${sphinxArtifactFolder}/artifact`;
+}
+
+async function deleteExistingFiles(pkg: Pkg): Promise<void> {
+  const markdownDir = pkg.outputDir("docs/addons");
+  if (await pathExists(markdownDir)) {
+    await $`rm -rf ${markdownDir}`;
+  }
+  const imagesDir = pkg.outputDir("public/docs/images/addons");
+  if (await pathExists(imagesDir)) {
+    await $`rm -rf ${imagesDir}`;
+  }
+  console.log(
+    `Deleted existing markdown & images for ${pkg.name}:${pkg.versionWithoutPatch}`,
+  );
+}
+
+const ADDONS = [
   { name: "qiskit-addon-aqc-tensor", version: "0.2.0" },
   { name: "qiskit-addon-cutting", version: "0.10.0" },
   { name: "qiskit-addon-mpf", version: "0.3.0" },
@@ -48,64 +113,23 @@ const ADDONS: AddonConfig[] = [
   { name: "qiskit-addon-utils", version: "0.3.1" },
 ];
 
-const VALID_NAMES = ADDONS.map((a) => a.name);
+if (import.meta.url === `file://${process.argv[1]}`) {
+  zxMain(async () => {
+    const args = readArgs();
+    const addons = args.package
+      ? ADDONS.filter((a) => a.name === args.package)
+      : ADDONS;
 
-const readArgs = () => {
-  return yargs(hideBin(process.argv))
-    .version(false)
-    .option("package", {
-      alias: "p",
-      type: "string",
-      choices: VALID_NAMES,
-      description:
-        "Which addon to update. Defaults to all configured addons.",
-    })
-    .option("skip-download", {
-      type: "boolean",
-      default: false,
-      description:
-        "Reuse already-downloaded artifacts instead of downloading again.",
-    })
-    .parseSync();
-};
+    for (const addon of addons) {
+      const minorVersion = parseMinorVersion(addon.version)!;
+      const pkg = await Pkg.fromArgs(
+        addon.name,
+        addon.version,
+        minorVersion,
+        "latest",
+      );
 
-async function runForAddon(
-  config: AddonConfig,
-  skipDownload: boolean,
-): Promise<void> {
-  const minorVersion = parseMinorVersion(config.version)!;
-  const pkg = await Pkg.fromArgs(
-    config.name,
-    config.version,
-    minorVersion,
-    "latest",
-  );
-
-  const artifactFolder = pkg.sphinxArtifactFolder();
-  const artifactPath = `${artifactFolder}/artifact`;
-
-  if (skipDownload && (await pathExists(artifactPath))) {
-    console.log(`Reusing cached artifact for ${config.name}`);
-  } else {
-    await downloadSphinxArtifact(pkg, artifactFolder);
-  }
-
-  const proseOutput = `docs/addons/${config.name}`;
-  if (await pathExists(proseOutput)) await $`rm -rf ${proseOutput}`;
-  await runSphinxPipeline(artifactPath, DOCS_FOLDER, PUBLIC_FOLDER, {
-    exclude: PROSE_EXCLUDE,
-    output: proseOutput,
-    pkg,
+      await runForAddon(pkg, args);
+    }
   });
 }
-
-zxMain(async () => {
-  const args = readArgs();
-  const addons = args.package
-    ? ADDONS.filter((a) => a.name === args.package)
-    : ADDONS;
-
-  for (const addon of addons) {
-    await runForAddon(addon, args.skipDownload);
-  }
-});

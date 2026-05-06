@@ -22,6 +22,7 @@ import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 
+import { kebabCase } from "lodash-es";
 import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
@@ -171,16 +172,25 @@ export function relativizeLink(link: Link): Link | undefined {
     ["https://docs.quantum-computing.ibm.com/", ""],
     ["https://quantum.cloud.ibm.com/docs", "/docs"],
     ["https://quantum.cloud.ibm.com/learning", "/learning"],
+    ["https://qiskit.github.io/", "/docs/addons"], // todo handle addons prefix
   ]);
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
     link.url.startsWith(prefix),
   );
-  if (!priorPrefix) {
+  // Stubs links are symbol references — leave them for objects.inv resolution.
+  if (!priorPrefix || link.url.includes("/stubs/")) {
     return;
   }
   let [url, anchor] = link.url.split("#");
   url = removePrefix(url, priorPrefix);
   url = removeSuffix(url, ".html");
+
+  // For github.io addons links, kebab-case each path segment after the package name.
+  if (priorPrefix === "https://qiskit.github.io/") {
+    const [pkg, ...rest] = url.split("/");
+    url = [pkg, ...rest.map((s) => kebabCase(s).replace(/-v-([0-9]+)/g, `-v$1`))].join("/");
+  }
+
   if (anchor && anchor !== url) {
     url = `${url}#${anchor}`;
   }
@@ -199,6 +209,7 @@ export async function updateLinks(
     pkgOutputDir: string;
   },
   maybeObjectsInv?: ObjectsInv,
+  allObjectInvs?: Map<string, ObjectsInv>,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);
   const itemNames = new Set(keys(resultsByName));
@@ -224,6 +235,13 @@ export async function updateLinks(
             if (textNode && relativizedLink.text) {
               textNode.value = relativizedLink.text;
             }
+          }
+          const resolvedStub = maybeObjectsInv?.resolveStubUrl(
+            node.url,
+            allObjectInvs,
+          );
+          if (resolvedStub) {
+            node.url = resolvedStub;
           }
           node.url = normalizeUrl(node.url, resultsByName, itemNames, kwargs);
         });
