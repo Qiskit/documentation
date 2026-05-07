@@ -19,6 +19,8 @@ import { mkdirp } from "mkdirp";
 
 import { TocEntry } from "../api/generateToc.js";
 import { Pkg } from "../api/Pkg.js";
+import { kebabCaseAndShortenPage } from "../api/normalizeResultUrls.js";
+import { transformSpecialCaseUrl } from "../api/specialCaseResults.js";
 import { DOCS_BASE_PATH } from "./conversionPipeline.js";
 
 export type SphinxToc = {
@@ -76,7 +78,7 @@ export async function generateSphinxToc(
     }
 
     const title = l1Link.text().trim();
-    const url = hrefToUrl(href, outputBase);
+    const url = hrefToUrl(href, outputBase, pkg);
 
     const l2Items = $(l1).find(".toctree-l2");
     if (l2Items.length === 0) {
@@ -94,7 +96,7 @@ export async function generateSphinxToc(
         }
         subChildren.push({
           title: l2Link.text().trim(),
-          url: hrefToUrl(l2Href, outputBase),
+          url: hrefToUrl(l2Href, outputBase, pkg),
         });
       });
 
@@ -163,9 +165,19 @@ function isHrefSelected(href: string, selectedFiles: Set<string>): boolean {
   );
 }
 
-function hrefToUrl(href: string, outputBase: string): string {
+function hrefToUrl(href: string, outputBase: string, pkg: Pkg): string {
   if (href === "#") return outputBase;
   const withoutAnchor = href.split("#")[0];
   const withoutExt = withoutAnchor.replace(/\.html$/, "");
-  return `${outputBase}/${withoutExt}`;
+  // Apply the same normalization as the content pipeline:
+  // kebab-case the filename, then transformSpecialCaseUrl for directory renames.
+  const parts = withoutExt.split("/");
+  const filename = parts[parts.length - 1];
+  const normalizedFilename = pkg.kebabCaseAndShortenUrls
+    ? kebabCaseAndShortenPage(filename, pkg.name)
+    : filename;
+  const normalizedPath = transformSpecialCaseUrl(
+    [...parts.slice(0, -1), normalizedFilename].join("/"),
+  );
+  return `${outputBase}/${normalizedPath}`;
 }
