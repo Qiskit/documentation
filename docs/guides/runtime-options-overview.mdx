@@ -24,9 +24,9 @@ The tables in the "Options classes summary" section on each primitive's "options
 <span id="options-precedence"></span>
 ## Set options
 
-Options can be defined before a primitive is constructed and passed to the primitive in an instance of the options class or a dictionary.  The primitive makes a copy of them, which means that changing the original dictionary or options instance doesn't affect the options owned by the primitive. 
+Options can be defined before a primitive is constructed and passed to the primitive as an instance of the options class or a dictionary.  The primitive makes a copy of them, which means that changing the original dictionary or options instance doesn't affect the options that the primitive owns. 
 
-Additionally, after the primitive is constructed, its options can be changed. Use the workflow that works best for your application. 
+Additionally, you can change the options after the primitive is constructed. Use the workflow that works best for your application. 
 
 <Admonition type="note" title="Notes about specifying primitive options">
 - You can see the available options during or after primitive initialization.
@@ -36,9 +36,9 @@ Additionally, after the primitive is constructed, its options can be changed. Us
 
 ### `options` class
 
-When creating an instance of the primitive class, you can pass in an instance of the `options` class. Those options will then be applied when you use `run()` to perform the calculation.  Specify the options in this format:  `options.option.sub-option.sub-sub-option = choice`.  For example: `options.dynamical_decoupling.enable = True`.
+When creating an instance of the primitive class, you can pass in an instance of the `options` class. Those options are then applied when you use `run()` to perform the calculation.  Specify the options in this format:  `options.option.sub-option.sub-sub-option = choice`.  For example: `options.dynamical_decoupling.enable = True`.
 
-See [`SamplerOptions`](/docs/api/qiskit-ibm-runtime/options-sampler-options) or [`EstimatorOptions`](/docs/api/qiskit-ibm-runtime/options-estimator-options)for full details about the options class.
+See [`SamplerOptions`](/docs/api/qiskit-ibm-runtime/options-sampler-options) or [`EstimatorOptions`](/docs/api/qiskit-ibm-runtime/options-estimator-options) for full details about the class.
 
 The following example uses the Estimator primitive, but the syntax for other primitives is similar.
 
