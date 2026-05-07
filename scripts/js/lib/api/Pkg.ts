@@ -58,17 +58,21 @@ export class Pkg {
   readonly artifactPackageName: string;
   readonly hasRootNamespaceFile: boolean;
 
-  static VALID_NAMES = [
-    "qiskit",
-    "qiskit-ibm-runtime",
-    "qiskit-ibm-transpiler",
+  static ADDON_NAMES = [
     "qiskit-addon-aqc-tensor",
     "qiskit-addon-obp",
     "qiskit-addon-mpf",
     "qiskit-addon-sqd",
     "qiskit-addon-cutting",
     "qiskit-addon-utils",
+  ];
+
+  static VALID_NAMES = [
+    "qiskit",
+    "qiskit-ibm-runtime",
+    "qiskit-ibm-transpiler",
     "qiskit-c",
+    ...Pkg.ADDON_NAMES,
   ];
 
   constructor(kwargs: {
@@ -286,6 +290,10 @@ export class Pkg {
 
   isCApi(): boolean {
     return this.language === "C";
+  }
+
+  isAddon(): boolean {
+    return Pkg.ADDON_NAMES.includes(this.name);
   }
 
   isProblematicLegacyQiskit(): boolean {
