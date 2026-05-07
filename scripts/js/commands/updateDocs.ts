@@ -12,7 +12,10 @@
 
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { readFile, writeFile } from "fs/promises";
+
 import { $ } from "zx";
+import { mkdirp } from "mkdirp";
 
 import { Pkg } from "../lib/api/Pkg.js";
 import { pathExists } from "../lib/fs.js";
@@ -93,7 +96,17 @@ async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
 async function deleteExistingFiles(pkg: Pkg): Promise<void> {
   const markdownDir = pkg.outputDir("docs/addons");
   if (await pathExists(markdownDir)) {
+    // Preserve the hand-authored _toc.json — it is maintained separately
+    // from the generated content and should not be overwritten by the pipeline.
+    const tocPath = `${markdownDir}/_toc.json`;
+    const tocContent = (await pathExists(tocPath))
+      ? await readFile(tocPath, "utf-8")
+      : null;
     await $`rm -rf ${markdownDir}`;
+    if (tocContent !== null) {
+      await mkdirp(markdownDir);
+      await writeFile(tocPath, tocContent);
+    }
   }
   const imagesDir = pkg.outputDir("public/docs/images/addons");
   if (await pathExists(imagesDir)) {

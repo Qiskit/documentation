@@ -35,12 +35,8 @@ import {
 import addFrontMatter from "../api/addFrontMatter.js";
 import { dedupeHtmlIdsFromResults } from "../api/dedupeHtmlIds.js";
 import removeMathBlocksIndentation from "../api/removeMathBlocksIndentation.js";
-import { writeTocFile } from "./generateToc.js";
-import {
-  handleReleaseNotesFile,
-  maybeUpdateReleaseNotesFolder,
-} from "../api/releaseNotes.js";
-import { Notebook, NotebookWithUrl } from "../Notebooks.js";
+import { handleReleaseNotesFile } from "../api/releaseNotes.js";
+import { NotebookWithUrl } from "../Notebooks.js";
 
 export const DOCS_BASE_PATH = "/docs";
 
@@ -105,7 +101,6 @@ export async function runSphinxPipeline(
   // write assets
   await copyImages(pkg, artifactPath, "public", results);
   await objectsInv.write(pkg.apiOutputDir(publicBaseFolder));
-  await writeTocFile(artifactPath, outputPath, pkg, docsBaseFolder);
 }
 
 async function determineFilePaths(
@@ -313,25 +308,3 @@ async function writeNotebooks(
     await writeFile(path, JSON.stringify(notebook, null, 1));
   }
 }
-
-// async function writeTocFile(
-//   artifactPath: string,
-//   outputDir: string,
-//   pkg: Pkg,
-//   docsBaseFolder: string,
-//   config: SphinxPipelineConfig,
-// ): Promise<void> {
-//   console.log(`Generating TOC for ${outputDir}`);
-//   const toc = await generateSphinxToc(
-//     artifactPath,
-//     outputDir,
-//     pkg.title,
-//     docsBaseFolder,
-//     config.include,
-//     config.exclude,
-//   );
-//   await writeFile(
-//     `${outputDir}/_toc.json`,
-//     JSON.stringify(toc, null, 2) + "\n",
-//   );
-// }
