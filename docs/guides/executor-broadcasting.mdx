@@ -17,39 +17,56 @@ The examples in this topic cannot be run on their own.  They assume you have def
 <span id="quickstart"></span>
 ## Quickstart example
 
-This example demonstrates the core idea.  It creates a parametric circuit and and five different parameter configurations. The executor runs all five configurations and returns data organized by configuration, with one result per classical register in each quantum program item. 
+This example demonstrates the core idea. It creates a parametric circuit and and five different parameter configurations. The executor runs all five configurations and returns data organized by configuration, with one result per classical register in each quantum program item.
 
-The rest of this guide refers back to this example to explain how this works and how to build more complex sweeps, including Samplomatic-based randomization and inputs. 
+The rest of this guide refers back to this example to explain how this works and how to build more complex sweeps, including Samplomatic-based randomization and inputs.
 
 ```python
 import numpy as np
 from qiskit.circuit import Parameter, QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, Executor
 from qiskit_ibm_runtime.quantum_program import QuantumProgram
+from qiskit.transpiler import generate_preset_pass_manager
 
-# A circuit with 3 parameters
+# A circuit with 2 parameters
 # This circuit is used throughout the rest of this guide.
-circuit = QuantumCircuit(3)
+circuit = QuantumCircuit(4)
 circuit.rx(Parameter("a"), 0)
 circuit.rx(Parameter("b"), 1)
-circuit.rx(Parameter("c"), 2)
+circuit.h(2)
+circuit.cx(2, 3)
 circuit.measure_all()
 
-# 5 different parameter configurations (shape: 5 configurations × 3 parameters)
-parameter_values = np.linspace(0, np.pi, 15).reshape(5, 3)
+# 5 different parameter configurations (shape: 5 configurations × 2 parameters)
+parameter_values = np.linspace(0, np.pi, 10).reshape(5, 2)
+
+# Initialize the service and choose a backend
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+# Transpile to ISA circuit
+preset_pass_manager = generate_preset_pass_manager(
+    backend=backend,
+    optimization_level=3,
+)
+isa_circuit = preset_pass_manager.run(circuit)
 
 # This program is used throughout the rest of this guide.
 program = QuantumProgram(shots=1024)
-program.append.circuit_item(circuit, circuit_arguments=parameter_values)
+program.append_circuit_item(isa_circuit, circuit_arguments=parameter_values)
+
+# initialize an Executor with default options
+executor = Executor(mode=backend)
 
 # Run and get results
 result = executor.run(program).result()
 
 # result is a list with one entry per program item
 # result[0] is a dict mapping classical register names to data arrays
-# Output bool arrays have shape (5, 1024, 3)
+# Output bool arrays have shape (5, 1024, 4)
 #   5 = number of parameter configurations
 #   1024 = number of shots
-#   3 = bits in the classical register
+#   4 = bits in the classical register
 result[0]["meas"]
 ```
 
@@ -92,13 +109,12 @@ noise_scale = np.array([0.8, 1.0, 1.2])  # shape (3,)
 
 # Extrinsic shapes: (4, 1) and (3,) → broadcast to (4, 3)
 # Result: 12 total configurations in a 4×3 grid
-
-program.append.samplex_item(
+program.append_samplex_item(
     template_circuit,
     samplex=samplex,
     samplex_arguments={
         "parameter_values": parameter_values,
-        "noise_scale.mod_ref1": noise_scale,
+        "noise_scales.mod_ref1": noise_scale,
     },
 )
 ```
@@ -128,21 +144,21 @@ formatted as an array of boolean values:
 ### Example
 
 If you provide inputs with extrinsic shapes `(4, 1)` and `(3,)`, the broadcast extrinsic
-shape is `(4, 3)`. The following code uses a circuit with 1024 shots and a 3-bit classical register (as defined in the previously defined [Quickstart](#quickstart) example):
+shape is `(4, 3)`. The following code uses a circuit with 1024 shots and a 4-bit classical register (as defined in the previously defined [Quickstart](#quickstart) example):
 
 ```python
 # Input extrinsic shapes: (4, 1) and (3,) → (4, 3)
 # Output for classical register "meas":
 #   extrinsic: (4, 3)
-#   intrinsic: (1024, 3)  - shots × bits
-#   full shape: (4, 3, 1024, 3)
+#   intrinsic: (1024, 4)  - shots × bits
+#   full shape: (4, 3, 1024, 4)
 
 result = executor.run(program).result()
 meas_data = result[0]["meas"]  # result[0] for first program item
-print(meas_data.shape)  # (4, 3, 1024, 3)
+print(meas_data.shape)  # (4, 3, 1024, 4)
 
 # Access a specific configuration
-config_2_1 = meas_data[2, 1, :, :]  # shape (1024, 3)
+config_2_1 = meas_data[2, 1, :, :]  # shape (1024, 4)
 ```
 <Admonition type="note">
 Each configuration runs the full shot count specified in the quantum program. Shots are **not** divided among configurations. For example, if you request 1024 shots and have 10 configurations, each configuration runs 1024 shots (10,240 total shots executed).
@@ -178,11 +194,11 @@ randomization.
 The following example demonstrates the default behavior:
 
 ```python
-program.append.samplex_item(
+program.append_samplex_item(
     template_circuit,
     samplex=samplex,
     samplex_arguments={
-        "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
+        "parameter_values": np.random.rand(10, 2),  # extrinsic (10,)
     },
     # shape defaults to (10,) - one randomized execution per config
 )
@@ -195,11 +211,11 @@ To run multiple randomizations per configuration, extend the shape with addition
 For example, the following code runs 20 randomizations for each of 10 parameter configurations:
 
 ```python
-program.append.samplex_item(
+program.append_samplex_item(
     template_circuit,
     samplex=samplex,
     samplex_arguments={
-        "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
+        "parameter_values": np.random.rand(10, 2),  # extrinsic (10,)
     },
     shape=(20, 10),  # 20 randomizations × 10 configurations
 )
@@ -215,11 +231,11 @@ Here, the input extrinsic shape `(10,)` broadcasts to the requested shape `(2, 1
 with axes 0 and 1 filled by independent randomizations.
 
 ```python
-program.append(
+program.append_samplex_item(
     template_circuit,
     samplex=samplex,
     samplex_arguments={
-        "parameter_values": np.random.rand(10, 3),  # extrinsic (10,)
+        "parameter_values": np.random.rand(10, 2),  # extrinsic (10,)
     },
     # 2×14=28 randomizations per configuration, 10 configurations
     # Or you could set shape=(28, 10) for the same effect
@@ -258,13 +274,13 @@ Examples:
 With randomization axes, you can index into specific randomization/parameter combinations:
 
 ```python
-# Using shape=(2, 14, 10) with input extrinsic shape (10,), and 1024 shots
-# and 3 classical registers, as defined in the Quickstart example.
+# Using shape=(2, 14, 10) with input extrinsic shape (10,), and 
+# 1024 shots and 4 classical registers.
 result = executor.run(program).result()
-meas_data = result[0]["meas"]  # shape (2, 14, 10, 1024, 3)
+meas_data = result[0]["meas"]  # shape (2, 14, 10, 1024, 4)
 
 # Get all shots for randomization (0, 7) and parameter config 3
-specific = meas_data[0, 7, 3, :, :]  # shape (1024, 3)
+specific = meas_data[0, 7, 3, :, :]  # shape (1024, 4)
 
 # Average over all randomizations for parameter config 5 on bit 2
 averaged = meas_data[:, :, 5, :, 2].mean(axis=(0, 1))
@@ -276,22 +292,19 @@ averaged = meas_data[:, :, 5, :, 2].mean(axis=(0, 1))
 Use code like the following to sweep one parameter while holding others fixed:
 
 ```python
-# Circuit has 3 parameters, sweep first one over 20 values
+# Circuit has 2 parameters, sweep first one over 20 values
 sweep_values = np.linspace(0, 2*np.pi, 20)
-fixed_values = [0.5, 0.3]
 
 parameter_values = np.column_stack([
     sweep_values,
-    np.full(20, fixed_values[0]),
-    np.full(20, fixed_values[1]),
-])  # shape (20, 3)
+    np.full(20, 0.5),
+])  # shape (20, 2)
 ```
 
 ### Creating a 2D grid sweep
-To create a grid over two parameters:
+To create a grid over three parameters:
 
 ```python
-
 # Sweep param 0 over 10 values, param 1 over 8 values, param 2 fixed
 p0 = np.linspace(0, np.pi, 10)[:, np.newaxis, np.newaxis]  # (10, 1, 1)
 p1 = np.linspace(0, np.pi, 8)[np.newaxis, :, np.newaxis]   # (1, 8, 1)
