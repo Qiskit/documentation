@@ -35,7 +35,7 @@ import {
 import addFrontMatter from "../api/addFrontMatter.js";
 import { dedupeHtmlIdsFromResults } from "../api/dedupeHtmlIds.js";
 import removeMathBlocksIndentation from "../api/removeMathBlocksIndentation.js";
-import { generateSphinxToc } from "./generateToc.js";
+import { writeTocFile } from "./generateToc.js";
 import {
   handleReleaseNotesFile,
   maybeUpdateReleaseNotesFolder,
@@ -86,7 +86,7 @@ export async function runSphinxPipeline(
   );
   await writeMarkdownResults(pkg, docsBaseFolder, results);
 
-  // handle jupyter notebook files
+  // handle Jupyter notebook files
   const notebookFiles = files.filter((f) => f.endsWith(".ipynb"));
   const initialNotebooks = await readNotebooks(
     artifactPath,
@@ -102,9 +102,10 @@ export async function runSphinxPipeline(
   );
   await writeNotebooks(pkg, docsBaseFolder, notebooks);
 
+  // write assets
   await copyImages(pkg, artifactPath, "public", results);
   await objectsInv.write(pkg.apiOutputDir(publicBaseFolder));
-  // await writeTocFile(artifactPath, output, pkg, docsBaseFolder, config);
+  await writeTocFile(artifactPath, outputPath, pkg, docsBaseFolder);
 }
 
 async function determineFilePaths(

@@ -10,12 +10,16 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
+import { dirname } from "path";
 
 import { load } from "cheerio";
 import { globby } from "globby";
+import { mkdirp } from "mkdirp";
 
 import { TocEntry } from "../api/generateToc.js";
+import { Pkg } from "../api/Pkg.js";
+import { DOCS_BASE_PATH } from "./conversionPipeline.js";
 
 export type SphinxToc = {
   title: string;
@@ -23,8 +27,9 @@ export type SphinxToc = {
   collapsed: boolean;
 };
 
-// Sphinx build artifact folders that are never prose content.
+// Sphinx build artifact folders and API content that are never prose content.
 const SPHINX_INTERNAL_PREFIXES = ["_static/", "_sources/", "_downloads/"];
+const API_HREF_PREFIXES = ["apidocs/", "apidoc/", "stubs/", "release-notes", "release_notes"];
 
 /**
  * Build a _toc.json by parsing the Sphinx sidebar nav, filtered to match
@@ -33,7 +38,7 @@ const SPHINX_INTERNAL_PREFIXES = ["_static/", "_sources/", "_downloads/"];
 export async function generateSphinxToc(
   artifactPath: string,
   outputDir: string,
-  pkgTitle: string,
+  pkg: Pkg,
   docsBaseFolder: string,
   include?: string[],
   exclude?: string[],
@@ -62,6 +67,7 @@ export async function generateSphinxToc(
 
     if (l1Link.hasClass("reference external")) return;
     if (SPHINX_INTERNAL_PREFIXES.some((p) => href.startsWith(p))) return;
+    if (API_HREF_PREFIXES.some((p) => href.startsWith(p))) return;
 
     // Filter by whether this href was selected for this run.
     const hrefFile = href.split("#")[0];
@@ -101,7 +107,46 @@ export async function generateSphinxToc(
     }
   });
 
-  return { title: pkgTitle, children, collapsed: true };
+  if (pkg.githubSlug) {
+    children.push({
+      title: "GitHub",
+      url: `https://github.com/${pkg.githubSlug}`,
+    });
+  }
+
+  children.push({
+    title: "API reference",
+    children: [
+      {
+        title: `${pkg.title} API reference`,
+        url: pkg.apiOutputDir(DOCS_BASE_PATH),
+      },
+    ],
+  });
+
+  return { title: pkg.title, children, collapsed: true };
+}
+
+export async function writeTocFile(
+  artifactPath: string,
+  outputDir: string,
+  pkg: Pkg,
+  docsBaseFolder: string,
+  include?: string[],
+  exclude?: string[],
+): Promise<void> {
+  console.log(`Generating TOC for ${outputDir}`);
+  const toc = await generateSphinxToc(
+    artifactPath,
+    outputDir,
+    pkg,
+    docsBaseFolder,
+    include,
+    exclude,
+  );
+  const tocPath = `${outputDir}/_toc.json`;
+  await mkdirp(dirname(tocPath));
+  await writeFile(tocPath, JSON.stringify(toc, null, 2) + "\n");
 }
 
 /**
