@@ -28,7 +28,10 @@ import {
 } from "../api/normalizeResultUrls.js";
 import { updateLinks, relativizeLink } from "../api/updateLinks.js";
 import { mergeClassMembers } from "../api/mergeClassMembers.js";
-import { specialCaseResults, transformSpecialCaseUrl } from "../api/specialCaseResults.js";
+import {
+  specialCaseResults,
+  transformSpecialCaseUrl,
+} from "../api/specialCaseResults.js";
 import addFrontMatter from "../api/addFrontMatter.js";
 import { dedupeHtmlIdsFromResults } from "../api/dedupeHtmlIds.js";
 import removeMathBlocksIndentation from "../api/removeMathBlocksIndentation.js";
@@ -37,6 +40,7 @@ import {
   handleReleaseNotesFile,
   maybeUpdateReleaseNotesFolder,
 } from "../api/releaseNotes.js";
+import { Notebook, NotebookWithUrl } from "../Notebooks.js";
 
 export const DOCS_BASE_PATH = "/docs";
 
@@ -58,17 +62,15 @@ export async function runSphinxPipeline(
   publicBaseFolder: string,
   pkg: Pkg,
 ): Promise<void> {
+  const allObjectInvs = await ObjectsInv.loadPublishedApis(publicBaseFolder);
   const [files, outputPath, objectsInv] = await determineFilePaths(
     artifactPath,
     docsBaseFolder,
     pkg,
   );
 
-  const allObjectInvs = await ObjectsInv.loadPublishedApis(publicBaseFolder);
-
+  // handle HTML files
   const htmlFiles = files.filter((f) => f.endsWith(".html"));
-  const notebookFiles = files.filter((f) => f.endsWith(".ipynb"));
-
   const initialResults = await convertFilesToMarkdown(
     pkg,
     artifactPath,
@@ -76,19 +78,32 @@ export async function runSphinxPipeline(
     outputPath,
     htmlFiles,
   );
-
   const results = await postProcessResults(
     pkg,
     objectsInv,
     allObjectInvs,
     initialResults,
   );
-
   await writeMarkdownResults(pkg, docsBaseFolder, results);
+
+  // handle jupyter notebook files
+  const notebookFiles = files.filter((f) => f.endsWith(".ipynb"));
+  const initialNotebooks = await readNotebooks(
+    artifactPath,
+    docsBaseFolder,
+    outputPath,
+    notebookFiles,
+  );
+  const notebooks = await processNotebooks(
+    initialNotebooks,
+    pkg,
+    objectsInv,
+    allObjectInvs,
+  );
+  await writeNotebooks(pkg, docsBaseFolder, notebooks);
+
   await copyImages(pkg, artifactPath, "public", results);
   await objectsInv.write(pkg.apiOutputDir(publicBaseFolder));
-
-  await copyNotebooks(artifactPath, outputPath, notebookFiles, pkg);
   // await writeTocFile(artifactPath, output, pkg, docsBaseFolder, config);
 }
 
@@ -147,7 +162,7 @@ async function convertFilesToMarkdown(
     }
 
     const { dir, name } = parse(`${outputPath}/${file}`);
-    let url = `/${relative(docsBaseFolder, dir)}/${name}`;
+    const url = `/${relative(docsBaseFolder, dir)}/${name}`;
     results.push({ ...result, url });
   }
   return results;
@@ -210,7 +225,7 @@ async function writeMarkdownResults(
   results: HtmlToMdResultWithUrl[],
 ): Promise<void> {
   for (const result of results) {
-    let path = `${docsBaseFolder}${result.url}.mdx`;
+    const path = `${docsBaseFolder}${result.url}.mdx`;
     if (path.endsWith("release-notes.mdx")) {
       if (!pkg.releaseNotesConfig.enabled) continue;
 
@@ -223,42 +238,78 @@ async function writeMarkdownResults(
   }
 }
 
-async function copyNotebooks(
+export async function readNotebooks(
   artifactPath: string,
+  docsBaseFolder: string,
   outputPath: string,
-  notebookFiles: string[],
-  pkg: Pkg,
-): Promise<void> {
-  for (const file of notebookFiles) {
-    // Apply the same kebab-case transformation as normalizeResultUrls so
-    // notebook filenames match the links generated from HTML conversion.
-    const destFile = pkg.kebabCaseAndShortenUrls
-      ? transformSpecialCaseUrl(
-          file.replace(/([^/]+)\.ipynb$/, (_, base) =>
-            `${kebabCaseAndShortenPage(base, pkg.name)}.ipynb`,
-          ),
-        )
-      : file;
-    const dest = `${outputPath}/${destFile}`;
-    await mkdirp(dirname(dest));
+  filePaths: string[],
+): Promise<NotebookWithUrl[]> {
+  const results = [];
+  for (const file of filePaths) {
     const raw = await readFile(`${artifactPath}/${file}`, "utf-8");
     const notebook = JSON.parse(raw);
+    const { dir, name } = parse(`${outputPath}/${file}`);
+    const url = `/${relative(docsBaseFolder, dir)}/${name}`;
+    results.push({ ...notebook, url });
+  }
+  return results;
+}
 
-    for (const cell of notebook.cells ?? []) {
-      const lines: string[] = Array.isArray(cell.source)
-        ? cell.source
-        : [cell.source];
-      cell.source = lines.map((line) =>
-        line.replace(/\[([^\]]*)\]\(([^)]+)\)/g, (match, text, url) => {
-          const rewritten = relativizeLink({ url, text });
-          return rewritten
-            ? `[${rewritten.text ?? text}](${rewritten.url})`
-            : match;
-        }),
-      );
-    }
+function normalizeNotebookUrl(url: string, pkg: Pkg): string {
+  const parts = url.split("/");
+  const filename = parts[parts.length - 1];
+  const normalized = pkg.kebabCaseAndShortenUrls
+    ? kebabCaseAndShortenPage(filename, pkg.name)
+    : filename;
+  return transformSpecialCaseUrl([...parts.slice(0, -1), normalized].join("/"));
+}
 
-    await writeFile(dest, JSON.stringify(notebook, null, 1));
+function rewriteNotebookLinks(
+  source: string | string[],
+  objectsInv: ObjectsInv,
+  allInvs: Map<string, ObjectsInv>,
+): string | string[] {
+  const rewrite = (line: string) => {
+    return line.replace(/\[([^\]]*)\]\(([^)]+)\)/g, (_match, text, url) => {
+      const relativized = relativizeLink({ url, text });
+      if (relativized) url = relativized.url;
+      const stub = objectsInv.resolveStubUrl(url, allInvs);
+      if (stub) url = stub;
+      return `[${text}](${url})`;
+    });
+  };
+
+  return Array.isArray(source) ? source.map(rewrite) : rewrite(source);
+}
+
+async function processNotebooks(
+  notebooks: NotebookWithUrl[],
+  pkg: Pkg,
+  objectsInv: ObjectsInv,
+  allInvs: Map<string, ObjectsInv>,
+): Promise<NotebookWithUrl[]> {
+  return notebooks.map((notebook) => ({
+    ...notebook,
+    cells: notebook.cells.map((cell) => {
+      if (cell.cell_type !== "markdown") return cell;
+      return {
+        ...cell,
+        source: rewriteNotebookLinks(cell.source, objectsInv, allInvs),
+      };
+    }),
+  }));
+}
+
+async function writeNotebooks(
+  pkg: Pkg,
+  docsBaseFolder: string,
+  notebooks: NotebookWithUrl[],
+) {
+  for (const { url, ...notebook } of notebooks) {
+    const normalizedUrl = normalizeNotebookUrl(url, pkg);
+    const path = `${docsBaseFolder}${normalizedUrl}.ipynb`;
+    await mkdirp(dirname(path));
+    await writeFile(path, JSON.stringify(notebook, null, 1));
   }
 }
 
