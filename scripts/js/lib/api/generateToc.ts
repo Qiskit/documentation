@@ -36,6 +36,7 @@ type Toc = {
   collapsed: boolean;
   untranslatable?: boolean;
   parentUrl?: string;
+  parentLabel?: string;
 };
 
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
@@ -74,6 +75,7 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
     untranslatable: true,
     ...(pkg.isAddon() && {
       parentUrl: `/docs/addons/${pkg.name}`,
+      parentLabel: pkg.title,
     }),
   };
 }
