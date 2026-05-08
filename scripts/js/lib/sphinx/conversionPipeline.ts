@@ -27,6 +27,8 @@ import {
   kebabCaseAndShortenPage,
 } from "../api/normalizeResultUrls.js";
 import { updateLinks, relativizeLink } from "../api/updateLinks.js";
+import { parseMarkdown, extractHeadingText } from "../markdownUtils.js";
+import { visit, EXIT } from "unist-util-visit";
 import { mergeClassMembers } from "../api/mergeClassMembers.js";
 import {
   specialCaseResults,
@@ -36,7 +38,7 @@ import addFrontMatter from "../api/addFrontMatter.js";
 import { dedupeHtmlIdsFromResults } from "../api/dedupeHtmlIds.js";
 import removeMathBlocksIndentation from "../api/removeMathBlocksIndentation.js";
 import { handleReleaseNotesFile } from "../api/releaseNotes.js";
-import { NotebookWithUrl } from "../Notebooks.js";
+import { NotebookCell, NotebookWithUrl } from "../Notebooks.js";
 
 export const DOCS_BASE_PATH = "/docs";
 
@@ -284,16 +286,24 @@ async function processNotebooks(
   objectsInv: ObjectsInv,
   allInvs: Map<string, ObjectsInv>,
 ): Promise<NotebookWithUrl[]> {
-  return notebooks.map((notebook) => ({
-    ...notebook,
-    cells: notebook.cells.map((cell) => {
+  return notebooks.map((notebook) => {
+    const processedCells = notebook.cells.map((cell) => {
       if (cell.cell_type !== "markdown") return cell;
       return {
         ...cell,
         source: rewriteNotebookLinks(cell.source, objectsInv, allInvs),
       };
-    }),
-  }));
+    });
+
+    // Prepend a frontmatter cell matching the guides notebook convention.
+    // Extract the title from the first markdown h1, same as extractFrontmatter
+    // does for HTML pages.
+    const frontmatterCell = buildFrontmatterCell(processedCells);
+    return {
+      ...notebook,
+      cells: frontmatterCell ? [frontmatterCell, ...processedCells] : processedCells,
+    };
+  });
 }
 
 async function writeNotebooks(
@@ -307,4 +317,29 @@ async function writeNotebooks(
     await mkdirp(dirname(path));
     await writeFile(path, JSON.stringify(notebook, null, 1));
   }
+}
+
+function buildFrontmatterCell(cells: NotebookCell[]): NotebookCell | undefined {
+  for (const cell of cells) {
+    if (cell.cell_type !== "markdown") continue;
+    const text = Array.isArray(cell.source) ? cell.source.join("") : cell.source;
+    const tree = parseMarkdown(text);
+    let title: string | undefined;
+    visit(tree, "heading", (node: any) => {
+      if (node.depth === 1 && !title) {
+        title = extractHeadingText(node).trim();
+        return EXIT;
+      }
+    });
+    if (title) {
+      const quote = (s: string) =>
+        `"${s.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
+      return {
+        cell_type: "markdown",
+        source: `---\ntitle: ${quote(title)}\n---`,
+        metadata: {},
+      };
+    }
+  }
+  return undefined;
 }
