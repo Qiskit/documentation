@@ -17,6 +17,7 @@ import { globby } from "globby";
 import { mkdirp } from "mkdirp";
 import { uniqBy } from "lodash-es";
 
+import { load } from "cheerio";
 import { sphinxHtmlToMarkdown } from "../api/htmlToMd.js";
 import { ObjectsInv } from "../api/objectsInv.js";
 import { HtmlToMdResultWithUrl } from "../api/HtmlToMdResult.js";
@@ -34,7 +35,6 @@ import {
   specialCaseResults,
   transformSpecialCaseUrl,
 } from "../api/specialCaseResults.js";
-import addFrontMatter from "../api/addFrontMatter.js";
 import { dedupeHtmlIdsFromResults } from "../api/dedupeHtmlIds.js";
 import removeMathBlocksIndentation from "../api/removeMathBlocksIndentation.js";
 import { handleReleaseNotesFile } from "../api/releaseNotes.js";
@@ -114,7 +114,14 @@ async function determineFilePaths(
 
   const allFiles = await globby(["**"], {
     cwd: htmlPath,
-    ignore: ["apidocs/**", "apidoc/**", "stubs/**", ...SPHINX_INTERNALS],
+    ignore: [
+      "apidocs/**",
+      "apidoc/**",
+      "stubs/**",
+      "release-notes.html",
+      "release_notes.html",
+      ...SPHINX_INTERNALS,
+    ],
   });
 
   // Prefer .ipynb over .html when both exist for the same base path.
@@ -158,6 +165,8 @@ async function convertFilesToMarkdown(
     if (result.markdown == "") {
       continue;
     }
+
+    result.meta.hardcodedFrontmatter = extractHtmlFrontmatter(html);
 
     const { dir, name } = parse(`${outputPath}/${file}`);
     const url = `/${relative(docsBaseFolder, dir)}/${name}`;
@@ -212,7 +221,7 @@ async function postProcessResults(
     allInvs,
   );
   await dedupeHtmlIdsFromResults(results);
-  addFrontMatter(results, pkg);
+  addFrontMatter(results);
   removeMathBlocksIndentation(results);
   return results;
 }
@@ -301,7 +310,9 @@ async function processNotebooks(
     const frontmatterCell = buildFrontmatterCell(processedCells);
     return {
       ...notebook,
-      cells: frontmatterCell ? [frontmatterCell, ...processedCells] : processedCells,
+      cells: frontmatterCell
+        ? [frontmatterCell, ...processedCells]
+        : processedCells,
     };
   });
 }
@@ -322,7 +333,9 @@ async function writeNotebooks(
 function buildFrontmatterCell(cells: NotebookCell[]): NotebookCell | undefined {
   for (const cell of cells) {
     if (cell.cell_type !== "markdown") continue;
-    const text = Array.isArray(cell.source) ? cell.source.join("") : cell.source;
+    const text = Array.isArray(cell.source)
+      ? cell.source.join("")
+      : cell.source;
     const tree = parseMarkdown(text);
     let title: string | undefined;
     visit(tree, "heading", (node: any) => {
@@ -332,14 +345,33 @@ function buildFrontmatterCell(cells: NotebookCell[]): NotebookCell | undefined {
       }
     });
     if (title) {
-      const quote = (s: string) =>
-        `"${s.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
       return {
         cell_type: "markdown",
-        source: `---\ntitle: ${quote(title)}\n---`,
+        source: `---\ntitle: "${title}"\n---`,
         metadata: {},
       };
     }
   }
   return undefined;
+}
+
+function extractHtmlFrontmatter(html: string): string {
+  const $ = load(html);
+  const title = $("title").first().text().trim();
+  const description = $('meta[name="description"]').attr("content")?.trim();
+  const lines = [`title: "${title}"`];
+  if (description) lines.push(`description: "${description}"`);
+  return lines.join("\n");
+}
+
+function addFrontMatter(results: HtmlToMdResultWithUrl[]) {
+  for (const result of results) {
+    const markdown = result.markdown;
+    result.markdown = `---
+${result.meta.hardcodedFrontmatter}
+---
+
+${markdown}
+`;
+  }
 }
