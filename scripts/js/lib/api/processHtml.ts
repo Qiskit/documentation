@@ -114,11 +114,7 @@ export function loadImages(
   return $main
     .find("img")
     .toArray()
-    .filter((img) => {
-      // filter out external URLs before processing:
-      const src = $(img).attr("src");
-      return !!src && !src.startsWith("http://") && !src.startsWith("https://");
-    })
+    .filter((img) => $(img).attr("src"))
     .map((img) => {
       const $img = $(img);
 

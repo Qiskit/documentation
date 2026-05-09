@@ -62,7 +62,7 @@ export async function saveImages(
       return;
     }
     const source = `${originalImagesFolderPath}/${img.fileName}`;
-    const dest = `${publicBaseFolder}/${img.dest.replace(/^\//, "")}`;
+    const dest = `${publicBaseFolder}/${img.dest}`;
 
     if (!(await pathExists(source))) {
       console.warn(`Skipping missing image: ${source}`);

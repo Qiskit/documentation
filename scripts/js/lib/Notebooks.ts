@@ -1,4 +1,5 @@
 export type NotebookCell = {
+  id?: string;
   cell_type: "code" | "markdown" | "raw";
   source: string | string[];
   metadata: Record<string, unknown>;

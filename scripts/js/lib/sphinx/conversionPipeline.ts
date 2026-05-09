@@ -346,6 +346,7 @@ function buildFrontmatterCell(cells: NotebookCell[]): NotebookCell | undefined {
     });
     if (title) {
       return {
+        id: "frontmatter", // hardcoding the cell id so it doesn't change with each run
         cell_type: "markdown",
         source: `---\ntitle: "${title}"\n---`,
         metadata: {},
