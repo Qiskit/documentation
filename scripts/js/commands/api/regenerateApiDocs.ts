@@ -10,15 +10,16 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readdir } from "fs/promises";
-
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { $ } from "zx";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
-import { getDevVersion, getReleasedVersions } from "../../lib/apiVersions.js";
+import { getDevVersion, getReleasedVersions, parseMinorVersion } from "../../lib/apiVersions.js";
+import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
+import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
+import { runConversionPipeline } from "../../lib/api/conversionPipeline.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
 interface Arguments {
@@ -75,8 +76,6 @@ zxMain(async () => {
     );
   }
 
-  await generateHistoricalRedirects();
-
   console.log(`Each regenerated version has been saved as a distinct commit. If the changes are
 too large for one single PR, consider splitting it up into multiple PRs by using
 git cherry-pick or git rebase -i so each PR only has the commits it wants to target.`);
@@ -109,16 +108,23 @@ async function regenerateVersion(
   skipDownload: boolean,
   typeArgument?: "historical" | "dev",
 ): Promise<void> {
-  const command = ["npm", "run", "gen-api", "--", "-p", pkgName, "-v", version];
-  if (typeArgument) {
-    command.push(`--${typeArgument}`);
-  }
-  if (skipDownload) {
-    command.push("--skip-download");
-  }
-
   try {
-    await $`${command}`;
+    const type = typeArgument ?? "latest";
+    const minorVersion = parseMinorVersion(version)!;
+    const pkg = await Pkg.fromArgs(pkgName, version, minorVersion, type);
+    const artifactFolder = pkg.sphinxArtifactFolder();
+    if (skipDownload && (await pathExists(`${artifactFolder}/artifact`))) {
+      console.log(`Skip downloading sources for ${pkgName}:${minorVersion}`);
+    } else {
+      await downloadSphinxArtifact(pkg, artifactFolder);
+    }
+    const markdownDir = pkg.apiOutputDir("docs");
+    if (await pathExists(markdownDir)) await rmFilesInFolder(markdownDir);
+    const imagesDir = pkg.apiOutputDir("public/docs/images");
+    if (await pathExists(imagesDir)) await rmFilesInFolder(imagesDir);
+    console.log(`Run pipeline for ${pkgName}:${minorVersion}`);
+    await runConversionPipeline(`${artifactFolder}/artifact`, "docs", "public/docs", pkg);
+    await generateHistoricalRedirects();
     if ((await gitStatus()) !== "") {
       await gitCommit(`Regenerate ${pkgName} ${version}`);
       console.log(`🚀 ${pkgName} ${version} regenerated correctly`);

@@ -15,12 +15,11 @@ import fs from "fs/promises";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
-import { readApiFullVersion } from "../../lib/apiVersions.js";
-import {
-  generateVersion,
-  determineMinorVersion,
-  Arguments,
-} from "./updateApiDocs.js";
+import { readApiFullVersion, parseMinorVersion } from "../../lib/apiVersions.js";
+import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
+import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
+import { runConversionPipeline } from "../../lib/api/conversionPipeline.js";
+import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
 // Found with `gh api repos/qiskit/${repo}/actions/workflows`
 const QISKIT_WORKFLOW_ID = "66225883";
@@ -101,15 +100,16 @@ async function updateHtmlArtifacts(args: {
   await fs.writeFile(path, JSON.stringify(prior, null, 2) + "\n");
 }
 
-async function regenDocs(pkg: string, version: string): Promise<void> {
-  const args: Arguments = {
-    package: pkg,
-    version: version,
-    dev: true,
-    historical: false,
-    skipDownload: false,
-  };
-  const minorVersion = determineMinorVersion(args);
-  const pkgObj = await Pkg.fromArgs(pkg, version, minorVersion, "dev");
-  await generateVersion(pkgObj, args);
+async function regenDocs(pkgName: string, version: string): Promise<void> {
+  const minorVersion = parseMinorVersion(version)!;
+  const pkg = await Pkg.fromArgs(pkgName, version, minorVersion, "dev");
+  const artifactFolder = pkg.sphinxArtifactFolder();
+  await downloadSphinxArtifact(pkg, artifactFolder);
+  const markdownDir = pkg.apiOutputDir("docs");
+  if (await pathExists(markdownDir)) await rmFilesInFolder(markdownDir);
+  const imagesDir = pkg.apiOutputDir("public/docs/images");
+  if (await pathExists(imagesDir)) await rmFilesInFolder(imagesDir);
+  console.log(`Run pipeline for ${pkgName}:${minorVersion}`);
+  await runConversionPipeline(`${artifactFolder}/artifact`, "docs", "public/docs", pkg);
+  await generateHistoricalRedirects();
 }

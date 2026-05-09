@@ -18,16 +18,18 @@ import { $ } from "zx";
 import { mkdirp } from "mkdirp";
 
 import { Pkg } from "../lib/api/Pkg.js";
-import { pathExists } from "../lib/fs.js";
+import { pathExists, rmFilesInFolder } from "../lib/fs.js";
 import { downloadSphinxArtifact } from "../lib/api/sphinxArtifacts.js";
+import { runConversionPipeline } from "../lib/api/conversionPipeline.js";
 import { runSphinxPipeline } from "../lib/sphinx/conversionPipeline.js";
-import { zxMain } from "../lib/zx.js";
-import { parseMinorVersion } from "../lib/apiVersions.js";
 
-export interface Arguments {
-  [x: string]: unknown;
-  package?: string;
-  skipDownload: boolean;
+import { zxMain } from "../lib/zx.js";
+import { isValidVersion, parseMinorVersion } from "../lib/apiVersions.js";
+
+interface Arguments {
+  package: string;
+  version: string;
+  skipDownload?: boolean;
   sphinxArtifactFolder?: string;
 }
 
@@ -38,13 +40,28 @@ const readArgs = (): Arguments => {
       alias: "p",
       type: "string",
       choices: Pkg.VALID_NAMES,
+      demandOption: true,
       description: "Which package to update",
+    })
+    .option("version", {
+      alias: "v",
+      type: "string",
+      demandOption: true,
+      description: "The full version string of the --package, e.g. 0.44.0",
+      coerce: (version) => {
+        if (!isValidVersion(version)) {
+          throw new Error(
+            "The version must include a major, a minor, and a patch. E.g. `-v 0.46.3`",
+          );
+        }
+        return version;
+      },
     })
     .option("skip-download", {
       type: "boolean",
       default: false,
       description:
-        "Rather than downloading the artifact from Box, reuse what is already downloaded. This can save time, but it risks using an outdated version of the docs.",
+        "Rather than downloading the artifact from Box, reuse what is already downloaded.",
     })
     .option("sphinx-artifact-folder", {
       alias: "a",
@@ -57,17 +74,23 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
-async function runForAddon(pkg: Pkg, args: Arguments): Promise<void> {
+async function generateVersion(pkg: Pkg, args: Arguments): Promise<void> {
   const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
-  await deleteExistingFiles(pkg);
+
+  await deleteExistingApiFiles(pkg);
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
-  await runSphinxPipeline(
-    sphinxArtifactFolder,
-    "docs/addons",
-    "public/docs",
-    pkg,
-  );
+  await runConversionPipeline(sphinxArtifactFolder, "docs", "public/docs", pkg);
+
+  if (pkg.isAddon()) {
+    await deleteExistingAddonFiles(pkg);
+    await runSphinxPipeline(
+      sphinxArtifactFolder,
+      "docs/addons",
+      "public/docs",
+      pkg,
+    );
+  }
 }
 
 async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
@@ -93,11 +116,24 @@ async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
   return `${sphinxArtifactFolder}/artifact`;
 }
 
-async function deleteExistingFiles(pkg: Pkg): Promise<void> {
+async function deleteExistingApiFiles(pkg: Pkg): Promise<void> {
+  const markdownDir = pkg.apiOutputDir("docs");
+  if (await pathExists(markdownDir)) {
+    await rmFilesInFolder(markdownDir);
+  }
+  const imagesDir = pkg.apiOutputDir("public/docs/images");
+  if (await pathExists(imagesDir)) {
+    await rmFilesInFolder(imagesDir);
+  }
+  console.log(
+    `Deleted existing docs & images for ${pkg.name}:${pkg.versionWithoutPatch}`,
+  );
+}
+
+async function deleteExistingAddonFiles(pkg: Pkg): Promise<void> {
   const markdownDir = pkg.outputDir("docs/addons");
   if (await pathExists(markdownDir)) {
-    // Preserve the hand-authored _toc.json — it is maintained separately
-    // from the generated content and should not be overwritten by the pipeline.
+    // Preserve the hand-authored _toc.json.
     const tocPath = `${markdownDir}/_toc.json`;
     const tocContent = (await pathExists(tocPath))
       ? await readFile(tocPath, "utf-8")
@@ -113,36 +149,24 @@ async function deleteExistingFiles(pkg: Pkg): Promise<void> {
     await $`rm -rf ${imagesDir}`;
   }
   console.log(
-    `Deleted existing markdown & images for ${pkg.name}:${pkg.versionWithoutPatch}`,
+    `Deleted existing docs & images for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
 }
 
-const ADDONS = [
-  { name: "qiskit-addon-aqc-tensor", version: "0.2.0" },
-  { name: "qiskit-addon-cutting", version: "0.10.0" },
-  { name: "qiskit-addon-mpf", version: "0.3.0" },
-  { name: "qiskit-addon-obp", version: "0.3.0" },
-  { name: "qiskit-addon-sqd", version: "0.12.0" },
-  { name: "qiskit-addon-utils", version: "0.3.1" },
-];
+zxMain(async () => {
+  const args = readArgs();
+  const minorVersion = parseMinorVersion(args.version);
+  if (minorVersion === null) {
+    throw new Error(
+      `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
+    );
+  }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
-  zxMain(async () => {
-    const args = readArgs();
-    const addons = args.package
-      ? ADDONS.filter((a) => a.name === args.package)
-      : ADDONS;
-
-    for (const addon of addons) {
-      const minorVersion = parseMinorVersion(addon.version)!;
-      const pkg = await Pkg.fromArgs(
-        addon.name,
-        addon.version,
-        minorVersion,
-        "latest",
-      );
-
-      await runForAddon(pkg, args);
-    }
-  });
-}
+  const pkg = await Pkg.fromArgs(
+    args.package,
+    args.version,
+    minorVersion,
+    "latest",
+  );
+  await generateVersion(pkg, args);
+});
