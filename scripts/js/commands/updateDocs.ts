@@ -61,7 +61,7 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description:
-        "Rather than downloading the artifact from Box, reuse what is already downloaded.",
+        "Rather than downloading the artifact from Box, reuse what is already downloaded. This can save time, but it risks using an outdated version of the docs.",
     })
     .option("sphinx-artifact-folder", {
       alias: "a",
