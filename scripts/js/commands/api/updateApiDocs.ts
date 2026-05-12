@@ -1,6 +1,6 @@
 // This code is a Qiskit project.
 //
-// (C) Copyright IBM 2024.
+// (C) Copyright IBM 2023.
 //
 // This code is licensed under the Apache License, Version 2.0. You may
 // obtain a copy of this license in the LICENSE file in the root directory
@@ -12,22 +12,22 @@
 
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { readFile, writeFile } from "fs/promises";
 
-import { $ } from "zx";
-import { mkdirp } from "mkdirp";
+import { Pkg } from "../../lib/api/Pkg.js";
+import { zxMain } from "../../lib/zx.js";
+import { parseMinorVersion, isValidVersion } from "../../lib/apiVersions.js";
+import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
+import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
+import { runConversionPipeline } from "../../lib/api/conversionPipeline.js";
+import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
-import { Pkg } from "../lib/api/Pkg.js";
-import { pathExists } from "../lib/fs.js";
-import { downloadSphinxArtifact } from "../lib/api/sphinxArtifacts.js";
-import { runSphinxPipeline } from "../lib/sphinx/conversionPipeline.js";
-import { zxMain } from "../lib/zx.js";
-import { isValidVersion, parseMinorVersion } from "../lib/apiVersions.js";
-
-interface Arguments {
+export interface Arguments {
+  [x: string]: unknown;
   package: string;
   version: string;
-  skipDownload?: boolean;
+  historical: boolean;
+  dev: boolean;
+  skipDownload: boolean;
   sphinxArtifactFolder?: string;
 }
 
@@ -55,6 +55,16 @@ const readArgs = (): Arguments => {
         return version;
       },
     })
+    .option("historical", {
+      type: "boolean",
+      default: false,
+      description: "Is this a prior release?",
+    })
+    .option("dev", {
+      type: "boolean",
+      default: false,
+      description: "Is this a dev release?",
+    })
     .option("skip-download", {
       type: "boolean",
       default: false,
@@ -72,17 +82,34 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
-async function generateVersion(pkg: Pkg, args: Arguments): Promise<void> {
+export async function generateVersion(
+  pkg: Pkg,
+  args: Arguments,
+): Promise<void> {
   const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
   await deleteExistingFiles(pkg);
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
-  await runSphinxPipeline(
-    sphinxArtifactFolder,
-    "docs/addons",
-    "public/docs",
-    pkg,
-  );
+  await runConversionPipeline(sphinxArtifactFolder, "docs", "public/docs", pkg);
+  await generateHistoricalRedirects();
+}
+
+export function determineMinorVersion(args: Arguments): string {
+  const minorVersion = parseMinorVersion(args.version);
+  if (minorVersion === null) {
+    throw new Error(
+      `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
+    );
+  }
+
+  const devRegex = /[0-9](rc|-dev)/;
+  if (args.dev && !args.version.match(devRegex)) {
+    throw new Error(
+      `${args.package} ${args.version} is not a correct dev version. Please make sure the version has one of the following suffixes immediately following the patch version: rc, -dev. e.g. 1.0.0rc1 or 1.0.0-dev`,
+    );
+  }
+
+  return minorVersion;
 }
 
 async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
@@ -109,42 +136,37 @@ async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
 }
 
 async function deleteExistingFiles(pkg: Pkg): Promise<void> {
-  const markdownDir = pkg.outputDir("docs/addons");
+  const markdownDir = pkg.apiOutputDir("docs");
   if (await pathExists(markdownDir)) {
-    // Preserve the hand-authored _toc.json.
-    const tocPath = `${markdownDir}/_toc.json`;
-    const tocContent = (await pathExists(tocPath))
-      ? await readFile(tocPath, "utf-8")
-      : null;
-    await $`rm -rf ${markdownDir}`;
-    if (tocContent !== null) {
-      await mkdirp(markdownDir);
-      await writeFile(tocPath, tocContent);
-    }
+    await rmFilesInFolder(markdownDir);
   }
-  const imagesDir = pkg.outputDir("public/docs/images/addons");
+  const imagesDir = pkg.apiOutputDir("public/docs/images");
   if (await pathExists(imagesDir)) {
-    await $`rm -rf ${imagesDir}`;
+    await rmFilesInFolder(imagesDir);
   }
   console.log(
     `Deleted existing markdown & images for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
 }
 
-zxMain(async () => {
-  const args = readArgs();
-  const minorVersion = parseMinorVersion(args.version);
-  if (minorVersion === null) {
-    throw new Error(
-      `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
-    );
-  }
+if (import.meta.url === `file://${process.argv[1]}`) {
+  zxMain(async () => {
+    const args = readArgs();
 
-  const pkg = await Pkg.fromArgs(
-    args.package,
-    args.version,
-    minorVersion,
-    "latest",
-  );
-  await generateVersion(pkg, args);
-});
+    if (args.historical && args.dev) {
+      throw new Error(
+        `${args.package} ${args.version} cannot be historical and dev at the same time. Please remove at least only one of these two arguments: --historical, --dev.`,
+      );
+    }
+
+    const minorVersion = determineMinorVersion(args);
+    const type = args.historical ? "historical" : args.dev ? "dev" : "latest";
+    const pkg = await Pkg.fromArgs(
+      args.package,
+      args.version,
+      minorVersion,
+      type,
+    );
+    await generateVersion(pkg, args);
+  });
+}
