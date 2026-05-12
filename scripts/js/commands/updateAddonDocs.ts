@@ -17,10 +17,10 @@ import { readFile, writeFile } from "fs/promises";
 import { $ } from "zx";
 import { mkdirp } from "mkdirp";
 
-import { Pkg } from "../lib/api/Pkg.js";
+import { Pkg } from "../lib/docsGen/Pkg.js";
 import { pathExists } from "../lib/fs.js";
-import { downloadSphinxArtifact } from "../lib/api/sphinxArtifacts.js";
-import { runSphinxPipeline } from "../lib/sphinx/conversionPipeline.js";
+import { downloadSphinxArtifact } from "../lib/docsGen/sphinxArtifacts.js";
+import { runAddonDocsPipeline } from "../lib/docsGen/addonDocsPipeline.js";
 import { zxMain } from "../lib/zx.js";
 import { isValidVersion, parseMinorVersion } from "../lib/apiVersions.js";
 
@@ -77,7 +77,7 @@ async function generateVersion(pkg: Pkg, args: Arguments): Promise<void> {
   await deleteExistingFiles(pkg);
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
-  await runSphinxPipeline(
+  await runAddonDocsPipeline(
     sphinxArtifactFolder,
     "docs/addons",
     "public/docs",

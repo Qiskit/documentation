@@ -49,10 +49,9 @@ function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
 export async function saveImages(
   images: Image[],
   originalImagesFolderPath: string,
-  publicBaseFolder: string,
+  destFolder: string,
   pkg: Pkg,
 ) {
-  const destFolder = pkg.apiOutputDir(`${publicBaseFolder}/docs/images`);
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
   }
@@ -62,7 +61,10 @@ export async function saveImages(
       return;
     }
     const source = `${originalImagesFolderPath}/${img.fileName}`;
-    const dest = `${publicBaseFolder}/${img.dest}`;
+    // img.dest is set by loadImages() and includes the full image URL prefix
+    // (e.g. "/docs/images/api/qiskit/foo.avif"). We only need its basename to
+    // place the file inside destFolder.
+    const dest = `${destFolder}/${img.dest.split("/").pop()}`;
 
     if (!(await pathExists(source))) {
       console.warn(`Skipping missing image: ${source}`);

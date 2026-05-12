@@ -142,7 +142,12 @@ async function copyImages(
     results.flatMap((result) => result.images),
     (image) => image.fileName,
   );
-  await saveImages(allImages, `${htmlPath}/_images`, publicBaseFolder, pkg);
+  await saveImages(
+    allImages,
+    `${htmlPath}/_images`,
+    pkg.apiOutputDir(`${publicBaseFolder}/images`),
+    pkg,
+  );
 }
 
 async function postProcessResults(
