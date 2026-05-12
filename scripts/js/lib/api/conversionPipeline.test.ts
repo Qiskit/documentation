@@ -17,7 +17,7 @@ import { mkdtemp, readFile } from "fs/promises";
 import { globby } from "globby";
 import { expect, test } from "@playwright/test";
 
-import { runConversionPipeline } from "./conversionPipeline.js";
+import { runApiDocsPipeline } from "./apiDocsPipeline.js";
 import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
 
 // This test uses snapshot testing (https://jestjs.io/docs/snapshot-testing#updating-snapshots). If the tests fail and the changes
@@ -68,7 +68,7 @@ test("qiskit-sphinx-theme", async ({}, testInfo) => {
   });
   const markdownFolder = pkg.apiOutputDir(docsBaseFolder);
 
-  await runConversionPipeline(
+  await runApiDocsPipeline(
     "scripts/js/lib/api/testdata/qiskit-sphinx-theme",
     docsBaseFolder,
     publicBaseFolder,

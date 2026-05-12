@@ -16,7 +16,7 @@ import { getLastPartFromFullIdentifier } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 import type { TocGrouping } from "./TocGrouping.js";
-import { DOCS_BASE_PATH } from "./conversionPipeline.js";
+import { DOCS_BASE_PATH } from "./paths.js";
 import { groupByMajorVersion } from "./releaseNotes.js";
 
 export type TocEntry = {

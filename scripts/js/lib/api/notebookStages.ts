@@ -27,7 +27,7 @@ import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import { relativizeLink } from "./updateLinks.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { parseMarkdown, extractHeadingText } from "../markdownUtils.js";
-import { NotebookCell, NotebookWithUrl } from "../Notebooks.js";
+import { NotebookCell, NotebookWithUrl } from "./Notebooks.js";
 
 export async function readNotebooks(
   artifactPath: string,

@@ -16,7 +16,7 @@ import { join, dirname } from "path";
 import { mkdirp } from "mkdirp";
 
 import { removePrefix, removeSuffix } from "../stringUtils.js";
-import { C_API_BASE_PATH } from "./conversionPipeline.js";
+import { C_API_BASE_PATH } from "./paths.js";
 import { PackageLanguage } from "./Pkg.js";
 
 /**
