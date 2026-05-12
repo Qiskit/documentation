@@ -147,6 +147,7 @@ function prepareProps(
     cEnum: prepClassOrException,
     cEnumerator: prepAttributeOrProperty,
     cStructMember: prepAttributeOrProperty,
+    cMacro: prepAttributeOrProperty,
     // C++ types used by historical Qiskit C API versions
     cppFunction: prepFunction,
     cppStruct: prepClassOrException,

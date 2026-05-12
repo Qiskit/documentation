@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
 # ALAPScheduleAnalysis
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L447-L662" signature="ALAPScheduleAnalysis(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L439-L649" signature="ALAPScheduleAnalysis(*args, **kwargs)" modifiers="class">
   Bases: `BaseDynamicCircuitAnalysis`
 
   Dynamic circuits as-late-as-possible (ALAP) scheduling analysis pass.
@@ -19,20 +19,15 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
   The primary differences are that:
 
-  *   **Resets and control-flow currently trigger the end of a “quantum block”. The period between the end**
+  *   **Resets and control-flow currently trigger the end of a “quantum block”. The period between**
 
-      of the block and the next is *nondeterministic* ie., we do not know when the next block will begin (as we could be evaluating a classical function of nondeterministic length) and therefore the next block starts at a *relative* t=0.
+      the end of the block and the next is *nondeterministic* ie., we do not know when the next block will begin (as we could be evaluating a classical function of nondeterministic length) and therefore the next block starts at a *relative* t=0.
 
   *   During a measurement it is possible to apply gates in parallel on disjoint qubits.
 
-  *   Measurements and resets on disjoint qubits happen simultaneously and are part of the same block.
+  *   **Measurements and resets on disjoint qubits happen simultaneously and are part of the same**
 
-  Scheduler for dynamic circuit backends.
-
-  **Parameters**
-
-  *   **durations** – Durations of instructions to be used in scheduling.
-  *   **block\_ordering\_callable** – A callable used to produce an ordering of the nodes to minimize the number of blocks needed. If not provided, `block_order_op_nodes()` will be used.
+      block.
 
   ## Attributes
 
@@ -105,7 +100,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAna
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L468-L490" signature="run(dag)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/scheduler.py#L461-L483" signature="run(dag)">
     Run the ASAPSchedule pass on dag.
 
     **Parameters**

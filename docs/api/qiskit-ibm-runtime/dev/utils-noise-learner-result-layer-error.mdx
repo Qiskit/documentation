@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.utils.noise_learner_result.LayerError
 
 # LayerError
 
-<Class id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/noise_learner_result.py#L137-L350" signature="LayerError(circuit, qubits, error=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/noise_learner_result.py#L132-L332" signature="LayerError(circuit, qubits, error=None)" modifiers="class">
   Bases: `object`
 
   The error channel (in Pauli-Lindblad format) of a single layer of instructions.
@@ -34,7 +34,9 @@ python_api_name: qiskit_ibm_runtime.utils.noise_learner_result.LayerError
   ### error
 
   <Attribute id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.error">
-    The error channel in this `LayerError`, or `None` if the error channel is either unknown or explicitly disabled.
+    The error channel in this `LayerError`, or `None`.
+
+    Return `None` if the error channel is either unknown or explicitly disabled.
   </Attribute>
 
   ### num\_qubits
@@ -53,7 +55,7 @@ python_api_name: qiskit_ibm_runtime.utils.noise_learner_result.LayerError
 
   ### draw\_map
 
-  <Function id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_map" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/noise_learner_result.py#L196-L276" signature="draw_map(embedding, colorscale='Bluered', color_no_data='lightgray', color_out_of_scale='lightgreen', num_edge_segments=16, edge_width=4, height=500, highest_rate=None, background_color='white', radius=0.25, width=800)">
+  <Function id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_map" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/noise_learner_result.py#L184-L261" signature="draw_map(embedding, colorscale='Bluered', color_no_data='lightgray', color_out_of_scale='lightgreen', num_edge_segments=16, edge_width=4, height=500, highest_rate=None, background_color='white', radius=0.25, width=800)">
     Draw a map view of a this layer error.
 
     **Parameters**
@@ -108,7 +110,7 @@ python_api_name: qiskit_ibm_runtime.utils.noise_learner_result.LayerError
 
   ### draw\_swarm
 
-  <Function id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_swarm" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/noise_learner_result.py#L278-L342" signature="draw_swarm(num_bodies=None, max_rate=None, min_rate=None, connected=None, colors=None, num_bins=None, opacities=0.4, names=None, x_coo=None, marker_size=None, height=500, width=800)">
+  <Function id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_swarm" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/utils/noise_learner_result.py#L263-L324" signature="draw_swarm(num_bodies=None, max_rate=None, min_rate=None, connected=None, colors=None, num_bins=None, opacities=0.4, names=None, x_coo=None, marker_size=None, height=500, width=800)">
     Draw a swarm plot of the rates in this layer error.
 
     This function plots the rates along a vertical axes, offsetting the rates along the `x` axis so that they do not overlap with each other.

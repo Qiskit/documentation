@@ -20,7 +20,7 @@ python_api_name: qiskit.compiler
 
 ### transpile
 
-<Function id="qiskit.compiler.transpile" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/compiler/transpiler.py#L36-L300" signature="qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, coupling_map=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, dt=None, approximation_degree=1.0, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False, num_processes=None, qubits_initially_zero=True)">
+<Function id="qiskit.compiler.transpile" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/compiler/transpiler.py#L37-L319" signature="qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, coupling_map=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, dt=None, approximation_degree=1.0, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False, num_processes=None, qubits_initially_zero=True)">
   Transpile one or more circuits, according to some desired transpilation targets.
 
   Transpilation is potentially done in parallel using multiprocessing when `circuits` is a list with > 1 [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object, depending on the local environment and configuration.
@@ -32,6 +32,10 @@ python_api_name: qiskit.compiler
   | **basis\_gates**  | target | basis\_gates  |
   | **coupling\_map** | target | coupling\_map |
   | **dt**            | target | dt            |
+
+  <Admonition title="Note" type="note">
+    When the target basis consists of Clifford+T gates, this function constructs a specialized Clifford+T transpiler pipeline, see [`clifford_t_pass_manager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.clifford_t_pass_manager "qiskit.transpiler.preset_passmanagers.clifford_t_pass_manager") for documentation. The arguments that apply to transpiling into continuous basis sets are ignored in this flow.
+  </Admonition>
 
   **Parameters**
 
@@ -96,9 +100,9 @@ python_api_name: qiskit.compiler
 
   *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Backend sample time (resolution) in seconds. If `None` (default), `backend.dt` is used.
 
-  *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float)) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
+  *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Heuristic dial used for circuit approximation, where `1.0` means no approximation (up to numerical tolerance) and `0.0` means the maximum approximation. If `target` is available, a value of `None` indicates that approximation is allowed up to the reported error rate for an operation in the target.
 
-  *   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Sets random seed for the stochastic parts of the transpiler
+  *   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Sets a seed for the PRNG used by the stochastic parts of the transpiler. This parameter takes precedence over the `QISKIT_TRANSPILER_SEED` environment variable and `transpiler_seed` setting in the user configuration file .
 
   *   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) –
 

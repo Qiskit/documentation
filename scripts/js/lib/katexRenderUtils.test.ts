@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { hasInlineMath, removeFileExtension } from "./katexRenderUtils";
+import { hasInlineMath, removeFileExtension } from "./katexRenderUtils.js";
 
 test("hasInlineMath()", () => {
   const baselineMd = `

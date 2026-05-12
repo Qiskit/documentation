@@ -13,7 +13,7 @@
 import { visit, EXIT } from "unist-util-visit";
 import { Root } from "mdast";
 
-import { extractHeadingText } from "./markdownUtils";
+import { extractHeadingText } from "./markdownUtils.js";
 
 export function collectHeadingTitleMismatch(
   tree: Root,
