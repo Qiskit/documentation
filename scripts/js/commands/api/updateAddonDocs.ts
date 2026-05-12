@@ -17,12 +17,12 @@ import { readFile, writeFile } from "fs/promises";
 import { $ } from "zx";
 import { mkdirp } from "mkdirp";
 
-import { Pkg } from "../lib/api/Pkg.js";
-import { pathExists } from "../lib/fs.js";
-import { downloadSphinxArtifact } from "../lib/api/sphinxArtifacts.js";
-import { runAddonDocsPipeline } from "../lib/api/addonDocsPipeline.js";
-import { zxMain } from "../lib/zx.js";
-import { isValidVersion, parseMinorVersion } from "../lib/apiVersions.js";
+import { Pkg } from "../../lib/api/Pkg.js";
+import { pathExists } from "../../lib/fs.js";
+import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
+import { runAddonDocsPipeline } from "../../lib/api/addonDocsPipeline.js";
+import { zxMain } from "../../lib/zx.js";
+import { isValidVersion, parseMinorVersion } from "../../lib/apiVersions.js";
 
 interface Arguments {
   package: string;
