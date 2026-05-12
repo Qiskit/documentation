@@ -85,11 +85,11 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   The `interactions` matrix is interpreted as an `n × n` row-major array of 64-bit integers, where `n = num_qubits`. The diagonal entries set T-like phase powers, and the upper triangle encodes two-qubit CPhase interactions.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md60" />
+  <span id="group__QkCircuitLibrary_1autotoc_md72" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md60" />
+  <span id="group__QkCircuitLibrary_1autotoc_md72" />
 
   If `num_qubits > 0`, `interactions` **must** be a valid, non-null pointer to at least `num_qubits * num_qubits` contiguous `int64_t` values in row-major order. The memory pointed to by `interactions` must be properly aligned, readable for the duration of this call, and not mutably aliased. Passing an invalid pointer or a buffer that is too small results in undefined behaviour.
 
@@ -128,7 +128,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   This frees the memory of the `z` and `x` arrays and frees the `angle`. This function should only be called for `QkPauliProductRotation` objects whose data has been populated by Rust.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md61" />
+  <span id="group__QkCircuitLibrary_1autotoc_md73" />
 
   #### Example
 
@@ -156,11 +156,11 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   qk_param_free(angle);
   ```
 
-  <span id="group__QkCircuitLibrary_1autotoc_md62" />
+  <span id="group__QkCircuitLibrary_1autotoc_md74" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md62" />
+  <span id="group__QkCircuitLibrary_1autotoc_md74" />
 
   Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkPauliProductRotation`, or if the internal data of `QkPauliProductRotation` is incoherent.
 
@@ -176,7 +176,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   This frees the memory of the `z` and `x` arrays. This function should only be called for `QkPauliProductMeasurement` objects whose data has been populated by Rust.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md63" />
+  <span id="group__QkCircuitLibrary_1autotoc_md75" />
 
   #### Example
 
@@ -203,11 +203,11 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   // since this data is allocated by C, we do not call `qk_pauli_product_measurement_clear(&inst)`
   ```
 
-  <span id="group__QkCircuitLibrary_1autotoc_md64" />
+  <span id="group__QkCircuitLibrary_1autotoc_md76" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md64" />
+  <span id="group__QkCircuitLibrary_1autotoc_md76" />
 
   Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkPauliProductMeasurement`, or if the internal data of `QkPauliProductMeasurement` is incoherent.
 
@@ -227,7 +227,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   \[1] A. Cross et al. Validating quantum computers using randomized model circuits, Phys. Rev. A 100, 032328 (2019). [arXiv:1811.12926](https://arxiv.org/abs/1811.12926)
 
-  <span id="group__QkCircuitLibrary_1autotoc_md65" />
+  <span id="group__QkCircuitLibrary_1autotoc_md77" />
 
   #### Example
 
@@ -253,7 +253,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   The Suzuki-Trotter formulas improve the error of the Lie-Trotter approximation. In this implementation, the operators are provided as sum terms of a Pauli operator. Higher order decompositions are based on recursions, see Ref. \[1] for more details.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md66" />
+  <span id="group__QkCircuitLibrary_1autotoc_md78" />
 
   #### Example
 
@@ -274,19 +274,19 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   qk_circuit_free(qc);
   ```
 
-  <span id="group__QkCircuitLibrary_1autotoc_md67" />
+  <span id="group__QkCircuitLibrary_1autotoc_md79" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md67" />
+  <span id="group__QkCircuitLibrary_1autotoc_md79" />
 
   Behavior is undefined `op` is not a valid, non-null pointer to a `QkObs`.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md68" />
+  <span id="group__QkCircuitLibrary_1autotoc_md80" />
 
   #### References
 
-  <span id="group__QkCircuitLibrary_1autotoc_md68" />
+  <span id="group__QkCircuitLibrary_1autotoc_md80" />
 
   \[1]: D. Berry, G. Ahokas, R. Cleve and B. Sanders, “Efficient quantum algorithms for simulating sparse Hamiltonians” (2006). [arXiv:quant-ph/0508139](https://arxiv.org/abs/quant-ph/0508139)
 

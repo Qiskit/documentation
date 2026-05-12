@@ -1,0 +1,564 @@
+---
+title: Singularity Machine Learning API reference
+description: API reference for Singularity Machine Learning, a Qiskit Function by Multiverse Computing
+---
+
+{/* cspell:ignore sparsify, sparsification */}
+
+# Singularity Machine Learning API reference
+
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/multiverse-computing-singularity"
+      analyticsName="Functions API: multiverse-computing-singularity"
+      linkText="Singularity Machine Learning Qiskit Function guide"
+    />
+</CardGroup>
+
+## Action-based approach
+
+The function uses an action-based approach. You can think of it as a virtual environment where you use actions to perform tasks or change its state. Currently, it offers the following actions: [`list`](#list), [`create`](#create), [`delete`](#delete), [`fit`](#fit), [`predict`](#predict), [`fit_predict`](#fit_predict), and [`create_fit_predict`](#create_fit_predict). The following example demonstrates the `create_fit_predict` action.
+
+### `list`
+<LeftColoredBar color="blue">
+The `list` action retrieves all stored classifiers in `*.pkl.tar` format from the shared data directory. You can also access the contents of this directory by using the `catalog.files()` method. In general, the list action searches for files with the `*.pkl.tar` extension in the shared data directory and returns them in a list format.
+
+- Inputs:
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action from among `create`, `list`, `fit`, `predict`, `fit_predict`, `create_fit_predict` and `delete`.
+Required: Yes
+</Attribute>
+
+- Usage:
+
+```python
+job = singularity.run(action="list")
+```
+</LeftColoredBar>
+
+### `create`
+<LeftColoredBar color="blue">
+
+The `create` action creates a classifier of the specified `quantum_classifier` type by using the provided parameters, and saves it in the shared data directory.
+
+<Admonition type="note">
+The function currently supports only the `QuantumEnhancedEnsembleClassifier`.
+</Admonition>
+
+- Inputs:
+
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action from among `create`, `list`, `fit`, `predict`, `fit_predict`, `create_fit_predict` and `delete`.
+- Required: Yes
+</Attribute>
+
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the quantum classifier, for example, `spam_classifier`.
+- Required: Yes
+</Attribute>
+
+#### `instance`
+<Attribute attributeTypeHint="`str`">
+IBM instance.
+- Required: Yes
+</Attribute>
+
+#### `backend_name`
+<Attribute attributeTypeHint="`str`" attributeValue="`None`">
+IBM compute resource. Default is `None`, which means the backend with the fewest pending jobs will be used. 
+- Required: No
+</Attribute>
+
+
+#### `quantum_classifier`
+<Attribute attributeTypeHint="`str`">
+The type of the quantum classifier, for example, `QuantumEnhancedEnsembleClassifier`.
+- Required: No
+</Attribute>
+
+#### `num_learners`
+<Attribute attributeTypeHint="`int`" attributeValue="10">
+ The number of learners in the ensemble.
+- Required: No
+</Attribute>
+
+#### `learners_types`
+<Attribute attributeTypeHint="`list`" attributeValue="`[DecisionTreeClassifier]`">
+Types of learners. Among supported types are: `DecisionTreeClassifier`, `GaussianNB`, `KNeighborsClassifier`, `MLPClassifier`, and `LogisticRegression`. Further details related to each can be found in the [scikit-learn documentation](https://scikit-learn.org/stable/supervised_learning.html).
+- Required: No
+</Attribute>
+
+#### `learners_proportions`
+<Attribute attributeTypeHint="`list`" attributeValue="`[1.0]`">
+Proportions of each learner type in the ensemble.
+- Required: No
+</Attribute>
+
+#### `learners_options`
+<Attribute attributeTypeHint="`list`" attributeValue="`[{`max_depth`: 3, `splitter`: `random`, `class_weight`: None}]`">
+ Options for each learner type in the ensemble. For a complete list of options corresponding to the chosen learner type/s, consult [scikit-learn documentation](https://scikit-learn.org/stable/supervised_learning.html).
+- Required: No
+</Attribute>
+
+#### `regularization_type`
+<Attribute attributeTypeHint="`str` or `list`" attributeValue="`onsite`">
+Type(s) of regularization to be used: `onsite` or `alpha`. `onsite` controls the onsite term where higher values lead to sparser ensembles. `alpha` controls trade-off between interaction and onsite terms where lower values lead to sparser ensembles. If a list is provided, models will be trained for each type and the best performing one will be selected.
+- Required: No
+</Attribute>
+
+#### `regularization`
+<Attribute attributeTypeHint="`str` or `float` or `list`" attributeValue="`0.01`">
+Regularization value. Bounded between `0` and `+inf` if regularization_type is `onsite`. Bounded between `0` and `1` if regularization_type is `alpha`. If set to `auto`, auto-regularization is used - optimal regularization parameter is found by binary search with the desired ratio of selected classifiers to total classifiers (`regularization_desired_ratio`) and the upper bound for the regularization parameter (`regularization_upper_bound`). If a list is provided, models will be trained for each value and the best performing one will be selected.
+- Required: No
+</Attribute>
+
+#### `regularization_desired_ratio`
+<Attribute attributeTypeHint="`float` or `list`" attributeValue="`0.75`">
+Desired ratio(s) of selected classifiers to total classifiers for auto-regularization. If a list is provided, models will be trained for each ratio and the best performing one will be selected.
+- Required: No
+</Attribute>
+
+#### `regularization_upper_bound`
+<Attribute attributeTypeHint="`float` or `list`" attributeValue="200">
+Upper bound(s) for the regularization parameter when using auto-regularization. If a list is provided, models will be trained for each upper bound and the best performing one will be selected.
+- Required: No
+</Attribute>
+
+#### `weight_update_method`
+<Attribute attributeTypeHint="`str`" attributeValue="`logarithmic`">
+Method for update of sample weights from among `logarithmic` and `quadratic`.
+- Required: No
+</Attribute>
+
+#### `sample_scaling`
+<Attribute attributeTypeHint="`boolean`" attributeValue="False`">
+Whether sample scaling should be applied.
+- Required: No
+</Attribute>
+
+#### `prediction_scaling`
+<Attribute attributeTypeHint="`float`" attributeValue="`None`">
+Scaling factor for predictions.
+- Required: No
+</Attribute>
+
+#### `optimizer_options`
+<Attribute attributeTypeHint="`dict`">
+QAOA optimizer options. 
+|     Name    |    Type     | Description | Required  | Default |
+|-------------|-------------|-------------|-----------|---------|
+| `num_solutions` | `integer` | The number of solutions | No | `1024` |
+| `reps` | `integer` | The number of repetitions | No | `4` |
+| `sparsify` | `float` | The sparsification threshold | No | `0.001` |
+| `theta` | `float` | The initial value of theta, a variational parameter of QAOA | No | `None` |
+| `simulator` | `boolean` | Whether to use a simulator or a QPU | No | `False` |
+| `classical_optimizer` | `str` | Name of the classical optimizer for the QAOA. All solvers offered by SciPy, as enlisted [here](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize), are usable. You will need to set `classical_optimizer_options` accordingly | No | `COBYLA` |
+| `classical_optimizer_options` | `dictionary` | Classical optimizer options. For a complete list of available options, consult [SciPy documentation](https://docs.scipy.org/doc/scipy/reference/) | No | `{"maxiter": 60}` |
+| `optimization_level` | `integer` | The depth of the QAOA circuit | No | `3` |
+| `num_transpiler_runs` | `integer` | Number of transpiler runs | No | `30` |
+| `pass_manager_options` | `dictionary` | Options for generating preset pass manager | No | `{"approximation_degree": 1.0}` |
+| `estimator_options` | `dictionary` | Estimator options. For a complete list of available options, consult [Qiskit Runtime Client documentation](/docs/api/qiskit-ibm-runtime/options-estimator-options) | No | `None` |
+| `sampler_options` | `dictionary` | Sampler options. For a complete list of available options, consult the [Qiskit Runtime Client documentation](/docs/api/qiskit-ibm-runtime/options-sampler-options) | No | `None` |
+
+- Default `estimator_options` are:
+
+|     Name    |    Type     | Value  |
+|-------------|-------------|-------------|
+| `default_shots` | `integer` | `1024` |
+| `resilience_level` | `integer` | `2` |
+| `twirling` | `dictionary` | `{"enable_gates": True}` |
+| `dynamical_decoupling` | `dictionary` | `{"enable": True}` |
+| `resilience_options` | `dictionary` | `{"zne_mitigation": False, "zne": {"amplifier": "pea", "noise_factors": [1.0, 1.3, 1.6], "extrapolator": ["linear", "polynomial_degree_2", "exponential"],}}` |
+
+- Default `sampler_options` are:
+
+|     Name    |    Type     | Value |
+|-------------|-------------|-------------|
+| `default_shots` | `integer` | `1024` |
+| `resilience_level` | `integer` | `1` |
+| `twirling` | `dictionary` | `{"enable_gates": True}` |
+| `dynamical_decoupling` | `dictionary` | `{"enable": True}` |
+
+- Required: No
+</Attribute>
+
+#### `voting`
+<Attribute attributeTypeHint="`str`" attributeValue="`hard`">
+Use majority voting (`hard`) or average of probabilities (`soft`) for aggregating learners' predictions/probabilities.
+- Required: No
+</Attribute>
+
+#### `prob_threshold`
+<Attribute attributeTypeHint="`float`" attributeValue="`0.5`">
+Optimal probability threshold.
+- Required: No
+</Attribute>
+
+
+#### `random_state`
+<Attribute attributeTypeHint="`int`" attributeValue="`None`">
+Control randomness for repeatability.
+- Required: No
+</Attribute>
+
+- Usage:
+
+```python
+job = singularity.run(
+    action="create",
+    name="classifier_name",  # specify your custom name for the classifier here
+    num_learners=10,
+    regularization=0.01,
+    optimizer_options={"simulator": True},
+)
+```
+
+- Validations:
+
+    - `name`:
+        - The name must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - No classifier with the same name should already exist in the shared data directory.
+</LeftColoredBar>
+  
+### `delete`
+<LeftColoredBar color="blue">
+
+The `delete` action removes a classifier from the shared data directory.
+
+- Inputs:
+
+#### `action`
+<Attribute attributeTypeHint="`str`">
+he name of the action. Must be `delete`.
+- Required: Yes
+</Attribute>
+
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the classifier to delete.
+- Required: Yes
+</Attribute>
+
+- Usage:
+
+```python
+job = singularity.run(
+    action="delete",
+    name="classifier_name",  # specify the name of the classifier to delete here
+)
+```
+- Validations:
+
+    - `name`:
+        - The name must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - A classifier with the same name should already exist in the shared data directory.
+</LeftColoredBar>
+
+### `fit`
+<LeftColoredBar color="blue">
+
+The `fit` action trains a classifier using the provided training data.
+
+- Inputs:
+
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action. Must be `fit`.
+- Required: Yes
+</Attribute>
+
+
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the classifier to train.
+- Required: Yes
+</Attribute>
+
+#### `X`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `y`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training target values. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `fit_params`
+<Attribute attributeTypeHint="`dict`">
+Additional parameters to pass to the `fit` method of the classifier. See dictionary below.
+- Required: No
+
+|     Name    |    Type     | Description |   Required  |   Default   |
+|-------------|-------------|-------------|-------------|-------------|
+| `validation_data` | `tuple` | The validation data and labels. | No | `None` |
+| `pos_label` | `integer` or `str` | The class label to be mapped to 1. | No | `None` |
+| `optimization_data` | `str` | Dataset to optimize the ensemble on. Can be one of: `train`, `validation`, `both`. | No | `train` |
+</Attribute>
+
+- Usage:
+```python
+job = singularity.run(
+    action="fit",
+    name="classifier_name",  # specify the name of the classifier to train here
+    X=X_train,  # or "X_train.npy" if you uploaded it in the shared data directory
+    y=y_train,  # or "y_train.npy" if you uploaded it in the shared data directory
+    fit_params={},  # define the fit parameters here
+)
+```
+- Validations:
+
+    - `name`:
+        - The name must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - A classifier with the same name should already exist in the shared data directory.
+</LeftColoredBar>
+
+### `predict`
+<LeftColoredBar color="blue">
+
+The `predict` action is used to obtain hard and soft predictions (probabilities).
+
+- Inputs:
+
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action. Must be `predict`.
+- Required: Yes
+</Attribute>
+
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the classifier to be used.
+- Required: Yes
+</Attribute>
+
+#### `X`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The test data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `options["out"]`
+<Attribute attributeTypeHint="`str`">
+The output JSON filename to save the predictions in the shared data directory. If not provided, the predictions are returned in the job result.
+- Required: No
+</Attribute>
+
+- Usage:
+
+```python
+job = singularity.run(
+    action="predict",
+    name="classifier_name",  # specify the name of the classifier to use here
+    X=X_test,  # or "X_test.npy" if you uploaded it to the shared data directory
+    options={
+        "out": "output.json",
+    },
+)
+```
+
+- Validations:
+
+    - `name`:
+        - The name must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - A classifier with the same name should already exist in the shared data directory.
+    - `options["out"]`:
+        - The filename must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - It must have the `.json` extension.
+</LeftColoredBar>
+
+### `fit_predict`
+<LeftColoredBar color="blue">
+
+The `fit_predict` action trains a classifier using the training data and then uses it to obtain hard and soft predictions (probabilities).
+
+- Inputs:
+
+
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action. Must be `fit_predict`.
+- Required: Yes
+</Attribute>
+
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the classifier to be used.
+- Required: Yes
+</Attribute>
+
+#### `X_train`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `y_train`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training target values. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `X_test`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The test data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `fit_params`
+<Attribute attributeTypeHint="`dict`">
+Additional parameters to pass to the `fit` method of the classifier.
+- Required: No
+</Attribute>
+
+#### `options["out"]`
+<Attribute attributeTypeHint="`str`">
+The output JSON filename to save the predictions in the shared data directory. If not provided, the predictions are returned in the job result.
+- Required: No
+</Attribute>
+
+- Usage:
+```python
+job = singularity.run(
+    action="fit_predict",
+    name="classifier_name",  # specify the name of the classifier to use here
+    X_train=X_train,  # or "X_train.npy" if you uploaded it in the shared data directory
+    y_train=y_train,  # or "y_train.npy" if you uploaded it in the shared data directory
+    X_test=X_test,  # or "X_test.npy" if you uploaded it in the shared data directory
+    fit_params={},  # define the fit parameters here
+    options={
+        "out": "output.json",
+    },
+)
+```
+
+- Validations:
+
+    - `name`:
+        - The name must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - A classifier with the same name should already exist in the shared data directory.
+
+    - `options["out"]`:
+        - The filename must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - It must have the `.json` extension.
+</LeftColoredBar>
+
+### `create_fit_predict`
+<LeftColoredBar color="blue">
+
+The `create_fit_predict` action creates a classifier, trains it using the provided training data, and then uses it to obtain hard and soft predictions (probabilities).
+
+See an example in of the `create_fit_predict` action in the [guide](/docs/guides/multiverse-computing-singularity#create_fit_predict-example).
+
+- Inputs:
+
+#### `action`
+<Attribute attributeTypeHint="`str`">
+The name of the action from among `create`, `list`, `fit`, `predict`, `fit_predict`, `create_fit_predict` and `delete`.
+- Required: Yes
+</Attribute>
+
+#### `name`
+<Attribute attributeTypeHint="`str`">
+The name of the classifier to be used.
+- Required: Yes
+</Attribute>
+
+#### `quantum_classifier`
+<Attribute attributeTypeHint="`str`" attributeValue="`QuantumEnhancedEnsembleClassifier`">
+The type of the classifier, for example, `QuantumEnhancedEnsembleClassifier`.
+- Required: No
+</Attribute>
+
+#### `X_train`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `y_train`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The training target values. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `X_test`
+<Attribute attributeTypeHint="`array` or `list` or `str`">
+The test data. This can be a NumPy array, a list, or a string referencing a filename in the shared data directory.
+- Required: Yes
+</Attribute>
+
+#### `fit_params`
+<Attribute attributeTypeHint="`dict`">
+Additional parameters to pass to the `fit` method of the classifier.
+- Required: No
+</Attribute>
+
+#### `options["save"]`
+<Attribute attributeTypeHint="`bool`" attributeValue="`True`">
+Whether to save to trained classifier in the shared data directory.
+- Required: No
+</Attribute>
+
+#### `options["out"]`
+<Attribute attributeTypeHint="`str`">
+The output JSON filename to save the predictions in the shared data directory. If not provided, the predictions are returned in the job result.
+- Required: No
+</Attribute>
+
+- Usage:
+
+```python
+job = singularity.run(
+    action="create_fit_predict",
+    name="classifier_name",  # specify your custom name for the classifier here
+    num_learners=10,
+    regularization=0.01,
+    optimizer_options={"simulator": True},
+    X_train=X_train,  # or "X_train.npy" if you uploaded it in the shared data directory
+    y_train=y_train,  # or "y_train.npy" if you uploaded it in the shared data directory
+    X_test=X_test,  # or "X_test.npy" if you uploaded it in the shared data directory
+    fit_params={},  # define the fit parameters here
+    options={
+        "save": True,
+        "out": "output.json",
+    },
+)
+```
+
+- Validations:
+
+    - `name`:
+        - If `options["save"]` is set to `True`:
+            - The name must be unique, a string up to 64 characters long.
+            - It can only include alphanumeric characters and underscores.
+            - It must start with a letter and cannot end with an underscore.
+            - No classifier with the same name should already exist in the shared data directory.
+
+    - `options["out"]`:
+        - The filename must be unique, a string up to 64 characters long.
+        - It can only include alphanumeric characters and underscores.
+        - It must start with a letter and cannot end with an underscore.
+        - It must have the `.json` extension.
+</LeftColoredBar>

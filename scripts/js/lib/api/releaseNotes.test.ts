@@ -10,12 +10,11 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { groupByMajorVersion } from "./releaseNotes";
-import { generateReleaseNotesIndex } from "./releaseNotes";
-
 import { expect, test } from "@playwright/test";
 
 import { Pkg } from "./Pkg.js";
+import { groupByMajorVersion } from "./releaseNotes.js";
+import { generateReleaseNotesIndex } from "./releaseNotes.js";
 
 test("groupByMajorVersion()", () => {
   const input = ["2.1", "2.0", "1.5", "1.2", "3.0", "3.2", "3.1", "4.0", "4.3"];

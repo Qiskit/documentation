@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { removeSuffix } from "./stringUtils";
+import { removeSuffix } from "./stringUtils.js";
 
 export function hasInlineMath(markdown: string): boolean {
   return !!markdown.match(/(?<!\$)\$(?!\$)(.+?)(?<!\$)\$(?!\$)/);
