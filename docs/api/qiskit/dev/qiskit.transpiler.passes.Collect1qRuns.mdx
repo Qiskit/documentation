@@ -8,10 +8,14 @@ python_api_name: qiskit.transpiler.passes.Collect1qRuns
 
 # Collect1qRuns
 
-<Class id="qiskit.transpiler.passes.Collect1qRuns" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/collect_1q_runs.py#L18-L31" signature="qiskit.transpiler.passes.Collect1qRuns(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.Collect1qRuns" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/collect_1q_runs.py#L27-L52" signature="qiskit.transpiler.passes.Collect1qRuns(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Collect one-qubit subcircuits.
+
+  **Parameters**
+
+  **filter\_fn** – An optional function that filters collected one-qubit runs.
 
   ## Attributes
 
@@ -65,10 +69,10 @@ python_api_name: qiskit.transpiler.passes.Collect1qRuns
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.Collect1qRuns.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/collect_1q_runs.py#L21-L31" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.Collect1qRuns.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/collect_1q_runs.py#L38-L52" signature="run(dag)">
     Run the Collect1qBlocks pass on dag.
 
-    The blocks contain “op” nodes in topological order such that all gates in a block act on the same qubits and are adjacent in the circuit.
+    The blocks contain “op” nodes in topological order such that all gates in a block act on the same qubits, are adjacent in the circuit, and satisfy the filtering condition (when specified).
 
     After the execution, `property_set['run_list']` is set to a list of tuples of “op” node.
   </Function>

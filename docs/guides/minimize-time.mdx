@@ -12,10 +12,10 @@ There are several ways you can limit the amount of time spent processing and run
 
 - Set limits on execution time:  You can limit how long each job, batch, or session runs.  For details, see [Maximum execution time for Qiskit Runtime workloads](max-execution-time).
 
-- Use only the necessary settings for error suppression and error mitigation, because higher values can cause your jobs to run longer. See [Introduction to options](./runtime-options-overview), [Configure error suppression](./configure-error-suppression), and [Configure error mitigation](configure-error-mitigation) for details.
+- Use only the necessary settings for error suppression and error mitigation, because higher values can cause your jobs to run longer. See [Introduction to options](/docs/guides/runtime-options-overview), [Configure error suppression](/docs/guides/error-mitigation-and-suppression-techniques), and [Configure error mitigation](error-mitigation-and-suppression-techniques) for details.
 
 - If you are running multiple jobs that contain the same (likely parameterized) circuits and are using an error mitigation method that requires noise models, such as PEA and PEC, consider using `NoiseLearner`. With this helper program, you can learn the noise model of a circuit once and reuse the model in subsequent Estimator queries. Note that a noise model becomes stale after a certain time, so this is only practical if there is no long delay between jobs (for example, within a session). See [Noise learning helper
-](./noise-learning) for more details.
+](/docs/guides/noise-learning) for more details.
 
 ## Next steps
 

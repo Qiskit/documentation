@@ -134,18 +134,11 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/qiskit-sdk-version-strategy.mdx",
   "docs/guides/qiskit-backendv1-to-v2.mdx",
   "docs/guides/install-qiskit.mdx",
-  "docs/api/qiskit-c/index.mdx",
-  "docs/api/qiskit-c/2.1/index.mdx",
-  "docs/api/qiskit-c/2.1/qk-complex-64.mdx",
-  "docs/api/qiskit-c/2.2/qk-transpiler.mdx",
-  "docs/api/qiskit-c/2.2/qk-transpiler-passes.mdx",
-  "docs/api/qiskit-c/2.2/qk-target-entry.mdx",
-  "docs/api/qiskit-c/2.2/qk-obs.mdx",
-  "docs/api/qiskit-c/2.2/qk-circuit.mdx",
-  "docs/api/qiskit-c/2.2/qk-obs-term.mdx",
-  "docs/api/qiskit-c/2.2/qk-target.mdx",
   "docs/api/qiskit-ibm-runtime/estimator-v2.mdx",
   "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
+  // Qiskit sometimes links to the C API, so we load every
+  // qiskit-c latest version page to avoid having errors in the future.
+  "docs/api/qiskit-c/*",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
@@ -267,8 +260,15 @@ async function determineCurrentDocsFileBatch(
 }
 
 async function determineDevFileBatches(): Promise<FileBatch[]> {
+  const qiskitDevGlobsToLoad = [
+    ...QISKIT_GLOBS_TO_LOAD,
+    // Qiskit sometimes links to the C API, so we load every
+    // qiskit-c dev version page.
+    "docs/api/qiskit-c/dev/*",
+  ];
+
   const projects: [string, string[]][] = [
-    ["qiskit", QISKIT_GLOBS_TO_LOAD],
+    ["qiskit", qiskitDevGlobsToLoad],
     ["qiskit-ibm-runtime", RUNTIME_GLOBS_TO_LOAD],
   ];
 
@@ -318,6 +318,12 @@ async function determineHistoricalFileBatches(
       `public/docs/api/${projectName}/${folder.name}/objects.inv`,
     ];
     const toLoad = [...extraGlobsToLoad];
+
+    // Qiskit sometimes links to the C API, so we load every
+    // qiskit-c historical page for the specific qiskit version we check.
+    if (projectName == "qiskit") {
+      toLoad.push(`docs/api/qiskit-c/${folder.name}/*`);
+    }
 
     // Also check the release note file for this version, if the package has
     // separate release notes per version.
