@@ -15,46 +15,24 @@ import { hideBin } from "yargs/helpers";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
-import { parseMinorVersion, isValidVersion } from "../../lib/apiVersions.js";
-import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
-import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
+import { parseMinorVersion } from "../../lib/apiVersions.js";
 import { runApiDocsPipeline } from "../../lib/api/apiDocsPipeline.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
+import {
+  addSharedOptions,
+  deleteOutputDirs,
+  prepareSphinxFolder,
+  SharedArguments,
+} from "./updateDocsShared.js";
 
-export interface Arguments {
+export interface Arguments extends SharedArguments {
   [x: string]: unknown;
-  package: string;
-  version: string;
   historical: boolean;
   dev: boolean;
-  skipDownload: boolean;
-  sphinxArtifactFolder?: string;
 }
 
 const readArgs = (): Arguments => {
-  return yargs(hideBin(process.argv))
-    .version(false)
-    .option("package", {
-      alias: "p",
-      type: "string",
-      choices: Pkg.VALID_NAMES,
-      demandOption: true,
-      description: "Which package to update",
-    })
-    .option("version", {
-      alias: "v",
-      type: "string",
-      demandOption: true,
-      description: "The full version string of the --package, e.g. 0.44.0",
-      coerce: (version) => {
-        if (!isValidVersion(version)) {
-          throw new Error(
-            "The version must include a major, a minor, and a patch. E.g. `-v 0.46.3`",
-          );
-        }
-        return version;
-      },
-    })
+  return addSharedOptions(yargs(hideBin(process.argv)).version(false))
     .option("historical", {
       type: "boolean",
       default: false,
@@ -65,21 +43,7 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Is this a dev release?",
     })
-    .option("skip-download", {
-      type: "boolean",
-      default: false,
-      description:
-        "Rather than downloading the artifact from Box, reuse what is already downloaded. This can save time, but it risks using an outdated version of the docs.",
-    })
-    .option("sphinx-artifact-folder", {
-      alias: "a",
-      type: "string",
-      implies: "skip-download",
-      normalize: true,
-      description:
-        "Skip downloading the artifact from Box and instead use the given directory as the root of the Sphinx HTML output.",
-    })
-    .parseSync();
+    .parseSync() as unknown as Arguments;
 };
 
 export async function generateVersion(
@@ -87,7 +51,11 @@ export async function generateVersion(
   args: Arguments,
 ): Promise<void> {
   const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
-  await deleteExistingFiles(pkg);
+  await deleteOutputDirs(pkg, {
+    markdownDir: pkg.apiOutputDir("docs"),
+    imagesDir: pkg.apiOutputDir("public/docs/images"),
+    recursive: false,
+  });
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
   await runApiDocsPipeline(sphinxArtifactFolder, "docs", "public/docs", pkg);
@@ -110,43 +78,6 @@ export function determineMinorVersion(args: Arguments): string {
   }
 
   return minorVersion;
-}
-
-async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
-  if (args.sphinxArtifactFolder) {
-    if (!(await pathExists(args.sphinxArtifactFolder))) {
-      throw new Error(
-        `Explicit artifact path '${args.sphinxArtifactFolder}' does not exist.`,
-      );
-    }
-    return args.sphinxArtifactFolder;
-  }
-  const sphinxArtifactFolder = pkg.sphinxArtifactFolder();
-  if (
-    args.skipDownload &&
-    (await pathExists(`${sphinxArtifactFolder}/artifact`))
-  ) {
-    console.log(
-      `Skip downloading sources for ${pkg.name}:${pkg.versionWithoutPatch}`,
-    );
-  } else {
-    await downloadSphinxArtifact(pkg, sphinxArtifactFolder);
-  }
-  return `${sphinxArtifactFolder}/artifact`;
-}
-
-async function deleteExistingFiles(pkg: Pkg): Promise<void> {
-  const markdownDir = pkg.apiOutputDir("docs");
-  if (await pathExists(markdownDir)) {
-    await rmFilesInFolder(markdownDir);
-  }
-  const imagesDir = pkg.apiOutputDir("public/docs/images");
-  if (await pathExists(imagesDir)) {
-    await rmFilesInFolder(imagesDir);
-  }
-  console.log(
-    `Deleted existing markdown & images for ${pkg.name}:${pkg.versionWithoutPatch}`,
-  );
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

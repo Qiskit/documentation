@@ -12,69 +12,35 @@
 
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { readFile, writeFile } from "fs/promises";
-
-import { $ } from "zx";
-import { mkdirp } from "mkdirp";
 
 import { Pkg } from "../../lib/api/Pkg.js";
-import { pathExists } from "../../lib/fs.js";
-import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
 import { runAddonDocsPipeline } from "../../lib/api/addonDocsPipeline.js";
 import { zxMain } from "../../lib/zx.js";
-import { isValidVersion, parseMinorVersion } from "../../lib/apiVersions.js";
+import { parseMinorVersion } from "../../lib/apiVersions.js";
+import {
+  addSharedOptions,
+  deleteOutputDirs,
+  prepareSphinxFolder,
+  SharedArguments,
+} from "./updateDocsShared.js";
 
-interface Arguments {
-  package: string;
-  version: string;
-  skipDownload?: boolean;
-  sphinxArtifactFolder?: string;
-}
-
-const readArgs = (): Arguments => {
-  return yargs(hideBin(process.argv))
-    .version(false)
-    .option("package", {
-      alias: "p",
-      type: "string",
-      choices: Pkg.VALID_NAMES,
-      demandOption: true,
-      description: "Which package to update",
-    })
-    .option("version", {
-      alias: "v",
-      type: "string",
-      demandOption: true,
-      description: "The full version string of the --package, e.g. 0.44.0",
-      coerce: (version) => {
-        if (!isValidVersion(version)) {
-          throw new Error(
-            "The version must include a major, a minor, and a patch. E.g. `-v 0.46.3`",
-          );
-        }
-        return version;
-      },
-    })
-    .option("skip-download", {
-      type: "boolean",
-      default: false,
-      description:
-        "Rather than downloading the artifact from Box, reuse what is already downloaded. This can save time, but it risks using an outdated version of the docs.",
-    })
-    .option("sphinx-artifact-folder", {
-      alias: "a",
-      type: "string",
-      implies: "skip-download",
-      normalize: true,
-      description:
-        "Skip downloading the artifact from Box and instead use the given directory as the root of the Sphinx HTML output.",
-    })
-    .parseSync();
+const readArgs = (): SharedArguments => {
+  return addSharedOptions(
+    yargs(hideBin(process.argv)).version(false),
+  ).parseSync() as unknown as SharedArguments;
 };
 
-async function generateVersion(pkg: Pkg, args: Arguments): Promise<void> {
+async function generateVersion(
+  pkg: Pkg,
+  args: SharedArguments,
+): Promise<void> {
   const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
-  await deleteExistingFiles(pkg);
+  await deleteOutputDirs(pkg, {
+    markdownDir: pkg.outputDir("docs/addons"),
+    imagesDir: pkg.outputDir("public/docs/images/addons"),
+    recursive: true,
+    preserveFiles: ["_toc.json"],
+  });
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
   await runAddonDocsPipeline(
@@ -82,52 +48,6 @@ async function generateVersion(pkg: Pkg, args: Arguments): Promise<void> {
     "docs/addons",
     "public/docs",
     pkg,
-  );
-}
-
-async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
-  if (args.sphinxArtifactFolder) {
-    if (!(await pathExists(args.sphinxArtifactFolder))) {
-      throw new Error(
-        `Explicit artifact path '${args.sphinxArtifactFolder}' does not exist.`,
-      );
-    }
-    return args.sphinxArtifactFolder;
-  }
-  const sphinxArtifactFolder = pkg.sphinxArtifactFolder();
-  if (
-    args.skipDownload &&
-    (await pathExists(`${sphinxArtifactFolder}/artifact`))
-  ) {
-    console.log(
-      `Skip downloading sources for ${pkg.name}:${pkg.versionWithoutPatch}`,
-    );
-  } else {
-    await downloadSphinxArtifact(pkg, sphinxArtifactFolder);
-  }
-  return `${sphinxArtifactFolder}/artifact`;
-}
-
-async function deleteExistingFiles(pkg: Pkg): Promise<void> {
-  const markdownDir = pkg.outputDir("docs/addons");
-  if (await pathExists(markdownDir)) {
-    // Preserve the hand-authored _toc.json.
-    const tocPath = `${markdownDir}/_toc.json`;
-    const tocContent = (await pathExists(tocPath))
-      ? await readFile(tocPath, "utf-8")
-      : null;
-    await $`rm -rf ${markdownDir}`;
-    if (tocContent !== null) {
-      await mkdirp(markdownDir);
-      await writeFile(tocPath, tocContent);
-    }
-  }
-  const imagesDir = pkg.outputDir("public/docs/images/addons");
-  if (await pathExists(imagesDir)) {
-    await $`rm -rf ${imagesDir}`;
-  }
-  console.log(
-    `Deleted existing markdown & images for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
 }
 
