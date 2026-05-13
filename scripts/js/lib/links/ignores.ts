@@ -217,6 +217,14 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
 
   // Other links that don't seem to exist any more
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
+
+  // from qiskit-addon-obp
+  "/docs/guides/serverless#qiskit-patterns-with-quantum-serverless",
+  "/docs/addons/qiskit-addon-obp/tutorials/01-getting-started-ipynb",
+  "/docs/addons/qiskit-addon-obp/tutorials/01-getting-started-ipynb",
+  "/docs/api/qiskit/qiskit.circuit.QuantumCircuit#html",
+  "/api/qiskit-ibm-runtime/noise-learner-noise-learner",
+  "/api/qiskit-ibm-runtime/noise-learner-result",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([

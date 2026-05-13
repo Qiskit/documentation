@@ -115,19 +115,31 @@ export async function postProcess(
     allInvs,
   );
 
-  addFrontMatter(results, pkg);
   await dedupeHtmlIdsFromResults(results);
   removeMathBlocksIndentation(results);
+  addFrontMatter(results, pkg);
   return results;
 }
 
 function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
   const apiBase = pkg.apiOutputDir(DOCS_BASE_PATH);
+  const githubIo = `https://qiskit.github.io/${pkg.name}`;
   for (const result of results) {
-    result.markdown = result.markdown.replace(
-      /\]\((?:\.\.\/)*?(apidocs|apidoc|stubs)\/([^)]+)\)/g,
-      `](${apiBase}/$2)`,
-    );
+    result.markdown = result.markdown
+      .replace(
+        /\]\((?:\.\.\/)*?(apidocs|apidoc|stubs)\/([^)]+)\)/g,
+        `](${apiBase}/$2)`,
+      )
+      // Release notes live under the API pipeline's output, even when
+      // referenced from addon guides/tutorials. Catches relative
+      // `release-notes.html`, github.io-absolute, and .html-less forms.
+      .replace(
+        new RegExp(
+          `\\]\\((?:${githubIo}/|(?:\\.\\./)*?)release[_-]notes(?:\\.html)?(#[^)]*)?\\)`,
+          "g",
+        ),
+        `](${apiBase}/release-notes$1)`,
+      );
   }
 }
 
