@@ -77,23 +77,19 @@ export async function convertHtmlToMarkdown(
 
 function extractHtmlFrontmatter(html: string, pkg: Pkg, url: string): string {
   const $ = load(html);
-  const title = $("title").first().text().trim();
+  const h1 = $("h1")
+    .first()
+    .clone()
+    .find("a.headerlink")
+    .remove()
+    .end()
+    .text()
+    .trim();
   const isRootIndex = url.endsWith(`/${pkg.name}/index`);
-  let description: string;
-  if (isRootIndex) {
-    description = `${pkg.title} documentation`;
-  } else {
-    const h1 = $("h1")
-      .first()
-      .clone()
-      .find("a.headerlink")
-      .remove()
-      .end()
-      .text()
-      .trim();
-    description = `${h1} for ${pkg.title}`;
-  }
-  return [`title: "${title}"`, `description: "${description}"`].join("\n");
+  const description = isRootIndex
+    ? `Documentation for the latest version of ${pkg.title}`
+    : `${h1} for the lastest version of ${pkg.title}`;
+  return [`title: "${h1}"`, `description: "${description}"`].join("\n");
 }
 
 /**

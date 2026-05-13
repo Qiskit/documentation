@@ -85,6 +85,7 @@ export async function runAddonDocsPipeline(
     initialNotebooks,
     objectsInv,
     allObjectInvs,
+    pkg,
   );
   await writeNotebooks(pkg, docsBaseFolder, notebooks);
 

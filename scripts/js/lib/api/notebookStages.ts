@@ -56,6 +56,7 @@ export function processNotebooks(
   notebooks: NotebookWithUrl[],
   objectsInv: ObjectsInv,
   allInvs: Map<string, ObjectsInv>,
+  pkg: Pkg,
 ): NotebookWithUrl[] {
   return notebooks.map((notebook) => {
     const processedCells = notebook.cells.map((cell) => {
@@ -66,7 +67,7 @@ export function processNotebooks(
       };
     });
 
-    const frontmatterCell = buildFrontmatterCell(processedCells);
+    const frontmatterCell = buildFrontmatterCell(processedCells, pkg);
     return {
       ...notebook,
       cells: frontmatterCell
@@ -116,7 +117,10 @@ function rewriteNotebookLinks(
   return Array.isArray(source) ? source.map(rewrite) : rewrite(source);
 }
 
-function buildFrontmatterCell(cells: NotebookCell[]): NotebookCell | undefined {
+function buildFrontmatterCell(
+  cells: NotebookCell[],
+  pkg: Pkg,
+): NotebookCell | undefined {
   for (const cell of cells) {
     if (cell.cell_type !== "markdown") continue;
     const text = Array.isArray(cell.source)
@@ -134,7 +138,7 @@ function buildFrontmatterCell(cells: NotebookCell[]): NotebookCell | undefined {
       return {
         id: "frontmatter", // hardcoded so the id doesn't change across runs
         cell_type: "markdown",
-        source: `---\ntitle: "${title}"\n---`,
+        source: `---\ntitle: "${title}"\ndescription: "${title} for the latest version of ${pkg.title}"\n---`,
         metadata: {},
       };
     }
