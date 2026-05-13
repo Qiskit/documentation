@@ -94,10 +94,6 @@ export async function runAddonDocsPipeline(
     pkg.outputDir(`${publicBaseFolder}/images/addons`),
     results,
   );
-  // objects.inv is the package's canonical symbol inventory. It lives under
-  // public/docs/api/{pkg}/ regardless of pipeline — loadPublishedApis,
-  // checkInternalLinks, and lib/links/ignores.ts all expect it there.
-  await objectsInv.write(pkg.apiOutputDir(publicBaseFolder));
 }
 
 async function determineFilePaths(
