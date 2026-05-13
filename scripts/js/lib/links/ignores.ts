@@ -225,6 +225,9 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "/docs/api/qiskit/qiskit.circuit.QuantumCircuit#html",
   "/api/qiskit-ibm-runtime/noise-learner-noise-learner",
   "/api/qiskit-ibm-runtime/noise-learner-result",
+
+  // from qiskit-addon-utils
+  "/docs/addons/samplomatic/guides/samplex-io#qubit-ordering-convention",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([

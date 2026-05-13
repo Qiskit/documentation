@@ -34,6 +34,7 @@ export async function runApiDocsPipeline(
   publicBaseFolder: string,
   pkg: Pkg,
 ) {
+  const allObjectInvs = await ObjectsInv.loadPublishedApis(publicBaseFolder);
   const [files, markdownPath, maybeObjectsInv] = await determineFilePaths(
     artifactPath,
     docsBaseFolder,
@@ -49,7 +50,12 @@ export async function runApiDocsPipeline(
     pkg.apiOutputDir(`${DOCS_BASE_PATH}/images`),
   );
 
-  const results = await postProcess(pkg, initialResults, maybeObjectsInv);
+  const results = await postProcess(
+    pkg,
+    initialResults,
+    maybeObjectsInv,
+    allObjectInvs,
+  );
 
   // Warning: the sequence of operations often matters.
   await writeMarkdownResults(pkg, docsBaseFolder, results);
