@@ -221,7 +221,8 @@ export class ObjectsInv {
   }
 
   /**
-   * Resolve a qiskit.github.io/stubs/<symbol> URL to an internal docs path.
+   * Resolve a qiskit.github.io/{stubs,apidocs,apidoc}/<symbol> URL to an
+   * internal docs path using the package's inventory.
    *
    * Pass allInvs (from loadPublishedApis) for cross-package resolution.
    * Requires updateUris() to have been called on same-package inventory first.
@@ -231,15 +232,24 @@ export class ObjectsInv {
     allObjectInvs?: Map<string, ObjectsInv>,
   ): string | undefined {
     const match = url.match(
-      /^https:\/\/qiskit\.github\.io\/([^/]+)\/stubs\/([^"#)\s]+?)(?:\.html)?(?:#.*)?$/,
+      /^https:\/\/qiskit\.github\.io\/([^/]+)\/(stubs|apidocs|apidoc)\/([^"#)\s]+?)(?:\.html)?(#.*)?$/,
     );
     if (!match) return undefined;
-    const [, pkg, symbol] = match;
+    const [, pkg, kind, symbol, anchor = ""] = match;
     const inv = allObjectInvs?.get(pkg) ?? this;
-    const entry = inv.entries.find((e) => e.name === symbol);
-    if (!entry) return undefined;
-    // Published URIs are relative to the package's API base — prepend full path.
-    return `/docs/api/${pkg}/${entry.uri}`;
+    if (kind === "stubs") {
+      // The entry URI already points at the correct header anchor for the
+      // symbol — the source anchor (if any) is redundant and gets dropped.
+      const entry = inv.entries.find((e) => e.name === symbol);
+      return entry ? `/docs/api/${pkg}/${entry.uri}` : undefined;
+    }
+    // Apidocs URLs reference a whole page; the std:doc entry (keyed
+    // `<kind>/<symbol>`) has the clean page-level URI, and the source anchor
+    // carries through to the rendered page.
+    const entry =
+      inv.entries.find((e) => e.name === `${kind}/${symbol}`) ??
+      inv.entries.find((e) => e.name === symbol);
+    return entry ? `/docs/api/${pkg}/${entry.uri}${anchor}` : undefined;
   }
 
   updateUris(transformLink: (uri: string) => string): void {

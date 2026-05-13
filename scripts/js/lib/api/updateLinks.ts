@@ -185,15 +185,20 @@ export function relativizeLink(link: Link): Link | undefined {
     ["https://docs.quantum-computing.ibm.com/", ""],
     ["https://quantum.cloud.ibm.com/docs", "/docs"],
     ["https://quantum.cloud.ibm.com/learning", "/learning"],
-    ["https://qiskit.github.io/", "/docs/addons"], // todo handle addons prefix
+    ["https://qiskit.github.io/", "/docs/addons"],
   ]);
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
     link.url.startsWith(prefix),
   );
-  // Stubs links are symbol references — leave them for objects.inv resolution.
-  if (!priorPrefix || link.url.includes("/stubs/")) {
+  if (!priorPrefix) return;
+  // github.io stubs/apidocs URLs are looked up via objects.inv by the caller.
+  if (
+    priorPrefix === "https://qiskit.github.io/" &&
+    /\/(stubs|apidocs|apidoc)\//.test(link.url)
+  ) {
     return;
   }
+
   let [url, anchor] = link.url.split("#");
   url = removePrefix(url, priorPrefix);
   url = removeSuffix(url, ".html");
