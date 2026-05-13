@@ -63,25 +63,37 @@ export async function convertHtmlToMarkdown(
     // Skip empty markdown (HTML redirects, etc.).
     if (result.markdown == "") continue;
 
-    if (extractfrontMatter) {
-      // extracts front matter from html source rather than generating it in addFrontMatter.js
-      result.meta.hardcodedFrontmatter = extractHtmlFrontmatter(html);
-    }
-
     const { dir, name } = parse(`${outputPath}/${file}`);
     const url = `/${relative(docsBaseFolder, dir)}/${name}`;
+
+    if (extractfrontMatter) {
+      // extracts front matter from html source rather than generating it in addFrontMatter.js
+      result.meta.hardcodedFrontmatter = extractHtmlFrontmatter(html, pkg, url);
+    }
     results.push({ ...result, url });
   }
   return results;
 }
 
-function extractHtmlFrontmatter(html: string): string {
+function extractHtmlFrontmatter(html: string, pkg: Pkg, url: string): string {
   const $ = load(html);
   const title = $("title").first().text().trim();
-  const description = $('meta[name="description"]').attr("content")?.trim();
-  const lines = [`title: "${title}"`];
-  if (description) lines.push(`description: "${description}"`);
-  return lines.join("\n");
+  const isRootIndex = url.endsWith(`/${pkg.name}/index`);
+  let description: string;
+  if (isRootIndex) {
+    description = `${pkg.title} documentation`;
+  } else {
+    const h1 = $("h1")
+      .first()
+      .clone()
+      .find("a.headerlink")
+      .remove()
+      .end()
+      .text()
+      .trim();
+    description = `${h1} for ${pkg.title}`;
+  }
+  return [`title: "${title}"`, `description: "${description}"`].join("\n");
 }
 
 /**
