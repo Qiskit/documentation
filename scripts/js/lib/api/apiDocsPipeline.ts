@@ -29,32 +29,27 @@ import {
 import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./paths.js";
 
 export async function runApiDocsPipeline(
-  htmlPath: string,
+  artifactPath: string,
   docsBaseFolder: string,
   publicBaseFolder: string,
   pkg: Pkg,
 ) {
   const [files, markdownPath, maybeObjectsInv] = await determineFilePaths(
-    htmlPath,
+    artifactPath,
     docsBaseFolder,
     pkg,
   );
 
   const initialResults = await convertHtmlToMarkdown(
     pkg,
-    htmlPath,
+    artifactPath,
     docsBaseFolder,
     markdownPath,
     files,
     pkg.apiOutputDir(`${DOCS_BASE_PATH}/images`),
-    "api",
   );
 
-  const results = await postProcess(pkg, initialResults, {
-    rewriteApidocsLinks: false,
-    objectsInv: maybeObjectsInv,
-    frontMatter: "api",
-  });
+  const results = await postProcess(pkg, initialResults, maybeObjectsInv);
 
   // Warning: the sequence of operations often matters.
   await writeMarkdownResults(pkg, docsBaseFolder, results);
@@ -64,7 +59,7 @@ export async function runApiDocsPipeline(
   // `api/{pkg}` subtree inside publicBaseFolder.
   await copyImages(
     pkg,
-    htmlPath,
+    artifactPath,
     pkg.apiOutputDir(`${publicBaseFolder}/images`),
     results,
   );

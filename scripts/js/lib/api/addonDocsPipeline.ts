@@ -62,14 +62,15 @@ export async function runAddonDocsPipeline(
     outputPath,
     htmlFiles,
     pkg.outputDir(`${DOCS_BASE_PATH}/images/addons`),
-    "html-meta",
+    true,
   );
-  const results = await postProcess(pkg, initialResults, {
-    rewriteApidocsLinks: true,
+
+  const results = await postProcess(
+    pkg,
+    initialResults,
     objectsInv,
-    allInvs: allObjectInvs,
-    frontMatter: "html-meta",
-  });
+    allObjectInvs,
+  );
   await writeMarkdownResults(pkg, docsBaseFolder, results);
 
   // handle Jupyter notebook files

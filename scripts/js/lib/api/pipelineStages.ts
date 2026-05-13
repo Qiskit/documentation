@@ -37,25 +37,6 @@ import { specialCaseResults } from "./specialCaseResults.js";
 import { sphinxHtmlToMarkdown } from "./htmlToMd.js";
 import { updateLinks } from "./updateLinks.js";
 
-// ---------------------------------------------------------------------------
-// HTML → markdown conversion
-// ---------------------------------------------------------------------------
-
-export type FrontMatterSource = "api" | "html-meta";
-
-/**
- * Convert each HTML file to a markdown result with an internal URL.
- *
- * `imageDestination` is the URL prefix embedded in the rendered `<img src>` of
- * each page (e.g. `/docs/images/api/qiskit` or `/docs/images/addons/qiskit-addon-obp`).
- * Each pipeline chooses the prefix appropriate to where it will copy images.
- *
- * When `frontMatterSource === "html-meta"`, the result's metadata is annotated
- * with `hardcodedFrontmatter` extracted from the HTML `<title>` and
- * `<meta name="description">` tags. This feeds the addon pipeline's frontmatter
- * writer, which emits YAML directly from these values (addon guides/tutorials
- * have no Sphinx-generated metadata to draw from).
- */
 export async function convertHtmlToMarkdown(
   pkg: Pkg,
   artifactPath: string,
@@ -63,7 +44,7 @@ export async function convertHtmlToMarkdown(
   outputPath: string,
   filePaths: string[],
   imageDestination: string,
-  frontMatterSource: FrontMatterSource,
+  extractfrontMatter?: boolean,
 ): Promise<HtmlToMdResultWithUrl[]> {
   const results: HtmlToMdResultWithUrl[] = [];
   for (const file of filePaths) {
@@ -82,7 +63,8 @@ export async function convertHtmlToMarkdown(
     // Skip empty markdown (HTML redirects, etc.).
     if (result.markdown == "") continue;
 
-    if (frontMatterSource === "html-meta") {
+    if (extractfrontMatter) {
+      // extracts front matter from html source rather than generating it in addFrontMatter.js
       result.meta.hardcodedFrontmatter = extractHtmlFrontmatter(html);
     }
 
@@ -102,37 +84,6 @@ function extractHtmlFrontmatter(html: string): string {
   return lines.join("\n");
 }
 
-// ---------------------------------------------------------------------------
-// Post-processing (runs on markdown results after HTML conversion)
-// ---------------------------------------------------------------------------
-
-export interface PostProcessOptions {
-  /**
-   * When true, rewrite markdown links of the form `](apidocs/foo)` (or
-   * `apidoc/`, `stubs/`) into absolute `](/docs/api/{pkg}/foo)` paths before
-   * running updateLinks. Used by the addon pipeline where non-API guides
-   * reference API pages via the Sphinx artifact's relative `apidocs/...`
-   * paths.
-   */
-  rewriteApidocsLinks: boolean;
-
-  /**
-   * Same-package inventory. May be undefined for packages where we
-   * intentionally skip loading the inventory (e.g. problematic legacy Qiskit).
-   */
-  objectsInv: ObjectsInv | undefined;
-
-  /**
-   * Cross-package inventories for resolving `qiskit.github.io/{pkg}/stubs/...`
-   * links to other packages' API docs. Used by the addon pipeline; pass
-   * undefined for pure API runs.
-   */
-  allInvs?: Map<string, ObjectsInv>;
-
-  /** Where the frontmatter should come from when `addFrontMatter` runs. */
-  frontMatter: FrontMatterSource;
-}
-
 /**
  * Apply the shared post-processing pipeline to a set of results.
  * Order is load-bearing — both pipelines call the stages in this sequence.
@@ -140,7 +91,8 @@ export interface PostProcessOptions {
 export async function postProcess(
   pkg: Pkg,
   initialResults: HtmlToMdResultWithUrl[],
-  options: PostProcessOptions,
+  objectsInv: ObjectsInv | undefined,
+  allInvs?: Map<string, ObjectsInv>,
 ): Promise<HtmlToMdResultWithUrl[]> {
   const results = await mergeClassMembers(initialResults);
 
@@ -150,16 +102,7 @@ export async function postProcess(
   });
 
   specialCaseResults(results);
-
-  if (options.rewriteApidocsLinks) {
-    const apiBase = pkg.apiOutputDir(DOCS_BASE_PATH);
-    for (const result of results) {
-      result.markdown = result.markdown.replace(
-        /\]\((?:\.\.\/)*?(apidocs|apidoc|stubs)\/([^)]+)\)/g,
-        `](${apiBase}/$2)`,
-      );
-    }
-  }
+  rewriteApiDocsLinks(results, pkg);
 
   await updateLinks(
     results,
@@ -168,31 +111,23 @@ export async function postProcess(
       pkgName: pkg.name,
       pkgOutputDir: pkg.apiOutputDir(DOCS_BASE_PATH),
     },
-    options.objectsInv,
-    options.allInvs,
+    objectsInv,
+    allInvs,
   );
 
+  addFrontMatter(results, pkg);
   await dedupeHtmlIdsFromResults(results);
-
-  if (options.frontMatter === "api") {
-    addFrontMatter(results, pkg);
-  } else {
-    applyHtmlMetaFrontmatter(results);
-  }
-
   removeMathBlocksIndentation(results);
   return results;
 }
 
-function applyHtmlMetaFrontmatter(results: HtmlToMdResultWithUrl[]): void {
+function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
+  const apiBase = pkg.apiOutputDir(DOCS_BASE_PATH);
   for (const result of results) {
-    const markdown = result.markdown;
-    result.markdown = `---
-${result.meta.hardcodedFrontmatter}
----
-
-${markdown}
-`;
+    result.markdown = result.markdown.replace(
+      /\]\((?:\.\.\/)*?(apidocs|apidoc|stubs)\/([^)]+)\)/g,
+      `](${apiBase}/$2)`,
+    );
   }
 }
 
@@ -210,7 +145,7 @@ export async function writeMarkdownResults(
   pkg: Pkg,
   docsBaseFolder: string,
   results: HtmlToMdResultWithUrl[],
-): Promise<void> {
+) {
   for (const result of results) {
     const path = `${docsBaseFolder}${result.url}.mdx`;
     if (path.endsWith("release-notes.mdx")) {
@@ -236,7 +171,7 @@ export async function copyImages(
   artifactPath: string,
   destFolder: string,
   results: HtmlToMdResultWithUrl[],
-): Promise<void> {
+) {
   console.log("Saving images");
   const allImages = uniqBy(
     results.flatMap((result) => result.images),
