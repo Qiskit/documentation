@@ -30,10 +30,7 @@ const readArgs = (): SharedArguments => {
   ).parseSync() as unknown as SharedArguments;
 };
 
-async function generateVersion(
-  pkg: Pkg,
-  args: SharedArguments,
-): Promise<void> {
+async function generateVersion(pkg: Pkg, args: SharedArguments): Promise<void> {
   const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
   await deleteOutputDirs(pkg, {
     markdownDir: pkg.outputDir("docs/addons"),

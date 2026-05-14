@@ -41,11 +41,7 @@ test("qiskit-addon-smoke addon docs pipeline", async ({}, testInfo) => {
 
   // Seed public/docs/api/<pkg>/objects.inv so that loadPublishedApis()
   // finds a sibling package's inventory for cross-package stub resolution.
-  const seededInvDir = path.join(
-    publicBaseFolder,
-    "api",
-    "qiskit-addon-other",
-  );
+  const seededInvDir = path.join(publicBaseFolder, "api", "qiskit-addon-other");
   await mkdir(seededInvDir, { recursive: true });
   await copyFile(
     path.join(PUBLISHED_APIS_SEED, "api", "qiskit-addon-other", "objects.inv"),
@@ -64,7 +60,12 @@ test("qiskit-addon-smoke addon docs pipeline", async ({}, testInfo) => {
     kebabCaseAndShortenUrls: true,
   });
 
-  await runAddonDocsPipeline(FIXTURE_DIR, docsBaseFolder, publicBaseFolder, pkg);
+  await runAddonDocsPipeline(
+    FIXTURE_DIR,
+    docsBaseFolder,
+    publicBaseFolder,
+    pkg,
+  );
 
   const markdownFolder = pkg.outputDir(docsBaseFolder);
 
@@ -97,8 +98,10 @@ test("qiskit-addon-smoke addon docs pipeline", async ({}, testInfo) => {
   // --- Snapshot of every generated file under the addon output folder ---
 
   const resultFiles = await globby([`${markdownFolder}/**`]);
-  expect(resultFiles.length, "pipeline should generate at least one file")
-    .toBeGreaterThan(0);
+  expect(
+    resultFiles.length,
+    "pipeline should generate at least one file",
+  ).toBeGreaterThan(0);
   for (const file of resultFiles) {
     const contents = await readFile(file, "utf-8");
     const fileName = path.parse(file).name;

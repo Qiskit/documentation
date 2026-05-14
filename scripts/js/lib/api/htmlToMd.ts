@@ -243,9 +243,10 @@ function buildAdmonition(
   handlers: Record<string, Handle>,
 ): MdxJsxFlowElement {
   const titleNode = findNodeWithProperty(node.children, "admonition-title");
-  const children: Array<any> = without(node.children, titleNode ?? undefined).map(
-    (node: any) => toMdast(node, { handlers }),
-  );
+  const children: Array<any> = without(
+    node.children,
+    titleNode ?? undefined,
+  ).map((node: any) => toMdast(node, { handlers }));
 
   let type = "note";
   if (nodeClasses.includes("warning")) {
