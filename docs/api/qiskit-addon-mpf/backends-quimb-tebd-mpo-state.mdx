@@ -9,11 +9,11 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.MPOState
 # MPOState
 
 <Class id="qiskit_addon_mpf.backends.quimb_tebd.MPOState" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_tebd/state.py#L39-L234" signature="MPOState(*args, **kwargs)" modifiers="class">
-  Bases: [`MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d/index.html#quimb.tensor.tensor_1d.MatrixProductOperator), [`State`](backends#state "qiskit_addon_mpf.backends.interface.State")
+  Bases: [`MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_1d/index.html#quimb.tensor.tensor_1d.MatrixProductOperator), [`State`](/docs/api/qiskit-addon-mpf/backends#state "qiskit_addon_mpf.backends.interface.State")
 
   An MPO enforcing the Vidal gauge.
 
-  This specialization of quimb’s existing [`quimb.tensor.MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductOperator) enforces the Vidal gauge throughout its existence. This ensures a stable behavior of the [`DynamicMPF`](dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm when using the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver").
+  This specialization of quimb’s existing [`quimb.tensor.MatrixProductOperator`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.MatrixProductOperator) enforces the Vidal gauge throughout its existence. This ensures a stable behavior of the [`DynamicMPF`](/docs/api/qiskit-addon-mpf/dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm when using the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver").
 
   Initialize a [`MPOState`](#qiskit_addon_mpf.backends.quimb_tebd.MPOState "qiskit_addon_mpf.backends.quimb_tebd.MPOState") instance.
 
@@ -56,7 +56,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_tebd.MPOState
         whether the gate should be applied to the lower (`conj=False`, the default, [`lower_ind()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_arbgeom/index.html#quimb.tensor.tensor_arbgeom.TensorNetworkGenOperator.lower_ind)) or upper (`conj=True`, [`upper_ind()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/tensor_arbgeom/index.html#quimb.tensor.tensor_arbgeom.TensorNetworkGenOperator.upper_ind)) indices of the underlying MPO.
 
             <Admonition title="Note" type="note">
-              This is essentially how the LHS and RHS of the [`DynamicMPF`](dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") are differentiated, by passing their [`Evolver.conjugate`](backends#conjugate "qiskit_addon_mpf.backends.Evolver.conjugate") property to this argument.
+              This is essentially how the LHS and RHS of the [`DynamicMPF`](/docs/api/qiskit-addon-mpf/dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") are differentiated, by passing their [`Evolver.conjugate`](/docs/api/qiskit-addon-mpf/backends#conjugate "qiskit_addon_mpf.backends.Evolver.conjugate") property to this argument.
             </Admonition>
 
     *   **split\_opts** – additional keyword arguments that will be forwarded to the [`quimb.tensor.tensor_split()`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/index.html#quimb.tensor.tensor_split) function. These can be used to affect the truncation of the tensor before it gets contracted back into the MPO.

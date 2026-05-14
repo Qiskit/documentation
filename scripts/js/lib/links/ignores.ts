@@ -228,6 +228,12 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
 
   // from qiskit-addon-utils
   "/docs/addons/samplomatic/guides/samplex-io#qubit-ordering-convention",
+
+  // from qiskit-addon-mpf
+  "/api/qiskit/qiskit.quantum_info.SparsePauliOp",
+  "/api/qiskit/qiskit.transpiler.CouplingMap",
+  "/api/qiskit/qiskit.primitives.StatevectorEstimator",
+  "/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2"
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
