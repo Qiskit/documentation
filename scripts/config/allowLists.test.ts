@@ -29,7 +29,7 @@ test("ignoreTitleMismatch()", async () => {
 
   // Ignore specific guides pages mentioned in allowLists
   // (Test may need updating if the allowlist changes)
-  expect(ignoreTitleMismatch("docs/guides/create-a-provider.mdx")).toEqual(
+  expect(ignoreTitleMismatch("docs/guides/broadcasting.mdx")).toEqual(
     true,
   );
 
