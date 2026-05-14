@@ -59,15 +59,4 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/q-ctrl-performance-management.ipynb", // ok
   "docs/guides/qedma-qesem.ipynb", // ok
   "docs/guides/qiskit-addons-sqd-get-started.ipynb", // ok
-  "docs/tutorials/error-mitigation-with-qiskit-functions.ipynb",
-  "docs/tutorials/fractional-gates.ipynb",
-  "docs/tutorials/global-data-quantum-optimizer.ipynb",
-  "docs/tutorials/krylov-quantum-diagonalization.ipynb",
-  "docs/tutorials/periodic-boundary-conditions-with-circuit-cutting.ipynb",
-  "docs/tutorials/transverse-field-ising-model.ipynb",
-  "docs/tutorials/real-time-benchmarking-for-qubit-selection.ipynb",
-  "docs/tutorials/sample-based-quantum-diagonalization.ipynb",
-  "docs/tutorials/shors-algorithm.ipynb",
-  "docs/tutorials/spin-chain-vqe.ipynb",
-  "docs/tutorials/transpilation-optimizations-with-sabre.ipynb",
 ];
