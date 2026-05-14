@@ -29,9 +29,7 @@ test("ignoreTitleMismatch()", async () => {
 
   // Ignore specific guides pages mentioned in allowLists
   // (Test may need updating if the allowlist changes)
-  expect(ignoreTitleMismatch("docs/guides/broadcasting.mdx")).toEqual(
-    true,
-  );
+  expect(ignoreTitleMismatch("docs/guides/broadcasting.mdx")).toEqual(true);
 
   // Don't ignore guides in general
   expect(ignoreTitleMismatch("docs/guides/example-page.mdx")).toEqual(false);
