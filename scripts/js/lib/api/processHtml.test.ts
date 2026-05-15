@@ -37,15 +37,24 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/logo.png" alt="Logo"><img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images", false, false);
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images",
+      false,
+      false,
+      "subdir/index.html",
+    );
     expect(images).toEqual([
       {
         fileName: "logo.png",
         dest: "/my-images/logo.avif",
+        originSrc: "_static/logo.png",
       },
       {
         fileName: "view-page-source-icon.svg",
         dest: "/my-images/view-page-source-icon.svg",
+        originSrc: "_static/images/view-page-source-icon.svg",
       },
     ]);
     doc.expectHtml(
@@ -57,11 +66,19 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, false);
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images/0.45",
+      true,
+      false,
+      "subdir/release-notes.html",
+    );
     expect(images).toEqual([
       {
         fileName: "view-page-source-icon.svg",
         dest: "/my-images/view-page-source-icon.svg",
+        originSrc: "_static/images/view-page-source-icon.svg",
       },
     ]);
     doc.expectHtml(`<img src="/my-images/view-page-source-icon.svg">`);
@@ -71,11 +88,19 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, true);
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images/0.45",
+      true,
+      true,
+      "subdir/release-notes.html",
+    );
     expect(images).toEqual([
       {
         fileName: "view-page-source-icon.svg",
         dest: "/my-images/0.45/view-page-source-icon.svg",
+        originSrc: "_static/images/view-page-source-icon.svg",
       },
     ]);
     doc.expectHtml(`<img src="/my-images/0.45/view-page-source-icon.svg">`);
@@ -85,16 +110,46 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="https://img.shields.io/github/stars/Qiskit/qiskit-addon-cutting?style=social" alt="Stars"><img src="../_static/logo.png" alt="Logo">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images", false, false);
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images",
+      false,
+      false,
+      "subdir/index.html",
+    );
     expect(images).toEqual([
       {
         fileName: "logo.png",
         dest: "/my-images/logo.avif",
+        originSrc: "_static/logo.png",
       },
     ]);
     doc.expectHtml(
       `<img src="https://img.shields.io/github/stars/Qiskit/qiskit-addon-cutting?style=social" alt="Stars"><img src="/my-images/logo.avif" alt="Logo">`,
     );
+  });
+
+  test("_static image (nbsphinx thumbnail) is resolved from artifact root", () => {
+    const doc = CheerioDoc.load(
+      `<img alt="" src="../_static/nbsphinx-no-thumbnail.svg">`,
+    );
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images",
+      false,
+      false,
+      "how-tos/index.html",
+    );
+    expect(images).toEqual([
+      {
+        fileName: "nbsphinx-no-thumbnail.svg",
+        dest: "/my-images/nbsphinx-no-thumbnail.svg",
+        originSrc: "_static/nbsphinx-no-thumbnail.svg",
+      },
+    ]);
+    doc.expectHtml(`<img alt="" src="/my-images/nbsphinx-no-thumbnail.svg">`);
   });
 });
 

@@ -67,6 +67,7 @@ export async function processHtml(
     imageDestination,
     isReleaseNotes,
     hasSeparateReleaseNotes,
+    fileName,
   );
   if (isReleaseNotes) {
     renameAllH1s($, releaseNotesTitle);
@@ -110,6 +111,7 @@ export function loadImages(
   imageDestination: string,
   isReleaseNotes: boolean,
   hasSeparateReleaseNotes: boolean,
+  htmlFileName: string,
 ): Image[] {
   return $main
     .find("img")
@@ -120,9 +122,16 @@ export function loadImages(
     })
     .map((img) => {
       const $img = $(img);
+      const src = $img.attr("src")!;
 
-      const fileName = $img.attr("src")!.split("/").pop()!;
+      const fileName = src.split("/").pop()!;
       const fileExtension = path.extname(fileName);
+
+      // Resolve the image's path relative to the artifact root so saveImages
+      // can find files in _static/ or other subdirectories, not just _images/.
+      const originSrc = path.normalize(
+        path.join(path.dirname(htmlFileName), src),
+      );
 
       // We convert PNG and JPG to AVIF for reduced file size. The image-copying
       // logic detects changed extensions and converts the files.
@@ -137,7 +146,7 @@ export function loadImages(
       }
 
       $img.attr("src", dest);
-      return { fileName, dest };
+      return { fileName, dest, originSrc };
     });
 }
 

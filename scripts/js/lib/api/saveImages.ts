@@ -51,6 +51,7 @@ export async function saveImages(
   originalImagesFolderPath: string,
   destFolder: string,
   pkg: Pkg,
+  artifactPath?: string,
 ) {
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
@@ -60,7 +61,12 @@ export async function saveImages(
     if (skipReleaseNote(img.fileName, pkg)) {
       return;
     }
-    const source = `${originalImagesFolderPath}/${img.fileName}`;
+    // Prefer the resolved artifact-relative path (covers _static/, etc.),
+    // falling back to the legacy _images/ convention.
+    const source =
+      artifactPath && img.originSrc
+        ? `${artifactPath}/${img.originSrc}`
+        : `${originalImagesFolderPath}/${img.fileName}`;
     // img.dest is set by loadImages() and includes the full image URL prefix
     // (e.g. "/docs/images/api/qiskit/foo.avif"). We only need its basename to
     // place the file inside destFolder.

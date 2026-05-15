@@ -22,6 +22,7 @@ import {
   writeMarkdownResults,
 } from "./pipelineStages.js";
 import {
+  collectNotebookImages,
   processNotebooks,
   readNotebooks,
   writeNotebooks,
@@ -81,11 +82,14 @@ export async function runAddonDocsPipeline(
     outputPath,
     notebookFiles,
   );
+  const imageDestination = pkg.outputDir(`${DOCS_BASE_PATH}/images/addons`);
+  const notebookImages = collectNotebookImages(initialNotebooks, imageDestination);
   const notebooks = processNotebooks(
     initialNotebooks,
     objectsInv,
     allObjectInvs,
     pkg,
+    imageDestination,
   );
   await writeNotebooks(pkg, docsBaseFolder, notebooks);
 
@@ -95,6 +99,7 @@ export async function runAddonDocsPipeline(
     artifactPath,
     pkg.outputDir(`${publicBaseFolder}/images/addons`),
     results,
+    notebookImages,
   );
 }
 

@@ -21,6 +21,7 @@ import { readFile, writeFile } from "fs/promises";
 import { mkdirp } from "mkdirp";
 import { visit, EXIT } from "unist-util-visit";
 
+import { Image } from "./HtmlToMdResult.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
@@ -57,13 +58,19 @@ export function processNotebooks(
   objectsInv: ObjectsInv,
   allInvs: Map<string, ObjectsInv>,
   pkg: Pkg,
+  imageDestination: string,
 ): NotebookWithUrl[] {
   return notebooks.map((notebook) => {
     const processedCells = notebook.cells.map((cell) => {
       if (cell.cell_type !== "markdown") return cell;
       return {
         ...cell,
-        source: rewriteNotebookLinks(cell.source, objectsInv, allInvs),
+        source: rewriteNotebookLinks(
+          cell.source,
+          objectsInv,
+          allInvs,
+          imageDestination,
+        ),
       };
     });
 
@@ -75,6 +82,39 @@ export function processNotebooks(
         : processedCells,
     };
   });
+}
+
+/**
+ * Extract images referenced in notebook markdown cells as `Image` objects
+ * so they can be passed to `copyImages` alongside HTML-derived images.
+ */
+export function collectNotebookImages(
+  notebooks: NotebookWithUrl[],
+  imageDestination: string,
+): Image[] {
+  const seen = new Set<string>();
+  const images: Image[] = [];
+  for (const notebook of notebooks) {
+    for (const cell of notebook.cells) {
+      if (cell.cell_type !== "markdown") continue;
+      const text = Array.isArray(cell.source)
+        ? cell.source.join("")
+        : cell.source;
+      for (const match of text.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)) {
+        const src = match[1];
+        if (src.startsWith("http://") || src.startsWith("https://")) continue;
+        const fileName = src.split("/").pop()!;
+        if (seen.has(fileName)) continue;
+        seen.add(fileName);
+        images.push({
+          fileName,
+          dest: `${imageDestination}/${fileName}`,
+          originSrc: `_images/${fileName}`,
+        });
+      }
+    }
+  }
+  return images;
 }
 
 export async function writeNotebooks(
@@ -103,9 +143,13 @@ function rewriteNotebookLinks(
   source: string | string[],
   objectsInv: ObjectsInv,
   allInvs: Map<string, ObjectsInv>,
+  imageDestination: string,
 ): string | string[] {
   const rewrite = (line: string) => {
-    return line.replace(/\[([^\]]*)\]\(([^)]+)\)/g, (_match, text, url) => {
+    return line.replace(/(!?)\[([^\]]*)\]\(([^)]+)\)/g, (_match, bang, text, url) => {
+      if (bang === "!") {
+        return `![${text}](${rewriteNotebookImageSrc(url, imageDestination)})`;
+      }
       const relativized = relativizeLink({ url, text });
       if (relativized) url = relativized.url;
       const stub = objectsInv.resolveStubUrl(url, allInvs);
@@ -115,6 +159,15 @@ function rewriteNotebookLinks(
   };
 
   return Array.isArray(source) ? source.map(rewrite) : rewrite(source);
+}
+
+/**
+ * Rewrite Sphinx artifact-relative image paths (e.g. `../_static/images/foo.png`)
+ * to the public docs image destination. External URLs are left unchanged.
+ */
+function rewriteNotebookImageSrc(src: string, imageDestination: string): string {
+  if (src.startsWith("http://") || src.startsWith("https://")) return src;
+  return `${imageDestination}/${src.split("/").pop()!}`;
 }
 
 function buildFrontmatterCell(

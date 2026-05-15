@@ -22,7 +22,7 @@ import { load } from "cheerio";
 import { mkdirp } from "mkdirp";
 import { uniqBy } from "lodash-es";
 
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { Image, HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
 import addFrontMatter from "./addFrontMatter.js";
@@ -191,11 +191,12 @@ export async function copyImages(
   artifactPath: string,
   destFolder: string,
   results: HtmlToMdResultWithUrl[],
+  extraImages: Image[] = [],
 ) {
   console.log("Saving images");
   const allImages = uniqBy(
-    results.flatMap((result) => result.images),
+    [...results.flatMap((result) => result.images), ...extraImages],
     (image) => image.fileName,
   );
-  await saveImages(allImages, `${artifactPath}/_images`, destFolder, pkg);
+  await saveImages(allImages, `${artifactPath}/_images`, destFolder, pkg, artifactPath);
 }
