@@ -268,7 +268,7 @@ export async function updateLinks(
           });
 
           if (relativizedLink) {
-            node.url = relativizedLink.url;
+            node.url = transformSpecialCaseUrl(relativizedLink.url);
             if (textNode && relativizedLink.text) {
               textNode.value = relativizedLink.text;
             }

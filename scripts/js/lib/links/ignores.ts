@@ -233,7 +233,15 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "/api/qiskit/qiskit.quantum_info.SparsePauliOp",
   "/api/qiskit/qiskit.transpiler.CouplingMap",
   "/api/qiskit/qiskit.primitives.StatevectorEstimator",
-  "/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2"
+  "/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2",
+
+  // from qiskit-addon-sqd
+  "/docs/en/tutorials/sample-based-krylov-quantum-diagonalization",
+  "/docs/en/tutorials/sample-based-quantum-diagonalization",
+  "/docs/guides/get-started-with-primitives#get-started-with-sampler",
+  "/docs/api/qiskit/transpiler_preset#generate_preset_pass_manager",
+  "../apidocs/qiskit_addon_sqd.fermion.rst#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian",
+
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
