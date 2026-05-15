@@ -80,6 +80,22 @@ test.describe("loadImages()", () => {
     ]);
     doc.expectHtml(`<img src="/my-images/0.45/view-page-source-icon.svg">`);
   });
+
+  test("external image URLs are not rewritten", () => {
+    const doc = CheerioDoc.load(
+      `<img src="https://img.shields.io/github/stars/Qiskit/qiskit-addon-cutting?style=social" alt="Stars"><img src="../_static/logo.png" alt="Logo">`,
+    );
+    const images = loadImages(doc.$, doc.$main, "/my-images", false, false);
+    expect(images).toEqual([
+      {
+        fileName: "logo.png",
+        dest: "/my-images/logo.avif",
+      },
+    ]);
+    doc.expectHtml(
+      `<img src="https://img.shields.io/github/stars/Qiskit/qiskit-addon-cutting?style=social" alt="Stars"><img src="/my-images/logo.avif" alt="Logo">`,
+    );
+  });
 });
 
 test("handleSphinxDesignCards()", () => {
