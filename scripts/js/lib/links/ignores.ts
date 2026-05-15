@@ -242,6 +242,17 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "/docs/api/qiskit/transpiler_preset#generate_preset_pass_manager",
   "../apidocs/qiskit_addon_sqd.fermion.rst#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian",
 
+  // from qiskit-addon-cutting
+  "how-tos/how-to-specify-cut-wires",
+  "/circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
+  "/docs/start/install#operating-system-support",
+  "../tutorials/03_wire_cutting_via_move_instruction.ipynb",
+  "/guides/intro-to-patterns",
+  "../how-tos/how_to_specify_cut_wires.ipynb",
+  "../explanation/index.rst",
+  "#equation-eq-qpd",
+  "./circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
+  "../tutorials/01_gate_cutting_to_reduce_circuit_width.ipynb"
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
