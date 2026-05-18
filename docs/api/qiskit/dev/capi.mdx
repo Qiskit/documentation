@@ -32,7 +32,7 @@ The Python package [`qiskit`](index#module-qiskit "qiskit") contains all of the 
 
 ### get\_include
 
-<Function id="qiskit.capi.get_include" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/capi/__init__.py#L51-L69" signature="qiskit.capi.get_include()">
+<Function id="qiskit.capi.get_include" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/capi/__init__.py#L101-L119" signature="qiskit.capi.get_include()">
   Get the directory containing the `qiskit.h` C header file and the internal `qiskit/*.h` auxiliary files.
 
   When using Qiskit as a build dependency, you typically want to include this directory on the include search path of your compiler, such as:
@@ -55,7 +55,7 @@ The Python package [`qiskit`](index#module-qiskit "qiskit") contains all of the 
 
 ### get\_lib
 
-<Function id="qiskit.capi.get_lib" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/capi/__init__.py#L72-L90" signature="qiskit.capi.get_lib()">
+<Function id="qiskit.capi.get_lib" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/capi/__init__.py#L122-L140" signature="qiskit.capi.get_lib()">
   Get the path to a shared-object library that contains all the C-API exported symbols.
 
   <Admonition title="Warning" type="caution">
@@ -74,4 +74,32 @@ The Python package [`qiskit`](index#module-qiskit "qiskit") contains all of the 
 
   [str](https://docs.python.org/3/library/stdtypes.html#str)
 </Function>
+
+## Native bindings to the C API
+
+Additionally, this module contains [`ctypes`](https://docs.python.org/3/library/ctypes.html#module-ctypes) bindings to all Qiskit C API types and functions. These are available as module attributes on [`qiskit.capi`](#module-qiskit.capi "qiskit.capi") with the same name as they have in the C API. For example, `qiskit.capi.qk_circuit_new` corresponds to [`qk_circuit_new()`](/docs/api/qiskit-c/dev/qk-circuit#qk_circuit_new "qk_circuit_new").
+
+### qiskit.capi.LIB
+
+<Attribute id="qiskit.capi.LIB" attributeTypeHint="ctypes.PyDLL">
+  A [`ctypes`](https://docs.python.org/3/library/ctypes.html#module-ctypes) wrapper around the library containing the Qiskit C API.
+
+  This is provided for completeness, though you can access all the functions, structs and enumerations directly from the [`qiskit.capi`](#module-qiskit.capi "qiskit.capi") module object.
+</Attribute>
+
+### Structs
+
+Concrete `struct` types used in the C API are declared as corresponding [`ctypes.Structure`](https://docs.python.org/3/library/ctypes.html#ctypes.Structure) types with a complete [`_fields_`](https://docs.python.org/3/library/ctypes.html#ctypes.Structure._fields_) attribute. These can be instantiated and inspected directly.
+
+Opaque pointers are represented by a [`ctypes.Structure`](https://docs.python.org/3/library/ctypes.html#ctypes.Structure) type with no [`_fields_`](https://docs.python.org/3/library/ctypes.html#ctypes.Structure._fields_) attribute set, and cannot be instantiated. They are typically returned from functions wrapped in a `ctypes.POINTER` type wrapper.
+
+### Enums
+
+In places where the C API has an enumeration, this module declares a Python [`enum.Enum`](https://docs.python.org/3/library/enum.html#enum.Enum) whose values are a corresponding [`ctypes`](https://docs.python.org/3/library/ctypes.html#module-ctypes) primitive integer type. The Python-space [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum) type object is still a wrapping Python object, so [`ctypes`](https://docs.python.org/3/library/ctypes.html#module-ctypes) functions that return an enumeration will return the raw numeric value, not the value in the [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum). The Python-space [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum) objects are declared for convenience in constructing calls.
+
+### Functions
+
+All the public library functions in the Qiskit C API are fully typed, and re-exported in the module root with the same name as they have in C. You can also access the functions from [`LIB`](#qiskit.capi.LIB "qiskit.capi.LIB"), if you prefer.
+
+Note that header-only functions, such as [`qk_import()`](/docs/api/qiskit-c/dev/config#qk_import "qk_import"), are not exported because they are not part of the C API library object.
 
