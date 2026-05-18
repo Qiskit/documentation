@@ -38,9 +38,11 @@ This guide assumes you have a local clone of Qiskit/documentation, Node 18+ (via
 6. Move any images to `/public/learning/images/courses/<your-course-name>/`:
 
    - If the images are not `.avif` or `.svg`, you must convert them to `.avif` or `.svg`. Use [ImageMagick](https://imagemagick.org/index.php) for this. You should be able to run `magick path/to/file.png path/to/file.svg` then delete the original file.
-   - If the images are attachments in the notebook, you'll need to extract them to separate files. Speak to @kaelynj  if you have any questions.
+   - If the images are attachments in the notebook, you'll need to extract them to separate files. Speak to @kaelynj if you have any questions.
    - With the image files in the correct place, update the markdown to point to the new images, leaving off the `public` part of the path. For example, if your file lives in `public/docs/learning/images/courses/my-course/image.avif`, then your markdown should be:
-     
+
+     ```
+
      ```
 
 7. Remove any HTML from the notebooks other than our [supported MDX components](https://github.com/Qiskit/documentation/blob/main/mdx-guide.md). If you need some functionality not supported by the allowed components, let us know and we can help find a solution.
