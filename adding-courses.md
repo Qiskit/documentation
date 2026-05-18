@@ -4,16 +4,16 @@ This guide walks through the full process of adding a course to the documentatio
 
 This guide assumes you have a local clone of Qiskit/documentation, Node 18+ (via [NVM](https://github.com/nvm-sh/nvm)), [tox](https://pipx.pypa.io/stable/) (via pipx), and [Rancher Desktop](https://rancherdesktop.io/) installed.
 
-1. Make a new folder for the course under `/learning/courses`. The name of this folder will be the slug of the course on the website. For example, `/learning/courses/my-course` will have the URL https://quantum.cloud.ibm.com/learning/my-course.
+1. Make a new folder for the course under `/learning/courses`. The name of this folder will be the slug of the course on the website. For example, `/learning/courses/my-course` will have the URL https://quantum.cloud.ibm.com/learning/courses/my-course.
 
 2. Add your notebooks to this folder.
 
    > :warning: **Warning:**
    > Make sure there are no capital letters in your filenames before you commit them.
 
-3. Name each notebook so the filename matches the slug that page should have on the website. For example, `/learning/courses/my-course/my-file.ipynb` will have the URL https://quantum.cloud.ibm.com/learning/my-course/my-file.
+3. Name each notebook so the filename matches the slug that page should have on the website. For example, `/learning/courses/my-course/my-file.ipynb` will have the URL https://quantum.cloud.ibm.com/learning/courses/my-course/my-file.
 
-4. Add the `title` and `description` to the first markdown cell of each notebook using frontmatter format, followed by a top-level heading:
+4. Add the `title` and `description` to the first markdown cell of each notebook using frontmatter format, followed by a top-level heading (see more info about formatting metadata [here](https://github.com/Qiskit/documentation/blob/main/mdx-guide.md#page-metadata), including min/max number of characters, and what types of characters will break the metadata (e.g., no colons)):
 
    ```
    ---
@@ -37,11 +37,10 @@ This guide assumes you have a local clone of Qiskit/documentation, Node 18+ (via
 
 6. Move any images to `/public/learning/images/courses/<your-course-name>/`:
 
-   - If the images are not `.avif` or `.svg`, you must convert them to `.avif`. Use [ImageMagick](https://imagemagick.org/index.php) for this. You should be able to run `magick path/to/file.png path/to/file.avif` then delete the original file.
-   - If the images are attachments in the notebook, you'll need to extract them to separate files. Speak to @Frank if you have any questions.
-   - With the image files in the correct place, update the markdown to point to the new images, leaving off the `public` part of the path. For example, if your file lives in `public/learning/images/courses/my-course/image.avif`, then your markdown should be:
-     ```markdown
-     ![alt-text](/learning/images/courses/my-course/image.avif)
+   - If the images are not `.avif` or `.svg`, you must convert them to `.avif` or `.svg`. Use [ImageMagick](https://imagemagick.org/index.php) for this. You should be able to run `magick path/to/file.png path/to/file.svg` then delete the original file.
+   - If the images are attachments in the notebook, you'll need to extract them to separate files. Speak to @kaelynj  if you have any questions.
+   - With the image files in the correct place, update the markdown to point to the new images, leaving off the `public` part of the path. For example, if your file lives in `public/docs/learning/images/courses/my-course/image.avif`, then your markdown should be:
+     
      ```
 
 7. Remove any HTML from the notebooks other than our [supported MDX components](https://github.com/Qiskit/documentation/blob/main/mdx-guide.md). If you need some functionality not supported by the allowed components, let us know and we can help find a solution.
@@ -89,6 +88,6 @@ This guide assumes you have a local clone of Qiskit/documentation, Node 18+ (via
 
 15. Run `./check`. This will verify you've done everything correctly so far. It'll also run the spellcheck — follow the instructions from the spellchecker to fix all spelling problems.
 
-16. With all the checks complete, start up the local preview by opening Rancher Desktop, then running `./start` in your terminal. Find your course and visit each page, checking carefully that everything is displaying correctly. If any pages crash (500 error), it's usually due to HTML in the notebook. If you can't work out why a page is crashing, speak to @Frank and he'll help you debug it.
+16. With all the checks complete, start up the local preview by opening Rancher Desktop, then running `./start` in your terminal. Find your course and visit each page, checking carefully that everything is displaying correctly. If any pages crash (500 error), it's usually due to HTML in the notebook. If you can't work out why a page is crashing, speak to someone on the content team to help you debug it.
 
 17. Run `./fix` and `./check` again to make sure everything still works. If so, you can push your changes and make a pull request! 🎉
