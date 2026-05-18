@@ -116,36 +116,18 @@ export interface DeleteOptions {
    * files (so sibling historical-version subfolders are preserved).
    */
   recursive: boolean;
-  /**
-   * Filenames under `markdownDir` to read into memory before deletion and
-   * restore after. Used to keep a hand-authored `_toc.json`.
-   */
-  preserveFiles?: string[];
 }
 
 /** Wipe output directories in preparation for a fresh pipeline run. */
 export async function deleteOutputDirs(
   pkg: Pkg,
-  { markdownDir, imagesDir, recursive, preserveFiles = [] }: DeleteOptions,
+  { markdownDir, imagesDir, recursive }: DeleteOptions,
 ): Promise<void> {
   if (await pathExists(markdownDir)) {
-    const preserved: Array<[string, string]> = [];
-    for (const name of preserveFiles) {
-      const path = `${markdownDir}/${name}`;
-      if (await pathExists(path)) {
-        preserved.push([name, await readFile(path, "utf-8")]);
-      }
-    }
     if (recursive) {
       await $`rm -rf ${markdownDir}`;
     } else {
       await rmFilesInFolder(markdownDir);
-    }
-    if (preserved.length > 0) {
-      await mkdirp(markdownDir);
-      for (const [name, content] of preserved) {
-        await writeFile(`${markdownDir}/${name}`, content);
-      }
     }
   }
   if (await pathExists(imagesDir)) {

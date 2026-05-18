@@ -1,0 +1,216 @@
+// This code is a Qiskit project.
+//
+// (C) Copyright IBM 2026.
+//
+// This code is licensed under the Apache License, Version 2.0. You may
+// obtain a copy of this license in the LICENSE file in the root directory
+// of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+//
+// Any modifications or derivative works of this code must retain this
+// copyright notice, and modified files need to carry a notice indicating
+// that they have been altered from the originals.
+
+import { readFile } from "fs/promises";
+import { join } from "path/posix";
+
+import { globby } from "globby";
+
+import { Pkg } from "./Pkg.js";
+import { TocEntry } from "./generateToc.js";
+import { DOCS_BASE_PATH } from "./paths.js";
+import { capitalize } from "lodash-es";
+
+// Subdirectories that become their own top-level TOC sections rather than
+// being nested inside the main (unlabeled) section.
+const TOP_LEVEL_SECTIONS = new Set(["tutorials"]);
+
+// labels for known subdirectory names.
+const DIR_LABELS: Record<string, string> = {
+  "how-tos": "Guides",
+};
+
+type AddonTocSection = TocEntry & { collapsible?: boolean };
+
+type AddonToc = {
+  parentUrl: string;
+  parentLabel: string;
+  title: string;
+  collapsed: true;
+  children: AddonTocSection[];
+};
+
+export async function generateAddonToc(
+  pkg: Pkg,
+  docsBaseFolder: string,
+): Promise<AddonToc> {
+  const addonDocsPath = pkg.outputDir(docsBaseFolder);
+  const addonUrlBase = `${DOCS_BASE_PATH}/addons/${pkg.name}`;
+
+  // Discover top-level content files (e.g. index.mdx, install.mdx).
+  const topLevelFiles = await globby(["*.mdx", "*.ipynb"], {
+    cwd: addonDocsPath,
+  });
+
+  // Discover top-level subdirectories that contain content.
+  const subdirNames = await globby(["*/"], {
+    cwd: addonDocsPath,
+    onlyDirectories: true,
+  }).then((dirs) => dirs.map((d) => d.replace(/\/$/, "")).sort());
+
+  const mainChildren: TocEntry[] = [];
+  const topLevelSections: AddonTocSection[] = [];
+
+  // Top-level files → entries in the main section, in filename order.
+  for (const file of topLevelFiles.sort()) {
+    const slug = file.replace(/\.(mdx|ipynb)$/, "");
+    const url =
+      slug === "index" ? addonUrlBase : `${addonUrlBase}/${slug}`;
+    const title =
+      slug === "index" ? "Home" : await readTitle(join(addonDocsPath, file));
+    mainChildren.push({ title, url });
+  }
+
+  // Subdirectories → either nested subsections or top-level sections.
+  for (const dir of subdirNames) {
+    const entry = await buildSubdirEntry(dir, addonDocsPath, addonUrlBase);
+    if (!entry) continue;
+
+    if (TOP_LEVEL_SECTIONS.has(dir)) {
+      topLevelSections.push({ ...entry, collapsible: false });
+    } else {
+      mainChildren.push(entry);
+    }
+  }
+
+  if (pkg.githubSlug) {
+    mainChildren.push({
+      title: "GitHub",
+      url: `https://github.com/${pkg.githubSlug}`,
+    });
+  }
+
+  const mainSection: AddonTocSection = {
+    title: "",
+    children: mainChildren,
+    collapsible: false,
+  };
+
+  topLevelSections.push({
+    title: "API reference",
+    collapsible: false,
+    children: [
+      {
+        title: `${pkg.title} API reference`,
+        url: `${DOCS_BASE_PATH}/api/${pkg.name}`,
+      },
+    ],
+  });
+
+  return {
+    parentUrl: "/docs/guides/addons",
+    parentLabel: "Documentation",
+    title: `${pkg.title} ${pkg.version}`,
+    collapsed: true,
+    children: [mainSection, ...topLevelSections],
+  };
+}
+
+/**
+ * Builds a TocEntry for a subdirectory.
+ *
+ * The section title uses the known label for the directory name, or falls back
+ * to a capitalized version of the directory name. Content files (non-index)
+ * become children, sorted by filename, with titles read from their h1 headings.
+ * If an index.mdx exists, the section entry gets a url pointing to it.
+ * Returns undefined if the directory has no content.
+ */
+async function buildSubdirEntry(
+  dirName: string,
+  addonDocsPath: string,
+  addonUrlBase: string,
+): Promise<TocEntry | undefined> {
+  const dirPath = join(addonDocsPath, dirName);
+  const files = await globby(["*.mdx", "*.ipynb"], { cwd: dirPath }).catch(
+    (): string[] => [],
+  );
+  if (files.length === 0) return undefined;
+
+  const hasIndex = files.includes("index.mdx");
+  const contentFiles = files.filter((f) => f !== "index.mdx").sort();
+
+  const sectionTitle = DIR_LABELS[dirName] ?? capitalize(dirName);
+
+  const children: TocEntry[] = await Promise.all(
+    contentFiles.map(async (file) => {
+      const slug = file.replace(/\.(mdx|ipynb)$/, "");
+      const title = await readTitle(join(dirPath, file));
+      return { title, url: `${addonUrlBase}/${dirName}/${slug}` };
+    }),
+  );
+
+  // When only an index page exists, include it as a child so the section
+  // always renders as a dropdown rather than a bare link.
+  if (hasIndex && children.length === 0) {
+    const title = await readTitle(join(dirPath, "index.mdx"));
+    children.push({ title, url: `${addonUrlBase}/${dirName}/index` });
+  }
+
+  const entry: TocEntry = { title: sectionTitle, children };
+  if (hasIndex && contentFiles.length > 0) {
+    entry.url = `${addonUrlBase}/${dirName}/index`;
+  }
+  return entry;
+}
+
+/**
+ * Reads the first h1 (or h2 as fallback) from an .mdx or .ipynb file.
+ * Falls back to the filename stem if no heading is found.
+ */
+async function readTitle(filePath: string): Promise<string> {
+  const content = await readFile(filePath, "utf-8");
+
+  if (filePath.endsWith(".ipynb")) {
+    return readNotebookTitle(content, filePath);
+  }
+  return readMdxTitle(content, filePath);
+}
+
+function readMdxTitle(content: string, filePath: string): string {
+  const withoutFrontmatter = content.replace(/^---\n[\s\S]*?\n---\n/, "");
+  // Try h1 first, fall back to h2.
+  const h1 = withoutFrontmatter.match(/^#\s+(.+)$/m);
+  if (h1) return h1[1].trim();
+  const h2 = withoutFrontmatter.match(/^##\s+(.+)$/m);
+  if (h2) return h2[1].trim();
+  return fileBasename(filePath);
+}
+
+function readNotebookTitle(content: string, filePath: string): string {
+  let notebook: { cells: Array<{ id?: string; cell_type: string; source: string[] }> };
+  try {
+    notebook = JSON.parse(content);
+  } catch {
+    return fileBasename(filePath);
+  }
+
+  for (const cell of notebook.cells) {
+    if (cell.cell_type !== "markdown") continue;
+    // Skip the frontmatter cell.
+    if (cell.id === "frontmatter") continue;
+
+    const src = Array.isArray(cell.source)
+      ? cell.source.join("")
+      : String(cell.source);
+
+    const h1 = src.match(/^#\s+(.+)$/m);
+    if (h1) return h1[1].trim();
+    const h2 = src.match(/^##\s+(.+)$/m);
+    if (h2) return h2[1].trim();
+  }
+
+  return fileBasename(filePath);
+}
+
+function fileBasename(filePath: string): string {
+  return filePath.split("/").pop()?.replace(/\.(mdx|ipynb)$/, "") ?? filePath;
+}

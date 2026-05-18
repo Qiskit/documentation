@@ -36,7 +36,6 @@ async function generateVersion(pkg: Pkg, args: SharedArguments): Promise<void> {
     markdownDir: pkg.outputDir("docs/addons"),
     imagesDir: pkg.outputDir("public/docs/images/addons"),
     recursive: true,
-    preserveFiles: ["_toc.json"],
   });
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);

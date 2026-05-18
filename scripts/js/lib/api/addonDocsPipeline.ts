@@ -10,6 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import { writeFile } from "fs/promises";
+
 import { globby } from "globby";
 import { mkdirp } from "mkdirp";
 
@@ -28,6 +30,7 @@ import {
   writeNotebooks,
 } from "./notebookStages.js";
 import { DOCS_BASE_PATH } from "./paths.js";
+import { generateAddonToc } from "./generateAddonToc.js";
 
 // Sphinx build artifacts that are never content.
 const SPHINX_INTERNALS = [
@@ -100,6 +103,21 @@ export async function runAddonDocsPipeline(
     pkg.outputDir(`${publicBaseFolder}/images/addons`),
     results,
     notebookImages,
+  );
+
+  await writeTocFile(pkg, docsBaseFolder, outputPath);
+}
+
+async function writeTocFile(
+  pkg: Pkg,
+  docsBaseFolder: string,
+  outputPath: string,
+): Promise<void> {
+  console.log("Generating addon toc");
+  const toc = await generateAddonToc(pkg, docsBaseFolder);
+  await writeFile(
+    `${outputPath}/_toc.json`,
+    JSON.stringify(toc, null, 2) + "\n",
   );
 }
 
