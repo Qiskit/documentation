@@ -57,6 +57,19 @@ function lowerCaseIfMarkdownAnchor(url: string): string {
   return `${base}#${newAnchor}`;
 }
 
+function hasDefinitionAncestor(node: any): boolean {
+  let current = node.parent;
+
+  while (current) {
+    if (current.type === "definition") {
+      return true;
+    }
+    current = current.parent;
+  }
+
+  return false;
+}
+
 export function normalizeUrl(
   url: string,
   resultsByName: { [key: string]: HtmlToMdResultWithUrl },
@@ -210,21 +223,38 @@ export async function updateLinks(
       .use(remarkGfm)
       .use(remarkMdx)
       .use(() => async (tree: Root) => {
+        function isBracketedLiteralLink(textNode?: { value?: string }) {
+          if (!textNode?.value) {
+            return false;
+          }
+
+          const value = textNode.value.trim();
+          return value.startsWith("[") && value.endsWith("]");
+        }
+
         visit(tree, "link", (node) => {
           const textNode =
             node.children?.[0]?.type === "text"
               ? node.children?.[0]
               : undefined;
+
+          // ✅ NEW: Skip external links inside reference definitions
+          if (/^https?:\/\//.test(node.url) && hasDefinitionAncestor(node)) {
+            return;
+          }
+
           const relativizedLink = relativizeLink({
             url: node.url,
             text: textNode?.value,
           });
+
           if (relativizedLink) {
             node.url = relativizedLink.url;
             if (textNode && relativizedLink.text) {
               textNode.value = relativizedLink.text;
             }
           }
+
           node.url = normalizeUrl(node.url, resultsByName, itemNames, kwargs);
         });
       })

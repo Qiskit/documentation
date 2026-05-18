@@ -97,6 +97,25 @@ This method can accommodate a hierarchical structure. That is, it can align to h
 
 The steps of this guide can be automated for consistent and repeatable management of users, projects, and the mapping between those. Refer to the [Terraform IBM Cloud&reg; Provider documentation](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs) for templates.
 
+You can use Terraform to set allocation and limits, as well as restrict backend access for `quantum-computing` service instances. See the [Getting started with Terraform on IBM Cloud](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-getting-started) for more information.
+
+Example:
+
+```terraform
+resource "ibm_resource_instance" "instance1" {
+  name       = "name"
+  service    = "quantum-computing"
+  plan       = "premium"
+  location   = "us-east"
+  parameters = {
+    usage_allocation_seconds = "10" # Mandatory
+    usage_limit_seconds      = "20" # Optional. If omitted, it can
+            # continue using time after reaching the allocation
+    backends                 = ["ibm_brisbane"] # Optional
+  }
+}
+```
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">

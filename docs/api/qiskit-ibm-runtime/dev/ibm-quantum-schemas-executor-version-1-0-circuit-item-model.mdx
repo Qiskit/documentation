@@ -1,0 +1,50 @@
+---
+title: CircuitItemModel (dev version)
+description: API reference for ibm_quantum_schemas.executor.version_1_0.CircuitItemModel in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.executor.version_1_0.CircuitItemModel
+---
+
+<span id="ibm-quantum-schemas-executor-version-1-0-circuititemmodel" />
+
+# CircuitItemModel
+
+<Class id="ibm_quantum_schemas.executor.version_1_0.CircuitItemModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.7.20260419/ibm_quantum_schemas/executor/version_1_0/models.py#L93-L123" signature="CircuitItemModel" modifiers="pydantic model">
+  Bases: `BaseModel`
+
+  Execution specifications for a single quantum circuit.
+
+  The circuit for each item is store separately in `QuantumProgramModel`.
+
+  ### chunk\_size
+
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.CircuitItemModel.chunk_size" attributeTypeHint="Annotated[int, Field(ge" attributeValue="1)] | Literal['auto'] = 'auto'" modifiers="field">
+    The maximum number circuit arguments to bind to the circuit per shot loop.
+
+    When `"auto"`, the number is chosen server-side with heuristics designed to optimize execution speed. A quantum program must have items where either all chunk sizes are integer-valued, or all chunk sizes are `"auto"`. Integer values are only allowed inside of session exection mode.
+  </Attribute>
+
+  ### circuit\_arguments
+
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.CircuitItemModel.circuit_arguments" attributeTypeHint="F64TensorModel [Required]" modifiers="field">
+    Arguments to the parameters of the circuit.
+
+    The last axis is over `circuit.parameters`. Execution broadcasts over the preceding axes; expect one result per element of the leading shape.
+  </Attribute>
+
+  ### item\_type
+
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.CircuitItemModel.item_type" attributeTypeHint="Literal['circuit']" attributeValue="'circuit'" modifiers="field">
+    The type of quantum program item.
+  </Attribute>
+
+  ### shape
+
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.CircuitItemModel.shape" attributeTypeHint="list[int] [Required]" modifiers="field">
+    The shape of this item.
+
+    This shape must extend (via broadcasting) the implicit shape of the :attr:\~circuit\_arguments\`. The non-trivial axes it introduces represent replications.
+  </Attribute>
+</Class>
+
