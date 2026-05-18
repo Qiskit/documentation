@@ -34,7 +34,7 @@ in_page_toc_max_heading_level: 2
 
 ### Bug Fixes
 
-*   This adds a workaround for an issue sometimes encountered when calling [`TwoQubitWeylDecomposition`](/docs/api/qiskit/qiskit.synthesis.TwoQubitWeylDecomposition) inside [`generate_ansatz_from_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"). Sometimes an error is thrown despite the input matrix being unitary to numerical precision, and returning ``is_unitary()`()`` as `True`. This is an ongoing issue in qiskit, see [https://github.com/Qiskit/qiskit/issues/4159](https://github.com/Qiskit/qiskit/issues/4159) for more details.
+*   This adds a workaround for an issue sometimes encountered when calling [`TwoQubitWeylDecomposition`](/docs/api/qiskit/qiskit.synthesis.TwoQubitWeylDecomposition) inside [`generate_ansatz_from_circuit()`](/docs/api/qiskit-addon-aqc-tensor/ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"). Sometimes an error is thrown despite the input matrix being unitary to numerical precision, and returning ``is_unitary()`()`` as `True`. This is an ongoing issue in qiskit, see [https://github.com/Qiskit/qiskit/issues/4159](https://github.com/Qiskit/qiskit/issues/4159) for more details.
 
     With this workaround, any time the error is encountered, it will retry by transpiling the two-qubit circuit (from which the matrix is derived) prior to passing the matrix to [`TwoQubitWeylDecomposition`](/docs/api/qiskit/qiskit.synthesis.TwoQubitWeylDecomposition). It should be noted that this is does not fix the root issue, and is not guaranteed to always work, but has been observed to work for some instances.
 
@@ -48,7 +48,7 @@ in_page_toc_max_heading_level: 2
 
 ### Prelude
 
-This release renames the primary objective to [`MaximizeStateFidelity`](objective#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity") and adds support for Qiskit 2.0.
+This release renames the primary objective to [`MaximizeStateFidelity`](/docs/api/qiskit-addon-aqc-tensor/objective#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity") and adds support for Qiskit 2.0.
 
 <span id="release-notes-0-2-0-new-features" />
 
@@ -56,7 +56,7 @@ This release renames the primary objective to [`MaximizeStateFidelity`](objectiv
 
 ### New Features
 
-*   Adds the [`parametrize_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit "qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit") function for generating a parametrized version of a given circuit. In contrast to [`generate_ansatz_from_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"), `parametrize_circuit` does not change the types of gates in the circuit. It simply replaces numerical parameters with free parameters.
+*   Adds the [`parametrize_circuit()`](/docs/api/qiskit-addon-aqc-tensor/ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit "qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit") function for generating a parametrized version of a given circuit. In contrast to [`generate_ansatz_from_circuit()`](/docs/api/qiskit-addon-aqc-tensor/ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"), `parametrize_circuit` does not change the types of gates in the circuit. It simply replaces numerical parameters with free parameters.
 
 *   Support for Python 3.13.
 
@@ -66,7 +66,7 @@ This release renames the primary objective to [`MaximizeStateFidelity`](objectiv
 
 ### Upgrade Notes
 
-*   The `OneMinusFidelity` objective function has been renamed and is now known as [`MaximizeStateFidelity`](objective#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity"). As a related change, one should now call the [`loss_function()`](objective#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.loss_function "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.loss_function") method to obtain the value and gradient of the loss function, instead of calling the instance directly (through its `__call__` method).
+*   The `OneMinusFidelity` objective function has been renamed and is now known as [`MaximizeStateFidelity`](/docs/api/qiskit-addon-aqc-tensor/objective#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity"). As a related change, one should now call the [`loss_function()`](/docs/api/qiskit-addon-aqc-tensor/objective#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.loss_function "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.loss_function") method to obtain the value and gradient of the loss function, instead of calling the instance directly (through its `__call__` method).
 
 *   Qiskit SDK version 1.3 or higher is now required. Qiskit SDK version 2.0 is now supported.
 

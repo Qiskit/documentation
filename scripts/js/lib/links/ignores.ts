@@ -252,7 +252,10 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "../explanation/index.rst",
   "#equation-eq-qpd",
   "./circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
-  "../tutorials/01_gate_cutting_to_reduce_circuit_width.ipynb"
+  "../tutorials/01_gate_cutting_to_reduce_circuit_width.ipynb",
+
+  // from qiskit-addon-aqc-tensor
+  "../stubs/qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator.rst"
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
