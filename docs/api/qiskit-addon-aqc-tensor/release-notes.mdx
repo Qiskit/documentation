@@ -10,9 +10,37 @@ in_page_toc_max_heading_level: 2
 
 # Approximate quantum compilation (AQC-Tensor) release notes
 
-<span id="release-notes-0-2-0" />
+<span id="release-notes-0-3-0" />
 
 <span id="id2" />
+
+## 0.3.0
+
+<span id="release-notes-0-3-0-new-features" />
+
+### New Features
+
+*   Support for Python 3.14.
+
+*   The quimb backend now supports evaluating the gradient of multi-parameter gates, as long as the Qiskit gate maps directly to a quimb gate without change of parameters. Currently, [`XXPlusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXPlusYYGate) is the only multi-parameter gate supported by qiskit-quimb.
+
+<span id="release-notes-0-3-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   The quimb backend now requires the following minimum versions: quimb 0.11.0 and qiskit-quimb 0.0.9.
+
+<span id="release-notes-0-3-0-bug-fixes" />
+
+### Bug Fixes
+
+*   This adds a workaround for an issue sometimes encountered when calling [`TwoQubitWeylDecomposition`](/docs/api/qiskit/qiskit.synthesis.TwoQubitWeylDecomposition) inside [`generate_ansatz_from_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"). Sometimes an error is thrown despite the input matrix being unitary to numerical precision, and returning ``is_unitary()`()`` as `True`. This is an ongoing issue in qiskit, see [https://github.com/Qiskit/qiskit/issues/4159](https://github.com/Qiskit/qiskit/issues/4159) for more details.
+
+    With this workaround, any time the error is encountered, it will retry by transpiling the two-qubit circuit (from which the matrix is derived) prior to passing the matrix to [`TwoQubitWeylDecomposition`](/docs/api/qiskit/qiskit.synthesis.TwoQubitWeylDecomposition). It should be noted that this is does not fix the root issue, and is not guaranteed to always work, but has been observed to work for some instances.
+
+<span id="release-notes-0-2-0" />
+
+<span id="id3" />
 
 ## 0.2.0
 
@@ -24,6 +52,8 @@ This release renames the primary objective to [`MaximizeStateFidelity`](objectiv
 
 <span id="release-notes-0-2-0-new-features" />
 
+<span id="id4" />
+
 ### New Features
 
 *   Adds the [`parametrize_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit "qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit") function for generating a parametrized version of a given circuit. In contrast to [`generate_ansatz_from_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"), `parametrize_circuit` does not change the types of gates in the circuit. It simply replaces numerical parameters with free parameters.
@@ -31,6 +61,8 @@ This release renames the primary objective to [`MaximizeStateFidelity`](objectiv
 *   Support for Python 3.13.
 
 <span id="release-notes-0-2-0-upgrade-notes" />
+
+<span id="id5" />
 
 ### Upgrade Notes
 
@@ -40,19 +72,21 @@ This release renames the primary objective to [`MaximizeStateFidelity`](objectiv
 
 <span id="release-notes-0-2-0-bug-fixes" />
 
+<span id="id6" />
+
 ### Bug Fixes
 
 *   This release fixes the import of `quimb_gate()` to work on versions of qiskit-quimb greater than 0.0.5. The aforementioned function is now imported from the toplevel `qiskit_quimb` instead of `qiskit_quimb.circuit`.
 
 <span id="release-notes-0-1-1" />
 
-<span id="id3" />
+<span id="id7" />
 
 ## 0.1.1
 
 <span id="release-notes-0-1-1-new-features" />
 
-<span id="id4" />
+<span id="id8" />
 
 ### New Features
 
@@ -60,13 +94,13 @@ This release renames the primary objective to [`MaximizeStateFidelity`](objectiv
 
 <span id="release-notes-0-1-0" />
 
-<span id="id5" />
+<span id="id9" />
 
 ## 0.1.0
 
 <span id="release-notes-0-1-0-prelude" />
 
-<span id="id6" />
+<span id="id10" />
 
 ### Prelude
 
