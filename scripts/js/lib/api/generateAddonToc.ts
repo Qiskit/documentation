@@ -220,7 +220,7 @@ function readNotebookTitle(content: string, filePath: string): string {
 }
 
 function stripInlineCode(text: string): string {
-  return text.replace(/`([^`]+)`/g, "$1");
+  return text.replace(/``([^`]+)``/g, "$1").replace(/`([^`]+)`/g, "$1");
 }
 
 function fileBasename(filePath: string): string {
