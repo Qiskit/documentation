@@ -75,7 +75,11 @@ export async function runAddonDocsPipeline(
     objectsInv,
     allObjectInvs,
   );
-  await writeMarkdownResults(pkg, docsBaseFolder, results);
+  await writeMarkdownResults(
+    pkg,
+    docsBaseFolder,
+    results.map(remapExplanationsUrl),
+  );
 
   // handle Jupyter notebook files
   const notebookFiles = files.filter((f) => f.endsWith(".ipynb"));
@@ -88,7 +92,7 @@ export async function runAddonDocsPipeline(
   const imageDestination = pkg.outputDir(`${DOCS_BASE_PATH}/images/addons`);
   const notebookImages = collectNotebookImages(initialNotebooks, imageDestination);
   const notebooks = processNotebooks(
-    initialNotebooks,
+    initialNotebooks.map(remapExplanationsUrl),
     objectsInv,
     allObjectInvs,
     pkg,
@@ -106,6 +110,17 @@ export async function runAddonDocsPipeline(
   );
 
   await writeTocFile(pkg, docsBaseFolder, outputPath);
+}
+
+/**
+ * Rewrites URLs of the form `.../explanation(s)/foo` to `.../how-tos/explanations-foo`
+ * so that explanations land under the how-tos directory 
+ */
+function remapExplanationsUrl<T extends { url: string }>(item: T): T {
+  return {
+    ...item,
+    url: item.url.replace(/\/explanations?\/(.+)$/, "/how-tos/explanations-$1"),
+  };
 }
 
 async function writeTocFile(
