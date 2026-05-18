@@ -156,7 +156,6 @@ test("how-tos directory becomes Guides subsection in main section", async () => 
   const guidesEntry = main.children?.find((c) => c.title === "Guides");
   expect(guidesEntry).toEqual({
     title: "Guides",
-    url: "/docs/addons/my-addon/how-tos/index",
     children: [
       {
         title: "How to do alpha",
@@ -190,7 +189,6 @@ test("tutorials directory becomes its own top-level section", async () => {
   expect(tutorialsSection).toEqual({
     title: "Tutorials",
     collapsible: false,
-    url: "/docs/addons/my-addon/tutorials/index",
     children: [
       {
         title: "Getting started",
@@ -236,25 +234,43 @@ test("unknown subdirectory uses capitalized directory name as section title", as
 test("subdir with only index.mdx renders as dropdown with index as child", async () => {
   const { tmpDir } = await makeTmpAddonDir({
     "index.mdx": mdx("Home"),
-    "explanations/index.mdx": mdx("Explanations Index", "Explanatory material"),
+    "references/index.mdx": mdx("References Index", "Reference material"),
   });
 
   const pkg = await makePkg();
   const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
   const main = toc.children[0];
 
-  const explanations = main.children?.find((c) => c.title === "Explanations");
-  expect(explanations).toEqual({
-    title: "Explanations",
+  const references = main.children?.find((c) => c.title === "References");
+  expect(references).toEqual({
+    title: "References",
     children: [
       {
-        title: "Explanatory material",
-        url: "/docs/addons/my-addon/explanations/index",
+        title: "Reference material",
+        url: "/docs/addons/my-addon/references/index",
       },
     ],
   });
   // No url on the section itself — the index is the child, not a parent link.
-  expect(explanations?.url).toBeUndefined();
+  expect(references?.url).toBeUndefined();
+});
+
+test("explanations directory is merged into the Guides section", async () => {
+  const { tmpDir } = await makeTmpAddonDir({
+    "index.mdx": mdx("Home"),
+    "how-tos/guide.mdx": mdx("A guide"),
+    "explanations/background.mdx": mdx("Background"),
+  });
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
+  const main = toc.children[0];
+
+  const guideSections = main.children?.filter((c) => c.title === "Guides");
+  // Only one Guides section — both dirs merged into it.
+  expect(guideSections).toHaveLength(1);
+  const guides = guideSections![0];
+  expect(guides.children?.map((c) => c.title)).toEqual(["Background", "A guide"]);
 });
 
 test("subdir without index.mdx has no url on the section entry", async () => {

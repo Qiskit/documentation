@@ -27,6 +27,7 @@ const TOP_LEVEL_SECTIONS = new Set(["tutorials"]);
 // labels for known subdirectory names.
 const DIR_LABELS: Record<string, string> = {
   "how-tos": "Guides",
+  explanations: "Guides",
 };
 
 type AddonTocSection = TocEntry & { collapsible?: boolean };
@@ -71,6 +72,8 @@ export async function generateAddonToc(
   }
 
   // Subdirectories → either nested subsections or top-level sections.
+  // Dirs that share the same label are merged into one section.
+  const mergedSections = new Map<string, TocEntry>();
   for (const dir of subdirNames) {
     const entry = await buildSubdirEntry(dir, addonDocsPath, addonUrlBase);
     if (!entry) continue;
@@ -78,7 +81,16 @@ export async function generateAddonToc(
     if (TOP_LEVEL_SECTIONS.has(dir)) {
       topLevelSections.push({ ...entry, collapsible: false });
     } else {
-      mainChildren.push(entry);
+      const existingSection = mergedSections.get(entry.title);
+      if (existingSection) {
+        existingSection.children = [
+          ...(existingSection.children ?? []),
+          ...(entry.children ?? []),
+        ];
+      } else {
+        mergedSections.set(entry.title, entry);
+        mainChildren.push(entry);
+      }
     }
   }
 
@@ -155,11 +167,7 @@ async function buildSubdirEntry(
     children.push({ title, url: `${addonUrlBase}/${dirName}/index` });
   }
 
-  const entry: TocEntry = { title: sectionTitle, children };
-  if (hasIndex && contentFiles.length > 0) {
-    entry.url = `${addonUrlBase}/${dirName}/index`;
-  }
-  return entry;
+  return { title: sectionTitle, children };
 }
 
 /**
@@ -179,9 +187,9 @@ function readMdxTitle(content: string, filePath: string): string {
   const withoutFrontmatter = content.replace(/^---\n[\s\S]*?\n---\n/, "");
   // Try h1 first, fall back to h2.
   const h1 = withoutFrontmatter.match(/^#\s+(.+)$/m);
-  if (h1) return h1[1].trim();
+  if (h1) return stripInlineCode(h1[1].trim());
   const h2 = withoutFrontmatter.match(/^##\s+(.+)$/m);
-  if (h2) return h2[1].trim();
+  if (h2) return stripInlineCode(h2[1].trim());
   return fileBasename(filePath);
 }
 
@@ -203,12 +211,16 @@ function readNotebookTitle(content: string, filePath: string): string {
       : String(cell.source);
 
     const h1 = src.match(/^#\s+(.+)$/m);
-    if (h1) return h1[1].trim();
+    if (h1) return stripInlineCode(h1[1].trim());
     const h2 = src.match(/^##\s+(.+)$/m);
-    if (h2) return h2[1].trim();
+    if (h2) return stripInlineCode(h2[1].trim());
   }
 
   return fileBasename(filePath);
+}
+
+function stripInlineCode(text: string): string {
+  return text.replace(/`([^`]+)`/g, "$1");
 }
 
 function fileBasename(filePath: string): string {
