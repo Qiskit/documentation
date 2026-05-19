@@ -219,8 +219,6 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
 
   // from qiskit-addon-obp
-  "/docs/guides/serverless#qiskit-patterns-with-quantum-serverless",
-  "/docs/addons/qiskit-addon-obp/tutorials/01-getting-started-ipynb",
   "/docs/addons/qiskit-addon-obp/tutorials/01-getting-started-ipynb",
   "/docs/api/qiskit/qiskit.circuit.QuantumCircuit#html",
   "/api/qiskit-ibm-runtime/noise-learner-noise-learner",
@@ -229,33 +227,19 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // from qiskit-addon-utils
   "/docs/addons/samplomatic/guides/samplex-io#qubit-ordering-convention",
 
-  // from qiskit-addon-mpf
-  "/api/qiskit/qiskit.quantum_info.SparsePauliOp",
-  "/api/qiskit/qiskit.transpiler.CouplingMap",
-  "/api/qiskit/qiskit.primitives.StatevectorEstimator",
-  "/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2",
-
   // from qiskit-addon-sqd
   "/docs/en/tutorials/sample-based-krylov-quantum-diagonalization",
   "/docs/en/tutorials/sample-based-quantum-diagonalization",
   "/docs/guides/get-started-with-primitives#get-started-with-sampler",
-  "/docs/api/qiskit/transpiler_preset#generate_preset_pass_manager",
-  "../apidocs/qiskit_addon_sqd.fermion.rst#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian",
 
   // from qiskit-addon-cutting
   "how-tos/how-to-specify-cut-wires",
   "/circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
   "/docs/start/install#operating-system-support",
   "../tutorials/03_wire_cutting_via_move_instruction.ipynb",
-  "/guides/intro-to-patterns",
-  "../how-tos/how_to_specify_cut_wires.ipynb",
-  "../explanation/index.rst",
   "#equation-eq-qpd",
   "./circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
   "../tutorials/01_gate_cutting_to_reduce_circuit_width.ipynb",
-
-  // from qiskit-addon-aqc-tensor
-  "../stubs/qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator.rst"
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
