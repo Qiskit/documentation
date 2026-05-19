@@ -25,7 +25,7 @@ import {
   SharedArguments,
 } from "./updateDocsShared.js";
 
-export interface Arguments extends SharedArguments {
+export type Arguments = SharedArguments & {
   [x: string]: unknown;
   historical: boolean;
   dev: boolean;

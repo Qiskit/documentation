@@ -20,10 +20,6 @@ import { TocEntry } from "./generateToc.js";
 import { DOCS_BASE_PATH } from "./paths.js";
 import { capitalize } from "lodash-es";
 
-// Subdirectories that become their own top-level TOC sections rather than
-// being nested inside the main (unlabeled) section.
-const TOP_LEVEL_SECTIONS = new Set(["tutorials"]);
-
 // labels for known subdirectory names.
 const DIR_LABELS: Record<string, string> = {
   "how-tos": "Guides",
@@ -78,19 +74,15 @@ export async function generateAddonToc(
     const entry = await buildSubdirEntry(dir, addonDocsPath, addonUrlBase);
     if (!entry) continue;
 
-    if (TOP_LEVEL_SECTIONS.has(dir)) {
-      topLevelSections.push({ ...entry, collapsible: false });
+    const existingSection = mergedSections.get(entry.title);
+    if (existingSection) {
+      existingSection.children = [
+        ...(existingSection.children ?? []),
+        ...(entry.children ?? []),
+      ];
     } else {
-      const existingSection = mergedSections.get(entry.title);
-      if (existingSection) {
-        existingSection.children = [
-          ...(existingSection.children ?? []),
-          ...(entry.children ?? []),
-        ];
-      } else {
-        mergedSections.set(entry.title, entry);
-        mainChildren.push(entry);
-      }
+      mergedSections.set(entry.title, entry);
+      mainChildren.push(entry);
     }
   }
 

@@ -169,43 +169,9 @@ test("how-tos directory becomes Guides subsection in main section", async () => 
   });
 });
 
-test("tutorials directory becomes its own top-level section", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "tutorials/index.mdx": mdx("Tutorials Index", "Tutorials"),
-    "tutorials/01-intro.ipynb": notebook("Getting started"),
-    "tutorials/02-advanced.mdx": mdx("Advanced tutorial"),
-  });
-
-  const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
-
-  // tutorials must NOT appear inside the main section
-  const main = toc.children[0];
-  expect(main.children?.some((c) => c.title === "Tutorials")).toBe(false);
-
-  // tutorials must appear as its own top-level section before API reference
-  const tutorialsSection = toc.children.find((c) => c.title === "Tutorials");
-  expect(tutorialsSection).toEqual({
-    title: "Tutorials",
-    collapsible: false,
-    children: [
-      {
-        title: "Getting started",
-        url: "/docs/addons/my-addon/tutorials/01-intro",
-      },
-      {
-        title: "Advanced tutorial",
-        url: "/docs/addons/my-addon/tutorials/02-advanced",
-      },
-    ],
-  });
-});
-
 test("api reference section is always last", async () => {
   const { tmpDir } = await makeTmpAddonDir({
     "index.mdx": mdx("Home"),
-    "tutorials/01.ipynb": notebook("Tutorial one"),
   });
 
   const pkg = await makePkg();
@@ -307,14 +273,15 @@ test("empty subdirectory is omitted from the TOC", async () => {
 test("notebook title is read from first non-frontmatter markdown cell h1", async () => {
   const { tmpDir } = await makeTmpAddonDir({
     "index.mdx": mdx("Home"),
-    "tutorials/demo.ipynb": notebook("The real title from h1"),
+    "how-tos/demo.ipynb": notebook("The real title from h1"),
   });
 
   const pkg = await makePkg();
   const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
+  const main = toc.children[0];
 
-  const tutorialsSection = toc.children.find((c) => c.title === "Tutorials");
-  expect(tutorialsSection?.children?.[0].title).toBe("The real title from h1");
+  const guides = main.children?.find((c) => c.title === "Guides");
+  expect(guides?.children?.[0].title).toBe("The real title from h1");
 });
 
 test("notebook with h2 as first heading falls back to h2", async () => {
@@ -342,14 +309,15 @@ test("notebook with h2 as first heading falls back to h2", async () => {
 
   const { tmpDir } = await makeTmpAddonDir({
     "index.mdx": mdx("Home"),
-    "tutorials/demo.ipynb": nb,
+    "how-tos/demo.ipynb": nb,
   });
 
   const pkg = await makePkg();
   const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
+  const main = toc.children[0];
 
-  const tutorialsSection = toc.children.find((c) => c.title === "Tutorials");
-  expect(tutorialsSection?.children?.[0].title).toBe("Section heading");
+  const guides = main.children?.find((c) => c.title === "Guides");
+  expect(guides?.children?.[0].title).toBe("Section heading");
 });
 
 test("mdx h2 fallback when no h1 present", async () => {

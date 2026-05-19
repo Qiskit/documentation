@@ -26,7 +26,7 @@ import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
 import { isValidVersion } from "../../lib/apiVersions.js";
 
 /** Fields shared by both `updateApiDocs` and `updateAddonDocs` CLIs. */
-export interface SharedArguments {
+export type SharedArguments = {
   package: string;
   version: string;
   skipDownload: boolean;
