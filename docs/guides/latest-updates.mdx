@@ -46,126 +46,128 @@ Both of these new features are currently in beta and require `qiskit-ibm-runtime
 
 <Accordion>
 <AccordionItem title="**Previous updates**">
+  <Accordion>
+  <AccordionItem title="**2026**">
+  ### April 2026
 
-### April 2026
+  - **New export options now available in IBM Quantum**: Introducing new export capabilities that make it easier for account administrators to analyze, share, and work with their data.
 
-- **New export options now available in IBM Quantum**: Introducing new export capabilities that make it easier for account administrators to analyze, share, and work with their data.
+    - New in the [Analytics](https://quantum.cloud.ibm.com/analytics) page:
+      - You can now export charts in SVG or PNG format.
+      - You can export all analytics data, including the data behind the charts, as CSV.
+    
+      Find the export menu at the top-right corner of each card on the page.
 
-  - New in the [Analytics](https://quantum.cloud.ibm.com/analytics) page:
-    - You can now export charts in SVG or PNG format.
-    - You can export all analytics data, including the data behind the charts, as CSV.
-  
-    Find the export menu at the top-right corner of each card on the page.
+    - New in the [Access management](https://quantum.cloud.ibm.com/users) page:
+      - Export both the Users table and the Access Groups table in CSV format.
 
-  - New in the [Access management](https://quantum.cloud.ibm.com/users) page:
-    - Export both the Users table and the Access Groups table in CSV format.
+      Find the export menu at the top-right corner of the table.
 
-    Find the export menu at the top-right corner of the table.
+  - **New resources and hardware for Open Plan users**: The [IBM Quantum Open Plan](https://www.ibm.com/quantum/products) now features new learning resources, new hardware, and a special one-time promotion for eligible users.
 
-- **New resources and hardware for Open Plan users**: The [IBM Quantum Open Plan](https://www.ibm.com/quantum/products) now features new learning resources, new hardware, and a special one-time promotion for eligible users.
+    - A new course, [Designing and leading quantum projects](/learning/courses/designing-and-leading-quantum-projects), is now available. This course covers key topics for users looking to develop or secure funding for a quantum project, including early-stage planning, team roles and responsibilities, identifying meaningful use cases, defining measures of success, and a guide to grant writing best practices.
 
-  - A new course, [Designing and leading quantum projects](/learning/courses/designing-and-leading-quantum-projects), is now available. This course covers key topics for users looking to develop or secure funding for a quantum project, including early-stage planning, team roles and responsibilities, identifying meaningful use cases, defining measures of success, and a guide to grant writing best practices.
+    - The Heron r2 [`ibm_kingston`](https://quantum.cloud.ibm.com/computers?system=ibm_kingston)&mdash;one of our highest-performing quantum computers&mdash;is now available to all Open Plan users.
 
-  - The Heron r2 [`ibm_kingston`](https://quantum.cloud.ibm.com/computers?system=ibm_kingston)&mdash;one of our highest-performing quantum computers&mdash;is now available to all Open Plan users.
+    - Log 20 minutes of compute in any 12-month period and you can opt in to a special one-time offer: 180 minutes for the next 12 months.
 
-  - Log 20 minutes of compute in any 12-month period and you can opt in to a special one-time offer: 180 minutes for the next 12 months.
+      With expanded runtime and new educational resources, users can run everything from introductory circuits to advanced hybrid workflows.
 
-    With expanded runtime and new educational resources, users can run everything from introductory circuits to advanced hybrid workflows.
+      These efforts reflect our commitment to open access, open education, and open science in quantum computing. Read more: [Doubling down on open-access quantum computing](https://www.ibm.com/quantum/blog/open-plan-updates)
 
-    These efforts reflect our commitment to open access, open education, and open science in quantum computing. Read more: [Doubling down on open-access quantum computing](https://www.ibm.com/quantum/blog/open-plan-updates)
+  #### Upcoming discontinuation of Qiskit Code Assistant service
 
-#### Upcoming discontinuation of Qiskit Code Assistant service
+  On 29 May 2026, IBM Quantum will discontinue the preview Qiskit Code Assistant service and archive the supporting extensions for Visual Studio Code and JupyterLab.
 
-On 29 May 2026, IBM Quantum will discontinue the preview Qiskit Code Assistant service and archive the supporting extensions for Visual Studio Code and JupyterLab.
+  Based on feedback and usage patterns, more users are running Qiskit Code Assistant models locally and working in editor integrations that are already part of their development workflow.
 
-Based on feedback and usage patterns, more users are running Qiskit Code Assistant models locally and working in editor integrations that are already part of their development workflow.
+  Qiskit Code Assistant models will remain available for local use. To continue using them, move to a local deployment and a community-supported editor integration or other local tooling.
 
-Qiskit Code Assistant models will remain available for local use. To continue using them, move to a local deployment and a community-supported editor integration or other local tooling.
+  For setup guidance, see [Use Qiskit Code Assistant in local mode](/docs/guides/qiskit-code-assistant#use-qiskit-code-assistant-in-local-mode).
 
-For setup guidance, see [Use Qiskit Code Assistant in local mode](/docs/guides/qiskit-code-assistant#use-qiskit-code-assistant-in-local-mode).
+  #### Nighthawk arrives in the EU
 
-#### Nighthawk arrives in the EU
+  Premium and Flex Plans now have early access to [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin)! It is the first IBM Quantum Nighthawk r1 QPU in the EU (`eu-de` region) and the second Nighthawk in our global fleet, after [`ibm_miami`](https://quantum.cloud.ibm.com/computers?system=ibm_miami) in the US (`us-east` region). `ibm_berlin` features faster two-qubit gates than `ibm_miami` (68 ns versus 138 ns, median) while maintaining similar fleet-leading coherence (T$_1$ of ~350 &#181;s).
 
-Premium and Flex Plans now have early access to [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin)! It is the first IBM Quantum Nighthawk r1 QPU in the EU (`eu-de` region) and the second Nighthawk in our global fleet, after [`ibm_miami`](https://quantum.cloud.ibm.com/computers?system=ibm_miami) in the US (`us-east` region). `ibm_berlin` features faster two-qubit gates than `ibm_miami` (68 ns versus 138 ns, median) while maintaining similar fleet-leading coherence (T$_1$ of ~350 &#181;s).
+  Since its release, Nighthawk has enabled research in regimes where classical simulation becomes increasingly challenging. Specifically, its architecture supports hardware-efficient workflows that map naturally onto grid-based (lattice) models. See recent papers from [Phasecraft](https://arxiv.org/abs/2603.12236) and [Volkswagen](https://doi.org/10.3390/e28040367), and their collaborators, demonstrating simulation at scale on Nighthawk.
 
-Since its release, Nighthawk has enabled research in regimes where classical simulation becomes increasingly challenging. Specifically, its architecture supports hardware-efficient workflows that map naturally onto grid-based (lattice) models. See recent papers from [Phasecraft](https://arxiv.org/abs/2603.12236) and [Volkswagen](https://doi.org/10.3390/e28040367), and their collaborators, demonstrating simulation at scale on Nighthawk.
+  Please note that `ibm_berlin` is currently an exploratory QPU that is still being tested and optimized as part of our continual cycles of learning. As such, it temporarily has the following limitations:
 
-Please note that `ibm_berlin` is currently an exploratory QPU that is still being tested and optimized as part of our continual cycles of learning. As such, it temporarily has the following limitations:
+  - Default repetition time has been temporarily increased from 250 &#181;s to 4 ms, which impacts QPU time required to execute workloads. Users can manually select a shorter repetition time, but performance might be degraded.
+  - Dynamic circuits are not yet supported, and quality of mid-circuit measurements is limited.
 
-- Default repetition time has been temporarily increased from 250 &#181;s to 4 ms, which impacts QPU time required to execute workloads. Users can manually select a shorter repetition time, but performance might be degraded.
-- Dynamic circuits are not yet supported, and quality of mid-circuit measurements is limited.
+  #### Upcoming retirements
 
-#### Upcoming retirements
+  As we expand EU capacity and roll out the latest Nighthawk and Heron processors, `ibm_brussels` and `ibm_strasbourg` are scheduled to be retired on or around 30 April 2026.
 
-As we expand EU capacity and roll out the latest Nighthawk and Heron processors, `ibm_brussels` and `ibm_strasbourg` are scheduled to be retired on or around 30 April 2026.
+  Once these QPUs are retired, they will no longer accept jobs. If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU ahead of the retirement date to take advantage of the latest systems. For guidance on retrieving data from past jobs, refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
-Once these QPUs are retired, they will no longer accept jobs. If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU ahead of the retirement date to take advantage of the latest systems. For guidance on retrieving data from past jobs, refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  #### `ibm_torino` is now retired
 
-#### `ibm_torino` is now retired
+  The quantum computer `ibm_torino` has been retired and will no longer accept workload submissions. Any workloads that were already queued on this QPU might still be processed and return results.
 
-The quantum computer `ibm_torino` has been retired and will no longer accept workload submissions. Any workloads that were already queued on this QPU might still be processed and return results.
+  If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions.](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu)
 
-If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions.](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu)
+  #### ibm_brussels and ibm_strasbourg are now retired
+    
+  `ibm_brussels` and `ibm_strasbourg` have been retired and will no longer accept jobs.
 
-#### ibm_brussels and ibm_strasbourg are now retired
-  
-`ibm_brussels` and `ibm_strasbourg` have been retired and will no longer accept jobs.
+  This change is part of the continued evolution and expansion of the IBM Quantum fleet in the EU, including the recently released Nighthawk QPU [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin) and the upgraded Heron r3 QPU [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen). The global fleet has now fully transitioned away from Eagle, IBM Quantum's first utility‑scale processor family, introduced in 2021.
 
-This change is part of the continued evolution and expansion of the IBM Quantum fleet in the EU, including the recently released Nighthawk QPU [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin) and the upgraded Heron r3 QPU [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen). The global fleet has now fully transitioned away from Eagle, IBM Quantum's first utility‑scale processor family, introduced in 2021.
+  If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU to take advantage of the latest hardware. For guidance on retrieving data from past jobs, refer to the [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
-If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU to take advantage of the latest hardware. For guidance on retrieving data from past jobs, refer to the [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  ### March 2026
 
-### March 2026
+  #### The EU gets its first Heron r3
 
-#### The EU gets its first Heron r3
+  Maintenance has been completed on [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen) and the QPU is now back online in the eu‑de region.  `ibm_aachen` has also been upgraded to be the first QPU in the EU to feature the latest [Heron r3](https://www.linkedin.com/posts/jay-gambetta-a274753a_following-up-on-an-earlier-post-https-activity-7364268815720824834-aZ0k) processor. It is the third r3 in our global fleet, after [`ibm_boston`](https://quantum.cloud.ibm.com/computers?system=ibm_boston) and [`ibm_pittsburgh`](https://quantum.cloud.ibm.com/computers?system=ibm_pittsburgh) in the US.
 
-Maintenance has been completed on [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen) and the QPU is now back online in the eu‑de region.  `ibm_aachen` has also been upgraded to be the first QPU in the EU to feature the latest [Heron r3](https://www.linkedin.com/posts/jay-gambetta-a274753a_following-up-on-an-earlier-post-https-activity-7364268815720824834-aZ0k) processor. It is the third r3 in our global fleet, after [`ibm_boston`](https://quantum.cloud.ibm.com/computers?system=ibm_boston) and [`ibm_pittsburgh`](https://quantum.cloud.ibm.com/computers?system=ibm_pittsburgh) in the US.
+  Heron r3 continues to deliver improved error rates and overall system performance compared to Heron r2, demonstrating more reliable execution and better results for workloads. For example, on `ibm_aachen`, we observe a large boost in $T_2$ (phase coherence time) from 150&nbsp;&#181;s to 250&nbsp;&#181;s. You can view metrics like these for all QPUs in the shared fleet on the [Compute resources](https://quantum.cloud.ibm.com/computers) page.
 
-Heron r3 continues to deliver improved error rates and overall system performance compared to Heron r2, demonstrating more reliable execution and better results for workloads. For example, on `ibm_aachen`, we observe a large boost in $T_2$ (phase coherence time) from 150&nbsp;&#181;s to 250&nbsp;&#181;s. You can view metrics like these for all QPUs in the shared fleet on the [Compute resources](https://quantum.cloud.ibm.com/computers) page.
-
-### February 2026
+  ### February 2026
 
 
-#### `ibm_torino` to retire
+  #### `ibm_torino` to retire
 
-The `ibm_torino` QPU will retire on or around 1 April 2026. Once this QPU is retired, it will no longer accept jobs.
+  The `ibm_torino` QPU will retire on or around 1 April 2026. Once this QPU is retired, it will no longer accept jobs.
 
-If you would like to retrieve job data from important past jobs, please refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  If you would like to retrieve job data from important past jobs, please refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
-#### Increase in repetition delay time maximum
+  #### Increase in repetition delay time maximum
 
-To provide more flexibility for users, we have expanded the allowable repetition delay time range from 20-500 &#181;s to 20-2000 &#181;s on our Heron and Eagle QPUs. The Nighthawk QPU delay time range continues to be 1000-4000 &#181;s as previously announced. Note that if you choose to increase repetition delay (`rep_delay`), it will have a direct impact on your execution time and capacity consumption, but it might improve the fidelity of certain circuits. The default `rep_delay` remains unchanged on all QPUs.
+  To provide more flexibility for users, we have expanded the allowable repetition delay time range from 20-500 &#181;s to 20-2000 &#181;s on our Heron and Eagle QPUs. The Nighthawk QPU delay time range continues to be 1000-4000 &#181;s as previously announced. Note that if you choose to increase repetition delay (`rep_delay`), it will have a direct impact on your execution time and capacity consumption, but it might improve the fidelity of certain circuits. The default `rep_delay` remains unchanged on all QPUs.
 
-You can find more information about repetition delay time, including how to change it, in [Qubit initialization](/docs/guides/repetition-rate-execution).
+  You can find more information about repetition delay time, including how to change it, in [Qubit initialization](/docs/guides/repetition-rate-execution).
 
-### January 2026
-- The latest enhancements to the [Compute resources](https://quantum.cloud.ibm.com/computers) page include the following:
+  ### January 2026
+  - The latest enhancements to the [Compute resources](https://quantum.cloud.ibm.com/computers) page include the following:
 
-  - **Unified QPU view** - All QPUs across regions are now displayed in a single table, making it easier to see status and calibrations of the shared fleet across the two regions. (You can still filter the Compute resources table by region using the funnel icon.)
+    - **Unified QPU view** - All QPUs across regions are now displayed in a single table, making it easier to see status and calibrations of the shared fleet across the two regions. (You can still filter the Compute resources table by region using the funnel icon.)
 
-  - **Single maintenance schedule** - The maintenance schedule is now at the top of the page, even when no events are currently planned.
+    - **Single maintenance schedule** - The maintenance schedule is now at the top of the page, even when no events are currently planned.
 
-  - **"Instance access" details** - When viewing a QPU's details, a new Instance access section shows all instances that grant the user access to that QPU for the selected account.
+    - **"Instance access" details** - When viewing a QPU's details, a new Instance access section shows all instances that grant the user access to that QPU for the selected account.
 
-- **The first Nighthawk QPU and latest Heron QPU are now available.** These two powerful new processors debuted at the [IBM Quantum Developer Conference](https://www.ibm.com/quantum/blog/qdc-2025) in November.
+  - **The first Nighthawk QPU and latest Heron QPU are now available.** These two powerful new processors debuted at the [IBM Quantum Developer Conference](https://www.ibm.com/quantum/blog/qdc-2025) in November.
 
-  - Premium and Flex Plans now have early access to `ibm_miami`, the first IBM Quantum Nighthawk QPU. Our most advanced quantum processor to date, Nighthawk is a 120-qubit device with a square-lattice topology (218 couplers versus Heron's 176) that is designed to support more complex workloads. Nighthawk has the highest coherence of our fleet - even higher than what was reported at QDC - with a median T1 of 350 &#181;s.
+    - Premium and Flex Plans now have early access to `ibm_miami`, the first IBM Quantum Nighthawk QPU. Our most advanced quantum processor to date, Nighthawk is a 120-qubit device with a square-lattice topology (218 couplers versus Heron's 176) that is designed to support more complex workloads. Nighthawk has the highest coherence of our fleet - even higher than what was reported at QDC - with a median T1 of 350 &#181;s.
 
-  - Note that `ibm_miami` is currently an exploratory QPU that is still being tested and optimized as part of our continual cycles of learning. As such, it temporarily has the following limitations:
+    - Note that `ibm_miami` is currently an exploratory QPU that is still being tested and optimized as part of our continual cycles of learning. As such, it temporarily has the following limitations:
 
-    - Default repetition time has been temporarily increased from 250 &#181;s to 4 ms, which will impact QPU time required to execute workloads
-    - Dynamic circuits are not yet supported, and quality of mid-circuit measurements is limited
+      - Default repetition time has been temporarily increased from 250 &#181;s to 4 ms, which will impact QPU time required to execute workloads
+      - Dynamic circuits are not yet supported, and quality of mid-circuit measurements is limited
 
-  - Additionally, Premium, Flex, and Pay-As-You-Go Plans now have access to `ibm_boston`, our most performant IBM Quantum Heron r3 to date. It has demonstrated an EPLG at 100 qubits of 2.15e-3, with 57 of 176 possible two-qubit gates below the 1e-3 error level.
+    - Additionally, Premium, Flex, and Pay-As-You-Go Plans now have access to `ibm_boston`, our most performant IBM Quantum Heron r3 to date. It has demonstrated an EPLG at 100 qubits of 2.15e-3, with 57 of 176 possible two-qubit gates below the 1e-3 error level.
 
-- **Introducing instance archiving for administrators on IBM Quantum Platform.** With this update, administrators can archive any instance within their account. Archiving an instance ensures that:
+  - **Introducing instance archiving for administrators on IBM Quantum Platform.** With this update, administrators can archive any instance within their account. Archiving an instance ensures that:
 
-    - Collaborators retain access to results and QPU metrics, properties, and calibrations from past workloads.
-    - No new workloads can be submitted to the archived instance, preventing unintended usage.
-    - Archived instances do not subtract anything from your account's plan allocation.
-    - All archived instances are neatly organized under a dedicated "Archived" tab.
-    - Administrators can reactivate an instance at any time.
-
+      - Collaborators retain access to results and QPU metrics, properties, and calibrations from past workloads.
+      - No new workloads can be submitted to the archived instance, preventing unintended usage.
+      - Archived instances do not subtract anything from your account's plan allocation.
+      - All archived instances are neatly organized under a dedicated "Archived" tab.
+      - Administrators can reactivate an instance at any time.
+  </AccordionItem>
+  <AccordionItem title="**2025**">
 #### What's new at IBM Quantum - 4Q 2025
 
 The [What's New @ IBM Quantum Q4 2025](https://www.ibm.com/quantum/blog/whats-new-q4-2025) quarterly update is now live!
@@ -366,6 +368,8 @@ Our inventory is getting a makeover, and we will be retiring the following QPUs 
 
 Be sure to retrieve any job data from important past jobs before these QPUs are retired.
 
+  </AccordionItem>
+  </Accordion>
 </AccordionItem>
 </Accordion>
 
