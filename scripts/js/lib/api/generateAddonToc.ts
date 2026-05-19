@@ -29,7 +29,7 @@ const DIR_LABELS: Record<string, string> = {
 // Hardcoded titles for specific top-level slugs (overrides the file's h1).
 const TOP_LEVEL_TITLES: Record<string, string> = {
   index: "Home",
-  install: "Install instructions",
+  install: "Installation instructions",
 };
 
 type AddonTocSection = TocEntry & { collapsible?: boolean };

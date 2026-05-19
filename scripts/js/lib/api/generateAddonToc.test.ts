@@ -107,7 +107,7 @@ test("minimal addon: only index.mdx and install.mdx", async () => {
         children: [
           { title: "Home", url: "/docs/addons/my-addon" },
           {
-            title: "Install instructions",
+            title: "Installation instructions",
             url: "/docs/addons/my-addon/install",
           },
         ],
