@@ -26,6 +26,12 @@ const DIR_LABELS: Record<string, string> = {
   explanations: "Guides",
 };
 
+// Hardcoded titles for specific top-level slugs (overrides the file's h1).
+const TOP_LEVEL_TITLES: Record<string, string> = {
+  index: "Home",
+  install: "Install instructions",
+};
+
 type AddonTocSection = TocEntry & { collapsible?: boolean };
 
 type AddonToc = {
@@ -62,8 +68,7 @@ export async function generateAddonToc(
     const slug = file.replace(/\.(mdx|ipynb)$/, "");
     const url =
       slug === "index" ? addonUrlBase : `${addonUrlBase}/${slug}`;
-    const title =
-      slug === "index" ? "Home" : await readTitle(join(addonDocsPath, file));
+    const title = TOP_LEVEL_TITLES[slug] ?? await readTitle(join(addonDocsPath, file));
     mainChildren.push({ title, url });
   }
 

@@ -107,7 +107,7 @@ test("minimal addon: only index.mdx and install.mdx", async () => {
         children: [
           { title: "Home", url: "/docs/addons/my-addon" },
           {
-            title: "Installation Instructions",
+            title: "Install instructions",
             url: "/docs/addons/my-addon/install",
           },
         ],
@@ -124,6 +124,20 @@ test("minimal addon: only index.mdx and install.mdx", async () => {
       },
     ],
   });
+});
+
+test("install.mdx in a subdirectory uses its h1, not the hardcoded title", async () => {
+  const { tmpDir } = await makeTmpAddonDir({
+    "index.mdx": mdx("Home"),
+    "how-tos/install.mdx": mdx("Custom install title"),
+  });
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
+  const main = toc.children[0];
+
+  const guides = main.children?.find((c) => c.title === "Guides");
+  expect(guides?.children?.[0].title).toBe("Custom install title");
 });
 
 test("github link is appended after top-level files when githubSlug is set", async () => {
