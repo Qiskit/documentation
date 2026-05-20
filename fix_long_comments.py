@@ -12,7 +12,7 @@ import textwrap
 
 def wrap_comment(comment: str, max_length: int = 100) -> List[str]:
     """
-    Wrap a long comment into multiple lines, preserving indentation.
+    Wrap a long comment into multiple lines, preserving indentation and full sentences.
     
     Args:
         comment: The comment line to wrap
@@ -39,20 +39,58 @@ def wrap_comment(comment: str, max_length: int = 100) -> List[str]:
     if available_width < 20:  # If too narrow, use a minimum width
         available_width = 78
     
-    # Wrap the text
-    wrapped_lines = textwrap.wrap(
-        content,
-        width=available_width,
-        break_long_words=False,
-        break_on_hyphens=False
-    )
+    # Try to split on sentence boundaries first (. ! ?)
+    sentences = re.split(r'([.!?]\s+)', content)
     
-    # Add back the indentation and comment marker
+    # Reconstruct sentences with their punctuation
+    full_sentences = []
+    for i in range(0, len(sentences), 2):
+        if i + 1 < len(sentences):
+            full_sentences.append(sentences[i] + sentences[i + 1].rstrip())
+        else:
+            full_sentences.append(sentences[i])
+    
+    # Build lines trying to keep full sentences together
     result = []
-    for line in wrapped_lines:
-        result.append(f"{indent_str}# {line}")
+    current_line = ""
     
-    return result
+    for sentence in full_sentences:
+        sentence = sentence.strip()
+        if not sentence:
+            continue
+            
+        # If this sentence alone is too long, we need to wrap it
+        if len(sentence) > available_width:
+            # If we have content in current_line, flush it first
+            if current_line:
+                result.append(f"{indent_str}# {current_line.strip()}")
+                current_line = ""
+            
+            # Wrap the long sentence
+            wrapped = textwrap.wrap(
+                sentence,
+                width=available_width,
+                break_long_words=False,
+                break_on_hyphens=False
+            )
+            for line in wrapped:
+                result.append(f"{indent_str}# {line}")
+        else:
+            # Try to add sentence to current line
+            test_line = current_line + (" " if current_line else "") + sentence
+            if len(test_line) <= available_width:
+                current_line = test_line
+            else:
+                # Current line is full, start new line with this sentence
+                if current_line:
+                    result.append(f"{indent_str}# {current_line.strip()}")
+                current_line = sentence
+    
+    # Don't forget the last line
+    if current_line:
+        result.append(f"{indent_str}# {current_line.strip()}")
+    
+    return result if result else [comment]
 
 def fix_long_comments_in_code(code: str, max_length: int = 100) -> Tuple[str, int]:
     """
