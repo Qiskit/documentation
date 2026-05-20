@@ -1,0 +1,50 @@
+---
+title: QuantumProgramResultModel (latest version)
+description: API reference for ibm_quantum_schemas.executor.version_1_0.QuantumProgramResultModel in the latest version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.executor.version_1_0.QuantumProgramResultModel
+---
+
+<span id="ibm-quantum-schemas-executor-version-1-0-quantumprogramresultmodel" />
+
+# QuantumProgramResultModel
+
+<Class id="ibm_quantum_schemas.executor.version_1_0.QuantumProgramResultModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.7.20260419/ibm_quantum_schemas/executor/version_1_0/models.py#L369-L389" signature="QuantumProgramResultModel" modifiers="pydantic model">
+  Bases: `BaseModel`
+
+  Result from executing a quantum program.
+
+  ### data
+
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.QuantumProgramResultModel.data" attributeTypeHint="list[QuantumProgramResultItemModel] [Required]" modifiers="field">
+    Resulting data for each quantum program item.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.QuantumProgramResultModel.metadata" attributeTypeHint="MetadataModel [Required]" modifiers="field">
+    Execution metadata pertaining to the job as a whole.
+  </Attribute>
+
+  ### passthrough\_data
+
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.QuantumProgramResultModel.passthrough_data" attributeTypeHint="DataTree" attributeValue="None" modifiers="field">
+    Arbitrary nested data passed through execution without modification.
+  </Attribute>
+
+  ### schema\_version
+
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.QuantumProgramResultModel.schema_version" attributeTypeHint="Literal['v1.0']" attributeValue="'v1.0'" modifiers="field">
+    Schema version of the result type.
+  </Attribute>
+
+  ### semantic\_role
+
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.QuantumProgramResultModel.semantic_role" attributeTypeHint="str | None" attributeValue="None" modifiers="field">
+    Semantic role indicating how execution results may be post-processed by runtime clients.
+
+    Reserved system values include ‘sampler-v2’ and ‘estimator-v2’, and are subject to change without notice. Third party clients should not set or depend on this value.
+  </Attribute>
+</Class>
+
