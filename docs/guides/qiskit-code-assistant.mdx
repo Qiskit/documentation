@@ -9,9 +9,8 @@ description: Learn how to use Qiskit Code Assistant, a generative AI code assist
 
 Qiskit Code Assistant LLMs aim to make quantum computing more accessible to new Qiskit adopters and to improve the coding experience for current users. It is trained using millions of text tokens from Qiskit SDK, years of Qiskit code examples, and IBM Quantum&reg; features. Qiskit Code Assistant can help your quantum development workflow by offering LLM-generated suggestions based on [IBM Granite and other open-source models](https://huggingface.co/Qiskit), which incorporate the latest features and functionalities from IBM&reg;.
 
-To skip to the installation instructions, go to the [Install Qiskit Code Assistant](#install) section.
-
-<Admonition type="note">
+<Admonition type="note" title="Notes">
+    - **Want to skip to the installation instructions? Go to the [Install Qiskit Code Assistant](#install) section.**
     - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
 </Admonition>
 
@@ -34,60 +33,6 @@ The datasets for Qiskit HumanEval and Qiskit HumanEval Hard are available at the
 ## Install Qiskit Code Assistant
 
 Learn how to install, configure, and use any of Qiskit Code Assistant models on your local machine.
-
-## Available models
-
-#### Current models
-
-These are the latest recommended models for use with Qiskit Code Assistant:
-
-1. [Qiskit/mistral-small-3.2-24b-qiskit](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit) - Released October 2025
-2. [Qiskit/Qwen2.5-Coder-14B-Qiskit](https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit) - Released June 2025
-3. [qiskit/granite-3.3-8b-qiskit](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit) - Released June 2025
-4. [qiskit/granite-3.2-8b-qiskit](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit) - Released June 2025
-
-#### GGUF models (recommended for personal environments/laptops)
-
-GGUF format models are optimized for local use and require fewer computational resources:
-
-1. [mistral-small-3.2-24b-qiskit-GGUF](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit-GGUF) – Released **October 2025**  
-   *Trained with Qiskit data up to version **2.1***  
-
-2. [Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF](https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF) – Released **June 2025**  
-   *Trained with Qiskit data up to version **2.0***  
-
-3. [qiskit/granite-3.3-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF) – Released **June 2025**  
-   *Trained with Qiskit data up to version **2.0***  
-
-4. [qiskit/granite-3.2-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF) – Released **June 2025**  
-   *Trained with Qiskit data up to version **2.0***  
-
-The Open Source Qiskit Code Assistant models are available in <DefinitionTooltip definition="Safetensors is a file format designed specifically for storing machine learning model weights and tensors in a secure and efficient manner.">safetensors</DefinitionTooltip> or <DefinitionTooltip definition="GGUF is a binary format that is designed for quickly loading and saving models, and for readability.">GGUF file format</DefinitionTooltip> and can be downloaded from the Hugging Face as explained below.
-
-#### Qiskit versions used for training
-
-| **Model** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | **Benchmark Metrics** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | **Release date** | **Trained on Qiskit version** |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| &nbsp; | **QiskitHumanEval-Hard** | **QiskitHumanEval** | **HumanEval** | **ASDiv** | **MathQA** | **SciQ** | **MBPP** | **IFEval** | **CrowsPairs (English)** | **TruthfulQA (MC1 acc)** | &nbsp; | &nbsp; |
-| **mistral-small-3.2-24b-qiskit** | 32.45 | 47.02 | 77.49 | 3.77 | 49.68 | 97.50 | 64.00 | 48.44 | 67.08 | 39.41 | **January 2026** | **2.2** |
-| Qwen2.5-Coder-14B-Qiskit | 25.17 | 49.01 | 91.46 | 4.21 | 53.90 | 97.00 | 77.60 | 49.64 | 65.18 | 37.82 | June 2025 | 2.0 |
-| granite-3.3-8b-qiskit | 14.57 | 27.15 | 62.80 | 0.48 | 38.66 | 93.30 | 52.40 | 59.71 | 59.75 | 39.05 | June 2025 | 2.0 |
-| granite-3.2-8b-qiskit | 9.93 | 24.50 | 57.32 | 0.09 | 41.41 | 96.30 | 51.80 | 60.79 | 66.79 | 40.51 | June 2025 | 2.0 |
-| granite-8b-qiskit-rc-0.10 | 15.89 | 38.41 | 59.76 | — | — | — | — | — | — | — | February 2025 | 1.3 |
-| granite-8b-qiskit | 17.88 | 44.37 | 53.66 | — | — | — | — | — | — | — | November 2024 | 1.2 |
-
-*Note: All models listed in the benchmark table were evaluated using their respective system prompt, defined in their Hugging Face model.*
-
-#### Deprecated models
-
-These models are no longer actively maintained but remain available:
-
-1. [qiskit/granite-8b-qiskit-rc-0.10](https://huggingface.co/Qiskit/granite-8b-qiskit-rc-0.10) - Released February 2025 (deprecated)
-2. [qiskit/granite-8b-qiskit](https://huggingface.co/Qiskit/granite-8b-qiskit) - Released November 2024 (deprecated)
-
-
-### Local setup
-To configure your local setup, expand the sections below.
 
 <Accordion>
 <AccordionItem title="Download from the Hugging Face website">
@@ -434,6 +379,56 @@ Ask a question directly in the chat, for example: "Define a Bell circuit and run
   
 </AccordionItem>
 </Accordion>
+
+## Available models
+
+#### Current models
+
+These are the latest recommended models for use with Qiskit Code Assistant:
+
+1. [Qiskit/mistral-small-3.2-24b-qiskit](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit) - Released October 2025
+2. [Qiskit/Qwen2.5-Coder-14B-Qiskit](https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit) - Released June 2025
+3. [qiskit/granite-3.3-8b-qiskit](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit) - Released June 2025
+4. [qiskit/granite-3.2-8b-qiskit](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit) - Released June 2025
+
+#### GGUF models (recommended for personal environments/laptops)
+
+GGUF format models are optimized for local use and require fewer computational resources:
+
+1. [mistral-small-3.2-24b-qiskit-GGUF](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit-GGUF) – Released **October 2025**  
+   *Trained with Qiskit data up to version **2.1***  
+
+2. [Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF](https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF) – Released **June 2025**  
+   *Trained with Qiskit data up to version **2.0***  
+
+3. [qiskit/granite-3.3-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF) – Released **June 2025**  
+   *Trained with Qiskit data up to version **2.0***  
+
+4. [qiskit/granite-3.2-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF) – Released **June 2025**  
+   *Trained with Qiskit data up to version **2.0***  
+
+The Open Source Qiskit Code Assistant models are available in <DefinitionTooltip definition="Safetensors is a file format designed specifically for storing machine learning model weights and tensors in a secure and efficient manner.">safetensors</DefinitionTooltip> or <DefinitionTooltip definition="GGUF is a binary format that is designed for quickly loading and saving models, and for readability.">GGUF file format</DefinitionTooltip> and can be downloaded from the Hugging Face as explained below.
+
+#### Qiskit versions used for training
+
+| **Model** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | **Benchmark Metrics** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | **Release date** | **Trained on Qiskit version** |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| &nbsp; | **QiskitHumanEval-Hard** | **QiskitHumanEval** | **HumanEval** | **ASDiv** | **MathQA** | **SciQ** | **MBPP** | **IFEval** | **CrowsPairs (English)** | **TruthfulQA (MC1 acc)** | &nbsp; | &nbsp; |
+| **mistral-small-3.2-24b-qiskit** | 32.45 | 47.02 | 77.49 | 3.77 | 49.68 | 97.50 | 64.00 | 48.44 | 67.08 | 39.41 | **January 2026** | **2.2** |
+| Qwen2.5-Coder-14B-Qiskit | 25.17 | 49.01 | 91.46 | 4.21 | 53.90 | 97.00 | 77.60 | 49.64 | 65.18 | 37.82 | June 2025 | 2.0 |
+| granite-3.3-8b-qiskit | 14.57 | 27.15 | 62.80 | 0.48 | 38.66 | 93.30 | 52.40 | 59.71 | 59.75 | 39.05 | June 2025 | 2.0 |
+| granite-3.2-8b-qiskit | 9.93 | 24.50 | 57.32 | 0.09 | 41.41 | 96.30 | 51.80 | 60.79 | 66.79 | 40.51 | June 2025 | 2.0 |
+| granite-8b-qiskit-rc-0.10 | 15.89 | 38.41 | 59.76 | — | — | — | — | — | — | — | February 2025 | 1.3 |
+| granite-8b-qiskit | 17.88 | 44.37 | 53.66 | — | — | — | — | — | — | — | November 2024 | 1.2 |
+
+*Note: All models listed in the benchmark table were evaluated using their respective system prompt, defined in their Hugging Face model.*
+
+#### Deprecated models
+
+These models are no longer actively maintained but remain available:
+
+1. [qiskit/granite-8b-qiskit-rc-0.10](https://huggingface.co/Qiskit/granite-8b-qiskit-rc-0.10) - Released February 2025 (deprecated)
+2. [qiskit/granite-8b-qiskit](https://huggingface.co/Qiskit/granite-8b-qiskit) - Released November 2024 (deprecated)
 
 ## More information and citations
 
