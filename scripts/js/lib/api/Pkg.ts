@@ -65,6 +65,7 @@ export class Pkg {
     "qiskit-addon-obp",
     "qiskit-addon-mpf",
     "qiskit-addon-sqd",
+    "qiskit-addon-sqd-hpc",
     "qiskit-addon-cutting",
     "qiskit-addon-utils",
   ];
@@ -228,6 +229,15 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-utils",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+      });
+    }
+    if (name === "qiskit-addon-sqd-hpc") {
+      return new Pkg({
+        ...args,
+        title: "SQD for HPC",
+        githubSlug: "Qiskit/qiskit-addon-sqd-hpc",
+        kebabCaseAndShortenUrls: true,
+        language: "C",
       });
     }
 

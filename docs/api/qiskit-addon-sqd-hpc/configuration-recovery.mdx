@@ -1,0 +1,38 @@
+---
+title: Configuration recovery (latest version)
+description: API reference for Configuration recovery in the latest version of qiskit-addon-sqd-hpc
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Configuration recovery
+---
+
+# Configuration recovery
+
+## Functions
+
+This library provides a single public function for performing configuration recovery.
+
+### BitstringVectorType
+
+<Function id="BitstringVectorType" signature="template<typename BitstringVectorType, typename WeightVectorType, std::uniform_random_bit_generator RNGType>std::pair<BitstringVectorType, WeightVectorType> Qiskit::addon::sqd::recover_configurations(const BitstringVectorType &bitstrings, const WeightVectorType &probabilities, const std::array<std::vector<double>, 2> &avg_occupancies, std::array<std::uint64_t, 2> num_elec, RNGType &rng)">
+  Refine bitstrings based on average orbital occupancy and a target Hamming weight.
+
+  **Parameters**
+
+  *   **bitstrings** – **\[in]** A container (e.g., `std::vector`) of bitstrings.
+  *   **probabilities** – **\[in]** A 1D array specifying a probability distribution over the bitstrings. Must contain the same number of elements as `bitstrings`.
+  *   **avg\_occupancies** – **\[in]** Size-2 `std::array` of `std::vector<double>`s holding the mean occupancy of the spin-up and spin-down orbitals, respectively. Each vector’s size must be half the size of a single bitstring.
+  *   **num\_elec** – **\[in]** Size-2 `std::array` containing the number of spin-up and spin-down electrons in the system, respectively.
+  *   **rng** – **\[inout]** Random number generator.
+
+  **Template Parameters**
+
+  *   **BitstringVectorType** – Type of `bitstrings`, compatible with `std::vector<boost::dynamic_bitset<>>`.
+  *   **WeightVectorType** – Type of `weights`, compatible with `std::vector<double>`.
+  *   **RNGType** – Type of random number generator.
+
+  **Returns**
+
+  A refined `std::vector` of unique bitstrings and a parallel, updated probability array.
+</Function>
+

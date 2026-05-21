@@ -652,6 +652,9 @@ function _addonStaleTutorialLinks(): FilesToIgnores {
     "docs/addons/qiskit-addon-cutting/how-tos/how-to-generate-exact-sampling-coefficients.ipynb": [
       "../tutorials/01_gate_cutting_to_reduce_circuit_width.ipynb",
     ],
+    "docs/addons/qiskit-addon-sqd-hpc/index.mdx": [
+      "/docs/en/guides/bit-ordering",
+    ],
   };
 }
 

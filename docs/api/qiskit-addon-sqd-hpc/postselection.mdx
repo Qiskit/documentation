@@ -1,0 +1,76 @@
+---
+title: Postselection (latest version)
+description: API reference for Postselection in the latest version of qiskit-addon-sqd-hpc
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Postselection
+---
+
+# Postselection
+
+## Functions
+
+### BitstringVectorType
+
+<Function id="BitstringVectorType" signature="template<typename BitstringVectorType, typename WeightVectorType, typename CallableType>std::pair<BitstringVectorType, WeightVectorType> Qiskit::addon::sqd::postselect_bitstrings(const BitstringVectorType &bitstrings, const WeightVectorType &weights, CallableType filter_function)">
+  Post-select bitstrings based on a given criteria.
+
+  <span id="postselection_8hpp_1autotoc_md0" />
+
+  #### Example
+
+  ```c
+  std::vector<std::bitset<6>> bitstrings = {0b011010, 0b100011};
+  std::vector<double> weights = {0.1, 0.7};
+  auto [new_bitstrings, new_weights] = Qiskit::addon::sqd::postselect_bitstrings(
+      bitstrings, weights, Qiskit::addon::sqd::MatchesRightLeftHamming(1, 2)
+  );
+  ```
+
+  **Parameters**
+
+  *   **bitstrings** – **\[in]** Bitstrings to consider.
+  *   **weights** – **\[in]** Relative weight of each bitstring (need not be normalized to 1).
+  *   **filter\_function** – **\[in]** Callable which returns a boolean indicating whether a is to be kept.
+
+  **Template Parameters**
+
+  *   **BitstringVectorType** – Type of `bitstrings`, compatible with `std::vector<boost::dynamic_bitset<>>`.
+  *   **WeightVectorType** – Type of `weights`, compatible with `std::vector<double>`.
+  *   **CallableType** – Type of `filter_function`, compatible with `bool (*f)(const BitstringType &)`.
+
+  **Returns**
+
+  Post-selected bitstrings and their corresponding weights, normalized to 1.
+</Function>
+
+## Classes
+
+**template\<typename UnsignedType = uint32\_t><span id="classQiskit_1_1addon_1_1sqd_1_1MatchesRightLeftHamming" />class MatchesRightLeftHamming**
+
+Functor which returns `true` if a bitstring has a predetermined Hamming weight.
+
+### MatchesRightLeftHamming
+
+<Function id="MatchesRightLeftHamming" signature="inline explicit MatchesRightLeftHamming(UnsignedType right_target, UnsignedType left_target)">
+  Constructor.
+</Function>
+
+### BitstringType
+
+<Function id="BitstringType" signature="template<typename BitstringType>inline bool operator()(const BitstringType &bitstring) const">
+  Function to be used as filter.
+
+  **Parameters**
+
+  **bitstring** – **\[in]** Bitstring to consider.
+
+  **Template Parameters**
+
+  **BitstringType** – Type of `bitstring`, compatible with `boost::dynamic_bitset<>` (for example).
+
+  **Returns**
+
+  `true` if the bitstring matches the Hamming weight that the functor was initialized with.
+</Function>
+

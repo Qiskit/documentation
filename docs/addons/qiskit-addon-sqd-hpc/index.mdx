@@ -1,0 +1,39 @@
+---
+title: "Qiskit addon: SQD (HPC-ready)"
+description: "Documentation for the latest version of SQD for HPC"
+---
+
+# Qiskit addon: SQD (HPC-ready)
+
+This repository contains an HPC-ready implementation of the [Qiskit addon for Sample-based Quantum Diagonalization (SQD)](https://github.com/Qiskit/qiskit-addon-sqd).
+
+Unlike the existing Python addon, this code is written in modern C++17 and is designed to enable HPC workflows and applications, particularly those that require a single binary to be compiled for use with MPI. This library builds upon existing interfaces in the C++ standard template library (STL); specifically, this code-base is:
+
+*   Able to leverage any pseudo-random number generator compatible with the `<random>` header.
+*   Reliant on standard interfaces for storing bitstrings, namely `std::bitset` and `boost::dynamic_bitset`, which are themselves aligned with [Qiskit’s bit-ordering conventions](/docs/en/guides/bit-ordering) (c.f. [to\_ulong](https://en.cppreference.com/w/cpp/utility/bitset/to_ulong.html) and [to\_string](https://en.cppreference.com/w/cpp/utility/bitset/to_string.html)).
+*   Compatible with STL containers, including `std::vector`.
+
+The code is cross-platform, fully tested, fully documented, and contains an integrated benchmark suite.
+
+## Table of Contents
+
+*   [Compilation flags](compilation-flags)
+
+    *   [How to disable exceptions](compilation-flags#how-to-disable-exceptions)
+    *   [How to disable run-time type information (RTTI)](compilation-flags#how-to-disable-run-time-type-information-rtti)
+    *   [Example: passing flags to `cmake`](compilation-flags#example-passing-flags-to-cmake)
+    *   [Concepts (C++20 and later)](compilation-flags#concepts-c-20-and-later)
+
+*   [API Reference](/docs/api/qiskit-addon-sqd-hpc/index)
+
+    *   [Postselection](/docs/api/qiskit-addon-sqd-hpc/postselection)
+    *   [Subsampling](/docs/api/qiskit-addon-sqd-hpc/subsampling)
+    *   [Configuration recovery](/docs/api/qiskit-addon-sqd-hpc/configuration-recovery)
+    *   [Fermion](/docs/api/qiskit-addon-sqd-hpc/fermion)
+
+*   [GitHub](https://github.com/Qiskit/qiskit-addon-sqd-hpc)
+
+*   [Release Notes](/docs/api/qiskit-addon-sqd-hpc/release-notes)
+
+    *   [Upcoming release (`main`)](/docs/api/qiskit-addon-sqd-hpc/release-notes#upcoming-release-main)
+
