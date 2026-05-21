@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readdir } from "fs/promises";
+import { readdir, readFile } from "fs/promises";
 
 import { globby } from "globby";
 import yargs from "yargs/yargs";
@@ -79,15 +79,37 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
+/**
+ * Generates synthetic File entries for addon tutorial aliases — paths like
+ * docs/addons/{pkg}/tutorials/{slug} that have no real file but are served by
+ * the app by remapping to docs/tutorials/{slug}.
+ */
+async function syntheticAddonTutorialFiles(): Promise<File[]> {
+  const tutorialJsonFiles = await globby("docs/addons/**/_tutorials.json");
+  const files: File[] = [];
+  for (const jsonPath of tutorialJsonFiles) {
+    const pkgDir = jsonPath.replace("/_tutorials.json", "");
+    const { tutorials } = JSON.parse(await readFile(jsonPath, "utf-8")) as {
+      tutorials: string[];
+    };
+    for (const slug of tutorials) {
+      files.push(new File(`${pkgDir}/tutorials/${slug}.ipynb`, new Set(), true));
+    }
+  }
+  return files;
+}
+
 async function main() {
   const args = readArgs();
 
   const fileBatches = await determineFileBatches(args);
+  const addonTutorialFiles = await syntheticAddonTutorialFiles();
   const otherFiles = [
     ...(
       await globby("public/{docs,learning}/{images,videos,open-source}/**/*")
     ).map((fp) => new File(fp, new Set())),
     ...SYNTHETIC_FILES.map((fp) => new File(fp, new Set(), true)),
+    ...addonTutorialFiles,
   ];
 
   let allGood = true;

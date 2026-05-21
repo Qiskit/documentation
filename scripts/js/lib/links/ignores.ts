@@ -217,29 +217,6 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
 
   // Other links that don't seem to exist any more
   "https://www.globaldataquantum.com/en/quantum-portfolio-optimizer/#form",
-
-  // from qiskit-addon-obp
-  "/docs/addons/qiskit-addon-obp/tutorials/01-getting-started-ipynb",
-  "/docs/api/qiskit/qiskit.circuit.QuantumCircuit#html",
-  "/api/qiskit-ibm-runtime/noise-learner-noise-learner",
-  "/api/qiskit-ibm-runtime/noise-learner-result",
-
-  // from qiskit-addon-utils
-  "/docs/addons/samplomatic/guides/samplex-io#qubit-ordering-convention",
-
-  // from qiskit-addon-sqd
-  "/docs/en/tutorials/sample-based-krylov-quantum-diagonalization",
-  "/docs/en/tutorials/sample-based-quantum-diagonalization",
-  "/docs/guides/get-started-with-primitives#get-started-with-sampler",
-
-  // from qiskit-addon-cutting
-  "how-tos/how-to-specify-cut-wires",
-  "/circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
-  "/docs/start/install#operating-system-support",
-  "../tutorials/03_wire_cutting_via_move_instruction.ipynb",
-  "#equation-eq-qpd",
-  "./circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
-  "../tutorials/01_gate_cutting_to_reduce_circuit_width.ipynb",
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -610,8 +587,76 @@ function _qiskitCRegexes(): FilesToIgnores {
   };
 }
 
+function _addonStaleTutorialLinks(): FilesToIgnores {
+  // These links point to old addon-repo tutorial slugs that no longer exist.
+  // The addon source docs need to be updated to use the new paths.
+  return {
+    "docs/addons/qiskit-addon-sqd/index.mdx": [
+      "tutorials/01-chemistry-hamiltonian",
+      "tutorials/index",
+      "/docs/en/tutorials/sample-based-quantum-diagonalization",
+      "/docs/en/tutorials/sample-based-krylov-quantum-diagonalization",
+    ],
+    "docs/addons/qiskit-addon-cutting/index.mdx": [
+      "tutorials/index",
+      "tutorials/01-gate-cutting-to-reduce-circuit-width",
+      "tutorials/02-gate-cutting-to-reduce-circuit-depth",
+      "tutorials/03-wire-cutting-via-move-instruction",
+      "tutorials/04-automatic-cut-finding",
+      "./circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
+      "how-tos/how-to-specify-cut-wires",
+    ],
+    "docs/addons/qiskit-addon-aqc-tensor/index.mdx": [
+      "tutorials/index",
+    ],
+    "docs/api/qiskit-addon-cutting/instructions-move.mdx": [
+      "/docs/addons/qiskit-addon-cutting/tutorials/03-wire-cutting-via-move-instruction",
+    ],
+    "docs/api/qiskit-addon-cutting/release-notes.mdx": [
+      "/docs/addons/qiskit-addon-cutting/tutorials/index",
+    ],
+    "docs/api/qiskit-addon-sqd/release-notes.mdx": [
+      "/docs/addons/qiskit-addon-sqd/tutorials/index",
+    ],
+    "docs/addons/qiskit-addon-mpf/explanations/mpf-stability.ipynb": [
+      "/docs/addons/qiskit-addon-mpf/tutorials/01-getting-started",
+    ],
+    "docs/addons/qiskit-addon-mpf/how-tos/choose-trotter-steps.ipynb": [
+      "/docs/addons/qiskit-addon-mpf/tutorials/01-getting-started",
+    ],
+    "docs/addons/qiskit-addon-mpf/how-tos/using-approximate-model.ipynb": [
+      "/docs/addons/qiskit-addon-mpf/tutorials/01-getting-started",
+    ],
+    "docs/addons/qiskit-addon-sqd/how-tos/integrate-dice-solver.ipynb": [
+      "/docs/addons/qiskit-addon-sqd/tutorials/01-chemistry-hamiltonian",
+    ],
+    "docs/addons/qiskit-addon-obp/how-tos/truncate-operator-terms.ipynb": [
+      "/docs/addons/qiskit-addon-obp/tutorials/01-getting-started-ipynb",
+      "/docs/api/qiskit/qiskit.circuit.QuantumCircuit#html",
+    ],
+    "docs/addons/qiskit-addon-obp/how-tos/simulating-circuits-with-obp.ipynb": [
+      "/api/qiskit-ibm-runtime/noise-learner-noise-learner",
+      "/api/qiskit-ibm-runtime/noise-learner-result",
+    ],
+    "docs/addons/qiskit-addon-cutting/install.mdx": [
+      "/docs/start/install#operating-system-support",
+    ],
+    "docs/addons/qiskit-addon-cutting/explanations/index.mdx": [
+      "#equation-eq-qpd",
+      "how-tos/how-to-specify-cut-wires",
+      "/circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
+    ],
+    "docs/addons/qiskit-addon-cutting/how-tos/how-to-specify-cut-wires.ipynb": [
+      "../tutorials/03_wire_cutting_via_move_instruction.ipynb",
+    ],
+    "docs/addons/qiskit-addon-cutting/how-tos/how-to-generate-exact-sampling-coefficients.ipynb": [
+      "../tutorials/01_gate_cutting_to_reduce_circuit_width.ipynb",
+    ],
+  };
+}
+
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores =
-  mergeFilesToIgnores(_qiskitCRegexes());
+  mergeFilesToIgnores(_qiskitCRegexes(), _addonStaleTutorialLinks());
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
