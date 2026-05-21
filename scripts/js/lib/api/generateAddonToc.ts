@@ -104,6 +104,22 @@ export async function generateAddonToc(
     collapsible: false,
   };
 
+  if (pkg.tutorials.length > 0) {
+    const tutorialsDocsPath = join(docsBaseFolder, "..", "tutorials");
+    const tutorialChildren: TocEntry[] = await Promise.all(
+      pkg.tutorials.map(async (slug) => {
+        const filePath = join(tutorialsDocsPath, `${slug}.ipynb`);
+        const title = await readTitle(filePath);
+        return { title, url: `${addonUrlBase}/tutorials/${slug}` };
+      }),
+    );
+    topLevelSections.push({
+      title: "Tutorials",
+      collapsible: false,
+      children: tutorialChildren,
+    });
+  }
+
   topLevelSections.push({
     title: "API reference",
     collapsible: false,

@@ -106,6 +106,9 @@ export async function runAddonDocsPipeline(
   );
 
   await writeTocFile(pkg, docsBaseFolder, outputPath);
+  if (pkg.tutorials.length > 0) {
+    await writeTutorialsFile(pkg, outputPath);
+  }
 }
 
 async function writeTocFile(
@@ -118,6 +121,13 @@ async function writeTocFile(
   await writeFile(
     `${outputPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
+  );
+}
+
+async function writeTutorialsFile(pkg: Pkg, outputPath: string): Promise<void> {
+  await writeFile(
+    `${outputPath}/_tutorials.json`,
+    JSON.stringify({ tutorials: pkg.tutorials }, null, 2) + "\n",
   );
 }
 

@@ -57,6 +57,8 @@ export class Pkg {
   readonly kebabCaseAndShortenUrls: boolean;
   readonly artifactPackageName: string;
   readonly hasRootNamespaceFile: boolean;
+  /** Slugs of docs/tutorials/ notebooks to surface under this addon's tutorials route. */
+  readonly tutorials: string[];
 
   static ADDON_NAMES = [
     "qiskit-addon-aqc-tensor",
@@ -88,6 +90,7 @@ export class Pkg {
     kebabCaseAndShortenUrls: boolean;
     artifactPackageName?: string;
     hasRootNamespaceFile?: boolean;
+    tutorials?: string[];
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -102,6 +105,7 @@ export class Pkg {
     this.kebabCaseAndShortenUrls = kwargs.kebabCaseAndShortenUrls;
     this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
     this.hasRootNamespaceFile = kwargs.hasRootNamespaceFile ?? false;
+    this.tutorials = kwargs.tutorials ?? [];
   }
 
   static async fromArgs(
@@ -166,6 +170,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-aqc-tensor",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        tutorials: ["approximate-quantum-compilation-for-time-evolution"],
       });
     }
     if (name === "qiskit-addon-obp") {
@@ -175,6 +180,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-obp",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        tutorials: ["operator-back-propagation"],
       });
     }
     if (name === "qiskit-addon-mpf") {
@@ -185,6 +191,7 @@ export class Pkg {
         kebabCaseAndShortenUrls: true,
         tocGrouping: QISKIT_ADDON_MPF_GROUPING,
         language: "Python",
+        tutorials: ["multi-product-formula"],
       });
     }
     if (name === "qiskit-addon-sqd") {
@@ -194,6 +201,10 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-sqd",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        tutorials: [
+          "sample-based-quantum-diagonalization",
+          "sample-based-krylov-quantum-diagonalization",
+        ],
       });
     }
     if (name === "qiskit-addon-cutting") {
@@ -203,6 +214,11 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-cutting",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        tutorials: [
+          "depth-reduction-with-circuit-cutting",
+          "periodic-boundary-conditions-with-circuit-cutting",
+          "wire-cutting",
+        ],
       });
     }
     if (name === "qiskit-addon-utils") {
