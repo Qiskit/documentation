@@ -66,10 +66,14 @@ export async function generateAddonToc(
   // Top-level files → entries in the main section, in filename order.
   for (const file of topLevelFiles.sort()) {
     const slug = file.replace(/\.(mdx|ipynb)$/, "");
-    const url =
-      slug === "index" ? addonUrlBase : `${addonUrlBase}/${slug}`;
-    const title = TOP_LEVEL_TITLES[slug] ?? await readTitle(join(addonDocsPath, file));
-    mainChildren.push({ title, url });
+    const isIndex = slug === "index";
+    const url = isIndex ? addonUrlBase : `${addonUrlBase}/${slug}`;
+    const title =
+      TOP_LEVEL_TITLES[slug] ?? (await readTitle(join(addonDocsPath, file)));
+    // ensure index is first in the toc
+    isIndex
+      ? mainChildren.unshift({ title, url })
+      : mainChildren.push({ title, url });
   }
 
   // Subdirectories → either nested subsections or top-level sections.
@@ -207,7 +211,9 @@ function readMdxTitle(content: string, filePath: string): string {
 }
 
 function readNotebookTitle(content: string, filePath: string): string {
-  let notebook: { cells: Array<{ id?: string; cell_type: string; source: string[] }> };
+  let notebook: {
+    cells: Array<{ id?: string; cell_type: string; source: string[] }>;
+  };
   try {
     notebook = JSON.parse(content);
   } catch {
@@ -237,5 +243,10 @@ function stripInlineCode(text: string): string {
 }
 
 function fileBasename(filePath: string): string {
-  return filePath.split("/").pop()?.replace(/\.(mdx|ipynb)$/, "") ?? filePath;
+  return (
+    filePath
+      .split("/")
+      .pop()
+      ?.replace(/\.(mdx|ipynb)$/, "") ?? filePath
+  );
 }
