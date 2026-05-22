@@ -170,8 +170,10 @@ function rewriteNotebookLinks(
 function escapeMdxSpecialChars(source: string): string {
   const parts = source.split(/(```[\s\S]*?```|\$\$[\s\S]*?\$\$|`[^`]*`)/g);
   return parts
-    .map((part) => {
-      // Plain text: escape < to prevent MDX from treating it as a JSX tag.
+    .map((part, i) => {
+      // Odd indices are the captured delimiters (code/math) — leave them alone.
+      if (i % 2 === 1) return part;
+      // Even indices are plain text: escape < to prevent MDX JSX tag parsing.
       return part.replace(/</g, "\\<");
     })
     .join("");
