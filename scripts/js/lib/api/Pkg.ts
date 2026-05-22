@@ -71,7 +71,7 @@ export class Pkg {
     // "qiskit-addon-mthree",
     "qiskit-addon-pna",
     "qiskit-addon-slc",
-    // "qiskit-addon-opt-mapper",
+    "qiskit-addon-opt-mapper",
     // "qiskit-fermions",
     // "qiskit-paulice",
     // "pauli-prop",

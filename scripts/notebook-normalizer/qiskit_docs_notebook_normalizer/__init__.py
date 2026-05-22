@@ -87,6 +87,20 @@ def main():
         raise SystemExit(1)
 
 
+REQUIRED_METADATA = {
+    "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
+    "language_info": {
+        "codemirror_mode": {"name": "ipython", "version": 3},
+        "file_extension": ".py",
+        "mimetype": "text/x-python",
+        "name": "python",
+        "nbconvert_exporter": "python",
+        "pygments_lexer": "ipython3",
+        "version": "3",
+    },
+}
+
+
 def normalize_notebook(
     nb: nbformat.NotebookNode, image_folder: Path, check_only: bool = False
 ) -> NormalizationResult:
@@ -95,6 +109,13 @@ def normalize_notebook(
     """
     images = []
     change_made = False
+
+    for key, value in REQUIRED_METADATA.items():
+        if key not in nb.metadata:
+            change_made = True
+            if not check_only:
+                nb.metadata[key] = value
+
     for cell_index, cell in enumerate(nb.cells):
         if cell.cell_type != "code":
             continue

@@ -1,0 +1,39 @@
+---
+title: to_docplex_mp (latest version)
+description: API reference for qiskit_addon_opt_mapper.translators.to_docplex_mp in the latest version of qiskit-addon-opt-mapper
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_opt_mapper.translators.to_docplex_mp
+---
+
+<span id="qiskit-addon-opt-mapper-translators-to-docplex-mp" />
+
+# qiskit\_addon\_opt\_mapper.translators.to\_docplex\_mp
+
+<Function id="qiskit_addon_opt_mapper.translators.to_docplex_mp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/translators/docplex_mp.py#L40-L150" signature="to_docplex_mp(quadratic_problem)">
+  Returns a docplex.mp model corresponding to a optimization problem.
+
+  Higher-order terms and spin variables are not supported.
+
+  **Parameters**
+
+  **quadratic\_problem** (*OptimizationProblem*) – The optimization problem to be translated.
+
+  **Returns**
+
+  The docplex.mp model corresponding to a quadratic optimization problem.
+
+  **Raises**
+
+  *   [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError) – if docplex is not installed.
+  *   **OptimizationError** – if the model contains spin variables.
+  *   **OptimizationError** – if the optimization problem contains unsupported variables. (should
+  *   **never happen**\*\*)\*\* –
+  *   **OptimizationError** – if the optimization problem contains higher-order objective terms.
+  *   **OptimizationError** – if the optimization problem contains higher-order constraints.
+
+  **Return type**
+
+  *Model*
+</Function>
+

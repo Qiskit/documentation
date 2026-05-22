@@ -1,0 +1,143 @@
+---
+title: LinearInequalityToPenalty (latest version)
+description: API reference for qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty in the latest version of qiskit-addon-opt-mapper
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty
+---
+
+<span id="qiskit-addon-opt-mapper-converters-linearinequalitytopenalty" />
+
+# qiskit\_addon\_opt\_mapper.converters.LinearInequalityToPenalty
+
+<Class id="qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/converters/linear_inequality_to_penalty.py#L32-L395" signature="LinearInequalityToPenalty(penalty=None)" modifiers="class">
+  Bases: [`OptimizationProblemConverter`](converters-optimization-problem-converter "qiskit_addon_opt_mapper.converters.optimization_problem_converter.OptimizationProblemConverter")
+
+  Convert linear inequality constraints to penalty terms of the objective function.
+
+  There are some linear constraints which do not require slack variables to construct penalty terms \[1]. This class supports the following inequality constraints.
+
+$$
+\begin{split}\begin{array}{}
+\text { Inequality constraint } & & \text { Penalty term } \\
+x \leq y & \rightarrow  & P(x-x y) \\
+x \geq y & \rightarrow  & P(y-x y) \\
+\sum_{i=1}^n x_i \leq 1, n \geq 2 & \rightarrow &
+P \sum_{i, j : i < j} x_i x_j\\
+\sum_{i=1}^n x_i \geq n-1, n \geq 2 & \rightarrow &
+P \sum_{i, j : i < j} (1 - x_i) (1 - x_j)
+\end{array}\end{split}
+$$
+
+  Note that x, y, z and $x_i$ are binary variables, and P is a penalty factor, where the value of P is automatically determined or supplied by users.
+
+  If constraints match with any of the patterns, they are converted into penalty terms and added to the objective function. Otherwise, constraints are kept as is.
+
+  **References**
+
+  **\[1]: Fred Glover, et al. (2019),**
+
+  A Tutorial on Formulating and Using QUBO Models, [arXiv:1811.11538](https://arxiv.org/abs/1811.11538).
+
+  Init method.
+
+  **Parameters**
+
+  **penalty** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Penalty factor to scale equality constraints that are added to objective. If None is passed, a penalty factor will be automatically calculated on every conversion.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.__init__" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/converters/linear_inequality_to_penalty.py#L63-L74" signature="__init__(penalty=None)">
+    Init method.
+
+    **Parameters**
+
+    **penalty** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Penalty factor to scale equality constraints that are added to objective. If None is passed, a penalty factor will be automatically calculated on every conversion.
+
+    **Return type**
+
+    None
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                          |                                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.__init__ "qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.__init__")(\[penalty]) | Init method.                                                                      |
+  | [`convert`](#qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.convert "qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.convert")(problem)       | Convert inequality constraints into penalty terms of the objective function.      |
+  | [`interpret`](#qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.interpret "qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.interpret")(x)       | Convert the result of the converted problem back to that of the original problem. |
+
+  ## Attributes
+
+  |                                                                                                                                                           |                                                |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | [`penalty`](#qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.penalty "qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.penalty") | Returns the penalty factor used in conversion. |
+
+  ### convert
+
+  <Function id="qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.convert" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/converters/linear_inequality_to_penalty.py#L76-L223" signature="convert(problem)">
+    Convert inequality constraints into penalty terms of the objective function.
+
+    This methods converts the following patterns where x, y, and $x_i$ are binary variables and P is a penalty factor.
+
+$$
+\begin{split}\begin{array}{}
+\text { Inequality constraint } & & \text { Penalty term } \\
+x \leq y & \rightarrow  & P(x-x y) \\
+x \geq y & \rightarrow  & P(y-x y) \\
+\sum_{i=1}^n x_i \leq 1, n \geq 2 & \rightarrow & P \sum_{i, j : i < j} x_i x_j\\
+\sum_{i=1}^n x_i \geq n-1, n \geq 2 & \rightarrow &
+P \sum_{i, j : i < j} (1 - x_i) (1 - x_j)
+\end{array}\end{split}
+$$
+
+    **Parameters**
+
+    **problem** (*OptimizationProblem*) – The problem to be solved.
+
+    **Returns**
+
+    The converted problem
+
+    **Raises**
+
+    **OptimizationError** – If an unsupported-type variable exists.
+
+    **Return type**
+
+    *OptimizationProblem*
+  </Function>
+
+  ### interpret
+
+  <Function id="qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.interpret" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/converters/linear_inequality_to_penalty.py#L355-L374" signature="interpret(x)">
+    Convert the result of the converted problem back to that of the original problem.
+
+    **Parameters**
+
+    **x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The result of the converted problem or the given result in case of FAILURE.
+
+    **Returns**
+
+    The result of the original problem.
+
+    **Raises**
+
+    **OptimizationError** – if the number of variables in the result differs from that of the original problem.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+
+  ### penalty
+
+  <Attribute id="qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty.penalty" attributeTypeHint="float | None">
+    Returns the penalty factor used in conversion.
+
+    **Returns**
+
+    The penalty factor used in conversion.
+  </Attribute>
+</Class>
+

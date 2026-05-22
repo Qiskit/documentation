@@ -1,0 +1,150 @@
+---
+title: QuadraticConstraint (latest version)
+description: API reference for qiskit_addon_opt_mapper.problems.QuadraticConstraint in the latest version of qiskit-addon-opt-mapper
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_opt_mapper.problems.QuadraticConstraint
+---
+
+<span id="qiskit-addon-opt-mapper-problems-quadraticconstraint" />
+
+# qiskit\_addon\_opt\_mapper.problems.QuadraticConstraint
+
+<Class id="qiskit_addon_opt_mapper.problems.QuadraticConstraint" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/problems/quadratic_constraint.py#L25-L132" signature="QuadraticConstraint(optimization_problem, name, linear, quadratic, sense, rhs)" modifiers="class">
+  Bases: [`Constraint`](problems-constraint "qiskit_addon_opt_mapper.problems.constraint.Constraint")
+
+  Representation of a quadratic constraint.
+
+  Constructs a quadratic constraint, consisting of a linear and a quadratic term.
+
+  **Parameters**
+
+  *   **optimization\_problem** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – The parent optimization problem.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the constraint.
+  *   **linear** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *| spmatrix |*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] |* [*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The coefficients specifying the linear part of the constraint.
+  *   **quadratic** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *| spmatrix |*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]] |* [*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The coefficients specifying the linear part of the constraint.
+  *   **sense** (*ConstraintSense*) – The sense of the constraint.
+  *   **rhs** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The right-hand-side of the constraint.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_addon_opt_mapper.problems.QuadraticConstraint.__init__" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/problems/quadratic_constraint.py#L31-L54" signature="__init__(optimization_problem, name, linear, quadratic, sense, rhs)">
+    Constructs a quadratic constraint, consisting of a linear and a quadratic term.
+
+    **Parameters**
+
+    *   **optimization\_problem** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – The parent optimization problem.
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the constraint.
+    *   **linear** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *| spmatrix |*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] |* [*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The coefficients specifying the linear part of the constraint.
+    *   **quadratic** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *| spmatrix |*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]] |* [*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The coefficients specifying the linear part of the constraint.
+    *   **sense** (*ConstraintSense*) – The sense of the constraint.
+    *   **rhs** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The right-hand-side of the constraint.
+
+    **Return type**
+
+    None
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                                        |                                                                                 |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_addon_opt_mapper.problems.QuadraticConstraint.__init__ "qiskit_addon_opt_mapper.problems.QuadraticConstraint.__init__")(optimization\_problem, name, linear, ...) | Constructs a quadratic constraint, consisting of a linear and a quadratic term. |
+  | [`evaluate`](#qiskit_addon_opt_mapper.problems.QuadraticConstraint.evaluate "qiskit_addon_opt_mapper.problems.QuadraticConstraint.evaluate")(x)                                        | Evaluate the left-hand-side of the constraint.                                  |
+
+  ## Attributes
+
+  |                                                                                                                                                                                  |                                                                                         |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+  | [`linear`](#qiskit_addon_opt_mapper.problems.QuadraticConstraint.linear "qiskit_addon_opt_mapper.problems.QuadraticConstraint.linear")                                           | Returns the linear expression corresponding to the left-hand-side of the constraint.    |
+  | [`name`](#qiskit_addon_opt_mapper.problems.QuadraticConstraint.name "qiskit_addon_opt_mapper.problems.QuadraticConstraint.name")                                                 | Returns the name of the constraint.                                                     |
+  | [`optimization_problem`](#qiskit_addon_opt_mapper.problems.QuadraticConstraint.optimization_problem "qiskit_addon_opt_mapper.problems.QuadraticConstraint.optimization_problem") | Returns the parent OptimizationProblem.                                                 |
+  | [`quadratic`](#qiskit_addon_opt_mapper.problems.QuadraticConstraint.quadratic "qiskit_addon_opt_mapper.problems.QuadraticConstraint.quadratic")                                  | Returns the quadratic expression corresponding to the left-hand-side of the constraint. |
+  | [`rhs`](#qiskit_addon_opt_mapper.problems.QuadraticConstraint.rhs "qiskit_addon_opt_mapper.problems.QuadraticConstraint.rhs")                                                    | Returns the right-hand-side of the constraint.                                          |
+  | [`sense`](#qiskit_addon_opt_mapper.problems.QuadraticConstraint.sense "qiskit_addon_opt_mapper.problems.QuadraticConstraint.sense")                                              | Returns the sense of the constraint.                                                    |
+
+  ### Sense
+
+  <Attribute id="qiskit_addon_opt_mapper.problems.QuadraticConstraint.Sense" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/problems/constraint.py#L27-L84">
+    alias of `ConstraintSense`
+  </Attribute>
+
+  ### evaluate
+
+  <Function id="qiskit_addon_opt_mapper.problems.QuadraticConstraint.evaluate" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/problems/quadratic_constraint.py#L106-L116" signature="evaluate(x)">
+    Evaluate the left-hand-side of the constraint.
+
+    **Parameters**
+
+    **x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The values of the variables to be evaluated.
+
+    **Returns**
+
+    The left-hand-side of the constraint given the variable values.
+
+    **Return type**
+
+    [float](https://docs.python.org/3/library/functions.html#float)
+  </Function>
+
+  ### linear
+
+  <Attribute id="qiskit_addon_opt_mapper.problems.QuadraticConstraint.linear" attributeTypeHint="LinearExpression">
+    Returns the linear expression corresponding to the left-hand-side of the constraint.
+
+    **Returns**
+
+    The left-hand-side linear expression.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit_addon_opt_mapper.problems.QuadraticConstraint.name" attributeTypeHint="str">
+    Returns the name of the constraint.
+
+    **Returns**
+
+    The name of the constraint.
+  </Attribute>
+
+  ### optimization\_problem
+
+  <Attribute id="qiskit_addon_opt_mapper.problems.QuadraticConstraint.optimization_problem" attributeTypeHint="OptimizationProblem">
+    Returns the parent OptimizationProblem.
+
+    **Returns**
+
+    The parent OptimizationProblem.
+  </Attribute>
+
+  ### quadratic
+
+  <Attribute id="qiskit_addon_opt_mapper.problems.QuadraticConstraint.quadratic" attributeTypeHint="QuadraticExpression">
+    Returns the quadratic expression corresponding to the left-hand-side of the constraint.
+
+    **Returns**
+
+    The left-hand-side quadratic expression.
+  </Attribute>
+
+  ### rhs
+
+  <Attribute id="qiskit_addon_opt_mapper.problems.QuadraticConstraint.rhs" attributeTypeHint="float">
+    Returns the right-hand-side of the constraint.
+
+    **Returns**
+
+    The right-hand-side of the constraint.
+  </Attribute>
+
+  ### sense
+
+  <Attribute id="qiskit_addon_opt_mapper.problems.QuadraticConstraint.sense" attributeTypeHint="ConstraintSense">
+    Returns the sense of the constraint.
+
+    **Returns**
+
+    The sense of the constraint.
+  </Attribute>
+</Class>
+

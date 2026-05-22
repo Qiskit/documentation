@@ -1,0 +1,127 @@
+---
+title: Knapsack (latest version)
+description: API reference for qiskit_addon_opt_mapper.applications.Knapsack in the latest version of qiskit-addon-opt-mapper
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_opt_mapper.applications.Knapsack
+---
+
+<span id="qiskit-addon-opt-mapper-applications-knapsack" />
+
+# qiskit\_addon\_opt\_mapper.applications.Knapsack
+
+<Class id="qiskit_addon_opt_mapper.applications.Knapsack" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/applications/knapsack.py#L24-L91" signature="Knapsack(values, weights, max_weight)" modifiers="class">
+  Bases: [`OptimizationApplication`](applications-optimization-application "qiskit_addon_opt_mapper.applications.optimization_application.OptimizationApplication")
+
+  Optimization application for the “knapsack problem” \[1].
+
+  **References**
+
+  \[1]: “Knapsack problem”, [https://en.wikipedia.org/wiki/Knapsack\_problem](https://en.wikipedia.org/wiki/Knapsack_problem)
+
+  Init method.
+
+  **Parameters**
+
+  *   **values** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – A list of the values of items
+  *   **weights** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – A list of the weights of items
+  *   **max\_weight** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum weight capacity
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_addon_opt_mapper.applications.Knapsack.__init__" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/applications/knapsack.py#L32-L42" signature="__init__(values, weights, max_weight)">
+    Init method.
+
+    **Parameters**
+
+    *   **values** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – A list of the values of items
+    *   **weights** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – A list of the weights of items
+    *   **max\_weight** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum weight capacity
+
+    **Return type**
+
+    None
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                               |                                                          |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+  | [`__init__`](#qiskit_addon_opt_mapper.applications.Knapsack.__init__ "qiskit_addon_opt_mapper.applications.Knapsack.__init__")(values, weights, max\_weight)                  | Init method.                                             |
+  | [`interpret`](#qiskit_addon_opt_mapper.applications.Knapsack.interpret "qiskit_addon_opt_mapper.applications.Knapsack.interpret")(result)                                     | Interpret a result as item indices.                      |
+  | [`sample_most_likely`](#qiskit_addon_opt_mapper.applications.Knapsack.sample_most_likely "qiskit_addon_opt_mapper.applications.Knapsack.sample_most_likely")(state\_vector)   | Compute the most likely binary string from state vector. |
+  | [`to_optimization_problem`](#qiskit_addon_opt_mapper.applications.Knapsack.to_optimization_problem "qiskit_addon_opt_mapper.applications.Knapsack.to_optimization_problem")() | Represent as an optimization problem.                    |
+
+  ## Attributes
+
+  |                                                                                                                                      |                        |
+  | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
+  | [`max_weight`](#qiskit_addon_opt_mapper.applications.Knapsack.max_weight "qiskit_addon_opt_mapper.applications.Knapsack.max_weight") | Getter of max\_weight. |
+
+  ### interpret
+
+  <Function id="qiskit_addon_opt_mapper.applications.Knapsack.interpret" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/applications/knapsack.py#L62-L73" signature="interpret(result)">
+    Interpret a result as item indices.
+
+    **Parameters**
+
+    **result** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – The calculated result of the problem
+
+    **Returns**
+
+    A list of items whose corresponding variable is 1
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)]
+  </Function>
+
+  ### max\_weight
+
+  <Attribute id="qiskit_addon_opt_mapper.applications.Knapsack.max_weight" attributeTypeHint="int">
+    Getter of max\_weight.
+
+    **Returns**
+
+    The maximal weight for the knapsack problem
+  </Attribute>
+
+  ### sample\_most\_likely
+
+  <Function id="qiskit_addon_opt_mapper.applications.Knapsack.sample_most_likely" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/applications/optimization_application.py#L61-L108" signature="sample_most_likely(state_vector)" modifiers="static">
+    Compute the most likely binary string from state vector.
+
+    **Parameters**
+
+    **state\_vector** ([*QuasiDistribution*](/docs/api/qiskit/qiskit.result.QuasiDistribution)  *|*[*Statevector*](/docs/api/qiskit/qiskit.quantum_info.Statevector)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – state vector or counts or quasi-probabilities.
+
+    **Returns**
+
+    binary string as numpy.ndarray of ints.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if state\_vector is not QuasiDistribution, Statevector, np.ndarray, or dict.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+
+  ### to\_optimization\_problem
+
+  <Function id="qiskit_addon_opt_mapper.applications.Knapsack.to_optimization_problem" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/applications/knapsack.py#L44-L60" signature="to_optimization_problem()">
+    Represent as an optimization problem.
+
+    Convert a knapsack problem instance into a `OptimizationProblem`
+
+    **Returns**
+
+    The `OptimizationProblem` created from the knapsack problem instance.
+
+    **Return type**
+
+    *OptimizationProblem*
+  </Function>
+</Class>
+

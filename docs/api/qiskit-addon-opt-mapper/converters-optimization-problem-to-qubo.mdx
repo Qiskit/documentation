@@ -1,0 +1,161 @@
+---
+title: OptimizationProblemToQubo (latest version)
+description: API reference for qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo in the latest version of qiskit-addon-opt-mapper
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo
+---
+
+<span id="qiskit-addon-opt-mapper-converters-optimizationproblemtoqubo" />
+
+# qiskit\_addon\_opt\_mapper.converters.OptimizationProblemToQubo
+
+<Class id="qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/converters/optimization_problem_to_qubo.py#L30-L196" signature="OptimizationProblemToQubo(penalty=None)" modifiers="class">
+  Bases: [`OptimizationProblemConverter`](converters-optimization-problem-converter "qiskit_addon_opt_mapper.converters.optimization_problem_converter.OptimizationProblemConverter")
+
+  Convert a given optimization problem in quadratic form into a QUBO problem.
+
+  Done by converting variables to binary and eliminating constraints. An optimization problem in quadratic form is a problem with quadratic objective function and linear constraints. A QUBO is a problem with quadratic objective function and no constraints. This combines several converters: IntegerToBinary, InequalityToPenalty, InequalityToEquality, EqualityToPenalty, and MaximizeToMinimize. The resulting HUBO problem can be directly mapped to an Ising Hamiltonian using the to\_ising() function.
+
+  **Examples**
+
+  ```python
+  >>> from qiskit_addon_opt_mapper.problems import OptimizationProblem
+  >>> from qiskit_addon_opt_mapper.converters import OptimizationProblemToQubo
+  >>> problem = OptimizationProblem()
+  >>> # define a problem
+  >>> conv = OptimizationProblemToQubo()
+  >>> problem2 = conv.convert(problem)
+  ```
+
+  Init method.
+
+  **Parameters**
+
+  **penalty** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Penalty factor to scale equality constraints that are added to objective. If None is passed, a penalty factor will be automatically calculated on every conversion.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.__init__" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/converters/optimization_problem_to_qubo.py#L52-L69" signature="__init__(penalty=None)">
+    Init method.
+
+    **Parameters**
+
+    **penalty** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Penalty factor to scale equality constraints that are added to objective. If None is passed, a penalty factor will be automatically calculated on every conversion.
+
+    **Return type**
+
+    None
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                                                              |                                                                                           |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.__init__ "qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.__init__")(\[penalty])                                     | Init method.                                                                              |
+  | [`convert`](#qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.convert "qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.convert")(problem)                                           | Convert a optimization problem into a QUBO form.                                          |
+  | [`get_compatibility_msg`](#qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.get_compatibility_msg "qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.get_compatibility_msg")(problem) | Checks whether a given problem can be converted to a QUBO form.                           |
+  | [`interpret`](#qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.interpret "qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.interpret")(x)                                           | Convert the result of the converted problem back to that of the original problem.         |
+  | [`is_compatible`](#qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.is_compatible "qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
+
+  ## Attributes
+
+  |                                                                                                                                                           |                                                |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | [`penalty`](#qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.penalty "qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.penalty") | Returns the penalty factor used in conversion. |
+
+  ### convert
+
+  <Function id="qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.convert" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/converters/optimization_problem_to_qubo.py#L71-L93" signature="convert(problem)">
+    Convert a optimization problem into a QUBO form.
+
+    The new problem has no constraints and the objective function is quadratic.
+
+    **Parameters**
+
+    **problem** (*OptimizationProblem*) – The problem with linear constraints to be solved.
+
+    **Returns**
+
+    The problem converted in QUBO format as minimization problem.
+
+    **Raises**
+
+    **OptimizationError** – In case of an incompatible problem.
+
+    **Return type**
+
+    *OptimizationProblem*
+  </Function>
+
+  ### get\_compatibility\_msg
+
+  <Function id="qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.get_compatibility_msg" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/converters/optimization_problem_to_qubo.py#L111-L163" signature="get_compatibility_msg(problem)" modifiers="static">
+    Checks whether a given problem can be converted to a QUBO form.
+
+    If the problem is not compatible, this function returns a message explaining the incompatibility.
+
+    The following problems are not compatible: - Continuous variables are not supported. - Higher-order objective functions are not supported. - Quadratic constraints are not supported. - Higher-order constraints are not supported. - Constraints with float coefficients are not supported, because inequality constraints cannot be converted to equality constraints using integer slack variables.
+
+    **Parameters**
+
+    **problem** (*OptimizationProblem*) – The optimization problem to check compatibility.
+
+    **Returns**
+
+    A message describing the incompatibility.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
+  </Function>
+
+  ### interpret
+
+  <Function id="qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.interpret" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/converters/optimization_problem_to_qubo.py#L95-L109" signature="interpret(x)">
+    Convert the result of the converted problem back to that of the original problem.
+
+    Done by applying the interpret method of each converter in reverse order.
+
+    **Parameters**
+
+    **x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The result of the converted problem.
+
+    **Returns**
+
+    The result of the original problem.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+
+  ### is\_compatible
+
+  <Function id="qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.is_compatible" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/converters/optimization_problem_to_qubo.py#L165-L175" signature="is_compatible(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
+
+    **Parameters**
+
+    **problem** (*OptimizationProblem*) – The optimization problem to check compatibility.
+
+    **Returns**
+
+    Returns True if the problem is compatible, False otherwise.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool)
+  </Function>
+
+  ### penalty
+
+  <Attribute id="qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo.penalty" attributeTypeHint="float | None">
+    Returns the penalty factor used in conversion.
+
+    **Returns**
+
+    The penalty factor used in conversion.
+  </Attribute>
+</Class>
+

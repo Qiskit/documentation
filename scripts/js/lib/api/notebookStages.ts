@@ -158,7 +158,23 @@ function rewriteNotebookLinks(
     });
   };
 
-  return Array.isArray(source) ? source.map(rewrite) : rewrite(source);
+  const rewritten = Array.isArray(source) ? source.map(rewrite) : rewrite(source);
+  const joined = Array.isArray(rewritten) ? rewritten.join("") : rewritten;
+  return escapeMdxSpecialChars(joined);
+}
+
+/**
+ * Escape `<` outside code spans/fences/math so the MDX parser does not
+ * interpret it as a JSX tag opening.
+ */
+function escapeMdxSpecialChars(source: string): string {
+  const parts = source.split(/(```[\s\S]*?```|\$\$[\s\S]*?\$\$|`[^`]*`)/g);
+  return parts
+    .map((part) => {
+      // Plain text: escape < to prevent MDX from treating it as a JSX tag.
+      return part.replace(/</g, "\\<");
+    })
+    .join("");
 }
 
 /**

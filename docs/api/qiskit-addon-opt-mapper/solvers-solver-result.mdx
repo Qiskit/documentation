@@ -1,0 +1,223 @@
+---
+title: SolverResult (latest version)
+description: API reference for qiskit_addon_opt_mapper.solvers.SolverResult in the latest version of qiskit-addon-opt-mapper
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_opt_mapper.solvers.SolverResult
+---
+
+<span id="qiskit-addon-opt-mapper-solvers-solverresult" />
+
+# qiskit\_addon\_opt\_mapper.solvers.SolverResult
+
+<Class id="qiskit_addon_opt_mapper.solvers.SolverResult" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/solvers/solver.py#L64-L312" signature="SolverResult(x, fval, variables, status, raw_results=None, samples=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  A base class for optimization results.
+
+  The optimization algorithms return an object of the type `SolverResult` with the information about the solution obtained.
+
+  `SolverResult` allows users to get the value of a variable by specifying an index or a name as follows.
+
+  **Examples**
+
+  ```python
+  >>> from qiskit_addon_opt_mapper import OptimizationProblem
+  >>> from qiskit_addon_opt_mapper.solvers import CplexSolver
+  >>> problem = OptimizationProblem()
+  >>> _ = problem.binary_var('x1')
+  >>> _ = problem.binary_var('x2')
+  >>> _ = problem.binary_var('x3')
+  >>> problem.minimize(linear={'x1': 1, 'x2': -2, 'x3': 3})
+  >>> print([var.name for var in problem.variables])
+  ['x1', 'x2', 'x3']
+  >>> optimizer = CplexSolver()
+  >>> result = optimizer.solve(problem)
+  >>> print(result.variable_names)
+  ['x1', 'x2', 'x3']
+  >>> print(result.x)
+  [0. 1. 0.]
+  >>> print(result[1])
+  1.0
+  >>> print(result['x1'])
+  0.0
+  >>> print(result.fval)
+  -2.0
+  >>> print(result.variables_dict)
+  {'x1': 0.0, 'x2': 1.0, 'x3': 0.0}
+  ```
+
+  <Admonition title="Note" type="note">
+    The order of variables should be equal to that of the problem solved by optimization algorithms. Optimization algorithms and converters of `OptimizationProblem` should maintain the order when generating a new `SolverResult` object.
+  </Admonition>
+
+  Init method.
+
+  **Parameters**
+
+  *   **x** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | np.ndarray | None*) – the variable values found in the optimization, or possibly None in case of FAILURE.
+  *   **fval** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the objective function value.
+  *   **variables** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Variable*](problems-variable "qiskit_addon_opt_mapper.problems.Variable")*]*) – the list of variables of the optimization problem.
+  *   **raw\_results** (*Any | None*) – the original results object from the optimization algorithm.
+  *   **status** (*SolverResultStatus*) – the termination status of the optimization algorithm.
+  *   **samples** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[SolutionSample] | None*) – the solution samples.
+
+  **Raises**
+
+  **OptimizationError** – if sizes of `x` and `variables` do not match or one of (fval, samples) is not provided.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_addon_opt_mapper.solvers.SolverResult.__init__" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/solvers/solver.py#L104-L156" signature="__init__(x, fval, variables, status, raw_results=None, samples=None)">
+    Init method.
+
+    **Parameters**
+
+    *   **x** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) *| None*) – the variable values found in the optimization, or possibly None in case of FAILURE.
+    *   **fval** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the objective function value.
+    *   **variables** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Variable*](problems-variable "qiskit_addon_opt_mapper.problems.variable.Variable")*]*) – the list of variables of the optimization problem.
+    *   **raw\_results** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any) *| None*) – the original results object from the optimization algorithm.
+    *   **status** (*SolverResultStatus*) – the termination status of the optimization algorithm.
+    *   **samples** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[SolutionSample] | None*) – the solution samples.
+
+    **Raises**
+
+    **OptimizationError** – if sizes of `x` and `variables` do not match or one of (fval, samples) is not provided.
+
+    **Return type**
+
+    None
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                  |                                                              |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+  | [`__init__`](#qiskit_addon_opt_mapper.solvers.SolverResult.__init__ "qiskit_addon_opt_mapper.solvers.SolverResult.__init__")(x, fval, variables, status\[, ...]) | Init method.                                                 |
+  | [`get_correlations`](#qiskit_addon_opt_mapper.solvers.SolverResult.get_correlations "qiskit_addon_opt_mapper.solvers.SolverResult.get_correlations")()           | Get \<Zi x Zj> correlation matrix from the samples.          |
+  | [`prettyprint`](#qiskit_addon_opt_mapper.solvers.SolverResult.prettyprint "qiskit_addon_opt_mapper.solvers.SolverResult.prettyprint")()                          | Returns a pretty printed string of this optimization result. |
+
+  ## Attributes
+
+  |                                                                                                                                                |                                                                                           |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+  | [`fval`](#qiskit_addon_opt_mapper.solvers.SolverResult.fval "qiskit_addon_opt_mapper.solvers.SolverResult.fval")                               | Returns the objective function value.                                                     |
+  | [`raw_results`](#qiskit_addon_opt_mapper.solvers.SolverResult.raw_results "qiskit_addon_opt_mapper.solvers.SolverResult.raw_results")          | Return the original results object from the optimization algorithm.                       |
+  | [`samples`](#qiskit_addon_opt_mapper.solvers.SolverResult.samples "qiskit_addon_opt_mapper.solvers.SolverResult.samples")                      | Returns the list of solution samples.                                                     |
+  | [`status`](#qiskit_addon_opt_mapper.solvers.SolverResult.status "qiskit_addon_opt_mapper.solvers.SolverResult.status")                         | Returns the termination status of the optimization algorithm.                             |
+  | [`variable_names`](#qiskit_addon_opt_mapper.solvers.SolverResult.variable_names "qiskit_addon_opt_mapper.solvers.SolverResult.variable_names") | Returns the list of variable names of the optimization problem.                           |
+  | [`variables`](#qiskit_addon_opt_mapper.solvers.SolverResult.variables "qiskit_addon_opt_mapper.solvers.SolverResult.variables")                | Returns the list of variables of the optimization problem.                                |
+  | [`variables_dict`](#qiskit_addon_opt_mapper.solvers.SolverResult.variables_dict "qiskit_addon_opt_mapper.solvers.SolverResult.variables_dict") | Returns the variable values as a dictionary of the variable name and corresponding value. |
+  | [`x`](#qiskit_addon_opt_mapper.solvers.SolverResult.x "qiskit_addon_opt_mapper.solvers.SolverResult.x")                                        | Returns the variable values found in the optimization or None in case of FAILURE.         |
+
+  ### fval
+
+  <Attribute id="qiskit_addon_opt_mapper.solvers.SolverResult.fval" attributeTypeHint="float | None">
+    Returns the objective function value.
+
+    **Returns**
+
+    The function value corresponding to the objective function value found in the optimization.
+  </Attribute>
+
+  ### get\_correlations
+
+  <Function id="qiskit_addon_opt_mapper.solvers.SolverResult.get_correlations" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/solvers/solver.py#L217-L236" signature="get_correlations()">
+    Get \<Zi x Zj> correlation matrix from the samples.
+
+    **Returns**
+
+    A correlation matrix.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+
+  ### prettyprint
+
+  <Function id="qiskit_addon_opt_mapper.solvers.SolverResult.prettyprint" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/solvers/solver.py#L170-L184" signature="prettyprint()">
+    Returns a pretty printed string of this optimization result.
+
+    **Returns**
+
+    A pretty printed string representing the result.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
+  </Function>
+
+  ### raw\_results
+
+  <Attribute id="qiskit_addon_opt_mapper.solvers.SolverResult.raw_results" attributeTypeHint="Any">
+    Return the original results object from the optimization algorithm.
+
+    Currently a dump for any leftovers.
+
+    **Returns**
+
+    Additional result information of the optimization algorithm.
+  </Attribute>
+
+  ### samples
+
+  <Attribute id="qiskit_addon_opt_mapper.solvers.SolverResult.samples" attributeTypeHint="list[SolutionSample]">
+    Returns the list of solution samples.
+
+    **Returns**
+
+    The list of solution samples.
+  </Attribute>
+
+  ### status
+
+  <Attribute id="qiskit_addon_opt_mapper.solvers.SolverResult.status" attributeTypeHint="SolverResultStatus">
+    Returns the termination status of the optimization algorithm.
+
+    **Returns**
+
+    The termination status of the algorithm.
+  </Attribute>
+
+  ### variable\_names
+
+  <Attribute id="qiskit_addon_opt_mapper.solvers.SolverResult.variable_names" attributeTypeHint="list[str]">
+    Returns the list of variable names of the optimization problem.
+
+    **Returns**
+
+    The list of variable names of the optimization problem.
+  </Attribute>
+
+  ### variables
+
+  <Attribute id="qiskit_addon_opt_mapper.solvers.SolverResult.variables" attributeTypeHint="list[Variable]">
+    Returns the list of variables of the optimization problem.
+
+    **Returns**
+
+    The list of variables.
+  </Attribute>
+
+  ### variables\_dict
+
+  <Attribute id="qiskit_addon_opt_mapper.solvers.SolverResult.variables_dict" attributeTypeHint="dict[str, float]">
+    Returns the variable values as a dictionary of the variable name and corresponding value.
+
+    **Returns**
+
+    The variable values as a dictionary of the variable name and corresponding value.
+  </Attribute>
+
+  ### x
+
+  <Attribute id="qiskit_addon_opt_mapper.solvers.SolverResult.x" attributeTypeHint="ndarray | None">
+    Returns the variable values found in the optimization or None in case of FAILURE.
+
+    **Returns**
+
+    The variable values found in the optimization.
+  </Attribute>
+</Class>
+

@@ -1,0 +1,47 @@
+---
+title: converters (latest version)
+description: API reference for qiskit_addon_opt_mapper.converters in the latest version of qiskit-addon-opt-mapper
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_opt_mapper.converters
+---
+
+<span id="module-qiskit_addon_opt_mapper.converters" />
+
+<span id="converters-qiskit-addon-opt-mapper-converters" />
+
+# Converters
+
+`qiskit_addon_opt_mapper.converters`
+
+Converters module for Optimization add-on.
+
+<span id="optimization-converters-qiskit-addon-opt-mapper-converters" />
+
+## Optimization converters .
+
+`qiskit_addon_opt_mapper.converters`
+
+This is a set of converters having convert functionality to go between different representations of a given `QuadraticProgram` and to interpret a given result for the problem, based on the original problem before conversion, to return an appropriate [`SolverResult`](/docs/api/qiskit-addon-opt-mapper/solvers-solver-result "qiskit_addon_opt_mapper.solvers.SolverResult").
+
+### Base class for converters
+
+|                                                                                                                                                                                 |                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| [`OptimizationProblemConverter`](/docs/api/qiskit-addon-opt-mapper/converters-optimization-problem-converter "qiskit_addon_opt_mapper.converters.OptimizationProblemConverter") | An abstract class for converters of optimization problem in Qiskit optimization module. |
+
+### Converters
+
+|                                                                                                                                                                         |                                                                                                |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [`BinaryToLinearBinary`](/docs/api/qiskit-addon-opt-mapper/converters-binary-to-linear-binary "qiskit_addon_opt_mapper.converters.BinaryToLinearBinary")                | Convert all high-degree terms to linear terms, both in objective and constraints.              |
+| [`BinaryToSpin`](/docs/api/qiskit-addon-opt-mapper/converters-binary-to-spin "qiskit_addon_opt_mapper.converters.BinaryToSpin")                                         | Convert all binary variables in the problem to spin variables.                                 |
+| [`InequalityToEquality`](/docs/api/qiskit-addon-opt-mapper/converters-inequality-to-equality "qiskit_addon_opt_mapper.converters.InequalityToEquality")                 | Convert inequality constraints into equality constraints by introducing slack variables.       |
+| [`IntegerToBinary`](/docs/api/qiskit-addon-opt-mapper/converters-integer-to-binary "qiskit_addon_opt_mapper.converters.IntegerToBinary")                                | Integer to binary converter.                                                                   |
+| [`LinearInequalityToPenalty`](/docs/api/qiskit-addon-opt-mapper/converters-linear-inequality-to-penalty "qiskit_addon_opt_mapper.converters.LinearInequalityToPenalty") | Convert linear inequality constraints to penalty terms of the objective function.              |
+| [`MaximizeToMinimize`](/docs/api/qiskit-addon-opt-mapper/converters-maximize-to-minimize "qiskit_addon_opt_mapper.converters.MaximizeToMinimize")                       | Convert a maximization problem to a minimization problem only if it is a maximization problem. |
+| [`MinimizeToMaximize`](/docs/api/qiskit-addon-opt-mapper/converters-minimize-to-maximize "qiskit_addon_opt_mapper.converters.MinimizeToMaximize")                       | Convert a minimization problem to a maximization problem only if it is a minimization problem. |
+| [`OptimizationProblemToHubo`](/docs/api/qiskit-addon-opt-mapper/converters-optimization-problem-to-hubo "qiskit_addon_opt_mapper.converters.OptimizationProblemToHubo") | Convert an optimization problem into a HUBO form.                                              |
+| [`OptimizationProblemToQubo`](/docs/api/qiskit-addon-opt-mapper/converters-optimization-problem-to-qubo "qiskit_addon_opt_mapper.converters.OptimizationProblemToQubo") | Convert a given optimization problem in quadratic form into a QUBO problem.                    |
+| [`SpinToBinary`](/docs/api/qiskit-addon-opt-mapper/converters-spin-to-binary "qiskit_addon_opt_mapper.converters.SpinToBinary")                                         | Convert all spin variables in the problem to binary variables.                                 |
+

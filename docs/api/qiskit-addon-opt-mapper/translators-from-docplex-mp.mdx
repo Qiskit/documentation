@@ -1,0 +1,43 @@
+---
+title: from_docplex_mp (latest version)
+description: API reference for qiskit_addon_opt_mapper.translators.from_docplex_mp in the latest version of qiskit-addon-opt-mapper
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_opt_mapper.translators.from_docplex_mp
+---
+
+<span id="qiskit-addon-opt-mapper-translators-from-docplex-mp" />
+
+# qiskit\_addon\_opt\_mapper.translators.from\_docplex\_mp
+
+<Function id="qiskit_addon_opt_mapper.translators.from_docplex_mp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/translators/docplex_mp.py#L397-L446" signature="from_docplex_mp(model, indicator_big_m=None)">
+  Translate a docplex.mp model into a quadratic problem.
+
+  Note that this supports the following features of docplex:
+
+  *   linear / quadratic objective function
+  *   linear / quadratic / indicator constraints
+  *   binary / integer / continuous variables
+  *   logical expressions (`logical_not`, `logical_and`, and `logical_or`)
+
+  Higher-order objective terms and constraints are not supported in a docplex.mp model. Also spin variables are not supported.
+
+  **Parameters**
+
+  *   **model** (*Model*) – The docplex.mp model to be loaded.
+  *   **indicator\_big\_m** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – The big-M value used for the big-M formulation to convert indicator constraints into linear constraints. If `None`, it is automatically derived from the model.
+
+  **Returns**
+
+  The quadratic problem corresponding to the model.
+
+  **Raises**
+
+  *   [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError) – if docplex is not installed.
+  *   **OptimizationError** – if the model contains unsupported elements.
+
+  **Return type**
+
+  *OptimizationProblem*
+</Function>
+

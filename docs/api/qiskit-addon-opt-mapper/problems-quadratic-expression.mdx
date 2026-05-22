@@ -1,0 +1,171 @@
+---
+title: QuadraticExpression (latest version)
+description: API reference for qiskit_addon_opt_mapper.problems.QuadraticExpression in the latest version of qiskit-addon-opt-mapper
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_opt_mapper.problems.QuadraticExpression
+---
+
+<span id="qiskit-addon-opt-mapper-problems-quadraticexpression" />
+
+# qiskit\_addon\_opt\_mapper.problems.QuadraticExpression
+
+<Class id="qiskit_addon_opt_mapper.problems.QuadraticExpression" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/problems/quadratic_expression.py#L28-L329" signature="QuadraticExpression(optimization_problem, coefficients)" modifiers="class">
+  Bases: [`OptimizationProblemElement`](problems-optimization-problem-element "qiskit_addon_opt_mapper.problems.optimization_problem_element.OptimizationProblemElement")
+
+  Representation of a quadratic expression by its coefficients.
+
+  Creates a new quadratic expression.
+
+  The quadratic expression can be defined via an array, a list, a sparse matrix, or a dictionary that uses variable names or indices as keys and stores the values internally as a dok\_matrix. We stores values in a compressed way, i.e., values at symmetric positions are summed up in the upper triangle. For example, \{(0, 1): 1, (1, 0): 2} -> \{(0, 1): 3}.
+
+  **Parameters**
+
+  *   **optimization\_problem** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – The parent OptimizationProblem.
+  *   **coefficients** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *| spmatrix |*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]] |* [*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The (sparse) representation of the coefficients.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_addon_opt_mapper.problems.QuadraticExpression.__init__" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/problems/quadratic_expression.py#L31-L51" signature="__init__(optimization_problem, coefficients)">
+    Creates a new quadratic expression.
+
+    The quadratic expression can be defined via an array, a list, a sparse matrix, or a dictionary that uses variable names or indices as keys and stores the values internally as a dok\_matrix. We stores values in a compressed way, i.e., values at symmetric positions are summed up in the upper triangle. For example, \{(0, 1): 1, (1, 0): 2} -> \{(0, 1): 3}.
+
+    **Parameters**
+
+    *   **optimization\_problem** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – The parent OptimizationProblem.
+    *   **coefficients** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *| spmatrix |*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]] |* [*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The (sparse) representation of the coefficients.
+
+    **Return type**
+
+    None
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                                   |                                                                        |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_addon_opt_mapper.problems.QuadraticExpression.__init__ "qiskit_addon_opt_mapper.problems.QuadraticExpression.__init__")(optimization\_problem, coefficients) | Creates a new quadratic expression.                                    |
+  | [`evaluate`](#qiskit_addon_opt_mapper.problems.QuadraticExpression.evaluate "qiskit_addon_opt_mapper.problems.QuadraticExpression.evaluate")(x)                                   | Evaluate the quadratic expression for given variables: x \* Q \* x.    |
+  | [`evaluate_gradient`](#qiskit_addon_opt_mapper.problems.QuadraticExpression.evaluate_gradient "qiskit_addon_opt_mapper.problems.QuadraticExpression.evaluate_gradient")(x)        | Evaluate the gradient of the quadratic expression for given variables. |
+  | [`to_array`](#qiskit_addon_opt_mapper.problems.QuadraticExpression.to_array "qiskit_addon_opt_mapper.problems.QuadraticExpression.to_array")(\[symmetric])                        | Returns the coefficients of the quadratic expression as array.         |
+  | [`to_dict`](#qiskit_addon_opt_mapper.problems.QuadraticExpression.to_dict "qiskit_addon_opt_mapper.problems.QuadraticExpression.to_dict")(\[symmetric, use\_name])                | Returns the coefficients of the quadratic expression as dictionary.    |
+
+  ## Attributes
+
+  |                                                                                                                                                                                  |                                                                          |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+  | [`bounds`](#qiskit_addon_opt_mapper.problems.QuadraticExpression.bounds "qiskit_addon_opt_mapper.problems.QuadraticExpression.bounds")                                           | Returns the lower bound and the upper bound of the quadratic expression. |
+  | [`coefficients`](#qiskit_addon_opt_mapper.problems.QuadraticExpression.coefficients "qiskit_addon_opt_mapper.problems.QuadraticExpression.coefficients")                         | Returns the coefficients of the quadratic expression.                    |
+  | [`optimization_problem`](#qiskit_addon_opt_mapper.problems.QuadraticExpression.optimization_problem "qiskit_addon_opt_mapper.problems.QuadraticExpression.optimization_problem") | Returns the parent OptimizationProblem.                                  |
+
+  ### bounds
+
+  <Attribute id="qiskit_addon_opt_mapper.problems.QuadraticExpression.bounds" attributeTypeHint="ExpressionBounds">
+    Returns the lower bound and the upper bound of the quadratic expression.
+
+    **Returns**
+
+    The lower bound and the upper bound of the quadratic expression
+
+    **Raises**
+
+    **OptimizationError** – if the quadratic expression contains any unbounded variable
+  </Attribute>
+
+  ### coefficients
+
+  <Attribute id="qiskit_addon_opt_mapper.problems.QuadraticExpression.coefficients" attributeTypeHint="dok_matrix">
+    Returns the coefficients of the quadratic expression.
+
+    **Returns**
+
+    The coefficients of the quadratic expression.
+  </Attribute>
+
+  ### evaluate
+
+  <Function id="qiskit_addon_opt_mapper.problems.QuadraticExpression.evaluate" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/problems/quadratic_expression.py#L226-L242" signature="evaluate(x)">
+    Evaluate the quadratic expression for given variables: x \* Q \* x.
+
+    **Parameters**
+
+    **x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The values of the variables to be evaluated.
+
+    **Returns**
+
+    The value of the quadratic expression given the variable values.
+
+    **Return type**
+
+    [float](https://docs.python.org/3/library/functions.html#float)
+  </Function>
+
+  ### evaluate\_gradient
+
+  <Function id="qiskit_addon_opt_mapper.problems.QuadraticExpression.evaluate_gradient" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/problems/quadratic_expression.py#L244-L260" signature="evaluate_gradient(x)">
+    Evaluate the gradient of the quadratic expression for given variables.
+
+    **Parameters**
+
+    **x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*]*) – The values of the variables to be evaluated.
+
+    **Returns**
+
+    The value of the gradient quadratic expression given the variable values.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+
+  ### optimization\_problem
+
+  <Attribute id="qiskit_addon_opt_mapper.problems.QuadraticExpression.optimization_problem" attributeTypeHint="OptimizationProblem">
+    Returns the parent OptimizationProblem.
+
+    **Returns**
+
+    The parent OptimizationProblem.
+  </Attribute>
+
+  ### to\_array
+
+  <Function id="qiskit_addon_opt_mapper.problems.QuadraticExpression.to_array" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/problems/quadratic_expression.py#L187-L198" signature="to_array(symmetric=False)">
+    Returns the coefficients of the quadratic expression as array.
+
+    **Parameters**
+
+    **symmetric** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Determines whether the output is in a symmetric form or not.
+
+    **Returns**
+
+    An array with the coefficients corresponding to the quadratic expression.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+
+  ### to\_dict
+
+  <Function id="qiskit_addon_opt_mapper.problems.QuadraticExpression.to_dict" github="https://github.com/Qiskit/qiskit-addon-opt-mapper/tree/main/qiskit_addon_opt_mapper/problems/quadratic_expression.py#L200-L224" signature="to_dict(symmetric=False, use_name=False)">
+    Returns the coefficients of the quadratic expression as dictionary.
+
+    Either using tuples of variable names or indices as keys.
+
+    **Parameters**
+
+    *   **symmetric** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Determines whether the output is in a symmetric form or not.
+    *   **use\_name** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Determines whether to use index or names to refer to variables.
+
+    **Returns**
+
+    An dictionary with the coefficients corresponding to the quadratic expression.
+
+    **Return type**
+
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[int](https://docs.python.org/3/library/functions.html#int), [int](https://docs.python.org/3/library/functions.html#int)] | [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [str](https://docs.python.org/3/library/stdtypes.html#str)], [float](https://docs.python.org/3/library/functions.html#float)]
+  </Function>
+</Class>
+
