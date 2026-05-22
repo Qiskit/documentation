@@ -74,7 +74,7 @@ export class Pkg {
     "qiskit-addon-opt-mapper",
     // "qiskit-fermions",
     // "qiskit-paulice",
-    // "pauli-prop",
+    "pauli-prop",
   ];
 
   static VALID_NAMES = [

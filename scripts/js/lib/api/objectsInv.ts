@@ -28,7 +28,7 @@ const ENTRIES_TO_EXCLUDE = [
   /^py-modindex(\.html)?$/,
   /^search(\.html)?$/,
   /^explanation(\.html)?(?=\/|#|$)/,
-  /^how_to(\.html)?(?=\/|#|$)/,
+  /^how_tos?(\.html)?(?=\/|#|$)/,
   /^tutorials(\.html)?(?=\/|#|$)/,
   /^migration_guides(\.html)?(?=\/|#|$)/,
   /^configuration(\.html)?(?=#|$)/,
@@ -54,6 +54,20 @@ function shouldIncludeEntry(
   // `group__` and `struct_` entries are from doxygen and are not present in the final pages.
   if (entry.name.startsWith("group__")) return false;
   if (entry.name.startsWith("struct_")) return false;
+
+  // std: entries (labels, doc references) are only meaningful within the API
+  // reference pages themselves. Entries pointing outside apidocs/ or stubs/
+  // (e.g. index, install, how_tos/, tutorials/) don't belong in the published
+  // inventory since no other package cross-references them via intersphinx.
+  if (
+    entry.domainAndRole.startsWith("std:") &&
+    !entry.uri.startsWith("apidocs/") &&
+    !entry.uri.startsWith("stubs/") &&
+    !entry.name.startsWith("/apidocs/") &&
+    !entry.name.startsWith("/stubs/")
+  ) {
+    return false;
+  }
 
   // This happens during link checking.
   if (packageLanguage === "any") return true;
