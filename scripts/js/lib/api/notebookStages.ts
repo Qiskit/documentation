@@ -64,7 +64,8 @@ export function processNotebooks(
     const processedCells = notebook.cells.map((cell) => {
       if (cell.cell_type !== "markdown") return cell;
       const linked = rewriteNotebookLinks(cell.source, objectsInv, allInvs, imageDestination);
-      const source = escapeMdxSpecialChars(linked);
+      const escaped = escapeMdxSpecialChars(linked);
+      const source = stripInlineStyles(escaped);
       return { ...cell, source };
     });
 
@@ -142,6 +143,10 @@ function escapeMdxSpecialChars(source: string | string[]): string {
   const parts = text.split(protected_);
   const matches = [...text.matchAll(protected_)].map((m) => m[0]);
   return parts.map((p, i) => p.replace(/</g, "&lt;") + (matches[i] ?? "")).join("");
+}
+
+function stripInlineStyles(source: string): string {
+  return source.replace(/(<[a-zA-Z][^>]*?)\s+style="[^"]*"/g, "$1");
 }
 
 function rewriteNotebookLinks(
