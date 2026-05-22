@@ -63,15 +63,9 @@ export function processNotebooks(
   return notebooks.map((notebook) => {
     const processedCells = notebook.cells.map((cell) => {
       if (cell.cell_type !== "markdown") return cell;
-      return {
-        ...cell,
-        source: rewriteNotebookLinks(
-          cell.source,
-          objectsInv,
-          allInvs,
-          imageDestination,
-        ),
-      };
+      const linked = rewriteNotebookLinks(cell.source, objectsInv, allInvs, imageDestination);
+      const source = escapeMdxSpecialChars(linked);
+      return { ...cell, source };
     });
 
     const frontmatterCell = buildFrontmatterCell(processedCells, pkg);
@@ -139,6 +133,17 @@ function normalizeNotebookUrl(url: string, pkg: Pkg): string {
   return transformSpecialCaseUrl([...parts.slice(0, -1), normalized].join("/"));
 }
 
+// Escape bare < outside code spans, code blocks, math regions, and HTML tags so that
+// MDX's JSX parser doesn't interpret them as tag openings (e.g. `0 <= x` → `0 &lt;= x`).
+// required for opt-mapper how-tos 
+function escapeMdxSpecialChars(source: string | string[]): string {
+  const text = Array.isArray(source) ? source.join("") : source;
+  const protected_ = /```[\s\S]*?```|`[^`]+`|\$\$[\s\S]*?\$\$|\$[^$\n]+?\$|<[a-zA-Z/!][^>]*>/g;
+  const parts = text.split(protected_);
+  const matches = [...text.matchAll(protected_)].map((m) => m[0]);
+  return parts.map((p, i) => p.replace(/</g, "&lt;") + (matches[i] ?? "")).join("");
+}
+
 function rewriteNotebookLinks(
   source: string | string[],
   objectsInv: ObjectsInv,
@@ -158,25 +163,7 @@ function rewriteNotebookLinks(
     });
   };
 
-  const rewritten = Array.isArray(source) ? source.map(rewrite) : rewrite(source);
-  const joined = Array.isArray(rewritten) ? rewritten.join("") : rewritten;
-  return escapeMdxSpecialChars(joined);
-}
-
-/**
- * Escape `<` outside code spans/fences/math so the MDX parser does not
- * interpret it as a JSX tag opening.
- */
-function escapeMdxSpecialChars(source: string): string {
-  const parts = source.split(/(```[\s\S]*?```|\$\$[\s\S]*?\$\$|`[^`]*`)/g);
-  return parts
-    .map((part, i) => {
-      // Odd indices are the captured delimiters (code/math) — leave them alone.
-      if (i % 2 === 1) return part;
-      // Even indices are plain text: escape < to prevent MDX JSX tag parsing.
-      return part.replace(/</g, "\\<");
-    })
-    .join("");
+  return Array.isArray(source) ? source.map(rewrite) : rewrite(source);
 }
 
 /**
