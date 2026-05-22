@@ -70,7 +70,7 @@ export class Pkg {
     "qiskit-addon-utils",
     // "qiskit-addon-mthree",
     "qiskit-addon-pna",
-    // "qiskit-addon-slc",
+    "qiskit-addon-slc",
     // "qiskit-addon-opt-mapper",
     // "qiskit-fermions",
     // "qiskit-paulice",
