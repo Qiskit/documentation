@@ -308,6 +308,7 @@ export class Pkg {
         githubSlug: "Qiskit/pauli-prop",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
       });
     }
 
