@@ -1,0 +1,84 @@
+---
+title: qiskit_addon_pna (latest version)
+description: API reference for qiskit_addon_pna in the latest version of qiskit-addon-pna
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_pna
+---
+
+<span id="module-qiskit_addon_pna" />
+
+<span id="propagated-noise-absorption-qiskit-addon-pna" />
+
+# Propagated Noise Absorption
+
+`qiskit_addon_pna`
+
+Primary propagated noise absortption (PNA) functionality.
+
+### generate\_noise\_mitigating\_observable
+
+<Function id="qiskit_addon_pna.generate_noise_mitigating_observable" github="https://github.com/Qiskit/qiskit-addon-pna/tree/main/qiskit_addon_pna/pna.py#L43-L319" signature="generate_noise_mitigating_observable(noisy_circuit, observable, refs_to_noise_model_map=None, *, max_err_terms, max_obs_terms, search_step=4, num_processes=1, print_progress=False, atol=1e-08, batch_size=1, inject_noise_before=True, mp_start_method='spawn')">
+  Generate a noise-mitigating observable by propagating it through the inverse of a learned noise channel.
+
+  <Admonition title="Note" type="note">
+    This function uses the Python `multiprocessing` module for parallel execution. This function should be called from within an `if __name__ == "__main__"` guard to prevent unintended process spawning.
+  </Admonition>
+
+  Starting from the beginning of the circuit, the noise affecting each entangling layer is inverted and each Pauli anti-noise generator is then propagated forward through the remainder of the circuit and applied to the observable. The propagation routines used to implement this method are available in the [pauli-prop](/docs/addons/pauli-prop/) package.
+
+  As each anti-noise generator is propagated forward through the circuit under the action of $N$ Pauli rotation gates of an \$M\$-qubit circuit, the number of terms will grow as $O(2^N)$ towards a maximum of $4^M$ unique Pauli components. To control the computational cost, terms with small coefficients must be truncated, which will result in some error in the evolved anti-noise channel.
+
+  In addition to the truncation of the evolved anti-noise channel, $\Lambda^{-1}$, $\tilde{O}$ is also truncated as it is propagated through $\Lambda^{-1}$. This is also a source of bias in the final mitigated expectation value.
+
+  While letting $\tilde{O}$ grow larger during propagation will increase its accuracy, measuring it requires taking many more shots on the QPU. Typically this increases the coefficients of the original Pauli terms in $O$, along with creating many new Pauli terms with smaller coefficients. Both the rescaling of the original coefficients and the creation of new terms can increase sampling overhead. In practice, we truncate once more by measuring only the largest terms in $\tilde{O}$.
+
+  **Parameters**
+
+  *   **noisy\_circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) –
+
+      A circuit with associated Pauli-Lindblad gate noise.
+
+      If this circuit is boxed, there are expected to be `InjectNoise` annotations associated with each box for which gate noise should be mitigated. Additionally, the `refs_to_noise_model_map` should provide a mapping from the reference ID of each `InjectNoise` annotation to the associated noise model for that layer, specified as a `PauliLindbladMap`.
+
+      If this circuit is not boxed, the noise model is expected to be embedded as `PauliLindbladError` instructions adjacent to each circuit layer for which gate noise should be mitigated. In this case, `refs_to_noise_model_map` may be None.
+
+  *   **observable** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)  *|*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)) – The observable which will absorb the anti-noise.
+
+  *   **refs\_to\_noise\_model\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*] | None*) – A dictionary mapping noise injection referencs IDs to their corresponding noise models as `PauliLindbladMap`. If `noisy_circuit` is not boxed and contains `PauliLindbladError` instructions from qiskit-aer, this mapping is not needed.
+
+  *   **max\_err\_terms** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum number of terms each anti-noise generator may contain as it evolves through the circuit
+
+  *   **max\_obs\_terms** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum number of terms the noise-mitigating observable may contain
+
+  *   **search\_step** ([*int*](https://docs.python.org/3/library/functions.html#int)) – A parameter that can speed up the approximate application of each error to the observable. The relevant subroutine searches a very large 3D space to identify the `max_obs_terms` largest terms in a product. Setting this step size >1 accelerates that search by a factor of `search_step**3`, at a potential cost in accuracy. This inaccuracy is expected to be small for `search_step**3 << max_obs_terms`.
+
+  *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of processes for parallelization. These may be used for forward evolution of generators, and for applying evolved generators to the observable. If `batch_size` is `1` (default), all are used for evolving generators. Otherwise, `max(min(batch_size, num_processes // 2), 1)` of these will be allocated for applying evolved generators to the observable.
+
+  *   **print\_progress** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to print progress to stdout
+
+  *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Terms below this threshold will not be added to operators as they evolve
+
+  *   **batch\_size** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Setting this to a value > 1 allows batches of noise generators to be applied to the observable in parallel. This coarse-grain application of anti-noise to the observable comes at a loss of accuracy related to the probability that more than one error in the batch occurs when the circuit is run. This should usually not be set higher than `max(1, num_processes // 2)`.
+
+  *   **inject\_noise\_before** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True`, the Pauli Lindblad noise instruction will be inserted before its corresponding 2q-gate layer. Otherwise, it will be inserted after it, defaults to `True`.
+
+  *   **mp\_start\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The method to use when starting new parallel processes. Valid values are `fork`, `spawn`, `forkserver`, and `None`. If `None`, the default method will be used.
+
+  **Returns**
+
+  The noise-mitigating observable
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The circuit and observable have mismatching sizes
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – num\_processes and batch\_size must be >= 1
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `max_obs_terms` should be larger than the length of `observable`
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Incompatible noisy circuit and refs\_to\_noise\_model\_map
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The observable must only contain real-valued coefficients
+
+  **Return type**
+
+  [*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)
+</Function>
+
