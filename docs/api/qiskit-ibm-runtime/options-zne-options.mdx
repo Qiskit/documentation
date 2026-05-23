@@ -20,7 +20,7 @@ python_api_name: qiskit_ibm_runtime.options.ZneOptions
 
     1.  **pub\_result.data.evs\_extrapolated and pub\_result.data.stds\_extrapolated,**
 
-        both with shape `(*shape, num_extrapolators, num_evaluation_points)`, where `num_extrapolators` is the length of the list of `options.resilience.zne.extrapolators`, and `num_evaluation_points` is the length of the list `options.resilience.extrapolated_noise_factors`. These values provide evaluations of every extrapolator at every specified noise extrapolation value.
+        both with shape `(*shape, num_extrapolators, num_evaluation_points)`, where `num_extrapolators` is the length of the list of `options.resilience.zne.extrapolator`, and `num_evaluation_points` is the length of the list `options.resilience.zne.extrapolated_noise_factors`. These values provide evaluations of every extrapolator at every specified noise extrapolation value.
 
     2.  `pub_result.data.evs_noise_factors`, `pub_result.data.stds_noise_factors`, and `ensemble_stds_noise_factors` all have shape `(*shape, num_noise_factors)` where `num_noise_factors` is the length of `options.resilience.zne.noise_factors`. These values provide raw expectation values, averaged over twirling if applicable, at each of the noise amplifications; you can base your own fitting routines off of these values. In the case of no twirling, both `*stds*` arrays will be equal, otherwise, `stds_noise_factors` is derived from the spread over twirling samples, whereas `ensemble_stds_noise_factors` assumes only shot noise and no drift.
 
