@@ -1,0 +1,42 @@
+---
+title: CircuitItem (dev version)
+description: API reference for qiskit_ibm_runtime.quantum_program.CircuitItem in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.quantum_program.CircuitItem
+---
+
+# CircuitItem
+
+<Class id="qiskit_ibm_runtime.quantum_program.CircuitItem" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/quantum_program/quantum_program.py#L74-L130" signature="CircuitItem(circuit, *, circuit_arguments=None, chunk_size=None)" modifiers="class">
+  Bases: [`QuantumProgramItem`](quantum-program-quantum-program-item "qiskit_ibm_runtime.quantum_program.quantum_program.QuantumProgramItem")
+
+  An item of a [`QuantumProgram`](quantum-program-quantum-program "qiskit_ibm_runtime.quantum_program.QuantumProgram") containing a circuit and its arguments.
+
+  **Parameters**
+
+  *   **circuit** (*QuantumCircuit*) – The circuit to be executed.
+  *   **circuit\_arguments** (*np.ndarray | None*) – A real-valued array of parameter values for the circuit. The last axis is intrinsic with size equal to the number of circuit parameters. Leading axes are extrinsic and define the sweep grid. For example, shape `(5, 3, n)` means 5×3=15 configurations for a circuit with `n` parameters.
+  *   **chunk\_size** (*int | None*) – The maximum number of bound circuits in each shot loop execution, or `None` to use a server-side heuristic to optimize speed. When not executing in a session, the server-side heuristic is always used and this value is ignored.
+
+  ## Attributes
+
+  ### shape
+
+  <Attribute id="qiskit_ibm_runtime.quantum_program.CircuitItem.shape">
+    The extrinsic shape of this item, i.e. the broadcasted extrinsic shapes of all inputs.
+  </Attribute>
+
+  ## Methods
+
+  ### size
+
+  <Function id="qiskit_ibm_runtime.quantum_program.CircuitItem.size" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/quantum_program/quantum_program.py#L69-L71" signature="size()">
+    The total number elements in this item; the product of the entries of [`shape`](#qiskit_ibm_runtime.quantum_program.CircuitItem.shape "qiskit_ibm_runtime.quantum_program.CircuitItem.shape").
+
+    **Return type**
+
+    int
+  </Function>
+</Class>
+
