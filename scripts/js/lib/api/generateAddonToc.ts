@@ -10,6 +10,20 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+// Generates the _toc.json for an addon's content pages.
+//
+// Addon TOCs have a fixed three-part shape:
+//   1. A flat "main" section — top-level files (index, install, …) plus
+//      subdirectory sections (how-tos, explanations), and a GitHub link.
+//   2. An optional "Tutorials" section listing slugs from docs/tutorials/.
+//   3. An "API reference" section linking to docs/api/{pkg}.
+//
+// Subdirectories whose DIR_LABELS entry is the same string are merged into a
+// single section (e.g. both "how-tos" and "explanations" map to "Guides").
+// Title text is read from each file's first h1/h2 heading.
+//
+// Called by addonDocsPipeline.ts; for API doc TOCs see generateToc.ts.
+
 import { readFile } from "fs/promises";
 import { join } from "path/posix";
 

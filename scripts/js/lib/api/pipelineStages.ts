@@ -75,6 +75,12 @@ export async function convertHtmlToMarkdown(
   return results;
 }
 
+/**
+ * Extract title/description frontmatter directly from the Sphinx HTML <h1>.
+ * Used by the addon pipeline (extractfrontMatter=true) so addon pages get
+ * human-readable titles rather than the auto-generated slugs that addFrontMatter.ts
+ * would derive from the URL.
+ */
 function extractHtmlFrontmatter(html: string, pkg: Pkg, url: string): string {
   const $ = load(html);
   const h1 = $("h1")
