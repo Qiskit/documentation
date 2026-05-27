@@ -609,29 +609,7 @@ function _addonStaleTutorialLinks(): FilesToIgnores {
     "docs/addons/qiskit-addon-aqc-tensor/index.mdx": [
       "tutorials/index",
     ],
-    "docs/api/qiskit-addon-cutting/instructions-move.mdx": [
-      "/docs/addons/qiskit-addon-cutting/tutorials/03-wire-cutting-via-move-instruction",
-    ],
-    "docs/api/qiskit-addon-cutting/release-notes.mdx": [
-      "/docs/addons/qiskit-addon-cutting/tutorials/index",
-    ],
-    "docs/api/qiskit-addon-sqd/release-notes.mdx": [
-      "/docs/addons/qiskit-addon-sqd/tutorials/index",
-    ],
-    "docs/addons/qiskit-addon-mpf/explanations/mpf-stability.ipynb": [
-      "/docs/addons/qiskit-addon-mpf/tutorials/01-getting-started",
-    ],
-    "docs/addons/qiskit-addon-mpf/how-tos/choose-trotter-steps.ipynb": [
-      "/docs/addons/qiskit-addon-mpf/tutorials/01-getting-started",
-    ],
-    "docs/addons/qiskit-addon-mpf/how-tos/using-approximate-model.ipynb": [
-      "/docs/addons/qiskit-addon-mpf/tutorials/01-getting-started",
-    ],
-    "docs/addons/qiskit-addon-sqd/how-tos/integrate-dice-solver.ipynb": [
-      "/docs/addons/qiskit-addon-sqd/tutorials/01-chemistry-hamiltonian",
-    ],
     "docs/addons/qiskit-addon-obp/how-tos/truncate-operator-terms.ipynb": [
-      "/docs/addons/qiskit-addon-obp/tutorials/01-getting-started-ipynb",
       "/docs/api/qiskit/qiskit.circuit.QuantumCircuit#html",
     ],
     "docs/addons/qiskit-addon-obp/how-tos/simulating-circuits-with-obp.ipynb": [
