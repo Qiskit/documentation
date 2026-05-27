@@ -1,0 +1,115 @@
+---
+title: QuasiDistribution (latest version)
+description: API reference for mthree.classes.QuasiDistribution in the latest version of qiskit-addon-mthree
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: mthree.classes.QuasiDistribution
+---
+
+<span id="mthree-classes-quasidistribution" />
+
+# mthree.classes.QuasiDistribution
+
+<Class id="mthree.classes.QuasiDistribution" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mthree/tree/stable/3.0/mthree/classes.py" signature="QuasiDistribution(data, shots=None, mitigation_overhead=None)" modifiers="class">
+  A dict-like class for representing quasi-probabilities.
+
+  **Parameters**
+
+  *   **data** (*dict*) – Input data.
+  *   **shots** (*int*) – Number shots taken to form quasi-distribution.
+  *   **mitigation\_overhead** (*float*) – Overhead from performing mitigation.
+
+  ## Methods
+
+  |                                                                                                                                                                                      |                                                                                                                      |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+  | [`expval`](#mthree.classes.QuasiDistribution.expval "mthree.classes.QuasiDistribution.expval")(\[exp\_ops])                                                                          | Compute expectation value from distribution.                                                                         |
+  | [`expval_and_stddev`](#mthree.classes.QuasiDistribution.expval_and_stddev "mthree.classes.QuasiDistribution.expval_and_stddev")(\[exp\_ops])                                         | Compute expectation value and standard deviation estimate from distribution.                                         |
+  | [`nearest_probability_distribution`](#mthree.classes.QuasiDistribution.nearest_probability_distribution "mthree.classes.QuasiDistribution.nearest_probability_distribution")(\[...]) | Takes a quasiprobability distribution and maps it to the closest probability distribution as defined by the L2-norm. |
+  | [`stddev`](#mthree.classes.QuasiDistribution.stddev "mthree.classes.QuasiDistribution.stddev")()                                                                                     | Compute standard deviation estimate from distribution.                                                               |
+
+  ### expval
+
+  <Function id="mthree.classes.QuasiDistribution.expval" signature="expval(exp_ops='')">
+    Compute expectation value from distribution.
+
+    **Parameters**
+
+    **exp\_ops** (*str or dict or list*) – String or dict representation of diagonal qubit operators used in computing the expectation value.
+
+    **Returns**
+
+    Expectation value.
+
+    **Return type**
+
+    float
+
+    **Raises**
+
+    **M3Error** – Invalid type passed to exp\_ops.
+  </Function>
+
+  ### expval\_and\_stddev
+
+  <Function id="mthree.classes.QuasiDistribution.expval_and_stddev" signature="expval_and_stddev(exp_ops='')">
+    Compute expectation value and standard deviation estimate from distribution.
+
+    **Parameters**
+
+    **exp\_ops** (*str or dict*) – String or dict representation of diagonal qubit operators used in computing the expectation value.
+
+    **Returns**
+
+    Expectation value. float: Estimate of standard deviation upper-bound.
+
+    **Return type**
+
+    float
+
+    **Notes**
+
+    The dict operator format is a sparse diagonal format using bitstrings as the keys.
+  </Function>
+
+  ### nearest\_probability\_distribution
+
+  <Function id="mthree.classes.QuasiDistribution.nearest_probability_distribution" signature="nearest_probability_distribution(return_distance=False)">
+    Takes a quasiprobability distribution and maps it to the closest probability distribution as defined by the L2-norm.
+
+    **Parameters**
+
+    **return\_distance** (*bool*) – Return the L2 distance between distributions.
+
+    **Returns**
+
+    Nearest probability distribution. float: Euclidean (L2) distance of distributions.
+
+    **Return type**
+
+    [ProbDistribution](mthree-classes-prob-distribution "mthree.classes.ProbDistribution")
+
+    **Notes**
+
+    Method from Smolin et al., Phys. Rev. Lett. 108, 070502 (2012).
+  </Function>
+
+  ### stddev
+
+  <Function id="mthree.classes.QuasiDistribution.stddev" signature="stddev()">
+    Compute standard deviation estimate from distribution.
+
+    **Returns**
+
+    Estimate of standard deviation upper-bound.
+
+    **Return type**
+
+    float
+
+    **Raises**
+
+    **M3Error** – Missing shots or mitigation\_overhead information.
+  </Function>
+</Class>
+

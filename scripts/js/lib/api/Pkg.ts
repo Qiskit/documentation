@@ -68,7 +68,7 @@ export class Pkg {
     "qiskit-addon-sqd-hpc",
     "qiskit-addon-cutting",
     "qiskit-addon-utils",
-    // "qiskit-addon-mthree",
+    "qiskit-addon-mthree",
     "qiskit-addon-pna",
     "qiskit-addon-slc",
     "qiskit-addon-opt-mapper",

@@ -1,0 +1,71 @@
+---
+title: "Using distribution collections"
+description: "Using distribution collections for the lastest version of Matrix-free Measurement Mitigation (M3)"
+---
+
+<span id="collections" />
+
+# Using distribution collections
+
+When you mitigate over multiple circuits the return object is a [`mthree.classes.QuasiCollection`](/docs/api/qiskit-addon-mthree/mthree-classes-quasi-collection#mthree.classes.QuasiCollection "mthree.classes.QuasiCollection")
+
+```python
+from qiskit import *
+from qiskit_ibm_runtime.fake_provider import FakeCasablancaV2
+import mthree
+
+qc = QuantumCircuit(6)
+qc.reset(range(6))
+qc.h(3)
+qc.cx(3,1)
+qc.cx(3,5)
+qc.cx(1,0)
+qc.cx(5,4)
+qc.cx(1,2)
+qc.measure_all()
+
+backend = FakeCasablancaV2()
+mit = mthree.M3Mitigation(backend)
+mit.cals_from_system(range(6))
+
+trans_qc = transpile([qc]*10, backend)
+raw_counts = backend.run(trans_qc, shots=4000).result().get_counts()
+
+quasis = mit.apply_correction(raw_counts, range(6), return_mitigation_overhead=True)
+type(quasis)
+```
+
+```
+mthree.classes.QuasiCollection
+```
+
+`QuasiCollection` objects allow one to work with multiple distributions in the same manner as a single one. E.g. we can get the mitigation overhead of the whole collection
+
+```python
+quasis.mitigation_overhead
+```
+
+```
+array([1.7319335, 1.7434431, 1.7570623, 1.7362996, 1.7422098, 1.7463065,
+       1.7460448, 1.7474257, 1.7384585, 1.7354022], dtype=float32)
+```
+
+or compute expectation values and standard deviations over the full set:
+
+```python
+quasis.expval_and_stddev('IZIZIZ')
+```
+
+```
+[(0.06401509046554565, 0.0208082523361218),
+ (0.006104528903961182, 0.02087727925403053),
+ (0.03547114133834839, 0.020958663872588774),
+ (0.06163862347602844, 0.020834464102203316),
+ (0.016530781984329224, 0.020869893662517725),
+ (0.03425535559654236, 0.02089441633079794),
+ (0.03737133741378784, 0.02089285001670664),
+ (0.01931297779083252, 0.020901110175608882),
+ (0.06001356244087219, 0.020847412652591435),
+ (0.04732754826545715, 0.02082907978781109)]
+```
+

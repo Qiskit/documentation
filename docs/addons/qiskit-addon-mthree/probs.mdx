@@ -1,0 +1,64 @@
+---
+title: "Converting to probabilities"
+description: "Converting to probabilities for the lastest version of Matrix-free Measurement Mitigation (M3)"
+---
+
+<span id="probs" />
+
+# Converting to probabilities
+
+M3 natively works with quasi-probability distributions; distributions that contain negative values but nonetheless sum to one. This is useful for mitigating expectation values, but there could be situations where a true probability distribution is useful / needed. To this end, it is possible to find the closest probability distribution to a quasi-probability distribution in terms of $L2$-norm using: [`mthree.classes.QuasiDistribution.nearest_probability_distribution()`](/docs/api/qiskit-addon-mthree/mthree-classes-quasi-distribution#mthree.classes.QuasiDistribution.nearest_probability_distribution "mthree.classes.QuasiDistribution.nearest_probability_distribution"). This conversion is done in linear time.
+
+```python
+from qiskit import *
+from qiskit_ibm_runtime.fake_provider import FakeCasablancaV2
+import mthree
+
+qc = QuantumCircuit(6)
+qc.reset(range(6))
+qc.h(3)
+qc.cx(3,1)
+qc.cx(3,5)
+qc.cx(1,0)
+qc.cx(5,4)
+qc.cx(1,2)
+qc.measure_all()
+
+backend = FakeCasablancaV2()
+mit = mthree.M3Mitigation(backend)
+mit.cals_from_system(range(6))
+
+trans_qc = transpile(qc, backend)
+raw_counts = backend.run(trans_qc, shots=8192).result().get_counts()
+
+quasis = mit.apply_correction(raw_counts, range(6))
+
+# Here is where the conversion happens
+quasis.nearest_probability_distribution()
+```
+
+```
+{'010111': np.float32(1.8458784e-05),
+ '001101': np.float32(7.82907e-05),
+ '101011': np.float32(0.0001266693),
+ '101000': np.float32(0.00019029173),
+ '101101': np.float32(0.00033072094),
+ '000010': np.float32(0.00038816765),
+ '000110': np.float32(0.0006664434),
+ '110011': np.float32(0.0007018661),
+ '101111': np.float32(0.00095244986),
+ '001000': np.float32(0.0015221569),
+ '110111': np.float32(0.0019342253),
+ '110000': np.float32(0.0025582286),
+ '111001': np.float32(0.0028622507),
+ '010000': np.float32(0.003231837),
+ '001111': np.float32(0.0034692101),
+ '100000': np.float32(0.0035603144),
+ '111101': np.float32(0.0043579647),
+ '111000': np.float32(0.005170968),
+ '000111': np.float32(0.007296363),
+ '111011': np.float32(0.017431116),
+ '111111': np.float32(0.4505793),
+ '000000': np.float32(0.49257272)}
+```
+

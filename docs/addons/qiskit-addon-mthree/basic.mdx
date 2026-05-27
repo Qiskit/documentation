@@ -1,0 +1,97 @@
+---
+title: "Basic usage"
+description: "Basic usage for the lastest version of Matrix-free Measurement Mitigation (M3)"
+---
+
+<span id="basic" />
+
+# Basic usage
+
+Using M3 involves three steps (steps one and two can usually be done in reverse order if desired).
+
+> 1.  Select a system and calibrate over the desired set of qubits.
+> 2.  Run the circuit(s) of interest on the system.
+> 3.  Apply the readout correction and post-process.
+
+## Simple example
+
+Here we use a noisy simulator to perform the three steps above. First we import the needed modules, and construct a circuit of interest.
+
+```python
+import numpy as np
+from qiskit import *
+from qiskit_ibm_runtime.fake_provider import FakeCasablancaV2
+import mthree
+
+qc = QuantumCircuit(6)
+qc.reset(range(6))
+qc.h(3)
+qc.cx(3,1)
+qc.cx(3,5)
+qc.cx(1,0)
+qc.cx(5,4)
+qc.cx(1,2)
+qc.measure_all()
+qc.draw('mpl')
+```
+
+![\_images/basic\_0\_1.png](/docs/images/addons/qiskit-addon-mthree/basic_0_1.avif)
+
+Next we calibrate an M3 mitigator instance over qubits 0 -> 6 (Step #1):
+
+```python
+backend = FakeCasablancaV2()
+mit = mthree.M3Mitigation(backend)
+mit.cals_from_system(range(6))
+```
+
+```
+[<qiskit_aer.jobs.aerjob.AerJob at 0x1140acd50>]
+```
+
+Transpile and execute our circuit (Step #2):
+
+```python
+trans_qc = transpile(qc, backend)
+raw_counts = backend.run(trans_qc).result().get_counts()
+```
+
+Finally, apply the correction and post-process (Step #3). Here our post-processing is simply computing the expectation value from the returned quasi-probabilities:
+
+```python
+quasis = mit.apply_correction(raw_counts, range(6))
+print('Expectation value:',quasis.expval())
+```
+
+```
+Expectation value: 0.9226210117340088
+```
+
+## Specifying qubits to mitigate over
+
+The circuit above also fits on other systems without SWAP mapping provided that we select the correct layout.
+
+```python
+from qiskit_ibm_runtime.fake_provider import FakeMontrealV2
+
+backend = FakeMontrealV2()
+mit2 = mthree.M3Mitigation(backend)
+```
+
+In our case, `qubits = [10, 12, 15, 13, 11, 14]` is an appropriate layout. Importantly, the zeroth entry of the list tells us what physical qubit is readout to generate bit 0 in the output bit-strings. We must pass this list to both the calibration and correction steps of M3.
+
+```python
+qubits = [10, 12, 15, 13, 11, 14]
+mit2.cals_from_system(qubits)
+
+trans_qc = transpile(qc, backend, initial_layout=qubits)
+raw_counts2 = backend.run(trans_qc).result().get_counts()
+
+quasis2 = mit2.apply_correction(raw_counts2, qubits)
+print('Expectation value:',quasis2.expval())
+```
+
+```
+Expectation value: 0.9692449569702148
+```
+

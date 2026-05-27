@@ -1,0 +1,66 @@
+---
+title: "Saving and loading calibration data"
+description: "Saving and loading calibration data for the lastest version of Matrix-free Measurement Mitigation (M3)"
+---
+
+<span id="calio" />
+
+# Saving and loading calibration data
+
+It is possible to save calibration data and, optionally, re-load it at a later time. Let us generate some calibration data and save it.
+
+```python
+from qiskit_ibm_runtime.fake_provider import FakeCasablancaV2
+import mthree
+
+backend = FakeCasablancaV2()
+
+mit = mthree.M3Mitigation(backend)
+mit.cals_from_system([1, 3, 5], cals_file='my_cals.json')
+mit.single_qubit_cals
+```
+
+```
+[None,
+ array([[0.993042  , 0.02490234],
+        [0.00695801, 0.97509766]], dtype=float32),
+ None,
+ array([[0.984375  , 0.01989746],
+        [0.015625  , 0.98010254]], dtype=float32),
+ None,
+ array([[0.993042  , 0.0279541 ],
+        [0.00695801, 0.9720459 ]], dtype=float32),
+ None]
+```
+
+or,
+
+```python
+mit = mthree.M3Mitigation(backend)
+mit.cals_from_system([1, 3, 5])
+mit.cals_to_file('my_cals.json')
+```
+
+We can then load this data at a later point in time using:
+
+```python
+import mthree
+
+mit2 = mthree.M3Mitigation()
+mit2.cals_from_file('my_cals.json')
+mit2.single_qubit_cals
+```
+
+```
+[None,
+ array([[0.99328613, 0.02148438],
+        [0.00671387, 0.9785156 ]], dtype=float32),
+ None,
+ array([[0.9842529 , 0.01550293],
+        [0.01574707, 0.9844971 ]], dtype=float32),
+ None,
+ array([[0.9935303 , 0.02587891],
+        [0.00646973, 0.9741211 ]], dtype=float32),
+ None]
+```
+

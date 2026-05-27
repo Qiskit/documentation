@@ -1,0 +1,125 @@
+---
+title: "Obtaining expectation values"
+description: "Obtaining expectation values for the lastest version of Matrix-free Measurement Mitigation (M3)"
+---
+
+<span id="expvals" />
+
+# Obtaining expectation values
+
+Given a quasi- or standard probability distribution, it is possible to compute the expectation value of diagonal operators directly from the distributions (or collections) of distributions. This can be done using string representation for standard diagonal operators such as `I`, `Z`, `0` or `1`, or via dictionaries for custom operators.
+
+Let us first generate some quasi-distributions by mitigating 2- and 3-qubit GHZ circuits on a noisy-simulator.
+
+```python
+import numpy as np
+from qiskit import *
+from qiskit_ibm_runtime.fake_provider import FakeAthensV2
+import mthree
+
+backend = FakeAthensV2()
+
+ghz2 = QuantumCircuit(2)
+ghz2.h(0)
+ghz2.cx(0,1)
+ghz2.measure_all()
+
+trans_ghz2 = transpile(ghz2, backend)
+
+ghz3 = QuantumCircuit(3)
+ghz3.h(0)
+ghz3.cx(0,1)
+ghz3.cx(1,2)
+ghz3.measure_all()
+
+trans_ghz3 = transpile(ghz3, backend)
+
+raw2 = backend.run(trans_ghz2, shots=4000).result().get_counts()
+raw3 = backend.run(trans_ghz3, shots=4000).result().get_counts()
+
+mit = mthree.M3Mitigation(backend)
+mit.cals_from_system()
+
+quasi2 = mit.apply_correction(raw2, [0,1], return_mitigation_overhead=True)
+quasi3 = mit.apply_correction(raw3, [0,1,2], return_mitigation_overhead=True)
+```
+
+Now let us compute the expectation values of these distributions for the default case of `Z` operators on each qubit:
+
+```python
+print('GHZ2:', quasi2.expval())
+print('GHZ3:', quasi3.expval())
+```
+
+```
+GHZ2: 0.9362177848815918
+GHZ3: 0.029018640518188477
+```
+
+The values are close to one and zero, respectively. We can use strings to repeat the above via:
+
+```python
+print('GHZ2:', quasi2.expval('ZZ'))
+print('GHZ3:', quasi3.expval('ZZZ'))
+```
+
+```
+GHZ2: 0.9362177848815918
+GHZ3: 0.029018640518188477
+```
+
+Replacing a `Z` measurement with an `I` on one of the qubits has the affect of changing the sign for the $|1>^{\otimes N}$ component:
+
+```python
+print('GHZ2:', quasi2.expval('IZ'))
+print('GHZ3:', quasi3.expval('ZIZ'))
+```
+
+```
+GHZ2: 0.021010488271713257
+GHZ3: 0.9692444801330566
+```
+
+We can also pass lists of strings:
+
+```python
+quasi3.expval_and_stddev(['ZZZ','ZIZ'])
+```
+
+```
+(array([0.02901864, 0.9692445 ], dtype=float32), 0.018216806955407207)
+```
+
+Alternatively, users can specify their own custom diagonal operators using dictionaries. Here we form the projectors on the all ones and zeros states:
+
+```python
+all_zeros_proj = {'000': 1}
+all_ones_proj = {'111': 1}
+quasi3.expval(all_zeros_proj)
+```
+
+```
+0.5033974051475525
+```
+
+Like strings, one can pass an array of dicts:
+
+```python
+quasi3.expval([all_zeros_proj, all_ones_proj])
+```
+
+```
+array([0.5033974 , 0.48120362], dtype=float32)
+```
+
+We can verify that the projectors return the correct values:
+
+```python
+p0s, p1s = quasi3.expval([all_zeros_proj, all_ones_proj])
+np.allclose([p0s, p1s], [quasi3['000'], quasi3['111']])
+```
+
+```
+True
+```
+

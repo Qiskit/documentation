@@ -1,0 +1,47 @@
+---
+title: "Balanced calibrations"
+description: "Balanced calibrations for the lastest version of Matrix-free Measurement Mitigation (M3)"
+---
+
+<span id="balanced" />
+
+# Balanced calibrations
+
+The default calibration method for M3 is what is called “balanced” calibration. Balanced calibrations sample all independent and pair-wise readout error rates evenly; hence the name “balanced”. In M3 v3 and higher, this routine has been updated to use a method from Bravyi et al, Phys. Rev. A 103, 042605 (2021).
+
+To see the bit-patterns used to generate the calibration circuits one can call the generator explicitly. E.g. to see the strings for 5-qubits one would do
+
+```python
+import mthree
+
+gen = mthree.generators.HadamardGenerator(5)
+list(gen)
+```
+
+```
+[array([0, 0, 0, 0, 0], dtype=uint8),
+ array([1, 0, 1, 0, 1], dtype=uint8),
+ array([0, 1, 1, 0, 0], dtype=uint8),
+ array([1, 1, 0, 0, 1], dtype=uint8),
+ array([0, 0, 0, 1, 1], dtype=uint8),
+ array([1, 0, 1, 1, 0], dtype=uint8),
+ array([0, 1, 1, 1, 1], dtype=uint8),
+ array([1, 1, 0, 1, 0], dtype=uint8)]
+```
+
+For every position in the bit-string you will see that 0 or 1 appear an equal number of times, and the same is true for all pair-wise combinations of 0 and 1. If there is a 0, then that circuit samples the $|0\rangle$ state for that qubit, similarly for the 1 element. So when we execute the balanced calibration circuits using shots number of samples, each error rate in the calibration data is actually being sampled more times than requested. Thus, when you pass the shots value to M3, in the balanced calibration mode internally it divides by the number of measured qubits so that the precision of each error rate matches the precision of the other methods. That is to say that the following:
+
+> ```python
+> from qiskit_ibm_runtime.fake_provider import FakeAthensV2
+>
+> backend = FakeAthensV2()
+> mit = mthree.M3Mitigation(backend)
+> mit.cals_from_system(method='balanced')
+> ```
+>
+> ```
+> [<qiskit_aer.jobs.aerjob.AerJob at 0x113063750>]
+> ```
+
+Will sample each independent qubit error rate 10000 times (or the max allowed by the target system if less) regardless of which method is used. All pair-wise correlations are measured half this number of times. This yields a calibration process whose overhead is independent of the number of qubits used; there is no additional cost to compute the calibration over a full device. Note that, when using a simulator or “fake” device, M3 defaults to independent calibration mode for efficiency. As such, to enable balanced calibration on a simulator one must explicitly set the method\` as done above.
+

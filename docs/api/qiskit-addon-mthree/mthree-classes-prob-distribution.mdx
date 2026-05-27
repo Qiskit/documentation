@@ -1,0 +1,103 @@
+---
+title: ProbDistribution (latest version)
+description: API reference for mthree.classes.ProbDistribution in the latest version of qiskit-addon-mthree
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: mthree.classes.ProbDistribution
+---
+
+<span id="mthree-classes-probdistribution" />
+
+# mthree.classes.ProbDistribution
+
+<Class id="mthree.classes.ProbDistribution" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mthree/tree/stable/3.0/mthree/classes.py" signature="ProbDistribution(data, shots=None, mitigation_overhead=None)" modifiers="class">
+  A generic dict-like class for probability distributions.
+
+  **Parameters**
+
+  *   **data** (*dict or Counts or* [*ProbDistribution*](#mthree.classes.ProbDistribution "mthree.classes.ProbDistribution")  *or*[*QuasiDistribution*](mthree-classes-quasi-distribution "mthree.classes.QuasiDistribution")) – Input data.
+  *   **shots** (*int*) – Number shots taken to form distribution.
+
+  **Raises**
+
+  **M3Error** – Input not derived from discrete samples.
+
+  ## Methods
+
+  |                                                                                                                                            |                                                                     |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+  | [`expval`](#mthree.classes.ProbDistribution.expval "mthree.classes.ProbDistribution.expval")(\[exp\_ops])                                  | Compute expectation value from distribution.                        |
+  | [`expval_and_stddev`](#mthree.classes.ProbDistribution.expval_and_stddev "mthree.classes.ProbDistribution.expval_and_stddev")(\[exp\_ops]) | Compute expectation value and standard deviation from distribution. |
+  | [`stddev`](#mthree.classes.ProbDistribution.stddev "mthree.classes.ProbDistribution.stddev")()                                             | Compute standard deviation from distribution.                       |
+
+  ### expval
+
+  <Function id="mthree.classes.ProbDistribution.expval" signature="expval(exp_ops='')">
+    Compute expectation value from distribution.
+
+    **Parameters**
+
+    **exp\_ops** (*str or dict or list*) – String representation of diagonal qubit operators used in computing the expectation value.
+
+    **Returns**
+
+    Expectation value.
+
+    **Return type**
+
+    float
+
+    **Raises**
+
+    **M3Error** – Invalid type passed to exp\_ops
+
+    **Notes**
+
+    The dict operator format is a sparse diagonal format using bitstrings as the keys.
+  </Function>
+
+  ### expval\_and\_stddev
+
+  <Function id="mthree.classes.ProbDistribution.expval_and_stddev" signature="expval_and_stddev(exp_ops='')">
+    Compute expectation value and standard deviation from distribution.
+
+    **Parameters**
+
+    **exp\_ops** (*str or dict*) – String or dict representation of diagonal qubit operators used in computing the expectation value.
+
+    **Returns**
+
+    Expectation value. float: Standard deviation.
+
+    **Return type**
+
+    float
+
+    **Notes**
+
+    The dict operator format is a sparse diagonal format using bitstrings as the keys.
+  </Function>
+
+  ### stddev
+
+  <Function id="mthree.classes.ProbDistribution.stddev" signature="stddev()">
+    Compute standard deviation from distribution.
+
+    **Returns**
+
+    Standard deviation.
+
+    **Return type**
+
+    float
+
+    **Raises**
+
+    **M3Error** – Distribution is missing info.
+
+    **Notes**
+
+    The dict operator format is a sparse diagonal format using bitstrings as the keys.
+  </Function>
+</Class>
+
