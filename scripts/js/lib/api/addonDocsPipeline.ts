@@ -20,8 +20,6 @@
 //     optional Tutorials and API reference sections.
 //   - When a notebook and an HTML file share the same base name, the notebook
 //     wins so we preserve code outputs rather than the rendered HTML version.
-//   - A _tutorials.json is written when the pkg declares tutorial slugs; the
-//     consuming app uses it to surface those tutorials under the addon's route.
 
 import { writeFile } from "fs/promises";
 
@@ -129,9 +127,6 @@ export async function runAddonDocsPipeline(
   );
 
   await writeTocFile(pkg, docsBaseFolder, outputPath);
-  if (pkg.tutorials.length > 0) {
-    await writeTutorialsFile(pkg, outputPath);
-  }
 }
 
 async function writeTocFile(
@@ -144,19 +139,6 @@ async function writeTocFile(
   await writeFile(
     `${outputPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
-  );
-}
-
-/**
- * Write _tutorials.json listing the tutorial slugs declared in Pkg.tutorials.
- * The consuming app (iqp-channel-docs) reads this file to generate static
- * params for /docs/addons/{pkg}/tutorials/{slug} routes and to redirect those
- * routes to the corresponding file under docs/tutorials/.
- */
-async function writeTutorialsFile(pkg: Pkg, outputPath: string): Promise<void> {
-  await writeFile(
-    `${outputPath}/_tutorials.json`,
-    JSON.stringify({ tutorials: pkg.tutorials }, null, 2) + "\n",
   );
 }
 
