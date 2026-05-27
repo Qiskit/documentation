@@ -128,7 +128,7 @@ export async function generateAddonToc(
       pkg.tutorials.map(async (slug) => {
         const filePath = join(tutorialsDocsPath, `${slug}.ipynb`);
         const title = await readTitle(filePath);
-        return { title, url: `${addonUrlBase}/tutorials/${slug}` };
+        return { title, url: `${DOCS_BASE_PATH}/tutorials/${slug}` };
       }),
     );
     topLevelSections.push({
