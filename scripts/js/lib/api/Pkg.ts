@@ -254,6 +254,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-mthree",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
       });
     }
     if (name === "qiskit-addon-pna") {
