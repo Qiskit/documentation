@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.options_models.ExecutionOptions
 
 # ExecutionOptions
 
-<Class id="qiskit_ibm_runtime.options_models.ExecutionOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/execution_options.py#L22-L37" signature="ExecutionOptions(init_qubits=True, rep_delay=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options_models.ExecutionOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/execution_options.py#L22-L57" signature="ExecutionOptions(init_qubits=True, rep_delay=None, scheduler_timing=False, stretch_values=False)" modifiers="class">
   Bases: `object`
 
   Low-level execution options.
@@ -19,6 +19,8 @@ python_api_name: qiskit_ibm_runtime.options_models.ExecutionOptions
 
   *   **init\_qubits** (*bool*)
   *   **rep\_delay** (*float | None*)
+  *   **scheduler\_timing** (*bool*)
+  *   **stretch\_values** (*bool*)
 
   ### init\_qubits
 
@@ -34,6 +36,30 @@ python_api_name: qiskit_ibm_runtime.options_models.ExecutionOptions
     This is the delay between a measurement and the subsequent quantum circuit. This is only supported on backends that have `backend.dynamic_reprate_enabled=True`. It must be from the range supplied by `backend.rep_delay_range`.
 
     Default is given by `backend.default_rep_delay`.
+  </Attribute>
+
+  ### scheduler\_timing
+
+  <Attribute id="qiskit_ibm_runtime.options_models.ExecutionOptions.scheduler_timing" attributeTypeHint="bool" attributeValue="False">
+    Whether to return circuit schedule timing of each provided quantum circuit.
+
+    Setting this value to `True` will cause corresponding metadata of every program item to be populated in the returned data.
+
+    <Admonition title="Note" type="note">
+      This feature is experimental and subject to change without notice.
+    </Admonition>
+  </Attribute>
+
+  ### stretch\_values
+
+  <Attribute id="qiskit_ibm_runtime.options_models.ExecutionOptions.stretch_values" attributeTypeHint="bool" attributeValue="False">
+    Whether to return numeric resolutions of stretches for each provided quantum circuit.
+
+    Setting this value to `True` will cause corresponding metadata of every program item to be populated in the returned data.
+
+    <Admonition title="Note" type="note">
+      This feature is experimental and subject to change without notice.
+    </Admonition>
   </Attribute>
 
   ## Methods
