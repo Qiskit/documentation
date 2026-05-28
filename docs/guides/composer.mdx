@@ -388,9 +388,7 @@ where $p_k$ is the probability that the qubits are in the state $|k\rangle$ with
 
 **Reduced purity of the qubit state**
 
-The radius of the black ring represents the reduced purity of the qubit state, which for qubit $j$ in an $N$-qubit state $|\psi\rangle$ is given by $\mathrm{Tr}\left[\mathrm{Tr}_{i\neq j}[\left|\psi\rangle\langle\psi\right|\right]^{2}]$. The reduced purity for a single qubit is in the range $[0.5, 1]$; a value of one indicates that the qubit is not entangled with any other party. In contrast, a reduced purity of $0.5$ shows that the qubit is left in the completely mixed state, and has some level of entanglement over the remaining $N-1$ qubits, and possibly even the environment.
-
-![purity of the qubit state](/docs/images/guides/composer/425d4355-6a67-45ec-989c-afc2aa800448.avif)
+The radius of the black ring on the phase disk represents the reduced purity of the qubit state, which for qubit $j$ in an $N$-qubit state $|\psi\rangle$ is given by $\mathrm{Tr}\left[\mathrm{Tr}_{i\neq j}[\left|\psi\rangle\langle\psi\right|\right]^{2}]$. The reduced purity for a single qubit is in the range $[0.5, 1]$; a value of one indicates that the qubit is not entangled with any other party. In contrast, a reduced purity of $0.5$ shows that the qubit is left in the completely mixed state, and has some level of entanglement over the remaining $N-1$ qubits, and possibly even the environment.
 
 ### Probabilities view
 
@@ -400,9 +398,9 @@ This view visualizes the probabilities of the quantum state as a bar graph. The 
 
 Consider the following quantum circuit and its probabilities view:
 
-![a quantum circuit](/docs/images/guides/composer/58f83286-9707-4e43-893e-2bd161c744cd.avif "A circuit consisting of a column of Hadamards that creates an equal superposition of the computational basis states, followed by a two-qubit controlled-Z (CZ) gate.")
+![a quantum circuit](/docs/images/guides/composer/2H-circuit.svg "A circuit consisting of a column of Hadamards that creates an equal superposition of the computational basis states, followed by a two-qubit controlled-Z (CZ) gate.")
 
-![measurement probabilities view](/docs/images/guides/composer/4d79349d-dadd-4e9c-8571-4617601d22f3.avif "A quantum circuit and its probabilities view.")
+![Probabilities view of the previous circuit](/docs/images/guides/composer/probabilities.svg "Probabilities view of the previous circuit.")
 
 The circuit puts the two qubits into the state $|\psi\rangle = (|00\rangle + |01\rangle+ |10\rangle-|11\rangle) / 2$. The computational basis states are $|00\rangle, |10\rangle, |01\rangle$, and $|11\rangle$. The probabilities for each of the computational states is 1/4.
 
@@ -416,9 +414,9 @@ The nodes are laid out on the q-sphere so that the basis state with all zeros (e
 
 Consider the following quantum circuit and its q-sphere, which represent the state the circuit creates:
 
-![a quantum circuit](/docs/images/guides/composer/58f83286-9707-4e43-893e-2bd161c744cd.avif)
+![a quantum circuit](/docs/images/guides/composer/2H-circuit.svg)
 
-![q-sphere view](/docs/images/guides/composer/55d58744-c95c-44b3-ba29-3c7e24ec4dcc.avif)
+![q-sphere view](/docs/images/guides/composer/q-sphere.avif)
 
 You can select, hold, and drag to rotate the q-sphere. To return the q-sphere to its default orientation, select the **rewind-arrow button** to the top right of the q-sphere.
 
@@ -434,9 +432,9 @@ It is common to call $\sqrt{p_k}e^{i\varphi_k}$ the quantum amplitude. This view
 
 Consider the following quantum circuit and its statevector view:
 
-![a quantum circuit](/docs/images/guides/composer/58f83286-9707-4e43-893e-2bd161c744cd.avif)
+![a quantum circuit](/docs/images/guides/composer/2H-circuit.svg)
 
-![statevector view](/docs/images/guides/composer/1f828b26-e332-4ef2-b8f0-649030fabab4.avif "The statevector at the terminus of the above circuit. The color wheel maps phase angle to color. The output state is expressed as a list of complex numbers.")
+![statevector view](/docs/images/guides/composer/state-vector.svg "The statevector at the terminus of the above circuit. The color wheel maps phase angle to color. The output state is expressed as a list of complex numbers.")
 
 The circuit puts the two qubits into the state $|\psi\rangle = (|00\rangle + |01\rangle+ |10\rangle-|11\rangle) / 2$. The computational basis states are $|00\rangle$, $|10\rangle$, $|01\rangle$, and $|11\rangle$. The magnitudes of the amplitudes are $1/2$, and the quantum phases with respect to the ground state are $0$ for $|01\rangle$ and $|10\rangle$, and $\pi$ for $|11\rangle$.
 
