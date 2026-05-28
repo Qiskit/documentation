@@ -94,7 +94,7 @@ function extractHtmlFrontmatter(html: string, pkg: Pkg, url: string): string {
   const isRootIndex = url.endsWith(`/${pkg.name}/index`);
   const description = isRootIndex
     ? `Documentation for the latest version of ${pkg.title}`
-    : `${h1} for the lastest version of ${pkg.title}`;
+    : `${h1} for the latest version of ${pkg.title}`;
   return [`title: "${h1}"`, `description: "${description}"`].join("\n");
 }
 
@@ -204,5 +204,11 @@ export async function copyImages(
     [...results.flatMap((result) => result.images), ...extraImages],
     (image) => image.fileName,
   );
-  await saveImages(allImages, `${artifactPath}/_images`, destFolder, pkg, artifactPath);
+  await saveImages(
+    allImages,
+    `${artifactPath}/_images`,
+    destFolder,
+    pkg,
+    artifactPath,
+  );
 }

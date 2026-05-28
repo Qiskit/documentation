@@ -15,20 +15,20 @@ import { hideBin } from "yargs/helpers";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
-import { parseMinorVersion } from "../../lib/apiVersions.js";
+import { isValidVersion, parseMinorVersion } from "../../lib/apiVersions.js";
 import { runApiDocsPipeline } from "../../lib/api/apiDocsPipeline.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 import { deleteOutputDirs, prepareSphinxFolder } from "./updateDocsShared.js";
 
-export type Arguments = {
+export interface Arguments {
   [x: string]: unknown;
   package: string;
   version: string;
-  skipDownload: boolean;
-  sphinxArtifactFolder?: string;
   historical: boolean;
   dev: boolean;
-};
+  skipDownload: boolean;
+  sphinxArtifactFolder?: string;
+}
 
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
@@ -44,21 +44,15 @@ const readArgs = (): Arguments => {
       alias: "v",
       type: "string",
       demandOption: true,
-      description: "The full version string, e.g. 0.44.0",
-    })
-    .option("skip-download", {
-      type: "boolean",
-      default: false,
-      description:
-        "Rather than downloading the artifact from Box, reuse what is already downloaded.",
-    })
-    .option("sphinx-artifact-folder", {
-      alias: "a",
-      type: "string",
-      implies: "skip-download",
-      normalize: true,
-      description:
-        "Skip downloading the artifact from Box and instead use the given directory.",
+      description: "The full version string of the --package, e.g. 0.44.0",
+      coerce: (version) => {
+        if (!isValidVersion(version)) {
+          throw new Error(
+            "The version must include a major, a minor, and a patch. E.g. `-v 0.46.3`",
+          );
+        }
+        return version;
+      },
     })
     .option("historical", {
       type: "boolean",
@@ -70,7 +64,21 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Is this a dev release?",
     })
-    .parseSync() as unknown as Arguments;
+    .option("skip-download", {
+      type: "boolean",
+      default: false,
+      description:
+        "Rather than downloading the artifact from Box, reuse what is already downloaded. This can save time, but it risks using an outdated version of the docs.",
+    })
+    .option("sphinx-artifact-folder", {
+      alias: "a",
+      type: "string",
+      implies: "skip-download",
+      normalize: true,
+      description:
+        "Skip downloading the artifact from Box and instead use the given directory as the root of the Sphinx HTML output.",
+    })
+    .parseSync();
 };
 
 export async function generateVersion(
