@@ -105,7 +105,7 @@ async function makeTestDirs(
 
 test("minimal addon: only index and install in sidebar", async () => {
   const { artifactDir, docsDir } = await makeTestDirs([
-    { href: "index.html", title: "My Addon" },
+    { href: "#", title: "My Addon" },
     { href: "install.html", title: "Installation" },
   ]);
 
@@ -142,7 +142,7 @@ test("minimal addon: only index and install in sidebar", async () => {
 
 test("sidebar order is preserved exactly", async () => {
   const { artifactDir, docsDir } = await makeTestDirs([
-    { href: "index.html", title: "Home" },
+    { href: "#", title: "Home" },
     { href: "install.html", title: "Install" },
     { href: "changelog.html", title: "Changelog" },
     { href: "faq.html", title: "FAQ" },
@@ -162,7 +162,7 @@ test("sidebar order is preserved exactly", async () => {
 
 test("subdirectory section preserves l2 children order from sidebar", async () => {
   const { artifactDir, docsDir } = await makeTestDirs([
-    { href: "index.html", title: "Home" },
+    { href: "#", title: "Home" },
     {
       href: "how_tos/index.html",
       title: "Guides",
@@ -188,7 +188,7 @@ test("subdirectory section preserves l2 children order from sidebar", async () =
 
 test("subdirectory section has correct child URLs", async () => {
   const { artifactDir, docsDir } = await makeTestDirs([
-    { href: "index.html", title: "Home" },
+    { href: "#", title: "Home" },
     {
       href: "how_tos/index.html",
       title: "Guides",
@@ -210,7 +210,7 @@ test("subdirectory section has correct child URLs", async () => {
 
 test("items with titles matching SKIP_ITEMS are omitted", async () => {
   const { artifactDir, docsDir } = await makeTestDirs([
-    { href: "index.html", title: "Home" },
+    { href: "#", title: "Home" },
     {
       href: "tutorials/index.html",
       title: "Tutorials",
@@ -228,7 +228,7 @@ test("items with titles matching SKIP_ITEMS are omitted", async () => {
 
 test("external link (class=external) is passed through unchanged", async () => {
   const { artifactDir, docsDir } = await makeTestDirs([
-    { href: "index.html", title: "Home" },
+    { href: "#", title: "Home" },
   ]);
   // Append an external link directly to the index.html sidebar
   const indexPath = path.join(artifactDir, "index.html");
@@ -255,9 +255,9 @@ test("external link (class=external) is passed through unchanged", async () => {
   });
 });
 
-test("index.html href maps to package root URL", async () => {
+test("href='#' maps to package root URL", async () => {
   const { artifactDir, docsDir } = await makeTestDirs([
-    { href: "index.html", title: "Home" },
+    { href: "#", title: "Home" },
   ]);
 
   const pkg = await makePkg();
@@ -269,7 +269,7 @@ test("index.html href maps to package root URL", async () => {
 
 test("api reference section is always last", async () => {
   const { artifactDir, docsDir } = await makeTestDirs([
-    { href: "index.html", title: "Home" },
+    { href: "#", title: "Home" },
   ]);
 
   const pkg = await makePkg();
@@ -293,7 +293,7 @@ test("missing index.html throws", async () => {
 
 test("subdirectory section has no url property on the section entry", async () => {
   const { artifactDir, docsDir } = await makeTestDirs([
-    { href: "index.html", title: "Home" },
+    { href: "#", title: "Home" },
     {
       href: "how_tos/index.html",
       title: "Guides",
