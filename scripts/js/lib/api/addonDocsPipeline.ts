@@ -126,16 +126,8 @@ export async function runAddonDocsPipeline(
     notebookImages,
   );
 
-  await writeTocFile(pkg, docsBaseFolder, outputPath);
-}
-
-async function writeTocFile(
-  pkg: Pkg,
-  docsBaseFolder: string,
-  outputPath: string,
-): Promise<void> {
   console.log("Generating addon toc");
-  const toc = await generateAddonToc(pkg, docsBaseFolder);
+  const toc = await generateAddonToc(pkg, docsBaseFolder, artifactPath);
   await writeFile(
     `${outputPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",

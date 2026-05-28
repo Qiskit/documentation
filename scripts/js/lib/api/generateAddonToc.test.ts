@@ -37,63 +37,80 @@ async function makePkg(name = "my-addon", githubSlug?: string): Promise<Pkg> {
   });
 }
 
-/** Creates a temp directory, writes the given files into it, returns the path. */
-async function makeTmpAddonDir(
-  files: Record<string, string>,
-): Promise<{ tmpDir: string; addonDir: string }> {
-  const tmpDir = await mkdtemp(path.join(os.tmpdir(), "addon-toc-test-"));
-  const addonDir = path.join(tmpDir, "addons", "my-addon");
-  await mkdir(addonDir, { recursive: true });
+/**
+ * Builds a minimal Sphinx-style index.html with a sidebar tree.
+ * Each item in `navItems` can be:
+ *   - a string href (top-level page link)
+ *   - { href, title } (top-level page with custom title)
+ *   - { href, title, children: [{ href, title }] } (section with sub-pages)
+ */
+type NavChild = { href: string; title: string };
+type NavItem =
+  | string
+  | { href: string; title?: string; children?: NavChild[] };
 
-  for (const [relPath, content] of Object.entries(files)) {
-    const abs = path.join(addonDir, relPath);
-    await mkdir(path.dirname(abs), { recursive: true });
-    await writeFile(abs, content, "utf-8");
-  }
-
-  return { tmpDir, addonDir };
-}
-
-function mdx(title: string, h1 = title): string {
-  return `---\ntitle: "${title}"\n---\n\n# ${h1}\n\nSome content.\n`;
-}
-
-function notebook(h1: string): string {
-  return JSON.stringify({
-    cells: [
-      {
-        id: "frontmatter",
-        cell_type: "markdown",
-        source: [`---\ntitle: "Frontmatter title"\n---`],
-        metadata: {},
-        outputs: [],
-      },
-      {
-        id: "content",
-        cell_type: "markdown",
-        source: [`# ${h1}\n\nSome content.`],
-        metadata: {},
-        outputs: [],
-      },
-    ],
-    metadata: {},
-    nbformat: 4,
-    nbformat_minor: 5,
+function makeIndexHtml(navItems: NavItem[]): string {
+  const items = navItems.map((item) => {
+    if (typeof item === "string") {
+      const title = item.replace(/\.html$/, "").replace(/[-_]/g, " ");
+      return `<li class="toctree-l1"><a class="reference internal" href="${item}">${title}</a></li>`;
+    }
+    const { href, title = href.replace(/\.html$/, ""), children } = item;
+    if (children && children.length > 0) {
+      const l2s = children
+        .map(
+          (c) =>
+            `<li class="toctree-l2"><a class="reference internal" href="${c.href}">${c.title}</a></li>`,
+        )
+        .join("\n          ");
+      return `<li class="toctree-l1 has-children"><a class="reference internal" href="${href}">${title}</a>
+        <ul>${l2s}</ul>
+      </li>`;
+    }
+    return `<li class="toctree-l1"><a class="reference internal" href="${href}">${title}</a></li>`;
   });
+
+  return `<!DOCTYPE html>
+<html>
+<body>
+<div class="sidebar-tree">
+  <ul>
+    ${items.join("\n    ")}
+  </ul>
+</div>
+</body>
+</html>`;
+}
+
+/** Creates a temp directory with an artifact (index.html) and optional docs files. */
+async function makeTestDirs(
+  navItems: NavItem[],
+): Promise<{ artifactDir: string; docsDir: string }> {
+  const tmpDir = await mkdtemp(path.join(os.tmpdir(), "addon-toc-test-"));
+  const artifactDir = path.join(tmpDir, "artifact");
+  const docsDir = path.join(tmpDir, "addons");
+  await mkdir(artifactDir, { recursive: true });
+  await mkdir(path.join(docsDir, "my-addon"), { recursive: true });
+  await writeFile(
+    path.join(artifactDir, "index.html"),
+    makeIndexHtml(navItems),
+    "utf-8",
+  );
+  return { artifactDir, docsDir };
 }
 
 // ---------------------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------------------
 
-test("minimal addon: only index.mdx and install.mdx", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("My Addon home page", "My Addon"),
-    "install.mdx": mdx("Installation Instructions"),
-  });
+test("minimal addon: only index and install in sidebar", async () => {
+  const { artifactDir, docsDir } = await makeTestDirs([
+    { href: "index.html", title: "My Addon" },
+    { href: "install.html", title: "Installation" },
+  ]);
 
   const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
+  const toc = await generateAddonToc(pkg, docsDir, artifactDir);
 
   expect(toc).toEqual({
     parentUrl: "/docs/guides/addons",
@@ -105,11 +122,8 @@ test("minimal addon: only index.mdx and install.mdx", async () => {
         title: "",
         collapsible: false,
         children: [
-          { title: "Home", url: "/docs/addons/my-addon" },
-          {
-            title: "Installation instructions",
-            url: "/docs/addons/my-addon/install",
-          },
+          { title: "My Addon", url: "/docs/addons/my-addon" },
+          { title: "Installation", url: "/docs/addons/my-addon/install" },
         ],
       },
       {
@@ -126,27 +140,113 @@ test("minimal addon: only index.mdx and install.mdx", async () => {
   });
 });
 
-test("install.mdx in a subdirectory uses its h1, not the hardcoded title", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "how-tos/install.mdx": mdx("Custom install title"),
-  });
+test("sidebar order is preserved exactly", async () => {
+  const { artifactDir, docsDir } = await makeTestDirs([
+    { href: "index.html", title: "Home" },
+    { href: "install.html", title: "Install" },
+    { href: "changelog.html", title: "Changelog" },
+    { href: "faq.html", title: "FAQ" },
+  ]);
 
   const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
+  const toc = await generateAddonToc(pkg, docsDir, artifactDir);
+  const main = toc.children[0];
+
+  expect(main.children?.map((c) => c.title)).toEqual([
+    "Home",
+    "Install",
+    "Changelog",
+    "FAQ",
+  ]);
+});
+
+test("subdirectory section preserves l2 children order from sidebar", async () => {
+  const { artifactDir, docsDir } = await makeTestDirs([
+    { href: "index.html", title: "Home" },
+    {
+      href: "how_tos/index.html",
+      title: "Guides",
+      children: [
+        { href: "how_tos/beta.html", title: "Beta guide" },
+        { href: "how_tos/alpha.html", title: "Alpha guide" },
+        { href: "how_tos/gamma.html", title: "Gamma guide" },
+      ],
+    },
+  ]);
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, docsDir, artifactDir);
   const main = toc.children[0];
 
   const guides = main.children?.find((c) => c.title === "Guides");
-  expect(guides?.children?.[0].title).toBe("Custom install title");
+  expect(guides?.children?.map((c) => c.title)).toEqual([
+    "Beta guide",
+    "Alpha guide",
+    "Gamma guide",
+  ]);
 });
 
-test("github link is appended after top-level files when githubSlug is set", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home", "My Addon"),
-  });
+test("subdirectory section has correct child URLs", async () => {
+  const { artifactDir, docsDir } = await makeTestDirs([
+    { href: "index.html", title: "Home" },
+    {
+      href: "how_tos/index.html",
+      title: "Guides",
+      children: [
+        { href: "how_tos/my_guide.html", title: "My Guide" },
+      ],
+    },
+  ]);
 
-  const pkg = await makePkg("my-addon", "Qiskit/my-addon");
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, docsDir, artifactDir);
+  const main = toc.children[0];
+
+  const guides = main.children?.find((c) => c.title === "Guides");
+  expect(guides?.children?.[0].url).toBe(
+    "/docs/addons/my-addon/how-tos/my-guide",
+  );
+});
+
+test("items with titles matching SKIP_ITEMS are omitted", async () => {
+  const { artifactDir, docsDir } = await makeTestDirs([
+    { href: "index.html", title: "Home" },
+    {
+      href: "tutorials/index.html",
+      title: "Tutorials",
+      children: [{ href: "tutorials/demo.html", title: "Demo" }],
+    },
+    { href: "install.html", title: "Install" },
+  ]);
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, docsDir, artifactDir);
+  const main = toc.children[0];
+
+  expect(main.children?.map((c) => c.title)).toEqual(["Home", "Install"]);
+});
+
+test("external link (class=external) is passed through unchanged", async () => {
+  const { artifactDir, docsDir } = await makeTestDirs([
+    { href: "index.html", title: "Home" },
+  ]);
+  // Append an external link directly to the index.html sidebar
+  const indexPath = path.join(artifactDir, "index.html");
+  const html = await import("fs/promises").then((fs) =>
+    fs.readFile(indexPath, "utf-8"),
+  );
+  await import("fs/promises").then((fs) =>
+    fs.writeFile(
+      indexPath,
+      html.replace(
+        "</ul>",
+        `<li class="toctree-l1"><a class="reference external" href="https://github.com/Qiskit/my-addon">GitHub</a></li></ul>`,
+      ),
+    ),
+  );
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, docsDir, artifactDir);
   const main = toc.children[0];
 
   expect(main.children?.at(-1)).toEqual({
@@ -155,218 +255,57 @@ test("github link is appended after top-level files when githubSlug is set", asy
   });
 });
 
-test("how-tos directory becomes Guides subsection in main section", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "how-tos/index.mdx": mdx("Guides Index", "How-To Guides"),
-    "how-tos/alpha.ipynb": notebook("How to do alpha"),
-    "how-tos/beta.mdx": mdx("How to do beta"),
-  });
+test("index.html href maps to package root URL", async () => {
+  const { artifactDir, docsDir } = await makeTestDirs([
+    { href: "index.html", title: "Home" },
+  ]);
 
   const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
+  const toc = await generateAddonToc(pkg, docsDir, artifactDir);
   const main = toc.children[0];
 
-  const guidesEntry = main.children?.find((c) => c.title === "Guides");
-  expect(guidesEntry).toEqual({
-    title: "Guides",
-    children: [
-      {
-        title: "How to do alpha",
-        url: "/docs/addons/my-addon/how-tos/alpha",
-      },
-      {
-        title: "How to do beta",
-        url: "/docs/addons/my-addon/how-tos/beta",
-      },
-    ],
-  });
+  expect(main.children?.[0].url).toBe("/docs/addons/my-addon");
 });
 
 test("api reference section is always last", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-  });
+  const { artifactDir, docsDir } = await makeTestDirs([
+    { href: "index.html", title: "Home" },
+  ]);
 
   const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
+  const toc = await generateAddonToc(pkg, docsDir, artifactDir);
   const last = toc.children.at(-1);
 
   expect(last?.title).toBe("API reference");
   expect(last?.children?.[0].url).toBe("/docs/api/my-addon");
 });
 
-test("unknown subdirectory uses capitalized directory name as section title", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "references/item.mdx": mdx("Some reference"),
-  });
+test("missing index.html throws", async () => {
+  const tmpDir = await mkdtemp(path.join(os.tmpdir(), "addon-toc-test-"));
+  const artifactDir = path.join(tmpDir, "artifact");
+  const docsDir = path.join(tmpDir, "addons");
+  await mkdir(artifactDir, { recursive: true });
+  await mkdir(path.join(docsDir, "my-addon"), { recursive: true });
 
   const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
-  const main = toc.children[0];
-
-  const refSection = main.children?.find((c) => c.title === "References");
-  expect(refSection).toBeDefined();
-  expect(refSection?.children?.[0].title).toBe("Some reference");
+  await expect(generateAddonToc(pkg, docsDir, artifactDir)).rejects.toThrow();
 });
 
-test("subdir with only index.mdx renders as dropdown with index as child", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "references/index.mdx": mdx("References Index", "Reference material"),
-  });
+test("subdirectory section has no url property on the section entry", async () => {
+  const { artifactDir, docsDir } = await makeTestDirs([
+    { href: "index.html", title: "Home" },
+    {
+      href: "how_tos/index.html",
+      title: "Guides",
+      children: [{ href: "how_tos/guide.html", title: "A guide" }],
+    },
+  ]);
 
   const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
-  const main = toc.children[0];
-
-  const references = main.children?.find((c) => c.title === "References");
-  expect(references).toEqual({
-    title: "References",
-    children: [
-      {
-        title: "Reference material",
-        url: "/docs/addons/my-addon/references/index",
-      },
-    ],
-  });
-  // No url on the section itself — the index is the child, not a parent link.
-  expect(references?.url).toBeUndefined();
-});
-
-test("explanations directory is merged into the Guides section", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "how-tos/guide.mdx": mdx("A guide"),
-    "explanations/background.mdx": mdx("Background"),
-  });
-
-  const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
-  const main = toc.children[0];
-
-  const guideSections = main.children?.filter((c) => c.title === "Guides");
-  // Only one Guides section — both dirs merged into it.
-  expect(guideSections).toHaveLength(1);
-  const guides = guideSections![0];
-  expect(guides.children?.map((c) => c.title)).toEqual(["Background", "A guide"]);
-});
-
-test("subdir without index.mdx has no url on the section entry", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "how-tos/guide.mdx": mdx("A guide"),
-  });
-
-  const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
+  const toc = await generateAddonToc(pkg, docsDir, artifactDir);
   const main = toc.children[0];
 
   const guidesEntry = main.children?.find((c) => c.title === "Guides");
   expect(guidesEntry?.url).toBeUndefined();
   expect(guidesEntry?.children).toHaveLength(1);
-});
-
-test("empty subdirectory is omitted from the TOC", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    // create directory with no content files
-  });
-  await mkdir(path.join(tmpDir, "addons", "my-addon", "empty-dir"), {
-    recursive: true,
-  });
-
-  const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
-  const main = toc.children[0];
-
-  expect(main.children?.some((c) => c.title === "Empty-dir")).toBe(false);
-});
-
-test("notebook title is read from first non-frontmatter markdown cell h1", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "how-tos/demo.ipynb": notebook("The real title from h1"),
-  });
-
-  const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
-  const main = toc.children[0];
-
-  const guides = main.children?.find((c) => c.title === "Guides");
-  expect(guides?.children?.[0].title).toBe("The real title from h1");
-});
-
-test("notebook with h2 as first heading falls back to h2", async () => {
-  const nb = JSON.stringify({
-    cells: [
-      {
-        id: "frontmatter",
-        cell_type: "markdown",
-        source: [`---\ntitle: "FM"\n---`],
-        metadata: {},
-        outputs: [],
-      },
-      {
-        id: "content",
-        cell_type: "markdown",
-        source: [`## Section heading\n\nContent.`],
-        metadata: {},
-        outputs: [],
-      },
-    ],
-    metadata: {},
-    nbformat: 4,
-    nbformat_minor: 5,
-  });
-
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "how-tos/demo.ipynb": nb,
-  });
-
-  const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
-  const main = toc.children[0];
-
-  const guides = main.children?.find((c) => c.title === "Guides");
-  expect(guides?.children?.[0].title).toBe("Section heading");
-});
-
-test("mdx h2 fallback when no h1 present", async () => {
-  const content = `---\ntitle: "FM"\n---\n\n## Only an h2 here\n\nContent.\n`;
-
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "how-tos/guide.mdx": content,
-  });
-
-  const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
-  const main = toc.children[0];
-
-  const guides = main.children?.find((c) => c.title === "Guides");
-  expect(guides?.children?.[0].title).toBe("Only an h2 here");
-});
-
-test("content files in subdir are sorted alphabetically by filename", async () => {
-  const { tmpDir } = await makeTmpAddonDir({
-    "index.mdx": mdx("Home"),
-    "how-tos/index.mdx": mdx("Guides"),
-    "how-tos/03-third.mdx": mdx("Third guide"),
-    "how-tos/01-first.mdx": mdx("First guide"),
-    "how-tos/02-second.mdx": mdx("Second guide"),
-  });
-
-  const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, path.join(tmpDir, "addons"));
-  const main = toc.children[0];
-
-  const guides = main.children?.find((c) => c.title === "Guides");
-  expect(guides?.children?.map((c) => c.title)).toEqual([
-    "First guide",
-    "Second guide",
-    "Third guide",
-  ]);
 });
