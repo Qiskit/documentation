@@ -143,7 +143,7 @@ API docs authors can preview their changes to one of the APIs by using the `-a` 
 
 Addon docs authors can preview guide and how-to changes by pointing the addon pipeline at a local Sphinx build:
 
-1. Run `npm run gen-addon-docs -- -p <pkg-name> -v <version> -a <path/to/docs/_build/html>`.
+1. Run `npm run gen-addon -- -p <pkg-name> --sphinx-artifact-folder <path/to/docs/_build/html>`.
 2. Execute `./start` and navigate to `http://localhost:3000/docs/addons/<pkg-name>`.
 
 ## Run quality checks
@@ -337,12 +337,16 @@ Addon docs (guides, how-tos, explanations, and notebook-based tutorials) for pac
 2. Rename the zip to its minor version, e.g. `0.5.zip`, and upload it to the Box folder.
 3. Run:
    ```sh
-   npm run gen-addon-docs -- -p <pkg-name> -v <version>
+   npm run gen-addon -- -p <pkg-name>
    ```
    For example:
    ```sh
-   npm run gen-addon-docs -- -p qiskit-addon-cutting -v 0.10.0
-   npm run gen-addon-docs -- -p pauli-prop -v 0.1.0
+   npm run gen-addon -- -p qiskit-addon-cutting
+   npm run gen-addon -- -p pauli-prop
+   ```
+   To regenerate all addon packages at once:
+   ```sh
+   npm run gen-addon -- --all
    ```
 4. Open a pull request with the generated changes.
 
