@@ -204,7 +204,7 @@ test("subdirectory section has correct child URLs", async () => {
 
   const guides = main.children?.find((c) => c.title === "Guides");
   expect(guides?.children?.[0].url).toBe(
-    "/docs/addons/my-addon/how-tos/my-guide",
+    "/docs/addons/my-addon/how_tos/my-guide",
   );
 });
 

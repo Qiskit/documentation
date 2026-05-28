@@ -21,7 +21,7 @@
 // Called by addonDocsPipeline.ts; for API doc TOCs see generateToc.ts.
 
 import { readFile } from "fs/promises";
-import { join } from "path/posix";
+import { join, parse } from "path/posix";
 
 import { load } from "cheerio";
 
@@ -138,35 +138,32 @@ async function buildMainFromSidebar(
       const children: TocEntry[] = [];
       $l1.find("ul > li > a").each((_, a2) => {
         const childHref = $(a2).attr("href") ?? "";
+        const dir = childHref.split("/")[0];
+        const slug = hrefToSlug(childHref, pkg);
         children.push({
           title: $(a2).text().trim(),
-          url: `${addonUrlBase}/${hrefToRelPath(childHref, pkg)}`,
+          url: `${addonUrlBase}/${dir}/${slug}`,
         });
       });
       if (children.length > 0) entries.push({ title, children });
       return;
     }
 
+    const slug = hrefToSlug(href, pkg);
     // Top-level page (may be a subdirectory index like "explanation/index.html")
-    entries.push({ title, url: `${addonUrlBase}/${hrefToRelPath(href, pkg)}` });
+    const path = href.includes("/") ? `${href.split("/")[0]}/${slug}` : slug;
+    entries.push({ title, url: `${addonUrlBase}/${path}` });
   });
 
   return entries;
 }
 
-/**
- * Converts a Sphinx HTML href to a repo-relative path, applying the
- * kebab-case transform to every path segment (dir and filename alike).
- */
-function hrefToRelPath(href: string, pkg: Pkg): string {
-  const segments = href.replace(/\.html$/, "").split("/");
-  return segments
-    .map((seg) =>
-      pkg.kebabCaseAndShortenUrls
-        ? kebabCaseAndShortenPage(seg, pkg.name)
-        : seg,
-    )
-    .join("/");
+/** Converts a Sphinx HTML href filename to the kebab-case slug used in the output MDX. */
+function hrefToSlug(href: string, pkg: Pkg): string {
+  const name = parse(href).name;
+  return pkg.kebabCaseAndShortenUrls
+    ? kebabCaseAndShortenPage(name, pkg.name)
+    : name;
 }
 
 type TocNode = { title?: string; url?: string; children?: TocNode[] };
