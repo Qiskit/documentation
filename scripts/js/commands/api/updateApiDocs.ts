@@ -18,21 +18,48 @@ import { zxMain } from "../../lib/zx.js";
 import { parseMinorVersion } from "../../lib/apiVersions.js";
 import { runApiDocsPipeline } from "../../lib/api/apiDocsPipeline.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
-import {
-  addSharedOptions,
-  deleteOutputDirs,
-  prepareSphinxFolder,
-  SharedArguments,
-} from "./updateDocsShared.js";
+import { deleteOutputDirs, prepareSphinxFolder } from "./updateDocsShared.js";
 
-export type Arguments = SharedArguments & {
+export type Arguments = {
   [x: string]: unknown;
+  package: string;
+  version: string;
+  skipDownload: boolean;
+  sphinxArtifactFolder?: string;
   historical: boolean;
   dev: boolean;
-}
+};
 
 const readArgs = (): Arguments => {
-  return addSharedOptions(yargs(hideBin(process.argv)).version(false))
+  return yargs(hideBin(process.argv))
+    .version(false)
+    .option("package", {
+      alias: "p",
+      type: "string",
+      choices: Pkg.VALID_NAMES,
+      demandOption: true,
+      description: "Which package to update",
+    })
+    .option("version", {
+      alias: "v",
+      type: "string",
+      demandOption: true,
+      description: "The full version string, e.g. 0.44.0",
+    })
+    .option("skip-download", {
+      type: "boolean",
+      default: false,
+      description:
+        "Rather than downloading the artifact from Box, reuse what is already downloaded.",
+    })
+    .option("sphinx-artifact-folder", {
+      alias: "a",
+      type: "string",
+      implies: "skip-download",
+      normalize: true,
+      description:
+        "Skip downloading the artifact from Box and instead use the given directory.",
+    })
     .option("historical", {
       type: "boolean",
       default: false,

@@ -154,7 +154,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 *   The cutting tutorials have been rephrased with the goal of reconstructing the expectation value of a single [`SparsePauliOp`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp) with many terms, rather than multiple independent [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli) observables.
 
-*   The [circuit cutting explanation](/docs/addons/qiskit-addon-cutting/explanations/index) document has been expanded significantly.
+*   The [circuit cutting explanation](https://qiskit.github.io/qiskit-addon-cutting/explanation/index.html) document has been expanded significantly.
 
 <span id="release-notes-0-6-0" />
 
@@ -274,7 +274,7 @@ The primary goal of this release is to modify the circuit cutting workflow to en
 
 ### Deprecation Notes
 
-*   The `execute_experiments()` function has been deprecated. Going forward, users should first call [`generate_cutting_experiments()`](/docs/api/qiskit-addon-cutting/qiskit-addon-cutting#generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") to generate the subexperiment circuits and then submit these circuits directly to the desired Sampler(s). The [tutorials](/docs/addons/qiskit-addon-cutting/tutorials/index) have been updated with this new workflow.
+*   The `execute_experiments()` function has been deprecated. Going forward, users should first call [`generate_cutting_experiments()`](/docs/api/qiskit-addon-cutting/qiskit-addon-cutting#generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") to generate the subexperiment circuits and then submit these circuits directly to the desired Sampler(s). The [tutorials](https://qiskit.github.io/qiskit-addon-cutting/tutorials/index.html) have been updated with this new workflow.
 
 <span id="release-notes-0-3-0" />
 
@@ -319,7 +319,7 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 *   `generate_qpd_weights()` now returns a mixture of exact and sampled weights when appropriate. Specifically, it exactly evaluates all weights greater than or equal to `1 / num_samples` and samples from the remaining weights (ones which are below this threshold). Previously, this function would only return exact weights if *all* weights were greater than or equal to `1 / num_samples`; otherwise, all weights were sampled. The new behavior is expected to improve performance on non-uniform quasi-probability decompositions, e.g. for cut instantiations of [`RXXGate`](/docs/api/qiskit/qiskit.circuit.library.RXXGate), [`RYYGate`](/docs/api/qiskit/qiskit.circuit.library.RYYGate), [`RZZGate`](/docs/api/qiskit/qiskit.circuit.library.RZZGate), [`CRXGate`](/docs/api/qiskit/qiskit.circuit.library.CRXGate), [`CRYGate`](/docs/api/qiskit/qiskit.circuit.library.CRYGate), and [`CRZGate`](/docs/api/qiskit/qiskit.circuit.library.CRZGate) away from $\theta=\pi/2$.
 
-*   The `circuit_knitting.cutting` module now supports wire cutting. There is a [new tutorial](/docs/addons/qiskit-addon-cutting/tutorials/index) that explains how to use it.
+*   The `circuit_knitting.cutting` module now supports wire cutting. There is a [new tutorial](https://qiskit.github.io/qiskit-addon-cutting/tutorials/index.html) that explains how to use it.
 
 <span id="release-notes-0-3-0-upgrade-notes" />
 
@@ -376,11 +376,11 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 ### Prelude
 
-0.2.0 is centered around the addition of functions which allow for the easy implementation of a circuit cutting technique called gate cutting. For more details on circuit cutting, check out our [explanation guide](/docs/addons/qiskit-addon-cutting/explanations/index).
+0.2.0 is centered around the addition of functions which allow for the easy implementation of a circuit cutting technique called gate cutting. For more details on circuit cutting, check out our [explanation guide](https://qiskit.github.io/qiskit-addon-cutting/explanation/index.html).
 
 The foundation of the `circuit_cutting` package is the `circuit_knitting_toolbox.circuit_cutting.qpd` sub-package. The `qpd` package allows for easy transformation of [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) gates and wires into elements which may be decomposed to a probabilistic set of basis gates. See `QPDBasis` and `BaseQPDGate` classes for more information.
 
-Additionally, 0.2.0 includes a set of functions which allow for easy implementation of gate cutting workflows. These functions are built on top of the `circuit_knitting_toolbox.circuit_cutting.qpd` package. Like all circuit knitting techniques, gate cutting can be described as three consecutive stages: *decomposition* of a problem, *execution* of many subexperiments, and *reconstruction* of a simulated output of the original problem. These steps may be implemented with the `circuit_cutting` package using only a few primary functions, namely, the [`partition_problem()`](/docs/api/qiskit-addon-cutting/qiskit-addon-cutting#partition_problem "qiskit_addon_cutting.partition_problem"), `decompose_gates()`, `execute_experiments()`, and [`reconstruct_expectation_values()`](/docs/api/qiskit-addon-cutting/qiskit-addon-cutting#reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values") functions. Check out the [tutorials](/docs/addons/qiskit-addon-cutting/tutorials/index) for a look at a couple of example circuit cutting workflows.
+Additionally, 0.2.0 includes a set of functions which allow for easy implementation of gate cutting workflows. These functions are built on top of the `circuit_knitting_toolbox.circuit_cutting.qpd` package. Like all circuit knitting techniques, gate cutting can be described as three consecutive stages: *decomposition* of a problem, *execution* of many subexperiments, and *reconstruction* of a simulated output of the original problem. These steps may be implemented with the `circuit_cutting` package using only a few primary functions, namely, the [`partition_problem()`](/docs/api/qiskit-addon-cutting/qiskit-addon-cutting#partition_problem "qiskit_addon_cutting.partition_problem"), `decompose_gates()`, `execute_experiments()`, and [`reconstruct_expectation_values()`](/docs/api/qiskit-addon-cutting/qiskit-addon-cutting#reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values") functions. Check out the [tutorials](https://qiskit.github.io/qiskit-addon-cutting/tutorials/index.html) for a look at a couple of example circuit cutting workflows.
 
 <span id="release-notes-0-2-0-new-features" />
 

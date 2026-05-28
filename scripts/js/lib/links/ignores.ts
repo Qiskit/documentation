@@ -228,22 +228,7 @@ export const ALWAYS_IGNORED_URLS = new Set([
 // Always ignored URL regexes - be careful using this
 // -----------------------------------------------------------------------------------
 
-function _addonsObjectsInvRegexes(): string[] {
-  // Addons have non-API docs in their Sphinx build that translate into invalid links
-  // we should ignore
-  return ["how-tos", "how_tos", "install", "index", "explanations"].flatMap(
-    (path) => [
-      // Latest version
-      `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
-      // Historical versions
-      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]{1,2}\/${path}(\/.*|#.*|$)`,
-    ],
-  );
-}
-
-export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
-  ..._addonsObjectsInvRegexes(),
-];
+export const ALWAYS_IGNORED_URL_REGEXES: string[] = [];
 
 // -----------------------------------------------------------------------------------
 // Always ignored URL suffixes - be careful using this
@@ -587,7 +572,7 @@ function _qiskitCRegexes(): FilesToIgnores {
   };
 }
 
-function _addonStaleTutorialLinks(): FilesToIgnores {
+function _addonContentLinksToFix(): FilesToIgnores {
   // These links point to old addon-repo tutorial slugs that no longer exist.
   // The addon source docs need to be updated to use the new paths.
   return {
@@ -605,21 +590,20 @@ function _addonStaleTutorialLinks(): FilesToIgnores {
       "tutorials/04-automatic-cut-finding",
       "./circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
       "how-tos/how-to-specify-cut-wires",
+      "./circuit_cutting/explanation/index-rst#overview-of-circuit-cutting",
     ],
-    "docs/addons/qiskit-addon-aqc-tensor/index.mdx": [
-      "tutorials/index",
-    ],
-    "docs/addons/qiskit-addon-obp/how-tos/truncate-operator-terms.ipynb": [
+    "docs/addons/qiskit-addon-aqc-tensor/index.mdx": ["tutorials/index"],
+    "docs/addons/qiskit-addon-obp/how_tos/truncate-operator-terms.ipynb": [
       "/docs/api/qiskit/qiskit.circuit.QuantumCircuit#html",
     ],
-    "docs/addons/qiskit-addon-obp/how-tos/simulating-circuits-with-obp.ipynb": [
+    "docs/addons/qiskit-addon-obp/how_tos/simulating-circuits-with-obp.ipynb": [
       "/api/qiskit-ibm-runtime/noise-learner-noise-learner",
       "/api/qiskit-ibm-runtime/noise-learner-result",
     ],
     "docs/addons/qiskit-addon-cutting/install.mdx": [
       "/docs/start/install#operating-system-support",
     ],
-    "docs/addons/qiskit-addon-cutting/explanations/index.mdx": [
+    "docs/addons/qiskit-addon-cutting/explanation/index.mdx": [
       "#equation-eq-qpd",
       "how-tos/how-to-specify-cut-wires",
       "/circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
@@ -627,17 +611,25 @@ function _addonStaleTutorialLinks(): FilesToIgnores {
     "docs/addons/qiskit-addon-cutting/how-tos/how-to-specify-cut-wires.ipynb": [
       "../tutorials/03_wire_cutting_via_move_instruction.ipynb",
     ],
-    "docs/addons/qiskit-addon-cutting/how-tos/how-to-generate-exact-sampling-coefficients.ipynb": [
-      "../tutorials/01_gate_cutting_to_reduce_circuit_width.ipynb",
-    ],
+    "docs/addons/qiskit-addon-cutting/how-tos/how-to-generate-exact-sampling-coefficients.ipynb":
+      ["../tutorials/01_gate_cutting_to_reduce_circuit_width.ipynb"],
     "docs/addons/qiskit-addon-sqd-hpc/index.mdx": [
       "/docs/en/guides/bit-ordering",
+    ],
+    "docs/api/pauli-prop/propagation.mdx": [
+      "/docs/en/api/qiskit/qiskit.quantum_info.Clifford",
+      "/docs/en/api/qiskit/qiskit.quantum_info.Pauli#evolve",
+    ],
+    "docs/addons/qiskit-addon-opt-mapper/how_tos/index.mdx": [
+      "01-optimization-problem#add-or-remove-linear,-quadratic,-and-higher-order-terms-to-and-from-the-constraints",
     ],
   };
 }
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores =
-  mergeFilesToIgnores(_qiskitCRegexes(), _addonStaleTutorialLinks());
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
+  _qiskitCRegexes(),
+  _addonContentLinksToFix(),
+);
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,

@@ -52,13 +52,13 @@ This module provides a number of utility functions. Some of these exist only tem
 
   **Parameters**
 
-  *   **instructions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*CircuitInstruction*](/docs/api/qiskit/qiskit.circuit.CircuitInstruction)*]*) – the output of [`find_unique_box_instructions()`](/docs/addons/samplomatic/api/auto/samplomatic-utils-find-unique-box-instructions#samplomatic.utils.find_unique_box_instructions "(in samplomatic)"). Any of the provided instructions are assumed to either consists of only measurement gates or correspond to a layer of 2-qubit gate instructions. For the former, the generated noise model will contain only single-qubit `X` errors, for the latter all 1- and 2-weight Pauli errors on the reduced coupling map will be included.
+  *   **instructions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*CircuitInstruction*](/docs/api/qiskit/qiskit.circuit.CircuitInstruction)*]*) – the output of [`find_unique_box_instructions()`](https://qiskit.github.io/samplomatic/api/auto/samplomatic.utils.find_unique_box_instructions.html#samplomatic.utils.find_unique_box_instructions "(in samplomatic)"). Any of the provided instructions are assumed to either consists of only measurement gates or correspond to a layer of 2-qubit gate instructions. For the former, the generated noise model will contain only single-qubit `X` errors, for the latter all 1- and 2-weight Pauli errors on the reduced coupling map will be included.
   *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap) *| None*) – the coupling map of the backend on which the instructions have been laid out. If this is `None`, a 1d line of qubits is assumed.
   *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) *| None*) – the transpiled circuit which has been laid out on the provided coupling map. This may only be `None` when the `coupling_map` is also `None`.
 
   **Returns**
 
-  A dictionary mapping the `ref` attributes of the [`InjectNoise`](/docs/addons/samplomatic/api/auto/samplomatic-inject-noise#samplomatic.InjectNoise "(in samplomatic)") annotation of each unique Box to the 1- and 2-weight Pauli terms whose errors are learned for this box.
+  A dictionary mapping the `ref` attributes of the [`InjectNoise`](https://qiskit.github.io/samplomatic/api/auto/samplomatic.InjectNoise.html#samplomatic.InjectNoise "(in samplomatic)") annotation of each unique Box to the 1- and 2-weight Pauli terms whose errors are learned for this box.
 
   **Return type**
 
@@ -122,7 +122,7 @@ This module provides a number of utility functions. Some of these exist only tem
 
   **Yields**
 
-  Tuples of length four, consisting of the encountered circuit instruction, the [canonical qubit indices](/docs/addons/samplomatic/guides/samplex-io#qubit-ordering-convention) (i.e. the integer indices of the acted-upon qubits in the context of the input `circuit`), the [`InjectNoise`](/docs/addons/samplomatic/api/auto/samplomatic-inject-noise#samplomatic.InjectNoise "(in samplomatic)") attributes: `modifier_ref` and `ref`. The latter two items may be `None` indicating a circuit instruction that was **not** part of an unrolled [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp).
+  Tuples of length four, consisting of the encountered circuit instruction, the [canonical qubit indices](https://qiskit.github.io/samplomatic/guides/samplex_io.html#qubit-ordering-convention) (i.e. the integer indices of the acted-upon qubits in the context of the input `circuit`), the [`InjectNoise`](https://qiskit.github.io/samplomatic/api/auto/samplomatic.InjectNoise.html#samplomatic.InjectNoise "(in samplomatic)") attributes: `modifier_ref` and `ref`. The latter two items may be `None` indicating a circuit instruction that was **not** part of an unrolled [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp).
 
   **Return type**
 
@@ -132,7 +132,7 @@ This module provides a number of utility functions. Some of these exist only tem
 ### map\_modifier\_ref\_to\_ref
 
 <Function id="qiskit_addon_slc.utils.map_modifier_ref_to_ref" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.1/qiskit_addon_slc/utils/annotations.py#L26-L47" signature="map_modifier_ref_to_ref(circuit)">
-  Iterate a circuit and map [`InjectNoise`](/docs/addons/samplomatic/api/auto/samplomatic-inject-noise#samplomatic.InjectNoise "(in samplomatic)") annotation references.
+  Iterate a circuit and map [`InjectNoise`](https://qiskit.github.io/samplomatic/api/auto/samplomatic.InjectNoise.html#samplomatic.InjectNoise "(in samplomatic)") annotation references.
 
   **Parameters**
 

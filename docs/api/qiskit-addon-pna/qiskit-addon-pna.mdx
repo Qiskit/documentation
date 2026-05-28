@@ -25,7 +25,7 @@ Primary propagated noise absortption (PNA) functionality.
     This function uses the Python `multiprocessing` module for parallel execution. This function should be called from within an `if __name__ == "__main__"` guard to prevent unintended process spawning.
   </Admonition>
 
-  Starting from the beginning of the circuit, the noise affecting each entangling layer is inverted and each Pauli anti-noise generator is then propagated forward through the remainder of the circuit and applied to the observable. The propagation routines used to implement this method are available in the [pauli-prop](/docs/addons/pauli-prop/) package.
+  Starting from the beginning of the circuit, the noise affecting each entangling layer is inverted and each Pauli anti-noise generator is then propagated forward through the remainder of the circuit and applied to the observable. The propagation routines used to implement this method are available in the [pauli-prop](https://qiskit.github.io/pauli-prop/) package.
 
   As each anti-noise generator is propagated forward through the circuit under the action of $N$ Pauli rotation gates of an \$M\$-qubit circuit, the number of terms will grow as $O(2^N)$ towards a maximum of $4^M$ unique Pauli components. To control the computational cost, terms with small coefficients must be truncated, which will result in some error in the evolved anti-noise channel.
 

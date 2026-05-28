@@ -27,7 +27,7 @@ This module provides various functions for computing the error bounds that make 
 
   That is, compute $\| \left[ E_F, A_F \right] \|_2$ for all error terms, $E_F$, where $A_F$ is the target `observable` to be measured on `circuit`.
 
-  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](/docs/addons/samplomatic/api/auto/samplomatic-inject-noise#samplomatic.InjectNoise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
+  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](https://qiskit.github.io/samplomatic/api/auto/samplomatic.InjectNoise.html#samplomatic.InjectNoise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
 
   **Parameters**
 
@@ -90,7 +90,7 @@ This module provides various functions for computing the error bounds that make 
 
   That is, compute $\| \left[ E_I, \rho_I \right] \|_1$ (using the Schatten 1-norm aka nuclear norm) for all error terms, $E_I$, where $\rho_I$ is assumed to be the all-zero state, $\ket{0 \ldots 0}$, on all active qubits in `circuit`.
 
-  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](/docs/addons/samplomatic/api/auto/samplomatic-inject-noise#samplomatic.InjectNoise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
+  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](https://qiskit.github.io/samplomatic/api/auto/samplomatic.InjectNoise.html#samplomatic.InjectNoise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
 
   <Admonition title="Caution" type="note">
     Before computing the bounds, this function removes **all** `Measure` operations from `circuit`. This is required because the circuit is being inverted before being processed in reverse order, which allows the backward evolution to be treated like a forward evolution (in the inverted circuit).
@@ -147,7 +147,7 @@ This module provides various functions for computing the error bounds that make 
 ### compute\_local\_scales
 
 <Function id="qiskit_addon_slc.bounds.compute_local_scales" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.1/qiskit_addon_slc/bounds/local_scales.py#L35-L163" signature="compute_local_scales(circuit, bounds, /, noise_rates, *, sampling_cost_budget=inf, bias_tolerance=0.0)">
-  Computes the `local_scales` argument to a [`Samplex`](/docs/addons/samplomatic/api/auto/samplomatic-samplex-samplex#samplomatic.samplex.Samplex "(in samplomatic)").
+  Computes the `local_scales` argument to a [`Samplex`](https://qiskit.github.io/samplomatic/api/auto/samplomatic.samplex.Samplex.html#samplomatic.samplex.Samplex "(in samplomatic)").
 
   This `local_scales` argument is used to specify which individual error terms to mitigate.
 
@@ -167,7 +167,7 @@ This module provides various functions for computing the error bounds that make 
 
   **Returns**
 
-  *   the `local_scales` dictionary to be provided as the direct input to the [`samplomatic.samplex.Samplex.inputs()`](/docs/addons/samplomatic/api/auto/samplomatic-samplex-samplex#samplomatic.samplex.Samplex.inputs "(in samplomatic)").
+  *   the `local_scales` dictionary to be provided as the direct input to the [`samplomatic.samplex.Samplex.inputs()`](https://qiskit.github.io/samplomatic/api/auto/samplomatic.samplex.Samplex.html#samplomatic.samplex.Samplex.inputs "(in samplomatic)").
   *   the sampling cost overhead ($\gamma^2$) required to perform the sampling of `local_scales`.
   *   the remaining bias on expectation values computed with these bounds.
 

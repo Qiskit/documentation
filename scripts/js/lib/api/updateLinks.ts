@@ -22,11 +22,11 @@ import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 
-import { kebabCase } from "lodash-es";
 import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
+import { Pkg } from "./Pkg.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import { DOCS_BASE_PATH } from "./paths.js";
@@ -178,6 +178,8 @@ export function normalizeUrl(
 }
 
 export function relativizeLink(link: Link): Link | undefined {
+  rewriteQiskitAddonLinks(link);
+
   const priorPrefixToNewPrefix = new Map([
     ["https://qiskit.org/documentation/apidoc/", "/api/qiskit"],
     ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],
@@ -185,32 +187,15 @@ export function relativizeLink(link: Link): Link | undefined {
     ["https://docs.quantum-computing.ibm.com/", ""],
     ["https://quantum.cloud.ibm.com/docs", "/docs"],
     ["https://quantum.cloud.ibm.com/learning", "/learning"],
-    ["https://qiskit.github.io/", "/docs/addons"],
   ]);
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
     link.url.startsWith(prefix),
   );
   if (!priorPrefix) return;
-  // github.io stubs/apidocs URLs are looked up via objects.inv by the caller.
-  if (
-    priorPrefix === "https://qiskit.github.io/" &&
-    /\/(stubs|apidocs|apidoc)\//.test(link.url)
-  ) {
-    return;
-  }
 
   let [url, anchor] = link.url.split("#");
   url = removePrefix(url, priorPrefix);
   url = removeSuffix(url, ".html");
-
-  // For github.io addons links, kebab-case each path segment after the package name.
-  if (priorPrefix === "https://qiskit.github.io/") {
-    const [pkg, ...rest] = url.split("/");
-    url = [
-      pkg,
-      ...rest.map((s) => kebabCase(s).replace(/-v-([0-9]+)/g, `-v$1`)),
-    ].join("/");
-  }
 
   if (anchor && anchor !== url) {
     url = `${url}#${anchor}`;
@@ -220,6 +205,25 @@ export function relativizeLink(link: Link): Link | undefined {
   const newPrefix = priorPrefixToNewPrefix.get(priorPrefix)!;
   const relativeUrl = removePrefix(path.posix.join(newPrefix, url), "/");
   return { url: `/${relativeUrl}`, text: newText };
+}
+
+function rewriteQiskitAddonLinks(link: Link) {
+  if (!link.url.startsWith("https://qiskit.github.io/")) return;
+
+  // github.io stubs/apidocs URLs are looked up via objects.inv by the caller
+  if (/\/(stubs|apidocs|apidoc)\//.test(link.url)) return;
+
+  const rest = removePrefix(link.url, "https://qiskit.github.io/");
+  const [addonName, ...pathParts] = rest.split("#")[0].split("/");
+  if (!addonName || !Pkg.ADDON_NAMES.includes(addonName)) return;
+
+  const anchor = rest.includes("#") ? rest.split("#")[1] : undefined;
+  const pagePath = pathParts.map((s) => removeSuffix(s, ".html")).join("/");
+  const url = anchor
+    ? `/docs/addons/${addonName}/${pagePath}#${anchor}`
+    : `/docs/addons/${addonName}/${pagePath}`;
+  const newText = link.url === link.text ? url : undefined;
+  return { url, text: newText };
 }
 
 export async function updateLinks(
