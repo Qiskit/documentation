@@ -36,20 +36,18 @@ This section summarizes the recent enhancements and new features for the new [IB
 
 ### April 2026
 
-#### Introducing the Executor primitive
+- **Introducing the Executor primitive**: We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025.
 
-We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025.
+  Together with [Samplomatic](https://qiskit.github.io/samplomatic/index.html), they make up the [directed execution model](/docs/guides/directed-execution-model), which provides full transparency and control to fine-tune your error mitigation workflow. The [Probabilistic error cancellation with shaded lightcones](https://qiskit.github.io/qiskit-addon-slc/tutorials/01_getting_started.html) tutorial, for example, demonstrates how this model is used to combine advanced techniques, including shaded lightcones, probabilistic error cancellation (PEC), Twirled Readout Error eXtinction (TREX), and [measurement-based postselection](/docs/guides/post-selection), to further improve the result quality.
 
-Together with [Samplomatic](https://qiskit.github.io/samplomatic/index.html), they make up the [directed execution model](/docs/guides/directed-execution-model), which provides full transparency and control to fine-tune your error mitigation workflow. The [Probabilistic error cancellation with shaded lightcones](https://qiskit.github.io/qiskit-addon-slc/tutorials/01_getting_started.html) tutorial, for example, demonstrates how this model is used to combine advanced techniques, including shaded lightcones, probabilistic error cancellation (PEC), Twirled Readout Error eXtinction (TREX), and [measurement-based postselection](/docs/guides/post-selection), to further improve the result quality.
+  If you prefer a higher level of abstraction, [`EstimatorV2`](/docs/guides/estimator-noise-management) in Qiskit Runtime continues to provide several built-in error mitigation and suppression techniques, which you can easily tune using the [`resilience_level`](/docs/guides/estimator-noise-management#resilience-level) option.
 
-If you prefer a higher level of abstraction, [`EstimatorV2`](/docs/guides/estimator-noise-management) in Qiskit Runtime continues to provide several built-in error mitigation and suppression techniques, which you can easily tune using the [`resilience_level`](/docs/guides/estimator-noise-management#resilience-level) option.
+  To learn more, see the following guides:
 
-To learn more, see the following guides:
+    - [Executor quickstart](/docs/guides/get-started-with-executor)
+    - [Noise learning helper](/docs/guides/noise-learning)
 
-- [Executor quickstart](/docs/guides/get-started-with-executor)
-- [Noise learning helper](/docs/guides/noise-learning)
-
-Both of these new features are currently in beta and require `qiskit-ibm-runtime` version 0.47.0 or higher.
+  Both of these new features are currently in beta and require `qiskit-ibm-runtime` version 0.47.0 or higher.
 
 <Accordion>
 <AccordionItem title="**Previous updates (2026)**">
