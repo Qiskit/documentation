@@ -300,6 +300,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-paulice",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
       });
     }
     if (name === "pauli-prop") {
