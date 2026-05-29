@@ -216,11 +216,6 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     ADDON_GLOBS_TO_LOAD,
     { check: args.historicalApis },
   );
-  const fermions = await determineHistoricalFileBatches(
-    "qiskit-fermions",
-    ADDON_GLOBS_TO_LOAD,
-    { check: args.historicalApis },
-  );
   const paulice = await determineHistoricalFileBatches(
     "qiskit-paulice",
     ADDON_GLOBS_TO_LOAD,
@@ -244,7 +239,6 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     ...pna,
     ...slc,
     ...optMapper,
-    ...fermions,
     ...paulice,
     ...pauliProp,
     ...runtime,

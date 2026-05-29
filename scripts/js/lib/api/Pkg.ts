@@ -284,15 +284,15 @@ export class Pkg {
         language: "Python",
       });
     }
-    if (name === "qiskit-fermions") {
-      return new Pkg({
-        ...args,
-        title: "Fermionic mapper",
-        githubSlug: "Qiskit/qiskit-fermions",
-        kebabCaseAndShortenUrls: true,
-        language: "Python",
-      });
-    }
+    // if (name === "qiskit-fermions") {
+    //   return new Pkg({
+    //     ...args,
+    //     title: "Fermionic mapper",
+    //     githubSlug: "Qiskit/qiskit-fermions",
+    //     kebabCaseAndShortenUrls: true,
+    //     language: "Python",
+    //   });
+    // }
     if (name === "qiskit-paulice") {
       return new Pkg({
         ...args,
