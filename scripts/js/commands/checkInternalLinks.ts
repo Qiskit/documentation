@@ -191,11 +191,6 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     ADDON_GLOBS_TO_LOAD,
     { check: args.historicalApis },
   );
-  const sqdHpc = await determineHistoricalFileBatches(
-    "qiskit-addon-sqd-hpc",
-    ADDON_GLOBS_TO_LOAD,
-    { check: args.historicalApis },
-  );
   const mthree = await determineHistoricalFileBatches(
     "qiskit-addon-mthree",
     ADDON_GLOBS_TO_LOAD,
@@ -232,7 +227,6 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   result.push(
     ...transpiler,
     ...sqd,
-    ...sqdHpc,
     ...mpf,
     ...utils,
     ...mthree,

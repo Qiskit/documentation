@@ -65,7 +65,7 @@ export class Pkg {
     "qiskit-addon-obp",
     "qiskit-addon-mpf",
     "qiskit-addon-sqd",
-    "qiskit-addon-sqd-hpc",
+    // "qiskit-addon-sqd-hpc",
     "qiskit-addon-cutting",
     "qiskit-addon-utils",
     "qiskit-addon-mthree",
@@ -238,15 +238,15 @@ export class Pkg {
         language: "Python",
       });
     }
-    if (name === "qiskit-addon-sqd-hpc") {
-      return new Pkg({
-        ...args,
-        title: "SQD for HPC",
-        githubSlug: "Qiskit/qiskit-addon-sqd-hpc",
-        kebabCaseAndShortenUrls: true,
-        language: "C",
-      });
-    }
+    // if (name === "qiskit-addon-sqd-hpc") {
+    //   return new Pkg({
+    //     ...args,
+    //     title: "SQD for HPC",
+    //     githubSlug: "Qiskit/qiskit-addon-sqd-hpc",
+    //     kebabCaseAndShortenUrls: true,
+    //     language: "C",
+    //   });
+    // }
     if (name === "qiskit-addon-mthree") {
       return new Pkg({
         ...args,
