@@ -623,6 +623,10 @@ function _addonContentLinksToFix(): FilesToIgnores {
     "docs/addons/qiskit-addon-opt-mapper/how_tos/index.mdx": [
       "01-optimization-problem#add-or-remove-linear,-quadratic,-and-higher-order-terms-to-and-from-the-constraints",
     ],
+    "docs/addons/qiskit-paulice/index.mdx": [
+      "tutorials/index",
+      "_images/paulice-png",
+    ],
   };
 }
 

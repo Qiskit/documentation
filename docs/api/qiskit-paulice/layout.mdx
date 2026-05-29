@@ -1,0 +1,39 @@
+---
+title: layout (latest version)
+description: API reference for qiskit_paulice.layout in the latest version of qiskit-paulice
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_paulice.layout
+---
+
+<span id="module-qiskit_paulice.layout" />
+
+<span id="layout-qiskit-paulice-layout" />
+
+# Layout
+
+`qiskit_paulice.layout`
+
+Functionality for finding layouts for checks dressed with spacetime Pauli checks.
+
+### get\_low\_overhead\_ancillas
+
+<Function id="qiskit_paulice.layout.get_low_overhead_ancillas" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/layout.py#L22-L48" signature="get_low_overhead_ancillas(coupling_map, layout)">
+  Find ancilla qubits adjacent to the layout qubits in the coupling graph.
+
+  This function identifies physical qubits that are not in the layout but are connected to one or more layout qubits via the coupling map.
+
+  **Parameters**
+
+  *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap)) – A qubit connectivity graph
+  *   **layout** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Physical qubit indices for which to find adjacent ancillas
+
+  **Returns**
+
+  A dictionary mapping ancilla qubit indices to lists of layout qubit indices to which it is adjacent.
+
+  **Return type**
+
+  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[int](https://docs.python.org/3/library/functions.html#int), [list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)]]
+</Function>
+

@@ -73,7 +73,7 @@ export class Pkg {
     "qiskit-addon-slc",
     "qiskit-addon-opt-mapper",
     // "qiskit-fermions",
-    // "qiskit-paulice",
+    "qiskit-paulice",
     "pauli-prop",
   ];
 

@@ -55,6 +55,18 @@ function shouldIncludeEntry(
   if (entry.name.startsWith("group__")) return false;
   if (entry.name.startsWith("struct_")) return false;
 
+  // std: entries are RST labels that don't correspond to published pages
+  // unless they point into apidocs/ or stubs/.
+  if (
+    entry.domainAndRole.startsWith("std:") &&
+    !entry.uri.startsWith("apidocs/") &&
+    !entry.uri.startsWith("stubs/") &&
+    !entry.name.startsWith("/apidocs/") &&
+    !entry.name.startsWith("/stubs/")
+  ) {
+    return false;
+  }
+
   // This happens during link checking.
   if (packageLanguage === "any") return true;
 
