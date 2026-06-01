@@ -1148,7 +1148,7 @@ The C API currently only supports building DAGs that contain operations defined 
   // rqr_1: ──┼──┤ Y ├
   //        ┌─┴─┐└───┘
   // rqr_2: ┤ X ├─────
-  //        └───┘     
+  //        └───┘
   QkDag *dag_right = qk_dag_new();
   QkQuantumRegister *rqr = qk_quantum_register_new(3, "rqr");
   qk_dag_add_quantum_register(dag_right, rqr);
@@ -1157,7 +1157,7 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_apply_gate(dag_right, QkGate_Y, (uint32_t[]){1}, NULL, false);
 
   // Build the following dag
-  //          ┌───┐   
+  //          ┌───┐
   // lqr_0: ──┤ H ├───
   //        ┌─┴───┴──┐
   // lqr_1: ┤ P(0.1) ├
@@ -1171,13 +1171,13 @@ The C API currently only supports building DAGs that contain operations defined 
 
   // Compose left circuit onto right circuit
   // Should result in circuit
-  //             ┌───┐          
+  //             ┌───┐
   // rqr_0: ──■──┤ H ├──────────
   //          │  ├───┤┌────────┐
   // rqr_1: ──┼──┤ Y ├┤ P(0.1) ├
   //        ┌─┴─┐└───┘└────────┘
   // rqr_2: ┤ X ├───────────────
-  //        └───┘               
+  //        └───┘
   qk_dag_compose(dag_right, dag_left, NULL, NULL);
 
   // Clean up after you're done
