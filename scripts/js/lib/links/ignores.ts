@@ -33,6 +33,7 @@ const FORBIDS_OUR_USER_AGENT = [
   "https://www.sciencedirect.com/science/article/pii/S0167739X24002012",
   "https://www.sciencedirect.com/science/article/pii/S0167739X24002012",
   "https://csrc.nist.gov/pubs/fips/204/ipd",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.150504",
   "https://marketplace.visualstudio.com/items?itemName=Continue.continue",
   "https://medium.com/qiskit/qiskit-and-its-fundamental-elements-bcd7ead80492",
   "https://ibm-research.medium.com/quantum-computing-gains-a-first-foothold-in-investment-banking-2806b280b8f",
