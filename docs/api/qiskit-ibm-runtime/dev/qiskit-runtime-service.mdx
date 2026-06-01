@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
 # QiskitRuntimeService
 
-<Class id="qiskit_ibm_runtime.QiskitRuntimeService" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L51-L1366" signature="QiskitRuntimeService(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.QiskitRuntimeService" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L51-L1382" signature="QiskitRuntimeService(*args, **kwargs)" modifiers="class">
   Bases: `object`
 
   Class for interacting with the Qiskit Runtime service.
@@ -68,7 +68,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
   *   **url** – Base API URL. Defaults to `https://cloud.ibm.com` for non-local channels accessing the IBM Quantum Platform (e.g., `ibm_quantum_platform`, `ibm_cloud`). This URL is processed by a `url_resolver` to route requests to the correct service entrypoint. If you provide a custom `url`, you must also supply a matching `url_resolver`. The default resolver rewrites the base URL to `https://quantum.cloud.ibm.com/api/v[x]`.
   *   **filename** – Full path of the file where the account is created. Default: \_DEFAULT\_ACCOUNT\_CONFIG\_JSON\_FILE.
   *   **name** – Name of the account to load from file.
-  *   **instance** – The service instance to use. For `ibm_cloud` and `ibm_quantum_platform`, this is the Cloud Resource Name (CRN) or the service name. If set, it will define an instance for service instantiation, if not set, the service will fetch all instances accessible within the account following the specified filtering criteria.
+  *   **instance** – The service instance to use. For `ibm_cloud` and `ibm_quantum_platform`, this is the Cloud Resource Name (CRN) or the service name. If set, it will define an instance for service instantiation, if not set, the service will fetch all instances accessible within the account following the specified filtering criteria. Pass `"auto"` to explicitly request auto-selection without triggering the “instance not set” warning. This value can also be saved to the account file via [`save_account()`](#qiskit_ibm_runtime.QiskitRuntimeService.save_account "qiskit_ibm_runtime.QiskitRuntimeService.save_account") so it takes effect automatically on every instantiation.
   *   **proxies** – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://requests.readthedocs.io/en/latest/api/#requests.Session.proxies](https://requests.readthedocs.io/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
   *   **verify** – Whether to verify the server’s TLS certificate.
   *   **private\_endpoint** – Connect to private API URL.
@@ -103,7 +103,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### active\_account
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.active_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L769-L775" signature="active_account()">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.active_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L783-L789" signature="active_account()">
     Return the IBM Quantum account currently in use for the session.
 
     **Returns**
@@ -117,7 +117,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### active\_instance
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.active_instance" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1345-L1347" signature="active_instance()">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.active_instance" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1361-L1363" signature="active_instance()">
     Return the crn of the current active instance.
 
     **Return type**
@@ -127,7 +127,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L893-L949" signature="backend(name, instance=None, use_fractional_gates=False, calibration_id=None)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L909-L965" signature="backend(name, instance=None, use_fractional_gates=False, calibration_id=None)">
     Return a single backend matching the specified filtering.
 
     **Parameters**
@@ -153,7 +153,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### backends
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backends" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L519-L640" signature="backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, *, use_fractional_gates=False, calibration_id=None, **kwargs)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backends" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L533-L654" signature="backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, *, use_fractional_gates=False, calibration_id=None, **kwargs)">
     Return all backends accessible via this account, subject to optional filtering.
 
     **Parameters**
@@ -216,7 +216,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### delete\_account
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L777-L795" signature="delete_account(filename=None, name=None, channel=None)" modifiers="static">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L791-L809" signature="delete_account(filename=None, name=None, channel=None)" modifiers="static">
     Delete a saved account from disk.
 
     **Parameters**
@@ -236,7 +236,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### delete\_job
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_job" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1168-L1185" signature="delete_job(job_id)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.delete_job" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1184-L1201" signature="delete_job(job_id)">
     Delete a runtime job.
 
     Note that this operation cannot be reversed.
@@ -257,7 +257,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### instances
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.instances" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1332-L1343" signature="instances()">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.instances" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1348-L1359" signature="instances()">
     Return a list of instances available for the active account.
 
     Return a list that contains a series of dictionaries with the following instance identifiers per instance: “crn”, “plan”, “name”.
@@ -273,7 +273,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### job
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.job" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1042-L1073" signature="job(job_id)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.job" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1058-L1089" signature="job(job_id)">
     Retrieve a runtime job.
 
     **Parameters**
@@ -296,7 +296,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### jobs
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.jobs" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1075-L1166" signature="jobs(limit=10, skip=0, backend_name=None, pending=None, program_id=None, instance=None, job_tags=None, session_id=None, created_after=None, created_before=None, descending=True)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.jobs" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1091-L1182" signature="jobs(limit=10, skip=0, backend_name=None, pending=None, program_id=None, instance=None, job_tags=None, session_id=None, created_after=None, created_before=None, descending=True)">
     Retrieve all runtime jobs, subject to optional filtering.
 
     **Parameters**
@@ -328,7 +328,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### least\_busy
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.least_busy" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1262-L1330" signature="least_busy(min_num_qubits=None, instance=None, filters=None, **kwargs)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.least_busy" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1278-L1346" signature="least_busy(min_num_qubits=None, instance=None, filters=None, **kwargs)">
     Return the least busy available backend.
 
     **Parameters**
@@ -362,14 +362,14 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### save\_account
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.save_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L797-L863" signature="save_account(token=None, url=None, instance=None, channel=None, filename=None, name=None, proxies=None, verify=None, overwrite=False, set_as_default=None, private_endpoint=False, region=None, plans_preference=None, tags=None)" modifiers="static">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.save_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L811-L879" signature="save_account(token=None, url=None, instance=None, channel=None, filename=None, name=None, proxies=None, verify=None, overwrite=False, set_as_default=None, private_endpoint=False, region=None, plans_preference=None, tags=None)" modifiers="static">
     Save the account to disk for future use.
 
     **Parameters**
 
     *   **token** (*str | None*) – IBM Cloud API key.
     *   **url** (*str | None*) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com).
-    *   **instance** (*str | None*) – This is an optional parameter to specify the CRN or service name. If set, it will define a default instance for service instantiation, if not set, the service will fetch all instances accessible within the account.
+    *   **instance** (*str | None*) – This is an optional parameter to specify the CRN or service name. If set, it will define a default instance for service instantiation, if not set, the service will fetch all instances accessible within the account. Set to `"auto"` to explicitly save auto-selection as the preference, which suppresses the “instance not set” warning on subsequent instantiations.
     *   **channel** (*Literal\['ibm\_quantum\_platform', 'ibm\_cloud', 'local'] | None*) – Channel type. `ibm_cloud` or `ibm_quantum_platform`.
     *   **filename** (*str | None*) – Full path of the file where the account is saved.
     *   **name** (*str | None*) – Name of the account to save.
@@ -389,7 +389,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### saved\_accounts
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.saved_accounts" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L865-L891" signature="saved_accounts(default=None, channel=None, filename=None, name=None)" modifiers="static">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.saved_accounts" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L881-L907" signature="saved_accounts(default=None, channel=None, filename=None, name=None)" modifiers="static">
     List the accounts saved on disk.
 
     **Parameters**
@@ -414,7 +414,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### usage
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1187-L1201" signature="usage()">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L1203-L1217" signature="usage()">
     Return usage information for the current active instance.
 
     **Returns**
