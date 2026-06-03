@@ -1,6 +1,6 @@
 ---
-title: TwoQubitControlledUDecomposer (v2.3)
-description: API reference for qiskit.synthesis.TwoQubitControlledUDecomposer in qiskit v2.3
+title: TwoQubitControlledUDecomposer (v2.5)
+description: API reference for qiskit.synthesis.TwoQubitControlledUDecomposer in qiskit v2.5
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.synthesis.TwoQubitControlledUDecomposer
@@ -8,20 +8,79 @@ python_api_name: qiskit.synthesis.TwoQubitControlledUDecomposer
 
 # TwoQubitControlledUDecomposer
 
-<Class id="qiskit.synthesis.TwoQubitControlledUDecomposer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L268-L317" signature="qiskit.synthesis.TwoQubitControlledUDecomposer(rxx_equivalent_gate, euler_basis='ZXZ')" modifiers="class">
+<Class id="qiskit.synthesis.TwoQubitControlledUDecomposer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.5/crates/synthesis/src/two_qubit_decompose/controlled_u_decomposer.rs" signature="qiskit.synthesis.TwoQubitControlledUDecomposer(rxx_equivalent_gate, euler_basis='ZXZ')" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
-  Decompose two-qubit unitary in terms of a desired $U \sim U_d(\alpha, 0, 0) \sim \text{Ctrl-U}$ gate that is locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+  Decompose a two-qubit unitary in terms of a $U \sim U_d(\alpha, 0, 0) \sim \text{Ctrl-U}$ gate that is locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
 
   Initialize the KAK decomposition.
 
+  The decomposition rewrites any two-qubit unitary $U$ as:
+
+  $$
+  U(0,1) = c_{2r}(0)\, c_{2l}(1)\; W(0,1)\; c_{1r}(0)\, c_{1l}(1)
+  $$
+
+  where $W$ is the Weyl (canonical) gate, which is itself factored as:
+
+  $$
+  W(0,1) = R_{XX}(a)\; R_{YY}(b)\; R_{ZZ}(c)
+  $$
+
+  $R_{YY}$ and $R_{ZZ}$ are then rewritten as $R_{XX}$ using single-qubit conjugations:
+
+  $$
+  R_{YY}(b) = S^\dagger(0)\,S^\dagger(1)\; R_{XX}(b)\; S(0)\,S(1)
+  $$
+
+  $$
+  R_{ZZ}(c) = H(0)\,H(1)\; R_{XX}(c)\; H(0)\,H(1)
+  $$
+
+  Each $R_{XX}$ is then expressed using the user-supplied equivalent gate. The single-qubit matrices between consecutive two-qubit gates are multiplied together before being passed to [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer"), giving at most 8 single-qubit gates in the general (3 basis gate) case.
+
+  | Basis gates used | Max 1q gates (before 2.5) | Max 1q gates (2.5+) |
+  |:---|:---:|:---:|
+  | 1 | 8 | 4 |
+  | 2 | 16 | 6 |
+  | 3 | 24 | 8 |
+
   **Parameters**
 
-  *   **rxx\_equivalent\_gate** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – Gate that is locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate"): $U \sim U_d(\alpha, 0, 0) \sim \text{Ctrl-U}$ gate. Valid options are \[[`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate"), [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate"), [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate"), [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate"), [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate"), [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate"), [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate"), [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate")].
+  *   **rxx\_equivalent\_gate** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – Gate that is locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate"): $U \sim U_d(\alpha, 0, 0) \sim \text{Ctrl-U}$ gate. Must take exactly one angle parameter. Valid options are \[[`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate"), [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate"), [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate"), [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate"), [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate"), [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate"), [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate"), [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate")]. Custom gate classes are also accepted if they implement `to_matrix()` and take a single angle.
   *   **euler\_basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Basis string to be provided to [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer") for 1Q synthesis. Valid options are \[`'ZXZ'`, `'ZYZ'`, `'XYX'`, `'XZX'`, `'U'`, `'U3'`, `'U321'`, `'U1X'`, `'PSX'`, `'ZSX'`, `'ZSXX'`, `'RR'`].
 
   **Raises**
 
-  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the gate is not locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
-</Class>
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the gate is not locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate") or does not take exactly one angle parameter.
 
+  **Examples**
+
+  Decompose an [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate") — all single-qubit gates cancel:
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import RZZGate
+  from qiskit.quantum_info import Operator
+  from qiskit.synthesis import TwoQubitControlledUDecomposer
+
+  qc = QuantumCircuit(2)
+  qc.rzz(-0.3, 1, 0)
+  mat = Operator(qc).data
+
+  decomposer = TwoQubitControlledUDecomposer(RZZGate, "U")
+  print(decomposer(mat))
+  ```
+
+  Decompose a random two-qubit unitary — at most 8 single-qubit `U` gates and 3 `RZZ` gates:
+
+  ```python
+  from qiskit.circuit.library import RZZGate
+  from qiskit.quantum_info import random_unitary
+  from qiskit.synthesis import TwoQubitControlledUDecomposer
+
+  mat = random_unitary(4, seed=1).data
+  decomposer = TwoQubitControlledUDecomposer(RZZGate, "U")
+  print(decomposer(mat).count_ops())  # {'u': 8, 'rzz': 3}
+  ```
+</Class>
