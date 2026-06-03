@@ -13,6 +13,7 @@
 import { expect, test } from "@playwright/test";
 
 import { ExternalLink } from "./ExternalLink.js";
+import { addLinksToMap } from "./FileBatch.js";
 
 test("ExternalLink constructor ignores anchors", () => {
   const link = new ExternalLink("https://ibm.com#my-anchor", []);
@@ -72,4 +73,25 @@ test.describe("ExternalLink.check()", () => {
       "❌ Failed to fetch 'https://bad-link.com': some issue. Appears in:\n    /testorigin.mdx",
     );
   });
+});
+
+test("PDF links are skipped by addLinksToMap", () => {
+  const linksToOriginFiles = new Map<string, string[]>();
+  const links = new Set([
+    "https://example.com/document.pdf",
+    "https://example.com/page.html",
+    "https://example.com/another-doc.pdf",
+  ]);
+
+  addLinksToMap("/test.mdx", links, linksToOriginFiles);
+
+  // Only the non-PDF link should be added
+  expect(linksToOriginFiles.size).toBe(1);
+  expect(linksToOriginFiles.has("https://example.com/page.html")).toBe(true);
+  expect(linksToOriginFiles.has("https://example.com/document.pdf")).toBe(
+    false,
+  );
+  expect(linksToOriginFiles.has("https://example.com/another-doc.pdf")).toBe(
+    false,
+  );
 });

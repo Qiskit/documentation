@@ -1,16 +1,16 @@
 ---
-title: Qiskit 1.0 feature migration guide
-description: Description of feature changes introduced in Qiskit 1.0 and how to update your code to work with them.
+title: Qiskit v1.0 feature changes
+description: Description of feature changes introduced in Qiskit v1.0 and how to update your code to work with them.
 ---
 
 {/* cspell:ignore nbqa, ipynb, tqdm */}
 
-# Qiskit 1.0 feature changes
+# Qiskit v1.0 feature changes
 
-This guide describes migration paths for the most important feature changes in Qiskit 1.0, organized by module.
+This guide describes migration paths for the most important feature changes in Qiskit v1.0, organized by module.
 Use the table of contents on the right side to navigate to the module you are interested in.
 
-## Qiskit 1.0 migration tool
+## Qiskit v1.0 migration tool
 
 To ease the migration process, you can use the
 [`flake8-qiskit-migration`](https://github.com/qiskit-community/flake8-qiskit-migration)
@@ -68,7 +68,7 @@ repository](https://github.com/qiskit-community/flake8-qiskit-migration).
 <span id="Aer"></span>
 ### Aer
 
-The `qiskit.Aer` object is not available in Qiskit 1.0. Instead, use the
+The `qiskit.Aer` object is not available in Qiskit v1.0. Instead, use the
 same object from the `qiskit_aer` namespace, which is a drop-in replacement.
 To install `qiskit_aer`, run:
 
@@ -79,14 +79,14 @@ pip install qiskit-aer
 <span id="BasicAer"></span>
 ### BasicAer
 
-The `qiskit.BasicAer` object is not available in Qiskit 1.0. See the
+The `qiskit.BasicAer` object is not available in Qiskit v1.0. See the
 [`basicaer` migration section](#providers.basicaer) for
  migration options.
 
 <span id="execute"></span>
 ### execute
 
-The `qiskit.execute` function is not available in Qiskit 1.0. This
+The `qiskit.execute` function is not available in Qiskit v1.0. This
 function served as a high-level wrapper around the
 [`transpile`](/docs/api/qiskit/compiler#transpile) and
 [`run`](/docs/api/qiskit/qiskit.providers.BackendV2#run) functions in Qiskit.
@@ -284,7 +284,7 @@ workflow from primitives V1 to primitives V2, as well as the few changes that ha
 in the inputs accepted by the V1 interface.
 
 <Admonition type="note">
-Starting with the 1.0 release, we will refer to the pre-1.0 primitives interface as "primitives V1".
+Starting with the v1.0 release, we will refer to the pre-1.0 primitives interface as "primitives V1".
 </Admonition>
 
 
@@ -335,7 +335,7 @@ sampler_v2 = StatevectorSampler()
 </Admonition>
 
 1. `Sampler and Estimator`: The new V2 primitives are designed to accept **vectorized inputs**, where single circuits can be grouped with array-valued specifications. That is, one circuit can be executed
-  for arrays of `n` parameter sets, `n` observables, or both (in the case of the estimator). Each group is called a **primitive unified bloc (pub)**, and can be represented as a tuple: `(1 x circuit, [n x observables], [n x parameters])`. The V1 interface didn't allow for the same flexibility.  Instead, the number of input circuits had to match the number of observables and
+  for arrays of `n` parameter sets, `n` observables, or both (in the case of Estimator). Each group is called a **primitive unified bloc (pub)**, and can be represented as a tuple: `(1 x circuit, [n x observables], [n x parameters])`. The V1 interface didn't allow for the same flexibility.  Instead, the number of input circuits had to match the number of observables and
   parameter sets, as shown in the following examples (select a tab to see each example):
 
 <Tabs>
@@ -409,7 +409,7 @@ sampler_v2 = StatevectorSampler()
    returns measurement outcome samples in the form of **bitstrings** or
    **counts**, instead of the quasi-probability distributions from the V1
    interface. The bitstrings show the measurement outcomes, preserving the shot
-   order in which they were measured. The V2 sampler result objects organize
+   order in which they were measured. The V2 Sampler result objects organize
    data in terms of their input circuits' classical register names, for
    compatibility with dynamic circuits.
 
@@ -436,7 +436,7 @@ sampler_v2 = StatevectorSampler()
     </Admonition>
 
     ```python
-    # Run using V1 sampler
+    # Run using V1 Sampler
     result = sampler_v1.run(circuit).result()
     quasi_dist = result.quasi_dists[0]
     print(f"The quasi-probability distribution is: {quasi_dist}")
@@ -445,7 +445,7 @@ sampler_v2 = StatevectorSampler()
     The quasi-probability distribution is: {0: 0.5, 3: 0.5}
     ```
     ```python
-    # Run using V2 sampler
+    # Run using V2 Sampler
     result = sampler_v2.run([circuit]).result()
     # Access result data for pub 0
     data_pub = result[0].data
@@ -753,7 +753,7 @@ backend = GenericBackendV2(num_qubits=5)
 
 * Support for running pulse jobs on backends from
   [`qiskit.providers.fake_provider`](/docs/api/qiskit/providers_fake_provider) has
-  been removed in Qiskit 1.0.  This is because Qiskit Aer removed its
+  been removed in Qiskit v1.0.  This is because Qiskit Aer removed its
   simulation functionality for such jobs.  For low-level Hamiltonian-simulation
   workloads, consider using a specialized library such as [Qiskit
   Dynamics](https://qiskit-extensions.github.io/qiskit-dynamics/).
@@ -993,7 +993,7 @@ test harnesses.
 <span id="qiskit.tools"></span>
 ## qiskit.tools
 
-The `qiskit.tools` module was removed in Qiskit 1.0. Most of this functionality was
+The `qiskit.tools` module was removed in Qiskit v1.0. Most of this functionality was
 either replaced by similar functionality in other packages or removed with no alternative.
 The primary exception is the `qiskit.tools.parallel_map()` function, which has been relocated to
 the [`qiskit.utils`](/docs/api/qiskit/utils#parallel_map) module. It can be used
