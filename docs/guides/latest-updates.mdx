@@ -10,7 +10,7 @@ in_page_toc_max_heading_level: 2
 
 # Changelog
 
-*Last updated 1 June 2026*
+*Last updated 5 June 2026*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
@@ -29,6 +29,18 @@ Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-s
 This section summarizes the recent enhancements and new features for the new [IBM Quantum Platform](https://quantum.cloud.ibm.com/).
 
 ### May 2026
+
+- **Support for the [Store](/docs/api/qiskit/circuit#store) instruction on IBM&reg; QPUs** - Now you can simplify complex classical computations in your quantum circuits with the Store instruction.
+
+  - Compute a classical expression mid-circuit and save the result to a variable or register, which can then immediately control subsequent quantum gates.  Instead of deeply nested inline expressions, you can break computations into named intermediate steps, so that complex classical feedback logic iseasier to read and maintain. **Common use cases** include the following:
+
+      * Dynamic circuits with mid-circuit measurements and classical feedback  
+      * Long-range entanglement preparation  
+      * Complex conditional logic based on measurement outcomes
+
+    To use the store instruction, first ensure you're running the latest version of `qiskit-ibm-runtime` (`pip install --upgrade qiskit-ibm-runtime`), then see the [documentation](/docs/guides/classical-feedforward-and-control-flow#store) for more information and an example.
+
+    *Note that before submitting jobs, you should verify compatibility with each primitive's options in the documentation*: [Sampler options](/docs/guides/sampler-options) | [Estimator options](/docs/guides/estimator-options) | [Executor options](/docs/guides/executor-options)
 
 - **New Classroom Accounts**: Professors can now request a [Classroom Account](/docs/guides/classroom-accounts) to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information.
 
