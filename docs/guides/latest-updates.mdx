@@ -10,7 +10,7 @@ in_page_toc_max_heading_level: 2
 
 # Changelog
 
-*Last updated 1 June 2026*
+*Last updated 5 June 2026*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
@@ -30,24 +30,19 @@ This section summarizes the recent enhancements and new features for the new [IB
 
 ### May 2026
 
+- **Support for the [Store](/docs/api/qiskit/circuit#store) instruction on IBM&reg; QPUs** - Now you can simplify complex classical computations in your quantum circuits with the Store instruction.
+
+  - Compute a classical expression mid-circuit and save the result to a variable or register, which can then immediately control subsequent quantum gates.  Instead of deeply nested inline expressions, you can break computations into named intermediate steps, so that complex classical feedback logic is easier to read and maintain. **Common use cases** include the following:
+
+      * Dynamic circuits with mid-circuit measurements and classical feedback  
+      * Long-range entanglement preparation  
+      * Complex conditional logic based on measurement outcomes
+
+    To use the store instruction, first ensure you're running the latest version of `qiskit-ibm-runtime` (`pip install --upgrade qiskit-ibm-runtime`), then see the [documentation](/docs/guides/classical-feedforward-and-control-flow#store) for more information and an example.
+
+    *Note that before submitting jobs, you should verify compatibility with each primitive's options in the documentation*: [Sampler options](/docs/guides/sampler-options) | [Estimator options](/docs/guides/estimator-options) | [Executor options](/docs/guides/executor-options)
+
 - **New Classroom Accounts**: Professors can now request a [Classroom Account](/docs/guides/classroom-accounts) to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information.
-
-
-
-### April 2026
-
-- **Introducing the Executor primitive**: We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025.
-
-  Together with [Samplomatic](https://qiskit.github.io/samplomatic/index.html), they make up the [directed execution model](/docs/guides/directed-execution-model), which provides full transparency and control to fine-tune your error mitigation workflow. The [Probabilistic error cancellation with shaded lightcones](https://qiskit.github.io/qiskit-addon-slc/tutorials/01_getting_started.html) tutorial, for example, demonstrates how this model is used to combine advanced techniques, including shaded lightcones, probabilistic error cancellation (PEC), Twirled Readout Error eXtinction (TREX), and [measurement-based postselection](/docs/guides/post-selection), to further improve the result quality.
-
-  If you prefer a higher level of abstraction, [`EstimatorV2`](/docs/guides/estimator-noise-management) in Qiskit Runtime continues to provide several built-in error mitigation and suppression techniques, which you can easily tune using the [`resilience_level`](/docs/guides/estimator-noise-management#resilience-level) option.
-
-  To learn more, see the following guides:
-
-    - [Executor quickstart](/docs/guides/get-started-with-executor)
-    - [Noise learning helper](/docs/guides/noise-learning)
-
-  Both of these new features are currently in beta and require `qiskit-ibm-runtime` version 0.47.0 or higher.
 
 <Accordion>
 <AccordionItem title="**Previous updates (2026)**">
@@ -401,6 +396,21 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 <span id="latest-qiskit-runtime"></span>
 ## Qiskit Runtime client 0.46.0
+
+### April 2026
+
+- **Introducing the Executor primitive**: We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025.
+
+  Together with [Samplomatic](https://qiskit.github.io/samplomatic/index.html), they make up the [directed execution model](/docs/guides/directed-execution-model), which provides full transparency and control to fine-tune your error mitigation workflow. The [Probabilistic error cancellation with shaded lightcones](https://qiskit.github.io/qiskit-addon-slc/tutorials/01_getting_started.html) tutorial, for example, demonstrates how this model is used to combine advanced techniques, including shaded lightcones, probabilistic error cancellation (PEC), Twirled Readout Error eXtinction (TREX), and [measurement-based postselection](/docs/guides/post-selection), to further improve the result quality.
+
+  If you prefer a higher level of abstraction, [`EstimatorV2`](/docs/guides/estimator-noise-management) in Qiskit Runtime continues to provide several built-in error mitigation and suppression techniques, which you can easily tune using the [`resilience_level`](/docs/guides/estimator-noise-management#resilience-level) option.
+
+  To learn more, see the following guides:
+
+    - [Executor quickstart](/docs/guides/get-started-with-executor)
+    - [Noise learning helper](/docs/guides/noise-learning)
+
+  Both of these new features are currently in beta and require `qiskit-ibm-runtime` version 0.47.0 or higher.
 
 ### March 2026
 - `qiskit-ibm-runtime` v0.46.0 has been released. View bug fixes and other notes since v0.45.0 in the [release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).
