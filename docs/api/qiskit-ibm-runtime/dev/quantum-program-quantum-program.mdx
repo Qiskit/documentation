@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.quantum_program.QuantumProgram
 
 # QuantumProgram
 
-<Class id="qiskit_ibm_runtime.quantum_program.QuantumProgram" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/quantum_program/quantum_program.py#L208-L321" signature="QuantumProgram(shots, items=None, noise_maps=None, meas_level='classified', passthrough_data=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.quantum_program.QuantumProgram" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/quantum_program/quantum_program.py#L211-L324" signature="QuantumProgram(shots, items=None, noise_maps=None, meas_level='classified', passthrough_data=None)" modifiers="class">
   Bases: `object`
 
   A quantum runtime executable.
@@ -27,7 +27,7 @@ python_api_name: qiskit_ibm_runtime.quantum_program.QuantumProgram
 
   ### append\_circuit\_item
 
-  <Function id="qiskit_ibm_runtime.quantum_program.QuantumProgram.append_circuit_item" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/quantum_program/quantum_program.py#L242-L266" signature="append_circuit_item(circuit, *, circuit_arguments=None, chunk_size=None)">
+  <Function id="qiskit_ibm_runtime.quantum_program.QuantumProgram.append_circuit_item" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/quantum_program/quantum_program.py#L245-L269" signature="append_circuit_item(circuit, *, circuit_arguments=None, chunk_size=None)">
     Append a new [`CircuitItem`](quantum-program-circuit-item "qiskit_ibm_runtime.quantum_program.CircuitItem") to this program.
 
     **Parameters**
@@ -43,12 +43,12 @@ python_api_name: qiskit_ibm_runtime.quantum_program.QuantumProgram
 
   ### append\_samplex\_item
 
-  <Function id="qiskit_ibm_runtime.quantum_program.QuantumProgram.append_samplex_item" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/quantum_program/quantum_program.py#L268-L312" signature="append_samplex_item(circuit, *, samplex, samplex_arguments=None, shape=None, chunk_size=None)">
+  <Function id="qiskit_ibm_runtime.quantum_program.QuantumProgram.append_samplex_item" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/quantum_program/quantum_program.py#L271-L315" signature="append_samplex_item(circuit, *, samplex, samplex_arguments=None, shape=None, chunk_size=None)">
     Append a new [`SamplexItem`](quantum-program-samplex-item "qiskit_ibm_runtime.quantum_program.SamplexItem") to this program.
 
     **Parameters**
 
-    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The circuit of this item.
+    *   **circuit** (*QuantumCircuit*) – The circuit of this item.
     *   **samplex** (*Samplex*) – A samplex to draw random parameters for the circuit.
     *   **samplex\_arguments** (*dict\[str, Any] | None*) – A map from argument names to argument values for the samplex. Each argument array has intrinsic axes determined by its type (e.g., `parameter_values` has intrinsic shape `(n,)` for `n` parameters). The extrinsic shapes of all arguments are broadcasted together.
     *   **shape** (*tuple\[int, ...] | None*) – A shape that the item’s extrinsic shape must be broadcastable to. Axes where `shape` exceeds the shape implicit in `samplex_arguments` enumerate independent randomizations.
