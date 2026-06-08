@@ -144,4 +144,3 @@ function hrefToSlug(href: string, pkg: Pkg): string {
     ? kebabCaseAndShortenPage(name, pkg.name)
     : name;
 }
-
