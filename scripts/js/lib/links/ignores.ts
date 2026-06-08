@@ -213,6 +213,9 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "/docs/guides/configure-error-mitigation",
   "/docs/guides/configure-error-suppression",
 
+  // This link will work because it is being merged at the same time as the notifications page is deployed.
+  "/notifications",
+
   // These links are from old IQP and do not work any more
   "https://auth.quantum-computing.ibm.com/api",
   "https://auth.quantum.ibm.com/api",
