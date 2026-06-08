@@ -524,6 +524,30 @@ test("transform inline math", async () => {
 `);
 });
 
+test("escape pipe characters in math inside table cells", async () => {
+  expect(
+    await toMd(`
+<div role='main'>
+<table>
+<thead>
+<tr><th><p>Gate(s)</p></th><th><p>KAK angles</p></th><th><p>Sampling overhead</p></th></tr>
+</thead>
+<tbody>
+<tr class="row-even">
+<td><p>RXXGate</p></td>
+<td><p><span class="math notranslate nohighlight">\\((|\\theta/2|, 0, 0)\\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\\(\\left[1 + 2 \\left|\\sin(\\theta)\\right| \\right]^2\\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+    `),
+  ).toEqual(`| Gate(s) | KAK angles                     | Sampling overhead                                           |
+| ------- | ------------------------------ | ----------------------------------------------------------- |
+| RXXGate | $(\\vert \\theta/2\\vert , 0, 0)$ | $\\left[1 + 2 \\left\\vert \\sin(\\theta)\\right\\vert  \\right]^2$ |
+`);
+});
+
 test("transform block math", async () => {
   expect(
     await toMd(`
