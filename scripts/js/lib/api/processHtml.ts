@@ -89,6 +89,7 @@ export async function processHtml(
   removeColonSpans($main);
   handleFootnotes($, $main);
   preserveMathBlockWhitespace($, $main);
+  expandTableRowspan($, $main);
 
   const meta: Metadata = {};
   await processMembersAndSetMeta($, $main, meta, {
@@ -561,6 +562,29 @@ export function updateModuleHeadings($: CheerioAPI, $main: Cheerio<any>): void {
       }
       $el.replaceWith(replacement);
     });
+}
+
+export function expandTableRowspan(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
+  $main.find("td[rowspan], th[rowspan]").each((_, el) => {
+    const $el = $(el);
+    const span = parseInt($el.attr("rowspan") ?? "1", 10);
+    $el.removeAttr("rowspan");
+    let $row = $el.closest("tr");
+    const colIndex = $row.children("td,th").index($el);
+    for (let i = 1; i < span; i++) {
+      $row = $row.next("tr");
+      const $cells = $row.children("td,th");
+      const clone = $el.clone();
+      if (colIndex >= $cells.length) {
+        $row.append(clone);
+      } else {
+        $cells.eq(colIndex).before(clone);
+      }
+    }
+  });
 }
 
 function getApiType($dl: Cheerio<any>): ApiObjectName | undefined {

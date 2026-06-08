@@ -28,6 +28,7 @@ import {
   convertRubricsToHeaders,
   processMembersAndSetMeta,
   handleFootnotes,
+  expandTableRowspan,
 } from "./processHtml.js";
 import { Metadata } from "./Metadata.js";
 import { CheerioDoc } from "../testUtils.js";
@@ -768,5 +769,21 @@ marked as builtins since they are not actually present in any include file this 
       apiType: "function",
       apiName: "qk_obs_identity",
     });
+  });
+});
+
+test.describe("expandTableRowspan()", () => {
+  test("duplicates rowspan cell into subsequent rows", () => {
+    const doc = CheerioDoc.load(`
+<table>
+<tbody>
+<tr><td>iSwapGate</td><td>A</td><td rowspan="2">49</td></tr>
+<tr><td>SwapGate</td><td>B</td></tr>
+</tbody>
+</table>`);
+    expandTableRowspan(doc.$, doc.$main);
+    const rows = doc.$main.find("tr").toArray();
+    expect(doc.$(rows[0]).find("td").map((_, el) => doc.$(el).text()).toArray()).toEqual(["iSwapGate", "A", "49"]);
+    expect(doc.$(rows[1]).find("td").map((_, el) => doc.$(el).text()).toArray()).toEqual(["SwapGate", "B", "49"]);
   });
 });
