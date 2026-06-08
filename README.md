@@ -8,6 +8,7 @@ Refer to:
 
 - Our [MDX guide](./mdx-guide.md) for how to write documentation and use our variant of markdown.
 - Our [style guide](./style-guide.md) for technical writing guidance.
+- The [adding courses guide](./adding-courses.md) for a step-by-step guide to add a new course to Learning.
 
 ### Licensing
 

@@ -8,27 +8,31 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
 
 # DraperQFTAdder
 
-<Class id="qiskit.circuit.library.DraperQFTAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/adders/draper_qft_adder.py#L24-L129" signature="qiskit.circuit.library.DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')" modifiers="class">
+<Class id="qiskit.circuit.library.DraperQFTAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/adders/draper_qft_adder.py#L24-L137" signature="qiskit.circuit.library.DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')" modifiers="class">
   Bases: `Adder`
 
   A circuit that uses QFT to perform in-place addition on two qubit registers.
 
   For registers with $n$ qubits, the QFT adder can perform addition modulo $2^n$ (with `kind="fixed"`) or ordinary addition by adding a carry qubit (with `kind="half"`).
 
-  As an example, a non-fixed\_point QFT adder circuit that performs addition on two 2-qubit sized registers is as follows:
+  As an example, a QFT adder circuit that performs an ordinary addition on two 2-qubit sized registers is as follows:
 
   ```text
-   a_0:   ─────────■──────■────────────────────────■────────────────
-                   │      │                        │
-   a_1:   ─────────┼──────┼────────■──────■────────┼────────────────
-          ┌──────┐ │P(π)  │        │      │        │       ┌───────┐
-   b_0:   ┤0     ├─■──────┼────────┼──────┼────────┼───────┤0      ├
-          │      │        │P(π/2)  │P(π)  │        │       │       │
-   b_1:   ┤1 qft ├────────■────────■──────┼────────┼───────┤1 iqft ├
-          │      │                        │P(π/2)  │P(π/4) │       │
-  cout_0: ┤2     ├────────────────────────■────────■───────┤2      ├
-          └──────┘                                         └───────┘
+   a_0: ─────────■──────■────────────────────────■────────────────
+                 │      │                        │
+   a_1: ─────────┼──────┼────────■──────■────────┼────────────────
+        ┌──────┐ │P(π)  │        │      │        │       ┌───────┐
+   b_0: ┤0     ├─■──────┼────────┼──────┼────────┼───────┤0      ├
+        │      │        │P(π/2)  │P(π)  │        │       │       │
+   b_1: ┤1 QFT ├────────■────────■──────┼────────┼───────┤1 IQFT ├
+        │      │                        │P(π/2)  │P(π/4) │       │
+  cout: ┤2     ├────────────────────────■────────■───────┤2      ├
+        └──────┘                                         └───────┘
   ```
+
+  <Admonition title="Note" type="note">
+    The QFT and inverse-QFT blocks in this implementation omit their swap networks, which reverses the qubit order for a more efficient implementation. This affects which qubits the controlled-phase gates act on. This drawing represents how the adder is implemented in Qiskit; it should not be used as instructions for building the circuit manually.
+  </Admonition>
 
   <Admonition title="See also" type="note">
     The following generic gate objects perform additions, like this circuit class, but allow the compiler to select the optimal decomposition based on the context. Specific implementations can be set via the [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), e.g. this circuit can be chosen via `Adder=["qft_d00"]`.
