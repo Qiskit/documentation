@@ -12,11 +12,10 @@
 
 // Generates the _toc.json for an addon's content pages.
 //
-// Addon TOCs have a fixed three-part shape:
+// Addon TOCs have a fixed two-part shape:
 //   1. A "main" section built from the Sphinx sidebar tree in index.html —
 //      preserving the author's toctree order and titles exactly.
-//   2. An optional "Tutorials" section listing slugs from docs/tutorials/.
-//   3. An "API reference" section linking to docs/api/{pkg}.
+//   2. An "API reference" section linking to docs/api/{pkg}.
 //
 // Called by addonDocsPipeline.ts; for API doc TOCs see generateToc.ts.
 
@@ -53,27 +52,7 @@ export async function generateAddonToc(
     addonUrlBase,
   );
 
-  const topLevelSections: AddonTocSection[] = [];
-
-  if (pkg.tutorials.length > 0) {
-    const tutorialsToc = JSON.parse(
-      await readFile(
-        join(docsBaseFolder, "..", "tutorials", "_toc.json"),
-        "utf-8",
-      ),
-    );
-    const tutorialChildren: TocEntry[] = pkg.tutorials.map((slug) => ({
-      title: findTutorialTitle(tutorialsToc, slug) ?? slug,
-      url: `${DOCS_BASE_PATH}/tutorials/${slug}`,
-    }));
-    topLevelSections.push({
-      title: "Tutorials",
-      collapsible: false,
-      children: tutorialChildren,
-    });
-  }
-
-  topLevelSections.push({
+  const apiSection: AddonTocSection = {
     title: "API reference",
     collapsible: false,
     children: [
@@ -82,7 +61,7 @@ export async function generateAddonToc(
         url: `${DOCS_BASE_PATH}/api/${pkg.name}`,
       },
     ],
-  });
+  };
 
   return {
     parentUrl: "/docs/guides/addons",
@@ -91,7 +70,7 @@ export async function generateAddonToc(
     collapsed: true,
     children: [
       { title: "", children: mainChildren, collapsible: false },
-      ...topLevelSections,
+      apiSection,
     ],
   };
 }
@@ -166,13 +145,3 @@ function hrefToSlug(href: string, pkg: Pkg): string {
     : name;
 }
 
-type TocNode = { title?: string; url?: string; children?: TocNode[] };
-
-/** Recursively searches a TOC tree for a node whose URL ends with the given slug. */
-function findTutorialTitle(node: TocNode, slug: string): string | undefined {
-  if (node.url?.endsWith(`/${slug}`) && node.title) return node.title;
-  for (const child of node.children ?? []) {
-    const found = findTutorialTitle(child, slug);
-    if (found) return found;
-  }
-}
