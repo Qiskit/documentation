@@ -253,8 +253,10 @@ job = sampler.run([isa_circuit])
 result = job.result()
 # Get results for the first (and only) PUB
 pub_result = result[0]
-print(f" >> Counts for the alpha output register: {pub_result.data.alpha.get_counts()}")
-print(f" >> Counts for the beta output register: {pub_result.data.beta.get_counts()}")
+print(f" >> Counts for the alpha output register: "
+f"{pub_result.data.alpha.get_counts()}")
+print(f" >> Counts for the beta output register: "
+f"{pub_result.data.beta.get_counts()}")
 ```
 
 <span id="v2-prim-options"></span>
@@ -336,7 +338,8 @@ sampler.options.dynamical_decoupling.enable = True
 sampler.options.twirling.enable_gates = True
 
 # This does bulk update.
-# The value for default_shots is overridden if you specify shots with run() or in the PUB.
+# The value for default_shots is overridden 
+# if you specify shots with run() or in the PUB.
 sampler.options.update(default_shots=1024, dynamical_decoupling={"sequence_type": "XpXm"})
 
 # Print the dictionary format.
@@ -428,7 +431,8 @@ sampler = Sampler(backend)
 sampler.options.dynamical_decoupling.enable = True
 sampler.options.dynamical_decoupling.sequence_type = "XpXm"
 
-print(f">> dynamical decoupling sequence to use: {sampler.options.dynamical_decoupling.sequence_type}")
+print(f">> dynamical decoupling sequence to use: "
+f"{sampler.options.dynamical_decoupling.sequence_type}")
 ```
   </TabItem>
 
@@ -1062,7 +1066,8 @@ result = job.result()
 # Get results for the first (and only) PUB
 pub_result = result[0]
 # Get counts from the classical register "meas".
-print(f" >> Counts for the meas output register: {pub_result.data.meas.get_counts()}")
+print(f" >> Counts for the meas output register: "
+f"{pub_result.data.meas.get_counts()}")
 ```
   </TabItem>
 
