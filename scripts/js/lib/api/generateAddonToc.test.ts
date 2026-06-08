@@ -45,9 +45,7 @@ async function makePkg(name = "my-addon", githubSlug?: string): Promise<Pkg> {
  *   - { href, title, children: [{ href, title }] } (section with sub-pages)
  */
 type NavChild = { href: string; title: string };
-type NavItem =
-  | string
-  | { href: string; title?: string; children?: NavChild[] };
+type NavItem = string | { href: string; title?: string; children?: NavChild[] };
 
 function makeIndexHtml(navItems: NavItem[]): string {
   const items = navItems.map((item) => {
@@ -192,9 +190,7 @@ test("subdirectory section has correct child URLs", async () => {
     {
       href: "how_tos/index.html",
       title: "Guides",
-      children: [
-        { href: "how_tos/my_guide.html", title: "My Guide" },
-      ],
+      children: [{ href: "how_tos/my_guide.html", title: "My Guide" }],
     },
   ]);
 

@@ -107,7 +107,10 @@ export async function runAddonDocsPipeline(
     notebookFiles,
   );
   const imageDestination = pkg.outputDir(`${DOCS_BASE_PATH}/images/addons`);
-  const notebookImages = collectNotebookImages(initialNotebooks, imageDestination);
+  const notebookImages = collectNotebookImages(
+    initialNotebooks,
+    imageDestination,
+  );
   const notebooks = processNotebooks(
     initialNotebooks,
     objectsInv,

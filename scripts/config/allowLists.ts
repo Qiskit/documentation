@@ -12,7 +12,7 @@
 
 export const METADATA_ALLOWLIST: Set<string> = new Set([
   "docs/api/qiskit/0.46/transpiler_builtin_plugins.mdx",
-    // todo: fix in addon source
+  // todo: fix in addon source
   "docs/addons/qiskit-addon-cutting/how-tos/how-to-generate-exact-quasi-dists-from-sampler.ipynb",
   "docs/addons/qiskit-addon-cutting/how-tos/how-to-generate-exact-sampling-coefficients.ipynb",
 ]);

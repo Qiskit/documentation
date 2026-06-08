@@ -63,7 +63,12 @@ export function processNotebooks(
   return notebooks.map((notebook) => {
     const processedCells = notebook.cells.map((cell) => {
       if (cell.cell_type !== "markdown") return cell;
-      const linked = rewriteNotebookLinks(cell.source, objectsInv, allInvs, imageDestination);
+      const linked = rewriteNotebookLinks(
+        cell.source,
+        objectsInv,
+        allInvs,
+        imageDestination,
+      );
       const escaped = escapeMdxSpecialChars(linked);
       const source = stripInlineStyles(escaped);
       return { ...cell, source };
@@ -136,13 +141,16 @@ function normalizeNotebookUrl(url: string, pkg: Pkg): string {
 
 // Escape bare < outside code spans, code blocks, math regions, and HTML tags so that
 // MDX's JSX parser doesn't interpret them as tag openings (e.g. `0 <= x` → `0 &lt;= x`).
-// required for opt-mapper how-tos 
+// required for opt-mapper how-tos
 function escapeMdxSpecialChars(source: string | string[]): string {
   const text = Array.isArray(source) ? source.join("") : source;
-  const protected_ = /```[\s\S]*?```|`[^`]+`|\$\$[\s\S]*?\$\$|\$[^$\n]+?\$|<[a-zA-Z/!][^>]*>/g;
+  const protected_ =
+    /```[\s\S]*?```|`[^`]+`|\$\$[\s\S]*?\$\$|\$[^$\n]+?\$|<[a-zA-Z/!][^>]*>/g;
   const parts = text.split(protected_);
   const matches = [...text.matchAll(protected_)].map((m) => m[0]);
-  return parts.map((p, i) => p.replace(/</g, "&lt;") + (matches[i] ?? "")).join("");
+  return parts
+    .map((p, i) => p.replace(/</g, "&lt;") + (matches[i] ?? ""))
+    .join("");
 }
 
 function stripInlineStyles(source: string): string {
@@ -156,16 +164,19 @@ function rewriteNotebookLinks(
   imageDestination: string,
 ): string | string[] {
   const rewrite = (line: string) => {
-    return line.replace(/(!?)\[([^\]]*)\]\(([^)]+)\)/g, (_match, bang, text, url) => {
-      if (bang === "!") {
-        return `![${text}](${rewriteNotebookImageSrc(url, imageDestination)})`;
-      }
-      const relativized = relativizeLink({ url, text });
-      if (relativized) url = relativized.url;
-      const stub = objectsInv.resolveStubUrl(url, allInvs);
-      if (stub) url = stub;
-      return `[${text}](${url})`;
-    });
+    return line.replace(
+      /(!?)\[([^\]]*)\]\(([^)]+)\)/g,
+      (_match, bang, text, url) => {
+        if (bang === "!") {
+          return `![${text}](${rewriteNotebookImageSrc(url, imageDestination)})`;
+        }
+        const relativized = relativizeLink({ url, text });
+        if (relativized) url = relativized.url;
+        const stub = objectsInv.resolveStubUrl(url, allInvs);
+        if (stub) url = stub;
+        return `[${text}](${url})`;
+      },
+    );
   };
 
   return Array.isArray(source) ? source.map(rewrite) : rewrite(source);
@@ -175,7 +186,10 @@ function rewriteNotebookLinks(
  * Rewrite Sphinx artifact-relative image paths (e.g. `../_static/images/foo.png`)
  * to the public docs image destination. External URLs are left unchanged.
  */
-function rewriteNotebookImageSrc(src: string, imageDestination: string): string {
+function rewriteNotebookImageSrc(
+  src: string,
+  imageDestination: string,
+): string {
   if (src.startsWith("http://") || src.startsWith("https://")) return src;
   return `${imageDestination}/${src.split("/").pop()!}`;
 }
