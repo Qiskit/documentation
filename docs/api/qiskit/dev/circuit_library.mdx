@@ -541,6 +541,14 @@ The following functions return a parameterized [`QuantumCircuit`](qiskit.circuit
 
 For example, we can build a variational circuit
 
+```python
+from qiskit.circuit.library import efficient_su2
+
+num_qubits = 4
+ansatz = efficient_su2(num_qubits, entanglement="pairwise")
+ansatz.draw("mpl")
+```
+
 ![The efficient SU2 ansatz circuit...](/docs/images/api/qiskit/dev/circuit_library-5.avif)
 
 and combine it with

@@ -800,7 +800,7 @@ Decomposition of general $2^n \times 2^n$ unitary matrices for any number of qub
 
 ### qs\_decomposition
 
-<Function id="qiskit.synthesis.qs_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/unitary/qsd.py#L38-L217" signature="qiskit.synthesis.qs_decomposition(mat, opt_a1=None, opt_a2=None, decomposer_1q=None, decomposer_2q=None, *, _depth=0)">
+<Function id="qiskit.synthesis.qs_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/unitary/qsd.py#L40-L245" signature="qiskit.synthesis.qs_decomposition(mat, opt_a1=None, opt_a2=None, decomposer_1q=None, decomposer_2q=None, *, _depth=0)">
   Decomposes a unitary matrix into one and two qubit gates using Quantum Shannon Decomposition, based on the Block ZXZ-Decomposition.
 
   This decomposition is described in Krol and Al-Ars \[2] and improves the method of Shende et al. \[1].
@@ -838,6 +838,22 @@ $$
 $$
 \frac{22}{48} 4^n - \frac{3}{2} 2^n + \frac{5}{3}.
 $$
+
+  <Admonition title="Deprecated since version 2.5.0" type="danger">
+    The argument decomposer\_2q in [`qs_decomposition()`](#qiskit.synthesis.qs_decomposition "qiskit.synthesis.qs_decomposition") only accept instances of [`TwoQubitBasisDecomposer`](qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer"). is deprecated as of Qiskit 2.5.0. It will be removed Accepting any other callable will no longer be supported from 3.0.0 on..
+  </Admonition>
+
+  <Admonition title="Deprecated since version 2.5.0" type="danger">
+    The argument decomposer\_1q in [`qs_decomposition()`](#qiskit.synthesis.qs_decomposition "qiskit.synthesis.qs_decomposition") only accept instances of [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer"). is deprecated as of Qiskit 2.5.0. It will be removed Accepting any other callable will no longer be supported from 3.0.0 on..
+  </Admonition>
+
+  <Admonition title="Deprecated since version 2.5.0" type="danger">
+    `qiskit.synthesis.unitary.qsd.qs_decomposition()`’s argument `opt_a2` is deprecated as of Qiskit 2.5.0. It will be removed no earlier than 3 months after the release date. Optimization is applied automatically when appropriate.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 2.5.0" type="danger">
+    `qiskit.synthesis.unitary.qsd.qs_decomposition()`’s argument `opt_a1` is deprecated as of Qiskit 2.5.0. It will be removed no earlier than 3 months after the release date. Optimization is applied automatically when appropriate.
+  </Admonition>
 
   **Parameters**
 
