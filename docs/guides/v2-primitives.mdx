@@ -244,7 +244,8 @@ circuit.measure(qreg[:5], alpha)
 circuit.measure(qreg[5:], beta)
 
 service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=12)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=12)
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
@@ -340,7 +341,8 @@ sampler.options.twirling.enable_gates = True
 # This does bulk update.
 # The value for default_shots is overridden 
 # if you specify shots with run() or in the PUB.
-sampler.options.update(default_shots=1024, dynamical_decoupling={"sequence_type": "XpXm"})
+sampler.options.update(default_shots=1024, 
+  dynamical_decoupling={"sequence_type": "XpXm"})
 
 # Print the dictionary format.
 # Server defaults are used for unset options.
@@ -522,7 +524,8 @@ from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import EstimatorV2 as Estimator, QiskitRuntimeService
 
 service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 estimator = Estimator(backend)
 
 n_qubits = 127
@@ -552,7 +555,8 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
 service = QiskitRuntimeService()
 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 
 n_qubits = 127
 
@@ -604,7 +608,8 @@ isa_observables = [ob.apply_layout(isa_circuits[0].layout) for ob in observables
 
 
 estimator = Estimator(backend)
-job = estimator.run([(isa_circuits[0], isa_observables[0]),(isa_circuits[1], isa_observables[1]),(isa_circuits[2], isa_observables[2])])
+job = estimator.run([(isa_circuits[0], isa_observables[0]),(isa_circuits[1], 
+  isa_observables[1]),(isa_circuits[2], isa_observables[2])])
 job_result = job.result()
 for idx in range(len(job_result)):
     pub_result = job_result[idx]
@@ -622,7 +627,8 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
 service = QiskitRuntimeService()
 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 
 n_qubits = 127
 
@@ -690,7 +696,8 @@ backend = service.least_busy(operational=True, simulator=False)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 chsh_isa_circuit = pm.run(chsh_circuit)
-isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) for operator in ops]
+isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) 
+  for operator in ops]
 
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
@@ -745,7 +752,8 @@ backend = service.least_busy(operational=True, simulator=False)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 chsh_isa_circuit = pm.run(chsh_circuit)
-isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) for operator in ops]
+isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) 
+  for operator in ops]
 
 from qiskit_ibm_runtime import Estimator
 
@@ -782,7 +790,9 @@ import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, EstimatorV2 as Estimator
+from qiskit_ibm_runtime import (
+    QiskitRuntimeService, Session, EstimatorV2 as Estimator
+)
 
 n_qubits = 127
 
@@ -798,11 +808,13 @@ pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
-another_isa_observable = another_observable.apply_layout(another_isa_circuit.layout)
-
+another_isa_observable = another_observable.apply_layout(
+    another_isa_circuit.layout
+)
 service = QiskitRuntimeService()
 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 
 with Session(backend=backend) as session:
     estimator = Estimator()
@@ -810,7 +822,9 @@ with Session(backend=backend) as session:
     estimator.options.resilience_level = 1
 
     job = estimator.run([(isa_circuit, isa_observable)])
-    another_job = estimator.run([(another_isa_circuit, another_isa_observable)])
+    another_job = estimator.run([(
+      another_isa_circuit, another_isa_observable
+      )])
     result = job.result()
     another_result = another_job.result()
 
@@ -819,7 +833,8 @@ with Session(backend=backend) as session:
     print(f" > Metadata: {result[0].metadata}")
 
     # second job
-    print(f" > Another Expectation value: {another_result[0].data.evs}")
+    print(f" > Another Expectation value: "
+          f"{another_result[0].data.evs}")
     print(f" > More Metadata: {another_result[0].metadata}")
 ```
   </TabItem>
@@ -854,7 +869,8 @@ options.resilience_level = 2
 
 service = QiskitRuntimeService()
 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 
 with Session(backend=backend) as session:
     estimator = Estimator(options=options)
@@ -913,7 +929,8 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 service = QiskitRuntimeService()
 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 
 n_qubits = 127
 
@@ -939,7 +956,8 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
 service = QiskitRuntimeService()
 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 
 n_qubits = 127
 
@@ -973,7 +991,8 @@ from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
 service = QiskitRuntimeService()
 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 
 n_qubits = 127
 
@@ -1004,7 +1023,8 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
 service = QiskitRuntimeService()
 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 
 n_qubits = 127
 
@@ -1051,7 +1071,8 @@ parameter_values = [
 # Step 2: Optimize problem for quantum execution.
 
 service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=num_qubits)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=num_qubits)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
@@ -1067,7 +1088,7 @@ result = job.result()
 pub_result = result[0]
 # Get counts from the classical register "meas".
 print(f" >> Counts for the meas output register: "
-f"{pub_result.data.meas.get_counts()}")
+      f"{pub_result.data.meas.get_counts()}")
 ```
   </TabItem>
 
@@ -1092,7 +1113,8 @@ parameter_values = [
 # Step 2: Optimize problem for quantum execution.
 
 service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=num_qubits)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=num_qubits)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
@@ -1129,7 +1151,9 @@ The following code block will return an error for users on the Open Plan because
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
-from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler, Session
+from qiskit_ibm_runtime import (
+  QiskitRuntimeService, SamplerV2 as Sampler, Session
+  )
 
 n_qubits = 127
 
@@ -1151,7 +1175,8 @@ service = QiskitRuntimeService()
 sampler.options.dynamical_decoupling.enable = True
 sampler.options.dynamical_decoupling.sequence_type = "XpXm"
 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 
 with Session(backend=backend) as session:
     sampler = Sampler()
@@ -1191,7 +1216,8 @@ options.resilience_level = 0
 
 service = QiskitRuntimeService()
 
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+backend = service.least_busy(operational=True, 
+  simulator=False, min_num_qubits=127)
 
 with Session(backend=backend) as session:
     sampler = Sampler(options=options)

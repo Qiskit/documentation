@@ -70,7 +70,8 @@ job_input = {
     'program_id': 'sampler',
     "backend": backend,
     "params": {
-        "pubs": [[resulting_qasm],[resulting_qasm,None,500]] # primitive unified blocs (PUBs) containing one circuit each.
+        # primitive unified blocs (PUBs) containing one circuit each:
+        "pubs": [[resulting_qasm],[resulting_qasm,None,500]] 
 }}
 
 response = requests.post(url, headers=headers, json=job_input)

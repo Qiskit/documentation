@@ -72,7 +72,11 @@ service = QiskitRuntimeService(token="your-API_KEY",
 After creating an endpoint gateway for IBM Quantum Platform, use the service endpoint's FQDN for the target region.
 
 ```bash
-  curl -X POST https://private.us-east.quantum.cloud.ibm.com/api/v1/jobs -H "Authorization: Bearer $BEARER_TOKEN" -H "Service-CRN: $SERVICE_INSTANCE_CRN" -d '{
+  curl -X POST \
+  https://private.us-east.quantum.cloud.ibm.com/api/v1/jobs \
+  -H "Authorization: Bearer $BEARER_TOKEN" \
+  -H "Service-CRN: $SERVICE_INSTANCE_CRN" \
+  -d '{
     "backend": "backend",
     "program_id": "sampler"
   }'
