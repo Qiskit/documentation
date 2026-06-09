@@ -58,11 +58,13 @@ ibmcloud iam access-group-create GROUP_NAME [-d, --description DESCRIPTION]
 To create an access group _policy_ by using the CLI, use the [`ibmcloud iam access-group-policy-create`](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_access_group_policy_create) command.
 
 ```cli
-ibmcloud iam access-group-policy-create GROUP_NAME {-f, --file @JSON_FILE | --roles ROLE_NAME1,ROLE_NAME2... 
-        [--service-name SERVICE_NAME] [--service-instance SERVICE_INSTANCE] [--region REGION] 
-        [--resource-type RESOURCE_TYPE] [--resource RESOURCE] [--resource-group-name RESOURCE_GROUP_NAME] 
-        [--resource-group-id RESOURCE_GROUP_ID]
-        }
+ibmcloud iam access-group-policy-create GROUP_NAME \
+        {-f, --file @JSON_FILE | --roles ROLE_NAME1,ROLE_NAME2... \
+        [--service-name SERVICE_NAME] \
+        [--service-instance SERVICE_INSTANCE] [--region REGION] \
+        [--resource-type RESOURCE_TYPE] [--resource RESOURCE] \
+        [--resource-group-name RESOURCE_GROUP_NAME] \
+        [--resource-group-id RESOURCE_GROUP_ID]}
 ```
 
 You can use the following JSON code to create policies for an Administrators access group:
