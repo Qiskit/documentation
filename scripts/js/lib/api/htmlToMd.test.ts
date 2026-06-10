@@ -79,7 +79,6 @@ You need to initialize your account before you can start using the Qiskit Runtim
 `);
 });
 
-
 // ------------------------------------------------------------------
 // Transform code blocks
 // ------------------------------------------------------------------
@@ -519,7 +518,8 @@ test("escape pipe characters in math inside table cells", async () => {
 </table>
 </div>
     `),
-  ).toEqual(`| Gate(s) | KAK angles                     | Sampling overhead                                           |
+  )
+    .toEqual(`| Gate(s) | KAK angles                     | Sampling overhead                                           |
 | ------- | ------------------------------ | ----------------------------------------------------------- |
 | RXXGate | $(\\vert \\theta/2\\vert , 0, 0)$ | $\\left[1 + 2 \\left\\vert \\sin(\\theta)\\right\\vert  \\right]^2$ |
 `);

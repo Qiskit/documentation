@@ -783,7 +783,19 @@ test.describe("expandTableRowspan()", () => {
 </table>`);
     expandTableRowspan(doc.$, doc.$main);
     const rows = doc.$main.find("tr").toArray();
-    expect(doc.$(rows[0]).find("td").map((_, el) => doc.$(el).text()).toArray()).toEqual(["iSwapGate", "A", "49"]);
-    expect(doc.$(rows[1]).find("td").map((_, el) => doc.$(el).text()).toArray()).toEqual(["SwapGate", "B", "49"]);
+    expect(
+      doc
+        .$(rows[0])
+        .find("td")
+        .map((_, el) => doc.$(el).text())
+        .toArray(),
+    ).toEqual(["iSwapGate", "A", "49"]);
+    expect(
+      doc
+        .$(rows[1])
+        .find("td")
+        .map((_, el) => doc.$(el).text())
+        .toArray(),
+    ).toEqual(["SwapGate", "B", "49"]);
   });
 });

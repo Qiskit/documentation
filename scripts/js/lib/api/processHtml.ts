@@ -564,10 +564,7 @@ export function updateModuleHeadings($: CheerioAPI, $main: Cheerio<any>): void {
     });
 }
 
-export function expandTableRowspan(
-  $: CheerioAPI,
-  $main: Cheerio<any>,
-): void {
+export function expandTableRowspan($: CheerioAPI, $main: Cheerio<any>): void {
   $main.find("td[rowspan], th[rowspan]").each((_, el) => {
     const $el = $(el);
     const span = parseInt($el.attr("rowspan") ?? "1", 10);

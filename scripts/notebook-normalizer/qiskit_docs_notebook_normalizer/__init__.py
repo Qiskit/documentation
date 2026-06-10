@@ -95,7 +95,6 @@ def normalize_notebook(
     """
     images = []
     change_made = False
-
     for cell_index, cell in enumerate(nb.cells):
         if cell.cell_type != "code":
             continue
