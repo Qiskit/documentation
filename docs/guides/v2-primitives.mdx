@@ -90,7 +90,8 @@ Estimator V2 example that uses precision in `run()`:
 
 ```python
 # Estimate expectation values for two PUBs, both with 0.05 precision.
-estimator.run([(circuit1, obs_array1), (circuit2, obs_array_2)], precision=0.05)
+estimator.run([(circuit1, obs_array1), 
+  (circuit2, obs_array_2)], precision=0.05)
 ```
 
 Sampler V2 example that uses shots in `run()`:
@@ -160,12 +161,14 @@ The output is now in the [`PubResult`](/docs/api/qiskit/qiskit.primitives.PubRes
   <TabItem value="Estimator142" label="1 circuit, 4 observables, 2 parameter sets">
     ```python
     # Estimator V1: Execute 1 circuit with 4 observables and 2 parameter sets
-    job = estimator_v1.run([circuit] * 8, [obs1, obs2, obs3, obs4] * 2, [vals1, vals2] * 4)
+    job = estimator_v1.run([circuit] * 8, [obs1, obs2, obs3, obs4] * 2, 
+      [vals1, vals2] * 4)
     evs = job.result().values
 
     # Estimator V2: Execute 1 circuit with 4 observables and 2 parameter sets
 
-    job = estimator_v2.run([(circuit, [[obs1], [obs2], [obs3], [obs4]], [[vals1], [vals2]])])
+    job = estimator_v2.run([(circuit, [[obs1], [obs2], [obs3], [obs4]], 
+      [[vals1], [vals2]])])
     evs = job.result()[0].data.evs
 ```
   </TabItem>
