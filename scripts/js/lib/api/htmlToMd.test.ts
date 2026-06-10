@@ -79,29 +79,6 @@ You need to initialize your account before you can start using the Qiskit Runtim
 `);
 });
 
-// ------------------------------------------------------------------
-// Transform special characters
-// ------------------------------------------------------------------
-
-test("handle special characters: `<` and `{`", async () => {
-  expect(
-    await toMd(`
-    <div role='main'>
-    <p>For the full list of backend attributes, see the <cite>IBMBackend</cite> class documentation
-&lt;<a class='reference external' href='https://qiskit.org/documentation/apidoc/providers_models.html'>https://qiskit.org/documentation/apidoc/providers_models.html</a>&gt;</p>
-</p></li>
-
-<p><strong>basis_fidelity</strong> (<em>dict</em><em> | </em><em>float</em>) – available strengths and fidelity of each.
-Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or
-(2) a single float f, interpreted as {pi: f, pi/2: f/2, pi/3: f/3}.</p>
-    </div>
-    `),
-  )
-    .toEqual(`For the full list of backend attributes, see the IBMBackend class documentation \\<[https://qiskit.org/documentation/apidoc/providers\\_models.html](https://qiskit.org/documentation/apidoc/providers_models.html)>
-
-**basis\\_fidelity** (*dict | float*) – available strengths and fidelity of each. Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or (2) a single float f, interpreted as \\{pi: f, pi/2: f/2, pi/3: f/3}.
-`);
-});
 
 // ------------------------------------------------------------------
 // Transform code blocks

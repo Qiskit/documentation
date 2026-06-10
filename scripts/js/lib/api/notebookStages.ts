@@ -69,8 +69,7 @@ export function processNotebooks(
         allInvs,
         imageDestination,
       );
-      const escaped = escapeMdxSpecialChars(linked);
-      const source = stripInlineStyles(escaped);
+      const source = stripInlineStyles(linked);
       return { ...cell, source };
     });
 
@@ -139,20 +138,6 @@ function normalizeNotebookUrl(url: string, pkg: Pkg): string {
   return transformSpecialCaseUrl([...parts.slice(0, -1), normalized].join("/"));
 }
 
-// Escape bare < outside code spans, code blocks, math regions, and HTML tags so that
-// MDX's JSX parser doesn't interpret them as tag openings (e.g. `0 <= x` → `0 &lt;= x`).
-// required for opt-mapper how-tos
-function escapeMdxSpecialChars(source: string | string[]): string {
-  const text = Array.isArray(source) ? source.join("") : source;
-  const protected_ =
-    /```[\s\S]*?```|`[^`]+`|\$\$[\s\S]*?\$\$|\$[^$\n]+?\$|<[a-zA-Z/!][^>]*>/g;
-  const parts = text.split(protected_);
-  const matches = [...text.matchAll(protected_)].map((m) => m[0]);
-  return parts
-    .map((p, i) => p.replace(/</g, "&lt;") + (matches[i] ?? ""))
-    .join("");
-}
-
 function stripInlineStyles(source: string): string {
   return source.replace(/(<[a-zA-Z][^>]*?)\s+style="[^"]*"/g, "$1");
 }
@@ -162,7 +147,7 @@ function rewriteNotebookLinks(
   objectsInv: ObjectsInv,
   allInvs: Map<string, ObjectsInv>,
   imageDestination: string,
-): string | string[] {
+): string {
   const rewrite = (line: string) => {
     return line.replace(
       /(!?)\[([^\]]*)\]\(([^)]+)\)/g,
@@ -179,7 +164,10 @@ function rewriteNotebookLinks(
     );
   };
 
-  return Array.isArray(source) ? source.map(rewrite) : rewrite(source);
+  const rewritten = Array.isArray(source)
+    ? source.map(rewrite)
+    : rewrite(source);
+  return Array.isArray(rewritten) ? rewritten.join("") : rewritten;
 }
 
 /**
