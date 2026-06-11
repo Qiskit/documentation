@@ -12,19 +12,6 @@
 
 export const METADATA_ALLOWLIST: Set<string> = new Set([
   "docs/api/qiskit/0.46/transpiler_builtin_plugins.mdx",
-  // todo: fix in addon source
-  "docs/addons/qiskit-addon-cutting/how-tos/how-to-generate-exact-quasi-dists-from-sampler.ipynb",
-  "docs/addons/qiskit-addon-cutting/how-tos/how-to-generate-exact-sampling-coefficients.ipynb",
-]);
-
-export const IMAGE_ALLOWLIST: Set<string> = new Set([
-  // todo: fix in addon source
-  "docs/addons/pauli-prop/how_tos/index.mdx",
-  "docs/addons/qiskit-addon-aqc-tensor/how-tos/index.mdx",
-  "docs/addons/qiskit-addon-cutting/explanation/index.mdx",
-  "docs/addons/qiskit-addon-cutting/how-tos/index.mdx",
-  "docs/addons/qiskit-addon-pna/how_tos/index.mdx",
-  "docs/addons/qiskit-addon-sqd/how_tos/index.mdx",
 ]);
 
 export function ignoreTitleMismatch(filepath: string): boolean {

@@ -581,56 +581,7 @@ function _qiskitCRegexes(): FilesToIgnores {
 function _addonContentLinksToFix(): FilesToIgnores {
   // These links point to old addon-repo tutorial slugs that no longer exist.
   // The addon source docs need to be updated to use the new paths.
-  return {
-    "docs/addons/qiskit-addon-sqd/index.mdx": [
-      "tutorials/01-chemistry-hamiltonian",
-      "tutorials/index",
-      "/docs/en/tutorials/sample-based-quantum-diagonalization",
-      "/docs/en/tutorials/sample-based-krylov-quantum-diagonalization",
-    ],
-    "docs/addons/qiskit-addon-cutting/index.mdx": [
-      "tutorials/index",
-      "tutorials/01-gate-cutting-to-reduce-circuit-width",
-      "tutorials/02-gate-cutting-to-reduce-circuit-depth",
-      "tutorials/03-wire-cutting-via-move-instruction",
-      "tutorials/04-automatic-cut-finding",
-      "./circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
-      "how-tos/how-to-specify-cut-wires",
-      "./circuit_cutting/explanation/index-rst#overview-of-circuit-cutting",
-    ],
-    "docs/addons/qiskit-addon-aqc-tensor/index.mdx": ["tutorials/index"],
-    "docs/addons/qiskit-addon-obp/how_tos/truncate-operator-terms.ipynb": [
-      "/docs/api/qiskit/qiskit.circuit.QuantumCircuit#html",
-    ],
-    "docs/addons/qiskit-addon-obp/how_tos/simulating-circuits-with-obp.ipynb": [
-      "/api/qiskit-ibm-runtime/noise-learner-noise-learner",
-      "/api/qiskit-ibm-runtime/noise-learner-result",
-    ],
-    "docs/addons/qiskit-addon-cutting/install.mdx": [
-      "/docs/start/install#operating-system-support",
-    ],
-    "docs/addons/qiskit-addon-cutting/explanation/index.mdx": [
-      "#equation-eq-qpd",
-      "how-tos/how-to-specify-cut-wires",
-      "/circuit_cutting/explanations/index-rst#overview-of-circuit-cutting",
-    ],
-    "docs/addons/qiskit-addon-cutting/how-tos/how-to-specify-cut-wires.ipynb": [
-      "../tutorials/03_wire_cutting_via_move_instruction.ipynb",
-    ],
-    "docs/addons/qiskit-addon-cutting/how-tos/how-to-generate-exact-sampling-coefficients.ipynb":
-      ["../tutorials/01_gate_cutting_to_reduce_circuit_width.ipynb"],
-    "docs/api/pauli-prop/propagation.mdx": [
-      "/docs/en/api/qiskit/qiskit.quantum_info.Clifford",
-      "/docs/en/api/qiskit/qiskit.quantum_info.Pauli#evolve",
-    ],
-    "docs/addons/qiskit-addon-opt-mapper/how_tos/index.mdx": [
-      "01-optimization-problem#add-or-remove-linear,-quadratic,-and-higher-order-terms-to-and-from-the-constraints",
-    ],
-    "docs/addons/qiskit-paulice/index.mdx": [
-      "tutorials/index",
-      "_images/paulice-png",
-    ],
-  };
+  return {};
 }
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
