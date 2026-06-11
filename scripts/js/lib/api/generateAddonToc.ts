@@ -91,7 +91,12 @@ async function buildSectionsFromSidebar(
   const html = await readFile(join(artifactPath, "index.html"), "utf-8");
   const $ = load(html);
 
-  const mainChildren = parseTocUl($, $(".sidebar-tree > ul.current"), pkg, addonUrlBase);
+  const mainChildren = parseTocUl(
+    $,
+    $(".sidebar-tree > ul.current"),
+    pkg,
+    addonUrlBase,
+  );
 
   const captionedSections: Array<{ title: string; children: TocEntry[] }> = [];
   $(".sidebar-tree > p.caption").each((_, caption) => {

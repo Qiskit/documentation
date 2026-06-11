@@ -61,7 +61,12 @@ function makeNavLi(item: NavItem): string {
     const title = item.replace(/\.html$/, "").replace(/[-_]/g, " ");
     return `<li class="toctree-l1"><a class="reference internal" href="${item}">${title}</a></li>`;
   }
-  const { href, title = href.replace(/\.html$/, ""), external, children } = item;
+  const {
+    href,
+    title = href.replace(/\.html$/, ""),
+    external,
+    children,
+  } = item;
   const cls = external ? "reference external" : "reference internal";
   if (children && children.length > 0) {
     const l2s = children
@@ -157,19 +162,31 @@ test("full shape with Tutorials and API reference captions", async () => {
     [
       { href: "#", title: "My Addon" },
       { href: "install.html", title: "Installation" },
-      { href: "https://github.com/Qiskit/my-addon", title: "GitHub", external: true },
+      {
+        href: "https://github.com/Qiskit/my-addon",
+        title: "GitHub",
+        external: true,
+      },
     ],
     [
       {
         caption: "Tutorials",
         items: [
-          { href: "https://quantum.cloud.ibm.com/docs/en/tutorials/my-tutorial", title: "My tutorial", external: true },
+          {
+            href: "https://quantum.cloud.ibm.com/docs/en/tutorials/my-tutorial",
+            title: "My tutorial",
+            external: true,
+          },
         ],
       },
       {
         caption: "API reference",
         items: [
-          { href: "https://quantum.cloud.ibm.com/docs/en/api/my-addon", title: "Python API reference", external: true },
+          {
+            href: "https://quantum.cloud.ibm.com/docs/en/api/my-addon",
+            title: "Python API reference",
+            external: true,
+          },
           { href: "release-notes.html", title: "Release notes" },
         ],
       },
@@ -198,14 +215,20 @@ test("full shape with Tutorials and API reference captions", async () => {
         title: "Tutorials",
         collapsible: false,
         children: [
-          { title: "My tutorial", url: "https://quantum.cloud.ibm.com/docs/en/tutorials/my-tutorial" },
+          {
+            title: "My tutorial",
+            url: "https://quantum.cloud.ibm.com/docs/en/tutorials/my-tutorial",
+          },
         ],
       },
       {
         title: "API reference",
         collapsible: false,
         children: [
-          { title: "Python API reference", url: "https://quantum.cloud.ibm.com/docs/en/api/my-addon" },
+          {
+            title: "Python API reference",
+            url: "https://quantum.cloud.ibm.com/docs/en/api/my-addon",
+          },
         ],
       },
     ],
@@ -219,7 +242,11 @@ test("API reference caption: external links pass through unchanged", async () =>
       {
         caption: "API reference",
         items: [
-          { href: "https://example.com/api/my-addon", title: "Python API reference", external: true },
+          {
+            href: "https://example.com/api/my-addon",
+            title: "Python API reference",
+            external: true,
+          },
         ],
       },
     ],
@@ -242,7 +269,11 @@ test("release notes entry is always omitted", async () => {
       {
         caption: "API reference",
         items: [
-          { href: "https://example.com/api/my-addon", title: "Python API reference", external: true },
+          {
+            href: "https://example.com/api/my-addon",
+            title: "Python API reference",
+            external: true,
+          },
           { href: "release-notes.html", title: "Release notes" },
         ],
       },
@@ -254,7 +285,9 @@ test("release notes entry is always omitted", async () => {
   const apiSection = toc.children.find((c) => c.title === "API reference");
 
   expect(apiSection?.children).toHaveLength(1);
-  expect(apiSection?.children?.[0].url).toBe("https://example.com/api/my-addon");
+  expect(apiSection?.children?.[0].url).toBe(
+    "https://example.com/api/my-addon",
+  );
 });
 
 test("sidebar order is preserved exactly", async () => {
@@ -326,7 +359,11 @@ test("subdirectory section has correct child URLs", async () => {
 test("external link in main section is passed through unchanged", async () => {
   const { artifactDir } = await makeTestDirs([
     { href: "#", title: "Home" },
-    { href: "https://github.com/Qiskit/my-addon", title: "GitHub", external: true },
+    {
+      href: "https://github.com/Qiskit/my-addon",
+      title: "GitHub",
+      external: true,
+    },
   ]);
 
   const pkg = await makePkg();
@@ -340,9 +377,7 @@ test("external link in main section is passed through unchanged", async () => {
 });
 
 test("href='#' maps to package root URL", async () => {
-  const { artifactDir } = await makeTestDirs([
-    { href: "#", title: "Home" },
-  ]);
+  const { artifactDir } = await makeTestDirs([{ href: "#", title: "Home" }]);
 
   const pkg = await makePkg();
   const toc = await generateAddonToc(pkg, artifactDir);
@@ -357,11 +392,23 @@ test("captioned sections appear after the main section in order", async () => {
     [
       {
         caption: "Tutorials",
-        items: [{ href: "https://example.com/tut", title: "A tutorial", external: true }],
+        items: [
+          {
+            href: "https://example.com/tut",
+            title: "A tutorial",
+            external: true,
+          },
+        ],
       },
       {
         caption: "API reference",
-        items: [{ href: "https://example.com/api", title: "Python API reference", external: true }],
+        items: [
+          {
+            href: "https://example.com/api",
+            title: "Python API reference",
+            external: true,
+          },
+        ],
       },
     ],
   );
@@ -369,7 +416,11 @@ test("captioned sections appear after the main section in order", async () => {
   const pkg = await makePkg();
   const toc = await generateAddonToc(pkg, artifactDir);
 
-  expect(toc.children.map((c) => c.title)).toEqual(["", "Tutorials", "API reference"]);
+  expect(toc.children.map((c) => c.title)).toEqual([
+    "",
+    "Tutorials",
+    "API reference",
+  ]);
 });
 
 test("missing index.html throws", async () => {
