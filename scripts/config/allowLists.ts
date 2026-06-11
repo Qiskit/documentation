@@ -14,9 +14,7 @@ export const METADATA_ALLOWLIST: Set<string> = new Set([
   "docs/api/qiskit/0.46/transpiler_builtin_plugins.mdx",
 ]);
 
-export const IMAGE_ALLOWLIST: Set<string> = new Set([
-
-]);
+export const IMAGE_ALLOWLIST: Set<string> = new Set([]);
 
 export function ignoreTitleMismatch(filepath: string): boolean {
   const isLearningPage = filepath.startsWith("learning/");
