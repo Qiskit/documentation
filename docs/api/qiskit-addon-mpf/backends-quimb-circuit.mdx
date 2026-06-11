@@ -24,10 +24,10 @@ A circuit-based time-evolution backend using [`quimb`](https://quimb.readthedocs
   ```
 </Admonition>
 
-|                                                                                                                                                |                                                                                 |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [`CircuitEvolver`](/docs/api/qiskit-addon-mpf/backends-quimb-circuit-circuit-evolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") | A time-evolution engine based on quantum circuits.                              |
-| [`CircuitState`](/docs/api/qiskit-addon-mpf/backends-quimb-circuit-circuit-state "qiskit_addon_mpf.backends.quimb_circuit.CircuitState")       | An MPO-like representation of a time-evolution state based on quantum circuits. |
+|                                                                                                                     |                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`CircuitEvolver`](backends-quimb-circuit-circuit-evolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") | A time-evolution engine based on quantum circuits.                              |
+| [`CircuitState`](backends-quimb-circuit-circuit-state "qiskit_addon_mpf.backends.quimb_circuit.CircuitState")       | An MPO-like representation of a time-evolution state based on quantum circuits. |
 
 ## Underlying method
 
@@ -37,14 +37,14 @@ Quimb boasts direct support for the simulation of quantum circuits in the form o
 
 This section shows a simple example to get you started with using this backend. The example shows how to create the three factory functions required for the [`setup_dynamic_lse()`](dynamic#setup_dynamic_lse "qiskit_addon_mpf.dynamic.setup_dynamic_lse").
 
-The [`IdentityStateFactory`](dynamic#identitystatefactory "qiskit_addon_mpf.dynamic.IdentityStateFactory") protocol is already fulfilled by the [`CircuitState`](/docs/api/qiskit-addon-mpf/backends-quimb-circuit-circuit-state "qiskit_addon_mpf.backends.quimb_circuit.CircuitState") constructor, rendering the `identity_factory` argument trivial:
+The [`IdentityStateFactory`](dynamic#identitystatefactory "qiskit_addon_mpf.dynamic.IdentityStateFactory") protocol is already fulfilled by the [`CircuitState`](backends-quimb-circuit-circuit-state "qiskit_addon_mpf.backends.quimb_circuit.CircuitState") constructor, rendering the `identity_factory` argument trivial:
 
 ```python
 >>> from qiskit_addon_mpf.backends.quimb_circuit import CircuitState
 >>> identity_factory = CircuitState
 ```
 
-The setup of the [`CircuitEvolver`](/docs/api/qiskit-addon-mpf/backends-quimb-circuit-circuit-evolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") is slightly more involved. It requires a **parameterized** [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) object as its input where the [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter) should take the place of the Trotter methods time step (`dt`).
+The setup of the [`CircuitEvolver`](backends-quimb-circuit-circuit-evolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") is slightly more involved. It requires a **parameterized** [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) object as its input where the [`Parameter`](/docs/api/qiskit/qiskit.circuit.Parameter) should take the place of the Trotter methods time step (`dt`).
 
 To show how such a parameterized Trotter circuit template is constructed, we reuse the same Hamiltonian and second-order Suzuki-Trotter formula as in [`quimb_layers`](backends-quimb-layers#module-qiskit_addon_mpf.backends.quimb_layers "qiskit_addon_mpf.backends.quimb_layers").
 
