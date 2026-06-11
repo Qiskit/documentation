@@ -195,7 +195,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
   ### error\_message
 
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.error_message" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L198-L205" signature="error_message()">
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.error_message" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L218-L225" signature="error_message()">
     Returns the reason if the job failed.
 
     **Returns**
@@ -261,7 +261,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
   ### metrics
 
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.metrics" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L134-L150" signature="metrics()">
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.metrics" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L154-L170" signature="metrics()">
     Return job metrics.
 
     **Returns**
@@ -283,7 +283,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
   ### properties
 
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L181-L196" signature="properties(refresh=False)">
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L201-L216" signature="properties(refresh=False)">
     Return the backend properties for this job.
 
     **Parameters**
@@ -358,7 +358,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
   ### update\_tags
 
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.update_tags" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L152-L179" signature="update_tags(new_tags)">
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.update_tags" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L172-L199" signature="update_tags(new_tags)">
     Update the tags associated with this job.
 
     **Parameters**
@@ -380,8 +380,18 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
   ### usage
 
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L126-L132" signature="usage()">
+  <Function id="qiskit_ibm_runtime.RuntimeJobV2.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_runtime_job.py#L126-L152" signature="usage(partial=False)">
     Return job usage in seconds.
+
+    By default, the job usage returned is `0` until the usage calculation is completed. Accumulated intermediate usage can be returned by the method by using the `partial` flag.
+
+    <Admonition title="Note" type="note">
+      When using `partial`, note that is not guaranteed that the final usage is returned as soon as the job is completed. It is recommended to invoke the method with `partial=False` for guarantees that the usage returned is final, or to use the [`metrics()`](#qiskit_ibm_runtime.RuntimeJobV2.metrics "qiskit_ibm_runtime.RuntimeJobV2.metrics") method for details on the completion status.
+    </Admonition>
+
+    **Parameters**
+
+    **partial** (*bool*) – if `True`, return the accumulated intermediate usage thus far until final usage is reached.
 
     **Return type**
 
