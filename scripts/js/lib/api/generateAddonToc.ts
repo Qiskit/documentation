@@ -12,10 +12,12 @@
 
 // Generates the _toc.json for an addon's content pages.
 //
-// Addon TOCs have a fixed two-part shape:
-//   1. A "main" section built from the Sphinx sidebar tree in index.html —
-//      preserving the author's toctree order and titles exactly.
-//   2. An "API reference" section linking to docs/api/{pkg}.
+// Addon TOCs have a fixed shape built from the Sphinx sidebar tree in index.html:
+//   1. A "main" section (unnamed) from the primary <ul class="current"> toctree.
+//   2. Optional captioned sections (e.g. "Tutorials") from <p class="caption"> groups.
+//   3. An "API reference" section: external items from the sphinx caption's <ul>
+//      (excluding "release notes") are replaced by a local /docs/api/{pkg} link,
+//      plus any release-notes entry from the sphinx caption.
 //
 // Called by addonDocsPipeline.ts; for API doc TOCs see generateToc.ts.
 
@@ -41,66 +43,90 @@ type AddonToc = {
 
 export async function generateAddonToc(
   pkg: Pkg,
-  docsBaseFolder: string,
   artifactPath: string,
 ): Promise<AddonToc> {
   const addonUrlBase = `${DOCS_BASE_PATH}/addons/${pkg.name}`;
 
-  const mainChildren = await buildMainFromSidebar(
+  const { mainChildren, captionedSections } = await buildSectionsFromSidebar(
     artifactPath,
     pkg,
     addonUrlBase,
   );
 
-  const apiSection: AddonTocSection = {
-    title: "API reference",
-    collapsible: false,
-    children: [
-      {
-        title: `${pkg.title} API reference`,
-        url: `${DOCS_BASE_PATH}/api/${pkg.name}`,
-      },
-    ],
-  };
+  const children: AddonTocSection[] = [
+    { title: "", children: mainChildren, collapsible: false },
+    ...captionedSections.map((section) => ({
+      title: section.title,
+      collapsible: false as const,
+      children: section.children,
+    })),
+  ];
 
   return {
     parentUrl: "/docs/guides/addons",
     parentLabel: "Documentation",
     title: `${pkg.title} ${pkg.version}`,
     collapsed: true,
-    children: [
-      { title: "", children: mainChildren, collapsible: false },
-      apiSection,
-    ],
+    children,
   };
 }
 
-const SKIP_ITEMS = ["api reference", "release notes", "tutorials"];
+type SidebarSections = {
+  mainChildren: TocEntry[];
+  captionedSections: Array<{ title: string; children: TocEntry[] }>;
+};
 
 /**
- * Builds the main TOC section from the sidebar tree in the Sphinx index.html.
- * Each toctree-l1 item becomes either a flat entry (top-level page) or a
- * section with children (subdirectory). Titles come directly from the sidebar
- * link text — exactly what the docs author wrote in their toctree.
+ * Parses the Sphinx sidebar tree from index.html into the main (uncaptioned)
+ * section and any captioned sections (e.g. "Tutorials", "API reference").
+ *
+ * The main section comes from the primary <ul class="current"> toctree.
+ * Captioned sections come from <p class="caption"> + sibling <ul> pairs.
  */
-async function buildMainFromSidebar(
+async function buildSectionsFromSidebar(
   artifactPath: string,
   pkg: Pkg,
   addonUrlBase: string,
-): Promise<TocEntry[]> {
+): Promise<SidebarSections> {
   const html = await readFile(join(artifactPath, "index.html"), "utf-8");
   const $ = load(html);
+
+  const mainChildren = parseTocUl($, $(".sidebar-tree > ul.current"), pkg, addonUrlBase);
+
+  const captionedSections: Array<{ title: string; children: TocEntry[] }> = [];
+  $(".sidebar-tree > p.caption").each((_, caption) => {
+    const title = $(caption).find(".caption-text").text().trim();
+    const ul = $(caption).next("ul");
+    const children = parseTocUl($, ul, pkg, addonUrlBase);
+    if (title && children.length > 0) {
+      captionedSections.push({ title, children });
+    }
+  });
+
+  return { mainChildren, captionedSections };
+}
+
+/**
+ * Converts a <ul> of toctree-l1 items into TocEntry objects.
+ * Top-level pages become flat entries; has-children items become sections.
+ */
+function parseTocUl(
+  $: ReturnType<typeof load>,
+  ul: ReturnType<ReturnType<typeof load>>,
+  pkg: Pkg,
+  addonUrlBase: string,
+): TocEntry[] {
   const entries: TocEntry[] = [];
 
-  $(".sidebar-tree > ul > li").each((_, l1) => {
+  ul.children("li").each((_, l1) => {
     const $l1 = $(l1);
     const a = $l1.children("a").first();
     const href = a.attr("href") ?? "";
     const title = a.text().trim();
 
-    if (SKIP_ITEMS.includes(title.toLowerCase())) return;
+    if (title.toLowerCase() === "release notes") return;
 
-    // External link (e.g. GitHub)
+    // External link (e.g. GitHub, tutorial links)
     if (a.hasClass("external")) {
       entries.push({ title, url: href });
       return;

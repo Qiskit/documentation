@@ -130,7 +130,7 @@ export async function runAddonDocsPipeline(
   );
 
   console.log("Generating addon toc");
-  const toc = await generateAddonToc(pkg, docsBaseFolder, artifactPath);
+  const toc = await generateAddonToc(pkg, artifactPath);
   await writeFile(
     `${outputPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
