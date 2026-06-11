@@ -46,7 +46,9 @@ The basic code to connect Qiskit with your Qiskit Runtime service instance follo
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 service = QiskitRuntimeService(channel=<channel>,
-            token=<your-API_KEY>, # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
+            # For `token`, use the 44-character API_KEY you created 
+            # and saved from the IBM Quantum Platform dashboard
+            token=<your-API_KEY>, 
             instance=<instance_CRN>)
 ```
 
@@ -62,7 +64,9 @@ The fastest way to get a `QiskitRuntimeService` instance running is the direct i
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-service = QiskitRuntimeService(token=<cloud_api_key>, # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
+# For `token`, use the 44-character API_KEY you created 
+# and saved from the IBM Quantum Platform dashboard
+service = QiskitRuntimeService(token=<cloud_api_key>, 
             instance=<instance_CRN>)
 ```
 
@@ -173,7 +177,8 @@ service = QiskitRuntimeService(token=<your-API_KEY>, tags=['services'])
 In this example, the service searches all premium and open instances that are available to the account to find ones that can access the specified backend. If a backend is in both a Premium and an Open Plan instance, the Premium Plan instance is prioritized because `premium` is specified first in `plans_preference`.
 
 ```python
-service = QiskitRuntimeService(token=<your-API_KEY>, plans_preference=['premium', 'open'])
+service = QiskitRuntimeService(token=<your-API_KEY>, 
+    plans_preference=['premium', 'open'])
 ```
 
 #### Determine which instance was chosen

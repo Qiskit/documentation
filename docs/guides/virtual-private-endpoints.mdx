@@ -59,7 +59,9 @@ VPE support requires `qiskit-ibm-runtime` v0.24.0 or later.
 When instantiating `QiskitRuntimeService`, specify `private_endpoint=True`.
 
 ```python
-service = QiskitRuntimeService(token="your-API_KEY", # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
+# For `token`, use the 44-character API_KEY you created 
+# and saved from the IBM Quantum Platform Home dashboard
+service = QiskitRuntimeService(token="your-API_KEY", 
                               instance="INSTANCE_CRN",
                               channel="ibm_cloud",
                               private_endpoint=True)
@@ -70,7 +72,11 @@ service = QiskitRuntimeService(token="your-API_KEY", # Use the 44-character API_
 After creating an endpoint gateway for IBM Quantum Platform, use the service endpoint's FQDN for the target region.
 
 ```bash
-  curl -X POST https://private.us-east.quantum.cloud.ibm.com/api/v1/jobs -H "Authorization: Bearer $BEARER_TOKEN" -H "Service-CRN: $SERVICE_INSTANCE_CRN" -d '{
+  curl -X POST \
+  https://private.us-east.quantum.cloud.ibm.com/api/v1/jobs \
+  -H "Authorization: Bearer $BEARER_TOKEN" \
+  -H "Service-CRN: $SERVICE_INSTANCE_CRN" \
+  -d '{
     "backend": "backend",
     "program_id": "sampler"
   }'
