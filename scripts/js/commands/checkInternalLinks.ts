@@ -191,53 +191,10 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     ADDON_GLOBS_TO_LOAD,
     { check: args.historicalApis },
   );
-  const mthree = await determineHistoricalFileBatches(
-    "qiskit-addon-mthree",
-    ADDON_GLOBS_TO_LOAD,
-    { check: args.historicalApis },
-  );
-  const pna = await determineHistoricalFileBatches(
-    "qiskit-addon-pna",
-    ADDON_GLOBS_TO_LOAD,
-    { check: args.historicalApis },
-  );
-  const slc = await determineHistoricalFileBatches(
-    "qiskit-addon-slc",
-    ADDON_GLOBS_TO_LOAD,
-    { check: args.historicalApis },
-  );
-  const optMapper = await determineHistoricalFileBatches(
-    "qiskit-addon-opt-mapper",
-    ADDON_GLOBS_TO_LOAD,
-    { check: args.historicalApis },
-  );
-  const paulice = await determineHistoricalFileBatches(
-    "qiskit-paulice",
-    ADDON_GLOBS_TO_LOAD,
-    { check: args.historicalApis },
-  );
-  const pauliProp = await determineHistoricalFileBatches(
-    "pauli-prop",
-    ADDON_GLOBS_TO_LOAD,
-    { check: args.historicalApis },
-  );
 
   // This is intentionally ordered so that the smallest APIs are checked first,
   // since they are much faster to check.
-  result.push(
-    ...transpiler,
-    ...sqd,
-    ...mpf,
-    ...utils,
-    ...mthree,
-    ...pna,
-    ...slc,
-    ...optMapper,
-    ...paulice,
-    ...pauliProp,
-    ...runtime,
-    ...qiskit,
-  );
+  result.push(...transpiler, ...sqd, ...mpf, ...utils, ...runtime, ...qiskit);
 
   if (args.qiskitLegacyReleaseNotes) {
     result.push(await determineQiskitLegacyReleaseNotes());

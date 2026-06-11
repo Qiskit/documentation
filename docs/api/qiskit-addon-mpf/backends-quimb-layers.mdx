@@ -24,16 +24,16 @@ A layer-wise time-evolution backend using [`quimb`](https://quimb.readthedocs.io
   ```
 </Admonition>
 
-|                                                                                                                                                    |                                                                                                                                                                                             |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`LayerwiseEvolver`](/docs/api/qiskit-addon-mpf/backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") | A special case of the [`TEBDEvolver`](/docs/api/qiskit-addon-mpf/backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") based on layer-wise evolution models. |
-| [`LayerModel`](/docs/api/qiskit-addon-mpf/backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel")                   | A model for representing a layer of time-evolution interactions.                                                                                                                            |
+|                                                                                                                         |                                                                                                                                                                  |
+| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`LayerwiseEvolver`](backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") | A special case of the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") based on layer-wise evolution models. |
+| [`LayerModel`](backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel")                   | A model for representing a layer of time-evolution interactions.                                                                                                 |
 
 ## Underlying method
 
 This module provides a time-evolution backend similar to the TEBD-based one provided by the [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd") module. The main difference is that this module gives the user full flexibility for defining their product formulas, thereby not limiting them to the options built into the [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb) library.
 
-At its core, the algorithm provided by this module is still a TEBD \[1] algorithm. However, rather than enforcing the alternating updates to the even and odd bonds of the time-evolution state (see also [`quimb_tebd.TEBDEvolver.sweep()`](/docs/api/qiskit-addon-mpf/backends-quimb-tebd-tebd-evolver#sweep "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver.sweep")) this implementation outsources the responsibility of updating bonds in alternating fashion to the definition of multiple time-evolution **layers**.
+At its core, the algorithm provided by this module is still a TEBD \[1] algorithm. However, rather than enforcing the alternating updates to the even and odd bonds of the time-evolution state (see also [`quimb_tebd.TEBDEvolver.sweep()`](backends-quimb-tebd-tebd-evolver#sweep "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver.sweep")) this implementation outsources the responsibility of updating bonds in alternating fashion to the definition of multiple time-evolution **layers**.
 
 This is best explained with an example. Let us assume, we have some generic Hamiltonian acting on a 1-dimensional chain of sites.
 
@@ -80,19 +80,19 @@ In the circuit above, we can clearly identify its layer-wise structure. We can e
 
 It is not possible to instruct Quimb’s TEBD algorithm to simulate the exact structure of the circuit shown above. The reason for that is a limitation in its interface, as it only accepts the full Hamiltonian to be provided which is then time-evolved using pre-defined Trotter formulas. However, in doing so it does not treat the order of the Pauli terms in a Hamiltonian with any significance (like we do here).
 
-If one wants to compute the dynamic MPF coefficients of a time-evolution employing a product formula structure other than the ones implemented in Quimb (like the example above), then one can use the time-evolution algorithm provided by this module. Rather than taking a single monolithic Hamiltonian whose time-evolution is to be modeled, the [`LayerwiseEvolver`](/docs/api/qiskit-addon-mpf/backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") accepts a list of [`LayerModel`](/docs/api/qiskit-addon-mpf/backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel") objects, each one describing an individual layer of the product formula. This gives the user full flexibility in defining the Trotter decomposition down to the most granular level.
+If one wants to compute the dynamic MPF coefficients of a time-evolution employing a product formula structure other than the ones implemented in Quimb (like the example above), then one can use the time-evolution algorithm provided by this module. Rather than taking a single monolithic Hamiltonian whose time-evolution is to be modeled, the [`LayerwiseEvolver`](backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") accepts a list of [`LayerModel`](backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel") objects, each one describing an individual layer of the product formula. This gives the user full flexibility in defining the Trotter decomposition down to the most granular level.
 
 However, caution must be applied to ensure that the property of TEBD to update even and odd bonds in an alternating manner is still guaranteed. Luckily, for quantum circuits consisting of at most two-qubit gates, this property is satisfied by construction.
 
 ## Code example
 
-In this section, we build up on the example above and show how to take a custom Trotter formula and use it to construct a [`LayerwiseEvolver`](/docs/api/qiskit-addon-mpf/backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") which can be used to replace the [`quimb_tebd.TEBDEvolver`](/docs/api/qiskit-addon-mpf/backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") in the workflow described in [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd").
+In this section, we build up on the example above and show how to take a custom Trotter formula and use it to construct a [`LayerwiseEvolver`](backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") which can be used to replace the [`quimb_tebd.TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") in the workflow described in [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd").
 
 <Admonition title="Hint" type="note">
   The overall workflow of using this module is the same as of the [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd") module, so be sure to read those instructions as well.
 </Admonition>
 
-Simply put, we must convert each one of the circuit `layers` (see above) into a [`LayerModel`](/docs/api/qiskit-addon-mpf/backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel") instance. For this purpose, we can use its [`from_quantum_circuit()`](/docs/api/qiskit-addon-mpf/backends-quimb-layers-layer-model#from_quantum_circuit "qiskit_addon_mpf.backends.quimb_layers.LayerModel.from_quantum_circuit") method.
+Simply put, we must convert each one of the circuit `layers` (see above) into a [`LayerModel`](backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel") instance. For this purpose, we can use its [`from_quantum_circuit()`](backends-quimb-layers-layer-model#from_quantum_circuit "qiskit_addon_mpf.backends.quimb_layers.LayerModel.from_quantum_circuit") method.
 
 ```python
 >>> from qiskit_addon_mpf.backends.quimb_layers import LayerModel
@@ -102,7 +102,7 @@ Simply put, we must convert each one of the circuit `layers` (see above) into a 
 
 In the code above you can see how simple the conversion is for layers which contain only two-qubit gates acting on mutually exclusive qubits (which layers of depth 1 guarantee).
 
-However, we must be more careful with layers including single-qubit gates. The reason for that is that the TEBD algorithm underlying the [`LayerwiseEvolver`](/docs/api/qiskit-addon-mpf/backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") must update even and odd bonds in an alternating manner. And because single-qubit gates are not applied on a site, but instead are split in half and applied to the bonds on either side, a layer of single-qubit gates acting on all qubits would break this assumption.
+However, we must be more careful with layers including single-qubit gates. The reason for that is that the TEBD algorithm underlying the [`LayerwiseEvolver`](backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") must update even and odd bonds in an alternating manner. And because single-qubit gates are not applied on a site, but instead are split in half and applied to the bonds on either side, a layer of single-qubit gates acting on all qubits would break this assumption.
 
 To circumvent this problem, we can take any layer consisting of only single-qubit gates, and apply twice (once on the even and once on the odd bonds).
 
@@ -129,7 +129,7 @@ Now that we know how to treat layers consisting of two-qubit and single-qubit ga
 >>> assert len(layer_models) == 8
 ```
 
-In the end, we have 8 [`LayerModel`](/docs/api/qiskit-addon-mpf/backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel")’s, one for each of the 4 two-qubit layers, and two for each of the 2 single-qubit layers.
+In the end, we have 8 [`LayerModel`](backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel")’s, one for each of the 4 two-qubit layers, and two for each of the 2 single-qubit layers.
 
 Finally, we can define our [`ApproxEvolverFactory`](dynamic#approxevolverfactory "qiskit_addon_mpf.dynamic.ApproxEvolverFactory") protocol to be used within the [`setup_dynamic_lse()`](dynamic#setup_dynamic_lse "qiskit_addon_mpf.dynamic.setup_dynamic_lse") function.
 
@@ -147,7 +147,7 @@ Finally, we can define our [`ApproxEvolverFactory`](dynamic#approxevolverfactory
   It should be noted, that in this workflow we have not yet fixed the time step used by the Trotter formula. We have also only set up a single repetition of the Trotter formula as the rest will be done by the internal [`DynamicMPF`](dynamic#dynamicmpf "qiskit_addon_mpf.dynamic.DynamicMPF") algorithm, executed during [`setup_dynamic_lse()`](dynamic#setup_dynamic_lse "qiskit_addon_mpf.dynamic.setup_dynamic_lse").
 </Admonition>
 
-Of course, you could also use this to specify a [`ExactEvolverFactory`](dynamic#exactevolverfactory "qiskit_addon_mpf.dynamic.ExactEvolverFactory"). But you can also mix-and-match a [`quimb_layers.LayerwiseEvolver`](/docs/api/qiskit-addon-mpf/backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") with a [`quimb_tebd.TEBDEvolver`](/docs/api/qiskit-addon-mpf/backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver").
+Of course, you could also use this to specify a [`ExactEvolverFactory`](dynamic#exactevolverfactory "qiskit_addon_mpf.dynamic.ExactEvolverFactory"). But you can also mix-and-match a [`quimb_layers.LayerwiseEvolver`](backends-quimb-layers-layerwise-evolver "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver") with a [`quimb_tebd.TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver").
 
 ## Resources
 

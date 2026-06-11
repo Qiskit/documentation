@@ -16,12 +16,12 @@ python_api_name: qiskit_addon_cutting.qpd
 
 Main quasiprobability decomposition functionality.
 
-|                                                                                                                                |                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
-| [`QPDBasis`](/docs/api/qiskit-addon-cutting/qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis")                                 | Basis in which to decompose an operation.                                    |
-| [`BaseQPDGate`](/docs/api/qiskit-addon-cutting/qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate")                       | Base class for a gate to be decomposed using quasiprobability decomposition. |
-| [`SingleQubitQPDGate`](/docs/api/qiskit-addon-cutting/qpd-single-qubit-qpd-gate "qiskit_addon_cutting.qpd.SingleQubitQPDGate") | Single qubit gate to be decomposed using quasiprobability decomposition.     |
-| [`TwoQubitQPDGate`](/docs/api/qiskit-addon-cutting/qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")          | Two qubit gate to be decomposed using quasiprobability decomposition.        |
+|                                                                                                 |                                                                              |
+| ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis")                                 | Basis in which to decompose an operation.                                    |
+| [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate")                       | Base class for a gate to be decomposed using quasiprobability decomposition. |
+| [`SingleQubitQPDGate`](qpd-single-qubit-qpd-gate "qiskit_addon_cutting.qpd.SingleQubitQPDGate") | Single qubit gate to be decomposed using quasiprobability decomposition.     |
+| [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")          | Two qubit gate to be decomposed using quasiprobability decomposition.        |
 
 ### WeightType
 
@@ -52,7 +52,7 @@ Main quasiprobability decomposition functionality.
 
   **Parameters**
 
-  *   **qpd\_bases** ([`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)\[[`QPDBasis`](/docs/api/qiskit-addon-cutting/qpd-qpd-basis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")]) – The [`QPDBasis`](/docs/api/qiskit-addon-cutting/qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") objects from which to generate weights
+  *   **qpd\_bases** ([`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)\[[`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")]) – The [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") objects from which to generate weights
   *   **num\_samples** ([`float`](https://docs.python.org/3/library/functions.html#float)) – Controls the number of weights to generate
 
   **Return type**
@@ -61,7 +61,7 @@ Main quasiprobability decomposition functionality.
 
   **Returns**
 
-  A mapping from a given decomposition to its weight. Keys are tuples of indices – one index per input [`QPDBasis`](/docs/api/qiskit-addon-cutting/qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis"). The indices correspond to a specific decomposition mapping in the basis.
+  A mapping from a given decomposition to its weight. Keys are tuples of indices – one index per input [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis"). The indices correspond to a specific decomposition mapping in the basis.
 
   Values are tuples. The first element is a number corresponding to the weight of the contribution. The second element is the [`WeightType`](#qiskit_addon_cutting.qpd.WeightType "qiskit_addon_cutting.qpd.WeightType"), either `EXACT` or `SAMPLED`.
 </Function>
@@ -84,15 +84,15 @@ Main quasiprobability decomposition functionality.
 
   **Returns**
 
-  Circuit which has had all its [`BaseQPDGate`](/docs/api/qiskit-addon-cutting/qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instances decomposed into local operations.
+  Circuit which has had all its [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instances decomposed into local operations.
 
   The circuit will contain a new, final classical register to contain the QPD measurement outcomes (accessible at `retval.cregs[-1]`).
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – An index in `instruction_ids` corresponds to a gate which is not a [`BaseQPDGate`](/docs/api/qiskit-addon-cutting/qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instance.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – An index in `instruction_ids` corresponds to a gate which is not a [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instance.
   *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – A list within instruction\_ids is not length 1 or 2.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The total number of indices in `instruction_ids` does not equal the number of [`BaseQPDGate`](/docs/api/qiskit-addon-cutting/qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instances in the circuit.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – The total number of indices in `instruction_ids` does not equal the number of [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instances in the circuit.
   *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Gates within the same decomposition hold different QPD bases.
   *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Length of `map_ids` does not equal the number of decompositions in the circuit.
 </Function>
@@ -100,19 +100,19 @@ Main quasiprobability decomposition functionality.
 ### qpdbasis\_from\_instruction
 
 <Function id="qiskit_addon_cutting.qpd.qpdbasis_from_instruction" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/qpd/decompositions.py" signature="qpdbasis_from_instruction(gate, /)">
-  Generate a [`QPDBasis`](/docs/api/qiskit-addon-cutting/qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") object, given a supported operation.
+  Generate a [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") object, given a supported operation.
 
   All two-qubit gates which implement the [`to_matrix()`](/docs/api/qiskit/qiskit.circuit.Gate#to_matrix) method are supported. This should include the vast majority of gates with no unbound parameters, but there are some special cases (see, e.g., [qiskit issue #10396](https://github.com/Qiskit/qiskit/issues/10396)).
 
-  The [`Move`](/docs/api/qiskit-addon-cutting/instructions-move "qiskit_addon_cutting.instructions.Move") operation, which can be used to specify a wire cut, is also supported.
+  The [`Move`](instructions-move "qiskit_addon_cutting.instructions.Move") operation, which can be used to specify a wire cut, is also supported.
 
   **Return type**
 
-  [`QPDBasis`](/docs/api/qiskit-addon-cutting/qpd-qpd-basis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")
+  [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")
 
   **Returns**
 
-  The newly-instantiated [`QPDBasis`](/docs/api/qiskit-addon-cutting/qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") object
+  The newly-instantiated [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") object
 
   **Raises**
 
