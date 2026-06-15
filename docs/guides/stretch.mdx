@@ -111,16 +111,19 @@ sampler.options.experimental = {
 
 # Access the stretch values from the metadata.
 job_result = job.result()
-circuit_stretch_values = job_result[0].metadata["compilation"]["stretch_values"]
+circuit_stretch_values = (
+    job_result[0].metadata["compilation"]["stretch_values"]
+    )
 
 # Visualize the timing.
-# Use the sliders at the bottom, the controls at the top, and the legend on the side 
-# of the output to customize the view.
-draw_circuit_schedule_timing(ob.result()[0].metadata['compilation']['scheduler_timing']['timing'])
+# Use the sliders at the bottom, the controls at the top, and the 
+# legend on the side of the output to customize the view.
+draw_circuit_schedule_timing(ob.result()[0].metadata['compilation']
+    ['scheduler_timing']['timing'])
 ```
 
 <Admonition type="note">
-Although the total circuit time is returned in the "compilation" metadata, this is NOT the time used for billing (quantum time).
+Although the total circuit time is returned in the "compilation" metadata, this is NOT the time used for billing (QPU time).
 </Admonition>
 
 ### Understand the metadata output
@@ -183,7 +186,8 @@ The values returned for duration depend on the goal value and the calculated rem
 You can use a visualization to help understand and verify the timing. 
 
 ```python
-draw_circuit_schedule_timing(job.result()[0].metadata['compilation']['scheduler_timing']['timing'])
+draw_circuit_schedule_timing(job.result()[0].metadata
+    ['compilation']['scheduler_timing']['timing'])
 ```
 
 In the following image, based on the example output, `foo` corresponds to the stretches on Qubit 2. The first stretch delay that uses `foo` starts at the end of the `init_play` (1365). The stretch duration is 10, so that delay ends when the `x` gate starts (1365+10=1375). You can interpret the second and third stretches similarly.

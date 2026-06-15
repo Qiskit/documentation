@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.ParameterVector
 
 # ParameterVector
 
-<Class id="qiskit.circuit.ParameterVector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parametervector.py#L20-L116" signature="qiskit.circuit.ParameterVector(name, length=0)" modifiers="class">
+<Class id="qiskit.circuit.ParameterVector" isDedicatedPage={true} signature="qiskit.circuit.ParameterVector(name, length=0, uuid=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A container of many related [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects.
@@ -24,43 +24,41 @@ python_api_name: qiskit.circuit.ParameterVector
   ### name
 
   <Attribute id="qiskit.circuit.ParameterVector.name">
-    The name of the [`ParameterVector`](#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+    The base name of the vector.
   </Attribute>
 
   ### params
 
   <Attribute id="qiskit.circuit.ParameterVector.params">
-    A list of the contained [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") instances.
+    A sequence of the contained [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") instances.
 
-    It is not safe to mutate this list.
+    Mutations to this object are not tracked.
+  </Attribute>
+
+  ### uuid
+
+  <Attribute id="qiskit.circuit.ParameterVector.uuid">
+    Get the root UUID of this vector.
   </Attribute>
 
   ## Methods
 
   ### index
 
-  <Function id="qiskit.circuit.ParameterVector.index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parametervector.py#L56-L60" signature="index(value)">
-    Find the index of a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") within the list.
+  <Function id="qiskit.circuit.ParameterVector.index" signature="index(val)">
+    Find the index of a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") within the sequence.
 
-    It is typically much faster to use the [`ParameterVectorElement.index`](qiskit.circuit.ParameterVectorElement#index "qiskit.circuit.ParameterVectorElement.index") property.
+    This is an inefficient way of accessing the [`index`](qiskit.circuit.ParameterVectorElement#index "qiskit.circuit.ParameterVectorElement.index") field on the given value, which you should use instead.
   </Function>
 
   ### resize
 
-  <Function id="qiskit.circuit.ParameterVector.resize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parametervector.py#L88-L116" signature="resize(length)">
-    Resize the parameter vector. If necessary, new elements are generated.
+  <Function id="qiskit.circuit.ParameterVector.resize" signature="resize(length)">
+    Change the length of this vector.
 
-    Note that the UUID of each [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") element will be generated deterministically given the root UUID of the `ParameterVector` and the index of the element. In particular, if a `ParameterVector` is resized to be smaller and then later resized to be larger, the UUID of the later generated element at a given index will be the same as the UUID of the previous element at that index. This is to ensure that the parameter instances do not change.
+    Any references to [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") instances with lengths greater than `length` are invalidated by calling this.
 
-    ```python
-    >>> from qiskit.circuit import ParameterVector
-    >>> pv = ParameterVector("theta", 20)
-    >>> elt_19 = pv[19]
-    >>> pv.resize(10)
-    >>> pv.resize(20)
-    >>> pv[19] == elt_19
-    True
-    ```
+    The UUIDs of [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") instances that are deleted or created by this method are stable; the UUIDs are always derived as index offsets from the vector’s UUID.
   </Function>
 </Class>
 

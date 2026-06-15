@@ -19,11 +19,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
 
   This contains the coefficient (`coeff`), the number of qubits of the observable (`num_qubits`) and pointers to the `bit_terms` and `indices` arrays, which have length `len`. It’s the responsibility of the user that the data is coherent, see also the below section on safety.
 
-  <span id="structQkObsTerm_1autotoc_md392" />
+  <span id="structQkObsTerm_1autotoc_md437" />
 
   #### Safety
 
-  <span id="structQkObsTerm_1autotoc_md392" />
+  <span id="structQkObsTerm_1autotoc_md437" />
 
   *   `bit_terms` must be a non-null, aligned pointer to `len` elements of type `QkBitTerm`.
   *   `indices` must be a non-null, aligned pointer to `len` elements of type `uint32_t`.
@@ -66,7 +66,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
 <Function id="qk_obsterm_str" signature="char *qk_obsterm_str(const QkObsTerm *term)">
   Return a string representation of the sparse term.
 
-  <span id="group__QkObsTerm_1autotoc_md242" />
+  <span id="group__QkObsTerm_1autotoc_md283" />
 
   #### Example
 
@@ -76,13 +76,14 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
   qk_obs_term(obs, 0, &term);
   char *string = qk_obsterm_str(&term);
   qk_str_free(string);
+  qk_obs_free(obs);
   ```
 
-  <span id="group__QkObsTerm_1autotoc_md243" />
+  <span id="group__QkObsTerm_1autotoc_md284" />
 
   #### Safety
 
-  <span id="group__QkObsTerm_1autotoc_md243" />
+  <span id="group__QkObsTerm_1autotoc_md284" />
 
   Behavior is undefined `term` is not a valid, non-null pointer to a `QkObsTerm`.
 
@@ -96,6 +97,6 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
 
   **Returns**
 
-  The function exit code. This is `>0` if reading the term failed.
+  A pointer to a nul-terminated char array of the string representation for `term`
 </Function>
 
