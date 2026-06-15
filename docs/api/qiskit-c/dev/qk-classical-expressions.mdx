@@ -1,0 +1,985 @@
+---
+title: Classical Expressions (dev version)
+description: API reference for Classical Expressions in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Classical Expressions
+---
+
+# Classical Expressions
+
+The Qiskit C API for classical expressions provides facilities for inspecting classical expressions used in Qiskit. This API enables users to traverse and examine expression trees through a set of enums, structs, and accessor functions. You can inspect the structure of expressions, identify node types, query type information and access detailed properties of each node in the expression tree. Currently, classical expressions can only be accessed through the control-flow API, for example when querying conditions that are comprised of classical expressions.
+
+Note that the functions in this API return borrowed pointers that remain valid as long as the parent expression tree exists, so these pointers do not need to be freed.
+
+## Data Types
+
+### QkExprNodeKind
+
+<Class id="QkExprNodeKind" signature="enum QkExprNodeKind">
+  The different types of expression nodes that can appear in a classical expression tree.
+
+  *Values:*
+
+  #### enumerator QkExprNodeKind\_Unary
+
+  <Attribute id="QkExprNodeKind_Unary">
+    Unary operation expression (e.g., NOT, negation)
+  </Attribute>
+
+  #### enumerator QkExprNodeKind\_Binary
+
+  <Attribute id="QkExprNodeKind_Binary">
+    Binary operation expression (e.g., AND, OR, arithmetic operations)
+  </Attribute>
+
+  #### enumerator QkExprNodeKind\_Cast
+
+  <Attribute id="QkExprNodeKind_Cast">
+    Type cast expression
+  </Attribute>
+
+  #### enumerator QkExprNodeKind\_Value
+
+  <Attribute id="QkExprNodeKind_Value">
+    Literal value expression
+  </Attribute>
+
+  #### enumerator QkExprNodeKind\_Var
+
+  <Attribute id="QkExprNodeKind_Var">
+    Variable reference expression
+  </Attribute>
+
+  #### enumerator QkExprNodeKind\_Stretch
+
+  <Attribute id="QkExprNodeKind_Stretch">
+    Stretch expression (timing-related)
+  </Attribute>
+
+  #### enumerator QkExprNodeKind\_Index
+
+  <Attribute id="QkExprNodeKind_Index">
+    Index/subscript expression
+  </Attribute>
+</Class>
+
+### QkExprType
+
+<Class id="QkExprType" signature="enum QkExprType">
+  The data types that can be used in classical expressions.
+
+  *Values:*
+
+  #### enumerator QkExprType\_Bool
+
+  <Attribute id="QkExprType_Bool">
+    Boolean type
+  </Attribute>
+
+  #### enumerator QkExprType\_Duration
+
+  <Attribute id="QkExprType_Duration">
+    Duration type
+  </Attribute>
+
+  #### enumerator QkExprType\_Float
+
+  <Attribute id="QkExprType_Float">
+    Floating-point type
+  </Attribute>
+
+  #### enumerator QkExprType\_Uint
+
+  <Attribute id="QkExprType_Uint">
+    Unsigned integer type
+  </Attribute>
+</Class>
+
+### QkExprTypeInfo
+
+<Class id="QkExprTypeInfo" signature="struct QkExprTypeInfo">
+  The complete representation of the data type used for an expression.
+
+  #### QkExprType ty
+
+  <Attribute id="ty">
+    The expression type
+  </Attribute>
+
+  #### uint16\_t width
+
+  <Attribute id="width">
+    Bit width for the Uint expression type
+  </Attribute>
+</Class>
+
+### QkUnaryOpType
+
+<Class id="QkUnaryOpType" signature="enum QkUnaryOpType">
+  The operation types a unary expression can hold. Values are one-based to match the Python convention of the classical expression system.
+
+  *Values:*
+
+  #### enumerator QkUnaryOpType\_BitNot
+
+  <Attribute id="QkUnaryOpType_BitNot">
+    Bitwise NOT operation
+  </Attribute>
+
+  #### enumerator QkUnaryOpType\_LogicNot
+
+  <Attribute id="QkUnaryOpType_LogicNot">
+    Logical NOT operation
+  </Attribute>
+
+  #### enumerator QkUnaryOpType\_Negate
+
+  <Attribute id="QkUnaryOpType_Negate">
+    Arithmetic negation
+  </Attribute>
+</Class>
+
+### QkUnaryExprInfo
+
+<Class id="QkUnaryExprInfo" signature="struct QkUnaryExprInfo">
+  Describes a unary expression, including its operator, operand, result type and whether it is constant. Returned by the `qk_expr_unary_info` function. The `operand` field is a borrowed pointer to the operand of the unary operation expression.
+
+  #### QkUnaryOpType op
+
+  <Attribute id="op">
+    The unary operator
+  </Attribute>
+
+  #### const QkExprNode \*operand
+
+  <Attribute id="operand">
+    Borrowed pointer to the operand expression
+  </Attribute>
+
+  #### QkExprTypeInfo ty
+
+  <Attribute id="ty">
+    Result type of the operation
+  </Attribute>
+
+  #### bool constant
+
+  <Attribute id="constant">
+    Whether the expression is constant
+  </Attribute>
+</Class>
+
+### QkBinaryOpType
+
+<Class id="QkBinaryOpType" signature="enum QkBinaryOpType">
+  The operation types a binary expression can hold. Values are one-based to match Python convention.
+
+  *Values:*
+
+  #### enumerator QkBinaryOpType\_BitAnd
+
+  <Attribute id="QkBinaryOpType_BitAnd">
+    Bitwise AND operation
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_BitOr
+
+  <Attribute id="QkBinaryOpType_BitOr">
+    Bitwise OR operation
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_BitXor
+
+  <Attribute id="QkBinaryOpType_BitXor">
+    Bitwise XOR operation
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_LogicAnd
+
+  <Attribute id="QkBinaryOpType_LogicAnd">
+    Logical AND operation
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_LogicOr
+
+  <Attribute id="QkBinaryOpType_LogicOr">
+    Logical OR operation
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_Equal
+
+  <Attribute id="QkBinaryOpType_Equal">
+    Equality comparison
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_NotEqual
+
+  <Attribute id="QkBinaryOpType_NotEqual">
+    Inequality comparison
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_Less
+
+  <Attribute id="QkBinaryOpType_Less">
+    Less than comparison
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_LessEqual
+
+  <Attribute id="QkBinaryOpType_LessEqual">
+    Less than or equal comparison
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_Greater
+
+  <Attribute id="QkBinaryOpType_Greater">
+    Greater than comparison
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_GreaterEqual
+
+  <Attribute id="QkBinaryOpType_GreaterEqual">
+    Greater than or equal comparison
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_ShiftLeft
+
+  <Attribute id="QkBinaryOpType_ShiftLeft">
+    Left shift operation
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_ShiftRight
+
+  <Attribute id="QkBinaryOpType_ShiftRight">
+    Right shift operation
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_Add
+
+  <Attribute id="QkBinaryOpType_Add">
+    Addition operation
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_Sub
+
+  <Attribute id="QkBinaryOpType_Sub">
+    Subtraction operation
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_Mul
+
+  <Attribute id="QkBinaryOpType_Mul">
+    Multiplication operation
+  </Attribute>
+
+  #### enumerator QkBinaryOpType\_Div
+
+  <Attribute id="QkBinaryOpType_Div">
+    Division operation
+  </Attribute>
+</Class>
+
+### QkBinaryExprInfo
+
+<Class id="QkBinaryExprInfo" signature="struct QkBinaryExprInfo">
+  Describes a binary expression, including its operator, operands, result type and whether it is constant. Returned by the `qk_expr_binary_info` function. The `left` and `right` fields are borrowed pointers to the operands of the binary operation expression.
+
+  #### QkBinaryOpType op
+
+  <Attribute id="op">
+    The binary operator
+  </Attribute>
+
+  #### const QkExprNode \*left
+
+  <Attribute id="left">
+    Borrowed pointer to the left operand expression
+  </Attribute>
+
+  #### const QkExprNode \*right
+
+  <Attribute id="right">
+    Borrowed pointer to the right operand expression
+  </Attribute>
+
+  #### QkExprTypeInfo ty
+
+  <Attribute id="ty">
+    Result type of the operation
+  </Attribute>
+
+  #### bool constant
+
+  <Attribute id="constant">
+    Whether the expression is constant
+  </Attribute>
+</Class>
+
+### QkCastExprInfo
+
+<Class id="QkCastExprInfo" signature="struct QkCastExprInfo">
+  Describes a cast expression, including the operand, target type, whether it is implicit, and whether it is constant. Returned by the `qk_expr_cast_info` function. The `operand` field is a borrowed pointer to the operand of the cast expression.
+
+  #### const QkExprNode \*operand
+
+  <Attribute id="operand">
+    Borrowed pointer to the operand expression being cast
+  </Attribute>
+
+  #### QkExprTypeInfo ty
+
+  <Attribute id="ty">
+    Target type of the cast
+  </Attribute>
+
+  #### bool implicit
+
+  <Attribute id="implicit">
+    Whether the cast is implicit (automatic) or explicit
+  </Attribute>
+
+  #### bool constant
+
+  <Attribute id="constant">
+    Whether the expression is constant
+  </Attribute>
+</Class>
+
+### QkIndexExprInfo
+
+<Class id="QkIndexExprInfo" signature="struct QkIndexExprInfo">
+  Describes an index expression, including the target, index, result type and whether it is constant. Returned by the `qk_expr_index_info` function. The `target` and `index` fields are borrowed pointers to the target and index of the index operation expression.
+
+  #### const QkExprNode \*target
+
+  <Attribute id="target">
+    Borrowed pointer to the target expression being indexed
+  </Attribute>
+
+  #### const QkExprNode \*index
+
+  <Attribute id="index">
+    Borrowed pointer to the index expression
+  </Attribute>
+
+  #### QkExprTypeInfo ty
+
+  <Attribute id="ty">
+    Result type of the indexing operation
+  </Attribute>
+
+  #### bool constant
+
+  <Attribute id="constant">
+    Whether the expression is constant
+  </Attribute>
+</Class>
+
+### QkDurationType
+
+<Class id="QkDurationType" signature="enum QkDurationType">
+  Represents different time units used in duration expressions.
+
+  *Values:*
+
+  #### enumerator QkDurationType\_Dt
+
+  <Attribute id="QkDurationType_Dt">
+    System time units
+  </Attribute>
+
+  #### enumerator QkDurationType\_Ps
+
+  <Attribute id="QkDurationType_Ps">
+    Picoseconds
+  </Attribute>
+
+  #### enumerator QkDurationType\_Ns
+
+  <Attribute id="QkDurationType_Ns">
+    Nanoseconds
+  </Attribute>
+
+  #### enumerator QkDurationType\_Us
+
+  <Attribute id="QkDurationType_Us">
+    Microseconds
+  </Attribute>
+
+  #### enumerator QkDurationType\_Ms
+
+  <Attribute id="QkDurationType_Ms">
+    Milliseconds
+  </Attribute>
+
+  #### enumerator QkDurationType\_S
+
+  <Attribute id="QkDurationType_S">
+    Seconds
+  </Attribute>
+</Class>
+
+**<span id="unionQkDurationValue" />union QkDurationValue**
+
+*#include \<types.h>*
+
+A union to hold either system time units (dt) as an integer or real time as a float.
+
+This union is part of the `QkDurationInfo` struct and should not be used directly.
+
+### int64\_t dt
+
+<Attribute id="dt">
+  System time units (active when `ty` in `QkDurationInfo` is `QkDurationType_Dt`)
+</Attribute>
+
+### double time
+
+<Attribute id="time">
+  Real time value (active for all other duration types)
+</Attribute>
+
+### QkDurationInfo
+
+<Class id="QkDurationInfo" signature="struct QkDurationInfo">
+  The complete representation of a duration value.
+
+  The `ty` field acts as a discriminant that determines which field of the `value` union is active.
+
+  When initialized from C, it is the user’s responsibility to ensure that:
+
+  *   When `ty` is `QkDurationType_Dt`, the duration is stored as an integer in `value.dt`.
+  *   For all other duration types the duration is stored as a floating-point value in `value.time`.
+
+  #### QkDurationType ty
+
+  <Attribute id="ty">
+    The duration unit type (discriminant for the union)
+  </Attribute>
+
+  #### QkDurationValue value
+
+  <Attribute id="value">
+    The duration value
+  </Attribute>
+</Class>
+
+## Functions
+
+### qk\_expr\_kind
+
+<Function id="qk_expr_kind" signature="QkExprNodeKind qk_expr_kind(const QkExprNode *expr)">
+  Return the kind of a classical expression node.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md86" />
+
+  #### Example
+
+  ```c
+  QKExprNodeKind kind = qk_expr_kind(expr);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md87" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md87" />
+
+  Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
+
+  **Parameters**
+
+  *   **expr** – A pointer to the expression node to inspect.
+
+  **Returns**
+
+  The kind enum describing which concrete expression variant `expr` contains.
+</Function>
+
+### qk\_expr\_binary\_info
+
+<Function id="qk_expr_binary_info" signature="QkBinaryExprInfo qk_expr_binary_info(const QkExprNode *expr)">
+  Extract information from a binary expression node.
+
+  This function panics if `expr` does not point to a binary expression node.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md88" />
+
+  #### Example
+
+  ```c
+  QkBinaryExprInfo info = qk_expr_binary_info(expr);
+  const Expr *lhs = info.left;
+  const Expr *rhs = info.right;
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md89" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md89" />
+
+  Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
+
+  **Parameters**
+
+  *   **expr** – A pointer to a binary expression node.
+
+  **Returns**
+
+  A `QkBinaryExprInfo` structure describing the operator, operands, result type, and whether the expression is constant.
+</Function>
+
+### qk\_expr\_unary\_info
+
+<Function id="qk_expr_unary_info" signature="QkUnaryExprInfo qk_expr_unary_info(const QkExprNode *expr)">
+  Extract information from a unary expression node.
+
+  This function panics if `expr` does not point to a unary expression node.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md90" />
+
+  #### Example
+
+  ```c
+  QkUnaryExprInfo info = qk_expr_unary_info(expr);
+  QkUnaryOpType op = info.op;
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md91" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md91" />
+
+  Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
+
+  **Parameters**
+
+  *   **expr** – A pointer to a unary expression node.
+
+  **Returns**
+
+  A `QkUnaryExprInfo` structure describing the operator, operand, result type, and whether the expression is constant.
+</Function>
+
+### qk\_expr\_cast\_info
+
+<Function id="qk_expr_cast_info" signature="QkCastExprInfo qk_expr_cast_info(const QkExprNode *expr)">
+  Extract information from a cast expression node.
+
+  This function panics if `expr` does not point to a cast expression node.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md92" />
+
+  #### Example
+
+  ```c
+  QkCastExprInfo info = qk_expr_cast_info(expr);
+  const QkExprNode *operand = info.operand;
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md93" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md93" />
+
+  Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
+
+  **Parameters**
+
+  *   **expr** – A pointer to a cast expression node.
+
+  **Returns**
+
+  A `QkCastExprInfo` structure describing the operand, destination type, whether the cast is implicit, and whether the expression is constant.
+</Function>
+
+### qk\_expr\_index\_info
+
+<Function id="qk_expr_index_info" signature="QkIndexExprInfo qk_expr_index_info(const QkExprNode *expr)">
+  Extract information from an index expression node.
+
+  This function panics if `expr` does not point to an index expression node.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md94" />
+
+  #### Example
+
+  ```c
+  QkIndexExprInfo info = qk_expr_index_info(expr);
+  const Expr *target = info.target;
+  const Expr *index = info.index;
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md95" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md95" />
+
+  Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
+
+  **Parameters**
+
+  *   **expr** – A pointer to an index expression node.
+
+  **Returns**
+
+  A `QkIndexExprInfo` structure describing the indexed target, index expression, result type, and whether the expression is constant.
+</Function>
+
+### qk\_expr\_as\_value
+
+<Function id="qk_expr_as_value" signature="const QkValue *qk_expr_as_value(const QkExprNode *expr)">
+  Return a view into the underlying value of the expression node.
+
+  This function panics if `expr` does not point to a value expression node.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md96" />
+
+  #### Example
+
+  ```c
+  const QkValue *value = qk_expr_as_value(expr);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md97" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md97" />
+
+  Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
+
+  **Parameters**
+
+  *   **expr** – A pointer to a value expression node.
+
+  **Returns**
+
+  A pointer to the `QkValue` stored inside `expr`.
+</Function>
+
+### qk\_expr\_as\_var
+
+<Function id="qk_expr_as_var" signature="const QkVar *qk_expr_as_var(const QkExprNode *expr)">
+  Return a view into the underlying variable of the expression node.
+
+  This function panics if `expr` does not point to a variable expression node.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md98" />
+
+  #### Example
+
+  ```c
+  const QkVar *var = qk_expr_as_var(expr);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md99" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md99" />
+
+  Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
+
+  **Parameters**
+
+  *   **expr** – A pointer to a variable expression node.
+
+  **Returns**
+
+  A pointer to the `QkVar` stored inside `expr`.
+</Function>
+
+### qk\_expr\_as\_stretch
+
+<Function id="qk_expr_as_stretch" signature="const QkStretch *qk_expr_as_stretch(const QkExprNode *expr)">
+  Return a view into the underlying stretch of the expression node.
+
+  This function panics if `expr` does not point to a stretch expression node.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md100" />
+
+  #### Example
+
+  ```c
+  const QkStretch *stretch = qk_expr_as_stretch(expr);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md101" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md101" />
+
+  Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
+
+  **Parameters**
+
+  *   **expr** – A pointer to a stretch expression node.
+
+  **Returns**
+
+  A pointer to the `QkStretch` stored inside `expr`.
+</Function>
+
+### qk\_value\_type\_info
+
+<Function id="qk_value_type_info" signature="QkExprTypeInfo qk_value_type_info(const QkValue *value)">
+  Return the type information of a value.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md102" />
+
+  #### Example
+
+  ```c
+  QkExprTypeInfo type_info = qk_value_type_info(value);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md103" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md103" />
+
+  Behavior is undefined if `value` is not a valid, non-null pointer to a `Value`.
+
+  **Parameters**
+
+  *   **value** – A pointer to the `QkValue` to inspect.
+
+  **Returns**
+
+  A `QkExprTypeInfo` structure containing the value type information.
+</Function>
+
+### qk\_value\_duration\_info
+
+<Function id="qk_value_duration_info" signature="QkDurationInfo qk_value_duration_info(const QkValue *value)">
+  Extract structured information from a duration value.
+
+  This function panics if `value` does not point to a duration value.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md104" />
+
+  #### Example
+
+  ```c
+  QkDurationInfo info = qk_value_duration_info(value);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md105" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md105" />
+
+  Behavior is undefined if `value` is not a valid, non-null pointer to a `QkValue`.
+
+  **Parameters**
+
+  *   **value** – A pointer to a duration value.
+
+  **Returns**
+
+  A `QkDurationInfo` structure containing the duration unit and raw value.
+</Function>
+
+### qk\_value\_float
+
+<Function id="qk_value_float" signature="double qk_value_float(const QkValue *value)">
+  Extract the floating-point value from a `QkValue`.
+
+  This function panics if `value` does not point to a float value.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md106" />
+
+  #### Example
+
+  ```c
+  double raw = qk_value_float(value);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md107" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md107" />
+
+  Behavior is undefined if `value` is not a valid, non-null pointer to a `QkValue`.
+
+  **Parameters**
+
+  *   **value** – A pointer to a float value.
+
+  **Returns**
+
+  The `double` value stored in `value`.
+</Function>
+
+### qk\_value\_uint
+
+<Function id="qk_value_uint" signature="uint64_t qk_value_uint(const QkValue *value)">
+  Extract the unsigned integer value from a `QkValue` of type `QkExprType::Uint`.
+
+  This function panics if `value` does not point to a `QkExprType::Uint` value or if the stored integer does not fit in `uint64_t`.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md108" />
+
+  #### Example
+
+  ```c
+  uint64_t raw = qk_value_uint(value);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md109" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md109" />
+
+  Behavior is undefined if `value` is not a valid, non-null pointer to a `QkValue`.
+
+  **Parameters**
+
+  *   **value** – A pointer to a uint value.
+
+  **Returns**
+
+  The integer value converted to `uint64_t`.
+</Function>
+
+### qk\_value\_bool
+
+<Function id="qk_value_bool" signature="bool qk_value_bool(const QkValue *value)">
+  Extract the value from a `QkValue` of type `QkExprType::Bool`.
+
+  This function panics if `value` does not point to a bool value.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md110" />
+
+  #### Example
+
+  ```c
+  bool raw = qk_value_bool(value);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md111" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md111" />
+
+  Behavior is undefined if `value` is not a valid, non-null pointer to a `QkValue`.
+
+  **Parameters**
+
+  *   **value** – A pointer to a bool value.
+
+  **Returns**
+
+  `true` if the stored integer representation is nonzero, otherwise `false`.
+</Function>
+
+### qk\_var\_name
+
+<Function id="qk_var_name" signature="char *qk_var_name(const QkVar *var)">
+  Return the name of a variable as a newly allocated C string.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md112" />
+
+  #### Example
+
+  ```c
+  char *name = qk_var_name(var);
+  if (name ! = NULL) {
+      // Use the name...
+      qk_str_free(name);
+  }
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md113" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md113" />
+
+  Behavior is undefined if `var` is not a valid, non-null pointer to a `QkVar`.
+
+  **Parameters**
+
+  *   **var** – A pointer to the variable to inspect.
+
+  **Returns**
+
+  A null-terminated string containing the variable name, or `NULL` if `var` refers to a non-standalone variable (i.e. based on a classical bit or a classical register). The caller owns the returned string and must free it with `qk_str_free`.
+</Function>
+
+### qk\_var\_type\_info
+
+<Function id="qk_var_type_info" signature="QkExprTypeInfo qk_var_type_info(const QkVar *var)">
+  Return full type information for a variable.
+
+  This function panics if `var` is a bit variable, which is not yet supported by this API.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md114" />
+
+  #### Example
+
+  ```c
+  QkExprTypeInfo type_info = qk_var_type_info(var);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md115" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md115" />
+
+  Behavior is undefined if `var` is not a valid, non-null pointer to a `QkVar`.
+
+  **Parameters**
+
+  *   **var** – A pointer to the variable to inspect.
+
+  **Returns**
+
+  A `QkExprTypeInfo` structure containing the variable type information.
+</Function>
+
+### qk\_stretch\_name
+
+<Function id="qk_stretch_name" signature="char *qk_stretch_name(const QkStretch *stretch)">
+  Return the name of a stretch.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md116" />
+
+  #### Example
+
+  ```c
+  char *name = qk_stretch_name(stretch);
+  // Use the name...
+  qk_str_free(name);
+  ```
+
+  <span id="group__QkClassicalExpressions_1autotoc_md117" />
+
+  #### Safety
+
+  <span id="group__QkClassicalExpressions_1autotoc_md117" />
+
+  Behavior is undefined if `stretch` is not a valid, non-null pointer to a `QkStretch`.
+
+  **Parameters**
+
+  *   **stretch** – A pointer to the stretch to inspect.
+
+  **Returns**
+
+  A null-terminated string containing the stretch name. The caller owns the returned string and must free it with `qk_str_free`.
+</Function>
+
