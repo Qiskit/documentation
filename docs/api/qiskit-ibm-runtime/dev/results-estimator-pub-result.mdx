@@ -1,0 +1,94 @@
+---
+title: EstimatorPubResult (dev version)
+description: API reference for qiskit_ibm_runtime.results.EstimatorPubResult in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.results.EstimatorPubResult
+---
+
+# EstimatorPubResult
+
+<Class id="qiskit_ibm_runtime.results.EstimatorPubResult" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/estimator_pub.py#L27-L129" signature="EstimatorPubResult(data, metadata=None)" modifiers="class">
+  Bases: [`PubResult`](/docs/api/qiskit/qiskit.primitives.PubResult)
+
+  Result of Estimator Pub.
+
+  Initialize a pub result.
+
+  **Parameters**
+
+  *   **data** (*DataBin*) – Result data.
+  *   **metadata** (*dict\[str, Any] | None*) – Metadata specific to this pub. Keys are expected to be strings.
+
+  ## Attributes
+
+  ### data
+
+  <Attribute id="qiskit_ibm_runtime.results.EstimatorPubResult.data">
+    Result data for the pub.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit_ibm_runtime.results.EstimatorPubResult.metadata">
+    Metadata for the pub.
+  </Attribute>
+
+  ## Methods
+
+  ### draw\_zne\_evs
+
+  <Function id="qiskit_ibm_runtime.results.EstimatorPubResult.draw_zne_evs" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/estimator_pub.py#L30-L80" signature="draw_zne_evs(indices=None, names=None, num_stds=1, max_mag=10, max_std=0.2, height=500, width=1000, num_cols=4, colorscale='Aggrnyl')">
+    Plot the zero noise extrapolation data contained in this estimator pub result.
+
+    This method generates a subfigure for each expectation value.
+
+    **Parameters**
+
+    *   **indices** (*Sequence\[tuple\[int, ...]] | None*) – The indices of the expectation values to include in the plot. If `None`, includes all values. See [`ZneOptions`](options-zne-options "qiskit_ibm_runtime.options.ZneOptions") for information on the indexing scheme.
+    *   **names** (*Sequence\[str] | None*) – The names to assign to the expectation values. If `None`, the names correspond to the indices.
+    *   **num\_stds** (*int*) – The number of standard deviations to include around each fit.
+    *   **max\_mag** (*float*) – The maximum magnitude of expectation values to include. If `evs_extrapolated` has a greater magnitude than this value, the expectation value is omitted from the plot.
+    *   **max\_std** (*float*) – The maximum standard deviation to include. If `stds_extrapolated` is greater than this value for an expectation value and extrapolator, the fit is omitted from the plot.
+    *   **height** (*int*) – The height of the plot in pixels.
+    *   **width** (*int*) – The width of the plot in pixels.
+    *   **num\_cols** (*int*) – The maximum number of columns in the figure.
+    *   **colorscale** (*str*) – The colorscale to use.
+
+    **Returns**
+
+    A plotly figure.
+
+    **Return type**
+
+    PlotlyFigure
+  </Function>
+
+  ### draw\_zne\_extrapolators
+
+  <Function id="qiskit_ibm_runtime.results.EstimatorPubResult.draw_zne_extrapolators" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/estimator_pub.py#L82-L129" signature="draw_zne_extrapolators(indices=None, names=None, num_stds=1, max_mag=10, max_std=0.2, height=500, width=1000, colorscale='Aggrnyl')">
+    Plot the zero noise extrapolation data contained in this estimator pub result.
+
+    This method generates a subfigure for each extrapolator.
+
+    **Parameters**
+
+    *   **indices** (*Sequence\[tuple\[int, ...]] | None*) – The indices of the expectation values to include in the plot. If `None`, includes all values. See [`ZneOptions`](options-zne-options "qiskit_ibm_runtime.options.ZneOptions") for information on the indexing scheme.
+    *   **names** (*Sequence\[str] | None*) – The names to assign to the expectation values. If `None`, the names correspond to the indices.
+    *   **num\_stds** (*int*) – The number of standard deviations to include around each fit.
+    *   **max\_mag** (*float*) – The maximum magnitude of expectation values to include. If `evs_extrapolated` has a greater magnitude than this value, the expectation value is omitted from the plot.
+    *   **max\_std** (*float*) – The maximum standard deviation to include. If `stds_extrapolated` is greater than this value for an expectation value and extrapolator, the fit is omitted from the plot.
+    *   **height** (*int*) – The height of the plot in pixels.
+    *   **width** (*int*) – The width of the plot in pixels.
+    *   **colorscale** (*str*) – The colorscale to use.
+
+    **Returns**
+
+    A plotly figure.
+
+    **Return type**
+
+    PlotlyFigure
+  </Function>
+</Class>
+

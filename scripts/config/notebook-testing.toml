@@ -39,7 +39,6 @@ notebooks = [
   "docs/guides/repetition-rate-execution.ipynb",
   "docs/guides/represent-quantum-computers.ipynb",
   "docs/guides/save-circuits.ipynb",
-  "docs/guides/save-jobs.ipynb",
   "docs/guides/set-optimization.ipynb",
   "docs/guides/simulate-stabilizer-circuits.ipynb",
   "docs/guides/simulate-with-qiskit-aer.ipynb",
@@ -57,9 +56,7 @@ notebooks = [
 test-strategies.ci = { patch = "qiskit-fake-provider", num_qubits = 6 }
 test-strategies.extended = { patch = "qiskit-fake-provider", num_qubits = 6 }
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
-notebooks = [
-  "docs/guides/visualize-results.ipynb",
-]
+notebooks = ["docs/guides/visualize-results.ipynb"]
 
 # Mock the following notebooks in our extended checks using IBM Quantum's
 # test-eagle device, which returns nonsense results. Use this to test notebooks
@@ -76,17 +73,19 @@ notebooks = [
   "docs/guides/debug-qiskit-runtime-jobs.ipynb",
   "docs/guides/fractional-gates.ipynb",
   "docs/guides/functions.ipynb",
-  "docs/guides/get-started-with-primitives.ipynb",
-  "docs/guides/ibm-circuit-function.ipynb",
   "docs/guides/sampler-examples.ipynb",
   "docs/guides/estimator-examples.ipynb",
+  "docs/guides/executor-examples.ipynb",
+  "docs/guides/executor-input-output.ipynb",
   "docs/guides/execute-dynamic-circuits.ipynb",
   "docs/guides/estimator-rest-api.ipynb",
   "docs/guides/get-started-with-sampler.ipynb",
+  "docs/guides/get-started-with-executor.ipynb",
   "docs/guides/sampler-input-output.ipynb",
   "docs/guides/sampler-options.ipynb",
   "docs/guides/estimator-input-output.ipynb",
   "docs/guides/estimator-options.ipynb",
+  "docs/guides/executor-options.ipynb",
   "docs/guides/get-started-with-estimator.ipynb",
   "docs/guides/qiskit-addons-sqd-get-started.ipynb",
   "docs/guides/multiverse-computing-singularity.ipynb",
@@ -106,6 +105,7 @@ notebooks = [
 [groups.cron-job-only]
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
+  "docs/guides/post-selection.ipynb",
   "docs/guides/hello-world.ipynb",
 
   # The following notebooks don't seem to work with `test-eagle`, but I'm not
@@ -148,6 +148,9 @@ notebooks = [
   "docs/guides/serverless-run-first-workload.ipynb",
   "docs/guides/serverless-manage-resources.ipynb",
 
+  # This notebook is failing.  It requires runtime .46 but there's a dependency conflict when we try to update it.
+  "docs/guides/save-jobs.ipynb",
+
   # This notebook might work but we didn't have time to test it before merging
   "docs/guides/kipu-optimization.ipynb",
   "docs/guides/global-data-quantum-optimizer.ipynb",
@@ -159,11 +162,8 @@ notebooks = [
   "docs/guides/estimate-job-run-time.ipynb",
   "docs/guides/serverless-port-code.ipynb",
 
-  # This is temporarily broken while the transpiler service migrates to cloud
-  "docs/guides/qiskit-transpiler-service.ipynb",
-
   # We never run tutorials notebooks
-#  "docs/tutorials/implicit-solvent-calculations.ipynb",
+  "docs/tutorials/implicit-solvent-calculations.ipynb",
   "docs/tutorials/simulate-kicked-ising-tem.ipynb",
   "docs/tutorials/dc-hex-ising.ipynb",
   "docs/tutorials/ghz-spacetime-codes.ipynb",
@@ -354,5 +354,5 @@ notebooks = [
   "learning/courses/use-a-qc-today/quantum-mechanics-basics.ipynb",
   "learning/courses/use-a-qc-today/your-first-quantum-experiment.ipynb",
   "learning/courses/use-a-qc-today/quantum-computing-context.ipynb",
-  "learning/courses/use-a-qc-today/continue-your-learning-journey.ipynb"
+  "learning/courses/use-a-qc-today/continue-your-learning-journey.ipynb",
 ]

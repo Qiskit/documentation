@@ -284,8 +284,20 @@ export const QISKIT_RUNTIME_GROUPING: TocGrouping = {
       untranslatable: true,
     },
     {
+      moduleId: "qiskit_ibm_runtime.options_models",
+      title: "qiskit_ibm_runtime.options_models",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
       moduleId: "qiskit_ibm_runtime.quantum_program",
       title: "qiskit_ibm_runtime.quantum_program",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.results",
+      title: "qiskit_ibm_runtime.results",
       kind: "module",
       untranslatable: true,
     },

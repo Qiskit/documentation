@@ -557,6 +557,31 @@ $$
     signs, qubit\_sparse\_pauli\_list
   </Function>
 
+  ### parity\_sample\_with\_history
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.parity_sample_with_history" signature="parity_sample_with_history(num_samples, seed=None, scale=None, local_scale=None)">
+    Sample sign and Pauli operator pairs from the map, preserving the sampled generators.
+
+    This method is identical to [`parity_sample()`](#qiskit.quantum_info.PauliLindbladMap.parity_sample "qiskit.quantum_info.PauliLindbladMap.parity_sample") except for also returning the information which [`generators()`](#qiskit.quantum_info.PauliLindbladMap.generators "qiskit.quantum_info.PauliLindbladMap.generators") were actually sampled to yield the final Pauli operator and sign.
+
+    **Parameters**
+
+    *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of samples to draw.
+    *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Random seed.
+    *   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Scale to apply to all rates.
+    *   **local\_scale** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – Local scale to apply on a term-by-term basis.
+
+    **Returns**
+
+    **The boolean array of**
+
+    signs, the list of qubit sparse paulis, the two dimensional boolean array indicating which [`generators()`](#qiskit.quantum_info.PauliLindbladMap.generators "qiskit.quantum_info.PauliLindbladMap.generators") were sampled and the two dimensional boolean array indicating their signs.
+
+    **Return type**
+
+    signs, qubit\_sparse\_pauli\_list, pauli\_history, signs\_history
+  </Function>
+
   ### pauli\_fidelity
 
   <Function id="qiskit.quantum_info.PauliLindbladMap.pauli_fidelity" signature="pauli_fidelity(qubit_sparse_pauli)">
