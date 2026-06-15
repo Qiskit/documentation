@@ -1350,6 +1350,31 @@ The circuit C API currently only supports creating circuits that contain operati
   The pointer to the copied circuit.
 </Function>
 
+### qk\_circuit\_estimate\_fidelity
+
+<Function id="qk_circuit_estimate_fidelity" signature="double qk_circuit_estimate_fidelity(const QkCircuit *circuit, const QkTarget *target)">
+  Estimate the fidelity of a physical circuit.
+
+  This function will compute the product of the error rates for each gate in the circuit to estimate the fidelity of the circuit. This method is not intended to compute a realistic simulation of the fidelity of execution on real hardware. It is designed to provide an estimate of how the transpiler would work with the fidelity for various heuristics in its operation. It is typically only useful for comparing different compilation outputs against each other to estimate which one would produce a better quality execution on hardware.
+
+  <span id="group__QkCircuit_1autotoc_md66" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md66" />
+
+  Behavior is undefined if `circuit` and `target` are not a valid, non-null pointer to a `QkCircuit` and `QkTarget` respectively.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to estimate the fidelity of.
+  *   **target** – A pointer to the target that the circuit will be executed on. This is used to get the error rates for the instructions in the circuit.
+
+  **Returns**
+
+  The computed fidelity of the circuit. This will return NaN if the circuit is not physical, meaning there are instructions in `circuit` not supported by `target`.
+</Function>
+
 ### qk\_circuit\_to\_python
 
 <Function id="qk_circuit_to_python" signature="PyObject *qk_circuit_to_python(QkCircuit *qc)">
@@ -1359,11 +1384,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   It is not safe to use the `QkCircuit` pointer after calling this function. In particular, you should not attempt to clear or free it. The caller must own the `QkCircuit`, not hold a borrowed reference (for example, a `QkCircuit *` retrieved from `qk_circuit_borrow_from_python` is not owned).
 
-  <span id="group__QkCircuit_1autotoc_md66" />
+  <span id="group__QkCircuit_1autotoc_md67" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md66" />
+  <span id="group__QkCircuit_1autotoc_md67" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `circuit` is not a valid non-null pointer to an initialized and owned `QkCircuit`.
 
@@ -1385,11 +1410,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   It is not safe to use the `QkCircuit` pointer after calling this function. In particular, you should not attempt to clear or free it. The caller must own the `QkCircuit`, not hold a borrowed reference (for example, a `QkCircuit *` retrieved from `qk_circuit_borrow_from_python` is not owned).
 
-  <span id="group__QkCircuit_1autotoc_md67" />
+  <span id="group__QkCircuit_1autotoc_md68" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md67" />
+  <span id="group__QkCircuit_1autotoc_md68" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `circuit` is not a valid non-null pointer to an initialized and owned `QkCircuit`.
 
@@ -1415,11 +1440,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   You can also use `qk_circuit_convert_from_python`, which is logically the exact same as this function, but can be directly used as a “converter” function for the `PyArg_Parse*` family of Python converter functions.
 
-  <span id="group__QkCircuit_1autotoc_md68" />
+  <span id="group__QkCircuit_1autotoc_md69" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md68" />
+  <span id="group__QkCircuit_1autotoc_md69" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `ob` is not a valid non-null pointer to a Python object.
 
@@ -1445,11 +1470,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   You can also use `qk_circuit_borrow_from_python`, which is logically the exact same as this, but with a more natural signature for direct usage.
 
-  <span id="group__QkCircuit_1autotoc_md69" />
+  <span id="group__QkCircuit_1autotoc_md70" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md69" />
+  <span id="group__QkCircuit_1autotoc_md70" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `object` is not a valid non-null pointer to a Python object, or if `address` is not a pointer to writeable data of the correct type.
 
@@ -1470,11 +1495,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   It is not safe to use the `QkQuantumRegister` pointer after calling this function. In particular, you should not attempt to clear or free it. The caller must own the `QkQuantumRegister`, not hold a borrowed reference (for example, a `QkQuantumRegister *` retrieved from `qk_quantum_register_borrow_from_python` is not owned).
 
-  <span id="group__QkCircuit_1autotoc_md70" />
+  <span id="group__QkCircuit_1autotoc_md71" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md70" />
+  <span id="group__QkCircuit_1autotoc_md71" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `qr` is not a valid non-null pointer to an initialized and owned `QkQuantumRegister`.
 
@@ -1498,11 +1523,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   You can also use `qk_quantum_register_convert_from_python`, which is logically the exact same as this function, but can be directly used as a “converter” function for the `PyArg_Parse*` family of Python converter functions.
 
-  <span id="group__QkCircuit_1autotoc_md71" />
+  <span id="group__QkCircuit_1autotoc_md72" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md71" />
+  <span id="group__QkCircuit_1autotoc_md72" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `ob` is not a valid non-null pointer to a Python object.
 
@@ -1526,11 +1551,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   You can also use `qk_quantum_register_borrow_from_python`, which is logically the exact same as this, but with a more natural signature for direct usage.
 
-  <span id="group__QkCircuit_1autotoc_md72" />
+  <span id="group__QkCircuit_1autotoc_md73" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md72" />
+  <span id="group__QkCircuit_1autotoc_md73" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `object` is not a valid non-null pointer to a Python object, or if `address` is not a pointer to writeable data of the correct type.
 
@@ -1551,11 +1576,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   It is not safe to use the `QkClassicalRegister` pointer after calling this function. In particular, you should not attempt to clear or free it. The caller must own the `QkClassicalRegister`, not hold a borrowed reference (for example, a `QkClassicalRegister *` retrieved from `qk_classical_register_borrow_from_python` is not owned).
 
-  <span id="group__QkCircuit_1autotoc_md73" />
+  <span id="group__QkCircuit_1autotoc_md74" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md73" />
+  <span id="group__QkCircuit_1autotoc_md74" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `cr` is not a valid non-null pointer to an initialized and owned `QkClassicalRegister`.
 
@@ -1579,11 +1604,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   You can also use `qk_classical_register_convert_from_python`, which is logically the exact same as this function, but can be directly used as a “converter” function for the `PyArg_Parse*` family of Python converter functions.
 
-  <span id="group__QkCircuit_1autotoc_md74" />
+  <span id="group__QkCircuit_1autotoc_md75" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md74" />
+  <span id="group__QkCircuit_1autotoc_md75" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `ob` is not a valid non-null pointer to a Python object.
 
@@ -1607,11 +1632,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   You can also use `qk_classical_register_borrow_from_python`, which is logically the exact same as this, but with a more natural signature for direct usage.
 
-  <span id="group__QkCircuit_1autotoc_md75" />
+  <span id="group__QkCircuit_1autotoc_md76" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md75" />
+  <span id="group__QkCircuit_1autotoc_md76" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `object` is not a valid non-null pointer to a Python object, or if `address` is not a pointer to writeable data of the correct type.
 

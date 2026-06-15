@@ -67,11 +67,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 > <Function id="qk_transpile_state_new" signature="void qk_transpile_state_new(QkTranspilerStageState **state)">
 >   Create a pointer to an empty `QkTranspilerStageState` object
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md378" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md415" />
 >
 >   #### Safety
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md378" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md415" />
 >
 >   Behavior is undefined if `state` is not a valid pointer allocated.
 >
@@ -85,11 +85,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 > <Function id="qk_transpile_state_free" signature="void qk_transpile_state_free(QkTranspilerStageState *state)">
 >   Free a `QkTranspilerStageState` object
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md379" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md416" />
 >
 >   #### Safety
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md379" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md416" />
 >
 >   Behavior is undefined if `state` is not a valid, non-null pointer to a `QkTranspilerStageState`.
 >
@@ -105,11 +105,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 >
 >   This pointer is owned by the `state` object and should not be freed using `qk_transpile_layout_free`. Instead, free the original `state` object using `qk_transpile_state_free`.
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md380" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md417" />
 >
 >   #### Safety
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md380" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md417" />
 >
 >   Behavior is undefined if `state` is not a valid, non-null pointer to a `QkTranspilerStageState`.
 >
@@ -129,11 +129,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 >
 >   Calling this method consumes the `QkTranspileLayout` object which means the user will not need to call `qk_transpile_layout_free`. The user should still de-allocate the space allotted for it using `free`.
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md381" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md418" />
 >
 >   #### Safety
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md381" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md418" />
 >
 >   Behavior is undefined if `state` is not a valid, non-null pointer to a `QkTranspilerStageState`. Behavior is undefined if `state` is not a valid pointer to a `QkTranspileLayout`.
 >
@@ -168,11 +168,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md382" />
+  <span id="group__QkTranspiler_1autotoc_md419" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md382" />
+  <span id="group__QkTranspiler_1autotoc_md419" />
 
   Behavior is undefined if `dag`, `target`, or `state`, are not valid, non-null pointers to a `QkDag`, `QkTarget`, or a `QkTranspileLayout` pointer respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`. The value of the inner pointer for `state` will be overwritten by this function. If the value pointed to needs to be freed this must be done outside of this function as it will not be freed by this function.
 
@@ -200,11 +200,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md383" />
+  <span id="group__QkTranspiler_1autotoc_md420" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md383" />
+  <span id="group__QkTranspiler_1autotoc_md420" />
 
   Behavior is undefined if `dag`, `target`, or `layout`, are not valid, non-null pointers to a `QkDag`, `QkTarget`, or a `QkTranspileLayout` pointer respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -232,11 +232,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md384" />
+  <span id="group__QkTranspiler_1autotoc_md421" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md384" />
+  <span id="group__QkTranspiler_1autotoc_md421" />
 
   Behavior is undefined if `dag` and `target` are not valid, non-null pointers to a `QkDag`, or a `QkTarget` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -264,11 +264,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md385" />
+  <span id="group__QkTranspiler_1autotoc_md422" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md385" />
+  <span id="group__QkTranspiler_1autotoc_md422" />
 
   Behavior is undefined if `dag` and `target` are not valid, non-null pointers to a `QkDag`, `QkTarget` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -295,11 +295,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md386" />
+  <span id="group__QkTranspiler_1autotoc_md423" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md386" />
+  <span id="group__QkTranspiler_1autotoc_md423" />
 
   Behavior is undefined if `dag` or `target`, are not valid, non-null pointers to a `QkDag`, or a `QkTarget` respectively. Behavior is also undefined if `layout` is not a valid, aligned, pointer to a pointer to a `QkTranspileLayout` or a pointer to a `NULL` pointer. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -325,11 +325,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md387" />
+  <span id="group__QkTranspiler_1autotoc_md424" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md387" />
+  <span id="group__QkTranspiler_1autotoc_md424" />
 
   Behavior is undefined if `circuit`, `target`, or `result`, are not valid, non-null pointers to a `QkCircuit`, `QkTarget`, or `QkTranspileResult` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
