@@ -151,8 +151,6 @@ async function determineFilePaths(
       "apidoc/**",
       "stubs/**",
       "tutorials/**",
-      "release-notes.html",
-      "release_notes.html",
       ...SPHINX_INTERNALS,
     ],
   });
