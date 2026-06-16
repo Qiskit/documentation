@@ -129,8 +129,6 @@ function parseTocUl(
     const href = a.attr("href") ?? "";
     const title = a.text().trim();
 
-    if (title.toLowerCase() === "release notes") return;
-
     // External link (e.g. GitHub, tutorial links)
     if (a.hasClass("external")) {
       entries.push({ title, url: href });
