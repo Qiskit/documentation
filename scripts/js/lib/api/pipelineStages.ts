@@ -83,7 +83,7 @@ export async function convertHtmlToMarkdown(
  */
 function extractHtmlFrontmatter(html: string, pkg: Pkg, url: string): string {
   const $ = load(html);
-  const h1 = $("h1")
+  const rawH1 = $("h1")
     .first()
     .clone()
     .find("a.headerlink")
@@ -91,6 +91,11 @@ function extractHtmlFrontmatter(html: string, pkg: Pkg, url: string): string {
     .end()
     .text()
     .trim();
+  // processHtml.ts renames all <h1>s to pkg.releaseNotesTitle() for release
+  // notes pages, so use that value to keep frontmatter title in sync with the
+  // actual heading in the output markdown.
+  const isReleaseNotes = url.endsWith("/release-notes");
+  const h1 = isReleaseNotes ? pkg.releaseNotesTitle() : rawH1;
   const isRootIndex = url.endsWith(`/${pkg.name}/index`);
   const description = isRootIndex
     ? `Documentation for the latest version of ${pkg.title}`
