@@ -229,7 +229,7 @@ test("full shape with Tutorials and API reference captions", async () => {
             title: "Python API reference",
             url: "https://quantum.cloud.ibm.com/docs/api/my-addon",
           },
-           {
+          {
             title: "Release notes",
             url: "/docs/addons/my-addon/release-notes",
           },
@@ -265,7 +265,6 @@ test("API reference caption: external links pass through unchanged", async () =>
     url: "https://example.com/api/my-addon",
   });
 });
-
 
 test("sidebar order is preserved exactly", async () => {
   const { artifactDir } = await makeTestDirs([
