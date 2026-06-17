@@ -173,7 +173,7 @@ test("full shape with Tutorials and API reference captions", async () => {
         caption: "Tutorials",
         items: [
           {
-            href: "https://quantum.cloud.ibm.com/docs/en/tutorials/my-tutorial",
+            href: "https://quantum.cloud.ibm.com/docs/tutorials/my-tutorial",
             title: "My tutorial",
             external: true,
           },
@@ -183,7 +183,7 @@ test("full shape with Tutorials and API reference captions", async () => {
         caption: "API reference",
         items: [
           {
-            href: "https://quantum.cloud.ibm.com/docs/en/api/my-addon",
+            href: "https://quantum.cloud.ibm.com/docs/api/my-addon",
             title: "Python API reference",
             external: true,
           },
@@ -217,7 +217,7 @@ test("full shape with Tutorials and API reference captions", async () => {
         children: [
           {
             title: "My tutorial",
-            url: "https://quantum.cloud.ibm.com/docs/en/tutorials/my-tutorial",
+            url: "https://quantum.cloud.ibm.com/docs/tutorials/my-tutorial",
           },
         ],
       },
@@ -227,7 +227,11 @@ test("full shape with Tutorials and API reference captions", async () => {
         children: [
           {
             title: "Python API reference",
-            url: "https://quantum.cloud.ibm.com/docs/en/api/my-addon",
+            url: "https://quantum.cloud.ibm.com/docs/api/my-addon",
+          },
+           {
+            title: "Release notes",
+            url: "/docs/addons/my-addon/release-notes",
           },
         ],
       },
@@ -262,33 +266,6 @@ test("API reference caption: external links pass through unchanged", async () =>
   });
 });
 
-test("release notes entry is always omitted", async () => {
-  const { artifactDir } = await makeTestDirs(
-    [{ href: "#", title: "Home" }],
-    [
-      {
-        caption: "API reference",
-        items: [
-          {
-            href: "https://example.com/api/my-addon",
-            title: "Python API reference",
-            external: true,
-          },
-          { href: "release-notes.html", title: "Release notes" },
-        ],
-      },
-    ],
-  );
-
-  const pkg = await makePkg();
-  const toc = await generateAddonToc(pkg, artifactDir);
-  const apiSection = toc.children.find((c) => c.title === "API reference");
-
-  expect(apiSection?.children).toHaveLength(1);
-  expect(apiSection?.children?.[0].url).toBe(
-    "https://example.com/api/my-addon",
-  );
-});
 
 test("sidebar order is preserved exactly", async () => {
   const { artifactDir } = await makeTestDirs([
