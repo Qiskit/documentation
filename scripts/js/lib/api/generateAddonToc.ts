@@ -135,6 +135,12 @@ function parseTocUl(
       return;
     }
 
+    // Release notes live under /docs/api/, not in the addon content tree.
+    if (title.toLowerCase() === "release notes") {
+      entries.push({ title, url: `${DOCS_BASE_PATH}/api/${pkg.name}/release-notes` });
+      return;
+    }
+
     // href="#" means "this page" (index.html) in Sphinx when current-page is active
     if (href === "#") {
       entries.push({ title, url: addonUrlBase });

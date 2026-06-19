@@ -231,7 +231,7 @@ test("full shape with Tutorials and API reference captions", async () => {
           },
           {
             title: "Release notes",
-            url: "/docs/addons/my-addon/release-notes",
+            url: "/docs/api/my-addon/release-notes",
           },
         ],
       },
