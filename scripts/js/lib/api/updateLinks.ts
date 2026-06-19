@@ -178,7 +178,8 @@ export function normalizeUrl(
 }
 
 export function relativizeLink(link: Link): Link | undefined {
-  rewriteQiskitAddonLinks(link);
+  const rewritten = rewriteQiskitAddonLinks(link);
+  if (rewritten) return rewritten;
 
   const priorPrefixToNewPrefix = new Map([
     ["https://qiskit.org/documentation/apidoc/", "/api/qiskit"],
