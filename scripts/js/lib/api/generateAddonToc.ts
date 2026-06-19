@@ -137,7 +137,10 @@ function parseTocUl(
 
     // Release notes live under /docs/api/, not in the addon content tree.
     if (title.toLowerCase() === "release notes") {
-      entries.push({ title, url: `${DOCS_BASE_PATH}/api/${pkg.name}/release-notes` });
+      entries.push({
+        title,
+        url: `${DOCS_BASE_PATH}/api/${pkg.name}/release-notes`,
+      });
       return;
     }
 
