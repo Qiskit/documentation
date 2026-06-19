@@ -28,7 +28,7 @@ import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
-import { DOCS_BASE_PATH } from "./conversionPipeline.js";
+import { DOCS_BASE_PATH, C_API_BASE_PATH } from "./conversionPipeline.js";
 
 export interface Link {
   url: string; // Where the link goes
@@ -109,6 +109,21 @@ export function normalizeUrl(
     pythonApiFolders.some((f) => url.split("/").includes(f));
 
   url = removePart(url, "/", [...pythonApiFolders, ".."]);
+
+  // Some packages link to the C API via relative `cdoc/` paths
+  // (e.g. `../cdoc/qk-circuit.html#c.qk_circuit_new` in the Sphinx artifact, which
+  // becomes `cdoc/qk-circuit.html#...` after the `..` is stripped above).
+  // Rewrite these to absolute paths pointing to the qiskit-c package.
+  if (url.startsWith(`${C_API_BASE_PATH}/`)) {
+    const [pageWithHtml, hash] = removePrefix(url, `${C_API_BASE_PATH}/`).split(
+      "#",
+    );
+    const page = removeSuffix(pageWithHtml, ".html");
+    // Strip the Sphinx C domain prefix (e.g. `c.qk_circuit_new` → `qk_circuit_new`)
+    const normalizedHash = hash ? removePrefix(hash, "c.") : undefined;
+    const pageAndHash = normalizedHash ? `${page}#${normalizedHash}` : page;
+    return `${kwargs.pkgOutputDir.replace("qiskit", "qiskit-c")}/${pageAndHash}`;
+  }
 
   // TODO (#3375): Investigate if we can make this case more generic.
   // The Qiskit C API sometimes links to the Python API. In those cases, we need to add the
