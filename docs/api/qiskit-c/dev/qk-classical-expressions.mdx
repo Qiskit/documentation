@@ -107,7 +107,7 @@ Note that the functions in this API return borrowed pointers that remain valid a
     The expression type
   </Attribute>
 
-  #### uint16\_t width
+  #### uint32\_t width
 
   <Attribute id="width">
     Bit width for the Uint expression type
@@ -472,7 +472,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_expr_kind" signature="QkExprNodeKind qk_expr_kind(const QkExprNode *expr)">
   Return the kind of a classical expression node.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md86" />
+  <span id="group__QkClassicalExpressions_1autotoc_md110" />
 
   #### Example
 
@@ -480,11 +480,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   QKExprNodeKind kind = qk_expr_kind(expr);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md87" />
+  <span id="group__QkClassicalExpressions_1autotoc_md111" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md87" />
+  <span id="group__QkClassicalExpressions_1autotoc_md111" />
 
   Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
 
@@ -502,9 +502,9 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_expr_binary_info" signature="QkBinaryExprInfo qk_expr_binary_info(const QkExprNode *expr)">
   Extract information from a binary expression node.
 
-  This function panics if `expr` does not point to a binary expression node.
+  Panics if `expr` does not point to a binary expression node.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md88" />
+  <span id="group__QkClassicalExpressions_1autotoc_md112" />
 
   #### Example
 
@@ -514,11 +514,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   const Expr *rhs = info.right;
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md89" />
+  <span id="group__QkClassicalExpressions_1autotoc_md113" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md89" />
+  <span id="group__QkClassicalExpressions_1autotoc_md113" />
 
   Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
 
@@ -528,7 +528,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 
   **Returns**
 
-  A `QkBinaryExprInfo` structure describing the operator, operands, result type, and whether the expression is constant.
+  A `QkBinaryExprInfo` struct describing the operator, operands, result type, and whether the expression is constant.
 </Function>
 
 ### qk\_expr\_unary\_info
@@ -536,9 +536,9 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_expr_unary_info" signature="QkUnaryExprInfo qk_expr_unary_info(const QkExprNode *expr)">
   Extract information from a unary expression node.
 
-  This function panics if `expr` does not point to a unary expression node.
+  Panics if `expr` does not point to a unary expression node.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md90" />
+  <span id="group__QkClassicalExpressions_1autotoc_md114" />
 
   #### Example
 
@@ -547,11 +547,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   QkUnaryOpType op = info.op;
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md91" />
+  <span id="group__QkClassicalExpressions_1autotoc_md115" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md91" />
+  <span id="group__QkClassicalExpressions_1autotoc_md115" />
 
   Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
 
@@ -561,7 +561,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 
   **Returns**
 
-  A `QkUnaryExprInfo` structure describing the operator, operand, result type, and whether the expression is constant.
+  A `QkUnaryExprInfo` struct describing the operator, operand, result type, and whether the expression is constant.
 </Function>
 
 ### qk\_expr\_cast\_info
@@ -569,9 +569,9 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_expr_cast_info" signature="QkCastExprInfo qk_expr_cast_info(const QkExprNode *expr)">
   Extract information from a cast expression node.
 
-  This function panics if `expr` does not point to a cast expression node.
+  Panics if `expr` does not point to a cast expression node.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md92" />
+  <span id="group__QkClassicalExpressions_1autotoc_md116" />
 
   #### Example
 
@@ -580,11 +580,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   const QkExprNode *operand = info.operand;
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md93" />
+  <span id="group__QkClassicalExpressions_1autotoc_md117" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md93" />
+  <span id="group__QkClassicalExpressions_1autotoc_md117" />
 
   Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
 
@@ -594,7 +594,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 
   **Returns**
 
-  A `QkCastExprInfo` structure describing the operand, destination type, whether the cast is implicit, and whether the expression is constant.
+  A `QkCastExprInfo` struct describing the operand, destination type, whether the cast is implicit, and whether the expression is constant.
 </Function>
 
 ### qk\_expr\_index\_info
@@ -602,9 +602,9 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_expr_index_info" signature="QkIndexExprInfo qk_expr_index_info(const QkExprNode *expr)">
   Extract information from an index expression node.
 
-  This function panics if `expr` does not point to an index expression node.
+  Panics if `expr` does not point to an index expression node.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md94" />
+  <span id="group__QkClassicalExpressions_1autotoc_md118" />
 
   #### Example
 
@@ -614,11 +614,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   const Expr *index = info.index;
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md95" />
+  <span id="group__QkClassicalExpressions_1autotoc_md119" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md95" />
+  <span id="group__QkClassicalExpressions_1autotoc_md119" />
 
   Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
 
@@ -628,7 +628,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 
   **Returns**
 
-  A `QkIndexExprInfo` structure describing the indexed target, index expression, result type, and whether the expression is constant.
+  A `QkIndexExprInfo` struct describing the indexed target, index expression, result type, and whether the expression is constant.
 </Function>
 
 ### qk\_expr\_as\_value
@@ -636,9 +636,9 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_expr_as_value" signature="const QkValue *qk_expr_as_value(const QkExprNode *expr)">
   Return a view into the underlying value of the expression node.
 
-  This function panics if `expr` does not point to a value expression node.
+  Panics if `expr` does not point to a value expression node.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md96" />
+  <span id="group__QkClassicalExpressions_1autotoc_md120" />
 
   #### Example
 
@@ -646,11 +646,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   const QkValue *value = qk_expr_as_value(expr);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md97" />
+  <span id="group__QkClassicalExpressions_1autotoc_md121" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md97" />
+  <span id="group__QkClassicalExpressions_1autotoc_md121" />
 
   Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
 
@@ -668,9 +668,9 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_expr_as_var" signature="const QkVar *qk_expr_as_var(const QkExprNode *expr)">
   Return a view into the underlying variable of the expression node.
 
-  This function panics if `expr` does not point to a variable expression node.
+  Panics if `expr` does not point to a variable expression node.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md98" />
+  <span id="group__QkClassicalExpressions_1autotoc_md122" />
 
   #### Example
 
@@ -678,11 +678,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   const QkVar *var = qk_expr_as_var(expr);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md99" />
+  <span id="group__QkClassicalExpressions_1autotoc_md123" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md99" />
+  <span id="group__QkClassicalExpressions_1autotoc_md123" />
 
   Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
 
@@ -700,9 +700,9 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_expr_as_stretch" signature="const QkStretch *qk_expr_as_stretch(const QkExprNode *expr)">
   Return a view into the underlying stretch of the expression node.
 
-  This function panics if `expr` does not point to a stretch expression node.
+  Panics if `expr` does not point to a stretch expression node.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md100" />
+  <span id="group__QkClassicalExpressions_1autotoc_md124" />
 
   #### Example
 
@@ -710,11 +710,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   const QkStretch *stretch = qk_expr_as_stretch(expr);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md101" />
+  <span id="group__QkClassicalExpressions_1autotoc_md125" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md101" />
+  <span id="group__QkClassicalExpressions_1autotoc_md125" />
 
   Behavior is undefined if `expr` is not a valid, non-null pointer to a `QkExprNode`.
 
@@ -732,7 +732,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_value_type_info" signature="QkExprTypeInfo qk_value_type_info(const QkValue *value)">
   Return the type information of a value.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md102" />
+  <span id="group__QkClassicalExpressions_1autotoc_md126" />
 
   #### Example
 
@@ -740,11 +740,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   QkExprTypeInfo type_info = qk_value_type_info(value);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md103" />
+  <span id="group__QkClassicalExpressions_1autotoc_md127" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md103" />
+  <span id="group__QkClassicalExpressions_1autotoc_md127" />
 
   Behavior is undefined if `value` is not a valid, non-null pointer to a `Value`.
 
@@ -754,7 +754,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 
   **Returns**
 
-  A `QkExprTypeInfo` structure containing the value type information.
+  A `QkExprTypeInfo` struct containing the value type information.
 </Function>
 
 ### qk\_value\_duration\_info
@@ -762,9 +762,9 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_value_duration_info" signature="QkDurationInfo qk_value_duration_info(const QkValue *value)">
   Extract structured information from a duration value.
 
-  This function panics if `value` does not point to a duration value.
+  Panics if `value` does not point to a duration value.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md104" />
+  <span id="group__QkClassicalExpressions_1autotoc_md128" />
 
   #### Example
 
@@ -772,11 +772,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   QkDurationInfo info = qk_value_duration_info(value);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md105" />
+  <span id="group__QkClassicalExpressions_1autotoc_md129" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md105" />
+  <span id="group__QkClassicalExpressions_1autotoc_md129" />
 
   Behavior is undefined if `value` is not a valid, non-null pointer to a `QkValue`.
 
@@ -786,7 +786,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 
   **Returns**
 
-  A `QkDurationInfo` structure containing the duration unit and raw value.
+  A `QkDurationInfo` struct containing the duration unit and raw value.
 </Function>
 
 ### qk\_value\_float
@@ -794,9 +794,9 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_value_float" signature="double qk_value_float(const QkValue *value)">
   Extract the floating-point value from a `QkValue`.
 
-  This function panics if `value` does not point to a float value.
+  Panics if `value` does not point to a float value.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md106" />
+  <span id="group__QkClassicalExpressions_1autotoc_md130" />
 
   #### Example
 
@@ -804,11 +804,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   double raw = qk_value_float(value);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md107" />
+  <span id="group__QkClassicalExpressions_1autotoc_md131" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md107" />
+  <span id="group__QkClassicalExpressions_1autotoc_md131" />
 
   Behavior is undefined if `value` is not a valid, non-null pointer to a `QkValue`.
 
@@ -824,11 +824,13 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 ### qk\_value\_uint
 
 <Function id="qk_value_uint" signature="uint64_t qk_value_uint(const QkValue *value)">
-  Extract the unsigned integer value from a `QkValue` of type `QkExprType::Uint`.
+  Extract the unsigned integer value from a `QkValue` of type `QkExprType_Uint`.
 
-  This function panics if `value` does not point to a `QkExprType::Uint` value or if the stored integer does not fit in `uint64_t`.
+  you should use `qk_value_type_info` to ensure the value will fit in `uint64_t` before calling this function.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md108" />
+  Panics if `value` does not point to a `QkExprType_Uint` value or if the stored integer does not fit in `uint64_t`.
+
+  <span id="group__QkClassicalExpressions_1autotoc_md132" />
 
   #### Example
 
@@ -836,11 +838,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   uint64_t raw = qk_value_uint(value);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md109" />
+  <span id="group__QkClassicalExpressions_1autotoc_md133" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md109" />
+  <span id="group__QkClassicalExpressions_1autotoc_md133" />
 
   Behavior is undefined if `value` is not a valid, non-null pointer to a `QkValue`.
 
@@ -856,11 +858,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 ### qk\_value\_bool
 
 <Function id="qk_value_bool" signature="bool qk_value_bool(const QkValue *value)">
-  Extract the value from a `QkValue` of type `QkExprType::Bool`.
+  Extract the value from a `QkValue` of type `QkExprType_Bool`.
 
-  This function panics if `value` does not point to a bool value.
+  Panics if `value` does not point to a bool value.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md110" />
+  <span id="group__QkClassicalExpressions_1autotoc_md134" />
 
   #### Example
 
@@ -868,11 +870,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   bool raw = qk_value_bool(value);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md111" />
+  <span id="group__QkClassicalExpressions_1autotoc_md135" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md111" />
+  <span id="group__QkClassicalExpressions_1autotoc_md135" />
 
   Behavior is undefined if `value` is not a valid, non-null pointer to a `QkValue`.
 
@@ -890,7 +892,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_var_name" signature="char *qk_var_name(const QkVar *var)">
   Return the name of a variable as a newly allocated C string.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md112" />
+  <span id="group__QkClassicalExpressions_1autotoc_md136" />
 
   #### Example
 
@@ -902,11 +904,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   }
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md113" />
+  <span id="group__QkClassicalExpressions_1autotoc_md137" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md113" />
+  <span id="group__QkClassicalExpressions_1autotoc_md137" />
 
   Behavior is undefined if `var` is not a valid, non-null pointer to a `QkVar`.
 
@@ -924,9 +926,9 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_var_type_info" signature="QkExprTypeInfo qk_var_type_info(const QkVar *var)">
   Return full type information for a variable.
 
-  This function panics if `var` is a bit variable, which is not yet supported by this API.
+  Panics if `var` is a bit variable, which is not yet supported by this API.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md114" />
+  <span id="group__QkClassicalExpressions_1autotoc_md138" />
 
   #### Example
 
@@ -934,11 +936,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   QkExprTypeInfo type_info = qk_var_type_info(var);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md115" />
+  <span id="group__QkClassicalExpressions_1autotoc_md139" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md115" />
+  <span id="group__QkClassicalExpressions_1autotoc_md139" />
 
   Behavior is undefined if `var` is not a valid, non-null pointer to a `QkVar`.
 
@@ -948,7 +950,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 
   **Returns**
 
-  A `QkExprTypeInfo` structure containing the variable type information.
+  A `QkExprTypeInfo` struct containing the variable type information.
 </Function>
 
 ### qk\_stretch\_name
@@ -956,7 +958,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 <Function id="qk_stretch_name" signature="char *qk_stretch_name(const QkStretch *stretch)">
   Return the name of a stretch.
 
-  <span id="group__QkClassicalExpressions_1autotoc_md116" />
+  <span id="group__QkClassicalExpressions_1autotoc_md140" />
 
   #### Example
 
@@ -966,11 +968,11 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
   qk_str_free(name);
   ```
 
-  <span id="group__QkClassicalExpressions_1autotoc_md117" />
+  <span id="group__QkClassicalExpressions_1autotoc_md141" />
 
   #### Safety
 
-  <span id="group__QkClassicalExpressions_1autotoc_md117" />
+  <span id="group__QkClassicalExpressions_1autotoc_md141" />
 
   Behavior is undefined if `stretch` is not a valid, non-null pointer to a `QkStretch`.
 
