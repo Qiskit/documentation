@@ -22,13 +22,15 @@ To apply error mitigation to a circuit under the framework, your workflow will t
 
 1. Group instructions into boxes and apply annotations to them. The annotations capture the intended transformation without actually generating the circuit variants.
 
-2. Learn the noise models of the unique layers, if needed, using the new [NoiseLearnerV3](#noiselearnerv3). 
+    *If needed*: Learn the noise models of the unique layers using the new [NoiseLearnerV3](#noiselearnerv3). 
 
-3. Build the template circuit and samplex from the boxed circuit.
+2. Build the template circuit and samplex from the boxed circuit.
 
-4. Run the template circuit and samplex with the [Executor](#executor) primitive, which will generate and execute the circuit variants as instructed. 
+3. Run the template circuit and samplex with the [Executor](#executor) primitive, which will generate and execute the circuit variants as instructed. 
 
-5. Post-process execution results. For example, you can apply postselection, or extrapolate mitigated expectation values from the execution results.
+4. Post-process execution results. For example, you can apply postselection, or extrapolate mitigated expectation values from the execution results.
+
+![Image illustrating the steps occurring on the client side and server side of the directed execution model](/docs/images/guides/directed-execution-model/dem.svg)
 
 <span id="samplomatic-tools"></span>
 ## Tools for the directed execution model
@@ -58,12 +60,8 @@ Executor is a new Qiskit Runtime primitive that takes the (template circuit, sam
 Similar to the current [`NoiseLearner`](/docs/guides/noise-learning), this Qiskit Runtime helper program returns the sparse [Pauli-Lindblad noise model](https://arxiv.org/abs/2201.09866) that is used in many error mitigation methods, including [PEC](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec), [PEA](/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea), and [PNA](https://github.com/Qiskit/qiskit-addon-pna/tree/main). In the original `NoiseLearner`, you pass in a list of circuits, and the program stratifies the circuits into layers and returns the noise model for each unique layer. `NoiseLearnerV3`, on the other hand, gives you control over how to stratify your circuits, and the program simply takes a list of boxed circuit instructions (for example, unique layers) as the inputs. 
 
 `NoiseLearnerV3` also supports measurement noise learning. For each instruction set in the input list, it runs the Pauli-Lindblad learning protocol if the set contains one- and two-qubit gates, and the [TREX](/docs/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex) protocol if the set contains measurements.
-To access `NoiseLearnerV3`, install the `executor_preview` branch from `qiskit-ibm-runtime`:
 
-```bash
-pip install -U git+https://github.com/Qiskit/qiskit-ibm-runtime.git@executor_preview
-```
-To learn more about NoiseLearnerV3, refer to its [API reference](https://qiskit.github.io/qiskit-ibm-runtime/apidocs/noise_learner_v3.html) documentation.
+`NoiseLearnerV3` was released with [`qiskit-ibm-runtime` v0.47.0](/docs/api/qiskit-ibm-runtime/release-notes#0470-2026-05-12). To learn more, see the [Noise learning helper](/docs/guides/noise-learning#noiselearnerv3) guide, and refer to its [API reference](/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3) documentation.
 
 
 ## Next steps
