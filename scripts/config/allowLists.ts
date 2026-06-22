@@ -21,6 +21,8 @@ export function ignoreTitleMismatch(filepath: string): boolean {
   return IGNORE_TITLE_MISMATCHES.includes(filepath);
 }
 
+export const IMAGE_ALLOWLIST: Set<string> = new Set([]);
+
 const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/directed-execution-model.mdx", // ok
   "docs/guides/estimator-examples.ipynb", // ok

@@ -67,6 +67,7 @@ export async function processHtml(
     imageDestination,
     isReleaseNotes,
     hasSeparateReleaseNotes,
+    fileName,
   );
   if (isReleaseNotes) {
     renameAllH1s($, releaseNotesTitle);
@@ -88,6 +89,7 @@ export async function processHtml(
   removeColonSpans($main);
   handleFootnotes($, $main);
   preserveMathBlockWhitespace($, $main);
+  expandTableRowspan($, $main);
 
   const meta: Metadata = {};
   await processMembersAndSetMeta($, $main, meta, {
@@ -110,16 +112,27 @@ export function loadImages(
   imageDestination: string,
   isReleaseNotes: boolean,
   hasSeparateReleaseNotes: boolean,
+  htmlFileName: string,
 ): Image[] {
   return $main
     .find("img")
     .toArray()
-    .filter((img) => $(img).attr("src"))
+    .filter((img) => {
+      const src = $(img).attr("src");
+      return src && !src.startsWith("http://") && !src.startsWith("https://");
+    })
     .map((img) => {
       const $img = $(img);
+      const src = $img.attr("src")!;
 
-      const fileName = $img.attr("src")!.split("/").pop()!;
+      const fileName = src.split("/").pop()!;
       const fileExtension = path.extname(fileName);
+
+      // Resolve the image's path relative to the artifact root so saveImages
+      // can find files in _static/ or other subdirectories, not just _images/.
+      const originSrc = path.normalize(
+        path.join(path.dirname(htmlFileName), src),
+      );
 
       // We convert PNG and JPG to AVIF for reduced file size. The image-copying
       // logic detects changed extensions and converts the files.
@@ -134,7 +147,7 @@ export function loadImages(
       }
 
       $img.attr("src", dest);
-      return { fileName, dest };
+      return { fileName, dest, originSrc };
     });
 }
 
@@ -241,10 +254,8 @@ function detectLanguage(
 ): string | null {
   const defaultLanguage = options.isCApi ? "c" : "python";
   // Two levels up from `pre` should have class `highlight-<language>`
-  const detectedLanguage = $pre
-    .parent()
-    .parent()[0]
-    .attribs.class.match(/(?<=highlight-)\w+/);
+  const grandparentClass = $pre.parent().parent()[0]?.attribs?.class ?? "";
+  const detectedLanguage = grandparentClass.match(/(?<=highlight-)\w+/);
   if (!detectedLanguage) return defaultLanguage;
   const langName = detectedLanguage[0];
   if (langName === "none") return null;
@@ -526,6 +537,9 @@ export function preserveMathBlockWhitespace(
     .toArray()
     .map((el) => {
       const $el = $(el);
+      // Remove equation number labels — the anchor IDs are on the parent divs,
+      // not the eqno span, so links to equations still resolve correctly.
+      $el.find("span.eqno").remove();
       $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
     });
 }
@@ -548,6 +562,26 @@ export function updateModuleHeadings($: CheerioAPI, $main: Cheerio<any>): void {
       }
       $el.replaceWith(replacement);
     });
+}
+
+export function expandTableRowspan($: CheerioAPI, $main: Cheerio<any>): void {
+  $main.find("td[rowspan], th[rowspan]").each((_, el) => {
+    const $el = $(el);
+    const span = parseInt($el.attr("rowspan") ?? "1", 10);
+    $el.removeAttr("rowspan");
+    let $row = $el.closest("tr");
+    const colIndex = $row.children("td,th").index($el);
+    for (let i = 1; i < span; i++) {
+      $row = $row.next("tr");
+      const $cells = $row.children("td,th");
+      const clone = $el.clone();
+      if (colIndex >= $cells.length) {
+        $row.append(clone);
+      } else {
+        $cells.eq(colIndex).before(clone);
+      }
+    }
+  });
 }
 
 function getApiType($dl: Cheerio<any>): ApiObjectName | undefined {

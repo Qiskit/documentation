@@ -136,6 +136,12 @@ notebooks = [
 # Don't ever test the following notebooks
 [groups.exclude]
 notebooks = [
+  # Addon notebooks require the addon packages and are not run in standard CI
+  "docs/addons/**/*.ipynb",
+
+  # Test fixture — not real content
+  "scripts/js/lib/api/testdata/**/*.ipynb",
+
   # This notebook contains undefined variables so can't run at all.
   "docs/guides/function-template-hamiltonian-simulation.ipynb",
   "docs/guides/function-template-chemistry-workflow.ipynb",

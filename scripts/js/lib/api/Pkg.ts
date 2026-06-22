@@ -57,18 +57,23 @@ export class Pkg {
   readonly kebabCaseAndShortenUrls: boolean;
   readonly artifactPackageName: string;
   readonly hasRootNamespaceFile: boolean;
+  /** Slugs of docs/tutorials/ notebooks to surface under this addon's tutorials route. */
 
-  static VALID_NAMES = [
-    "qiskit",
-    "qiskit-ibm-runtime",
-    "qiskit-ibm-transpiler",
+  static ADDON_NAMES = [
     "qiskit-addon-aqc-tensor",
     "qiskit-addon-obp",
     "qiskit-addon-mpf",
     "qiskit-addon-sqd",
     "qiskit-addon-cutting",
     "qiskit-addon-utils",
+  ];
+
+  static VALID_NAMES = [
+    "qiskit",
+    "qiskit-ibm-runtime",
+    "qiskit-ibm-transpiler",
     "qiskit-c",
+    ...Pkg.ADDON_NAMES,
   ];
 
   constructor(kwargs: {
@@ -255,6 +260,10 @@ export class Pkg {
   }
 
   outputDir(parentDir: string): string {
+    return join(parentDir, this.name);
+  }
+
+  apiOutputDir(parentDir: string): string {
     let path = join(parentDir, "api", this.name);
     if (this.isHistorical()) {
       path = join(path, this.versionWithoutPatch);
@@ -282,6 +291,10 @@ export class Pkg {
 
   isCApi(): boolean {
     return this.language === "C";
+  }
+
+  isAddon(): boolean {
+    return Pkg.ADDON_NAMES.includes(this.name);
   }
 
   isProblematicLegacyQiskit(): boolean {

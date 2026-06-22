@@ -1,6 +1,6 @@
 // This code is a Qiskit project.
 //
-// (C) Copyright IBM 2023.
+// (C) Copyright IBM 2026.
 //
 // This code is licensed under the Apache License, Version 2.0. You may
 // obtain a copy of this license in the LICENSE file in the root directory
@@ -10,22 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { Metadata } from "./Metadata.js";
+// Base path under which all generated docs live on the site.
+export const DOCS_BASE_PATH = "/docs";
 
-export type Image = {
-  fileName: string;
-  dest: string;
-  /** Path to the image relative to the artifact root (e.g. `_static/foo.svg` or `_images/foo.svg`) */
-  originSrc: string;
-};
-
-export type HtmlToMdResult = {
-  markdown: string;
-  meta: Metadata;
-  images: Image[];
-  isReleaseNotes: boolean;
-};
-
-export type HtmlToMdResultWithUrl = HtmlToMdResult & {
-  url: string;
-};
+// Folder in the Sphinx artifact that contains all C API docs.
+export const C_API_BASE_PATH = "cdoc" as const;
