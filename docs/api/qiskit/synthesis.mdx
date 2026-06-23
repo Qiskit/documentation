@@ -92,14 +92,14 @@ python_api_name: qiskit.synthesis
 
 ### synth\_cz\_depth\_line\_mr
 
-<Function id="qiskit.synthesis.synth_cz_depth_line_mr" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/synthesis/linear_phase/cz_depth_lnn.py#L33-L58" signature="qiskit.synthesis.synth_cz_depth_line_mr(mat)">
+<Function id="qiskit.synthesis.synth_cz_depth_line_mr" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/synthesis/linear_phase/cz_depth_lnn.py#L33-L59" signature="qiskit.synthesis.synth_cz_depth_line_mr(mat)">
   Synthesis of a CZ circuit for linear nearest neighbor (LNN) connectivity, based on Maslov and Roetteler.
 
   Note that this method *reverts* the order of qubits in the circuit, and returns a circuit containing [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s and phase gates ([`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") or [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")).
 
   **Parameters**
 
-  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – an upper-diagonal matrix representing the CZ circuit. `mat[i][j]=1 for i<j` represents a `cz(i,j)` gate
+  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – a square upper-diagonal matrix of bool representing the CZ circuit. `mat[i][j]=1 for i<j` represents a `cz(i,j)` gate. Only the upper triangle is read from; the diagonal and lower triangle have no effect.
 
   **Returns**
 

@@ -36,39 +36,12 @@ While circuits track registers, the registers themselves impart almost no behavi
 
 ## Functions
 
-### qk\_classical\_register\_free
-
-<Function id="qk_classical_register_free" signature="void qk_classical_register_free(QkClassicalRegister *reg)">
-  Free a classical register.
-
-  <span id="group__QkClassicalRegister_1autotoc_md5" />
-
-  #### Example
-
-  ```c
-  QkClassicalRegister *cr = qk_classical_register_new(1024, "creg");
-  qk_classical_register_free(cr);
-  ```
-
-  <span id="group__QkClassicalRegister_1autotoc_md6" />
-
-  #### Safety
-
-  <span id="group__QkClassicalRegister_1autotoc_md6" />
-
-  Behavior is undefined if `reg` is not either null or a valid pointer to a `QkClassicalRegister`.
-
-  **Parameters**
-
-  *   **reg** – A pointer to the register to free.
-</Function>
-
 ### qk\_classical\_register\_new
 
 <Function id="qk_classical_register_new" signature="QkClassicalRegister *qk_classical_register_new(uint32_t num_clbits, const char *name)">
   Construct a new owning classical register with a given number of clbits and name
 
-  <span id="group__QkClassicalRegister_1autotoc_md7" />
+  <span id="group__QkClassicalRegister_1autotoc_md11" />
 
   #### Example
 
@@ -76,11 +49,11 @@ While circuits track registers, the registers themselves impart almost no behavi
   QkClassicalRegister *cr = qk_classical_register_new(5, "five_qubits");
   ```
 
-  <span id="group__QkClassicalRegister_1autotoc_md8" />
+  <span id="group__QkClassicalRegister_1autotoc_md12" />
 
   #### Safety
 
-  <span id="group__QkClassicalRegister_1autotoc_md8" />
+  <span id="group__QkClassicalRegister_1autotoc_md12" />
 
   The `name` parameter must be a pointer to memory that contains a valid nul terminator at the end of the string. It also must be valid for reads of bytes up to and including the nul terminator.
 
@@ -92,5 +65,149 @@ While circuits track registers, the registers themselves impart almost no behavi
   **Returns**
 
   A pointer to the created register
+</Function>
+
+### qk\_classical\_register\_free
+
+<Function id="qk_classical_register_free" signature="void qk_classical_register_free(QkClassicalRegister *reg)">
+  Free a classical register.
+
+  <span id="group__QkClassicalRegister_1autotoc_md13" />
+
+  #### Example
+
+  ```c
+  QkClassicalRegister *cr = qk_classical_register_new(1024, "creg");
+  qk_classical_register_free(cr);
+  ```
+
+  <span id="group__QkClassicalRegister_1autotoc_md14" />
+
+  #### Safety
+
+  <span id="group__QkClassicalRegister_1autotoc_md14" />
+
+  Behavior is undefined if `reg` is not either null or a valid pointer to a `QkClassicalRegister`.
+
+  **Parameters**
+
+  *   **reg** – A pointer to the register to free.
+</Function>
+
+### qk\_classical\_register\_name
+
+<Function id="qk_classical_register_name" signature="char *qk_classical_register_name(const QkClassicalRegister *creg)">
+  Get the name of a classical register.
+
+  Returns a newly allocated C string containing the name of the classical register.
+
+  <span id="group__QkClassicalRegister_1autotoc_md15" />
+
+  #### Example
+
+  ```c
+  QkClassicalRegister *cr = qk_classical_register_new(3, "my_creg");
+  char *name = qk_classical_register_name(cr);
+  printf("Register name: %s\n", name);
+  qk_str_free(name);
+  qk_classical_register_free(cr);
+  ```
+
+  <span id="group__QkClassicalRegister_1autotoc_md16" />
+
+  #### Safety
+
+  <span id="group__QkClassicalRegister_1autotoc_md16" />
+
+  Behavior is undefined if `creg` is not a valid, non-null pointer to a `QkClassicalRegister`.
+
+  **Parameters**
+
+  *   **creg** – A pointer to the classical register.
+
+  **Returns**
+
+  A pointer to a newly allocated null-terminated string containing the register name. The caller must free this string using `qk_str_free`.
+</Function>
+
+### qk\_classical\_register\_num\_bits
+
+<Function id="qk_classical_register_num_bits" signature="size_t qk_classical_register_num_bits(const QkClassicalRegister *creg)">
+  Get the number of classical bits in a classical register.
+
+  Returns the size (number of classical bits) of the classical register.
+
+  <span id="group__QkClassicalRegister_1autotoc_md17" />
+
+  #### Example
+
+  ```c
+  QkClassicalRegister *cr = qk_classical_register_new(3, "my_creg");
+  size_t num_clbits = qk_classical_register_num_bits(cr);
+  printf("Number of clbits: %zu\n", num_clbits);  // Prints: 3
+  qk_classical_register_free(cr);
+  ```
+
+  <span id="group__QkClassicalRegister_1autotoc_md18" />
+
+  #### Safety
+
+  <span id="group__QkClassicalRegister_1autotoc_md18" />
+
+  Behavior is undefined if `creg` is not a valid, non-null pointer to a `QkClassicalRegister`.
+
+  **Parameters**
+
+  *   **creg** – A pointer to the classical register.
+
+  **Returns**
+
+  The number of classical bits in the register.
+</Function>
+
+### qk\_classical\_register\_circuit\_bits
+
+<Function id="qk_classical_register_circuit_bits" signature="void qk_classical_register_circuit_bits(const QkClassicalRegister *creg, const QkCircuit *circuit, uint32_t *out_bits)">
+  Get the circuit bit indices for all clbits in a classical register.
+
+  Outputs a mapping from each clbit in the classical register to its corresponding index in the circuit’s clbit list. If a clbit from the register is not present in the circuit, its index in the mapping will be `UINT32_MAX`.
+
+  <span id="group__QkClassicalRegister_1autotoc_md19" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(0, 2);
+  QkClassicalRegister *cr = qk_classical_register_new(3, "my_creg");
+  qk_circuit_add_classical_register(qc, cr);
+
+  uint32_t bit_indices[3];
+
+  qk_classical_register_circuit_bits(cr, qc, bit_indices);
+
+  // bit_indices now contains [2, 3, 4] since all clbits are in the circuit
+  // and the circuit has 2 anonymous clbits
+
+  qk_classical_register_free(cr);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkClassicalRegister_1autotoc_md20" />
+
+  #### Safety
+
+  <span id="group__QkClassicalRegister_1autotoc_md20" />
+
+  Behavior is undefined if:
+
+  *   `creg` is not a valid, non-null pointer to a `QkClassicalRegister`.
+  *   `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+  *   `creg` has one or more bits and `out_bits` is not an aligned, non-null pointer to an array with at least `qk_classical_register_num_bits(creg)` elements.
+
+  **Parameters**
+
+  *   **creg** – A pointer to the classical register to map.
+  *   **circuit** – A pointer to the circuit containing the clbits.
+  *   **out\_bits** – A pointer to an array where the mapped indices will be written. The array must be pre-allocated with at least `qk_classical_register_num_bits` elements for `creg`. Each element will contain either the circuit bit index or `UINT32_MAX` if the clbit is not in the circuit.
 </Function>
 

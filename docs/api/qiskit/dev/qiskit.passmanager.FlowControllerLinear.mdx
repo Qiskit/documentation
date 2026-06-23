@@ -8,17 +8,19 @@ python_api_name: qiskit.passmanager.FlowControllerLinear
 
 # FlowControllerLinear
 
-<Class id="qiskit.passmanager.FlowControllerLinear" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/flow_controllers.py#L27-L49" signature="qiskit.passmanager.FlowControllerLinear(tasks=(), *, options=None)" modifiers="class">
-  Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
+<Class id="qiskit.passmanager.FlowControllerLinear" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/flow_controllers.py#L28-L56" signature="qiskit.passmanager.FlowControllerLinear(tasks=(), *, options=None)" modifiers="class">
+  Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")\[`IR`, `IR_OUT`]
 
   A standard flow controller that runs tasks one after the other.
+
+  This controller guarantees that the input IR and output IR are correctly typed, but makes no guarantees on what IRs are used intermediately.
 
   Create new flow controller.
 
   **Parameters**
 
   *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Any] | None*) – Option for this flow controller.
-  *   **tasks** (*Task | Iterable\[Task]*)
+  *   **tasks** (*Task\[IR, IR\_OUT] | Iterable\[Task\[Any, Any]]*)
 
   ## Attributes
 
@@ -32,12 +34,12 @@ python_api_name: qiskit.passmanager.FlowControllerLinear
 
   ### execute
 
-  <Function id="qiskit.passmanager.FlowControllerLinear.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L199-L227" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.passmanager.FlowControllerLinear.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L204-L232" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
     *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
 
@@ -47,12 +49,12 @@ python_api_name: qiskit.passmanager.FlowControllerLinear
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### iter\_tasks
 
-  <Function id="qiskit.passmanager.FlowControllerLinear.iter_tasks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/flow_controllers.py#L47-L49" signature="iter_tasks(state)">
+  <Function id="qiskit.passmanager.FlowControllerLinear.iter_tasks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/flow_controllers.py#L52-L56" signature="iter_tasks(state)">
     A custom logic to choose a next task to run.
 
     Controller subclass can consume the state to build a proper task pipeline. The updated state after a task execution will be fed back in as the “return” value of any `yield` statements. This indicates the order of task execution is only determined at running time. This method is not allowed to mutate the given state object.
@@ -68,7 +70,7 @@ python_api_name: qiskit.passmanager.FlowControllerLinear
 
     **Return type**
 
-    [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator)\[*Task*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState"), None]
+    [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator)\[*Task*\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)], [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState"), None]
   </Function>
 </Class>
 

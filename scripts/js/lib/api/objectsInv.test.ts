@@ -20,8 +20,11 @@ const TEMP_FOLDER = "scripts/js/lib/api/testdata/temp/";
 
 test.describe("objects.inv", () => {
   test.afterAll(async () => {
-    if (await stat(TEMP_FOLDER + "objects.inv")) {
+    try {
+      await stat(TEMP_FOLDER + "objects.inv");
       await unlink(TEMP_FOLDER + "objects.inv");
+    } catch {
+      // file doesn't exist, nothing to clean up
     }
   });
 
@@ -35,22 +38,33 @@ test.describe("objects.inv", () => {
         "# The remainder of this file is compressed using zlib.\n",
     );
 
-    const uriIndices = [10, 88, 107, 1419, 23575];
-    // This test fails when you include / exclude entries, which shifts some array indices.
-    // Use the following code to find the new indices.
-    // console.log(objectsInv.entries.findLastIndex( e => { return e.uri.includes("index") }))
-    expect(uriIndices.map((i) => objectsInv.entries[i].uri)).toEqual([
+    // std: entries that don't point into stubs/ or apidocs/ must be filtered
+    // out — they're RST structural labels that don't correspond to published
+    // pages and would produce false broken-link errors.
+    expect(
+      objectsInv.entries.some(
+        (e) =>
+          e.domainAndRole.startsWith("std:") &&
+          !e.uri.startsWith("stubs/") &&
+          !e.uri.startsWith("apidocs/"),
+      ),
+    ).toBe(false);
+
+    // Spot-check that specific API symbol entries are present.
+    const urisToFind = [
       "stubs/qiskit.algorithms.AlgorithmJob.html#qiskit.algorithms.AlgorithmJob.job_id",
       "stubs/qiskit.algorithms.FasterAmplitudeEstimation.html#qiskit.algorithms.FasterAmplitudeEstimation.sampler",
       "stubs/qiskit.algorithms.Grover.html#qiskit.algorithms.Grover.quantum_instance",
       "apidoc/assembler.html#qiskit.assembler.disassemble",
-      "index.html",
-    ]);
-    const nameIndices = [23575, 24146];
-    expect(nameIndices.map((i) => objectsInv.entries[i].dispname)).toEqual([
-      "Qiskit 0.45 documentation",
-      "FakeOslo",
-    ]);
+    ];
+    for (const uri of urisToFind) {
+      expect(objectsInv.entries.some((e) => e.uri === uri)).toBe(true);
+    }
+
+    // Spot-check a known dispname.
+    expect(objectsInv.entries.some((e) => e.dispname === "FakeOslo")).toBe(
+      true,
+    );
   });
 
   test("write file and re-read matches original", async () => {
