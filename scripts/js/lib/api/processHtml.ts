@@ -74,6 +74,7 @@ export async function processHtml(
   }
 
   // Warning: the sequence of operations often matters.
+  removeInternalImageReferenceLinks($, $main);
   removeHtmlExtensionsInRelativeLinks($, $main);
   if (options.isCApi) removeCDomainPrefixFromAnchors($, $main);
   removePermalinks($main);
@@ -160,6 +161,25 @@ export function removeHtmlExtensionsInRelativeLinks(
     const href = $link.attr("href");
     if (href && !href.startsWith("http")) {
       $link.attr("href", href.replaceAll(".html", ""));
+    }
+  });
+}
+
+/**
+ * Sphinx wraps inline images in <a class="reference internal image-reference"> as a
+ * lightbox pattern. The href points to the raw image in the artifact (e.g. _images/foo.png)
+ * and is not rewritten by the pipeline, so rehype-remark produces [![alt](src)] with a
+ * dangling bracket. Unwrap these anchors so the image renders without a link.
+ */
+export function removeInternalImageReferenceLinks(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
+  $main.find("a.image-reference").each((_, link) => {
+    const $link = $(link);
+    const href = $link.attr("href");
+    if (href && !href.startsWith("http://") && !href.startsWith("https://")) {
+      $link.replaceWith($link.contents());
     }
   });
 }
