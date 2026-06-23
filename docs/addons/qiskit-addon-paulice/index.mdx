@@ -1,0 +1,85 @@
+---
+title: "Qiskit Paulice"
+description: "Documentation for the latest version of Qiskit Paulice"
+---
+
+# Qiskit Paulice
+
+`qiskit-paulice` is a package for embedding hardware-efficient Pauli checks into arbitrary Clifford circuits on arbitrary qubit connectivities using spacetime stabilizer codes. These checks can be used to detect logical errors during circuit execution. Postselecting only samples with no detected errors can improve the fidelity of states sampled with a quantum processor at the cost of some ancilla qubits and an increase in sampling overhead. This method is particularly suited to near-term hardware since it has a much milder overhead in qubits and gates compared to fault-tolerant quantum computing, while having a better sampling overhead than error mitigation methods such as ZNE or PEC <span id="id1" />[\[1\]](#id4).
+
+Although spacetime Pauli checks may be used to implement standalone error detection routines, they are also relevant in the context of error mitigation and error correction. Error detection can complement error mitigation techniques such as probabilistic error cancellation (PEC) by capturing some of the noise affecting gates and measurements, reducing the impact of the noise channel being inverted and thus reducing the sampling overhead. They can also be viewed as an early step toward practical fault tolerance, since implementing stabilizer codes to protect data qubits from logical errors is a core concept of traditional error correction. Since this method provides single-shot access to the quantum state, it can be used in both sampling-based and expectation value-based workflows.
+
+## Getting started
+
+A simple guide to help you get started quickly with this package is available in the [quickstart guide](guides/quickstart).
+
+## Use case examples
+
+This technique has been used to improve the fidelity of samples from Clifford-dominated circuits up to 50 qubits and 2450 entangling gates [\[1\]](https://arxiv.org/abs/2504.15725).
+
+## Technical discussion
+
+### Finding good sets of spacetime Pauli checks
+
+[![Quantum circuit cartoon](/docs/images/addons/qiskit-addon-paulice/paulice.avif)](_images/paulice-png)
+
+A set of spacetime Pauli checks is “good” if each check is valid, low weight, and effective.
+
+A check is comprised of a number of controlled Pauli rotations, $P$, placed on some wires in the circuit, $w$: $\{(P_1,w_1), ..., (P_k,w_k)\}$. For a given check, the controls lie on a single ancilla qubit, and the rotations occur on wires of a single target qubit. For Clifford circuits, a check is valid if its backpropagated product is a stabilizer of the state prepared by the ideal circuit: $\prod_{i}B(P_i,w_i) \in S$, where $B(P,w)$ is the backpropagator of $P$ from $w$ to the beginning of the circuit, and $S$ is the set of all stabilizers of the circuit.
+
+A check is low weight if it requires few entangling gates to implement. The check-picking algorithm will favor checks that are low weight and provide the most effective error detection.
+
+A check is effective if it captures much more error than it introduces. A Pauli check is comprised of a number of entangling gates and thus introduces some additional gate noise into the calculation. It is important to ensure each additional check brings some additional error detection capability. The effectiveness of a set of checks can be approximated by composing the Pauli errors that are uncovered by the checks into a postselected noise channel and calculating its impact. Minimizing the sampling overhead for implementing the uncovered inverse noise channel is a solid heuristic for selecting good checks, as it gives an indication of how much error the checks can’t detect. A slower but more realistic approach is to perform a Monte Carlo sampling from the noisy state and empirically compute the logical error rate of the postselected distribution. Both of these approaches are available as built-in cost functions in the `qiskit_paulice.add_pauli_checks` function.
+
+### Postselecting samples based on syndrome data
+
+In this package a check is implemented using entangling gates between one ancilla qubit and one target qubit. Each ancilla starts in $|0\rangle$, so $Z_\text{anc}$ stabilizes its input state. Forward-propagating $Z_\text{anc}$ from the beginning of the ancilla through the entire checked circuit yields a Pauli operator on the output, which might be higher weight and extend into the payload circuit. The qubit indices on which this output operator has non-identity terms are called the check’s support, and the check passes if the bits, $b$, in the check’s support have even parity: $\bigoplus_{i=1} b_i = 0$. A sample is kept if each check produces $0$ for its parity check.
+
+### Software features
+
+*   Automatic noise model creation from backend benchmark data
+*   Rust-accelerated check finding
+*   Three built-in algorithms for check finding
+*   Evaluate efficacy of checks based on sampling overhead of postselected inverse noise channel or logical error rate based on Monte Carlo sampling of noisy state
+*   Helper functionality for finding ancilla/target qubit pairs for a given backend
+
+### Known issues
+
+*   Idling noise is not provided via `NoiseModel.get_backend` and is ignored during check picking
+*   While many stochastic steps in the algorithm are controllable with a random seed, some features have randomness not controllable with a seed. Specifically, the following kwargs values for `add_pauli_checks` will cause undeterministic check picking: `cost="LER"`, `method="genetic"`, and `method="windowed_genetic"`. For deterministic behavior use `add_pauli_checks(..., cost="gamma", method="windowed")`, which are the default values.
+
+### Future work
+
+*   Support for handling non-Clifford systems
+*   More support for analyzing postselected noise channel
+*   Handling idling noise when picking checks
+*   Controllable randomness for logical error rate cost function and genetic search algorithms
+
+## Contributing
+
+The source code is available [on GitHub](https://github.com/Qiskit/qiskit-paulice).
+
+The developer guide is located at [CONTRIBUTING.md](https://github.com/Qiskit/qiskit-paulice/blob/main/CONTRIBUTING.md) in the root of this project’s repository. By participating, you are expected to uphold Qiskit’s [code of conduct](https://github.com/Qiskit/qiskit/blob/main/CODE_OF_CONDUCT.md).
+
+## Citing this package
+
+If you use this package in your research, use the CITATION.bib \<[https://github.com/Qiskit/qiskit-paulice/blob/main/CITATION.bib](https://github.com/Qiskit/qiskit-paulice/blob/main/CITATION.bib)> file in this project’s repository to cite the appropriate reference(s).
+
+## License
+
+[Apache License 2.0](https://github.com/Qiskit/qiskit-paulice/blob/main/LICENSE.txt)
+
+## Deprecation policy
+
+We follow [semantic versioning](https://semver.org/). We may occasionally make breaking changes in order to improve the user experience. When possible, we will keep old interfaces and mark them as deprecated, as long as they can co-exist with the new ones. Each substantial improvement, breaking change, or deprecation will be documented in the release notes.
+
+<span id="id3" />
+
+## References
+
+<span id="id4" />
+
+\[[1](#id1)]
+
+Simon Martiel, Ali Javadi-Abhari, [Low-overhead error detection with spacetime codes](https://arxiv.org/abs/2504.15725), arXiv:2504.15725 \[quant-ph].
+
