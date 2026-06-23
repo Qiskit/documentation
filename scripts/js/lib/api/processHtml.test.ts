@@ -18,6 +18,7 @@ import {
   handleSphinxDesignCards,
   maybeSetPythonModuleMetadata,
   renameAllH1s,
+  removeInternalImageReferenceLinks,
   removeHtmlExtensionsInRelativeLinks,
   removeDownloadSourceCode,
   removePermalinks,
@@ -210,6 +211,20 @@ test("renameAllH1s()", () => {
   const doc = CheerioDoc.load(`<h1>Release Notes!!!</h1><h2>0.45.0</h2>`);
   renameAllH1s(doc.$, "New Title");
   doc.expectHtml(`<h1>New Title</h1><h2>0.45.0</h2>`);
+});
+
+test("removeInternalImageReferenceLinks()", () => {
+  // Internal image-reference links (Sphinx lightbox) should be unwrapped.
+  // External image-reference links (e.g. badge links) should be preserved.
+  const doc = CheerioDoc.load(
+    `<a class="reference internal image-reference" href="_images/foo.png"><img src="/docs/images/foo.avif" alt="foo"/></a>` +
+      `<a class="reference external image-reference" href="https://example.com"><img src="https://img.shields.io/badge.svg" alt="badge"/></a>`,
+  );
+  removeInternalImageReferenceLinks(doc.$, doc.$main);
+  doc.expectHtml(
+    `<img src="/docs/images/foo.avif" alt="foo">` +
+      `<a class="reference external image-reference" href="https://example.com"><img src="https://img.shields.io/badge.svg" alt="badge"></a>`,
+  );
 });
 
 test("removeHtmlExtensionsInRelativeLinks()", () => {
