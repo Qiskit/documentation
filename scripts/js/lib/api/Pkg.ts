@@ -66,6 +66,7 @@ export class Pkg {
     "qiskit-addon-sqd",
     "qiskit-addon-cutting",
     "qiskit-addon-utils",
+    "qiskit-addon-paulice",
   ];
 
   static VALID_NAMES = [
@@ -202,6 +203,15 @@ export class Pkg {
         ...args,
         title: "Circuit cutting",
         githubSlug: "Qiskit/qiskit-addon-cutting",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-addon-paulice") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Paulice",
+        githubSlug: "Qiskit/qiskit-addon-paulice",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });
