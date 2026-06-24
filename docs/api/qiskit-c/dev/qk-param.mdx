@@ -19,7 +19,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_new_symbol" signature="QkParam *qk_param_new_symbol(const char *name)">
   Construct a new `QkParam` representing an unbound symbol.
 
-  <span id="group__QkParam_1autotoc_md150" />
+  <span id="group__QkParam_1autotoc_md265" />
 
   #### Example
 
@@ -27,11 +27,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   QkParam *a = qk_param_new_symbol("a");
   ```
 
-  <span id="group__QkParam_1autotoc_md151" />
+  <span id="group__QkParam_1autotoc_md266" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md151" />
+  <span id="group__QkParam_1autotoc_md266" />
 
   The `name` parameter must be a pointer to memory that contains a valid nul terminator at the end of the string. It also must be valid for reads of bytes up to and including the nul terminator.
 
@@ -51,7 +51,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 
   The `QkParam` returned from this function can be used to store the result of binary or unary operations.
 
-  <span id="group__QkParam_1autotoc_md152" />
+  <span id="group__QkParam_1autotoc_md267" />
 
   #### Example
 
@@ -72,7 +72,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_free" signature="void qk_param_free(QkParam *param)">
   Free the `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md153" />
+  <span id="group__QkParam_1autotoc_md268" />
 
   #### Example
 
@@ -81,11 +81,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_free(a);
   ```
 
-  <span id="group__QkParam_1autotoc_md154" />
+  <span id="group__QkParam_1autotoc_md269" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md154" />
+  <span id="group__QkParam_1autotoc_md269" />
 
   Behavior is undefined if `param` is not either null or a valid pointer to a `QkParam`.
 
@@ -99,7 +99,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_from_double" signature="QkParam *qk_param_from_double(double value)">
   Construct a new `QkParam` from a `double`.
 
-  <span id="group__QkParam_1autotoc_md155" />
+  <span id="group__QkParam_1autotoc_md270" />
 
   #### Example
 
@@ -121,7 +121,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_from_complex" signature="QkParam *qk_param_from_complex(QkComplex64 value)">
   Construct a new `QkParam` from a complex number, given as `QkComplex64`.
 
-  <span id="group__QkParam_1autotoc_md156" />
+  <span id="group__QkParam_1autotoc_md271" />
 
   #### Example
 
@@ -144,7 +144,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_copy" signature="QkParam *qk_param_copy(const QkParam *param)">
   Copy a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md157" />
+  <span id="group__QkParam_1autotoc_md272" />
 
   #### Example
 
@@ -153,11 +153,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   QkParam *b = qk_param_copy(a);
   ```
 
-  <span id="group__QkParam_1autotoc_md158" />
+  <span id="group__QkParam_1autotoc_md273" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md158" />
+  <span id="group__QkParam_1autotoc_md273" />
 
   The behavior is undefined if `param` is not a valid pointer to a non-null `QkParam`.
 
@@ -175,7 +175,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_str" signature="char *qk_param_str(const QkParam *param)">
   Get a string representation of the `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md159" />
+  <span id="group__QkParam_1autotoc_md274" />
 
   #### Example
 
@@ -187,11 +187,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_free(a);
   ```
 
-  <span id="group__QkParam_1autotoc_md160" />
+  <span id="group__QkParam_1autotoc_md275" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md160" />
+  <span id="group__QkParam_1autotoc_md275" />
 
   The behavior is undefined if `param` is not a valid pointer to a non-null `QkParam`.
 
@@ -213,7 +213,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_add" signature="QkExitCode qk_param_add(QkParam *out, const QkParam *lhs, const QkParam *rhs)">
   Add two `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md161" />
+  <span id="group__QkParam_1autotoc_md276" />
 
   #### Example
 
@@ -224,11 +224,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_add(out, a, b);
   ```
 
-  <span id="group__QkParam_1autotoc_md162" />
+  <span id="group__QkParam_1autotoc_md277" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md162" />
+  <span id="group__QkParam_1autotoc_md277" />
 
   The behavior is undefined if any of `out`, `lhs` or `rhs` is not a valid, non-null pointer to a `QkParam`.
 
@@ -248,7 +248,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_sub" signature="QkExitCode qk_param_sub(QkParam *out, const QkParam *lhs, const QkParam *rhs)">
   Subtract two `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md163" />
+  <span id="group__QkParam_1autotoc_md278" />
 
   #### Example
 
@@ -259,11 +259,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_sub(out, a, b);
   ```
 
-  <span id="group__QkParam_1autotoc_md164" />
+  <span id="group__QkParam_1autotoc_md279" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md164" />
+  <span id="group__QkParam_1autotoc_md279" />
 
   The behavior is undefined if any of `out`, `lhs` or `rhs` is not a valid, non-null pointer to a `QkParam`.
 
@@ -283,7 +283,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_mul" signature="QkExitCode qk_param_mul(QkParam *out, const QkParam *lhs, const QkParam *rhs)">
   Multiply two `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md165" />
+  <span id="group__QkParam_1autotoc_md280" />
 
   #### Example
 
@@ -294,11 +294,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_mul(out, a, b);
   ```
 
-  <span id="group__QkParam_1autotoc_md166" />
+  <span id="group__QkParam_1autotoc_md281" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md166" />
+  <span id="group__QkParam_1autotoc_md281" />
 
   The behavior is undefined if any of `out`, `lhs` or `rhs` is not a valid, non-null pointer to a `QkParam`.
 
@@ -318,7 +318,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_div" signature="QkExitCode qk_param_div(QkParam *out, const QkParam *num, const QkParam *den)">
   Divide a `QkParam` by another.
 
-  <span id="group__QkParam_1autotoc_md167" />
+  <span id="group__QkParam_1autotoc_md282" />
 
   #### Example
 
@@ -329,11 +329,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_div(out, a, b);
   ```
 
-  <span id="group__QkParam_1autotoc_md168" />
+  <span id="group__QkParam_1autotoc_md283" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md168" />
+  <span id="group__QkParam_1autotoc_md283" />
 
   The behavior is undefined if any of `out`, `num` or `den` is not a valid, non-null pointer to a `QkParam`.
 
@@ -353,7 +353,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_pow" signature="QkExitCode qk_param_pow(QkParam *out, const QkParam *base, const QkParam *pow)">
   Raise a `QkParam` to the power of another.
 
-  <span id="group__QkParam_1autotoc_md169" />
+  <span id="group__QkParam_1autotoc_md284" />
 
   #### Example
 
@@ -364,11 +364,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_pow(out, base, pow);
   ```
 
-  <span id="group__QkParam_1autotoc_md170" />
+  <span id="group__QkParam_1autotoc_md285" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md170" />
+  <span id="group__QkParam_1autotoc_md285" />
 
   The behavior is undefined if any of `out`, `base` or `pow` is not a valid, non-null pointer to a `QkParam`.
 
@@ -388,7 +388,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_sin" signature="QkExitCode qk_param_sin(QkParam *out, const QkParam *src)">
   Calculate the sine of a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md171" />
+  <span id="group__QkParam_1autotoc_md286" />
 
   #### Example
 
@@ -398,11 +398,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_sin(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md172" />
+  <span id="group__QkParam_1autotoc_md287" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md172" />
+  <span id="group__QkParam_1autotoc_md287" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -421,7 +421,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_cos" signature="QkExitCode qk_param_cos(QkParam *out, const QkParam *src)">
   Calculate the cosine of a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md173" />
+  <span id="group__QkParam_1autotoc_md288" />
 
   #### Example
 
@@ -431,11 +431,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_cos(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md174" />
+  <span id="group__QkParam_1autotoc_md289" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md174" />
+  <span id="group__QkParam_1autotoc_md289" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -454,7 +454,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_tan" signature="QkExitCode qk_param_tan(QkParam *out, const QkParam *src)">
   Calculate the tangent of a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md175" />
+  <span id="group__QkParam_1autotoc_md290" />
 
   #### Example
 
@@ -464,11 +464,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_tan(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md176" />
+  <span id="group__QkParam_1autotoc_md291" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md176" />
+  <span id="group__QkParam_1autotoc_md291" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -487,7 +487,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_asin" signature="QkExitCode qk_param_asin(QkParam *out, const QkParam *src)">
   Calculate the arcsine of a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md177" />
+  <span id="group__QkParam_1autotoc_md292" />
 
   #### Example
 
@@ -497,11 +497,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_asin(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md178" />
+  <span id="group__QkParam_1autotoc_md293" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md178" />
+  <span id="group__QkParam_1autotoc_md293" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -520,7 +520,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_acos" signature="QkExitCode qk_param_acos(QkParam *out, const QkParam *src)">
   Calculate the arccosine of a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md179" />
+  <span id="group__QkParam_1autotoc_md294" />
 
   #### Example
 
@@ -530,11 +530,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_acos(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md180" />
+  <span id="group__QkParam_1autotoc_md295" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md180" />
+  <span id="group__QkParam_1autotoc_md295" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -553,7 +553,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_atan" signature="QkExitCode qk_param_atan(QkParam *out, const QkParam *src)">
   Calculate the arctangent of a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md181" />
+  <span id="group__QkParam_1autotoc_md296" />
 
   #### Example
 
@@ -563,11 +563,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_atan(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md182" />
+  <span id="group__QkParam_1autotoc_md297" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md182" />
+  <span id="group__QkParam_1autotoc_md297" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -586,7 +586,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_log" signature="QkExitCode qk_param_log(QkParam *out, const QkParam *src)">
   Calculate the natural logarithm of a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md183" />
+  <span id="group__QkParam_1autotoc_md298" />
 
   #### Example
 
@@ -596,11 +596,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_log(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md184" />
+  <span id="group__QkParam_1autotoc_md299" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md184" />
+  <span id="group__QkParam_1autotoc_md299" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -619,7 +619,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_exp" signature="QkExitCode qk_param_exp(QkParam *out, const QkParam *src)">
   Apply the exponential function to a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md185" />
+  <span id="group__QkParam_1autotoc_md300" />
 
   #### Example
 
@@ -629,11 +629,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_exp(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md186" />
+  <span id="group__QkParam_1autotoc_md301" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md186" />
+  <span id="group__QkParam_1autotoc_md301" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -652,7 +652,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_abs" signature="QkExitCode qk_param_abs(QkParam *out, const QkParam *src)">
   Calculate the absolute value of a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md187" />
+  <span id="group__QkParam_1autotoc_md302" />
 
   #### Example
 
@@ -662,11 +662,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_abs(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md188" />
+  <span id="group__QkParam_1autotoc_md303" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md188" />
+  <span id="group__QkParam_1autotoc_md303" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -685,7 +685,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_sign" signature="QkExitCode qk_param_sign(QkParam *out, const QkParam *src)">
   Get the sign of a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md189" />
+  <span id="group__QkParam_1autotoc_md304" />
 
   #### Example
 
@@ -695,11 +695,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_sign(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md190" />
+  <span id="group__QkParam_1autotoc_md305" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md190" />
+  <span id="group__QkParam_1autotoc_md305" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -718,7 +718,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_neg" signature="QkExitCode qk_param_neg(QkParam *out, const QkParam *src)">
   Negate a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md191" />
+  <span id="group__QkParam_1autotoc_md306" />
 
   #### Example
 
@@ -728,11 +728,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_neg(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md192" />
+  <span id="group__QkParam_1autotoc_md307" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md192" />
+  <span id="group__QkParam_1autotoc_md307" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -751,7 +751,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_conjugate" signature="QkExitCode qk_param_conjugate(QkParam *out, const QkParam *src)">
   Calculate the complex conjugate of a `QkParam`.
 
-  <span id="group__QkParam_1autotoc_md193" />
+  <span id="group__QkParam_1autotoc_md308" />
 
   #### Example
 
@@ -761,11 +761,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   qk_param_conjugate(out, a);
   ```
 
-  <span id="group__QkParam_1autotoc_md194" />
+  <span id="group__QkParam_1autotoc_md309" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md194" />
+  <span id="group__QkParam_1autotoc_md309" />
 
   The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
 
@@ -784,7 +784,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 <Function id="qk_param_equal" signature="bool qk_param_equal(const QkParam *lhs, const QkParam *rhs)">
   Compare two `QkParam` for equality.
 
-  <span id="group__QkParam_1autotoc_md195" />
+  <span id="group__QkParam_1autotoc_md310" />
 
   #### Example
 
@@ -799,11 +799,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   bool equal = qk_param_equal(x, y);
   ```
 
-  <span id="group__QkParam_1autotoc_md196" />
+  <span id="group__QkParam_1autotoc_md311" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md196" />
+  <span id="group__QkParam_1autotoc_md311" />
 
   The behavior is undefined if any of `lhs` or `rhs` is not a valid, non-null pointer to a `QkParam`.
 
@@ -824,7 +824,7 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
 
   If the parameter could not be cast to a `double`, because there were unbound parameters, `NAN` is returned. Note that for `QkParam` representing complex values the real part is returned.
 
-  <span id="group__QkParam_1autotoc_md197" />
+  <span id="group__QkParam_1autotoc_md312" />
 
   #### Example
 
@@ -841,11 +841,11 @@ While functionality for a `QkParam` within a circuit is currently limited, a use
   double out = qk_param_as_real(y);
   ```
 
-  <span id="group__QkParam_1autotoc_md198" />
+  <span id="group__QkParam_1autotoc_md313" />
 
   #### Safety
 
-  <span id="group__QkParam_1autotoc_md198" />
+  <span id="group__QkParam_1autotoc_md313" />
 
   The behavior is undefined if `param` is not a valid, non-null pointer to a `QkParam`.
 
