@@ -583,10 +583,10 @@ A circuit can contain manual classical storage locations, represented internally
 
 Various parametric [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances in Qiskit can be parametrized in ways that are designed to be resolved at compile time. These are characterized by the use of the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") and [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") classes.
 
-|                                                                                                                      |                                    |
-| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")(name\[, uuid])                                    | A compile-time symbolic parameter. |
-| [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")(\[name\_map, expr]) | A parameter expression.            |
+|                                                                                                                   |                                    |
+| ----------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")(name\[, uuid])                                 | A compile-time symbolic parameter. |
+| [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")(name\_map, expr) | A parameter expression.            |
 
 The main way that this differs from the `expr.Var` variables used in real-time classical computation is that [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") is a symbolic representation of a mathematical expression. The semantics of the expression are those of regular mathematics over the continuous real numbers (and, in limited cases, over the complex numbers). In contrast, [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") is a handle to a variable stored on a classical computer, such as a floating-point value or an fixed-width integer, which are always discrete.
 
@@ -598,7 +598,7 @@ You may want to use many parameters that are related to each other. To make this
 
 |                                                                                                                                   |                                                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length])                             | A container of many related [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects. |
+| [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length, uuid])                       | A container of many related [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects. |
 | [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement")(vector, index\[, uuid]) | An element of a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").   |
 
 <span id="circuit-control-flow-repr" />
@@ -607,9 +607,9 @@ You may want to use many parameters that are related to each other. To make this
 
 Within [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), classical control flow is represented by specific [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction")s, which are subclasses of [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp").
 
-|                                                                                                    |                                                            |
-| -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")(\*args, \*\*kwargs) | Abstract class to encapsulate all control flow operations. |
+|                                                                                                                     |                                                            |
+| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")(name, num\_qubits, num\_clbits, ...) | Abstract class to encapsulate all control flow operations. |
 
 For convenience, there is a [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset) instance containing the [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attributes of each of the control-flow operations.
 
@@ -623,7 +623,7 @@ The [`get_control_flow_name_mapping()`](#qiskit.circuit.get_control_flow_name_ma
 
 #### get\_control\_flow\_name\_mapping
 
-<Function id="qiskit.circuit.get_control_flow_name_mapping" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/__init__.py#L32-L59" signature="qiskit.circuit.get_control_flow_name_mapping()">
+<Function id="qiskit.circuit.get_control_flow_name_mapping" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/__init__.py#L48-L75" signature="qiskit.circuit.get_control_flow_name_mapping()">
   Return a dictionary mapping the names of control-flow operations to their corresponding classes.”
 
   **Examples**

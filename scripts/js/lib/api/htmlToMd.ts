@@ -66,6 +66,7 @@ async function generateMarkdownFile(
     .use(rehypeRemark, {
       handlers,
     })
+    .use(remarkEscapeMathPipesInTables)
     .use(remarkStringify, remarkStringifyOptions)
     .use(() => (root: Root) => {
       visit(root, "emphasis", mergeContiguousEmphasis);
@@ -243,9 +244,10 @@ function buildAdmonition(
   handlers: Record<string, Handle>,
 ): MdxJsxFlowElement {
   const titleNode = findNodeWithProperty(node.children, "admonition-title");
-  const children: Array<any> = without(node.children, titleNode).map(
-    (node: any) => toMdast(node, { handlers }),
-  );
+  const children: Array<any> = without(
+    node.children,
+    titleNode ?? undefined,
+  ).map((node: any) => toMdast(node, { handlers }));
 
   let type = "note";
   if (nodeClasses.includes("warning")) {
@@ -336,6 +338,16 @@ function buildMathExpression(node: any, type: "math" | "inlineMath"): any {
     value = value.substring(prefix.length, value.length - sufix.length);
   }
   return { type: type, value };
+}
+
+function remarkEscapeMathPipesInTables() {
+  return (root: Root) => {
+    visit(root, "tableCell", (cell: any) => {
+      visit(cell, "inlineMath", (mathNode: any) => {
+        mathNode.value = mathNode.value.replaceAll("|", "\\vert ");
+      });
+    });
+  };
 }
 
 function buildApiComponent(h: H, node: any): any {

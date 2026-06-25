@@ -8,17 +8,30 @@ python_api_name: qiskit.circuit.ForLoopOp
 
 # ForLoopOp
 
-<Class id="qiskit.circuit.ForLoopOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/for_loop.py#L30-L118" signature="qiskit.circuit.ForLoopOp(indexset, loop_parameter, body, label=None)" modifiers="class">
+<Class id="qiskit.circuit.ForLoopOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/for_loop.py#L32-L149" signature="qiskit.circuit.ForLoopOp(indexset, loop_parameter, body, label=None)" modifiers="class">
   Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 
   A circuit operation which repeatedly executes a subcircuit (`body`) parameterized by a parameter `loop_parameter` through the set of integer values provided in `indexset`.
 
-  **Parameters**
+  ## Data model
 
-  *   **indexset** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – A collection of integers to loop over.
-  *   **loop\_parameter** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter") *| None*) – The placeholder parameterizing `body` to which the values from `indexset` will be assigned.
-  *   **body** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The loop body to be repeatedly executed.
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional label for identifying the instruction.
+  There is exactly one “block” in a for-loop op, which is the body of the loop. The circuit block may take exactly zero or one `input` variable (see `QuantumCircuit.add_input_var()`). If the body takes one input variable, then `loop_parameter` must be equal to that variable, and it represents the loop variable. If the body takes zero input variables, `loop_parameter` may be either `None` (to indicate no binding) or a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter"). The [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") form is a legacy form that should be avoided.
+
+  **param indexset**
+
+  A collection of integers to loop over.
+
+  **param loop\_parameter**
+
+  The placeholder parameter to which the values from `indexset` will be assigned. Can be a `Parameter`, `expr.Var` of type `Uint`, or `None`.
+
+  **param body**
+
+  The loop body to be repeatedly executed.
+
+  **param label**
+
+  An optional label for identifying the instruction.
 
   ## Attributes
 
@@ -172,7 +185,7 @@ python_api_name: qiskit.circuit.ForLoopOp
 
   ### iter\_captured\_stretches
 
-  <Function id="qiskit.circuit.ForLoopOp.iter_captured_stretches" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/control_flow.py#L86-L94" signature="iter_captured_stretches()">
+  <Function id="qiskit.circuit.ForLoopOp.iter_captured_stretches" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/control_flow.py#L80-L88" signature="iter_captured_stretches()">
     Get an iterator over the unique captured stretch variables in all blocks of this construct.
 
     **Return type**
@@ -182,7 +195,7 @@ python_api_name: qiskit.circuit.ForLoopOp
 
   ### iter\_captured\_vars
 
-  <Function id="qiskit.circuit.ForLoopOp.iter_captured_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/control_flow.py#L77-L84" signature="iter_captured_vars()">
+  <Function id="qiskit.circuit.ForLoopOp.iter_captured_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/control_flow.py#L71-L78" signature="iter_captured_vars()">
     Get an iterator over the unique captured variables in all blocks of this construct.
 
     **Return type**
@@ -214,7 +227,7 @@ python_api_name: qiskit.circuit.ForLoopOp
 
   ### replace\_blocks
 
-  <Function id="qiskit.circuit.ForLoopOp.replace_blocks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/for_loop.py#L116-L118" signature="replace_blocks(blocks)">
+  <Function id="qiskit.circuit.ForLoopOp.replace_blocks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/for_loop.py#L147-L149" signature="replace_blocks(blocks)">
     Return a new version of this control-flow operations with the [`blocks`](#qiskit.circuit.ForLoopOp.blocks "qiskit.circuit.ForLoopOp.blocks") mapped to the given new ones.
 
     Typically this is used in a workflow such as:
@@ -292,5 +305,12 @@ python_api_name: qiskit.circuit.ForLoopOp
   <Function id="qiskit.circuit.ForLoopOp.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L279-L281" signature="validate_parameter(parameter)">
     Instruction parameter has no validation or normalization.
   </Function>
+
+  **Parameters**
+
+  *   **indexset** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*)
+  *   **loop\_parameter** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")  *|*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") *| None*)
+  *   **body** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
 </Class>
 

@@ -18,6 +18,7 @@ import {
   handleSphinxDesignCards,
   maybeSetPythonModuleMetadata,
   renameAllH1s,
+  removeInternalImageReferenceLinks,
   removeHtmlExtensionsInRelativeLinks,
   removeDownloadSourceCode,
   removePermalinks,
@@ -28,6 +29,7 @@ import {
   convertRubricsToHeaders,
   processMembersAndSetMeta,
   handleFootnotes,
+  expandTableRowspan,
 } from "./processHtml.js";
 import { Metadata } from "./Metadata.js";
 import { CheerioDoc } from "../testUtils.js";
@@ -37,15 +39,24 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/logo.png" alt="Logo"><img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images", false, false);
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images",
+      false,
+      false,
+      "subdir/index.html",
+    );
     expect(images).toEqual([
       {
         fileName: "logo.png",
         dest: "/my-images/logo.avif",
+        originSrc: "_static/logo.png",
       },
       {
         fileName: "view-page-source-icon.svg",
         dest: "/my-images/view-page-source-icon.svg",
+        originSrc: "_static/images/view-page-source-icon.svg",
       },
     ]);
     doc.expectHtml(
@@ -57,11 +68,19 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, false);
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images/0.45",
+      true,
+      false,
+      "subdir/release-notes.html",
+    );
     expect(images).toEqual([
       {
         fileName: "view-page-source-icon.svg",
         dest: "/my-images/view-page-source-icon.svg",
+        originSrc: "_static/images/view-page-source-icon.svg",
       },
     ]);
     doc.expectHtml(`<img src="/my-images/view-page-source-icon.svg">`);
@@ -71,14 +90,68 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, true);
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images/0.45",
+      true,
+      true,
+      "subdir/release-notes.html",
+    );
     expect(images).toEqual([
       {
         fileName: "view-page-source-icon.svg",
         dest: "/my-images/0.45/view-page-source-icon.svg",
+        originSrc: "_static/images/view-page-source-icon.svg",
       },
     ]);
     doc.expectHtml(`<img src="/my-images/0.45/view-page-source-icon.svg">`);
+  });
+
+  test("external image URLs are not rewritten", () => {
+    const doc = CheerioDoc.load(
+      `<img src="https://img.shields.io/github/stars/Qiskit/qiskit-addon-cutting?style=social" alt="Stars"><img src="../_static/logo.png" alt="Logo">`,
+    );
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images",
+      false,
+      false,
+      "subdir/index.html",
+    );
+    expect(images).toEqual([
+      {
+        fileName: "logo.png",
+        dest: "/my-images/logo.avif",
+        originSrc: "_static/logo.png",
+      },
+    ]);
+    doc.expectHtml(
+      `<img src="https://img.shields.io/github/stars/Qiskit/qiskit-addon-cutting?style=social" alt="Stars"><img src="/my-images/logo.avif" alt="Logo">`,
+    );
+  });
+
+  test("_static image (nbsphinx thumbnail) is resolved from artifact root", () => {
+    const doc = CheerioDoc.load(
+      `<img alt="" src="../_static/nbsphinx-no-thumbnail.svg">`,
+    );
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images",
+      false,
+      false,
+      "how-tos/index.html",
+    );
+    expect(images).toEqual([
+      {
+        fileName: "nbsphinx-no-thumbnail.svg",
+        dest: "/my-images/nbsphinx-no-thumbnail.svg",
+        originSrc: "_static/nbsphinx-no-thumbnail.svg",
+      },
+    ]);
+    doc.expectHtml(`<img alt="" src="/my-images/nbsphinx-no-thumbnail.svg">`);
   });
 });
 
@@ -138,6 +211,20 @@ test("renameAllH1s()", () => {
   const doc = CheerioDoc.load(`<h1>Release Notes!!!</h1><h2>0.45.0</h2>`);
   renameAllH1s(doc.$, "New Title");
   doc.expectHtml(`<h1>New Title</h1><h2>0.45.0</h2>`);
+});
+
+test("removeInternalImageReferenceLinks()", () => {
+  // Internal image-reference links (Sphinx lightbox) should be unwrapped.
+  // External image-reference links (e.g. badge links) should be preserved.
+  const doc = CheerioDoc.load(
+    `<a class="reference internal image-reference" href="_images/foo.png"><img src="/docs/images/foo.avif" alt="foo"/></a>` +
+      `<a class="reference external image-reference" href="https://example.com"><img src="https://img.shields.io/badge.svg" alt="badge"/></a>`,
+  );
+  removeInternalImageReferenceLinks(doc.$, doc.$main);
+  doc.expectHtml(
+    `<img src="/docs/images/foo.avif" alt="foo">` +
+      `<a class="reference external image-reference" href="https://example.com"><img src="https://img.shields.io/badge.svg" alt="badge"></a>`,
+  );
 });
 
 test("removeHtmlExtensionsInRelativeLinks()", () => {
@@ -697,5 +784,33 @@ marked as builtins since they are not actually present in any include file this 
       apiType: "function",
       apiName: "qk_obs_identity",
     });
+  });
+});
+
+test.describe("expandTableRowspan()", () => {
+  test("duplicates rowspan cell into subsequent rows", () => {
+    const doc = CheerioDoc.load(`
+<table>
+<tbody>
+<tr><td>iSwapGate</td><td>A</td><td rowspan="2">49</td></tr>
+<tr><td>SwapGate</td><td>B</td></tr>
+</tbody>
+</table>`);
+    expandTableRowspan(doc.$, doc.$main);
+    const rows = doc.$main.find("tr").toArray();
+    expect(
+      doc
+        .$(rows[0])
+        .find("td")
+        .map((_, el) => doc.$(el).text())
+        .toArray(),
+    ).toEqual(["iSwapGate", "A", "49"]);
+    expect(
+      doc
+        .$(rows[1])
+        .find("td")
+        .map((_, el) => doc.$(el).text())
+        .toArray(),
+    ).toEqual(["SwapGate", "B", "49"]);
   });
 });

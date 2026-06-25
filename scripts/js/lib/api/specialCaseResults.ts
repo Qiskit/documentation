@@ -19,6 +19,7 @@ export function transformSpecialCaseUrl(url: string): string {
       .replace(/(?<=^|\/)release_notes(?=#|$)/g, "release-notes")
       .replace(/(?<=^|\/)terra(?=#|$)/g, "index")
       .replace(/(?<=^|\/)ibm-runtime(?=#|$)/g, "index")
+      .replace(/(?<=^|\/)main(?=#|$)/g, "index")
   );
 }
 

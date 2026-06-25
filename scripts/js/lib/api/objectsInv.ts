@@ -16,7 +16,7 @@ import { join, dirname } from "path";
 import { mkdirp } from "mkdirp";
 
 import { removePrefix, removeSuffix } from "../stringUtils.js";
-import { C_API_BASE_PATH } from "./conversionPipeline.js";
+import { C_API_BASE_PATH } from "./paths.js";
 import { PackageLanguage } from "./Pkg.js";
 
 /**
@@ -27,8 +27,8 @@ const ENTRIES_TO_EXCLUDE = [
   /^genindex(\.html)?$/,
   /^py-modindex(\.html)?$/,
   /^search(\.html)?$/,
-  /^explanation(\.html)?(?=\/|#|$)/,
-  /^how_to(\.html)?(?=\/|#|$)/,
+  /^explanations?(\.html)?(?=\/|#|$)/,
+  /^how[-_]tos?(\.html)?(?=\/|#|$)/,
   /^tutorials(\.html)?(?=\/|#|$)/,
   /^migration_guides(\.html)?(?=\/|#|$)/,
   /^configuration(\.html)?(?=#|$)/,
@@ -54,6 +54,21 @@ function shouldIncludeEntry(
   // `group__` and `struct_` entries are from doxygen and are not present in the final pages.
   if (entry.name.startsWith("group__")) return false;
   if (entry.name.startsWith("struct_")) return false;
+
+  // std: entries are Sphinx RST cross-reference labels for document structure
+  // (page titles, section headings, etc.). They point to prose pages that are
+  // not published in this repo — only API symbol pages under stubs/ and
+  // apidocs/ are. Without this filter, the link checker would treat these as
+  // broken internal links.
+  if (
+    entry.domainAndRole.startsWith("std:") &&
+    !entry.uri.startsWith("apidocs/") &&
+    !entry.uri.startsWith("stubs/") &&
+    !entry.name.startsWith("/apidocs/") &&
+    !entry.name.startsWith("/stubs/")
+  ) {
+    return false;
+  }
 
   // This happens during link checking.
   if (packageLanguage === "any") return true;
@@ -123,6 +138,7 @@ export class ObjectsInv {
   ): ObjectsInvEntry | null {
     // Regex from sphinx source
     // https://github.com/sphinx-doc/sphinx/blob/2f60b44999d7e610d932529784f082fc1c6af989/sphinx/util/inventory.py#L115-L116
+    if (line.trim() === "") return null;
     const parts = line.match(/(.+?)\s+(\S+)\s+(-?\d+)\s+?(\S*)\s+(.*)/);
     if (parts == null || parts.length != 6) {
       console.warn(`Error parsing line of objects.inv: ${line}`);
@@ -188,6 +204,68 @@ export class ObjectsInv {
       uri = removeSuffix(uri, name) + "$";
     }
     return uri;
+  }
+
+  /**
+   * Load all published objects.inv files from public/docs/api/ and return
+   * a map of package name → ObjectsInv. These inventories have already been
+   * normalized by the API pipeline so URIs are ready to use directly.
+   */
+  static async loadPublishedApis(
+    publicBaseFolder: string,
+  ): Promise<Map<string, ObjectsInv>> {
+    const { readdir } = await import("fs/promises");
+    const apiDir = join(publicBaseFolder, "api");
+    const map = new Map<string, ObjectsInv>();
+    let pkgDirs: string[];
+    try {
+      pkgDirs = await readdir(apiDir);
+    } catch {
+      return map;
+    }
+    await Promise.all(
+      pkgDirs.map(async (pkgName) => {
+        try {
+          const inv = await ObjectsInv.fromFile(join(apiDir, pkgName), "any");
+          map.set(pkgName, inv);
+        } catch {
+          // No objects.inv for this package — skip.
+        }
+      }),
+    );
+    return map;
+  }
+
+  /**
+   * Resolve a qiskit.github.io/{stubs,apidocs,apidoc}/<symbol> URL to an
+   * internal docs path using the package's inventory.
+   *
+   * Pass allInvs (from loadPublishedApis) for cross-package resolution.
+   * Requires updateUris() to have been called on same-package inventory first.
+   */
+  resolveStubUrl(
+    url: string,
+    allObjectInvs?: Map<string, ObjectsInv>,
+  ): string | undefined {
+    const match = url.match(
+      /^https:\/\/qiskit\.github\.io\/([^/]+)\/(stubs|apidocs|apidoc)\/([^"#)\s]+?)(?:\.html)?(#.*)?$/,
+    );
+    if (!match) return undefined;
+    const [, pkg, kind, symbol, anchor = ""] = match;
+    const inv = allObjectInvs?.get(pkg) ?? this;
+    if (kind === "stubs") {
+      // The entry URI already points at the correct header anchor for the
+      // symbol — the source anchor (if any) is redundant and gets dropped.
+      const entry = inv.entries.find((e) => e.name === symbol);
+      return entry ? `/docs/api/${pkg}/${entry.uri}` : undefined;
+    }
+    // Apidocs URLs reference a whole page; the std:doc entry (keyed
+    // `<kind>/<symbol>`) has the clean page-level URI, and the source anchor
+    // carries through to the rendered page.
+    const entry =
+      inv.entries.find((e) => e.name === `${kind}/${symbol}`) ??
+      inv.entries.find((e) => e.name === symbol);
+    return entry ? `/docs/api/${pkg}/${entry.uri}${anchor}` : undefined;
   }
 
   updateUris(transformLink: (uri: string) => string): void {
