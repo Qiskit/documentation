@@ -1,0 +1,24 @@
+---
+title: Advanced techniques with Q-CTRL Optimization Solver
+description: Practical guidance for problem formulation and configuration when using the Q-CTRL Optimization Solver.
+---
+
+*Q-CTRL is encouraged to expand this page with vendor-specific tuning guidance. The suggestions below are derived from the API reference and are intended as a starting point.*
+
+## Problem formulation is the primary lever
+
+The Optimization Solver has a minimal API — the main configuration decision is how you formulate and encode your problem. The quality of the QUBO string representation directly affects solution quality. For constrained problems, the penalty term weight (see the constrained optimization example) needs to be tuned: too low and constraints are violated; too high and the solver focuses only on constraints.
+
+## Unconstrained vs constrained problems
+
+Set `problem_type` accordingly. Constrained problems require encoding constraints as penalty terms in the QUBO — the weight of these terms relative to the objective is a key tuning parameter not exposed directly in the API. See the constrained example on the Examples page for a starting point.
+
+## Session reuse
+
+Use `session_id` to group related jobs within a session. This reduces overhead when submitting multiple optimization runs (for example, parameter sweeps or warm-starting).
+
+## Problem size
+
+Q-CTRL is encouraged to document the relationship between problem size (number of variables), backend selection, and expected solution quality. The benchmarks on the Overview page provide some data; expand with guidance on scaling limits.
+
+See the [API reference](/docs/api/functions/q-ctrl-optimization-solver) for full parameter details.

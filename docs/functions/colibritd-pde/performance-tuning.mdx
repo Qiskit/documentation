@@ -1,0 +1,26 @@
+---
+title: Advanced techniques with QUICK-PDE
+description: Practical guidance for configuring resolution, optimizer, and shot settings for QUICK-PDE.
+---
+
+*ColibriTD is encouraged to expand this page with vendor-specific tuning guidance. The suggestions below are derived from the API reference and are intended as a starting point.*
+
+## Spatial resolution: nb_qubits and depth
+
+`nb_qubits` directly sets the spatial resolution of the PDE solution — more qubits capture finer-grained features but require more QPU resources. `depth` controls the ansatz expressibility. Increasing either improves solution quality at the cost of circuit size and execution time.
+
+For initial experiments, start with the minimum `nb_qubits` needed to represent your problem's relevant features, then scale up.
+
+## Choosing an optimizer
+
+The `optimizer` parameter selects the classical optimizer used in the variational loop. Faster optimizers (fewer function evaluations) are cheaper but may find lower-quality solutions. Use `optimizer_options` to tune convergence criteria. ColibriTD is encouraged to document which optimizers work best for each `use_case`.
+
+## Shots
+
+`shots` controls the measurement statistics per circuit evaluation. For PDE solving, shot noise affects the variational loss landscape — too few shots can cause the optimizer to converge to a spurious minimum. Start with a higher shot count and reduce once you have a stable optimization.
+
+## Mode
+
+The `mode` parameter controls how the function is submitted (for example, session vs batch). Use batch mode for parameter sweeps; use session mode for iterative optimization workflows.
+
+See the [API reference](/docs/api/functions/colibritd-pde) for full parameter details.

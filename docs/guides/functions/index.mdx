@@ -1,0 +1,131 @@
+---
+title: Introduction to Qiskit Functions
+description: Explore IBM Qiskit Functions Catalog, abstracted circuit function and application function services designed to accelerate research and application prototyping.
+---
+
+{/* cspell:ignore Jarman, HIVQE, Cadavid, Chandarana, Leclerc, Sachdeva, HUBO, Filippov, Downfolding, Aharonov, Mundada, Yamauchi, supersymmetric, Paterakis, Gharibyan, Jaffali, Pellow */}
+
+# Introduction to Qiskit Functions
+<Admonition type="note" title="Notes">
+* Qiskit Functions are an experimental feature available only to IBM Quantum&reg; Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. They are in preview release status and subject to change.
+</Admonition>
+
+Qiskit Functions simplify and accelerate utility-scale algorithm discovery and application development, by abstracting away parts of the quantum software development workflow. In this way, Qiskit Functions free up time normally spent hand-writing code and fine-tuning experiments.
+
+| Type | What it does | Inputs → Outputs | Who it's for |
+|---|---|---|---|
+| **Circuit function** | Simplified interface for running circuits. Abstracts transpilation, error suppression, and error mitigation. | PUB objects → mitigated expectation values | Researchers discovering algorithms without focusing on hardware optimization |
+| **Application function** | Higher-level abstraction for domain-specific tasks. Abstracts the full quantum workflow. | Molecules, graphs, optimization problems → classical results | Domain researchers integrating quantum into large-scale classical workflows |
+| **Custom function** | Create and deploy your own quantum-classical workloads as a managed service on IBM Quantum. | Custom code and data → custom outputs | Researchers running high-scale experiments with intensive classical compute alongside quantum workloads |
+
+![Overview of Qiskit Functions](/docs/images/guides/functions/functions-overview.svg)
+
+## Circuit functions
+
+<CardGroup>
+  <Card
+    title="Tensor-Network Error Mitigation"
+    description="Reduce measurement overhead and variance for workloads with low-weight observables and loop-free circuits, outperforming ZNE and PEC for relevant circuit classes."
+    href="/docs/functions/algorithmiq-tem"
+    analyticsName="Documentation page: Algorithmiq TEM"
+    linkText="Browse documentation"
+  />
+
+  <Card
+    title="QESEM: Error Suppression and Error Mitigation"
+    description="Produce unbiased expectation values with reduced variance and resource overhead for circuits with fractional gates, high-weight observables, and accurate runtime estimates."
+    href="/docs/functions/qedma-qesem"
+    analyticsName="Documentation page: Qedma QESEM"
+    linkText="Browse documentation"
+  />
+
+  <Card
+    title="Performance Management"
+    description="Apply AI-driven error suppression to parametric and deep circuits, automatically maximizing IBM device performance while reducing shots, compute time, and cost."
+    href="/docs/functions/q-ctrl-performance-management"
+    analyticsName="Documentation page: Q-CTRL Performance Management"
+    linkText="Browse documentation"
+  />
+</CardGroup>
+
+## Application functions
+
+<CardGroup>
+  <Card
+    title="QUICK-PDE"
+    description="Solve multi-physics PDEs using a hybrid VQA framework with precise, scalable solutions via advanced solution encoding and spectral methods."
+    href="/docs/functions/colibritd-pde"
+    analyticsName="Documentation page: ColibriTD QUICK-PDE"
+    linkText="Browse documentation"
+  />
+
+  <Card
+    title="Quantum Portfolio Optimizer"
+    description="Optimize investment portfolios over time, minimizing risk and maximizing returns using a VQE-based approach with noise-aware error mitigation."
+    href="/docs/functions/global-data-quantum-optimizer"
+    analyticsName="Documentation page: Global Data Quantum Optimizer"
+    linkText="Browse documentation"
+  />
+
+  <Card
+    title="Iskay Quantum Optimizer"
+    description="Solve scheduling, logistics, routing, and QUBO/HUBO optimization problems with integrated tunable classical pre- and post-processing."
+    href="/docs/functions/kipu-optimization"
+    analyticsName="Documentation page: Kipu Iskay Quantum Optimizer"
+    linkText="Browse documentation"
+  />
+
+  <Card
+    title="Singularity Machine Learning"
+    description="Improve classification accuracy in classical ML workflows using quantum-optimized ensemble learning with fewer learners than classical baselines."
+    href="/docs/functions/multiverse-computing-singularity"
+    analyticsName="Documentation page: Multiverse Singularity ML"
+    linkText="Browse documentation"
+  />
+
+  <Card
+    title="Optimization Solver"
+    description="Solve binary and combinatorial optimization problems at full device scale without deep quantum expertise, with automatic error suppression and hybrid optimization."
+    href="/docs/functions/q-ctrl-optimization-solver"
+    analyticsName="Documentation page: Q-CTRL Optimization Solver"
+    linkText="Browse documentation"
+  />
+
+  <Card
+    title="HI-VQE Chemistry"
+    description="Compute molecular ground state energies at chemical accuracy (1 kcal/mol) for 40–60 qubit problems in computational chemistry and materials science."
+    href="/docs/functions/qunova-chemistry"
+    analyticsName="Documentation page: Qunova HI-VQE Chemistry"
+    linkText="Browse documentation"
+  />
+</CardGroup>
+
+## Custom functions
+
+<CardGroup>
+  <Card
+    title="Introduction to custom functions"
+    description="Author and deploy your own quantum-classical workloads on IBM infrastructure — no provisioning required. Manage compute resources, run programs remotely, and scale intensive classical compute alongside quantum tasks."
+    href="/docs/guides/serverless"
+    analyticsName="Documentation page: Custom Functions"
+    linkText="Get started"
+  />
+</CardGroup>
+
+## Access Qiskit Functions
+
+Premium, Flex, and On-Prem (through the IBM Quantum Platform API) Plan users can create Custom Functions, or can procure a license from one of the partners who have contributed a function to the catalog.
+
+### Request a free trial for third-party Qiskit Functions
+
+To request a new free trial, navigate to the [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions), and explore the details panel. Click on `Request a free trial` and fill out information required by the Functions partner, including the IBM Cloud `AccessGroupId`:
+
+1. Navigate to [IBM Cloud IAM](http://cloud.ibm.com/iam/groups).
+2. Verify eligibility.
+   - Switch your account in the top bar to one with the following format: `XXXXXXX - [Organization Name]`
+   - Ensure the organization is the same as the one associated with your Premium account.
+   - If you see "[Your Name]'s Account", you are using your _personal_ account, which is not eligible for premium access.
+3. Find your access group ID.
+   - Click a group name.
+   - Click **Details**.
+   - Copy the access group ID. It should start with `AccessGroup-`.

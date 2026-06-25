@@ -1,0 +1,25 @@
+---
+title: Advanced techniques with Q-CTRL Performance Management
+description: Practical guidance for choosing between Estimator and Sampler, and tuning shots and precision.
+---
+
+*Q-CTRL is encouraged to expand this page with vendor-specific tuning guidance. The suggestions below are derived from the API reference and are intended as a starting point.*
+
+## Estimator vs Sampler: which to use
+
+The function exposes both an Estimator primitive (`estimator.run()`) and a Sampler primitive (`sampler.run()`). Choose based on your workload:
+
+- **Estimator** — use when you need expectation values of observables (for example, energy estimation, variational algorithms). Supports `default_precision` to target a specific error bound.
+- **Sampler** — use when you need bitstring distributions or measurement outcomes (for example, combinatorial optimization, classification tasks). Controlled via `default_shots`.
+
+You cannot mix primitives within a session — pick the one that matches your algorithm's output type.
+
+## Precision vs shots
+
+For the Estimator, set either `default_precision` or `default_shots` — not both. Use `default_precision` when you have an accuracy target; use `default_shots` when you have a budget constraint.
+
+## Session reuse
+
+Use `session_id` to attach subsequent jobs to an already-open session, reducing session-open overhead across batched workloads.
+
+See the [API reference](/docs/api/functions/q-ctrl-performance-management) for full parameter details.

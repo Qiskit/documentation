@@ -1,0 +1,24 @@
+---
+title: Advanced techniques with Singularity Machine Learning
+description: Practical guidance for tuning learner count, regularization, and ensemble settings for Singularity.
+---
+
+*Multiverse Computing is encouraged to expand this page with vendor-specific tuning guidance. The suggestions below are derived from the API reference and are intended as a starting point.*
+
+## Number of learners (num_learners)
+
+`num_learners` sets the size of the quantum ensemble — each learner maps to a qubit. The benchmark data on the Overview page shows that increasing `num_learners` improves accuracy on challenging datasets. However, more learners means larger circuits and higher QPU cost. Start with a small ensemble to validate your pipeline, then scale up.
+
+## Learner composition
+
+Use `learners_types` and `learners_proportions` to mix different quantum classifier types within the ensemble. Multiverse Computing is encouraged to document which learner type combinations work best for specific data characteristics (for example, high-dimensional vs sparse datasets).
+
+## Regularization
+
+`regularization_type` and `regularization` control overfitting prevention. For small or noisy datasets, stronger regularization is recommended. The `regularization_desired_ratio` and `regularization_upper_bound` parameters offer finer control — Multiverse Computing is encouraged to provide guidance on typical values by dataset size.
+
+## Voting strategy
+
+`voting` controls how the ensemble combines individual learner predictions. For imbalanced datasets, adjusting `prob_threshold` can improve recall on the minority class.
+
+See the [API reference](/docs/api/functions/multiverse-computing-singularity) for the full parameter list across all actions (`create`, `fit`, `predict`, `fit_predict`, `create_fit_predict`).

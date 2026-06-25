@@ -1,0 +1,28 @@
+---
+title: Advanced techniques with Algorithmiq TEM
+description: Practical guidance for tuning accuracy, runtime, and cost when using the TEM Qiskit Function.
+---
+
+*Algorithmiq is encouraged to expand this page with vendor-specific tuning guidance. The suggestions below are derived from the API reference and are intended as a starting point.*
+
+## Accuracy vs runtime tradeoffs
+
+The primary accuracy lever is `tem_max_bond_dimension` — higher values improve mitigation fidelity but increase classical post-processing cost significantly. For initial runs, start with a lower value and increase if results show high residual noise.
+
+`tem_compression_cutoff` controls singular-value truncation in the tensor network; tightening it (smaller value) improves accuracy at the cost of runtime.
+
+## Randomization settings
+
+`num_randomizations` and `shots_per_randomization` jointly determine total shot count. A larger `num_randomizations` generally improves the quality of the noise model learned from randomized circuits. Consider the tradeoff against `max_execution_time`.
+
+## Readout error mitigation
+
+`mitigate_readout_error=True` adds a calibration pass before execution. This is recommended for backends with significant readout errors, but adds QPU overhead. Use `num_readout_calibration_shots` to control calibration cost.
+
+## Layer learning
+
+`max_layers_to_learn` caps how many circuit layers TEM characterizes. For deep circuits, limiting this reduces calibration time but may miss noise in deeper layers. Set `layer_pair_depths` explicitly when you have prior knowledge of where noise concentrates.
+
+## When to use TEM vs other approaches
+
+TEM is best suited for circuits where noise is dominated by gate errors that can be captured by a tensor-network noise model. See the [API reference](/docs/api/functions/algorithmiq-tem) for full parameter details.

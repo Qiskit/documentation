@@ -1,0 +1,22 @@
+---
+title: Advanced techniques with Qedma QESEM
+description: Practical guidance for tuning accuracy, QPU time, and cost when using the QESEM Qiskit Function.
+---
+
+*Qedma is encouraged to expand this page with vendor-specific tuning guidance. The suggestions below are derived from the API reference and are intended as a starting point.*
+
+## Estimating QPU time before committing
+
+QESEM supports a dry-run mode via `estimate_time_only` in the Options. Use this before submitting a full job to get a QPU-time estimate and avoid unexpected costs on large circuits.
+
+## Backend and instance selection
+
+The `backend_name` and `instance` parameters control which QPU and Qiskit Runtime instance are used. QESEM's overhead scales with circuit size and backend noise characteristics — choosing a backend well-matched to your circuit connectivity reduces transpilation overhead.
+
+## Circuit size and accuracy
+
+QESEM's accuracy guarantees are demonstrated in the benchmarks on the Overview page. For circuits near the documented size limits, expect longer QPU times and consider whether a smaller sub-circuit experiment can validate the approach before scaling up.
+
+## Options reference
+
+See the [API reference](/docs/api/functions/qedma-qesem) for the full Options parameter list, including `estimate_time_only` and backend selection details.

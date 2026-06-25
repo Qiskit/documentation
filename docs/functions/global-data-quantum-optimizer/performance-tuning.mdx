@@ -1,0 +1,28 @@
+---
+title: Advanced techniques with the Quantum Portfolio Optimizer
+description: Practical guidance for configuring ansatz, optimizer, and QUBO settings for the Quantum Portfolio Optimizer.
+---
+
+*Global Data Quantum is encouraged to expand this page with vendor-specific tuning guidance. The suggestions below are derived from the API reference and are intended as a starting point.*
+
+## QUBO settings: resolution qubits
+
+`qubo_settings` controls how the portfolio problem is encoded as a QUBO. The number of resolution qubits determines how finely asset weights can be represented — more qubits improve precision but increase circuit size. The benchmark data on the Overview page shows how this tradeoff plays out in practice; use it as a starting point for sizing.
+
+## Ansatz selection
+
+`ansatz_settings` supports multiple ansatz types including `'Tailored'`. The `'Tailored'` ansatz is adapted to the problem structure and generally outperforms a generic hardware-efficient ansatz for portfolio problems. Global Data Quantum is encouraged to document the other available types and when to use each.
+
+## Optimizer settings
+
+`optimizer_settings` exposes population size, number of generations, and related parameters for the classical optimizer. The benchmarks show that increasing population size and generations improves solution quality — document the recommended ranges for different portfolio sizes here.
+
+## Warm-starting with previous_session_id
+
+If you have a previous run at a lower resolution, pass its `previous_session_id` to warm-start the optimizer. This can significantly reduce the number of iterations needed to converge.
+
+## Post-processing
+
+`apply_postprocess=True` applies classical post-processing to improve the solution. This is recommended for most use cases and adds negligible overhead.
+
+See the [API reference](/docs/api/functions/global-data-quantum-optimizer) for full parameter details.
