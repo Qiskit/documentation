@@ -1,0 +1,67 @@
+---
+title: checks (latest version)
+description: API reference for qiskit_paulice.checks in the latest version of qiskit-addon-paulice
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_paulice.checks
+---
+
+<span id="module-qiskit_paulice.checks" />
+
+<span id="checks-qiskit-paulice-checks" />
+
+# Checks
+
+`qiskit_paulice.checks`
+
+Functionality for finding effective spacetime Pauli checks.
+
+### add\_pauli\_checks
+
+<Function id="qiskit_paulice.checks.add_pauli_checks" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checks.py#L34-L335" signature="add_pauli_checks(circuit, target_qubits, noise_model, cost='gamma', cost_nshots=10000, method='windowed', ancilla_qubits=None, check_creg_name='checks_c', check_qreg_name='checks_q', seed=None)">
+  Add spacetime Pauli checks to a Clifford circuit.
+
+  The check picking algorithm finds valid, low weight checks on each target qubit in the order they are specified in `target_qubits` and chooses the check which provides the most error detection coverage (i.e. minimizes the `cost` value). Once a check is committed on `target_qubits[0]`, it will be set for the remainder of the algorithm and a search for a good check on `target_qubits[1]` will begin. For this reason, the ordering of `target_qubits` can have some impact on the set of checks produced by the function.
+
+  This function produces `qiskit_paulice.CheckedCircuit` instances containing numbers of checks ranging from `0` to one check per target qubit. It can be instructive to view the convergence of the cost function as more checks are added, as one may see convergence of the cost using fewer checks.
+
+  For details on finding effective spacetime Pauli checks, see [Supplemental Sec. II-VI of Martiel, Javadi](https://arxiv.org/abs/2504.15725).
+
+  **Parameters**
+
+  *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The Clifford circuit to dress with spacetime Pauli checks. The circuit must be terminated with a measurement on at least one qubit. The circuit may be defined on virtual or physical qubits. If the circuit has a layout, the user must provide `ancilla_qubits`.
+
+  *   **target\_qubits** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Qubit indices of `circuit` which will be used to entangle the check qubits to the payload. When `circuit` has a layout (ISA mode), these are physical qubit indices, in the same index space as `ancilla_qubits`.
+
+  *   **noise\_model** ([*NoiseModel*](qiskit-paulice-noise-models#noisemodel "qiskit_paulice.noise_models.NoiseModel")) – A noise model describing the effect of noise on the target device. This model will be used to estimate the effect of a given check during the check picking process. While one can generate a noise model from learned Pauli-Lindblad noise, a rougher approximation of the noise generated from backend benchmark data is often sufficient. Ancilla/target edges introduced by check insertion that aren’t in the supplied `GateWiseNoise` or `LayeredNoise` are auto-inferred (median rate per Pauli pair across the supplied data); supply them explicitly to override.
+
+  *   **cost** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['gamma', 'LER']*) –
+
+      Metric to optimize. Can be `"gamma"` or `"LER"` (logical error rate).
+
+      *   `"gamma"`: The gamma value associated with the inverse logical noise channel (i.e. the noise channel consisting of errors within the measurement lightcone that are undetectable by the checks).
+      *   `"LER"`: The empirical logical error rate after postselection. Performs Monte Carlo simulations to calculate the fraction of postselected shots affected by uncovered logical noise.
+
+  *   **cost\_nshots** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of Monte Carlo shots used by Monte Carlo-based cost metrics (currently only `"LER"`).
+
+  *   **method** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['windowed', 'genetic', 'windowed\_genetic']*) –
+
+      Check picking method (`"windowed"`, `"genetic"`, or `"windowed_genetic"`). Each method will add checks to `target_qubits` sequentially. Once a check is committed to a given target qubit, it will not be undone as more checks are added. Each method picks checks which provide maximum error detection capability (i.e. lowest `cost`).
+
+      *   `"windowed"`: Sample small subsets of the wires on each target qubit to find good checks
+      *   `"genetic"`: Evolve a set of candidate checks from the full wire-space of each target qubit
+      *   `"windowed_genetic"`: Run a genetic search within random windows of wires on each target qubit
+
+  *   **ancilla\_qubits** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – List of physical qubit indices (one per index in `target_qubits`) specifying where to place the check ancillas in the output circuit. Required when `circuit.layout` is not `None`. `ancilla_qubits[i]` will share entangling gates with `target_qubits[i]` when implementing the `i`\ th check.
+
+  *   **check\_creg\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Name of the classical register for check measurements (default: “checks\_c”)
+
+  *   **check\_qreg\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Name of the quantum register holding the check ancillas in the output circuits (default: “checks\_q”). Ignored in ISA mode.
+
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Random seed for controlling randomness during the search for good checks. While this seed controls some randomness in the algorithm, some non-determinism still exists when using `LER` cost function, or either variety of genetic check picking method. The combination of `cost="gamma"` and `method="windowed"` is fully deterministic if `seed` is not `None`.
+
+  **Returns**
+
+  A list of `qiskit_paulice.CheckedCircuit` instances – instances containing the bare circuit with no checks and one for each added check. The final element in the output contains the `qiskit_paulice.CheckedCircuit` with checks on every target qubit, assuming a valid set of checks could be found.
+</Function>
+

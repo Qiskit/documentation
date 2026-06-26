@@ -1,0 +1,177 @@
+---
+title: checked_circuit (latest version)
+description: API reference for qiskit_paulice.checked_circuit in the latest version of qiskit-addon-paulice
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_paulice.checked_circuit
+---
+
+<span id="module-qiskit_paulice.checked_circuit" />
+
+<span id="checked-circuit-qiskit-paulice-checked-circuit" />
+
+# Checked circuit
+
+`qiskit_paulice.checked_circuit`
+
+A class for specifying a circuit containing coherent spacetime Pauli checks.
+
+### CheckedCircuit
+
+<Class id="qiskit_paulice.checked_circuit.CheckedCircuit" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L45-L176" signature="CheckedCircuit(circuit, target_qubits=(), check_qubits=(), check_support=(), cost=None, cost_metric=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  A quantum circuit and information about spacetime Pauli checks it contains.
+
+  **Parameters**
+
+  *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit))
+  *   **target\_qubits** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...]*)
+  *   **check\_qubits** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...]*)
+  *   **check\_support** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...], ...]*)
+  *   **cost** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
+  *   **cost\_metric** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
+
+  #### circuit
+
+  <Attribute id="qiskit_paulice.checked_circuit.CheckedCircuit.circuit">
+    A quantum circuit containing `0` or more spacetime Pauli checks.
+
+    **Type**
+
+    [qiskit.circuit.quantumcircuit.QuantumCircuit](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)
+  </Attribute>
+
+  #### target\_qubits
+
+  <Attribute id="qiskit_paulice.checked_circuit.CheckedCircuit.target_qubits">
+    Qubit indices of `circuit` which were used to entangle the check qubits to the payload. `None` if `circuit` contains no checks.
+
+    **Type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[int](https://docs.python.org/3/library/functions.html#int), …]
+  </Attribute>
+
+  #### check\_qubits
+
+  <Attribute id="qiskit_paulice.checked_circuit.CheckedCircuit.check_qubits">
+    Qubit indices of the ancilla qubits in `circuit`. The `i``th check uses ``check_qubits[i]` to detect errors on `target_qubits[i]` and other qubits in `check_support[i]`.
+
+    **Type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[int](https://docs.python.org/3/library/functions.html#int), …]
+  </Attribute>
+
+  #### check\_support
+
+  <Attribute id="qiskit_paulice.checked_circuit.CheckedCircuit.check_support">
+    For each check, the qubit indices whose measurement outcomes XOR together to give that check’s syndrome bit.
+
+    **Type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[int](https://docs.python.org/3/library/functions.html#int), …], …]
+  </Attribute>
+
+  #### cost
+
+  <Attribute id="qiskit_paulice.checked_circuit.CheckedCircuit.cost">
+    The value of the cost function with respect to the checks in `circuit`
+
+    **Type**
+
+    [float](https://docs.python.org/3/library/functions.html#float) | None
+  </Attribute>
+
+  #### cost\_metric
+
+  <Attribute id="qiskit_paulice.checked_circuit.CheckedCircuit.cost_metric">
+    The metric used to evaluate check quality (`gamma` or `LER`)
+
+    **Type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str) | None
+  </Attribute>
+
+  #### get\_postselection\_method
+
+  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.get_postselection_method" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L139-L176" signature="get_postselection_method()">
+    Return a function that maps a single shot’s outcome to a syndrome vector.
+
+    No errors were detected iff every entry of the returned vector is zero. The returned function accepts either bitstrings or bit arrays.
+
+    **Return type**
+
+    [*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)\[\[[str](https://docs.python.org/3/library/stdtypes.html#str) | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)], [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
+  </Function>
+
+  #### uncovered\_paulis
+
+  <Attribute id="qiskit_paulice.checked_circuit.CheckedCircuit.uncovered_paulis" attributeTypeHint="tuple[UncoveredPauli, ...]">
+    Locations where a single qubit Pauli error is undetectable by some checks.
+
+    Each entry is an `UncoveredPauli(qubit, after_instruction, pauli)` triple, where `qubit` is the qubit of the single-qubit error, `after_instruction` is the `circuit.data` index of the instruction which immediately precedes the error, and `pauli` is the type of error (`"X"`, `"Y"`, or `"Z"`).
+
+    Only locations on input wires and immediately after 2-qubit gates are enumerated; errors after single qubit gates are folded into the next 2-qubit-gate wire.
+  </Attribute>
+</Class>
+
+### UncoveredPauli
+
+<Class id="qiskit_paulice.checked_circuit.UncoveredPauli" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L30-L42" signature="UncoveredPauli(qubit, after_instruction, pauli)" modifiers="class">
+  Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
+
+  A spacetime location at which a single qubit Pauli error is undetectable by a set of checks.
+
+  **Parameters**
+
+  *   **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int))
+  *   **after\_instruction** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*)
+  *   **pauli** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['X', 'Y', 'Z']*)
+
+  #### qubit
+
+  <Attribute id="qiskit_paulice.checked_circuit.UncoveredPauli.qubit">
+    Index of the qubit where the undetected error sits
+
+    **Type**
+
+    [int](https://docs.python.org/3/library/functions.html#int)
+  </Attribute>
+
+  #### after\_instruction
+
+  <Attribute id="qiskit_paulice.checked_circuit.UncoveredPauli.after_instruction">
+    Index (into `circuit.data`) of the instruction the error occurs after; `None` means the error sits on the qubit’s input wire.
+
+    **Type**
+
+    [int](https://docs.python.org/3/library/functions.html#int) | None
+  </Attribute>
+
+  #### pauli
+
+  <Attribute id="qiskit_paulice.checked_circuit.UncoveredPauli.pauli">
+    The undetected Pauli error (`"X"`, `"Y"`, or `"Z"`)
+
+    **Type**
+
+    Literal\[‘X’, ‘Y’, ‘Z’]
+  </Attribute>
+
+  Create new instance of UncoveredPauli(qubit, after\_instruction, pauli)
+
+  #### count
+
+  <Function id="qiskit_paulice.checked_circuit.UncoveredPauli.count" signature="count(value, /)">
+    Return number of occurrences of value.
+  </Function>
+
+  #### index
+
+  <Function id="qiskit_paulice.checked_circuit.UncoveredPauli.index" signature="index(value, start=0, stop=9223372036854775807, /)">
+    Return first index of value.
+
+    Raises ValueError if the value is not present.
+  </Function>
+</Class>
+
