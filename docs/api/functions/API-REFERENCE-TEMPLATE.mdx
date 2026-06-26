@@ -1,0 +1,295 @@
+---
+title: "[Full Qiskit function name, including vendor name] API reference"
+description: "API reference for [Full Qiskit Function name, including vendor name], including inputs, outputs, and configuration options"
+---
+
+# [Full Qiskit Function name] API reference
+
+{/* 
+    In the card component below, leave the title and description fields exactly as they appear here. Edit only the `href`, `analyticsName`, and `linkText` fields to link to the guide for your Qiskit Function.
+*/}
+
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/[function-name-slug]"
+      analyticsName="Functions API: [function-name-slug]"
+      linkText="[Full Qiskit Function name] guide"
+    />
+</CardGroup>
+
+{/*
+  LINKS
+  You can link to related content *within* IBM Quantum Platform using the following markdown syntax (note there is no file extension at the end of links):
+  - [Guides](/docs/guides/example)
+  - [Tutorials](/docs/tutorials/example)
+  - [API references](/docs/api/api-name/example)
+  - [Learning](learning/courses/course-name/example)
+
+  **Important** - if you copy and paste a link, it might automatically contain a globalization indicator (e.g., `en/`, `de/`). Remove this when you paste a link in your documentation (it will also raise an error in our lint checker).
+
+  You can link to external content using markdown like [this](https://arxiv.org/)
+*/}
+
+{/*
+  OPTIONAL: ADMONITION SECTIONS
+  Use these highlight important information. Examples uses
+  - Limitations or constraints (type="caution")
+  - Important prerequisites (type="note")
+  - Tips for getting started (type="tip")
+  - How options interact with each other
+  - Defaults and precedence rules
+  - Links to related guides or documentation
+*/}
+
+<Admonition type="caution" title="[OPTIONAL] Title content here">
+  [If applicable, describe important information about this API.]
+</Admonition>
+
+## Inputs
+
+{/* 
+  INPUTS SECTION
+  This section documents all parameters the API accepts.
+  Organize parameters logically:
+  - Required parameters first
+  - Optional parameters second
+  - Complex/nested parameters (like options) can have their own subsection
+  
+  For APIs with many inputs, you can add a brief intro sentence explaining
+  the organization of inputs.
+*/}
+
+See the following list for all input parameters this API accepts.
+
+{/*
+  ATTRIBUTE COMPONENT FOR A SIMPLE INPUT
+  
+  attributeTypeHint (required): Shows the data type.
+    - Primitive types: "str", "int", "float", "bool"
+    - Collections: "list[str]", "dict[str, Any]", "Iterable[SomeType]"
+    - Union types: "str or None", "int or float"
+    - Custom types: "QuantumCircuit", "EstimatorPubLike", "SparsePauliOp"
+  
+  attributeValue (optional): Shows the default value if one exists.
+    - If a parameter is required, omit attributeValue
+    - Examples: "True", "1000", "None", "least busy backend"
+  
+  Content: Provide a clear description. Include:
+    - What the parameter does
+    - Any constraints or valid values
+    - "Required: Yes/No"
+    - An example (actual value or type example)
+  
+  Supported markdown: bold, links, code blocks, lists
+*/}
+
+### `required_parameter`
+
+<Attribute attributeTypeHint="str">
+Description of what this parameter does and when to use it. Include any constraints or special considerations.
+- Required: Yes
+- Example: `my_value`
+</Attribute>
+
+### `another_parameter`
+
+<Attribute attributeTypeHint="list[int]">
+Description of this parameter. Explain what the list should contain and how it's used.
+- Required: No
+- Example: `[1, 2, 3]`
+</Attribute>
+
+### `optional_parameter_with_default`
+
+<Attribute attributeTypeHint="str" attributeValue="default_value">
+Description of this parameter. Mention that it has a default value and what that value is.
+- Required: No
+- Example: `custom_value`
+</Attribute>
+
+### Options
+
+{/*
+  OPTIONS SUBSECTION
+  Use this when the API accepts a complex options parameter (usually a `dict`).
+  Include an explanation of how options are structured, then document each option.
+*/}
+
+<Attribute attributeTypeHint="dict">
+Input options for [what this controls]. Options are specified as a nested dictionary. See the [options list](#options-list) below for details and default values.
+- Required: No
+- Example: `{"option1": true, "option2": "value"}`
+</Attribute>
+
+<span id="options-list"></span>
+#### Options list
+
+##### `simple_option`
+
+{/*
+  SIMPLE OPTIONS: Use Attribute directly within an h5 heading for each option.
+  Show type, default value, valid choices, and a clear description.
+*/}
+
+<Attribute attributeTypeHint="int" attributeValue="100">
+Description of this option. Explain what it controls and the impact of changing it.
+- Choices: Integer > 0
+</Attribute>
+
+##### `flag_option`
+
+<Attribute attributeTypeHint="bool" attributeValue="True">
+Whether to enable/disable [what this controls].
+- Choices: True/False
+</Attribute>
+
+##### `choice_option`
+
+<Attribute attributeTypeHint="str" attributeValue="default">
+Description of this option. List the valid choices and what each one does.
+- Choices: `option_a` / `option_b` / `option_c`
+</Attribute>
+
+##### `grouped_options`
+
+{/*
+  GROUPED/NESTED OPTIONS
+  When options have sub-options (e.g., mitigation, resilience, etc.),
+  use `LeftColoredBar` to group them visually and hierarchically.
+  The color attribute can be "blue" or "purple".
+*/}
+
+<LeftColoredBar color="blue">
+    `sub_option_one`
+        <Attribute attributeValue="true">
+        Description of this sub-option. Explain what it controls.
+        - Choices: True/False
+        </Attribute>
+    
+    `sub_option_two`
+        <Attribute attributeValue="linear">
+        Description of this sub-option and its choices.
+        - Choices: `linear` / `exponential` / `polynomial`
+        </Attribute>
+    
+    `nested_group`
+        {/*
+          DEEPLY NESTED OPTIONS
+          For complex hierarchies, nest LeftColoredBar within LeftColoredBar.
+          Use a different color (e.g., "purple") to visually distinguish nesting levels.
+        */}
+        <LeftColoredBar color="purple">
+            `deep_nested_option`
+                <Attribute attributeValue="100">
+                Description of this deeply nested option.
+                - Choices: Integer > 0
+                </Attribute>
+            
+            `another_deep_option`
+                <Attribute attributeTypeHint="list[float]" attributeValue="(1, 3, 5)">
+                Description of this deeply nested option with a list default.
+                - Choices: List of floats, each >= 1
+                </Attribute>
+        </LeftColoredBar>
+</LeftColoredBar>
+
+## Outputs
+
+{/*
+  OUTPUTS SECTION
+  Document the structure and contents of the API response.
+  
+  Two common patterns:
+  
+  1. SINGLE RESPONSE TYPE:
+     If the API returns a single object/type, start with a brief intro explaining
+     what that type is, then use LeftColoredBar to document its fields.
+  
+  2. CONDITIONAL RESPONSE:
+     Some APIs return different structures based on options (e.g., transpile_only=True).
+     Use subsections and Admonitions to clarify which output goes with which mode.
+*/}
+
+The output of this API is a `[ReturnTypeName]` object containing solution and metadata. The structure may vary depending on execution mode (e.g., if certain options are set).
+
+<Attribute attributeTypeHint="[ReturnType]">
+Description of the main output structure. Explain what the response contains at a high level and how to access fields.
+- Example: `{"result": 0.5, "error": 0.01, "metadata": {...}}`
+</Attribute>
+
+### Output structure
+
+{/*
+  Use LeftColoredBar to organize output fields into a visual hierarchy.
+  Each field should have an Attribute with type, description, and optionally an example.
+*/}
+
+<LeftColoredBar color="blue">
+    `result_field`
+        <Attribute attributeTypeHint="float">
+        Description of what this field represents and how to interpret its value.
+        - Example: `0.5`
+        </Attribute>
+    
+    `solution`
+        <Attribute attributeTypeHint="dict[str, Any]">
+        Description of the solution dictionary. Explain what keys it contains.
+        - Example: `{"bitstring": "11100", "cost": -13.8}`
+        </Attribute>
+    
+    `metadata`
+        {/*
+          NESTED OUTPUT FIELDS
+          For complex outputs with nested structures, use nested LeftColoredBar.
+          Use a different color to show the hierarchy level.
+        */}
+        <LeftColoredBar color="purple">
+            `execution_time`
+                <Attribute attributeTypeHint="float">
+                How long the operation took in seconds.
+                - Example: `1.234`
+                </Attribute>
+            
+            `timestamp`
+                <Attribute attributeTypeHint="str">
+                When the operation completed (ISO 8601 format).
+                - Example: `"2024-01-15T10:30:00Z"`
+                </Attribute>
+            
+            `resource_usage`
+                <Attribute attributeTypeHint="dict">
+                Information about resources consumed during execution.
+                - Example: `{"qpu_time": 5.2, "total_time": 10.1}`
+                </Attribute>
+        </LeftColoredBar>
+</LeftColoredBar>
+
+### Alternative output structures
+
+{/*
+  OPTIONAL: If the API returns different structures based on options,
+  document each variant with a subsection and Admonition.
+*/}
+
+<Admonition type="note" title="Output when transpile_only=True">
+When [`transpile_only=True`](#transpile_only), the output contains circuit analysis instead of solution results:
+
+- `transpilation_info`: Dictionary with `best_seed`, `transpilation_time_seconds`, and `transpiled_circuit` details
+- `transpiled_circuit`: Contains `depth`, `gate_count`, `num_qubits`, `width`, and `operations`
+</Admonition>
+
+## Error handling
+
+{/*
+  OPTIONAL: Include information about errors, exceptions, or status codes
+  if your API documents these. This helps users understand what can go wrong.
+*/}
+
+<Admonition type="caution">
+Describe common error conditions and how to handle them. Examples:
+- What happens if an invalid parameter is passed
+- When the API might fail or timeout
+- Link to [error code reference](/docs/errors) if available
+</Admonition>
