@@ -14,17 +14,17 @@ All Resource Controller endpoints require that you authenticate by passing a hea
 
 Use the [`GET /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#get-resource-instance) endpoint to get information about a particular instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
 
-In addition to the standard Resource Controller fields, the response includes Quantum-specific fields in `extensions`. Use `extensions` rather than `parameters` because `parameters` may include a subset of the full fields.
+In addition to the standard Resource Controller fields, the response includes quantum-specific fields in `extensions`. Use `extensions` rather than `parameters` because `parameters` might include a subset of the full fields.
 
 The `extensions` object includes these fields:
 
 - **`instance_limit_seconds`** — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
 - **`usage_allocation_seconds`** — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- **`backends`** — Array of strings. The allow-list of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
+- **`backends`** — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
 
 ## Get a list of all instances
 
-Use the [`GET /v2/resource_instances`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances) endpoint to get a list of all your instances. Set the `resource_id` query parameter to `b6049020-80f4-11eb-a0f7-e35ec9b4054f` to filter to IBM Quantum instances.
+Use the [`GET /v2/resource_instances`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances) endpoint to get a list of all your instances. Set the `resource_id` query parameter to `b6049020-80f4-11eb-a0f7-e35ec9b4054f` to filter to IBM Quantum&reg; instances.
 
 If your account has multiple plans and you want to filter by plan, set the `resource_plan_id` query parameter to one of the following values:
 
@@ -45,7 +45,7 @@ Pass a `parameters` JSON object in the request body with the fields you want to 
 
 - **`instance_limit_seconds`** — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
 - **`usage_allocation_seconds`** — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
-- **`backends`** — Array of strings. The allow-list of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+- **`backends`** — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
 
 ## Create a new instance
 
@@ -58,8 +58,8 @@ Required fields:
 - **`resource_plan_id`** — The plan for this instance. See the [plan ID table](#get-a-list-of-all-instances).
 - **`resource_group`** — The [resource group](https://cloud.ibm.com/docs/account?topic=account-rgs) to use.
 
-You can also include a `parameters` object to set Quantum-specific values:
+You can also include a `parameters` object to set quantum-specific values:
 
 - **`instance_limit_seconds`** — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
 - **`usage_allocation_seconds`** — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
-- **`backends`** — Array of strings. The allow-list of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+- **`backends`** — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
