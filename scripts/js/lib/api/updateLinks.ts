@@ -26,9 +26,10 @@ import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
+import { Pkg } from "./Pkg.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
-import { DOCS_BASE_PATH } from "./conversionPipeline.js";
+import { DOCS_BASE_PATH, C_API_BASE_PATH } from "./paths.js";
 
 export interface Link {
   url: string; // Where the link goes
@@ -110,6 +111,21 @@ export function normalizeUrl(
 
   url = removePart(url, "/", [...pythonApiFolders, ".."]);
 
+  // Some packages link to the C API via relative `cdoc/` paths
+  // (e.g. `../cdoc/qk-circuit.html#c.qk_circuit_new` in the Sphinx artifact, which
+  // becomes `cdoc/qk-circuit.html#...` after the `..` is stripped above).
+  // Rewrite these to absolute paths pointing to the qiskit-c package.
+  if (url.startsWith(`${C_API_BASE_PATH}/`)) {
+    const [pageWithHtml, hash] = removePrefix(url, `${C_API_BASE_PATH}/`).split(
+      "#",
+    );
+    const page = removeSuffix(pageWithHtml, ".html");
+    // Strip the Sphinx C domain prefix (e.g. `c.qk_circuit_new` → `qk_circuit_new`)
+    const normalizedHash = hash ? removePrefix(hash, "c.") : undefined;
+    const pageAndHash = normalizedHash ? `${page}#${normalizedHash}` : page;
+    return `${kwargs.pkgOutputDir.replace("qiskit", "qiskit-c")}/${pageAndHash}`;
+  }
+
   // TODO (#3375): Investigate if we can make this case more generic.
   // The Qiskit C API sometimes links to the Python API. In those cases, we need to add the
   // full prefix
@@ -177,6 +193,9 @@ export function normalizeUrl(
 }
 
 export function relativizeLink(link: Link): Link | undefined {
+  const rewritten = rewriteQiskitAddonLinks(link);
+  if (rewritten) return rewritten;
+
   const priorPrefixToNewPrefix = new Map([
     ["https://qiskit.org/documentation/apidoc/", "/api/qiskit"],
     ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],
@@ -188,12 +207,12 @@ export function relativizeLink(link: Link): Link | undefined {
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
     link.url.startsWith(prefix),
   );
-  if (!priorPrefix) {
-    return;
-  }
+  if (!priorPrefix) return;
+
   let [url, anchor] = link.url.split("#");
   url = removePrefix(url, priorPrefix);
   url = removeSuffix(url, ".html");
+
   if (anchor && anchor !== url) {
     url = `${url}#${anchor}`;
   }
@@ -204,6 +223,25 @@ export function relativizeLink(link: Link): Link | undefined {
   return { url: `/${relativeUrl}`, text: newText };
 }
 
+function rewriteQiskitAddonLinks(link: Link) {
+  if (!link.url.startsWith("https://qiskit.github.io/")) return;
+
+  // github.io stubs/apidocs URLs are looked up via objects.inv by the caller
+  if (/\/(stubs|apidocs|apidoc)\//.test(link.url)) return;
+
+  const rest = removePrefix(link.url, "https://qiskit.github.io/");
+  const [addonName, ...pathParts] = rest.split("#")[0].split("/");
+  if (!addonName || !Pkg.ADDON_NAMES.includes(addonName)) return;
+
+  const anchor = rest.includes("#") ? rest.split("#")[1] : undefined;
+  const pagePath = pathParts.map((s) => removeSuffix(s, ".html")).join("/");
+  const url = anchor
+    ? `/docs/addons/${addonName}/${pagePath}#${anchor}`
+    : `/docs/addons/${addonName}/${pagePath}`;
+  const newText = link.url === link.text ? url : undefined;
+  return { url, text: newText };
+}
+
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
   kwargs: {
@@ -212,6 +250,7 @@ export async function updateLinks(
     pkgOutputDir: string;
   },
   maybeObjectsInv?: ObjectsInv,
+  allObjectInvs?: Map<string, ObjectsInv>,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);
   const itemNames = new Set(keys(resultsByName));
@@ -254,7 +293,13 @@ export async function updateLinks(
               textNode.value = relativizedLink.text;
             }
           }
-
+          const resolvedStub = maybeObjectsInv?.resolveStubUrl(
+            node.url,
+            allObjectInvs,
+          );
+          if (resolvedStub) {
+            node.url = resolvedStub;
+          }
           node.url = normalizeUrl(node.url, resultsByName, itemNames, kwargs);
         });
       })

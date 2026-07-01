@@ -105,7 +105,6 @@ notebooks = [
 [groups.cron-job-only]
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
-  "docs/guides/primitives-rest-api.ipynb",
   "docs/guides/post-selection.ipynb",
   "docs/guides/hello-world.ipynb",
 
@@ -137,6 +136,12 @@ notebooks = [
 # Don't ever test the following notebooks
 [groups.exclude]
 notebooks = [
+  # Addon notebooks require the addon packages and are not run in standard CI
+  "docs/addons/**/*.ipynb",
+
+  # Test fixture — not real content
+  "scripts/js/lib/api/testdata/**/*.ipynb",
+
   # This notebook contains undefined variables so can't run at all.
   "docs/guides/function-template-hamiltonian-simulation.ipynb",
   "docs/guides/function-template-chemistry-workflow.ipynb",
@@ -164,6 +169,7 @@ notebooks = [
   "docs/guides/serverless-port-code.ipynb",
 
   # We never run tutorials notebooks
+  "docs/tutorials/loop-string-hadron-dynamics.ipynb",
   "docs/tutorials/implicit-solvent-calculations.ipynb",
   "docs/tutorials/simulate-kicked-ising-tem.ipynb",
   "docs/tutorials/dc-hex-ising.ipynb",
@@ -177,6 +183,7 @@ notebooks = [
   "docs/tutorials/shors-algorithm.ipynb",
   "docs/tutorials/multi-product-formula.ipynb",
   "docs/tutorials/advanced-techniques-for-qaoa.ipynb",
+  "docs/tutorials/warm-start-qaoa.ipynb",
   "docs/tutorials/ai-transpiler-introduction.ipynb",
   "docs/tutorials/grovers-algorithm.ipynb",
   "docs/tutorials/spin-chain-vqe.ipynb",

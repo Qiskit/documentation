@@ -8,16 +8,29 @@ python_api_name: qiskit.transpiler.passes.FixedPoint
 
 # FixedPoint
 
-<Class id="qiskit.transpiler.passes.FixedPoint" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/fixed_point.py#L26-L52" signature="qiskit.transpiler.passes.FixedPoint(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.FixedPoint" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/fixed_point.py#L29-L77" signature="qiskit.transpiler.passes.FixedPoint(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Check if a property reached a fixed point.
 
-  A dummy analysis pass that checks if a property reached a fixed point. The result is saved in `property_set['<property>_fixed_point']` as a boolean.
+  A dummy analysis pass that checks if a property reached a fixed point. The result is saved in `property_set['<property_to_check>_fixed_point']` as a boolean.
+
+  An optional `getter` callable can be provided to derive a value from the property set instead of reading a single key directly. This is useful when convergence should be checked on a combination of properties (e.g. a tuple consisting of size and t-count):
+
+  ```python
+  def get_size_and_t_count(property_set):
+      return (
+          property_set["size"],
+          property_set["count_ops"].get("t", 0) + property_set["count_ops"].get("tdg", 0)
+      )
+
+  FixedPoint("size_and_t_count", get_size_and_t_count)
+  ```
 
   **Parameters**
 
-  **property\_to\_check** – The property to check if a fixed point was reached.
+  *   **property\_to\_check** – The name used to key the fixed-point result in the property set under `property_set['<property_to_check>_fixed_point']`. When `getter` is `None`, this name is also used as a key to read the corresponding value from the property set.
+  *   **getter** – Optional callable that takes the property set as input and returns the value to track. When `None` (default), the value `property_set[property_to_check]` is used for tracking purposes.
 
   ## Attributes
 
@@ -41,14 +54,14 @@ python_api_name: qiskit.transpiler.passes.FixedPoint
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.FixedPoint.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L71-L117" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.FixedPoint.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L76-L122" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Task, IR\_OUT,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -56,12 +69,12 @@ python_api_name: qiskit.transpiler.passes.FixedPoint
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.FixedPoint.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
+  <Function id="qiskit.transpiler.passes.FixedPoint.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L72-L74" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -71,7 +84,7 @@ python_api_name: qiskit.transpiler.passes.FixedPoint
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.FixedPoint.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/fixed_point.py#L42-L52" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.FixedPoint.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/utils/fixed_point.py#L67-L77" signature="run(dag)">
     Run the FixedPoint pass on `dag`.
 
     **Parameters**
@@ -85,7 +98,7 @@ python_api_name: qiskit.transpiler.passes.FixedPoint
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.FixedPoint.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L119-L137" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.FixedPoint.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L124-L142" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

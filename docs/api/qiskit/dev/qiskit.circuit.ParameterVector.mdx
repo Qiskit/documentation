@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.ParameterVector
 
 # ParameterVector
 
-<Class id="qiskit.circuit.ParameterVector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parametervector.py#L20-L139" signature="qiskit.circuit.ParameterVector(name, length=0, uuid=None)" modifiers="class">
+<Class id="qiskit.circuit.ParameterVector" isDedicatedPage={true} signature="qiskit.circuit.ParameterVector(name, length=0, uuid=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A container of many related [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects.
@@ -19,32 +19,20 @@ python_api_name: qiskit.circuit.ParameterVector
 
   This class fulfills the [`collections.abc.Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence) interface.
 
-  <Admonition title="Note" type="note">
-    This class does not implement regular equality, but has historically been allowed to be used as a dictionary key for [`QuantumCircuit.assign_parameters()`](qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters"). The class is mutable via [`resize()`](#qiskit.circuit.ParameterVector.resize "qiskit.circuit.ParameterVector.resize"), so it generally cannot implement regular equality; for two [`ParameterVector`](#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") objects to compare equal, they must be literally the same Python instance.
-
-    This restriction does not apply to the individual [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") instances; these must only match on name, index and UUID.
-  </Admonition>
-
-  **Parameters**
-
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the base name of the vector
-  *   **length** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of elements in the vector
-  *   **uuid** ([*UUID*](https://docs.python.org/3/library/uuid.html#uuid.UUID) *| None*) – (optional) the root UUID to use for the vector. This can be used to create a new vector whose elements will compare equal to a previous vector (such as in a deserialization process).
-
   ## Attributes
 
   ### name
 
   <Attribute id="qiskit.circuit.ParameterVector.name">
-    The name of the [`ParameterVector`](#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+    The base name of the vector.
   </Attribute>
 
   ### params
 
   <Attribute id="qiskit.circuit.ParameterVector.params">
-    A list of the contained [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") instances.
+    A sequence of the contained [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") instances.
 
-    It is not safe to mutate this list.
+    Mutations to this object are not tracked.
   </Attribute>
 
   ### uuid
@@ -57,28 +45,20 @@ python_api_name: qiskit.circuit.ParameterVector
 
   ### index
 
-  <Function id="qiskit.circuit.ParameterVector.index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parametervector.py#L79-L83" signature="index(value)">
-    Find the index of a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") within the list.
+  <Function id="qiskit.circuit.ParameterVector.index" signature="index(val)">
+    Find the index of a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") within the sequence.
 
-    It is typically much faster to use the [`ParameterVectorElement.index`](qiskit.circuit.ParameterVectorElement#index "qiskit.circuit.ParameterVectorElement.index") property.
+    This is an inefficient way of accessing the [`index`](qiskit.circuit.ParameterVectorElement#index "qiskit.circuit.ParameterVectorElement.index") field on the given value, which you should use instead.
   </Function>
 
   ### resize
 
-  <Function id="qiskit.circuit.ParameterVector.resize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/parametervector.py#L111-L139" signature="resize(length)">
-    Resize the parameter vector. If necessary, new elements are generated.
+  <Function id="qiskit.circuit.ParameterVector.resize" signature="resize(length)">
+    Change the length of this vector.
 
-    Note that the UUID of each [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") element will be generated deterministically given the root UUID of the `ParameterVector` and the index of the element. In particular, if a `ParameterVector` is resized to be smaller and then later resized to be larger, the UUID of the later generated element at a given index will be the same as the UUID of the previous element at that index. This is to ensure that the parameter instances do not change.
+    Any references to [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") instances with lengths greater than `length` are invalidated by calling this.
 
-    ```python
-    >>> from qiskit.circuit import ParameterVector
-    >>> pv = ParameterVector("theta", 20)
-    >>> elt_19 = pv[19]
-    >>> pv.resize(10)
-    >>> pv.resize(20)
-    >>> pv[19] == elt_19
-    True
-    ```
+    The UUIDs of [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") instances that are deleted or created by this method are stable; the UUIDs are always derived as index offsets from the vector’s UUID.
   </Function>
 </Class>
 
