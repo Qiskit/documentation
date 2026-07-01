@@ -8,30 +8,34 @@ description: Parameters to set when provisioning a Qiskit Runtime service instan
 
 You can use the IBM Cloud&reg; Resource Controller REST API to programmatically get, create, and update [instances](/docs/guides/instances). 
 
-All Resource Controller endpoints require that you authenticate by passing a header called `Authorization` with the bearer token. Refer to /docs/guides/cloud-setup-rest-api.
+All Resource Controller endpoints require that you authenticate by passing a header called `Authorization` with the bearer token. Refer to the [REST API setup guide](/docs/guides/cloud-setup-rest-api).
 
 ## Get an instance
 
-Use the [`GET /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances) endpoint to get information about a particular instance. You must URL encode the CRN's instance in the path, such as with TODO curl command. 
+Use the [`GET /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances) endpoint to get information about a particular instance. The CRN must be URL-encoded in the path.
 
-In addition to the standard Resource Controller fields, the result will add Quantum-specific information to `parameters` and `extensions`. You should always use `extensions` instead of `parameters`. `extensions` includes these fields:
+In addition to the standard Resource Controller fields, the response includes Quantum-specific fields in `extensions`. Use `extensions` rather than `parameters` because `parameters` may include a subset of the full fields.
 
-- `instance_limit_seconds` (integer or `null`, >= 0): The time limit to set on the instance.
-- `usage_allocation_seconds` (integer or `null`, >= 0): Allotted time for the instance, used by the fair-share scheduler to determine the priority in the queue, based on usage of all QPUs.
-- `backends` (Required; array of lists of backends (strings) or array with "ANY" (strings)): The allow-list of names of backends that are available to this instance. Default: `["ANY"]`, means all backends are available on this plan. `[]` means no backends.
+The `extensions` object includes these fields:
+
+- **`instance_limit_seconds`** — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- **`usage_allocation_seconds`** — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- **`backends`** — Array. The allow-list of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
 
 ## Get a list of all instances
 
-Use the [`GET /v2/resource_instances`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances) endpoint to get a list of all your instances. 
+Use the [`GET /v2/resource_instances`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances) endpoint to get a list of all your instances. Set the `resource_id` query parameter to `b6049020-80f4-11eb-a0f7-e35ec9b4054f` to filter to IBM Quantum instances.
 
-- Set resource_id query param to b6049020-80f4-11eb-a0f7-e35ec9b4054f to filter to quantum
-- Optionally, set resource_plan_id query param if you have multiple plans in your account and want to filter by plan
-    "premium": "7f666d17-7893-47d8-bf9d-2b2389fc4dfc",
-    "flex": "53bde9d3-cdbb-46f5-a98f-60ebcadf7260",
-    "pay-go": "5304b575-3cff-4455-90dc-ae4367762093",
-    "open": "850b21a7-71de-4e53-9441-1abdd202f35d",
+If your account has multiple plans and you want to filter by plan, set the `resource_plan_id` query parameter to one of the following values:
 
-Similar to when [getting a single instance](#get-an-instance), the results will include both `extensions` and `parameters`. Use `extensions` rather than `parameters`. 
+| Plan | `resource_plan_id` |
+|------|---------------------|
+| Premium | `7f666d17-7893-47d8-bf9d-2b2389fc4dfc` |
+| Flex | `53bde9d3-cdbb-46f5-a98f-60ebcadf7260` |
+| Pay-As-You-Go | `5304b575-3cff-4455-90dc-ae4367762093` |
+| Open | `850b21a7-71de-4e53-9441-1abdd202f35d` |
+
+Each result includes `extensions` and `parameters` fields as described in [Get an instance](#get-an-instance).
 
 ## Update an instance
 
