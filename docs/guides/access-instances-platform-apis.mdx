@@ -1,6 +1,6 @@
 ---
 title: Use IBM Cloud Resource Controller API for instance management
-description: Parameters to set when provisioning a Qiskit Runtime service instance, and extension fields returned when accessing an instance.
+description: Use the IBM Cloud Resource Controller REST API to get, list, update, and create Qiskit Runtime instances.
 
 ---
 
@@ -12,7 +12,7 @@ All Resource Controller endpoints require that you authenticate by passing a hea
 
 ## Get an instance
 
-Use the [`GET /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances) endpoint to get information about a particular instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
+Use the [`GET /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#get-resource-instance) endpoint to get information about a particular instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
 
 In addition to the standard Resource Controller fields, the response includes Quantum-specific fields in `extensions`. Use `extensions` rather than `parameters` because `parameters` may include a subset of the full fields.
 
