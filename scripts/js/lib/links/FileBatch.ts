@@ -118,7 +118,10 @@ export function addLinksToMap(
   links: Set<string>,
   linksToOriginFiles: Map<string, string[]>,
 ): void {
-  const ignoreUrlsRegex = new RegExp(ALWAYS_IGNORED_URL_REGEXES.join("|"), "i");
+  const ignoreUrlsRegex =
+    ALWAYS_IGNORED_URL_REGEXES.length > 0
+      ? new RegExp(ALWAYS_IGNORED_URL_REGEXES.join("|"), "i")
+      : null;
   if (IGNORED_FILES.has(filePath)) return;
   links.forEach((link) => {
     if (
@@ -126,7 +129,7 @@ export function addLinksToMap(
       ALWAYS_IGNORED_URL_PREFIXES.some((prefix) => link.startsWith(prefix)) ||
       ALWAYS_IGNORED_URL_SUFFIXES.some((suffix) => link.endsWith(suffix)) ||
       FILES_TO_IGNORES[filePath]?.includes(link) ||
-      ignoreUrlsRegex.test(link)
+      ignoreUrlsRegex?.test(link)
     ) {
       return;
     }

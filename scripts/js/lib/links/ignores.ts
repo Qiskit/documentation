@@ -33,6 +33,8 @@ const FORBIDS_OUR_USER_AGENT = [
   "https://www.sciencedirect.com/science/article/pii/S0167739X24002012",
   "https://www.sciencedirect.com/science/article/pii/S0167739X24002012",
   "https://csrc.nist.gov/pubs/fips/204/ipd",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.125.150504",
+  "https://marketplace.visualstudio.com/items?itemName=Continue.continue",
   "https://medium.com/qiskit/qiskit-and-its-fundamental-elements-bcd7ead80492",
   "https://ibm-research.medium.com/quantum-computing-gains-a-first-foothold-in-investment-banking-2806b280b8f",
   "https://medium.com/qiskit/a-novel-quantum-algorithm-for-protein-folding-paving-the-way-toward-resolving-one-of-the-biggest-861112139ff0",
@@ -197,6 +199,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
   "https://support.google.com/accounts/answer/27441?hl",
   "https://www.ibm.com/thought-leadership/institute-business-value/report/quantumfinancial",
+  "https://www.epo.org/en/news-events/press-centre/press-release/2025/1361562",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
@@ -209,6 +212,9 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // These links should work when redirects are in place.
   "/docs/guides/configure-error-mitigation",
   "/docs/guides/configure-error-suppression",
+
+  // This link will work because it is being merged at the same time as the notifications page is deployed.
+  "/notifications",
 
   // These links are from old IQP and do not work any more
   "https://auth.quantum-computing.ibm.com/api",
@@ -228,22 +234,7 @@ export const ALWAYS_IGNORED_URLS = new Set([
 // Always ignored URL regexes - be careful using this
 // -----------------------------------------------------------------------------------
 
-function _addonsObjectsInvRegexes(): string[] {
-  // Addons have non-API docs in their Sphinx build that translate into invalid links
-  // we should ignore
-  return ["how-tos", "how_tos", "install", "index", "explanations"].flatMap(
-    (path) => [
-      // Latest version
-      `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
-      // Historical versions
-      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]{1,2}\/${path}(\/.*|#.*|$)`,
-    ],
-  );
-}
-
-export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
-  ..._addonsObjectsInvRegexes(),
-];
+export const ALWAYS_IGNORED_URL_REGEXES: string[] = [];
 
 // -----------------------------------------------------------------------------------
 // Always ignored URL suffixes - be careful using this
@@ -587,8 +578,16 @@ function _qiskitCRegexes(): FilesToIgnores {
   };
 }
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores =
-  mergeFilesToIgnores(_qiskitCRegexes());
+function _addonContentLinksToFix(): FilesToIgnores {
+  // These links point to old addon-repo tutorial slugs that no longer exist.
+  // The addon source docs need to be updated to use the new paths.
+  return {};
+}
+
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
+  _qiskitCRegexes(),
+  _addonContentLinksToFix(),
+);
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
