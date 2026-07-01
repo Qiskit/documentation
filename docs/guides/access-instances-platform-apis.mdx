@@ -1,44 +1,65 @@
 ---
-title: Use IBM Cloud Platform APIs to access instances
-description: Instructions to use IBM Cloud Platform APIs to access instances
+title: Use IBM Cloud Resource Controller API for instance management
+description: Use the IBM Cloud Resource Controller REST API to get, list, update, and create Qiskit Runtime instances.
 
 ---
-{/* cspell:ignore ResourceController  */}
 
-# Use IBM Cloud Platform APIs to access instances
+# Use IBM Cloud Resource Controller API for instance management
 
+You can use the IBM Cloud&reg; Resource Controller REST API to programmatically get, create, and update [instances](/docs/guides/instances). 
 
-This guide is for anyone using the IBM Cloud Platform APIs to provision, update, or manage access to instances. It provides details on the [parameters](#parameters) you can set when provisioning an instance, as well as the set of [extension fields](#extensions) returned when you access an instance.
+All Resource Controller endpoints require that you authenticate by passing a header called `Authorization` with the bearer token. Refer to the [REST API setup guide](/docs/guides/cloud-setup-rest-api).
 
-<Admonition type="note">
-Refer to the IBM Cloud&reg; ResourceController API documentation for more information.
+## Get an instance
 
-Some relevant pages:
-- [Create (provision) a new resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance)
-- [Update a resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#update-resource-instance)
-- [Get a resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#get-resource-instance)
-- [Get a list of all resource instances](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances)  
-    
-    When getting a list of all resource instances, note that you can filter to only Qiskit Runtime instances with `resource_id = "b6049020-80f4-11eb-a0f7-e35ec9b4054f"`
+Use the [`GET /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#get-resource-instance) endpoint to get information about a particular instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
 
-</Admonition>
+In addition to the standard Resource Controller fields, the response includes quantum-specific fields in `extensions`. Use `extensions` rather than `parameters` because `parameters` might include a subset of the full fields.
 
-## `parameters`
+The `extensions` object includes these fields:
 
-In the body when provisioning or updating an instance:
+- **`instance_limit_seconds`** — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- **`usage_allocation_seconds`** — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- **`backends`** — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
 
+## Get a list of all instances
 
-- **instance_limit_seconds** (string or null, `^[0-9]+$`): The limit to set on the instance. For Open Plan: if omitted, this defaults to 10 minutes.
-.
-- **usage_allocation_seconds** (string or null, `^[0-9]+$`): Allotted time for the instance, used by the fair-share scheduler to determine the priority in the queue, based on usage of all QPUs. (This does not apply to Pay-As-You-Go instances.)
-- **backends** (array of lists of backends (strings or null) or array with "ANY"): the allow-list of names of backends that are available to this instance. Default: `["ANY"]`, means all backends available on this plan. `[]` means no backends.
+Use the [`GET /v2/resource_instances`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances) endpoint to get a list of all your instances. Set the `resource_id` query parameter to `b6049020-80f4-11eb-a0f7-e35ec9b4054f` to filter to IBM Quantum&reg; instances.
 
-## `extensions`
+If your account has multiple plans and you want to filter by plan, set the `resource_plan_id` query parameter to one of the following values:
 
-In the response when provisioning or when getting the details of an instance:
+| Plan | `resource_plan_id` |
+|------|---------------------|
+| Premium | `7f666d17-7893-47d8-bf9d-2b2389fc4dfc` |
+| Flex | `53bde9d3-cdbb-46f5-a98f-60ebcadf7260` |
+| Pay-As-You-Go | `5304b575-3cff-4455-90dc-ae4367762093` |
+| Open | `850b21a7-71de-4e53-9441-1abdd202f35d` |
 
-Additional instance properties contributed by the service that are represented as key-value pairs. These properties persist with the instance under the extensions property.
+Each result includes `extensions` and `parameters` fields as described in [Get an instance](#get-an-instance).
 
-- **instance_limit_seconds** (integer or null, `>= 0`): The time limit to set on the instance.
-- **usage_allocation_seconds** (integer or null, `>= 0`): Allotted time for the instance, used by the fair-share scheduler to determine the priority in the queue, based on usage of all QPUs.
-- **backends** (Required; array of lists of backends (strings) or array with "ANY" (strings)): The allow-list of names of backends that are available to this instance. Default: `["ANY"]`, means all backends are available on this plan. `[]` means no backends.
+## Update an instance
+
+Use the [`PATCH /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#update-resource-instance) endpoint to update the limit, allocation, and permitted backends for an instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
+
+Pass a `parameters` JSON object in the request body with the fields you want to change, along with the header `"Content-Type: application/json"`. Omitted fields are left unchanged.
+
+- **`instance_limit_seconds`** — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- **`usage_allocation_seconds`** — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- **`backends`** — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+
+## Create a new instance
+
+Use the [`POST /v2/resource_instances`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance) endpoint to create (provision) a new instance. Pass a JSON body with the header `"Content-Type: application/json"`.
+
+Required fields:
+
+- **`name`** — A human-readable name for the instance.
+- **`target`** — The region, such as `us-east` or `eu-de`.
+- **`resource_plan_id`** — The plan for this instance. See the [plan ID table](#get-a-list-of-all-instances).
+- **`resource_group`** — The [resource group](https://cloud.ibm.com/docs/account?topic=account-rgs) to use.
+
+You can also include a `parameters` object to set quantum-specific values:
+
+- **`instance_limit_seconds`** — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- **`usage_allocation_seconds`** — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- **`backends`** — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
