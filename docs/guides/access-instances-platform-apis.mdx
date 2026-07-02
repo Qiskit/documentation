@@ -18,9 +18,9 @@ In addition to the standard Resource Controller fields, the response includes qu
 
 The `extensions` object includes these fields:
 
-- **`instance_limit_seconds`** — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- **`usage_allocation_seconds`** — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- **`backends`** — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
 
 ## Get a list of all instances
 
@@ -43,9 +43,9 @@ Use the [`PATCH /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/res
 
 Pass a `parameters` JSON object in the request body with the fields you want to change, along with the header `"Content-Type: application/json"`. Omitted fields are left unchanged.
 
-- **`instance_limit_seconds`** — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- **`usage_allocation_seconds`** — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
-- **`backends`** — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
 
 ## Create a new instance
 
@@ -53,13 +53,13 @@ Use the [`POST /v2/resource_instances`](https://cloud.ibm.com/apidocs/resource-c
 
 Required fields:
 
-- **`name`** — A human-readable name for the instance.
-- **`target`** — The region, such as `us-east` or `eu-de`.
-- **`resource_plan_id`** — The plan for this instance. See the [plan ID table](#get-a-list-of-all-instances).
-- **`resource_group`** — The [resource group](https://cloud.ibm.com/docs/account?topic=account-rgs) to use.
+- `name` — A human-readable name for the instance.
+- `target` — The region, such as `us-east` or `eu-de`.
+- `resource_plan_id` — The plan for this instance. See the [plan ID table](#get-a-list-of-all-instances).
+- `resource_group` — The [resource group](https://cloud.ibm.com/docs/account?topic=account-rgs) to use.
 
 You can also include a `parameters` object to set quantum-specific values:
 
-- **`instance_limit_seconds`** — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- **`usage_allocation_seconds`** — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
-- **`backends`** — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
