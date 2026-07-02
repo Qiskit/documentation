@@ -16,7 +16,7 @@ All Resource Controller endpoints require that you authenticate by passing a hea
 
 Use the [`GET /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#get-resource-instance) endpoint to get information about a particular instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
 
-In addition to the standard Resource Controller fields, the response includes quantum-specific fields in `extensions`. Use `extensions` rather than `parameters` because `parameters` might include a subset of the full fields.
+In addition to the standard Resource Controller fields, the response includes quantum-specific fields in both `parameters` and `extensions`. `extensions` stores the instance's normalized metadata, whereas `parameters` only stores the most recent request to modify the instance. Therefore, you should read from `extensions` rather than `parameters`.
 
 The `extensions` object includes these fields:
 
@@ -24,10 +24,10 @@ The `extensions` object includes these fields:
 - `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
 
-<Admonition type="caution" title="Some extensions fields may be outdated">
-  The following fields in the `extensions` object may be outdated. This can happen when IBM Quantum Support changes your instance's configuration. The current workaround is to instead use the [Qiskit Runtime REST API](/docs/api/qiskit-runtime-rest) to get this metadata.
+<Admonition type="caution" title="The backends field may be outdated">
+  The `backends` field in the `extensions` object may be outdated. This can happen when IBM Quantum Support changes your account in a way that impacts instances. For example, when a backend is removed from an account, it will update the `backends` for the instance, but that change is currently not yet reflected in the Resource Controller API.
 
-  - `backends`. Instead, use [`GET /v1/instance`](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__get_instance).
+  Instead, the current workaround is to use the [Qiskit Runtime REST API](/docs/api/qiskit-runtime-rest) with the [`GET /v1/instance`](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__get_instance) endpoint.
 </Admonition>
 
 <Tabs>
@@ -78,7 +78,7 @@ If your account has multiple plans and you want to filter by plan, set the `reso
 | Pay-As-You-Go | `5304b575-3cff-4455-90dc-ae4367762093` |
 | Open | `850b21a7-71de-4e53-9441-1abdd202f35d` |
 
-Each result includes `extensions` and `parameters` fields as described in [Get an instance](#get-an-instance).
+Each result includes the same `extensions` field as described in [Get an instance](#get-an-instance).
 
 <Tabs>
   <TabItem value="curl" label="cURL">
