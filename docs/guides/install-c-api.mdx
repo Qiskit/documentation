@@ -6,8 +6,7 @@ description: How to install and use the Qiskit C API as standalone library
 
 # Install the Qiskit C API
 
-This guide describes how to install and use the Qiskit C API. To see how to extend your
-Qiskit Python workflow with C, read [Extend Python with the Qiskit C API](/docs/guides/c-extension-for-python).
+This guide describes how to install and use the Qiskit C API. After the install is complete, read [Extend Python with the Qiskit C API](/docs/guides/c-extension-for-python).
 
 The following example builds an observable with C:
 ```c
@@ -123,12 +122,130 @@ This section provides build instructions for Windows systems.
 
 ### Requirements
 
+- Admin rights are required (for MSVC Build Tools).
+- 5-8 GB free disk space.
+
 Compilation requires the following tools:
 * A Rust compiler: see for example the [guide on installing Qiskit from source](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md#installing-qiskit-from-source)
 * A C compiler: for example, MSVC and the native command prompt offering the ``cl`` command
 * A Python installation, with access to both ``python3.lib`` and ``python3.dll``
 * [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to create the C header, which you can install with `cargo install cbindgen`
     Note that running the tool from the command line should be enabled, which might require updating your `PATH` variable to include the cargo path.
+
+### Before you begin
+
+Create your workspace.  This should be a short path on a local drive. Do not use OneDrive-synced folders (such as Documents or Desktop), network drives, or paths with spaces or non-ASCII characters. If your user name contains non-English characters, don't put it under your user folder.
+
+Examples of good workspace paths: `C:\qgss2026`, `D:\qgss2026`, `C:\Users\john\qgss2026`
+
+### Step 1. Install the prerequisites
+
+#### MSVC Build Tools (C compiler) — install this first
+
+This is the largest download (2-5 GB, 10-30 min). Install it first so you know immediately whether your computer is compatible.
+
+<Admonition type="note">
+Requires administrator rights.
+</Admonition>
+
+**Option A — winget:** 
+Open a PowerShell terminal and run the following:
+
+```powershell
+winget install Microsoft.VisualStudio.2022.BuildTools --override "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --passive --wait"
+```
+
+The terminal appears frozen while the installer runs.  This is normal and will take 10-30 min. Check your taskbar for a "Visual Studio Installer" window.
+
+If `winget` is not recognized, update [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store, or use Option B.
+
+**Option B — manual download:**
+From the [Visual Studio Build Tools for C++](https://visualstudio.microsoft.com/visual-cpp-build-tools/) choose "Desktop development with C++".
+
+#### VS Code
+
+Download from the [Visual Studio Code](https://code.visualstudio.com/) site, or run `winget install Microsoft.VisualStudio.Code`. Run the downloaded .exe file to install VS Code.
+
+After it is installed, continue with these steps:
+1. Open VS Code
+2. Click File -> Open Folder -> select your workspace (for example, `C:\qgss2026`).
+3. Click Terminal -> New terminal to open a PowerShell terminal.
+4. Click the Extensions icon on the left or press Ctrl+Shift+X. In the Extensions window, search for and install `ms-python.python`, `ms-toolsai.jupyter`, and `ms-vscode.cpptools`.
+
+Run all following commands in the VS Code terminal. It defaults to PowerShell, preventing cmd.exe mix-ups. 
+
+Set the workspace variable:
+
+```powershell
+$QGSS = "C:\qgss2026"   # change to your workspace path
+mkdir $QGSS -Force
+cd $QGSS
+```
+#### Python 3.12 (recommended)
+
+Python 3.12 has the best wheel availability for qiskit-aer and other dependencies. 3.10 and 3.11 also work; 3.13 or later might lack pre-built wheels for some packages.
+
+Open the VS Code terminal and run this snippet to detect a suitable Python:
+
+```powershell
+# ── Pre-checks ───────────────────────────────────────────────────────────────
+if ($env:CONDA_DEFAULT_ENV -or $env:CONDA_PREFIX) {
+    Write-Warning "Conda is active. Run 'conda deactivate' first, or open a new terminal."
+    return
+}
+if ($env:VIRTUAL_ENV) {
+    Write-Warning "A venv is active: $env:VIRTUAL_ENV — run 'deactivate' first."
+    return
+}
+
+# ── Detect Python ────────────────────────────────────────────────────────────
+$PYTHON_EXE = $null
+try {
+    $ver  = (py -3 --version 2>&1) -replace "Python ", ""
+    $bits = py -3 -c "import platform; print(platform.architecture()[0])"
+    $path = py -3 -c "import sys; print(sys.executable)"
+    if ($path -match "(?i)(anaconda|miniconda|miniforge|mambaforge|[/\\]conda[/\\]|[/\\]envs[/\\])") {
+        Write-Host "Skipping conda-managed Python at: $path"
+    } elseif ([version]$ver -ge [version]"3.10" -and $bits -eq "64bit") {
+        $PYTHON_EXE = $path
+        Write-Host "Python $ver (64-bit) found: $PYTHON_EXE"
+    } else {
+        Write-Host "Skipping ($ver, $bits) — need 3.10+ 64-bit"
+    }
+} catch {}
+if (-not $PYTHON_EXE) {
+    try {
+        $ver  = (python --version 2>&1) -replace "Python ", ""
+        $bits = python -c "import platform; print(platform.architecture()[0])"
+        $path = python -c "import sys; print(sys.executable)"
+        if ($path -match "(?i)(anaconda|miniconda|miniforge|mambaforge|[/\\]conda[/\\]|[/\\]envs[/\\])") {
+            Write-Host "Skipping conda-managed Python at: $path"
+        } elseif ([version]$ver -ge [version]"3.10" -and $bits -eq "64bit") {
+            $PYTHON_EXE = $path
+            Write-Host "Python $ver (64-bit) found: $PYTHON_EXE"
+        } else {
+            Write-Host "Skipping ($ver, $bits) — need 3.10+ 64-bit"
+        }
+    } catch {}
+}
+if (-not $PYTHON_EXE) {
+    Write-Host "Not found. Installing Python 3.12..."
+    winget install Python.Python.3.12
+    Write-Host "Close and reopen the terminal, then re-run this snippet."
+}
+if ($PYTHON_EXE -and ($PYTHON_EXE -match '[^\x20-\x7E]')) {
+    Write-Warning "Python path has non-ASCII characters. Keep your workspace on an ASCII path."
+}
+if ($PYTHON_EXE) { Write-Host "`$PYTHON_EXE = '$PYTHON_EXE'" }
+```
+
+Or download Python 3.12 from the [Python](https://www.python.org/downloads/).  Run the executable to install Python.  Select "Add Python to PATH" during the install, then re-run the above snippet.
+
+<Admonition type="note" title="Notes">
+- Do NOT use the Microsoft Store Python because it lacks C headers. If `python` opens the Microsoft Store, disable the alias by going to Windows Settings -> Apps -> Advanced app settings -> App execution aliases.
+
+- Anaconda users: run `conda deactivate` until the (base) prefix disappears. If it won't go away, open a new terminal in VS Code.
+</Admonition>
 
 ### Build
 
@@ -166,3 +283,12 @@ bit_terms: [X, Y, Z],
 indices: [0, 1, 2], 
 boundaries: [0, 3] }
 ```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - Learn how to [extend Python with the Qiskit C API](/docs/guides/c-extension-for-python).
+  - [Install Qiskit](https://quantum.cloud.ibm.com/docs/en/guides/install-qiskit)·
+  - [Install the Qiskit C API](https://quantum.cloud.ibm.com/docs/en/guides/install-c-api)·
+  - [Qiskit C API reference](https://quantum.cloud.ibm.com/docs/api/qiskit-c).
+</Admonition>
