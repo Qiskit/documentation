@@ -22,6 +22,47 @@ The `extensions` object includes these fields:
 - `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
 
+<Admonition type="caution" title="Some extensions fields may be outdated">
+  The following fields in the `extensions` object may be outdated. This can happen when IBM Quantum Support changes your instance's configuration. The current workaround is to instead use the [Qiskit Runtime REST API](/docs/api/qiskit-runtime-rest) to get this metadata.
+
+  - `backends`. Instead, use [`GET /v1/instance`](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__get_instance).
+</Admonition>
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    The CRN must be URL-encoded in the path. Replace each `:` with `%3A` and each `/` with `%2F`. For example, `crn:v1:bluemix:...` becomes `crn%3Av1%3Abluemix%3A...`.
+
+    ```bash
+    curl \
+      --request GET \
+      --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances/<YOUR_INSTANCE_CRN_URL_ENCODED>' \
+      --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+    import urllib.parse
+    import requests
+
+    crn = "<YOUR_INSTANCE_CRN>"
+    # We use urllib.parse.quote to URL-encode the CRN.
+    url = (
+        "https://resource-controller.cloud.ibm.com/v2/resource_instances/"
+        + urllib.parse.quote(crn, safe="")
+    )
+
+    resp = requests.get(
+        url,
+        headers={"Authorization": f"Bearer {token}"},
+        timeout=30,
+    )
+    resp.raise_for_status()
+    print(resp.json())
+    ```
+  </TabItem>
+</Tabs>
+
 ## Get a list of all instances
 
 Use the [`GET /v2/resource_instances`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances) endpoint to get a list of all your instances. Set the `resource_id` query parameter to `b6049020-80f4-11eb-a0f7-e35ec9b4054f` to filter to IBM Quantum&reg; instances.
@@ -37,6 +78,31 @@ If your account has multiple plans and you want to filter by plan, set the `reso
 
 Each result includes `extensions` and `parameters` fields as described in [Get an instance](#get-an-instance).
 
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+    curl \
+      --request GET \
+      --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances?resource_id=b6049020-80f4-11eb-a0f7-e35ec9b4054f' \
+      --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+    import requests
+
+    resp = requests.get(
+        "https://resource-controller.cloud.ibm.com/v2/resource_instances?resource_id=b6049020-80f4-11eb-a0f7-e35ec9b4054f",
+        headers={"Authorization": f"Bearer {token}"},
+        timeout=30,
+    )
+    resp.raise_for_status()
+    print(resp.json())
+    ```
+  </TabItem>
+</Tabs>
+
 ## Update an instance
 
 Use the [`PATCH /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#update-resource-instance) endpoint to update the limit, allocation, and permitted backends for an instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
@@ -46,6 +112,67 @@ Pass a `parameters` JSON object in the request body with the fields you want to 
 - `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
 - `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+
+<Admonition type="caution" title="Always include a unique timestamp">
+  The API silently ignores the request if `parameters` is identical to the previous request. In the `parameters` object, always include a `timestamp` field set to the current time so each request is treated as unique.
+</Admonition>
+
+The endpoint's response is similar to [getting an instance](#get-an-instance), including how it handles the `extensions` object.
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    The CRN must be URL-encoded in the path. Replace each `:` with `%3A` and each `/` with `%2F`. For example, `crn:v1:bluemix:...` becomes `crn%3Av1%3Abluemix%3A...`.
+
+    ```bash
+    curl \
+    --request PATCH \
+    --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances/<YOUR_INSTANCE_CRN_URL_ENCODED>' \
+    --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>' \
+    --header 'Content-Type: application/json' \
+    --data "{
+        \"parameters\": {
+            \"timestamp\": \"$(date -u +"%Y-%m-%dT%H:%M:%SZ")\",
+            \"usage_allocation_seconds\": 220
+        }
+    }"
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+    import urllib.parse
+    import datetime
+    import requests
+
+    crn = "<YOUR_INSTANCE_CRN>"
+    # We use urllib.parse.quote to URL-encode the CRN.
+    url = (
+        "https://resource-controller.cloud.ibm.com/v2/resource_instances/"
+        + urllib.parse.quote(crn, safe="")
+    )
+
+    timestamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    body = {
+        "parameters": {
+            "timestamp": timestamp,
+            "usage_allocation_seconds": 220,
+        }
+    }
+
+    resp = requests.patch(
+        url,
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+        json=body,
+        timeout=30,
+    )
+    resp.raise_for_status()
+    print(resp.json())
+    ```
+  </TabItem>
+</Tabs>
 
 ## Create a new instance
 
@@ -63,3 +190,54 @@ You can also include a `parameters` object to set quantum-specific values:
 - `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
 - `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+    curl \
+      --request POST \
+      --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances' \
+      --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+          "name": "my-new-instance",
+          "target": "us-east",
+          "resource_plan_id": "7f666d17-7893-47d8-bf9d-2b2389fc4dfc",
+          "resource_group": "<YOUR_RESOURCE_GROUP_ID>",
+          "parameters": {
+              "instance_limit_seconds": 300,
+              "usage_allocation_seconds": 220
+          }
+      }'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+    import requests
+
+    body = {
+        "name": "my-new-instance",
+        "target": "us-east",
+        "resource_plan_id": "7f666d17-7893-47d8-bf9d-2b2389fc4dfc",
+        "resource_group": "<YOUR_RESOURCE_GROUP_ID>",
+        "parameters": {
+            "instance_limit_seconds": 300,
+            "usage_allocation_seconds": 220,
+        },
+    }
+
+    resp = requests.post(
+        "https://resource-controller.cloud.ibm.com/v2/resource_instances",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+        json=body,
+        timeout=30,
+    )
+    resp.raise_for_status()
+    print(resp.json())
+    ```
+  </TabItem>
+</Tabs>
