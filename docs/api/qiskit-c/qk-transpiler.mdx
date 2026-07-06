@@ -6,9 +6,11 @@ python_api_type: module
 python_api_name: QkTranspiler
 ---
 
+<span id="capi-transpiler" />
+
 # QkTranspiler
 
-The [`qk_transpile()`](#qk_transpile "qk_transpile") function exposes Qiskit’s tranpsiler ([`qiskit.transpiler`](/docs/api/qiskit/transpiler#module-qiskit.transpiler "qiskit.transpiler")) to C. The basic functionality is using the same underlying code as the Python-space version, but the transpiler as exposed to C has more limitations than what is exposed to Python. The transpiler assumes a circuit built constructed using solely the C API and is intended to work solely in the case of a standalone C API. It will potentially not work correctly when in a mixed Python/C use case. If you’re mixing C and Python you should call the [`generate_preset_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") or [`transpile()`](/docs/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") functions for those circuits.
+The [`qk_transpile()`](#qk_transpile "qk_transpile") function exposes Qiskit’s tranpsiler ([`qiskit.transpiler`](/docs/api/qiskit-c/transpiler#module-qiskit.transpiler "qiskit.transpiler")) to C. The basic functionality is using the same underlying code as the Python-space version, but the transpiler as exposed to C has more limitations than what is exposed to Python. The transpiler assumes a circuit built constructed using solely the C API and is intended to work solely in the case of a standalone C API. It will potentially not work correctly when in a mixed Python/C use case. If you’re mixing C and Python you should call the [`generate_preset_pass_manager()`](/docs/api/qiskit-c/qiskit-transpiler-generate-preset-pass-manager#qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") or [`transpile()`](/docs/api/qiskit-c/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") functions for those circuits.
 
 ## Data Types
 
@@ -52,7 +54,7 @@ The [`qk_transpile()`](#qk_transpile "qk_transpile") function exposes Qiskit’s
   #### double approximation\_degree
 
   <Attribute id="approximation_degree">
-    The approximation degree a heurstic dial where 1.0 means no approximation (up to numerical tolerance) and 0.0 means the maximum approximation. A `NAN` value indicates that approximation is allowed up to the reported error rate for an operation in the target.
+    The approximation degree a heuristic dial where 1.0 means no approximation (up to numerical tolerance) and 0.0 means the maximum approximation. A `NAN` value indicates that approximation is allowed up to the reported error rate for an operation in the target.
   </Attribute>
 </Class>
 
@@ -67,11 +69,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 > <Function id="qk_transpile_state_new" signature="void qk_transpile_state_new(QkTranspilerStageState **state)">
 >   Create a pointer to an empty `QkTranspilerStageState` object
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md370" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md497" />
 >
 >   #### Safety
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md370" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md497" />
 >
 >   Behavior is undefined if `state` is not a valid pointer allocated.
 >
@@ -85,11 +87,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 > <Function id="qk_transpile_state_free" signature="void qk_transpile_state_free(QkTranspilerStageState *state)">
 >   Free a `QkTranspilerStageState` object
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md371" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md498" />
 >
 >   #### Safety
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md371" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md498" />
 >
 >   Behavior is undefined if `state` is not a valid, non-null pointer to a `QkTranspilerStageState`.
 >
@@ -105,11 +107,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 >
 >   This pointer is owned by the `state` object and should not be freed using `qk_transpile_layout_free`. Instead, free the original `state` object using `qk_transpile_state_free`.
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md372" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md499" />
 >
 >   #### Safety
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md372" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md499" />
 >
 >   Behavior is undefined if `state` is not a valid, non-null pointer to a `QkTranspilerStageState`.
 >
@@ -129,11 +131,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 >
 >   Calling this method consumes the `QkTranspileLayout` object which means the user will not need to call `qk_transpile_layout_free`. The user should still de-allocate the space allotted for it using `free`.
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md373" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md500" />
 >
 >   #### Safety
 >
->   <span id="group__QkTranspilerStageState_1autotoc_md373" />
+>   <span id="group__QkTranspilerStageState_1autotoc_md500" />
 >
 >   Behavior is undefined if `state` is not a valid, non-null pointer to a `QkTranspilerStageState`. Behavior is undefined if `state` is not a valid pointer to a `QkTranspileLayout`.
 >
@@ -162,17 +164,17 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 <Function id="qk_transpile_stage_init" signature="QkExitCode qk_transpile_stage_init(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspilerStageState **state, char **error)">
   Run the preset init stage of the transpiler on a circuit
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the first stage of the transpiler, **init**, which runs abstract-circuit optimizations, and reduces multi-qubit operations into one- and two-qubit operations. You can refer to [Initialization stage](/docs/api/qiskit/transpiler#transpiler-preset-stage-init) for more details.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the first stage of the transpiler, **init**, which runs abstract-circuit optimizations, and reduces multi-qubit operations into one- and two-qubit operations. You can refer to [Initialization stage](/docs/api/qiskit-c/transpiler#transpiler-preset-stage-init) for more details.
 
   This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md374" />
+  <span id="group__QkTranspiler_1autotoc_md501" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md374" />
+  <span id="group__QkTranspiler_1autotoc_md501" />
 
   Behavior is undefined if `dag`, `target`, or `state`, are not valid, non-null pointers to a `QkDag`, `QkTarget`, or a `QkTranspileLayout` pointer respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`. The value of the inner pointer for `state` will be overwritten by this function. If the value pointed to needs to be freed this must be done outside of this function as it will not be freed by this function.
 
@@ -194,17 +196,17 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 <Function id="qk_transpile_stage_routing" signature="QkExitCode qk_transpile_stage_routing(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspilerStageState *state, char **error)">
   Run the preset routing stage of the transpiler on a circuit
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the third stage of the preset pass manager, **routing**, which translates all the instructions in the circuit into those supported by the target. You can refer to [Routing stage](/docs/api/qiskit/transpiler#transpiler-preset-stage-routing) for more details.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the third stage of the preset pass manager, **routing**, which translates all the instructions in the circuit into those supported by the target. You can refer to [Routing stage](/docs/api/qiskit-c/transpiler#transpiler-preset-stage-routing) for more details.
 
   This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md375" />
+  <span id="group__QkTranspiler_1autotoc_md502" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md375" />
+  <span id="group__QkTranspiler_1autotoc_md502" />
 
   Behavior is undefined if `dag`, `target`, or `layout`, are not valid, non-null pointers to a `QkDag`, `QkTarget`, or a `QkTranspileLayout` pointer respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -226,17 +228,17 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 <Function id="qk_transpile_stage_optimization" signature="QkExitCode qk_transpile_stage_optimization(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, char **error, QkTranspilerStageState *state)">
   Run the preset optimization stage of the transpiler on a circuit
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the fourth stage of the preset pass manager, **optimization**, which optimizes the circuit for the given target after the circuit has been transformed into a physical circuit. You can refer to [Optimization stage](/docs/api/qiskit/transpiler#transpiler-preset-stage-optimization) for more details.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the fourth stage of the preset pass manager, **optimization**, which optimizes the circuit for the given target after the circuit has been transformed into a physical circuit. You can refer to [Optimization stage](/docs/api/qiskit-c/transpiler#transpiler-preset-stage-optimization) for more details.
 
   This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md376" />
+  <span id="group__QkTranspiler_1autotoc_md503" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md376" />
+  <span id="group__QkTranspiler_1autotoc_md503" />
 
   Behavior is undefined if `dag` and `target` are not valid, non-null pointers to a `QkDag`, or a `QkTarget` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -258,17 +260,17 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 <Function id="qk_transpile_stage_translation" signature="QkExitCode qk_transpile_stage_translation(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, char **error)">
   Run the preset translation stage of the transpiler on a circuit
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the fourth stage of the preset pass manager, **translation**, which translates all the instructions in the circuit into those supported by the target. You can refer to [Translation stage](/docs/api/qiskit/transpiler#transpiler-preset-stage-translation) for more details.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the fourth stage of the preset pass manager, **translation**, which translates all the instructions in the circuit into those supported by the target. You can refer to [Translation stage](/docs/api/qiskit-c/transpiler#transpiler-preset-stage-translation) for more details.
 
   This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md377" />
+  <span id="group__QkTranspiler_1autotoc_md504" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md377" />
+  <span id="group__QkTranspiler_1autotoc_md504" />
 
   Behavior is undefined if `dag` and `target` are not valid, non-null pointers to a `QkDag`, `QkTarget` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -289,17 +291,17 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 <Function id="qk_transpile_stage_layout" signature="QkExitCode qk_transpile_stage_layout(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspilerStageState **state, char **error)">
   Run the preset layout stage of the transpiler on a circuit
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the second stage of the preset pass manager **layout**, which chooses the initial mapping of virtual qubits to physical qubits, including expansion of the circuit to contain explicit ancillas. You can refer to [Layout stage](/docs/api/qiskit/transpiler#transpiler-preset-stage-layout) for more details.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the second stage of the preset pass manager **layout**, which chooses the initial mapping of virtual qubits to physical qubits, including expansion of the circuit to contain explicit ancillas. You can refer to [Layout stage](/docs/api/qiskit-c/transpiler#transpiler-preset-stage-layout) for more details.
 
   This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md378" />
+  <span id="group__QkTranspiler_1autotoc_md505" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md378" />
+  <span id="group__QkTranspiler_1autotoc_md505" />
 
   Behavior is undefined if `dag` or `target`, are not valid, non-null pointers to a `QkDag`, or a `QkTarget` respectively. Behavior is also undefined if `layout` is not a valid, aligned, pointer to a pointer to a `QkTranspileLayout` or a pointer to a `NULL` pointer. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 
@@ -325,11 +327,11 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 
   This function is multithreaded internally and will launch a thread pool with threads equal to the number of CPUs reported by the operating system by default. This will include logical cores on CPUs with simultaneous multithreading. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspiler_1autotoc_md379" />
+  <span id="group__QkTranspiler_1autotoc_md506" />
 
   #### Safety
 
-  <span id="group__QkTranspiler_1autotoc_md379" />
+  <span id="group__QkTranspiler_1autotoc_md506" />
 
   Behavior is undefined if `circuit`, `target`, or `result`, are not valid, non-null pointers to a `QkCircuit`, `QkTarget`, or `QkTranspileResult` respectively. `options` must be a valid pointer a to a `QkTranspileOptions` or `NULL`. `error` must be a valid pointer to a `char` pointer or `NULL`.
 

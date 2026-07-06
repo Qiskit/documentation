@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.Size
 
 # Size
 
-<Class id="qiskit.transpiler.passes.Size" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/analysis/size.py#L18-L36" signature="qiskit.transpiler.passes.Size(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.Size" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/analysis/size.py#L25-L43" signature="qiskit.transpiler.passes.Size(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Calculate the size of a DAG circuit.
@@ -41,14 +41,14 @@ python_api_name: qiskit.transpiler.passes.Size
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.Size.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/passmanager/base_tasks.py#L71-L117" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.Size.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/passmanager/base_tasks.py#L76-L122" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Task, IR\_OUT,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -56,12 +56,12 @@ python_api_name: qiskit.transpiler.passes.Size
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.Size.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
+  <Function id="qiskit.transpiler.passes.Size.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/passmanager/base_tasks.py#L72-L74" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -71,13 +71,21 @@ python_api_name: qiskit.transpiler.passes.Size
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.Size.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/analysis/size.py#L34-L36" signature="run(dag)">
-    Run the Size pass on dag.
+  <Function id="qiskit.transpiler.passes.Size.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/analysis/size.py#L41-L43" signature="run(dag)">
+    Run the Size pass on `dag`.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"))
+
+    **Return type**
+
+    None
   </Function>
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.Size.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/passmanager/base_tasks.py#L119-L137" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.Size.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/passmanager/base_tasks.py#L124-L142" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

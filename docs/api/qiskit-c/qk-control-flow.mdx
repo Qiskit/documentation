@@ -1,0 +1,1407 @@
+---
+title: Control Flow (latest version)
+description: API reference for Control Flow in the latest version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Control Flow
+---
+
+<span id="capi-control-flow" />
+
+# Control Flow
+
+The Qiskit C API for control flow provides facilities for inspecting control flow instructions used in quantum circuits. You can query the type of control flow instruction, access nested circuit blocks, inspect conditions and loop parameters, and retrieve qubit and classical bit mappings between nested blocks and the top-level circuit.
+
+```c
+typedef struct QkControlFlowInstruction QkControlFlowInstruction
+```
+
+The `QkControlFlowInstruction` opaque struct is the primary handle used by the C API to represent and reason about control-flow instructions within a circuit. It is obtained by a call to [`qk_circuit_get_control_flow_instruction()`](qk-circuit#c.qk_circuit_get_control_flow_instruction "qk_circuit_get_control_flow_instruction") and must be freed with a call to [`qk_control_flow_instruction_free()`](qk-circuit#c.qk_control_flow_instruction_free "qk_control_flow_instruction_free"). Most C API functions that operate on control-flow constructs expect a pointer to this opaque struct, making it the central vehicle for inspecting control-flow instructions from C. Note that most of the functions in this API which use `QkControlFlowInstruction` as input, return borrowed pointers that remain valid as long as the control flow instruction exists, so these pointers do not need to be freed separately.
+
+## Data Types
+
+### QkControlFlowKind
+
+<Class id="QkControlFlowKind" signature="enum QkControlFlowKind">
+  This enum represents the different kinds of control flow instructions that can appear in a quantum circuit.
+
+  *Values:*
+
+  #### enumerator QkControlFlowKind\_Box
+
+  <Attribute id="QkControlFlowKind_Box">
+    A Box instruction
+  </Attribute>
+
+  #### enumerator QkControlFlowKind\_BreakLoop
+
+  <Attribute id="QkControlFlowKind_BreakLoop">
+    Break loop instruction
+  </Attribute>
+
+  #### enumerator QkControlFlowKind\_ContinueLoop
+
+  <Attribute id="QkControlFlowKind_ContinueLoop">
+    Continue loop instruction
+  </Attribute>
+
+  #### enumerator QkControlFlowKind\_ForLoop
+
+  <Attribute id="QkControlFlowKind_ForLoop">
+    For loop instruction
+  </Attribute>
+
+  #### enumerator QkControlFlowKind\_IfElse
+
+  <Attribute id="QkControlFlowKind_IfElse">
+    If-else instruction
+  </Attribute>
+
+  #### enumerator QkControlFlowKind\_Switch
+
+  <Attribute id="QkControlFlowKind_Switch">
+    Switch case instruction
+  </Attribute>
+
+  #### enumerator QkControlFlowKind\_While
+
+  <Attribute id="QkControlFlowKind_While">
+    While loop instruction
+  </Attribute>
+</Class>
+
+### QkConditionType
+
+<Class id="QkConditionType" signature="enum QkConditionType">
+  Represents the type of condition or Switch target in a control flow instruction.
+
+  This enum is used to identify whether a condition (in IfElse or While instructions) or a Switch target (in Switch instructions) operates on a classical bit, a classical register, or a classical expression.
+
+  *Values:*
+
+  #### enumerator QkConditionType\_ClBit
+
+  <Attribute id="QkConditionType_ClBit">
+    Condition based on a classical bit
+  </Attribute>
+
+  #### enumerator QkConditionType\_ClReg
+
+  <Attribute id="QkConditionType_ClReg">
+    Condition based on a classical register
+  </Attribute>
+
+  #### enumerator QkConditionType\_Expr
+
+  <Attribute id="QkConditionType_Expr">
+    Condition based on a classical expression
+  </Attribute>
+</Class>
+
+### QkConditionBitInfo
+
+<Class id="QkConditionBitInfo" signature="struct QkConditionBitInfo">
+  Information about a classical bit condition.
+
+  This struct contains the details of a condition that operates on a single classical bit
+
+  #### uint32\_t clbit
+
+  <Attribute id="clbit">
+    The index of the classical bit in the circuit
+  </Attribute>
+
+  #### bool condition
+
+  <Attribute id="condition">
+    The expected value of the classical bit (true or false)
+  </Attribute>
+</Class>
+
+### QkBoxDurationKind
+
+<Class id="QkBoxDurationKind" signature="enum QkBoxDurationKind">
+  Represents the kind of duration specification for a Box instruction.
+
+  Box instructions can have no duration, a concrete duration value, or a duration specified as a classical expression.
+
+  *Values:*
+
+  #### enumerator QkBoxDurationKind\_NoDuration
+
+  <Attribute id="QkBoxDurationKind_NoDuration">
+    No duration specified
+  </Attribute>
+
+  #### enumerator QkBoxDurationKind\_Duration
+
+  <Attribute id="QkBoxDurationKind_Duration">
+    Concrete duration value (represented as `QkDurationInfo`)
+  </Attribute>
+
+  #### enumerator QkBoxDurationKind\_Expr
+
+  <Attribute id="QkBoxDurationKind_Expr">
+    Duration specified as a classical expression
+  </Attribute>
+</Class>
+
+### QkSwitchCaseLabels
+
+<Class id="QkSwitchCaseLabels" signature="struct QkSwitchCaseLabels">
+  Contains the labels for a Switch case.
+
+  This struct holds an array of label values that a Switch case matches against. For example, a case like `case(1, 2, 3)` would have three labels: 1, 2, and 3. The memory for the labels array is allocated by `qk_control_flow_switch_case_labels_uint` and must be freed using `qk_control_flow_switch_case_labels_clear`.
+
+  #### const uint64\_t \*labels
+
+  <Attribute id="labels">
+    Pointer to an array of label values
+  </Attribute>
+
+  #### size\_t num\_labels
+
+  <Attribute id="num_labels">
+    Number of labels in the array
+  </Attribute>
+</Class>
+
+### QkLoopParamKind
+
+<Class id="QkLoopParamKind" signature="enum QkLoopParamKind">
+  The kind of loop parameter in a ForLoop control flow instruction.
+
+  This enum indicates whether a for-loop has no loop parameter, uses a Parameter symbol, or uses a Variable (`QkVar`) to track the iteration value.
+
+  *Values:*
+
+  #### enumerator QkLoopParamKind\_NoLoopParam
+
+  <Attribute id="QkLoopParamKind_NoLoopParam">
+    No loop parameter is specified for the ForLoop instruction
+  </Attribute>
+
+  #### enumerator QkLoopParamKind\_Parameter
+
+  <Attribute id="QkLoopParamKind_Parameter">
+    Loop parameter is a Parameter
+  </Attribute>
+
+  #### enumerator QkLoopParamKind\_Variable
+
+  <Attribute id="QkLoopParamKind_Variable">
+    Loop parameter is a Variable
+  </Attribute>
+</Class>
+
+### QkSymbolType
+
+<Class id="QkSymbolType" signature="enum QkSymbolType">
+  The type of symbol in a ForLoop context.
+
+  This enum indicates whether a symbol is a standalone variable or an element inside a parameter vector accessed by an index.
+
+  *Values:*
+
+  #### enumerator QkSymbolType\_Standalone
+
+  <Attribute id="QkSymbolType_Standalone">
+    A standalone symbol with a simple name
+  </Attribute>
+
+  #### enumerator QkSymbolType\_Element
+
+  <Attribute id="QkSymbolType_Element">
+    An element symbol with a base name and index
+  </Attribute>
+</Class>
+
+### QkSymbolInfo
+
+<Class id="QkSymbolInfo" signature="struct QkSymbolInfo">
+  Symbol information including type and data.
+
+  This struct represents a symbol in a ForLoop context, which can be either a standalone variable or an indexed element.
+
+  #### QkSymbolType ty
+
+  <Attribute id="ty">
+    The type of symbol (standalone or element)
+  </Attribute>
+
+  #### char \*name
+
+  <Attribute id="name">
+    A null-terminated C string containing the symbol name. For standalone symbols, this is the variable name. For element symbols, this is the base name of the parameter vector. The caller is responsible for freeing this string using `qk_str_free`.
+  </Attribute>
+
+  #### size\_t index
+
+  <Attribute id="index">
+    For element symbols, this is the index into the parameter vector. For standalone symbols, this field is unused and should be ignored.
+  </Attribute>
+</Class>
+
+### QkLoopCollectionType
+
+<Class id="QkLoopCollectionType" signature="enum QkLoopCollectionType">
+  The type of collection used in a ForLoop control flow instruction.
+
+  *Values:*
+
+  #### enumerator QkLoopCollectionType\_List
+
+  <Attribute id="QkLoopCollectionType_List">
+    The loop iterates over an explicit list of elements
+  </Attribute>
+
+  #### enumerator QkLoopCollectionType\_Range
+
+  <Attribute id="QkLoopCollectionType_Range">
+    The loop iterates over a Python-style range (start, stop, step)
+  </Attribute>
+</Class>
+
+### QkLoopElements
+
+<Class id="QkLoopElements" signature="struct QkLoopElements">
+  A struct containing loop elements from a ForLoop control flow instruction.
+
+  This struct is returned by `qk_control_flow_loop_elements` and contains both a pointer to the array of loop elements and the number of elements in the array. The pointer is borrowed and must not be freed by the caller.
+
+  #### const ptrdiff\_t \*elements
+
+  <Attribute id="elements">
+    Pointer to the array of loop elements.
+  </Attribute>
+
+  #### size\_t len
+
+  <Attribute id="len">
+    Number of elements in the array.
+  </Attribute>
+</Class>
+
+## Functions
+
+### qk\_control\_flow\_kind
+
+<Function id="qk_control_flow_kind" signature="QkControlFlowKind qk_control_flow_kind(const QkControlFlowInstruction *cf_inst)">
+  Get the kind of a control flow instruction.
+
+  <span id="group__QkControlFlow_1autotoc_md142" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is obtained from a circuit with control flow
+  QkControlFlowKind kind = qk_control_flow_kind(cf_inst);
+  switch (kind) {
+  case QkControlFlowKind_Box:
+      // do something with the box instruction
+      break;
+  case QkControlFlowKind_BreakLoop:
+      // do something with the break loop instruction
+      break;
+  case QkControlFlowKind_ContinueLoop:
+      // do something with the continue loop instruction
+      break;
+  case QkControlFlowKind_ForLoop:
+      // do something with the for loop instruction
+      break;
+  case QkControlFlowKind_IfElse:
+      // do something with the if-else instruction
+      break;
+  case QkControlFlowKind_Switch:
+      // do something with the switch instruction
+      break;
+  case QkControlFlowKind_While:
+      // do something with the while loop instruction
+      break;
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md143" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md143" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction.
+
+  **Returns**
+
+  The kind of control flow instruction.
+</Function>
+
+### qk\_control\_flow\_num\_blocks
+
+<Function id="qk_control_flow_num_blocks" signature="size_t qk_control_flow_num_blocks(const QkControlFlowInstruction *cf_inst)">
+  Get the number of circuit blocks in a control flow instruction.
+
+  <span id="group__QkControlFlow_1autotoc_md144" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is obtained from a circuit with control flow
+  size_t num_blocks = qk_control_flow_num_blocks(cf_inst);
+  for (size_t i = 0; i < num_blocks; i++) {
+      const QkCircuit *block_circuit = qk_control_flow_block_circuit(cf_inst, i);
+      // Process each block...
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md145" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md145" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction.
+
+  **Returns**
+
+  The number of circuit blocks contained in this control flow instruction.
+</Function>
+
+### qk\_control\_flow\_block\_circuit
+
+<Function id="qk_control_flow_block_circuit" signature="const QkCircuit *qk_control_flow_block_circuit(const QkControlFlowInstruction *cf_inst, size_t block_idx)">
+  Get a pointer to a circuit block within a control flow instruction.
+
+  Control flow instructions contain one or more circuit blocks (e.g., IfElse has two blocks, Switch may have multiple blocks). This function retrieves a specific block by index.
+
+  <span id="group__QkControlFlow_1autotoc_md146" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is an IfElse control flow instruction
+  const QkCircuit *true_block = qk_control_flow_block_circuit(cf_inst, 0);
+  const QkCircuit *false_block = qk_control_flow_block_circuit(cf_inst, 1);
+  // Process the true and false blocks...
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md147" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md147" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction.
+  *   **block\_idx** – The index of the block to retrieve. `block_idx` must be within bounds (\< `qk_control_flow_num_blocks`).
+
+  **Returns**
+
+  A pointer to the `QkCircuit` representing the requested block. The circuit is valid as long as the control flow instruction exists. The circuit is owned by the control flow instruction and must not be freed by the caller.
+</Function>
+
+### qk\_control\_flow\_qubit\_map
+
+<Function id="qk_control_flow_qubit_map" signature="const uint32_t *qk_control_flow_qubit_map(const QkControlFlowInstruction *cf_inst)">
+  Get the qubit mapping for a control flow instruction.
+
+  Returns a pointer to an array that maps the qubits used in the control flow instruction’s blocks to their indices in the top-level circuit. The array length equals the number of qubits used by the control flow instruction. For each qubit index `i` in the nested block, the mapping at index `i` in the array gives the corresponding qubit index in the top-level circuit.
+
+  <span id="group__QkControlFlow_1autotoc_md148" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is obtained from a circuit with control flow
+  const uint32_t *qubit_map = qk_control_flow_qubit_map(cf_inst);
+  uint32_t num_qubits = qk_circuit_num_qubits(qk_control_flow_block_circuit(cf_inst, 0));
+  for (uint32_t i = 0; i < num_qubits; i++) {
+      printf("Block qubit %u maps to circuit qubit %u\n", i, qubit_map[i]);
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md149" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md149" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction.
+
+  **Returns**
+
+  A pointer to an array of `uint32_t` values representing the qubit mapping. The array is valid as long as the control flow instruction exists. The array is owned by the control flow instruction and must not be freed by the caller.
+</Function>
+
+### qk\_control\_flow\_clbit\_map
+
+<Function id="qk_control_flow_clbit_map" signature="const uint32_t *qk_control_flow_clbit_map(const QkControlFlowInstruction *cf_inst)">
+  Get the classical bit mapping for a control flow instruction.
+
+  Returns a pointer to an array that maps the classical bits used in the control flow instruction’s blocks to their indices in the top-level circuit. The array length equals the number of classical bits used by the control flow instruction. For each classical bit index `i` in the nested block, the mapping at index `i` in the array gives the corresponding classical bit index in the top-level circuit.
+
+  <span id="group__QkControlFlow_1autotoc_md150" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is obtained from a circuit with control flow
+  const uint32_t *clbit_map = qk_control_flow_clbit_map(cf_inst);
+  uint32_t num_clbits = qk_circuit_num_clbits(qk_control_flow_block_circuit(cf_inst, 0));
+  for (uint32_t i = 0; i < num_clbits; i++) {
+      printf("Block clbit %u maps to circuit clbit %u\n", i, clbit_map[i]);
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md151" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md151" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction.
+
+  **Returns**
+
+  A pointer to an array of `uint32_t` values representing the classical bit mapping. The array is valid as long as the control flow instruction exists. The array is owned by the control flow instruction and must not be freed by the caller.
+</Function>
+
+### qk\_control\_flow\_condition\_type
+
+<Function id="qk_control_flow_condition_type" signature="QkConditionType qk_control_flow_condition_type(const QkControlFlowInstruction *cf_inst)">
+  Get the condition type for a control flow instruction.
+
+  Returns the type of condition used in an IfElse or While instruction. The condition type indicates whether the condition is based on a classical bit, classical register or a classical expression.
+
+  Panics if `cf_inst` is not an IfElse or While control flow instruction.
+
+  <span id="group__QkControlFlow_1autotoc_md152" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is an IfElse or While control flow instruction
+  QkConditionType cond_type = qk_control_flow_condition_type(cf_inst);
+  switch (cond_type) {
+  case QkConditionType_ClBit:
+      // do something with classical bit...
+      break;
+  case QkConditionType_ClReg:
+      // do something with classical register...
+      break;
+  case QkConditionType_Expr:
+      // Process expression...
+      break;
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md153" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md153" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A valid pointer to a `QkControlFlowInstruction` that must represent an IfElse or While instruction.
+
+  **Returns**
+
+  A `QkConditionType` enum value indicating the condition type.
+</Function>
+
+### qk\_control\_flow\_condition\_bit\_info
+
+<Function id="qk_control_flow_condition_bit_info" signature="QkConditionBitInfo qk_control_flow_condition_bit_info(const QkControlFlowInstruction *cf_inst)">
+  Get the classical bit condition information for a control flow instruction.
+
+  Extracts the classical bit index and expected value from an IfElse or While instruction that has a classical bit condition.
+
+  Panics if `cf_inst` is not an IfElse or While control flow instruction, or if the condition is not a bit type.
+
+  <span id="group__QkControlFlow_1autotoc_md154" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is an IfElse or While instruction with a bit condition
+  QkConditionBitInfo bit_info = qk_control_flow_condition_bit_info(cf_inst);
+  printf("Condition: clbit[%u] == %s\n", bit_info.clbit, bit_info.condition ? "true" : "false");
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md155" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md155" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A valid pointer to a `QkControlFlowInstruction` that must represent an IfElse or While instruction with a classical bit condition.
+
+  **Returns**
+
+  A `QkConditionBitInfo` struct containing the classical bit index and expected value.
+</Function>
+
+### qk\_control\_flow\_condition\_reg\_cond\_bit\_width
+
+<Function id="qk_control_flow_condition_reg_cond_bit_width" signature="uint64_t qk_control_flow_condition_reg_cond_bit_width(const QkControlFlowInstruction *cf_inst)">
+  Get the bit width of the classical register condition for a control flow instruction.
+
+  Extracts the bit width of the classical register from an IfElse or While instruction that has a classical register condition.
+
+  Panics if `cf_inst` is not an IfElse or While control flow instruction, or if the condition is not a register type.
+
+  <span id="group__QkControlFlow_1autotoc_md156" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is an IfElse or While instruction with a register condition
+  uint64_t bit_width = qk_control_flow_condition_reg_cond_bit_width(cf_inst);
+  printf("Register bit width: %lu\n", bit_width);
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md157" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md157" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A valid pointer to a `QkControlFlowInstruction` that must represent an IfElse or While instruction with a classical register condition.
+
+  **Returns**
+
+  The bit width of the condition over the classical register.
+</Function>
+
+### qk\_control\_flow\_condition\_reg
+
+<Function id="qk_control_flow_condition_reg" signature="const QkClassicalRegister *qk_control_flow_condition_reg(const QkControlFlowInstruction *cf_inst)">
+  Get the classical register for a control flow instruction condition.
+
+  Extracts the classical register from an IfElse or While instruction that has a classical register condition.
+
+  Panics if `cf_inst` is not an IfElse or While control flow instruction, or if the condition is not a register type.
+
+  <span id="group__QkControlFlow_1autotoc_md158" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is an IfElse or While instruction with a register condition
+  const QkClassicalRegister* creg = qk_control_flow_condition_reg(cf_inst);
+  // Use the classical register pointer
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md159" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md159" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A valid pointer to a `QkControlFlowInstruction` that must represent an IfElse or While instruction with a classical register condition.
+
+  **Returns**
+
+  A borrowed pointer to the `QkClassicalRegister`. The pointer remains valid as long as the parent circuit remains valid.
+</Function>
+
+### qk\_control\_flow\_condition\_reg\_cond\_uint
+
+<Function id="qk_control_flow_condition_reg_cond_uint" signature="uint64_t qk_control_flow_condition_reg_cond_uint(const QkControlFlowInstruction *cf_inst)">
+  Get the condition value of the classical register condition for a control flow instruction.
+
+  Extracts the condition as an unsigned integer value from an IfElse or While instruction that has a classical register condition.
+
+  Panics if `cf_inst` is not an IfElse or While control flow instruction, if the condition is not a register type, or if the condition value does not fit in a `uint64_t`.
+
+  <span id="group__QkControlFlow_1autotoc_md160" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is an IfElse or While instruction with a register condition
+  uint64_t expected_value = qk_control_flow_condition_reg_cond_uint(cf_inst);
+  printf("Expected register value: %lu\n", expected_value);
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md161" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md161" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A valid pointer to a `QkControlFlowInstruction` that must represent an IfElse or While instruction with a classical register condition.
+
+  **Returns**
+
+  The condition value.
+</Function>
+
+### qk\_control\_flow\_condition\_expr
+
+<Function id="qk_control_flow_condition_expr" signature="const QkExprNode *qk_control_flow_condition_expr(const QkControlFlowInstruction *cf_inst)">
+  Get the classical expression for a control flow instruction.
+
+  Extracts the classical expression from an IfElse or While instruction that has an expression-based condition.
+
+  Panics if `cf_inst` is not an IfElse or While control flow instruction, or if the condition is not an expression type.
+
+  <span id="group__QkControlFlow_1autotoc_md162" />
+
+  #### Example Usage
+
+  ```c
+  // Assuming while_inst is a While control flow instruction with an expression condition
+  QkConditionType cond_type = qk_control_flow_condition_type(while_inst);
+  if (cond_type == QkConditionType_Expr) {
+      const QkExprNode *expr = qk_control_flow_condition_expr(while_inst);
+      // Use the expression...
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md163" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md163" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A valid pointer to a `QkControlFlowInstruction` that must represent an IfElse or While instruction with an expression condition.
+
+  **Returns**
+
+  A borrowed pointer to the `QkExprNode` representing the classical expression. The pointer remains valid as long as the parent circuit remains valid.
+</Function>
+
+### qk\_control\_flow\_box\_duration\_kind
+
+<Function id="qk_control_flow_box_duration_kind" signature="QkBoxDurationKind qk_control_flow_box_duration_kind(const QkControlFlowInstruction *cf_inst)">
+  Get the duration kind of a Box control flow instruction.
+
+  Box instructions can have no duration, a concrete duration value as `QkDurationInfo`, or a duration specified as an expression. This function returns which kind of duration is present.
+
+  Panics if `cf_inst` is not a Box control flow instruction.
+
+  <span id="group__QkControlFlow_1autotoc_md164" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Box control flow instruction
+  QkBoxDurationKind duration_kind = qk_control_flow_box_duration_kind(cf_inst);
+  switch (duration_kind) {
+  case QkBoxDurationKind_NoDuration:
+      // do something...
+      break;
+  case QkBoxDurationKind_Duration:
+      // do something...
+      break;
+  case QkBoxDurationKind_Expr:
+      // do something...
+      break;
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md165" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md165" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Box kind.
+
+  **Returns**
+
+  The kind of duration as `QkBoxDurationKind`.
+</Function>
+
+### qk\_control\_flow\_box\_duration\_val\_info
+
+<Function id="qk_control_flow_box_duration_val_info" signature="QkDurationInfo qk_control_flow_box_duration_val_info(const QkControlFlowInstruction *cf_inst)">
+  Get the duration value information of a Box control flow instruction.
+
+  This function retrieves the duration value and type for a Box instruction that has a concrete duration.
+
+  Panics if `cf_inst` is not a Box control flow instruction with a concrete duration.
+
+  <span id="group__QkControlFlow_1autotoc_md166" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Box instruction with a concrete duration
+   QkDurationInfo duration_info = qk_control_flow_box_duration_val_info(cf_inst);
+   if (duration_info.ty == QkDurationType_Dt) {
+       int64_t dt = duration_info.value.dt;
+   } else {
+       double time = duration_info.value.time;
+   }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md167" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md167" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Box kind with a concrete duration.
+
+  **Returns**
+
+  A `QkDurationInfo` struct containing the duration value and unit.
+</Function>
+
+### qk\_control\_flow\_box\_duration\_expr
+
+<Function id="qk_control_flow_box_duration_expr" signature="const QkExprNode *qk_control_flow_box_duration_expr(const QkControlFlowInstruction *cf_inst)">
+  Get the duration expression of a Box control flow instruction.
+
+  This function retrieves a pointer to the expression that defines the duration for a Box instruction when the duration is specified as an expression.
+
+  Panics if `cf_inst` is not a Box control flow instruction with an expression duration.
+
+  <span id="group__QkControlFlow_1autotoc_md168" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Box instruction with an expression duration
+  const QkExpr *duration_expr = qk_control_flow_box_duration_expr(cf_inst);
+  // Use the expression to evaluate or analyze the duration...
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md169" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md169" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Box kind with an expression duration.
+
+  **Returns**
+
+  A pointer to the `QkExpr` representing the duration expression. The expression is valid as long as the control flow instruction exists. The expression is owned by the control flow instruction and must not be freed by the caller.
+</Function>
+
+### qk\_control\_flow\_loop\_collection\_type
+
+<Function id="qk_control_flow_loop_collection_type" signature="QkLoopCollectionType qk_control_flow_loop_collection_type(const QkControlFlowInstruction *cf_inst)">
+  Get the type of collection used in a ForLoop control flow instruction.
+
+  This function determines whether a ForLoop iterates over an explicit list of elements or a Python-style range.
+
+  Panics if `cf_inst` is not a ForLoop control flow instruction.
+
+  <span id="group__QkControlFlow_1autotoc_md170" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a ForLoop instruction
+  QkLoopCollectionType collection_type = qk_control_flow_loop_collection_type(cf_inst);
+  if (collection_type == QkLoopCollectionType_List) {
+      // Handle list-based loop
+  } else if (collection_type == QkLoopCollectionType_Range) {
+      // Handle range-based loop
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md171" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md171" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to a control flow instruction that must be a ForLoop.
+
+  **Returns**
+
+  A `CLoopCollectionType` enum value indicating the collection type.
+</Function>
+
+### qk\_control\_flow\_loop\_elements
+
+<Function id="qk_control_flow_loop_elements" signature="QkLoopElements qk_control_flow_loop_elements(const QkControlFlowInstruction *cf_inst)">
+  Get the list of elements that a ForLoop iterates over.
+
+  This function retrieves the list of elements from a ForLoop control flow instruction that uses an explicit list collection. Use `qk_control_flow_loop_collection_type` to determine the collection type before calling this function.
+
+  Panics if `cf_inst` is not a ForLoop control flow instruction with a list collection.
+
+  <span id="group__QkControlFlow_1autotoc_md172" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a ForLoop instruction with a List collection type
+  QkLoopElements loop_elements = qk_control_flow_loop_elements(cf_inst);
+  for (size_t i = 0; i < loop_elements.len; i++) {
+      printf("Element %zu: %zu\n", i, loop_elements.elements[i]);
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md173" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md173" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to a control flow instruction that must be a ForLoop with a List collection.
+
+  **Returns**
+
+  A `QkLoopElements` struct containing a pointer to the array of loop elements and the number of elements. The pointer is borrowed for the duration of the control flow instruction and must not be freed by the caller.
+</Function>
+
+### qk\_control\_flow\_loop\_range
+
+<Function id="qk_control_flow_loop_range" signature="void qk_control_flow_loop_range(const QkControlFlowInstruction *cf_inst, int64_t *out_start, int64_t *out_stop, int64_t *out_step)">
+  Get the range parameters of a ForLoop that iterates over a Python-style range.
+
+  This function retrieves the start, stop, and step values from a ForLoop control flow instruction that uses a range collection. Use `qk_control_flow_loop_collection_type` to determine the collection type before calling this function.
+
+  Panics if `cf_inst` is not a ForLoop control flow instruction with a range collection.
+
+  <span id="group__QkControlFlow_1autotoc_md174" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a ForLoop instruction with a Range collection type
+  int64_t start, stop, step;
+  qk_control_flow_loop_range(cf_inst, &start, &stop, &step);
+  printf("Loop range: start=%ld, stop=%ld, step=%ld\n", start, stop, step);
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md175" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md175" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`, or if any of `out_start`, `out_stop`, or `out_step` are not aligned valid pointers to write to.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to a control flow instruction that must be a ForLoop with a Range collection.
+  *   **out\_start** – An output parameter that will be set to the range start value.
+  *   **out\_stop** – An output parameter that will be set to the range stop value.
+  *   **out\_step** – An output parameter that will be set to the range step value.
+</Function>
+
+### qk\_control\_flow\_loop\_param\_kind
+
+<Function id="qk_control_flow_loop_param_kind" signature="QkLoopParamKind qk_control_flow_loop_param_kind(const QkControlFlowInstruction *cf_inst)">
+  Get the kind of loop parameter used in a ForLoop control flow instruction.
+
+  This function determines whether a ForLoop has no loop parameter, uses a Parameter symbol, or uses a Variable (`QkVar`) to track the iteration value.
+
+  Panics if `cf_inst` is not a ForLoop control flow instruction.
+
+  <span id="group__QkControlFlow_1autotoc_md176" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a ForLoop instruction
+  QkLoopParamKind param_kind = qk_control_flow_loop_param_kind(cf_inst);
+  if (param_kind == QkLoopParamKind_Parameter) {
+      // Loop uses a Parameter symbol
+  } else if (param_kind == QkLoopParamKind_Variable) {
+      // Loop uses a Variable
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md177" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md177" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to a control flow instruction that must be a ForLoop.
+
+  **Returns**
+
+  A `QkLoopParamKind` enum value indicating the loop parameter kind.
+</Function>
+
+### qk\_control\_flow\_loop\_symbol\_info
+
+<Function id="qk_control_flow_loop_symbol_info" signature="QkSymbolInfo qk_control_flow_loop_symbol_info(const QkControlFlowInstruction *cf_inst)">
+  Get the loop parameter symbol information from a ForLoop control flow instruction.
+
+  This function retrieves the loop parameter symbol information from a ForLoop instruction that uses a Parameter as its loop parameter. The returned `QkSymbolInfo` contains the symbol’s type, name, and index (for parameter vector element symbols).
+
+  Panics if `cf_inst` is not a ForLoop control flow instruction with a Parameter loop parameter.
+
+  <span id="group__QkControlFlow_1autotoc_md178" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a ForLoop control flow instruction with a Parameter loop parameter
+  QkSymbolInfo symbol_info = qk_control_flow_loop_symbol_info(cf_inst);
+  if (symbol_info.ty == QkSymbolType_Standalone) {
+      printf("Loop parameter: %s\n", symbol_info.name);
+  } else if (symbol_info.ty == QkSymbolType_Element) {
+      printf("Loop parameter: %s[%zu]\n", symbol_info.name, symbol_info.index);
+  }
+  qk_str_free(symbol_info.name);
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md179" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md179" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A valid pointer to a `QkControlFlowInstruction` that must represent a ForLoop with a Parameter loop parameter.
+
+  **Returns**
+
+  A `QkSymbolInfo` struct containing the symbol information. The caller must free the returned string in the `name` field using `qk_str_free`.
+</Function>
+
+### qk\_control\_flow\_loop\_variable
+
+<Function id="qk_control_flow_loop_variable" signature="const QkVar *qk_control_flow_loop_variable(const QkControlFlowInstruction *cf_inst)">
+  Get the loop variable from a ForLoop control flow instruction.
+
+  This function retrieves a pointer to the Variable (`QkVar`) used as the loop parameter in a ForLoop instruction. The returned pointer is borrowed for the lifetime of the control flow instruction and must not be freed by the caller.
+
+  Panics if `cf_inst` is not a ForLoop control flow instruction with a Variable loop parameter.
+
+  <span id="group__QkControlFlow_1autotoc_md180" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a ForLoop control flow instruction with a Variable loop parameter
+  const QkVar *loop_var = qk_control_flow_loop_variable(cf_inst);
+  // Use the loop variable pointer to access variable information
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md181" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md181" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A valid pointer to a `QkControlFlowInstruction` that must represent a ForLoop with a Variable loop parameter.
+
+  **Returns**
+
+  A pointer to the `QkVar` representing the loop variable. The pointer is valid for the lifetime of the control flow instruction.
+</Function>
+
+### qk\_control\_flow\_switch\_target\_type
+
+<Function id="qk_control_flow_switch_target_type" signature="QkConditionType qk_control_flow_switch_target_type(const QkControlFlowInstruction *cf_inst)">
+  Get the type of the Switch target for a Switch control flow instruction.
+
+  Switch statements can operate on different types of targets: a classical bit, a classical register, or an expression. This function returns which type of target the Switch statement uses.
+
+  Panics if `cf_inst` is not a Switch control flow instruction.
+
+  <span id="group__QkControlFlow_1autotoc_md182" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Switch control flow instruction
+  QkConditionType target_type = qk_control_flow_switch_target_type(cf_inst);
+  switch (target_type) {
+  case QkConditionType_ClBit:
+      // do something
+      break;
+  case QkConditionType_ClReg:
+      // do something
+      break;
+  case QkConditionType_Expr:
+      // do something
+      break;
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md183" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md183" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Switch kind.
+
+  **Returns**
+
+  The condition type of the Switch target as `QkConditionType`.
+</Function>
+
+### qk\_control\_flow\_switch\_target\_bit
+
+<Function id="qk_control_flow_switch_target_bit" signature="uint32_t qk_control_flow_switch_target_bit(const QkControlFlowInstruction *cf_inst)">
+  Get the classical bit index for a Switch target.
+
+  This function retrieves the index of the classical bit that a Switch statement operates on when the Switch target is a classical bit.
+
+  Panics if `cf_inst` is not a Switch control flow instruction with a classical bit target.
+
+  <span id="group__QkControlFlow_1autotoc_md184" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Switch instruction with a classical bit target
+  uint32_t clbit_idx = qk_control_flow_switch_target_bit(cf_inst);
+  printf("Switch operates on clbit %u\n", clbit_idx);
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md185" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md185" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Switch kind with a classical bit target.
+
+  **Returns**
+
+  The index of the classical bit in the circuit.
+</Function>
+
+### qk\_control\_flow\_switch\_target\_register
+
+<Function id="qk_control_flow_switch_target_register" signature="const QkClassicalRegister *qk_control_flow_switch_target_register(const QkControlFlowInstruction *cf_inst)">
+  Get the classical register that a Switch statement operates on.
+
+  This function retrieves the classical register used as the Switch target when the Switch operates on a register.
+
+  Panics if `cf_inst` is not a Switch control flow instruction with a register target.
+
+  <span id="group__QkControlFlow_1autotoc_md186" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Switch instruction with a register target
+  const QkClassicalRegister *reg = qk_control_flow_switch_target_register(cf_inst);
+  // Use the register to get its name, size, etc...
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md187" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md187" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Switch kind with a register target.
+
+  **Returns**
+
+  A pointer to the `QkClassicalRegister` that the Switch operates on. The register is valid as long as the control flow instruction exists. The register is owned by the control flow instruction and must not be freed by the caller.
+</Function>
+
+### qk\_control\_flow\_switch\_target\_expr
+
+<Function id="qk_control_flow_switch_target_expr" signature="const QkExprNode *qk_control_flow_switch_target_expr(const QkControlFlowInstruction *cf_inst)">
+  Get the expression for a Switch target.
+
+  This function retrieves a pointer to the classical expression that a Switch statement operates on when the Switch target is an expression.
+
+  Panics if `cf_inst` is not a Switch control flow instruction with an expression target.
+
+  <span id="group__QkControlFlow_1autotoc_md188" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Switch instruction with an expression target
+  const QkExpr *target_expr = qk_control_flow_switch_target_expr(cf_inst);
+  // Evaluate the expression...
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md189" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md189" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Switch kind with an expression target.
+
+  **Returns**
+
+  A pointer to the `QkExpr` representing the Switch target expression. The expression is valid as long as the control flow instruction exists. The expression is owned by the control flow instruction and must not be freed by the caller.
+</Function>
+
+### qk\_control\_flow\_switch\_num\_cases
+
+<Function id="qk_control_flow_switch_num_cases" signature="size_t qk_control_flow_switch_num_cases(const QkControlFlowInstruction *cf_inst)">
+  Get the number of cases in a Switch statement.
+
+  Returns the total number of case blocks in the Switch statement, including the default case if present.
+
+  Panics if `cf_inst` is not a Switch control flow instruction.
+
+  <span id="group__QkControlFlow_1autotoc_md190" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Switch control flow instruction
+  size_t num_cases = qk_control_flow_switch_num_cases(cf_inst);
+  for (size_t i = 0; i < num_cases; i++) {
+      // Analyze the case...
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md191" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md191" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Switch kind.
+
+  **Returns**
+
+  The number of cases in the Switch statement.
+</Function>
+
+### qk\_control\_flow\_switch\_is\_case\_default
+
+<Function id="qk_control_flow_switch_is_case_default" signature="bool qk_control_flow_switch_is_case_default(const QkControlFlowInstruction *cf_inst, size_t case_idx)">
+  Check if a specific case in a Switch statement is the default case.
+
+  Switch statements can have a default case that matches when no other cases match. This function checks whether the case at the given index is the default case. The default case may also include leading labels, which can be retrieved by `qk_control_flow_switch_case_labels_uint` on the default case.
+
+  Panics if `cf_inst` is not a Switch control flow instruction.
+
+  <span id="group__QkControlFlow_1autotoc_md192" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Switch control flow instruction
+  for (size_t i = 0; i < qk_control_flow_switch_num_cases(cf_inst); i++) {
+      if (qk_control_flow_switch_is_case_default(cf_inst, i)) {
+          printf("Case %zu is the default case\n", i);
+      }
+  }
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md193" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md193" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Switch kind.
+  *   **case\_idx** – The index of the case to check. Must be less than the value returned by `qk_control_flow_switch_num_cases`.
+
+  **Returns**
+
+  `true` if the case at `case_idx` is the default case, `false` otherwise.
+</Function>
+
+### qk\_control\_flow\_switch\_case\_labels\_bit\_width
+
+<Function id="qk_control_flow_switch_case_labels_bit_width" signature="uint64_t qk_control_flow_switch_case_labels_bit_width(const QkControlFlowInstruction *cf_inst, size_t case_idx)">
+  Get the maximum bit width required to represent the labels in a Switch case.
+
+  This function returns the maximum number of bits needed to represent any of the unsigned integer labels in the specified case. This is useful for determining the minimum bit width required to store or process the case labels.
+
+  Panics if `cf_inst` is not a Switch control flow instruction.
+
+  <span id="group__QkControlFlow_1autotoc_md194" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Switch control flow instruction
+  uint64_t bit_width = qk_control_flow_switch_case_labels_bit_width(cf_inst, 0);
+  printf("Maximum bit width for case 0: %lu\n", bit_width);
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md195" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md195" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Switch kind.
+  *   **case\_idx** – The index of the case whose label bit width to retrieve. Must be less than the value returned by `qk_control_flow_switch_num_cases`.
+
+  **Returns**
+
+  The maximum bit width of the labels in the case, or 0 if the case has no unsigned integer labels (e.g., only a DEFAULT specifier).
+</Function>
+
+### qk\_control\_flow\_switch\_case\_labels\_uint
+
+<Function id="qk_control_flow_switch_case_labels_uint" signature="QkSwitchCaseLabels qk_control_flow_switch_case_labels_uint(const QkControlFlowInstruction *cf_inst, size_t case_idx)">
+  Get the labels for a specific case in a Switch statement.
+
+  Each case in a Switch statement can have one or more labels (e.g., `case(1, 2, 3)`) has three labels: 1, 2, and 3). This function retrieves all labels for a given case. Note that the default case can also include labels, which can be retrieved by this function. When called on a default case without additional labels, the function sets `num_labels = 0` and `labels = NULL` in the returned `QkSwitchCaseLabels` struct. Before calling this function, you should use `qk_control_flow_switch_case_labels_bit_width` to ensure the labels will fit in `uint64_t`.
+
+  Panics if `cf_inst` is not a Switch control flow instruction or if a case label does not fit in `uint64_t`.
+
+  <span id="group__QkControlFlow_1autotoc_md196" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Switch control flow instruction
+  QkSwitchCaseLabels case_labels = qk_control_flow_switch_case_labels_uint(cf_inst, 0);
+  for (size_t i = 0; i < case_labels.num_labels; i++) {
+      printf("Label %zu: %lu\n", i, case_labels.labels[i]);
+  }
+  qk_control_flow_switch_case_labels_clear(&case_labels);
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md197" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md197" />
+
+  Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`, or if `out_labels` is not a valid pointer to a `QkSwitchCaseLabels` struct.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction. The control flow instruction must be of a Switch kind.
+  *   **case\_idx** – The index of the case whose labels to retrieve. Must be less than the value returned by `qk_control_flow_switch_num_cases`.
+
+  **Returns**
+
+  A `QkSwitchCaseLabels` struct with the label information for the given case. The struct will contain a pointer to an array of labels and the number of labels. If `num_labels > 0`, you should call `qk_control_flow_switch_case_labels_clear` to free the memory allocated by this function.
+</Function>
+
+### qk\_control\_flow\_switch\_case\_labels\_clear
+
+<Function id="qk_control_flow_switch_case_labels_clear" signature="void qk_control_flow_switch_case_labels_clear(QkSwitchCaseLabels *labels)">
+  Clear a `QkSwitchCaseLabels` struct.
+
+  This function must be called to free the memory allocated by `qk_control_flow_switch_case_labels_uint`. After calling this function, the labels pointer in the struct will be set to null and the count will be set to zero.
+
+  <span id="group__QkControlFlow_1autotoc_md198" />
+
+  #### Example
+
+  ```c
+  // Assuming cf_inst is a Switch control flow instruction
+  QkSwitchCaseLabels case_labels = qk_control_flow_switch_case_labels_uint(cf_inst, 0);
+  // Use the labels...
+  qk_control_flow_switch_case_labels_clear(&case_labels);
+  ```
+
+  <span id="group__QkControlFlow_1autotoc_md199" />
+
+  #### Safety
+
+  <span id="group__QkControlFlow_1autotoc_md199" />
+
+  Behavior is undefined if `labels` is not a valid pointer to a `QkSwitchCaseLabels`.
+
+  **Parameters**
+
+  *   **labels** – A pointer to the `QkSwitchCaseLabels` struct to clear. The struct must have been previously populated by `qk_control_flow_switch_case_labels_uint`.
+</Function>
+

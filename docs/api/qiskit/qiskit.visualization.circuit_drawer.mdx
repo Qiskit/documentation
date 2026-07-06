@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.circuit_drawer
 
 # qiskit.visualization.circuit\_drawer
 
-<Function id="qiskit.visualization.circuit_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/visualization/circuit/circuit_visualization.py#L56-L394" signature="qiskit.visualization.circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=None, justify=None, vertical_compression='medium', idle_wires=None, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None, expr_len=30, measure_arrows=None, barrier_label_len=16)">
+<Function id="qiskit.visualization.circuit_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/visualization/circuit/circuit_visualization.py#L56-L394" signature="qiskit.visualization.circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=None, justify=None, vertical_compression='medium', idle_wires=None, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None, expr_len=30, measure_arrows=None, barrier_label_len=16)">
   Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
   ## `text`
@@ -34,12 +34,12 @@ python_api_name: qiskit.visualization.circuit_drawer
   Raw uncompiled LaTeX output. This is the source of what would be rendered by the `latex` drawer.
 
   <Admonition title="Warning" type="caution">
-    Support for [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") nodes in conditions and `SwitchCaseOp.target` fields is preliminary and incomplete. The `text` and `mpl` drawers will make a best-effort attempt to show data dependencies, but the LaTeX-based drawers will skip these completely.
+    Support for [`Expr`](/docs/api/qiskit/circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") nodes in conditions and `SwitchCaseOp.target` fields is preliminary and incomplete. The `text` and `mpl` drawers will make a best-effort attempt to show data dependencies, but the LaTeX-based drawers will skip these completely.
   </Admonition>
 
   **Parameters**
 
-  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The circuit to visualize.
+  *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The circuit to visualize.
 
   *   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Scale of image to draw (shrink if `< 1.0`). Only used by the `mpl`, `latex` and `latex_source` outputs. Defaults to `1.0`.
 
@@ -91,11 +91,11 @@ python_api_name: qiskit.visualization.circuit_drawer
 
   *   **wire\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – A list of integers used to reorder the display of the bits. The list must have an entry for every bit with the bits in the range 0 to (`num_qubits` + `num_clbits`).
 
-  *   **expr\_len** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of characters to display if an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is used for the condition in a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"). If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
+  *   **expr\_len** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of characters to display if an [`Expr`](/docs/api/qiskit/circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") is used for the condition in a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"). If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
 
   *   **measure\_arrows** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – If True, draw an arrow from each measure box down to the classical bit or register where the measure value is placed. If False, do not draw arrow, but instead place the name of the bit or register in the measure box. Default is `True` unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative value set. For example, `circuit_measure_arrows = False`.
 
-  *   **barrier\_label\_len** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of characters to display for [`Barrier`](circuit#qiskit.circuit.Barrier "qiskit.circuit.Barrier") labels in the output circuit. If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
+  *   **barrier\_label\_len** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of characters to display for [`Barrier`](/docs/api/qiskit/circuit#qiskit.circuit.Barrier "qiskit.circuit.Barrier") labels in the output circuit. If this number is exceeded, the string will be truncated at that number and ‘…’ added to the end.
 
   **Returns**
 
@@ -119,7 +119,7 @@ python_api_name: qiskit.visualization.circuit_drawer
 
   **Raises**
 
-  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
+  *   [**VisualizationError**](/docs/api/qiskit/visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
   *   [**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError) – when the output methods requires non-installed libraries.
 
   **Example**
