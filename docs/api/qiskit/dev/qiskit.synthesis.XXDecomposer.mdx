@@ -17,8 +17,8 @@ python_api_name: qiskit.synthesis.XXDecomposer
 
   *   **basis\_fidelity** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)  *|*[*float*](https://docs.python.org/3/library/functions.html#float)) – available strengths and fidelity of each. Can be either (1) a dictionary mapping `XX` angle values to fidelity at that angle; or (2) a single float `f`, interpreted as `{pi: f, pi/2: f/2, pi/3: f/3}`.
   *   **euler\_basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Basis string provided to [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer") for 1Q synthesis. Defaults to `"U"`.
-  *   **embodiments** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – A dictionary mapping interaction strengths alpha to native circuits which embody the gate $CAN(\alpha, 0, 0)$. Strengths are taken so that $\pi/2$ represents the class of a full [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
-  *   **backup\_optimizer** (*Callable\[...,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – If supplied, defers synthesis to this callable when [`XXDecomposer`](#qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer") has no efficient decomposition of its own. Useful for special cases involving 2 or 3 applications of $XX(\pi/2)$, in which case standard synthesis methods provide lower 1Q gate count.
+  *   **embodiments** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*,* [*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – A dictionary mapping interaction strengths alpha to native circuits which embody the gate $CAN(\alpha, 0, 0)$. Strengths are taken so that $\pi/2$ represents the class of a full [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+  *   **backup\_optimizer** (*Callable\[...,* [*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – If supplied, defers synthesis to this callable when [`XXDecomposer`](#qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer") has no efficient decomposition of its own. Useful for special cases involving 2 or 3 applications of $XX(\pi/2)$, in which case standard synthesis methods provide lower 1Q gate count.
 
   <Admonition title="Note" type="note">
     If `embodiments` is not passed, or if an entry is missing, it will be populated as needed using the method `_default_embodiment`.
@@ -42,7 +42,7 @@ python_api_name: qiskit.synthesis.XXDecomposer
 
     **Return type**
 
-    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    [QuantumCircuit](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
   </Function>
 
   ## Methods
