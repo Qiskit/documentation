@@ -2,7 +2,7 @@
 title: Install the Qiskit C API
 description: How to install and use the Qiskit C API as standalone library
 ---
-{/* cspell:ignore pythonlib */}
+{/* cspell:ignore pythonlib, winget */}
 
 # Install the Qiskit C API
 
@@ -160,7 +160,7 @@ The terminal appears frozen while the installer runs.  This is normal and will t
 If `winget` is not recognized, update [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store, or use Option B.
 
 **Option B — manual download:**
-From the [Visual Studio Build Tools for C++](https://visualstudio.microsoft.com/visual-cpp-build-tools/) choose "Desktop development with C++".
+From the [Visual Studio Build Tools for C++](https://visualstudio.microsoft.com/visual-cpp-build-tools/).  Run the executable to start the install.  When the Installing Visual Studio window opens, on the Workloads tab, choose "Desktop development with C++". See the [Install C and C++ support in Visual Studio](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170#step-4---choose-workloads) page for further details. 
 
 #### VS Code
 
@@ -228,6 +228,8 @@ if (-not $PYTHON_EXE) {
         }
     } catch {}
 }
+
+# Install Python 3.12 if it wasn't found.
 if (-not $PYTHON_EXE) {
     Write-Host "Not found. Installing Python 3.12..."
     winget install Python.Python.3.12
@@ -239,13 +241,70 @@ if ($PYTHON_EXE -and ($PYTHON_EXE -match '[^\x20-\x7E]')) {
 if ($PYTHON_EXE) { Write-Host "`$PYTHON_EXE = '$PYTHON_EXE'" }
 ```
 
-Or download Python 3.12 from the [Python](https://www.python.org/downloads/).  Run the executable to install Python.  Select "Add Python to PATH" during the install, then re-run the above snippet.
+If the download didn't work, or you prefer manual download, comment the code lines that install Python 3.12, then download Python 3.12 from the [Python](https://www.python.org/downloads/).  Run the executable to install Python.  Select "Add Python to PATH" during the install, then re-run the above snippet to make sure it's being found.
 
 <Admonition type="note" title="Notes">
 - Do NOT use the Microsoft Store Python because it lacks C headers. If `python` opens the Microsoft Store, disable the alias by going to Windows Settings -> Apps -> Advanced app settings -> App execution aliases.
 
 - Anaconda users: run `conda deactivate` until the (base) prefix disappears. If it won't go away, open a new terminal in VS Code.
 </Admonition>
+
+#### Git (optional)
+
+Only needed if you clone lab repositories.  Run `winget install Git.Git`.
+
+### Step 2 - Python virtual environment with Qiskit
+
+Open the VSCode terminal and reset it:
+
+```powershell
+$QGSS = "<your-workspace-path>"
+if (-not $PYTHON_EXE) {
+    if (Get-Command py -ErrorAction SilentlyContinue) { $PYTHON_EXE = py -3 -c "import sys; print(sys.executable)" }
+    elseif (Get-Command python -ErrorAction SilentlyContinue) { $PYTHON_EXE = python -c "import sys; print(sys.executable)" }
+    else { Write-Host "Python not found — complete Step 1.3 first." ; return }
+    Write-Host "`$PYTHON_EXE = '$PYTHON_EXE'"
+}
+```
+
+#### 2.1 Create and activate a virtual environment
+
+Allow script execution (once per user), then create the virtual environment:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+cd $QGSS
+& $PYTHON_EXE -m venv .venv --prompt qgss2026
+.\.venv\Scripts\Activate.ps1
+```
+
+If activation shows a red error about "scripts disabled", the `Set-ExecutionPolicy` line was not run.  Run it manually, then retry.
+
+Your prompt should now show `(_workspace_)`. 
+
+Verify:
+
+```powershell
+Get-Command python | Select-Object -First 1 -ExpandProperty Source
+# → workspace\.venv\Scripts\python.exe
+```
+
+#### Install packages
+
+```powershell
+python -m pip install --upgrade pip setuptools wheel
+pip install "qiskit[visualization]>=2.4.2"
+pip install --prefer-binary qiskit-ibm-runtime qiskit-aer
+pip install notebook ipykernel ipywidgets
+```
+
+`--prefer-binary` avoids compiling qiskit-aer from source. If qiskit-aer still fails, try `pip install qiskit-aer --only-binary=:all:` or skip it.  Qiskit-aer is optional and is only needed for local simulation.
+
+<Admonition type="note">
+Do NOT run `pip install --upgrade qiskit` after setup. Upgrading to a new minor version breaks C extensions built against the old one.
+</Admonition>
+
+
 
 ### Build
 
