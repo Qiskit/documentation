@@ -136,7 +136,7 @@ Compilation requires the following tools:
 
 Create your workspace.  This should be a short path on a local drive. Do not use OneDrive-synced folders (such as Documents or Desktop), network drives, or paths with spaces or non-ASCII characters. If your user name contains non-English characters, don't put it under your user folder.
 
-Examples of good workspace paths: `C:\project`, `D:\project`, `C:\Users\john\project`
+Examples of good workspace paths: `C:\WORKSPACE_PATH`, `D:\WORKSPACE_PATH`, `C:\Users\john\WORKSPACE_PATH`
 
 ### Step 1. Install the prerequisites
 
@@ -170,7 +170,7 @@ Download VS Code from the [Visual Studio Code](https://code.visualstudio.com/) s
 
 After it is installed, continue with these steps:
 1. Open VS Code
-2. Click File -> Open Folder, then select your workspace (for example, `C:\project`).
+2. Click File -> Open Folder, then select your workspace (for example, `C:\WORKSPACE_PATH`).
 3. Click Terminal -> New terminal to open a PowerShell terminal.
 4. Click the Extensions icon on the left or press Ctrl+Shift+X. In the Extensions window, search for and install `ms-python.python`, `ms-toolsai.jupyter`, and `ms-vscode.cpptools`.
 
@@ -187,9 +187,9 @@ cd $<workspace_abbreviation>
 Example:
 
 ```powershell
-$PROJ = "C:\project"   # change to your workspace path
-mkdir $PROJ -Force
-cd $PROJ
+$WORKSPACE = "C:\WORKSPACE_PATH"   # change to your workspace path
+mkdir $WORKSPACE -Force
+cd $WORKSPACE
 ```
 
 #### Python 3.12 (recommended)
@@ -284,8 +284,8 @@ Allow script execution (once per user), then create the virtual environment:
 
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-cd $<workspace-abbreviation> # example: cd: $PROJ
-& $PYTHON_EXE -m venv .venv --prompt <workspace> # example: --prompt project
+cd $<workspace-abbreviation> # example: cd: $WORKSPACE
+& $PYTHON_EXE -m venv .venv --prompt <workspace> # example: --prompt WORKSPACE_PATH
 .\.venv\Scripts\Activate.ps1
 ```
 
@@ -405,12 +405,12 @@ root = pathlib.Path("_smoke_pkg")
 pkg = root / "src" / "qgss_smoke"
 pkg.mkdir(parents=True, exist_ok=True)
 
-(root / "pyproject.toml").write_text("""
+(root / "pyWORKSPACE_PATH.toml").write_text("""
 [build-system]
 requires = ["setuptools", "qiskit>=2.4.2"]
 build-backend = "setuptools.build_meta"
 
-[project]
+[WORKSPACE_PATH]
 name = "qgss_smoke"
 version = "0.0.1"
 dependencies = ["qiskit>=2.4.2"]
@@ -613,12 +613,12 @@ boundaries: [0, 3] }
 | Build runs but import fails with a version error | Build and runtime Qiskit must share a minor version.  Reinstall with `pip install "qiskit>=2.4.2"` |
 | I rebuilt the C but the circuit did not change | A C extension cannot be re-imported live. Restart the kernel, rerun the MSVC commands (Step 3), then rebuild |
 | PowerShell script was blocked | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
-| Path length errors | Use a short root path on C:\ (for example, `C:\project`, or the path you set in the setup step), or enable Long Paths: Settings -> System -> For developers -> Long Paths |
+| Path length errors | Use a short root path on C:\ (for example, `C:\WORKSPACE_PATH`, or the path you set in the setup step), or enable Long Paths: Settings -> System -> For developers -> Long Paths |
 | Verify cell fails with "conda environment still active" | Run `conda deactivate` until `CONDA_DEFAULT_ENV` and `CONDA_PREFIX` are both gone from the environment. Check with `$env:CONDA_PREFIX`. If they persist, open a fresh PowerShell (not an Anaconda prompt) and retry from Step 2. |
 | Verify cell fails with "venv was created from a conda-managed Python" | The virtual environment inherited conda's C runtime and cannot be fixed in place. Delete it and rebuild from a python.org Python. Run `Remove-Item -Recurse -Force .venv`, then rerun the VS Code install step to set `$PYTHON_EXE`, then recreate the virtual environment (step 2). |
 | `DLL load failed` on import | Conda is likely leaking into the virtual environment. Check both of the issues immediately above this. Also verify that Python is 64-bit: `python -c "import platform; print(platform.architecture())"` |
-| Build fails with garbled paths or `C1083` | Your username or workspace path contains non-ASCII characters. Move the workspace to a short ASCII-only path (for example, `C:\project`) |
-| Build or import randomly fails, works on retry | The workspace folder is synced by OneDrive. Move it to a local path like `C:\project` |
+| Build fails with garbled paths or `C1083` | Your username or workspace path contains non-ASCII characters. Move the workspace to a short ASCII-only path (for example, `C:\WORKSPACE_PATH`) |
+| Build or import randomly fails, works on retry | The workspace folder is synced by OneDrive. Move it to a local path like `C:\WORKSPACE_PATH` |
 | Build interrupted midway (for example, there was a power loss) | Delete the `_smoke_pkg` folder in your workspace, rerun the MSVC load cell, then rerun the smoke test cell |
 | `pip install` fails with SSL certificate error | Your network uses a proxy that intercepts HTTPS. Try running `pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org qiskit` or ask your network administrator for the proxy CA certificate |
 | Windows Defender quarantines the `.pyd` file | Add your workspace's `.venv` and `_smoke_pkg` folders to Defender exclusions by going to Windows Security -> Virus & threat protection -> Manage settings -> Exclusions |
