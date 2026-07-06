@@ -14,9 +14,9 @@ python_api_name: QkDag
 typedef struct QkDag QkDag
 ```
 
-The `QkDag` struct exposes a low level interface to the Qiskit transpiler’s directed acyclic graph (DAG) representation of a quantum circuit for use in transpiler passes. It exposes only what is defined in the inner data model of Qiskit. Therefore it is missing some functionality that is available in the higher level Python [`DAGCircuit`](/docs/api/qiskit-c/qiskit-dagcircuit-dag-circuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") class.
+The `QkDag` struct exposes a low level interface to the Qiskit transpiler’s directed acyclic graph (DAG) representation of a quantum circuit for use in transpiler passes. It exposes only what is defined in the inner data model of Qiskit. Therefore it is missing some functionality that is available in the higher level Python [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") class.
 
-The C API currently only supports building DAGs that contain operations defined in Qiskit’s internal Rust data model. Generally this includes only gates in the standard gate library, standard non-unitary operations (currently [`Barrier`](/docs/api/qiskit-c/circuit#qiskit.circuit.Barrier "qiskit.circuit.Barrier"), [`Measure`](/docs/api/qiskit-c/circuit#qiskit.circuit.Measure "qiskit.circuit.Measure"), [`Reset`](/docs/api/qiskit-c/circuit#qiskit.circuit.Reset "qiskit.circuit.Reset"), and [`Delay`](/docs/api/qiskit-c/circuit#qiskit.circuit.Delay "qiskit.circuit.Delay")) and [`UnitaryGate`](/docs/api/qiskit-c/qiskit-circuit-library-unitary-gate#qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate"). This functionality will be expanded over time as the Rust data model is expanded to natively support more functionality.
+The C API currently only supports building DAGs that contain operations defined in Qiskit’s internal Rust data model. Generally this includes only gates in the standard gate library, standard non-unitary operations (currently [`Barrier`](/docs/api/qiskit/circuit#qiskit.circuit.Barrier "qiskit.circuit.Barrier"), [`Measure`](/docs/api/qiskit/circuit#qiskit.circuit.Measure "qiskit.circuit.Measure"), [`Reset`](/docs/api/qiskit/circuit#qiskit.circuit.Reset "qiskit.circuit.Reset"), and [`Delay`](/docs/api/qiskit/circuit#qiskit.circuit.Delay "qiskit.circuit.Delay")) and [`UnitaryGate`](/docs/api/qiskit/qiskit.circuit.library.UnitaryGate#qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate"). This functionality will be expanded over time as the Rust data model is expanded to natively support more functionality.
 
 ## Data Types
 
@@ -855,7 +855,7 @@ The C API currently only supports building DAGs that contain operations defined 
 
   The values in `matrix` should form a row-major unitary matrix of the correct size for the number of qubits. The data is copied out of the pointer, and only needs to be valid for reads until this function returns.
 
-  See :[Circuit conventions](/docs/api/qiskit-c/circuit#circuit-conventions) for detail on the bit-labelling and matrix conventions of Qiskit.
+  See :[Circuit conventions](/docs/api/qiskit/circuit#circuit-conventions) for detail on the bit-labelling and matrix conventions of Qiskit.
 
   <span id="group__QkDag_1autotoc_md234" />
 
