@@ -50,8 +50,8 @@ Compilation requires the following tools:
 * A Rust compiler: see for example the [guide on installing Qiskit from source](/docs/guides/install-qiskit-source)
 * A C compiler: for example, GCC on Linux and Clang on MacOS. Qiskit's C API is compatible with a compiler conforming to the [C11](https://en.wikipedia.org/wiki/C11_(C_standard_revision)) standard.
 * [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to create the C header, which you can install with `cargo install cbindgen`
-    Note that running the tool from the command line should be enabled, which might require exporting your `PATH` variable to include `/path/to/.cargo/bin`
-* Python library installed (Python 3.9+): The Python library is required during dynamic linking. Notice that Python is not used at runtime and the interpreter is never initialized; only some symbols from `libpython` need to be defined. See [this issue](https://github.com/Qiskit/qiskit/issues/14240) for more details
+   Running the tool from the command line should be enabled, which might require exporting your `PATH` variable to include `/path/to/.cargo/bin`.
+* Python library installed (Python 3.9+): The Python library is required during dynamic linking. Notice that Python is not used at runtime and the interpreter is never initialized; only some symbols from `libpython` need to be defined. See [this issue](https://github.com/Qiskit/qiskit/issues/14240) for more details.
 * (GNU) Make: this is optional but is recommended to use automated install processes.
 
 This code verifies that everything has been installed:
@@ -130,13 +130,13 @@ Compilation requires the following tools:
 * A C compiler: for example, Microsoft Visual C++ (MSVC) and the native command prompt offering the ``cl`` command
 * A Python installation, with access to both ``python3.lib`` and ``python3.dll``
 * [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to create the C header, which you can install with `cargo install cbindgen`
-    Note that running the tool from the command line should be enabled, which might require updating your `PATH` variable to include the cargo path.
+    Running the tool from the command line should be enabled, which might require updating your `PATH` variable to include the cargo path.
 
 ### Before you begin
 
 Create your workspace.  This should be a short path on a local drive. Do not use OneDrive-synced folders (such as Documents or Desktop), network drives, or paths with spaces or non-ASCII characters. If your user name contains non-English characters, don't put it under your user folder.
 
-Examples of good workspace paths: `C:\qgss2026`, `D:\qgss2026`, `C:\Users\john\qgss2026`
+Examples of good workspace paths: `C:\project`, `D:\project`, `C:\Users\john\project`
 
 ### Step 1. Install the prerequisites
 
@@ -148,44 +148,55 @@ This is a large download (2-5 GB, 10-30 min). Install it first so you know immed
 Requires administrator rights.
 </Admonition>
 
-**Option A — winget:** 
+**Option A — `winget`** 
 Open a PowerShell terminal and run the following:
 
 ```powershell
 winget install Microsoft.VisualStudio.2022.BuildTools --override "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --passive --wait"
 ```
 
-The terminal appears frozen while the installer runs.  This is normal and will take 10-30 min. Check your taskbar for a "Visual Studio Installer" window.
+The terminal appears frozen while the installer runs.  This is normal and will take 10-30 minutes. Check your taskbar for a "Visual Studio Installer" window.
 
 If `winget` is not recognized, update [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store, or use Option B.
 
-**Option B — manual download:**
-From the [Visual Studio Build Tools for C++](https://visualstudio.microsoft.com/visual-cpp-build-tools/).  Run the executable to start the install.  When the Installing Visual Studio window opens, on the Workloads tab, choose "Desktop development with C++". See the [Install C and C++ support in Visual Studio](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170#step-4---choose-workloads) page for further details. 
+**Option B — manual download**
+Open the [Visual Studio Build Tools for C++](https://visualstudio.microsoft.com/visual-cpp-build-tools/) website and click Download Build Tools.  Run the executable to start the install.  
+
+When the Installing Visual Studio window opens, on the Workloads tab, choose "Desktop development with C++". See the [Install C and C++ support in Visual Studio](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170#step-4---choose-workloads) page for further details. 
 
 #### VS Code
 
-Download from the [Visual Studio Code](https://code.visualstudio.com/) site, or run `winget install Microsoft.VisualStudio.Code`. Run the downloaded .exe file to install VS Code.
+Download VS Code from the [Visual Studio Code](https://code.visualstudio.com/) site, or run `winget install Microsoft.VisualStudio.Code`. Run the downloaded executable file to install VS Code.
 
 After it is installed, continue with these steps:
 1. Open VS Code
-2. Click File -> Open Folder -> select your workspace (for example, `C:\qgss2026`).
+2. Click File -> Open Folder, then select your workspace (for example, `C:\project`).
 3. Click Terminal -> New terminal to open a PowerShell terminal.
 4. Click the Extensions icon on the left or press Ctrl+Shift+X. In the Extensions window, search for and install `ms-python.python`, `ms-toolsai.jupyter`, and `ms-vscode.cpptools`.
 
-Run all following commands in the VS Code terminal. It defaults to PowerShell, preventing cmd.exe mix-ups. 
+Run the rest of the commands in this guide in the VS Code terminal, unless otherwise instructed. The VS Code terminal defaults to PowerShell, preventing mix-ups with the Windows built-in command window. 
 
 Set the workspace variable:
 
 ```powershell
-$QGSS = "C:\qgss2026"   # change to your workspace path
-mkdir $QGSS -Force
-cd $QGSS
+$<workspace_abbreviation> = "C:\<your_workspace>"   # change to your workspace path
+mkdir $<workspace_abbreviation> -Force
+cd $<workspace_abbreviation>
 ```
+
+Example:
+
+```powershell
+$PROJ = "C:\project"   # change to your workspace path
+mkdir $PROJ -Force
+cd $PROJ
+```
+
 #### Python 3.12 (recommended)
 
-Python 3.12 has the best wheel availability for qiskit-aer and other dependencies. 3.10 and 3.11 also work; 3.13 or later might lack pre-built wheels for some packages.
+Python 3.12 is recommended because it has the best wheel availability for qiskit-aer and other dependencies. 3.10 and 3.11 also work, but 3.13 or later might lack pre-built wheels for some packages.
 
-Open the VS Code terminal and run this snippet to detect a suitable Python:
+Open the VS Code terminal and run the following code to detect a suitable version of Python:
 
 ```powershell
 # ── Pre-checks ───────────────────────────────────────────────────────────────
@@ -194,7 +205,7 @@ if ($env:CONDA_DEFAULT_ENV -or $env:CONDA_PREFIX) {
     return
 }
 if ($env:VIRTUAL_ENV) {
-    Write-Warning "A venv is active: $env:VIRTUAL_ENV — run 'deactivate' first."
+    Write-Warning "A virtual environment is active: $env:VIRTUAL_ENV — run 'deactivate' first."
     return
 }
 
@@ -233,7 +244,7 @@ if (-not $PYTHON_EXE) {
 if (-not $PYTHON_EXE) {
     Write-Host "Not found. Installing Python 3.12..."
     winget install Python.Python.3.12
-    Write-Host "Close and reopen the terminal, then re-run this snippet."
+    Write-Host "Close and reopen the terminal, then rerun this snippet."
 }
 if ($PYTHON_EXE -and ($PYTHON_EXE -match '[^\x20-\x7E]')) {
     Write-Warning "Python path has non-ASCII characters. Keep your workspace on an ASCII path."
@@ -241,7 +252,7 @@ if ($PYTHON_EXE -and ($PYTHON_EXE -match '[^\x20-\x7E]')) {
 if ($PYTHON_EXE) { Write-Host "`$PYTHON_EXE = '$PYTHON_EXE'" }
 ```
 
-If the download didn't work, or you prefer manual download, comment the code lines that install Python 3.12, then download Python 3.12 from the [Python](https://www.python.org/downloads/).  Run the executable to install Python.  Select "Add Python to PATH" during the install, then re-run the above snippet to make sure it's being found.
+If the download didn't work, or you prefer manual download, comment the code lines that install Python 3.12, then download Python 3.12 from the [Python](https://www.python.org/downloads/).  Run the executable to install Python.  Select "Add Python to PATH" during the install, then rerun the above snippet to make sure it's being found.
 
 <Admonition type="note" title="Notes">
 - Do NOT use the Microsoft Store Python because it lacks C headers. If `python` opens the Microsoft Store, disable the alias by going to Windows Settings -> Apps -> Advanced app settings -> App execution aliases.
@@ -273,8 +284,8 @@ Allow script execution (once per user), then create the virtual environment:
 
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-cd $QGSS
-& $PYTHON_EXE -m venv .venv --prompt qgss2026
+cd $<workspace-abbreviation> # example: cd: $PROJ
+& $PYTHON_EXE -m venv .venv --prompt <workspace> # example: --prompt project
 .\.venv\Scripts\Activate.ps1
 ```
 
@@ -286,7 +297,7 @@ Verify:
 
 ```powershell
 Get-Command python | Select-Object -First 1 -ExpandProperty Source
-# → workspace\.venv\Scripts\python.exe
+# -> workspace\.venv\Scripts\python.exe
 ```
 
 #### Install packages
@@ -376,7 +387,7 @@ for name, ok in checks.items():
     print(f"  [{'PASS' if ok else 'FAIL':>4}] {name}")
 
 if not checks["cl.exe"]:
-    print("\n  cl.exe is not on PATH. Re-run the cell above to load the MSVC environment.")
+    print("\n  cl.exe is not on PATH. rerun the cell above to load the MSVC environment.")
 elif all(checks.values()):
     print("\n  Toolchain ready. Continue to the smoke test.")
 ```
@@ -474,11 +485,11 @@ if r.returncode != 0:
     if "WinError 32" in output or "being used by another process" in output:
         print("\n--- TIP ---")
         print("The .pyd file is locked because it was previously imported in this kernel.")
-        print("Restart the kernel (Ctrl+Shift+P → 'Jupyter: Restart Kernel'), then re-run")
+        print("Restart the kernel (Ctrl+Shift+P -> 'Jupyter: Restart Kernel'), then rerun")
         print("the Step 3 MSVC cell first, then this cell again.")
     elif "cl.exe" in output.lower() or "vcvars" in output.lower() or "cannot find" in output.lower():
         print("\n--- TIP ---")
-        print("The compiler was not found. Re-run the Step 3 cell to load the MSVC environment.")
+        print("The compiler was not found. rerun the Step 3 cell to load the MSVC environment.")
 else:
     importlib.invalidate_caches()
     import qgss_smoke
@@ -529,7 +540,7 @@ print('{')
 print('    "version": 4,')
 print('    "configurations": [')
 print('        {')
-print('            "name": "QGSS2026",')
+print('            "name": "Win32",')
 print(f'            "includePath": ["{inc}"],')
 print('            "defines": ["QISKIT_PYTHON_EXTENSION"],')
 print('            "compilerPath": "cl.exe",')
@@ -562,16 +573,17 @@ Next, generate the header with
 ```bash
 cbindgen --crate qiskit-cext --output dist\c\include\qiskit.h
 ```
-This will write the MSVC-compatible header in ``dist\c\include``.
+This writes the MSVC-compatible header in ``dist\c\include``.
 
 Now you can use `cl` to compile the C program. To ensure the compiler finds the qiskit library,
-we include `target\release` in the `PATH` variable.
+ include `target\release` in the `PATH` variable.
 ```bash
 set PATH="\path\to\target\release";%PATH%
 cl example.c qiskit_cext.dll.lib -I\path\to\dist\c\include
 ```
 
-Before running, you have to include the path to your ``python3.dll``.
+Before running, include the path to your ``python3.dll``.
+
 ```bash
 set PATH="\path\to\python3-dll";%PATH%
 .\example.exe
@@ -591,30 +603,29 @@ boundaries: [0, 3] }
 
 | Problem | Fix |
 |---|---|
-| `winget` is not recognized | Update the [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store, or use the manual download links in each step |
-| `cl` is not recognized | Re-run the MSVC load cell (Step 3), or use the x64 Native Tools Command Prompt |
-| `python` opens Microsoft Store | Settings → Apps → Advanced app settings → App execution aliases → turn off `python.exe` |
-| `.ps1 cannot be loaded` / scripts disabled | Run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` (no admin needed), then retry |
+| `winget` is not recognized | Update the [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store, or use the relevant manual download links |
+| `cl` is not recognized | Rerun the MSVC load cell (Step 3), or use the x64 Native Tools Command Prompt |
+| `python` opens Microsoft Store | Go to Settings -> Apps -> Advanced app settings -> App execution aliases and turn off `python.exe` |
+| `.ps1 cannot be loaded` / scripts disabled | Run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` then retry |
 | `cannot open file 'qiskit.h'` | Run `python -c "import qiskit.capi; print(qiskit.capi.get_include())"` and confirm the path exists |
-| `qiskit.capi` not found | `pip install "qiskit[visualization]>=2.4.2"` |
-| `qiskit-aer` build fails | `pip install qiskit-aer --only-binary=:all:` — if that also fails, use Python 3.12 or skip aer (it's optional) |
-| Build runs but import fails with a version error | Build and runtime Qiskit must share a minor version — reinstall with `pip install "qiskit>=2.4.2"` |
-| Rebuilt the C but the circuit did not change | A C extension cannot be re-imported live — restart the kernel, re-run the Step 3 MSVC cell, then rebuild |
-| PowerShell script blocked | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` (no admin rights needed) |
-| Jupyter kernel not found | Activate the venv (`cd $QGSS; .\.venv\Scripts\Activate.ps1`), then `python -m ipykernel install --user --name qgss2026 --display-name "QGSS 2026"`, then reload VS Code (Ctrl+Shift+P → Developer: Reload Window) |
-| Path length errors | Use a short root path on C:\ (e.g. `C:\qgss2026` — or whichever path you set in Step 0), or enable Long Paths: Settings → System → For developers → Long Paths |
-| Verify cell fails with "conda environment still active" | Run `conda deactivate` until `CONDA_DEFAULT_ENV` and `CONDA_PREFIX` are both gone from the environment. Check with `$env:CONDA_PREFIX`. If they persist, open a fresh PowerShell (not Anaconda Prompt) and retry from Step 2. |
-| Verify cell fails with "venv was created from a conda-managed Python" | The venv inherited conda's C runtime and cannot be fixed in place. Delete it and rebuild from a python.org Python: `Remove-Item -Recurse -Force .venv`, then re-run Step 1.2 to set `$PYTHON_EXE` and Step 2.1 to recreate the venv. |
-| `DLL load failed` on import | Conda is likely leaking into the venv — check both issues above. Also verify Python is 64-bit: `python -c "import platform; print(platform.architecture())"` |
-| Build fails with garbled paths or `C1083` | Your username or workspace path contains non-ASCII characters. Move the workspace to a short ASCII-only path (e.g. `C:\qgss2026`) |
-| Build or import randomly fails, works on retry | The workspace folder is synced by OneDrive. Move it outside of Documents/Desktop to a local path like `C:\qgss2026` |
-| Build interrupted mid-way (laptop sleep, power loss) | Delete the `_smoke_pkg` folder in your workspace, re-run the MSVC load cell, then re-run the smoke test cell |
-| `pip install` fails with SSL certificate error | Your network uses a proxy that intercepts HTTPS. Try `pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org qiskit` or ask your network admin for the proxy CA certificate |
-| Windows Defender quarantines the `.pyd` file | Add your workspace's `.venv` and `_smoke_pkg` folders to Defender exclusions (Windows Security → Virus & threat protection → Manage settings → Exclusions) |
-| VS Build Tools cannot be installed (no admin rights) | Administrator access is required. Ask your IT department, or use qBraid/Google Colab for Chapter 3 instead |
-| `WinError 32` / file in use during rebuild | The .pyd is locked by the running kernel. Restart the kernel (Ctrl+Shift+P → Jupyter: Restart Kernel), re-run Step 3, then rebuild |
-| Commands silently do nothing (no error, no output) | You may be in cmd.exe instead of PowerShell. Check your prompt: PowerShell shows `PS C:\>`, cmd shows `C:\>`. Open PowerShell from Start Menu or Win+X |
-| MSVC install appears stuck | The `--passive --wait` flags block PowerShell while the installer runs in the background. Check your taskbar for a "Visual Studio Installer" window. It can take 10–30 minutes on a slow connection |
+| `qiskit.capi` not found | Run `pip install "qiskit[visualization]>=2.4.2"` |
+| `qiskit-aer` build fails | Run `pip install qiskit-aer --only-binary=:all:`. If that also fails, use Python 3.12 or skip aer, which is optional |
+| Build runs but import fails with a version error | Build and runtime Qiskit must share a minor version.  Reinstall with `pip install "qiskit>=2.4.2"` |
+| I rebuilt the C but the circuit did not change | A C extension cannot be re-imported live. Restart the kernel, rerun the MSVC commands (Step 3), then rebuild |
+| PowerShell script was blocked | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
+| Path length errors | Use a short root path on C:\ (for example, `C:\project`, or the path you set in the setup step), or enable Long Paths: Settings -> System -> For developers -> Long Paths |
+| Verify cell fails with "conda environment still active" | Run `conda deactivate` until `CONDA_DEFAULT_ENV` and `CONDA_PREFIX` are both gone from the environment. Check with `$env:CONDA_PREFIX`. If they persist, open a fresh PowerShell (not an Anaconda prompt) and retry from Step 2. |
+| Verify cell fails with "venv was created from a conda-managed Python" | The virtual environment inherited conda's C runtime and cannot be fixed in place. Delete it and rebuild from a python.org Python. Run `Remove-Item -Recurse -Force .venv`, then rerun the VS Code install step to set `$PYTHON_EXE`, then recreate the virtual environment (step 2). |
+| `DLL load failed` on import | Conda is likely leaking into the virtual environment. Check both of the issues immediately above this. Also verify that Python is 64-bit: `python -c "import platform; print(platform.architecture())"` |
+| Build fails with garbled paths or `C1083` | Your username or workspace path contains non-ASCII characters. Move the workspace to a short ASCII-only path (for example, `C:\project`) |
+| Build or import randomly fails, works on retry | The workspace folder is synced by OneDrive. Move it to a local path like `C:\project` |
+| Build interrupted midway (for example, there was a power loss) | Delete the `_smoke_pkg` folder in your workspace, rerun the MSVC load cell, then rerun the smoke test cell |
+| `pip install` fails with SSL certificate error | Your network uses a proxy that intercepts HTTPS. Try running `pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org qiskit` or ask your network administrator for the proxy CA certificate |
+| Windows Defender quarantines the `.pyd` file | Add your workspace's `.venv` and `_smoke_pkg` folders to Defender exclusions by going to Windows Security -> Virus & threat protection -> Manage settings -> Exclusions |
+| VS Build Tools cannot be installed (no admin rights) | Administrator access is required. Ask your IT department for access |
+| `WinError 32` / file in use during rebuild | The .pyd is locked by the running kernel. Restart the kernel (Ctrl+Shift+P -> Jupyter: Restart Kernel), rerun Step 3, then rebuild |
+| Commands silently do nothing (no error, no output) | You might be in cmd.exe instead of PowerShell. Check your prompt: PowerShell shows `PS C:\>`, cmd shows `C:\>`. Open PowerShell from Start Menu or Win+X |
+| MSVC install appears stuck | The `--passive --wait` flags block PowerShell while the installer runs in the background. Check your taskbar for a "Visual Studio Installer" window. It can take 10-30 minutes to install |
 
 ## Next steps
 
