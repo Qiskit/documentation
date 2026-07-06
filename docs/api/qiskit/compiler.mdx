@@ -20,7 +20,7 @@ python_api_name: qiskit.compiler
 
 ### transpile
 
-<Function id="qiskit.compiler.transpile" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/compiler/transpiler.py#L36-L307" signature="qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, coupling_map=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, dt=None, approximation_degree=1.0, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False, num_processes=None, qubits_initially_zero=True)">
+<Function id="qiskit.compiler.transpile" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/compiler/transpiler.py#L38-L322" signature="qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, coupling_map=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, dt=None, approximation_degree=1.0, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False, num_processes=None, qubits_initially_zero=True)">
   Transpile one or more circuits, according to some desired transpilation targets.
 
   Transpilation is potentially done in parallel using multiprocessing when `circuits` is a list with > 1 [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object, depending on the local environment and configuration.
@@ -34,18 +34,18 @@ python_api_name: qiskit.compiler
   | **dt**            | target | dt            |
 
   <Admonition title="Note" type="note">
-    When the target basis consists of Clifford+T gates, this function constructs a specialized Clifford+T transpiler pipeline, see [`clifford_t_pass_manager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.clifford_t_pass_manager "qiskit.transpiler.preset_passmanagers.clifford_t_pass_manager") for documentation. The arguments that apply to transpiling into continuous basis sets are ignored in this flow.
+    When the target basis consists of Clifford+T gates, this function constructs a specialized Clifford+T transpiler pipeline, see [`generate_preset_clifford_t_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_clifford_t_pass_manager "qiskit.transpiler.generate_preset_clifford_t_pass_manager") for more detailed documentation. Arguments that apply only to transpiling into continuous basis sets are ignored in this flow. For example, the `"unitary_synthesis_method"` is not taken into account when synthesizing single-qubit unitaries into a Clifford+T sequence.
   </Admonition>
 
   **Parameters**
 
   *   **circuits** (*\_CircuitT*) – Circuit(s) to transpile
 
-  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend") *| None*) – If set, the transpiler will compile the input circuit to this target device. If any other option is explicitly set (e.g., `coupling_map`), it will override the backend’s.
+  *   **backend** ([*Backend*](/docs/api/qiskit/qiskit.providers.Backend "qiskit.providers.backend.Backend") *| None*) – If set, the transpiler will compile the input circuit to this target device. If any other option is explicitly set (e.g., `coupling_map`), it will override the backend’s.
 
   *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – List of basis gate names to unroll to (e.g.: `['u1', 'u2', 'u3', 'cx']`). If `None`, do not unroll.
 
-  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]] | None*) –
+  *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]] | None*) –
 
       Directed coupling map (perhaps custom) to target in mapping. If the coupling map is symmetric, both directions need to be specified.
 
@@ -54,7 +54,7 @@ python_api_name: qiskit.compiler
       1.  `CouplingMap` instance
       2.  List, must be given as an adjacency matrix, where each entry specifies all directed two-qubit interactions supported by backend, e.g.: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
 
-  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list) *| None*) –
+  *   **initial\_layout** ([*Layout*](/docs/api/qiskit/qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list) *| None*) –
 
       Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the coupling\_map constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler may permute qubits through swaps or other means. Multiple formats are supported:
 
@@ -100,9 +100,9 @@ python_api_name: qiskit.compiler
 
   *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Backend sample time (resolution) in seconds. If `None` (default), `backend.dt` is used.
 
-  *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float)) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
+  *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Heuristic dial used for circuit approximation, where `1.0` means no approximation (up to numerical tolerance) and `0.0` means the maximum approximation. If `target` is available, a value of `None` indicates that approximation is allowed up to the reported error rate for an operation in the target.
 
-  *   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Sets random seed for the stochastic parts of the transpiler
+  *   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Sets a seed for the PRNG used by the stochastic parts of the transpiler. This parameter takes precedence over the `QISKIT_TRANSPILER_SEED` environment variable and `transpiler_seed` setting in the user configuration file .
 
   *   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) –
 
@@ -115,7 +115,7 @@ python_api_name: qiskit.compiler
 
       If `None`, level 2 will be chosen as default.
 
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[BasePass,* [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) –
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[BasePass,* [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) –
 
       A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments, | `pass_`: the pass being run. | `dag`: the dag output of the pass. | `time`: the time to execute the pass. | `property_set`: the property set. | `count`: the index for the pass execution. The exact arguments passed expose the internals of the pass manager, and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases, be sure to check that the arguments being passed are the same. To use the callback feature, define a function that will take in kwargs dict and access the variables. For example:
 
@@ -132,13 +132,13 @@ python_api_name: qiskit.compiler
 
   *   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – A list with strings to identify the output circuits. The length of the list should be exactly the length of the `circuits` parameter.
 
-  *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the unitary synthesis method to use. By default `'default'` is used. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
+  *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the unitary synthesis method to use. By default `'default'` is used. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](/docs/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
 
   *   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict) *| None*) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis_method` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
 
-  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.target.Target") *| None*) – A backend transpiler target. Normally this is specified as part of the `backend` argument, but if you have manually constructed a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object you can specify it manually here. This will override the target from `backend`.
+  *   **target** ([*Target*](/docs/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.target.Target") *| None*) – A backend transpiler target. Normally this is specified as part of the `backend` argument, but if you have manually constructed a [`Target`](/docs/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") object you can specify it manually here. This will override the target from `backend`.
 
-  *   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.synthesis.high_level_synthesis.HLSConfig") *| None*) – An optional configuration class `HLSConfig` that will be passed directly to `HighLevelSynthesis` transformation pass. This configuration class allows specifying the lists of synthesis algorithms and their parameters for various high-level objects.
+  *   **hls\_config** ([*HLSConfig*](/docs/api/qiskit/qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.synthesis.high_level_synthesis.HLSConfig") *| None*) – An optional configuration class `HLSConfig` that will be passed directly to `HighLevelSynthesis` transformation pass. This configuration class allows specifying the lists of synthesis algorithms and their parameters for various high-level objects.
 
   *   **init\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The plugin name to use for the `init` stage. By default an external plugin is not used. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"init"` for the stage name argument.
 

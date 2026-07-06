@@ -43,7 +43,7 @@ python_api_name: qiskit.transpiler.passes.HLSConfig
 
   For an explicit example of using such config files, refer to the documentation for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
 
-  For an overview of the complete process of using high-level synthesis, see [High-level Synthesis Plugins](transpiler_synthesis_plugins#using-high-level-synthesis-plugins).
+  For an overview of the complete process of using high-level synthesis, see [High-level Synthesis Plugins](/docs/api/qiskit/dev/transpiler_synthesis_plugins#using-high-level-synthesis-plugins).
 
   Creates a high-level-synthesis config.
 
@@ -51,7 +51,7 @@ python_api_name: qiskit.transpiler.passes.HLSConfig
 
   *   **use\_default\_on\_unspecified** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, every higher-level-object without an explicitly specified list of methods will be synthesized using the “default” algorithm if it exists.
   *   **plugin\_selection** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – if set to `"sequential"` (default), for every higher-level-object the synthesis pass will consider the specified methods sequentially, stopping at the first method that is able to synthesize the object. If set to `"all"`, all the specified methods will be considered, and the best synthesized circuit, according to `plugin_evaluation_fn` will be chosen.
-  *   **plugin\_evaluation\_fn** (*Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*],* [*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – a callable that evaluates the quality of the synthesized quantum circuit in the case that `plugin_selection="sequential"`; a smaller value means a better circuit. If `None`, the quality of the circuit is its size (i.e. the number of gates that it contains).
+  *   **plugin\_evaluation\_fn** (*Callable\[\[*[*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*],* [*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – a callable that evaluates the quality of the synthesized quantum circuit in the case that `plugin_selection="sequential"`; a smaller value means a better circuit. If `None`, the quality of the circuit is its size (i.e. the number of gates that it contains).
   *   **kwargs** – a dictionary mapping higher-level-objects to lists of synthesis methods.
 
   ## Methods
