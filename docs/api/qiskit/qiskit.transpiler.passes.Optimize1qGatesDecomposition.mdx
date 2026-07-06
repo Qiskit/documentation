@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesDecomposition
 
 # Optimize1qGatesDecomposition
 
-<Class id="qiskit.transpiler.passes.Optimize1qGatesDecomposition" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/optimization/optimize_1q_decomposition.py#L61-L227" signature="qiskit.transpiler.passes.Optimize1qGatesDecomposition(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.Optimize1qGatesDecomposition" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/optimization/optimize_1q_decomposition.py#L61-L240" signature="qiskit.transpiler.passes.Optimize1qGatesDecomposition(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Optimize chains of single-qubit gates by combining them into a single gate.
@@ -20,6 +20,8 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesDecomposition
   *   whether the original chain amounts to identity: replace with null
 
   Error is computed as a multiplication of the errors of individual gates on that qubit.
+
+  This class is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
   Optimize1qGatesDecomposition initializer.
 
@@ -50,14 +52,14 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesDecomposition
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.Optimize1qGatesDecomposition.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.Optimize1qGatesDecomposition.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/basepasses.py#L162-L181" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
+    *   **passmanager\_ir** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – Qiskit IR to optimize.
+    *   **state** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Task,* [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -65,12 +67,12 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesDecomposition
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit"), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.Optimize1qGatesDecomposition.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
+  <Function id="qiskit.transpiler.passes.Optimize1qGatesDecomposition.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/passmanager/base_tasks.py#L72-L74" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -80,7 +82,7 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesDecomposition
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.Optimize1qGatesDecomposition.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/optimization/optimize_1q_decomposition.py#L201-L217" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.Optimize1qGatesDecomposition.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/optimization/optimize_1q_decomposition.py#L213-L230" signature="run(dag)">
     Run the Optimize1qGatesDecomposition pass on dag.
 
     **Parameters**
@@ -98,7 +100,7 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesDecomposition
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.Optimize1qGatesDecomposition.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.Optimize1qGatesDecomposition.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/basepasses.py#L183-L191" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**
