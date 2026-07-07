@@ -511,7 +511,7 @@ else:
 </Accordion>
 ### Step 5 — Configure VS Code (optional)
 
-For ease of use, you can run this code to set up IntelliSense for C files and auto-select the Python interpreter.
+For ease of use, you can follow this process to set up IntelliSense for C files and auto-select the Python interpreter.
 
 <Accordion>
   <AccordionItem title="Make the .vscode directory">
@@ -615,33 +615,74 @@ boundaries: [0, 3] }
 </Accordion>
 ### Troubleshooting
 <Accordion>
-<AccordionItem title="Problems and solutions">
-
-| Problem | Solution |
-|---|---|
-| `winget` is not recognized | Update the [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store, or use the relevant manual download links |
-| `cl` is not recognized | Rerun the MSVC load cell (Step 3), or use the x64 Native Tools Command Prompt |
-| `python` opens Microsoft Store | Go to Settings -> Apps -> Advanced app settings -> App execution aliases and turn off `python.exe` |
-| `.ps1 cannot be loaded` / scripts disabled | Run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` then retry |
-| `cannot open file 'qiskit.h'` | Run `python -c "import qiskit.capi; print(qiskit.capi.get_include())"` and confirm the path exists |
-| `qiskit.capi` not found | Run `pip install "qiskit[visualization]~=2.4.2"` |
-| `qiskit-aer` build fails | Run `pip install qiskit-aer --only-binary=:all:`. If that also fails, use Python 3.12 or skip aer, which is optional |
-| Build runs but import fails with a version error | Build and runtime Qiskit must share a minor version.  Reinstall with `pip install "qiskit~=2.4.2"` |
-| I rebuilt the C but the circuit did not change | A C extension cannot be re-imported live. Restart the kernel, rerun the MSVC commands (Step 3), then rebuild |
-| PowerShell script was blocked | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
-| Path length errors | Use a short root path on C:\ (for example, `C:\workspace`, or the path you set in the setup step), or enable Long Paths: Settings -> System -> For developers -> Long Paths |
-| Conda is active (the prompt shows `(base)`) or builds behave oddly after using Anaconda | Run `conda deactivate` until `CONDA_DEFAULT_ENV` and `CONDA_PREFIX` are both gone from the environment. Check with `$env:CONDA_PREFIX`. If they persist, open a fresh PowerShell (not an Anaconda prompt) and retry from Step 2. |
-| The virtual environment was created from a conda-managed Python (check the `home =` line in `.venv\pyvenv.cfg`) | The virtual environment inherited conda's C runtime and cannot be fixed in place. Delete it and rebuild from a python.org Python. Run `Remove-Item -Recurse -Force .venv`, then rerun the Python detection snippet in Step 1 to set `$PYTHON_EXE`, then recreate the virtual environment (Step 2). |
-| `DLL load failed` on import | Conda is likely leaking into the virtual environment. Check both of the issues immediately above this. Also verify that Python is 64-bit: `python -c "import platform; print(platform.architecture())"` |
-| Build fails with garbled paths or `C1083` | Your username or workspace path contains non-ASCII characters. Move the workspace to a short ASCII-only path (for example, `C:\workspace`) |
-| Build or import randomly fails, works on retry | The workspace folder is synced by OneDrive. Move it to a local path like `C:\workspace` |
-| Build interrupted midway (for example, there was a power loss) | Delete the `_smoke_pkg` folder in your workspace, rerun the MSVC load cell, then rerun the smoke test cell |
-| `pip install` fails with SSL certificate error | Your network uses a proxy that intercepts HTTPS. Try running `pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org qiskit` or ask your network administrator for the proxy CA certificate |
-| Windows Defender quarantines the `.pyd` file | Add your workspace's `.venv` and `_smoke_pkg` folders to Defender exclusions by going to Windows Security -> Virus & threat protection -> Manage settings -> Exclusions |
-| VS Build Tools cannot be installed (no admin rights) | Administrator access is required. Ask your IT department for access |
-| `WinError 32` / file in use during rebuild | The .pyd is locked by the running kernel. Restart the kernel (Ctrl+Shift+P -> Jupyter: Restart Kernel), rerun Step 3, then rebuild |
-| Commands silently do nothing (no error, no output) | You might be in cmd.exe instead of PowerShell. Check your prompt: PowerShell shows `PS C:\>`, cmd shows `C:\>`. Open PowerShell from Start Menu or Win+X |
-| MSVC install appears stuck | The `--passive --wait` flags block PowerShell while the installer runs in the background. Check your taskbar for a "Visual Studio Installer" window. It can take 10-30 minutes to install |
+<AccordionItem title="`winget` is not recognized">
+Update the [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store, or use the relevant manual download links
+</AccordionItem>
+<AccordionItem title="`cl` is not recognized">
+Rerun the MSVC load cell (Step 3), or use the x64 Native Tools Command Prompt
+</AccordionItem>
+<AccordionItem title="`python` opens Microsoft Store">
+Go to Settings -> Apps -> Advanced app settings -> App execution aliases and turn off `python.exe`
+</AccordionItem>
+<AccordionItem title="`.ps1 cannot be loaded` / scripts disabled">
+Run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` then retry
+</AccordionItem>
+<AccordionItem title="`cannot open file 'qiskit.h'`">
+Run `python -c "import qiskit.capi; print(qiskit.capi.get_include())"` and confirm the path exists
+</AccordionItem>
+<AccordionItem title="`qiskit.capi` not found">
+Run `pip install "qiskit[visualization]~=2.4.2"`
+</AccordionItem>
+<AccordionItem title="`qiskit-aer` build fails">
+Run `pip install qiskit-aer --only-binary=:all:`. If that also fails, use Python 3.12 or skip aer, which is optional
+</AccordionItem>
+<AccordionItem title="Build runs but import fails with a version error">
+Build and runtime Qiskit must share a minor version.  Reinstall with `pip install "qiskit~=2.4.2"`
+</AccordionItem>
+<AccordionItem title="I rebuilt the C but the circuit did not change">
+A C extension cannot be re-imported live. Restart the kernel, rerun the MSVC commands (Step 3), then rebuild
+</AccordionItem>
+<AccordionItem title="PowerShell script was blocked">
+`Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
+</AccordionItem>
+<AccordionItem title="Path length errors">
+Use a short root path on C:\ (for example, `C:\workspace`, or the path you set in the setup step), or enable Long Paths: Settings -> System -> For developers -> Long Paths
+</AccordionItem>
+<AccordionItem title="Conda is active (the prompt shows `(base)`) or builds behave oddly after using Anaconda">
+Run `conda deactivate` until `CONDA_DEFAULT_ENV` and `CONDA_PREFIX` are both gone from the environment. Check with `$env:CONDA_PREFIX`. If they persist, open a fresh PowerShell (not an Anaconda prompt) and retry from Step 2.
+</AccordionItem>
+<AccordionItem title="The virtual environment was created from a conda-managed Python (check the `home =` line in `.venv\pyvenv.cfg`)">
+The virtual environment inherited conda's C runtime and cannot be fixed in place. Delete it and rebuild from a python.org Python. Run `Remove-Item -Recurse -Force .venv`, then rerun the Python detection snippet in Step 1 to set `$PYTHON_EXE`, then recreate the virtual environment (Step 2).
+</AccordionItem>
+<AccordionItem title="`DLL load failed` on import">
+Conda is likely leaking into the virtual environment. Check both of the issues immediately above this. Also verify that Python is 64-bit: `python -c "import platform; print(platform.architecture())"`
+</AccordionItem>
+<AccordionItem title="Build fails with garbled paths or `C1083`">
+Your username or workspace path contains non-ASCII characters. Move the workspace to a short ASCII-only path (for example, `C:\workspace`)
+</AccordionItem>
+<AccordionItem title="Build or import randomly fails, works on retry">
+The workspace folder is synced by OneDrive. Move it to a local path like `C:\workspace`
+</AccordionItem>
+<AccordionItem title="Build interrupted midway (for example, there was a power loss)">
+Delete the `_smoke_pkg` folder in your workspace, rerun the MSVC load cell, then rerun the smoke test cell
+</AccordionItem>
+<AccordionItem title="`pip install` fails with SSL certificate error">
+Your network uses a proxy that intercepts HTTPS. Try running `pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org qiskit` or ask your network administrator for the proxy CA certificate
+</AccordionItem>
+<AccordionItem title="Windows Defender quarantines the `.pyd` file">
+Add your workspace's `.venv` and `_smoke_pkg` folders to Defender exclusions by going to Windows Security -> Virus & threat protection -> Manage settings -> Exclusions
+</AccordionItem>
+<AccordionItem title="VS Build Tools cannot be installed (no admin rights)">
+Administrator access is required. Ask your IT department for access
+</AccordionItem>
+<AccordionItem title="`WinError 32` / file in use during rebuild">
+The .pyd is locked by the running kernel. Restart the kernel (Ctrl+Shift+P -> Jupyter: Restart Kernel), rerun Step 3, then rebuild
+</AccordionItem>
+<AccordionItem title="Commands silently do nothing (no error, no output)">
+You might be in cmd.exe instead of PowerShell. Check your prompt: PowerShell shows `PS C:\>`, cmd shows `C:\>`. Open PowerShell from Start Menu or Win+X
+</AccordionItem>
+<AccordionItem title="MSVC install appears stuck">
+The `--passive --wait` flags block PowerShell while the installer runs in the background. Check your taskbar for a "Visual Studio Installer" window. It can take 10-30 minutes to install
 </AccordionItem>
 </Accordion>
 ## Next steps
