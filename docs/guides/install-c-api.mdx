@@ -140,8 +140,8 @@ Examples of good workspace paths: `C:\WORKSPACE_PATH`, `D:\WORKSPACE_PATH`, `C:\
 
 ### Step 1. Install the prerequisites
 
-#### MSVC Build Tools (C compiler) — install this first
-
+<Accordion>
+<AccordionItem title="MSVC Build Tools (C compiler) — install this first">
 This is a large download (2-5 GB, 10-30 min). Install it first so you know immediately whether your computer is compatible.
 
 <Admonition type="note">
@@ -163,9 +163,8 @@ If `winget` is not recognized, update [App Installer](https://apps.microsoft.com
 Open the [Visual Studio Build Tools for C++](https://visualstudio.microsoft.com/visual-cpp-build-tools/) website and click Download Build Tools.  Run the executable to start the install.  
 
 When the Installing Visual Studio window opens, on the Workloads tab, choose "Desktop development with C++". See the [Install C and C++ support in Visual Studio](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170#step-4---choose-workloads) page for further details. 
-
-#### VS Code
-
+</AccordionItem>
+<AccordionItem title="VS Code">
 Download VS Code from the [Visual Studio Code](https://code.visualstudio.com/) site, or run `winget install Microsoft.VisualStudio.Code`. Run the downloaded executable file to install VS Code.
 
 After it is installed, continue with these steps:
@@ -191,9 +190,8 @@ $WORKSPACE = "C:\WORKSPACE_PATH"   # change to your workspace path
 mkdir $WORKSPACE -Force
 cd $WORKSPACE
 ```
-
-#### Python 3.12 (recommended)
-
+</AccordionItem>
+<AccordionItem title="Python 3.12 (recommended version)">
 Python 3.12 is recommended because it has the best wheel availability for qiskit-aer and other dependencies. 3.10 and 3.11 also work, but 3.13 or later might lack pre-built wheels for some packages.
 
 Open the VS Code terminal and run the following code to detect a suitable version of Python:
@@ -258,14 +256,19 @@ If the download didn't work, or you prefer manual download, comment the code lin
 - Do NOT use the Microsoft Store Python because it lacks C headers. If `python` opens the Microsoft Store, disable the alias by going to Windows Settings -> Apps -> Advanced app settings -> App execution aliases.
 
 - Anaconda users: run `conda deactivate` until the (base) prefix disappears. If it won't go away, open a new terminal in VS Code.
-</Admonition>
+</Admonition> 
+</AccordionItem>
 
-#### Git (optional)
+<AccordionItem title="Git (optional)">
+    Only needed if you clone lab repositories.  Run `winget install Git.Git`.
+</AccordionItem>
 
-Only needed if you clone lab repositories.  Run `winget install Git.Git`.
+</Accordion>
 
-### Step 2 - Python virtual environment with Qiskit
+### Step 2 - Set up the Python virtual environment with Qiskit
 
+<Accordion>
+<AccordionItem title="Reset the VSCode terminal">
 Open the VSCode terminal and reset it:
 
 ```powershell
@@ -277,9 +280,8 @@ if (-not $PYTHON_EXE) {
     Write-Host "`$PYTHON_EXE = '$PYTHON_EXE'"
 }
 ```
-
-#### Create and activate a virtual environment
-
+</AccordionItem>
+<AccordionItem title="Create and activate a virtual environment">
 Allow script execution (once per user), then create the virtual environment:
 
 ```powershell
@@ -299,9 +301,8 @@ Verify:
 Get-Command python | Select-Object -First 1 -ExpandProperty Source
 # -> workspace\.venv\Scripts\python.exe
 ```
-
-#### Install packages
-
+</AccordionItem>
+<AccordionItem title="Install packages">
 ```powershell
 python -m pip install --upgrade pip setuptools wheel
 pip install "qiskit[visualization]>=2.4.2"
@@ -314,12 +315,17 @@ pip install notebook ipykernel ipywidgets
 <Admonition type="note">
 Do NOT run `pip install --upgrade qiskit` after setup. Upgrading to a new minor version breaks C extensions built against the old one.
 </Admonition>
+</AccordionItem>
+</Accordion>
 
 ### Step 3 - Load the MSVC environment
 
 Run the following code each time you restart the kernel. It locates and loads the MSVC developer environment automatically so you don't need the x64 built-in command prompt.
 
 The example in this documentation builds C extension modules by using setuptools with MSVC. Generally, you define `QISKIT_PYTHON_EXTENSION`, include `qiskit.h`, and call `qk_import()` in your init function. Only headers from `qiskit.capi.get_include()` are needed at build time — no library is linked. See [Extend Qiskit in Python with C](/docs/guides/c-extension-for-python) for details.
+
+<Accordion>
+  <AccordionItem title="Load the MSVC environment">
 
 ```python
 import os, sys, subprocess, glob, shutil
@@ -372,7 +378,8 @@ def load_msvc_env():
 print(load_msvc_env())
 print("cl.exe on PATH:", shutil.which("cl") is not None)
 ```
-
+</AccordionItem>
+<AccordionItem title="Verify the setup">
 Verify that the setup worked:
 
 ```python
@@ -391,12 +398,15 @@ if not checks["cl.exe"]:
 elif all(checks.values()):
     print("\n  Toolchain ready. Continue to the smoke test.")
 ```
-
+</AccordionItem>
 ### Step 4 - Smoke test: Build a C extension
 
 Run the following code.  It writes source files to `_smoke_pkg/`, builds a C extension against the Qiskit C API, and imports the result. If it prints "SMOKE TEST PASSED", your toolchain is ready.
 
 The package follows the [Extend Qiskit in Python with C](/docs/guides/c-extension-for-python) process and uses functions from the [Qiskit C API reference](/docs/api/qiskit-c).
+
+<Accordion>
+  <AccordionItem title="Smoke test code">
 
 ```python
 import sys, subprocess, pathlib, importlib
@@ -504,19 +514,20 @@ else:
     print("\nSMOKE TEST PASSED — your Windows toolchain can build Qiskit C extensions."
           if ok else "\nSomething is off — check the gates above.")
 ```
-
+</AccordionItem>
 ### Step 5 — VS Code configuration (optional)
 
 For ease of use, you can run this code to set up IntelliSense for C files and auto-select the Python interpreter.
 
+<Accordion>
+  <AccordionItem title="Make the .vscode directory">
 In the VS Code terminal, run the following code:
 
 ```powershell
 mkdir $QGSS\.vscode -Force
 ```
-
-#### Workspace settings file
-
+</AccordionItem>
+<AccordionItem title="Make the settings file">
 Create `.vscode/settings.json` in your workspace by running this code:
 
 ```json
@@ -526,9 +537,8 @@ Create `.vscode/settings.json` in your workspace by running this code:
     "jupyter.notebookFileRoot": "${workspaceFolder}"
 }
 ```
-
-#### Workspace properties file
-
+</AccordionItem>
+<AccordionItem title="Make the properties file">
 The following code prints the JSON that you need to paste into `.vscode/c_cpp_properties.json`:
 
 ```python
@@ -550,9 +560,8 @@ print('        }')
 print('    ]')
 print('}')
 ```
-
-#### VS Code extensions file
-
+</AccordionItem>
+<AccordionItem title="Make the VS Code extensions file">
 In VS Code, create `.vscode/extensions.json` with this content:
 
 ```json
@@ -598,8 +607,11 @@ bit_terms: [X, Y, Z],
 indices: [0, 1, 2], 
 boundaries: [0, 3] }
 ```
+</AccordionItem>
 
 ### Troubleshooting
+<Accordion>
+<AccordionItem title="Problems and solutions">
 
 | Problem | Fix |
 |---|---|
@@ -626,7 +638,8 @@ boundaries: [0, 3] }
 | `WinError 32` / file in use during rebuild | The .pyd is locked by the running kernel. Restart the kernel (Ctrl+Shift+P -> Jupyter: Restart Kernel), rerun Step 3, then rebuild |
 | Commands silently do nothing (no error, no output) | You might be in cmd.exe instead of PowerShell. Check your prompt: PowerShell shows `PS C:\>`, cmd shows `C:\>`. Open PowerShell from Start Menu or Win+X |
 | MSVC install appears stuck | The `--passive --wait` flags block PowerShell while the installer runs in the background. Check your taskbar for a "Visual Studio Installer" window. It can take 10-30 minutes to install |
-
+</AccordionItem>
+</Accordion>
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
