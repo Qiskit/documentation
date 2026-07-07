@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.DenseLayout
 
 # DenseLayout
 
-<Class id="qiskit.transpiler.passes.DenseLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/layout/dense_layout.py#L28-L164" signature="qiskit.transpiler.passes.DenseLayout(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.DenseLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/layout/dense_layout.py#L28-L168" signature="qiskit.transpiler.passes.DenseLayout(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Choose a Layout by finding the most connected subset of qubits.
@@ -48,14 +48,14 @@ python_api_name: qiskit.transpiler.passes.DenseLayout
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.DenseLayout.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/passmanager/base_tasks.py#L71-L117" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.DenseLayout.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/passmanager/base_tasks.py#L76-L122" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Task, IR\_OUT,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -63,12 +63,12 @@ python_api_name: qiskit.transpiler.passes.DenseLayout
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.DenseLayout.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
+  <Function id="qiskit.transpiler.passes.DenseLayout.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/passmanager/base_tasks.py#L72-L74" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -78,7 +78,7 @@ python_api_name: qiskit.transpiler.passes.DenseLayout
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.DenseLayout.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/layout/dense_layout.py#L54-L100" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.DenseLayout.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/layout/dense_layout.py#L54-L100" signature="run(dag)">
     Run the DenseLayout pass on dag.
 
     Pick a convenient layout depending on the best matching qubit connectivity, and set the property layout.
@@ -89,12 +89,12 @@ python_api_name: qiskit.transpiler.passes.DenseLayout
 
     **Raises**
 
-    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if dag wider than self.coupling\_map
+    [**TranspilerError**](/docs/api/qiskit/transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if dag wider than self.coupling\_map
   </Function>
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.DenseLayout.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/passmanager/base_tasks.py#L119-L137" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.DenseLayout.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/passmanager/base_tasks.py#L124-L142" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**
