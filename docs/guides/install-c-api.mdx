@@ -508,6 +508,7 @@ else:
           if ok else "\nSomething is off — check the gates above.")
 ```
 </AccordionItem>
+</Accordion>
 ### Step 5 — Configure VS Code (optional)
 
 For ease of use, you can run this code to set up IntelliSense for C files and auto-select the Python interpreter.
@@ -562,7 +563,8 @@ In VS Code, create `.vscode/extensions.json` with this content:
     "recommendations": ["ms-python.python", "ms-toolsai.jupyter", "ms-vscode.cpptools"]
 }
 ```
-
+</AccordionItem>
+</Accordion>
 ### Build the standalone library
 
 This section builds the standalone C library, which is only needed if you want to compile and link pure C programs as in the UNIX-like section. In addition to the Step 1 prerequisites, this requires the following tools:
@@ -572,7 +574,8 @@ This section builds the standalone C library, which is only needed if you want t
     Running the tool from the command line should be enabled, which might require updating your `PATH` variable to include the cargo path.
 * A Python installation with access to both ``python3.lib`` and ``python3.dll``
 * A clone of the [Qiskit repository](https://github.com/Qiskit/qiskit) (`git clone https://github.com/Qiskit/qiskit.git`)
-
+<Accordion>
+<AccordionItem title="Build the standalone library">
 First, compile the `qiskit_cext` dynamic library, by running the following in the VS Code (PowerShell) terminal in Qiskit root:
 ```powershell
 $env:PATH = "\path\to\pythonlib;" + $env:PATH
@@ -609,7 +612,7 @@ indices: [0, 1, 2],
 boundaries: [0, 3] }
 ```
 </AccordionItem>
-
+</Accordion>
 ### Troubleshooting
 <Accordion>
 <AccordionItem title="Problems and solutions">
