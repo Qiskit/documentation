@@ -8,7 +8,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
 # SolovayKitaevDecomposition
 
-<Class id="qiskit.synthesis.SolovayKitaevDecomposition" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L33-L273" signature="qiskit.synthesis.SolovayKitaevDecomposition(basic_approximations=None, *, basis_gates=None, depth=12, check_input=False)" modifiers="class">
+<Class id="qiskit.synthesis.SolovayKitaevDecomposition" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L33-L270" signature="qiskit.synthesis.SolovayKitaevDecomposition(basic_approximations=None, *, basis_gates=None, depth=12, check_input=False)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   The Solovay Kitaev discrete decomposition algorithm.
@@ -59,7 +59,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
   ### find\_basic\_approximation
 
-  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.find_basic_approximation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L259-L273" signature="find_basic_approximation(sequence)">
+  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.find_basic_approximation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L256-L270" signature="find_basic_approximation(sequence)">
     Find `GateSequence` in `self._basic_approximations` that approximates `sequence`.
 
     <Admonition title="Deprecated since version 2.3" type="danger">
@@ -107,7 +107,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
   ### query\_basic\_approximation
 
-  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.query_basic_approximation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L249-L257" signature="query_basic_approximation(gate)">
+  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.query_basic_approximation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L246-L254" signature="query_basic_approximation(gate)">
     Query a basic approximation of a matrix.
 
     **Parameters**
@@ -116,19 +116,19 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
     **Return type**
 
-    [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+    [*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
   </Function>
 
   ### run
 
-  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L206-L247" signature="run(gate_matrix, recursion_degree, return_dag=False, check_input=True)">
+  <Function id="qiskit.synthesis.SolovayKitaevDecomposition.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/discrete_basis/solovay_kitaev.py#L206-L244" signature="run(gate_matrix, recursion_degree, return_dag=False, check_input=True)">
     Run the algorithm.
 
     **Parameters**
 
     *   **gate\_matrix** (*np.ndarray |* [*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – The single-qubit gate to approximate. Can either be a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"), where [`Gate.to_matrix()`](qiskit.circuit.Gate#to_matrix "qiskit.circuit.Gate.to_matrix") returns the matrix, or a $2\times 2$ unitary matrix representing the gate.
     *   **recursion\_degree** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The recursion degree, called $n$ in the paper.
-    *   **return\_dag** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True` return a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), else a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+    *   **return\_dag** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True` return a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"), else a [`QuantumCircuit`](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
     *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True` check that the input matrix is valid for the decomposition. Overrides the class attribute with the same name, but only for this function call.
 
     **Returns**
@@ -137,7 +137,7 @@ python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 
     **Return type**
 
-    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    [QuantumCircuit](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
   </Function>
 
   ### save\_basic\_approximations

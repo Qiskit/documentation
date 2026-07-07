@@ -30,8 +30,12 @@ This module contains two public functions, both of which create a [`QuantumCircu
 
 ### load
 
-<Function id="qiskit.qasm2.load" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qasm2/__init__.py#L602-L654" signature="qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)">
+<Function id="qiskit.qasm2.load" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qasm2/__init__.py#L618-L677" signature="qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)">
   Parse an OpenQASM 2 program from a file into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). The given path should be ASCII or UTF-8 encoded, and contain the OpenQASM 2 program.
+
+  <Admonition title="Note" type="note">
+    The internal classical-expression parser is recursive, and will raise a [`RecursionError`](https://docs.python.org/3/library/exceptions.html#RecursionError) if any expression requires excessive depth to evaluate. This maxmimum depth can be adjusted using [`sys.setrecursionlimit()`](https://docs.python.org/3/library/sys.html#sys.setrecursionlimit); the actual limit is one-tenth of this value.
+  </Admonition>
 
   **Parameters**
 
@@ -53,8 +57,12 @@ This module contains two public functions, both of which create a [`QuantumCircu
 
 ### loads
 
-<Function id="qiskit.qasm2.loads" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qasm2/__init__.py#L563-L599" signature="qiskit.qasm2.loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)">
+<Function id="qiskit.qasm2.loads" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qasm2/__init__.py#L572-L615" signature="qiskit.qasm2.loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)">
   Parse an OpenQASM 2 program from a string into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+  <Admonition title="Note" type="note">
+    The internal classical-expression parser is recursive, and will raise a [`RecursionError`](https://docs.python.org/3/library/exceptions.html#RecursionError) if any expression requires excessive depth to evaluate. This maxmimum depth can be adjusted using [`sys.setrecursionlimit()`](https://docs.python.org/3/library/sys.html#sys.setrecursionlimit); the actual limit is one-tenth of this value.
+  </Admonition>
 
   **Parameters**
 

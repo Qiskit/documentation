@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.PTM
 
 # PTM
 
-<Class id="qiskit.quantum_info.PTM" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L39-L200" signature="qiskit.quantum_info.PTM(data, input_dims=None, output_dims=None)" modifiers="class">
+<Class id="qiskit.quantum_info.PTM" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L38-L199" signature="qiskit.quantum_info.PTM(data, input_dims=None, output_dims=None)" modifiers="class">
   Bases: `QuantumChannel`
 
   Pauli Transfer Matrix (PTM) representation of a Quantum Channel.
@@ -39,13 +39,13 @@ $$
 
   **Parameters**
 
-  *   **data** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") *| BaseOperator | np.ndarray*) – data to initialize superoperator.
+  *   **data** ([*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") *| BaseOperator | np.ndarray*) – data to initialize superoperator.
   *   **input\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple) *| None*) – the input subsystem dimensions.
   *   **output\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple) *| None*) – the output subsystem dimensions.
 
   **Raises**
 
-  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not an N-qubit channel or cannot be initialized as a PTM.
+  [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not an N-qubit channel or cannot be initialized as a PTM.
 
   **Additional Information:**
 
@@ -95,7 +95,7 @@ $$
 
   ### adjoint
 
-  <Function id="qiskit.quantum_info.PTM.adjoint" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L162-L163" signature="adjoint()">
+  <Function id="qiskit.quantum_info.PTM.adjoint" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L161-L162" signature="adjoint()">
     Return the adjoint quantum channel.
 
     <Admonition title="Note" type="note">
@@ -105,7 +105,7 @@ $$
 
   ### compose
 
-  <Function id="qiskit.quantum_info.PTM.compose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L165-L183" signature="compose(other, qargs=None, front=False)">
+  <Function id="qiskit.quantum_info.PTM.compose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L164-L182" signature="compose(other, qargs=None, front=False)">
     Return the operator composition with another PTM.
 
     **Parameters**
@@ -124,7 +124,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
     <Admonition title="Note" type="note">
       Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](#qiskit.quantum_info.PTM.dot "qiskit.quantum_info.PTM.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
@@ -135,7 +135,7 @@ $$
 
   ### conjugate
 
-  <Function id="qiskit.quantum_info.PTM.conjugate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L153-L157" signature="conjugate()">
+  <Function id="qiskit.quantum_info.PTM.conjugate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L152-L156" signature="conjugate()">
     Return the conjugate quantum channel.
 
     <Admonition title="Note" type="note">
@@ -174,7 +174,7 @@ $$
 
   ### expand
 
-  <Function id="qiskit.quantum_info.PTM.expand" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L190-L193" signature="expand(other)">
+  <Function id="qiskit.quantum_info.PTM.expand" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L189-L192" signature="expand(other)">
     Return the reverse-order tensor product with another PTM.
 
     **Parameters**
@@ -283,7 +283,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the SuperOp are not equal.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the SuperOp are not equal.
 
     <Admonition title="Note" type="note">
       For non-positive or non-integer exponents the power is defined as the matrix power of the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{{E}}$, the SuperOp of the powered channel $\mathcal{{E}}^\n$ is $S_{{\mathcal{{E}}^n}} = S_{{\mathcal{{E}}}}^n$.
@@ -311,12 +311,12 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
   </Function>
 
   ### tensor
 
-  <Function id="qiskit.quantum_info.PTM.tensor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L185-L188" signature="tensor(other)">
+  <Function id="qiskit.quantum_info.PTM.tensor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L184-L187" signature="tensor(other)">
     Return the tensor product with another PTM.
 
     **Parameters**
@@ -355,7 +355,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not an N-qubit CPTP quantum channel.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not an N-qubit CPTP quantum channel.
   </Function>
 
   ### to\_operator
@@ -370,7 +370,7 @@ $$
 
   ### transpose
 
-  <Function id="qiskit.quantum_info.PTM.transpose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L159-L160" signature="transpose()">
+  <Function id="qiskit.quantum_info.PTM.transpose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/ptm.py#L158-L159" signature="transpose()">
     Return the transpose quantum channel.
 
     <Admonition title="Note" type="note">

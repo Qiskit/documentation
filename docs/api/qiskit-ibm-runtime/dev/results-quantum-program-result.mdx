@@ -1,0 +1,69 @@
+---
+title: QuantumProgramResult (dev version)
+description: API reference for qiskit_ibm_runtime.results.QuantumProgramResult in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.results.QuantumProgramResult
+---
+
+# QuantumProgramResult
+
+<Class id="qiskit_ibm_runtime.results.QuantumProgramResult" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/quantum_program.py#L296-L376" signature="QuantumProgramResult(data, metadata=None, passthrough_data=None)" modifiers="class">
+  Bases: `object`
+
+  A container to store results from executing a `QuantumProgram`.
+
+  **Parameters**
+
+  *   **data** (*Sequence\[dict\[str, np.ndarray] |* [*QuantumProgramItemResult*](results-quantum-program-item-result "qiskit_ibm_runtime.results.QuantumProgramItemResult")*]*) – A list of dictionaries with array-valued data.
+  *   **metadata** (*Metadata | None*) – A dictionary of metadata.
+  *   **passthrough\_data** (*DataTree | None*) – Arbitrary nested data passed through execution without modification.
+
+  ## Attributes
+
+  ### timing
+
+  <Attribute id="qiskit_ibm_runtime.results.QuantumProgramResult.timing">
+    Execution timing information of these results.
+
+    A single executor job may be broken up into chunks of work that are executed serially. This property stores information about their timing. Most notably, for each chunk of execution, a start and stop timestamp are provided that bound the window in which the data was collected.
+
+    To draw the timings for a single result:
+
+    ```python
+    job.result().timing.draw()
+    ```
+
+    To draw the timings for several results on one plot:
+
+    ```python
+    from qiskit_ibm_runtime.visualization import draw_chunk_timings
+
+    draw_chunk_timings(
+        job1.result().timing,
+        job2.result().timing,
+        names=["job 1", "job 2"],
+        common_start=True,
+    )
+    ```
+
+    **Returns**
+
+    A `ChunkTiming` collection.
+  </Attribute>
+
+  ## Methods
+
+  ### \_\_getitem\_\_
+
+  <Function id="qiskit_ibm_runtime.results.QuantumProgramResult.__getitem__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/quantum_program.py#L334-L337" signature="__getitem__(idx: int) → QuantumProgramItemResult" extraSignatures={["__getitem__(idx: slice) → list[QuantumProgramItemResult]"]} />
+
+  ### \_\_len\_\_
+
+  <Function id="qiskit_ibm_runtime.results.QuantumProgramResult.__len__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/quantum_program.py#L339-L340" signature="__len__()">
+    **Return type**
+
+    int
+  </Function>
+</Class>
+

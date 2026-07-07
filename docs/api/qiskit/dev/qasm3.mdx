@@ -24,7 +24,7 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
 ### dump
 
-<Function id="qiskit.qasm3.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L298-L308" signature="qiskit.qasm3.dump(circuit, stream, **kwargs)">
+<Function id="qiskit.qasm3.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L315-L325" signature="qiskit.qasm3.dump(circuit, stream, **kwargs)">
   Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as an OpenQASM 3 stream to file-like object.
 
   **Parameters**
@@ -40,7 +40,7 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
 ### dumps
 
-<Function id="qiskit.qasm3.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L285-L295" signature="qiskit.qasm3.dumps(circuit, **kwargs)">
+<Function id="qiskit.qasm3.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L302-L312" signature="qiskit.qasm3.dumps(circuit, **kwargs)">
   Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM 3 string.
 
   **Parameters**
@@ -100,9 +100,9 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
   *   **experimental** ([*ExperimentalFeatures*](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures")) – any experimental features to enable during the export. See [`ExperimentalFeatures`](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures") for more details.
 
-  *   **annotation\_handlers** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*OpenQASM3Serializer*](circuit_annotation#qiskit.circuit.annotation.OpenQASM3Serializer "qiskit.circuit.annotation.OpenQASM3Serializer")*] | None*) – a mapping of namespaces to annotation serializers. When an [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") object is encountered, the most specific namespace in this mapping that matches the annotation’s [`namespace`](qiskit.circuit.Annotation#namespace "qiskit.circuit.Annotation.namespace") attribute will be used to serialize it.
+  *   **annotation\_handlers** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*OpenQASM3Serializer*](circuit_annotation#qiskit.circuit.annotation.OpenQASM3Serializer "qiskit.circuit.annotation.OpenQASM3Serializer")*] | None*) – a mapping of namespaces to annotation serializers. When an [`Annotation`](/docs/api/qiskit/dev/qiskit.circuit.Annotation "qiskit.circuit.Annotation") object is encountered, the most specific namespace in this mapping that matches the annotation’s [`namespace`](/docs/api/qiskit/dev/qiskit.circuit.Annotation#namespace "qiskit.circuit.Annotation.namespace") attribute will be used to serialize it.
 
-  *   **implicit\_defcals** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, DefcalInstruction] | None*) – mapping of [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name")s to an associated `DefcalInstruction` object. All instructions with the key name in the input circuit should be output as if there is a `defcal` statement corresponding to the given `DefcalInstruction` defined. The key name and the `DefcalInstruction.name` do not need to match. The `defcal` name cannot collide with an OpenQASM 3 keyword.
+  *   **implicit\_defcals** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, DefcalInstruction] | None*) – mapping of [`Instruction.name`](/docs/api/qiskit/dev/qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name")s to an associated `DefcalInstruction` object. All instructions with the key name in the input circuit should be output as if there is a `defcal` statement corresponding to the given `DefcalInstruction` defined. The key name and the `DefcalInstruction.name` do not need to match. The `defcal` name cannot collide with an OpenQASM 3 keyword.
 
   #### dump
 
@@ -231,7 +231,7 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
 ### load
 
-<Function id="qiskit.qasm3.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L311-L338" signature="qiskit.qasm3.load(filename, *, num_qubits=None, annotation_handlers=None)">
+<Function id="qiskit.qasm3.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L328-L355" signature="qiskit.qasm3.load(filename, *, num_qubits=None, annotation_handlers=None)">
   Load an OpenQASM 3 program from the file `filename`.
 
   **Parameters**
@@ -259,7 +259,7 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
 ### loads
 
-<Function id="qiskit.qasm3.loads" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L341-L436" signature="qiskit.qasm3.loads(program, *, num_qubits=None, annotation_handlers=None)">
+<Function id="qiskit.qasm3.loads" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L358-L453" signature="qiskit.qasm3.loads(program, *, num_qubits=None, annotation_handlers=None)">
   Load an OpenQASM 3 program from the given string.
 
   **Examples**
@@ -454,7 +454,7 @@ These two functions allow for specifying include paths as an iterable of paths, 
   ##### constructor
 
   <Attribute id="qiskit.qasm3.CustomGate.constructor">
-    A callable Python object that takes `num_params` angles as positional arguments, and returns a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object representing the gate.
+    A callable Python object that takes `num_params` angles as positional arguments, and returns a [`Gate`](/docs/api/qiskit/dev/qiskit.circuit.Gate "qiskit.circuit.Gate") object representing the gate.
   </Attribute>
 
   ##### name

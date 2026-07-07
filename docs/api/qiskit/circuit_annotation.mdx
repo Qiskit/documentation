@@ -18,13 +18,13 @@ python_api_name: qiskit.circuit.annotation
 
 This module contains the infrastructure for working with custom circuit annotations.
 
-The main user-facing class is the base class [`qiskit.circuit.Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation"), which is also re-exported from this module.
+The main user-facing class is the base class [`qiskit.circuit.Annotation`](/docs/api/qiskit/qiskit.circuit.Annotation "qiskit.circuit.Annotation"), which is also re-exported from this module.
 
 <span id="circuit-annotation-subclassing" />
 
 ## Custom annotation subclasses
 
-The [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") class is intended to be subclassed. Subclasses must set their [`namespace`](qiskit.circuit.Annotation#namespace "qiskit.circuit.Annotation.namespace") field. This can be specific to an instance, or static for an entire subclass. The namespace is used as part of the dispatch mechanism, as described in [Namespacing](#circuit-annotation-namespacing).
+The [`Annotation`](/docs/api/qiskit/qiskit.circuit.Annotation "qiskit.circuit.Annotation") class is intended to be subclassed. Subclasses must set their [`namespace`](/docs/api/qiskit/qiskit.circuit.Annotation#namespace "qiskit.circuit.Annotation.namespace") field. This can be specific to an instance, or static for an entire subclass. The namespace is used as part of the dispatch mechanism, as described in [Namespacing](#circuit-annotation-namespacing).
 
 Circuit equality checks also compare annotations on objects in an order-dependent manner. You will likely want to implement the [`__eq__()`](https://docs.python.org/3/reference/datamodel.html#object.__eq__) magic method on any subclasses.
 
@@ -42,7 +42,7 @@ A stand-alone function allows iterating through namespaces and parent namespaces
 
 #### iter\_namespaces
 
-<Function id="qiskit.circuit.annotation.iter_namespaces" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/annotation.py#L207-L225" signature="qiskit.circuit.annotation.iter_namespaces(namespace)">
+<Function id="qiskit.circuit.annotation.iter_namespaces" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/annotation.py#L207-L225" signature="qiskit.circuit.annotation.iter_namespaces(namespace)">
   An iterator over all namespaces that can be used to lookup the given namespace.
 
   This includes the namespace and all parents, including the root empty-string namespace.
@@ -69,16 +69,16 @@ A stand-alone function allows iterating through namespaces and parent namespaces
 
 Annotations represent completely custom data, that may persist after compilation. This may include data that should be serialized for later consumption, such as additional data that is interpreted by a backend-compiler. Qiskit’s native binary QPY format (see [`qiskit.qpy`](qpy#module-qiskit.qpy "qiskit.qpy")) supports the concept of arbitrary annotations in its payloads from version 15 onwards. In OpenQASM 3 (see [`qiskit.qasm3`](qasm3#module-qiskit.qasm3 "qiskit.qasm3")), annotations are a core language feature, and Qiskit’s import/export support for OpenQASM 3 includes serialization of annotations.
 
-However, since annotations are generally custom subclasses and unknown to Qiskit, we cannot have built-in support for serialization. On the deserialization front, Qiskit will not, in general, have an existing [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") object to call deserialization methods from. It is also expected that annotations may relate to some unknown-to-Qiskit shared state within a given circuit context.
+However, since annotations are generally custom subclasses and unknown to Qiskit, we cannot have built-in support for serialization. On the deserialization front, Qiskit will not, in general, have an existing [`Annotation`](/docs/api/qiskit/qiskit.circuit.Annotation "qiskit.circuit.Annotation") object to call deserialization methods from. It is also expected that annotations may relate to some unknown-to-Qiskit shared state within a given circuit context.
 
 For all of these reasons, serialization and deserialization of annotations is handled by custom objects, which must be passed at the interface points of the relevant serialization functions. For example in QPY, the `annotation_factories` argument in [`qpy.dump()`](qpy#qiskit.qpy.dump "qiskit.qpy.dump") and [`qpy.load()`](qpy#qiskit.qpy.load "qiskit.qpy.load") are used to pass serializers.
 
 #### QPYSerializer
 
-<Class id="qiskit.circuit.annotation.QPYSerializer" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/annotation.py#L228-L366" signature="qiskit.circuit.annotation.QPYSerializer" modifiers="class">
+<Class id="qiskit.circuit.annotation.QPYSerializer" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/annotation.py#L228-L366" signature="qiskit.circuit.annotation.QPYSerializer" modifiers="class">
   Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
-  The interface for serializers and deserializers of [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects to QPY.
+  The interface for serializers and deserializers of [`Annotation`](/docs/api/qiskit/qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects to QPY.
 
   For more information on QPY, see [`qiskit.qpy`](qpy#module-qiskit.qpy "qiskit.qpy").
 
@@ -88,7 +88,7 @@ For all of these reasons, serialization and deserialization of annotations is ha
 
   The structure of calls during serialization of a single circuit is:
 
-  1.  many calls to `dump_annotation()`, which will all share the same `namespace` argument, which will always be a (non-strict) prefix of all the [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects given.
+  1.  many calls to `dump_annotation()`, which will all share the same `namespace` argument, which will always be a (non-strict) prefix of all the [`Annotation`](/docs/api/qiskit/qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects given.
   2.  one call to `dump_state()`.
 
   The general structure of calls during deserialization of a single circuit out of a QPY payload is:
@@ -101,7 +101,7 @@ For all of these reasons, serialization and deserialization of annotations is ha
 
 #### QPYFromOpenQASM3Serializer
 
-<Class id="qiskit.circuit.annotation.QPYFromOpenQASM3Serializer" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/annotation.py#L427-L504" signature="qiskit.circuit.annotation.QPYFromOpenQASM3Serializer(inner)" modifiers="class">
+<Class id="qiskit.circuit.annotation.QPYFromOpenQASM3Serializer" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/annotation.py#L427-L504" signature="qiskit.circuit.annotation.QPYFromOpenQASM3Serializer(inner)" modifiers="class">
   Bases: [`QPYSerializer`](#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")
 
   An adaptor that converts a [`OpenQASM3Serializer`](#qiskit.circuit.annotation.OpenQASM3Serializer "qiskit.circuit.annotation.OpenQASM3Serializer") into a [`QPYSerializer`](#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer").
@@ -150,10 +150,10 @@ For all of these reasons, serialization and deserialization of annotations is ha
 
 #### OpenQASM3Serializer
 
-<Class id="qiskit.circuit.annotation.OpenQASM3Serializer" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/annotation.py#L369-L424" signature="qiskit.circuit.annotation.OpenQASM3Serializer" modifiers="class">
+<Class id="qiskit.circuit.annotation.OpenQASM3Serializer" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/annotation.py#L369-L424" signature="qiskit.circuit.annotation.OpenQASM3Serializer" modifiers="class">
   Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
-  The interface for serializers and deserializers of [`Annotation`](qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects to OpenQASM 3.
+  The interface for serializers and deserializers of [`Annotation`](/docs/api/qiskit/qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects to OpenQASM 3.
 
   For more information on OpenQASM 3 support in Qiskit, see [`qiskit.qasm3`](qasm3#module-qiskit.qasm3 "qiskit.qasm3").
 
@@ -166,7 +166,7 @@ For all of these reasons, serialization and deserialization of annotations is ha
 
 A principal goal of the annotation framework is to allow custom analyses and commands to be stored on circuits in an instruction-local manner, either by the user on entry to the compiler, or for one compiler pass to store information for later consumption.
 
-For example, we can write a simple transpiler pass that collects runs of single-qubit operations, and puts each run into a [`BoxOp`](qiskit.circuit.BoxOp "qiskit.circuit.BoxOp"), then calculates the total unitary action and attaches it as a custom annotation, so the same analysis does not need to be repeated later, even if the internals of each block are optimized.
+For example, we can write a simple transpiler pass that collects runs of single-qubit operations, and puts each run into a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp "qiskit.circuit.BoxOp"), then calculates the total unitary action and attaches it as a custom annotation, so the same analysis does not need to be repeated later, even if the internals of each block are optimized.
 
 ```python
 from qiskit.circuit import annotation, QuantumCircuit, BoxOp
