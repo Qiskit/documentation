@@ -184,7 +184,7 @@ cd $WORKSPACE
 ```
 </AccordionItem>
 <AccordionItem title="Python 3.12 (recommended version)">
-Python 3.12 is recommended because it has the best wheel availability for qiskit-aer and other dependencies. 3.10 and 3.11 also work, but 3.13 or later might lack pre-built wheels for some packages.
+Python 3.12 is recommended because it has the best wheel availability for `qiskit-aer` and other dependencies. 3.10 and 3.11 also work, but 3.13 or later might lack pre-built wheels for some packages.
 
 Open the VS Code terminal and run the following code to detect a suitable version of Python:
 
@@ -242,7 +242,7 @@ if ($PYTHON_EXE -and ($PYTHON_EXE -match '[^\x20-\x7E]')) {
 if ($PYTHON_EXE) { Write-Host "`$PYTHON_EXE = '$PYTHON_EXE'" }
 ```
 
-If the download didn't work, or you prefer manual download, comment out the code lines that install Python 3.12, then download Python 3.12 from the [Python](https://www.python.org/downloads/).  Run the executable to install Python.  Select "Add Python to PATH" during the install, then rerun the above snippet to make sure it's being found.
+If the download didn't work, or you prefer manual download, comment out the code lines that install Python 3.12, then download Python 3.12 from the [Python](https://www.python.org/downloads/) website.  Run the executable to install Python.  Select "Add Python to PATH" during the install, then rerun the above snippet to make sure it's being found.
 
 <Admonition type="note" title="Notes">
 - Do NOT use the Microsoft Store Python because it lacks C headers. If `python` opens the Microsoft Store, disable the alias by going to Windows Settings -> Apps -> Advanced app settings -> App execution aliases.
@@ -260,8 +260,8 @@ If the download didn't work, or you prefer manual download, comment out the code
 ### Step 2 - Set up the Python virtual environment with Qiskit
 
 <Accordion>
-<AccordionItem title="Reset the VSCode terminal">
-Open the VSCode terminal and reset it:
+<AccordionItem title="Reset the VS Code terminal">
+Open the VS Code terminal and reset it:
 
 ```powershell
 $WORKSPACE = "C:\workspace"   # change to your workspace path
@@ -302,7 +302,7 @@ pip install --prefer-binary qiskit-ibm-runtime qiskit-aer
 pip install notebook ipykernel ipywidgets  # optional: run the following Python steps in Jupyter
 ```
 
-`--prefer-binary` avoids compiling qiskit-aer from source. If qiskit-aer still fails, try `pip install qiskit-aer --only-binary=:all:` or skip it.  Qiskit-aer is optional and is only needed for local simulation.
+`--prefer-binary` avoids compiling `qiskit-aer` from source. If `qiskit-aer` still fails, try `pip install qiskit-aer --only-binary=:all:` or skip it.  `qiskit-aer` is optional and is only needed for local simulation.
 
 <Admonition type="note">
 Do NOT run `pip install --upgrade qiskit` after setup. Upgrading to a new minor version breaks C extensions built against the old one.
@@ -652,7 +652,7 @@ Use a short root path on C:\ (for example, `C:\workspace`, or the path you set i
 Run `conda deactivate` until `CONDA_DEFAULT_ENV` and `CONDA_PREFIX` are both gone from the environment. Check with `$env:CONDA_PREFIX`. If they persist, open a fresh PowerShell (not an Anaconda prompt) and retry from Step 2.
 </AccordionItem>
 <AccordionItem title="The virtual environment was created from a conda-managed Python (check the `home =` line in `.venv\pyvenv.cfg`)">
-The virtual environment inherited conda's C runtime and cannot be fixed in place. Delete it and rebuild from a python.org Python. Run `Remove-Item -Recurse -Force .venv`, then rerun the Python detection snippet in Step 1 to set `$PYTHON_EXE`, then recreate the virtual environment (Step 2).
+The virtual environment inherited Conda's C runtime and cannot be fixed in-place. Delete it and rebuild from a python.org Python. Run `Remove-Item -Recurse -Force .venv`, then rerun the Python detection snippet in Step 1 to set `$PYTHON_EXE`, then recreate the virtual environment (Step 2).
 </AccordionItem>
 <AccordionItem title="`DLL load failed` on import">
 Conda is likely leaking into the virtual environment. Check both of the issues immediately above this. Also verify that Python is 64-bit: `python -c "import platform; print(platform.architecture())"`
@@ -689,6 +689,6 @@ The `--passive --wait` flags block PowerShell while the installer runs in the ba
 
 <Admonition type="tip" title="Recommendations">
   - Learn how to [extend Python with the Qiskit C API](/docs/guides/c-extension-for-python).
-  - [Install Qiskit.](/docs/guides/install-qiskit)
-  - Explore the [Qiskit C API reference.](/docs/api/qiskit-c)
+  - [Install Qiskit](/docs/guides/install-qiskit).
+  - Explore the [Qiskit C API reference](/docs/api/qiskit-c).
 </Admonition>
