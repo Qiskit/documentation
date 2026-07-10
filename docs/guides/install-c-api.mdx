@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```
-
+<span id="unix"></span>
 ## UNIX-like
 
 This section provides build instructions for UNIX-like systems.
@@ -123,7 +123,7 @@ This section provides build instructions for Windows systems.
 There are two independent ways to use the C API on Windows:
 
 * **Build Python extension modules** that use the Qiskit C API. Follow Steps 1-5. This path uses the C headers shipped with the `qiskit` Python package and does not require Rust or cbindgen.
-* **Build the standalone C library** to link against from a pure C program, as in the UNIX-like section. Complete Step 1, then skip to [Build the standalone library](#build-the-standalone-library), which lists its additional requirements.
+* **Build the standalone C library** to link against from a pure C program, as is done in the [UNIX-like](#unix) section. Complete Step 1, then skip to [Build the standalone library](#build-the-standalone-library), which lists its additional requirements.
 
 ### Requirements
 
@@ -169,8 +169,8 @@ Download VS Code from the [Visual Studio Code](https://code.visualstudio.com/) s
 
 After it is installed, continue with these steps:
 1. Open VS Code
-2. Click File -> Open Folder, then select your workspace (for example, `C:\workspace`).
-3. Click Terminal -> New terminal to open a PowerShell terminal.
+2. Click File → Open Folder, then select your workspace (for example, `C:\workspace`).
+3. Click Terminal → New terminal to open a PowerShell terminal.
 4. Click the Extensions icon on the left or press Ctrl+Shift+X. In the Extensions window, search for and install `ms-python.python`, `ms-toolsai.jupyter`, and `ms-vscode.cpptools`.
 
 Run the rest of the commands in this guide in the VS Code terminal, unless otherwise instructed. The VS Code terminal defaults to PowerShell, preventing mix-ups with the Windows built-in command window. 
@@ -245,7 +245,7 @@ if ($PYTHON_EXE) { Write-Host "`$PYTHON_EXE = '$PYTHON_EXE'" }
 If the download didn't work, or you prefer manual download, comment out the code lines that install Python 3.12, then download Python 3.12 from the [Python](https://www.python.org/downloads/) website.  Run the executable to install Python.  Select "Add Python to PATH" during the install, then rerun the above snippet to make sure it's being found.
 
 <Admonition type="note" title="Notes">
-- Do NOT use the Microsoft Store Python because it lacks C headers. If `python` opens the Microsoft Store, disable the alias by going to Windows Settings -> Apps -> Advanced app settings -> App execution aliases.
+- Do NOT use the Microsoft Store Python because it lacks C headers. If `python` opens the Microsoft Store, disable the alias by going to Windows Settings → Apps → Advanced app settings → App execution aliases.
 
 - Anaconda users: run `conda deactivate` until the (base) prefix disappears. If it won't go away, open a new terminal in VS Code.
 </Admonition> 
@@ -291,7 +291,7 @@ Verify:
 
 ```powershell
 Get-Command python | Select-Object -First 1 -ExpandProperty Source
-# -> workspace\.venv\Scripts\python.exe
+# → workspace\.venv\Scripts\python.exe
 ```
 </AccordionItem>
 <AccordionItem title="Install packages">
@@ -314,7 +314,7 @@ Do NOT run `pip install --upgrade qiskit` after setup. Upgrading to a new minor 
 
 Run the following code in each new Python session (for example, each time you restart a Jupyter kernel). It locates and loads the MSVC developer environment automatically so you don't need the x64 built-in command prompt.
 
-The example in this documentation builds C extension modules by using setuptools with MSVC. Generally, you define `QISKIT_PYTHON_EXTENSION`, include `qiskit.h`, and call `qk_import()` in your init function. Only headers from `qiskit.capi.get_include()` are needed at build time — no library is linked. See [Extend Qiskit in Python with C](/docs/guides/c-extension-for-python) for details.
+The example in this documentation builds C extension modules by using `setuptools` with MSVC. Generally, you define `QISKIT_PYTHON_EXTENSION`, include `qiskit.h`, and call `qk_import()` in your init function. Only headers from `qiskit.capi.get_include()` are needed at build time — no library is linked. See [Extend Qiskit in Python with C](/docs/guides/c-extension-for-python) for details.
 
 <Accordion>
   <AccordionItem title="Load the MSVC environment">
@@ -488,7 +488,7 @@ if r.returncode != 0:
     if "WinError 32" in output or "being used by another process" in output:
         print("\n--- TIP ---")
         print("The .pyd file is locked because it was previously imported in this kernel.")
-        print("Restart the kernel (Ctrl+Shift+P -> 'Jupyter: Restart Kernel'), then rerun")
+        print("Restart the kernel (Ctrl+Shift+P → 'Jupyter: Restart Kernel'), then rerun")
         print("the Step 3 MSVC cell first, then this cell again.")
     elif "cl.exe" in output.lower() or "vcvars" in output.lower() or "cannot find" in output.lower():
         print("\n--- TIP ---")
@@ -567,7 +567,7 @@ In VS Code, create `.vscode/extensions.json` with this content:
 </Accordion>
 ### Build the standalone library
 
-This section builds the standalone C library, which is only needed if you want to compile and link pure C programs as in the UNIX-like section. In addition to the Step 1 prerequisites, this requires the following tools:
+This section builds the standalone C library, which is only needed if you want to compile and link pure C programs, as described in the [UNIX-like](#unix) section. In addition to the Step 1 prerequisites, this requires the following tools:
 
 * A Rust compiler: see for example the [guide on installing Qiskit from source](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md#installing-qiskit-from-source)
 * [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to create the C header, which you can install with `cargo install cbindgen`.
@@ -622,7 +622,7 @@ Update the [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from 
 Rerun the MSVC load cell (Step 3), or use the x64 Native Tools Command Prompt
 </AccordionItem>
 <AccordionItem title="`python` opens Microsoft Store">
-Go to Settings -> Apps -> Advanced app settings -> App execution aliases and turn off `python.exe`
+Go to Settings → Apps → Advanced app settings → App execution aliases and turn off `python.exe`
 </AccordionItem>
 <AccordionItem title="`.ps1 cannot be loaded` / scripts disabled">
 Run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` then retry
@@ -637,7 +637,7 @@ Run `pip install "qiskit[visualization]~=2.4.2"`
 Run `pip install qiskit-aer --only-binary=:all:`. If that also fails, use Python 3.12 or skip aer, which is optional
 </AccordionItem>
 <AccordionItem title="Build runs but import fails with a version error">
-Build and runtime Qiskit must share a minor version.  Reinstall with `pip install "qiskit~=2.4.2"`
+The built Qiskit C extension and the installed Qiskit version must have the same version.  Reinstall Qiskit with `pip install "qiskit~=2.4.2"`
 </AccordionItem>
 <AccordionItem title="I rebuilt the C but the circuit did not change">
 A C extension cannot be re-imported live. Restart the kernel, rerun the MSVC commands (Step 3), then rebuild
@@ -646,7 +646,7 @@ A C extension cannot be re-imported live. Restart the kernel, rerun the MSVC com
 `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
 </AccordionItem>
 <AccordionItem title="Path length errors">
-Use a short root path on C:\ (for example, `C:\workspace`, or the path you set in the setup step), or enable Long Paths: Settings -> System -> For developers -> Long Paths
+Use a short root path on C:\ (for example, `C:\workspace`, or the path you set in the setup step), or enable Long Paths: Settings → System → For developers → Long Paths
 </AccordionItem>
 <AccordionItem title="Conda is active (the prompt shows `(base)`) or builds behave oddly after using Anaconda">
 Run `conda deactivate` until `CONDA_DEFAULT_ENV` and `CONDA_PREFIX` are both gone from the environment. Check with `$env:CONDA_PREFIX`. If they persist, open a fresh PowerShell (not an Anaconda prompt) and retry from Step 2.
@@ -670,13 +670,13 @@ Delete the `_smoke_pkg` folder in your workspace, rerun the MSVC load cell, then
 Your network uses a proxy that intercepts HTTPS. Try running `pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org qiskit` or ask your network administrator for the proxy CA certificate
 </AccordionItem>
 <AccordionItem title="Windows Defender quarantines the `.pyd` file">
-Add your workspace's `.venv` and `_smoke_pkg` folders to Defender exclusions by going to Windows Security -> Virus & threat protection -> Manage settings -> Exclusions
+Add your workspace's `.venv` and `_smoke_pkg` folders to Defender exclusions by going to Windows Security → Virus & threat protection → Manage settings → Exclusions
 </AccordionItem>
 <AccordionItem title="VS Build Tools cannot be installed (no admin rights)">
 Administrator access is required. Ask your IT department for access
 </AccordionItem>
 <AccordionItem title="`WinError 32` / file in use during rebuild">
-The .pyd is locked by the running kernel. Restart the kernel (Ctrl+Shift+P -> Jupyter: Restart Kernel), rerun Step 3, then rebuild
+The .pyd is locked by the running kernel. Restart the kernel (Ctrl+Shift+P → Jupyter: Restart Kernel), rerun Step 3, then rebuild
 </AccordionItem>
 <AccordionItem title="Commands silently do nothing (no error, no output)">
 You might be in cmd.exe instead of PowerShell. Check your prompt: PowerShell shows `PS C:\>`, cmd shows `C:\>`. Open PowerShell from Start Menu or Win+X
