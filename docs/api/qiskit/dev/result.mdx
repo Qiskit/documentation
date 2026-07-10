@@ -18,11 +18,11 @@ python_api_name: qiskit.result
 
 ## Core classes
 
-|                                                                                                      |                                                            |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`Result`](qiskit.result.Result "qiskit.result.Result")(\*\[, backend\_name, backend\_version, ...]) | Model for Results.                                         |
-| [`ResultError`](qiskit.result.ResultError "qiskit.result.ResultError")(error)                        | Exceptions raised due to errors in result output.          |
-| [`Counts`](qiskit.result.Counts "qiskit.result.Counts")(data\[, time\_taken, creg\_sizes, ...])      | A class to store a counts result from a circuit execution. |
+|                                                                                                                           |                                                            |
+| ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`Result`](/docs/api/qiskit/dev/qiskit.result.Result "qiskit.result.Result")(\*\[, backend\_name, backend\_version, ...]) | Model for Results.                                         |
+| [`ResultError`](/docs/api/qiskit/dev/qiskit.result.ResultError "qiskit.result.ResultError")(error)                        | Exceptions raised due to errors in result output.          |
+| [`Counts`](/docs/api/qiskit/dev/qiskit.result.Counts "qiskit.result.Counts")(data\[, time\_taken, creg\_sizes, ...])      | A class to store a counts result from a circuit execution. |
 
 ## Marginalization
 
@@ -33,7 +33,7 @@ python_api_name: qiskit.result
 
   **Parameters**
 
-  *   **result** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)  *|*[*Result*](qiskit.result.Result "qiskit.result.result.Result")) – result to be marginalized (a Result object or a dict(str, int) of counts).
+  *   **result** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)  *|*[*Result*](/docs/api/qiskit/dev/qiskit.result.Result "qiskit.result.result.Result")) – result to be marginalized (a Result object or a dict(str, int) of counts).
   *   **indices** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
   *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Default: False. Operates on the original Result argument if True, leading to loss of original Job Result. It has no effect if `result` is a dict.
   *   **format\_marginal** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Default: False. If True, takes the output of marginalize and formats it with placeholders between cregs and for non-indices.
@@ -47,7 +47,7 @@ python_api_name: qiskit.result
 
   **Return type**
 
-  [Result](qiskit.result.Result "qiskit.result.Result") or [dict](https://docs.python.org/3/library/stdtypes.html#dict)([str](https://docs.python.org/3/library/stdtypes.html#str), [int](https://docs.python.org/3/library/functions.html#int))
+  [Result](/docs/api/qiskit/dev/qiskit.result.Result "qiskit.result.Result") or [dict](https://docs.python.org/3/library/stdtypes.html#dict)([str](https://docs.python.org/3/library/stdtypes.html#str), [int](https://docs.python.org/3/library/functions.html#int))
 
   **Raises**
 
@@ -112,28 +112,28 @@ python_api_name: qiskit.result
 
 ## Distributions
 
-|                                                                                                               |                                                          |
-| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| [`ProbDistribution`](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")(data\[, shots])         | A generic dict-like class for probability distributions. |
-| [`QuasiDistribution`](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")(data\[, shots, ...]) | A dict-like class for representing quasi-probabilities.  |
+|                                                                                                                                    |                                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| [`ProbDistribution`](/docs/api/qiskit/dev/qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")(data\[, shots])         | A generic dict-like class for probability distributions. |
+| [`QuasiDistribution`](/docs/api/qiskit/dev/qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")(data\[, shots, ...]) | A dict-like class for representing quasi-probabilities.  |
 
 ## Expectation values
 
 ### sampled\_expectation\_value
 
-<Function id="qiskit.result.sampled_expectation_value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/sampled_expval.py#L37-L90" signature="qiskit.result.sampled_expectation_value(dist, oper)">
+<Function id="qiskit.result.sampled_expectation_value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/sampled_expval.py#L37-L91" signature="qiskit.result.sampled_expectation_value(dist, oper)">
   Computes expectation value from a sampled distribution
 
   Note that passing a raw dict requires bit-string keys.
 
   **Parameters**
 
-  *   **dist** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)  *|*[*result.Counts*](qiskit.result.Counts "qiskit.result.Counts")  *|*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")  *|*[*ProbDistribution*](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")) – Input sampled distribution.
-  *   **oper** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*quantum\_info.SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*quantum\_info.SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")) – The operator for the observable.
+  *   **dist** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)  *|*[*result.Counts*](/docs/api/qiskit/dev/qiskit.result.Counts "qiskit.result.Counts")  *|*[*QuasiDistribution*](/docs/api/qiskit/dev/qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")  *|*[*ProbDistribution*](/docs/api/qiskit/dev/qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")) – Input sampled distribution.
+  *   **oper** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*quantum\_info.Pauli*](/docs/api/qiskit/dev/qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*quantum\_info.SparsePauliOp*](/docs/api/qiskit/dev/qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*quantum\_info.SparseObservable*](/docs/api/qiskit/dev/qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")) – The operator for the observable.
 
   **Returns**
 
-  The expectation value.
+  The expectation value. Returns `complex` when the operator has complex-valued coefficients, `float` otherwise.
 
   **Raises**
 
@@ -141,6 +141,6 @@ python_api_name: qiskit.result
 
   **Return type**
 
-  [float](https://docs.python.org/3/library/functions.html#float)
+  [float](https://docs.python.org/3/library/functions.html#float) | [complex](https://docs.python.org/3/library/functions.html#complex)
 </Function>
 
