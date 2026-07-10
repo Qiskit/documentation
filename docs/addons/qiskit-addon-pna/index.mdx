@@ -5,7 +5,7 @@ description: "Documentation for the latest version of Qiskit propagated noise ab
 
 # Propagated noise absorption (PNA)
 
-This package implements propagated noise absorption (PNA) [\[1\]](#ref1) for mitigating errors in the expectation value of observables.
+This package implements propagated noise absorption (PNA) [\[1\]](#references) for mitigating errors in the expectation value of observables.
 
 PNA works by “absorbing” the inverses of the learned noise channels into a target observable using Pauli propagation. That is, each Pauli noise generator in the noise model is classically propagated to the end of the circuit and applied to the observable. This results in a new observable that, when measured on a QPU, mitigates the learned gate noise.
 
@@ -17,7 +17,7 @@ A simple guide to help you get started quickly with this package is available in
 
 ## Use case examples
 
-This technique has been used to mitigate noise on 56-qubit Trotterized Ising models [\[1\]](#ref1).
+This technique has been used to mitigate noise on 56-qubit Trotterized Ising models [\[1\]](#references).
 
 ## Technical discussion
 
@@ -27,7 +27,7 @@ Executing entangling gates on modern QPUs results in a substantial amount of noi
 
 ![\_images/noisy\_expt.png](/docs/images/addons/qiskit-addon-pna/noisy_expt.avif)
 
-It is possible to learn and efficiently characterize this gate noise as a Pauli-Lindblad model, and as shown in probabilistic error cancellation (PEC), we can mitigate the error by implementing the anti-noise, $\Lambda^{-1}$, with a QPU sampling protocol [\[2\]](#ref2). Other techniques, such as tensor-network error mitigation (TEM), implement the inverse noise channel as a classical post-processing step [\[3\]](#ref3).
+It is possible to learn and efficiently characterize this gate noise as a Pauli-Lindblad model, and as shown in probabilistic error cancellation (PEC), we can mitigate the error by implementing the anti-noise, $\Lambda^{-1}$, with a QPU sampling protocol [\[2\]](#references). Other techniques, such as tensor-network error mitigation (TEM), implement the inverse noise channel as a classical post-processing step [\[3\]](#references).
 
 ![\_images/noise\_mitigated\_expt.png](/docs/images/addons/qiskit-addon-pna/noise_mitigated_expt.avif)
 
