@@ -1,0 +1,73 @@
+---
+title: "Propagated noise absorption (PNA)"
+description: "Documentation for the latest version of Qiskit propagated noise absorption"
+---
+
+# Propagated noise absorption (PNA)
+
+This package implements propagated noise absorption (PNA) [\[1\]](#ref1) for mitigating errors in the expectation value of observables.
+
+PNA works by “absorbing” the inverses of the learned noise channels into a target observable using Pauli propagation. That is, each Pauli noise generator in the noise model is classically propagated to the end of the circuit and applied to the observable. This results in a new observable that, when measured on a QPU, mitigates the learned gate noise.
+
+This package is suitable for estimating expectation values of general quantum circuits and Pauli observables; however, the technique is generally most effective on circuits that are near-Clifford.
+
+## Getting started
+
+A simple guide to help you get started quickly with this package is available in the [quickstart guide](guides/quickstart).
+
+## Use case examples
+
+This technique has been used to mitigate noise on 56-qubit Trotterized Ising models [\[1\]](#ref1).
+
+## Technical discussion
+
+### Method overview
+
+Executing entangling gates on modern QPUs results in a substantial amount of noise. Until fully fault tolerant devices are available, ideal entangling gates, $U$, will not be available. They will instead be affected by some noise channel, $\Lambda$.
+
+![\_images/noisy\_expt.png](/docs/images/addons/qiskit-addon-pna/noisy_expt.avif)
+
+It is possible to learn and efficiently characterize this gate noise as a Pauli-Lindblad model, and as shown in probabilistic error cancellation (PEC), we can mitigate the error by implementing the anti-noise, $\Lambda^{-1}$, with a QPU sampling protocol [\[2\]](#ref2). Other techniques, such as tensor-network error mitigation (TEM), implement the inverse noise channel as a classical post-processing step [\[3\]](#ref3).
+
+![\_images/noise\_mitigated\_expt.png](/docs/images/addons/qiskit-addon-pna/noise_mitigated_expt.avif)
+
+Like TEM, PNA implements the inverse noise channel in a classical processing step. While TEM uses tensor networks to describe and apply the noise-mitigating map to a set of informationally complete measurements, PNA uses Pauli propagation to propagate the observable, $O$, through the inverse noise channel. This results in a new observable, $\tilde{O}$, that when measured against the noisy state, mitigates the learned noise.
+
+![\_images/pna\_overview.png](/docs/images/addons/qiskit-addon-pna/pna_overview.avif)
+
+### Sources of bias
+
+*   This implementation propagates each Pauli error generator within each anti-noise channel, $\Lambda^{-1}_i$, to the end of the circuit. As each anti-noise generator is propagated forward through the circuit under the action of $N$ Pauli rotation gates of an $M$-qubit circuit, the number of terms will grow as $O(2^N)$ towards a maximum of $4^M$ unique Pauli components. To control the computational cost, terms with small coefficients must be truncated, which results in some error in the evolved anti-noise channel.
+*   In addition to the truncation of the evolved anti-noise channel, $\Lambda^{-1}$, $\tilde{O}$ is also truncated as it is propagated through $\Lambda^{-1}$. This is also a source of bias in the final mitigated expectation value.
+*   While letting $\tilde{O}$ grow larger during propagation will increase its accuracy, measuring it requires taking many more shots on the QPU. Typically this increases the coefficients of the original Pauli terms in $O$, along with creating many new Pauli terms with smaller coefficients. Both the rescaling of the original coefficients and the creation of new terms can increase sampling overhead. In practice, we truncate once more by measuring only the largest terms in $\tilde{O}$.
+
+## Contributing
+
+The source code is available [on GitHub](https://github.com/Qiskit/qiskit-addon-pna).
+
+The developer guide is located at [CONTRIBUTING.md](https://github.com/Qiskit/qiskit-addon-pna/blob/main/CONTRIBUTING.md) in the root of this project’s repository. By participating, you are expected to uphold Qiskit’s [code of conduct](https://github.com/Qiskit/qiskit/blob/main/CODE_OF_CONDUCT.md).
+
+We use [GitHub issues](https://github.com/Qiskit/qiskit-addon-pna/issues/new/choose) for tracking requests and bugs.
+
+## Citing this package
+
+If you use this package in your research, use the [CITATION.bib](https://github.com/Qiskit/qiskit-addon-pna/blob/main/CITATION.bib) file in this project’s repository to cite the appropriate reference(s).
+
+## License
+
+[Apache License 2.0](https://github.com/Qiskit/qiskit-addon-pna/blob/main/LICENSE.txt)
+
+## Deprecation Policy
+
+We follow [semantic versioning](https://semver.org/). We may occasionally make breaking changes in order to improve the user experience. When possible, we will keep old interfaces and mark them as deprecated, as long as they can co-exist with the new ones. Each substantial improvement, breaking change, or deprecation will be documented in the [release notes](/docs/api/qiskit-addon-pna/release-notes).
+
+<span id="id1" />
+
+## References
+
+1.  Andrew Eddins, et al., [Computing noise-canceling observables via Pauli propagation](https://arxiv.org/abs/2606.20441), arXiv:2606.20441 \[quant-ph].
+
+2.  Ewout van den Berg, et al., [Probabilistic error cancellation with sparse Pauli-Lindblad models on noisy quantum processors](https://arxiv.org/abs/2201.09866), arXiv:2201.09866 \[quant-ph].
+
+3.  Sergei Filippov, et al., [Scalable tensor-network error mitigation for near-term quantum computing](https://arxiv.org/abs/2307.11740), arXiv:2307.11740 \[quant-ph].
+
