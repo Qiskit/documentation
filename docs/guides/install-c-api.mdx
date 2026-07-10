@@ -652,7 +652,7 @@ Use a short root path on C:\ (for example, `C:\workspace`, or the path you set i
 Run `conda deactivate` until `CONDA_DEFAULT_ENV` and `CONDA_PREFIX` are both gone from the environment. Check with `$env:CONDA_PREFIX`. If they persist, open a fresh PowerShell (not an Anaconda prompt) and retry from Step 2.
 </AccordionItem>
 <AccordionItem title="The virtual environment was created from a conda-managed Python (check the `home =` line in `.venv\pyvenv.cfg`)">
-The virtual environment inherited Conda's C runtime and cannot be fixed in-place. Delete it and rebuild from a python.org Python. Run `Remove-Item -Recurse -Force .venv`, then rerun the Python detection snippet in Step 1 to set `$PYTHON_EXE`, then recreate the virtual environment (Step 2).
+The virtual environment inherited conda's C runtime and cannot be fixed in place. Delete it, download Python 3.12 from the [Python](https://www.python.org/downloads/) website, and rebuild. Run `Remove-Item -Recurse -Force .venv`, then rerun the Python detection snippet in Step 1 to set `$PYTHON_EXE`, then recreate the virtual environment (Step 2).
 </AccordionItem>
 <AccordionItem title="`DLL load failed` on import">
 Conda is likely leaking into the virtual environment. Check both of the issues immediately above this. Also verify that Python is 64-bit: `python -c "import platform; print(platform.architecture())"`
