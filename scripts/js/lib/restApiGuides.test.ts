@@ -12,10 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import {
-  extractEndpoints,
-  generateObservabilityTable,
-} from "./observabilityPage";
+import { extractEndpoints, generateTable } from "./restApiGuides.js";
 
 test("extract end points", () => {
   const sampleJson1 = JSON.stringify({
@@ -51,10 +48,39 @@ test("extract end points", () => {
 
   const expected2: Array<[string, string]> = [];
 
-  const actual1 = extractEndpoints(sampleJson1);
-  const actual2 = extractEndpoints(sampleJson2);
+  const actual1 = extractEndpoints(sampleJson1, "x-ibm-events", "events");
+  const actual2 = extractEndpoints(sampleJson2, "x-ibm-events", "events");
   expect(expected1).toEqual(actual1);
   expect(expected2).toEqual(actual2);
+});
+
+test("extract end points for permissions", () => {
+  const sampleJson = JSON.stringify({
+    paths: {
+      "/v1/jobs": {
+        get: {
+          summary: "List jobs",
+          "x-ibm-permissions": {
+            actions: [{ name: "quantum-computing.job.read" }],
+          },
+        },
+        post: {
+          summary: "Run a job",
+          "x-ibm-permissions": {
+            actions: [{ name: "quantum-computing.job.create" }],
+          },
+        },
+      },
+    },
+  });
+
+  const expected = [
+    ["quantum-computing.job.create", "Run a job (`POST /v1/jobs`)"],
+    ["quantum-computing.job.read", "List jobs (`GET /v1/jobs`)"],
+  ];
+
+  const actual = extractEndpoints(sampleJson, "x-ibm-permissions", "actions");
+  expect(expected).toEqual(actual);
 });
 
 test("generate observability table", () => {
@@ -68,7 +94,7 @@ test("generate observability table", () => {
       "List job results (`GET /v1/jobs/{id}/results`)",
     ],
   ];
-  const actual = generateObservabilityTable(input);
+  const actual = generateTable(input, "Action", "Triggered by");
 
   const expectedOutput =
     "| Action | Triggered by |\n" +
@@ -78,6 +104,22 @@ test("generate observability table", () => {
     "| `quantum-computing.job.read` | List job details (`GET /v1/jobs/{id}`) |\n" +
     "| `quantum-computing.job.delete` | Delete a job (`DELETE /v1/jobs/{id}`) |\n" +
     "| `quantum-computing.job.read` | List job results (`GET /v1/jobs/{id}/results`) |\n";
+
+  expect(actual).toBe(expectedOutput);
+});
+
+test("generate permissions table", () => {
+  const input: Array<[string, string]> = [
+    ["quantum-computing.job.read", "List jobs (`GET /v1/jobs`)"],
+    ["quantum-computing.job.create", "Run a job (`POST /v1/jobs`)"],
+  ];
+  const actual = generateTable(input, "Permission", "Required by");
+
+  const expectedOutput =
+    "| Permission | Required by |\n" +
+    "| -- | -- |\n" +
+    "| `quantum-computing.job.read` | List jobs (`GET /v1/jobs`) |\n" +
+    "| `quantum-computing.job.create` | Run a job (`POST /v1/jobs`) |\n";
 
   expect(actual).toBe(expectedOutput);
 });

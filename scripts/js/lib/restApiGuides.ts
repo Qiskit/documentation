@@ -12,7 +12,13 @@
 
 const validMethods = ["get", "post", "delete", "patch"];
 
-export function extractEndpoints(json: string): Array<[string, string]> {
+// Extracts named items from an OpenAPI extension on each endpoint, such as
+// `x-ibm-events.events[].name` or `x-ibm-permissions.actions[].name`.
+export function extractEndpoints(
+  json: string,
+  extensionKey: string,
+  itemsKey: string,
+): Array<[string, string]> {
   const result: Array<[string, string]> = [];
   const data = JSON.parse(json);
   const paths = data.paths || "";
@@ -30,14 +36,14 @@ export function extractEndpoints(json: string): Array<[string, string]> {
         throw new Error(`Missing summary for endpoint: ${summaryText}`);
       }
 
-      const ibmXEvents = operationObject["x-ibm-events"]?.events || [];
-      for (const event of ibmXEvents) {
-        const eventName = event.name;
-        if (!eventName) {
-          throw new Error(`Missing event name for endpoint: ${summaryText}`);
+      const items = operationObject[extensionKey]?.[itemsKey] || [];
+      for (const item of items) {
+        const name = item.name;
+        if (!name) {
+          throw new Error(`Missing name for endpoint: ${summaryText}`);
         }
 
-        result.push([eventName, summaryText]);
+        result.push([name, summaryText]);
       }
     }
   }
@@ -46,12 +52,14 @@ export function extractEndpoints(json: string): Array<[string, string]> {
   return result;
 }
 
-export function generateObservabilityTable(
+export function generateTable(
   input: Array<[string, string]>,
+  leftHeader: string,
+  rightHeader: string,
 ): string {
-  let markdown = `| Action | Triggered by |\n| -- | -- |\n`;
-  for (const [action, description] of input) {
-    markdown += `| \`${action}\` | ${description} |\n`;
+  let markdown = `| ${leftHeader} | ${rightHeader} |\n| -- | -- |\n`;
+  for (const [name, description] of input) {
+    markdown += `| \`${name}\` | ${description} |\n`;
   }
   return markdown;
 }
