@@ -364,17 +364,15 @@ Exam
 
 ## 6. 当前进度
 
-| 单元                   | 小节数量 | 已整理 | 当前状态   |
-| ---------------------- | -------: | -----: | ---------- |
-| Single systems         |        4 |      0 | 下一步开始 |
-| Multiple systems       |        4 |      0 | 未开始     |
-| Quantum circuits       |        4 |      0 | 未开始     |
-| Entanglement in action |        5 |      0 | 未开始     |
-| 合计                   |       17 |      0 | 复习阶段   |
+| 单元 | 小节数量 | 已整理 | 当前状态 |
+|---|---:|---:|---|
+| Single systems | 4 | 0 | 下一步开始 |
+| Multiple systems | 4 | 0 | 未开始 |
+| Quantum circuits | 4 | 0 | 未开始 |
+| Entanglement in action | 5 | 0 | 未开始 |
+| 合计 | 17 | 0 | 复习阶段 |
 
 ---
-
-
 
 ## 7. 下一步
 
