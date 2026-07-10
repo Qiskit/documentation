@@ -38,7 +38,6 @@ test.describe("objects.inv", () => {
         "# The remainder of this file is compressed using zlib.\n",
     );
 
-
     // Spot-check that specific API symbol entries are present.
     const urisToFind = [
       "stubs/qiskit.algorithms.AlgorithmJob.html#qiskit.algorithms.AlgorithmJob.job_id",
