@@ -27,6 +27,7 @@ const PACKAGE_TO_URL: Record<OpenapiPkgTitle, string> = {
 };
 
 async function main() {
+  // Activity tracking events, one guide per API.
   await writeObservabilityFile(
     RUNTIME_API_TITLE,
     "docs/guides/observability-runtime-rest.mdx",
@@ -35,10 +36,16 @@ async function main() {
     QUANTUM_SYSTEM_API_TITLE,
     "docs/guides/observability-quantum-system.mdx",
   );
+  // Authorization roles, a single guide with a section per API.
+  await writeAuthorizationFile("docs/guides/authorization-roles.mdx");
 }
 
 function maybeAddPkgTitleRegisteredIcon(pkgTitle: string) {
   return pkgTitle.replace("IBM", "IBM&reg;");
+}
+
+function toSectionTitle(pkgTitle: string): string {
+  return pkgTitle.charAt(0).toUpperCase() + pkgTitle.slice(1);
 }
 
 async function writeObservabilityFile(
@@ -50,6 +57,28 @@ async function writeObservabilityFile(
   const endpoints = extractEndpoints(jsonstr, "x-ibm-events", "events");
   const table = generateTable(endpoints, "Action", "Triggered by");
   const mdx = `${getProse(pkgTitle)}\n${table}`;
+  await writeFile(destPath, mdx, "utf8");
+  console.log(`✅ Wrote ${destPath}`);
+}
+
+async function writeAuthorizationFile(destPath: string) {
+  const pkgTitles: OpenapiPkgTitle[] = [
+    RUNTIME_API_TITLE,
+    QUANTUM_SYSTEM_API_TITLE,
+  ];
+  const sections = pkgTitles.map(async (pkgTitle) => {
+    const response = await fetch(PACKAGE_TO_URL[pkgTitle]);
+    const jsonstr = await response.text();
+    const endpoints = extractEndpoints(
+      jsonstr,
+      "x-ibm-permissions",
+      "actions",
+    );
+    const table = generateTable(endpoints, "Permission", "Required by");
+    return `## ${toSectionTitle(pkgTitle)}\n\n${table}`;
+  });
+  const body = (await Promise.all(sections)).join("\n");
+  const mdx = `${getAuthorizationProse()}\n${body}`;
   await writeFile(destPath, mdx, "utf8");
   console.log(`✅ Wrote ${destPath}`);
 }
@@ -86,6 +115,18 @@ You can use IBM Cloud Logs to visualize and alert on events that are generated i
 ### Launching IBM Cloud Logs from the Observability page
 
 For information on launching the IBM Cloud Logs UI, see the [Launching the UI](https://cloud.ibm.com/docs/cloud-logs?topic=cloud-logs-instance-launch#instance-launch-cloud-ui) in the IBM Cloud Logs documentation.
+`;
+}
+
+function getAuthorizationProse(): string {
+  return `---
+title: Authorization roles
+description: Learn about the authorization roles and permissions available for the IBM Quantum REST APIs.
+---
+
+# Authorization roles
+
+{/* TODO: Prose to be added by the team. */}
 `;
 }
 
