@@ -18,7 +18,7 @@ Functionality for finding effective spacetime Pauli checks.
 
 ### add\_pauli\_checks
 
-<Function id="qiskit_paulice.checks.add_pauli_checks" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checks.py#L34-L335" signature="add_pauli_checks(circuit, target_qubits, noise_model, cost='gamma', cost_nshots=10000, method='windowed', ancilla_qubits=None, check_creg_name='checks_c', check_qreg_name='checks_q', seed=None)">
+<Function id="qiskit_paulice.checks.add_pauli_checks" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checks.py#L36-L346" signature="add_pauli_checks(circuit, target_qubits, noise_model, cost='gamma', cost_nshots=10000, method='windowed', ancilla_qubits=None, check_creg_name='checks_c', check_qreg_name='checks_q', seed=None)">
   Add spacetime Pauli checks to a Clifford circuit.
 
   The check picking algorithm finds valid, low weight checks on each target qubit in the order they are specified in `target_qubits` and chooses the check which provides the most error detection coverage (i.e. minimizes the `cost` value). Once a check is committed on `target_qubits[0]`, it will be set for the remainder of the algorithm and a search for a good check on `target_qubits[1]` will begin. For this reason, the ordering of `target_qubits` can have some impact on the set of checks produced by the function.
