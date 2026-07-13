@@ -1,0 +1,40 @@
+---
+title: generate_preset_pbc_pass_manager (dev version)
+description: API reference for qiskit.transpiler.generate_preset_pbc_pass_manager in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.transpiler.generate_preset_pbc_pass_manager
+---
+
+<span id="qiskit-transpiler-generate-preset-pbc-pass-manager" />
+
+# qiskit.transpiler.generate\_preset\_pbc\_pass\_manager
+
+<Function id="qiskit.transpiler.generate_preset_pbc_pass_manager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/pbc/pass_manager.py#L97-L180" signature="qiskit.transpiler.generate_preset_pbc_pass_manager(optimization_level=2, approximation_degree=1.0, seed_transpiler=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None, qubits_initially_zero=True)">
+  Generate a preset PBC [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager").
+
+  This function provides a convenient way to construct a preset pass manager for PBC compilation.
+
+  **Parameters**
+
+  *   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The optimization level to generate a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") for. By default optimization level 2 is used if this is not specified. This can be 0, 1, 2, or 3. Higher levels generate potentially more optimized circuits, at the expense of potentially longer transpilation time.
+  *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Heuristic dial used for circuit approximation, where `1.0` means no approximation (up to numerical tolerance) and `0.0` means the maximum approximation.
+  *   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Sets random seed for the stochastic parts of the transpiler. If it is not specified here it can also be specified via an environment variable: `QISKIT_TRANSPILER_SEED` or in a user configuration file. The priority order is: this argument, then the environment variable, and finally the user configuration option. So setting this argument will take precedence over the other methods of setting a seed.
+  *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the unitary synthesis method to use. By default `'default'` is used. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
+  *   **unitary\_synthesis\_plugin\_config** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict) *| None*) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis_method` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
+  *   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.synthesis.high_level_synthesis.HLSConfig") *| None*) – An optional configuration class [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") that will be passed directly to [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass. This configuration class allows to specify for various high-level objects the lists of synthesis algorithms and their parameters.
+  *   **qubits\_initially\_zero** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Indicates whether the input circuit is zero-initialized.
+
+  **Returns**
+
+  The preset pass manager for the given options.
+
+  **Raises**
+
+  [**TranspilerError**](/docs/api/qiskit/dev/transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if an invalid value for `optimization_level` is passed in.
+
+  **Return type**
+
+  [*StagedPassManager*](qiskit.transpiler.StagedPassManager "qiskit.transpiler.passmanager.StagedPassManager")
+</Function>
+

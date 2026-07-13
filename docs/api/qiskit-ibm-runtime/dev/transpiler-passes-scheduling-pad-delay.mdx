@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
 # PadDelay
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py#L27-L109" signature="PadDelay(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py#L34-L116" signature="PadDelay(*args, **kwargs)" modifiers="class">
   Bases: [`BlockBasePadder`](transpiler-passes-scheduling-block-base-padder "qiskit_ibm_runtime.transpiler.passes.scheduling.block_base_padder.BlockBasePadder")
 
   Padding idle time with Delay instructions.
@@ -83,9 +83,9 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
     **Parameters**
 
-    *   **passmanager\_ir** (*Any*) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
-    *   **callback** (*Callable | None*) – A callback function which is called per execution of optimization task.
+    *   **passmanager\_ir** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – Qiskit IR to optimize.
+    *   **state** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** (*Callable\[\[Task,* [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)*,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*, float, int], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -93,7 +93,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
     **Return type**
 
-    tuple\[*Any*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+    tuple\[[*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
   </Function>
 
   ### name

@@ -19,7 +19,7 @@ import transformLinks from "transform-markdown-links";
 import { pathExists } from "../fs.js";
 import type { Pkg } from "./Pkg.js";
 import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
-import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./conversionPipeline.js";
+import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./paths.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import { removePrefix } from "../stringUtils.js";
 import { generateReleaseNotesEntry, TocEntry } from "./generateToc.js";

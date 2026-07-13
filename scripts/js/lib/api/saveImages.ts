@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { copyFile } from "fs/promises";
-import { extname } from "node:path";
+import { dirname, extname } from "node:path";
 
 import pMap from "p-map";
 import { $ } from "zx";
@@ -49,10 +49,10 @@ function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
 export async function saveImages(
   images: Image[],
   originalImagesFolderPath: string,
-  publicBaseFolder: string,
+  destFolder: string,
   pkg: Pkg,
+  artifactPath?: string,
 ) {
-  const destFolder = pkg.outputDir(`${publicBaseFolder}/docs/images`);
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
   }
@@ -61,9 +61,22 @@ export async function saveImages(
     if (skipReleaseNote(img.fileName, pkg)) {
       return;
     }
-    const source = `${originalImagesFolderPath}/${img.fileName}`;
-    const dest = `${publicBaseFolder}/${img.dest}`;
+    // Prefer the resolved artifact-relative path (covers _static/, etc.),
+    // falling back to the legacy _images/ convention.
+    const source =
+      artifactPath && img.originSrc
+        ? `${artifactPath}/${img.originSrc}`
+        : `${originalImagesFolderPath}/${img.fileName}`;
+    // img.dest is set by loadImages() and includes the full image URL prefix
+    // (e.g. "/docs/images/api/qiskit/foo.avif"). We only need its basename to
+    // place the file inside destFolder.
+    const dest = `${destFolder}/${img.dest.split("/").pop()}`;
 
+    if (!(await pathExists(source))) {
+      console.warn(`Skipping missing image: ${source}`);
+      return;
+    }
+    await mkdirp(dirname(dest));
     if (extname(source) === extname(dest)) {
       await copyFile(source, dest);
     } else {

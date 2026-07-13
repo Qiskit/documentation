@@ -16,7 +16,7 @@ import { getLastPartFromFullIdentifier } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 import type { TocGrouping } from "./TocGrouping.js";
-import { DOCS_BASE_PATH } from "./conversionPipeline.js";
+import { DOCS_BASE_PATH } from "./paths.js";
 import { groupByMajorVersion } from "./releaseNotes.js";
 
 export type TocEntry = {
@@ -35,6 +35,8 @@ type Toc = {
   children: TocEntry[];
   collapsed: boolean;
   untranslatable?: boolean;
+  parentUrl?: string;
+  parentLabel?: string;
 };
 
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
@@ -71,6 +73,10 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
     children: orderedEntries,
     collapsed: true,
     untranslatable: true,
+    ...(pkg.isAddon() && {
+      parentUrl: `/docs/addons/${pkg.name}`,
+      parentLabel: pkg.title,
+    }),
   };
 }
 
@@ -226,7 +232,7 @@ function ensureIndexPage(
   pkg: Pkg,
   tocModules: TocEntry[],
 ): TocEntry | undefined {
-  const docsFolder = pkg.outputDir(`${DOCS_BASE_PATH}/`);
+  const docsFolder = pkg.apiOutputDir(`${DOCS_BASE_PATH}/`);
   return tocModules.some((entry) => entry.url === docsFolder)
     ? undefined
     : {
