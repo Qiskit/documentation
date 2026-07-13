@@ -13,7 +13,7 @@ python_api_name: qiskit.circuit.Parameter
 
   A compile-time symbolic parameter.
 
-  The value of a [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter") must be entirely determined before a circuit begins execution. Typically this will mean that you should supply values for all [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter")s in a circuit using [`QuantumCircuit.assign_parameters()`](qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters"), though certain hardware vendors may allow you to give them a circuit in terms of these parameters, provided you also pass the values separately.
+  The value of a [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter") must be entirely determined before a circuit begins execution. Typically this will mean that you should supply values for all [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter")s in a circuit using [`QuantumCircuit.assign_parameters()`](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters"), though certain hardware vendors may allow you to give them a circuit in terms of these parameters, provided you also pass the values separately.
 
   This is the atom of [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"), and is itself an expression. The numeric value of a parameter need not be fixed while the circuit is being defined.
 
@@ -129,7 +129,7 @@ python_api_name: qiskit.circuit.Parameter
 
     **Raises**
 
-    *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") –
+    *   [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") –
 
         *   If parameter\_values contains parameters outside those in self. - If a non-numeric value is passed in `parameter_values`.
 
@@ -230,6 +230,12 @@ python_api_name: qiskit.circuit.Parameter
     Return the sign of the expression.
   </Function>
 
+  ### simplify
+
+  <Function id="qiskit.circuit.Parameter.simplify" signature="simplify()">
+    Simplify the expression. This, for example, attempts to cancel variables in the expression.
+  </Function>
+
   ### sin
 
   <Function id="qiskit.circuit.Parameter.sin" signature="sin()">
@@ -248,7 +254,7 @@ python_api_name: qiskit.circuit.Parameter
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") –
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") –
 
     *   If parameter\_map contains parameters outside those in self. - If the replacement parameters in `parameter_map` would result in a name conflict in the generated expression.
 

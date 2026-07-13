@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.Choi
 
 # Choi
 
-<Class id="qiskit.quantum_info.Choi" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L41-L214" signature="qiskit.quantum_info.Choi(data, input_dims=None, output_dims=None)" modifiers="class">
+<Class id="qiskit.quantum_info.Choi" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L40-L213" signature="qiskit.quantum_info.Choi(data, input_dims=None, output_dims=None)" modifiers="class">
   Bases: `QuantumChannel`
 
   Choi-matrix representation of a Quantum Channel.
@@ -27,7 +27,7 @@ $$
 (\rho^T \otimes \mathbb{I})\right]
 $$
 
-  where $\mbox{Tr}_1$ is the [`partial_trace()`](quantum_info#qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace") over subsystem 1.
+  where $\mbox{Tr}_1$ is the [`partial_trace()`](/docs/api/qiskit/dev/quantum_info#qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace") over subsystem 1.
 
   See reference \[1] for further details.
 
@@ -39,13 +39,13 @@ $$
 
   **Parameters**
 
-  *   **data** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") *| BaseOperator | np.ndarray*) – data to initialize superoperator.
+  *   **data** ([*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") *| BaseOperator | np.ndarray*) – data to initialize superoperator.
   *   **input\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple) *| None*) – the input subsystem dimensions.
   *   **output\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple) *| None*) – the output subsystem dimensions.
 
   **Raises**
 
-  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data cannot be initialized as a Choi matrix.
+  [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data cannot be initialized as a Choi matrix.
 
   **Additional Information:**
 
@@ -109,7 +109,7 @@ $$
 
   ### compose
 
-  <Function id="qiskit.quantum_info.Choi.compose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L170-L195" signature="compose(other, qargs=None, front=False)">
+  <Function id="qiskit.quantum_info.Choi.compose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L169-L194" signature="compose(other, qargs=None, front=False)">
     Return the operator composition with another Choi.
 
     **Parameters**
@@ -128,7 +128,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
     <Admonition title="Note" type="note">
       Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](#qiskit.quantum_info.Choi.dot "qiskit.quantum_info.Choi.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
@@ -139,7 +139,7 @@ $$
 
   ### conjugate
 
-  <Function id="qiskit.quantum_info.Choi.conjugate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L154-L157" signature="conjugate()">
+  <Function id="qiskit.quantum_info.Choi.conjugate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L153-L156" signature="conjugate()">
     Return the conjugate quantum channel.
 
     <Admonition title="Note" type="note">
@@ -178,7 +178,7 @@ $$
 
   ### expand
 
-  <Function id="qiskit.quantum_info.Choi.expand" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L202-L205" signature="expand(other)">
+  <Function id="qiskit.quantum_info.Choi.expand" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L201-L204" signature="expand(other)">
     Return the reverse-order tensor product with another Choi.
 
     **Parameters**
@@ -287,7 +287,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the SuperOp are not equal.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the SuperOp are not equal.
 
     <Admonition title="Note" type="note">
       For non-positive or non-integer exponents the power is defined as the matrix power of the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{{E}}$, the SuperOp of the powered channel $\mathcal{{E}}^\n$ is $S_{{\mathcal{{E}}^n}} = S_{{\mathcal{{E}}}}^n$.
@@ -315,12 +315,12 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
   </Function>
 
   ### tensor
 
-  <Function id="qiskit.quantum_info.Choi.tensor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L197-L200" signature="tensor(other)">
+  <Function id="qiskit.quantum_info.Choi.tensor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L196-L199" signature="tensor(other)">
     Return the tensor product with another Choi.
 
     **Parameters**
@@ -359,7 +359,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not an N-qubit CPTP quantum channel.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not an N-qubit CPTP quantum channel.
   </Function>
 
   ### to\_operator
@@ -374,7 +374,7 @@ $$
 
   ### transpose
 
-  <Function id="qiskit.quantum_info.Choi.transpose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L159-L168" signature="transpose()">
+  <Function id="qiskit.quantum_info.Choi.transpose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/channel/choi.py#L158-L167" signature="transpose()">
     Return the transpose quantum channel.
 
     <Admonition title="Note" type="note">

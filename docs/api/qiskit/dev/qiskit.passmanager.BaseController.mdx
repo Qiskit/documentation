@@ -8,8 +8,8 @@ python_api_name: qiskit.passmanager.BaseController
 
 # BaseController
 
-<Class id="qiskit.passmanager.BaseController" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L154-L227" signature="qiskit.passmanager.BaseController(options=None)" modifiers="class">
-  Bases: `Task`, [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
+<Class id="qiskit.passmanager.BaseController" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L159-L232" signature="qiskit.passmanager.BaseController(options=None)" modifiers="class">
+  Bases: `Task`\[`IR`, `IR_OUT`], [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
 
   Base class of controller.
 
@@ -25,12 +25,12 @@ python_api_name: qiskit.passmanager.BaseController
 
   ### execute
 
-  <Function id="qiskit.passmanager.BaseController.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L199-L227" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.passmanager.BaseController.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L204-L232" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
     *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
 
@@ -40,12 +40,12 @@ python_api_name: qiskit.passmanager.BaseController
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### iter\_tasks
 
-  <Function id="qiskit.passmanager.BaseController.iter_tasks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L174-L197" signature="iter_tasks(state)" modifiers="abstractmethod">
+  <Function id="qiskit.passmanager.BaseController.iter_tasks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L179-L202" signature="iter_tasks(state)" modifiers="abstractmethod">
     A custom logic to choose a next task to run.
 
     Controller subclass can consume the state to build a proper task pipeline. The updated state after a task execution will be fed back in as the “return” value of any `yield` statements. This indicates the order of task execution is only determined at running time. This method is not allowed to mutate the given state object.
@@ -61,7 +61,7 @@ python_api_name: qiskit.passmanager.BaseController
 
     **Return type**
 
-    [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator)\[*Task*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState"), None]
+    [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator)\[*Task*\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)], [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState"), None]
   </Function>
 </Class>
 

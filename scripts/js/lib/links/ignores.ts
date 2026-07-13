@@ -213,6 +213,9 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   "/docs/guides/configure-error-mitigation",
   "/docs/guides/configure-error-suppression",
 
+  // This link will work because it is being merged at the same time as the notifications page is deployed.
+  "/notifications",
+
   // These links are from old IQP and do not work any more
   "https://auth.quantum-computing.ibm.com/api",
   "https://auth.quantum.ibm.com/api",
@@ -231,22 +234,7 @@ export const ALWAYS_IGNORED_URLS = new Set([
 // Always ignored URL regexes - be careful using this
 // -----------------------------------------------------------------------------------
 
-function _addonsObjectsInvRegexes(): string[] {
-  // Addons have non-API docs in their Sphinx build that translate into invalid links
-  // we should ignore
-  return ["how-tos", "how_tos", "install", "index", "explanations"].flatMap(
-    (path) => [
-      // Latest version
-      `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
-      // Historical versions
-      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]{1,2}\/${path}(\/.*|#.*|$)`,
-    ],
-  );
-}
-
-export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
-  ..._addonsObjectsInvRegexes(),
-];
+export const ALWAYS_IGNORED_URL_REGEXES: string[] = [];
 
 // -----------------------------------------------------------------------------------
 // Always ignored URL suffixes - be careful using this
@@ -590,8 +578,16 @@ function _qiskitCRegexes(): FilesToIgnores {
   };
 }
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores =
-  mergeFilesToIgnores(_qiskitCRegexes());
+function _addonContentLinksToFix(): FilesToIgnores {
+  // These links point to old addon-repo tutorial slugs that no longer exist.
+  // The addon source docs need to be updated to use the new paths.
+  return {};
+}
+
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
+  _qiskitCRegexes(),
+  _addonContentLinksToFix(),
+);
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,

@@ -6,18 +6,35 @@ in_page_toc_max_heading_level: 2
 
 ---
 
-{/* cspell:ignore GGUF */}
+{/* cspell:ignore GGUF Phasecraft */}
 
 # Changelog
 
-*Last updated 1 June 2026*
+*Last updated 5 June 2026*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
 Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 
-For all product announcements, visit the [Announcements](/announcements/product-updates) page on IBM Quantum Platform.
+<Admonition type="note" title="What's new (last 60 days)">
 
+5 June 2026
+
+- **Support for the Store instruction on IBM&reg; QPUs** - Now you can simplify complex classical computations in your quantum circuits with the Store instruction. [*Read more*](#store-instruction)
+---
+29 May 2026
+
+- **Qiskit Code Assistant service discontinued** - The preview service has been discontinued and the Visual Studio Code and JupyterLab extensions have been archived. [*Read more*](#qca-sunset)
+---
+28 May 2026
+
+- **New Classroom Accounts** - Professors can now request a Classroom Account to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information. [*Read more*](#classroom-accounts)
+---
+
+18 May 2026
+
+- **Introducing the Executor primitive** - We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025. [*Read more*](#executor-primitive)
+</Admonition>
 
 Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit addons](#latest-qiskit-addons) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca)
 
@@ -30,66 +47,185 @@ This section summarizes the recent enhancements and new features for the new [IB
 
 ### May 2026
 
+<span id="store-instruction"></span>
+- **Support for the [Store](/docs/api/qiskit/circuit#store) instruction on IBM&reg; QPUs** - Now you can simplify complex classical computations in your quantum circuits with the Store instruction.
+
+  - Compute a classical expression mid-circuit and save the result to a variable or register, which can then immediately control subsequent quantum gates.  Instead of deeply nested inline expressions, you can break computations into named intermediate steps, so that complex classical feedback logic is easier to read and maintain. **Common use cases** include the following:
+
+      * Dynamic circuits with mid-circuit measurements and classical feedback  
+      * Long-range entanglement preparation  
+      * Complex conditional logic based on measurement outcomes
+
+    To use the store instruction, first ensure you're running the latest version of `qiskit-ibm-runtime` (`pip install --upgrade qiskit-ibm-runtime`), then see the [documentation](/docs/guides/classical-feedforward-and-control-flow#store) for more information and an example.
+
+    *Note that before submitting jobs, you should verify compatibility with each primitive's options in the documentation*: [Sampler options](/docs/guides/sampler-options) | [Estimator options](/docs/guides/estimator-options) | [Executor options](/docs/guides/executor-options)
+
+<span id="classroom-accounts"></span>
 - **New Classroom Accounts**: Professors can now request a [Classroom Account](/docs/guides/classroom-accounts) to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information.
 
-### April 2026
-- **New export options now available in IBM Quantum**: Introducing new export capabilities that make it easier for account administrators to analyze, share, and work with their data.
-
-  - New in the [Analytics](https://quantum.cloud.ibm.com/analytics) page:
-    - You can now export charts in SVG or PNG format.
-    - You can export all analytics data, including the data behind the charts, as CSV.
-  
-    Find the export menu at the top-right corner of each card on the page.
-
-  - New in the [Access management](https://quantum.cloud.ibm.com/users) page:
-    - Export both the Users table and the Access Groups table in CSV format.
-
-    Find the export menu at the top-right corner of the table.
-
-- **New resources and hardware for Open Plan users**: The [IBM Quantum&reg; Open Plan](https://www.ibm.com/quantum/products) now features new learning resources, new hardware, and a special one-time promotion for eligible users.
-
-  - A new course, [Designing and leading quantum projects](/learning/courses/designing-and-leading-quantum-projects), is now available. This course covers key topics for users looking to develop or secure funding for a quantum project, including early-stage planning, team roles and responsibilities, identifying meaningful use cases, defining measures of success, and a guide to grant writing best practices.
-
-  - The Heron r2 [`ibm_kingston`](https://quantum.cloud.ibm.com/computers?system=ibm_kingston)&mdash;one of our highest-performing quantum computers&mdash;is now available to all Open Plan users.
-
-  - Log 20 minutes of compute in any 12-month period and you can opt in to a special one-time offer: 180 minutes for the next 12 months.
-
-    With expanded runtime and new educational resources, users can run everything from introductory circuits to advanced hybrid workflows.
-
-    These efforts reflect our commitment to open access, open education, and open science in quantum computing. Read more: [Doubling down on open-access quantum computing](https://www.ibm.com/quantum/blog/open-plan-updates)
-
 <Accordion>
-<AccordionItem title="**Previous updates**">
+<AccordionItem title="**Previous updates (2026)**">
+  ### April 2026
 
-### January 2026
-- The latest enhancements to the [Compute resources](https://quantum.cloud.ibm.com/computers) page include the following:
+  - **New export options now available in IBM Quantum**: Introducing new export capabilities that make it easier for account administrators to analyze, share, and work with their data.
 
-  - **Unified QPU view** - All QPUs across regions are now displayed in a single table, making it easier to see status and calibrations of the shared fleet across the two regions. (You can still filter the Compute resources table by region using the funnel icon.)
+    - New in the [Analytics](https://quantum.cloud.ibm.com/analytics) page:
+      - You can now export charts in SVG or PNG format.
+      - You can export all analytics data, including the data behind the charts, as CSV.
+    
+      Find the export menu at the top-right corner of each card on the page.
 
-  - **Single maintenance schedule** - The maintenance schedule is now at the top of the page, even when no events are currently planned.
+    - New in the [Access management](https://quantum.cloud.ibm.com/users) page:
+      - Export both the Users table and the Access Groups table in CSV format.
 
-  - **"Instance access" details** - When viewing a QPU's details, a new Instance access section shows all instances that grant the user access to that QPU for the selected account.
+      Find the export menu at the top-right corner of the table.
 
-- **The first Nighthawk QPU and latest Heron QPU are now available.** These two powerful new processors debuted at the [IBM Quantum Developer Conference](https://www.ibm.com/quantum/blog/qdc-2025) in November.
+  - **New resources and hardware for Open Plan users**: The [IBM Quantum Open Plan](https://www.ibm.com/quantum/products) now features new learning resources, new hardware, and a special one-time promotion for eligible users.
 
-  - Premium and Flex Plans now have early access to `ibm_miami`, the first IBM Quantum Nighthawk QPU. Our most advanced quantum processor to date, Nighthawk is a 120-qubit device with a square-lattice topology (218 couplers versus Heron's 176) that is designed to support more complex workloads. Nighthawk has the highest coherence of our fleet - even higher than what was reported at QDC - with a median T1 of 350 &#181;s.
+    - A new course, [Designing and leading quantum projects](/learning/courses/designing-and-leading-quantum-projects), is now available. This course covers key topics for users looking to develop or secure funding for a quantum project, including early-stage planning, team roles and responsibilities, identifying meaningful use cases, defining measures of success, and a guide to grant writing best practices.
 
-  - Note that `ibm_miami` is currently an exploratory QPU that is still being tested and optimized as part of our continual cycles of learning. As such, it temporarily has the following limitations:
+    - The Heron r2 [`ibm_kingston`](https://quantum.cloud.ibm.com/computers?system=ibm_kingston)&mdash;one of our highest-performing quantum computers&mdash;is now available to all Open Plan users.
 
-    - Default repetition time has been temporarily increased from 250 &#181;s to 4 ms, which will impact QPU time required to execute workloads
-    - Dynamic circuits are not yet supported, and quality of mid-circuit measurements is limited
+    - Log 20 minutes of compute in any 12-month period and you can opt in to a special one-time offer: 180 minutes for the next 12 months.
 
-  - Additionally, Premium, Flex, and Pay-As-You-Go Plans now have access to `ibm_boston`, our most performant IBM Quantum Heron r3 to date. It has demonstrated an EPLG at 100 qubits of 2.15e-3, with 57 of 176 possible two-qubit gates below the 1e-3 error level.
+      With expanded runtime and new educational resources, users can run everything from introductory circuits to advanced hybrid workflows.
 
-- **Introducing instance archiving for administrators on IBM Quantum Platform.** With this update, administrators can archive any instance within their account. Archiving an instance ensures that:
+      These efforts reflect our commitment to open access, open education, and open science in quantum computing. Read more: [Doubling down on open-access quantum computing](https://www.ibm.com/quantum/blog/open-plan-updates)
 
-    - Collaborators retain access to results and QPU metrics, properties, and calibrations from past workloads.
-    - No new workloads can be submitted to the archived instance, preventing unintended usage.
-    - Archived instances do not subtract anything from your account's plan allocation.
-    - All archived instances are neatly organized under a dedicated "Archived" tab.
-    - Administrators can reactivate an instance at any time.
+  #### Upcoming discontinuation of Qiskit Code Assistant service
+
+  On 29 May 2026, IBM Quantum will discontinue the preview Qiskit Code Assistant service and archive the supporting extensions for Visual Studio Code and JupyterLab.
+
+  Based on feedback and usage patterns, more users are running Qiskit Code Assistant models locally and working in editor integrations that are already part of their development workflow.
+
+  Qiskit Code Assistant models will remain available for local use. To continue using them, move to a local deployment and a community-supported editor integration or other local tooling.
+
+  For setup guidance, see the [Qiskit Code Assistant](/docs/guides/qiskit-code-assistant) guide.
+
+  #### Nighthawk arrives in the EU
+
+  Premium and Flex Plans now have early access to [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin)! It is the first IBM Quantum Nighthawk r1 QPU in the EU (`eu-de` region) and the second Nighthawk in our global fleet, after [`ibm_miami`](https://quantum.cloud.ibm.com/computers?system=ibm_miami) in the US (`us-east` region). `ibm_berlin` features faster two-qubit gates than `ibm_miami` (68 ns versus 138 ns, median) while maintaining similar fleet-leading coherence (T$_1$ of ~350 &#181;s).
+
+  Since its release, Nighthawk has enabled research in regimes where classical simulation becomes increasingly challenging. Specifically, its architecture supports hardware-efficient workflows that map naturally onto grid-based (lattice) models. See recent papers from [Phasecraft](https://arxiv.org/abs/2603.12236) and [Volkswagen](https://doi.org/10.3390/e28040367), and their collaborators, demonstrating simulation at scale on Nighthawk.
+
+  Please note that `ibm_berlin` is currently an exploratory QPU that is still being tested and optimized as part of our continual cycles of learning. As such, it temporarily has the following limitations:
+
+  - Default repetition time has been temporarily increased from 250 &#181;s to 4 ms, which impacts QPU time required to execute workloads. Users can manually select a shorter repetition time, but performance might be degraded.
+  - Dynamic circuits are not yet supported, and quality of mid-circuit measurements is limited.
+
+  #### Upcoming retirements
+
+  As we expand EU capacity and roll out the latest Nighthawk and Heron processors, `ibm_brussels` and `ibm_strasbourg` are scheduled to be retired on or around 30 April 2026.
+
+  Once these QPUs are retired, they will no longer accept jobs. If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU ahead of the retirement date to take advantage of the latest systems. For guidance on retrieving data from past jobs, refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+
+  #### `ibm_torino` is now retired
+
+  The quantum computer `ibm_torino` has been retired and will no longer accept workload submissions. Any workloads that were already queued on this QPU might still be processed and return results.
+
+  If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions.](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu)
+
+  #### ibm_brussels and ibm_strasbourg are now retired
+    
+  `ibm_brussels` and `ibm_strasbourg` have been retired and will no longer accept jobs.
+
+  This change is part of the continued evolution and expansion of the IBM Quantum fleet in the EU, including the recently released Nighthawk QPU [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin) and the upgraded Heron r3 QPU [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen). The global fleet has now fully transitioned away from Eagle, IBM Quantum's first utility‑scale processor family, introduced in 2021.
+
+  If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU to take advantage of the latest hardware. For guidance on retrieving data from past jobs, refer to the [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+
+  ### March 2026
+
+  #### The EU gets its first Heron r3
+
+  Maintenance has been completed on [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen) and the QPU is now back online in the eu‑de region.  `ibm_aachen` has also been upgraded to be the first QPU in the EU to feature the latest [Heron r3](https://www.linkedin.com/posts/jay-gambetta-a274753a_following-up-on-an-earlier-post-https-activity-7364268815720824834-aZ0k) processor. It is the third r3 in our global fleet, after [`ibm_boston`](https://quantum.cloud.ibm.com/computers?system=ibm_boston) and [`ibm_pittsburgh`](https://quantum.cloud.ibm.com/computers?system=ibm_pittsburgh) in the US.
+
+  Heron r3 continues to deliver improved error rates and overall system performance compared to Heron r2, demonstrating more reliable execution and better results for workloads. For example, on `ibm_aachen`, we observe a large boost in $T_2$ (phase coherence time) from 150&nbsp;&#181;s to 250&nbsp;&#181;s. You can view metrics like these for all QPUs in the shared fleet on the [Compute resources](https://quantum.cloud.ibm.com/computers) page.
+
+  ### February 2026
+
+
+  #### `ibm_torino` to retire
+
+  The `ibm_torino` QPU will retire on or around 1 April 2026. Once this QPU is retired, it will no longer accept jobs.
+
+  If you would like to retrieve job data from important past jobs, please refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+
+  #### Increase in repetition delay time maximum
+
+  To provide more flexibility for users, we have expanded the allowable repetition delay time range from 20-500 &#181;s to 20-2000 &#181;s on our Heron and Eagle QPUs. The Nighthawk QPU delay time range continues to be 1000-4000 &#181;s as previously announced. Note that if you choose to increase repetition delay (`rep_delay`), it will have a direct impact on your execution time and capacity consumption, but it might improve the fidelity of certain circuits. The default `rep_delay` remains unchanged on all QPUs.
+
+  You can find more information about repetition delay time, including how to change it, in [Qubit initialization](/docs/guides/repetition-rate-execution).
+
+  ### January 2026
+  - The latest enhancements to the [Compute resources](https://quantum.cloud.ibm.com/computers) page include the following:
+
+    - **Unified QPU view** - All QPUs across regions are now displayed in a single table, making it easier to see status and calibrations of the shared fleet across the two regions. (You can still filter the Compute resources table by region using the funnel icon.)
+
+    - **Single maintenance schedule** - The maintenance schedule is now at the top of the page, even when no events are currently planned.
+
+    - **"Instance access" details** - When viewing a QPU's details, a new Instance access section shows all instances that grant the user access to that QPU for the selected account.
+
+  - **The first Nighthawk QPU and latest Heron QPU are now available.** These two powerful new processors debuted at the [IBM Quantum Developer Conference](https://www.ibm.com/quantum/blog/qdc-2025) in November.
+
+    - Premium and Flex Plans now have early access to `ibm_miami`, the first IBM Quantum Nighthawk QPU. Our most advanced quantum processor to date, Nighthawk is a 120-qubit device with a square-lattice topology (218 couplers versus Heron's 176) that is designed to support more complex workloads. Nighthawk has the highest coherence of our fleet - even higher than what was reported at QDC - with a median T1 of 350 &#181;s.
+
+    - Note that `ibm_miami` is currently an exploratory QPU that is still being tested and optimized as part of our continual cycles of learning. As such, it temporarily has the following limitations:
+
+      - Default repetition time has been temporarily increased from 250 &#181;s to 4 ms, which will impact QPU time required to execute workloads
+      - Dynamic circuits are not yet supported, and quality of mid-circuit measurements is limited
+
+    - Additionally, Premium, Flex, and Pay-As-You-Go Plans now have access to `ibm_boston`, our most performant IBM Quantum Heron r3 to date. It has demonstrated an EPLG at 100 qubits of 2.15e-3, with 57 of 176 possible two-qubit gates below the 1e-3 error level.
+
+  - **Introducing instance archiving for administrators on IBM Quantum Platform.** With this update, administrators can archive any instance within their account. Archiving an instance ensures that:
+
+      - Collaborators retain access to results and QPU metrics, properties, and calibrations from past workloads.
+      - No new workloads can be submitted to the archived instance, preventing unintended usage.
+      - Archived instances do not subtract anything from your account's plan allocation.
+      - All archived instances are neatly organized under a dedicated "Archived" tab.
+      - Administrators can reactivate an instance at any time.
+</AccordionItem>
+<AccordionItem title="**Previous updates (2025)**">
+#### What's new at IBM Quantum - 4Q 2025
+
+The [What's New @ IBM Quantum Q4 2025](https://www.ibm.com/quantum/blog/whats-new-q4-2025) quarterly update is now live!
+
+This convenient wrap-up aims to get you started exploring the latest hardware, software, research, and community events from IBM Quantum and our partner ecosystem.
+
+Highlights include the recently deployed IBM Quantum Nighthawk and IBM Quantum Heron r3 QPUs, a call for submissions to the new open-source Quantum Advantage Tracker, and Qiskit C++, a new project designed to help HPC developers build production-grade quantum-centric supercomputing workflows.
+
+This quarterly update also spotlights notable benchmarks, including:
+
+- Best EPLG: 0.23% on `ibm_boston` (IBM&reg; Heron r3)
+- Best CLOPS: 330K+ across 7 QPUs
+- Total available qubits: 2,477 across 17 QPUs
+- Total papers using IBM Quantum or Qiskit: 5,635
+
+[Discover these updates and more.](https://www.ibm.com/quantum/blog/whats-new-q4-2025)
+
+#### Compute resources page update – Unified QPU view across regions
+
+We’ve enhanced the [Compute resources](https://quantum.cloud.ibm.com/computers) page! New features include the following:
+
+- **Unified QPU view** - All QPUs across regions are now displayed in a single table, making it easier to see status and calibrations of the shared fleet across the two regions.
+
+- **Single maintenance schedule** - The maintenance schedule is now at the top of the page, even when no events are currently planned.
+
+- **Clearer "Instance Access" Details** - When viewing a QPU's details, a new Instance access section shows all instances that grant you access to that QPU for the selected account.
+
+You can still filter the Compute resources table by region using the funnel icon at the top of the table.
+
+### 3 November 2025
+
+The quantum computer `ibm_brisbane` has been retired and will no longer accept workload submissions. Any workloads that were already queued on these QPUs might still be processed and return results.
+
+If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions.](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu)
 
 ### October 2025
+
+The IBM Quantum fleet welcomes `ibm_fez` and `ibm_marrakesh` to the Open Plan! All users can access these computers as of 27 October.
+
+A reminder that `ibm_brisbane` will retire on 3 Nov 2025, so plan your experiments accordingly.
+
 - **Learn quantum computing in your own language**: We're excited to announce that translations are now available across all documentation and learning pages on IBM Quantum Platform! Translations have been the most-requested feature in user feedback, and now, quantum learning and development are more accessible than ever.
 
   - Translations of **tutorials, courses, documentation, and announcements** are now available in seven languages: French, German, Italian, Japanese, Korean, Portuguese, and Spanish.
@@ -108,12 +244,48 @@ This section summarizes the recent enhancements and new features for the new [IB
 
 - **Learning in IBM Quantum Platform** now has an updated home page to help you navigate the educational resources available, as well as two new catalog pages to help browse courses and modules. [Check out the updates!](/learning)
 
+### 15 September 2025
+
+The [Unitary Foundation Quantum Open Source Software survey](http://surveymonkey.com/r/QOSSSurvey25) helps capture the needs and concerns of anyone who works with quantum software - including you! The survey results provide valuable feedback for our team of Qiskit developers, and helps us to understand the broader quantum software landscape.
+
+If you have a few minutes, please share the link or consider filling it out today! The survey is open through 3 October 2025.
+
+[http://surveymonkey.com/r/QOSSSurvey25](http://surveymonkey.com/r/QOSSSurvey25)
+
+### 1 September 2025
+
+We plan to retire `ibm_brisbane` on or around 1 November 2025.
+
+Once this QPU is retired, it will no longer accept jobs. If any jobs are queued on the QPU at the time of its retirement, they will still run and return results. Please plan your experiments accordingly.
+
+### 31 July 2025
+
+Today, we are thrilled to announce the launch of ibm_pittsburgh, our first quantum computer powered by the new Heron Revision 3 (r3) QPU, and located in our Poughkeepsie quantum datacenter. r3 is the result of targeted improvements that directly impact coherence, gate fidelity, and readout performance.
+
+The results speak for themselves, including an industry-leading ~350 us of T2 coherence; see the [latest metrics on Pittsburgh](https://quantum.cloud.ibm.com/computers?system=ibm_pittsburgh) on IBM Quantum Platform. This steady, measured progress is at the center of our strategy for delivering reliable and performant quantum computing.
+
+As recently announced, today we retire one of our Eagle processors, ibm_sherbrooke. We invite you to migrate to our quantum computers powered by Heron processors, to take advantage of the lower error rates (approximately 5x lower EPLG) and faster gates (nearly 8x faster), leading to more performant circuits.
+
+Together, let’s open the door to more complex algorithmic exploration and real-world applications.
+
+### 24 July 2025
+
+Quantum technology is advancing rapidly, and it can be challenging to keep up. To help you stay in the loop, we’ve put together a roundup featuring the newest tools, performance improvements, and updates from IBM Quantum. It includes links to code examples, documentation, and research to help you get the most out of our latest developments.
+
+[Learn what's new at IBM Quantum](https://ibm.biz/whats-new-at-ibm-quantum-h1-2025-op)
+
+### 27 June 2025
+
+`ibm_sherbrooke` will now retire on or around 28 July 2025.
+
+Be sure to retrieve any job data from important past jobs before it is retired.
+
 ### 24 June 2025
 - Profile page: Now you can find integrated profile details directly in the new platform. Find your profile by clicking on the user icon in the top right or visiting your [profile page](https://quantum.cloud.ibm.com/profile).
 - Public backends: View a list of US backends without logging in, available on the updated [Compute Resources](https://quantum.cloud.ibm.com/computers) page.
 - Learning: Quantum computing courses have now been released in the upgraded platform, along with new educational modules designed to help teachers bring Qiskit into their classrooms. This is the first step towards migrating IBM Quantum Learning to the new platform, with more resources to be released in the coming weeks. Resources can be accessed without needing to log in at [IBM Quantum Learning](/learning). Check out new and updated content, including [Quantum diagonalization algorithms](/learning/courses/quantum-diagonalization-algorithms), [Quantum computing in practice](/learning/courses/quantum-computing-in-practice), and Qiskit in Classrooms modules like [Quantum mechanics](/learning/modules/quantum-mechanics) and [Computer science](/learning/modules/computer-science).
 - IBM Quantum Composer: The circuit-building [Composer](https://quantum.cloud.ibm.com/composer) has now been migrated to the new platform. The experience is largely the same, except for files will no longer be stored in the platform, and will need to be downloaded locally. Find more details in the [Composer documentation](/docs/guides/composer).
-- Announcements: Now you can access news, software updates, and service alerts on the new platform. Click the bell icon in the top navigation bar or the link under Featured resources on the [home page](https://quantum.cloud.ibm.com/) to visit the new [Announcements](/announcements) page.
+- Announcements: Now you can access news, software updates, and service alerts on the new platform. Click the bell icon in the top navigation bar or the link under Featured resources on the [home page](https://quantum.cloud.ibm.com/) to visit the new Announcements page.
 
 ### 5 June 2025
 - Added instance job filter: The platform now displays only your workloads by default. On the dashboard, you will see only the latest workloads you have submitted to instances within your account.
@@ -124,7 +296,13 @@ This section summarizes the recent enhancements and new features for the new [IB
   - Support for private jobs for developers of Qiskit Functions
   - A new channel for the platform that makes instance selection optional, which simplifies account setup and backend access by automatically checking all available instances. This update benefits users who manage multiple instances or prefer a streamlined workflow without specifying instance details each time. Developers and researchers working across various projects with different levels of access and multiple backends will find this especially helpful.
 
-  See the [Runtime Client v0.40.0](#latest-qiskit-runtime) section for more information. {/* When next Runtime release overwrites the .40 section below, remove this link and replace with direct link to release notes */}
+### 15 May 2025
+
+*Note: This is relevant to IBM Quantum Platform Classic (at https://quantum.ibm.com/) only.*
+
+If you are still using [IBM Quantum Platform Classic](https://quantum.ibm.com/) at https://quantum.ibm.com, please note that it will no longer be accessible starting 1 July 2025. At that time, Open Plan access will only be available on the [new Platform](https://quantum.cloud.ibm.com/), and you will no longer have access to this platform or its data. Download your data and migrate to the new platform as soon as possible to avoid interruptions in your work. See the migration guide for more details.
+
+Users of other plans (for example, Premium Plan or On-Prem Plan) should wait for specific instructions from their administrators before migrating.
 
 ### 8 May 2025
 - [Flex Plan](https://www.ibm.com/quantum/blog/flex-plan), a new resource consumption offering, has been released.
@@ -145,6 +323,12 @@ This section summarizes the recent enhancements and new features for the new [IB
   - Addressed an issue that prevented QPU metrics to be displayed for the QPUs in the eu-de region.
 - Deprecation reminder: The deprecation date for IBM Quantum Platform Classic has been set for 1 July 2025.
 
+### 21 April 2025
+
+`ibm_kyiv` has been retired and will no longer accept workload submissions. Any workloads that were already queued on these QPUs might still be processed and return results.
+
+If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions.](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu)
+
 ### 10 April 2025
 - Updated navigation to remove duplicated pages:
   - The Administration section has been renamed "Access management" and now only focuses on managing users and access groups.
@@ -155,6 +339,12 @@ This section summarizes the recent enhancements and new features for the new [IB
 - Administrators can now more easily add multiple individuals to an access group due to the addition of an existing account members table.
 - Premium plan instance administrators can set the instance allocation as a usage limit, so that usage in those instances cannot exceed the time alloted. See the [Set instance allocation limits](/docs/guides/allocation-limits) guide for instructions.
 - Note that the sunset date for IBM Quantum Platform Classic has been set for 1 July 2025.
+
+### 9 April 2025
+
+Two new 156Q Heron R2 QPUs, [ibm_aachen](https://quantum.ibm.com/computers?system=ibm_aachen), located in the EU region, and [ibm_kingston](https://quantum.ibm.com/computers?system=ibm_kingston), located in the US region, are now available.
+
+View the systems you have access to with your selected instance in the [Compute resources](https://quantum.ibm.com/services/resources) page on IBM Quantum Platform.
 
 ### 27 March 2025
 - **Cost limits for Pay-As-You-Go Plan** - Pay-As-You-Go Plan users with sufficient access can now view and edit [maximum cost limits](/docs/guides/manage-cost#cost-limit) for their instances.
@@ -169,6 +359,16 @@ This section summarizes the recent enhancements and new features for the new [IB
 
 For full details on the early access release and upcoming improvements, [check out the blog](https://www.ibm.com/quantum/blog/iqp-upgrade).
 
+### 25 March 2025
+
+An IBM Quantum Network exclusive: Join us for our first quarterly IBM Quantum Product Updates Webinar, a series in which we unveil the latest advancements in our products and offerings, showcase partner use cases, and provide the opportunity for Q&A with quantum experts.
+
+In the first segment, we will talk about the evolution coming to IBM Quantum Platform that is designed to enhance security, stability, and user experience. Our team will walk through the key updates, demonstrate new capabilities, and discuss how these improvements empower developers and users alike.
+
+The second segment will feature the launch of three new and innovative Qiskit Functions in the Qiskit Functions Catalog. Each function provider will present their solution, highlighting its unique features, use cases, and impact on the broader ecosystem. Attendees will gain firsthand insights into how these Qiskit Functions can be leveraged for real-world applications.
+
+[Learn more and register today](https://www.ibm.com/events/reg/flow/ibm/m1ok6zmb/landing/page/landing)
+
 ### 26 February 2025
 - Today, we are releasing an early access version of the upgraded experience, and invite you to [open an account and explore the new interface](https://quantum.cloud.ibm.com). We will continue to roll out updates over the coming months, with the end goal of creating an experience that looks and feels like the classic version of IBM Quantum Platform, but with greater functionality. We will eventually sunset IBM Quantum Platform classic, so stay tuned for updates.
 
@@ -176,6 +376,14 @@ For full details on the early access release and upcoming improvements, [check o
 
 - For full details on the early access release and upcoming improvements, [check out the blog](https://www.ibm.com/quantum/blog/iqp-upgrade).
 
+### 24 February 2025
+
+Our inventory is getting a makeover, and we will be retiring the following QPUs on or around 18 April 2025:
+
+- ibm_kyiv
+- ~ibm_sherbrooke~ UPDATE: ibm_sherbrooke will stay active for several more weeks after 18 April 2025.
+
+Be sure to retrieve any job data from important past jobs before these QPUs are retired.
 </AccordionItem>
 </Accordion>
 
@@ -208,6 +416,22 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 <span id="latest-qiskit-runtime"></span>
 ## Qiskit Runtime client 0.46.0
 
+### April 2026
+
+<span id="executor-primitive"></span>
+- **Introducing the Executor primitive**: We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025.
+
+  Together with [Samplomatic](https://qiskit.github.io/samplomatic/index.html), they make up the [directed execution model](/docs/guides/directed-execution-model), which provides full transparency and control to fine-tune your error mitigation workflow. The [Probabilistic error cancellation with shaded lightcones](https://qiskit.github.io/qiskit-addon-slc/tutorials/01_getting_started.html) tutorial, for example, demonstrates how this model is used to combine advanced techniques, including shaded lightcones, probabilistic error cancellation (PEC), Twirled Readout Error eXtinction (TREX), and [measurement-based postselection](/docs/guides/post-selection), to further improve the result quality.
+
+  If you prefer a higher level of abstraction, [`EstimatorV2`](/docs/guides/estimator-noise-management) in Qiskit Runtime continues to provide several built-in error mitigation and suppression techniques, which you can easily tune using the [`resilience_level`](/docs/guides/estimator-noise-management#resilience-level) option.
+
+  To learn more, see the following guides:
+
+    - [Executor quickstart](/docs/guides/get-started-with-executor)
+    - [Noise learning helper](/docs/guides/noise-learning)
+
+  Both of these new features are currently in beta and require `qiskit-ibm-runtime` version 0.47.0 or higher.
+
 ### March 2026
 - `qiskit-ibm-runtime` v0.46.0 has been released. View bug fixes and other notes since v0.45.0 in the [release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).
 
@@ -229,6 +453,7 @@ This summary of the latest changes to the Qiskit Runtime service applies to anyo
 <Accordion>
 <AccordionItem title="**Previous updates**">
 
+<span id="new-dynamic-circuits"></span>
 ### October 2025
 - The new dynamic circuits is now available to all users on all backends, except some QPUs under the On-Prem Plan.
 
@@ -249,6 +474,7 @@ This summary of the latest changes to the Qiskit Runtime service applies to anyo
 ### 3 February 2025
 - Pulse-level control on all IBM Quantum processors has been removed.  Additionally, the pulse module is scheduled for removal in Qiskit SDK v2.0.  Instead, you can use fractional gates that are now built into the Instruction Set Architecture (ISA). For full details and help migrating your code, refer to [Migrate from Qiskit Pulse to fractional gates](/docs/guides/pulse-migration).
 
+<span id="new-version-dynamic-circuits"></span>
 ### 2 February 2025
 - Starting 2 June 2025 and continuing through the year, IBM Quantum will begin a gradual rollout of new features to [dynamic circuits](/docs/guides/classical-feedforward-and-control-flow) that will enable them at the utility scale.
 Improvements include the following:
@@ -316,11 +542,18 @@ Improvements include the following:
 <span id="latest-qiskit-addons"></span>
 ## Qiskit addons
 
+### June 2026
+- Introducing [Qiskit Paulice](/docs/addons/qiskit-addon-paulice): a new addon that integrates low-overhead quantum error detection into quantum circuits to boost the fidelity of measured distributions. It provides single-shot access to the quantum state and so can be used in both sampling-based and expectation value-based workflows. Check out the [blog](https://www.ibm.com/quantum/blog/qiskit-paulice) and [documentation](/docs/addons/qiskit-addon-paulice) for how to get started today.
+
+<Accordion>
+<AccordionItem title="**Previous updates**">
 - We recently released two new addons that use classical resources to reduce the quantum resources needed for error mitigation:
 
   - [Propagated noise absorption (PNA)](https://qiskit.github.io/qiskit-addon-pna/) is a technique for mitigating errors in expectation values by absorbing the inverses of the learned noise channels into observables using Pauli propagation. 
 
   - The [Shaded lightcones (SLC)](https://qiskit.github.io/qiskit-addon-slc/) addon uses classical simulations to more tightly bound the sensitivity to errors throughout the circuit. This allows for more efficient, targeted applications of Probabilistic Error Cancellation (PEC) with reduced variance.
+</AccordionItem>
+</Accordion>
 
 <span id="latest-qiskit-functions"></span>
 ## Qiskit Functions
@@ -331,6 +564,12 @@ Improvements include the following:
 
 <Accordion>
 <AccordionItem title="**Previous updates**">
+
+### 18 July 2025
+
+Qiskit Functions templates provide you with a modular pipeline that allows you to swap in new tools, methods, or configurations for your own custom experiments. All function templates are also readily deployable to [Qiskit Serverless](/docs/guides/serverless), where you can easily leverage classical compute as part of running your workflow. You can deploy your serverless package on your preferred cloud environment, or take advantage of the hosted service provided by IBM for Premium and Flex Plan users. Regardless of which option you choose, Qiskit Serverless helps to simplify execution and parallelize portions of your workflow.
+
+Visit the [Qiskit Functions templates](/docs/guides/qiskit-function-templates) guide to learn more, or read an overview of [Qiskit Functions](/docs/guides/functions) in the documentation.
 
 ### 5 June 2025
 - We're excited to roll out two new functions for finance and optimization:
@@ -439,6 +678,7 @@ To get started, explore the [Qiskit Functions documentation](/docs/guides/functi
 <span id="latest-qca"></span>
 ## Qiskit Code Assistant
 
+<span id="qca-sunset"></span>
 ### 29 May 2026
 - **Qiskit Code Assistant service discontinued** - The preview service has been discontinued and the Visual Studio Code and JupyterLab extensions have been archived.
 
