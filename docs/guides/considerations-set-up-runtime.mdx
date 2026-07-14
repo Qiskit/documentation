@@ -7,51 +7,56 @@ description: Considerations for setting up IBM Quantum Platform in an organizati
 
 # Considerations for setting up IBM Quantum Platform for an organization
 
-In an organization where individuals might work on several projects, IBM Quantum Platform governance can seem complex. However, access management can be used to easily enable user collaboration and to restrict visibility of users and projects when necessary. Managing access becomes more relevant with IBM Quantum Platform resources that are not free - that is, service instances that use paid plans (which organizations are charged for).  In this guide it is assumed that you set up a separate instance for each internal project.
+IBM Quantum Platform is the dashboard for your IBM Cloud&reg; account's Qiskit Runtime service instances, workloads, and a simplified view of access management. An organization's IBM Cloud account can have multiple users and multiple Qiskit Runtime service instances, each with its own allocation. Identity and Access Management (IAM) controls which users can access which service instances, so you can enable collaboration while restricting visibility where needed. Access management becomes more relevant once you have service instances on paid plans, since those incur cost. See [IBM Cloud account structure](/docs/guides/cloud-account-structure) for an overview of how accounts, users, instances, and access fit together, and the [IBM Cloud IAM documentation](https://cloud.ibm.com/docs/account?topic=account-iamoverview) for full details on the IAM concepts referenced in this guide, such as access groups, policies, roles, and resource groups.
+
+This guide walks through the decisions and tradeoffs involved in setting up access for an organization with multiple service instances - for example, one instance per team or workload, such as `ml` and `finance`.
+
+<Admonition type="note">
+If your organization has multiple IBM Cloud accounts - for example, separate accounts per business unit, each with its own Qiskit Runtime service instances - you can link them under a single [IBM Cloud Enterprise account](https://cloud.ibm.com/docs/account?topic=account-what-is-enterprise), which has one main account responsible for billing and one or more child accounts. To redistribute Premium or Flex Plan allocation between child accounts, contact IBM Quantum support. See the IBM Cloud Enterprise documentation for full details.
+</Admonition>
 
 <span id="overview-org"></span>
 ## Overview
 
    <Admonition type="note">
-   IBM Cloud&reg; provides various ways to implement these mechanisms described in this guide. There are several ways to achieve these objectives. Additionally, most of the steps in this guide are generic to IBM Cloud and not specific to IBM Quantum Platform, except the custom role details.
+   IBM Cloud provides several ways to implement the mechanisms described in this guide. Most of the steps are generic to IBM Cloud and not specific to Qiskit Runtime, except the custom role details.
 </Admonition>
 
 ### Involved personas
 
-The are several main personas that are mentioned in this guide:
+There are several main personas mentioned in this guide:
 
-* **User**: Someone who gets access to IBM Quantum Platform resources (_service instances_) and can potentially collaborate with other users on these resources. Users' access is controlled by an administrator and they cannot create or delete service instances.
-* **Cloud administrator**: An IBM Cloud account owner who owns IBM Quantum Platform resources and manages which users can access these resources. As the resource owner, the administrator is charged for any paid resource use.
+* **User**: Someone who gets access to Qiskit Runtime resources (_service instances_) and can potentially collaborate with other users on these resources. Users' access is controlled by an administrator, and they cannot create or delete service instances.
+* **Cloud administrator**: An IBM Cloud account owner who owns the Qiskit Runtime resources and manages which users can access these resources. As the resource owner, the administrator is charged for any paid resource use.
 * **IDP administrator**: An administrator who defines identities and their attributes in an identity provider (IDP).
 
 ### Terminology
 
 This guide uses the following terms:
 
-* _Resource_: A generic IBM Cloud term that refers to an object that can be managed through the Cloud user interface, CLI, or API. For this guide, a _resource_ is an IBM Quantum Platform service instance.
-* _Service instance_: A service instance is used to access Cloud services - specifically, quantum computers. It is defined through the catalog. You can define several service instances based on the same or different plans, which offer access to different quantum computing backends. See [Available IBM Cloud plan](/docs/guides/plans-overview) for details.
+* _Resource_: A generic IBM Cloud term that refers to an object that can be managed through the Cloud user interface, CLI, or API. For this guide, a _resource_ is a Qiskit Runtime service instance.
+* _Service instance_: A service instance is used to access Cloud services - specifically, quantum computers, through the Qiskit Runtime service. It is defined through the catalog. You can define several service instances based on the same or different plans, which offer access to different quantum computing backends. See [Available IBM Cloud plans](/docs/guides/plans-overview) for details.
 
 <span id="xplanning-orgx"></span>
 ## Plan your setup
 
 Before you set up IBM Quantum Platform for your organization, you need to make these decisions:
 
-* How are user identities defined? You can set up IBM Cloud users, users from another identity provider (IDP), or both.
-   * If you are using a different IDP, does the Cloud administrator or the IDP administrator assign users to  instances?
-   * If the IDP administrator assigns users to instance, you need a string to be used as a key, such as `project` (which this guide uses) for comparisons.
-* What are the projects and which service instances will belong to each? You must plan your instance names carefully.
-   * Do not make instance names substrings of another. For example, if you use `ml` and `chemlab` for instance names, then later you set up an instance match for `ml`, it triggers on both values, accidentally granting more access than expected. Instead, use unique names such as `ml` and `chem-lab`. Alternatively, use prefix or suffix values to avoid such unintended substring matches.
-   * Using naming conventions along with prefix or suffix values can help you easily allow access to several instances.
-   * Quantum experiments (jobs) belong to service instances, and users that have access to an instance can see its jobs.
-   * Service instances can be based on different plans, allowing access to different backends.
-* Which users need to access which instances?
-* Should users be able to delete jobs? Keeping jobs in service instances gives more traceability for billing costs.
-* Will you use access groups that directly reference IBM Quantum Platform service instances or organize services into resource groups?
-   * **Access groups** are a convenient and common way of controlling user access for IBM Cloud resources. They are a simple but powerful means to consistently assign user access. We create an access group for each instance and map users to access groups. Each access group uses a custom role that allows users to access specific service instances or resource groups.
-   * **Resource groups** are used only when you need to maintain a clear separation of service instances. If more service instances are created in a resource group, all users that have access to the resource group see them automatically without updating access groups. If you choose to use resource groups, you will create access groups and then assign them to resource groups.
+* **How are user identities defined?** You can set up IBM Cloud users, users from another identity provider (IDP), or both.
+   * If you are using a different IDP, does the Cloud administrator or the IDP administrator assign users to access groups?
+   * If the IDP administrator assigns users through dynamic rules, you need a custom IDP user attribute to use as a matching key (for example, a `team` attribute).
+* **How many service instances do you need, and what will each be used for?** Plan your instance names carefully. Whenever you create a service instance from IBM Quantum Platform, IAM automatically creates a matching access group (named after the instance, with "Collaborators" appended) that grants write access to that instance, so instance names end up as access group names too.
+   * Quantum experiments (jobs) belong to service instances, and users who have access to an instance can see its jobs.
+   * Service instances can be based on different plans, allowing access to different backends and allocations.
+* **Which users need to access which service instances?**
+* **Should users be able to delete jobs?** Keeping jobs in service instances gives more traceability for billing costs.
+* **Will you use the access group that's automatically created for each instance, create additional access groups of your own, assign access to individual users directly, or organize instances into resource groups?**
+   * **Access groups** are a convenient and common way of controlling user access to IBM Cloud resources. Every service instance you create already has its own "Collaborators" access group; you can use that group as-is, or create additional access groups in the IBM Cloud console to group users by team or workload (for example, `ml` and `finance`) across one or more instances. Each access group uses a custom role that allows users to access specific service instances or resource groups. If you don't need a group of users to share the same access, you can also assign access to individual users directly, without an access group.
+      * If you use dynamic rules based on IDP attributes to assign users to access groups, avoid attribute values that are substrings of one another. For example, if you use `ml` and `chemlab` as attribute values, a rule matching `ml` would also match `chemlab`, accidentally granting more access than expected. Use unique values such as `ml` and `chem-lab`, or add prefixes or suffixes to avoid unintended substring matches.
+   * **Resource groups** are used only when you need to maintain a clear separation of service instances. When creating a service instance from IBM Quantum Platform, you can select which resource group it belongs to (and add tags), but you must use the IBM Cloud console to create or manage the resource groups themselves. If more service instances are created in a resource group, all users who have access to the resource group see them automatically, without updating access groups. If you choose to use resource groups, you will create access groups and then assign them to resource groups.
 
    <Admonition type="note">
-   A service instance can belong to only one resource group. After instances are assigned into resource groups, they cannot be changed. This also means that the resource group assignment can  happen only at service instance creation. Therefore, resource groups might not provide enough flexibility if assignments of service instances to resource groups might need to change.
+   A service instance can belong to only one resource group, and that assignment cannot be changed after the instance is created. Therefore, resource groups might not provide enough flexibility if service instances might need to move between resource groups later.
    </Admonition>
 
 ## Considerations
@@ -60,32 +65,32 @@ You should understand the following considerations when setting up your environm
 
 ### Define more fine-grained roles
 
-The actions in the custom roles can be used for more fine-grained access control. For example, some users might need full access to work on service instances, while others might only need Read access to service instances, programs, and jobs.
+Custom roles can be used for more fine-grained access control. For example, some users might need full access to work on service instances, while others might only need read access to service instances, programs, and jobs.
 
-To achieve that, define two different custom roles, such as `MLreader` and `MLwriter`. Remove all cancel, delete, and update roles from the `MLreader` custom role, and include all actions in the `MLwriter` custom role. Next, add the roles to two different access groups accordingly.
+To achieve that, define two different custom roles, such as `MLreader` and `MLwriter`. Remove all cancel, delete, and update actions from the `MLreader` custom role, and include all actions in the `MLwriter` custom role. Then add the roles to two different access groups accordingly.
 
 <Admonition type="note">
-When using dynamic rules, that is, when the identity provider (IDP) administrator manages access through custom IDP user attributes, do not use IDP custom user attributes that are substrings of each other. For instance, don't use `ml` and `mlReader`, as the string comparison of `ml` would also accept `mlReader`. You could use `MLreader` and `MLwriter` to avoid this conflict.
+When using dynamic rules, that is, when the IDP administrator manages access through custom IDP user attributes, do not use IDP custom user attributes that are substrings of each other. For instance, don't use `ml` and `mlReader`, as the string comparison of `ml` would also accept `mlReader`. You could use `MLreader` and `MLwriter` to avoid this conflict.
 </Admonition>
 
-For an example, see [Set up custom roles](/docs/guides/custom-roles).
+For an example, see [Set up custom roles](/docs/guides/custom-roles#custom).
 
 <span id="shared-access"></span>
 ### Shared workload access
 
-It is important to note that access applies to service instances.  Thus, users with 'write' access to an instance can cancel their own workloads, but can also view and cancel other users' workloads.  This is a function of how IAM works and cannot be changed.
+Access applies to service instances. Thus, users with write access to an instance (including through the automatically created "Collaborators" access group) can cancel their own workloads, but can also view and cancel other users' workloads in that instance. This is a function of how IAM works and cannot be changed.
 
 <span id="nest-org"></span>
-### Hierarchical structures
+### Simulating hierarchical structures
 
-In this guide, mapping users to service instances was kept simple. However, by associating several users with access groups and referencing service instances from several access groups, more complex mappings can be implemented.
+By default, each service instance's access is managed independently through its own "Collaborators" access group. IAM doesn't have a built-in hierarchy of groups, but you can approximate one by creating your own access groups that reference the service instances of several teams. Users who need broad access only need to be added to that one group, instead of to each team's individual access group.
 
 <span id="repeat-org"></span>
 ### Consistent and repeatable deployment of the configuration
 
-The steps of this guide can be automated for consistent and repeatable management of users, instances, and the mapping between those. Refer to the [Terraform IBM Cloud&reg; Provider documentation](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs) for templates.
+The steps in this guide can be automated for consistent and repeatable management of users, service instances, and the access mappings between them. Refer to the [Terraform IBM Cloud Provider documentation](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs) for templates.
 
-You can use Terraform to set allocation and limits, as well as restrict backend access for `quantum-computing` service instances. See the [Getting started with Terraform on IBM Cloud](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-getting-started) for more information.
+You can use Terraform to set allocation and limits, as well as restrict backend access, for `quantum-computing` service instances. See [Getting started with Terraform on IBM Cloud](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-getting-started) for more information.
 
 Example:
 
@@ -110,7 +115,9 @@ resource "ibm_resource_instance" "instance1" {
    * See [Configure IBM Quantum Platform for an organization](/docs/guides/quickstart-steps-org) for the steps to set up IBM Quantum Platform.
    * [Understand available plans](/docs/guides/plans-overview).
    * [Create instances](/docs/guides/instances).
-   * [Understand the IBM Cloud structure](/docs/guides/cloud-account-structure).
+   * [Understand the IBM Cloud account structure](/docs/guides/cloud-account-structure).
    * [Create policies and access groups](/docs/guides/access-groups).
    * [Manage users](/docs/guides/invite-and-manage-users).
+   * [IBM Cloud IAM documentation](https://cloud.ibm.com/docs/account?topic=account-iamoverview) for full IAM details.
+   * [IBM Cloud Enterprise documentation](https://cloud.ibm.com/docs/account?topic=account-what-is-enterprise) for managing multiple linked accounts.
 </Admonition>
