@@ -25,6 +25,8 @@ This is the main input. The `Pub` contains 2-4 elements: a circuit, one or more 
 
 The PUB precision can be either a float or a dictionary. A float sets the target precision for the returned expectation values. A dictionary maps noise scale factors to target precisions and requests Quasi-probabilistic Error Tuning (QET) results at the specified scales.
 
+QESEM will also return complementary scale factors around `1.0`; target precision is guaranteed for the requested scale factors only.
+
 - Required: Yes
 - Example: `[(circuit, [obs1,obs2,obs3], parameter_values, 0.03)]`
 - QET example: `[(circuit, [obs1, obs2], None, {0.5: 0.15, 1.3: 0.2})]`
@@ -48,7 +50,7 @@ The cloud resource name of the instance to use in that format
 <Attribute attributeTypeHint="`dict`">
 Input options for this function are specified as a nested dictionary. See the full [list of options](#options-list) and their default values.
 - Required: No
-- Example: `{ "default_precision": 0.03, "max_execution_time": 3600, "transpilation_level": 0}`
+- Example: `{ "default_precision": 0.03, "max_execution_time": 3600, "transpilation_level": "standard"}`
 
 #### Options list
 ##### `estimate_time_only`
@@ -86,6 +88,8 @@ After a circuit is submitted to QESEM, it automatically prepares several alterna
 | "standard" | Default QESEM transpilation. Prepares several alternative transpilations and chooses the one that minimizes QPU time. Barriers may be modified in the layerification step. |
 | "minimal_with_layout_opt" | Minimal transpilation: the mitigated circuit will closely resemble the input circuit structurally. Circuits provided in this level should match the device basis gate set, thus you should transpile your circuit to the basis gate set of the device separately. For example: CX, Rzz(α), and standard single-qubit gates (U, x, sx, rz, and so on). Barriers will be respected in the layerification step. |
 
+For jobs that contain multiple input PUBs or multiple parameter-bound circuit instances, use `"minimal_with_layout_opt"`.
+
 - Choices: "minimal_with_layout_opt" / "standard"
 </Attribute>
 
@@ -99,7 +103,7 @@ The user can choose to run the QESEM job in either a dedicated [IBM session](/do
 - Choices: `"session"` / `"batch"`
 </Attribute>
 
-#### 'parallel_execution'
+##### `parallel_execution`
 <Attribute attributeValue="True">
 
 This flag allows the user to execute the input circuit in parallel on the QPU. QESEM checks whether other patches on the QPU have sufficient fidelity.
@@ -111,6 +115,11 @@ QESEM creates nine copies of the transpiled circuit, each mapped to a distinct 8
 After execution, the user receives a single expectation value and error bar for each input observable.
 
 - Choices: `"False"` / `"True"`
+</Attribute>
+
+##### `description`
+<Attribute attributeValue="None">
+Optional description to attach to the QESEM job.
 </Attribute>
 </Attribute>
 
@@ -124,18 +133,30 @@ After execution, the user receives a single expectation value and error bar for 
 </Admonition>
 
 <Admonition type="note">
-   Barrier operations are typically used to specify the layers of two-qubit gates in quantum circuits. In level 0, QESEM preserves the layers specified by the barriers. In level 1, the layers specified by the barriers are considered as one transpilation alternative when minimizing QPU time.
+   Barrier operations are typically used to specify the layers of two-qubit gates in quantum circuits. With `"minimal_with_layout_opt"`, QESEM preserves the layers specified by the barriers. With `"standard"`, the layers specified by the barriers are considered as one transpilation alternative when minimizing QPU time.
 </Admonition>
 
 ## Outputs
-The output of a Circuit function is a [PrimitiveResult](/docs/api/qiskit/qiskit.primitives.PrimitiveResult), which contains two fields:
+The output of the QESEM function is a [PrimitiveResult](/docs/api/qiskit/qiskit.primitives.PrimitiveResult), which contains one [PubResult](/docs/api/qiskit/qiskit.primitives.PubResult) per input PUB and job-level metadata.
 
-- One [PubResult](/docs/api/qiskit/qiskit.primitives.PubResult) object. It can be indexed directly from the `PrimitiveResult`.
-
-- Job-level metadata.
-
-Each `PubResult` contains a `data` and a `metadata` field.
+Each `PubResult` can be accessed by indexing the `PrimitiveResult` and contains a `data` and a `metadata` field.
 
 - The `data` field contains at least an array of expectation values (`PubResult.data.evs`) and an array of standard errors (`PubResult.data.stds`). It can also contain more data, depending on the options used.
 
-- The `metadata` field contains PUB-level metadata (`PubResult.metadata`).
+- The `metadata` field contains PUB-level metadata (`PubResult.metadata`), including the detailed QESEM results and execution metrics.
+
+Common `PubResult.metadata` fields include:
+
+| Field | Description |
+|:--|:--|
+| `results` | Per-circuit and per-observable QESEM results. |
+| `noisy_results` | Unmitigated expectation values and error bars, when available. |
+| `transpiled_circs` | Transpiled circuit information, including qubit mappings and the number of measurement bases. |
+| `total_qpu_time` | QPU time used by the job. |
+| `gate_fidelities` | Gate fidelities measured during the experiment. |
+| `total_shots` | Total number of shots used by the job. |
+| `mitigation_shots` | Number of shots used for mitigation. |
+| `resource_usage` | Resource usage breakdown for the job. |
+
+The per-observable QESEM details are stored in `metadata["results"]`. Results are grouped first by circuit instance and then by observable. 
+Each observable entry can include the QESEM result (`qesem`), the unmitigated result (`unmitigated`), noise-scaling results (`noise_scaling`), and QESEM heuristic results (`qesem_heuristic`).
