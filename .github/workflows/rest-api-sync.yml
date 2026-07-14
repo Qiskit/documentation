@@ -10,7 +10,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-name: Generate Observability Docs
+name: Generate REST API Guides
 on:
   workflow_dispatch:
   schedule:
@@ -29,8 +29,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run observability script
-        run: npx tsx scripts/js/commands/generateObservabilityPage.ts
+      - name: Run REST API guides script
+        run: npx tsx scripts/js/commands/generateRestApiGuides.ts
 
       - name: Get all changed docs files
         id: changed-docs-files
@@ -48,13 +48,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git switch -c actions/cron-${{ github.run_id }}
           git add .
-          git commit -m "Update observability page"
+          git commit -m "Update REST API guides"
           git push origin actions/cron-${{ github.run_id }}
           gh pr create \
            -B main \
            -H actions/cron-${{ github.run_id }} \
-           --title "Update observability page" \
-           --body "An action recently updated the observability page.
+           --title "Update REST API guides" \
+           --body "An action recently updated the REST API guides.
             > [!NOTE]
             > This pull request was created by a GitHub action." \
            --reviewer arnaucasau \

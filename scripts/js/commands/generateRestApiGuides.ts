@@ -12,10 +12,7 @@
 
 import { writeFile } from "fs/promises";
 
-import {
-  generateObservabilityTable,
-  extractEndpoints,
-} from "../lib/observabilityPage";
+import { generateTable, extractEndpoints } from "../lib/restApiGuides.js";
 
 export const RUNTIME_API_TITLE = "Qiskit Runtime";
 export const QUANTUM_SYSTEM_API_TITLE = "the IBM Quantum System service";
@@ -50,8 +47,8 @@ async function writeObservabilityFile(
 ) {
   const response = await fetch(PACKAGE_TO_URL[pkgTitle]);
   const jsonstr = await response.text();
-  const endpoints = extractEndpoints(jsonstr);
-  const table = generateObservabilityTable(endpoints);
+  const endpoints = extractEndpoints(jsonstr, "x-ibm-events", "events");
+  const table = generateTable(endpoints, "Action", "Triggered by");
   const mdx = `${getProse(pkgTitle)}\n${table}`;
   await writeFile(destPath, mdx, "utf8");
   console.log(`✅ Wrote ${destPath}`);
