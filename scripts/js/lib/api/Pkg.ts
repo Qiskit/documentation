@@ -67,6 +67,7 @@ export class Pkg {
     "qiskit-addon-cutting",
     "qiskit-addon-utils",
     "qiskit-addon-paulice",
+    "qiskit-addon-pna",
   ];
 
   static VALID_NAMES = [
@@ -212,6 +213,15 @@ export class Pkg {
         ...args,
         title: "Qiskit Paulice",
         githubSlug: "Qiskit/qiskit-addon-paulice",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-addon-pna") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit propagated noise absorption",
+        githubSlug: "Qiskit/qiskit-addon-pna",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });
