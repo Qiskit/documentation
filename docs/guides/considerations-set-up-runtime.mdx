@@ -45,13 +45,13 @@ Before you set up IBM Quantum Platform for your organization, you need to make t
 * **How are user identities defined?** You can set up IBM Cloud users, users from another identity provider (IDP), or both.
    * If you are using a different IDP, does the Cloud administrator or the IDP administrator assign users to access groups?
    * If the IDP administrator assigns users through dynamic rules, you need a custom IDP user attribute to use as a matching key (for example, a `team` attribute).
-* **How many service instances do you need, and what will each be used for?** Plan your instance names carefully. Whenever you create a service instance from IBM Quantum Platform, IAM automatically creates a matching access group (named after the instance, with "Collaborators" appended) that grants write access to that instance, so instance names end up as access group names too.
-   * Quantum experiments (jobs) belong to service instances, and users who have access to an instance can see its jobs.
+* **How many service instances do you need, and what will each be used for?** Plan your instance names carefully. Whenever you create a service instance through the IBM Quantum Platform UI, the platform makes an additional call to IAM on your behalf to create a matching access group (named after the instance, with "Collaborators" appended) that grants write access to that instance, so instance names end up as access group names too. This extra step only happens when you create an instance through the IBM Quantum Platform UI - it does not happen if you create the instance using Terraform, the IBM Cloud CLI, or the IBM Cloud API.
+   * Workloads belong to service instances, and users who have access to an instance can see its workloads.
    * Service instances can be based on different plans, allowing access to different backends and allocations.
 * **Which users need to access which service instances?**
-* **Should users be able to delete jobs?** Keeping jobs in service instances gives more traceability for billing costs.
+* **Should users be able to delete workloads?** Keeping workloads in service instances gives more traceability for billing costs.
 * **Will you use the access group that's automatically created for each instance, create additional access groups of your own, assign access to individual users directly, or organize instances into resource groups?**
-   * **Access groups** are a convenient and common way of controlling user access to IBM Cloud resources. Every service instance you create already has its own "Collaborators" access group; you can use that group as-is, or create additional access groups in the IBM Cloud console to group users by team or workload (for example, `ml` and `finance`) across one or more instances. Each access group uses a custom role that allows users to access specific service instances or resource groups. If you don't need a group of users to share the same access, you can also assign access to individual users directly, without an access group.
+   * **Access groups** are a convenient and common way of controlling user access to IBM Cloud resources. Every service instance you create through the IBM Quantum Platform UI already has its own "Collaborators" access group; you can use that group as-is, or create additional access groups in the IBM Cloud console to group users by team or workload (for example, `ml` and `finance`) across one or more instances. Each access group uses a custom role that allows users to access specific service instances or resource groups. If you don't need a group of users to share the same access, you can also assign access to individual users directly, without an access group.
       * If you use dynamic rules based on IDP attributes to assign users to access groups, avoid attribute values that are substrings of one another. For example, if you use `ml` and `chemlab` as attribute values, a rule matching `ml` would also match `chemlab`, accidentally granting more access than expected. Use unique values such as `ml` and `chem-lab`, or add prefixes or suffixes to avoid unintended substring matches.
    * **Resource groups** are used only when you need to maintain a clear separation of service instances. When creating a service instance from IBM Quantum Platform, you can select which resource group it belongs to (and add tags), but you must use the IBM Cloud console to create or manage the resource groups themselves. If more service instances are created in a resource group, all users who have access to the resource group see them automatically, without updating access groups. If you choose to use resource groups, you will create access groups and then assign them to resource groups.
 
@@ -65,7 +65,7 @@ You should understand the following considerations when setting up your environm
 
 ### Define more fine-grained roles
 
-Custom roles can be used for more fine-grained access control. For example, some users might need full access to work on service instances, while others might only need read access to service instances, programs, and jobs.
+Custom roles can be used for more fine-grained access control. For example, some users might need full access to work on service instances, while others might only need read access to service instances, programs, and workloads.
 
 To achieve that, define two different custom roles, such as `MLreader` and `MLwriter`. Remove all cancel, delete, and update actions from the `MLreader` custom role, and include all actions in the `MLwriter` custom role. Then add the roles to two different access groups accordingly.
 
@@ -78,12 +78,12 @@ For an example, see [Set up custom roles](/docs/guides/custom-roles#custom).
 <span id="shared-access"></span>
 ### Shared workload access
 
-Access applies to service instances. Thus, users with write access to an instance (including through the automatically created "Collaborators" access group) can cancel their own workloads, but can also view and cancel other users' workloads in that instance. This is a function of how IAM works and cannot be changed.
+Access applies to service instances. Thus, users with write access to an instance (including through the "Collaborators" access group automatically created for instances made through the IBM Quantum Platform UI) can cancel their own workloads, but can also view and cancel other users' workloads in that instance. This is a function of how IAM works and cannot be changed.
 
 <span id="nest-org"></span>
 ### Simulating hierarchical structures
 
-By default, each service instance's access is managed independently through its own "Collaborators" access group. IAM doesn't have a built-in hierarchy of groups, but you can approximate one by creating your own access groups that reference the service instances of several teams. Users who need broad access only need to be added to that one group, instead of to each team's individual access group.
+By default, each service instance's access is managed independently, for example through the "Collaborators" access group automatically created for instances made through the IBM Quantum Platform UI. IAM doesn't have a built-in hierarchy of groups, but you can approximate one by creating your own access groups that reference the service instances of several teams. Users who need broad access only need to be added to that one group, instead of to each team's individual access group.
 
 <span id="repeat-org"></span>
 ### Consistent and repeatable deployment of the configuration
