@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
 # PadDynamicalDecoupling
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.47/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py#L40-L604" signature="PadDynamicalDecoupling(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.48/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py#L47-L609" signature="PadDynamicalDecoupling(*args, **kwargs)" modifiers="class">
   Bases: [`BlockBasePadder`](transpiler-passes-scheduling-block-base-padder "qiskit_ibm_runtime.transpiler.passes.scheduling.block_base_padder.BlockBasePadder")
 
   Dynamical decoupling insertion pass for IBM dynamic circuit backends.
@@ -165,9 +165,9 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
     **Parameters**
 
-    *   **passmanager\_ir** (*Any*) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
-    *   **callback** (*Callable | None*) – A callback function which is called per execution of optimization task.
+    *   **passmanager\_ir** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – Qiskit IR to optimize.
+    *   **state** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** (*Callable\[\[Task,* [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)*,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*, float, int], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -175,7 +175,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
     **Return type**
 
-    tuple\[*Any*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+    tuple\[[*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
   </Function>
 
   ### name
@@ -190,7 +190,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.47/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L106-L130" signature="run(dag)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.48/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L106-L130" signature="run(dag)">
     Run the padding pass on `dag`.
 
     **Parameters**
