@@ -69,11 +69,7 @@ async function writeAuthorizationFile(destPath: string) {
   const sections = pkgTitles.map(async (pkgTitle) => {
     const response = await fetch(PACKAGE_TO_URL[pkgTitle]);
     const jsonstr = await response.text();
-    const endpoints = extractEndpoints(
-      jsonstr,
-      "x-ibm-permissions",
-      "actions",
-    );
+    const endpoints = extractEndpoints(jsonstr, "x-ibm-permissions", "actions");
     const table = generateTable(endpoints, "Permission", "Required by");
     return `## ${toSectionTitle(pkgTitle)}\n\n${table}`;
   });
