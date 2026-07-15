@@ -76,7 +76,7 @@ When writing your guide, you must use the same Python requirements we use in the
 
    You should then be able to select the `qiskit-functions` environment from your editor.
 
-If you need to add another dependency, contact Junye Huangk, Sanket Panda or Paco Martin to discuss adding it to our requirements. Note that we can only add essential dependencies; if it's possible, we'll ask you to rewrite the code examples using the packages that are already part of the environment. Run `pip list` inside your virtual environment to see a list of installed packages.
+If you need to add another dependency, contact Junye Huang, Sanket Panda or Paco Martin to discuss adding it to our requirements. Note that we can only add essential dependencies; if it's possible, we'll ask you to rewrite the code examples using the packages that are already part of the environment. Run `pip list` inside your virtual environment to see a list of installed packages.
 
 ## How to preview the docs
 
