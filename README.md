@@ -6,10 +6,11 @@ You can also develop a tutorial. Refer to [tutorials-guidelines.md](./tutorials-
 
 ## How to structure your files
 
-We added two files for you to get started:
+We added three files for you to get started:
 
-* `docs/guides/<function-name>.ipynb`
-* `docs/tutorials/<function-name>.ipynb`
+* [User guide template](docs/guides/user-guide-template.ipynb)
+* [Tutorial template](docs/tutorials/tutorial-template.ipynb)
+* [API reference template](docs/api/functions/api-reference-template.mdx)
 
 ## How to write Jupyter notebooks and MDX files
 
@@ -75,7 +76,7 @@ When writing your guide, you must use the same Python requirements we use in the
 
    You should then be able to select the `qiskit-functions` environment from your editor.
 
-If you need to add another dependency, contact Sanket Panda or Paco Martin to discuss adding it to our requirements. Note that we can only add essential dependencies; if it's possible, we'll ask you to rewrite the code examples using the packages that are already part of the environment. Run `pip list` inside your virtual environment to see a list of installed packages.
+If you need to add another dependency, contact Junye Huangk, Sanket Panda or Paco Martin to discuss adding it to our requirements. Note that we can only add essential dependencies; if it's possible, we'll ask you to rewrite the code examples using the packages that are already part of the environment. Run `pip list` inside your virtual environment to see a list of installed packages.
 
 ## How to preview the docs
 
@@ -83,8 +84,10 @@ Follow these steps to preview the documentation locally:
 
 1. Ensure Docker is running.
 2. Run `./start` in your terminal, then open [localhost:3000/](http://localhost:3000/) in your browser.
-
-The preview will not have any other content, such as API documentation.
+3. The documentation types will be available in the following url
+  - user guide: http://localhost:3000/docs/guides
+  - tutorial: http://localhost:3000/docs/tutorials
+  - api reference: http://localhost:3000/docs/api/functions
 
 You may need to restart the preview when making changes by using ctrl-c, then running `./start` again.
 
