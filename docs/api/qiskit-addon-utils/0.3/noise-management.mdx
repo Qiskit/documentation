@@ -1,6 +1,6 @@
 ---
-title: noise_management (latest version)
-description: API reference for qiskit_addon_utils.noise_management in the latest version of qiskit-addon-utils
+title: noise_management (v0.3)
+description: API reference for qiskit_addon_utils.noise_management in qiskit-addon-utils v0.3
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit_addon_utils.noise_management
@@ -18,15 +18,16 @@ Noise management tools.
 
 ### trex\_factors
 
-<Function id="qiskit_addon_utils.noise_management.trex_factors" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/trex_factors.py#L26-L65" signature="trex_factors(measurement_noise_map, basis_dict, /)">
+<Function id="qiskit_addon_utils.noise_management.trex_factors" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/trex_factors.py#L26-L66" signature="trex_factors(measurement_noise_map, basis_dict, /)">
   Calculates TREX mitigation algorithm’s expectation value scale factor for each Pauli term in `basis_dict`.
 
-  Calculates $\langle Z^N \rangle$ for each non-identity Pauli term in each observable using learned measurement noise, where $N$ are the non-identity indices in the term.
+  Calculates \<Z^n> for each Pauli term in each observable, where n is the non identity indices in the Pauli term. The calculation is done using learned measurement noise.
 
   **Parameters**
 
   *   **measurement\_noise\_map** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)) – Learned measurement noise in PauliLindbladMap format.
-  *   **basis\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp) *| None]]*) – Mapping between measure bases and observables in which the TREX algorithm mitigates their expectation value calculation.
+  *   **basis\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp) *| None]]*) – Mapping between measure bases and observables in which the TREX algorithm mitigates their
+  *   **calculation.** (*expectation value*)
 
   **Returns**
 
@@ -35,7 +36,7 @@ Noise management tools.
 
 ### gamma\_from\_noisy\_boxes
 
-<Function id="qiskit_addon_utils.noise_management.gamma_from_noisy_boxes" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/gamma_factor.py#L21-L61" signature="gamma_from_noisy_boxes(noise_models, box_id_to_noise_id, noise_scales_each_box=None)">
+<Function id="qiskit_addon_utils.noise_management.gamma_from_noisy_boxes" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/gamma_factor.py#L21-L61" signature="gamma_from_noisy_boxes(noise_models, box_id_to_noise_id, noise_scales_each_box=None)">
   Calculate the gamma factor for a circuit given the Pauli-Lindblad noise models for the boxes in that circuit.
 
   This function expects the noise models to represent the noise in the circuit, and thus to have positive Lindblad rates. The returned gamma is that associated with the inverse noise maps needed to cancel the noise in the circuit.
@@ -61,7 +62,7 @@ Noise management tools.
 
 ### PostSelectionSummary
 
-<Class id="qiskit_addon_utils.noise_management.PostSelectionSummary" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/post_selection/post_selection_summary.py#L28-L117" signature="PostSelectionSummary(primary_cregs, measure_map, edges, *, post_selection_suffix='_ps')" modifiers="class">
+<Class id="qiskit_addon_utils.noise_management.PostSelectionSummary" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/post_selection/post_selection_summary.py#L28-L117" signature="PostSelectionSummary(primary_cregs, measure_map, edges, *, post_selection_suffix='_ps')" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A helper class to store the properties of a quantum circuit required to post select the results.
@@ -83,7 +84,7 @@ Noise management tools.
 
   #### from\_circuit
 
-  <Function id="qiskit_addon_utils.noise_management.PostSelectionSummary.from_circuit" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/post_selection/post_selection_summary.py#L74-L108" signature="from_circuit(circuit, coupling_map, *, post_selection_suffix='_ps')" modifiers="classmethod">
+  <Function id="qiskit_addon_utils.noise_management.PostSelectionSummary.from_circuit" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/post_selection/post_selection_summary.py#L74-L108" signature="from_circuit(circuit, coupling_map, *, post_selection_suffix='_ps')" modifiers="classmethod">
     Initialize from quantum circuits.
 
     **Parameters**
@@ -118,7 +119,7 @@ Noise management tools.
 
 ### PostSelector
 
-<Class id="qiskit_addon_utils.noise_management.PostSelector" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/post_selection/post_selector.py#L41-L109" signature="PostSelector(summary)" modifiers="class">
+<Class id="qiskit_addon_utils.noise_management.PostSelector" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/post_selection/post_selector.py#L41-L109" signature="PostSelector(summary)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A class to process the results of quantum programs based on the outcome of post selection measurements.
@@ -131,7 +132,7 @@ Noise management tools.
 
   #### compute\_mask
 
-  <Function id="qiskit_addon_utils.noise_management.PostSelector.compute_mask" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/post_selection/post_selector.py#L84-L109" signature="compute_mask(result, strategy=PostSelectionStrategy.NODE)">
+  <Function id="qiskit_addon_utils.noise_management.PostSelector.compute_mask" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/post_selection/post_selector.py#L84-L109" signature="compute_mask(result, strategy=PostSelectionStrategy.NODE)">
     Compute boolean masks indicating what shots should be kept or discarded for the given result.
 
     This function compares the bits returned by every pair of measurement and post selection measurement, identifying all those that failed to flip. The shots that should be kept are marked as `True` in the returned mask, those that should be discarded are marked as `False`.
@@ -150,7 +151,7 @@ Noise management tools.
 
   #### from\_circuit
 
-  <Function id="qiskit_addon_utils.noise_management.PostSelector.from_circuit" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/post_selection/post_selector.py#L57-L82" signature="from_circuit(circuit, coupling_map, *, post_selection_suffix='_ps')" modifiers="classmethod">
+  <Function id="qiskit_addon_utils.noise_management.PostSelector.from_circuit" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.3/qiskit_addon_utils/noise_management/post_selection/post_selector.py#L57-L82" signature="from_circuit(circuit, coupling_map, *, post_selection_suffix='_ps')" modifiers="classmethod">
     Initialize from quantum circuits.
 
     **Parameters**
