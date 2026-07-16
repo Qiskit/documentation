@@ -35,7 +35,12 @@ async function parseObjectsInv(filePath: string): Promise<Set<string>> {
   // All URIs are relative to the objects.inv file
   const dirname = removePrefix(path.dirname(filePath), "public");
   return new Set(
-    objinv.entries.map((entry) => path.posix.join(dirname, entry.uri)),
+    objinv.entries
+      // std: entries are intersphinx :ref: targets for downstream projects.
+      // They point to pages that may not exist in this repo, so skip them to
+      // avoid false broken-link errors.
+      .filter((entry) => !entry.domainAndRole.startsWith("std:"))
+      .map((entry) => path.posix.join(dirname, entry.uri)),
   );
 }
 

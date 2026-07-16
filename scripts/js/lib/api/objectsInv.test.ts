@@ -38,18 +38,6 @@ test.describe("objects.inv", () => {
         "# The remainder of this file is compressed using zlib.\n",
     );
 
-    // std: entries that don't point into stubs/ or apidocs/ must be filtered
-    // out — they're RST structural labels that don't correspond to published
-    // pages and would produce false broken-link errors.
-    expect(
-      objectsInv.entries.some(
-        (e) =>
-          e.domainAndRole.startsWith("std:") &&
-          !e.uri.startsWith("stubs/") &&
-          !e.uri.startsWith("apidocs/"),
-      ),
-    ).toBe(false);
-
     // Spot-check that specific API symbol entries are present.
     const urisToFind = [
       "stubs/qiskit.algorithms.AlgorithmJob.html#qiskit.algorithms.AlgorithmJob.job_id",
