@@ -86,7 +86,7 @@ After a circuit is submitted to QESEM, it automatically prepares several alterna
 | `transpilation_level` | Description |
 |:-:|:--|
 | "standard" | Default QESEM transpilation. Prepares several alternative transpilations and chooses the one that minimizes QPU time. Barriers may be modified in the layerification step. |
-| "minimal_with_layout_opt" | Minimal transpilation: the mitigated circuit will closely resemble the input circuit structurally. Circuits provided in this level should match the device basis gate set, thus you should transpile your circuit to the basis gate set of the device separately. For example: CX, Rzz(α), and standard single-qubit gates (U, x, sx, rz, and so on). Barriers will be respected in the layerification step. |
+| "minimal_with_layout_opt" | Minimal transpilation: the mitigated circuit will closely resemble the input circuit structurally. Circuits provided in this level should match the device basis gate set, and thus you should transpile your circuit to the basis gate set of the device separately. For example: CX, Rzz(α), and standard single-qubit gates (U, x, sx, rz, and so on). Barriers will be respected in the layerification step. |
 
 For jobs that contain multiple input PUBs or multiple parameter-bound circuit instances, use `"minimal_with_layout_opt"`.
 
