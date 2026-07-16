@@ -568,21 +568,22 @@ Improvements include the following:
 
 - New pre-flight checks and new `backend` methods in Qiskit Functions v0.17.0: New methods in `qiskit-ibm-catalog` let you check runtime capacity and backend access before you run, and `run()` now validates both before it submits a job.
 
-  - What's new: When you call `run()` on a function, the service checks three things first: that your instance has runtime capacity, that you can reach the backend you named, and that at least one backend is available. If something is wrong, you get a clear error right away instead of waiting in the queue.
+  - **What's new**
+    - When you call `run()` on a function, the service checks three things first: that your instance has runtime capacity, that you can reach the backend you named, and that at least one backend is available. If something is wrong, you get a clear error right away instead of waiting in the queue.
 
-  You can also check these resources yourself, at any time:
+      You can also check these resources yourself, at any time:
 
-  - Check your remaining runtime capacity with `usage()`.
-  - List the backends your instance can reach with `backends()`.
-  - Look up a single backend and confirm access with `backend()`.
-  - Find the backend with the fewest pending jobs with `least_busy()`.
+      - Check your remaining runtime capacity with `usage()`.
+      - List the backends your instance can reach with `backends()`.
+      - Look up a single backend and confirm access with `backend()`.
+      - Find the backend with the fewest pending jobs with `least_busy()`.
 
-  - Common use cases:
+  - **Common use cases**
     - Check your remaining capacity before a long batch of jobs, and skip the run if there is not enough left to finish it.
     - Choose a backend in code instead of hard-coding a name.
     - Fail fast in pipelines and notebooks instead of waiting in the queue.
 
-  - Get started:
+  - **Get started**
 
     - First ensure you're running the latest version of `qiskit-ibm-catalog`:
 
@@ -590,7 +591,7 @@ Improvements include the following:
       pip install --upgrade qiskit-ibm-catalog
       ```
 
-    - Then see the [documentation](/docs/guides/functions-get-started) for more information.
+    - Then see the [documentation](/docs/guides/functions-get-started) for more information and an example.
 
 
 <Accordion>
