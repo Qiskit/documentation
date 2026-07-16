@@ -1,0 +1,921 @@
+---
+title: bit_flip_checks (latest version)
+description: API reference for qiskit_addon_utils.noise_management.bit_flip_checks in the latest version of qiskit-addon-utils
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_utils.noise_management.bit_flip_checks
+---
+
+<span id="module-qiskit_addon_utils.noise_management.bit_flip_checks" />
+
+<span id="bit-flip-checks-qiskit-addon-utils-noise-management-bit-flip-checks" />
+
+# bit\_flip\_checks
+
+`qiskit_addon_utils.noise_management.bit_flip_checks`
+
+Functions and classes for post-selection via circuit bit-flip checks.
+
+### PostSelectionSummary
+
+<Class id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/bit_flip_checks/post_selection_summary.py#L32-L196" signature="PostSelectionSummary(primary_cregs, measure_map, edges, *, measure_map_ps=None, measure_map_pre=None, post_check_suffix='_ps', pre_check_suffix='_pre', spectator_cregs=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  A helper class to store the properties of a quantum circuit required to postselect based on bit-flip checks.
+
+  Initialize a `PostSelectionSummary` object.
+
+  **Parameters**
+
+  *   **primary\_cregs** ([*set*](https://docs.python.org/3/library/stdtypes.html#set)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – The names of the “primary” classical registers, namely those that do not end with the pre- and post-circuit check suffixes.
+  *   **measure\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – A map between qubit indices to the register and clbits that uniquely define a measurement on those qubits (primary measurements).
+  *   **edges** ([*set*](https://docs.python.org/3/library/stdtypes.html#set)*\[*[*frozenset*](https://docs.python.org/3/library/stdtypes.html#frozenset)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – A list of tuples defining pairs of neighboring qubits.
+  *   **measure\_map\_ps** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]] | None*) – An optional map for post-circuit check measurements.
+  *   **measure\_map\_pre** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]] | None*) – An optional map for pre-circuit check measurements.
+  *   **post\_check\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The suffix of the post-circuit check registers.
+  *   **pre\_check\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The suffix of the pre-circuit check registers.
+  *   **spectator\_cregs** ([*set*](https://docs.python.org/3/library/stdtypes.html#set)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – Names of primary registers that hold spectator measurements (the first half of the spectator parity check produced by [`AddSpectatorPostCircuitBitFlipChecks`](/docs/api/qiskit-addon-utils/noise-management-bit-flip-checks-passes-add-spectator-post-circuit-bit-flip-checks "qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPostCircuitBitFlipChecks")).
+
+  #### edges
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary.edges" attributeTypeHint="set[frozenset[int]]">
+    A set of edges to consider for edge-based postselection.
+  </Attribute>
+
+  #### from\_circuit
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary.from_circuit" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/bit_flip_checks/post_selection_summary.py#L116-L183" signature="from_circuit(circuit, coupling_map, *, post_check_suffix='_ps', pre_check_suffix='_pre', spectator_cregs=None)" modifiers="classmethod">
+    Initialize from quantum circuits.
+
+    **Parameters**
+
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The circuit containing bit-flip checks..
+    *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – A coupling map or a list of tuples indicating pairs of neighboring qubits.
+    *   **post\_check\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – A fixed suffix for post-circuit check classical registers.
+    *   **pre\_check\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – A fixed suffix for pre-circuit check classical registers.
+    *   **spectator\_cregs** ([*set*](https://docs.python.org/3/library/stdtypes.html#set)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – Names of primary registers that hold spectator measurements. Defaults to `["spec"]`, matching the default name used by [`AddSpectatorPostCircuitBitFlipChecks`](/docs/api/qiskit-addon-utils/noise-management-bit-flip-checks-passes-add-spectator-post-circuit-bit-flip-checks "qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPostCircuitBitFlipChecks").
+
+    **Return type**
+
+    [*PostSelectionSummary*](#qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary "qiskit_addon_utils.noise_management.bit_flip_checks.post_selection_summary.PostSelectionSummary")
+  </Function>
+
+  #### measure\_map
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary.measure_map" attributeTypeHint="dict[int, tuple[str, int]]">
+    A map from qubit indices to the register and clbit index used to measure those qubits.
+  </Attribute>
+
+  #### measure\_map\_pre
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary.measure_map_pre" attributeTypeHint="dict[int, tuple[str, int]]">
+    A map from qubit indices to the register and clbit index for pre-circuit check measurements.
+  </Attribute>
+
+  #### measure\_map\_ps
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary.measure_map_ps" attributeTypeHint="dict[int, tuple[str, int]]">
+    A map from qubit indices to the register and clbit index for post-circuit check measurements.
+  </Attribute>
+
+  #### post\_check\_suffix
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary.post_check_suffix" attributeTypeHint="str">
+    The suffix of the post-circuit check registers.
+  </Attribute>
+
+  #### pre\_check\_suffix
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary.pre_check_suffix" attributeTypeHint="str">
+    The suffix of the pre-circuit check registers.
+  </Attribute>
+
+  #### primary\_cregs
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary.primary_cregs" attributeTypeHint="set[str]">
+    The names of the primary classical registers.
+  </Attribute>
+
+  #### spectator\_cregs
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary.spectator_cregs" attributeTypeHint="set[str]">
+    Subset of `primary_cregs` that hold spectator measurements.
+
+    Use `primary_cregs - spectator_cregs` to get the data-only primary registers, e.g. when computing observables from filtered shots.
+  </Attribute>
+</Class>
+
+### PostSelector
+
+<Class id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelector" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/bit_flip_checks/post_selector.py#L40-L148" signature="PostSelector(summary)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  A class to process the results of bit-flip checks.
+
+  Initialize a `PostSelector` object.
+
+  **Parameters**
+
+  **summary** ([*PostSelectionSummary*](#qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary "qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionSummary")) – A summary of the circuit containing bit-flip checks.
+
+  #### compute\_mask
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelector.compute_mask" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/bit_flip_checks/post_selector.py#L92-L148" signature="compute_mask(result, strategy=PostSelectionStrategy.NODE, *, mode='post')">
+    Compute boolean masks indicating what shots should be kept or discarded.
+
+    By construction, the returned mask has the same shape as the arrays in the result, but with one fewer dimension (the last axis of every array, over clbits, is not present in the mask).
+
+    **Parameters**
+
+    *   **result** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)*]]]*) – The result to post-process. Must be a dictionary mapping register names to boolean arrays.
+    *   **strategy** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['node', 'edge'] | \~qiskit\_addon\_utils.noise\_management.bit\_flip\_checks.post\_selector.PostSelectionStrategy*) – The postselection strategy (“node” or “edge”).
+    *   **mode** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['post', 'pre', 'both']*) – Which type of postselection to apply: - “post”: Apply post-circuit checks only - “pre”: Apply pre-circuit checks only - “both”: Apply both pre and post-check
+
+    **Returns**
+
+    A boolean mask where True indicates shots to keep, False indicates shots to discard.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the requested mode is not available (e.g., no pre-check measurements in the circuit but mode=”pre” was requested).
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[int](https://docs.python.org/3/library/functions.html#int), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)]]
+  </Function>
+
+  #### from\_circuit
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelector.from_circuit" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/bit_flip_checks/post_selector.py#L56-L90" signature="from_circuit(circuit, coupling_map, *, post_check_suffix='_ps', pre_check_suffix='_pre', spectator_cregs=None)" modifiers="classmethod">
+    Initialize from a quantum circuit.
+
+    **Parameters**
+
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The circuit containing bit-flip checks.
+    *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – A coupling map or a list of tuples indicating pairs of neighboring qubits.
+    *   **post\_check\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – A fixed suffix for classical registers associated with post-circuit checks.
+    *   **pre\_check\_suffix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – A fixed suffix for classical registers associated with pre-circuit checks.
+    *   **spectator\_cregs** ([*set*](https://docs.python.org/3/library/stdtypes.html#set)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – Names of registers that hold spectator measurements (the first half of the spectator parity check produced by [`AddSpectatorPostCircuitBitFlipChecks`](/docs/api/qiskit-addon-utils/noise-management-bit-flip-checks-passes-add-spectator-post-circuit-bit-flip-checks "qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPostCircuitBitFlipChecks")). Defaults to `["spec"]` to match [`AddSpectatorPostCircuitBitFlipChecks`](/docs/api/qiskit-addon-utils/noise-management-bit-flip-checks-passes-add-spectator-post-circuit-bit-flip-checks "qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPostCircuitBitFlipChecks").
+
+    **Return type**
+
+    [*PostSelector*](#qiskit_addon_utils.noise_management.bit_flip_checks.PostSelector "qiskit_addon_utils.noise_management.bit_flip_checks.post_selector.PostSelector")
+  </Function>
+
+  #### summary
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelector.summary" attributeTypeHint="PostSelectionSummary">
+    A summary of the circuit containing bit-flip checks.
+  </Attribute>
+</Class>
+
+### PostSelectionStrategy
+
+<Class id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/bit_flip_checks/post_selector.py#L30-L37" signature="PostSelectionStrategy(value)" modifiers="class">
+  Bases: [`str`](https://docs.python.org/3/library/stdtypes.html#str), [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
+
+  The supported postselection strategies.
+
+  #### EDGE
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.EDGE" attributeValue="'edge'">
+    Discard every shot where there exists a pair of neighbouring qubits for which both checks fail.
+  </Attribute>
+
+  #### NODE
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.NODE" attributeValue="'node'">
+    Discard every shot where one or more checks fail.
+  </Attribute>
+
+  #### capitalize
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.capitalize" signature="capitalize()">
+    Return a capitalized version of the string.
+
+    More specifically, make the first character have upper case and the rest lower case.
+  </Function>
+
+  #### casefold
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.casefold" signature="casefold()">
+    Return a version of the string suitable for caseless comparisons.
+  </Function>
+
+  #### center
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.center" signature="center(width, fillchar=' ', /)">
+    Return a centered string of length width.
+
+    Padding is done using the specified fill character (default is a space).
+  </Function>
+
+  #### count
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.count" signature="count(sub[, start[, end]]) → int">
+    Return the number of non-overlapping occurrences of substring sub in string S\[start:end]. Optional arguments start and end are interpreted as in slice notation.
+  </Function>
+
+  #### encode
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.encode" signature="encode(encoding='utf-8', errors='strict')">
+    Encode the string using the codec registered for encoding.
+
+    **encoding**
+
+    The encoding in which to encode the string.
+
+    **errors**
+
+    The error handling scheme to use for encoding errors. The default is ‘strict’ meaning that encoding errors raise a UnicodeEncodeError. Other possible values are ‘ignore’, ‘replace’ and ‘xmlcharrefreplace’ as well as any other name registered with codecs.register\_error that can handle UnicodeEncodeErrors.
+  </Function>
+
+  #### endswith
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.endswith" signature="endswith(suffix[, start[, end]]) → bool">
+    Return True if S ends with the specified suffix, False otherwise. With optional start, test S beginning at that position. With optional end, stop comparing S at that position. suffix can also be a tuple of strings to try.
+  </Function>
+
+  #### expandtabs
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.expandtabs" signature="expandtabs(tabsize=8)">
+    Return a copy where all tab characters are expanded using spaces.
+
+    If tabsize is not given, a tab size of 8 characters is assumed.
+  </Function>
+
+  #### find
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.find" signature="find(sub[, start[, end]]) → int">
+    Return the lowest index in S where substring sub is found, such that sub is contained within S\[start:end]. Optional arguments start and end are interpreted as in slice notation.
+
+    Return -1 on failure.
+  </Function>
+
+  #### format
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.format" signature="format(*args, **kwargs) → str">
+    Return a formatted version of S, using substitutions from args and kwargs. The substitutions are identified by braces (‘\{’ and ‘}’).
+  </Function>
+
+  #### format\_map
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.format_map" signature="format_map(mapping) → str">
+    Return a formatted version of S, using substitutions from mapping. The substitutions are identified by braces (‘\{’ and ‘}’).
+  </Function>
+
+  #### index
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.index" signature="index(sub[, start[, end]]) → int">
+    Return the lowest index in S where substring sub is found, such that sub is contained within S\[start:end]. Optional arguments start and end are interpreted as in slice notation.
+
+    Raises ValueError when the substring is not found.
+  </Function>
+
+  #### isalnum
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.isalnum" signature="isalnum()">
+    Return True if the string is an alpha-numeric string, False otherwise.
+
+    A string is alpha-numeric if all characters in the string are alpha-numeric and there is at least one character in the string.
+  </Function>
+
+  #### isalpha
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.isalpha" signature="isalpha()">
+    Return True if the string is an alphabetic string, False otherwise.
+
+    A string is alphabetic if all characters in the string are alphabetic and there is at least one character in the string.
+  </Function>
+
+  #### isascii
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.isascii" signature="isascii()">
+    Return True if all characters in the string are ASCII, False otherwise.
+
+    ASCII characters have code points in the range U+0000-U+007F. Empty string is ASCII too.
+  </Function>
+
+  #### isdecimal
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.isdecimal" signature="isdecimal()">
+    Return True if the string is a decimal string, False otherwise.
+
+    A string is a decimal string if all characters in the string are decimal and there is at least one character in the string.
+  </Function>
+
+  #### isdigit
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.isdigit" signature="isdigit()">
+    Return True if the string is a digit string, False otherwise.
+
+    A string is a digit string if all characters in the string are digits and there is at least one character in the string.
+  </Function>
+
+  #### isidentifier
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.isidentifier" signature="isidentifier()">
+    Return True if the string is a valid Python identifier, False otherwise.
+
+    Call keyword.iskeyword(s) to test whether string s is a reserved identifier, such as “def” or “class”.
+  </Function>
+
+  #### islower
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.islower" signature="islower()">
+    Return True if the string is a lowercase string, False otherwise.
+
+    A string is lowercase if all cased characters in the string are lowercase and there is at least one cased character in the string.
+  </Function>
+
+  #### isnumeric
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.isnumeric" signature="isnumeric()">
+    Return True if the string is a numeric string, False otherwise.
+
+    A string is numeric if all characters in the string are numeric and there is at least one character in the string.
+  </Function>
+
+  #### isprintable
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.isprintable" signature="isprintable()">
+    Return True if the string is printable, False otherwise.
+
+    A string is printable if all of its characters are considered printable in repr() or if it is empty.
+  </Function>
+
+  #### isspace
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.isspace" signature="isspace()">
+    Return True if the string is a whitespace string, False otherwise.
+
+    A string is whitespace if all characters in the string are whitespace and there is at least one character in the string.
+  </Function>
+
+  #### istitle
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.istitle" signature="istitle()">
+    Return True if the string is a title-cased string, False otherwise.
+
+    In a title-cased string, upper- and title-case characters may only follow uncased characters and lowercase characters only cased ones.
+  </Function>
+
+  #### isupper
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.isupper" signature="isupper()">
+    Return True if the string is an uppercase string, False otherwise.
+
+    A string is uppercase if all cased characters in the string are uppercase and there is at least one cased character in the string.
+  </Function>
+
+  #### join
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.join" signature="join(iterable, /)">
+    Concatenate any number of strings.
+
+    The string whose method is called is inserted in between each given string. The result is returned as a new string.
+
+    Example: ‘.’.join(\[‘ab’, ‘pq’, ‘rs’]) -> ‘ab.pq.rs’
+  </Function>
+
+  #### ljust
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.ljust" signature="ljust(width, fillchar=' ', /)">
+    Return a left-justified string of length width.
+
+    Padding is done using the specified fill character (default is a space).
+  </Function>
+
+  #### lower
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.lower" signature="lower()">
+    Return a copy of the string converted to lowercase.
+  </Function>
+
+  #### lstrip
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.lstrip" signature="lstrip(chars=None, /)">
+    Return a copy of the string with leading whitespace removed.
+
+    If chars is given and not None, remove characters in chars instead.
+  </Function>
+
+  #### maketrans
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.maketrans" signature="maketrans()" modifiers="static">
+    Return a translation table usable for str.translate().
+
+    If there is only one argument, it must be a dictionary mapping Unicode ordinals (integers) or characters to Unicode ordinals, strings or None. Character keys will be then converted to ordinals. If there are two arguments, they must be strings of equal length, and in the resulting dictionary, each character in x will be mapped to the character at the same position in y. If there is a third argument, it must be a string, whose characters will be mapped to None in the result.
+  </Function>
+
+  #### partition
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.partition" signature="partition(sep, /)">
+    Partition the string into three parts using the given separator.
+
+    This will search for the separator in the string. If the separator is found, returns a 3-tuple containing the part before the separator, the separator itself, and the part after it.
+
+    If the separator is not found, returns a 3-tuple containing the original string and two empty strings.
+  </Function>
+
+  #### removeprefix
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.removeprefix" signature="removeprefix(prefix, /)">
+    Return a str with the given prefix string removed if present.
+
+    If the string starts with the prefix string, return string\[len(prefix):]. Otherwise, return a copy of the original string.
+  </Function>
+
+  #### removesuffix
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.removesuffix" signature="removesuffix(suffix, /)">
+    Return a str with the given suffix string removed if present.
+
+    If the string ends with the suffix string and that suffix is not empty, return string\[:-len(suffix)]. Otherwise, return a copy of the original string.
+  </Function>
+
+  #### replace
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.replace" signature="replace(old, new, count=-1, /)">
+    Return a copy with all occurrences of substring old replaced by new.
+
+    > **count**
+    >
+    > Maximum number of occurrences to replace. -1 (the default value) means replace all occurrences.
+
+    If the optional argument count is given, only the first count occurrences are replaced.
+  </Function>
+
+  #### rfind
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.rfind" signature="rfind(sub[, start[, end]]) → int">
+    Return the highest index in S where substring sub is found, such that sub is contained within S\[start:end]. Optional arguments start and end are interpreted as in slice notation.
+
+    Return -1 on failure.
+  </Function>
+
+  #### rindex
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.rindex" signature="rindex(sub[, start[, end]]) → int">
+    Return the highest index in S where substring sub is found, such that sub is contained within S\[start:end]. Optional arguments start and end are interpreted as in slice notation.
+
+    Raises ValueError when the substring is not found.
+  </Function>
+
+  #### rjust
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.rjust" signature="rjust(width, fillchar=' ', /)">
+    Return a right-justified string of length width.
+
+    Padding is done using the specified fill character (default is a space).
+  </Function>
+
+  #### rpartition
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.rpartition" signature="rpartition(sep, /)">
+    Partition the string into three parts using the given separator.
+
+    This will search for the separator in the string, starting at the end. If the separator is found, returns a 3-tuple containing the part before the separator, the separator itself, and the part after it.
+
+    If the separator is not found, returns a 3-tuple containing two empty strings and the original string.
+  </Function>
+
+  #### rsplit
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.rsplit" signature="rsplit(sep=None, maxsplit=-1)">
+    Return a list of the substrings in the string, using sep as the separator string.
+
+    > **sep**
+    >
+    > The separator used to split the string.
+    >
+    > When set to None (the default value), will split on any whitespace character (including \n \r \t \f and spaces) and will discard empty strings from the result.
+    >
+    > **maxsplit**
+    >
+    > Maximum number of splits (starting from the left). -1 (the default value) means no limit.
+
+    Splitting starts at the end of the string and works to the front.
+  </Function>
+
+  #### rstrip
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.rstrip" signature="rstrip(chars=None, /)">
+    Return a copy of the string with trailing whitespace removed.
+
+    If chars is given and not None, remove characters in chars instead.
+  </Function>
+
+  #### split
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.split" signature="split(sep=None, maxsplit=-1)">
+    Return a list of the substrings in the string, using sep as the separator string.
+
+    > **sep**
+    >
+    > The separator used to split the string.
+    >
+    > When set to None (the default value), will split on any whitespace character (including \n \r \t \f and spaces) and will discard empty strings from the result.
+    >
+    > **maxsplit**
+    >
+    > Maximum number of splits (starting from the left). -1 (the default value) means no limit.
+
+    Note, str.split() is mainly useful for data that has been intentionally delimited. With natural text that includes punctuation, consider using the regular expression module.
+  </Function>
+
+  #### splitlines
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.splitlines" signature="splitlines(keepends=False)">
+    Return a list of the lines in the string, breaking at line boundaries.
+
+    Line breaks are not included in the resulting list unless keepends is given and true.
+  </Function>
+
+  #### startswith
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.startswith" signature="startswith(prefix[, start[, end]]) → bool">
+    Return True if S starts with the specified prefix, False otherwise. With optional start, test S beginning at that position. With optional end, stop comparing S at that position. prefix can also be a tuple of strings to try.
+  </Function>
+
+  #### strip
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.strip" signature="strip(chars=None, /)">
+    Return a copy of the string with leading and trailing whitespace removed.
+
+    If chars is given and not None, remove characters in chars instead.
+  </Function>
+
+  #### swapcase
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.swapcase" signature="swapcase()">
+    Convert uppercase characters to lowercase and lowercase characters to uppercase.
+  </Function>
+
+  #### title
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.title" signature="title()">
+    Return a version of the string where each word is titlecased.
+
+    More specifically, words start with uppercased characters and all remaining cased characters have lower case.
+  </Function>
+
+  #### translate
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.translate" signature="translate(table, /)">
+    Replace each character in the string using the given translation table.
+
+    > **table**
+    >
+    > Translation table, which must be a mapping of Unicode ordinals to Unicode ordinals, strings, or None.
+
+    The table must implement lookup/indexing via \_\_getitem\_\_, for instance a dictionary or list. If this operation raises LookupError, the character is left untouched. Characters mapped to None are deleted.
+  </Function>
+
+  #### upper
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.upper" signature="upper()">
+    Return a copy of the string converted to uppercase.
+  </Function>
+
+  #### zfill
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.PostSelectionStrategy.zfill" signature="zfill(width, /)">
+    Pad a numeric string with zeros on the left, to fill a field of the given width.
+
+    The string is never truncated.
+  </Function>
+</Class>
+
+### XSlowGate
+
+<Class id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/bit_flip_checks/xslow_gate.py#L19-L28" signature="XSlowGate(label='xslow', xslow_gate_name='xslow')" modifiers="class">
+  Bases: [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate)
+
+  The x-slow gate.
+
+  **Parameters**
+
+  *   **name** – The name of the gate.
+  *   **num\_qubits** – The number of qubits the gate acts on.
+  *   **params** – A list of parameters.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – An optional label for the gate.
+  *   **xslow\_gate\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str))
+
+  #### add\_decomposition
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  #### base\_class
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.base_class" attributeTypeHint="type[Instruction]">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.base_class "qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a `Target` from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  #### broadcast\_arguments
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
+
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
+
+    The general broadcasting rules are:
+
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
+
+    **Parameters**
+
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of classical bit arguments.
+
+    **Returns**
+
+    A tuple with single arguments.
+
+    **Raises**
+
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+
+    **Return type**
+
+    [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list), [list](https://docs.python.org/3/library/stdtypes.html#list)]]
+  </Function>
+
+  #### control
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return the controlled version of itself.
+
+    The controlled gate is implemented as `ControlledGate` when `annotated` is `False`, and as `AnnotatedOperation` when `annotated` is `True`.
+
+    <Admonition title="Deprecated since version 2.3" type="danger">
+      `qiskit.circuit.gate.Gate.control()`’s argument `annotated` is deprecated as of Qiskit 2.3. It will be removed in Qiskit 3.0. The method Gate.control() no longer accepts annotated=None. The new default is annotated=True, which represents the controlled gate as an AnnotatedOperation (unless a dedicated controlled-gate class already exists). You can explicitly set annotated=False to preserve the previous behavior. However, using annotated=True is recommended, as it defers construction of the controlled circuit to transpiler, and furthermore enables additional controlled-gate optimizations (typically leading to higher-quality circuits).
+    </Admonition>
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add. Defaults to `1`.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Optional gate label. Defaults to `None`. Ignored if the controlled gate is implemented as an annotated operation.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – Indicates whether the controlled gate should be implemented as a controlled gate or as an annotated operation. If `None`, treated as `False`.
+
+    **Returns**
+
+    A controlled version of this gate.
+
+    **Raises**
+
+    **QiskitError** – invalid `num_ctrl_qubits` or `ctrl_state`.
+  </Function>
+
+  #### copy
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.copy" signature="copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – name to be given to the copied circuit, if `None` then the name stays the same.
+
+    **Returns**
+
+    a copy of the current instruction, with the name updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](/docs/api/qiskit/qiskit.circuit.Instruction)
+  </Function>
+
+  #### decompositions
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  #### definition
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  #### inverse
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.inverse" signature="inverse(annotated=False)">
+    Invert this instruction.
+
+    If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
+
+    If annotated is True, the inverse instruction is implemented as `AnnotatedOperation`, and corresponds to the given instruction annotated with the “inverse modifier”.
+
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if set to True the output inverse gate will be returned as `AnnotatedOperation`.
+
+    **Returns**
+
+    The inverse operation.
+
+    **Raises**
+
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
+
+  #### is\_parameterized
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.is_parameterized" signature="is_parameterized()">
+    Return whether the `Instruction` contains compile-time parameters.
+  </Function>
+
+  #### label
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.label" attributeTypeHint="str">
+    Return instruction label
+  </Attribute>
+
+  #### mutable
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.mutable" attributeTypeHint="bool">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  #### name
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.name">
+    Return the name.
+  </Attribute>
+
+  #### num\_clbits
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  #### num\_qubits
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  #### params
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  #### power
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.power" signature="power(exponent, annotated=False)">
+    Raise this gate to the power of `exponent`.
+
+    Implemented either as a unitary gate (ref. `UnitaryGate`) or as an annotated operation (ref. `AnnotatedOperation`). In the case of several standard gates, such as `RXGate`, when the power of a gate can be expressed in terms of another standard gate that is returned directly.
+
+    **Parameters**
+
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as `RXGate`, this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+
+    **Returns**
+
+    An operation implementing `gate^exponent`
+
+    **Raises**
+
+    **CircuitError** – If gate is not unitary
+  </Function>
+
+  #### repeat
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.repeat" signature="repeat(n)">
+    Creates an instruction with `self` repeated $n$ times.
+
+    **Parameters**
+
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](/docs/api/qiskit/qiskit.circuit.Instruction)
+
+    **Raises**
+
+    **CircuitError** – If n \< 1.
+  </Function>
+
+  #### reverse\_ops
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](/docs/api/qiskit/qiskit.circuit.Instruction)
+  </Function>
+
+  #### soft\_compare
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.soft_compare" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool)
+  </Function>
+
+  #### to\_matrix
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.to_matrix" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
+
+    **Returns**
+
+    if the Gate subclass has a matrix definition.
+
+    **Return type**
+
+    np.ndarray
+
+    **Raises**
+
+    **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+  </Function>
+
+  #### to\_mutable
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.to_mutable" signature="to_mutable()">
+    Return a mutable copy of this gate.
+
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
+
+  #### validate\_parameter
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.XSlowGate.validate_parameter" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
+
