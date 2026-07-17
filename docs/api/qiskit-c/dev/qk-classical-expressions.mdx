@@ -6,6 +6,8 @@ python_api_type: module
 python_api_name: Classical Expressions
 ---
 
+<span id="capi-classical-expressions" />
+
 # Classical Expressions
 
 The Qiskit C API for classical expressions provides facilities for inspecting classical expressions used in Qiskit. This API enables users to traverse and examine expression trees through a set of enums, structs, and accessor functions. You can inspect the structure of expressions, identify node types, query type information and access detailed properties of each node in the expression tree. Currently, classical expressions can only be accessed through the control-flow API, for example when querying conditions that are comprised of classical expressions.
@@ -510,8 +512,8 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 
   ```c
   QkBinaryExprInfo info = qk_expr_binary_info(expr);
-  const Expr *lhs = info.left;
-  const Expr *rhs = info.right;
+  const QkExprNode *lhs = info.left;
+  const QkExprNode *rhs = info.right;
   ```
 
   <span id="group__QkClassicalExpressions_1autotoc_md113" />
@@ -610,8 +612,8 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 
   ```c
   QkIndexExprInfo info = qk_expr_index_info(expr);
-  const Expr *target = info.target;
-  const Expr *index = info.index;
+  const QkExprNode *target = info.target;
+  const QkExprNode *index = info.index;
   ```
 
   <span id="group__QkClassicalExpressions_1autotoc_md119" />
@@ -898,7 +900,7 @@ This union is part of the `QkDurationInfo` struct and should not be used directl
 
   ```c
   char *name = qk_var_name(var);
-  if (name ! = NULL) {
+  if (name != NULL) {
       // Use the name...
       qk_str_free(name);
   }
