@@ -18,22 +18,27 @@ Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 
 <Admonition type="note" title="What's new (last 60 days)">
 
+16 July 2026
+
+- **New pre-flight checks and new `backend` methods in Qiskit Functions v0.17.0** &mdash; Use the new methods in `qiskit-ibm-catalog` to check runtime capacity and backend access before you run, and `run()` now validates both before it submits a job. [*Read more*](#new-methods)
+---
+
 5 June 2026
 
-- **Support for the Store instruction on IBM&reg; QPUs** - Now you can simplify complex classical computations in your quantum circuits with the Store instruction. [*Read more*](#store-instruction)
+- **Support for the Store instruction on IBM&reg; QPUs** &mdash; Now you can simplify complex classical computations in your quantum circuits with the Store instruction. [*Read more*](#store-instruction)
 ---
 29 May 2026
 
-- **Qiskit Code Assistant service discontinued** - The preview service has been discontinued and the Visual Studio Code and JupyterLab extensions have been archived. [*Read more*](#qca-sunset)
+- **Qiskit Code Assistant service discontinued** &mdash; The preview service has been discontinued and the Visual Studio Code and JupyterLab extensions have been archived. [*Read more*](#qca-sunset)
 ---
 28 May 2026
 
-- **New Classroom Accounts** - Professors can now request a Classroom Account to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information. [*Read more*](#classroom-accounts)
+- **New Classroom Accounts** &mdash; Professors can now request a Classroom Account to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information. [*Read more*](#classroom-accounts)
 ---
 
 18 May 2026
 
-- **Introducing the Executor primitive** - We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025. [*Read more*](#executor-primitive)
+- **Introducing the Executor primitive** &mdash; We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025. [*Read more*](#executor-primitive)
 </Admonition>
 
 Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit addons](#latest-qiskit-addons) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca)
@@ -558,12 +563,45 @@ Improvements include the following:
 <span id="latest-qiskit-functions"></span>
 ## Qiskit Functions
 
+<span id="new-methods"></span>
+### July 2026
+
+- New pre-flight checks and new `backend` methods in Qiskit Functions v0.17.0: New methods in `qiskit-ibm-catalog` let you check runtime capacity and backend access before you run, and `run()` now validates both before it submits a job.
+
+  - **What's new**
+    - When you call `run()` on a function, the service checks three things first: that your instance has runtime capacity, that you can reach the backend you named, and that at least one backend is available. If something is wrong, you get a clear error right away instead of waiting in the queue.
+
+      You can also check these resources yourself, at any time:
+
+      - Check your remaining runtime capacity with `usage()`.
+      - List the backends your instance can reach with `backends()`.
+      - Look up a single backend and confirm access with `backend()`.
+      - Find the backend with the fewest pending jobs with `least_busy()`.
+
+  - **Common use cases**
+    - Check your remaining capacity before a long batch of jobs, and skip the run if there is not enough left to finish it.
+    - Choose a backend in code instead of hard-coding a name.
+    - Fail fast in pipelines and notebooks instead of waiting in the queue.
+
+  - **Get started**
+
+    - First ensure you're running the latest version of `qiskit-ibm-catalog`:
+
+      ```
+      pip install --upgrade qiskit-ibm-catalog
+      ```
+
+    - Then see the [documentation](/docs/guides/functions-get-started) for more information and an example.
+
+
+<Accordion>
+<AccordionItem title="**Previous updates**">
+
 ### April 2026
 
 - All API reference content for Qiskit Functions can now be found with other API reference documentation: [Qiskit Functions API reference](/docs/api/functions)
 
-<Accordion>
-<AccordionItem title="**Previous updates**">
+
 
 ### 18 July 2025
 
