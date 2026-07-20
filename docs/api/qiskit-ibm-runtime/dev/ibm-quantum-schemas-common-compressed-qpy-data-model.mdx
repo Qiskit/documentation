@@ -1,0 +1,105 @@
+---
+title: CompressedQpyDataModel (dev version)
+description: API reference for ibm_quantum_schemas.common.CompressedQpyDataModel in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.common.CompressedQpyDataModel
+---
+
+<span id="ibm-quantum-schemas-common-compressedqpydatamodel" />
+
+# CompressedQpyDataModel
+
+<Class id="ibm_quantum_schemas.common.CompressedQpyDataModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10rc2/ibm_quantum_schemas/common/qpy.py#L152-L239" signature="CompressedQpyDataModel" modifiers="pydantic model">
+  Bases: [`QpyDataModel`](ibm-quantum-schemas-common-qpy-data-model "ibm_quantum_schemas.common.qpy.QpyDataModel"), `Generic`\[`T`]
+
+  QPY-encoded Qiskit objects with compression.
+
+  ### b64\_data
+
+  <Attribute id="ibm_quantum_schemas.common.CompressedQpyDataModel.b64_data" attributeTypeHint="str [Required]" modifiers="field">
+    Base-64 encoded data of the QPY serialization of some Qiskit objects.
+
+    **Validated by**
+
+    *   `cross_validate_qpy_info`
+  </Attribute>
+
+  ### num\_programs
+
+  <Attribute id="ibm_quantum_schemas.common.CompressedQpyDataModel.num_programs" attributeTypeHint="int [Required]" modifiers="field">
+    The number of distinct elements in the Python encoding.
+
+    **Constraints**
+
+    *   **ge** = 1
+
+    **Validated by**
+
+    *   `cross_validate_qpy_info`
+  </Attribute>
+
+  ### qpy\_version
+
+  <Attribute id="ibm_quantum_schemas.common.CompressedQpyDataModel.qpy_version" attributeTypeHint="int [Required]" modifiers="field">
+    The QPY encoding version.
+
+    **Constraints**
+
+    *   **ge** = 10
+
+    **Validated by**
+
+    *   `cross_validate_qpy_info`
+  </Attribute>
+
+  ### cross\_validate\_qpy\_info
+
+  <Function id="ibm_quantum_schemas.common.CompressedQpyDataModel.cross_validate_qpy_info" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10rc2/ibm_quantum_schemas/common/qpy.py#L155-L169" signature="cross_validate_qpy_info" modifiers="validator">
+    Check that the encoded qpy information matches expectations.
+  </Function>
+
+  ### from\_python
+
+  <Function id="ibm_quantum_schemas.common.CompressedQpyDataModel.from_python" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10rc2/ibm_quantum_schemas/common/qpy.py#L201-L239" signature="from_python(data, qpy_version=17, metadata_serializer=None)" modifiers="classmethod">
+    Create a model instance from Python data of the correct type.
+
+    The returned instance owns a reference to the provided data. This instance may be returned by [`to_python()`](#ibm_quantum_schemas.common.CompressedQpyDataModel.to_python "ibm_quantum_schemas.common.CompressedQpyDataModel.to_python") depending on the value of `use_cached`. Users of this class are responsible for managing cached instances of the data and possible side-effects of their mutations.
+
+    **Parameters**
+
+    *   **data** (*list\[T]*) – The data to base64 encode in the new model instance.
+    *   **qpy\_version** (*int*) – The QPY version to encode with.
+    *   **metadata\_serializer** (*type\[JSONEncoder] | None*) – An optional `json.JSONEncoder` class that will be passed to [`qiskit.qpy.dump()`](/docs/api/qiskit/qpy#qiskit.qpy.dump) during QPY serialization. In particular, this encoder overrides the default behaviour of converting Python objects into JSON data.
+
+    **Returns**
+
+    A new model instance.
+
+    **Return type**
+
+    *Self*
+  </Function>
+
+  ### to\_python
+
+  <Function id="ibm_quantum_schemas.common.CompressedQpyDataModel.to_python" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10rc2/ibm_quantum_schemas/common/qpy.py#L171-L199" signature="to_python(use_cached=False, metadata_deserializer=None)">
+    Return a Python representation of the encoded data in the model.
+
+    When `use_cached` is false, or when no cached version exists, [`b64_data`](#ibm_quantum_schemas.common.CompressedQpyDataModel.b64_data "ibm_quantum_schemas.common.CompressedQpyDataModel.b64_data") is decoded and loaded into a new Python instance. Users of this class are responsible for managing cached instances of the Python data and possible side-effects of their mutations.
+
+    **Parameters**
+
+    *   **use\_cached** (*bool*) – Whether to return the cached instance (if it exists).
+    *   **metadata\_deserializer** (*type\[JSONDecoder] | None*) – An optional `json.JSONDecoder` class that will be forwarded to ``qiskit.qpy.load`()`` when deserializing QPY data. In particular, this controls how JSON-serialized circuit metadata are instantiated into Python objects at load time.
+
+    **Returns**
+
+    Python data.
+
+    **Return type**
+
+    list\[*T*]
+  </Function>
+</Class>
+
