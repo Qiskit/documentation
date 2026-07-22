@@ -1,0 +1,782 @@
+---
+title: "Quantum Elements Orbit API reference"
+description: "API reference for Quantum Elements Orbit, including inputs, outputs, configuration options, and result metadata"
+---
+
+# Quantum Elements Orbit API reference
+
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/quantum-elements-orbit"
+      analyticsName="Functions API: quantum-elements-orbit"
+      linkText="Quantum Elements Orbit guide"
+    />
+</CardGroup>
+
+Quantum Elements Orbit is a Qiskit Function that prepares quantum circuits for a selected IBM Quantum&reg; backend, inserts dynamical decoupling (DD) into scheduled idle windows, and runs the resulting workload through a Qiskit Runtime primitive. Orbit accepts Sampler and Estimator PUBs and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) with Orbit-specific metadata attached to the top-level result and to each [Primitive Unified Bloc (PUB)](/docs/guides/primitive-input-output) result.
+
+<Admonition type="note" title="Default behavior">
+  If `backend_name` is omitted, Orbit selects an eligible least-busy IBM Quantum backend available to the Qiskit Runtime service. If `options` is omitted or `None`, Orbit uses its built-in defaults: transpile and schedule circuits, insert the default DD strategy, submit to the service, and attach DD insertion metadata to the result.
+</Admonition>
+
+## Inputs
+
+The typical call submits PUBs, selects a primitive, optionally selects a backend, and optionally passes Orbit-specific options:
+
+```python
+job = orbit.run(
+    primitive="sampler",
+    pubs=[pub, pub, pub],
+    backend_name="ibm_boston",
+    options={
+        "pub_options": [
+            {"mode": "raw"},
+            {"mode": "orbit"},
+            {
+                "mode": "custom",
+                "dd_strategy": [[{"dd_sequence": "CPMG", "pulse_density": 1.00, "dd_reps": 1}]],
+                "transpilation_mode": "optimize",
+                "mem": True,
+            },
+        ]
+    },
+)
+result = job.result()
+```
+
+`pubs` provides the circuits and primitive inputs to run. `primitive` selects the Qiskit Runtime primitive contract. `backend_name` selects the IBM Quantum backend, or can be omitted to let Orbit choose a least-busy backend. `options` controls Orbit's DD insertion, Qiskit Runtime options, preview/simulator behavior, and metadata features. Full details for each input are below.
+
+### `pubs`
+
+<Attribute attributeTypeHint="Iterable[SamplerPubLike] or Iterable[EstimatorPubLike]">
+
+One or more PUBs matching the selected primitive.
+- Required: Yes
+- Valid input types: Iterable of Sampler PUB-like objects or iterable of Estimator PUB-like objects
+
+Each PUB must match the selected primitive's input contract.
+- For `primitive="sampler"`: each PUB follows the [Sampler PUB](/docs/guides/primitive-input-output#sampler-pub) shape, such as `(circuit, parameter_values, shots)`.
+- For `primitive="estimator"`: each PUB follows the [Estimator PUB](/docs/guides/primitive-input-output#estimator-pub) shape, such as `(circuit, observables, parameter_values, precision)`.
+- Circuits do not need to be ISA circuits in the default `options.transpilation_mode="optimize"` path; Orbit transpiles and schedules them internally.
+</Attribute>
+
+### `primitive`
+
+<Attribute attributeTypeHint="str">
+
+Selects which Qiskit Runtime primitive Orbit uses for execution.
+- Required: Yes
+- Valid input types: `str`
+
+The primitive determines what each PUB must contain and what result data each `PubResult` returns.
+- Choices: `"sampler"` / `"estimator"`
+- Use `"sampler"` for sampled bitstring data.
+- Use `"estimator"` for expectation values and standard errors.
+</Attribute>
+
+### `backend_name`
+
+<Attribute attributeTypeHint="str or None" attributeValue="None">
+
+Name of the IBM Quantum backend to run on.
+- Required: No
+- Default value: `None`
+- Valid input types: `str` or `None`
+
+- When omitted or `None`, Orbit resolves an eligible operational non-simulator backend with `least_busy()`.
+- Example: `"ibm_boston"`
+</Attribute>
+
+### `options`
+
+<Attribute attributeTypeHint="dict or None" attributeValue="None">
+
+Function-specific options controlling Orbit execution behavior.
+- Required: No
+- Default value: `None`
+- Valid input types: `dict` or `None`
+
+Options control transpilation, DD insertion, Qiskit Runtime options, preview mode, simulator mode, backend-information export, and measurement error mitigation.
+- Unknown option keys are rejected.
+- Pass `None`, `{}`, or omit `options` to use all defaults.
+- Example: 
+
+```python
+{
+    "pub_options": [
+        {"mode": "raw"},
+        {"mode": "orbit"},
+        {
+            "mode": "custom",
+            "dd_strategy": [[{"dd_sequence": "CPMG", "pulse_density": 1.00, "dd_reps": 1}]],
+            "transpilation_mode": "optimize",
+            "mem": True
+        }
+    ]
+}
+```
+
+</Attribute>
+
+<span id="options-list"></span>
+#### Options list
+
+##### `preview`
+
+<Attribute attributeTypeHint="bool" attributeValue="False">
+
+Whether Orbit returns a DD insertion report without submitting a Qiskit Runtime job.
+- Required: No
+- Default value: `False`
+- Valid input types: `bool`
+
+- When `True`, no QPU time is used; orbit simply pre-processes the circuits in `pubs` and provides an insertion report.
+- When `False` (default value), a Qiskit Runtime job with Orbit-modified circuits is submitted and processed.
+- If both `preview` and `simulator` are `True`, preview mode takes precedence and simulator execution is ignored.
+</Attribute>
+
+##### `debug_return_circuits`
+
+<Attribute attributeTypeHint="bool" attributeValue="False">
+
+Whether preview mode includes the prepared post-Orbit circuit for each PUB in metadata.
+- Required: No
+- Default value: `False`
+- Valid input types: `bool`
+
+- Used only when `preview=True`.
+- When `True`, each PUB report includes `debugCircuit.circuit`, `debugCircuit.usedQubits`, and operation counts. It also includes best-effort `debugCircuit.qasm` when Qiskit can export the circuit.
+- Leave this disabled for normal runs because circuit payloads can be large.
+</Attribute>
+
+##### `transpilation_mode`
+
+<Attribute attributeTypeHint="string" attributeValue="optimize">
+
+How Orbit prepares PUB circuits before DD insertion.
+- Required: No
+- Default value: `"optimize"`
+- Valid input values: `"optimize"`, `"prepare"`, or `"validate"`
+
+- `"optimize"` runs repeated Qiskit `optimization_level=2` transpilation and keeps the candidate with the lowest two-qubit depth for static and dynamic circuits.
+- `"prepare"` runs Qiskit `optimization_level=0` preparation and ALAP scheduling. If `physical_layout` is supplied, Orbit first materializes the circuit onto those physical wire indices and uses Qiskit's trivial layout method.
+- `"validate"` treats the input circuit as already physically prepared. Orbit validates backend compatibility where practical, does not remap, route, optimize, or schedule-repair before DD insertion, and ignores `physical_layout` with a warning.
+</Attribute>
+
+##### `physical_layout`
+
+<Attribute attributeTypeHint="object or null" attributeValue="None">
+
+Optional logical-to-physical qubit mapping.
+- Required: No
+- Default value: `None`
+- Valid input types: object with non-negative integer keys and values, or `None`
+
+Example: `{"0": 85, "1": 89}` maps logical qubit 0 to physical qubit 85 and logical qubit 1 to physical qubit 89. Python callers may use integer keys; JSON object keys are strings.
+
+- In `"optimize"` mode, this is passed as an initial layout seed and the final mapping may change during optimization/routing.
+- In `"prepare"` mode, Orbit materializes the circuit onto these physical wire indices, then uses level-0 preparation with `layout_method="trivial"`. Explicit routing SWAPs can still move quantum state during execution.
+- In `"validate"` mode, the supplied circuit wires are authoritative, so `physical_layout` is ignored with a warning.
+</Attribute>
+
+##### `num_transpilation_steps`
+
+<Attribute attributeTypeHint="int" attributeValue="300">
+
+Number of stochastic transpilation seeds Orbit tries in `transpilation_mode="optimize"`.
+- Required: No
+- Default value: `300`
+- Valid input types: positive integer
+
+</Attribute>
+
+##### `mem`
+
+<Attribute attributeTypeHint="bool or None" attributeValue="None">
+
+Whether Orbit applies Sampler-only measurement error mitigation using M3.
+- Required: No
+- Default value: `None`
+- Valid input types: `bool` or `None`
+
+- When `True`, applies measurement error mitigation to shots from `sampler`.
+- When `False`, does not post-process shots.
+- When `None`, Orbit mode enables MEM for executed Sampler PUBs and raw/custom modes skip MEM unless configured.
+- Explicit `True` requires `primitive="sampler"`, `preview=False`, and `simulator=False`.
+- Raw Sampler counts are preserved and mitigated counts are attached to Orbit metadata.
+- If mitigation fails during post-processing, Orbit preserves the raw result and records the mitigation failure in metadata.
+</Attribute>
+
+##### `pub_options`
+
+<Attribute attributeTypeHint="list[dict] or None" attributeValue="None">
+
+Per-PUB execution modes and overrides.
+- Required: No
+- Default value: `None`
+- Valid input types: `list[dict]` or `None`
+
+- One entry is broadcast to all PUBs; otherwise pass one entry per PUB.
+- `{"mode": "raw"}` uses a single Qiskit `optimization_level=0` transpilation and scheduling pass for static or dynamic circuits, and skips Orbit optimization, Orbit DD, dynamic DD, and MEM.
+- `{"mode": "orbit"}` uses Orbit defaults.
+- `{"mode": "custom"}` can override `transpilation_mode`, `physical_layout`, `dd_qubits`, `dd_strategy`, `dynamic_dd_seq`, and `mem` for that PUB.
+- Raw mode always uses `transpilation_mode="prepare"` with `physical_layout=None`, skips Orbit DD, and ignores global preparation options.
+- Orbit and custom PUBs inherit global `transpilation_mode` and `physical_layout` unless they override them per PUB.
+- Use duplicated PUBs with `pub_options` to compare raw, Orbit defaults, and a custom DD strategy in one Qiskit Runtime job. For a naive CPMG baseline, use `{"dd_sequence": "CPMG", "pulse_density": 1.00, "dd_reps": 1}` inside the custom PUB's `dd_strategy`.
+
+For caller-prepared circuits, use `transpilation_mode="validate"` for the Orbit-enabled PUBs:
+
+```python
+options = {
+    "pub_options": [
+        {"mode": "raw"},
+        {"mode": "orbit", "transpilation_mode": "validate"},
+        {
+            "mode": "custom",
+            "transpilation_mode": "validate",
+            "dd_qubits": None,
+            "dd_strategy": [[{"dd_sequence": "CPMG", "pulse_density": 1.00, "dd_reps": 1}]],
+            "mem": False,
+        },
+    ]
+}
+```
+</Attribute>
+
+##### `dd_strategy`
+
+<Attribute attributeTypeHint="list[list[dict]]">
+
+Ordered DD strategies to apply to PUB circuits.
+- Required: No
+- Default value: `[[{"dd_sequence": "auto", "pulse_density": 0.25, "dd_reps": 1}]]`
+- Valid input types: `list[list[dict]]`
+
+- Choices: Non-empty outer list of non-empty strategy lists.
+- The outer list indexes PUBs or circuits. If only one strategy is supplied, Orbit broadcasts it to all PUBs.
+- Each inner list is applied round by round to the same circuit.
+- Each round requires `dd_sequence`; `pulse_density` defaults to `0.25`; `dd_reps` defaults to `1`.
+</Attribute>
+
+##### `dd_strategy` round fields
+
+<LeftColoredBar color="blue">
+    <Attribute attributeTypeHint="str or dict or list">
+        - Field: `dd_sequence`
+        Sequence to insert for one DD round.
+        - Required: Yes
+        - Valid input types: `str`, `dict`, or custom pulse-group `list`
+        - Choices: `"auto"`, a built-in sequence name, a variant dictionary such as `{"name": "ur", "variant": "8"}`, or a custom list of pulse groups such as `[[0.0], ["Y"], ["Xb", 0.5]]`.
+        - Fixed built-in names, organized by pulse slots: two-slot sequences are `"CPMG"`, `"pureY"`, and `"superHahn"`; four-slot sequences are `"XY4"` and `"superCPMG"`; eight-slot sequences are `"XY8"`; sixteen-slot sequences are `"superEuler"`; twenty-slot sequences are `"KDD"`.
+        - Parameterized built-in families: `"CDD-n"` with integer `n >= 1` (`"CDD-1"` is equivalent to `"XY4"` and the sequence grows recursively); `"UR-n"` or `"URn"` with even integer `n >= 4` (for example, `"UR-8"` or `"URn8"`); and `"T-n"` or `"Tn"` with even integer `n >= 2` (for example, `"T-8"` or `"Tn8"`).
+        - RGA built-in variants: `"RGA-2x"`, `"RGA-4"`, `"RGA-4p"`, `"RGA-8a"`, `"RGA-8c"`, `"RGA-16a"`, `"RGA-16b"`, `"RGA-32a"`, `"RGA-32c"`, `"RGA-64a"`, `"RGA-64c"`, and `"RGA-256a"`.
+        - Built-in sequence names are case-insensitive and ignore separators such as hyphens and underscores. For example, `"RGA-8a"` and `"rga8a"` are equivalent, as are `"UR-n-8"` and `"UR8"`.
+        - Custom numeric entries are phases in units of pi for pi rotations in the xy plane. `0.0` is +X and `0.5` is +Y.
+        - Custom string aliases include `"X"`, `"Y"`, `"Xb"`, and `"Yb"`.
+    </Attribute>
+    
+    <Attribute attributeTypeHint="float">
+        - Field: `pulse_density`
+        Fraction of each idle gap available for this round's DD pulses.
+        - Required: No
+        - Default value: `0.25`
+        - Valid input types: `float` or `int`
+        - Choices: Float from `0.0` through `1.0`
+        - `0.0` leaves gaps unpadded for that round. `1.0` packs pulses as densely as the sequence timing permits.
+    </Attribute>
+    
+    <Attribute attributeTypeHint="int" attributeValue="1">
+        - Field: `dd_reps`
+        Number of repetitions of this round's DD sequence inside each qualifying idle gap.
+        - Required: No
+        - Default value: `1`
+        - Valid input types: `int`
+        - Choices: Integer >= 1
+    </Attribute>
+</LeftColoredBar>
+
+##### `dynamic_dd_seq`
+
+<Attribute attributeTypeHint="str or dict or list or None" attributeValue="XY8">
+
+DD sequence used for Orbit's dynamic-circuit feedforward DD insertion.
+- Required: No
+- Default value: `"XY8"`
+- Valid input types: `str`, `dict`, custom pulse-group `list`, or `None`
+
+- Choices: Same sequence forms as `dd_strategy[].dd_sequence`, or `None` to disable the dynamic feedforward insertion stage.
+- Applies when Orbit detects conditional logic or control flow and uses the dynamic-circuit DD pipeline.
+- The normal `dd_strategy` pass runs first, then Orbit applies this sequence across labelled dynamic feedforward regions.
+</Attribute>
+
+##### `dd_qubits`
+
+<Attribute attributeTypeHint="list[int] or None" attributeValue="None">
+
+Global default allowlist of qubit indices eligible for Orbit DD insertion.
+- Required: No
+- Default value: `None`
+- Valid input types: `list[int]` or `None`
+
+- Choices: `None` or a list of integers >= 0
+- `None` targets active/touched qubits only.
+- A list can include idle-only qubits and excludes qubits not listed.
+- `pub_options[i].dd_qubits` can override this value inside `orbit` or `custom` PUB entries.
+- Explicit allowlists may only be supplied for Orbit-enabled PUBs whose resolved `transpilation_mode` is `"validate"`, so the caller owns the physical qubit indices. Raw PUBs skip Orbit DD and do not accept `dd_qubits`.
+</Attribute>
+
+##### `save_backend_info`
+
+<Attribute attributeTypeHint="bool" attributeValue="False">
+
+Whether Orbit saves backend calibration properties after an executed Qiskit Runtime job.
+- Required: No
+- Default value: `False`
+- Valid input types: `bool`
+
+- Choices: `True` / `False`
+- When enabled, Orbit queries `service.job(job_id).properties()`, writes the serialized backend properties under `/data`, and reports the saved path in Orbit metadata.
+- Failures are reported as warnings and do not discard otherwise successful primitive results.
+</Attribute>
+
+##### `default_shots`
+
+<Attribute attributeTypeHint="int" attributeValue="4096">
+
+Default shots used for Sampler PUBs that do not specify shots explicitly.
+- Required: No
+- Default value: `4096`
+- Valid input types: `int`
+
+- Choices: Integer > 0
+- Applies only to `primitive="sampler"`.
+</Attribute>
+
+##### `default_precision`
+
+<Attribute attributeTypeHint="float" attributeValue="0.015625">
+
+Default target precision used for Estimator PUBs that do not specify precision explicitly.
+- Required: No
+- Default value: `0.015625`
+- Valid input types: `float` or `int`
+
+- Choices: Float > 0
+- Applies only to `primitive="estimator"`.
+</Attribute>
+
+##### `runtime_options`
+
+<Attribute attributeTypeHint="dict">
+
+[Qiskit Runtime primitive options](/docs/guides/runtime-options-overview) passed through to the underlying SamplerV2 or EstimatorV2 primitive.
+- Required: No
+- Default value: `{"resilience_level": 0, "dynamical_decoupling": {"enable": false}}`
+- Valid input types: `dict`
+
+- Nested option dictionaries are accepted, including advanced and experimental Qiskit Runtime options for the selected primitive.
+- Runtime dynamical decoupling is disabled by default so Orbit's DD insertion is the only DD pass unless the user opts in.
+
+For example, advanced Sampler users can enable dynamic-circuit debugging fields:
+
+```python
+options = {
+    "runtime_options": {
+        "experimental": {
+            "execution": {
+                "scheduler_timing": True,
+                "stretch_values": True,
+            }
+        }
+    }
+}
+```
+
+- **Warning:** One should thus alter this value with care, turning on specific approaches like twirling on manually while continuing to exclude DD.
+</Attribute>
+
+<LeftColoredBar color="blue">
+    `resilience_level`
+        <Attribute attributeTypeHint="int or None" attributeValue="0">
+
+        Estimator Runtime resilience level.
+        - Required: No
+        - Default value: `0`
+        - Valid input types: `int` or `None`
+
+        - Choices: `0` / `1` / `2` / `None`
+        - Applies to `primitive="estimator"`.
+        - Use `None` to leave the Runtime option unset.
+        - If set for `primitive="sampler"`, Orbit ignores it and adds a warning to Orbit metadata.
+        </Attribute>
+
+    `dynamical_decoupling`
+        <Attribute attributeTypeHint="dict">
+
+        Dynamical-decoupling options passed through to Qiskit Runtime.
+        - Required: No
+        - Default value: `{"enable": false}`
+        - Valid input types: `dict`
+        </Attribute>
+
+        <LeftColoredBar color="purple">
+            `enable`
+                <Attribute attributeTypeHint="bool" attributeValue="False">
+
+                Whether to enable Qiskit Runtime DD in addition to Orbit DD insertion.
+                - Required: No
+                - Default value: `False`
+                - Valid input types: `bool`
+
+                - Choices: `True` / `False`
+                - When enabled, Orbit adds a warning because applying both Runtime DD and Orbit DD can produce unexpected behavior.
+                </Attribute>
+
+            `sequence_type`
+                <Attribute attributeTypeHint="str or None" attributeValue="None">
+
+                Optional Runtime DD sequence type.
+                - Required: No
+                - Default value: `None`
+                - Valid input types: `str` or `None`
+
+                Passed through to Qiskit Runtime when provided.
+                </Attribute>
+
+            `scheduling_method`
+                <Attribute attributeTypeHint="str or None" attributeValue="None">
+
+                Optional Runtime DD scheduling method.
+                - Required: No
+                - Default value: `None`
+                - Valid input types: `str` or `None`
+
+                Passed through to Qiskit Runtime when provided.
+                </Attribute>
+
+            `extra_slack_distribution`
+                <Attribute attributeTypeHint="str or None" attributeValue="None">
+
+                Optional Runtime DD extra-slack distribution.
+                - Required: No
+                - Default value: `None`
+                - Valid input types: `str` or `None`
+
+                Passed through to Qiskit Runtime when provided.
+                </Attribute>
+
+            `skip_reset_qubits`
+                <Attribute attributeTypeHint="bool or None" attributeValue="None">
+
+                Optional Runtime DD setting controlling whether reset qubits are skipped.
+                - Required: No
+                - Default value: `None`
+                - Valid input types: `bool` or `None`
+
+                Passed through to Qiskit Runtime when provided.
+                </Attribute>
+        </LeftColoredBar>
+</LeftColoredBar>
+
+##### `max_execution_time`
+
+<Attribute attributeTypeHint="int or None" attributeValue="None">
+
+Soft cap on the Qiskit Runtime job's maximum execution time.
+- Required: No
+- Default value: `None`
+- Valid input types: `int` or `None`
+
+The value is specified in seconds.
+- Choices: `None` or integer > 0
+- When `None`, the Runtime default is used.
+</Attribute>
+
+##### `simulator`
+
+<Attribute attributeTypeHint="bool" attributeValue="False">
+
+Whether Orbit executes the workload on a local Aer simulator instead of a real QPU.
+- Required: No
+- Default value: `False`
+- Valid input types: `bool`
+
+The simulator runs inside the function container.
+- Choices: `True` / `False`
+- Ignored when `preview` is `True`.
+- A normal `PrimitiveResult` is returned with Orbit metadata attached.
+</Attribute>
+
+##### `simulator_noise`
+
+<Attribute attributeTypeHint="str" attributeValue="backend">
+
+Noise model used when `simulator` is `True`.
+- Required: No
+- Default value: `"backend"`
+- Valid input types: `str`
+
+- Choices: `"backend"` / `"ideal"`
+- `"backend"` uses `AerSimulator.from_backend(backend)` when possible.
+- `"ideal"` uses a plain noise-free `AerSimulator`.
+</Attribute>
+
+##### `gate_dur`
+
+<Attribute attributeTypeHint="int or None" attributeValue="None">
+
+Duration of one DD gate or pulse.
+- Required: No
+- Default value: `None`
+- Valid input types: `int` or `None`
+
+- **Warning:** Use an explicit value only for controlled tests or when you have a calibrated backend-specific reason.
+- The value uses the same units the backend uses for delays, typically `dt`.
+- Choices: `None` or integer > 0
+- When `None`, Orbit resolves a backend-aware value from `backend.target` using the longer calibrated X or sqrt(X) gate duration.
+</Attribute>
+
+## Outputs
+
+The function returns a Qiskit `PrimitiveResult` containing one `PubResult` per input PUB. Orbit preserves the selected primitive's normal result data and adds Orbit metadata under `quantum_elements_orbit`.
+
+<Attribute attributeTypeHint="PrimitiveResult">
+Standard Qiskit primitive result with Orbit metadata attached.
+- For `primitive="sampler"`, each `PubResult.data` contains Sampler result data such as classical-register bit arrays.
+- For `primitive="estimator"`, each `PubResult.data` contains Estimator result data such as expectation values and standard errors.
+- In preview mode, each `PubResult.data` is empty because no Qiskit Runtime primitive is submitted.
+</Attribute>
+
+### Top-level metadata
+
+<LeftColoredBar color="blue">
+    `metadata["quantum_elements_orbit"]`
+        <Attribute attributeTypeHint="dict[str, Any]">
+        Aggregated Orbit report for the full function call.
+        </Attribute>
+
+        <LeftColoredBar color="purple">
+            `functionVersion`
+                <Attribute attributeTypeHint="str">
+                Orbit core version that produced the result.
+                </Attribute>
+
+            `preview`
+                <Attribute attributeTypeHint="bool">
+                Whether the result was produced in preview mode.
+                </Attribute>
+
+            `simulator`
+                <Attribute attributeTypeHint="bool">
+                Whether simulator mode was requested.
+                </Attribute>
+
+            `simulatorNoise`
+                <Attribute attributeTypeHint="str">
+                Simulator noise mode: `"backend"` or `"ideal"`.
+                </Attribute>
+
+            `primitive`
+                <Attribute attributeTypeHint="str">
+                Selected primitive: `"sampler"` or `"estimator"`.
+                </Attribute>
+
+            `ddStrategy`
+                <Attribute attributeTypeHint="list[list[dict]]">
+                Normalized DD strategy used for the run.
+                </Attribute>
+
+            `pubOptions`
+                <Attribute attributeTypeHint="list[dict[str, Any]]">
+                Resolved per-PUB execution modes and overrides. Each entry includes the PUB index, mode, resolved `transpilationMode`, `physicalLayout`, `mem`, `orbitEnabled`, `ddQubits`, `dynamicDdSeq`, and, when applicable, the resolved per-PUB `ddStrategy`.
+                </Attribute>
+
+            `dynamicDdSeq`
+                <Attribute attributeTypeHint="str or dict or list or None">
+                Dynamic-circuit feedforward DD sequence used for the run.
+                </Attribute>
+
+            `ddQubits`
+                <Attribute attributeTypeHint="list[int] or None">
+                Global DD qubit allowlist default used for the run. Per-PUB reports include the resolved allowlist for each PUB.
+                </Attribute>
+
+            `runtimeOptions`
+                <Attribute attributeTypeHint="dict[str, Any]">
+                Runtime options Orbit attempted to apply, including `resilienceLevel` and `dynamicalDecoupling`.
+                </Attribute>
+
+            `transpilationMode`
+                <Attribute attributeTypeHint="string">
+                Global circuit-preparation mode requested for Orbit-enabled PUBs.
+                </Attribute>
+
+            `physicalLayout`
+                <Attribute attributeTypeHint="dict or None">
+                Global logical-to-physical layout mapping requested for Orbit-enabled PUBs.
+                </Attribute>
+
+            `numTranspilationSteps`
+                <Attribute attributeTypeHint="int">
+                Number of stochastic transpilation seeds configured for optimized transpilation.
+                </Attribute>
+
+            `backendInfo`
+                <Attribute attributeTypeHint="dict[str, Any]">
+                Backend calibration export status. Includes `enabled`, `saved`, and, when available, backend name, Qiskit Runtime job ID, saved path, and warnings.
+                </Attribute>
+
+            `warnings`
+                <Attribute attributeTypeHint="list[str]">
+                Run-level warnings, such as preview overriding simulator mode, Runtime DD being enabled alongside Orbit DD, or Sampler ignoring `resilience_level`.
+                </Attribute>
+
+            `pubs`
+                <Attribute attributeTypeHint="list[dict[str, Any]]">
+                One Orbit insertion report per input PUB.
+                </Attribute>
+        </LeftColoredBar>
+
+    `metadata["resource_usage"]`
+        <Attribute attributeTypeHint="dict[str, dict[str, float]]">
+        Per-phase resource usage with entries for hardware optimization, waiting for QPU, QPU execution, and post-processing.
+        - Phases include `RUNNING: OPTIMIZING_FOR_HARDWARE`, `RUNNING: WAITING_FOR_QPU`, `RUNNING: EXECUTING_QPU`, and `RUNNING: POST_PROCESSING`.
+        - `RUNNING: EXECUTING_QPU` includes `QPU_TIME`.
+        </Attribute>
+</LeftColoredBar>
+
+### Per-PUB Orbit metadata
+
+Each `PubResult.metadata["quantum_elements_orbit"]` contains the insertion report for that PUB.
+
+<LeftColoredBar color="blue">
+    `pubIndex`
+        <Attribute attributeTypeHint="int">
+        Index of the PUB in the submitted workload.
+        </Attribute>
+
+    `mode`
+        <Attribute attributeTypeHint="str">
+        Resolved per-PUB execution mode: `"raw"`, `"orbit"`, or `"custom"`.
+        </Attribute>
+
+    `orbitEnabled`
+        <Attribute attributeTypeHint="bool">
+        Whether Orbit DD insertion was enabled for the PUB.
+        </Attribute>
+
+    `transpilationMode`
+        <Attribute attributeTypeHint="string">
+        Resolved circuit-preparation mode for this PUB.
+        </Attribute>
+
+    `physicalLayout`
+        <Attribute attributeTypeHint="dict or None">
+                Resolved logical-to-physical layout mapping for this PUB. In `validate` mode this value is ignored with a warning.
+        </Attribute>
+
+    `mem`
+        <Attribute attributeTypeHint="bool or None">
+        Resolved measurement error mitigation setting for this PUB.
+        </Attribute>
+
+    `dynamicDdSeq`
+        <Attribute attributeTypeHint="str or dict or list or None">
+        Resolved dynamic-circuit feedforward DD sequence for this PUB.
+        </Attribute>
+
+    `ddQubits`
+        <Attribute attributeTypeHint="list[int] or None">
+        Resolved DD qubit allowlist for this PUB.
+        </Attribute>
+
+    `status`
+        <Attribute attributeTypeHint="str">
+        DD insertion status for this PUB, such as whether DD was applied or skipped.
+        </Attribute>
+
+    `numRounds`
+        <Attribute attributeTypeHint="int">
+        Number of DD strategy rounds applied to the PUB.
+        </Attribute>
+
+    `warnings`
+        <Attribute attributeTypeHint="list[str]">
+        PUB-level warnings from DD insertion and compatibility handling.
+        </Attribute>
+
+    `insertionSummary`
+        <Attribute attributeTypeHint="dict[str, Any]">
+        Overall DD insertion summary for this PUB. Includes status, starting and filled gap counts, number of DD sequences added, added gate counts, gate duration, circuit depth and size before and after insertion, and insertion warnings.
+        </Attribute>
+
+    `perRoundSummaries`
+        <Attribute attributeTypeHint="list[dict[str, Any]]">
+        Round-by-round DD insertion summaries. Each entry includes the round index, sequence, pulse density, repetitions, gap counts, added gate counts, gate duration, circuit depth and size before and after that round, and warnings.
+        </Attribute>
+
+    `measurementErrorMitigation`
+        <Attribute attributeTypeHint="dict[str, Any]">
+        Present when resolved MEM is enabled for at least one PUB. Reports whether M3 mitigation was applied, partially applied, skipped, or failed. Per-PUB entries preserve unmitigated counts and include mitigated counts when mitigation succeeds.
+        </Attribute>
+</LeftColoredBar>
+
+<Admonition type="note" title="Circuit depth after DD">
+  DD inserts real pulses and sub-delays into scheduled idle windows, so reported circuit depth and size usually increase. The insertion preserves the scheduled idle-window duration; it does not try to preserve gate depth.
+</Admonition>
+
+### Preview output
+
+When `options.preview` is `True`, Orbit returns a metadata-only `PrimitiveResult`. No Qiskit Runtime job is submitted, no Sampler counts or Estimator values are populated, and QPU time is reported as `0.0`. Use preview mode to inspect DD insertion reports before running on hardware.
+
+### Simulator output
+
+When `options.simulator` is `True` and `options.preview` is `False`, Orbit executes the post-DD workload with a local Aer simulator inside the function container. The result is still a normal `PrimitiveResult`; Orbit records `simulator=True` and the selected `simulatorNoise` mode in top-level metadata.
+
+### Measurement error mitigation output
+
+When resolved MEM is enabled for at least one PUB, Orbit attaches `measurementErrorMitigation` metadata. When MEM succeeds, the Sampler register's `get_counts()` method returns the MEM-corrected histogram. The unmitigated Runtime counts remain available as `measurementErrorMitigation["rawCounts"]`.
+
+Successful per-PUB mitigation entries include:
+
+- `enabled`
+- `method`
+- `status`
+- `register`
+- `rawCounts`
+- `quasiDistribution`
+- `mitigatedCounts`
+- `measurementMapping`
+- `mappingSource`
+- `rawCountsPreserved`
+
+For dynamic circuits, Orbit applies MEM to the returned output bitstring as
+histogram post-processing. Orbit does not infer whether each bit originated
+from a terminal measurement or a mid-circuit measurement, and it does not
+retroactively or in real time change conditional branches that used
+unmitigated measurement results. This treatment is appropriate for bitstrings
+intended as circuit outputs, but users should not interpret it as correction
+of the dynamic control flow that produced those outputs.
+
+If mitigation fails, Orbit preserves the raw Qiskit Runtime result and records the failure status and error message in metadata.
+
+## Error handling
+
+Orbit raises structured `qiskit_serverless.ServerlessError` errors for fatal failures. Each error includes a `code`, `message`, and `details` payload. Orbit maps errors to existing IBM Quantum error-code categories when possible; validation errors use code `1221`. Orbit-specific errors use the QE reserved code range `4700` through `4709` when no existing IBM Quantum code is a better match. See the [IBM Quantum error code reference](/docs/errors) for general error-code guidance.
+
+<Admonition type="caution" title="Common fatal errors">
+  Check the error `message` and `details` fields first. They identify the invalid field, backend, PUB index, or upstream Qiskit Runtime failure when Orbit can determine it.
+
+  - Input validation errors use code `1221`. These include invalid option types, unknown option keys, empty `pubs`, invalid `dd_strategy`, invalid `pub_options` length, `dd_qubits` with resolved `transpilation_mode` other than `"validate"`, caller-prepared circuits that are not compatible with the selected backend target, invalid `physical_layout` values, and incompatible MEM requests such as `mem=True` with `primitive="estimator"`, `preview=True`, or `simulator=True`.
+  - Unsupported primitive errors use code `1211`. Orbit accepts only `primitive="sampler"` and `primitive="estimator"`.
+  - Backend selection or backend capability errors use code `1007` or `1009`. These include unavailable backend names, no eligible least-busy backend, or a backend without the timing information required for DD insertion.
+  - DD insertion and QASM round-trip failures use code `1003`. These can occur when a circuit cannot be transpiled, scheduled, converted, or padded consistently for the selected backend and DD strategy.
+  - Qiskit Runtime submission failures use code `1245`; jobs that fail before producing a result use code `5203`. Orbit preserves an upstream Qiskit Runtime error code when one is exposed, with the Orbit fallback code in `details`.
+  - Unexpected Orbit-specific failures are reported as structured errors in the QE reserved range (`4700--4709`) when no existing IBM Quantum error code applies.
+</Admonition>
+
+Non-fatal conditions are reported as warnings instead of failing the job when Orbit can safely preserve the result. Run-level warnings appear in `metadata["quantum_elements_orbit"]["warnings"]`; PUB-level warnings appear in each PUB report. Recoverable warning events use code `1300` when the Qiskit Functions environment accepts warning events. Examples include `preview=True` taking precedence over `simulator=True`, Qiskit Runtime DD being enabled alongside Orbit DD, Sampler ignoring `runtime_options.resilience_level`, or backend calibration export failing while the primitive result is otherwise available.
+
+Measurement error mitigation failures are also non-fatal. If M3 mitigation cannot be applied, Orbit preserves the raw Sampler result and records `measurementErrorMitigation.status="failed"` with an error message in Orbit metadata.
