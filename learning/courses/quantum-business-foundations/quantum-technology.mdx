@@ -17,7 +17,7 @@ By the end of this module, you should be able to:
 
 * Recognize that solving meaningful problems will involve a combination of quantum and classical resources.
 * Identify the hardware, software, and services available to solve meaningful problems.
-* Describe how to measure quantum computing performance, including scale, quality, and speed.
+* Describe how quantum computing performance is measured using scale, quality, and speed metrics. Recognize supporting benchmark metrics commonly used throughout the industry.
 
 ### IBM Quantum Platform
 
@@ -49,51 +49,28 @@ IBM quantum processors use a physical type of qubit called a **superconducting t
 
 ### Measuring quantum computing performance
 
-A universal fault–tolerant quantum computer is the grand challenge of quantum computing. It is a device that can properly perform universal quantum operations using unreliable components. Today’s quantum computers are not fault-tolerant.
+A universal fault-tolerant quantum computer remains one of the grand challenges of modern computing. Today's quantum computers are not yet fully fault tolerant, so understanding their performance requires consideration of multiple factors beyond qubit count alone.
 
-To compare quantum computers to each other, qubit count is not sufficient. Many other details must be considered, such as error rates and how the system is wired. There are four key metrics for measuring quantum computing performance:
+IBM Quantum characterizes quantum-computing performance using three fundamental dimensions:
 
-* **Scale** - Measured by the **number of qubits**, which indicates the amount of information we can encode in the quantum computer.
-* **Quality** - Measured by **Quantum Volume**, which indicates the quality of circuits and how faithfully circuits are implemented in hardware.
-* **Speed** - Measured by **CLOPS (Circuit Layer Operations Per Second)**, which indicates how many circuits can run on hardware in a given time.
-* **Layer Fidelity** - Measured by **EPLG (Errors Per Layered Gate)**, which describes how errors occur when operations are performed on qubits.
+* **Scale:** measured by programmable qubits, the qubits that users can directly control and incorporate into quantum algorithms.
 
-For a more detailed description of some of the above metrics, see [this article](https://www.ibm.com/quantum/blog/quantum-metric-layer-fidelity) on the IBM Research Blog. Each phase in the adoption of quantum computing in industry is driven by increasing Quantum Volume, which is calculated using various parameters such as circuit width, qubit connectivity, and error rates.
+* **Quality:** measured by qubit operations (QuOps), which indicate how many of the most computationally demanding operations a quantum computer can reliably execute before errors overwhelm the computation.
 
-The technical definition of Quantum Volume is difficult to communicate without equations.
-Dario Gil, Director of Research at IBM, explains:
+* **Speed** measured by maximum circuits per second, which describes a system's circuit throughput and the amount of useful computation it can perform over time.
 
-<IBMVideo id="133345140" title="Dario Gil explains the concept of quantum volume. In particular he explains how and why it depends on both qubit count and error rates."/>
+Together, these metrics provide a high-level view of the computational capability, scalability, and efficiency of a quantum computer across hardware technologies and implementation approaches.
 
-To better understand Quantum Volume, consider the following interesting analogy. The section below covers time, space, and error rates in terms of taking a tour of New York City.
-
-**Touring the states of Quantum Volume**
-
-Quantum Volume describes the largest quantum computational space that a quantum computer can explore, where the volume of the quantum space is 2<sup>N</sup>, with N being the number of qubits, that is, the usual state space dimension. We purposely use the word “space” here because once we mention space, it is straightforward to think of a volume.
-
-The factor limiting this exploration is the error rate. The error rate may be equated to the amount of time we are allowed to explore the space. More errors mean less time to explore. The more computational space we have, the more time it takes to fully explore the space, and thus we need a quantum computer with a smaller error rate.
-
-Consider a tourist exploring New York City. The tourist wants to explore all of the city, meaning the tourist wants a tourist volume the size of NYC. If we give the tourist only one day, then there is no way to explore that much space, so the tourist does not get the desired tourist volume. However, if we give the tourist three days, then the tourist could probably hit all of the top spots and get the needed tourist volume of NYC.
-
-Now, what if we give the tourist more time but still restrict the space to NYC? In other words, what if we keep the number of qubits the same but decrease the error rate? Then there is no benefit to the tourist since the tourist has already explored the city and is just hitting the same spots over and over again. The tourist volume remains the same. Instead, given more time, it is smarter for the tourist to expand the number of tourist spots to visit.
-
-Or, suppose we keep the time fixed to three days but the tourist decides to try and explore all of NYC and Long Island? In other words, what if we fix the error rate but add more qubits? Again, the tourist volume remains that of NYC because the tourist cannot explore the larger space in the allotted time. Thus, being a better tourist, and achieving a larger tourist volume, requires simultaneously increasing the touring space and the amount of time the tourist is allowed to explore.
-
-In the exact same way, building better quantum computers that achieve larger Quantum Volumes requires simultaneously increasing the quantum computational space (number of qubits) while decreasing the error rate (increasing the amount of time the algorithm can run for). For example, through advances in tunable coupling architectures, IBM doubled the quantum volume twice in just one year!
-
-
-![Quantum Volume](/learning/images/courses/quantum-business-foundations/quantum-technology/QV.avif)
-
-However, as quantum computing evolves, we start to care more about the useful work our quantum computers can do in a reasonable amount of time. If we measure scale by the number of qubits, and quality by quantum volume, then quantum processing speed is the measure of the useful work those qubits can do in a reasonable amount of time. We define it as the number of primitive circuits that can be processed in a second. It is similar to FLOPS in classical computing — the number of floating point operations per second. Improving QPU speed is the key to practical quantum computing. Like classical computer programming, quantum programming requires running many circuits. A reasonable QPU speed will allow users to incorporate quantum computing as a part of their workflows.
+In addition to these primary metrics, a number of supporting benchmark metrics are widely used throughout the industry:
 
 #### Check your understanding
 
-True or false: Quantum Volume refers to the size of the cryogenic refrigerators that house IBM quantum computers.
+True or false: The power of a quantum computer is determined by the number of qubits it has.
 
 <Accordion>
 <AccordionItem title="Answer">
 
-False.  Quantum Volume is a single number meant to encapsulate the performance of today's quantum computers.
+False.  If a quantum computer has many qubits, but low circuit throughput and poor quality, then the information stored on any number of qubits will degrade before useful results can be obtained. The power of a quantum computer depends on scale, quality and speed.
 
 </AccordionItem>
 </Accordion>
@@ -161,7 +138,7 @@ Solving the world’s most complex problems will require a combination of classi
 You can keep these key takeaways in mind:
 
 * Today’s quantum computers are not fault tolerant.
-* Quantum Volume is a holistic measure of how good a quantum computer is. The higher the Quantum Volume, the better. Talking only about qubit count is misleading.
-* To measure the performance of quantum computers, there are four key metrics: scale, quality, speed, and layer fidelity.
+* Three primary dimensions for evaluating quantum-computing performance are: scale (programmable qubits), quality (qubit operations), and speed (maximum circuits per second).
+* Additional benchmarks such as Quantum Volume, CLOPS, and EPLG remain useful for understanding specific hardware characteristics and workloads.
 * A joint IBM Quantum-UC Berkeley experiment presented evidence of IBM quantum computers delivering reliable, accurate results for challenging simulation problems at a scale of 127 qubits.
 * Quantum-centric supercomputing means treating quantum as one piece of a broader HPC paradigm with classical and quantum working as one computational unit.
