@@ -1,0 +1,40 @@
+---
+title: Task (dev version)
+description: API reference for qiskit.passmanager.Task in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.passmanager.Task
+---
+
+# Task
+
+<Class id="qiskit.passmanager.Task" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L31-L54" signature="qiskit.passmanager.Task" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC), [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`IR`, `IR_OUT`]
+
+  An interface of the pass manager task.
+
+  The task takes an IR, and outputs a (possibly different) IR after some operation on it. A task can rely on the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") to communicate intermediate data among tasks.
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.passmanager.Task.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L38-L54" signature="execute(passmanager_ir, state, callback=None)" modifiers="abstractmethod">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](#qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*, IR\_OUT,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+</Class>
+
