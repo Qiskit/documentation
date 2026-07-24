@@ -11,13 +11,13 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 <Class id="qiskit_ibm_runtime.IBMBackend" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L47-L490" signature="IBMBackend(configuration, service, api_client, instance=None, calibration_id=None)" modifiers="class">
   Bases: [`BackendV2`](/docs/api/qiskit/qiskit.providers.BackendV2)
 
-  Backend class interfacing with an IBM Quantum backend.
+  Backend class interfacing with an IBM Quantum Compute (formerly Qiskit Runtime) backend.
 
   <Admonition title="Note" type="note">
     *   You should not instantiate the `IBMBackend` class directly. Instead, use the methods provided by an [`QiskitRuntimeService`](qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") instance to retrieve and handle backends.
   </Admonition>
 
-  This class represents an IBM Quantum backend. Its attributes and methods provide information about the backend. For example, the [`status()`](#qiskit_ibm_runtime.IBMBackend.status "qiskit_ibm_runtime.IBMBackend.status") method returns a `BackendStatus` instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
+  This class represents an IBM Quantum Compute backend. Its attributes and methods provide information about the backend. For example, the [`status()`](#qiskit_ibm_runtime.IBMBackend.status "qiskit_ibm_runtime.IBMBackend.status") method returns a `BackendStatus` instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
 
   ```python
   status = backend.status()
@@ -398,7 +398,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     **Raises**
 
     *   **TypeError** – If an input argument is not of the correct type.
-    *   **NotImplementedError** – If datetime is specified when cloud runtime is used.
+    *   **NotImplementedError** – If datetime is specified when IBM Quantum Compute is used.
 
     **Return type**
 

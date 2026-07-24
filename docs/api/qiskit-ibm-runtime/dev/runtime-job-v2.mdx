@@ -11,7 +11,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 <Class id="qiskit_ibm_runtime.RuntimeJobV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L57-L301" signature="RuntimeJobV2(backend, api_client, job_id, program_id, service, creation_date=None, result_decoder=None, image='', session_id=None, tags=None, version=None, private=False)" modifiers="class">
   Bases: [`BasePrimitiveJob`](/docs/api/qiskit/qiskit.primitives.BasePrimitiveJob)\[[`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult), `Literal`\[‘INITIALIZING’, ‘QUEUED’, ‘RUNNING’, ‘CANCELLED’, ‘DONE’, ‘ERROR’]], `BaseRuntimeJob`
 
-  Representation of a runtime V2 primitive execution.
+  Representation of a IBM Quantum Compute (formerly Qiskit Runtime) V2 primitive execution.
 
   **Parameters**
 
@@ -21,9 +21,9 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
   *   **program\_id** (*str*) – ID of the program this job is for.
   *   **creation\_date** (*str | None*) – Job creation date, in UTC.
   *   **result\_decoder** (*type\[ResultDecoder] | Sequence\[type\[ResultDecoder]] | None*) – A `ResultDecoder` subclass used to decode job results, or a list of such subclasses. If more than one decoder is specified, they will be called in chain, with the output of the `n-th` decoder as the input of the `n+1-th` decoder. If not specified, the default `ResultDecoder` is used.
-  *   **image** (*str | None*) – Runtime image used for this job: image\_name:tag.
-  *   **service** ([*QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService")) – Runtime service.
-  *   **session\_id** (*str | None*) – Job ID of the first job in a runtime session.
+  *   **image** (*str | None*) – IBM Quantum Compute image used for this job: image\_name:tag.
+  *   **service** ([*QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService")) – IBM Quantum Compute service.
+  *   **session\_id** (*str | None*) – Job ID of the first job in a IBM Quantum Compute session.
   *   **tags** (*list | None*) – Tags assigned to the job.
   *   **version** (*int | None*) – Primitive version.
   *   **private** (*bool | None*) – Marks job as private.
@@ -69,11 +69,11 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
   ### image
 
   <Attribute id="qiskit_ibm_runtime.RuntimeJobV2.image">
-    Return the runtime image used for the job.
+    Return the IBM Quantum Compute image used for the job.
 
     **Returns**
 
-    The runtime image `image_name:tag` or `""` if the default image is used.
+    The IBM Quantum Compute image `image_name:tag` or `""` if the default image is used.
   </Attribute>
 
   ### inputs
@@ -319,7 +319,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
     **Returns**
 
-    Runtime job result (post-processed if applicable).
+    IBM Quantum Compute job result (post-processed if applicable).
 
     **Raises**
 
