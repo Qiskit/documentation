@@ -366,6 +366,11 @@ function buildApiComponent(h: H, node: any): any {
     "attributeTypeHint",
     node.properties.attributetypehint,
   );
+  maybeAddAttribute(
+    hastTree,
+    "attributeTypeHintHref",
+    node.properties.attributetypehinthref,
+  );
   maybeAddAttribute(hastTree, "attributeValue", node.properties.attributevalue);
   maybeAddExpressionAttribute(
     hastTree,

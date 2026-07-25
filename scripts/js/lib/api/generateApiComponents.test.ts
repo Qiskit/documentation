@@ -74,9 +74,10 @@ test.describe("createOpeningTag()", () => {
     };
 
     const tag = await createOpeningTag("Function", componentProps);
-    expect(tag).toEqual(`<Function 
+    expect(tag).toEqual(`<Function
     id='qiskit_ibm_runtime.Estimator.run'
     attributeTypeHint='undefined'
+    attributeTypeHintHref='undefined'
     attributeValue='undefined'
     isDedicatedPage='undefined'
     github='undefined'
@@ -95,9 +96,10 @@ test.describe("createOpeningTag()", () => {
     };
 
     const tag = await createOpeningTag("Function", componentProps);
-    expect(tag).toEqual(`<Function 
+    expect(tag).toEqual(`<Function
     id='qiskit_ibm_runtime.Estimator.run'
     attributeTypeHint='undefined'
+    attributeTypeHintHref='undefined'
     attributeValue='undefined'
     isDedicatedPage='undefined'
     github='undefined'
@@ -116,9 +118,10 @@ test.describe("createOpeningTag()", () => {
     };
 
     const tag = await createOpeningTag("Attribute", componentProps);
-    expect(tag).toEqual(`<Attribute 
+    expect(tag).toEqual(`<Attribute
     id='qiskit.circuit.QuantumCircuit.instance'
     attributeTypeHint='str | None'
+    attributeTypeHintHref='undefined'
     attributeValue='None'
     isDedicatedPage='undefined'
     github='undefined'
@@ -135,9 +138,10 @@ test.describe("createOpeningTag()", () => {
     };
 
     const tag = await createOpeningTag("Class", componentProps);
-    expect(tag).toEqual(`<Class 
+    expect(tag).toEqual(`<Class
     id='qiskit.circuit.Sampler'
     attributeTypeHint='undefined'
+    attributeTypeHintHref='undefined'
     attributeValue='undefined'
     isDedicatedPage='undefined'
     github='undefined'

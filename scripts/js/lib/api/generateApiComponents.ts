@@ -26,6 +26,7 @@ import {
 export type ComponentProps = {
   id?: string;
   attributeTypeHint?: string;
+  attributeTypeHintHref?: string;
   attributeValue?: string;
   githubSourceLink?: string;
   rawSignature?: string;
@@ -300,9 +301,16 @@ function prepareAttributeOrPropertyProps(
     .trim();
   const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
+  // If the type hint element contains a link, capture its href so the
+  // rendered component can make the type hint clickable.
+  const attributeTypeHintHref =
+    $child.find("em.property a, span.property a").first().attr("href") ??
+    undefined;
+
   const props = {
     id,
     attributeTypeHint,
+    attributeTypeHintHref,
     attributeValue,
     githubSourceLink,
     modifiers: filteredModifiers,
@@ -392,9 +400,10 @@ export async function createOpeningTag(
     extraSignatures.push(`"${await htmlSignatureToMd(sig!)}"`);
   }
 
-  return `<${tagName} 
+  return `<${tagName}
     id='${props.id}'
     attributeTypeHint='${attributeTypeHint}'
+    attributeTypeHintHref='${props.attributeTypeHintHref}'
     attributeValue='${attributeValue}'
     isDedicatedPage='${props.isDedicatedPage}'
     github='${props.githubSourceLink}'
