@@ -17,6 +17,7 @@ import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 
 import { ApiTypeName, ApiObjectName, API_OBJECTS } from "./Metadata.js";
+import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import {
   getLastPartFromFullIdentifier,
   removeSuffix,
@@ -43,7 +44,11 @@ export async function createMdxComponent(
   priorApiType: ApiTypeName | undefined,
   apiType: ApiObjectName,
   id: string,
-  options: { isCApi: boolean },
+  options: {
+    isCApi: boolean;
+    kebabCaseAndShorten?: boolean;
+    pkgName?: string;
+  },
 ): Promise<string> {
   const tagName = API_OBJECTS[apiType].tagName;
 
@@ -98,7 +103,11 @@ function prepareProps(
   apiType: ApiObjectName,
   id: string,
   headerLevel: number,
-  options: { isCApi: boolean },
+  options: {
+    isCApi: boolean;
+    kebabCaseAndShorten?: boolean;
+    pkgName?: string;
+  },
 ): ComponentProps {
   const prepClassOrException = () =>
     prepareClassOrExceptionProps(
@@ -130,6 +139,8 @@ function prepareProps(
       githubSourceLink,
       id,
       headerLevel,
+      options.kebabCaseAndShorten,
+      options.pkgName,
     );
 
   const preparePropsPerApiType: Record<ApiObjectName, () => ComponentProps> = {
@@ -251,6 +262,8 @@ function prepareAttributeOrPropertyProps(
   githubSourceLink: string | undefined,
   id: string,
   headerLevel: number,
+  kebabCaseAndShorten?: boolean,
+  pkgName?: string,
 ): ComponentProps {
   // Properties/attributes have multiple `span.property` values to set:
   //
@@ -303,9 +316,13 @@ function prepareAttributeOrPropertyProps(
 
   // If the type hint element contains a link, capture its href so the
   // rendered component can make the type hint clickable.
-  const attributeTypeHintHref =
+  const rawHref =
     $child.find("em.property a, span.property a").first().attr("href") ??
     undefined;
+  const attributeTypeHintHref =
+    rawHref && kebabCaseAndShorten && pkgName
+      ? kebabCaseAndShortenPage(rawHref, pkgName)
+      : rawHref;
 
   const props = {
     id,

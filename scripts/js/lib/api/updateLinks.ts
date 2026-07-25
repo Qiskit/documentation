@@ -271,24 +271,6 @@ export async function updateLinks(
           return value.startsWith("[") && value.endsWith("]");
         }
 
-        visit(tree, "mdxJsxFlowElement", (node: any) => {
-          if (node.name !== "Attribute") return;
-          for (const attr of node.attributes ?? []) {
-            if (
-              attr.type === "mdxJsxAttribute" &&
-              attr.name === "attributeTypeHintHref" &&
-              typeof attr.value === "string"
-            ) {
-              attr.value = normalizeUrl(
-                attr.value,
-                resultsByName,
-                itemNames,
-                kwargs,
-              );
-            }
-          }
-        });
-
         visit(tree, "link", (node) => {
           const textNode =
             node.children?.[0]?.type === "text"

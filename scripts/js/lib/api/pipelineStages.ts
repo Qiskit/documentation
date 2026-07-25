@@ -58,6 +58,8 @@ export async function convertHtmlToMarkdown(
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
       isCApi: pkg.isCApi(),
       hasRootNamespaceFile: pkg.hasRootNamespaceFile,
+      kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
+      pkgName: pkg.name,
     });
 
     // Skip empty markdown (HTML redirects, etc.).

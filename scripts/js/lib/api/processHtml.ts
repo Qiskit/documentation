@@ -36,6 +36,8 @@ interface ProcessHtmlOptions {
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;
   hasRootNamespaceFile: boolean;
+  kebabCaseAndShorten?: boolean;
+  pkgName?: string;
 }
 
 export async function processHtml(
@@ -429,6 +431,8 @@ export async function processMembersAndSetMeta(
     isCApi: boolean;
     isRoot: boolean;
     isIbmQuantumSchemasPage: boolean;
+    kebabCaseAndShorten?: boolean;
+    pkgName?: string;
   },
 ): Promise<void> {
   // Some packages might include a root page where all the re-exports
