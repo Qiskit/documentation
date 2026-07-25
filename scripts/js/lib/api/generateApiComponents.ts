@@ -319,10 +319,11 @@ function prepareAttributeOrPropertyProps(
   const rawHref =
     $child.find("em.property a, span.property a").first().attr("href") ??
     undefined;
+  const hrefPath = rawHref?.split("#")[0];
   const attributeTypeHintHref =
-    rawHref && kebabCaseAndShorten && pkgName
-      ? kebabCaseAndShortenPage(rawHref, pkgName)
-      : rawHref;
+    hrefPath && kebabCaseAndShorten && pkgName && !hrefPath.startsWith("http")
+      ? kebabCaseAndShortenPage(hrefPath, pkgName)
+      : hrefPath;
 
   const props = {
     id,
