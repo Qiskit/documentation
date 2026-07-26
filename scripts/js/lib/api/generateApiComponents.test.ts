@@ -18,6 +18,7 @@ import {
   htmlSignatureToMd,
   addExtraSignatures,
   createOpeningTag,
+  createMdxComponent,
   setMinimumHeadingLevel,
 } from "./generateApiComponents.js";
 import { CheerioDoc } from "../testUtils.js";
@@ -150,6 +151,85 @@ test.describe("createOpeningTag()", () => {
     extraSignatures='[]'
     >
   `);
+  });
+});
+
+test.describe("attributeTypeHintHref", () => {
+  async function parseAttribute(
+    dt: string,
+    options: { kebabCaseAndShorten: boolean; pkgName: string },
+  ): Promise<string> {
+    const $ = load(`<dl class="py attribute">${dt}<dd></dd></dl>`);
+    const $dl = $("dl").first();
+    const $dt = $dl.find("dt").first();
+    return createMdxComponent($, [$dt], $dl, [], undefined, "attribute", $dt.attr("id") ?? "", {
+      isCApi: false,
+      ...options,
+    });
+  }
+
+  test("relative href is kebab-cased when kebabCaseAndShorten is true", async () => {
+    const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
+      <em class="property"><span class="pre">options</span><span class="p">:</span>
+      <a href="qiskit_ibm_runtime.options_models.ExecutorOptions#qiskit_ibm_runtime.options_models.ExecutorOptions">
+        <span class="pre">ExecutorOptions</span>
+      </a>
+      </em>
+      </dt>`;
+    const result = await parseAttribute(dt, {
+      kebabCaseAndShorten: true,
+      pkgName: "qiskit-ibm-runtime",
+    });
+    expect(result).toContain(
+      `attributeTypeHintHref='options-models-executor-options'`,
+    );
+  });
+
+  test("relative href is preserved when kebabCaseAndShorten is false", async () => {
+    const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
+      <em class="property"><span class="pre">options</span><span class="p">:</span>
+      <a href="qiskit_ibm_runtime.options_models.ExecutorOptions#qiskit_ibm_runtime.options_models.ExecutorOptions">
+        <span class="pre">ExecutorOptions</span>
+      </a>
+      </em>
+      </dt>`;
+    const result = await parseAttribute(dt, {
+      kebabCaseAndShorten: false,
+      pkgName: "qiskit-ibm-runtime",
+    });
+    expect(result).toContain(
+      `attributeTypeHintHref='qiskit_ibm_runtime.options_models.ExecutorOptions'`,
+    );
+  });
+
+  test("absolute href is passed through unchanged", async () => {
+    const dt = `<dt id="qiskit_ibm_runtime.options.SimulatorOptions.coupling_map">
+      <em class="property"><span class="pre">coupling_map</span><span class="p">:</span>
+      <a href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap">
+        <span class="pre">CouplingMap</span>
+      </a>
+      </em>
+      </dt>`;
+    const result = await parseAttribute(dt, {
+      kebabCaseAndShorten: true,
+      pkgName: "qiskit-ibm-runtime",
+    });
+    expect(result).toContain(
+      `attributeTypeHintHref='https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap'`,
+    );
+  });
+
+  test("no link produces undefined href", async () => {
+    const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
+      <em class="property"><span class="pre">options</span><span class="p">:</span>
+      <span class="pre">str</span>
+      </em>
+      </dt>`;
+    const result = await parseAttribute(dt, {
+      kebabCaseAndShorten: true,
+      pkgName: "qiskit-ibm-runtime",
+    });
+    expect(result).toContain(`attributeTypeHintHref='undefined'`);
   });
 });
 
