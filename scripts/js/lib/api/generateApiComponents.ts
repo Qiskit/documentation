@@ -310,7 +310,9 @@ function prepareAttributeOrPropertyProps(
     undefined;
   const hrefPath = rawHref?.split("#")[0];
   const attributeTypeHintHref =
-    hrefPath && normalizeUrl ? normalizeUrl(hrefPath) : hrefPath;
+    hrefPath && normalizeUrl && !hrefPath.startsWith("http")
+      ? normalizeUrl(hrefPath)
+      : hrefPath;
 
   const props = {
     id,

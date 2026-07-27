@@ -216,7 +216,9 @@ test.describe("attributeTypeHintHref", () => {
       </a>
       </em>
       </dt>`;
-    const result = await parseAttribute(dt, (url) => url);
+    const result = await parseAttribute(dt, (url) =>
+      kebabCaseAndShortenPage(url, "qiskit-ibm-runtime"),
+    );
     expect(result).toContain(
       `attributeTypeHintHref='https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap'`,
     );
