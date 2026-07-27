@@ -13,7 +13,7 @@ python_api_name: qiskit.passmanager.MultiStagePassManager
 
   A staged pass manager supporting multiple IRs.
 
-  This pass manager executes sequential, named stages on the input program. A stage can be defined as `Task`, an iterable thereof, or as a [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager"). If a [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") is set as stage, only the tasks it contains are executed, the input and output conversions defined by its `_passmanager_frontend` and `_passmanager_backend` methods are \_not\_ applied.
+  This pass manager executes sequential, named stages on the input program. A stage can be defined as [`Task`](qiskit.passmanager.Task "qiskit.passmanager.Task"), an iterable thereof, or as a [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager"). If a [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") is set as stage, only the tasks it contains are executed, the input and output conversions defined by its `_passmanager_frontend` and `_passmanager_backend` methods are \_not\_ applied.
 
   Stages can:
 
@@ -40,7 +40,7 @@ python_api_name: qiskit.passmanager.MultiStagePassManager
   All arguments are passed as keyword arguments.
 
   <Admonition title="Note" type="note">
-    While `Task` object defines the task interface, custom passes should only derive from the base class [`GenericPass`](qiskit.passmanager.GenericPass "qiskit.passmanager.GenericPass"). The `Task` base is an internal interface, and later Qiskit releases may place more restrictions on the available types of `Task`.
+    While [`Task`](qiskit.passmanager.Task "qiskit.passmanager.Task") object defines the task interface, custom passes should only derive from the base class [`GenericPass`](qiskit.passmanager.GenericPass "qiskit.passmanager.GenericPass"). The `Task` base is an internal interface, and later Qiskit releases may place more restrictions on the available types of `Task`.
   </Admonition>
 
   An example workflow is:
@@ -146,7 +146,7 @@ python_api_name: qiskit.passmanager.MultiStagePassManager
 
   **Parameters**
 
-  **stages** ([*BasePassManager*](qiskit.passmanager.BasePassManager "qiskit.passmanager.passmanager.BasePassManager")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | Task\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] |* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[Task\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]]*) –
+  **stages** ([*BasePassManager*](qiskit.passmanager.BasePassManager "qiskit.passmanager.passmanager.BasePassManager")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] |* [*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] |* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]]*) –
 
   The stages as pass managers. These will be executed in the provided order and must have compatible IRs.
 
@@ -172,7 +172,7 @@ python_api_name: qiskit.passmanager.MultiStagePassManager
     **Parameters**
 
     *   **in\_programs** (*IR |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[IR] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[IR]*) – The programs to run the pass manager on.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Task,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback passed to each individual task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback passed to each individual task.
     *   **property\_set** ([*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet") *| None*) – An optional property set to pass into the pass manager. This will be mutated in place, if given. This cannot be used with multiple in programs.
 
     **Returns**
