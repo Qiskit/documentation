@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.HalfAdderGate
 
 # HalfAdderGate
 
-<Class id="qiskit.circuit.library.HalfAdderGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/adders/adder.py#L74-L127" signature="qiskit.circuit.library.HalfAdderGate(num_state_qubits, label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.HalfAdderGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/adders/adder.py#L74-L130" signature="qiskit.circuit.library.HalfAdderGate(num_state_qubits, label=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Compute the sum of two equally-sized qubit registers, including a carry-out bit.
@@ -16,8 +16,10 @@ python_api_name: qiskit.circuit.library.HalfAdderGate
   For two registers $|a\rangle_n$ and $|b\rangle_n$ with $n$ qubits each, an adder performs the following operation
 
 $$
-|a\rangle_n |b\rangle_n \mapsto |a\rangle_n |a + b\rangle_{n + 1}.
+|a\rangle_n |b\rangle_n |0\rangle \mapsto |a\rangle_n |a + b\rangle_{n + 1}.
 $$
+
+  The final input qubit is a clean qubit initialized to $|0\rangle$. It stores the carry-out bit, which is why the output sum register has $n + 1$ qubits.
 
   The quantum register $|a\rangle_n$ (and analogously $|b\rangle_n$)
 
@@ -34,7 +36,6 @@ $$
   **Parameters**
 
   *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits in each of the registers.
-  *   **name** – The name of the circuit.
   *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional label for identifying the instruction.
 
   ## Attributes
@@ -174,7 +175,7 @@ $$
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
     **Return type**
 
@@ -205,7 +206,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `num_ctrl_qubits` or `ctrl_state`.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `num_ctrl_qubits` or `ctrl_state`.
   </Function>
 
   ### copy
@@ -247,13 +248,13 @@ $$
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
   </Function>
 
   ### is\_parameterized
 
   <Function id="qiskit.circuit.library.HalfAdderGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
-    Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+    Return whether the `Instruction` contains [compile-time parameters](/docs/api/qiskit/dev/circuit#circuit-compile-time-parameters).
   </Function>
 
   ### power
@@ -274,7 +275,7 @@ $$
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
   </Function>
 
   ### repeat
@@ -296,7 +297,7 @@ $$
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
   </Function>
 
   ### reverse\_ops
@@ -350,7 +351,7 @@ $$
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
   </Function>
 
   ### to\_mutable

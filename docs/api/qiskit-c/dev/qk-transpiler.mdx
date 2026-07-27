@@ -6,9 +6,11 @@ python_api_type: module
 python_api_name: QkTranspiler
 ---
 
+<span id="capi-transpiler" />
+
 # QkTranspiler
 
-The [`qk_transpile()`](#qk_transpile "qk_transpile") function exposes Qiskit’s tranpsiler ([`qiskit.transpiler`](/docs/api/qiskit/dev/transpiler#module-qiskit.transpiler "qiskit.transpiler")) to C. The basic functionality is using the same underlying code as the Python-space version, but the transpiler as exposed to C has more limitations than what is exposed to Python. The transpiler assumes a circuit built constructed using solely the C API and is intended to work solely in the case of a standalone C API. It will potentially not work correctly when in a mixed Python/C use case. If you’re mixing C and Python you should call the [`generate_preset_pass_manager()`](/docs/api/qiskit/dev/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") or [`transpile()`](/docs/api/qiskit/dev/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") functions for those circuits.
+The [`qk_transpile()`](#qk_transpile "qk_transpile") function exposes Qiskit’s tranpsiler ([`qiskit.transpiler`](/docs/api/qiskit-c/dev/transpiler#module-qiskit.transpiler "qiskit.transpiler")) to C. The basic functionality is using the same underlying code as the Python-space version, but the transpiler as exposed to C has more limitations than what is exposed to Python. The transpiler assumes a circuit built constructed using solely the C API and is intended to work solely in the case of a standalone C API. It will potentially not work correctly when in a mixed Python/C use case. If you’re mixing C and Python you should call the [`generate_preset_pass_manager()`](/docs/api/qiskit-c/dev/qiskit-transpiler-generate-preset-pass-manager#qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") or [`transpile()`](/docs/api/qiskit-c/dev/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") functions for those circuits.
 
 ## Data Types
 
@@ -162,7 +164,7 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 <Function id="qk_transpile_stage_init" signature="QkExitCode qk_transpile_stage_init(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspilerStageState **state, char **error)">
   Run the preset init stage of the transpiler on a circuit
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the first stage of the transpiler, **init**, which runs abstract-circuit optimizations, and reduces multi-qubit operations into one- and two-qubit operations. You can refer to [Initialization stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-init) for more details.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the first stage of the transpiler, **init**, which runs abstract-circuit optimizations, and reduces multi-qubit operations into one- and two-qubit operations. You can refer to [Initialization stage](/docs/api/qiskit-c/dev/transpiler#transpiler-preset-stage-init) for more details.
 
   This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 
@@ -194,7 +196,7 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 <Function id="qk_transpile_stage_routing" signature="QkExitCode qk_transpile_stage_routing(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspilerStageState *state, char **error)">
   Run the preset routing stage of the transpiler on a circuit
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the third stage of the preset pass manager, **routing**, which translates all the instructions in the circuit into those supported by the target. You can refer to [Routing stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-routing) for more details.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the third stage of the preset pass manager, **routing**, which translates all the instructions in the circuit into those supported by the target. You can refer to [Routing stage](/docs/api/qiskit-c/dev/transpiler#transpiler-preset-stage-routing) for more details.
 
   This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 
@@ -226,7 +228,7 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 <Function id="qk_transpile_stage_optimization" signature="QkExitCode qk_transpile_stage_optimization(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, char **error, QkTranspilerStageState *state)">
   Run the preset optimization stage of the transpiler on a circuit
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the fourth stage of the preset pass manager, **optimization**, which optimizes the circuit for the given target after the circuit has been transformed into a physical circuit. You can refer to [Optimization stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-optimization) for more details.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the fourth stage of the preset pass manager, **optimization**, which optimizes the circuit for the given target after the circuit has been transformed into a physical circuit. You can refer to [Optimization stage](/docs/api/qiskit-c/dev/transpiler#transpiler-preset-stage-optimization) for more details.
 
   This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 
@@ -258,7 +260,7 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 <Function id="qk_transpile_stage_translation" signature="QkExitCode qk_transpile_stage_translation(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, char **error)">
   Run the preset translation stage of the transpiler on a circuit
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the fourth stage of the preset pass manager, **translation**, which translates all the instructions in the circuit into those supported by the target. You can refer to [Translation stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-translation) for more details.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the fourth stage of the preset pass manager, **translation**, which translates all the instructions in the circuit into those supported by the target. You can refer to [Translation stage](/docs/api/qiskit-c/dev/transpiler#transpiler-preset-stage-translation) for more details.
 
   This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 
@@ -289,7 +291,7 @@ A container collecting individual attributes shared by the transpiler stages. Wh
 <Function id="qk_transpile_stage_layout" signature="QkExitCode qk_transpile_stage_layout(QkDag *dag, const QkTarget *target, const QkTranspileOptions *options, QkTranspilerStageState **state, char **error)">
   Run the preset layout stage of the transpiler on a circuit
 
-  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the second stage of the preset pass manager **layout**, which chooses the initial mapping of virtual qubits to physical qubits, including expansion of the circuit to contain explicit ancillas. You can refer to [Layout stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-layout) for more details.
+  The Qiskit transpiler is a quantum circuit compiler that rewrites a given input circuit to match the constraints of a QPU and optimizes the circuit for execution. This function runs the second stage of the preset pass manager **layout**, which chooses the initial mapping of virtual qubits to physical qubits, including expansion of the circuit to contain explicit ancillas. You can refer to [Layout stage](/docs/api/qiskit-c/dev/transpiler#transpiler-preset-stage-layout) for more details.
 
   This function should only be used with circuits constructed using Qiskit’s C API. It makes assumptions on the circuit only using features exposed via C, if you are in a mixed Python and C environment it is typically better to invoke the transpiler via Python.
 

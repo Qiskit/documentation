@@ -6,6 +6,8 @@ python_api_type: module
 python_api_name: Control Flow
 ---
 
+<span id="capi-control-flow" />
+
 # Control Flow
 
 The Qiskit C API for control flow provides facilities for inspecting control flow instructions used in quantum circuits. You can query the type of control flow instruction, access nested circuit blocks, inspect conditions and loop parameters, and retrieve qubit and classical bit mappings between nested blocks and the top-level circuit.
@@ -267,7 +269,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   This struct is returned by `qk_control_flow_loop_elements` and contains both a pointer to the array of loop elements and the number of elements in the array. The pointer is borrowed and must not be freed by the caller.
 
-  #### const size\_t \*elements
+  #### const ptrdiff\_t \*elements
 
   <Attribute id="elements">
     Pointer to the array of loop elements.
@@ -295,27 +297,27 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Assuming cf_inst is obtained from a circuit with control flow
   QkControlFlowKind kind = qk_control_flow_kind(cf_inst);
   switch (kind) {
-      case QkControlFlowKind_Box:
-          // do something with the box instruction
-          break;
-      case QkControlFlowKind_BreakLoop:
-          // do something with the break loop instruction
-          break;
-      case QkControlFlowKind_ContinueLoop:
-          // do something with the continue loop instruction
-          break;
-      case QkControlFlowKind_ForLoop:
-          // do something with the for loop instruction
-          break;
-      case QkControlFlowKind_IfElse:
-          // do something with the if-else instruction
-          break;
-      case QkControlFlowKind_Switch:
-          // do something with the switch instruction
-          break;
-      case QkControlFlowKind_While:
-          // do something with the while loop instruction
-          break;
+  case QkControlFlowKind_Box:
+      // do something with the box instruction
+      break;
+  case QkControlFlowKind_BreakLoop:
+      // do something with the break loop instruction
+      break;
+  case QkControlFlowKind_ContinueLoop:
+      // do something with the continue loop instruction
+      break;
+  case QkControlFlowKind_ForLoop:
+      // do something with the for loop instruction
+      break;
+  case QkControlFlowKind_IfElse:
+      // do something with the if-else instruction
+      break;
+  case QkControlFlowKind_Switch:
+      // do something with the switch instruction
+      break;
+  case QkControlFlowKind_While:
+      // do something with the while loop instruction
+      break;
   }
   ```
 
@@ -421,9 +423,9 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   ```c
   // Assuming cf_inst is obtained from a circuit with control flow
   const uint32_t *qubit_map = qk_control_flow_qubit_map(cf_inst);
-  size_t num_qubits = qk_circuit_num_qubits(qk_control_flow_block_circuit(cf_inst, 0));
-  for (size_t i = 0; i < num_qubits; i++) {
-      printf("Block qubit %zu maps to circuit qubit %u\n", i, qubit_map[i]);
+  uint32_t num_qubits = qk_circuit_num_qubits(qk_control_flow_block_circuit(cf_inst, 0));
+  for (uint32_t i = 0; i < num_qubits; i++) {
+      printf("Block qubit %u maps to circuit qubit %u\n", i, qubit_map[i]);
   }
   ```
 
@@ -458,9 +460,9 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   ```c
   // Assuming cf_inst is obtained from a circuit with control flow
   const uint32_t *clbit_map = qk_control_flow_clbit_map(cf_inst);
-  size_t num_clbits = qk_circuit_num_clbits(qk_control_flow_block_circuit(cf_inst, 0));
-  for (size_t i = 0; i < num_clbits; i++) {
-      printf("Block clbit %zu maps to circuit clbit %u\n", i, clbit_map[i]);
+  uint32_t num_clbits = qk_circuit_num_clbits(qk_control_flow_block_circuit(cf_inst, 0));
+  for (uint32_t i = 0; i < num_clbits; i++) {
+      printf("Block clbit %u maps to circuit clbit %u\n", i, clbit_map[i]);
   }
   ```
 
@@ -498,18 +500,15 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Assuming cf_inst is an IfElse or While control flow instruction
   QkConditionType cond_type = qk_control_flow_condition_type(cf_inst);
   switch (cond_type) {
-      case QkConditionType_ClBit: {
-          // do something with classical bit...
-          break;
-      }
-      case QkConditionType_ClReg: {
-          // do something with classical register...
-          break;
-      }
-      case QkConditionType_Expr: {
-          // Process expression...
-          break;
-      }
+  case QkConditionType_ClBit:
+      // do something with classical bit...
+      break;
+  case QkConditionType_ClReg:
+      // do something with classical register...
+      break;
+  case QkConditionType_Expr:
+      // Process expression...
+      break;
   }
   ```
 
@@ -582,7 +581,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   ```c
   // Assuming cf_inst is an IfElse or While instruction with a register condition
   uint64_t bit_width = qk_control_flow_condition_reg_cond_bit_width(cf_inst);
-  printf("Register bit width: %llu\n", bit_width);
+  printf("Register bit width: %lu\n", bit_width);
   ```
 
   <span id="group__QkControlFlow_1autotoc_md157" />
@@ -654,7 +653,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   ```c
   // Assuming cf_inst is an IfElse or While instruction with a register condition
   uint64_t expected_value = qk_control_flow_condition_reg_cond_uint(cf_inst);
-  printf("Expected register value: %" PRIu64 "\n", expected_value);
+  printf("Expected register value: %lu\n", expected_value);
   ```
 
   <span id="group__QkControlFlow_1autotoc_md161" />
@@ -730,13 +729,13 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Assuming cf_inst is a Box control flow instruction
   QkBoxDurationKind duration_kind = qk_control_flow_box_duration_kind(cf_inst);
   switch (duration_kind) {
-      case QkBoxDurationKind_NoDuration:
+  case QkBoxDurationKind_NoDuration:
       // do something...
       break;
-      case QkBoxDurationKind_Duration:
+  case QkBoxDurationKind_Duration:
       // do something...
       break;
-      case QkBoxDurationKind_Expr:
+  case QkBoxDurationKind_Expr:
       // do something...
       break;
   }
@@ -851,9 +850,9 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   ```c
   // Assuming cf_inst is a ForLoop instruction
   QkLoopCollectionType collection_type = qk_control_flow_loop_collection_type(cf_inst);
-  if (collection_type == CLoopCollectionType_List) {
+  if (collection_type == QkLoopCollectionType_List) {
       // Handle list-based loop
-  } else {
+  } else if (collection_type == QkLoopCollectionType_Range) {
       // Handle range-based loop
   }
   ```
@@ -930,7 +929,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Assuming cf_inst is a ForLoop instruction with a Range collection type
   int64_t start, stop, step;
   qk_control_flow_loop_range(cf_inst, &start, &stop, &step);
-  printf("Loop range: start=%zd, stop=%zd, step=%zd\n", start, stop, step);
+  printf("Loop range: start=%ld, stop=%ld, step=%ld\n", start, stop, step);
   ```
 
   <span id="group__QkControlFlow_1autotoc_md175" />
@@ -965,11 +964,9 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   ```c
   // Assuming cf_inst is a ForLoop instruction
   QkLoopParamKind param_kind = qk_control_flow_loop_param_kind(cf_inst);
-  if (param_kind == CLoopParamKind_NoLoopParam) {
-      // Loop has no parameter
-  } else if (param_kind == CLoopParamKind_Parameter) {
+  if (param_kind == QkLoopParamKind_Parameter) {
       // Loop uses a Parameter symbol
-  } else {
+  } else if (param_kind == QkLoopParamKind_Variable) {
       // Loop uses a Variable
   }
   ```
@@ -1277,7 +1274,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Assuming cf_inst is a Switch control flow instruction
   for (size_t i = 0; i < qk_control_flow_switch_num_cases(cf_inst); i++) {
       if (qk_control_flow_switch_is_case_default(cf_inst, i)) {
-          printf("Case %u is the default case\n", i);
+          printf("Case %zu is the default case\n", i);
       }
   }
   ```
@@ -1316,7 +1313,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   ```c
   // Assuming cf_inst is a Switch control flow instruction
   uint64_t bit_width = qk_control_flow_switch_case_labels_bit_width(cf_inst, 0);
-  printf("Maximum bit width for case 0: %" PRIu64 "\n", bit_width);
+  printf("Maximum bit width for case 0: %lu\n", bit_width);
   ```
 
   <span id="group__QkControlFlow_1autotoc_md195" />
@@ -1354,7 +1351,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Assuming cf_inst is a Switch control flow instruction
   QkSwitchCaseLabels case_labels = qk_control_flow_switch_case_labels_uint(cf_inst, 0);
   for (size_t i = 0; i < case_labels.num_labels; i++) {
-      printf("Label %zu: %llu\n", i, case_labels.labels[i]);
+      printf("Label %zu: %lu\n", i, case_labels.labels[i]);
   }
   qk_control_flow_switch_case_labels_clear(&case_labels);
   ```

@@ -32,11 +32,15 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeQuitoV2
 
   ### backend\_name
 
-  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.backend_name" attributeTypeHint="str | None" attributeValue="'fake_quito'" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.backend_name" attributeTypeHint="str" attributeValue="'fake_quito'">
+    Name of the backend.
+  </Attribute>
 
   ### conf\_filename
 
-  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.conf_filename" attributeTypeHint="str | None" attributeValue="'conf_quito.json'" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.conf_filename" attributeTypeHint="str" attributeValue="'conf_quito.json'">
+    Filename for the backend configuration.
+  </Attribute>
 
   ### coupling\_map
 
@@ -46,7 +50,9 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeQuitoV2
 
   ### dirname
 
-  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.dirname" attributeTypeHint="str | None" attributeValue="'/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/quito'" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.dirname" attributeTypeHint="str" attributeValue="'/home/runner/work/qiskit-ibm-runtime/qiskit-ibm-runtime/qiskit_ibm_runtime/fake_provider/backends/quito'">
+    Directory for the real backend snapshots.
+  </Attribute>
 
   ### dt
 
@@ -134,7 +140,9 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeQuitoV2
 
   ### props\_filename
 
-  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.props_filename" attributeTypeHint="str | None" attributeValue="'props_quito.json'" />
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.props_filename" attributeTypeHint="str" attributeValue="'props_quito.json'">
+    Filename for the backend properties.
+  </Attribute>
 
   ### provider
 
@@ -192,7 +200,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeQuitoV2
 
   ### check\_faulty
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L158-L190" signature="check_faulty(circuit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L174-L206" signature="check_faulty(circuit)">
     Check if the input circuit uses faulty qubits or edges.
 
     **Parameters**
@@ -210,7 +218,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeQuitoV2
 
   ### configuration
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L154-L156" signature="configuration()">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L170-L172" signature="configuration()">
     Return the backend configuration.
 
     **Return type**
@@ -220,7 +228,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeQuitoV2
 
   ### properties
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L141-L152" signature="properties(refresh=False)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L157-L168" signature="properties(refresh=False)">
     Return the backend properties.
 
     **Parameters**
@@ -262,21 +270,23 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeQuitoV2
 
   ### refresh
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L372-L447" signature="refresh(service, use_fractional_gates=False)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L388-L493" signature="refresh(service, use_fractional_gates=False, persist=True)">
     Update the data files from its real counterpart.
 
-    This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation:
+    This method pulls the latest backend data files from their real counterpart and, by default (`persist=True`), overwrites the corresponding files in the local installation:
 
     *   `../fake_provider/backends/{backend_name}/conf_{backend_name}.json`
-    *   `../fake_provider/backends/{backend_name}/defs_{backend_name}.json`
     *   `../fake_provider/backends/{backend_name}/props_{backend_name}.json`
 
     The new data files will persist through sessions so the files will stay updated unless they are manually reverted locally or when `qiskit-ibm-runtime` is upgraded or reinstalled.
+
+    Overwriting the installed data files fails, however, when the package is installed in a read-only location (e.g. a system-wide `site-packages` directory). In that case, or whenever modifying the installed package is undesirable, pass `persist=False` to write the refreshed data to a temporary directory instead. The backend is still updated for the current session, but the changes are not persisted to disk and are lost once the backend is garbage collected or the process exits.
 
     **Parameters**
 
     *   **service** ([*QiskitRuntimeService*](qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService")) – A `QiskitRuntimeService` instance
     *   **use\_fractional\_gates** (*bool*) – Set True to allow for the backends to include fractional gates.
+    *   **persist** (*bool*) – If `True` (default), the refreshed data files overwrite the copies bundled with the installed package so the update persists across sessions. If `False`, the data is written to a temporary directory instead, which allows [`refresh()`](#qiskit_ibm_runtime.fake_provider.FakeQuitoV2.refresh "qiskit_ibm_runtime.fake_provider.FakeQuitoV2.refresh") to succeed even when the package is installed in a read-only location, at the cost of the update not persisting between sessions.
 
     **Raises**
 
@@ -290,7 +300,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeQuitoV2
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L261-L290" signature="run(run_input, **options)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L277-L306" signature="run(run_input, **options)">
     Run on the fake backend using a simulator.
 
     This method runs circuit jobs (an individual or a list of QuantumCircuit) using BasicSimulator or Aer simulator and returns a [`Job`](/docs/api/qiskit/qiskit.providers.Job) object.
@@ -331,7 +341,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeQuitoV2
 
   ### status
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L124-L139" signature="status()">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeQuitoV2.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L140-L155" signature="status()">
     Return the backend status.
 
     **Returns**

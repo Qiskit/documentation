@@ -8,10 +8,12 @@ python_api_name: qiskit.transpiler.passes.ConvertToPauliRotations
 
 # ConvertToPauliRotations
 
-<Class id="qiskit.transpiler.passes.ConvertToPauliRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/optimization/convert_to_pauli_rotations.py#L20-L63" signature="qiskit.transpiler.passes.ConvertToPauliRotations(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.ConvertToPauliRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/optimization/convert_to_pauli_rotations.py#L21-L69" signature="qiskit.transpiler.passes.ConvertToPauliRotations(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-  Convert a quantum circuit containing single-qubit, two-qubit and three-qubit standard gates, barriers and measurements, into an equivalent circuit containing [`PauliProductRotationGate`](qiskit.circuit.library.PauliProductRotationGate "qiskit.circuit.library.PauliProductRotationGate") gates and [`PauliProductMeasurement`](qiskit.circuit.library.PauliProductMeasurement "qiskit.circuit.library.PauliProductMeasurement") instructions.
+  Convert a quantum circuit into an equivalent circuit composed of [`PauliProductRotationGate`](qiskit.circuit.library.PauliProductRotationGate "qiskit.circuit.library.PauliProductRotationGate") gates and [`PauliProductMeasurement`](qiskit.circuit.library.PauliProductMeasurement "qiskit.circuit.library.PauliProductMeasurement") instructions.
+
+  The pass converts all single-qubit, two-qubit and three-qubit standard gates into Pauli product rotations, converts measures to Pauli product measurements, and leaves barriers, delays, resets, Pauli product rotations, and Pauli product measurements unchanged.
 
   For example:
 
@@ -58,14 +60,14 @@ python_api_name: qiskit.transpiler.passes.ConvertToPauliRotations
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.ConvertToPauliRotations.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.ConvertToPauliRotations.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/basepasses.py#L162-L181" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
+    *   **passmanager\_ir** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – Qiskit IR to optimize.
+    *   **state** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Task,* [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -73,12 +75,12 @@ python_api_name: qiskit.transpiler.passes.ConvertToPauliRotations
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit"), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.ConvertToPauliRotations.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
+  <Function id="qiskit.transpiler.passes.ConvertToPauliRotations.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/passmanager/base_tasks.py#L72-L74" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -88,7 +90,7 @@ python_api_name: qiskit.transpiler.passes.ConvertToPauliRotations
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.ConvertToPauliRotations.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/optimization/convert_to_pauli_rotations.py#L49-L63" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.ConvertToPauliRotations.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/optimization/convert_to_pauli_rotations.py#L54-L69" signature="run(dag)">
     Run the ConvertToPauliRotations optimization pass on `dag`.
 
     **Parameters**
@@ -101,7 +103,7 @@ python_api_name: qiskit.transpiler.passes.ConvertToPauliRotations
 
     **Raises**
 
-    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit contains instructions not supported by the pass.
+    [**TranspilerError**](/docs/api/qiskit/transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit contains instructions not supported by the pass.
 
     **Return type**
 
@@ -110,7 +112,7 @@ python_api_name: qiskit.transpiler.passes.ConvertToPauliRotations
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.ConvertToPauliRotations.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.ConvertToPauliRotations.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/basepasses.py#L183-L191" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

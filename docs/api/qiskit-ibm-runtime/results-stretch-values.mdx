@@ -1,0 +1,55 @@
+---
+title: StretchValues (latest version)
+description: API reference for qiskit_ibm_runtime.results.StretchValues in the latest version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.results.StretchValues
+---
+
+# StretchValues
+
+<Class id="qiskit_ibm_runtime.results.StretchValues" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.48/qiskit_ibm_runtime/results/quantum_program.py#L81-L103" signature="StretchValues(name, value, remainder, expanded_values)" modifiers="class">
+  Bases: `object`
+
+  Circuit stretch value resolutions.
+
+  All timing information is expressed in terms of multiples of the quantity `dt`, time step duration of the control electronics, which can be queried in backend and target properties.
+
+  ## Attributes
+
+  **Parameters**
+
+  *   **name** (*str*)
+  *   **value** (*int*)
+  *   **remainder** (*int*)
+  *   **expanded\_values** (*list\[tuple\[int, int]]*)
+
+  ### name
+
+  <Attribute id="qiskit_ibm_runtime.results.StretchValues.name" attributeTypeHint="str">
+    The name of the stretch.
+  </Attribute>
+
+  ### value
+
+  <Attribute id="qiskit_ibm_runtime.results.StretchValues.value" attributeTypeHint="int">
+    The resolved stretch value, up to the remainder, in units of `dt`.
+  </Attribute>
+
+  ### remainder
+
+  <Attribute id="qiskit_ibm_runtime.results.StretchValues.remainder" attributeTypeHint="int">
+    The time left over if `value` were to be used each stretch, in units of `dt`.
+  </Attribute>
+
+  ### expanded\_values
+
+  <Attribute id="qiskit_ibm_runtime.results.StretchValues.expanded_values" attributeTypeHint="list[tuple[int, int]]">
+    A sequence of pairs `(time, duration)` indicating the time and duration of each delay.
+
+    All units are `dt`, where the `time` denotes the absolute time of a delay in the circuit schedule, and the `duration` denotes the total duration of the delay.
+  </Attribute>
+
+  ## Methods
+</Class>
+

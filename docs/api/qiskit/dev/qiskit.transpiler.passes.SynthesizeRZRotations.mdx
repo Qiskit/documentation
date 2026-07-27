@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.SynthesizeRZRotations
 
 # SynthesizeRZRotations
 
-<Class id="qiskit.transpiler.passes.SynthesizeRZRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/synthesize_rz_rotations.py#L20-L94" signature="qiskit.transpiler.passes.SynthesizeRZRotations(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.SynthesizeRZRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/synthesize_rz_rotations.py#L20-L95" signature="qiskit.transpiler.passes.SynthesizeRZRotations(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Replace RZ gates with Clifford+T decompositions.
@@ -55,8 +55,8 @@ python_api_name: qiskit.transpiler.passes.SynthesizeRZRotations
   **Parameters**
 
   *   **approximation\_degree** – Controls the overall degree of approximation. Defaults to `1 - 1e-10`.
-  *   **synthesis\_error** – Maximum allowed error for the approximate synthesis of $RZ(\theta)$.
-  *   **cache\_error** – Maximum allowed error when reusing a cached synthesis result for angles close to $\theta$.
+  *   **synthesis\_error** – Maximum allowed error for the approximate synthesis of $RZ(\theta)$. If specified, must be in the range `(0, 1]`.
+  *   **cache\_error** – Maximum allowed error when reusing a cached synthesis result for angles close to $\theta$. If specified, must be in the range `[0, 1]`.
 
   ## Attributes
 
@@ -110,7 +110,7 @@ python_api_name: qiskit.transpiler.passes.SynthesizeRZRotations
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.SynthesizeRZRotations.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/synthesize_rz_rotations.py#L89-L94" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.SynthesizeRZRotations.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/synthesize_rz_rotations.py#L90-L95" signature="run(dag)">
     Run the SynthesizeRZRotations pass on dag.
 
     **Parameters**

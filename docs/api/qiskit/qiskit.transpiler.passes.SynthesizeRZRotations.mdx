@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.SynthesizeRZRotations
 
 # SynthesizeRZRotations
 
-<Class id="qiskit.transpiler.passes.SynthesizeRZRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/synthesis/synthesize_rz_rotations.py#L20-L94" signature="qiskit.transpiler.passes.SynthesizeRZRotations(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.SynthesizeRZRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/synthesis/synthesize_rz_rotations.py#L20-L95" signature="qiskit.transpiler.passes.SynthesizeRZRotations(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Replace RZ gates with Clifford+T decompositions.
@@ -55,8 +55,8 @@ python_api_name: qiskit.transpiler.passes.SynthesizeRZRotations
   **Parameters**
 
   *   **approximation\_degree** – Controls the overall degree of approximation. Defaults to `1 - 1e-10`.
-  *   **synthesis\_error** – Maximum allowed error for the approximate synthesis of $RZ(\theta)$.
-  *   **cache\_error** – Maximum allowed error when reusing a cached synthesis result for angles close to $\theta$.
+  *   **synthesis\_error** – Maximum allowed error for the approximate synthesis of $RZ(\theta)$. If specified, must be in the range `(0, 1]`.
+  *   **cache\_error** – Maximum allowed error when reusing a cached synthesis result for angles close to $\theta$. If specified, must be in the range `[0, 1]`.
 
   ## Attributes
 
@@ -80,14 +80,14 @@ python_api_name: qiskit.transpiler.passes.SynthesizeRZRotations
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.SynthesizeRZRotations.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.SynthesizeRZRotations.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/basepasses.py#L162-L181" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
+    *   **passmanager\_ir** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – Qiskit IR to optimize.
+    *   **state** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Task,* [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -95,12 +95,12 @@ python_api_name: qiskit.transpiler.passes.SynthesizeRZRotations
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit"), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.SynthesizeRZRotations.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
+  <Function id="qiskit.transpiler.passes.SynthesizeRZRotations.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/passmanager/base_tasks.py#L72-L74" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -110,7 +110,7 @@ python_api_name: qiskit.transpiler.passes.SynthesizeRZRotations
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.SynthesizeRZRotations.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/synthesis/synthesize_rz_rotations.py#L89-L94" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.SynthesizeRZRotations.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/synthesis/synthesize_rz_rotations.py#L90-L95" signature="run(dag)">
     Run the SynthesizeRZRotations pass on dag.
 
     **Parameters**
@@ -124,7 +124,7 @@ python_api_name: qiskit.transpiler.passes.SynthesizeRZRotations
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.SynthesizeRZRotations.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.SynthesizeRZRotations.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/basepasses.py#L183-L191" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

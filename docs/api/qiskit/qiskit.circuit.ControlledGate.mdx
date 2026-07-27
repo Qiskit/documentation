@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
 # ControlledGate
 
-<Class id="qiskit.circuit.ControlledGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/controlledgate.py#L31-L279" signature="qiskit.circuit.ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None, *, _base_label=None)" modifiers="class">
+<Class id="qiskit.circuit.ControlledGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/controlledgate.py#L31-L279" signature="qiskit.circuit.ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None, *, _base_label=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Controlled unitary gate.
@@ -22,14 +22,14 @@ python_api_name: qiskit.circuit.ControlledGate
   *   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – A list of parameters for the gate.
   *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional label for the gate.
   *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Number of control qubits.
-  *   **definition** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
+  *   **definition** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
   *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state in decimal or as a bitstring (e.g. ‘111’). If specified as a bitstring the length must equal num\_ctrl\_qubits, MSB on left. If None, use 2\*\*num\_ctrl\_qubits-1.
   *   **base\_gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| None*) – Gate object to be controlled.
 
   **Raises**
 
-  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If `num_ctrl_qubits` >= `num_qubits`.
-  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – ctrl\_state \< 0 or ctrl\_state > 2\*\*num\_ctrl\_qubits.
+  *   [**CircuitError**](/docs/api/qiskit/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If `num_ctrl_qubits` >= `num_qubits`.
+  *   [**CircuitError**](/docs/api/qiskit/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – ctrl\_state \< 0 or ctrl\_state > 2\*\*num\_ctrl\_qubits.
 
   Examples:
 
@@ -172,20 +172,20 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+    [**CircuitError**](/docs/api/qiskit/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
   </Attribute>
 
   ## Methods
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.ControlledGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/instruction.py#L318-L323" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.ControlledGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/instruction.py#L318-L323" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.ControlledGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/gate.py#L206-L263" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.ControlledGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/gate.py#L206-L263" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -229,7 +229,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    [**CircuitError**](/docs/api/qiskit/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
     **Return type**
 
@@ -238,7 +238,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### control
 
-  <Function id="qiskit.circuit.ControlledGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/gate.py#L105-L163" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.ControlledGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/gate.py#L105-L163" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return the controlled version of itself.
 
     The controlled gate is implemented as [`ControlledGate`](#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") when `annotated` is `False`, and as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") when `annotated` is `True`.
@@ -260,12 +260,12 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `num_ctrl_qubits` or `ctrl_state`.
+    [**QiskitError**](/docs/api/qiskit/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `num_ctrl_qubits` or `ctrl_state`.
   </Function>
 
   ### copy
 
-  <Function id="qiskit.circuit.ControlledGate.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/instruction.py#L428-L443" signature="copy(name=None)">
+  <Function id="qiskit.circuit.ControlledGate.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/instruction.py#L428-L443" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -283,7 +283,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### inverse
 
-  <Function id="qiskit.circuit.ControlledGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/controlledgate.py#L271-L279" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.ControlledGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/controlledgate.py#L271-L279" signature="inverse(annotated=False)">
     Invert this gate by calling inverse on the base gate.
 
     **Parameters**
@@ -297,13 +297,13 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.ControlledGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
-    Return whether the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+  <Function id="qiskit.circuit.ControlledGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
+    Return whether the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](/docs/api/qiskit/circuit#circuit-compile-time-parameters).
   </Function>
 
   ### power
 
-  <Function id="qiskit.circuit.ControlledGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/gate.py#L63-L94" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.ControlledGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/gate.py#L63-L94" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
@@ -319,12 +319,12 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
+    [**CircuitError**](/docs/api/qiskit/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
   </Function>
 
   ### repeat
 
-  <Function id="qiskit.circuit.ControlledGate.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/instruction.py#L491-L521" signature="repeat(n)">
+  <Function id="qiskit.circuit.ControlledGate.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/instruction.py#L491-L521" signature="repeat(n)">
     Creates an instruction with `self` repeated $n$ times.
 
     **Parameters**
@@ -341,12 +341,12 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+    [**CircuitError**](/docs/api/qiskit/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
   </Function>
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.ControlledGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/instruction.py#L345-L369" signature="reverse_ops()">
+  <Function id="qiskit.circuit.ControlledGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/instruction.py#L345-L369" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -364,7 +364,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.ControlledGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/instruction.py#L214-L254" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.ControlledGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/instruction.py#L214-L254" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -382,7 +382,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.ControlledGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
+  <Function id="qiskit.circuit.ControlledGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
     Return a Numpy.array for the gate unitary matrix.
 
     **Returns**
@@ -395,12 +395,12 @@ python_api_name: qiskit.circuit.ControlledGate
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+    [**CircuitError**](/docs/api/qiskit/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
   </Function>
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.ControlledGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/instruction.py#L144-L152" signature="to_mutable()">
+  <Function id="qiskit.circuit.ControlledGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/instruction.py#L144-L152" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -408,7 +408,7 @@ python_api_name: qiskit.circuit.ControlledGate
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.ControlledGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/circuit/gate.py#L265-L279" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.ControlledGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/circuit/gate.py#L265-L279" signature="validate_parameter(parameter)">
     Gate parameters should be int, float, or ParameterExpression
   </Function>
 </Class>
