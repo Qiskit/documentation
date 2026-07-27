@@ -23,6 +23,7 @@ import {
 } from "./generateApiComponents.js";
 import { CheerioDoc } from "../testUtils.js";
 import { load } from "cheerio";
+import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 
 const RAW_SIGNATURE_EXAMPLE = `<span class='sig-prename descclassname'><span class='pre'>Estimator.</span></span><span class='sig-name descname'><span class='pre'>run</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>circuits</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>observables</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>parameter_values</span></span><span class='o'><span class='pre'>=</span></span><span class='default_value'><span class='pre'>None</span></span></em>, <em class='sig-param'><span class='o'><span class='pre'>**</span></span><span class='n'><span class='pre'>kwargs</span></span></em><span class='sig-paren'>)</span></dt>`;
 
@@ -157,18 +158,27 @@ test.describe("createOpeningTag()", () => {
 test.describe("attributeTypeHintHref", () => {
   async function parseAttribute(
     dt: string,
-    options: { kebabCaseAndShorten: boolean; pkgName: string },
+    normalizeUrl?: (url: string) => string,
   ): Promise<string> {
     const $ = load(`<dl class="py attribute">${dt}<dd></dd></dl>`);
     const $dl = $("dl").first();
     const $dt = $dl.find("dt").first();
-    return createMdxComponent($, [$dt], $dl, [], undefined, "attribute", $dt.attr("id") ?? "", {
-      isCApi: false,
-      ...options,
-    });
+    return createMdxComponent(
+      $,
+      [$dt],
+      $dl,
+      [],
+      undefined,
+      "attribute",
+      $dt.attr("id") ?? "",
+      {
+        isCApi: false,
+        normalizeUrl,
+      },
+    );
   }
 
-  test("relative href is kebab-cased when kebabCaseAndShorten is true", async () => {
+  test("relative href is transformed by normalizeUrl", async () => {
     const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
       <em class="property"><span class="pre">options</span><span class="p">:</span>
       <a href="qiskit_ibm_runtime.options_models.ExecutorOptions#qiskit_ibm_runtime.options_models.ExecutorOptions">
@@ -176,16 +186,15 @@ test.describe("attributeTypeHintHref", () => {
       </a>
       </em>
       </dt>`;
-    const result = await parseAttribute(dt, {
-      kebabCaseAndShorten: true,
-      pkgName: "qiskit-ibm-runtime",
-    });
+    const result = await parseAttribute(dt, (url) =>
+      kebabCaseAndShortenPage(url, "qiskit-ibm-runtime"),
+    );
     expect(result).toContain(
       `attributeTypeHintHref='options-models-executor-options'`,
     );
   });
 
-  test("relative href is preserved when kebabCaseAndShorten is false", async () => {
+  test("relative href is preserved when no normalizeUrl is provided", async () => {
     const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
       <em class="property"><span class="pre">options</span><span class="p">:</span>
       <a href="qiskit_ibm_runtime.options_models.ExecutorOptions#qiskit_ibm_runtime.options_models.ExecutorOptions">
@@ -193,16 +202,13 @@ test.describe("attributeTypeHintHref", () => {
       </a>
       </em>
       </dt>`;
-    const result = await parseAttribute(dt, {
-      kebabCaseAndShorten: false,
-      pkgName: "qiskit-ibm-runtime",
-    });
+    const result = await parseAttribute(dt);
     expect(result).toContain(
       `attributeTypeHintHref='qiskit_ibm_runtime.options_models.ExecutorOptions'`,
     );
   });
 
-  test("absolute href is passed through unchanged", async () => {
+  test("absolute href is passed through by normalizeUrl", async () => {
     const dt = `<dt id="qiskit_ibm_runtime.options.SimulatorOptions.coupling_map">
       <em class="property"><span class="pre">coupling_map</span><span class="p">:</span>
       <a href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap">
@@ -210,10 +216,7 @@ test.describe("attributeTypeHintHref", () => {
       </a>
       </em>
       </dt>`;
-    const result = await parseAttribute(dt, {
-      kebabCaseAndShorten: true,
-      pkgName: "qiskit-ibm-runtime",
-    });
+    const result = await parseAttribute(dt, (url) => url);
     expect(result).toContain(
       `attributeTypeHintHref='https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap'`,
     );
@@ -225,10 +228,9 @@ test.describe("attributeTypeHintHref", () => {
       <span class="pre">str</span>
       </em>
       </dt>`;
-    const result = await parseAttribute(dt, {
-      kebabCaseAndShorten: true,
-      pkgName: "qiskit-ibm-runtime",
-    });
+    const result = await parseAttribute(dt, (url) =>
+      kebabCaseAndShortenPage(url, "qiskit-ibm-runtime"),
+    );
     expect(result).toContain(`attributeTypeHintHref='undefined'`);
   });
 });

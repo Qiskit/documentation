@@ -17,7 +17,6 @@ import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 
 import { ApiTypeName, ApiObjectName, API_OBJECTS } from "./Metadata.js";
-import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import {
   getLastPartFromFullIdentifier,
   removeSuffix,
@@ -44,11 +43,7 @@ export async function createMdxComponent(
   priorApiType: ApiTypeName | undefined,
   apiType: ApiObjectName,
   id: string,
-  options: {
-    isCApi: boolean;
-    kebabCaseAndShorten?: boolean;
-    pkgName?: string;
-  },
+  options: { isCApi: boolean; normalizeUrl?: (url: string) => string },
 ): Promise<string> {
   const tagName = API_OBJECTS[apiType].tagName;
 
@@ -103,11 +98,7 @@ function prepareProps(
   apiType: ApiObjectName,
   id: string,
   headerLevel: number,
-  options: {
-    isCApi: boolean;
-    kebabCaseAndShorten?: boolean;
-    pkgName?: string;
-  },
+  options: { isCApi: boolean; normalizeUrl?: (url: string) => string },
 ): ComponentProps {
   const prepClassOrException = () =>
     prepareClassOrExceptionProps(
@@ -139,8 +130,7 @@ function prepareProps(
       githubSourceLink,
       id,
       headerLevel,
-      options.kebabCaseAndShorten,
-      options.pkgName,
+      options.normalizeUrl,
     );
 
   const preparePropsPerApiType: Record<ApiObjectName, () => ComponentProps> = {
@@ -262,8 +252,7 @@ function prepareAttributeOrPropertyProps(
   githubSourceLink: string | undefined,
   id: string,
   headerLevel: number,
-  kebabCaseAndShorten?: boolean,
-  pkgName?: string,
+  normalizeUrl?: (url: string) => string,
 ): ComponentProps {
   // Properties/attributes have multiple `span.property` values to set:
   //
@@ -321,9 +310,7 @@ function prepareAttributeOrPropertyProps(
     undefined;
   const hrefPath = rawHref?.split("#")[0];
   const attributeTypeHintHref =
-    hrefPath && kebabCaseAndShorten && pkgName && !hrefPath.startsWith("http")
-      ? kebabCaseAndShortenPage(hrefPath, pkgName)
-      : hrefPath;
+    hrefPath && normalizeUrl ? normalizeUrl(hrefPath) : hrefPath;
 
   const props = {
     id,

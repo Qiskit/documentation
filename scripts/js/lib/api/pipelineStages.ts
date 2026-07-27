@@ -29,7 +29,10 @@ import addFrontMatter from "./addFrontMatter.js";
 import { dedupeHtmlIdsFromResults } from "./dedupeHtmlIds.js";
 import { handleReleaseNotesFile } from "./releaseNotes.js";
 import { mergeClassMembers } from "./mergeClassMembers.js";
-import { normalizeResultUrls } from "./normalizeResultUrls.js";
+import {
+  normalizeResultUrls,
+  kebabCaseAndShortenPage,
+} from "./normalizeResultUrls.js";
 import { DOCS_BASE_PATH } from "./paths.js";
 import removeMathBlocksIndentation from "./removeMathBlocksIndentation.js";
 import { saveImages } from "./saveImages.js";
@@ -58,8 +61,9 @@ export async function convertHtmlToMarkdown(
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
       isCApi: pkg.isCApi(),
       hasRootNamespaceFile: pkg.hasRootNamespaceFile,
-      kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
-      pkgName: pkg.name,
+      normalizeUrl: pkg.kebabCaseAndShortenUrls
+        ? (url: string) => kebabCaseAndShortenPage(url, pkg.name)
+        : undefined,
     });
 
     // Skip empty markdown (HTML redirects, etc.).
