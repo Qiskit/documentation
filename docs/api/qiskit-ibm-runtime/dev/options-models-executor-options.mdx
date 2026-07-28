@@ -6,39 +6,50 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.options_models.ExecutorOptions
 ---
 
-# ExecutorOptions
+<span id="qiskit-ibm-runtime-options-models-executoroptions" />
 
-<Class id="qiskit_ibm_runtime.options_models.ExecutorOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/executor.py#L25-L36" signature="ExecutorOptions(environment=<factory>, execution=<factory>, experimental=<factory>)" modifiers="class">
-  Bases: `object`
+# qiskit\_ibm\_runtime.options\_models.ExecutorOptions
+
+<Class id="qiskit_ibm_runtime.options_models.ExecutorOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/executor.py#L22-L32" signature="ExecutorOptions" modifiers="pydantic model">
+  Bases: `BaseOptionsModel`
 
   Options for the executor.
 
-  ## Attributes
+  **Config**
 
-  **Parameters**
-
-  *   **environment** ([*EnvironmentOptions*](options-models-environment-options "qiskit_ibm_runtime.options_models.environment.EnvironmentOptions"))
-  *   **execution** ([*ExecutionOptions*](options-models-execution-options "qiskit_ibm_runtime.options_models.execution.ExecutionOptions"))
-  *   **experimental** (*dict*)
+  *   **validate\_assignment**: *bool = True*
+  *   **extra**: *str = forbid*
 
   ### environment
 
-  <Attribute id="qiskit_ibm_runtime.options_models.ExecutorOptions.environment" attributeTypeHint="EnvironmentOptions" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=EnvironmentOptions)">
+  <Attribute id="qiskit_ibm_runtime.options_models.ExecutorOptions.environment" attributeTypeHint="EnvironmentOptions" attributeValue="EnvironmentOptions(log_level='WARNING', job_tags=[], private=False, max_execution_time=None, image=None)" modifiers="field">
     Options related to the execution environment.
   </Attribute>
 
   ### execution
 
-  <Attribute id="qiskit_ibm_runtime.options_models.ExecutorOptions.execution" attributeTypeHint="ExecutionOptions" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=ExecutionOptions)">
+  <Attribute id="qiskit_ibm_runtime.options_models.ExecutorOptions.execution" attributeTypeHint="ExecutionOptions" attributeValue="ExecutionOptions(init_qubits=True, rep_delay=None, scheduler_timing=False, stretch_values=False)" modifiers="field">
     Low-level execution options.
   </Attribute>
 
   ### experimental
 
-  <Attribute id="qiskit_ibm_runtime.options_models.ExecutorOptions.experimental" attributeTypeHint="dict" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=dict)">
+  <Attribute id="qiskit_ibm_runtime.options_models.ExecutorOptions.experimental" attributeTypeHint="dict" attributeValue="{}" modifiers="field">
     Experimental options that are passed to the executor.
   </Attribute>
 
-  ## Methods
+  ### update
+
+  <Function id="qiskit_ibm_runtime.options_models.ExecutorOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/base.py#L46-L54" signature="update(**kwargs)">
+    Update the options.
+
+    **Parameters**
+
+    **kwargs** (*Any*)
+
+    **Return type**
+
+    None
+  </Function>
 </Class>
 
