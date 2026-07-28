@@ -15,7 +15,7 @@ description: "API reference for Quantum Elements Orbit, including inputs, output
     />
 </CardGroup>
 
-Quantum Elements Orbit is a Qiskit Function that prepares quantum circuits for a selected IBM Quantum&reg; backend, inserts dynamical decoupling (DD) into scheduled idle windows, and runs the resulting workload through a Qiskit Runtime primitive. Orbit accepts Sampler and Estimator PUBs and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) with Orbit-specific metadata attached to the top-level result and to each [Primitive Unified Bloc (PUB)](/docs/guides/primitive-input-output) result.
+Quantum Elements Orbit is a Qiskit Function that prepares quantum circuits for a selected IBM Quantum&reg; backend, inserts dynamical decoupling (DD) into scheduled idle windows, and runs the resulting workload through an IBM Quantum primitive. Orbit accepts Sampler and Estimator PUBs and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) with Orbit-specific metadata attached to the top-level result and to each [Primitive Unified Bloc (PUB)](/docs/guides/primitive-input-output) result.
 
 <Admonition type="note" title="Default behavior">
   If `backend_name` is omitted, Orbit selects an eligible least-busy IBM Quantum backend available to the Qiskit Runtime service. If `options` is omitted or `None`, Orbit uses its built-in defaults: transpile and schedule circuits, insert the default DD strategy, submit to the service, and attach DD insertion metadata to the result.
@@ -46,7 +46,7 @@ job = orbit.run(
 result = job.result()
 ```
 
-`pubs` provides the circuits and primitive inputs to run. `primitive` selects the Qiskit Runtime primitive contract. `backend_name` selects the IBM Quantum backend, or can be omitted to let Orbit choose a least-busy backend. `options` controls Orbit's DD insertion, Qiskit Runtime options, preview/simulator behavior, and metadata features. Full details for each input are below.
+`pubs` provides the circuits and primitive inputs to run. `primitive` selects the IBM Quantum primitive contract. `backend_name` selects the IBM Quantum backend, or can be omitted to let Orbit choose a least-busy backend. `options` controls Orbit's DD insertion, Qiskit Runtime options, preview/simulator behavior, and metadata features. Full details for each input are below.
 
 ### `pubs`
 
@@ -66,7 +66,7 @@ Each PUB must match the selected primitive's input contract.
 
 <Attribute attributeTypeHint="str">
 
-Selects which Qiskit Runtime primitive Orbit uses for execution.
+Selects which IBM Quantum primitive Orbit uses for execution.
 - Required: Yes
 - Valid input types: `str`
 
@@ -371,7 +371,7 @@ Default target precision used for Estimator PUBs that do not specify precision e
 
 <Attribute attributeTypeHint="dict">
 
-[Qiskit Runtime primitive options](/docs/guides/runtime-options-overview) passed through to the underlying SamplerV2 or EstimatorV2 primitive.
+[IBM Quantum primitive options](/docs/guides/runtime-options-overview) passed through to the underlying SamplerV2 or EstimatorV2 primitive.
 - Required: No
 - Default value: `{"resilience_level": 0, "dynamical_decoupling": {"enable": false}}`
 - Valid input types: `dict`
@@ -543,10 +543,10 @@ Duration of one DD gate or pulse.
 The function returns a Qiskit `PrimitiveResult` containing one `PubResult` per input PUB. Orbit preserves the selected primitive's normal result data and adds Orbit metadata under `quantum_elements_orbit`.
 
 <Attribute attributeTypeHint="PrimitiveResult">
-Standard Qiskit primitive result with Orbit metadata attached.
+Standard `PrimitiveResult` with Orbit metadata attached.
 - For `primitive="sampler"`, each `PubResult.data` contains Sampler result data such as classical-register bit arrays.
 - For `primitive="estimator"`, each `PubResult.data` contains Estimator result data such as expectation values and standard errors.
-- In preview mode, each `PubResult.data` is empty because no Qiskit Runtime primitive is submitted.
+- In preview mode, each `PubResult.data` is empty because no IBM Quantum primitive is submitted.
 </Attribute>
 
 ### Top-level metadata

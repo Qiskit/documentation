@@ -14,7 +14,7 @@ The original primitives (referred to as the V1 primitives), [V1 Sampler](/docs/a
 Their support was removed on 15 August 2024.
 </Admonition>
 
-With the deprecation of the V1 primitives, all code should be migrated to use the V2 interfaces. This guide describes what changed in the Qiskit Runtime V2 primitives (available with qiskit-ibm-runtime 0.21.0) and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime.
+With the deprecation of the V1 primitives, all code should be migrated to use the V2 interfaces. This guide describes what changed in the IBM Quantum V2 primitives (available with qiskit-ibm-runtime 0.21.0) and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the IBM Quantum primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to the IBM Quantum primitives such as error mitigation remain unique to the IBM Quantum primitives.
 
 For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see [the qiskit.primitives section](qiskit-1.0-features#qiskit.primitives) in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](/docs/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/docs/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
 
@@ -704,7 +704,7 @@ isa_observables = [operator.apply_layout(chsh_isa_circuit.layout)
 
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
-# Step 3: Execute using Qiskit primitives.
+# Step 3: Execute using IBM Quantum primitives.
 
 # Reshape observable array for broadcasting
 reshaped_ops = np.fromiter(isa_observables, dtype=object)
@@ -760,7 +760,7 @@ isa_observables = [operator.apply_layout(chsh_isa_circuit.layout)
 
 from qiskit_ibm_runtime import Estimator
 
-# Step 3: Execute using Qiskit Primitives.
+# Step 3: Execute using IBM Quantum primitives.
 num_ops = len(isa_observables)
 
 batch_circuits = [chsh_isa_circuit] * number_of_phases * num_ops
@@ -1080,7 +1080,7 @@ backend = service.least_busy(operational=True,
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
-# Step 3: Execute using Qiskit primitives.
+# Step 3: Execute using IBM Quantum primitives.
 
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
@@ -1122,7 +1122,7 @@ backend = service.least_busy(operational=True,
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
-# Step 3: Execute using Qiskit primitives.
+# Step 3: Execute using IBM Quantum primitives.
 
 from qiskit_ibm_runtime import Sampler
 
