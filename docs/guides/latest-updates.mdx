@@ -41,7 +41,7 @@ Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 - **New Classroom Accounts** &mdash; Professors can now request a Classroom Account to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information. [*Read more*](#classroom-accounts)
 </Admonition>
 
-Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit IBM Runtime client](#latest-qiskit-runtime-client) | [Qiskit IBM Runtime](#latest-qiskit-runtime) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit addons](#latest-qiskit-addons) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca)
+Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [IBM Qiskit Runtime client](#latest-qiskit-runtime-client) | [IBM Qiskit Runtime](#latest-qiskit-runtime) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit addons](#latest-qiskit-addons) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca)
 
 
 
@@ -49,11 +49,6 @@ Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-s
 ## IBM Quantum Platform
 
 This section summarizes the recent enhancements and new features for the new [IBM Quantum Platform](https://quantum.cloud.ibm.com/).
-
-### July 2026
-
-<span id="qr-rename"></span>
-- **Qiskit Runtime service is now IBM Quantum Compute Service** &mdash; Qiskit Runtime previously referred to both an internal runtime mechanism and IBM's managed execution service. The new naming clearly separates Qiskit, the open-source SDK for building portable quantum applications, from IBM Quantum Compute, the managed service for executing on IBM Quantum hardware. This provides a clearer architecture without changing workflows, APIs, access plans, or the user experience.
 
 ### May 2026
 
@@ -397,6 +392,31 @@ Be sure to retrieve any job data from important past jobs before these QPUs are 
 </AccordionItem>
 </Accordion>
 
+<span id="latest-quantum-compute-service"></span>
+## IBM Quantum Compute Service
+
+### July 2026
+
+<span id="qr-rename"></span>
+- Historically, the term _Qiskit Runtime_ was used to refer to three related but distinct concepts.
+
+  Any hardware provider that wants Qiskit users to run workloads on its quantum computers must provide two provider-specific components:
+
+  - A Qiskit SDK extension, which enables users to submit jobs to the provider. In IBM's case, this is the open-source qiskit-ibm-runtime library. Rather than communicating directly with the quantum computer, it submits jobs to a cloud API.
+
+  - A runtime execution environment, which runs on the quantum computer itself. This component understands Qiskit primitives, translates them into hardware-specific operations, and executes them on the quantum hardware. In IBM's case, this is IBM Qiskit Runtime.
+
+  Between these two components sits a third element: the managed cloud service that receives jobs from the SDK and orchestrates their execution. This service is responsible for capabilities such as authentication, scheduling, queue management, workload routing, usage tracking, limits, and analytics. It does not process Qiskit primitives itself; instead, it dispatches workloads to the appropriate quantum computer, where the runtime execution environment performs the actual execution.
+
+  Historically, this cloud service was also called Qiskit Runtime Service, even though it is conceptually different from the runtime itself. This dual use of the term Qiskit Runtime—to describe both the execution environment and the managed cloud service—blurred the architecture and made it difficult to distinguish the open-source components from IBM's managed cloud offering.
+
+  Renaming Qiskit Runtime Service to IBM Quantum Compute Service resolves this ambiguity. The resulting architecture becomes much clearer:
+
+  - qiskit-ibm-runtime: the open-source Qiskit extension that submits workloads.
+
+  - IBM Quantum Compute Service: the managed cloud service that authenticates, schedules, manages, and routes workloads.
+
+  - IBM Qiskit Runtime (or IBM Qiskit Runtime Execution Environment): the execution environment running on the quantum computer that processes and executes Qiskit primitives.
 
 <span id="latest-qiskit-sdk"></span>
 ## Qiskit SDK v2.3
@@ -424,7 +444,7 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 
 <span id="latest-qiskit-runtime-client"></span>
-## Qiskit IBM Runtime client 0.46.0
+## IBM Qiskit Runtime client 0.46.0
 
 ### April 2026
 
@@ -453,9 +473,9 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 *To see the release notes for all versions, visit the [Qiskit Runtime client release notes](/docs/api/qiskit-ibm-runtime/release-notes).*
 
 <span id="latest-qiskit-runtime"></span>
-## Qiskit IBM Runtime
+## IBM Qiskit Runtime
 
-This summary of the latest changes to the Qiskit IBM Runtime applies to anyone executing on IBM Quantum hardware, regardless of how you communicate with the service (by using `qiskit-ibm-runtime` or otherwise), or which version of the client SDK you use.
+This summary of the latest changes to the IBM Qiskit Runtime execution environment to anyone executing Qiskit Primitives on IBM Quantum hardware, regardless of how you communicate with it (by using `qiskit-ibm-runtime` or otherwise), or which version of the client SDK you use.
 
 ### January 2026
 - [**Directed execution model.**](/docs/guides/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](https://qiskit.github.io/samplomatic/index.html) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
