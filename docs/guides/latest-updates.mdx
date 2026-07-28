@@ -402,17 +402,17 @@ Be sure to retrieve any job data from important past jobs before these QPUs are 
 
   Any hardware provider that wants Qiskit users to run workloads on its quantum computers must provide two provider-specific components:
 
-  - A Qiskit SDK extension, which enables users to submit jobs to the provider. In IBM's case, this is the open-source qiskit-ibm-runtime library. Rather than communicating directly with the quantum computer, it submits jobs to a cloud API.
+  - A Qiskit SDK extension, which enables users to submit jobs to the provider. In IBM's case, this is the open-source `qiskit-ibm-runtime` library. Rather than communicating directly with the quantum computer, it submits jobs to a cloud API.
 
   - A runtime execution environment, which runs on the quantum computer itself. This component understands Qiskit primitives, translates them into hardware-specific operations, and executes them on the quantum hardware. In IBM's case, this is IBM Qiskit Runtime.
 
   Between these two components sits a third element: the managed cloud service that receives jobs from the SDK and orchestrates their execution. This service is responsible for capabilities such as authentication, scheduling, queue management, workload routing, usage tracking, limits, and analytics. It does not process Qiskit primitives itself; instead, it dispatches workloads to the appropriate quantum computer, where the runtime execution environment performs the actual execution.
 
-  Historically, this cloud service was also called Qiskit Runtime Service, even though it is conceptually different from the runtime itself. This dual use of the term Qiskit Runtime—to describe both the execution environment and the managed cloud service—blurred the architecture and made it difficult to distinguish the open-source components from IBM's managed cloud offering.
+  Historically, this cloud service was also called Qiskit Runtime Service, even though it is conceptually different from the runtime itself. This dual use of the term Qiskit Runtime &mdash; to describe both the execution environment and the managed cloud service &mdash; blurred the architecture and made it difficult to distinguish the open-source components from the managed cloud offering.
 
   Renaming Qiskit Runtime Service to IBM Quantum Compute Service resolves this ambiguity. The resulting architecture becomes much clearer:
 
-  - qiskit-ibm-runtime: the open-source Qiskit extension that submits workloads.
+  - `qiskit-ibm-runtime`: the open-source Qiskit extension that submits workloads.
 
   - IBM Quantum Compute Service: the managed cloud service that authenticates, schedules, manages, and routes workloads.
 
