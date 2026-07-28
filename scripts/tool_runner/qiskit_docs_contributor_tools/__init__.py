@@ -37,7 +37,6 @@ def run_cmd(name: str, cmd: list[str], *, progress: str | None) -> None:
         stderr=subprocess.STDOUT,
         text=True,
         encoding="utf-8",
-        shell=True,
         check=False
     )
     if result.returncode == 0:
