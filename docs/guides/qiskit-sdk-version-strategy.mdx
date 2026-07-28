@@ -13,7 +13,7 @@ patch versions. For example, in version number `X.Y.Z`, `X` is the major version
 Breaking API changes are reserved for major version releases. The **minimum**
 period between major version releases is one year. Minor versions introduce
 new features and bug fixes without breaking API compatibility, and are
-periodically (currently every three months) published for **only** the
+periodically (currently around every three months) published for **only** the
 current major version. Patch versions provide fixes for bugs identified in
 the most recent minor version of each actively supported release series (that is, the 
 major version). We support at most two release series at a time, which occurs
@@ -24,9 +24,9 @@ described in more detail below.
 ## Release schedule
 
 
-A tentative release schedule is included below:
+Example of a major release X cadence:
 
-![Tentative Qiskit release schedule](/docs/images/guides/install/release_schedule.avif)
+![Qiskit release schedule schema](/docs/images/guides/install/release_schedule.avif)
 
 For an up-to-date release schedule, refer to the Qiskit GitHub project's [milestones list](https://github.com/Qiskit/qiskit/milestones), which will always contain the current release plan.
 
@@ -79,10 +79,10 @@ be published. This final minor version release `X.Y+1.0.0` is equivalent to
 `X.Y.0` but with warnings and deprecations for any API changes that are
 made on the new major version series.
 
-For example, immediately proceeding the 1.0.0 release, a 0.46.0 release will be
-published. The 0.46.0 release will be equivalent to the 0.45.0 release but with
+For example, immediately proceeding the 1.0.0 release, a 0.46.0 release is
+published. The 0.46.0 release is equivalent to the 0.45.0 release but with
 additional deprecation warnings that document the API changes that were made as
-part of the 1.0.0 release. This pattern will be used for any future major
+part of the 1.0.0 release. This pattern applies to any major
 version releases.
 
 Qiskit users should first upgrade to this final minor
@@ -117,8 +117,8 @@ will have a finalized API surface and are used to test a prospective release.
 Note that when one of the PEP440 pre-release suffixes (such as `a`, `b`, or `pre`) are
 published, it does not have the same guarantees as an `rc` release, and is
 only a preview release. The API might change between these pre-releases
-and the final release with that version number. For example, `1.0.0pre1` might have
-a different final API than `1.0.0`.
+and the final release with that version number. For example, `X.0.0pre1` might have
+a different API than the final `X.0.0`.
 
 
 ## Post-releases
