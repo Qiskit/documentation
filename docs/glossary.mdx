@@ -31,7 +31,7 @@ description: Organized list of technical terms, product/service names, and their
 - Circuit depth: A measure of the number of "layers" of quantum gates, executed in parallel, it takes to complete the computation defined by the circuit.
 - Circuit execution:
 - Circuit instructions:
-- Circuit knitting:
+- Circuit knitting: A set of techniques that break down a single quantum circuit into multiple quantum circuits, run them in parallel on quantum processors, and then a combination of quantum and classical computers knit the circuit results together for the final answer.
 - Circuit library:
 - Circuit-observable pair: The combination of a specific quantum circuit and a target observable. It is the standard unit of work submitted to quantum primitives (like the Qiskit Estimator) to calculate an expectation value (the average measurement).
 - Circuits and operators:
@@ -46,7 +46,7 @@ description: Organized list of technical terms, product/service names, and their
 - Classical register:
 - Classical simulation:
 - Clifford circuit: A quantum circuit composed only of Clifford gates (Hadamard, S, CNOT) and measurements. Clifford circuits can be efficiently simulated classically and are important for quantum error correction and benchmarking.
-- CLOPS (Circuit Operation Layers Per Second):
+- CLOPS (Circuit Operation Layers Per Second): A metric correlated with how fast a quantum processor can execute circuits. CLOPS measures the speed that a quantum processor can execute layers of a parameterized model circuit of the same sort used to measure Quantum Volume.
 - Cloud environment:
 - Code assistants:
 - Coherence: The stability of a quantum system. A coherent qubit can maintain its state as 0, 1, or any superposition.
@@ -85,11 +85,11 @@ description: Organized list of technical terms, product/service names, and their
 
 - Electron configuration: The correlation between qubits in a superposition. Observing one of two entangled qubits tells the observer how the other qubit would act if a similar observation were made on it. The ability of quantum computers to exist in entangled states is responsible for much of their extra computing power.
 - Electron correlation effect:
-- Entanglement:
+- Entanglement: A quantum mechanical effect that correlates the behavior of two separate things. When two qubits are entangled, changes to one qubit directly impact the other. Quantum algorithms leverage those relationships to find solutions to complex problems.
 - Error codes:
 - Error correction:
 - Error mitigation:
-- Error per layered gate:
+- Error per layered gate: The average error for each gate in these layered circuits, which we can calculate directly from the layer fidelity.
 - Error suppression:
 - Estimator: A quantum primitive that computes expectation values of observables for given quantum circuits. The Estimator is used for variational algorithms and applications that require measuring physical properties of quantum states.
 - Execution:
@@ -119,7 +119,9 @@ description: Organized list of technical terms, product/service names, and their
 - Gate parameter:
 - Gate time:
 - Gates:
-- Gross code:
+- Gross code: Introduced in 2023 and published on the cover of Nature in 2024, the gross code is a new IBM error correcting code that makes practical error correction more feasible, cutting the number of physical qubits required by 90% compared to surface code-based error correction codes. Like the surface code, the gross code is a “quantum low-density parity check code,” or qLDPC code. It belongs to a subset of qLDPC codes called “bicycle bivariate” or “BB” codes. What’s important for us, though, is that 1. it requires more connectivity than our hardware currently has and 2. is the basis for error correction claims on our roadmap.
+
+  Note: The gross code cannot be used to perform operations—it is a quantum memory. Our hardware is not yet capable of running the gross code, as this will require developing new couplers.
 
 </details>
 
@@ -129,7 +131,7 @@ description: Organized list of technical terms, product/service names, and their
 - Hadamard gate: A fundamental single-qubit gate that creates an equal superposition of |0⟩ and |1⟩ states. The Hadamard gate is essential for many quantum algorithms and is often used to initialize qubits in superposition.
 - Hamiltonian simulation:
 - Handover Iterative Variational Quantum Eigensolver (HI-VQE): A hybrid quantum-classical method for accurately estimating the ground state of molecular systems. It integrates quantum hardware with classical computing, using quantum processors to efficiently explore candidate electron configurations and calculating the resulting wave function on classical computers.
-- Heavy hex:
+- Heavy hex: The topology used by all of IBM Quantum's processors, where qubits are connected to two or three other qubits as if positioned on each edge and vertex of a hexagonal tessellation. This topology allows users to explore error correcting codes while minimizing the potential for errors caused by interference between qubits.
 - Heuristic:
 - Hidden bitstring:
 - High-fidelity circuits:
@@ -146,7 +148,7 @@ description: Organized list of technical terms, product/service names, and their
 - Input circuit:
 - Input observables:
 - Instruction fidelity:
-- Interference:
+- Interference: The interaction between waves. When two equal cresting waves meet, the resulting wave crests twice as high. When a cresting wave meets the trough of another equal wave, they cancel each other out. You can see this when you toss two stones in a still pool of water and the ripples interact. The same effect takes place within a quantum computer between entangled qubits. As an operation proceeds, some results become more probable and others less probable due to interference.
 
 </details>
 
@@ -160,8 +162,11 @@ description: Organized list of technical terms, product/service names, and their
 <details>
 <summary>L</summary>
 
-- L-couplers, m-couplers, and c-couplers:
-- Layer fidelity:
+- L-couplers, m-couplers, and c-couplers: M-couplers and l-couplers are key technologies on our roadmap for modular scaling. M-couplers seam smaller chips together, and first appear on Crossbill. L-couplers connect separate chips with longer-distance links, and will debut on Flamingo.
+  
+  Down the line, we will develop c-couplers capable of linking distant qubits on the same chip. We will do this because our work on the gross code suggests that error correction will require long-distance connections between qubits. We will first introduce c-couplers on a concept chip called Kookaburra.
+
+- Layer fidelity: Combines randomized benchmarking data for larger circuits to tell us things about the whole processor and its subsets of qubits. We start with a connected set of qubits, like a chain of qubits where each one is entangled to its neighbor. Then, we split this connected set up into multiple disjoint layers so that each qubit only has at most one two-qubit gate acting on it. Then, we perform randomized benchmarking on each of these new disjoint layers to calculate the fidelity of each one. Finally, we multiply the fidelity from each layer together into a final number, the layer fidelity.
 - Lifecycle management:
 - Local simulators:
 - Local transpilation:
@@ -182,7 +187,8 @@ description: Organized list of technical terms, product/service names, and their
 - Measurement mitigation technique:
 - Measurement probabilities:
 - Measurement-based post-selection:
-- Middleware:
+- Middleware: Software that allows users to run workloads across classical and quantum cloud-based resources. It orchestrates quantum hardware more efficiently, and supports easier, faster, more complex executions.
+
 - Minimal environment:
 - Mitigated expectation value:
 - Mitigation:
@@ -272,11 +278,11 @@ description: Organized list of technical terms, product/service names, and their
 - Qiskit root:
 - QPU snapshot: A saved configuration of quantum hardware properties at a specific point in time, including coupling maps, basis gates, and calibration data. QPU snapshots enable reproducible testing and simulation of specific hardware configurations.
 - QPU time: The actual time spent by the quantum processing unit executing quantum circuits. QPU time is a billable resource and does not include queue time, compilation time, or classical post-processing time.
-- Quantum advantage:
+- Quantum advantage: The milestone where a quantum computer is better than all classical methods for the given problem.
 - Quantum algorithm:
 - Quantum Approximate Optimization Algorithm (QAOA): A hybrid quantum-classical algorithm that is designed to solve combinatorial optimization problems. QAOA alternates between quantum evolution and classical parameter optimization to find approximate solutions to hard optimization problems.
 - Quantum bit: A unit of information in quantum computing that can represent a one, a zero, or a combination of the two at once.
-- Quantum-centric supercomputer:
+- Quantum-centric supercomputer: A single computing system designed to do quantum-centric supercomputing: QPUs connected to CPUs with high-bandwidth connections, plus the hardware and software required to run programs and orchestrate work across them. We have not yet realized a quantum-centric supercomputer, but we can begin to do quantum-centric supercomputing by splitting problems between cloud-based quantum and classical processing resources.
 - Quantum channel:
 - Quantum circuit: A sequence of quantum operations (gates) applied to qubits over time. A quantum circuit defines the algorithm or computation to be performed on a quantum computer, similar to how a musical score defines notes played over time. Or, the set of instructions, or algorithm, applied to a quantum computer. It is a series of gates versus time played on different qubits, much like a musical score.
 - Quantum computer: A computing device that leverages quantum mechanical phenomena (superposition, entanglement, and interference) to perform computations. Quantum computers use qubits instead of classical bits and can solve certain problems exponentially faster than classical computers.
@@ -342,7 +348,7 @@ description: Organized list of technical terms, product/service names, and their
 - Samplomatic:
 - Sampling noise:
 - Scheduled quantum circuits:
-- Serverless:
+- Serverless: An architecture that allows a developer to focus on coding only, with no need for infrastructure management consideration. Every element is a cloud service. The service requires no capacity or life cycle management considerations and scales seamlessly. And users pay only for consumption, never for idle time. IBM Quantum is working to realize frictionless quantum computing by establishing a serverless programming model using IBM Cloud Code Engine with Qiskit Runtime.
 - Service: A cloud-based capability or resource provided through IBM Quantum Platform. Services include quantum compute resources, transpilation services, and primitive execution environments.
 - Shaded lightcones:
 - Simulated devices:
@@ -404,7 +410,7 @@ description: Organized list of technical terms, product/service names, and their
 - Unitary matrix / operator:
 - Unitary synthesis method:
 - Unitary synthesis plugin:
-- Utility scale:
+- Utility-scale: Used to describe a solution or circuit for which a quantum computer would outperform a classical computer simulating a quantum computer.
 - Utility-scale algorithm discovery:
 - Utility-scale experiment:
 - Utility-scale work:
@@ -475,19 +481,19 @@ description: Organized list of technical terms, product/service names, and their
 <details>
 <summary>I</summary>
 
-- IBM Quantum:
-- IBM Quantum Accelerator:
-- IBM Quantum Blue Jay:
+- IBM Quantum: An industry-first initiative to build universal quantum computers for business and science. Our engineers deliver ever-more-powerful superconducting quantum processors at regular intervals, building toward the quantum computing speed and capacity necessary to change the world. Our developers build the most performant quantum software development kit, Qiskit.
+- IBM Quantum Accelerator: A program that helps organizations push themselves further along their quantum journey. Participants will have premium access to IBM’s world-class quantum computing systems, while also having the unique opportunity to work with IBM Quantum experts to explore how this technology can benefit specific domains, while readying teams with the skills and capabilities necessary for a quantum-ready workforce.
+- IBM Quantum Blue Jay: A quantum system to be debuted in 2033, capable of running circuits with a billion gates on 2,000 logical qubits.
 - IBM Quantum Composer:
-- IBM Quantum Flamingo:
-- IBM Quantum Heron:
-- IBM Quantum Network:
+- IBM Quantum Flamingo: IBM Quantum's first multi-chip processor, realized by combining Heron-like processors with interconnects called l-couplers. Flamingo will be capable of running larger circuits so users can look for quantum advantages in their respective domains. Through classical and quantum modularity, we plan to achieve an IBM Quantum Flamingo system capable of running 15,000 gates with the help of error mitigation by 2028.
+- IBM Quantum Heron: IBM Quantum's 133-qubit chip, which uses tunable couplers to achieve our lowest error rates yet. Heron serves as the basis for modular scaling of quantum processors.
+- IBM Quantum Network: A community of Fortune 500 companies, academic institutions, national labs, and startups. These organizations gain access to our stack, empowering them to tackle the hardest problems across fields like finance, materials, logistics, and chemistry in new and better ways.
 - IBM Quantum Platform:
 - IBM Quantum Premium Plan:
-- IBM Quantum Roadmap:
-- IBM Quantum Starling:
-- IBM Quantum System One:
-- IBM Quantum System Two:
+- IBM Quantum Roadmap: The roadmap charting our commitments to advance quantum computing.
+- IBM Quantum Starling: An error-corrected system capable of running circuits with 100 million gates on 200 logical qubits, by 2029.
+- IBM Quantum System One: The world’s first integrated quantum computer system. The vision behind IBM Quantum System One was to satisfy the needs of selected clients that wish to own their own exclusive on-premises system. Today we have IBM Quantum System One installations in place across the globe, including in North America, Germany, and Japan, with many more coming soon.
+- IBM Quantum System Two: The realized architecture of a full quantum system which includes the QPU, the runtime environment infrastructure and the cryogenic infrastructure. For dedicated service deployments, the dedicated system is a physical IBM Quantum System One or IBM Quantum System Two that contains a dedicated quantum computer. For our IBM Quantum datacenter deployments, our quantum computers are composed of individual QPUs and shared classical compute which hosts the runtime environment, allowing better processing and distribution of workloads.
 
 </details>
 
@@ -536,13 +542,13 @@ description: Organized list of technical terms, product/service names, and their
 - Q-CTRL Optimization Solver:
 - Q-CTRL Performance Management Function:
 - QEDMA QESEM:
-- Qiskit:
+- Qiskit: The most powerful and performant software for quantum computing. Qiskit is an umbrella term that includes Qiskit’s stable release, the open-source Qiskit software development kit, and Qiskit Runtime. Qiskit users represent a diverse, global community of researchers, developers, educators, hobbyists, and entrepreneurs excited to push this field forward.
 - Qiskit Aer (qiskit-aer):
 - Qiskit Circuit Library:
 - Qiskit ecosystem:
 - Qiskit Functions:
 - Qiskit Functions Catalog:
-- Qiskit Runtime:
+- Qiskit Runtime: A runtime for running cloud-based quantum computing and classical computing in the same environment. Qiskit Runtime dramatically accelerates the development and execution of quantum-enabled workflows by providing a serverless experience for creating and deploying scalable quantum programs, applications, and services. Qiskit Runtime provides independent software vendors a simple, cloud-native interface using IBM's pay-as-you-go service.
 - Qiskit Runtime primitives:
 - Qiskit SDK:
 - Qiskit SDK transpiler:
