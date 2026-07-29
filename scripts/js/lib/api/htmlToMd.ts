@@ -152,7 +152,7 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
     },
     attributetypehint(h, node: any): any {
       return {
-        type: "mdxJsxFlowElement",
+        type: "mdxJsxTextElement",
         name: "AttributeTypeHint",
         attributes: [],
         children: escapeTextNodesForMdx(all(h, node)),
