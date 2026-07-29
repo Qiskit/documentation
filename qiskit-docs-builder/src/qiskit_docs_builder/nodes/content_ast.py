@@ -81,7 +81,7 @@ def _parse_node(node: nodes.Node) -> dict | list | None:
             return _parse_admonition(node, kind)
 
     # sphinx.addnodes version directives (deprecated, versionadded, versionchanged)
-    node_classes = node.get("classes", [])
+    node_classes = node.get("classes", []) if hasattr(node, "get") else []
     for cls, kind in _VERSION_ADMONITION_CLASSES.items():
         if cls in node_classes:
             return _parse_admonition(node, kind)

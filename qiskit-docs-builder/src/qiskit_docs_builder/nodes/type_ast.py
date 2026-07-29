@@ -1,4 +1,5 @@
 from __future__ import annotations
+import re
 from docutils import nodes
 
 
@@ -7,6 +8,43 @@ def parse_type_node(node: nodes.Node) -> dict:
     tokens = _tokenize(node)
     result, _ = _parse_union(tokens, 0)
     return result
+
+
+def parse_type_string(type_str: str) -> dict:
+    """Parse a plain type annotation string (e.g. 'list[int] | None') into a TypeNode dict.
+
+    Used when the doctree stores type annotations as plain text rather than as
+    a structured node tree (e.g. in desc_annotation text nodes).
+    """
+    tokens = _tokenize_string(type_str)
+    result, _ = _parse_union(tokens, 0)
+    return result
+
+
+def _tokenize_string(type_str: str) -> list:
+    """Tokenize a type annotation string into (kind, value) tokens.
+
+    Splits on ' | ', '[', ']', ',' to create individual tokens matching
+    what _tokenize() produces from separate docutils nodes.
+    """
+    # Split while keeping delimiters
+    parts = re.split(r"(\s*\|\s*|\[|\]|,\s*)", type_str)
+    tokens = []
+    for part in parts:
+        if not part:
+            continue
+        stripped = part.strip()
+        if stripped in ("|",):
+            tokens.append(("text", " | "))
+        elif stripped == "[":
+            tokens.append(("text", "["))
+        elif stripped == "]":
+            tokens.append(("text", "]"))
+        elif stripped == ",":
+            tokens.append(("text", ", "))
+        elif stripped:
+            tokens.append(("text", stripped))
+    return tokens
 
 
 def _tokenize(node: nodes.Node) -> list:

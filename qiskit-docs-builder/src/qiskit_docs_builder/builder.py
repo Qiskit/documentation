@@ -18,6 +18,9 @@ class QiskitJsonBuilder(Builder):
     def get_outdated_docs(self):
         return self.env.found_docs
 
+    def get_target_uri(self, docname: str, typ: str | None = None) -> str:
+        return docname + ".json"
+
     def prepare_writing(self, docnames):
         pass
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 from docutils import nodes
 import sphinx.addnodes as sphinx_nodes
-from qiskit_docs_builder.nodes.type_ast import parse_type_node
+from qiskit_docs_builder.nodes.type_ast import parse_type_node, parse_type_string
 from qiskit_docs_builder.nodes.content_ast import parse_content, _parse_inline_children
 
 
@@ -229,7 +229,8 @@ def _extract_type_annotation(sig) -> dict | None:
                 # type annotation is after ":"
                 type_part = text.split(":", 1)[1].strip().split("=")[0].strip()
                 if type_part:
-                    return {"kind": "name", "text": type_part}
+                    # Use string parser to handle unions/generics in plain text annotations
+                    return parse_type_string(type_part)
     # Look for type in desc_sig_punctuation + desc_sig_* pattern
     type_parts = []
     in_type = False
