@@ -67,7 +67,9 @@ def _extract_signature(sig) -> str:
         if isinstance(child, sphinx_nodes.desc_name):
             name = child.astext()
         elif isinstance(child, sphinx_nodes.desc_parameterlist):
-            params = "(" + child.astext() + ")"
+            params = child.astext()
+            if not params.startswith("("):
+                params = "(" + params + ")"
     return f"{name}{params}" if params else name
 
 
@@ -324,11 +326,10 @@ def _parse_raises_item(item) -> dict | None:
     exc_type = None
     desc_parts = []
     for child in para.children:
-        if isinstance(child, (nodes.strong, nodes.literal)):
-            if isinstance(child, nodes.reference):
-                exc_type = {"kind": "ref", "text": child.astext(), "url": child.get("refuri", "")}
-            else:
-                exc_type = {"kind": "name", "text": child.astext()}
+        if isinstance(child, nodes.reference):
+            exc_type = {"kind": "ref", "text": child.astext(), "url": child.get("refuri", "")}
+        elif isinstance(child, (nodes.strong, nodes.literal)):
+            exc_type = {"kind": "name", "text": child.astext()}
         elif isinstance(child, nodes.Text):
             text = str(child).strip(" –-")
             if text:
@@ -348,8 +349,8 @@ def _extract_version_info(content) -> dict:
     for child in content.children:
         classes = child.get("classes", []) if hasattr(child, "get") else []
         if "deprecated" in classes:
-            info["deprecated"] = child.astext().split()[1] if len(child.astext().split()) > 1 else None
+            info["deprecated"] = child.astext().split()[-1] if len(child.astext().split()) > 1 else None
             info["deprecationMessage"] = child.astext()
         elif "versionadded" in classes:
-            info["added"] = child.astext().split()[1] if len(child.astext().split()) > 1 else None
+            info["added"] = child.astext().split()[-1] if len(child.astext().split()) > 1 else None
     return info
