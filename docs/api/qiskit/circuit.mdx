@@ -542,15 +542,11 @@ qc.store(creg[0], parity)
   *   **lvalue** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the memory location being stored into.
   *   **rvalue** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the expression result being stored.
 
-  ##### lvalue
-
-  <Attribute id="qiskit.circuit.Store.lvalue">
+  <Attribute id="qiskit.circuit.Store.lvalue" name="lvalue" headingLevel={5}>
     Get the l-value [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node that is being stored to.
   </Attribute>
 
-  ##### rvalue
-
-  <Attribute id="qiskit.circuit.Store.rvalue">
+  <Attribute id="qiskit.circuit.Store.rvalue" name="rvalue" headingLevel={5}>
     Get the r-value [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node that is being written into the l-value.
   </Attribute>
 </Class>
@@ -613,9 +609,7 @@ Within [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumC
 
 For convenience, there is a [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset) instance containing the [`Instruction.name`](/docs/api/qiskit/qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attributes of each of the control-flow operations.
 
-#### qiskit.circuit.CONTROL\_FLOW\_OP\_NAMES
-
-<Attribute id="qiskit.circuit.CONTROL_FLOW_OP_NAMES">
+<Attribute id="qiskit.circuit.CONTROL_FLOW_OP_NAMES" name="qiskit.circuit.CONTROL_FLOW_OP_NAMES" headingLevel={4}>
   Set of the instruction names of Qiskit’s known control-flow operations.
 </Attribute>
 
@@ -654,9 +648,15 @@ These control-flow operations ([`IfElseOp`](/docs/api/qiskit/qiskit.circuit.IfEl
 
 The [`SwitchCaseOp`](/docs/api/qiskit/qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") also understands a special value:
 
-#### qiskit.circuit.CASE\_DEFAULT
+<Attribute id="qiskit.circuit.CASE_DEFAULT" name="qiskit.circuit.CASE_DEFAULT" headingLevel={4}>
+  <AttributeTypeHint>
+    \=
 
-<Attribute id="qiskit.circuit.CASE_DEFAULT" attributeValue="<default case>">
+    {"<default"}
+
+    {"case>"}
+  </AttributeTypeHint>
+
   A special object that represents the “default” case of a switch statement. If you use this as a case target, it must be the last case, and will match anything that wasn’t already matched. When using the builder interface of [`QuantumCircuit.switch()`](qiskit.circuit.QuantumCircuit#switch "qiskit.circuit.QuantumCircuit.switch"), this can also be accessed as the `DEFAULT` attribute of the bound case-builder object.
 </Attribute>
 
@@ -919,17 +919,13 @@ A common task in mapping abstract circuits to physical hardware and optimizing t
 
 Qiskit ships with a large set of predefined equivalence relationships for all of its standard gates. This base library is called [`StandardEquivalenceLibrary`](#qiskit.circuit.StandardEquivalenceLibrary "qiskit.circuit.StandardEquivalenceLibrary"), and should be treated as immutable.
 
-#### qiskit.circuit.StandardEquivalenceLibrary
-
-<Attribute id="qiskit.circuit.StandardEquivalenceLibrary">
+<Attribute id="qiskit.circuit.StandardEquivalenceLibrary" name="qiskit.circuit.StandardEquivalenceLibrary" headingLevel={4}>
   A [`EquivalenceLibrary`](/docs/api/qiskit/qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") that stores of all Qiskit’s built-in standard gate relationships. You should not mutate this, but instead either create your own [`EquivalenceLibrary`](/docs/api/qiskit/qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") using this one as its `base`, or modify the global-state [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary").
 </Attribute>
 
 Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary"), which is the default equivalences used by various places in Qiskit, most notably the [`BasisTranslator`](/docs/api/qiskit/qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") transpiler pass. You should feel free to add your own equivalences to this using its [`add_equivalence()`](/docs/api/qiskit/qiskit.circuit.EquivalenceLibrary#add_equivalence "qiskit.circuit.EquivalenceLibrary.add_equivalence") method, and they will be automatically picked up by default instances of the [`BasisTranslator`](/docs/api/qiskit/qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator").
 
-#### qiskit.circuit.SessionEquivalenceLibrary
-
-<Attribute id="qiskit.circuit.SessionEquivalenceLibrary">
+<Attribute id="qiskit.circuit.SessionEquivalenceLibrary" name="qiskit.circuit.SessionEquivalenceLibrary" headingLevel={4}>
   The default instance of [`EquivalenceLibrary`](/docs/api/qiskit/qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary"), which will be used by most Qiskit objects if no library is manually specified. You can feel free to add equivalences to this using [`add_equivalence()`](/docs/api/qiskit/qiskit.circuit.EquivalenceLibrary#add_equivalence "qiskit.circuit.EquivalenceLibrary.add_equivalence"). It inherits all the built-in rules of [`StandardEquivalenceLibrary`](#qiskit.circuit.StandardEquivalenceLibrary "qiskit.circuit.StandardEquivalenceLibrary").
 </Attribute>
 

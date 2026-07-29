@@ -874,6 +874,28 @@ test("convert class attributes headings", async () => {
   });
 });
 
+test("attribute with < and & in default value produces valid MDX", async () => {
+  // StagedPassManager.invalid_stage_regex has &lt; / &gt; / &amp; in the value.
+  // Text nodes with these chars must be wrapped in {"..."} JSX expression containers
+  // so they are valid MDX — bare \< in MDX text content breaks the MDX parser.
+  const result = await toMd(
+    `<div role='main'>
+<h1>invalid_stage_regex<a class='headerlink' href='#invalid-stage-regex' title='Permalink to this heading'>¶</a></h1>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qiskit.transpiler.StagedPassManager.invalid_stage_regex">
+<span class="sig-name descname"><span class="pre">invalid_stage_regex</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\&lt;|\\&gt;|\\&#64;|\\!|\\~|\\^|\\&amp;|\\:|\\[|\\]|\\{|\\}|\\(|\\)')</span></span><a class="headerlink" href="#qiskit.transpiler.StagedPassManager.invalid_stage_regex" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+`,
+  );
+  // The value containing < > & must be inside a JSX expression container {"..."},
+  // not as bare text that would produce invalid \< in MDX
+  expect(result).toContain('{"re.compile(');
+  // Ensure bare \< does not appear outside of a JSX expression (which would break MDX)
+  // The pattern \< followed by a letter is the invalid form; inside {"..."} it's fine
+  expect(result).not.toMatch(/(?<!{["'])\\<[A-Za-z_]/);
+});
+
 test("convert functions headings", async () => {
   expect(
     await toMd(

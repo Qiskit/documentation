@@ -23,7 +23,6 @@ import {
 } from "./generateApiComponents.js";
 import { CheerioDoc } from "../testUtils.js";
 import { load } from "cheerio";
-import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 
 const RAW_SIGNATURE_EXAMPLE = `<span class='sig-prename descclassname'><span class='pre'>Estimator.</span></span><span class='sig-name descname'><span class='pre'>run</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>circuits</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>observables</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>parameter_values</span></span><span class='o'><span class='pre'>=</span></span><span class='default_value'><span class='pre'>None</span></span></em>, <em class='sig-param'><span class='o'><span class='pre'>**</span></span><span class='n'><span class='pre'>kwargs</span></span></em><span class='sig-paren'>)</span></dt>`;
 
@@ -78,9 +77,8 @@ test.describe("createOpeningTag()", () => {
     const tag = await createOpeningTag("Function", componentProps);
     expect(tag).toEqual(`<Function
     id='qiskit_ibm_runtime.Estimator.run'
-    attributeTypeHint='undefined'
-    attributeTypeHintHref='undefined'
-    attributeValue='undefined'
+    name='undefined'
+    headingLevel='undefined'
     isDedicatedPage='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
@@ -100,9 +98,8 @@ test.describe("createOpeningTag()", () => {
     const tag = await createOpeningTag("Function", componentProps);
     expect(tag).toEqual(`<Function
     id='qiskit_ibm_runtime.Estimator.run'
-    attributeTypeHint='undefined'
-    attributeTypeHintHref='undefined'
-    attributeValue='undefined'
+    name='undefined'
+    headingLevel='undefined'
     isDedicatedPage='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
@@ -112,19 +109,16 @@ test.describe("createOpeningTag()", () => {
   `);
   });
 
-  test("Create Attribute tag with default value and type hint", async () => {
+  test("Create Attribute tag without type hint or value props", async () => {
     const componentProps = {
       id: "qiskit.circuit.QuantumCircuit.instance",
-      attributeTypeHint: "str | None",
-      attributeValue: "None",
     };
 
     const tag = await createOpeningTag("Attribute", componentProps);
     expect(tag).toEqual(`<Attribute
     id='qiskit.circuit.QuantumCircuit.instance'
-    attributeTypeHint='str | None'
-    attributeTypeHintHref='undefined'
-    attributeValue='None'
+    name='undefined'
+    headingLevel='undefined'
     isDedicatedPage='undefined'
     github='undefined'
     signature=''
@@ -142,9 +136,8 @@ test.describe("createOpeningTag()", () => {
     const tag = await createOpeningTag("Class", componentProps);
     expect(tag).toEqual(`<Class
     id='qiskit.circuit.Sampler'
-    attributeTypeHint='undefined'
-    attributeTypeHintHref='undefined'
-    attributeValue='undefined'
+    name='undefined'
+    headingLevel='undefined'
     isDedicatedPage='undefined'
     github='undefined'
     signature=''
@@ -155,11 +148,8 @@ test.describe("createOpeningTag()", () => {
   });
 });
 
-test.describe("attributeTypeHintHref", () => {
-  async function parseAttribute(
-    dt: string,
-    normalizeUrl?: (url: string) => string,
-  ): Promise<string> {
+test.describe("rawTypeHintHtml", () => {
+  async function parseAttribute(dt: string): Promise<string> {
     const $ = load(`<dl class="py attribute">${dt}<dd></dd></dl>`);
     const $dl = $("dl").first();
     const $dt = $dl.find("dt").first();
@@ -171,30 +161,11 @@ test.describe("attributeTypeHintHref", () => {
       undefined,
       "attribute",
       $dt.attr("id") ?? "",
-      {
-        isCApi: false,
-        normalizeUrl,
-      },
+      { isCApi: false },
     );
   }
 
-  test("relative href is transformed by normalizeUrl", async () => {
-    const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
-      <em class="property"><span class="pre">options</span><span class="p">:</span>
-      <a href="qiskit_ibm_runtime.options_models.ExecutorOptions#qiskit_ibm_runtime.options_models.ExecutorOptions">
-        <span class="pre">ExecutorOptions</span>
-      </a>
-      </em>
-      </dt>`;
-    const result = await parseAttribute(dt, (url) =>
-      kebabCaseAndShortenPage(url, "qiskit-ibm-runtime"),
-    );
-    expect(result).toContain(
-      `attributeTypeHintHref='options-models-executor-options'`,
-    );
-  });
-
-  test("relative href is preserved when no normalizeUrl is provided", async () => {
+  test("type hint with link appears in body, not as prop", async () => {
     const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
       <em class="property"><span class="pre">options</span><span class="p">:</span>
       <a href="qiskit_ibm_runtime.options_models.ExecutorOptions#qiskit_ibm_runtime.options_models.ExecutorOptions">
@@ -203,37 +174,93 @@ test.describe("attributeTypeHintHref", () => {
       </em>
       </dt>`;
     const result = await parseAttribute(dt);
+    // href appears in the body HTML, not as a prop
     expect(result).toContain(
-      `attributeTypeHintHref='qiskit_ibm_runtime.options_models.ExecutorOptions'`,
+      `href="qiskit_ibm_runtime.options_models.ExecutorOptions`,
     );
+    expect(result).not.toContain(`attributeTypeHintHref`);
   });
 
-  test("absolute href is passed through by normalizeUrl", async () => {
-    const dt = `<dt id="qiskit_ibm_runtime.options.SimulatorOptions.coupling_map">
-      <em class="property"><span class="pre">coupling_map</span><span class="p">:</span>
-      <a href="https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap">
-        <span class="pre">CouplingMap</span>
+  test("type hint with default value appears in body", async () => {
+    const dt = `<dt id="qiskit.transpiler.TranspileLayout.final_layout">
+      <em class="property"><span class="pre">final_layout</span><span class="p">:</span>
+      <a href="qiskit.transpiler.Layout#qiskit.transpiler.Layout">
+        <span class="pre">Layout</span>
       </a>
+      <span class="pre">|</span>
+      <span class="pre">None</span>
+      <span class="p">=</span>
+      <span class="pre">None</span>
       </em>
       </dt>`;
-    const result = await parseAttribute(dt, (url) =>
-      kebabCaseAndShortenPage(url, "qiskit-ibm-runtime"),
-    );
-    expect(result).toContain(
-      `attributeTypeHintHref='https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap'`,
-    );
+    const result = await parseAttribute(dt);
+    expect(result).toContain(`href="qiskit.transpiler.Layout`);
+    expect(result).not.toContain(`attributeTypeHintHref`);
+    expect(result).not.toContain(`attributeValue`);
   });
 
-  test("no link produces undefined href", async () => {
-    const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
-      <em class="property"><span class="pre">options</span><span class="p">:</span>
-      <span class="pre">str</span>
+  test("attribute with no link still renders type hint in body", async () => {
+    const dt = `<dt id="qiskit_ibm_runtime.Executor.count">
+      <em class="property"><span class="pre">count</span><span class="p">:</span>
+      <span class="pre">int</span>
       </em>
       </dt>`;
-    const result = await parseAttribute(dt, (url) =>
-      kebabCaseAndShortenPage(url, "qiskit-ibm-runtime"),
+    const result = await parseAttribute(dt);
+    // plain text type hint is in body, not a prop
+    expect(result).toContain(`int`);
+    expect(result).not.toContain(`attributeTypeHint='int'`);
+  });
+});
+
+test.describe("Attribute name prop and AttributeTypeHint wrapper", () => {
+  async function parseAttribute(dt: string): Promise<string> {
+    const $ = load(`<dl class="py attribute">${dt}<dd></dd></dl>`);
+    const $dl = $("dl").first();
+    const $dt = $dl.find("dt").first();
+    return createMdxComponent(
+      $,
+      [$dt],
+      $dl,
+      [],
+      undefined,
+      "attribute",
+      $dt.attr("id") ?? "",
+      { isCApi: false },
     );
-    expect(result).toContain(`attributeTypeHintHref='undefined'`);
+  }
+
+  test("name prop is set to the attribute name", async () => {
+    const dt = `<dt id="qiskit.transpiler.TranspileLayout.final_layout">
+      <span class="sig-name descname"><span class="pre">final_layout</span></span>
+      <span class="property"><span class="p">:</span>
+        <a href="qiskit.transpiler.Layout.html#qiskit.transpiler.Layout"><span class="pre">Layout</span></a>
+      </span>
+      </dt>`;
+    const result = await parseAttribute(dt);
+    expect(result).toContain(`name='final_layout'`);
+  });
+
+  test("type hint is wrapped in AttributeTypeHint, not p", async () => {
+    const dt = `<dt id="qiskit.transpiler.TranspileLayout.final_layout">
+      <span class="sig-name descname"><span class="pre">final_layout</span></span>
+      <span class="property"><span class="p">:</span>
+        <a href="qiskit.transpiler.Layout.html#qiskit.transpiler.Layout"><span class="pre">Layout</span></a>
+      </span>
+      </dt>`;
+    const result = await parseAttribute(dt);
+    // cheerio lowercases custom tags; htmlToMd.ts handler re-lifts to AttributeTypeHint
+    expect(result).toContain(`<attributetypehint>`);
+    expect(result).not.toContain(`<p>`);
+  });
+
+  test("headingLevel prop is set", async () => {
+    const dt = `<dt id="qiskit.transpiler.TranspileLayout.final_layout">
+      <span class="sig-name descname"><span class="pre">final_layout</span></span>
+      <span class="property"><span class="p">:</span><span class="pre">int</span></span>
+      </dt>`;
+    const result = await parseAttribute(dt);
+    // headingLevel defaults to 3 when no prior header context
+    expect(result).toContain(`headingLevel='3'`);
   });
 });
 

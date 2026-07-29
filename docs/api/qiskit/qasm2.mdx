@@ -535,21 +535,15 @@ In particular, in the legacy importers:
 
 You can emulate this behavior in [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") by setting include\_path appropriately (try inspecting the variable `qiskit.__file__` to find the installed location), and by passing a list of [`CustomInstruction`](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.CustomInstruction") instances for each of the custom gates you care about. To make things easier we make three tuples available, which each contain one component of a configuration that is equivalent to Qiskit’s legacy converter behavior.
 
-### qiskit.qasm2.LEGACY\_CUSTOM\_INSTRUCTIONS
-
-<Attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS">
+<Attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" name="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" headingLevel={3}>
   A tuple containing the extra custom\_instructions that Qiskit’s legacy built-in converters used if `qelib1.inc` is included, and there is any definition of a `delay` instruction. The gates in the paper version of `qelib1.inc` and `delay` all require a compatible declaration statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all marked as builtins since they are not actually present in any include file this parser sees.
 </Attribute>
 
-### qiskit.qasm2.LEGACY\_CUSTOM\_CLASSICAL
-
-<Attribute id="qiskit.qasm2.LEGACY_CUSTOM_CLASSICAL">
+<Attribute id="qiskit.qasm2.LEGACY_CUSTOM_CLASSICAL" name="qiskit.qasm2.LEGACY_CUSTOM_CLASSICAL" headingLevel={3}>
   A tuple containing the extra custom\_classical functions that Qiskit’s legacy built-in converters use beyond those specified by the paper. This is the three basic inverse trigonometric functions: $\asin$, $\acos$ and $\atan$.
 </Attribute>
 
-### qiskit.qasm2.LEGACY\_INCLUDE\_PATH
-
-<Attribute id="qiskit.qasm2.LEGACY_INCLUDE_PATH">
+<Attribute id="qiskit.qasm2.LEGACY_INCLUDE_PATH" name="qiskit.qasm2.LEGACY_INCLUDE_PATH" headingLevel={3}>
   A tuple containing the exact include\_path used by the legacy Qiskit converter.
 </Attribute>
 

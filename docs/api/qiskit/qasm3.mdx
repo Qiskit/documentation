@@ -142,9 +142,11 @@ The OpenQASM 3 language is still evolving as hardware capabilities improve, so t
 
   These are experimental and are more liable to change, because the OpenQASM 3 specification has not formally accepted them yet, so the syntax may not be finalized.
 
-  ##### SWITCH\_CASE\_V1
+  <Attribute id="qiskit.qasm3.ExperimentalFeatures.SWITCH_CASE_V1" name="SWITCH_CASE_V1" headingLevel={5}>
+    <AttributeTypeHint>
+      \= 1
+    </AttributeTypeHint>
 
-  <Attribute id="qiskit.qasm3.ExperimentalFeatures.SWITCH_CASE_V1" attributeValue="1">
     Support exporting switch-case statements as proposed by [https://github.com/openqasm/openqasm/pull/463](https://github.com/openqasm/openqasm/pull/463) at [commit bfa787aa3078](https://github.com/openqasm/openqasm/pull/463/commits/bfa787aa3078).
 
     These have the output format:
@@ -451,36 +453,26 @@ These two functions allow for specifying include paths as an iterable of paths, 
 
   Information received from Python space about how to construct a Python-space object to represent a given gate that might be declared.
 
-  ##### constructor
-
-  <Attribute id="qiskit.qasm3.CustomGate.constructor">
+  <Attribute id="qiskit.qasm3.CustomGate.constructor" name="constructor" headingLevel={5}>
     A callable Python object that takes `num_params` angles as positional arguments, and returns a [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate "qiskit.circuit.Gate") object representing the gate.
   </Attribute>
 
-  ##### name
-
-  <Attribute id="qiskit.qasm3.CustomGate.name">
+  <Attribute id="qiskit.qasm3.CustomGate.name" name="name" headingLevel={5}>
     The name of the gate as it appears in the OpenQASM 3 program. This is not necessarily identical to the name that Qiskit gives the gate.
   </Attribute>
 
-  ##### num\_params
-
-  <Attribute id="qiskit.qasm3.CustomGate.num_params">
+  <Attribute id="qiskit.qasm3.CustomGate.num_params" name="num_params" headingLevel={5}>
     The number of angle-like parameters the gate requires.
   </Attribute>
 
-  ##### num\_qubits
-
-  <Attribute id="qiskit.qasm3.CustomGate.num_qubits">
+  <Attribute id="qiskit.qasm3.CustomGate.num_qubits" name="num_qubits" headingLevel={5}>
     The number of qubits the gate acts on.
   </Attribute>
 </Class>
 
 If `custom_gates` is not given, Qiskit will attempt to use its standard-library gate objects for the gates defined in OpenQASM 3 standard library file `stdgates.inc`. This sequence of gates is available on this module, if you wish to build on top of it:
 
-#### qiskit.qasm3.STDGATES\_INC\_GATES
-
-<Attribute id="qiskit.qasm3.STDGATES_INC_GATES">
+<Attribute id="qiskit.qasm3.STDGATES_INC_GATES" name="qiskit.qasm3.STDGATES_INC_GATES" headingLevel={4}>
   A tuple of [`CustomGate`](#qiskit.qasm3.CustomGate "qiskit.qasm3.CustomGate") objects specifying the Qiskit constructors to use for the `stdgates.inc` include file.
 </Attribute>
 

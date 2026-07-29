@@ -25,9 +25,9 @@ import {
 
 export type ComponentProps = {
   id?: string;
-  attributeTypeHint?: string;
-  attributeTypeHintHref?: string;
-  attributeValue?: string;
+  name?: string;
+  headingLevel?: number;
+  rawTypeHintHtml?: string; // type hint HTML emitted in component body so links are resolved by the pipeline
   githubSourceLink?: string;
   rawSignature?: string;
   modifiers?: string;
@@ -76,7 +76,13 @@ export async function createMdxComponent(
   addExtraSignatures(componentProps, extraProps);
 
   const minHeadingLevel = componentProps.isDedicatedPage ? 2 : headerLevel + 1;
-  const $componentBody = $(`<div>${bodyElements.join("\n")}</div>`);
+  const allBodyElements = componentProps.rawTypeHintHtml
+    ? [
+        `<AttributeTypeHint>${componentProps.rawTypeHintHtml}</AttributeTypeHint>`,
+        ...bodyElements,
+      ]
+    : bodyElements;
+  const $componentBody = $(`<div>${allBodyElements.join("\n")}</div>`);
   setMinimumHeadingLevel($, $componentBody, minHeadingLevel);
 
   return [
@@ -130,7 +136,6 @@ function prepareProps(
       githubSourceLink,
       id,
       headerLevel,
-      options.normalizeUrl,
     );
 
   const preparePropsPerApiType: Record<ApiObjectName, () => ComponentProps> = {
@@ -252,7 +257,6 @@ function prepareAttributeOrPropertyProps(
   githubSourceLink: string | undefined,
   id: string,
   headerLevel: number,
-  normalizeUrl?: (url: string) => string,
 ): ComponentProps {
   // Properties/attributes have multiple `span.property` values to set:
   //
@@ -295,48 +299,46 @@ function prepareAttributeOrPropertyProps(
   }
 
   // The attributes have the following shape: name [: type] [= value]
-  // We skip the first character to leave off the `:` and the `=` in
-  // both type hint and default value
   const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
-  const attributeTypeHint = text
-    .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
-    .trim();
-  const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
-  // If the type hint element contains a link, capture its href so the
-  // rendered component can make the type hint clickable.
-  const rawHref =
-    $child.find("em.property a, span.property a").first().attr("href") ??
-    undefined;
-  const hrefPath = rawHref?.split("#")[0];
-  const attributeTypeHintHref =
-    hrefPath && normalizeUrl && !hrefPath.startsWith("http")
-      ? normalizeUrl(hrefPath)
-      : hrefPath;
+  const $typeSpan = $child.find("em.property, span.property").first();
+  let rawTypeHintHtml: string | undefined;
+  if ($typeSpan.length) {
+    const $clone = $typeSpan.clone();
+    // Remove the name span (first span.pre whose text matches `name`)
+    $clone
+      .find("span.pre")
+      .filter((_, el) => $(el).text().trim() === name)
+      .first()
+      .remove();
+    // Remove the colon span (span.p containing ":")
+    $clone
+      .find("span.p")
+      .filter((_, el) => $(el).text().trim() === ":")
+      .first()
+      .remove();
+    const inner = $clone.html()?.trim();
+    if (inner) {
+      rawTypeHintHtml = inner;
+    }
+  }
 
-  const props = {
+  const props: ComponentProps = {
     id,
-    attributeTypeHint,
-    attributeTypeHintHref,
-    attributeValue,
+    name,
+    headingLevel: headerLevel,
+    rawTypeHintHtml,
     githubSourceLink,
     modifiers: filteredModifiers,
   };
 
   const pageHeading = $dl.siblings("h1").text();
   if (pageHeading && id.endsWith(pageHeading)) {
-    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     return {
       ...props,
       isDedicatedPage: true,
     };
   }
-
-  // Else, the attribute is embedded on the class
-  const htag = `h${headerLevel}`;
-  $(
-    `<${htag} data-header-type="attribute-header">${name}</${htag}>`,
-  ).insertBefore($dl);
 
   return props;
 }
@@ -393,14 +395,6 @@ export async function createOpeningTag(
   tagName: string,
   props: ComponentProps,
 ): Promise<string> {
-  const attributeTypeHint = props.attributeTypeHint?.replaceAll(
-    "'",
-    APOSTROPHE_HEX_CODE,
-  );
-  const attributeValue = props.attributeValue?.replaceAll(
-    "'",
-    APOSTROPHE_HEX_CODE,
-  );
   const signature = await htmlSignatureToMd(props.rawSignature!);
   const extraSignatures: string[] = [];
   for (const sig of props.extraRawSignatures ?? []) {
@@ -409,9 +403,8 @@ export async function createOpeningTag(
 
   return `<${tagName}
     id='${props.id}'
-    attributeTypeHint='${attributeTypeHint}'
-    attributeTypeHintHref='${props.attributeTypeHintHref}'
-    attributeValue='${attributeValue}'
+    name='${props.name}'
+    headingLevel='${props.headingLevel}'
     isDedicatedPage='${props.isDedicatedPage}'
     github='${props.githubSourceLink}'
     signature='${signature}'

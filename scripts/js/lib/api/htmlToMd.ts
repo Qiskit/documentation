@@ -150,9 +150,38 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
     attribute(h, node: any): any {
       return buildApiComponent(h, node);
     },
+    attributetypehint(h, node: any): any {
+      return {
+        type: "mdxJsxFlowElement",
+        name: "AttributeTypeHint",
+        attributes: [],
+        children: escapeTextNodesForMdx(all(h, node)),
+      };
+    },
   };
 
   return handlers;
+}
+
+// MDX's JSX layer treats unescaped `<` and `>` as tag delimiters, and `&` as
+// an entity reference, even inside element text content. remark-stringify tries
+// to escape them as `\<`/`\>` but MDX doesn't recognize backslash escaping for
+// these characters, so the round-trip through updateLinks fails. Wrap text
+// nodes that contain these characters in an MDX expression container
+// ({"..."}) which is valid in any phrasing context.
+function escapeTextNodesForMdx(nodes: any[]): any[] {
+  return nodes.map((node) => {
+    if (node.type === "text" && /[<>&]/.test(node.value)) {
+      return {
+        type: "mdxTextExpression",
+        value: JSON.stringify(node.value),
+      };
+    }
+    if (Array.isArray(node.children)) {
+      return { ...node, children: escapeTextNodesForMdx(node.children) };
+    }
+    return node;
+  });
 }
 
 export function removeVersionLinkTitle(node: Link) {
@@ -362,17 +391,12 @@ function buildApiComponent(h: H, node: any): any {
   };
 
   maybeAddAttribute(hastTree, "id", node.properties.id);
-  maybeAddAttribute(
+  maybeAddAttribute(hastTree, "name", node.properties.name);
+  maybeAddExpressionAttribute(
     hastTree,
-    "attributeTypeHint",
-    node.properties.attributetypehint,
+    "headingLevel",
+    node.properties.headinglevel,
   );
-  maybeAddAttribute(
-    hastTree,
-    "attributeTypeHintHref",
-    node.properties.attributetypehinthref,
-  );
-  maybeAddAttribute(hastTree, "attributeValue", node.properties.attributevalue);
   maybeAddExpressionAttribute(
     hastTree,
     "isDedicatedPage",
