@@ -415,7 +415,7 @@ All release types start with the following steps:
    3. Click the CI run name. (Not the middle column with the blue link!)
    4. In the left navbar, it should show as selected the "Summary" page with the house.
    5. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
-   6. Download the artifact by clicking on its name.
+   6. Download the artifact by clicking on its name. **Note:** For `qiskit-addon-utils` (and possibly others) the downloaded zip file might contain an extra parent directory. This will cause the `gen-addon` script to run incorrectly and leave your changes in a broken state. To fix this, uncompress the zip file and open the top-level directory, so you are viewing a collection of files and folders such as `_downloads`, `_images`, `objects.inv`, and others. Select all these files and folders and compress into a new zip file, which you will rename (see step 5 below) and upload (step 6).
 
 4. On some operating systems, the downloaded zip file will be auto-expanded rather than staying a zip file. If this happens, compress it back to a zip file. On macOS, secondary-click on the folder in Finder and use the "Compress" option.
 5. Rename the downloaded zip file with its minor-version number. For example, for the release `0.45.2`, rename `html_docs.zip` to `0.45.zip`. For release candidates (rc), use a value like `2.3-rc.zip`.
