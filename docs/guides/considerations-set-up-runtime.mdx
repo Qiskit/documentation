@@ -12,19 +12,19 @@ IBM Quantum&reg; Platform is the dashboard for your IBM Cloud&reg; account's IBM
 This guide describes the decisions and tradeoffs involved in setting up access for an organization with multiple service instances. For example, having one instance per team or workload.
 
 <Admonition type="note">
-If your organization has multiple IBM Cloud accounts - for example, separate accounts per business unit, each with its own Qiskit Runtime service instances - you can link them under a single IBM Cloud Enterprise account, which has one main account responsible for billing and one or more child accounts. To redistribute Premium or Flex Plan allocation between child accounts, contact IBM Quantum support through the [IBM Cloud Support Center](https://cloud.ibm.com/unifiedsupport/cases/form). See the [IBM Cloud Enterprise account documentation](https://cloud.ibm.com/docs/account?topic=account-what-is-enterprise) for full details.
+If your organization has multiple IBM Cloud accounts &mdash; for example, separate accounts per business unit, each with its own Quantum Compute instances &mdash; you can link them under a single IBM Cloud Enterprise account, which has one main account responsible for billing and one or more child accounts. To redistribute Premium or Flex Plan allocation between child accounts, contact IBM Quantum support through the [IBM Cloud Support Center](https://cloud.ibm.com/unifiedsupport/cases/form). See the [IBM Cloud Enterprise account documentation](https://cloud.ibm.com/docs/account?topic=account-what-is-enterprise) for full details.
 </Admonition>
 
 <span id="overview-org"></span>
 ## Overview
 
    <Admonition type="note">
-   IBM Cloud&reg; provides several ways to implement the mechanisms described in this guide. Most of the steps are generic to IBM Cloud and not specific to Qiskit Runtime, except the custom role details.
+   IBM Cloud&reg; provides several ways to implement the mechanisms described in this guide. Most of the steps are generic to IBM Cloud and not specific to Quantum Compute, except the custom role details.
 </Admonition>
 
 ### Involved personas
 
-There are several main personas mentioned in this guide:
+The following personas are mentioned in this guide:
 
 * **User**: Someone who gets access to Qiskit Runtime resources (_service instances_) and can potentially collaborate with other users on these resources. Users' access is controlled by an administrator, and they cannot create or delete service instances.
 * **Cloud administrator**: An IBM Cloud account owner who owns the Qiskit Runtime resources and manages which users can access these resources. As the resource owner, the administrator is charged for any paid resource use.
