@@ -24,6 +24,15 @@ class QiskitJsonBuilder(Builder):
     def prepare_writing(self, docnames):
         pass
 
+    def copy_image_files(self) -> None:
+        pass
+
+    def copy_static_files(self) -> None:
+        pass
+
+    def copy_extra_files(self) -> None:
+        pass
+
     def write_doc(self, docname: str, doctree: nodes.document) -> None:
         page = self._extract_page(docname, doctree)
         if page is None:
@@ -45,6 +54,23 @@ class QiskitJsonBuilder(Builder):
                 "name": self.app.config.project,
                 "version": self.app.config.release,
             }, f, indent=2, ensure_ascii=False)
+
+    def _remove_non_json_artifacts(self) -> None:
+        outdir = Path(self.outdir)
+        for path in outdir.rglob("*"):
+            # Leave .doctrees alone — Sphinx uses it for incremental builds
+            if ".doctrees" in path.parts:
+                continue
+            if path.is_file() and path.suffix != ".json":
+                path.unlink()
+        for path in sorted(outdir.rglob("*"), reverse=True):
+            if ".doctrees" in path.parts:
+                continue
+            if path.is_dir():
+                try:
+                    path.rmdir()
+                except OSError:
+                    pass
 
     def _extract_page(self, docname: str, doctree: nodes.document) -> dict | None:
         # Find the first desc node to determine page type
