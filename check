@@ -12,6 +12,7 @@
 # that they have been altered from the originals.
 
 import logging
+import shutil
 from pathlib import Path
 
 from scripts.tool_runner.qiskit_docs_contributor_tools import (
@@ -23,16 +24,19 @@ from scripts.tool_runner.qiskit_docs_contributor_tools import (
 
 logger = logging.getLogger(__name__)
 
+# On Windows, npm is a wrapper for npm.cmd, so get the correct command
+npm_cmd = shutil.which("npm")
+
 # Note that these are ordered from fastest to slowest.
 CHECKS = {
-    "spelling": ["npm", "run", "check:spelling"],
-    "internal links": ["npm", "run", "check:internal-links"],
+    "spelling": [npm_cmd, "run", "check:spelling"],
+    "internal links": [npm_cmd, "run", "check:internal-links"],
     "notebook linters": ["tox", "-e", "lint"],
     "all notebooks are tested": ["python3", "scripts/ci/check-all-notebooks-are-tested.py"],
-    "Qiskit bot": ["npm", "run", "check:qiskit-bot"],
+    "Qiskit bot": [npm_cmd, "run", "check:qiskit-bot"],
     "tutorials index page": ["python3", "scripts/ci/check-tutorials-index.py"],
-    "markdown": ["npm", "run", "check:markdown"],
-    "orphan pages": ["npm", "run", "check:orphan-pages"],
+    "markdown": [npm_cmd, "run", "check:markdown"],
+    "orphan pages": [npm_cmd, "run", "check:orphan-pages"],
 }
 
 
