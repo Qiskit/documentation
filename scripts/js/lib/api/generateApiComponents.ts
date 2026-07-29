@@ -25,9 +25,7 @@ import {
 
 export type ComponentProps = {
   id?: string;
-  name?: string;
-  headingLevel?: number;
-  rawTypeHintHtml?: string; // type hint HTML emitted in component body so links are resolved by the pipeline
+  rawTypeHintHtml?: string; // type hint HTML injected into the heading before the Attribute tag
   githubSourceLink?: string;
   rawSignature?: string;
   modifiers?: string;
@@ -43,7 +41,7 @@ export async function createMdxComponent(
   priorApiType: ApiTypeName | undefined,
   apiType: ApiObjectName,
   id: string,
-  options: { isCApi: boolean; normalizeUrl?: (url: string) => string },
+  options: { isCApi: boolean },
 ): Promise<string> {
   const tagName = API_OBJECTS[apiType].tagName;
 
@@ -76,13 +74,7 @@ export async function createMdxComponent(
   addExtraSignatures(componentProps, extraProps);
 
   const minHeadingLevel = componentProps.isDedicatedPage ? 2 : headerLevel + 1;
-  const allBodyElements = componentProps.rawTypeHintHtml
-    ? [
-        `<AttributeTypeHint>${componentProps.rawTypeHintHtml}</AttributeTypeHint>`,
-        ...bodyElements,
-      ]
-    : bodyElements;
-  const $componentBody = $(`<div>${allBodyElements.join("\n")}</div>`);
+  const $componentBody = $(`<div>${bodyElements.join("\n")}</div>`);
   setMinimumHeadingLevel($, $componentBody, minHeadingLevel);
 
   return [
@@ -104,7 +96,7 @@ function prepareProps(
   apiType: ApiObjectName,
   id: string,
   headerLevel: number,
-  options: { isCApi: boolean; normalizeUrl?: (url: string) => string },
+  options: { isCApi: boolean },
 ): ComponentProps {
   const prepClassOrException = () =>
     prepareClassOrExceptionProps(
@@ -311,12 +303,6 @@ function prepareAttributeOrPropertyProps(
       .filter((_, el) => $(el).text().trim() === name)
       .first()
       .remove();
-    // Remove the colon span (span.p containing ":")
-    $clone
-      .find("span.p")
-      .filter((_, el) => $(el).text().trim() === ":")
-      .first()
-      .remove();
     const inner = $clone.html()?.trim();
     if (inner) {
       rawTypeHintHtml = inner;
@@ -325,8 +311,6 @@ function prepareAttributeOrPropertyProps(
 
   const props: ComponentProps = {
     id,
-    name,
-    headingLevel: headerLevel,
     rawTypeHintHtml,
     githubSourceLink,
     modifiers: filteredModifiers,
@@ -334,11 +318,27 @@ function prepareAttributeOrPropertyProps(
 
   const pageHeading = $dl.siblings("h1").text();
   if (pageHeading && id.endsWith(pageHeading)) {
+    const $h1 = $dl.siblings("h1").first();
+    $h1.text(getLastPartFromFullIdentifier(id));
+    if (rawTypeHintHtml) {
+      $h1.append(
+        `<attributetypehint>${rawTypeHintHtml}</attributetypehint>`,
+      );
+    }
     return {
       ...props,
       isDedicatedPage: true,
     };
   }
+
+  // Insert the heading (with inline type hint) before the <dl>
+  const typeHintSuffix = rawTypeHintHtml
+    ? ` <attributetypehint>${rawTypeHintHtml}</attributetypehint>`
+    : "";
+  const htag = `h${headerLevel}`;
+  $(
+    `<${htag} data-header-type="attribute-header">${name}${typeHintSuffix}</${htag}>`,
+  ).insertBefore($dl);
 
   return props;
 }
@@ -403,8 +403,6 @@ export async function createOpeningTag(
 
   return `<${tagName}
     id='${props.id}'
-    name='${props.name}'
-    headingLevel='${props.headingLevel}'
     isDedicatedPage='${props.isDedicatedPage}'
     github='${props.githubSourceLink}'
     signature='${signature}'

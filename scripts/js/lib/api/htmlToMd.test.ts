@@ -759,9 +759,9 @@ test("convert class property headings", async () => {
   ).toEqual({
     images: [],
     isReleaseNotes: false,
-    markdown: `# circuits
+    markdown: `# circuits<AttributeTypeHint>: tuple\\[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]</AttributeTypeHint>
 
-<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true}>
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true}>
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {
@@ -808,9 +808,9 @@ test("convert abstract class property headings", async () => {
   ).toEqual({
     images: [],
     isReleaseNotes: false,
-    markdown: `# circuits
+    markdown: `# circuits<AttributeTypeHint>: tuple\\[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]</AttributeTypeHint>
 
-<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true} modifiers="abstract property">
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true} modifiers="abstract property">
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {
@@ -864,9 +864,9 @@ test("convert class attributes headings", async () => {
   ).toEqual({
     images: [],
     isReleaseNotes: false,
-    markdown: `# callback
+    markdown: `# callback<AttributeTypeHint>: Optional\\[Callable]</AttributeTypeHint>
 
-<Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" attributeTypeHint="Optional[Callable]" attributeValue="None" isDedicatedPage={true} />\n`,
+<Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" isDedicatedPage={true} />\n`,
     meta: {
       apiName: "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
       apiType: "attribute",
@@ -1170,9 +1170,9 @@ test("generate correct heading level", async () => {
   </Function>
 </Class>
 
-### attribute1
+### attribute1<AttributeTypeHint />
 
-<Attribute id="qiskit.test.attribute1" attributeTypeHint="None" attributeValue="None">
+<Attribute id="qiskit.test.attribute1">
   Attribute 1
 </Attribute>
 
