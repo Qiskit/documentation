@@ -1,4 +1,5 @@
 from __future__ import annotations
+import posixpath
 from docutils import nodes
 import sphinx.addnodes as sphinx_nodes
 from qiskit_docs_builder.nodes.content_ast import parse_content, _parse_node
@@ -67,7 +68,8 @@ def _extract_members_from_table(section: nodes.section, env) -> list[dict]:
             ref = next((n for n in cells[0].traverse(nodes.reference)), None)
             if ref is None:
                 continue
-            member_id = ref.get("refuri", "").lstrip("../").replace(".html", "").replace("/", ".")
+            stem = posixpath.splitext(posixpath.basename(ref.get("refuri", "")))[0]
+            member_id = stem.replace("-", ".")
             member_name = ref.astext()
             member_url = ref.get("refuri", "")
             # Second cell: summary text

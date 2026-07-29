@@ -9,6 +9,7 @@ from qiskit_docs_builder.visitors.class_visitor import (
     _extract_returns,
     _extract_raises,
     _extract_method_modifiers,
+    _extract_version_info,
 )
 
 
@@ -34,4 +35,5 @@ def visit_function(desc: sphinx_nodes.desc) -> dict:
         "parameters": _extract_parameters(content) if content else [],
         "returns": _extract_returns(content) if content else {"description": None, "type": None},
         "raises": _extract_raises(content) if content else [],
+        "versionInfo": _extract_version_info(content) if content else {"added": None, "deprecated": None, "deprecationMessage": None},
     }
