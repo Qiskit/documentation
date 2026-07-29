@@ -321,9 +321,7 @@ function prepareAttributeOrPropertyProps(
     const $h1 = $dl.siblings("h1").first();
     $h1.text(getLastPartFromFullIdentifier(id));
     if (rawTypeHintHtml) {
-      $h1.append(
-        `<attributetypehint>${rawTypeHintHtml}</attributetypehint>`,
-      );
+      $h1.append(`<attributetypehint>${rawTypeHintHtml}</attributetypehint>`);
     }
     return {
       ...props,
