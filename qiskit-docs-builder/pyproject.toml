@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qiskit-docs-builder"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "sphinx>=8.0",
+]
+
+[project.entry-points."sphinx.builders"]
+qiskit_json = "qiskit_docs_builder.builder:QiskitJsonBuilder"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qiskit_docs_builder"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "sphinx>=8.0",
+]
