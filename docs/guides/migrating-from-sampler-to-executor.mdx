@@ -1,6 +1,6 @@
 ---
 title: Migrate from Sampler to Executor
-description: Migrate from using the Sampler V2 to Executor primitive in IBM Compute Service
+description: Migrate from using the Sampler V2 to Executor primitive in IBM Quantum Compute Service
 
 ---
 
@@ -12,7 +12,7 @@ A guide for moving quantum sampling workloads from the Qiskit Runtime **Sampler*
 primitive to the **Executor** primitive.
 
 > **Beta notice.** The Executor primitive is part of the
-> [directed execution model](https://quantum.cloud.ibm.com/docs/en/guides/directed-execution-model),
+> [directed execution model](/docs/guides/directed-execution-model),
 > which is currently in **beta** and may change. Test it and file feedback on the
 > [Samplomatic](https://github.com/Qiskit/samplomatic/issues) or
 > [qiskit-ibm-runtime](https://github.com/Qiskit/qiskit-ibm-runtime/issues) GitHub repos.
@@ -400,12 +400,12 @@ executor = Executor(mode=backend, options=options)
 ```
 
 `ExecutorOptions` (see the
-[`ExecutorOptions` API reference](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-models-executor-options))
+[`ExecutorOptions` API reference](/docs/api/qiskit-ibm-runtime/options-models-executor-options))
 has just three top-level groups:
 
-- **`environment`** ([`EnvironmentOptions`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-models-environment-options)) —
+- **`environment`** ([`EnvironmentOptions`](/docs/api/qiskit-ibm-runtime/options-models-environment-options)) —
   `log_level`, `job_tags`, `private`, `max_execution_time`, `image`
-- **`execution`** ([`ExecutionOptions`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-models-execution-options)) —
+- **`execution`** ([`ExecutionOptions`](/docs/api/qiskit-ibm-runtime/options-models-execution-options)) —
   `init_qubits`, `rep_delay`, `scheduler_timing`, `stretch_values` (the last two are
   experimental and populate per-item metadata in the results)
 - **`experimental`** — a free-form `dict` of experimental options passed to the executor
@@ -463,10 +463,10 @@ knowing before you commit to a migration:
 
 ## References
 
-- [Executor quickstart](https://quantum.cloud.ibm.com/docs/en/guides/get-started-with-executor)
-- [Executor inputs and outputs](https://quantum.cloud.ibm.com/docs/en/guides/executor-input-output)
-- [Executor options](https://quantum.cloud.ibm.com/docs/en/guides/executor-options)
-- [Directed execution model](https://quantum.cloud.ibm.com/docs/en/guides/directed-execution-model)
-- [Sampler quickstart](https://quantum.cloud.ibm.com/docs/en/guides/get-started-with-sampler)
-- [Sampler inputs and outputs](https://quantum.cloud.ibm.com/docs/en/guides/sampler-input-output)
+- [Executor quickstart](/docs/guides/get-started-with-executor)
+- [Executor inputs and outputs](/docs/guides/executor-input-output)
+- [Executor options](/docs/guides/executor-options)
+- [Directed execution model](/docs/guides/directed-execution-model)
+- [Sampler quickstart](/docs/guides/get-started-with-sampler)
+- [Sampler inputs and outputs](/docs/guides/sampler-input-output)
 - [Samplomatic documentation](https://qiskit.github.io/samplomatic)
