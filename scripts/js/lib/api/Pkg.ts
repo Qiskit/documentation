@@ -68,6 +68,7 @@ export class Pkg {
     "qiskit-addon-utils",
     "qiskit-addon-paulice",
     "qiskit-addon-pna",
+    "pauli-prop",
   ];
 
   static VALID_NAMES = [
@@ -222,6 +223,15 @@ export class Pkg {
         ...args,
         title: "Qiskit propagated noise absorption",
         githubSlug: "Qiskit/qiskit-addon-pna",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "pauli-prop") {
+      return new Pkg({
+        ...args,
+        title: "Pauli propagation",
+        githubSlug: "Qiskit/pauli-prop",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });
