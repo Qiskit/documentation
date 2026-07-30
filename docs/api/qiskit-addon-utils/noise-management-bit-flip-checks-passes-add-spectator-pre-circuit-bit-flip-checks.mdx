@@ -1,0 +1,119 @@
+---
+title: AddSpectatorPreCircuitBitFlipChecks (latest version)
+description: API reference for qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPreCircuitBitFlipChecks in the latest version of qiskit-addon-utils
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPreCircuitBitFlipChecks
+---
+
+# AddSpectatorPreCircuitBitFlipChecks
+
+<Class id="qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPreCircuitBitFlipChecks" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/bit_flip_checks/passes/add_spectator_pre_circuit_checks.py#L36-L313" signature="AddSpectatorPreCircuitBitFlipChecks(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass)
+
+  Add bit-flip checks at the beginning of the circuit on qubits adjacent to active qubits.
+
+  Each spectator qubit receives a pre-circuit bit-flip check: A narrowband X-pulse that flips the qubit’s state ($|x\rangle\mapsto|x\oplus1\rangle$), then a regular X-pulse followed by a measurement. If the QPU fails to flip the qubit from $|0\rangle\mapsto|1\rangle\mapsto|0\rangle$, that sample may be considered unreliable and discarded. Postselecting only samples that pass all checks can improve the fidelity of distributions sampled from the QPU. Optionally via `include_unmeasured`, active qubits that are not terminated by a measurement are also treated as spectators.
+
+  The added measurements write to a new classical register with one bit per spectator qubit, named `spectator_creg_name` (default `"spec_pre"`).
+
+  <Admonition title="Note" type="note">
+    These passes are only supported on Heron QPUs where [fractional gates](http://quantum.cloud.ibm.com/docs/guides/fractional-gates) are supported.
+  </Admonition>
+
+  Initialize the pass.
+
+  **Parameters**
+
+  *   **coupling\_map** – A coupling map or a list of tuples indicating pairs of neighboring qubits.
+  *   **x\_pulse\_type** – The type of X-pulse to apply for the pre-check measurements. Either `"xslow"` or `"rx"`.
+  *   **include\_unmeasured** – Whether the qubits that are active but are not terminated by a measurement should also be treated as spectators. If `True`, a terminal measurement is added on each of them.
+  *   **spectator\_creg\_name** – The name of the classical register added for the measurements on the spectator qubits.
+  *   **ignore\_spectator\_creg\_names** – List of classical register names to ignore when determining active qubits. Qubits that only have measurements to these registers are not considered active, preventing cascading spectator selection. Defaults to `["spec"]` (the default name used by [`AddSpectatorPostCircuitBitFlipChecks`](noise-management-bit-flip-checks-passes-add-spectator-post-circuit-bit-flip-checks "qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPostCircuitBitFlipChecks")).
+  *   **ignore\_creg\_suffixes** – A list of suffixes for classical registers that should be ignored when determining terminated qubits. Qubits with measurements into registers with these suffixes are not considered terminated, allowing pre-check measurements to be added. By default, registers ending with “\_ps” are ignored to allow pre-check after post-check.
+  *   **pre\_check\_suffix** – The suffix used by AddPreCircuitBitFlipChecks for pre-check registers. This is used to identify which qubits have pre-check measurements and which barrier to extend. Defaults to “\_pre”.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPreCircuitBitFlipChecks.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPreCircuitBitFlipChecks.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPreCircuitBitFlipChecks.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – Qiskit IR to optimize.
+    *   **state** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Task,* [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)*,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPreCircuitBitFlipChecks.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPreCircuitBitFlipChecks.run" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.4/qiskit_addon_utils/noise_management/bit_flip_checks/passes/add_spectator_pre_circuit_checks.py#L107-L239" signature="run(dag)">
+    Run a pass on the DAGCircuit. This is implemented by the pass developer.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the dag on which the pass is run.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when this is left unimplemented for a pass.
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_addon_utils.noise_management.bit_flip_checks.passes.AddSpectatorPreCircuitBitFlipChecks.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
+  </Function>
+</Class>
+
