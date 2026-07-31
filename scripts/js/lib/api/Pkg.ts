@@ -68,7 +68,11 @@ export class Pkg {
     "qiskit-addon-utils",
     "qiskit-addon-paulice",
     "qiskit-addon-pna",
+<<<<<<< HEAD
     "pauli-prop",
+=======
+    "qiskit-addon-slc",
+>>>>>>> a5df0d0313b72bab4533a5373dd6ac3884aa7f5d
   ];
 
   static VALID_NAMES = [
@@ -232,6 +236,15 @@ export class Pkg {
         ...args,
         title: "Pauli propagation",
         githubSlug: "Qiskit/pauli-prop",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-addon-slc") {
+      return new Pkg({
+        ...args,
+        title: "Shaded lightcones",
+        githubSlug: "Qiskit/qiskit-addon-slc",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });

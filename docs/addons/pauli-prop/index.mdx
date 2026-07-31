@@ -9,7 +9,7 @@ The `pauli-prop` package provides a Rust-accelerated Python interface for perfor
 
 Pauli propagation is a framework for approximating the evolution of operators in the Pauli basis under the action of other operators, such as quantum circuit gates and noise channels. This approach can be effective when the operators involved are expected to remain sparse in the Pauli basis.
 
-The subroutines in this package may be used to implement error mitigation techniques such as [lightcone shading](/docs/addons/qiskit-addon-slc) [\[6\]](#ref6) and [propagated noise absorption](/docs/addons/qiskit-addon-pna) [\[7\]](#ref7), [operator backpropagation](/docs/addons/qiskit-addon-obp) [\[8\]](#ref8) for circuit depth reduction, and classical simulation of expectation values [\[1-5\]](#references).
+The subroutines in this package may be used to implement error mitigation techniques such as [lightcone shading](/docs/addons/qiskit-addon-slc) [\[6\]](#references) and [propagated noise absorption](/docs/addons/qiskit-addon-pna) [\[7\]](#references), [operator backpropagation](/docs/addons/qiskit-addon-obp) [\[8\]](#references) for circuit depth reduction, and classical simulation of expectation values [\[1-5\]](#references).
 
 ## Getting started
 
@@ -19,19 +19,19 @@ A simple guide to help you get started quickly with this package is available in
 
 Pauli propagation can be used as a lower-level engine to implement a variety of techniques. Some examples of where this has been used are:
 
-*   Lightcone shading to reduce the sampling overhead of probabilistic error cancellation (PEC) for mitigating expectation values in a 1- and 2D transverse field Ising model [\[6\]](#ref6) \[`qiskit-addon-slc` [docs](/docs/addons/qiskit-addon-slc)]
-*   Absorbing noise model information into a target observable to mitigate expectation values in a 2D transverse field Ising model [\[7\]](#ref7) \[`qiskit-addon-pna` [docs](/docs/addons/qiskit-addon-pna)]
-*   Trimming trailing gates to produce lower-depth Trotter circuits for the time-evolution of a 2D spin model [\[8\]](#ref8) \[`qiskit-addon-obp` [docs](/docs/addons/qiskit-addon-obp)]
+*   Lightcone shading to reduce the sampling overhead of probabilistic error cancellation (PEC) for mitigating expectation values in a 1- and 2D transverse field Ising model [\[6\]](#references) \[`qiskit-addon-slc` [docs](/docs/addons/qiskit-addon-slc)]
+*   Absorbing noise model information into a target observable to mitigate expectation values in a 2D transverse field Ising model [\[7\]](#references) \[`qiskit-addon-pna` [docs](/docs/addons/qiskit-addon-pna)]
+*   Trimming trailing gates to produce lower-depth Trotter circuits for the time-evolution of a 2D spin model [\[8\]](#references) \[`qiskit-addon-obp` [docs](/docs/addons/qiskit-addon-obp)]
 
 ## Technical discussion
 
 ### Software details
 
 *   Rust-accelerated Python interface
-*   Support for noisy simulations \[[guide](/docs/addons/pauli-prop/guides/simulate_noisy_expectation_values)]
+*   Support for noisy simulations \[[guide](/docs/addons/pauli-prop/guides/simulate-noisy-expectation-values)]
 *   Ability to truncate terms during evolution based on an absolute coefficient tolerance, a fixed number of terms in the evolving operator, or a combination of both
 *   Ability to perform Pauli propagation in both the Schrödinger and Heisenberg frameworks
-*   Novel technique for approximating the conjugation of a Pauli-sum operator by another Pauli operator. This heuristic implementation greedily generates contributions to the product expected to be most significant. See Appendix B of [\[7\]](#ref7) for more information.
+*   Novel technique for approximating the conjugation of a Pauli-sum operator by another Pauli operator. This heuristic implementation greedily generates contributions to the product expected to be most significant. See Appendix B of [\[7\]](#references) for more information.
 *   Single-threaded
 
 ### Computational requirements
