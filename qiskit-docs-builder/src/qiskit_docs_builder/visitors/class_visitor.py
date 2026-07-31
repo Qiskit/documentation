@@ -208,8 +208,8 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
             if isinstance(child, nodes.inline) and "classifier" in child.get("classes", []):
                 type_nodes.append(child)
                 continue
-            # type content: pending_xref, literal_emphasis, or " | " Text
-            if isinstance(child, (pending_xref, literal_emphasis)):
+            # type content: pending_xref, resolved reference, literal_emphasis, or " | " Text
+            if isinstance(child, (pending_xref, nodes.reference, literal_emphasis)):
                 type_nodes.append(child)
                 continue
             # " | " separator between union type members
@@ -293,6 +293,7 @@ def _extract_member(desc: sphinx_nodes.desc, objtype: str) -> dict:
         base["type"] = type_annotation
         base["typeString"] = type_node_to_string(type_annotation)
         base["defaultValue"] = default_value
+        base["returns"] = _extract_returns(content) if content else {"description": None, "type": None, "typeString": None}
     elif objtype == "method":
         base["githubUrl"] = github_url
         base["signature"] = signature
