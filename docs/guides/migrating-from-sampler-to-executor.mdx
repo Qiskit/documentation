@@ -64,6 +64,28 @@ the primitive manage error suppression/mitigation for you.
 
 ---
 
+## Overview of migration steps
+
+1. **Install Samplomatic** (`pip install samplomatic`) alongside `qiskit` and
+   `qiskit-ibm-runtime`.
+2. **Swap the import**: `SamplerV2` → `Executor` (plus `QuantumProgram`).
+3. **Replace PUB tuples** with a `QuantumProgram` and its `append_circuit_item` and 
+   `append_samplex_item` calls.
+4. **Move shots** from the PUB to `QuantumProgram(shots=...)`.  Split jobs if you need
+   different shot counts.
+5. **Move parameter values** from the PUB into `circuit_arguments` or
+   `samplex_arguments`.
+6. **Re-express error suppression and mitigation** by replacing `twirling` and resilience options
+   with annotated boxes (`generate_boxing_pass_manager`) and a samplex (`build`). Use
+   `NoiseLearnerV3` where you previously relied on built-in noise learning.
+7. **Update result parsing**: `result[i].data.<reg>` (`BitArray`) →
+   `result[i]["<reg>"]` (`np.ndarray`) Rewrite `get_counts`-based post-processing as
+   NumPy operations.
+8. **Undo twirling explicitly** by using the `measurement_flips.<reg>` corrections and an
+   XOR.
+
+---
+
 ## Package requirements
 
 Executor and the directed execution model require the `Samplomatic` package:
@@ -214,12 +236,12 @@ The next sections show each in turn: parameterized circuits that use
 
 ---
 
-## Migrating parameterized circuits
+## Migrate parameterized circuits
 
 With Sampler, parameter values are the second element of the PUB tuple. With Executor,
 pass them as `circuit_arguments` to `append_circuit_item`.
 
-### Before — Sampler
+### Before: Sampler
 
 ```python
 params = np.random.rand(10, circuit.num_parameters)  # 10 parameter sets
@@ -227,7 +249,7 @@ job = sampler.run([(isa_circuit, params)])
 result = job.result()
 ```
 
-### After — Executor
+### After: Executor
 
 ```python
 program = QuantumProgram(shots=1024)
@@ -244,13 +266,13 @@ result_0 = result[0]["meas"]
 
 ---
 
-## Migrating built-in twirling to explicit annotations
+## Migrate built-in twirling to explicit annotations
 
-This is the most significant change. Sampler applies twirling for you via options.
-Executor requires you to declare that intent explicitly using **annotated boxes** and
-a **samplex** (from Samplomatic).
+This is the most significant change. Sampler applies twirling for you by using options. With 
+Executor, you declare that intent explicitly by using annotated boxes and
+a samplex (from Samplomatic).
 
-### Before — Sampler (twirling via options)
+### Before: Sampler (twirling by using options)
 
 ```python
 sampler = Sampler(mode=backend)
@@ -259,7 +281,7 @@ sampler.options.twirling.enable_measure = True
 job = sampler.run([(isa_circuit, params)])
 ```
 
-### After — Executor (twirling via boxes + samplex)
+### After: Executor (twirling by using boxes and a samplex)
 
 ```python
 from samplomatic import build
@@ -293,14 +315,14 @@ job = executor.run(program)
 result = job.result()
 ```
 
-Because the template circuit and samplex are built **on the client side**, you can
-inspect and sample them locally to verify the output *before* sending anything to
+Because the template circuit and samplex are built on the client side, you can
+inspect and sample them locally to verify the output before sending anything to
 hardware.
 
-### Sampling the template circuit locally
+### Sample the template circuit locally
 
-You can draw randomizations from the samplex yourself and bind them to the template
-circuit, so you can confirm the samplex is producing the parameter values you expect.
+You can draw randomizations from the samplex and bind them to the template
+circuit to confirm the samplex is producing the parameter values you expect.
 The parameter values returned by `samplex.sample` are directly compatible with the
 template circuit's parameters.
 
@@ -320,71 +342,92 @@ bound_template = template_circuit.assign_parameters(outputs["parameter_values"][
 bound_template.draw("mpl", idle_wires=False)
 ```
 
-To go further, you can verify each randomization is *logically equivalent* to the
-original circuit — for example by converting both to `Operator`s and comparing (after
+To go further, you can verify each randomization is logically equivalent to the
+original circuit, for example, by converting both to `Operator` objects and comparing (after
 accounting for the `outputs["measurement_flips.<register>"]` corrections that undo
 measurement twirling), or by comparing expectation values from a local
-`StatevectorSampler`/`StatevectorEstimator` run. See the Samplomatic
+`StatevectorSampler` or `StatevectorEstimator` run. See the Samplomatic
 [Samplex inputs and outputs](https://qiskit.github.io/samplomatic/guides/samplex_io.html)
 guide for a complete walkthrough.
 
 ---
 
-## Handling twirled results (bit-flip corrections)
+## Handle twirled results (bit-flip corrections)
 
 When you apply measurement twirling through a `SamplexItem`, Executor returns the raw
-(twirled) measurements **plus** the bit-flip corrections needed to undo the twirling.
-You apply them yourself — nothing is corrected implicitly.
+(twirled) measurements plus the bit-flip corrections needed to undo the twirling.
+You apply them manually; nothing is corrected implicitly.
 
 ```python
 # SamplexItem result shape: (randomizations, parameter_sets, shots, register_bits)
-result_1 = result[1]["meas"]                       # e.g. (28, 10, 1024, 2)
+result_1 = result[1]["meas"]                       # example: (28, 10, 1024, 2)
 
 # Bit-flip corrections to undo measurement twirling
-flips_1 = result[1]["measurement_flips.meas"]      # e.g. (28, 10, 1, 2)
+flips_1 = result[1]["measurement_flips.meas"]      # example: (28, 10, 1, 2)
 
-# Undo the twirling via classical XOR (broadcasts over the shots axis)
+# Undo the twirling through classical XOR (broadcasts over the shots axis)
 unflipped_result_1 = result_1 ^ flips_1
 ```
 
-There is no equivalent step in Sampler — it undoes twirling for you internally.
+There is no equivalent step in Sampler because it undoes twirling for you.
 
 ---
 
-## Result access cheat sheet
+## Result access comparisons
 
 | Task                          | Sampler                                          | Executor                                    |
 | ----------------------------- | ------------------------------------------------ | ------------------------------------------- |
 | Get register data             | `result[0].data.meas`                            | `result[0]["meas"]`                         |
 | Data type                     | `BitArray`                                        | `np.ndarray`                                |
-| Counts dictionary             | `result[0].data.meas.get_counts()`              | Post-process the array yourself             |
+| Counts dictionary             | `result[0].data.meas.get_counts()`              | Post-process the array manually             |
 | Multiple registers            | `result[0].data.<name>` per register             | `result[0]["<name>"]` per register          |
-| CircuitItem array shape       | n/a                                              | `(parameter_sets, shots, register_bits)`    |
-| SamplexItem array shape       | n/a                                              | `(randomizations, parameter_sets, shots, register_bits)` |
+| CircuitItem array shape       | -                                               | `(parameter_sets, shots, register_bits)`    |
+| SamplexItem array shape       | -                                               | `(randomizations, parameter_sets, shots, register_bits)` |
 | Undo measurement twirling     | Automatic                                        | `result[i]["measurement_flips.<name>"]` + XOR |
 
-> Sampler's `BitArray` offers helpers (`get_counts`, `slice_bits`, `slice_shots`,
-> `expectation_values`, post-selection masks). With Executor you receive raw NumPy
-> arrays and perform this post-processing with standard NumPy operations.
+<Admonition type="note">
+Sampler's `BitArray` offers helpers (`get_counts`, `slice_bits`, `slice_shots`, `expectation_values`, post-selection masks). Executor returns raw NumPy arrays so you can perform this post-processing with standard NumPy operations.
+</Admonition>
 
 ---
 
-## Options: what changes
+## Changes to options
 
-Executor options are a smaller, lower-level set than Sampler's, because
-error-mitigation choices now live in your annotations/samplex rather than in options.
+There are fewer options available to Executor than Sampler, because
+error-mitigation choices now live in your annotations and samplex instead of options.
 
-There is also a **structural difference in where settings live**. With Sampler,
-everything — including choices that affect result post-processing — is configured on
-the primitive's options or in the PUB. With Executor, choices that affect how the job's
-results are shaped and post-processed belong on the **`QuantumProgram`**, not on
-`ExecutorOptions`. The two clearest examples are:
+There is also a structural difference in where settings live. 
 
-- **`shots`** → `QuantumProgram(shots=...)` (Sampler: per-PUB or `run(shots=...)`)
-- **`meas_level`** → `QuantumProgram.meas_level` (Sampler: an execution option)
+- With Sampler,
+everything, including choices that affect result post-processing, is configured on
+the primitive's options or in the PUB. 
 
-`ExecutorOptions`, by contrast, holds only lower-level execution and environment
-settings that don't change the structure of the returned data.
+- With Executor, choices that affect how the job
+results are shaped and post-processed are set on the `QuantumProgram`, not on
+`ExecutorOptions`. 
+
+Examples:
+
+| Sampler      | Executor                    |
+|--------------|-----------------------------|
+| `shots`      | `QuantumProgram(shots=...)` |
+| `meas_level` | `QuantumProgram.meas_level` |
+
+[`ExecutorOptions`](/docs/api/qiskit-ibm-runtime/options-models-executor-options) holds only lower-level execution and environment
+settings that don't change the structure of the returned data. It has just three top-level groups:
+
+- **`environment`** ([`EnvironmentOptions`](/docs/api/qiskit-ibm-runtime/options-models-environment-options)): 
+- **`execution`** ([`ExecutionOptions`](/docs/api/qiskit-ibm-runtime/options-models-execution-options)): Contains fewer options than with Sampler.  For example, there  is no `meas_type` Executor option. 
+- **[`experimental`](/docs/api/qiskit-ibm-runtime/options-models-executor-options#experimental)**
+
+Notable options that exist in Sampler but not Executor include the following:
+- `twirling`
+`dynamical_decoupling`
+- resilience or error-mitigation option groups
+
+Instead, the above option values are expressed through the directed execution model. 
+
+Example:
 
 ```python
 from qiskit_ibm_runtime import Executor, ExecutorOptions
@@ -400,45 +443,6 @@ options.execution.init_qubits = True
 
 executor = Executor(mode=backend, options=options)
 ```
-
-`ExecutorOptions` (see the
-[`ExecutorOptions` API reference](/docs/api/qiskit-ibm-runtime/options-models-executor-options))
-has just three top-level groups:
-
-- **`environment`** ([`EnvironmentOptions`](/docs/api/qiskit-ibm-runtime/options-models-environment-options)) —
-  `log_level`, `job_tags`, `private`, `max_execution_time`, `image`
-- **`execution`** ([`ExecutionOptions`](/docs/api/qiskit-ibm-runtime/options-models-execution-options)) —
-  `init_qubits`, `rep_delay`, `scheduler_timing`, `stretch_values` (the last two are
-  experimental and populate per-item metadata in the results)
-- **`experimental`**: a free-form `dict` of experimental options passed to the executor
-
-Notably **absent** compared to Sampler options: there are no `twirling`,
-`dynamical_decoupling`, or resilience/error-mitigation option groups — those intents
-are expressed through the directed execution model instead. Executor's `execution`
-group is also leaner than Sampler's — there is **no `meas_type`** option here, for
-example.
-
----
-
-## Migration checklist
-
-1. **Install Samplomatic** (`pip install samplomatic`) alongside `qiskit` and
-   `qiskit-ibm-runtime`.
-2. **Swap the import**: `SamplerV2` → `Executor` (plus `QuantumProgram`).
-3. **Replace PUB tuples** with a `QuantumProgram` and `append_circuit_item` /
-   `append_samplex_item` calls.
-4. **Move shots** from the PUB to `QuantumProgram(shots=...)`; split jobs if you need
-   different shot counts.
-5. **Move parameter values** from the PUB into `circuit_arguments` (circuit items) or
-   `samplex_arguments` (samplex items).
-6. **Re-express error suppression/mitigation**: replace `twirling` / resilience options
-   with annotated boxes (`generate_boxing_pass_manager`) and a samplex (`build`). Use
-   `NoiseLearnerV3` where you previously relied on built-in noise learning.
-7. **Update result parsing**: `result[i].data.<reg>` (`BitArray`) →
-   `result[i]["<reg>"]` (`np.ndarray`); rewrite `get_counts`-based post-processing as
-   NumPy operations.
-8. **Undo twirling explicitly** using the `measurement_flips.<reg>` corrections and an
-   XOR.
 
 ---
 
@@ -463,8 +467,9 @@ knowing before you commit to a migration:
 
 ---
 
-## References
+## Next steps
 
+<Admonition type="tip" title="Recommendations">
 - [Executor quickstart](/docs/guides/get-started-with-executor)
 - [Executor inputs and outputs](/docs/guides/executor-input-output)
 - [Executor options](/docs/guides/executor-options)
@@ -472,3 +477,4 @@ knowing before you commit to a migration:
 - [Sampler quickstart](/docs/guides/get-started-with-sampler)
 - [Sampler inputs and outputs](/docs/guides/sampler-input-output)
 - [Samplomatic documentation](https://qiskit.github.io/samplomatic)
+</Admonition>
