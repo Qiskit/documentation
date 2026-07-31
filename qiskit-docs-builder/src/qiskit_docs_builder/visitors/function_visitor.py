@@ -35,7 +35,7 @@ def visit_function(desc: sphinx_nodes.desc) -> dict:
         "isDedicatedPage": True,
         "description": _extract_description(content) if content else [],
         "parameters": _extract_parameters(content) if content else [],
-        "returns": _extract_returns(content) if content else {"description": None, "type": None},
+        "returns": _extract_returns(content, sig),
         "raises": _extract_raises(content) if content else [],
         "versionInfo": _extract_version_info(content) if content else {"added": None, "deprecated": None, "deprecationMessage": None},
     }

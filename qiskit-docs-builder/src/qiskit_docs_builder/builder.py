@@ -20,23 +20,16 @@ class QiskitJsonBuilder(Builder):
         # OnlyNodeTransform and reach write_doc with their GitHub URLs intact.
         self.tags.add("html")
 
-    def get_outdated_docs(self):
-        return self.env.found_docs
+    def get_outdated_docs(self) -> str:
+        # Always do a full rebuild — JSON output is cheap and incremental
+        # staleness checks would need to compare .json mtimes against source mtimes.
+        return "all source files"
 
     def get_target_uri(self, docname: str, typ: str | None = None) -> str:
         return docname + ".json"
 
     def prepare_writing(self, docnames):
         self._pages: dict[str, dict] = {}
-
-    def copy_image_files(self) -> None:
-        pass
-
-    def copy_static_files(self) -> None:
-        pass
-
-    def copy_extra_files(self) -> None:
-        pass
 
     def write_doc(self, docname: str, doctree: nodes.document) -> None:
         page = self._extract_page(docname, doctree)
@@ -63,24 +56,22 @@ class QiskitJsonBuilder(Builder):
 
     def _remove_non_json_artifacts(self) -> None:
         outdir = Path(self.outdir)
-        for path in outdir.rglob("*"):
-            # Leave .doctrees alone — Sphinx uses it for incremental builds
+        # Collect all paths in reverse (deepest first) so rmdir works bottom-up.
+        all_paths = sorted(outdir.rglob("*"), key=lambda p: len(p.parts), reverse=True)
+        for path in all_paths:
             if ".doctrees" in path.parts:
                 continue
             if path.is_file() and path.suffix != ".json":
                 path.unlink()
-        for path in sorted(outdir.rglob("*"), reverse=True):
-            if ".doctrees" in path.parts:
-                continue
-            if path.is_dir():
+            elif path.is_dir():
                 try:
-                    path.rmdir()
+                    path.rmdir()  # only succeeds if empty after file deletion above
                 except OSError:
                     pass
 
     def _extract_page(self, docname: str, doctree: nodes.document) -> dict | None:
         # Find the first desc node to determine page type
-        for node in doctree.traverse(sphinx_nodes.desc):
+        for node in doctree.findall(sphinx_nodes.desc):
             objtype = node.get("objtype", "")
             if objtype in ("class", "pydantic_model"):
                 return visit_class(node)
@@ -91,7 +82,7 @@ class QiskitJsonBuilder(Builder):
 
         # No desc node — check if it's a module page.
         # The index node is at document level; the section has id "module-<name>".
-        for node in doctree.traverse(nodes.section):
+        for node in doctree.findall(nodes.section):
             if any(id_.startswith("module-") for id_ in node.get("ids", [])):
                 return visit_module(node, self.env, docname=docname)
             break  # only check first section

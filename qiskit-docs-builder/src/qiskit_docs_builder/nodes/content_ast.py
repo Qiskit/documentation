@@ -38,14 +38,24 @@ def _parse_node(node: nodes.Node) -> dict | list | None:
     if isinstance(node, nodes.paragraph):
         return {"type": "paragraph", "children": _parse_inline_children(node)}
 
-    if isinstance(node, nodes.literal_block):
+    if isinstance(node, (nodes.literal_block, nodes.doctest_block)):
         lang = node.get("language") or node.get("xml:space")
-        if lang in (None, "preserve", "default"):
+        if lang in (None, "preserve", "default") or isinstance(node, nodes.doctest_block):
             lang = "python"
         return {"type": "code", "language": lang, "value": node.astext()}
 
     if isinstance(node, nodes.math_block):
         return {"type": "math", "block": True, "value": node.astext()}
+
+    if isinstance(node, nodes.figure):
+        # Unwrap: extract image + optional caption as separate content nodes
+        result = []
+        for child in node.children:
+            if isinstance(child, nodes.image):
+                result.append({"type": "image", "url": child.get("uri", ""), "alt": child.get("alt") or None})
+            elif isinstance(child, nodes.caption):
+                result.append({"type": "paragraph", "children": _parse_inline_children(child)})
+        return result or None
 
     if isinstance(node, nodes.image):
         return {"type": "image", "url": node.get("uri", ""), "alt": node.get("alt") or None}
@@ -66,6 +76,18 @@ def _parse_node(node: nodes.Node) -> dict | list | None:
 
     if isinstance(node, nodes.table):
         return _parse_table(node)
+
+    if isinstance(node, nodes.definition_list):
+        items = []
+        for item in node.children:
+            if not isinstance(item, nodes.definition_list_item):
+                continue
+            term_node = item.first_child_matching_class(nodes.term)
+            def_node = item.first_child_matching_class(nodes.definition)
+            term_children = _parse_inline_children(item.children[term_node]) if term_node is not None else []
+            def_children = parse_content(item.children[def_node]) if def_node is not None else []
+            items.append({"type": "definitionListItem", "term": term_children, "definition": def_children})
+        return {"type": "definitionList", "children": items} if items else None
 
     if isinstance(node, nodes.block_quote):
         return {"type": "blockquote", "children": parse_content(node)}

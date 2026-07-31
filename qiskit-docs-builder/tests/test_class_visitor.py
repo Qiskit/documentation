@@ -83,7 +83,7 @@ def test_pydantic_model_type():
 def test_version_info_defaults():
     desc = _make_class_desc()
     result = visit_class(desc)
-    assert result["versionInfo"] == {"added": None, "deprecated": None, "deprecationMessage": None}
+    assert result["versionInfo"] == {"added": None, "changed": None, "deprecated": None, "deprecationMessage": None}
 
 
 def test_napoleon_parameters():

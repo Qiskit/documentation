@@ -2,7 +2,7 @@ from __future__ import annotations
 from docutils import nodes
 import sphinx.addnodes as sphinx_nodes
 from qiskit_docs_builder.nodes.type_ast import parse_type_node, parse_type_string, type_node_to_string
-from qiskit_docs_builder.nodes.content_ast import parse_content, _parse_inline_children
+from qiskit_docs_builder.nodes.content_ast import parse_content, _parse_inline_children, _parse_node, _parse_inline
 
 
 def visit_class(desc: sphinx_nodes.desc) -> dict:
@@ -46,10 +46,8 @@ def visit_class(desc: sphinx_nodes.desc) -> dict:
 
 
 def _get_child(node, cls):
-    for child in node.children:
-        if isinstance(child, cls):
-            return child
-    return None
+    idx = node.first_child_matching_class(cls)
+    return node.children[idx] if idx is not None else None
 
 
 def _extract_github_url(sig) -> str | None:
@@ -139,7 +137,6 @@ def _extract_description(content) -> list[dict]:
 
 
 def _parse_node_for_description(node):
-    from qiskit_docs_builder.nodes.content_ast import _parse_node
     return _parse_node(node)
 
 
@@ -185,10 +182,6 @@ def _parse_parameter_item(item: nodes.Node) -> dict | list | None:
 
 
 def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
-    from sphinx.addnodes import pending_xref, literal_strong, literal_emphasis
-    from docutils.nodes import Text as DText
-    from qiskit_docs_builder.nodes.content_ast import _parse_inline
-
     name = ""
     type_nodes = []   # collect raw type node fragments
     desc_inlines = []
@@ -198,7 +191,7 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
 
     for child in para.children:
         if state == "name":
-            if isinstance(child, literal_strong):
+            if isinstance(child, sphinx_nodes.literal_strong):
                 name = child.astext()
                 state = "type"
             elif isinstance(child, nodes.strong):
@@ -209,13 +202,13 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
 
         if state == "type":
             # "(" opens the type block — skip
-            if isinstance(child, DText) and str(child).strip() == "(":
+            if isinstance(child, nodes.Text) and str(child).strip() == "(":
                 continue
             # ")" closes the type block — skip
-            if isinstance(child, DText) and str(child).strip() == ")":
+            if isinstance(child, nodes.Text) and str(child).strip() == ")":
                 continue
             # en-dash separator → switch to description
-            if isinstance(child, DText) and "–" in str(child):
+            if isinstance(child, nodes.Text) and "–" in str(child):
                 state = "desc"
                 # anything after the dash on this text node is description
                 after = str(child).split("–", 1)[-1].strip()
@@ -223,7 +216,7 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
                     desc_inlines.append({"type": "text", "value": after})
                 continue
             # Also handle " – " with a regular dash
-            if isinstance(child, DText) and " – " in str(child):
+            if isinstance(child, nodes.Text) and " – " in str(child):
                 state = "desc"
                 after = str(child).split(" – ", 1)[-1].strip()
                 if after:
@@ -233,19 +226,19 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
             if isinstance(child, nodes.inline) and "classifier" in child.get("classes", []):
                 type_nodes.append(child)
                 continue
-            # type content: pending_xref, resolved reference, literal_emphasis, or " | " Text
-            if isinstance(child, (pending_xref, nodes.reference, literal_emphasis)):
+            # type content: pending_xref, resolved reference, sphinx_nodes.literal_emphasis, or " | " Text
+            if isinstance(child, (sphinx_nodes.pending_xref, nodes.reference, sphinx_nodes.literal_emphasis)):
                 type_nodes.append(child)
                 continue
             # " | " separator between union type members
-            if isinstance(child, DText) and str(child).strip() == "|":
+            if isinstance(child, nodes.Text) and str(child).strip() == "|":
                 type_nodes.append(child)
                 continue
             # whitespace-only text inside type — skip
-            if isinstance(child, DText) and not str(child).strip():
+            if isinstance(child, nodes.Text) and not str(child).strip():
                 continue
             # any other Text that looks like type content (no en-dash)
-            if isinstance(child, DText):
+            if isinstance(child, nodes.Text):
                 type_nodes.append(child)
             continue
 
@@ -270,12 +263,8 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
                 container += n.deepcopy()
             else:
                 container += nodes.Text(str(n))
-        try:
-            type_node_dict = parse_type_node(container)
-            # If it came back as empty name, treat as None
-            if type_node_dict == {"kind": "name", "text": ""}:
-                type_node_dict = None
-        except Exception:
+        type_node_dict = parse_type_node(container)
+        if type_node_dict == {"kind": "name", "text": ""}:
             type_node_dict = None
 
     return {
@@ -319,14 +308,14 @@ def _extract_member(desc: sphinx_nodes.desc, objtype: str) -> dict:
         base["type"] = type_annotation
         base["typeString"] = type_node_to_string(type_annotation)
         base["defaultValue"] = default_value
-        base["returns"] = _extract_returns(content) if content else {"description": None, "type": None, "typeString": None}
+        base["returns"] = _extract_returns(content, sig)
     elif objtype == "method":
         base["githubUrl"] = github_url
         base["signature"] = signature
         base["extraSignatures"] = [_extract_signature(s) for s in sigs[1:]]
         base["modifiers"] = _extract_method_modifiers(sig)
         base["parameters"] = _extract_parameters(content) if content else []
-        base["returns"] = _extract_returns(content) if content else {"description": None, "type": None}
+        base["returns"] = _extract_returns(content, sig)
         base["raises"] = _extract_raises(content) if content else []
 
     return base
@@ -335,16 +324,8 @@ def _extract_member(desc: sphinx_nodes.desc, objtype: str) -> dict:
 def _extract_type_annotation(sig) -> dict | None:
     if sig is None:
         return None
-    for child in sig.children:
-        if isinstance(child, sphinx_nodes.desc_annotation):
-            text = child.astext()
-            if ":" in text:
-                # type annotation is after ":"
-                type_part = text.split(":", 1)[1].strip().split("=")[0].strip()
-                if type_part:
-                    # Use string parser to handle unions/generics in plain text annotations
-                    return parse_type_string(type_part)
-    # Look for type in desc_sig_punctuation + desc_sig_* pattern
+    # Prefer structured inline nodes (Sphinx 7+ emits desc_sig_* inline nodes for annotations).
+    # These are more reliable than splitting annotation text on ":".
     type_parts = []
     in_type = False
     for child in sig.children:
@@ -363,8 +344,16 @@ def _extract_type_annotation(sig) -> dict | None:
     if type_parts:
         container = nodes.inline()
         for p in type_parts:
-            container += p
+            container += p.deepcopy()
         return parse_type_node(container)
+    # Fallback: parse annotation text from desc_annotation (older Sphinx / simpler cases).
+    for child in sig.children:
+        if isinstance(child, sphinx_nodes.desc_annotation):
+            text = child.astext()
+            if ":" in text:
+                type_part = text.split(":", 1)[1].strip().split("=")[0].strip()
+                if type_part:
+                    return parse_type_string(type_part)
     return None
 
 
@@ -393,13 +382,25 @@ def _extract_method_modifiers(sig) -> str:
     return " ".join(modifiers)
 
 
-def _extract_returns(content) -> dict:
+def _extract_sig_return_type(sig) -> dict | None:
+    """Extract return type from desc_returns in the signature node (Python type annotations)."""
+    if sig is None:
+        return None
+    for child in sig.children:
+        if isinstance(child, sphinx_nodes.desc_returns):
+            return parse_type_node(child)
+    return None
+
+
+def _extract_returns(content, sig=None) -> dict:
+    """Extract :returns: and :rtype: from field_list; fall back to desc_returns in sig."""
     if content is None:
-        return {"description": None, "type": None}
+        sig_type = _extract_sig_return_type(sig)
+        return {"description": None, "type": sig_type, "typeString": type_node_to_string(sig_type)}
+    ret_desc = None
+    ret_type = None
     for child in content.children:
         if isinstance(child, nodes.field_list):
-            ret_desc = None
-            ret_type = None
             for field in child.children:
                 if not isinstance(field, nodes.field):
                     continue
@@ -409,8 +410,10 @@ def _extract_returns(content) -> dict:
                     ret_desc = parse_content(fbody)
                 elif fname == "return type" and fbody:
                     ret_type = parse_type_node(fbody)
-            if ret_desc is not None or ret_type is not None:
-                return {"description": ret_desc, "type": ret_type, "typeString": type_node_to_string(ret_type)}
+    if ret_type is None:
+        ret_type = _extract_sig_return_type(sig)
+    if ret_desc is not None or ret_type is not None:
+        return {"description": ret_desc, "type": ret_type, "typeString": type_node_to_string(ret_type)}
     return {"description": None, "type": None, "typeString": None}
 
 
@@ -457,22 +460,23 @@ def _parse_raises_item(item) -> dict | None:
 
 
 def _extract_version_info(content) -> dict:
-    info = {"added": None, "deprecated": None, "deprecationMessage": None}
+    info = {"added": None, "changed": None, "deprecated": None, "deprecationMessage": None}
     if content is None:
         return info
-    import sphinx.addnodes as sa
     for child in content.children:
-        # sphinx.addnodes.versionmodified is the canonical node for deprecated/versionadded
-        if isinstance(child, sa.versionmodified):
+        # sphinx.addnodes.versionmodified is the canonical node for version directives
+        if isinstance(child, sphinx_nodes.versionmodified):
             vtype = child.get("type", "")
-            version = child.get("version", "")
+            version = child.get("version", "") or None
             if vtype in ("deprecated", "deprecatedremoved"):
-                info["deprecated"] = version or None
+                info["deprecated"] = version
                 info["deprecationMessage"] = parse_content(child) if child.children else []
             elif vtype == "versionadded":
-                info["added"] = version or None
+                info["added"] = version
+            elif vtype == "versionchanged":
+                info["changed"] = version
             continue
-        # Fallback: some Sphinx themes emit admonition nodes with CSS classes
+        # Fallback: admonition nodes with CSS classes (older Sphinx theme output)
         classes = child.get("classes", []) if hasattr(child, "get") else []
         if "deprecated" in classes:
             version_text = child.astext().split()
@@ -481,4 +485,7 @@ def _extract_version_info(content) -> dict:
         elif "versionadded" in classes:
             version_text = child.astext().split()
             info["added"] = version_text[-1] if len(version_text) > 1 else None
+        elif "versionchanged" in classes:
+            version_text = child.astext().split()
+            info["changed"] = version_text[-1] if len(version_text) > 1 else None
     return info
