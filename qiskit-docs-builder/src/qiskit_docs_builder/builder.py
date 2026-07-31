@@ -22,7 +22,7 @@ class QiskitJsonBuilder(Builder):
         return docname + ".json"
 
     def prepare_writing(self, docnames):
-        pass
+        self._pages: dict[str, dict] = {}
 
     def copy_image_files(self) -> None:
         pass
@@ -37,13 +37,14 @@ class QiskitJsonBuilder(Builder):
         page = self._extract_page(docname, doctree)
         if page is None:
             return
+        self._pages[docname] = page
         out_path = Path(self.outdir) / f"{docname}.json"
         out_path.parent.mkdir(parents=True, exist_ok=True)
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(page, f, indent=2, ensure_ascii=False)
 
     def finish(self) -> None:
-        toc = build_toc(self.app)
+        toc = build_toc(self.app, getattr(self, "_pages", {}))
         toc_path = Path(self.outdir) / "toc.json"
         with open(toc_path, "w", encoding="utf-8") as f:
             json.dump(toc, f, indent=2, ensure_ascii=False)
