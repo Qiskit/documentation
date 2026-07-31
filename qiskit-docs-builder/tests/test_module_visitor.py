@@ -9,12 +9,16 @@ def _make_module_section(module_name="mymodule", description_text="Module descri
     title = nodes.title()
     title += nodes.Text(module_name)
     section += title
-    target = sphinx_nodes.index()
-    target["entries"] = [("single", module_name, f"module-{module_name}", "", None)]
-    section += target
+    # Add an overview subsection with description
+    overview = nodes.section()
+    overview["ids"] = ["overview"]
+    overview_title = nodes.title()
+    overview_title += nodes.Text("Overview")
+    overview += overview_title
     para = nodes.paragraph()
     para += nodes.Text(description_text)
-    section += para
+    overview += para
+    section += overview
     return section
 
 

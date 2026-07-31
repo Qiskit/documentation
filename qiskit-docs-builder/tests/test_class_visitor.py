@@ -84,3 +84,64 @@ def test_version_info_defaults():
     desc = _make_class_desc()
     result = visit_class(desc)
     assert result["versionInfo"] == {"added": None, "deprecated": None, "deprecationMessage": None}
+
+
+def test_napoleon_parameters():
+    """Test that Napoleon-style parameter nodes (literal_strong + pending_xref) are correctly parsed."""
+    from sphinx.addnodes import pending_xref, literal_strong, literal_emphasis
+    from docutils.nodes import Text, paragraph
+    from qiskit_docs_builder.visitors.class_visitor import _parse_parameter_para
+
+    # Simulate Napoleon output: backend(BackendV2) – The backend to use.
+    para = paragraph()
+    para += literal_strong(text="backend")
+    para += Text(" (")
+    # pending_xref wrapping literal_emphasis
+    xref = pending_xref()
+    xref += literal_emphasis(text="BackendV2")
+    para += xref
+    para += Text(")")
+    para += Text(" – ")
+    para += Text("The backend to use.")
+
+    result = _parse_parameter_para(para)
+    assert result is not None
+    assert result["name"] == "backend"
+    assert result["type"] is not None
+    assert result["type"]["kind"] in ("name", "ref", "union")
+    type_text = result["type"].get("text", "") or result["type"].get("name", "")
+    assert "BackendV2" in type_text
+    assert result["description"] != []
+    desc_text = result["description"][0]["children"][0]["value"]
+    assert "backend" in desc_text.lower() or "use" in desc_text.lower()
+
+
+def test_napoleon_parameters_union_type():
+    """Test Napoleon parameter with union type (pending_xref | literal_emphasis)."""
+    from sphinx.addnodes import pending_xref, literal_strong, literal_emphasis
+    from docutils.nodes import Text, paragraph
+    from qiskit_docs_builder.visitors.class_visitor import _parse_parameter_para
+
+    # Simulate: shots(int | None) – Number of shots.
+    para = paragraph()
+    para += literal_strong(text="shots")
+    para += Text(" (")
+    xref = pending_xref()
+    xref += literal_emphasis(text="int")
+    para += xref
+    para += Text(" | ")
+    para += literal_emphasis(text="None")
+    para += Text(")")
+    para += Text(" – ")
+    para += Text("Number of shots.")
+
+    result = _parse_parameter_para(para)
+    assert result is not None
+    assert result["name"] == "shots"
+    assert result["type"] is not None
+    assert result["type"]["kind"] == "union"
+    members = result["type"]["members"]
+    member_texts = [m.get("text", "") or m.get("name", "") for m in members]
+    assert "int" in member_texts
+    assert "None" in member_texts
+    assert result["description"] != []

@@ -83,14 +83,11 @@ class QiskitJsonBuilder(Builder):
             if objtype == "attribute":
                 return visit_function(node)  # standalone attribute page
 
-        # No desc node — check if it's a module page
+        # No desc node — check if it's a module page.
+        # The index node is at document level; the section has id "module-<name>".
         for node in doctree.traverse(nodes.section):
-            for child in node.children:
-                if isinstance(child, sphinx_nodes.index):
-                    entries = child.get("entries", [])
-                    for entry in entries:
-                        if entry[0] == "single" and entry[2].startswith("module-"):
-                            return visit_module(node, self.env)
-            break  # only check top-level section
+            if any(id_.startswith("module-") for id_ in node.get("ids", [])):
+                return visit_module(node, self.env)
+            break  # only check first section
 
         return None

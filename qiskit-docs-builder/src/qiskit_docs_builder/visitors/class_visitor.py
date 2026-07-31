@@ -136,12 +136,19 @@ def _extract_parameters(content) -> list[dict]:
                 for item in field_body.children:
                     param = _parse_parameter_item(item)
                     if param:
-                        params.append(param)
+                        if isinstance(param, list):
+                            params.extend(param)
+                        else:
+                            params.append(param)
     return params
 
 
-def _parse_parameter_item(item: nodes.Node) -> dict | None:
+def _parse_parameter_item(item: nodes.Node) -> dict | list | None:
     """Parse a single parameter from a field list item."""
+    if isinstance(item, nodes.bullet_list):
+        # Napoleon wraps all list_items in a bullet_list inside field_body
+        results = [_parse_parameter_item(c) for c in item.children]
+        return [r for r in results if r is not None] or None
     if isinstance(item, nodes.list_item):
         para = next((c for c in item.children if isinstance(c, nodes.paragraph)), None)
         if para is None:
@@ -153,27 +160,103 @@ def _parse_parameter_item(item: nodes.Node) -> dict | None:
 
 
 def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
+    from sphinx.addnodes import pending_xref, literal_strong, literal_emphasis
+    from docutils.nodes import Text as DText
+    from qiskit_docs_builder.nodes.content_ast import _parse_inline
+
     name = ""
-    type_node_dict = None
-    desc_text = []
+    type_nodes = []   # collect raw type node fragments
+    desc_inlines = []
+
+    # States: "name" → "type" → "desc"
+    state = "name"
 
     for child in para.children:
-        if isinstance(child, nodes.strong):
-            name = child.astext()
-        elif isinstance(child, nodes.inline) and "classifier" in child.get("classes", []):
-            type_node_dict = parse_type_node(child)
-        elif isinstance(child, nodes.Text):
-            text = str(child).strip(" –-")
-            if text:
-                desc_text.append({"type": "text", "value": text})
+        if state == "name":
+            if isinstance(child, literal_strong):
+                name = child.astext()
+                state = "type"
+            elif isinstance(child, nodes.strong):
+                # fallback for non-Napoleon strong nodes
+                name = child.astext()
+                state = "type"
+            continue
+
+        if state == "type":
+            # "(" opens the type block — skip
+            if isinstance(child, DText) and str(child).strip() == "(":
+                continue
+            # ")" closes the type block — skip
+            if isinstance(child, DText) and str(child).strip() == ")":
+                continue
+            # en-dash separator → switch to description
+            if isinstance(child, DText) and "–" in str(child):
+                state = "desc"
+                # anything after the dash on this text node is description
+                after = str(child).split("–", 1)[-1].strip()
+                if after:
+                    desc_inlines.append({"type": "text", "value": after})
+                continue
+            # Also handle " – " with a regular dash
+            if isinstance(child, DText) and " – " in str(child):
+                state = "desc"
+                after = str(child).split(" – ", 1)[-1].strip()
+                if after:
+                    desc_inlines.append({"type": "text", "value": after})
+                continue
+            # inline "classifier" node (non-Napoleon style) — parse directly
+            if isinstance(child, nodes.inline) and "classifier" in child.get("classes", []):
+                type_nodes.append(child)
+                continue
+            # type content: pending_xref, literal_emphasis, or " | " Text
+            if isinstance(child, (pending_xref, literal_emphasis)):
+                type_nodes.append(child)
+                continue
+            # " | " separator between union type members
+            if isinstance(child, DText) and str(child).strip() == "|":
+                type_nodes.append(child)
+                continue
+            # whitespace-only text inside type — skip
+            if isinstance(child, DText) and not str(child).strip():
+                continue
+            # any other Text that looks like type content (no en-dash)
+            if isinstance(child, DText):
+                type_nodes.append(child)
+            continue
+
+        if state == "desc":
+            inline = _parse_inline(child)
+            if inline:
+                if isinstance(inline, list):
+                    desc_inlines.extend(inline)
+                else:
+                    desc_inlines.append(inline)
 
     if not name:
         return None
 
+    # Build TypeNode from collected type_nodes
+    type_node_dict = None
+    if type_nodes:
+        # Wrap in a container inline node and parse
+        container = nodes.inline()
+        for n in type_nodes:
+            if isinstance(n, nodes.Node):
+                container += n.deepcopy()
+            else:
+                container += nodes.Text(str(n))
+        try:
+            type_node_dict = parse_type_node(container)
+            # If it came back as empty name, treat as None
+            if type_node_dict == {"kind": "name", "text": ""}:
+                type_node_dict = None
+        except Exception:
+            type_node_dict = None
+
     return {
         "name": name,
         "type": type_node_dict,
-        "description": [{"type": "paragraph", "children": desc_text}] if desc_text else [],
+        "description": [{"type": "paragraph", "children": desc_inlines}] if desc_inlines else [],
     }
 
 
