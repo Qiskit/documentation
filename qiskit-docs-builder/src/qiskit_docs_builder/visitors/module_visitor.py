@@ -12,9 +12,21 @@ def visit_module(section: nodes.section, env=None, docname: str | None = None) -
         "id": module_name,
         "type": "module",
         "name": module_name,
+        "title": _extract_module_title(section),
         "description": description,
         "members": members,
     }
+
+
+def _extract_module_title(section: nodes.section) -> str:
+    """Extract human-readable label from section title (prefix before last parenthetical)."""
+    title = next((c for c in section.children if isinstance(c, nodes.title)), None)
+    if title:
+        text = title.astext()
+        if "(" in text and text.endswith(")"):
+            return text[:text.rfind("(")].strip()
+        return text
+    return ""
 
 
 def _extract_module_name(section: nodes.section) -> str:

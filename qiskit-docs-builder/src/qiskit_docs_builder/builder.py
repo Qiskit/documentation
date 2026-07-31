@@ -81,10 +81,18 @@ class QiskitJsonBuilder(Builder):
                 return visit_function(node)  # standalone attribute page
 
         # No desc node — check if it's a module page.
-        # The index node is at document level; the section has id "module-<name>".
+        # Automodule pages have a section id "module-<name>".
+        # Manual-title pages (e.g. ibm_quantum_schemas.rst) use a slug id but
+        # their title still follows the "Label (module.name)" convention.
         for node in doctree.findall(nodes.section):
             if any(id_.startswith("module-") for id_ in node.get("ids", [])):
                 return visit_module(node, self.env, docname=docname)
+            # Fallback: title text ends with "(module.name)" pattern.
+            title_node = next((c for c in node.children if isinstance(c, nodes.title)), None)
+            if title_node:
+                text = title_node.astext()
+                if "(" in text and text.endswith(")"):
+                    return visit_module(node, self.env, docname=docname)
             break  # only check first section
 
         return None
