@@ -40,7 +40,9 @@ def _parse_node(node: nodes.Node) -> dict | list | None:
 
     if isinstance(node, nodes.literal_block):
         lang = node.get("language") or node.get("xml:space")
-        return {"type": "code", "language": lang if lang != "preserve" else None, "value": node.astext()}
+        if lang in (None, "preserve", "default"):
+            lang = "python"
+        return {"type": "code", "language": lang, "value": node.astext()}
 
     if isinstance(node, nodes.math_block):
         return {"type": "math", "block": True, "value": node.astext()}
@@ -174,6 +176,9 @@ def _parse_inline(node: nodes.Node) -> dict | list | None:
 
     if isinstance(node, nodes.reference):
         url = node.get("refuri", "")
+        # Relative .json paths are internal build artifacts, not usable URLs
+        if url.endswith(".json") or ".json#" in url:
+            return {"type": "text", "value": node.astext()}
         return {"type": "ref", "text": node.astext(), "url": url}
 
     if isinstance(node, nodes.literal):

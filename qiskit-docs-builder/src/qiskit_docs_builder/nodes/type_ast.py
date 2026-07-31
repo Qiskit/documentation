@@ -10,6 +10,26 @@ def parse_type_node(node: nodes.Node) -> dict:
     return result
 
 
+def type_node_to_string(type_node: dict | None) -> str | None:
+    """Flatten a TypeNode dict to a plain string representation."""
+    if type_node is None:
+        return None
+    kind = type_node.get("kind")
+    if kind == "name":
+        return type_node.get("text", "")
+    if kind == "ref":
+        return type_node.get("text", "")
+    if kind == "union":
+        parts = [type_node_to_string(m) for m in type_node.get("members", [])]
+        return " | ".join(p for p in parts if p)
+    if kind == "generic":
+        args = [type_node_to_string(a) for a in type_node.get("args", [])]
+        return f"{type_node.get('name', '')}[{', '.join(a for a in args if a)}]"
+    if kind == "literal":
+        return f"Literal[{type_node.get('value', '')}]"
+    return None
+
+
 def parse_type_string(type_str: str) -> dict:
     """Parse a plain type annotation string (e.g. 'list[int] | None') into a TypeNode dict.
 
@@ -60,7 +80,11 @@ def _walk(node: nodes.Node, tokens: list) -> None:
     if isinstance(node, nodes.reference):
         url = node.get("refuri", "")
         text = node.astext()
-        tokens.append(("ref", text, url))
+        # Relative .json paths are internal build artifacts — emit as plain name
+        if url.endswith(".json") or ".json#" in url:
+            tokens.append(("text", text))
+        else:
+            tokens.append(("ref", text, url))
     elif isinstance(node, nodes.Text):
         tokens.append(("text", str(node)))
     else:

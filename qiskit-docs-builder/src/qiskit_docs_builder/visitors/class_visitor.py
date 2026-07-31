@@ -1,7 +1,7 @@
 from __future__ import annotations
 from docutils import nodes
 import sphinx.addnodes as sphinx_nodes
-from qiskit_docs_builder.nodes.type_ast import parse_type_node, parse_type_string
+from qiskit_docs_builder.nodes.type_ast import parse_type_node, parse_type_string, type_node_to_string
 from qiskit_docs_builder.nodes.content_ast import parse_content, _parse_inline_children
 
 
@@ -14,7 +14,7 @@ def visit_class(desc: sphinx_nodes.desc) -> dict:
     module = sig.get("module", "") if sig else ""
     name = fullname.split(".")[-1] if fullname else ""
     objtype = desc.get("objtype", "class")
-    modifiers = [objtype]
+    modifiers = objtype
 
     github_url = _extract_github_url(sig)
     signature = _extract_signature(sig)
@@ -256,6 +256,7 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
     return {
         "name": name,
         "type": type_node_dict,
+        "typeString": type_node_to_string(type_node_dict),
         "description": [{"type": "paragraph", "children": desc_inlines}] if desc_inlines else [],
     }
 
@@ -290,6 +291,7 @@ def _extract_member(desc: sphinx_nodes.desc, objtype: str) -> dict:
 
     if objtype == "attribute":
         base["type"] = type_annotation
+        base["typeString"] = type_node_to_string(type_annotation)
         base["defaultValue"] = default_value
     elif objtype == "method":
         base["githubUrl"] = github_url
@@ -353,14 +355,14 @@ def _extract_default_value(sig) -> str | None:
     return None
 
 
-def _extract_method_modifiers(sig) -> list[str]:
+def _extract_method_modifiers(sig) -> str:
     modifiers = []
     for child in sig.children:
         if isinstance(child, sphinx_nodes.desc_annotation):
             text = child.astext().strip()
             if text in ("staticmethod", "classmethod", "abstractmethod", "property", "final"):
                 modifiers.append(text)
-    return modifiers
+    return " ".join(modifiers)
 
 
 def _extract_returns(content) -> dict:
@@ -380,8 +382,8 @@ def _extract_returns(content) -> dict:
                 elif fname == "return type" and fbody:
                     ret_type = parse_type_node(fbody)
             if ret_desc is not None or ret_type is not None:
-                return {"description": ret_desc, "type": ret_type}
-    return {"description": None, "type": None}
+                return {"description": ret_desc, "type": ret_type, "typeString": type_node_to_string(ret_type)}
+    return {"description": None, "type": None, "typeString": None}
 
 
 def _extract_raises(content) -> list[dict]:
