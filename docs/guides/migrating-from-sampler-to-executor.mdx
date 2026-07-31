@@ -319,6 +319,7 @@ Because the template circuit and samplex are built on the client side, you can
 inspect and sample them locally to verify the output before sending anything to
 hardware.
 
+<span id="sample-local"></span>
 ### Sample the template circuit locally
 
 You can draw randomizations from the samplex and bind them to the template
@@ -454,9 +455,8 @@ knowing before you commit to a migration:
 - **No simulator support yet.** Unlike Sampler — which has an `AerSampler`
   implementation in [`qiskit-aer`](https://github.com/Qiskit/qiskit-aer) for local
   simulation — there is currently **no simulator backend for Executor**. Simulator
-  support is expected to arrive soon. In the meantime, you can still inspect and sample
-  the template circuit locally (see
-  [Sampling the template circuit locally](#sampling-the-template-circuit-locally)) to
+  support is expected to arrive soon. In the meantime, you can still inspect and [sample
+  the template circuit locally](#sample-local) to
   validate your workflow before submitting to hardware.
 - **This guide covers Sampler only, not Estimator.** Migrating from **Estimator** to
   Executor is considerably more involved than migrating from Sampler, because Estimator
