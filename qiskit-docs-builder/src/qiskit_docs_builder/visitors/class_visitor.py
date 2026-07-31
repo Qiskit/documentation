@@ -1,7 +1,7 @@
 from __future__ import annotations
 from docutils import nodes
 import sphinx.addnodes as sphinx_nodes
-from qiskit_docs_builder.nodes.type_ast import parse_type_node, parse_type_string, type_node_to_string
+from qiskit_docs_builder.nodes.type_ast import parse_type_node, parse_type_string, parse_bases_paragraph
 from qiskit_docs_builder.nodes.content_ast import parse_content, _parse_inline_children, _parse_node, _parse_inline
 
 
@@ -89,28 +89,10 @@ def _extract_signature(sig) -> str:
 def _extract_bases(content) -> list[dict]:
     if content is None:
         return []
-    bases = []
     for child in content.children:
         if isinstance(child, nodes.paragraph) and child.astext().startswith("Bases:"):
-            for c in child.children:
-                if isinstance(c, nodes.reference):
-                    bases.append({"kind": "ref", "text": c.astext(), "url": c.get("refuri", "")})
-                elif isinstance(c, sphinx_nodes.pending_xref):
-                    # Sphinx emits pending_xref wrapping a literal for same-package bases
-                    text = c.astext().strip()
-                    target = c.get("reftarget", "")
-                    if text:
-                        bases.append({"kind": "ref", "text": text, "url": target})
-                elif isinstance(c, (nodes.literal, nodes.inline)) and c.astext() not in ("Bases:", "Bases: "):
-                    text = c.astext().strip()
-                    if text:
-                        bases.append({"kind": "name", "text": text})
-                elif isinstance(c, nodes.Text):
-                    text = str(c).strip().strip(",").strip()
-                    if text and text != "Bases:":
-                        bases.append({"kind": "name", "text": text})
-            break
-    return bases
+            return parse_bases_paragraph(child)
+    return []
 
 
 def _extract_description(content) -> list[dict]:
@@ -264,13 +246,12 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
             else:
                 container += nodes.Text(str(n))
         type_node_dict = parse_type_node(container)
-        if type_node_dict == {"kind": "name", "text": ""}:
+        if type_node_dict == {"type": "name", "text": ""}:
             type_node_dict = None
 
     return {
         "name": name,
         "type": type_node_dict,
-        "typeString": type_node_to_string(type_node_dict),
         "description": [{"type": "paragraph", "children": desc_inlines}] if desc_inlines else [],
     }
 
@@ -306,9 +287,7 @@ def _extract_member(desc: sphinx_nodes.desc, objtype: str) -> dict:
 
     if objtype == "attribute":
         base["type"] = type_annotation
-        base["typeString"] = type_node_to_string(type_annotation)
         base["defaultValue"] = default_value
-        base["returns"] = _extract_returns(content, sig)
     elif objtype == "method":
         base["githubUrl"] = github_url
         base["signature"] = signature
@@ -324,23 +303,22 @@ def _extract_member(desc: sphinx_nodes.desc, objtype: str) -> dict:
 def _extract_type_annotation(sig) -> dict | None:
     if sig is None:
         return None
-    # Prefer structured inline nodes (Sphinx 7+ emits desc_sig_* inline nodes for annotations).
-    # These are more reliable than splitting annotation text on ":".
+    # Sphinx 7+ emits desc_sig_* inline nodes. Collect all inline children
+    # between the `:` punctuation node and the `=` punctuation/operator node.
     type_parts = []
     in_type = False
     for child in sig.children:
         if isinstance(child, nodes.inline):
+            text = child.astext()
             cls = child.get("classes", [])
-            if "p" in cls or "w" in cls:
-                text = child.astext()
-                if text == ":":
+            if not in_type:
+                if "p" in cls and text == ":":
                     in_type = True
-                    continue
-                if text == "=":
-                    in_type = False
-                    break
-                if in_type:
-                    type_parts.append(child)
+                continue
+            # End of type at `=` (operator class 'o' or punctuation class 'p')
+            if ("o" in cls or "p" in cls) and text == "=":
+                break
+            type_parts.append(child)
     if type_parts:
         container = nodes.inline()
         for p in type_parts:
@@ -396,7 +374,7 @@ def _extract_returns(content, sig=None) -> dict:
     """Extract :returns: and :rtype: from field_list; fall back to desc_returns in sig."""
     if content is None:
         sig_type = _extract_sig_return_type(sig)
-        return {"description": None, "type": sig_type, "typeString": type_node_to_string(sig_type)}
+        return {"description": None, "type": sig_type}
     ret_desc = None
     ret_type = None
     for child in content.children:
@@ -413,8 +391,8 @@ def _extract_returns(content, sig=None) -> dict:
     if ret_type is None:
         ret_type = _extract_sig_return_type(sig)
     if ret_desc is not None or ret_type is not None:
-        return {"description": ret_desc, "type": ret_type, "typeString": type_node_to_string(ret_type)}
-    return {"description": None, "type": None, "typeString": None}
+        return {"description": ret_desc, "type": ret_type}
+    return {"description": None, "type": None}
 
 
 def _extract_raises(content) -> list[dict]:
@@ -430,9 +408,16 @@ def _extract_raises(content) -> list[dict]:
                 fbody = field.children[1] if len(field.children) > 1 else None
                 if fname == "raises" and fbody:
                     for item in fbody.children:
-                        r = _parse_raises_item(item)
-                        if r:
-                            raises.append(r)
+                        # Napoleon wraps 2+ exceptions in a bullet_list
+                        if isinstance(item, nodes.bullet_list):
+                            for list_item in item.children:
+                                r = _parse_raises_item(list_item)
+                                if r:
+                                    raises.append(r)
+                        else:
+                            r = _parse_raises_item(item)
+                            if r:
+                                raises.append(r)
     return raises
 
 
@@ -444,9 +429,12 @@ def _parse_raises_item(item) -> dict | None:
     desc_parts = []
     for child in para.children:
         if isinstance(child, nodes.reference):
-            exc_type = {"kind": "ref", "text": child.astext(), "url": child.get("refuri", "")}
+            url = child.get("refuri", "")
+            exc_type = {"type": "name", "text": child.astext()}
+            if url:
+                exc_type["url"] = url
         elif isinstance(child, (nodes.strong, nodes.literal)):
-            exc_type = {"kind": "name", "text": child.astext()}
+            exc_type = {"type": "name", "text": child.astext()}
         elif isinstance(child, nodes.Text):
             text = str(child).strip(" –-")
             if text:

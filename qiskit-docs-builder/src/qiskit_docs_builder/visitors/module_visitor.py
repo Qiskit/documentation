@@ -45,16 +45,19 @@ def _extract_module_name(section: nodes.section) -> str:
     return ""
 
 
+_MEMBER_SECTION_IDS = frozenset(("classes", "functions", "exceptions", "attributes", "methods"))
+
+
 def _extract_module_description(section: nodes.section) -> list[dict]:
-    """Pull prose from the 'Overview' subsection (or any non-class/function subsection)."""
+    """Pull prose from direct children and from non-member subsections."""
     result = []
     for child in section.children:
+        if isinstance(child, nodes.title):
+            continue
         if isinstance(child, nodes.section):
             sec_ids = child.get("ids", [])
-            # Skip the member-listing sections
-            if any(i in sec_ids for i in ("classes", "functions", "exceptions", "attributes", "methods")):
+            if any(i in sec_ids for i in _MEMBER_SECTION_IDS):
                 continue
-            # Include overview and any other prose sections
             for grandchild in child.children:
                 if isinstance(grandchild, nodes.title):
                     continue
@@ -64,6 +67,13 @@ def _extract_module_description(section: nodes.section) -> list[dict]:
                         result.extend(parsed)
                     else:
                         result.append(parsed)
+        else:
+            parsed = _parse_node(child)
+            if parsed:
+                if isinstance(parsed, list):
+                    result.extend(parsed)
+                else:
+                    result.append(parsed)
     return result
 
 

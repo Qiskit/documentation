@@ -61,11 +61,11 @@ def test_coupling_map_type_ast(json_dir):
     coupling = next(a for a in data["attributes"] if a["name"] == "coupling_map")
     t = coupling["type"]
     # Type should be parsed as a union: UnsetType | list[list[int]] | CouplingMap
-    assert t["kind"] == "union"
+    assert t["type"] == "union"
     member_names = [m.get("text", "") for m in t["members"]]
     assert "UnsetType" in member_names
     # list[list[int]] should be a generic node
-    generic_member = next((m for m in t["members"] if m.get("kind") == "generic"), None)
+    generic_member = next((m for m in t["members"] if m.get("type") == "generic"), None)
     assert generic_member is not None
     assert generic_member["name"] == "list"
     # CouplingMap should be present as either a ref (if intersphinx resolved it) or a name

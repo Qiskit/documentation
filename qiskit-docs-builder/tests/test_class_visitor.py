@@ -108,7 +108,7 @@ def test_napoleon_parameters():
     assert result is not None
     assert result["name"] == "backend"
     assert result["type"] is not None
-    assert result["type"]["kind"] in ("name", "ref", "union")
+    assert result["type"]["type"] in ("name", "union")
     type_text = result["type"].get("text", "") or result["type"].get("name", "")
     assert "BackendV2" in type_text
     assert result["description"] != []
@@ -139,7 +139,7 @@ def test_napoleon_parameters_union_type():
     assert result is not None
     assert result["name"] == "shots"
     assert result["type"] is not None
-    assert result["type"]["kind"] == "union"
+    assert result["type"]["type"] == "union"
     members = result["type"]["members"]
     member_texts = [m.get("text", "") or m.get("name", "") for m in members]
     assert "int" in member_texts

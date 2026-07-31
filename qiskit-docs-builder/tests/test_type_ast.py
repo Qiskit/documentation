@@ -23,13 +23,13 @@ def make_inline(*children):
 def test_simple_name():
     node = make_inline(make_text("int"))
     result = parse_type_node(node)
-    assert result == {"kind": "name", "text": "int"}
+    assert result == {"type": "name", "text": "int"}
 
 def test_ref_node():
     node = make_inline(make_ref("QuantumCircuit", "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.QuantumCircuit"))
     result = parse_type_node(node)
     assert result == {
-        "kind": "ref",
+        "type": "name",
         "text": "QuantumCircuit",
         "url": "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.QuantumCircuit",
     }
@@ -45,11 +45,11 @@ def test_union_type():
     )
     result = parse_type_node(node)
     assert result == {
-        "kind": "union",
+        "type": "union",
         "members": [
-            {"kind": "name", "text": "UnsetType"},
-            {"kind": "name", "text": "int"},
-            {"kind": "name", "text": "None"},
+            {"type": "name", "text": "UnsetType"},
+            {"type": "name", "text": "int"},
+            {"type": "name", "text": "None"},
         ],
     }
 
@@ -63,9 +63,9 @@ def test_generic_list():
     )
     result = parse_type_node(node)
     assert result == {
-        "kind": "generic",
+        "type": "generic",
         "name": "list",
-        "args": [{"kind": "name", "text": "int"}],
+        "args": [{"type": "name", "text": "int"}],
     }
 
 def test_generic_with_ref():
@@ -78,9 +78,9 @@ def test_generic_with_ref():
     )
     result = parse_type_node(node)
     assert result == {
-        "kind": "generic",
+        "type": "generic",
         "name": "list",
-        "args": [{"kind": "ref", "text": "QuantumCircuit", "url": "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.QuantumCircuit"}],
+        "args": [{"type": "name", "text": "QuantumCircuit", "url": "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.QuantumCircuit"}],
     }
 
 def test_nested_generic():
@@ -96,9 +96,9 @@ def test_nested_generic():
     )
     result = parse_type_node(node)
     assert result == {
-        "kind": "generic",
+        "type": "generic",
         "name": "list",
-        "args": [{"kind": "generic", "name": "list", "args": [{"kind": "name", "text": "int"}]}],
+        "args": [{"type": "generic", "name": "list", "args": [{"type": "name", "text": "int"}]}],
     }
 
 def test_union_with_ref():
@@ -118,12 +118,12 @@ def test_union_with_ref():
     )
     result = parse_type_node(node)
     assert result == {
-        "kind": "union",
+        "type": "union",
         "members": [
-            {"kind": "name", "text": "UnsetType"},
-            {"kind": "generic", "name": "list", "args": [
-                {"kind": "generic", "name": "list", "args": [{"kind": "name", "text": "int"}]}
+            {"type": "name", "text": "UnsetType"},
+            {"type": "generic", "name": "list", "args": [
+                {"type": "generic", "name": "list", "args": [{"type": "name", "text": "int"}]}
             ]},
-            {"kind": "ref", "text": "CouplingMap", "url": "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap"},
+            {"type": "name", "text": "CouplingMap", "url": "https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.transpiler.CouplingMap"},
         ],
     }

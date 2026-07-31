@@ -30,7 +30,7 @@ def test_paragraph_with_inline_ref():
         "type": "paragraph",
         "children": [
             {"type": "text", "value": "See "},
-            {"type": "ref", "text": "ExecutionSpans", "url": "https://example.com"},
+            {"type": "link", "url": "https://example.com", "children": [{"type": "text", "value": "ExecutionSpans"}]},
             {"type": "text", "value": " for details."},
         ]
     }]
@@ -51,7 +51,7 @@ def test_code_block():
     block["language"] = "python"
     doc += block
     result = parse_content(doc)
-    assert result == [{"type": "code", "language": "python", "value": "x = 1\ny = 2"}]
+    assert result == [{"type": "code", "lang": "python", "value": "x = 1\ny = 2"}]
 
 
 def test_math_block():
