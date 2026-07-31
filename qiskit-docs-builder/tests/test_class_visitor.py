@@ -57,7 +57,7 @@ def test_basic_class():
     assert result["type"] == "class"
     assert result["name"] == "MyClass"
     assert result["module"] == "mymodule"
-    assert result["modifiers"] == ["class"]
+    assert result["modifiers"] == "class"
 
 
 def test_class_description():
