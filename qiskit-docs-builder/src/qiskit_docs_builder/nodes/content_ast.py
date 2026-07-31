@@ -197,10 +197,13 @@ def _parse_inline(node: nodes.Node) -> dict | list | None:
         return {"type": "text", "value": text}
 
     if isinstance(node, nodes.reference):
-        url = node.get("refuri", "")
-        # Relative .json paths are internal build artifacts, not usable URLs
-        if url.endswith(".json") or ".json#" in url:
-            return {"type": "text", "value": node.astext()}
+        # Same-page refs use refid; cross-page refs use refuri.
+        url = node.get("refid") or node.get("refuri", "")
+        # Cross-page local refs look like "stubs/foo.json#foo.bar" — use the fragment.
+        if ".json#" in url:
+            url = url.split(".json#", 1)[1]
+        elif url.endswith(".json"):
+            url = ""
         return {"type": "ref", "text": node.astext(), "url": url}
 
     if isinstance(node, nodes.literal):

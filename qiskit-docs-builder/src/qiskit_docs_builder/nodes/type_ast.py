@@ -78,13 +78,14 @@ def _tokenize(node: nodes.Node) -> list:
 
 def _walk(node: nodes.Node, tokens: list) -> None:
     if isinstance(node, nodes.reference):
-        url = node.get("refuri", "")
+        # Same-page refs use refid; cross-page refs use refuri.
+        url = node.get("refid") or node.get("refuri", "")
         text = node.astext()
-        # Relative .json paths are internal build artifacts — emit as plain name
-        if url.endswith(".json") or ".json#" in url:
-            tokens.append(("text", text))
-        else:
-            tokens.append(("ref", text, url))
+        if ".json#" in url:
+            url = url.split(".json#", 1)[1]
+        elif url.endswith(".json"):
+            url = ""
+        tokens.append(("ref", text, url) if url else ("text", text))
     elif isinstance(node, nodes.Text):
         tokens.append(("text", str(node)))
     else:

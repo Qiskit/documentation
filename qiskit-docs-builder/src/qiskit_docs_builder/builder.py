@@ -32,6 +32,7 @@ class QiskitJsonBuilder(Builder):
         self._pages: dict[str, dict] = {}
 
     def write_doc(self, docname: str, doctree: nodes.document) -> None:
+        self.env.resolve_references(doctree, docname, self)
         page = self._extract_page(docname, doctree)
         if page is None:
             return
