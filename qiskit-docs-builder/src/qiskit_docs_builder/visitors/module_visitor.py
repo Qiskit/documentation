@@ -1,13 +1,12 @@
 from __future__ import annotations
 from docutils import nodes
-import sphinx.addnodes as sphinx_nodes
 from qiskit_docs_builder.nodes.content_ast import _parse_node
 
 
-def visit_module(section: nodes.section, env=None) -> dict:
+def visit_module(section: nodes.section, env=None, docname: str | None = None) -> dict:
     module_name = _extract_module_name(section)
     description = _extract_module_description(section)
-    members = _extract_members(section, env)
+    members = _extract_members(section, env, docname)
 
     return {
         "id": module_name,
@@ -56,36 +55,26 @@ def _extract_module_description(section: nodes.section) -> list[dict]:
     return result
 
 
-def _extract_members(section: nodes.section, env) -> list[dict]:
-    """Extract member list from autosummary_toc > toctree includefiles."""
+def _extract_members(section: nodes.section, env, docname: str | None = None) -> list[dict]:
+    """Extract member list from env.toctree_includes (set during read phase, stable at write time)."""
     members = []
-    try:
-        from sphinx.ext.autosummary import autosummary_toc
-    except ImportError:
+    if env is None or docname is None:
         return members
 
-    for toc_node in section.traverse(autosummary_toc):
-        toctree = next(
-            (c for c in toc_node.children if isinstance(c, sphinx_nodes.toctree)),
-            None,
-        )
-        if toctree is None:
-            continue
-        for docname in toctree.get("includefiles", []):
-            # docname is like "stubs/qiskit_ibm_runtime.Session"
-            name = docname.split("/")[-1]  # "qiskit_ibm_runtime.Session"
-            short_name = name.split(".")[-1]  # "Session"
-            # Try to get type from env if available
-            member_type = "unknown"
-            if env is not None:
-                domain = env.get_domain("py")
-                if domain and name in domain.objects:
-                    member_type = domain.objects[name][2]  # objtype string
-            members.append({
-                "id": name,
-                "name": short_name,
-                "type": member_type,
-                "url": docname,
-                "summary": [],
-            })
+    includes = getattr(env, "toctree_includes", {}).get(docname, [])
+    for included_docname in includes:
+        # included_docname is like "stubs/qiskit_ibm_runtime.Session"
+        name = included_docname.split("/")[-1]  # "qiskit_ibm_runtime.Session"
+        short_name = name.split(".")[-1]  # "Session"
+        member_type = "unknown"
+        domain = env.get_domain("py")
+        if domain and name in domain.objects:
+            member_type = domain.objects[name][2]  # objtype string
+        members.append({
+            "id": name,
+            "name": short_name,
+            "type": member_type,
+            "url": included_docname,
+            "summary": [],
+        })
     return members

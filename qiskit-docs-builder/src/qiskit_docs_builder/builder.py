@@ -87,7 +87,7 @@ class QiskitJsonBuilder(Builder):
         # The index node is at document level; the section has id "module-<name>".
         for node in doctree.traverse(nodes.section):
             if any(id_.startswith("module-") for id_ in node.get("ids", [])):
-                return visit_module(node, self.env)
+                return visit_module(node, self.env, docname=docname)
             break  # only check first section
 
         return None
