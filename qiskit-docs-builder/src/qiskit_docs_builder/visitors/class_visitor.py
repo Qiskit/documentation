@@ -7,7 +7,8 @@ from qiskit_docs_builder.nodes.content_ast import parse_content, _parse_inline_c
 
 def visit_class(desc: sphinx_nodes.desc) -> dict:
     """Extract a class page dict from a Sphinx desc node."""
-    sig = _get_child(desc, sphinx_nodes.desc_signature)
+    sigs = [c for c in desc.children if isinstance(c, sphinx_nodes.desc_signature)]
+    sig = sigs[0] if sigs else None
     content = _get_child(desc, sphinx_nodes.desc_content)
 
     fullname = sig.get("ids", [""])[0] if sig else ""
@@ -18,6 +19,7 @@ def visit_class(desc: sphinx_nodes.desc) -> dict:
 
     github_url = _extract_github_url(sig)
     signature = _extract_signature(sig)
+    extra_signatures = [_extract_signature(s) for s in sigs[1:]]
     bases = _extract_bases(content)
     description = _extract_description(content)
     parameters = _extract_parameters(content)
@@ -32,6 +34,7 @@ def visit_class(desc: sphinx_nodes.desc) -> dict:
         "module": module,
         "githubUrl": github_url,
         "signature": signature,
+        "extraSignatures": extra_signatures,
         "modifiers": modifiers,
         "description": description,
         "bases": bases,
@@ -53,8 +56,20 @@ def _extract_github_url(sig) -> str | None:
     if sig is None:
         return None
     for child in sig.children:
-        if isinstance(child, nodes.reference) and "viewcode-link" in child.get("classes", []):
-            return child.get("refuri")
+        if isinstance(child, nodes.reference):
+            # After OnlyNodeTransform unwraps `only expr="html"`, the reference
+            # lands here with empty classes. Any reference in desc_signature is
+            # a source link (linkcode/viewcode).
+            url = child.get("refuri", "")
+            if url:
+                return url
+        # Fallback: if "html" tag wasn't set, the `only` node may survive as-is.
+        if isinstance(child, sphinx_nodes.only):
+            for grandchild in child.children:
+                if isinstance(grandchild, nodes.reference):
+                    url = grandchild.get("refuri", "")
+                    if url:
+                        return url
     return None
 
 
@@ -82,9 +97,19 @@ def _extract_bases(content) -> list[dict]:
             for c in child.children:
                 if isinstance(c, nodes.reference):
                     bases.append({"kind": "ref", "text": c.astext(), "url": c.get("refuri", "")})
+                elif isinstance(c, sphinx_nodes.pending_xref):
+                    # Sphinx emits pending_xref wrapping a literal for same-package bases
+                    text = c.astext().strip()
+                    target = c.get("reftarget", "")
+                    if text:
+                        bases.append({"kind": "ref", "text": text, "url": target})
                 elif isinstance(c, (nodes.literal, nodes.inline)) and c.astext() not in ("Bases:", "Bases: "):
                     text = c.astext().strip()
                     if text:
+                        bases.append({"kind": "name", "text": text})
+                elif isinstance(c, nodes.Text):
+                    text = str(c).strip().strip(",").strip()
+                    if text and text != "Bases:":
                         bases.append({"kind": "name", "text": text})
             break
     return bases
@@ -272,7 +297,8 @@ def _extract_members(content, objtype: str) -> list[dict]:
 
 
 def _extract_member(desc: sphinx_nodes.desc, objtype: str) -> dict:
-    sig = _get_child(desc, sphinx_nodes.desc_signature)
+    sigs = [c for c in desc.children if isinstance(c, sphinx_nodes.desc_signature)]
+    sig = sigs[0] if sigs else None
     content = _get_child(desc, sphinx_nodes.desc_content)
 
     fullname = sig.get("ids", [""])[0] if sig else ""
@@ -297,6 +323,7 @@ def _extract_member(desc: sphinx_nodes.desc, objtype: str) -> dict:
     elif objtype == "method":
         base["githubUrl"] = github_url
         base["signature"] = signature
+        base["extraSignatures"] = [_extract_signature(s) for s in sigs[1:]]
         base["modifiers"] = _extract_method_modifiers(sig)
         base["parameters"] = _extract_parameters(content) if content else []
         base["returns"] = _extract_returns(content) if content else {"description": None, "type": None}
@@ -433,11 +460,25 @@ def _extract_version_info(content) -> dict:
     info = {"added": None, "deprecated": None, "deprecationMessage": None}
     if content is None:
         return info
+    import sphinx.addnodes as sa
     for child in content.children:
+        # sphinx.addnodes.versionmodified is the canonical node for deprecated/versionadded
+        if isinstance(child, sa.versionmodified):
+            vtype = child.get("type", "")
+            version = child.get("version", "")
+            if vtype in ("deprecated", "deprecatedremoved"):
+                info["deprecated"] = version or None
+                info["deprecationMessage"] = parse_content(child) if child.children else []
+            elif vtype == "versionadded":
+                info["added"] = version or None
+            continue
+        # Fallback: some Sphinx themes emit admonition nodes with CSS classes
         classes = child.get("classes", []) if hasattr(child, "get") else []
         if "deprecated" in classes:
-            info["deprecated"] = child.astext().split()[-1] if len(child.astext().split()) > 1 else None
-            info["deprecationMessage"] = child.astext()
+            version_text = child.astext().split()
+            info["deprecated"] = version_text[-1] if len(version_text) > 1 else None
+            info["deprecationMessage"] = parse_content(child) if child.children else []
         elif "versionadded" in classes:
-            info["added"] = child.astext().split()[-1] if len(child.astext().split()) > 1 else None
+            version_text = child.astext().split()
+            info["added"] = version_text[-1] if len(version_text) > 1 else None
     return info

@@ -14,7 +14,8 @@ from qiskit_docs_builder.visitors.class_visitor import (
 
 
 def visit_function(desc: sphinx_nodes.desc) -> dict:
-    sig = _get_child(desc, sphinx_nodes.desc_signature)
+    sigs = [c for c in desc.children if isinstance(c, sphinx_nodes.desc_signature)]
+    sig = sigs[0] if sigs else None
     content = _get_child(desc, sphinx_nodes.desc_content)
 
     fullname = sig.get("ids", [""])[0] if sig else ""
@@ -29,6 +30,7 @@ def visit_function(desc: sphinx_nodes.desc) -> dict:
         "module": module,
         "githubUrl": _extract_github_url(sig),
         "signature": _extract_signature(sig),
+        "extraSignatures": [_extract_signature(s) for s in sigs[1:]],
         "modifiers": _extract_method_modifiers(sig),
         "isDedicatedPage": True,
         "description": _extract_description(content) if content else [],

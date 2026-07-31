@@ -15,6 +15,11 @@ class QiskitJsonBuilder(Builder):
     format = "json"
     epilog = "JSON output written to %(outdir)s"
 
+    def init(self) -> None:
+        # Add "html" tag so linkcode/viewcode `only expr="html"` nodes survive
+        # OnlyNodeTransform and reach write_doc with their GitHub URLs intact.
+        self.tags.add("html")
+
     def get_outdated_docs(self):
         return self.env.found_docs
 
