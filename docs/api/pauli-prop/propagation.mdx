@@ -261,7 +261,7 @@ Functions for performing Pauli propagation.
 <Function id="pauli_prop.propagation.evolve_through_cliffords" github="https://github.com/Qiskit/pauli-prop/tree/main/pauli_prop/propagation.py#L73-L138" signature="evolve_through_cliffords(circuit)">
   Evolve (Schrödinger frame) all non-Clifford instructions through all Clifford gates in the circuit.
 
-  This shifts all recognized Clifford gates to the beginning of the circuit and updates the bases of Pauli-rotation gates (e.g. `RxGate`, `RzzGate`, `PauliEvolutionGate`) and [PauliLindbladError](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.noise.PauliLindbladError.html#qiskit_aer.noise.PauliLindbladError) channels. Other operations are not supported. See [Pauli.evolve docs](/docs/en/api/qiskit/qiskit.quantum_info.Pauli#evolve) for more info about evolution of Paulis by Cliffords.
+  This shifts all recognized Clifford gates to the beginning of the circuit and updates the bases of Pauli-rotation gates (e.g. `RxGate`, `RzzGate`, `PauliEvolutionGate`) and [PauliLindbladError](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.noise.PauliLindbladError.html#qiskit_aer.noise.PauliLindbladError) channels. Other operations are not supported. See [Pauli.evolve docs](/docs/api/qiskit/qiskit.quantum_info.Pauli#evolve) for more info about evolution of Paulis by Cliffords.
 
   The effect is similar to going to the Clifford interaction picture in [arXiv:2306.04797](https://arxiv.org/abs/2306.04797) but without mapping all rotation angle magnitudes to be $\leq \pi/4$.
 
@@ -273,7 +273,7 @@ Functions for performing Pauli propagation.
 
   **Returns**
 
-  *   **Clifford** - A single all-qubit [Clifford](/docs/en/api/qiskit/qiskit.quantum_info.Clifford) representing the first part of the circuit
+  *   **Clifford** - A single all-qubit [Clifford](/docs/api/qiskit/qiskit.quantum_info.Clifford) representing the first part of the circuit
   *   **QuantumCircuit** - A circuit containing the remaining, transformed part of the circuit
 
   **Raises**
