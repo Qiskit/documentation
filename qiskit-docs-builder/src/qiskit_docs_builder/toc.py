@@ -1,6 +1,5 @@
 from __future__ import annotations
 import re
-from pathlib import Path
 from sphinx.application import Sphinx
 
 
@@ -43,11 +42,9 @@ def build_toc(app: Sphinx, pages: dict[str, dict]) -> dict:
 
         # Module overview link (if we have a page for it)
         if mod_page:
-            overview_docname = _id_to_docname(mod_id)
-            sections_url = _docname_to_url(overview_docname)
             section_children.append({
                 "title": "Module overview",
-                "url": sections_url,
+                "url": mod_id.split(".")[-1],
             })
 
         # Stub entries
@@ -79,34 +76,11 @@ def _module_from_id(full_id: str) -> str:
     return parts[0] if len(parts) > 1 else full_id
 
 
-def _id_to_docname(module_id: str) -> str:
-    """Convert module id to likely docname for apidocs pages."""
-    # module pages live at apidocs/<module_basename> in RST but we emit their id as path
-    return f"apidocs/{module_id.split('.')[-1].replace('_', '-')}"
-
-
 def _docname_to_url(docname: str) -> str:
-    """Convert a docname like 'stubs/qiskit_ibm_runtime.Session' to a URL-ready relative path.
+    """Convert a docname like 'stubs/qiskit_ibm_runtime.Session' to a URL slug.
 
-    Emits a package-relative path without a base prefix — iqp-channel-docs
-    prepends its own /docs/api/<package-name>/ at render time.
+    Strips the stubs/apidocs prefix and returns the last dotted segment as-is.
+    iqp-channel-docs is responsible for any further URL transformation (kebab-case, etc.).
     """
-    # Strip leading stubs/ or apidocs/
     name = re.sub(r"^(stubs|apidocs)/", "", docname)
-    # Convert dotted class names to kebab-case: qiskit_ibm_runtime.Session → session
-    # Take only the last segment (the class/function name) and kebab it
-    segments = name.split(".")
-    last = segments[-1]
-    kebab = _to_kebab(last)
-    return kebab
-
-
-def _to_kebab(name: str) -> str:
-    """Convert CamelCase or snake_case to kebab-case."""
-    # snake_case → kebab
-    if "_" in name:
-        return name.replace("_", "-").lower()
-    # CamelCase → kebab
-    s = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1-\2", name)
-    s = re.sub(r"([a-z\d])([A-Z])", r"\1-\2", s)
-    return s.lower()
+    return name.split(".")[-1]
