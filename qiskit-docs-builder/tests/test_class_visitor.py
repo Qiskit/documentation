@@ -104,15 +104,14 @@ def test_napoleon_parameters():
     para += Text(" – ")
     para += Text("The backend to use.")
 
-    result = _parse_parameter_para(para)
-    assert result is not None
-    assert result["name"] == "backend"
-    assert result["type"] is not None
-    assert result["type"]["type"] in ("name", "union")
-    type_text = result["type"].get("text", "") or result["type"].get("name", "")
+    name, type_node, desc = _parse_parameter_para(para)
+    assert name == "backend"
+    assert type_node is not None
+    assert type_node["type"] in ("name", "union")
+    type_text = type_node.get("text", "") or type_node.get("name", "")
     assert "BackendV2" in type_text
-    assert result["description"] != []
-    desc_text = result["description"][0]["children"][0]["value"]
+    assert desc != []
+    desc_text = desc[0]["children"][0]["value"]
     assert "backend" in desc_text.lower() or "use" in desc_text.lower()
 
 
@@ -135,13 +134,12 @@ def test_napoleon_parameters_union_type():
     para += Text(" – ")
     para += Text("Number of shots.")
 
-    result = _parse_parameter_para(para)
-    assert result is not None
-    assert result["name"] == "shots"
-    assert result["type"] is not None
-    assert result["type"]["type"] == "union"
-    members = result["type"]["members"]
+    name, type_node, desc = _parse_parameter_para(para)
+    assert name == "shots"
+    assert type_node is not None
+    assert type_node["type"] == "union"
+    members = type_node["members"]
     member_texts = [m.get("text", "") or m.get("name", "") for m in members]
     assert "int" in member_texts
     assert "None" in member_texts
-    assert result["description"] != []
+    assert desc != []

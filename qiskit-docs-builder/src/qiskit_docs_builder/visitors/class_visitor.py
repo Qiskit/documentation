@@ -71,19 +71,58 @@ def _extract_github_url(sig) -> str | None:
     return None
 
 
-def _extract_signature(sig) -> str:
+def _extract_signature(sig) -> dict | None:
+    """Return a structured signature dict, or None if there is no signature node."""
     if sig is None:
-        return ""
+        return None
     name = ""
-    params = ""
+    params = None
     for child in sig.children:
         if isinstance(child, sphinx_nodes.desc_name):
-            name = child.astext()
+            name = child.astext().strip()
         elif isinstance(child, sphinx_nodes.desc_parameterlist):
-            params = child.astext()
-            if not params.startswith("("):
-                params = "(" + params + ")"
-    return f"{name}{params}" if params else name
+            params = _extract_params(child)
+    if not name:
+        return None
+    result: dict = {"name": name}
+    if params is not None:
+        result["params"] = params
+    return result
+
+
+def _extract_params(paramlist: sphinx_nodes.desc_parameterlist) -> list[dict]:
+    """Parse a desc_parameterlist into a list of parameter dicts."""
+    params = []
+    for child in paramlist.children:
+        if not isinstance(child, sphinx_nodes.desc_parameter):
+            continue
+        param = _extract_param(child)
+        if param is not None:
+            params.append(param)
+    return params
+
+
+def _extract_param(param: sphinx_nodes.desc_parameter) -> dict | None:
+    """Parse a single desc_parameter node into {name, default}."""
+    name = None
+    default = None
+    prefix = ""
+    for child in param.children:
+        if isinstance(child, sphinx_nodes.desc_sig_operator):
+            text = child.astext().strip()
+            if text in ("*", "**"):
+                prefix = text
+            elif text in ("/",):
+                # positional-only separator — no real parameter
+                return None
+        elif isinstance(child, sphinx_nodes.desc_sig_name):
+            name = prefix + child.astext().strip()
+        elif isinstance(child, nodes.inline) and "default_value" in child.get("classes", []):
+            default = child.astext().strip()
+    # A bare * with no name is the keyword-only separator, not a real param.
+    if not name or name == "*":
+        return None
+    return {"name": name, "default": default}
 
 
 def _extract_bases(content) -> list[dict]:
@@ -157,18 +196,38 @@ def _parse_parameter_item(item: nodes.Node) -> dict | list | None:
         para = next((c for c in item.children if isinstance(c, nodes.paragraph)), None)
         if para is None:
             return None
-        return _parse_parameter_para(para)
+        name, type_node_dict, desc = _parse_parameter_para(para)
+        if not name:
+            return None
+        # Collect any remaining block siblings at list_item level
+        # (rare — Napoleon usually nests blocks inside the paragraph itself).
+        for sibling in item.children:
+            if sibling is para:
+                continue
+            parsed = _parse_node(sibling)
+            if parsed is not None:
+                if isinstance(parsed, list):
+                    desc.extend(parsed)
+                else:
+                    desc.append(parsed)
+        return {"name": name, "type": type_node_dict, "description": desc}
     if isinstance(item, nodes.paragraph):
-        return _parse_parameter_para(item)
+        name, type_node_dict, desc = _parse_parameter_para(item)
+        if not name:
+            return None
+        return {"name": name, "type": type_node_dict, "description": desc}
     return None
 
 
-def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
-    name = ""
-    type_nodes = []   # collect raw type node fragments
-    desc_inlines = []
+def _parse_parameter_para(para: nodes.paragraph) -> tuple[str, dict | None, list]:
+    """Extract (name, type_node, desc_blocks) from a Napoleon parameter paragraph.
 
-    # States: "name" → "type" → "desc"
+    desc_blocks is a list of ContentNode dicts ready to use as the description.
+    """
+    name = ""
+    type_nodes = []
+    desc_inlines: list[dict] = []
+    desc_blocks: list[nodes.Node] = []
     state = "name"
 
     for child in para.children:
@@ -177,54 +236,50 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
                 name = child.astext()
                 state = "type"
             elif isinstance(child, nodes.strong):
-                # fallback for non-Napoleon strong nodes
                 name = child.astext()
                 state = "type"
             continue
 
         if state == "type":
-            # "(" opens the type block — skip
             if isinstance(child, nodes.Text) and str(child).strip() == "(":
                 continue
-            # ")" closes the type block — skip
             if isinstance(child, nodes.Text) and str(child).strip() == ")":
                 continue
-            # en-dash separator → switch to description
             if isinstance(child, nodes.Text) and "–" in str(child):
                 state = "desc"
-                # anything after the dash on this text node is description
                 after = str(child).split("–", 1)[-1].strip()
                 if after:
                     desc_inlines.append({"type": "text", "value": after})
                 continue
-            # Also handle " – " with a regular dash
             if isinstance(child, nodes.Text) and " – " in str(child):
                 state = "desc"
                 after = str(child).split(" – ", 1)[-1].strip()
                 if after:
                     desc_inlines.append({"type": "text", "value": after})
                 continue
-            # inline "classifier" node (non-Napoleon style) — parse directly
             if isinstance(child, nodes.inline) and "classifier" in child.get("classes", []):
                 type_nodes.append(child)
                 continue
-            # type content: pending_xref, resolved reference, sphinx_nodes.literal_emphasis, or " | " Text
             if isinstance(child, (sphinx_nodes.pending_xref, nodes.reference, sphinx_nodes.literal_emphasis)):
                 type_nodes.append(child)
                 continue
-            # " | " separator between union type members
             if isinstance(child, nodes.Text) and str(child).strip() == "|":
                 type_nodes.append(child)
                 continue
-            # whitespace-only text inside type — skip
             if isinstance(child, nodes.Text) and not str(child).strip():
                 continue
-            # any other Text that looks like type content (no en-dash)
             if isinstance(child, nodes.Text):
                 type_nodes.append(child)
             continue
 
         if state == "desc":
+            # Block-level nodes (paragraph, literal_block, etc.) that Napoleon
+            # nests directly inside the first paragraph — parse as blocks.
+            if isinstance(child, (nodes.paragraph, nodes.literal_block,
+                                  nodes.doctest_block, nodes.bullet_list,
+                                  nodes.enumerated_list, nodes.block_quote)):
+                desc_blocks.append(child)
+                continue
             inline = _parse_inline(child)
             if inline:
                 if isinstance(inline, list):
@@ -232,13 +287,8 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
                 else:
                     desc_inlines.append(inline)
 
-    if not name:
-        return None
-
-    # Build TypeNode from collected type_nodes
     type_node_dict = None
     if type_nodes:
-        # Wrap in a container inline node and parse
         container = nodes.inline()
         for n in type_nodes:
             if isinstance(n, nodes.Node):
@@ -249,11 +299,17 @@ def _parse_parameter_para(para: nodes.paragraph) -> dict | None:
         if type_node_dict == {"type": "name", "text": ""}:
             type_node_dict = None
 
-    return {
-        "name": name,
-        "type": type_node_dict,
-        "description": [{"type": "paragraph", "children": desc_inlines}] if desc_inlines else [],
-    }
+    desc: list[dict] = []
+    if desc_inlines:
+        desc.append({"type": "paragraph", "children": desc_inlines})
+    for block_node in desc_blocks:
+        parsed = _parse_node(block_node)
+        if parsed is not None:
+            if isinstance(parsed, list):
+                desc.extend(parsed)
+            else:
+                desc.append(parsed)
+    return name, type_node_dict, desc
 
 
 def _extract_members(content, objtype: str) -> list[dict]:
@@ -338,6 +394,7 @@ def _extract_type_annotation(sig) -> dict | None:
 def _extract_default_value(sig) -> str | None:
     if sig is None:
         return None
+    # Sphinx 7+ emits desc_sig_* inline nodes; the default follows a `=` operator node.
     found_eq = False
     for child in sig.children:
         if isinstance(child, nodes.inline):
@@ -347,15 +404,28 @@ def _extract_default_value(sig) -> str | None:
                 continue
             if found_eq and text.strip():
                 return text.strip()
+    # Older Sphinx / class variables: default lives in desc_annotation as " = value".
+    for child in sig.children:
+        if isinstance(child, sphinx_nodes.desc_annotation):
+            text = child.astext().strip()
+            if text.startswith("="):
+                return text[1:].strip() or None
     return None
 
 
 def _extract_method_modifiers(sig) -> str:
     modifiers = []
+    _MODIFIER_KEYWORDS = frozenset((
+        "static", "staticmethod",
+        "class", "classmethod",
+        "abstract", "abstractmethod",
+        "property", "final",
+        "async",
+    ))
     for child in sig.children:
         if isinstance(child, sphinx_nodes.desc_annotation):
             text = child.astext().strip()
-            if text in ("staticmethod", "classmethod", "abstractmethod", "property", "final"):
+            if text in _MODIFIER_KEYWORDS:
                 modifiers.append(text)
     return " ".join(modifiers)
 

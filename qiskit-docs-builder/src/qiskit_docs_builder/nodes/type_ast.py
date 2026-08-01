@@ -75,14 +75,15 @@ class _TokenizeVisitor(SparseNodeVisitor):
 def _tokenize(node: nodes.Node) -> list:
     """Walk a node tree and return a flat list of type annotation tokens."""
     doc = node.document
-    if doc is None:
-        # No document attached (e.g. in tests) — fall back to manual recursion.
-        tokens: list = []
-        _walk_fallback(node, tokens)
-        return tokens
-    visitor = _TokenizeVisitor(doc)
-    node.walkabout(visitor)
-    return visitor.tokens
+    # Pickled doctrees may have a document with no reporter; walkabout requires
+    # one for debug logging, so fall back to manual recursion in that case.
+    if doc is not None and getattr(doc, 'reporter', None) is not None:
+        visitor = _TokenizeVisitor(doc)
+        node.walkabout(visitor)
+        return visitor.tokens
+    tokens: list = []
+    _walk_fallback(node, tokens)
+    return tokens
 
 
 def _walk_fallback(node: nodes.Node, tokens: list) -> None:

@@ -1,4 +1,5 @@
 from __future__ import annotations
+import posixpath
 from docutils import nodes
 import sphinx.addnodes as sphinx_nodes
 
@@ -58,6 +59,10 @@ class _Visitor:
 class _BlockVisitor(_Visitor):
 
     def visit_paragraph(self, node: nodes.paragraph):
+        # Skip the plot_directive "(Source code, png, hires.png, pdf)" paragraph —
+        # it contains only download-class references and their surrounding punctuation.
+        if _is_download_links_paragraph(node):
+            return None
         return {"type": "paragraph", "children": _parse_inline_children(node)}
 
     def visit_literal_block(self, node: nodes.literal_block):
@@ -76,13 +81,20 @@ class _BlockVisitor(_Visitor):
         result = []
         for child in node.children:
             if isinstance(child, nodes.image):
-                result.append({"type": "image", "url": child.get("uri", ""), "alt": child.get("alt") or None})
+                uri = _normalize_image_uri(child.get("uri", ""))
+                if uri.endswith(".*"):
+                    continue
+                result.append({"type": "image", "url": uri, "alt": child.get("alt") or None})
             elif isinstance(child, nodes.caption):
                 result.append({"type": "paragraph", "children": _parse_inline_children(child)})
         return result or None
 
     def visit_image(self, node: nodes.image):
-        return {"type": "image", "url": node.get("uri", ""), "alt": node.get("alt") or None}
+        uri = _normalize_image_uri(node.get("uri", ""))
+        # Skip wildcard format images (e.g. fake_provider-1.*) — the .png is always present.
+        if uri.endswith(".*"):
+            return None
+        return {"type": "image", "url": uri, "alt": node.get("alt") or None}
 
     def visit_bullet_list(self, node: nodes.bullet_list):
         return {
@@ -164,14 +176,26 @@ class _BlockVisitor(_Visitor):
     def visit_compound(self, node: nodes.compound):
         return None
 
+    # autosummary_table subclasses comment (which we suppress), so needs an explicit handler
+    # to unwrap its inner nodes.table child and render it as a plain table.
+    def visit_autosummary_table(self, node):
+        return parse_content(node)
+
+    # autosummary_toc and tabular_col_spec are navigation/formatting metadata — suppress.
+    def visit_autosummary_toc(self, node):
+        return None
+
+    def visit_tabular_col_spec(self, node):
+        return None
+
     # Specific admonitions dispatch before the generic Admonition base class.
     def visit_note(self, node):      return _parse_admonition(node, "note")
     def visit_warning(self, node):   return _parse_admonition(node, "warning")
     def visit_tip(self, node):       return _parse_admonition(node, "tip")
     def visit_danger(self, node):    return _parse_admonition(node, "danger")
-    def visit_caution(self, node):   return _parse_admonition(node, "warning")
-    def visit_important(self, node): return _parse_admonition(node, "note")
-    def visit_hint(self, node):      return _parse_admonition(node, "tip")
+    def visit_caution(self, node):   return _parse_admonition(node, "caution")
+    def visit_important(self, node): return _parse_admonition(node, "important")
+    def visit_hint(self, node):      return _parse_admonition(node, "hint")
 
     def visit_Admonition(self, node):
         # Catches: generic `.. admonition::` and sphinx versionmodified nodes.
@@ -193,12 +217,20 @@ class _InlineVisitor(_Visitor):
         return {"type": "text", "value": text} if text else None
 
     def visit_reference(self, node: nodes.reference):
+        # Drop plot_directive download links (Source code, png, pdf, hires.png).
+        # They carry class "download" on their literal child and have no useful URL.
+        for child in node.children:
+            if isinstance(child, nodes.literal) and "download" in child.get("classes", []):
+                return None
         url = node.get("refid") or node.get("refuri", "")
         if ".json#" in url:
             url = url.split(".json#", 1)[1]
         elif url.endswith(".json"):
             url = ""
-        return {"type": "link", "url": url, "children": [{"type": "text", "value": node.astext()}]}
+        children = _parse_inline_children(node)
+        if not children:
+            children = [{"type": "text", "value": node.astext()}]
+        return {"type": "link", "url": url, "children": children}
 
     def visit_literal(self, node: nodes.literal):
         return {"type": "inlineCode", "value": node.astext()}
@@ -245,3 +277,41 @@ def _parse_admonition(node: nodes.Node, kind: str) -> dict:
 
 _block = _BlockVisitor()
 _inline = _InlineVisitor()
+
+
+def _is_download_links_paragraph(node: nodes.paragraph) -> bool:
+    """Return True if this paragraph is solely a plot_directive download-links container.
+
+    These look like: ( `Source code` , `png` , `hires.png` , `pdf` )
+    Every meaningful child is either a download reference or punctuation/whitespace text.
+    """
+    has_download = False
+    for child in node.children:
+        if isinstance(child, nodes.reference):
+            if any("download" in c.get("classes", []) for c in child.children if hasattr(c, "get")):
+                has_download = True
+            else:
+                return False  # non-download link — not a download paragraph
+        elif isinstance(child, nodes.Text):
+            if str(child).strip(" (),"):
+                return False  # meaningful text content — not a download paragraph
+        else:
+            return False
+    return has_download
+
+
+def _normalize_image_uri(uri: str) -> str:
+    """Normalize a plot_directive image URI to just the filename.
+
+    plot_directive generates builder-relative paths like:
+      _build/json/docs/apidocs/fake_provider-1.png
+      _build/json/plot_directive/apidocs/fake_provider-1.png
+    The HTML builder copies these to _images/. We emit just the filename
+    so the UI can resolve it relative to its own static asset base.
+    Other URIs (absolute URLs, relative paths like ../_images/foo.png) pass through.
+    """
+    if not uri or uri.startswith(("http://", "https://", "//")):
+        return uri
+    if uri.startswith("_build/"):
+        return posixpath.basename(uri)
+    return uri

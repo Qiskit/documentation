@@ -1,15 +1,22 @@
+import os
 from qiskit_docs_builder.builder import QiskitJsonBuilder
 from sphinx.application import Sphinx
 
 
-def _cleanup_non_json(app, exception):
-    if exception or app.builder.name != "qiskit_json":
+def _fix_katex_static_path(app, exception):
+    # KaTeX's build-finished handler calls shutil.rmtree(app._katex_static_path).
+    # When the JSON builder is active it never copies _static files, so the temp
+    # dir KaTeX created in builder-inited may not exist at cleanup time —
+    # causing a FileNotFoundError. Re-create it so KaTeX's rmtree succeeds harmlessly.
+    if app.builder.name != "qiskit_json":
         return
-    app.builder._remove_non_json_artifacts()
+    path = getattr(app, "_katex_static_path", None)
+    if path and not os.path.isdir(path):
+        os.makedirs(path, exist_ok=True)
 
 
 def setup(app: Sphinx):
     app.add_builder(QiskitJsonBuilder)
-    # Priority 999 runs after all other build-finished handlers (e.g. autodoc_pydantic)
-    app.connect("build-finished", _cleanup_non_json, priority=999)
+    # Run before KaTeX's build-finished (default priority=500) so its rmtree finds the dir.
+    app.connect("build-finished", _fix_katex_static_path, priority=100)
     return {"version": "0.1.0", "parallel_read_safe": True, "parallel_write_safe": True}
