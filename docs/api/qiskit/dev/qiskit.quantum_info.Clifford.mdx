@@ -60,7 +60,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
   **Circuit Conversion**
 
-  Clifford operators can be initialized from circuits containing *only* the following Clifford gates: [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate"), [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate"), [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate"), [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate"), [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate"), [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate"), [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate"), [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate"), [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"), [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"), [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate"), [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate"), [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate"), [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate"), [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"), [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction"), [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate"). They can be converted back into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), or [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object using the [`to_circuit()`](#qiskit.quantum_info.Clifford.to_circuit "qiskit.quantum_info.Clifford.to_circuit") or [`to_instruction()`](#qiskit.quantum_info.Clifford.to_instruction "qiskit.quantum_info.Clifford.to_instruction") methods respectively. Note that this decomposition is not necessarily optimal in terms of number of gates.
+  Clifford operators can be initialized from circuits containing *only* the following Clifford gates: [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate"), [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate"), [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate"), [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate"), [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate"), [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate"), [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate"), [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate"), [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"), [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"), [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate"), [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate"), [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate"), [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate"), [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"), [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction"), [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate"). They can be converted back into a [`QuantumCircuit`](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), or [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object using the [`to_circuit()`](#qiskit.quantum_info.Clifford.to_circuit "qiskit.quantum_info.Clifford.to_circuit") or [`to_instruction()`](#qiskit.quantum_info.Clifford.to_instruction "qiskit.quantum_info.Clifford.to_instruction") methods respectively. Note that this decomposition is not necessarily optimal in terms of number of gates.
 
   <Admonition title="Note" type="note">
     A minimally generating set of gates for Clifford circuits is the [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate") and [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate") gate and *either* the [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") or [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate") two-qubit gate.
@@ -207,7 +207,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
     <Admonition title="Note" type="note">
       Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](#qiskit.quantum_info.Clifford.dot "qiskit.quantum_info.Clifford.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
@@ -278,7 +278,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
     **Parameters**
 
-    **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – instruction to initialize.
+    **circuit** ([*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – instruction to initialize.
 
     **Returns**
 
@@ -290,7 +290,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input instruction is non-Clifford or contains classical register instruction.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input instruction is non-Clifford or contains classical register instruction.
   </Function>
 
   ### from\_dict
@@ -318,7 +318,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the label contains invalid characters.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the label contains invalid characters.
 
     **Additional Information:**
 
@@ -388,7 +388,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a Clifford matrix.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a Clifford matrix.
   </Function>
 
   ### from\_operator
@@ -412,7 +412,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a Clifford operator.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input is not a Clifford operator.
   </Function>
 
   ### from\_permutation
@@ -470,7 +470,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
   </Function>
 
   ### reshape
@@ -494,7 +494,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
   </Function>
 
   ### tensor
@@ -534,7 +534,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
     **Return type**
 
-    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    [QuantumCircuit](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
     **References**
 
@@ -587,7 +587,7 @@ python_api_name: qiskit.quantum_info.Clifford
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if stabilizer and destabilizer are both False.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if stabilizer and destabilizer are both False.
   </Function>
 
   ### to\_matrix

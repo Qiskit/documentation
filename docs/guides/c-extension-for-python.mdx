@@ -39,13 +39,15 @@ pass with a real use case in the Qiskit addons.
 
 ## Requirements
 
+Complete the instructions in the [Install](/docs/guides/install-c-api) topic to install the following:
+
+- The standard C compiler toolchain for your platform
+- A version of Python that includes its C API headers. 
+
+You should also be familiar with, or prepared to look up, the functions and objects available
+in the [Qiskit C API](/docs/api/qiskit-c), and should have some familiarity with C programming.
+
 Start from a clean directory.
-
-You must have the standard C compiler toolchain available for your platform.  You must also have a
-version of Python that includes its C API headers (this is standard).
-
-You should be familiar with, or prepared to look up, the individual functions and objects available
-in the [Qiskit C API][c-api].  You should have some familiarity with C programming.
 
 [c-api]: /docs/api/qiskit-c
 
@@ -111,9 +113,7 @@ dependencies = [
 package-dir = {"" = "src"}
 ```
 
-As of Qiskit v2.4, the C API is not yet stable outside of minor versions (for example, the C API for v2.4.0 will be
-compatible with v2.4.1 but not v2.5.0). In the future, we intend to extend
-this stability to with major versions.  For now, set Qiskit's runtime version in
+Set Qiskit's runtime version in
 `project.dependencies` to match the minor version used at build time.
 
 In many pure-Python `setuptools`-based projects, it would be sufficient to have the

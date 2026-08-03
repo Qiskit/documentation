@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
 # PadDelay
 
-<Class id="qiskit.transpiler.passes.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/scheduling/padding/pad_delay.py#L24-L90" signature="qiskit.transpiler.passes.PadDelay(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/scheduling/padding/pad_delay.py#L24-L93" signature="qiskit.transpiler.passes.PadDelay(*args, **kwargs)" modifiers="class">
   Bases: `BasePadding`
 
   Padding idle time with Delay instructions.
@@ -47,6 +47,7 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
   *   **fill\_very\_end** – Set `True` to fill the end of circuit with delay.
   *   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend. If it is supplied and does not support delay instruction on a qubit, padding passes do not pad any idle time of the qubit.
+  *   **durations** – The instruction durations. This is mostly for legacy applications without a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"). The `target` argument should typically be used instead of this and if both are specified `target` will supersede this argument.
 
   ## Attributes
 
@@ -70,14 +71,14 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.PadDelay.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.PadDelay.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/basepasses.py#L162-L181" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
+    *   **passmanager\_ir** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – Qiskit IR to optimize.
+    *   **state** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Task,* [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -85,18 +86,18 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit"), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### get\_duration
 
-  <Function id="qiskit.transpiler.passes.PadDelay.get_duration" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L74-L97" signature="get_duration(node, dag)">
+  <Function id="qiskit.transpiler.passes.PadDelay.get_duration" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L77-L100" signature="get_duration(node, dag)">
     Get duration of a given node in the circuit.
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.PadDelay.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
+  <Function id="qiskit.transpiler.passes.PadDelay.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/passmanager/base_tasks.py#L72-L74" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -106,7 +107,7 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.PadDelay.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L99-L194" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.PadDelay.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/passes/scheduling/padding/base_padding.py#L102-L197" signature="run(dag)">
     Run the padding pass on `dag`.
 
     **Parameters**
@@ -123,12 +124,12 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
     **Raises**
 
-    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When a particular node is not scheduled, likely some transform pass is inserted before this node is called.
+    [**TranspilerError**](/docs/api/qiskit/transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When a particular node is not scheduled, likely some transform pass is inserted before this node is called.
   </Function>
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.PadDelay.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.PadDelay.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/transpiler/basepasses.py#L183-L191" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

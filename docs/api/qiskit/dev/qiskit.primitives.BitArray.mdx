@@ -82,7 +82,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[*uint64*]]
+    *NDArray*\[*uint64*]
   </Function>
 
   ### concatenate
@@ -169,7 +169,7 @@ python_api_name: qiskit.primitives.BitArray
     Compute the expectation values of the provided observables, broadcasted against this bit array.
 
     <Admonition title="Note" type="note">
-      This method returns the real part of the expectation value even if the operator has complex coefficients due to the specification of [`sampled_expectation_value()`](result#qiskit.result.sampled_expectation_value "qiskit.result.sampled_expectation_value").
+      This method returns the real part of the expectation value even if the operator has complex coefficients due to the specification of [`sampled_expectation_value()`](/docs/api/qiskit/dev/result#qiskit.result.sampled_expectation_value "qiskit.result.sampled_expectation_value").
     </Admonition>
 
     **Parameters**
@@ -188,7 +188,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[*float64*]]
+    *NDArray*\[*float64*]
   </Function>
 
   ### from\_bool\_array
@@ -198,7 +198,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    *   **array** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)*]]*) – The array to convert, with “bitstrings” along the last axis.
+    *   **array** (*NDArray\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)*]*) – The array to convert, with “bitstrings” along the last axis.
     *   **order** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['big', 'little']*) – One of `"big"` or `"little"`, indicating whether `array[..., 0]` correspond to the most significant bits or the least significant bits of each bitstring, respectively.
 
     **Returns**
@@ -328,7 +328,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Parameters**
 
-    *   **indices** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*int*](https://docs.python.org/3/library/functions.html#int)) – A list of the indices of the cbits on which to postselect. If this bit array was produced by a sampler, then an index `i` corresponds to the [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") location `creg[i]` (as in [`slice_bits()`](#qiskit.primitives.BitArray.slice_bits "qiskit.primitives.BitArray.slice_bits")). Negative indices are allowed.
+    *   **indices** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*int*](https://docs.python.org/3/library/functions.html#int)) – A list of the indices of the cbits on which to postselect. If this bit array was produced by a sampler, then an index `i` corresponds to the [`ClassicalRegister`](/docs/api/qiskit/dev/circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") location `creg[i]` (as in [`slice_bits()`](#qiskit.primitives.BitArray.slice_bits "qiskit.primitives.BitArray.slice_bits")). Negative indices are allowed.
     *   **selection** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*bool*](https://docs.python.org/3/library/functions.html#bool)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)) – A list of binary values (will be cast to `bool`) of length matching `indices`, with `indices[i]` corresponding to `selection[i]`. Shots will be discarded unless all cbits specified by `indices` have the values given by `selection`.
 
     **Returns**
@@ -378,7 +378,7 @@ python_api_name: qiskit.primitives.BitArray
     <Admonition title="Note" type="note">
       The convention used by this method is that the index `0` corresponds to the least-significant bit in the [`array`](#qiskit.primitives.BitArray.array "qiskit.primitives.BitArray.array"), or equivalently the right-most bitstring entry as returned by [`get_counts()`](#qiskit.primitives.BitArray.get_counts "qiskit.primitives.BitArray.get_counts") or [`get_bitstrings()`](#qiskit.primitives.BitArray.get_bitstrings "qiskit.primitives.BitArray.get_bitstrings"), etc.
 
-      If this bit array was produced by a sampler, then an index `i` corresponds to the [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") location `creg[i]`.
+      If this bit array was produced by a sampler, then an index `i` corresponds to the [`ClassicalRegister`](/docs/api/qiskit/dev/circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") location `creg[i]`.
     </Admonition>
 
     **Parameters**
@@ -439,7 +439,7 @@ python_api_name: qiskit.primitives.BitArray
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)]]
+    *NDArray*\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)]
   </Function>
 
   ### transpose

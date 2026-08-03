@@ -8,8 +8,8 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
 # RCCXGate
 
-<Class id="qiskit.circuit.library.RCCXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L445-L513" signature="qiskit.circuit.library.RCCXGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
-  Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
+<Class id="qiskit.circuit.library.RCCXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L446-L574" signature="qiskit.circuit.library.RCCXGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
+  Bases: [`SingletonGate`](/docs/api/qiskit/dev/circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
   The simplified Toffoli gate, also referred to as Margolus gate.
 
@@ -17,7 +17,7 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
   This concrete implementation is from [https://arxiv.org/abs/1508.03273](https://arxiv.org/abs/1508.03273), the dashed box of Fig. 3.
 
-  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rccx()`](qiskit.circuit.QuantumCircuit#rccx "qiskit.circuit.QuantumCircuit.rccx") method.
+  Can be applied to a [`QuantumCircuit`](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rccx()`](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit#rccx "qiskit.circuit.QuantumCircuit.rccx") method.
 
   Create a new simplified CCX gate.
 
@@ -148,7 +148,7 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
     **Return type**
 
@@ -157,29 +157,32 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
   ### control
 
-  <Function id="qiskit.circuit.library.RCCXGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L105-L163" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
-    Return the controlled version of itself.
+  <Function id="qiskit.circuit.library.RCCXGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L501-L559" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return a controlled version of the RCCX gate.
 
-    The controlled gate is implemented as [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") when `annotated` is `False`, and as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") when `annotated` is `True`.
+    For a single control qubit, the controlled gate uses a compact, exact decomposition consisting of an [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate") and an [`CSdgGate`](qiskit.circuit.library.CSdgGate "qiskit.circuit.library.CSdgGate"). For a new control qubit $c$, the first RCCX control $a$, the second RCCX control $b$, and target $t$, it uses the identity
 
-    <Admonition title="Deprecated since version 2.3" type="danger">
-      `qiskit.circuit.gate.Gate.control()`’s argument `annotated` is deprecated as of Qiskit 2.3. It will be removed in Qiskit 3.0. The method Gate.control() no longer accepts annotated=None. The new default is annotated=True, which represents the controlled gate as an AnnotatedOperation (unless a dedicated controlled-gate class already exists). You can explicitly set annotated=False to preserve the previous behavior. However, using annotated=True is recommended, as it defers construction of the controlled circuit to transpiler, and furthermore enables additional controlled-gate optimizations (typically leading to higher-quality circuits).
-    </Admonition>
+$$
+C(\mathrm{RCCX})(c,a,b;t)
+= \mathrm{CS}^{\dagger}(c,a)\,\mathrm{RC3X}(c,a,b;t).
+$$
+
+    This avoids separately controlling the T gates in the RCCX decomposition. For more than one control qubit, the generic controlled-gate synthesis is used.
 
     **Parameters**
 
     *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add. Defaults to `1`.
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Optional gate label. Defaults to `None`. Ignored if the controlled gate is implemented as an annotated operation.
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – Indicates whether the controlled gate should be implemented as a controlled gate or as an annotated operation. If `None`, treated as `False`.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Optional gate label. Defaults to `None`.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state of the gate, specified either as an integer or a bitstring. If `None`, defaults to the all-ones state.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – For more than one control qubit, indicates whether to return an annotated operation. Ignored for a single control qubit.
 
     **Returns**
 
     A controlled version of this gate.
 
-    **Raises**
+    **Return type**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `num_ctrl_qubits` or `ctrl_state`.
+    [*ControlledGate*](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate") | [*AnnotatedOperation*](qiskit.circuit.AnnotatedOperation "qiskit.circuit.annotated_operation.AnnotatedOperation")
   </Function>
 
   ### copy
@@ -202,7 +205,7 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.RCCXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L500-L513" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.RCCXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L561-L574" signature="inverse(annotated=False)">
     Invert this gate. The RCCX gate is its own inverse.
 
     **Parameters**
@@ -221,7 +224,7 @@ python_api_name: qiskit.circuit.library.RCCXGate
   ### is\_parameterized
 
   <Function id="qiskit.circuit.library.RCCXGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
-    Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+    Return whether the `Instruction` contains [compile-time parameters](/docs/api/qiskit/dev/circuit#circuit-compile-time-parameters).
   </Function>
 
   ### power
@@ -242,7 +245,7 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
   </Function>
 
   ### repeat
@@ -264,7 +267,7 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
   </Function>
 
   ### reverse\_ops
@@ -318,7 +321,7 @@ python_api_name: qiskit.circuit.library.RCCXGate
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
   </Function>
 
   ### to\_mutable

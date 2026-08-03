@@ -60,5 +60,4 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/q-ctrl-optimization-solver.ipynb", // ok
   "docs/guides/q-ctrl-performance-management.ipynb", // ok
   "docs/guides/qedma-qesem.ipynb", // ok
-  "docs/guides/qiskit-addons-sqd-get-started.ipynb", // ok
 ];
