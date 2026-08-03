@@ -15,8 +15,19 @@ def _fix_katex_static_path(app, exception):
         os.makedirs(path, exist_ok=True)
 
 
+def _remove_static_dir(app, exception):
+    if app.builder.name != "qiskit_json":
+        return
+    import shutil
+    static_dir = os.path.join(app.outdir, "_static")
+    if os.path.isdir(static_dir):
+        shutil.rmtree(static_dir)
+
+
 def setup(app: Sphinx):
     app.add_builder(QiskitJsonBuilder)
     # Run before KaTeX's build-finished (default priority=500) so its rmtree finds the dir.
     app.connect("build-finished", _fix_katex_static_path, priority=100)
+    # Run after all extensions have finished (priority=999) to remove _static.
+    app.connect("build-finished", _remove_static_dir, priority=999)
     return {"version": "0.1.0", "parallel_read_safe": True, "parallel_write_safe": True}
