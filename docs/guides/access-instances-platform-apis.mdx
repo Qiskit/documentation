@@ -244,9 +244,9 @@ You can also include a `parameters` object to set quantum-specific values:
   </TabItem>
 </Tabs>
 
-## Configure Functions access on an instance
+## Configure Qiskit Functions access on an instance
 
-Use these instructions to configure Functions access on an existing IBM Quantum Compute Service instance by using the IBM Cloud Resource Controller API.  Follow the instructions in order, as the commands build on each other.  For example, variables such as the token and URL are set in one step and reused in later steps. 
+Use these instructions to configure Qiskit Functions access on an existing IBM Quantum Compute Service instance by using the IBM Cloud Resource Controller API.  Follow the instructions in order, as the commands build on each other.  For example, variables such as the token and URL are set in one step and reused in later steps. 
 
 ### Prerequisites
 
@@ -332,7 +332,7 @@ print(resp.json()["extensions"])
 A `200 OK` response confirms that your token is valid. The current instance configuration is in the extensions field of the response. Use this instead of parameters, which might be stale.
 
 <span id="step-3" />
-### Step 3: Look up the account-level Functions configuration
+### Step 3: Look up the account-level functions configuration
 
 An instance can only be granted access to what the account is entitled to. Before configuring the instance, look up the account's configuration so you know which functions, business models, and permissions are available to grant. This is the source of truth for the values you will send in Step 4.
 
@@ -371,7 +371,7 @@ Each plan in the response includes a functions array and, if configured, a `cust
 `GET /accounts/{id}` shows what is available to grant at the account level. `GET /functions` (see [Verify the result](#verify-result)) shows what a specific instance has already been granted. Use the **account** endpoint to discover valid values, and the **functions** endpoint to confirm the result.
 </Admonition>
 
-### Step 4: Configure Functions access
+### Step 4: Configure functions access
 
 Update the instance to grant access to Catalog Functions and Custom Functions.
 
@@ -454,7 +454,7 @@ print(resp.json()["extensions"])
 
 A `200 OK` response indicates success. The updated configuration appears in the extensions field of the response.
 
-### Remove Functions access
+### Remove functions access
 
 #### Catalog Functions
 
