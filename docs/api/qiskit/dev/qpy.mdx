@@ -509,7 +509,7 @@ struct INSTRUCTION {
 
 where the field `uint8_t extras_key` replaces the previous `uint8_t conditional_key`. The difference is purely in interpretation. The low two bits of the byte are still interpreted as defining the condition and its type. The high bit of the byte is now a flag, indicated whether an `INSTRUCTION_ANNOTATIONS_HEADER` field is present (if the bit is set) in the trailing data of the `INSTRUCTION` struct.
 
-A complete instruction payload appears in the data stream, including trailing objects and without any padding bytes inbetween elements, as:
+A complete instruction payload appears in the data stream, including trailing objects and without any padding bytes between elements, as:
 
 ```text
 struct INSTRUCTION;
