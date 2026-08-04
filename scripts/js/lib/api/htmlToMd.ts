@@ -155,7 +155,7 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
         type: "mdxJsxTextElement",
         name: "AttributeTypeHint",
         attributes: [],
-        children: escapeTextNodesForMdx(all(h, node)),
+        children: escapeTextNodesForMdx(stripTypeHintLinks(all(h, node))),
       };
     },
   };
@@ -181,6 +181,30 @@ function escapeTextNodesForMdx(nodes: any[]): any[] {
       return { ...node, children: escapeTextNodesForMdx(node.children) };
     }
     return node;
+  });
+}
+
+// Links to these URL prefixes are stripped from AttributeTypeHint children —
+// their link text is preserved but the href is dropped.
+const STRIPPED_TYPE_HINT_LINK_PREFIXES = [
+  "https://docs.python.org",
+];
+
+function stripTypeHintLinks(nodes: any[]): any[] {
+  return nodes.flatMap((node) => {
+    if (
+      node.type === "link" &&
+      typeof node.url === "string" &&
+      STRIPPED_TYPE_HINT_LINK_PREFIXES.some((prefix) =>
+        node.url.startsWith(prefix),
+      )
+    ) {
+      return stripTypeHintLinks(node.children ?? []);
+    }
+    if (Array.isArray(node.children)) {
+      return [{ ...node, children: stripTypeHintLinks(node.children) }];
+    }
+    return [node];
   });
 }
 
