@@ -136,8 +136,7 @@ from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 Executor:
 ```python
-from qiskit_ibm_runtime import QiskitRuntimeService, Executor
-from qiskit_ibm_runtime.quantum_program import QuantumProgram
+from qiskit_ibm_runtime import Executor, QuantumProgram
 ```
 
 <span id="circuit-samplex"></span>
@@ -177,8 +176,7 @@ pass them as `circuit_arguments` to `append_circuit_item`.
 
 ```python
 params = np.random.rand(10, circuit.num_parameters)  # 10 parameter sets
-job = sampler.run([(isa_circuit, params)])
-result = job.result()
+pubs = (isa_circuit, params)
 ```
 
 #### Executor
@@ -189,8 +187,6 @@ program.append_circuit_item(
     isa_circuit,
     circuit_arguments=np.random.rand(10, circuit.num_parameters),  # 10 sets
 )
-job = executor.run(program)
-result = job.result()
 
 # CircuitItem result shape: (parameter_sets, shots, register_bits) -> (10, 1024, 2)
 result_0 = result[0]["meas"]
@@ -208,7 +204,6 @@ a samplex (from [Samplomatic](/docs/guides/directed-execution-model#samplomatic)
 sampler = Sampler(mode=backend)
 sampler.options.twirling.enable_gates = True
 sampler.options.twirling.enable_measure = True
-job = sampler.run([(isa_circuit, params)])
 ```
 
 #### Executor (twirling by using boxes and a samplex)
@@ -239,10 +234,6 @@ program.append_samplex_item(
     },
     shape=(28, 10),  # 28 randomizations x 10 parameter sets
 )
-
-# 4. Run
-job = executor.run(program)
-result = job.result()
 ```
 
 Because the template circuit and samplex are built on the client side, you can
@@ -274,7 +265,7 @@ bound_template.draw("mpl", idle_wires=False)
 ```
 
 To go further, you can verify that each randomization is logically equivalent to the
-original circuit, for example, by converting both to `Operator` objects and comparing (after
+original circuit, for example, by converting both to `Operator` objects and comparing their unitary implementations (after
 accounting for the `outputs["measurement_flips.<register>"]` corrections that undo
 measurement twirling), or by comparing expectation values from a local
 `StatevectorSampler` or `StatevectorEstimator` run. See the Samplomatic
@@ -324,7 +315,7 @@ Examples:
 | Sampler      | Executor                    |
 |--------------|-----------------------------|
 | `shots`      | `QuantumProgram(shots=...)` |
-| `meas_level` | `QuantumProgram.meas_level` |
+| `meas_level` | `QuantumProgram(meas_level=...)` |
 
 [`ExecutorOptions`](/docs/api/qiskit-ibm-runtime/options-models-executor-options) holds only lower-level execution and environment
 settings that don't change the structure of the returned data. It has three top-level groups:
