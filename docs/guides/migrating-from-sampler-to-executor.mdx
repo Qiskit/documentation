@@ -104,7 +104,7 @@ Use following table to help you understand how Sampler concepts map to Executor.
 3. [Replace PUB tuples](#circuit-samplex).
 4. [Change how shots are expressed](#shots).
 5. [Update other options as necessary](#options). 
-6. [Replace built-in noise learning](#noiselearnerv3).
+6. [Update the `run` command](#run-job).
 7. [Update result parsing](#results).
 8. [Undo twirling](#twirled-results).
 
@@ -129,12 +129,12 @@ pip install qiskit qiskit-ibm-runtime samplomatic
 <span id="imports"></span>
 ## Step 2. Change the imports
 
-Sampler:
+**Sampler:**
 ```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 ```
 
-Executor:
+**Executor:**
 ```python
 from qiskit_ibm_runtime import Executor, QuantumProgram
 ```
@@ -142,7 +142,7 @@ from qiskit_ibm_runtime import Executor, QuantumProgram
 <span id="circuit-samplex"></span>
 ## Step 3. Replace PUB tuples with a `QuantumProgram`
 
-Instead of passing a list of tuples, when using Executor, you build a `QuantumProgram` and append _items_ to it.
+Instead of passing a list of tuples (PUBs), when using Executor, you build a `QuantumProgram` and append _items_ to it.
 
 A `QuantumProgram` accepts _circuit_ items and _samplex_ items:
 
@@ -166,21 +166,21 @@ independent task and produces its own entry in the results. In general, use `app
 The next sections show each in turn: parameterized circuits that use 
 `append_circuit_item`, and migrating twirling by using `append_samplex_item`.
 
+In the following code examples, `isa_circuit` refers to the circuit that has been transpiled to conform to the target backend's [Instruction Set Architecture](/docs/guides/transpile#instruction-set-architecture) (ISA). This `isa_circuit` contains two parameters.
+
 <span id="param-circuits"></span>
 ### Step 3a. Migrate parameterized circuits
 
 With Sampler, parameter values are the second element of the PUB tuple. With Executor,
 pass them as `circuit_arguments` to `append_circuit_item`.
 
-#### Sampler
-
+**Sampler:**
 ```python
 params = np.random.rand(10, circuit.num_parameters)  # 10 parameter sets
 pubs = (isa_circuit, params)
 ```
 
-#### Executor
-
+**Executor**
 ```python
 program = QuantumProgram(shots=1024)
 program.append_circuit_item(
@@ -198,16 +198,14 @@ This is the most significant change. Sampler applies twirling for you by using o
 Executor, you declare that intent explicitly by using annotated boxes and
 a samplex (from [Samplomatic](/docs/guides/directed-execution-model#samplomatic)).
 
-#### Sampler (twirling by using options)
-
+**Sampler (twirling by using options):**
 ```python
 sampler = Sampler(mode=backend)
 sampler.options.twirling.enable_gates = True
 sampler.options.twirling.enable_measure = True
 ```
 
-#### Executor (twirling by using boxes and a samplex)
-
+**Executor (twirling by using boxes and a samplex):**
 ```python
 from samplomatic import build
 from samplomatic.transpiler import generate_boxing_pass_manager
@@ -277,8 +275,7 @@ guide for a complete walkthrough.
 
 Move shots from the PUB to `QuantumProgram(shots=...)`.  In Executor, `shots` applies to the whole job. Submit multiple jobs if you need different shot counts.
 
-Sampler
-
+**Sampler:**
 ```python
 # Run — shots are passed to run()
 sampler = Sampler(mode=backend)
@@ -286,8 +283,7 @@ job = sampler.run([(isa_circuit,)], shots=25)
 result = job.result()
 ```
 
-Executor
-
+**Executor:**
 ```python
 # Build a QuantumProgram — shots are on the program
 program = QuantumProgram(shots=25)
@@ -324,14 +320,9 @@ settings that don't change the structure of the returned data. It has three top-
 - `execution` ([`ExecutionOptions`](/docs/api/qiskit-ibm-runtime/options-models-execution-options)): Contains fewer options than with Sampler.  For example, there  is no `meas_type` Executor option. 
 - [`experimental`](/docs/api/qiskit-ibm-runtime/options-models-executor-options#experimental)
 
-Notable options that exist in Sampler but not Executor include the following:
-- `twirling`
-`dynamical_decoupling`
-- resilience or error-mitigation option groups
+Notably, the `twirling` and `dynamical_decoupling` options exist in Sampler but not Executor. Instead, those option values are expressed through the directed execution model.
 
-Instead, the above option values are expressed through the directed execution model. 
-
-Example:
+**Example:**
 
 ```python
 from qiskit_ibm_runtime import Executor, ExecutorOptions
@@ -348,10 +339,23 @@ options.execution.init_qubits = True
 executor = Executor(mode=backend, options=options)
 ```
 
-<span id="noiselearnerv3"></span>
-## Step 6. Use `NoiseLearnerV3` to replace built-in noise learning
+<span id="run-job"></span>
+## Step 6. Update the `run` command
 
-Because Executor does not have built-in noise noise learning, you must request noise learning manually by using the [`NoiseLearnerV3`](/docs/api/qiskit-ibm-runtime/noise-learner-v3) class, as described in the [Noise learning helper guide](/docs/guides/noise-learning#NoiseLearnerV3).
+The input to an Executor job is the program, instead of PUBs.
+
+**Sampler:**
+```python
+# Submit a job
+sampler.run([(isa_circuit, parameter_values)])
+```
+
+**Executor:**
+```python
+# Submit a job
+executor.run(program)
+```
+
 
 <span id="results"></span>
 ## Step 7. Change how you access results
@@ -484,4 +488,5 @@ meas = result[0]["meas"]
 - [Sampler quickstart](/docs/guides/get-started-with-sampler)
 - [Sampler inputs and outputs](/docs/guides/sampler-input-output)
 - [Samplomatic documentation](https://qiskit.github.io/samplomatic)
+- [Noise learning helper guide](/docs/guides/noise-learning#NoiseLearnerV3)
 </Admonition>
