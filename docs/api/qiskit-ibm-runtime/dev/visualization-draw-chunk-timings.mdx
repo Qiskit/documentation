@@ -11,19 +11,19 @@ python_api_name: qiskit_ibm_runtime.visualization.draw_chunk_timings
 # qiskit\_ibm\_runtime.visualization.draw\_chunk\_timings
 
 <Function id="qiskit_ibm_runtime.visualization.draw_chunk_timings" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/visualization/draw_chunk_timings.py#L82-L194" signature="draw_chunk_timings(*timings, names=None, common_start=False, normalize_y=False, line_width=4, show_legend=None, tz=None)">
-  Draw one or more `ChunkTiming` on a bar plot.
+  Draw one or more [`ChunkTiming`](results-chunk-timing "qiskit_ibm_runtime.results.ChunkTiming") on a bar plot.
 
   Each chunk corresponds to a single execution window on the backend. The y-axis represents cumulative work completed across chunks — in units of elements executed, or as a percentage if `normalize_y=True`.
 
-  When comparing multiple `ChunkTiming` (e.g. from different jobs), use `common_start=True` to align traces at $t=0$ for direct comparison.
+  When comparing multiple [`ChunkTiming`](results-chunk-timing "qiskit_ibm_runtime.results.ChunkTiming") (e.g. from different jobs), use `common_start=True` to align traces at $t=0$ for direct comparison.
 
   <Admonition title="Note" type="note">
-    For a simpler single-trace interface for data from an executor job, call `draw()` directly on `job.result().timings`.
+    For a simpler single-trace interface for data from an executor job, call [`draw()`](results-chunk-timing#draw "qiskit_ibm_runtime.results.ChunkTiming.draw") directly on `job.result().timings`.
   </Admonition>
 
   **Parameters**
 
-  *   **timings** (*ChunkTiming*) – One or more `ChunkTiming` collections.
+  *   **timings** ([*ChunkTiming*](results-chunk-timing "qiskit_ibm_runtime.results.ChunkTiming")) – One or more [`ChunkTiming`](results-chunk-timing "qiskit_ibm_runtime.results.ChunkTiming") collections.
   *   **names** (*str | Iterable\[str] | None*) – Name or names to assign to the respective `timings`. When provided, a legend is shown by default.
   *   **common\_start** (*bool*) – Whether to shift each collection’s chunks so that its first chunk starts at $t=0$. Useful for comparing timings from different jobs side by side.
   *   **normalize\_y** (*bool*) – Whether to display the y-axis units as a percentage of work complete, rather than cumulative elements completed.
