@@ -14,9 +14,37 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 2.5.1
+
+<span id="relnotes-2-5-1-prelude" />
+
+### Prelude
+
+Qiskit v2.5.1 is a new bugfix release of the Qiskit SDK.
+
+<span id="relnotes-2-5-1-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed an issue where the layer-returning methods [`DAGCircuit.layers()`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#layers "qiskit.dagcircuit.DAGCircuit.layers") and [`DAGCircuit.serial_layers()`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#serial_layers "qiskit.dagcircuit.DAGCircuit.serial_layers") copied the parent DAG `global_phase` into each yielded layer DAG. Fixes [#16271](https://github.com/Qiskit/qiskit/issues/16271).
+
+*   Fixed a miscompilation in [`CommutativeCancellation`](/docs/api/qiskit/qiskit.transpiler.passes.CommutativeCancellation "qiskit.transpiler.passes.CommutativeCancellation") when a run of single-qubit $X$ rotations coalesced to a negative angle and $\sqrt X$ was available as a target gate. See [#16594](https://github.com/Qiskit/qiskit/issues/16594).
+
+*   Fixed a potential deadlock in the [`Optimize1qGatesDecomposition`](/docs/api/qiskit/qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition") transpiler pass when run with custom defined single qubit gates in a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`Target`](/docs/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target"). Fixed [#16591](https://github.com/Qiskit/qiskit/issues/16591).
+
+*   The error message from [`SabreLayout`](/docs/api/qiskit/qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") when setting incompatible arguments now correctly states the limitations. See [#16632](https://github.com/Qiskit/qiskit/issues/16632).
+
+*   Fixed synthesis of [`PhaseOracle`](/docs/api/qiskit/qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle"), [`PhaseOracleGate`](/docs/api/qiskit/qiskit.circuit.library.PhaseOracleGate "qiskit.circuit.library.PhaseOracleGate"), and [`BitFlipOracleGate`](/docs/api/qiskit/qiskit.circuit.library.BitFlipOracleGate "qiskit.circuit.library.BitFlipOracleGate") for boolean expressions that are true for every assignment, such as `x | ~x`. Fixed [#16524](https://github.com/Qiskit/qiskit/issues/16524).
+
+<span id="relnotes-2-5-0" />
+
+<span id="id2" />
+
 ## 2.5.0
 
 <span id="relnotes-2-5-0-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
@@ -136,7 +164,7 @@ Qiskit v2.5.0 is a new feature release of the Qiskit SDK. The highlights of this
 
 *   The [`LitinskiTransformation`](/docs/api/qiskit/qiskit.transpiler.passes.LitinskiTransformation "qiskit.transpiler.passes.LitinskiTransformation") now also supports circuits with [`PhaseGate`](/docs/api/qiskit/qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate") and [`U1Gate`](/docs/api/qiskit/qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate") instructions. Previously, the only accepted parameterized gate was [`RZGate`](/docs/api/qiskit/qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
 
-*   Enabled multi-IR compiler workflows using the new [`MultiStagePassManager`](/docs/api/qiskit/qiskit.passmanager.MultiStagePassManager "qiskit.passmanager.MultiStagePassManager"). This pass manager provides a staged execution flow, where each stage can either preserve the IR or lower into another IR. Stages can be generically defined via the `Task` interface (and the base class [`GenericPass`](/docs/api/qiskit/qiskit.passmanager.GenericPass "qiskit.passmanager.GenericPass")), which can be used to lower the IR, or via [`BasePassManager`](/docs/api/qiskit/qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") objects, which makes them compatible with existing pipelines such as provided by [`generate_preset_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager").
+*   Enabled multi-IR compiler workflows using the new [`MultiStagePassManager`](/docs/api/qiskit/qiskit.passmanager.MultiStagePassManager "qiskit.passmanager.MultiStagePassManager"). This pass manager provides a staged execution flow, where each stage can either preserve the IR or lower into another IR. Stages can be generically defined via the [`Task`](/docs/api/qiskit/qiskit.passmanager.Task "qiskit.passmanager.Task") interface (and the base class [`GenericPass`](/docs/api/qiskit/qiskit.passmanager.GenericPass "qiskit.passmanager.GenericPass")), which can be used to lower the IR, or via [`BasePassManager`](/docs/api/qiskit/qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") objects, which makes them compatible with existing pipelines such as provided by [`generate_preset_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager").
 
 *   The functions [`generate_preset_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") and [`transpile()`](/docs/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") now forward the `approximation_degree` argument to the [`CommutativeOptimization`](/docs/api/qiskit/qiskit.transpiler.passes.CommutativeOptimization "qiskit.transpiler.passes.CommutativeOptimization") and [`SubstitutePi4Rotations`](/docs/api/qiskit/qiskit.transpiler.passes.SubstitutePi4Rotations "qiskit.transpiler.passes.SubstitutePi4Rotations") transpiler passes. As these two passes do not support `approximation_degree=None`, the value defaults to `1.0` when `None` is specified.
 
@@ -249,6 +277,8 @@ Qiskit v2.5.0 is a new feature release of the Qiskit SDK. The highlights of this
     Previously, the parsers could recurse arbitrarily in Rust space, eventually exceeding the maximum stack space and segfaulting the process.
 
 <span id="relnotes-2-5-0-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
