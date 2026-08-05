@@ -378,7 +378,7 @@ Update the instance to grant access to Catalog Functions and Custom Functions.
 
 <Admonition type="note" title="Important notes">
 - The `name`, `provider`, and `business_model` values in functions must exactly match entries configured at the account level (see the [previous step](#step-3)). Permissions must be a non-empty subset of the account's permissions for that function. Similarly, `custom_functions.permissions` must be a non-empty subset of the account's `custom_functions` permissions.
-- Include a timestamp in parameters on every PATCH. The Resource Controller deduplicates PATCH requests by comparing incoming parameters to the last value it stored. Tf they match, the request is silently dropped with `200 OK` without reaching the service. Include a changing timestamp value to prevent this.
+- Include a timestamp in parameters on every PATCH. The Resource Controller deduplicates PATCH requests by comparing incoming parameters to the last value it stored. If they match, the request is silently dropped with `200 OK` without reaching the service. Include a changing timestamp value to prevent this.
 </Admonition>
 
 <Tabs>
