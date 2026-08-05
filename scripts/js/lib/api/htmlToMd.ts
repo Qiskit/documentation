@@ -150,62 +150,9 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
     attribute(h, node: any): any {
       return buildApiComponent(h, node);
     },
-    attributetypehint(h, node: any): any {
-      return {
-        type: "mdxJsxTextElement",
-        name: "AttributeTypeHint",
-        attributes: [],
-        children: escapeTextNodesForMdx(stripTypeHintLinks(all(h, node))),
-      };
-    },
   };
 
   return handlers;
-}
-
-// MDX's JSX layer treats unescaped `<` and `>` as tag delimiters, and `&` as
-// an entity reference, even inside element text content. remark-stringify tries
-// to escape them as `\<`/`\>` but MDX doesn't recognize backslash escaping for
-// these characters, so the round-trip through updateLinks fails. Wrap text
-// nodes that contain these characters in an MDX expression container
-// ({"..."}) which is valid in any phrasing context.
-function escapeTextNodesForMdx(nodes: any[]): any[] {
-  return nodes.map((node) => {
-    if (node.type === "text" && /[<>&]/.test(node.value)) {
-      return {
-        type: "mdxTextExpression",
-        value: JSON.stringify(node.value),
-      };
-    }
-    if (Array.isArray(node.children)) {
-      return { ...node, children: escapeTextNodesForMdx(node.children) };
-    }
-    return node;
-  });
-}
-
-// Links to these URL prefixes are stripped from AttributeTypeHint children —
-// their link text is preserved but the href is dropped.
-const STRIPPED_TYPE_HINT_LINK_PREFIXES = [
-  "https://docs.python.org",
-];
-
-function stripTypeHintLinks(nodes: any[]): any[] {
-  return nodes.flatMap((node) => {
-    if (
-      node.type === "link" &&
-      typeof node.url === "string" &&
-      STRIPPED_TYPE_HINT_LINK_PREFIXES.some((prefix) =>
-        node.url.startsWith(prefix),
-      )
-    ) {
-      return stripTypeHintLinks(node.children ?? []);
-    }
-    if (Array.isArray(node.children)) {
-      return [{ ...node, children: stripTypeHintLinks(node.children) }];
-    }
-    return [node];
-  });
 }
 
 export function removeVersionLinkTitle(node: Link) {

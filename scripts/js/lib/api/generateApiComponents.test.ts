@@ -140,11 +140,85 @@ test.describe("createOpeningTag()", () => {
   });
 });
 
-test.describe("rawTypeHintHtml in heading", () => {
-  // Returns the full HTML of the Cheerio document after createMdxComponent runs,
-  // so we can inspect what was inserted before the <dl>.
+test.describe("type and default in Attribute body", () => {
+  // Returns the MDX component string produced by createMdxComponent.
   async function parseAttributeHtml(dt: string): Promise<string> {
     const $ = load(`<div><dl class="py attribute">${dt}<dd></dd></dl></div>`);
+    const $dl = $("dl").first();
+    const $dt = $dl.find("dt").first();
+    const mdx = await createMdxComponent(
+      $,
+      [$dt],
+      $dl,
+      [],
+      undefined,
+      "attribute",
+      $dt.attr("id") ?? "",
+      { isCApi: false },
+    );
+    return mdx;
+  }
+
+  test("type hint with link appears in Attribute body", async () => {
+    const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
+      <em class="property"><span class="pre">options</span><span class="p">:</span>
+      <a href="qiskit_ibm_runtime.options_models.ExecutorOptions#qiskit_ibm_runtime.options_models.ExecutorOptions">
+        <span class="pre">ExecutorOptions</span>
+      </a>
+      </em>
+      </dt>`;
+    const html = await parseAttributeHtml(dt);
+    expect(html).toContain(
+      `href="qiskit_ibm_runtime.options_models.ExecutorOptions`,
+    );
+    expect(html).toContain(`Type:`);
+    expect(html).not.toContain(`attributeTypeHintHref`);
+  });
+
+  test("type and default value appear in Attribute body", async () => {
+    const dt = `<dt id="qiskit.transpiler.TranspileLayout.final_layout">
+      <em class="property"><span class="pre">final_layout</span><span class="p">:</span>
+      <a href="qiskit.transpiler.Layout#qiskit.transpiler.Layout">
+        <span class="pre">Layout</span>
+      </a>
+      <span class="pre">|</span>
+      <span class="pre">None</span>
+      </em>
+      <em class="property">
+      <span class="p">=</span>
+      <span class="pre">None</span>
+      </em>
+      </dt>`;
+    const html = await parseAttributeHtml(dt);
+    expect(html).toContain(`href="qiskit.transpiler.Layout`);
+    expect(html).toContain(`Type:`);
+    expect(html).toContain(`Default value:`);
+    expect(html).not.toContain(`attributeTypeHintHref`);
+    expect(html).not.toContain(`attributeValue`);
+  });
+
+  test("attribute with no link still renders type in body", async () => {
+    const dt = `<dt id="qiskit_ibm_runtime.Executor.count">
+      <em class="property"><span class="pre">count</span><span class="p">:</span>
+      <span class="pre">int</span>
+      </em>
+      </dt>`;
+    const html = await parseAttributeHtml(dt);
+    expect(html).toContain(`int`);
+    expect(html).toContain(`Type:`);
+    expect(html).not.toContain(`attributeTypeHint='int'`);
+  });
+
+  test("heading is inserted before the Attribute tag", async () => {
+    const dt = `<dt id="qiskit.transpiler.TranspileLayout.final_layout">
+      <span class="sig-name descname"><span class="pre">final_layout</span></span>
+      <span class="property"><span class="p">:</span>
+        <a href="qiskit.transpiler.Layout.html#qiskit.transpiler.Layout"><span class="pre">Layout</span></a>
+      </span>
+      </dt>`;
+    const $ = load(
+      `<div><dl class="py attribute">${dt}<dd></dd></dl></div>`,
+    );
     const $dl = $("dl").first();
     const $dt = $dl.find("dt").first();
     await createMdxComponent(
@@ -157,67 +231,7 @@ test.describe("rawTypeHintHtml in heading", () => {
       $dt.attr("id") ?? "",
       { isCApi: false },
     );
-    return $("div").html() ?? "";
-  }
-
-  test("type hint with link appears in heading before the Attribute tag", async () => {
-    const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
-      <em class="property"><span class="pre">options</span><span class="p">:</span>
-      <a href="qiskit_ibm_runtime.options_models.ExecutorOptions#qiskit_ibm_runtime.options_models.ExecutorOptions">
-        <span class="pre">ExecutorOptions</span>
-      </a>
-      </em>
-      </dt>`;
-    const html = await parseAttributeHtml(dt);
-    // Link is preserved inside the heading's attributetypehint
-    expect(html).toContain(
-      `href="qiskit_ibm_runtime.options_models.ExecutorOptions`,
-    );
-    expect(html).toContain(`<attributetypehint>`);
-    // Not a prop on the Attribute component
-    expect(html).not.toContain(`attributeTypeHintHref`);
-  });
-
-  test("type hint with default value appears in heading", async () => {
-    const dt = `<dt id="qiskit.transpiler.TranspileLayout.final_layout">
-      <em class="property"><span class="pre">final_layout</span><span class="p">:</span>
-      <a href="qiskit.transpiler.Layout#qiskit.transpiler.Layout">
-        <span class="pre">Layout</span>
-      </a>
-      <span class="pre">|</span>
-      <span class="pre">None</span>
-      <span class="p">=</span>
-      <span class="pre">None</span>
-      </em>
-      </dt>`;
-    const html = await parseAttributeHtml(dt);
-    expect(html).toContain(`href="qiskit.transpiler.Layout`);
-    expect(html).toContain(`<attributetypehint>`);
-    expect(html).not.toContain(`attributeTypeHintHref`);
-    expect(html).not.toContain(`attributeValue`);
-  });
-
-  test("attribute with no link still renders type hint in heading", async () => {
-    const dt = `<dt id="qiskit_ibm_runtime.Executor.count">
-      <em class="property"><span class="pre">count</span><span class="p">:</span>
-      <span class="pre">int</span>
-      </em>
-      </dt>`;
-    const html = await parseAttributeHtml(dt);
-    expect(html).toContain(`int`);
-    expect(html).toContain(`<attributetypehint>`);
-    expect(html).not.toContain(`attributeTypeHint='int'`);
-  });
-
-  test("heading is inserted before the Attribute tag", async () => {
-    const dt = `<dt id="qiskit.transpiler.TranspileLayout.final_layout">
-      <span class="sig-name descname"><span class="pre">final_layout</span></span>
-      <span class="property"><span class="p">:</span>
-        <a href="qiskit.transpiler.Layout.html#qiskit.transpiler.Layout"><span class="pre">Layout</span></a>
-      </span>
-      </dt>`;
-    const html = await parseAttributeHtml(dt);
-    // heading inserted before the original <dl> by prepareAttributeOrPropertyProps
+    const html = $("div").html() ?? "";
     const headingPos = html.indexOf(`data-header-type="attribute-header"`);
     const dlPos = html.indexOf(`<dl `);
     expect(headingPos).toBeGreaterThanOrEqual(0);

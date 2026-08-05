@@ -25,7 +25,8 @@ import {
 
 export type ComponentProps = {
   id?: string;
-  rawTypeHintHtml?: string; // type hint HTML injected into the heading before the Attribute tag
+  rawTypeHtml?: string;
+  rawDefaultHtml?: string;
   githubSourceLink?: string;
   rawSignature?: string;
   modifiers?: string;
@@ -74,7 +75,15 @@ export async function createMdxComponent(
   addExtraSignatures(componentProps, extraProps);
 
   const minHeadingLevel = componentProps.isDedicatedPage ? 2 : headerLevel + 1;
-  const $componentBody = $(`<div>${bodyElements.join("\n")}</div>`);
+  const typePrefix = componentProps.rawTypeHtml
+    ? `<p>Type: ${componentProps.rawTypeHtml}</p>`
+    : "";
+  const defaultPrefix = componentProps.rawDefaultHtml
+    ? `<p>Default value: ${componentProps.rawDefaultHtml}</p>`
+    : "";
+  const $componentBody = $(
+    `<div>${typePrefix}${defaultPrefix}${bodyElements.join("\n")}</div>`,
+  );
   setMinimumHeadingLevel($, $componentBody, minHeadingLevel);
 
   return [
@@ -293,49 +302,70 @@ function prepareAttributeOrPropertyProps(
   // The attributes have the following shape: name [: type] [= value]
   const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
 
-  const $typeSpan = $child.find("em.property, span.property").first();
-  let rawTypeHintHtml: string | undefined;
-  if ($typeSpan.length) {
-    const $clone = $typeSpan.clone();
-    // Remove the name span (first span.pre whose text matches `name`)
-    $clone
-      .find("span.pre")
-      .filter((_, el) => $(el).text().trim() === name)
-      .first()
-      .remove();
-    const inner = $clone.html()?.trim();
-    if (inner) {
-      rawTypeHintHtml = inner;
+  let rawTypeHtml: string | undefined;
+  let rawDefaultHtml: string | undefined;
+
+  $child.find("em.property, span.property").each((_, el) => {
+    const $span = $(el);
+    const text = $span.text().trim();
+    // Determine span role by its leading punctuation character (`:`→type, `=`→default).
+    // We look for the first `:` or `=` in the span's direct punctuation nodes rather
+    // than anywhere in the text, to avoid being confused by `:` inside a value like
+    // `re.compile('...|:|...')`.
+    const firstPunctChar = $span
+      .find("span.p, span.w")
+      .toArray()
+      .map((el) => $(el).text().trim())
+      .find((t) => t === ":" || t === "=");
+    const isTypeSpan = firstPunctChar === ":";
+    const isDefaultSpan = firstPunctChar === "=" && !text.startsWith(":");
+
+    if (isTypeSpan && !rawTypeHtml) {
+      const $clone = $span.clone();
+      $clone
+        .find("span.pre")
+        .filter((_, el) => $(el).text().trim() === name)
+        .first()
+        .remove();
+      $clone
+        .find("span.p, span.w")
+        .filter((_, el) => $(el).text().trim() === ":")
+        .first()
+        .remove();
+      const inner = $clone.html()?.trim();
+      if (inner) rawTypeHtml = inner;
+    } else if (isDefaultSpan && !rawDefaultHtml) {
+      const $clone = $span.clone();
+      $clone
+        .find("span.p, span.w")
+        .filter((_, el) => $(el).text().trim() === "=")
+        .first()
+        .remove();
+      const inner = $clone.html()?.trim();
+      if (inner) rawDefaultHtml = inner;
     }
-  }
+  });
 
   const props: ComponentProps = {
     id,
-    rawTypeHintHtml,
+    rawTypeHtml,
+    rawDefaultHtml,
     githubSourceLink,
     modifiers: filteredModifiers,
   };
 
   const pageHeading = $dl.siblings("h1").text();
   if (pageHeading && id.endsWith(pageHeading)) {
-    const $h1 = $dl.siblings("h1").first();
-    $h1.text(getLastPartFromFullIdentifier(id));
-    if (rawTypeHintHtml) {
-      $h1.append(`<attributetypehint>${rawTypeHintHtml}</attributetypehint>`);
-    }
+    $dl.siblings("h1").first().text(getLastPartFromFullIdentifier(id));
     return {
       ...props,
       isDedicatedPage: true,
     };
   }
 
-  // Insert the heading (with inline type hint) before the <dl>
-  const typeHintSuffix = rawTypeHintHtml
-    ? ` <attributetypehint>${rawTypeHintHtml}</attributetypehint>`
-    : "";
   const htag = `h${headerLevel}`;
   $(
-    `<${htag} data-header-type="attribute-header">${name}${typeHintSuffix}</${htag}>`,
+    `<${htag} data-header-type="attribute-header">${name}</${htag}>`,
   ).insertBefore($dl);
 
   return props;

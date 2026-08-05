@@ -759,9 +759,11 @@ test("convert class property headings", async () => {
   ).toEqual({
     images: [],
     isReleaseNotes: false,
-    markdown: `# circuits<AttributeTypeHint>: tuple\\[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]</AttributeTypeHint>
+    markdown: `# circuits
 
 <Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true}>
+  Type: tuple\\[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]
+
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {
@@ -808,9 +810,11 @@ test("convert abstract class property headings", async () => {
   ).toEqual({
     images: [],
     isReleaseNotes: false,
-    markdown: `# circuits<AttributeTypeHint>: tuple\\[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]</AttributeTypeHint>
+    markdown: `# circuits
 
 <Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true} modifiers="abstract property">
+  Type: tuple\\[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]
+
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {
@@ -864,9 +868,13 @@ test("convert class attributes headings", async () => {
   ).toEqual({
     images: [],
     isReleaseNotes: false,
-    markdown: `# callback<AttributeTypeHint>: Optional\\[Callable]</AttributeTypeHint>
+    markdown: `# callback
 
-<Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" isDedicatedPage={true} />\n`,
+<Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" isDedicatedPage={true}>
+  Type: Optional\\[Callable]
+
+  Default value: None
+</Attribute>\n`,
     meta: {
       apiName: "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
       apiType: "attribute",
@@ -876,8 +884,8 @@ test("convert class attributes headings", async () => {
 
 test("attribute with < and & in default value produces valid MDX", async () => {
   // StagedPassManager.invalid_stage_regex has &lt; / &gt; / &amp; in the value.
-  // Text nodes with these chars must be wrapped in {"..."} JSX expression containers
-  // so they are valid MDX — bare \< in MDX text content breaks the MDX parser.
+  // The default value is emitted as a plain "Default value: ..." paragraph; special
+  // chars are escaped by remark-stringify (e.g. < → \<).
   const result = await toMd(
     `<div role='main'>
 <h1>invalid_stage_regex<a class='headerlink' href='#invalid-stage-regex' title='Permalink to this heading'>¶</a></h1>
@@ -888,12 +896,8 @@ test("attribute with < and & in default value produces valid MDX", async () => {
 </div>
 `,
   );
-  // The value containing < > & must be inside a JSX expression container {"..."},
-  // not as bare text that would produce invalid \< in MDX
-  expect(result).toContain('{"re.compile(');
-  // Ensure bare \< does not appear outside of a JSX expression (which would break MDX)
-  // The pattern \< followed by a letter is the invalid form; inside {"..."} it's fine
-  expect(result).not.toMatch(/(?<!{["'])\\<[A-Za-z_]/);
+  expect(result).toContain("Default value:");
+  expect(result).toContain("re.compile(");
 });
 
 test("convert functions headings", async () => {
@@ -1170,7 +1174,7 @@ test("generate correct heading level", async () => {
   </Function>
 </Class>
 
-### attribute1<AttributeTypeHint />
+### attribute1
 
 <Attribute id="qiskit.test.attribute1">
   Attribute 1
