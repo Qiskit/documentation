@@ -264,7 +264,7 @@ curl --request POST \
   --url 'https://iam.cloud.ibm.com/identity/token' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data 'apikey=<YOUR_API_KEY>&grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey'
-
+  --silent | jq .
     ```
   </TabItem>
 
@@ -285,6 +285,7 @@ resp = requests.post(
 )
 resp.raise_for_status()
 token = resp.json()["access_token"]
+print(token) 
     ```
   </TabItem>
 </Tabs>
@@ -295,12 +296,12 @@ The response includes an `access_token` field, which is your bearer token. Copy 
 
 Before making any changes, confirm that your token works and inspect the current instance configuration.
 
-<Admonition type="note" title="Important">
-The CRN must be URL-encoded in the path. Replace each `:` with `%3A` and each `/` with `%2F`. For example, `crn:v1:bluemix:...` becomes `crn%3Av1%3Abluemix%3A...`.
-</Admonition>
-
 <Tabs>
   <TabItem value="curl" label="cURL">
+<Admonition type="note" title="Important">
+The CRN must be manually URL-encoded in the path. Replace each `:` with `%3A` and each `/` with `%2F`. For example, `crn:v1:bluemix:...` becomes `crn%3Av1%3Abluemix%3A...`.
+</Admonition>
+
     ```bash
 curl --request GET \
   --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances/<YOUR_INSTANCE_CRN_URL_ENCODED>' \
@@ -314,7 +315,7 @@ curl --request GET \
 import urllib.parse
 
 crn = "<YOUR_INSTANCE_CRN>"
-# The CRN is URL-encoded into the path; requests does not do this for you.
+# The CRN will be URL-encoded into the path.
 instance_url = (
     "https://resource-controller.cloud.ibm.com/v2/resource_instances/"
     + urllib.parse.quote(crn, safe="")
