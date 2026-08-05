@@ -18,12 +18,12 @@ Functions for truncating Pauli operators within given error budgets.
 
 ### TruncationErrorBudget
 
-<Class id="qiskit_addon_obp.utils.truncating.TruncationErrorBudget" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.3/qiskit_addon_obp/utils/truncating.py#L25-L58" signature="TruncationErrorBudget(per_slice_budget=<factory>, max_error_total=0.0, p_norm=1, tol=1e-08)" modifiers="class">
+<Class id="qiskit_addon_obp.utils.truncating.TruncationErrorBudget" github="https://github.com/Qiskit/qiskit-addon-obp/tree/main/qiskit_addon_obp/utils/truncating.py#L25-L58" signature="TruncationErrorBudget(per_slice_budget=<factory>, max_error_total=0.0, p_norm=1, tol=1e-08)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A class for storing the constants that determine the truncation error budget.
 
-  Refer to the [how-to guide](https://qiskit.github.io/qiskit-addon-obp/how_tos/truncate_operator_terms.html) for a detailed discussion on truncating operator terms during backpropagation and bounding the incurred error.
+  Refer to the [how-to guide](/docs/addons/qiskit-addon-obp/guides/truncate-operator-terms) for a detailed discussion on truncating operator terms during backpropagation and bounding the incurred error.
 
   **Parameters**
 
@@ -34,7 +34,7 @@ Functions for truncating Pauli operators within given error budgets.
 
   #### is\_active
 
-  <Function id="qiskit_addon_obp.utils.truncating.TruncationErrorBudget.is_active" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.3/qiskit_addon_obp/utils/truncating.py#L56-L58" signature="is_active()">
+  <Function id="qiskit_addon_obp.utils.truncating.TruncationErrorBudget.is_active" github="https://github.com/Qiskit/qiskit-addon-obp/tree/main/qiskit_addon_obp/utils/truncating.py#L56-L58" signature="is_active()">
     Return whether the truncation is active, i.e. whether the budget is non-zero.
 
     **Return type**
@@ -53,7 +53,7 @@ Functions for truncating Pauli operators within given error budgets.
   <Attribute id="qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm" attributeTypeHint="int" attributeValue="1">
     Indicates which Lp-norm is used for calculating truncation errors.
 
-    Refer to the [how-to guide](https://qiskit.github.io/qiskit-addon-obp/how_tos/bound_error_using_p_norm.html) for a detailed conversation on bounding truncation error using higher Lp-norms.
+    Refer to the [how-to guide](/docs/addons/qiskit-addon-obp/guides/bound-error-using-p-norm) for a detailed conversation on bounding truncation error using higher Lp-norms.
   </Attribute>
 
   #### per\_slice\_budget
@@ -71,10 +71,10 @@ Functions for truncating Pauli operators within given error budgets.
 
 ### setup\_budget
 
-<Function id="qiskit_addon_obp.utils.truncating.setup_budget" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.3/qiskit_addon_obp/utils/truncating.py#L61-L141" signature="setup_budget(*, max_error_per_slice=None, max_error_total=None, num_slices=None, p_norm=1)">
+<Function id="qiskit_addon_obp.utils.truncating.setup_budget" github="https://github.com/Qiskit/qiskit-addon-obp/tree/main/qiskit_addon_obp/utils/truncating.py#L61-L141" signature="setup_budget(*, max_error_per_slice=None, max_error_total=None, num_slices=None, p_norm=1)">
   Calculate the budget available to each slice for observable term truncation.
 
-  This method makes the construction of a [`TruncationErrorBudget`](#qiskit_addon_obp.utils.truncating.TruncationErrorBudget "qiskit_addon_obp.utils.truncating.TruncationErrorBudget") easier for an end-user. This error budget can be provided to the [`backpropagate()`](qiskit-addon-obp#backpropagate "qiskit_addon_obp.backpropagate") method to enable the truncation of low-weight Pauli terms. Refer to the [how-to guide](https://qiskit.github.io/qiskit-addon-obp/how_tos/truncate_operator_terms.html) for a detailed discussion on truncating terms from the output operator and bounding the incurred error.
+  This method makes the construction of a [`TruncationErrorBudget`](#qiskit_addon_obp.utils.truncating.TruncationErrorBudget "qiskit_addon_obp.utils.truncating.TruncationErrorBudget") easier for an end-user. This error budget can be provided to the [`backpropagate()`](qiskit-addon-obp#backpropagate "qiskit_addon_obp.backpropagate") method to enable the truncation of low-weight Pauli terms. Refer to the [how-to guide](/docs/addons/qiskit-addon-obp/guides/truncate-operator-terms) for a detailed discussion on truncating terms from the output operator and bounding the incurred error.
 
   **The construction logic is as follows:**
 
@@ -94,7 +94,7 @@ Functions for truncating Pauli operators within given error budgets.
   *   **max\_error\_per\_slice** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – Specifies the maximum error per backpropagated slice. See above for more details.
   *   **max\_error\_total** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – Specifies the total maximum error for the entire backpropagation. See above for more details.
   *   **num\_slices** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of slices over which to distribute the budget. See above for more details.
-  *   **p\_norm** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The Lp norm of the error. This affects the gradual distribution of `max_error_total` in the case of `num_slices` also being set (see above). Refer to the [how-to guide](https://qiskit.github.io/qiskit-addon-obp/how_tos/bound_error_using_p_norm.html) for a detailed conversation on bounding truncation error using higher Lp-norms.
+  *   **p\_norm** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The Lp norm of the error. This affects the gradual distribution of `max_error_total` in the case of `num_slices` also being set (see above). Refer to the [how-to guide](/docs/addons/qiskit-addon-obp/guides/bound-error-using-p-norm) for a detailed conversation on bounding truncation error using higher Lp-norms.
 
   **Returns**
 
@@ -111,7 +111,7 @@ Functions for truncating Pauli operators within given error budgets.
 
 ### truncate\_binary\_search
 
-<Function id="qiskit_addon_obp.utils.truncating.truncate_binary_search" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.3/qiskit_addon_obp/utils/truncating.py#L144-L204" signature="truncate_binary_search(observable, budget, *, p_norm=1, tol=1e-08)">
+<Function id="qiskit_addon_obp.utils.truncating.truncate_binary_search" github="https://github.com/Qiskit/qiskit-addon-obp/tree/main/qiskit_addon_obp/utils/truncating.py#L144-L204" signature="truncate_binary_search(observable, budget, *, p_norm=1, tol=1e-08)">
   Perform binary search to find an optimal observable truncation threshold.
 
   Removes the Pauli terms from a `SparsePauliOp` whose sum of their absolute coefficients values does not exceed the provided error `budget`.
@@ -119,7 +119,7 @@ Functions for truncating Pauli operators within given error budgets.
   **Parameters**
 
   *   **observable** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)) – the `SparsePauliOp` to truncate terms from.
-  *   **budget** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the maximum permissable truncation error.
+  *   **budget** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the maximum permissible truncation error.
   *   **p\_norm** ([*int*](https://docs.python.org/3/library/functions.html#int)) – an integer specifying what p-norm to use.
   *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – when the binary search thresholds differ by an amount smaller than `tol`, the threshold search will stop.
 
