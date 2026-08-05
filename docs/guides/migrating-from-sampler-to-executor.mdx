@@ -25,7 +25,7 @@ utility-scale experiments and needs fine-grained, reproducible control over
 techniques like Pauli twirling, noise-model learning and injection, and basis
 changes — or who needs one of the additional capabilities provided by Executor.
 
-**Continue using Sampler** if you want a simple, high-level interface and are want the primitive to manage error suppression and mitigation for you.
+**Continue using Sampler** if you want a simple, high-level interface and want the primitive to manage error suppression and mitigation for you.
 
 ### Limitations and caveats
 
@@ -51,7 +51,7 @@ Sampler and Executor both sample the output registers of quantum circuits, but t
 target different users:
 
 - **Sampler** is a high-level abstraction. It has the following characteristics: 
-  - It has built-in error suppression (dynamical decoupling and twirling)
+  - It has built-in error suppression (dynamical decoupling and twirling).
   - It makes implicit decisions for you.
   - It is designed so algorithm developers can focus on innovation rather than data.
   conversion.
@@ -65,7 +65,7 @@ target different users:
       per box, rather than being limited to the single strategy that Sampler applies for you. It also supports twirling groups other than Pauli, such as the `"local_c1"` twirling
       group. 
     - Kerneled and classified measurements together: Setting
-      `QuantumProgram.meas_level = "both"` (added in `qiskit-ibm-runtime` 0.48.0) requests
+      `QuantumProgram.meas_level = "both"` (added in `qiskit-ibm-runtime` v0.48.0) requests
       that both classified and kerneled measurements be present in the results, instead
       of picking a single measurement type per job.
     - Twirling for circuits with fractional gates: Executor can apply twirling to
@@ -77,8 +77,8 @@ target different users:
     - Future new capabilities are expected to be released to Executor
     first and might not be ported to Sampler. If you rely on access to the
     latest features, Executor is the more future-proof choice.
-    - Unlike Sampler (`SamplerV2`), the base Qiskit package does not yet provide
-a base class for the Executor primitive.
+    - The base Qiskit package does not yet provide
+a base class for the Executor primitive (it does for`SamplerV2`).
     </Admonition>
 
 ## Conceptual mapping
@@ -121,7 +121,7 @@ pip install qiskit qiskit-ibm-runtime samplomatic
 ```
 
 <Admonition type="note" title="Version notes">
-- `qiskit-ibm-runtime` 0.48.0 is recommended because it adds the `meas_level = "both"` option and the `local_c1` twirling group.
+- `qiskit-ibm-runtime` v0.48.0 is recommended because it adds the `meas_level = "both"` option and the `local_c1` twirling group.
 - `qiskit >= 2.3.0` is required.
 - `samplomatic >= 0.18.0` is required.
 </Admonition>
