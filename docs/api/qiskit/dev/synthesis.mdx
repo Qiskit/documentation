@@ -1282,6 +1282,159 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
   [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 </Function>
 
+### synth\_mcp\_noaux\_default
+
+<Function id="qiskit.synthesis.synth_mcp_noaux_default" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcp_synthesis.py#L237-L265" signature="qiskit.synthesis.synth_mcp_noaux_default(num_ctrl_qubits, phase)">
+  Choose the best synthesis code for [`MCPhaseGate`](/docs/api/qiskit/dev/qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate") according to the number of control qubits.
+
+  **Parameters**
+
+  *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of control qubits.
+  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The phase angle for the multi-controlled phase gate.
+
+  **Returns**
+
+  A QuantumCircuit implementing the multi-controlled phase gate.
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the number of control qubits is negative.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+</Function>
+
+### synth\_mcp\_noaux\_sp22
+
+<Function id="qiskit.synthesis.synth_mcp_noaux_sp22" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcp_synthesis.py#L165-L234" signature="qiskit.synthesis.synth_mcp_noaux_sp22(num_ctrl_qubits, phase)">
+  Synthesize a multi-controlled phase gate with $n$ controls based on the paper by da Silva et al. \[1] and the implementation in qclib \[2].
+
+  For $n \ge 2$, the method produces a circuit with $4n^2-4n+2$ CX gates and requires $O(n)$ depth. For $n \le 4$, it is more efficient to use [`synth_mcp_noaux_v24()`](#qiskit.synthesis.synth_mcp_noaux_v24 "qiskit.synthesis.synth_mcp_noaux_v24"), which produces a circuit with less CX gates.
+
+  The circuit breaks down into four steps, each applying a specific pattern of controlled gates.
+
+  *   Step 1: Apply $n$ controlled phase gates and $n(n-1)/2$ controlled RX gates.
+
+  *   Step 2: Apply $n-1$ controlled phase gates and $(n-1)(n-2)/2$ controlled RX gates.
+
+      This is the initial phase. It applies angle rotations (e.g., $R_X(\pi/k)$) and the $k$-th roots of the target unitary ($U^{1/k}$) in a cascading V-shape pattern. This step systematically accumulates the partitioned components of the unitary operation on the target qubit based on the control states.
+
+  *   Step 3: Apply $n(n-1)/2$ controlled RX gates.
+
+  *   Step 4: Apply $(n-1)(n-2)/2$ controlled RX gates.
+
+      Steps 3 and 4 together constitute the uncomputation process. By applying only the inverse of the angle rotation operations in steps 1 and 2, these steps reverse the unwanted entanglement and phase shifts generated in the first two steps. This cancellation ensures that the target qubit undergoes the full unitary operation $U$ if and only if all control qubits are in the $|1\rangle$ state.
+
+  Each controlled RX gate and controlled phase gate requires two CX gates, resulting in a total of $4n^2-4n+2$ CX gates.
+
+  **Parameters**
+
+  *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of control qubits.
+  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The phase angle for the multi-controlled phase gate.
+
+  **Returns**
+
+  A QuantumCircuit implementing the multi-controlled phase gate.
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the number of control qubits is negative.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  **References**
+
+  \[1] A. J. da Silva and D. K. Park, Linear-depth quantum circuits for multiqubit controlled gates, [Phys. Rev. A 106, 042602](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.106.042602).
+
+  \[2] [https://github.com/qclib/qclib/blob/master/qclib/gates/ldmcu.py](https://github.com/qclib/qclib/blob/master/qclib/gates/ldmcu.py)
+</Function>
+
+### synth\_mcp\_noaux\_v24
+
+<Function id="qiskit.synthesis.synth_mcp_noaux_v24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcp_synthesis.py#L20-L122" signature="qiskit.synthesis.synth_mcp_noaux_v24(num_ctrl_qubits, phase)">
+  Synthesize a multi-controlled phase gate with no auxiliary qubits.
+
+  This method implements the synthesis of a multi-controlled phase gate using multi-controlled RZ gates.
+
+  The circuit depth is $O(n^2)$ and the total number of CX gates used is $8n^2-16n-60$ for $n \ge 7$ control qubits, which is worse than [`synth_mcp_noaux_sp22()`](#qiskit.synthesis.synth_mcp_noaux_sp22 "qiskit.synthesis.synth_mcp_noaux_sp22") for $n \ge 5$, but better for $n \le 4$.
+
+  The number of CX gates required can be derived as follows:
+
+  *   Each $m$-controlled RZ gate uses at most
+
+$$
+N(m) = 2 \cdot C_{mcx}\left(\lceil \frac{m}{2} \rceil\right)
++ 2 \cdot C_{mcx}\left(\lfloor \frac{m}{2} \rfloor\right)
+$$
+
+      CX gates for $m \ge 2$ and 2 for $m = 1$, where $C_{mcx}(k)$ is the number of CX gates required to synthesize a $k$-controlled X gate.
+
+  *   Synthesizing a $k$-controlled X gate requires
+
+$$
+C_{mcx}(k) = \begin{cases}
+1 & (k = 1) \\
+6 & (k = 2) \\
+14 & (k = 3) \\
+8k - 6 & (k \ge 4)
+\end{cases}
+$$
+
+      CX gates, which can be derived from the implementation of [`synth_mcx_n_dirty_i15()`](#qiskit.synthesis.synth_mcx_n_dirty_i15 "qiskit.synthesis.synth_mcx_n_dirty_i15").
+
+  *   Thus, for $1 \le m \le 7$,
+
+$$
+N(m) = \begin{cases}
+2 & (m = 1) \\
+4 & (m = 2) \\
+14 & (m = 3) \\
+24 & (m = 4) \\
+40 & (m = 5) \\
+56 & (m = 6) \\
+80 & (m = 7)
+\end{cases}
+$$
+
+      and for $m \ge 8$,
+
+$$
+N(m) = 2 \left( 8 \left\lceil \frac{m}{2} \right\rceil - 6 \right)
++ 2 \left( 8 \left\lfloor \frac{m}{2} \right\rfloor - 6 \right) = 16m-24
+$$
+
+  *   Multi-controlled phase gates can be synthesized by applying $m$-controlled RZ gates for $m = 1, 2, \ldots, n$, where $n$ is the number of control qubits \[1]. Therefore, the total number of CX gates used to synthesize a multi-controlled phase gate with $n \ge 7$ control qubits is
+
+$$
+\sum_{m=1}^{n} N(m) = 2 + 4 + 14 + 24 + 40 + 56 + 80 + \sum_{m=8}^{n} (16m-24)
+= 8n^2 - 16n - 60.
+$$
+
+  **Parameters**
+
+  *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of control qubits.
+  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The phase angle for the multi-controlled phase gate.
+
+  **Returns**
+
+  A QuantumCircuit implementing the multi-controlled phase gate.
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the number of control qubits is negative.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  **References**
+
+  \[1] Vale et. al., Circuit Decomposition of Multicontrolled Special Unitary Single-Qubit Gates, IEEE TCAD 43(3) (2024), [arXiv:2302.06377](https://arxiv.org/abs/2302.06377).
+</Function>
+
 ## Binary Arithmetic Synthesis
 
 ### Adders
