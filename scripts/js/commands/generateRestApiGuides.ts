@@ -44,10 +44,6 @@ function maybeAddPkgTitleRegisteredIcon(pkgTitle: string) {
   return pkgTitle.replace("IBM", "IBM&reg;");
 }
 
-function toSectionTitle(pkgTitle: string): string {
-  return pkgTitle.charAt(0).toUpperCase() + pkgTitle.slice(1);
-}
-
 async function writeObservabilityFile(
   pkgTitle: OpenapiPkgTitle,
   destPath: string,
@@ -71,7 +67,7 @@ async function writeAuthorizationFile(destPath: string) {
     const jsonstr = await response.text();
     const endpoints = extractEndpoints(jsonstr, "x-ibm-permissions", "actions");
     const table = generateTable(endpoints, "Permission", "Required by");
-    return `## ${toSectionTitle(pkgTitle)}\n\n${table}`;
+    return `## ${pkgTitle}\n\n${table}`;
   });
   const body = (await Promise.all(sections)).join("\n");
   const mdx = `${getAuthorizationProse()}\n${body}`;
