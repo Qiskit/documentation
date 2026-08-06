@@ -279,8 +279,7 @@ Move shots from the PUB to `QuantumProgram(shots=...)`.  In Executor, `shots` ap
 ```python
 # Run — shots are passed to run()
 sampler = Sampler(mode=backend)
-job = sampler.run([(isa_circuit,)], shots=25)
-result = job.result()
+job = sampler.run([(isa_circuit, None, 25)])
 ```
 
 **Executor:**
@@ -311,7 +310,7 @@ Examples:
 | Sampler      | Executor                    |
 |--------------|-----------------------------|
 | `shots`      | `QuantumProgram(shots=...)` |
-| `meas_level` | `QuantumProgram(meas_level=...)` |
+| `meas_type` | `QuantumProgram(meas_level=...)` |
 
 [`ExecutorOptions`](/docs/api/qiskit-ibm-runtime/options-models-executor-options) holds only lower-level execution and environment
 settings that don't change the structure of the returned data. It has three top-level groups:
