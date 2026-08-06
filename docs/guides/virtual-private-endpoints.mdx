@@ -6,13 +6,15 @@ description: How to use a virtual private endpoint to privately connect to IBM Q
 
 # Use virtual private endpoints for VPC to privately connect to IBM Quantum Platform
 
-Use Virtual Private Endpoints (VPE) for VPC to connect to IBM Quantum&reg; from your VPC network by using IP address that you specify, allocated from a subnet within your VPC.
+Use Virtual Private Endpoints (VPE) for [Virtual Private Cloud (VPC)](https://cloud.ibm.com/docs/vpc) to connect to IBM Quantum&reg; from your VPC network. The connection uses the IP address that you specify, allocated from a subnet within your VPC.
 
 VPEs are virtual IP interfaces that are bound to an endpoint gateway created on a per-service basis. The endpoint gateway is a virtualized function that scales horizontally, is redundant and highly available, and spans all availability zones of your VPC. Endpoint gateways enable communications from virtual server instances within your VPC and IBM Cloud&reg; service on the private backbone. VPE for VPC lets you control all private addressing within your cloud. For more information, see [About virtual private endpoint gateways](https://cloud.ibm.com/docs/vpc?topic=vpc-about-vpe).
 
-Within IBM Quantum Platform, all customer data is transmitted over the private network regardless of whether it is accessed through a public endpoint or VPE.
+Regardless of whether you use VPEs, all internal communication within IBM Quantum Platform's network always uses private connections rather than the public internet.
 
-Connecting to IBM Quantum Platform through the public endpoints transmits all request and response data over the public internet. To connect to IBM Quantum Platform by using a VPE, you must use the IBM Quantum Platform API or SDK. IBM Quantum Platform can only be accessed through the public network.
+Whether your connection to IBM Quantum Platform itself is public or private depends on whether you use a VPE. Connecting through the public endpoints transmits all request and response data over the public internet. Connecting through a VPE keeps that traffic on the private network instead.
+
+VPEs are supported only for the IBM Quantum Platform API and SDK, as described in the following sections. The IBM Quantum Platform website does not support VPEs and can only be accessed over the public network.
 
 ## Before you begin
 
