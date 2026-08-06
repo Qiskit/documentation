@@ -365,11 +365,6 @@ function buildApiComponent(h: H, node: any): any {
   maybeAddAttribute(hastTree, "name", node.properties.name);
   maybeAddExpressionAttribute(
     hastTree,
-    "headingLevel",
-    node.properties.headinglevel,
-  );
-  maybeAddExpressionAttribute(
-    hastTree,
     "isDedicatedPage",
     node.properties.isdedicatedpage,
   );

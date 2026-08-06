@@ -172,7 +172,6 @@ test.describe("type and default in Attribute body", () => {
       `href="qiskit_ibm_runtime.options_models.ExecutorOptions`,
     );
     expect(html).toContain(`Type:`);
-    expect(html).not.toContain(`attributeTypeHintHref`);
   });
 
   test("type and default value appear in Attribute body", async () => {
@@ -193,8 +192,6 @@ test.describe("type and default in Attribute body", () => {
     expect(html).toContain(`href="qiskit.transpiler.Layout`);
     expect(html).toContain(`Type:`);
     expect(html).toContain(`Default value:`);
-    expect(html).not.toContain(`attributeTypeHintHref`);
-    expect(html).not.toContain(`attributeValue`);
   });
 
   test("attribute with no link still renders type in body", async () => {
@@ -206,7 +203,6 @@ test.describe("type and default in Attribute body", () => {
     const html = await parseAttributeHtml(dt);
     expect(html).toContain(`int`);
     expect(html).toContain(`Type:`);
-    expect(html).not.toContain(`attributeTypeHint='int'`);
   });
 
   test("heading is inserted before the Attribute tag", async () => {

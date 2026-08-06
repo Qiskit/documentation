@@ -552,7 +552,7 @@ test.describe("processMembersAndSetMeta()", () => {
       isIbmQuantumSchemasPage: false,
     });
     doc.expectHtml(`      <h1>Circuit Converters</h1>
-<h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" attributetypehint="undefined" attributetypehinthref="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)¶" modifiers="" extrasignatures="[]">
+<h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)¶" modifiers="" extrasignatures="[]">
   
 <div><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
 <dl class="field-list simple">
@@ -604,7 +604,7 @@ backends may not have this attribute.</p>
       isIbmQuantumSchemasPage: false,
     });
     doc.expectHtml(`<h1>least_busy</h1>
-<div><function id="qiskit_ibm_provider.least_busy" attributetypehint="undefined" attributetypehinthref="undefined" attributevalue="undefined" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)¶" modifiers="" extrasignatures="[]">
+<div><function id="qiskit_ibm_provider.least_busy" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)¶" modifiers="" extrasignatures="[]">
   
 <div><p>Return the least busy backend from a list.</p>
 <p>Return the least busy available backend for those that
@@ -670,7 +670,7 @@ particular error, which subclasses both <a class="reference internal" href="#qis
     doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
 <h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
 <p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
-<h3 data-header-type="class-header">QiskitError</h3><div><class id="qiskit.exceptions.QiskitError" attributetypehint="undefined" attributetypehinthref="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/exceptions.html#QiskitError" signature="qiskit.exceptions.QiskitError(*message)¶" modifiers="exception" extrasignatures="[]">
+<h3 data-header-type="class-header">QiskitError</h3><div><class id="qiskit.exceptions.QiskitError" isdedicatedpage="undefined" github="../_modules/qiskit/exceptions.html#QiskitError" signature="qiskit.exceptions.QiskitError(*message)¶" modifiers="exception" extrasignatures="[]">
   
 <div><p>Base class for errors raised by Qiskit.</p>
 <p>Set the error message.</p>
@@ -718,7 +718,7 @@ marked as builtins since they are not actually present in any include file this 
       isIbmQuantumSchemasPage: false,
     });
     doc.expectHtml(`
-<h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" attributetypehint="" attributetypehinthref="undefined" attributevalue="" isdedicatedpage="undefined" github="undefined" signature="" modifiers="" extrasignatures="[]">
+<h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" isdedicatedpage="undefined" github="undefined" signature="" modifiers="" extrasignatures="[]">
   
 <div><p>A tuple containing the extra <cite>custom_instructions</cite> that Qiskit’s legacy built-in converters used
 if <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> is included, and there is any definition of a <code class="docutils literal notranslate"><span class="pre">delay</span></code> instruction.  The gates
@@ -761,7 +761,7 @@ marked as builtins since they are not actually present in any include file this 
       isRoot: false,
       isIbmQuantumSchemasPage: false,
     });
-    doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" attributetypehint=\"undefined\" attributetypehinthref=\"undefined\" attributevalue=\"undefined\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)¶\" modifiers=\"\" extrasignatures=\"[]\">
+    doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)¶\" modifiers=\"\" extrasignatures=\"[]\">
   
 <div><p>Construct the identity observable.</p>
 <section id=\"group__QkSparseObservable_1autotoc_md4\">
