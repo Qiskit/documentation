@@ -1,0 +1,62 @@
+---
+title: Qiskit SDK v2.3 changelog
+description: The latest updates from Qiskit SDK v2.3, including the latest package release summaries and platform updates.
+
+---
+
+{/* cspell:ignore GGUF Phasecraft */}
+
+<span id="latest-qiskit-sdk"></span>
+# Qiskit SDK v2.3 changelog
+
+## January 2026
+- Building on the momentum established across the v2.x series, which has centered on positioning Qiskit as the leading platform for hybrid quantum-HPC workflows, [Qiskit SDK v2.3](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) delivers a significant expansion of the C API alongside faster, more flexible tools for building and optimizing quantum circuits.
+
+  Major updates include:
+
+  - **Custom transpiler passes in C** - Write custom transpiler passes through Qiskit's C API using the new `QkDag` object and an expanded `QkTarget` object, which enable step-by-step inspection, modification, and extension of the compilation process - without rebuilding the entire compiler pipeline.
+
+  - **Faster hardware layout selection** - Upgrades and Rust-driven performance enhancements to `VF2Layout` and `VF2PostLayout` improve the speed and scalability of circuit-to-hardware layout selection, reducing compilation overhead and improving fidelity on quantum hardware.
+
+  - **New multi-qubit Pauli measurement** - The new `PauliProductMeasurement` instruction enables joint projective measurement across multiple qubits in a single operation, unlocking compilation to Pauli-based computation - a common representation in fault-tolerant quantum computing.
+
+  - **Improvements in early fault-tolerant transpilation** - Performance and feature enhancements for transpilation to early fault-tolerant targets - especially Clifford+T targets - help users more efficiently build transpilation pipelines for future QPUs.
+
+  These capabilities give developers greater flexibility to customize quantum circuit optimizations and integrate with existing HPC workflows. [Visit the blog](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) for the full technical summary.
+
+Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.3.0) and the [v2.3 release notes](/docs/api/qiskit/release-notes/2.3).
+
+{/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
+
+*To see the release notes for all versions, visit the [Qiskit SDK release notes](/docs/api/qiskit/release-notes).*
+
+
+<span id="latest-qiskit-runtime-client"></span>
+
+## April 2026
+
+<span id="executor-primitive"></span>
+- **Introducing the Executor primitive**: We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025.
+
+  Together with [Samplomatic](https://qiskit.github.io/samplomatic/index.html), they make up the [directed execution model](/docs/guides/directed-execution-model), which provides full transparency and control to fine-tune your error mitigation workflow. The [Probabilistic error cancellation with shaded lightcones](https://qiskit.github.io/qiskit-addon-slc/tutorials/01_getting_started.html) tutorial, for example, demonstrates how this model is used to combine advanced techniques, including shaded lightcones, probabilistic error cancellation (PEC), Twirled Readout Error eXtinction (TREX), and [measurement-based postselection](/docs/guides/post-selection), to further improve the result quality.
+
+  If you prefer a higher level of abstraction, [`EstimatorV2`](/docs/guides/estimator-noise-management) in Qiskit Runtime continues to provide several built-in error mitigation and suppression techniques, which you can easily tune using the [`resilience_level`](/docs/guides/estimator-noise-management#resilience-level) option.
+
+  To learn more, see the following guides:
+
+    - [Executor quickstart](/docs/guides/get-started-with-executor)
+    - [Noise learning helper](/docs/guides/noise-learning)
+
+  Both of these new features are currently in beta and require `qiskit-ibm-runtime` version 0.47.0 or higher.
+
+## March 2026
+- `qiskit-ibm-runtime` v0.46.0 has been released. View bug fixes and other notes since v0.45.0 in the [release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).
+
+{/* use text like this to point to the release notes when they aren't mentioned previously: */}
+{/*- For all updates, bug fixes, and new features, see the full [0.46.0 release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).*/} 
+
+{/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
+
+*To see the release notes for all versions, visit the [IBM Quantum Compute client release notes](/docs/api/qiskit-ibm-runtime/release-notes).*
+
+<span id="latest-qiskit-transpiler-service"></span>
