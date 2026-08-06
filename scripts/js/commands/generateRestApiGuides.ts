@@ -14,8 +14,8 @@ import { writeFile } from "fs/promises";
 
 import { generateTable, extractEndpoints } from "../lib/restApiGuides.js";
 
-export const QUANTUM_COMPUTE_API_TITLE = "The IBM Quantum Compute service";
-export const QUANTUM_SYSTEM_API_TITLE = "The IBM Quantum System service";
+export const QUANTUM_COMPUTE_API_TITLE = "IBM Quantum Compute Service";
+export const QUANTUM_SYSTEM_API_TITLE = "IBM Quantum System Service";
 type OpenapiPkgTitle =
   | typeof QUANTUM_COMPUTE_API_TITLE
   | typeof QUANTUM_SYSTEM_API_TITLE;
@@ -89,16 +89,14 @@ ${QUANTUM_COMPUTE_API_TITLE} sends activity tracking events in the following reg
 `;
 
 function getProse(pkgTitle: OpenapiPkgTitle): string {
-  const pktTitleLowercase =
-    pkgTitle.charAt(0).toLowerCase() + pkgTitle.slice(1);
   return `---
-title: Activity tracking events for ${pktTitleLowercase}
-description: Learn about activity tracking events for ${pktTitleLowercase}.
+title: Activity tracking events for ${pkgTitle}
+description: Learn about activity tracking events for ${pkgTitle}.
 ---
 
-# Activity tracking events for ${pktTitleLowercase}
+# Activity tracking events for ${pkgTitle}
 
-IBM Cloud&reg; services, such as ${maybeAddPkgTitleRegisteredIcon(pktTitleLowercase)}, generate activity tracking events.
+IBM Cloud&reg; services, such as ${maybeAddPkgTitleRegisteredIcon(pkgTitle)}, generate activity tracking events.
 
 Activity tracking events report on activities that change the state of a service in IBM Cloud. You can use the events to investigate abnormal activity and critical actions and to comply with regulatory audit requirements.
 
@@ -106,7 +104,7 @@ You can use IBM Cloud Activity Tracker Event Routing, a platform service, to rou
 
 You can use IBM Cloud Logs to visualize and alert on events that are generated in your account and routed by IBM Cloud Activity Tracker Event Routing to an IBM Cloud Logs instance.
 ${pkgTitle == QUANTUM_COMPUTE_API_TITLE ? COMPUTE_REGION_SECTION : ""}
-## Viewing activity tracking events for ${pktTitleLowercase}
+## Viewing activity tracking events for ${pkgTitle}
 
 You can use IBM Cloud Logs to visualize and alert on events that are generated in your account and routed by IBM Cloud Activity Tracker Event Routing to an IBM Cloud Logs instance.
 
