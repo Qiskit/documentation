@@ -306,43 +306,24 @@ function prepareAttributeOrPropertyProps(
   let rawDefaultHtml: string | undefined;
 
   $child.find("em.property, span.property").each((_, el) => {
-    const $span = $(el);
-    const text = $span.text().trim();
-    // Determine span role by its leading punctuation character (`:`→type, `=`→default).
-    // We look for the first `:` or `=` in the span's direct punctuation nodes rather
-    // than anywhere in the text, to avoid being confused by `:` inside a value like
-    // `re.compile('...|:|...')`.
-    const firstPunctChar = $span
-      .find("span.p, span.w")
-      .toArray()
-      .map((el) => $(el).text().trim())
-      .find((t) => t === ":" || t === "=");
-    const isTypeSpan = firstPunctChar === ":";
-    const isDefaultSpan = firstPunctChar === "=" && !text.startsWith(":");
+    const $clone = $(el).clone();
+    const $firstP = $clone.find("span.p").first();
+    const delimiter = $firstP.text().trim();
 
-    if (isTypeSpan && !rawTypeHtml) {
-      const $clone = $span.clone();
+    if (delimiter === ":" && !rawTypeHtml) {
+      // Sphinx 8: em.property may start with the attribute name before the colon
       $clone
         .find("span.pre")
         .filter((_, el) => $(el).text().trim() === name)
         .first()
         .remove();
-      $clone
-        .find("span.p, span.w")
-        .filter((_, el) => $(el).text().trim() === ":")
-        .first()
-        .remove();
+      $firstP.remove();
       const inner = $clone.html()?.trim();
-      if (inner) rawTypeHtml = inlineCodeifyTypeHtml(inner);
-    } else if (isDefaultSpan && !rawDefaultHtml) {
-      const $clone = $span.clone();
-      $clone
-        .find("span.p, span.w")
-        .filter((_, el) => $(el).text().trim() === "=")
-        .first()
-        .remove();
+      if (inner) rawTypeHtml = inner;
+    } else if (delimiter === "=" && !rawDefaultHtml) {
+      $firstP.remove();
       const inner = $clone.html()?.trim();
-      if (inner) rawDefaultHtml = inlineCodeifyTypeHtml(inner);
+      if (inner) rawDefaultHtml = inner;
     }
   });
 
@@ -356,7 +337,7 @@ function prepareAttributeOrPropertyProps(
 
   const pageHeading = $dl.siblings("h1").text();
   if (pageHeading && id.endsWith(pageHeading)) {
-    $dl.siblings("h1").first().text(getLastPartFromFullIdentifier(id));
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     return {
       ...props,
       isDedicatedPage: true,
@@ -608,25 +589,4 @@ export function setMinimumHeadingLevel(
       .find(oldTag)
       .replaceWith((_, el) => `<${newTag}>${$(el).html()}</${newTag}>`);
   }
-}
-
-/**
- * Converts Sphinx property HTML to a form where each `span.pre` token becomes
- * an inline `<code>` element. This lets rehypeRemark render them as backtick
- * code in the final MDX, with links producing `[`TypeName`](href)`.
- *
- * Punctuation-only spans (span.p, span.w) are left as-is so they render as
- * plain separators between code tokens.
- */
-function inlineCodeifyTypeHtml(html: string): string {
-  const $f = cheerioLoad(`<div>${html}</div>`, { xmlMode: false });
-  $f("span.pre").each((_, el) => {
-    const $el = $f(el);
-    $el.replaceWith(`<code>${$el.text()}</code>`);
-  });
-  $f("span.p, span.w").each((_, el) => {
-    const $el = $f(el);
-    $el.replaceWith($el.text());
-  });
-  return $f("div").html() ?? html;
 }
