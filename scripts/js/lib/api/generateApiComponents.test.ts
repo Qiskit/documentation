@@ -216,9 +216,7 @@ test.describe("type and default in Attribute body", () => {
         <a href="qiskit.transpiler.Layout.html#qiskit.transpiler.Layout"><span class="pre">Layout</span></a>
       </span>
       </dt>`;
-    const $ = load(
-      `<div><dl class="py attribute">${dt}<dd></dd></dl></div>`,
-    );
+    const $ = load(`<div><dl class="py attribute">${dt}<dd></dd></dl></div>`);
     const $dl = $("dl").first();
     const $dt = $dl.find("dt").first();
     await createMdxComponent(
