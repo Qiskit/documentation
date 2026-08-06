@@ -14,14 +14,14 @@ import { writeFile } from "fs/promises";
 
 import { generateTable, extractEndpoints } from "../lib/restApiGuides.js";
 
-export const RUNTIME_API_TITLE = "Qiskit Runtime";
-export const QUANTUM_SYSTEM_API_TITLE = "the IBM Quantum System service";
+export const QUANTUM_COMPUTE_API_TITLE = "The IBM Quantum Compute service";
+export const QUANTUM_SYSTEM_API_TITLE = "The IBM Quantum System service";
 type OpenapiPkgTitle =
-  | typeof RUNTIME_API_TITLE
+  | typeof QUANTUM_COMPUTE_API_TITLE
   | typeof QUANTUM_SYSTEM_API_TITLE;
 
 const PACKAGE_TO_URL: Record<OpenapiPkgTitle, string> = {
-  [RUNTIME_API_TITLE]: "https://quantum.cloud.ibm.com/api/openapi.json",
+  [QUANTUM_COMPUTE_API_TITLE]: "https://quantum.cloud.ibm.com/api/openapi.json",
   [QUANTUM_SYSTEM_API_TITLE]:
     "https://quantum.cloud.ibm.com/endpoints-docs-learning/api/quantum-system-rest/openapi/latest",
 };
@@ -29,7 +29,7 @@ const PACKAGE_TO_URL: Record<OpenapiPkgTitle, string> = {
 async function main() {
   // Activity tracking events, one guide per API.
   await writeObservabilityFile(
-    RUNTIME_API_TITLE,
+    QUANTUM_COMPUTE_API_TITLE,
     "docs/guides/observability-runtime-rest.mdx",
   );
   await writeObservabilityFile(
@@ -63,7 +63,7 @@ async function writeObservabilityFile(
 
 async function writeAuthorizationFile(destPath: string) {
   const pkgTitles: OpenapiPkgTitle[] = [
-    RUNTIME_API_TITLE,
+    QUANTUM_COMPUTE_API_TITLE,
     QUANTUM_SYSTEM_API_TITLE,
   ];
   const sections = pkgTitles.map(async (pkgTitle) => {
@@ -79,32 +79,34 @@ async function writeAuthorizationFile(destPath: string) {
   console.log(`✅ Wrote ${destPath}`);
 }
 
-const RUNTIME_REGION_SECTION = `
+const COMPUTE_REGION_SECTION = `
 ## Locations where activity tracking events are generated
 
-${RUNTIME_API_TITLE} sends activity tracking events in the following regions:
+${QUANTUM_COMPUTE_API_TITLE} sends activity tracking events in the following regions:
 
 - Washington ("us-east")
 - Frankfurt ("eu-de")
 `;
 
 function getProse(pkgTitle: OpenapiPkgTitle): string {
+  const pktTitleLowercase =
+    pkgTitle.charAt(0).toLowerCase() + pkgTitle.slice(1);
   return `---
-title: Activity tracking events for ${pkgTitle}
-description: Learn about activity tracking events for ${pkgTitle}.
+title: Activity tracking events for ${pktTitleLowercase}
+description: Learn about activity tracking events for ${pktTitleLowercase}.
 ---
 
-# Activity tracking events for ${pkgTitle}
+# Activity tracking events for ${pktTitleLowercase}
 
-IBM Cloud&reg; services, such as ${maybeAddPkgTitleRegisteredIcon(pkgTitle)}, generate activity tracking events.
+IBM Cloud&reg; services, such as ${maybeAddPkgTitleRegisteredIcon(pktTitleLowercase)}, generate activity tracking events.
 
 Activity tracking events report on activities that change the state of a service in IBM Cloud. You can use the events to investigate abnormal activity and critical actions and to comply with regulatory audit requirements.
 
 You can use IBM Cloud Activity Tracker Event Routing, a platform service, to route auditing events in your account to destinations of your choice by configuring targets and routes that define where activity tracking events are sent. For more information, see [About IBM Cloud Activity Tracker Events Routing](https://cloud.ibm.com/docs/atracker?topic=atracker-about).
 
 You can use IBM Cloud Logs to visualize and alert on events that are generated in your account and routed by IBM Cloud Activity Tracker Event Routing to an IBM Cloud Logs instance.
-${pkgTitle == RUNTIME_API_TITLE ? RUNTIME_REGION_SECTION : ""}
-## Viewing activity tracking events for ${pkgTitle}
+${pkgTitle == QUANTUM_COMPUTE_API_TITLE ? COMPUTE_REGION_SECTION : ""}
+## Viewing activity tracking events for ${pktTitleLowercase}
 
 You can use IBM Cloud Logs to visualize and alert on events that are generated in your account and routed by IBM Cloud Activity Tracker Event Routing to an IBM Cloud Logs instance.
 
@@ -122,7 +124,7 @@ description: Learn about the authorization roles and permissions available for t
 
 # Authorization roles
 
-{/* TODO: Prose to be added by the team. */}
+Review the available roles and the actions mapped to each to help you assign access. See [IAM roles and actions](https://cloud.ibm.com/docs/iam?topic=iam-iam-service-roles-actions#service-roles-table155) on IBM Cloud&reg; for more information.
 `;
 }
 
