@@ -10,13 +10,19 @@ in_page_toc_max_heading_level: 2
 
 # Changelog
 
-*Last updated 27 July 2026*
+*Last updated 4 August 2026*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
 Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 
 <Admonition type="note" title="What's new (last 60 days)">
+
+4 August 2026
+
+- **Updates to IBM Quantum Platform** &mdash; A recent update to IBM Quantum Platform makes it easier to understand your job results, unlocks powerful new circuit design capabilities in Composer, and keeps you informed about your usage limits — so you can focus more on your quantum work. [*Read more*](#platform-aug26)
+
+---
 
 27 July 2026
 
@@ -31,22 +37,52 @@ Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 5 June 2026
 
 - **Support for the Store instruction on IBM&reg; QPUs** &mdash; Now you can simplify complex classical computations in your quantum circuits with the Store instruction. [*Read more*](#store-instruction)
----
-29 May 2026
-
-- **Qiskit Code Assistant service discontinued** &mdash; The preview service has been discontinued and the Visual Studio Code and JupyterLab extensions have been archived. [*Read more*](#qca-sunset)
----
-28 May 2026
-
-- **New Classroom Accounts** &mdash; Professors can now request a Classroom Account to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information. [*Read more*](#classroom-accounts)
 </Admonition>
 
-Jump to [IBM Quantum Compute Service](#latest-quantum-compute) | [Qiskit SDK](#latest-qiskit-sdk) | [IBM Qiskit Runtime client](#latest-qiskit-runtime-client) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit addons](#latest-qiskit-addons) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca)
+Jump to [IBM Quantum Compute Service](#latest-quantum-compute) | [Qiskit SDK](#latest-qiskit-sdk) | [IBM Quantum Compute client](#latest-qiskit-runtime-client) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit addons](#latest-qiskit-addons) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca)
 
 
 
 <span id="latest-quantum-compute"></span>
 ## IBM Quantum Compute Service
+
+<span id="platform-aug26"></span>
+### August 2026
+
+- **Updates to IBM Quantum Platform** &mdash; A recent update to IBM Quantum Platform makes it easier to understand your job results, unlocks powerful new circuit design capabilities in Composer, and keeps you informed about your usage limits — so you can focus more on your quantum work.
+
+  - Job results & workloads  
+
+    * **Bit-by-bit outcomes view** — a new way to view Sampler measurement results, breaking down outcomes bit by bit instead of by full state. Useful as an alternative to the Measurement outcomes view when results contain many distinct states.  
+    * **Circuit timing chart** — shows a scheduled timeline of a circuit's operations (gates, channels, durations). Available for Sampler and Executor jobs. Requires [enabling timing data retrieval](https://quantum.cloud.ibm.com/docs/guides/qiskit-runtime-circuit-timing#enable-timing-data-retrieval).  
+    * **Chunk/span execution diagnostics panel** — a new panel on job details showing chunk- and span-level execution diagnostics. See [Sampler input/output](https://quantum.cloud.ibm.com/docs/guides/sampler-input-output) for what this data means and how to enable it when submitting jobs.  
+    * **Device calibration data at a glance** — job details now show the device calibration data from the time of submission or execution via a "View calibration history" link.  
+    * **Executor results visualization** — job details pages now render results for Executor jobs. See the [Directed execution model (beta)](https://quantum.cloud.ibm.com/docs/guides/directed-execution-model) guide for more on Executor.  
+    * **Dynamic circuits now render on job details** — with OpenQASM 3.0 support in Composer (see more below), circuits that previously failed to render (for example, those using dynamic circuits) now display correctly on the job details page.  
+    * **Histogram improvements** — faster loading, smoother zoom in/out, and a new selection tool for narrowing in on specific result ranges.  
+    * **`qiskit-ibm-runtime` code snippets in job results** — copy-ready code to retrieve a job by ID; for Executor jobs, an additional snippet lets you replicate the job.  
+    * **Custom date range filter** added to the workloads table.  
+    * **Clickable instance names and tags** in workload detail pages, linking to the related resource.  
+    
+    Navigate to your results on the [Workloads](https://quantum.cloud.ibm.com/workloads) page to see these improvements.  
+
+  - Composer: OpenQASM v3.0 support  
+
+    Composer now supports OpenQASM v3.0, adding:  
+    * **Gate modifiers** — ctrl, inv, pow, etc.  
+    * **Loops** — for and while  
+    * **Conditional logic** — if/else  
+    * **Box annotations** — group and label sections of a circuit  
+
+    Also included: smoother rendering for large circuits, and a fix for PNG exports failing on large circuits.  
+    
+  Visit the [Composer](https://quantum.cloud.ibm.com/composer) to explore this new update.
+
+  - Instance usage limits  
+
+    - Premium and Open Plan instances that hit their usage limit now display the exact date access resumes, based on the rolling usage window.  
+  
+  See more on your [Instances](https://quantum.cloud.ibm.com/instances) page.  
 
 ### July 2026
 
@@ -515,7 +551,7 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 
 <span id="latest-qiskit-runtime-client"></span>
-## IBM Qiskit Runtime client 0.46.0
+## IBM Quantum Compute client v0.46.0
 
 ### April 2026
 
@@ -541,7 +577,7 @@ Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiski
 
 {/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
 
-*To see the release notes for all versions, visit the [Qiskit Runtime client release notes](/docs/api/qiskit-ibm-runtime/release-notes).*
+*To see the release notes for all versions, visit the [IBM Quantum Compute client release notes](/docs/api/qiskit-ibm-runtime/release-notes).*
 
 <span id="latest-qiskit-transpiler-service"></span>
 ## Qiskit Transpiler Service client v0.15.2
