@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { CheerioAPI, Cheerio, Element } from "cheerio";
+import { CheerioAPI, Cheerio, Element, load as cheerioLoad } from "cheerio";
 import { unified } from "unified";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
@@ -333,7 +333,7 @@ function prepareAttributeOrPropertyProps(
         .first()
         .remove();
       const inner = $clone.html()?.trim();
-      if (inner) rawTypeHtml = inner;
+      if (inner) rawTypeHtml = inlineCodeifyTypeHtml(inner);
     } else if (isDefaultSpan && !rawDefaultHtml) {
       const $clone = $span.clone();
       $clone
@@ -342,7 +342,7 @@ function prepareAttributeOrPropertyProps(
         .first()
         .remove();
       const inner = $clone.html()?.trim();
-      if (inner) rawDefaultHtml = inner;
+      if (inner) rawDefaultHtml = inlineCodeifyTypeHtml(inner);
     }
   });
 
@@ -608,4 +608,25 @@ export function setMinimumHeadingLevel(
       .find(oldTag)
       .replaceWith((_, el) => `<${newTag}>${$(el).html()}</${newTag}>`);
   }
+}
+
+/**
+ * Converts Sphinx property HTML to a form where each `span.pre` token becomes
+ * an inline `<code>` element. This lets rehypeRemark render them as backtick
+ * code in the final MDX, with links producing `[`TypeName`](href)`.
+ *
+ * Punctuation-only spans (span.p, span.w) are left as-is so they render as
+ * plain separators between code tokens.
+ */
+function inlineCodeifyTypeHtml(html: string): string {
+  const $f = cheerioLoad(`<div>${html}</div>`, { xmlMode: false });
+  $f("span.pre").each((_, el) => {
+    const $el = $f(el);
+    $el.replaceWith(`<code>${$el.text()}</code>`);
+  });
+  $f("span.p, span.w").each((_, el) => {
+    const $el = $f(el);
+    $el.replaceWith($el.text());
+  });
+  return $f("div").html() ?? html;
 }

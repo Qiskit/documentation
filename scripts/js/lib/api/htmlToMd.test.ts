@@ -762,7 +762,7 @@ test("convert class property headings", async () => {
     markdown: `# circuits
 
 <Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true}>
-  Type: tuple\\[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]
+  Type: \`tuple\`\\[\`qiskit.circuit.quantumcircuit.QuantumCircuit\`, ...]
 
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
@@ -813,7 +813,7 @@ test("convert abstract class property headings", async () => {
     markdown: `# circuits
 
 <Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true} modifiers="abstract property">
-  Type: tuple\\[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]
+  Type: \`tuple\`\\[\`qiskit.circuit.quantumcircuit.QuantumCircuit\`, ...]
 
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
@@ -871,9 +871,9 @@ test("convert class attributes headings", async () => {
     markdown: `# callback
 
 <Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" isDedicatedPage={true}>
-  Type: Optional\\[Callable]
+  Type: \`Optional\`\\[\`Callable\`]
 
-  Default value: None
+  Default value: \`None\`
 </Attribute>\n`,
     meta: {
       apiName: "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
