@@ -41,7 +41,7 @@ async function main() {
 }
 
 function maybeAddPkgTitleRegisteredIcon(pkgTitle: string) {
-  return pkgTitle.replace("IBM", "IBM&reg;");
+  return pkgTitle.replace("IBM Quantum", "IBM Quantum&reg;");
 }
 
 async function writeObservabilityFile(
