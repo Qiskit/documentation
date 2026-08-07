@@ -10,13 +10,24 @@ in_page_toc_max_heading_level: 2
 
 # Changelog
 
-*Last updated 5 June 2026*
+*Last updated 4 August 2026*
 
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
 Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 
 <Admonition type="note" title="What's new (last 60 days)">
+
+4 August 2026
+
+- **Updates to IBM Quantum Platform** &mdash; A recent update to IBM Quantum Platform makes it easier to understand your job results, unlocks powerful new circuit design capabilities in Composer, and keeps you informed about your usage limits — so you can focus more on your quantum work. [*Read more*](#platform-aug26)
+
+---
+
+27 July 2026
+
+- **Qiskit Runtime service is now IBM Quantum Compute Service** &mdash; This is a naming change only and does not require any code changes or updates to existing applications. You might notice the new name throughout the user interface and documentation. [*Read more*](#qr-rename)
+---
 
 16 July 2026
 
@@ -26,29 +37,81 @@ Keep up with the latest and greatest from Qiskit and IBM Quantum&reg;!
 5 June 2026
 
 - **Support for the Store instruction on IBM&reg; QPUs** &mdash; Now you can simplify complex classical computations in your quantum circuits with the Store instruction. [*Read more*](#store-instruction)
----
-29 May 2026
-
-- **Qiskit Code Assistant service discontinued** &mdash; The preview service has been discontinued and the Visual Studio Code and JupyterLab extensions have been archived. [*Read more*](#qca-sunset)
----
-28 May 2026
-
-- **New Classroom Accounts** &mdash; Professors can now request a Classroom Account to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information. [*Read more*](#classroom-accounts)
----
-
-18 May 2026
-
-- **Introducing the Executor primitive** &mdash; We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025. [*Read more*](#executor-primitive)
 </Admonition>
 
-Jump to [IBM Quantum Platform](#latest-platform) | [Qiskit SDK](#latest-qiskit-sdk) | [Qiskit Runtime client](#latest-qiskit-runtime) | [Qiskit Runtime service](#latest-runtime-service) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit addons](#latest-qiskit-addons) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca)
+Jump to [IBM Quantum Compute Service](#latest-quantum-compute) | [Qiskit SDK](#latest-qiskit-sdk) | [IBM Quantum Compute client](#latest-qiskit-runtime-client) | [Qiskit Transpiler Service](#latest-qiskit-transpiler-service) | [Qiskit addons](#latest-qiskit-addons) | [Qiskit Functions](#latest-qiskit-functions) | [Qiskit Code Assistant](#latest-qca)
 
 
 
-<span id="latest-platform"></span>
-## IBM Quantum Platform
+<span id="latest-quantum-compute"></span>
+## IBM Quantum Compute Service
 
-This section summarizes the recent enhancements and new features for the new [IBM Quantum Platform](https://quantum.cloud.ibm.com/).
+<span id="platform-aug26"></span>
+### August 2026
+
+- **Updates to IBM Quantum Platform** &mdash; A recent update to IBM Quantum Platform makes it easier to understand your job results, unlocks powerful new circuit design capabilities in Composer, and keeps you informed about your usage limits — so you can focus more on your quantum work.
+
+  - Job results & workloads  
+
+    * **Bit-by-bit outcomes view** — a new way to view Sampler measurement results, breaking down outcomes bit by bit instead of by full state. Useful as an alternative to the Measurement outcomes view when results contain many distinct states.  
+    * **Circuit timing chart** — shows a scheduled timeline of a circuit's operations (gates, channels, durations). Available for Sampler and Executor jobs. Requires [enabling timing data retrieval](https://quantum.cloud.ibm.com/docs/guides/qiskit-runtime-circuit-timing#enable-timing-data-retrieval).  
+    * **Chunk/span execution diagnostics panel** — a new panel on job details showing chunk- and span-level execution diagnostics. See [Sampler input/output](https://quantum.cloud.ibm.com/docs/guides/sampler-input-output) for what this data means and how to enable it when submitting jobs.  
+    * **Device calibration data at a glance** — job details now show the device calibration data from the time of submission or execution via a "View calibration history" link.  
+    * **Executor results visualization** — job details pages now render results for Executor jobs. See the [Directed execution model (beta)](https://quantum.cloud.ibm.com/docs/guides/directed-execution-model) guide for more on Executor.  
+    * **Dynamic circuits now render on job details** — with OpenQASM 3.0 support in Composer (see more below), circuits that previously failed to render (for example, those using dynamic circuits) now display correctly on the job details page.  
+    * **Histogram improvements** — faster loading, smoother zoom in/out, and a new selection tool for narrowing in on specific result ranges.  
+    * **`qiskit-ibm-runtime` code snippets in job results** — copy-ready code to retrieve a job by ID; for Executor jobs, an additional snippet lets you replicate the job.  
+    * **Custom date range filter** added to the workloads table.  
+    * **Clickable instance names and tags** in workload detail pages, linking to the related resource.  
+    
+    Navigate to your results on the [Workloads](https://quantum.cloud.ibm.com/workloads) page to see these improvements.  
+
+  - Composer: OpenQASM v3.0 support  
+
+    Composer now supports OpenQASM v3.0, adding:  
+    * **Gate modifiers** — ctrl, inv, pow, etc.  
+    * **Loops** — for and while  
+    * **Conditional logic** — if/else  
+    * **Box annotations** — group and label sections of a circuit  
+
+    Also included: smoother rendering for large circuits, and a fix for PNG exports failing on large circuits.  
+    
+  Visit the [Composer](https://quantum.cloud.ibm.com/composer) to explore this new update.
+
+  - Instance usage limits  
+
+    - Premium and Open Plan instances that hit their usage limit now display the exact date access resumes, based on the rolling usage window.  
+  
+  See more on your [Instances](https://quantum.cloud.ibm.com/instances) page.  
+
+### July 2026
+
+<span id="qr-rename"></span>
+
+- **Qiskit Runtime service is now IBM Quantum Compute Service** &mdash; This is a naming change only and does not require any code changes or updates to existing applications. You might notice the new name throughout the user interface and documentation.
+
+    Historically, the term _Qiskit Runtime_ was used to refer to three related but distinct concepts.
+
+    Any hardware provider that wants Qiskit users to run workloads on its quantum computers must provide two provider-specific components:
+
+    - A Qiskit SDK extension, which enables users to submit jobs to the provider. In IBM's case, this is the open-source `qiskit-ibm-runtime` library. Rather than communicating directly with the quantum computer, it submits jobs to a cloud API.
+
+    - A runtime execution environment, which runs on the quantum computer itself. This component understands Qiskit primitives, translates them into hardware-specific operations, and executes them on the quantum hardware. In IBM's case, this is IBM Qiskit Runtime.
+
+    Between these two components sits a third element: the managed cloud service that receives jobs from the `qiskit-ibm-runtime` SDK and orchestrates their execution. This service is responsible for capabilities such as authentication, scheduling, queue management, workload routing, usage tracking, limits, and analytics. It does not process Qiskit primitives itself; instead, it dispatches workloads to the appropriate quantum computer, where the runtime execution environment performs the actual execution.
+
+    Historically, this cloud service was also called Qiskit Runtime Service, even though it is conceptually different from the runtime itself. This dual use of the term Qiskit Runtime &mdash; to describe both the execution environment and the managed cloud service &mdash; blurred the architecture and made it difficult to distinguish the open-source components from the managed cloud offering.
+
+    Renaming Qiskit Runtime Service to IBM Quantum Compute Service resolves this ambiguity. The resulting architecture becomes much clearer:
+
+    - `qiskit-ibm-runtime`: the open-source Qiskit extension that submits workloads.
+
+    - IBM Quantum Compute Service: the managed cloud service that authenticates, schedules, manages, and routes workloads.
+
+    - IBM Qiskit Runtime (or IBM Qiskit Runtime Execution Environment): the execution environment running on the quantum computer that processes and executes Qiskit primitives.
+
+<Accordion>
+<AccordionItem title="**Previous updates (2026)**">
 
 ### May 2026
 
@@ -68,8 +131,6 @@ This section summarizes the recent enhancements and new features for the new [IB
 <span id="classroom-accounts"></span>
 - **New Classroom Accounts**: Professors can now request a [Classroom Account](/docs/guides/classroom-accounts) to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information.
 
-<Accordion>
-<AccordionItem title="**Previous updates (2026)**">
   ### April 2026
 
   - **New export options now available in IBM Quantum**: Introducing new export capabilities that make it easier for account administrators to analyze, share, and work with their data.
@@ -188,6 +249,8 @@ This section summarizes the recent enhancements and new features for the new [IB
       - Archived instances do not subtract anything from your account's plan allocation.
       - All archived instances are neatly organized under a dedicated "Archived" tab.
       - Administrators can reactivate an instance at any time.
+
+  - [**Directed execution model.**](/docs/guides/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](https://qiskit.github.io/samplomatic/index.html) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
 </AccordionItem>
 <AccordionItem title="**Previous updates (2025)**">
 #### What's new at IBM Quantum - 4Q 2025
@@ -249,6 +312,20 @@ A reminder that `ibm_brisbane` will retire on 3 Nov 2025, so plan your experimen
 
 - **Learning in IBM Quantum Platform** now has an updated home page to help you navigate the educational resources available, as well as two new catalog pages to help browse courses and modules. [Check out the updates!](/learning)
 
+<span id="new-dynamic-circuits"></span>
+- The new dynamic circuits is now available to all users on all backends, except some QPUs under the On-Prem Plan.
+
+  With this new version, you can run dynamic circuits at utility scale. The initial release offers the following features:
+
+  - 75x execution speedup, thanks to the latest quantum execution stack
+  - Parallel branch execution, which reduces circuit duration and improves result quality
+  - Support for [classical operations](/docs/api/qiskit/circuit_classical) defined in Qiskit, with the exception of bit shift and arithmetic
+  - Support for stretch duration in delay instructions. This new type allows design intent to be captured at circuit construction time, and timing resolution at compile time
+
+  Additional features will be rolled out later this year.
+
+  See  [Classical feedforward and control flow](/docs/guides/classical-feedforward-and-control-flow) and [Deferred timing resolution using stretch](/docs/guides/stretch) for more information and code examples.
+
 ### 15 September 2025
 
 The [Unitary Foundation Quantum Open Source Software survey](http://surveymonkey.com/r/QOSSSurvey25) helps capture the needs and concerns of anyone who works with quantum software - including you! The survey results provide valuable feedback for our team of Qiskit developers, and helps us to understand the broader quantum software landscape.
@@ -300,6 +377,9 @@ Be sure to retrieve any job data from important past jobs before it is retired.
 - A new qiskit-ibm-runtime release, featuring:
   - Support for private jobs for developers of Qiskit Functions
   - A new channel for the platform that makes instance selection optional, which simplifies account setup and backend access by automatically checking all available instances. This update benefits users who manage multiple instances or prefer a streamlined workflow without specifying instance details each time. Developers and researchers working across various projects with different levels of access and multiple backends will find this especially helpful.
+
+- Now available: Early access to the new version of dynamic circuits on select QPUs. This new version will allow you to run dynamic circuits at utility scale and comes with improvements in speed, quality, and usability. Premium Plan and Flex Plan users interested in participating in this early access can [contact us](/docs/guides/support).
+
 
 ### 15 May 2025
 
@@ -389,92 +469,6 @@ Our inventory is getting a makeover, and we will be retiring the following QPUs 
 - ~ibm_sherbrooke~ UPDATE: ibm_sherbrooke will stay active for several more weeks after 18 April 2025.
 
 Be sure to retrieve any job data from important past jobs before these QPUs are retired.
-</AccordionItem>
-</Accordion>
-
-
-<span id="latest-qiskit-sdk"></span>
-## Qiskit SDK v2.3
-
-### January 2026
-- Building on the momentum established across the v2.x series, which has centered on positioning Qiskit as the leading platform for hybrid quantum-HPC workflows, [Qiskit SDK v2.3](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) delivers a significant expansion of the C API alongside faster, more flexible tools for building and optimizing quantum circuits.
-
-  Major updates include:
-
-  - **Custom transpiler passes in C** - Write custom transpiler passes through Qiskit's C API using the new `QkDag` object and an expanded `QkTarget` object, which enable step-by-step inspection, modification, and extension of the compilation process - without rebuilding the entire compiler pipeline.
-
-  - **Faster hardware layout selection** - Upgrades and Rust-driven performance enhancements to `VF2Layout` and `VF2PostLayout` improve the speed and scalability of circuit-to-hardware layout selection, reducing compilation overhead and improving fidelity on quantum hardware.
-
-  - **New multi-qubit Pauli measurement** - The new `PauliProductMeasurement` instruction enables joint projective measurement across multiple qubits in a single operation, unlocking compilation to Pauli-based computation - a common representation in fault-tolerant quantum computing.
-
-  - **Improvements in early fault-tolerant transpilation** - Performance and feature enhancements for transpilation to early fault-tolerant targets - especially Clifford+T targets - help users more efficiently build transpilation pipelines for future QPUs.
-
-  These capabilities give developers greater flexibility to customize quantum circuit optimizations and integrate with existing HPC workflows. [Visit the blog](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) for the full technical summary.
-
-Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.3.0) and the [v2.3 release notes](/docs/api/qiskit/release-notes/2.3).
-
-{/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
-
-*To see the release notes for all versions, visit the [Qiskit SDK release notes](/docs/api/qiskit/release-notes).*
-
-
-<span id="latest-qiskit-runtime"></span>
-## Qiskit Runtime client 0.46.0
-
-### April 2026
-
-<span id="executor-primitive"></span>
-- **Introducing the Executor primitive**: We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025.
-
-  Together with [Samplomatic](https://qiskit.github.io/samplomatic/index.html), they make up the [directed execution model](/docs/guides/directed-execution-model), which provides full transparency and control to fine-tune your error mitigation workflow. The [Probabilistic error cancellation with shaded lightcones](https://qiskit.github.io/qiskit-addon-slc/tutorials/01_getting_started.html) tutorial, for example, demonstrates how this model is used to combine advanced techniques, including shaded lightcones, probabilistic error cancellation (PEC), Twirled Readout Error eXtinction (TREX), and [measurement-based postselection](/docs/guides/post-selection), to further improve the result quality.
-
-  If you prefer a higher level of abstraction, [`EstimatorV2`](/docs/guides/estimator-noise-management) in Qiskit Runtime continues to provide several built-in error mitigation and suppression techniques, which you can easily tune using the [`resilience_level`](/docs/guides/estimator-noise-management#resilience-level) option.
-
-  To learn more, see the following guides:
-
-    - [Executor quickstart](/docs/guides/get-started-with-executor)
-    - [Noise learning helper](/docs/guides/noise-learning)
-
-  Both of these new features are currently in beta and require `qiskit-ibm-runtime` version 0.47.0 or higher.
-
-### March 2026
-- `qiskit-ibm-runtime` v0.46.0 has been released. View bug fixes and other notes since v0.45.0 in the [release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).
-
-{/* use text like this to point to the release notes when they aren't mentioned previously: */}
-{/*- For all updates, bug fixes, and new features, see the full [0.46.0 release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).*/} 
-
-{/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
-
-*To see the release notes for all versions, visit the [Qiskit Runtime client release notes](/docs/api/qiskit-ibm-runtime/release-notes).*
-
-<span id="latest-runtime-service"></span>
-## Qiskit Runtime service
-
-This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (by using `qiskit-ibm-runtime` or otherwise), or which version of the client SDK you use.
-
-### January 2026
-- [**Directed execution model.**](/docs/guides/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](https://qiskit.github.io/samplomatic/index.html) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
-
-<Accordion>
-<AccordionItem title="**Previous updates**">
-
-<span id="new-dynamic-circuits"></span>
-### October 2025
-- The new dynamic circuits is now available to all users on all backends, except some QPUs under the On-Prem Plan.
-
-  With this new version, you can run dynamic circuits at utility scale. The initial release offers the following features:
-
-  - 75x execution speedup, thanks to the latest quantum execution stack
-  - Parallel branch execution, which reduces circuit duration and improves result quality
-  - Support for [classical operations](/docs/api/qiskit/circuit_classical) defined in Qiskit, with the exception of bit shift and arithmetic
-  - Support for stretch duration in delay instructions. This new type allows design intent to be captured at circuit construction time, and timing resolution at compile time
-
-  Additional features will be rolled out later this year.
-
-  See  [Classical feedforward and control flow](/docs/guides/classical-feedforward-and-control-flow) and [Deferred timing resolution using stretch](/docs/guides/stretch) for more information and code examples.
-
-### 5 June 2025
-- Now available: Early access to the new version of dynamic circuits on select QPUs. This new version will allow you to run dynamic circuits at utility scale and comes with improvements in speed, quality, and usability. Premium Plan and Flex Plan users interested in participating in this early access can [contact us](/docs/guides/support).
 
 ### 3 February 2025
 - Pulse-level control on all IBM Quantum processors has been removed.  Additionally, the pulse module is scheduled for removal in Qiskit SDK v2.0.  Instead, you can use fractional gates that are now built into the Instruction Set Architecture (ISA). For full details and help migrating your code, refer to [Migrate from Qiskit Pulse to fractional gates](/docs/guides/pulse-migration).
@@ -496,8 +490,11 @@ Improvements include the following:
   - The ability to use control flow instructions inside the body of a branch (as in, nested control flow)
   - Conditional measurements
 
+
 ### 7 January 2025
 - The rollout of the Gen3 engine stack begins today. This engine stack gives a 75x speedup in execution.  The rollout will be done on one QPU at a time, where a percentage of the jobs on the QPU will use the Gen3 path.  You can also force the Gen3 path using the `gen3-turbo` experimental option. Note that this engine stack is not compatible with fractional gates, pulse gates, or dynamic circuits.
+</AccordionItem>
+<AccordionItem title="**Previous updates (2024)**">
 
 ### 15 October 2024
   - Support for `backend.run` has ended.
@@ -524,8 +521,63 @@ Improvements include the following:
 
 ### 28 March 2024
   - Qiskit Runtime primitives now support OpenQASM 3 as the input format for circuits and standard JSON output format. See [Qiskit Runtime REST API](/docs/api/qiskit-ibm-runtime) for examples.
+
 </AccordionItem>
 </Accordion>
+
+<span id="latest-qiskit-sdk"></span>
+## Qiskit SDK v2.3
+
+### January 2026
+- Building on the momentum established across the v2.x series, which has centered on positioning Qiskit as the leading platform for hybrid quantum-HPC workflows, [Qiskit SDK v2.3](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) delivers a significant expansion of the C API alongside faster, more flexible tools for building and optimizing quantum circuits.
+
+  Major updates include:
+
+  - **Custom transpiler passes in C** - Write custom transpiler passes through Qiskit's C API using the new `QkDag` object and an expanded `QkTarget` object, which enable step-by-step inspection, modification, and extension of the compilation process - without rebuilding the entire compiler pipeline.
+
+  - **Faster hardware layout selection** - Upgrades and Rust-driven performance enhancements to `VF2Layout` and `VF2PostLayout` improve the speed and scalability of circuit-to-hardware layout selection, reducing compilation overhead and improving fidelity on quantum hardware.
+
+  - **New multi-qubit Pauli measurement** - The new `PauliProductMeasurement` instruction enables joint projective measurement across multiple qubits in a single operation, unlocking compilation to Pauli-based computation - a common representation in fault-tolerant quantum computing.
+
+  - **Improvements in early fault-tolerant transpilation** - Performance and feature enhancements for transpilation to early fault-tolerant targets - especially Clifford+T targets - help users more efficiently build transpilation pipelines for future QPUs.
+
+  These capabilities give developers greater flexibility to customize quantum circuit optimizations and integrate with existing HPC workflows. [Visit the blog](https://www.ibm.com/quantum/blog/qiskit-2-3-release-summary) for the full technical summary.
+
+Wondering what has changed? Read the [changelog](https://github.com/Qiskit/qiskit/releases/tag/2.3.0) and the [v2.3 release notes](/docs/api/qiskit/release-notes/2.3).
+
+{/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
+
+*To see the release notes for all versions, visit the [Qiskit SDK release notes](/docs/api/qiskit/release-notes).*
+
+
+<span id="latest-qiskit-runtime-client"></span>
+## IBM Quantum Compute client v0.46.0
+
+### April 2026
+
+<span id="executor-primitive"></span>
+- **Introducing the Executor primitive**: We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025.
+
+  Together with [Samplomatic](https://qiskit.github.io/samplomatic/index.html), they make up the [directed execution model](/docs/guides/directed-execution-model), which provides full transparency and control to fine-tune your error mitigation workflow. The [Probabilistic error cancellation with shaded lightcones](https://qiskit.github.io/qiskit-addon-slc/tutorials/01_getting_started.html) tutorial, for example, demonstrates how this model is used to combine advanced techniques, including shaded lightcones, probabilistic error cancellation (PEC), Twirled Readout Error eXtinction (TREX), and [measurement-based postselection](/docs/guides/post-selection), to further improve the result quality.
+
+  If you prefer a higher level of abstraction, [`EstimatorV2`](/docs/guides/estimator-noise-management) in Qiskit Runtime continues to provide several built-in error mitigation and suppression techniques, which you can easily tune using the [`resilience_level`](/docs/guides/estimator-noise-management#resilience-level) option.
+
+  To learn more, see the following guides:
+
+    - [Executor quickstart](/docs/guides/get-started-with-executor)
+    - [Noise learning helper](/docs/guides/noise-learning)
+
+  Both of these new features are currently in beta and require `qiskit-ibm-runtime` version 0.47.0 or higher.
+
+### March 2026
+- `qiskit-ibm-runtime` v0.46.0 has been released. View bug fixes and other notes since v0.45.0 in the [release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).
+
+{/* use text like this to point to the release notes when they aren't mentioned previously: */}
+{/*- For all updates, bug fixes, and new features, see the full [0.46.0 release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).*/} 
+
+{/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
+
+*To see the release notes for all versions, visit the [IBM Quantum Compute client release notes](/docs/api/qiskit-ibm-runtime/release-notes).*
 
 <span id="latest-qiskit-transpiler-service"></span>
 ## Qiskit Transpiler Service client v0.15.2

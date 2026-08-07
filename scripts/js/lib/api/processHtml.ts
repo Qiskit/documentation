@@ -36,6 +36,7 @@ interface ProcessHtmlOptions {
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;
   hasRootNamespaceFile: boolean;
+  normalizeUrl?: (url: string) => string;
 }
 
 export async function processHtml(
@@ -429,6 +430,7 @@ export async function processMembersAndSetMeta(
     isCApi: boolean;
     isRoot: boolean;
     isIbmQuantumSchemasPage: boolean;
+    normalizeUrl?: (url: string) => string;
   },
 ): Promise<void> {
   // Some packages might include a root page where all the re-exports

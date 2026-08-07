@@ -6,32 +6,29 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.options_models.EnvironmentOptions
 ---
 
-# EnvironmentOptions
+<span id="qiskit-ibm-runtime-options-models-environmentoptions" />
 
-<Class id="qiskit_ibm_runtime.options_models.EnvironmentOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/environment.py#L31-L74" signature="EnvironmentOptions(log_level='WARNING', job_tags=<factory>, private=False, max_execution_time=None, image=None)" modifiers="class">
-  Bases: `object`
+# qiskit\_ibm\_runtime.options\_models.EnvironmentOptions
+
+<Class id="qiskit_ibm_runtime.options_models.EnvironmentOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/environment.py#L30-L69" signature="EnvironmentOptions" modifiers="pydantic model">
+  Bases: `BaseOptionsModel`
 
   Options related to the execution environment.
 
-  ## Attributes
+  **Config**
 
-  **Parameters**
-
-  *   **log\_level** (*Literal\['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']*)
-  *   **job\_tags** (*list\[str]*)
-  *   **private** (*bool*)
-  *   **max\_execution\_time** (*int | None*)
-  *   **image** (*Annotated\[str, FieldInfo(annotation=NoneType, required=True, metadata=\[\_PydanticGeneralMetadata(pattern='\[a-zA-Z0-9]+(\[/.\\\\-\_]\[a-zA-Z0-9]+)\*:\[a-zA-Z0-9]+(\[.\\\\-\_]\[a-zA-Z0-9]+)\*\$')])] | None*)
+  *   **validate\_assignment**: *bool = True*
+  *   **extra**: *str = forbid*
 
   ### image
 
-  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.image" attributeTypeHint="Annotated[str, FieldInfo(annotation" attributeValue="NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='[a-zA-Z0-9]+([/.\\-_][a-zA-Z0-9]+)*:[a-zA-Z0-9]+([.\\-_][a-zA-Z0-9]+)*$')])] | None = None">
-    Runtime image used for this job.
+  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.image" attributeTypeHint="Annotated[str, FieldInfo(annotation" attributeValue="NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='[a-zA-Z0-9]+([/.\\-_][a-zA-Z0-9]+)*:[a-zA-Z0-9]+([.\\-_][a-zA-Z0-9]+)*$')])] | None = None" modifiers="field">
+    IBM Quantum Compute (formerly Qiskit Runtime) image used for this job.
   </Attribute>
 
   ### job\_tags
 
-  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.job_tags" attributeTypeHint="list[str]" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=list)">
+  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.job_tags" attributeTypeHint="list[str]" attributeValue="[]" modifiers="field">
     Tags to be assigned to the job.
 
     The tags can subsequently be used as a filter in the `qiskit_ibm_runtime.qiskit_runtime_service.jobs()` function call.
@@ -39,15 +36,13 @@ python_api_name: qiskit_ibm_runtime.options_models.EnvironmentOptions
 
   ### log\_level
 
-  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.log_level" attributeTypeHint="Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']" attributeValue="'WARNING'">
-    logging level to set in the execution environment.
-
-    The valid log levels are: `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`.
+  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.log_level" attributeTypeHint="Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']" attributeValue="'WARNING'" modifiers="field">
+    Logging level to set in the execution environment.
   </Attribute>
 
   ### max\_execution\_time
 
-  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.max_execution_time" attributeTypeHint="int | None" attributeValue="None">
+  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.max_execution_time" attributeTypeHint="int | None" attributeValue="None" modifiers="field">
     Maximum execution time in seconds.
 
     This value bounds system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled.
@@ -55,12 +50,24 @@ python_api_name: qiskit_ibm_runtime.options_models.EnvironmentOptions
 
   ### private
 
-  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.private" attributeTypeHint="bool" attributeValue="False">
+  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.private" attributeTypeHint="bool" attributeValue="False" modifiers="field">
     Boolean that indicates whether the job is marked as private.
 
     When set to true, input parameters are not returned, and the results can only be read once. After the job is completed, input parameters are deleted from the service. After the results are read, these are also deleted from the service. When set to false, the input parameters and results follow the standard retention behavior of the API.
   </Attribute>
 
-  ## Methods
+  ### update
+
+  <Function id="qiskit_ibm_runtime.options_models.EnvironmentOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/base.py#L46-L54" signature="update(**kwargs)">
+    Update the options.
+
+    **Parameters**
+
+    **kwargs** (*Any*)
+
+    **Return type**
+
+    None
+  </Function>
 </Class>
 
