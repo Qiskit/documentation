@@ -1,34 +1,15 @@
 ---
-title: Activity tracking events for IBM Quantum Compute Service
-description: Learn about activity tracking events for IBM Quantum Compute Service.
+title: Authorization roles
+description: Learn about the authorization roles and permissions available for the IBM Quantum REST APIs.
 ---
 
-# Activity tracking events for IBM Quantum Compute Service
+# Authorization roles
 
-IBM Cloud&reg; services, such as IBM Quantum&reg; Compute Service, generate activity tracking events.
+Review the available roles and the actions mapped to each to help you assign access. See [IAM roles and actions](https://cloud.ibm.com/docs/iam?topic=iam-iam-service-roles-actions#service-roles-table155) on IBM Cloud&reg; for more information.
 
-Activity tracking events report on activities that change the state of a service in IBM Cloud. You can use the events to investigate abnormal activity and critical actions and to comply with regulatory audit requirements.
+## IBM Quantum Compute Service
 
-You can use IBM Cloud Activity Tracker Event Routing, a platform service, to route auditing events in your account to destinations of your choice by configuring targets and routes that define where activity tracking events are sent. For more information, see [About IBM Cloud Activity Tracker Events Routing](https://cloud.ibm.com/docs/atracker?topic=atracker-about).
-
-You can use IBM Cloud Logs to visualize and alert on events that are generated in your account and routed by IBM Cloud Activity Tracker Event Routing to an IBM Cloud Logs instance.
-
-## Locations where activity tracking events are generated
-
-IBM Quantum Compute Service sends activity tracking events in the following regions:
-
-- Washington ("us-east")
-- Frankfurt ("eu-de")
-
-## Viewing activity tracking events for IBM Quantum Compute Service
-
-You can use IBM Cloud Logs to visualize and alert on events that are generated in your account and routed by IBM Cloud Activity Tracker Event Routing to an IBM Cloud Logs instance.
-
-### Launching IBM Cloud Logs from the Observability page
-
-For information on launching the IBM Cloud Logs UI, see the [Launching the UI](https://cloud.ibm.com/docs/cloud-logs?topic=cloud-logs-instance-launch#instance-launch-cloud-ui) in the IBM Cloud Logs documentation.
-
-| Action | Triggered by |
+| Permission | Required by |
 | -- | -- |
 | `quantum-computing.account-analytics-filters.read` | Get analytics filters (`GET /v1/analytics/filters`) |
 | `quantum-computing.account-analytics-usage.read` | Get usage analytics (`GET /v1/analytics/usage`) |
@@ -57,3 +38,18 @@ For information on launching the IBM Cloud Logs UI, see the [Launching the UI](h
 | `quantum-computing.session.update` | Close job session (`DELETE /v1/sessions/{id}/close`) |
 | `quantum-computing.session.update` | Update a session (`PATCH /v1/sessions/{id}`) |
 | `quantum-computing.workload.list` | List user instance workloads (`GET /v1/workloads`) |
+
+## IBM Quantum System Service
+
+| Permission | Required by |
+| -- | -- |
+| `quantum-computing.direct-access-backend-configuration.read` | Get backend configuration (`GET /v1/backends/{backend-name}/configuration`) |
+| `quantum-computing.direct-access-backend-properties.read` | Get backend properties (`GET /v1/backends/{backend-name}/properties`) |
+| `quantum-computing.direct-access-backend.list` | Get list of backends (`GET /v1/backends`) |
+| `quantum-computing.direct-access-backend.read` | Get backend details (`GET /v1/backends/{backend-name}`) |
+| `quantum-computing.direct-access-job.cancel` | Cancel a job (`POST /v1/jobs/{job-id}/cancel`) |
+| `quantum-computing.direct-access-job.create` | Run a job (`POST /v1/jobs`) |
+| `quantum-computing.direct-access-job.delete` | Delete a job (`DELETE /v1/jobs/{job-id}`) |
+| `quantum-computing.direct-access-job.list` | Get jobs (`GET /v1/jobs`) |
+| `quantum-computing.direct-access-job.read` | Get Job by ID (`GET /v1/jobs/{job-id}`) |
+| `quantum-computing.direct-access-lane-configuration.list` | Get backend lanes configuration (`GET /v1/backends/{backend-name}/lanes`) |
