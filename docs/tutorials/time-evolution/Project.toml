@@ -8,3 +8,12 @@ QiskitIBMRuntime = "1f74880b-c9c8-4af4-a333-b5b4aaaec6f5"
 SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 TensorNetworkQuantumSimulator = "4de3b72a-362e-43dd-83ff-3f381eda9f9c"
+
+[compat]
+# Qiskit 0.5 pulls Qiskit_jll 2.4, whose QkCircuitInstruction stores gate
+# parameters as QkParam** rather than double*. qiskit_ibm_runtime_jll 0.38.1
+# still reads that field as double*, so every rotation angle is submitted to
+# the backend as a reinterpreted pointer (~7e-314). Holding Qiskit at 0.4 keeps
+# Qiskit_jll at 2.2.3 and qiskit_ibm_runtime_jll at 0.38.0, where the ABI matches.
+Qiskit = "0.4"
+QiskitIBMRuntime = "0.2"
