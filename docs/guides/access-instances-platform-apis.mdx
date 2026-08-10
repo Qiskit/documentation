@@ -115,6 +115,8 @@ Pass a `parameters` JSON object in the request body with the fields you want to 
 - `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
 
+To grant or remove access to Qiskit Functions on an instance, see [Configure Functions access on an instance](/docs/guides/functions-get-started#configure-functions-access).
+
 <Admonition type="caution" title="Always include a unique timestamp">
   The API silently ignores the request if `parameters` is identical to the previous request. In the `parameters` object, always include a `timestamp` field set to the current time so each request is treated as unique.
 </Admonition>
