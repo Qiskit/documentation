@@ -27,6 +27,7 @@ const SYNTHETIC_FILES: string[] = [
   "learning/index.mdx",
   "docs/index.mdx",
   "docs/errors.mdx",
+  "docs/api/qiskit-ibm-runtime/index.mdx",
   "docs/api/qiskit-runtime-rest/index.mdx",
   "docs/api/qiskit-runtime-rest/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
