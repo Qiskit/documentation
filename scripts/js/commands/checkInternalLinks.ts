@@ -26,7 +26,6 @@ import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
 const SYNTHETIC_FILES: string[] = [
   "learning/index.mdx",
   "docs/index.mdx",
-  "docs/admin/analytics.mdx",
   "docs/errors.mdx",
   "docs/api/qiskit-runtime-rest/index.mdx",
   "docs/api/qiskit-runtime-rest/tags/jobs.mdx",
