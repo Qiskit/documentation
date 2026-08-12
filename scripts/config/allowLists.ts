@@ -24,13 +24,13 @@ export function ignoreTitleMismatch(filepath: string): boolean {
 export const IMAGE_ALLOWLIST: Set<string> = new Set([]);
 
 const IGNORE_TITLE_MISMATCHES: string[] = [
-  "docs/guides/changes-qiskit-2.3.mdx", // ok
-  "docs/guides/changes-qiskit-addons.mdx", // ok
-  "docs/guides/changes-qiskit-code-assistant.mdx", // ok
-  "docs/guides/changes-qiskit-functions.mdx", // ok
-  "docs/guides/changes-qiskit-transpiler.mdx", // ok
-  "docs/guides/changes-quantum-compute-46.mdx", // ok
-  "docs/guides/changes-quantum-compute-service.mdx", // ok
+  "docs/guides/changelog-qiskit-2.3.mdx", // ok
+  "docs/guides/changelog-qiskit-addons.mdx", // ok
+  "docs/guides/changelog-qiskit-code-assistant.mdx", // ok
+  "docs/guides/changelog-qiskit-functions.mdx", // ok
+  "docs/guides/changelog-qiskit-transpiler.mdx", // ok
+  "docs/guides/changelog-quantum-compute-46.mdx", // ok
+  "docs/guides/changelog-quantum-compute-service.mdx", // ok
   "docs/guides/directed-execution-model.mdx", // ok
   "docs/guides/estimator-examples.ipynb", // ok
   "docs/guides/estimator-input-output.ipynb", // ok
