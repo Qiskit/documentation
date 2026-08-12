@@ -72,11 +72,10 @@ description: Organized list of technical terms, product/service names, and their
     - <b>Decomposition</b>: The process of breaking down quantum operations into simpler sub-operations executable by a physical quantum processor.
     - <b>Density matrix</b>: A special class of matrices used to represent quantum states. 
     - <b>Device drift</b>: The degradation of hardware performance over time.
-    - <b>Device noise</b>:
-    - <b>Device topology</b>:
-    - <b>Diagonalization</b>:
-    - <b>Dimensionality reduction</b>:
-    - <b>Directed execution model</b>:
+    - <b>Device noise</b>: Unwanted environmental and hardware disruptions that corrupt qubit states.
+    - <b>Device topology</b>: The physical layout of qubits on a quantum processor.
+    - <b>Dimensionality reduction</b>: A method for representing a given dataset using a lower number of features (that is, dimensions) while still capturing the original data’s meaningful properties.1 This amounts to removing irrelevant or redundant features, or simply noisy data, to create a model with a lower number of variables.
+    - <b>Directed execution model</b>: A more advanced and flexible way to run quantum experiments that gives researchers greater control over how quantum circuits are executed. Instead of generating all circuit variations on the user's computer, the directed execution model lets users specify their experimental intent while the server efficiently creates and manages the required circuit variants. This approach makes it easier to customize techniques such as error mitigation, Pauli twirling, noise model learning, noise injection, and basis changes, while maintaining performance.
     - <b>Dynamic circuit</b>: A quantum circuit that includes mid-circuit measurements and classical conditional logic. Dynamic circuits allow quantum operations to depend on measurement results obtained during circuit execution, enabling more sophisticated quantum algorithms.
     - <b>Dynamical decoupling</b>: An error suppression technique that applies sequences of quantum gates to idle qubits to counteract the effects of environmental noise. Dynamic decoupling helps maintain qubit coherence during circuit execution.
 
@@ -90,7 +89,7 @@ description: Organized list of technical terms, product/service names, and their
     - <b>Electron correlation effect</b>:
     - <b>Entanglement</b>: A quantum mechanical effect that correlates the behavior of two separate things. When two qubits are entangled, changes to one qubit directly impact the other. Quantum algorithms leverage those relationships to find solutions to complex problems.
     - <b>Error codes</b>:
-    - <b>Error correction</b>:
+    - <b>Error correction techniques</b>: Methods used to protect quantum information from environmental noise.
     - <b>Error mitigation</b>:
     - <b>Error per layered gate</b>: The average error for each gate in these layered circuits, which we can calculate directly from the layer fidelity.
     - <b>Error suppression</b>:
@@ -383,7 +382,6 @@ description: Organized list of technical terms, product/service names, and their
     - <b>Specialized addons</b>:
     - <b>Spending notification</b>:
     - <b>Spin</b>:
-    - <b>SQD simulation</b>:
     - <b>Stabilizer circuit</b>: A quantum circuit that consists solely of the following gates: CX, Hadamard, S, or Measurement.
     - <b>Standard gates</b>:
     - <b>Static quantum circuits</b>:
@@ -400,23 +398,16 @@ description: Organized list of technical terms, product/service names, and their
     - <b>Time evolution</b>: The way a quantum system changes over time.
     - <b>Time-evolution circuit</b>: A circuit that simulates a quantum state evolving in time. Time-evolution circuits are used to investigate physical effects such as heat transfer or phase transitions in a system.
     - <b>Toffoli gate</b>: A quantum logic gate that extends the functionality of the CNOT gate by having two control qubits and one target qubit.
-    - <b>Topology</b>:
-    - <b>Training data</b>:
     - <b>Transpilation</b>: The process of rewriting a given input circuit to match the topology of a specific quantum device, and optimize the circuit instructions for execution on noisy quantum computers.
-    - <b>Transpilation code</b>:
-    - <b>Transpilation pipeline</b>:
-    - <b>Transpilation stage</b>:
-    - <b>Transpilation time</b>:
     - <b>Transpile</b>: To transform a quantum circuit using a transpiler. Transpiling converts abstract quantum circuits into hardware-compatible instructions while optimizing for factors like circuit depth, gate count, and error rates.
     - <b>Transpiled circuit</b>: A quantum circuit that has been processed by a transpiler and is ready for execution on specific quantum hardware. The transpiled circuit contains only operations supported by the target hardware and accounts for hardware topology and constraints.
     - <b>Transpiler</b>: A software tool that transforms quantum circuits into equivalent circuits optimized for execution on specific quantum hardware. The transpiler handles tasks such as gate decomposition, qubit routing, and circuit optimization to match hardware constraints and improve performance.
     - <b>Transpiler pass</b>: A single transformation step in the transpilation pipeline. Each pass performs a specific optimization or transformation task, such as gate synthesis, qubit mapping, or circuit simplification. Multiple passes are combined to create a complete transpilation workflow.
     - <b>Transpiler plugin</b>: An extension module that adds custom transpilation capabilities to the Qiskit transpiler. Plugins allow users to implement specialized optimization strategies, synthesis methods, or routing algorithms that can be integrated into the transpilation pipeline.
-    - <b>Transpiling circuits</b>:
     - <b>Twirled noise model</b>: A simplified noise model obtained through twirling, where complex noise channels are converted into simpler, more structured noise (typically Pauli noise). Twirled noise models are easier to characterize and mitigate.
-    - <b>Twirled readout error extinction</b>: An error mitigation technique is used to mitigate the effects of measurement errors by using twirled measurements and can be used alongside many other techniques such as ZNE and PEC that mitigates gate errors.
+    - <b>Twirled readout error extinction</b>: An error mitigation technique that mitigates the effects of measurement errors by using twirled measurements and can be used alongside many other techniques such as ZNE and PEC that mitigate gate errors.
     - <b>Twirling</b>: A technique for converting arbitrary noise channels into noise channels with more specific structure.
-    - <b>Two-qubit gates</b>:
+    - <b>Two-qubit gates</b>: An operation involving two qubits at once: the control qubit and the target qubit.
 
     </AccordionItem>
 </Accordion>
@@ -442,7 +433,7 @@ description: Organized list of technical terms, product/service names, and their
 
     - <b>Variational algorithm</b>: An algorithm that adjusts gate parameters to find states that have certain properties, such as states that represent a good solution to an optimization problem.
     - <b>Variational Quantum Eigensolver (VQE)</b>: A hybrid quantum-classical algorithm for finding the ground state energy of quantum systems. VQE is widely used in quantum chemistry and materials science applications.
-    - <b>Vector</b>:
+    - <b>Vector</b>: Refers to a quantum state vector, which is a column vector whose elements correspond to the probability amplitudes of a quantum system's classical states.
     - <b>Virtual environments</b>:
     - <b>Virtual qubit</b>: A logical qubit index in an abstract quantum circuit before transpilation. Virtual qubits are mapped to physical qubits on actual quantum hardware during the transpilation process.
 
@@ -480,15 +471,7 @@ description: Organized list of technical terms, product/service names, and their
 <Accordion>
     <AccordionItem title="B">
 
-    - <b>Benchpress</b>:
-
-    </AccordionItem>
-</Accordion>
-
-<Accordion>
-    <AccordionItem title="C">
-
-    - <b>ClassicalRegister</b>:
+    - <b>Benchpress</b>: An open-source package containing benchmarking tests that can be used to perform analyses of quantum SDK performance. Benchpress was developed by leading universities, national labs, and researchers at IBM.
 
     </AccordionItem>
 </Accordion>
@@ -496,7 +479,7 @@ description: Organized list of technical terms, product/service names, and their
 <Accordion>
     <AccordionItem title="F">
 
-    - <b>Flex Plan</b>:
+    - <b>Flex Plan</b>: An IBM Quantum Platform service providing a certain number of minutes (at least 400) for running quantum jobs, to be used within one year of purchase.
 
     </AccordionItem>
 </Accordion>
@@ -504,7 +487,7 @@ description: Organized list of technical terms, product/service names, and their
 <Accordion>
     <AccordionItem title="I">
 
-    - <b>IBM Quantum</b>: An industry-first initiative to build universal quantum computers for business and science. Our engineers deliver ever-more-powerful superconducting quantum processors at regular intervals, building toward the quantum computing speed and capacity necessary to change the world. Our developers build the most performant quantum software development kit, Qiskit.
+    - <b>IBM Quantum</b>: An industry-first initiative to build universal quantum computers for business and science. Our engineers deliver ever more powerful superconducting quantum processors at regular intervals, building toward the quantum computing speed and capacity necessary to change the world. Our developers build the most performant quantum software development kit, Qiskit.
     - <b>IBM Quantum Accelerator</b>: A program that helps organizations push themselves further along their quantum journey. Participants will have premium access to IBM's world-class quantum computing systems, while also having the unique opportunity to work with IBM Quantum experts to explore how this technology can benefit specific domains, while readying teams with the skills and capabilities necessary for a quantum-ready workforce.
     - <b>IBM Quantum Blue Jay</b>: A quantum system to be debuted in 2033, capable of running circuits with a billion gates on 2,000 logical qubits.
     - <b>IBM Quantum Composer</b>: A graphical quantum programming tool that lets you drag and drop operations to build quantum circuits and run them on quantum hardware.
@@ -539,8 +522,8 @@ description: Organized list of technical terms, product/service names, and their
 <Accordion>
     <AccordionItem title="O">
 
-    - <b>On-Prem (via IBM Quantum Platform API)</b>:
-    - <b>Optimization Mapper</b>: A Qiskit addon that contains functionality to model optimization problems. For example, it contains functions for creating model of binary optimization problems to solve with Qiskit.
+    - <b>On-Prem Plan</b>: An IBM Quantum Platform service providing access to an entirely dedicated on-premises quantum system that is serviced and maintained by IBM Quantum.
+    - <b>Optimization Mapper</b>: A Qiskit addon that contains functionality to model optimization problems. For example, it contains functions for creating models of binary optimization problems to solve with Qiskit.
 
     </AccordionItem>
 </Accordion>
@@ -548,7 +531,9 @@ description: Organized list of technical terms, product/service names, and their
 <Accordion>
     <AccordionItem title="P">
 
-    - <b>Paulice</b>:
+    - <b>Paulice</b>: A Qiskit package for embedding hardware-efficient Pauli checks into arbitrary Clifford circuits on arbitrary qubit connectivities using spacetime stabilizer codes. These checks can be used to detect logical errors during circuit execution. Postselecting only samples with no detected errors can improve the fidelity of states sampled with a quantum processor, at the cost of some ancilla qubits and increased sampling overhead. This method is particularly suited to near-term hardware since it has a much milder overhead in qubits and gates compared to fault-tolerant quantum computing, while having a better sampling overhead than error mitigation methods such as ZNE or PEC
+    - <b>Pay-As-You-Go Plan</b>: An IBM Quantum Platform plan allowing you to run quantum circuits on the world's best QPUs and pay only for the QPU consumption you use.
+    - <b>Premium Plan</b>: An IBM Quantum Platform enterprise subscription, allowing users to run quantum circuits on the world's best QPUs.
 
     </AccordionItem>
 </Accordion>
@@ -556,31 +541,23 @@ description: Organized list of technical terms, product/service names, and their
 <Accordion>
     <AccordionItem title="Q">
 
-    - <b>qBraid SDK (qbraid)</b>:
-    - <b>Q-CTRL Optimization Solver</b>: A Qiskit Function designed to solve utility-scale optimization problems. It takes in a high-level problem definition, and executes an entire workflow to optimize the problem, without manual configuration.
-    - <b>Q-CTRL Performance Management Function</b>:
+    - <b>Q-CTRL Optimization Solver</b>: A Qiskit Function designed to solve utility-scale optimization problems. It takes in a high-level problem definition and executes an entire workflow to optimize the problem, without manual configuration.
+    - <b>Q-CTRL Fire Opal Performance Management</b>: A Qiskit Function that automatically applies AI-driven error suppression techniques on running circuits, enabling the scaling of larger problems with more gates and qubits. This approach reduces the number of shots required to reach the correct answer, with no added overhead — resulting in significant savings in both compute time and cost.
     - <b>QEDMA QESEM</b>: QESEM Qiskit Function by QEDMA uses a suite of proprietary error mitigation techniques to improve the results of your workload. These techniques include gate optimization, noise-aware transpilation, error suppression, and unbiased error mitigation.
     - <b>Qiskit</b>: The most powerful and performant software for quantum computing. Qiskit is an umbrella term that includes Qiskit's stable release, the open-source Qiskit software development kit, and Qiskit Runtime. Qiskit users represent a diverse, global community of researchers, developers, educators, hobbyists, and entrepreneurs excited to push this field forward.
-    - <b>Qiskit Aer (qiskit-aer)</b>:
+    - <b>Qiskit Aer (qiskit-aer)</b>: An open-source package for quantum computing simulators with realistic noise models. It provides interfaces to run quantum circuits with or without noise using multiple different simulation methods.
     - <b>Qiskit Circuit Library</b>: The Qiskit SDK’s standard library of gates and circuit instructions.
-    - <b>Qiskit ecosystem</b>:
+    - <b>Qiskit ecosystem</b>: A collection of open-source tools created by researchers and developers to provide additional functionality to supplement the core Qiskit workflow.
     - <b>Qiskit Functions</b>: Qiskit Functions are pre-built services that simplify and accelerate utility-scale algorithm discovery and application development by abstracting away parts of the quantum software development workflow. Qiskit Functions free up time normally spent hand-writing code and fine-tuning experiments.
-    - <b>Qiskit Functions Catalog</b>: A platform on IBM Quantum Platform that hosts managed, abstacted quantum computing services.
-    - <b>Qiskit Runtime</b>: A runtime for running cloud-based quantum computing and classical computing in the same environment. Qiskit Runtime dramatically accelerates the development and execution of quantum-enabled workflows by providing a serverless experience for creating and deploying scalable quantum programs, applications, and services. Qiskit Runtime provides independent software vendors a simple, cloud-native interface using IBM's pay-as-you-go service.
-    - <b>Qiskit Runtime primitives</b>:
-    - <b>Qiskit SDK</b>:
-    - <b>Qiskit SDK transpiler</b>:
-    - <b>qiskit.circuit</b>:
-    - <b>qiskit.circuit.library</b>:
-    - <b>qiskit.primitives</b>:
-    - <b>qiskit.quantum_info</b>:
-    - <b>qiskit.transpiler</b>:
+    - <b>Qiskit Functions Catalog</b>: A platform on IBM Quantum Platform that hosts managed, abstracted quantum computing services.
+    - <b>Qiskit Runtime</b>: A runtime for running cloud-based quantum computing and classical computing in the same environment. Qiskit Runtime dramatically accelerates the development and execution of quantum-enabled workflows by providing a serverless experience for creating and deploying scalable quantum programs, applications, and services. Qiskit Runtime provides independent software vendors with a simple, cloud-native interface using IBM's pay-as-you-go service.
+    - <b>Qiskit Runtime primitives</b>: Core cloud-based functions in IBM's Qiskit Runtime Service. The primitives handle common tasks, such as calculating expectation values and sampling quantum states, to simplify quantum programming.
+    - <b>Qiskit SDK</b>: An open-source SDK for working with quantum computers at the level of extended (static, dynamic, and scheduled) quantum circuits, operators, and primitives. This library is the core component of Qiskit; it is the largest package under the Qiskit name with the broadest suite of tools for quantum computation, and many other components interface with it.
+    - <b>Qiskit SDK transpiler</b>: Transpilation tooling and workflows available to all Qiskit users. Transpilation takes a circuit containing your instructions, then transforms it such that only instructions available on a chosen backend are used, optimizing those instructions to minimize the effects of noise.
     - <b>Quantum Optimization Best Practices</b>: A community repository full of guidelines, best practices, and reference implementations for running quantum optimization algorithms. While they are not feature-complete, they are a helpful way to get started in building quantum workloads to solve optimization problems.
-    - <b>Quantum Portfolio Optimizer</b>:
-    - <b>QuantumCircuit</b>:
-    - <b>QuantumRegister</b>:
-    - <b>QUICK-PDE</b>:
-    - <b>Qunova Computing HI-VQE Chemistry</b>:
+    - <b>Quantum Portfolio Optimizer</b>: a Qiskit Function that tackles the dynamic portfolio optimization problem, a standard problem in finance that aims to rebalance periodic investments across a set of assets to maximize returns and minimize risks. By deploying cutting-edge quantum optimization techniques, this function simplifies the process so that users, with no expertise in quantum computing, can benefit from its advantages in finding optimal investment trajectories.
+    - <b>QUICK-PDE</b>: A Qiskit Function based on the algorithm described in [ColibriTD's H-DES description paper](https://arxiv.org/abs/2410.01130). This algorithm can solve complex multi-physics problems, starting with Computational Fluid Dynamics (CFD) and Materials Deformation (MD).
+    - <b>Qunova Computing HI-VQE Chemistry</b>: The Handover Iterative Variational Quantum Eigensolver (HI-VQE) is an innovative hybrid quantum-classical method for accurately estimating the ground state of molecular systems. It integrates quantum hardware with classical computing, using quantum processors to efficiently explore candidate electron configurations and calculating the resulting wave function on classical computers. By generating compact yet chemically accurate wave functions, HI-VQE enhances research and discovery in quantum chemistry and materials science.
 
     </AccordionItem>
 </Accordion>
