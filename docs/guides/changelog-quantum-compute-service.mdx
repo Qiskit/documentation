@@ -73,10 +73,11 @@ description: The latest updates from IBM Quantum Compute Service, including the 
 
     - IBM Qiskit Runtime (or IBM Qiskit Runtime Execution Environment): the execution environment running on the quantum computer that processes and executes Qiskit primitives.
 
-<Accordion>
 ## Previous updates
 
-### May 2026
+### 2026
+<Accordion>
+<AccordionItem title="May 2026">
 
 <span id="store-instruction"></span>
 - **Support for the [Store](/docs/api/qiskit/circuit#store) instruction on IBM&reg; QPUs** - Now you can simplify complex classical computations in your quantum circuits with the Store instruction.
@@ -93,8 +94,8 @@ description: The latest updates from IBM Quantum Compute Service, including the 
 
 <span id="classroom-accounts"></span>
 - **New Classroom Accounts**: Professors can now request a [Classroom Account](/docs/guides/classroom-accounts) to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information.
-
-  ### April 2026
+</AccordionItem>
+<AccordionItem title="April 2026">
 
   - **New export options now available in IBM Quantum**: Introducing new export capabilities that make it easier for account administrators to analyze, share, and work with their data.
 
@@ -161,17 +162,16 @@ description: The latest updates from IBM Quantum Compute Service, including the 
   This change is part of the continued evolution and expansion of the IBM Quantum fleet in the EU, including the recently released Nighthawk QPU [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin) and the upgraded Heron r3 QPU [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen). The global fleet has now fully transitioned away from Eagle, IBM Quantum's first utility‑scale processor family, introduced in 2021.
 
   If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU to take advantage of the latest hardware. For guidance on retrieving data from past jobs, refer to the [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
-
-  ### March 2026
+</AccordionItem>
+<AccordionItem title="March 2026">
 
   #### The EU gets its first Heron r3
 
   Maintenance has been completed on [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen) and the QPU is now back online in the eu‑de region.  `ibm_aachen` has also been upgraded to be the first QPU in the EU to feature the latest [Heron r3](https://www.linkedin.com/posts/jay-gambetta-a274753a_following-up-on-an-earlier-post-https-activity-7364268815720824834-aZ0k) processor. It is the third r3 in our global fleet, after [`ibm_boston`](https://quantum.cloud.ibm.com/computers?system=ibm_boston) and [`ibm_pittsburgh`](https://quantum.cloud.ibm.com/computers?system=ibm_pittsburgh) in the US.
 
   Heron r3 continues to deliver improved error rates and overall system performance compared to Heron r2, demonstrating more reliable execution and better results for workloads. For example, on `ibm_aachen`, we observe a large boost in $T_2$ (phase coherence time) from 150&nbsp;&#181;s to 250&nbsp;&#181;s. You can view metrics like these for all QPUs in the shared fleet on the [Compute resources](https://quantum.cloud.ibm.com/computers) page.
-
-  ### February 2026
-
+</AccordionItem>
+<AccordionItem title="February 2026">
 
   #### `ibm_torino` to retire
 
@@ -184,8 +184,9 @@ description: The latest updates from IBM Quantum Compute Service, including the 
   To provide more flexibility for users, we have expanded the allowable repetition delay time range from 20-500 &#181;s to 20-2000 &#181;s on our Heron and Eagle QPUs. The Nighthawk QPU delay time range continues to be 1000-4000 &#181;s as previously announced. Note that if you choose to increase repetition delay (`rep_delay`), it will have a direct impact on your execution time and capacity consumption, but it might improve the fidelity of certain circuits. The default `rep_delay` remains unchanged on all QPUs.
 
   You can find more information about repetition delay time, including how to change it, in [Qubit initialization](/docs/guides/repetition-rate-execution).
+</AccordionItem>
+<AccordionItem title="January 2026">
 
-  ### January 2026
   - The latest enhancements to the [Compute resources](https://quantum.cloud.ibm.com/computers) page include the following:
 
     - **Unified QPU view** - All QPUs across regions are now displayed in a single table, making it easier to see status and calibrations of the shared fleet across the two regions. (You can still filter the Compute resources table by region using the funnel icon.)
@@ -214,10 +215,11 @@ description: The latest updates from IBM Quantum Compute Service, including the 
       - Administrators can reactivate an instance at any time.
 
   - [**Directed execution model.**](/docs/guides/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](https://qiskit.github.io/samplomatic/index.html) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
-
+  </AccordionItem>
+</Accordion>
 ### 2025
-#### What's new at IBM Quantum - 4Q 2025
-
+<Accordion>
+<AccordionItem title="Fourth quarter">
 The [What's New @ IBM Quantum Q4 2025](https://www.ibm.com/quantum/blog/whats-new-q4-2025) quarterly update is now live!
 
 This convenient wrap-up aims to get you started exploring the latest hardware, software, research, and community events from IBM Quantum and our partner ecosystem.
@@ -233,7 +235,7 @@ This quarterly update also spotlights notable benchmarks, including:
 
 [Discover these updates and more.](https://www.ibm.com/quantum/blog/whats-new-q4-2025)
 
-#### Compute resources page update – Unified QPU view across regions
+##### Compute resources page update – Unified QPU view across regions
 
 We’ve enhanced the [Compute resources](https://quantum.cloud.ibm.com/computers) page! New features include the following:
 
@@ -245,13 +247,13 @@ We’ve enhanced the [Compute resources](https://quantum.cloud.ibm.com/computers
 
 You can still filter the Compute resources table by region using the funnel icon at the top of the table.
 
-### 3 November 2025
+#### 3 November 2025
 
 The quantum computer `ibm_brisbane` has been retired and will no longer accept workload submissions. Any workloads that were already queued on these QPUs might still be processed and return results.
 
 If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions.](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu)
 
-### October 2025
+#### October 2025
 
 The IBM Quantum fleet welcomes `ibm_fez` and `ibm_marrakesh` to the Open Plan! All users can access these computers as of 27 October.
 
@@ -288,8 +290,9 @@ A reminder that `ibm_brisbane` will retire on 3 Nov 2025, so plan your experimen
   Additional features will be rolled out later this year.
 
   See  [Classical feedforward and control flow](/docs/guides/classical-feedforward-and-control-flow) and [Deferred timing resolution using stretch](/docs/guides/stretch) for more information and code examples.
-
-### 15 September 2025
+</AccordionItem>
+<AccordionItem title="Third Quarter">
+#### 15 September 2025
 
 The [Unitary Foundation Quantum Open Source Software survey](http://surveymonkey.com/r/QOSSSurvey25) helps capture the needs and concerns of anyone who works with quantum software - including you! The survey results provide valuable feedback for our team of Qiskit developers, and helps us to understand the broader quantum software landscape.
 
@@ -297,13 +300,13 @@ If you have a few minutes, please share the link or consider filling it out toda
 
 [http://surveymonkey.com/r/QOSSSurvey25](http://surveymonkey.com/r/QOSSSurvey25)
 
-### 1 September 2025
+#### 1 September 2025
 
 We plan to retire `ibm_brisbane` on or around 1 November 2025.
 
 Once this QPU is retired, it will no longer accept jobs. If any jobs are queued on the QPU at the time of its retirement, they will still run and return results. Please plan your experiments accordingly.
 
-### 31 July 2025
+#### 31 July 2025
 
 Today, we are thrilled to announce the launch of ibm_pittsburgh, our first quantum computer powered by the new Heron Revision 3 (r3) QPU, and located in our Poughkeepsie quantum datacenter. r3 is the result of targeted improvements that directly impact coherence, gate fidelity, and readout performance.
 
@@ -313,26 +316,27 @@ As recently announced, today we retire one of our Eagle processors, ibm_sherbroo
 
 Together, let’s open the door to more complex algorithmic exploration and real-world applications.
 
-### 24 July 2025
+#### 24 July 2025
 
 Quantum technology is advancing rapidly, and it can be challenging to keep up. To help you stay in the loop, we’ve put together a roundup featuring the newest tools, performance improvements, and updates from IBM Quantum. It includes links to code examples, documentation, and research to help you get the most out of our latest developments.
 
 [Learn what's new at IBM Quantum](https://ibm.biz/whats-new-at-ibm-quantum-h1-2025-op)
 
-### 27 June 2025
+#### 27 June 2025
 
 `ibm_sherbrooke` will now retire on or around 28 July 2025.
 
 Be sure to retrieve any job data from important past jobs before it is retired.
-
-### 24 June 2025
+</AccordionItem>
+<AccordionItem title="Second quarter">
+#### 24 June 2025
 - Profile page: Now you can find integrated profile details directly in the new platform. Find your profile by clicking on the user icon in the top right or visiting your [profile page](https://quantum.cloud.ibm.com/profile).
 - Public backends: View a list of US backends without logging in, available on the updated [Compute Resources](https://quantum.cloud.ibm.com/computers) page.
 - Learning: Quantum computing courses have now been released in the upgraded platform, along with new educational modules designed to help teachers bring Qiskit into their classrooms. This is the first step towards migrating IBM Quantum Learning to the new platform, with more resources to be released in the coming weeks. Resources can be accessed without needing to log in at [IBM Quantum Learning](/learning). Check out new and updated content, including [Quantum diagonalization algorithms](/learning/courses/quantum-diagonalization-algorithms), [Quantum computing in practice](/learning/courses/quantum-computing-in-practice), and Qiskit in Classrooms modules like [Quantum mechanics](/learning/modules/quantum-mechanics) and [Computer science](/learning/modules/computer-science).
 - IBM Quantum Composer: The circuit-building [Composer](https://quantum.cloud.ibm.com/composer) has now been migrated to the new platform. The experience is largely the same, except for files will no longer be stored in the platform, and will need to be downloaded locally. Find more details in the [Composer documentation](/docs/guides/composer).
 - Announcements: Now you can access news, software updates, and service alerts on the new platform. Click the bell icon in the top navigation bar or the link under Featured resources on the [home page](https://quantum.cloud.ibm.com/) to visit the new Announcements page.
 
-### 5 June 2025
+#### 5 June 2025
 - Added instance job filter: The platform now displays only your workloads by default. On the dashboard, you will see only the latest workloads you have submitted to instances within your account.
 
 ![Only the latest workloads now shown by default](/docs/images/guides/latest-updates/workloads.avif)
@@ -343,8 +347,7 @@ Be sure to retrieve any job data from important past jobs before it is retired.
 
 - Now available: Early access to the new version of dynamic circuits on select QPUs. This new version will allow you to run dynamic circuits at utility scale and comes with improvements in speed, quality, and usability. Premium Plan and Flex Plan users interested in participating in this early access can [contact us](/docs/guides/support).
 
-
-### 15 May 2025
+#### 15 May 2025
 
 *Note: This is relevant to IBM Quantum Platform Classic (at https://quantum.ibm.com/) only.*
 
@@ -352,13 +355,13 @@ If you are still using [IBM Quantum Platform Classic](https://quantum.ibm.com/) 
 
 Users of other plans (for example, Premium Plan or On-Prem Plan) should wait for specific instructions from their administrators before migrating.
 
-### 8 May 2025
+#### 8 May 2025
 - [Flex Plan](https://www.ibm.com/quantum/blog/flex-plan), a new resource consumption offering, has been released.
 - [Tutorials](/docs/tutorials) are now available on the platform to help users with use-case exploration.
 - The [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions) has launched on the platform.
 - Updated Session OpenAPI schema: `backend_name` field is now nullable.
 
-### 24 April 2025
+#### 24 April 2025
 - Instance limits: Individuals can view [available time and usage](https://quantum.cloud.ibm.com/instances), which displays alerts when approaching limits.
 - Administrator permissions: Administrators can view overall usage, cycle period, and remaining time per plan in the Instances page.
 - Search: Search is now integrated and available for filtering documentation content, including guides and API references.
@@ -371,13 +374,13 @@ Users of other plans (for example, Premium Plan or On-Prem Plan) should wait for
   - Addressed an issue that prevented QPU metrics to be displayed for the QPUs in the eu-de region.
 - Deprecation reminder: The deprecation date for IBM Quantum Platform Classic has been set for 1 July 2025.
 
-### 21 April 2025
+#### 21 April 2025
 
 `ibm_kyiv` has been retired and will no longer accept workload submissions. Any workloads that were already queued on these QPUs might still be processed and return results.
 
 If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions.](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu)
 
-### 10 April 2025
+#### 10 April 2025
 - Updated navigation to remove duplicated pages:
   - The Administration section has been renamed "Access management" and now only focuses on managing users and access groups.
   - There is only one page each for managing instances and workloads; there are no longer separate pages for each in the Administration section.  Instead, what you can view and manage on each page is dependent on your access and permissions.
@@ -388,13 +391,14 @@ If you would like to retrieve job data from important workloads run on this QPU,
 - Premium plan instance administrators can set the instance allocation as a usage limit, so that usage in those instances cannot exceed the time alloted. See the [Set instance allocation limits](/docs/guides/allocation-limits) guide for instructions.
 - Note that the sunset date for IBM Quantum Platform Classic has been set for 1 July 2025.
 
-### 9 April 2025
+#### 9 April 2025
 
 Two new 156Q Heron R2 QPUs, [ibm_aachen](https://quantum.ibm.com/computers?system=ibm_aachen), located in the EU region, and [ibm_kingston](https://quantum.ibm.com/computers?system=ibm_kingston), located in the US region, are now available.
 
 View the systems you have access to with your selected instance in the [Compute resources](https://quantum.ibm.com/services/resources) page on IBM Quantum Platform.
-
-### 27 March 2025
+</AccordionItem>
+<AccordionItem title="First quarter">
+#### 27 March 2025
 - **Cost limits for Pay-As-You-Go Plan** - Pay-As-You-Go Plan users with sufficient access can now view and edit [maximum cost limits](/docs/guides/manage-cost#cost-limit) for their instances.
 
 - **Job management updates** - Now only administrators can delete workloads created by other users in an account, and collaborators will only be able to delete their own workloads.
@@ -407,7 +411,7 @@ View the systems you have access to with your selected instance in the [Compute 
 
 For full details on the early access release and upcoming improvements, [check out the blog](https://www.ibm.com/quantum/blog/iqp-upgrade).
 
-### 25 March 2025
+#### 25 March 2025
 
 An IBM Quantum Network exclusive: Join us for our first quarterly IBM Quantum Product Updates Webinar, a series in which we unveil the latest advancements in our products and offerings, showcase partner use cases, and provide the opportunity for Q&A with quantum experts.
 
@@ -417,14 +421,14 @@ The second segment will feature the launch of three new and innovative Qiskit Fu
 
 [Learn more and register today](https://www.ibm.com/events/reg/flow/ibm/m1ok6zmb/landing/page/landing)
 
-### 26 February 2025
+#### 26 February 2025
 - Today, we are releasing an early access version of the upgraded experience, and invite you to [open an account and explore the new interface](https://quantum.cloud.ibm.com). We will continue to roll out updates over the coming months, with the end goal of creating an experience that looks and feels like the classic version of IBM Quantum Platform, but with greater functionality. We will eventually sunset IBM Quantum Platform classic, so stay tuned for updates.
 
 - Please note: If your IBM Quantum Platform access falls under a plan administrator (Premium Plan, On-Prem Plan, Startup Program, etc.), you will receive guided migration support through your administrator in the coming months. In the meantime, you are welcome to [create a free Open Plan account to explore the new platform](https://quantum.cloud.ibm.com).
 
 - For full details on the early access release and upcoming improvements, [check out the blog](https://www.ibm.com/quantum/blog/iqp-upgrade).
 
-### 24 February 2025
+#### 24 February 2025
 
 Our inventory is getting a makeover, and we will be retiring the following QPUs on or around 18 April 2025:
 
@@ -433,11 +437,11 @@ Our inventory is getting a makeover, and we will be retiring the following QPUs 
 
 Be sure to retrieve any job data from important past jobs before these QPUs are retired.
 
-### 3 February 2025
+#### 3 February 2025
 - Pulse-level control on all IBM Quantum processors has been removed.  Additionally, the pulse module is scheduled for removal in Qiskit SDK v2.0.  Instead, you can use fractional gates that are now built into the Instruction Set Architecture (ISA). For full details and help migrating your code, refer to [Migrate from Qiskit Pulse to fractional gates](/docs/guides/pulse-migration).
 
 <span id="new-version-dynamic-circuits"></span>
-### 2 February 2025
+#### 2 February 2025
 - Starting 2 June 2025 and continuing through the year, IBM Quantum will begin a gradual rollout of new features to [dynamic circuits](/docs/guides/classical-feedforward-and-control-flow) that will enable them at the utility scale.
 Improvements include the following:
 
@@ -454,33 +458,41 @@ Improvements include the following:
   - Conditional measurements
 
 
-### 7 January 2025
+#### 7 January 2025
 - The rollout of the Gen3 engine stack begins today. This engine stack gives a 75x speedup in execution.  The rollout will be done on one QPU at a time, where a percentage of the jobs on the QPU will use the Gen3 path.  You can also force the Gen3 path using the `gen3-turbo` experimental option. Note that this engine stack is not compatible with fractional gates, pulse gates, or dynamic circuits.
+</AccordionItem>
+</Accordion>
 
-## 2024
-
-### 15 October 2024
+### 2024
+<Accordion>
+<AccordionItem title= "Fourth quarter">
+#### 15 October 2024
   - Support for `backend.run` has ended.
 
-### 1 October 2024
+#### 1 October 2024
   - Parameterized delay gates have been deprecated.
-
-### 15 August 2024
+</AccordionItem>
+<AccordionItem title="Third quarter">
+#### 15 August 2024
   - Probabilistic error amplification (PEA) error mitigation method is now available for Estimator V2. See the [`ZneOptions` API reference](/docs/api/qiskit-ibm-runtime/options-zne-options) for more details.
   - A new helper program `noise-learner` is now available. It allows characterizing the noise processes affecting the gates in one or more circuits of interest, based on the Pauli-Lindblad noise model. The output noise model can then be passed to Estimator via the `layer_noise_model` option.
   - V1 primitives are no longer supported.
 
-### 3 July 2024
+#### 3 July 2024
   - The following endpoints are deprecated and will be removed on or after 3 October 2024: [`GET /stream/jobs`](/docs/api/qiskit-ibm-runtime/tags/jobs#tags__jobs__operations__get_stream_jobs_state_updates) and [`GET /stream/jobs/{id}`](/docs/api/qiskit-ibm-runtime/tags/jobs#tags__jobs__operations__get_stream_job_logs_jid). This removal has the following impacts:
 
     - After the endpoints are removed, `job.stream_results()` and `job.interim_results()` will be removed from the [qiskit-ibm-runtime](/docs/api/qiskit-ibm-runtime) client.
     - Additional methods, such as `job.result()` currently use the deprecated endpoints.  Upgrade to `qiskit_ibm_runtime` 0.25 or later before the endpoints are removed to avoid disruption.
-
-### 18 June 2024
+</AccordionItem>
+<AccordionItem title="Second quarter">
+#### 18 June 2024
   - The `optimization_level` option is deprecated for Estimator V2 and will be removed no sooner than 30 September 2024.
 
-### 3 June 2024
+#### 3 June 2024
   - Probabilistic error amplification (PEA) error mitigation method is now available as an experimental option for Estimator V2. See the [`EstimatorOptions` API reference](/docs/api/qiskit-ibm-runtime/options-estimator-options) for more details.
-
-### 28 March 2024
+</AccordionItem>
+<AccordionItem title="First quarter">
+#### 28 March 2024
   - Qiskit Runtime primitives now support OpenQASM 3 as the input format for circuits and standard JSON output format. See [Qiskit Runtime REST API](/docs/api/qiskit-ibm-runtime) for examples.
+  </AccordionItem>
+  </Accordion>
