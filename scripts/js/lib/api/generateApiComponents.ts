@@ -322,7 +322,7 @@ function prepareAttributeOrPropertyProps(
       if (inner) rawTypeHtml = inlineCodeifyTypeHtml(inner);
     } else if (delimiter === "=" && !rawDefaultHtml) {
       $firstP.remove();
-       const inner = $clone.html()?.trim();
+      const inner = $clone.html()?.trim();
       if (inner) rawDefaultHtml = `<code>${inner}</code>`;
     }
   });
