@@ -4,7 +4,7 @@ description: Use the IBM Cloud Resource Controller REST API to get, list, update
 
 ---
 
-{/* cspell:ignore Abluemix */}
+{/* cspell:ignore Abluemix, apikey */}
 
 # Use IBM Cloud Resource Controller API for instance management
 
@@ -243,3 +243,302 @@ You can also include a `parameters` object to set quantum-specific values:
     ```
   </TabItem>
 </Tabs>
+
+<span id="functions-api" />
+## Configure Qiskit Functions access on an instance
+
+Use these instructions to configure Qiskit Functions access on an existing IBM Quantum Compute Service instance by using the IBM Cloud Resource Controller API.  Follow the instructions in order, as the commands build on each other.  For example, variables such as the token and URL are set in one step and reused in later steps. 
+
+### Prerequisites
+
+- An IBM Cloud API key (also called a token).  If necessary, create your API key on the [dashboard](https://quantum.cloud.ibm.com). 
+- The CRN of the instance you want to configure.  The instance's CRN is listed on your [Instances](https://quantum.cloud.ibm.com/instances) page.
+
+### Step 1: Get a bearer token
+
+Exchange your API key for a bearer token. You will pass this token in the authorization header of all resource controller requests. Run the following code to generate a bearer token:
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+curl --request POST \
+  --url 'https://iam.cloud.ibm.com/identity/token' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data 'apikey=<YOUR_API_KEY>&grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey'
+  --silent | jq .
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+import requests
+
+api_key = "<YOUR_API_KEY>"
+
+resp = requests.post(
+    "https://iam.cloud.ibm.com/identity/token",
+    headers={"Content-Type": "application/x-www-form-urlencoded"},
+    params={
+        "apikey": api_key,
+        "grant_type": "urn:ibm:params:oauth:grant-type:apikey",
+    },
+    timeout=30,
+)
+resp.raise_for_status()
+token = resp.json()["access_token"]
+print(token) 
+    ```
+  </TabItem>
+</Tabs>
+
+The response includes an `access_token` field, which is your bearer token. Copy this value.
+
+### Step 2: Verify access
+
+Before making any changes, confirm that your token works and inspect the current instance configuration.
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+<Admonition type="note" title="Important">
+The CRN must be manually URL-encoded in the path. Replace each `:` with `%3A` and each `/` with `%2F`. For example, `crn:v1:bluemix:...` becomes `crn%3Av1%3Abluemix%3A...`.
+</Admonition>
+
+    ```bash
+curl --request GET \
+  --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances/<YOUR_INSTANCE_CRN_URL_ENCODED>' \
+  --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>'
+
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+import urllib.parse
+
+crn = "<YOUR_INSTANCE_CRN>"
+# The CRN will be URL-encoded into the path.
+instance_url = (
+    "https://resource-controller.cloud.ibm.com/v2/resource_instances/"
+    + urllib.parse.quote(crn, safe="")
+)
+headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+
+resp = requests.get(instance_url, headers=headers, timeout=30)
+resp.raise_for_status()
+print(resp.json()["extensions"])
+
+    ```
+  </TabItem>
+</Tabs>
+
+A `200 OK` response confirms that your token is valid. The current instance configuration is in the extensions field of the response. Use this instead of parameters, which might be stale.
+
+<span id="step-3" />
+### Step 3: Look up the account-level functions configuration
+
+An instance can only be granted access to what the account is entitled to. Before configuring the instance, look up the account's configuration so you know which functions, business models, and permissions are available to grant. This is the source of truth for the values you will send in Step 4.
+
+Call `GET /accounts/{id}` on the Qiskit Runtime API with your API key. The `{id}` is your account ID without the `a/` prefix.  You can find it from the instance CRN (`crn:v1:bluemix:public:quantum-computing:...:a/<ACCOUNT_ID>:...`).
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+curl --request GET \
+  --url 'https://quantum.cloud.ibm.com/api/v1/accounts/<ACCOUNT_ID>' \
+  --header 'Authorization: apikey <YOUR_API_KEY>'
+
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+account_id = "<ACCOUNT_ID>"  # from the CRN: crn:...:a/<ACCOUNT_ID>:...
+
+resp = requests.get(
+    f"https://quantum.cloud.ibm.com/api/v1/accounts/{account_id}",
+    headers={"Authorization": f"apikey {api_key}"},
+    timeout=30,
+)
+resp.raise_for_status()
+for plan in resp.json()["plans"]:
+    print(plan["plan_id"], plan.get("functions"), plan.get("custom_functions"))
+
+    ```
+  </TabItem>
+</Tabs>
+
+Each plan in the response includes a functions array and, if configured, a `custom_functions` object. These list the exact name, provider, business model, and permissions values you can grant to an instance under that plan.
+
+<Admonition type="note">
+`GET /accounts/{id}` shows what is available to grant at the account level. `GET /functions` (see [Verify the result](#verify-result)) shows what a specific instance has already been granted. Use the **account** endpoint to discover valid values, and the **functions** endpoint to confirm the result.
+</Admonition>
+
+### Step 4: Configure functions access
+
+Update the instance to grant access to Catalog Functions and Custom Functions.
+
+<Admonition type="note" title="Important notes">
+- The `name`, `provider`, and `business_model` values in functions must exactly match entries configured at the account level (see the [previous step](#step-3)). Permissions must be a non-empty subset of the account's permissions for that function. Similarly, `custom_functions.permissions` must be a non-empty subset of the account's `custom_functions` permissions.
+- Include a timestamp in parameters on every PATCH. The Resource Controller deduplicates PATCH requests by comparing incoming parameters to the last value it stored. If they match, the request is silently dropped with `200 OK` without reaching the service. Include a changing timestamp value to prevent this.
+</Admonition>
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+curl --request PATCH \
+  --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances/<YOUR_INSTANCE_CRN_URL_ENCODED>' \
+  --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "parameters": {
+      "timestamp": "2026-06-30T00:00:00Z",
+      "functions": [
+        {
+          "name": "<FUNCTION_NAME>",
+          "provider": "<PROVIDER>",
+          "business_model": "<BUSINESS_MODEL>",
+          "permissions": [
+            "function.read",
+            "function.run",
+            "function-files.read",
+            "function-files.write"
+          ]
+        }
+      ],
+      "custom_functions": {
+        "permissions": [
+          "function-custom.write",
+          "function-custom.run"
+        ]
+      }
+    }
+  }'
+
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+from datetime import datetime, timezone
+
+# A changing timestamp keeps the Resource Controller from de-duplicating the request.
+_now = datetime.now(timezone.utc)
+timestamp = _now.strftime("%Y-%m-%dT%H:%M:%S.") + f"{_now.microsecond:06d}000Z"
+
+body = {
+    "parameters": {
+        "timestamp": timestamp,
+        "functions": [
+            {
+                "name": "<FUNCTION_NAME>",
+                "provider": "<PROVIDER>",
+                "business_model": "<BUSINESS_MODEL>",
+                "permissions": [
+                    "function.read",
+                    "function.run",
+                    "function-files.read",
+                    "function-files.write",
+                ],
+            }
+        ],
+        "custom_functions": {
+            "permissions": ["function-custom.write", "function-custom.run"],
+        },
+    }
+}
+
+resp = requests.patch(instance_url, headers=headers, json=body, timeout=30)
+resp.raise_for_status()
+print(resp.json()["extensions"])
+    ```
+  </TabItem>
+</Tabs>
+
+A `200 OK` response indicates success. The updated configuration appears in the extensions field of the response.
+
+### Remove functions access
+
+#### Catalog Functions
+
+To remove Catalog Functions from an instance, send a PATCH with `"functions": null`:
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+--data '{
+  "parameters": {
+    "timestamp": "2026-06-30T00:00:01Z",
+    "functions": null
+  }
+}'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+body = {"parameters": {"timestamp": timestamp, "functions": None}}
+resp = requests.patch(instance_url, headers=headers, json=body, timeout=30)
+resp.raise_for_status()
+    ```
+  </TabItem>
+</Tabs>
+
+Setting `"functions": []` (an empty array) equivalently clears Catalog Functions. `null` is the canonical form.
+
+#### Custom Functions
+
+To remove Custom Functions from an instance, send a PATCH with `"custom_functions": null`:
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+--data '{
+  "parameters": {
+    "timestamp": "2026-06-30T00:00:02Z",
+    "custom_functions": null
+  }
+}'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+body = {"parameters": {"timestamp": timestamp, "custom_functions": None}}
+resp = requests.patch(instance_url, headers=headers, json=body, timeout=30)
+resp.raise_for_status()
+    ```
+  </TabItem>
+</Tabs>
+
+Setting `"custom_functions": {"permissions": []}` equivalently clears custom functions. `null` is the canonical form.
+
+<span id="verify-result" />
+### Verify the result
+
+To confirm that the instance has the correct Qiskit Functions configuration, use `GET /functions` from the Qiskit Runtime API instead of the Resource Controller. The Resource Controller's stored state might be stale if account-level changes updated the instance outside of the Resource Controller.
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+curl --request GET \
+  --url 'https://quantum.cloud.ibm.com/api/v1/functions' \
+  --header 'Authorization: apikey <YOUR_API_KEY>' \
+  --header 'Service-CRN: <YOUR_INSTANCE_CRN>'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+# The Service-CRN header takes the raw CRN, not the URL-encoded form.
+resp = requests.get(
+    "https://quantum.cloud.ibm.com/api/v1/functions",
+    headers={"Authorization": f"apikey {api_key}", "Service-CRN": crn},
+    timeout=30,
+)
+resp.raise_for_status()
+print(resp.json())
+    ```
+  </TabItem>
+</Tabs>
+
+The response lists the functions that the instance currently has access to.
