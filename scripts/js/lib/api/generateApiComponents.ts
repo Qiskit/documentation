@@ -319,11 +319,11 @@ function prepareAttributeOrPropertyProps(
         .remove();
       $firstP.remove();
       const inner = $clone.html()?.trim();
-      if (inner) rawTypeHtml = inner;
+      if (inner) rawTypeHtml = inlineCodeifyTypeHtml(inner);
     } else if (delimiter === "=" && !rawDefaultHtml) {
       $firstP.remove();
-      const inner = $clone.html()?.trim();
-      if (inner) rawDefaultHtml = inner;
+       const inner = $clone.html()?.trim();
+      if (inner) rawDefaultHtml = `<code>${inner}</code>`;
     }
   });
 
@@ -589,4 +589,16 @@ export function setMinimumHeadingLevel(
       .find(oldTag)
       .replaceWith((_, el) => `<${newTag}>${$(el).html()}</${newTag}>`);
   }
+}
+
+function inlineCodeifyTypeHtml(html: string): string {
+  const $f = cheerioLoad(`<div>${html}</div>`, { xmlMode: false });
+  $f("span.pre").each((_, el) => {
+    const $el = $f(el);
+    $el.replaceWith(`<code>${$el.text()}</code>`);
+  });
+  $f("span.p, span.w").each((_, el) => {
+    $f(el).replaceWith($f(el).text());
+  });
+  return $f("div").html() ?? html;
 }
