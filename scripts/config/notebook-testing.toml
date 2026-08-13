@@ -72,8 +72,7 @@ notebooks = [
   "docs/guides/algorithmiq-tem.ipynb",
   "docs/guides/debug-qiskit-runtime-jobs.ipynb",
   "docs/guides/fractional-gates.ipynb",
-  "docs/guides/functions.ipynb",
-  "docs/guides/ibm-circuit-function.ipynb",
+  "docs/guides/functions-get-started.ipynb",
   "docs/guides/sampler-examples.ipynb",
   "docs/guides/estimator-examples.ipynb",
   "docs/guides/executor-examples.ipynb",
@@ -88,7 +87,6 @@ notebooks = [
   "docs/guides/estimator-options.ipynb",
   "docs/guides/executor-options.ipynb",
   "docs/guides/get-started-with-estimator.ipynb",
-  "docs/guides/qiskit-addons-sqd-get-started.ipynb",
   "docs/guides/multiverse-computing-singularity.ipynb",
   "docs/guides/qunova-chemistry.ipynb",
   "docs/guides/ai-transpiler-passes.ipynb",
@@ -106,7 +104,6 @@ notebooks = [
 [groups.cron-job-only]
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
-  "docs/guides/primitives-rest-api.ipynb",
   "docs/guides/post-selection.ipynb",
   "docs/guides/hello-world.ipynb",
 
@@ -138,12 +135,21 @@ notebooks = [
 # Don't ever test the following notebooks
 [groups.exclude]
 notebooks = [
+  # Addon notebooks require the addon packages and are not run in standard CI
+  "docs/addons/**/*.ipynb",
+
+  # Test fixture — not real content
+  "scripts/js/lib/api/testdata/**/*.ipynb",
+
   # This notebook contains undefined variables so can't run at all.
   "docs/guides/function-template-hamiltonian-simulation.ipynb",
   "docs/guides/function-template-chemistry-workflow.ipynb",
 
   # Only works in runtime 0.41.1
   "docs/guides/monitor-job.ipynb",
+
+  # The code was split out into a new notebook so doesn't need to be tested
+  "docs/guides/functions.ipynb",
 
   # These notebooks are failing with auth errors and need investigating
   "docs/guides/serverless-first-program.ipynb",
@@ -164,14 +170,14 @@ notebooks = [
   "docs/guides/estimate-job-run-time.ipynb",
   "docs/guides/serverless-port-code.ipynb",
 
-  # This is temporarily broken while the transpiler service migrates to cloud
-  "docs/guides/qiskit-transpiler-service.ipynb",
-
   # We never run tutorials notebooks
+  "docs/tutorials/quantum-elements-orbit-qft-with-dynamic-circuits.ipynb",
+  "docs/guides/quantum-elements-orbit.ipynb",
+  "docs/tutorials/loop-string-hadron-dynamics.ipynb",
   "docs/tutorials/implicit-solvent-calculations.ipynb",
   "docs/tutorials/simulate-kicked-ising-tem.ipynb",
   "docs/tutorials/dc-hex-ising.ipynb",
-  "docs/tutorials/ghz-spacetime-codes.ipynb",
+  "docs/tutorials/spacetime-codes.ipynb",
   "docs/tutorials/sml-classification.ipynb",
   "docs/tutorials/qedma-2d-ising-with-qesem.ipynb",
   "docs/tutorials/readout-error-mitigation-sampler.ipynb",
@@ -181,6 +187,7 @@ notebooks = [
   "docs/tutorials/shors-algorithm.ipynb",
   "docs/tutorials/multi-product-formula.ipynb",
   "docs/tutorials/advanced-techniques-for-qaoa.ipynb",
+  "docs/tutorials/warm-start-qaoa.ipynb",
   "docs/tutorials/ai-transpiler-introduction.ipynb",
   "docs/tutorials/grovers-algorithm.ipynb",
   "docs/tutorials/spin-chain-vqe.ipynb",
@@ -204,6 +211,8 @@ notebooks = [
   "docs/tutorials/wire-cutting.ipynb",
   "docs/tutorials/krylov-quantum-diagonalization.ipynb",
   "docs/tutorials/probabilistic-error-amplification.ipynb",
+  "docs/tutorials/pec-with-shaded-lightcones.ipynb",
+  "docs/tutorials/propagated-noise-absorption.ipynb",
   "docs/tutorials/sample-based-quantum-diagonalization.ipynb",
   "docs/tutorials/pauli-correlation-encoding-for-qaoa.ipynb",
   "docs/tutorials/nishimori-phase-transition.ipynb",
@@ -212,6 +221,7 @@ notebooks = [
   "docs/tutorials/edc-cut-bell-pair-benchmarking.ipynb",
   "docs/tutorials/compilation-methods-for-hamiltonian-simulation-circuits.ipynb",
   "docs/tutorials/solve-market-split-problem-with-iskay-quantum-optimizer.ipynb",
+  "docs/tutorials/simulate-neutron-scattering.ipynb",
 
   # Don't test any learning notebooks
   "learning/courses/quantum-computing-in-practice/introduction.ipynb",
@@ -319,11 +329,6 @@ notebooks = [
   "learning/courses/foundations-of-quantum-error-correction/fault-tolerant-quantum-computing/approach-to-fault-tolerance.ipynb",
   "learning/courses/foundations-of-quantum-error-correction/fault-tolerant-quantum-computing/controlling-error-propagation.ipynb",
   "learning/courses/foundations-of-quantum-error-correction/fault-tolerant-quantum-computing/threshold-theorem.ipynb",
-  "learning/courses/quantum-safe-cryptography/cryptographic-hash-functions.ipynb",
-  "learning/courses/quantum-safe-cryptography/quantum-safe-cryptography.ipynb",
-  "learning/courses/quantum-safe-cryptography/symmetric-key-cryptography.ipynb",
-  "learning/courses/quantum-safe-cryptography/WhatNext.ipynb",
-  "learning/courses/quantum-safe-cryptography/asymmetric-key-cryptography.ipynb",
   "learning/courses/quantum-chem-with-vqe/introduction.ipynb",
   "learning/courses/quantum-chem-with-vqe/hamiltonian-construction.ipynb",
   "learning/courses/quantum-chem-with-vqe/ansatz.ipynb",

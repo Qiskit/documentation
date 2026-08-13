@@ -314,6 +314,30 @@ test("normalizeUrl() Qiskit C API", () => {
   ]);
 });
 
+test("normalizeUrl() Qiskit Python API links to C API via cdoc/", () => {
+  // These are the realistic forms from the Sphinx artifact: `../cdoc/<page>.html#<anchor>`
+  const urls = [
+    `../cdoc/qk-circuit.html#c.qk_circuit_new`,
+    `../cdoc/config.html#c.qk_import`,
+    `../cdoc/qk-circuit.html`,
+  ];
+  const resultsByName = {};
+  const itemNames = new Set<string>();
+
+  const results = urls.map((url) =>
+    normalizeUrl(url, resultsByName, itemNames, {
+      kebabCaseAndShorten: true,
+      pkgName: "qiskit",
+      pkgOutputDir: "/docs/api/qiskit/dev",
+    }),
+  );
+  expect(results).toEqual([
+    "/docs/api/qiskit-c/dev/qk-circuit#qk_circuit_new",
+    "/docs/api/qiskit-c/dev/config#qk_import",
+    "/docs/api/qiskit-c/dev/qk-circuit",
+  ]);
+});
+
 test.describe("relativizeLink()", () => {
   [
     "https://ibm.com",

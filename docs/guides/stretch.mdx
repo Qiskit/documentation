@@ -74,7 +74,7 @@ qc.barrier()
 ```
 
 <Admonition type="note">
- When using `stretch` with Qiskit Runtime, any remainder resulting from a stretch resolution is added to the first delay that uses the stretch.
+ When using `stretch` with IBM Quantum Compute Service, any remainder resulting from a stretch resolution is added to the first delay that uses the stretch.
 
     Example:
 
@@ -96,9 +96,9 @@ qc.barrier()
     Stretch resolution equation:  $a + 8 + a + 8 + a + 8 = 100   =   3*a + 24$
 </Admonition>
 
-## View stretch values in Qiskit Runtime
+## View stretch values in IBM Quantum Compute Service
 
-The actual value of a stretch duration is resolved at compile time, after the circuit is scheduled. When running a Sampler job in Qiskit Runtime, you can view the resolved stretch values in the job result metadata.  Support for `stretch` in Qiskit Runtime is currently experimental, so you need to first set an experimental option to enable its retrieval, then access the data directly from the metadata as follows:
+The actual value of a stretch duration is resolved at compile time, after the circuit is scheduled. When running a Sampler job in IBM Quantum Compute Service, you can view the resolved stretch values in the job result metadata.  Support for `stretch` in Quantum Compute is currently experimental, so you need to first set an experimental option to enable its retrieval, then access the data directly from the metadata as follows:
 
 ```python
 # Enable stretch value retrieval.
@@ -111,12 +111,15 @@ sampler.options.experimental = {
 
 # Access the stretch values from the metadata.
 job_result = job.result()
-circuit_stretch_values = job_result[0].metadata["compilation"]["stretch_values"]
+circuit_stretch_values = (
+    job_result[0].metadata["compilation"]["stretch_values"]
+    )
 
 # Visualize the timing.
-# Use the sliders at the bottom, the controls at the top, and the legend on the side 
-# of the output to customize the view.
-draw_circuit_schedule_timing(ob.result()[0].metadata['compilation']['scheduler_timing']['timing'])
+# Use the sliders at the bottom, the controls at the top, and the 
+# legend on the side of the output to customize the view.
+draw_circuit_schedule_timing(ob.result()[0].metadata['compilation']
+    ['scheduler_timing']['timing'])
 ```
 
 <Admonition type="note">
@@ -183,7 +186,8 @@ The values returned for duration depend on the goal value and the calculated rem
 You can use a visualization to help understand and verify the timing. 
 
 ```python
-draw_circuit_schedule_timing(job.result()[0].metadata['compilation']['scheduler_timing']['timing'])
+draw_circuit_schedule_timing(job.result()[0].metadata
+    ['compilation']['scheduler_timing']['timing'])
 ```
 
 In the following image, based on the example output, `foo` corresponds to the stretches on Qubit 2. The first stretch delay that uses `foo` starts at the end of the `init_play` (1365). The stretch duration is 10, so that delay ends when the `x` gate starts (1365+10=1375). You can interpret the second and third stretches similarly.
@@ -194,9 +198,10 @@ Use the sliders at the bottom, the controls at the top (hover over your output i
 
 For full details, see the [Visualize circuit timing](/docs/guides/qiskit-runtime-circuit-timing) topic.
 
-## Qiskit Runtime limitations
+<span id="qiskit-runtime-limitations"></span>
+## Quantum Compute limitations
 
-Support for `stretch` in Qiskit Runtime is currently experimental and has the following constraints:
+Support for `stretch` in Quantum Compute is currently experimental and has the following constraints:
 
 - At most one stretch variable per _qubit set_ between barriers (implicit and explicit). A qubit set is one or more qubits; these sets must be mutually exclusive.
     <Tabs>

@@ -8,15 +8,15 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
 # SwitchCaseOp
 
-<Class id="qiskit.circuit.SwitchCaseOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L52-L188" signature="qiskit.circuit.SwitchCaseOp(target, cases, *, label=None)" modifiers="class">
+<Class id="qiskit.circuit.SwitchCaseOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L52-L190" signature="qiskit.circuit.SwitchCaseOp(target, cases, *, label=None)" modifiers="class">
   Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 
-  A circuit operation that executes one particular circuit block based on matching a given `target` against an ordered list of `values`. The special value [`CASE_DEFAULT`](circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT") can be used to represent a default condition.
+  A circuit operation that executes one particular circuit block based on matching a given `target` against an ordered list of `values`. The special value [`CASE_DEFAULT`](/docs/api/qiskit/dev/circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT") can be used to represent a default condition.
 
   **Parameters**
 
-  *   **target** ([*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")  *|*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")  *|*[*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the real-time value to switch on.
-  *   **cases** (*Iterable\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[Any,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]]*) – an ordered iterable of the corresponding value of the `target` and the circuit block that should be executed if this is matched. There is no fall-through between blocks, and the order matters.
+  *   **target** ([*Clbit*](/docs/api/qiskit/dev/circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")  *|*[*ClassicalRegister*](/docs/api/qiskit/dev/circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")  *|*[*expr.Expr*](/docs/api/qiskit/dev/circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the real-time value to switch on.
+  *   **cases** (*Iterable\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[Any,* [*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]]*) – an ordered iterable of the corresponding value of the `target` and the circuit block that should be executed if this is matched. There is no fall-through between blocks, and the order matters.
   *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional label for identifying the instruction.
 
   ## Attributes
@@ -120,12 +120,12 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
   </Function>
 
   ### cases
 
-  <Function id="qiskit.circuit.SwitchCaseOp.cases" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L168-L178" signature="cases()">
+  <Function id="qiskit.circuit.SwitchCaseOp.cases" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L170-L180" signature="cases()">
     Return a lookup table from case labels to the circuit that would be executed in that case. This object is not generally suitable for creating a new [`SwitchCaseOp`](#qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") because any keys that point to the same object will not be grouped.
 
     <Admonition title="See also" type="note">
@@ -137,7 +137,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### cases\_specifier
 
-  <Function id="qiskit.circuit.SwitchCaseOp.cases_specifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L154-L166" signature="cases_specifier()">
+  <Function id="qiskit.circuit.SwitchCaseOp.cases_specifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L156-L168" signature="cases_specifier()">
     Return an iterable where each element is a 2-tuple whose first element is a tuple of jump values, and whose second is the single circuit block that is associated with those values.
 
     This is an abstract specification of the jump table suitable for creating new [`SwitchCaseOp`](#qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") instances.
@@ -150,7 +150,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
     **Return type**
 
-    Iterable\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple), [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]]
+    Iterable\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple), [QuantumCircuit](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]]
   </Function>
 
   ### copy
@@ -192,33 +192,33 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
   </Function>
 
   ### is\_parameterized
 
   <Function id="qiskit.circuit.SwitchCaseOp.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
-    Return whether the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+    Return whether the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](/docs/api/qiskit/dev/circuit#circuit-compile-time-parameters).
   </Function>
 
   ### iter\_captured\_stretches
 
-  <Function id="qiskit.circuit.SwitchCaseOp.iter_captured_stretches" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/control_flow.py#L86-L94" signature="iter_captured_stretches()">
+  <Function id="qiskit.circuit.SwitchCaseOp.iter_captured_stretches" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/control_flow.py#L80-L88" signature="iter_captured_stretches()">
     Get an iterator over the unique captured stretch variables in all blocks of this construct.
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)\[[expr.Stretch](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")]
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)\[[expr.Stretch](/docs/api/qiskit/dev/circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")]
   </Function>
 
   ### iter\_captured\_vars
 
-  <Function id="qiskit.circuit.SwitchCaseOp.iter_captured_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/control_flow.py#L77-L84" signature="iter_captured_vars()">
+  <Function id="qiskit.circuit.SwitchCaseOp.iter_captured_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/control_flow.py#L71-L78" signature="iter_captured_vars()">
     Get an iterator over the unique captured variables in all blocks of this construct.
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)\[[expr.Var](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")]
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable)\[[expr.Var](/docs/api/qiskit/dev/circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")]
   </Function>
 
   ### repeat
@@ -240,12 +240,12 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
   </Function>
 
   ### replace\_blocks
 
-  <Function id="qiskit.circuit.SwitchCaseOp.replace_blocks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L184-L188" signature="replace_blocks(blocks)">
+  <Function id="qiskit.circuit.SwitchCaseOp.replace_blocks" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/switch_case.py#L186-L190" signature="replace_blocks(blocks)">
     Return a new version of this control-flow operations with the [`blocks`](#qiskit.circuit.SwitchCaseOp.blocks "qiskit.circuit.SwitchCaseOp.blocks") mapped to the given new ones.
 
     Typically this is used in a workflow such as:
@@ -267,7 +267,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
     **Parameters**
 
-    **blocks** (*Iterable\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – the new subcircuit blocks to use.
+    **blocks** (*Iterable\[*[*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – the new subcircuit blocks to use.
 
     **Returns**
 

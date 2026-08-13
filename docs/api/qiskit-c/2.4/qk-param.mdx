@@ -1,0 +1,860 @@
+---
+title: QkParam (v2.4)
+description: API reference for QkParam in qiskit-c v2.4
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QkParam
+---
+
+# QkParam
+
+Represents a circuit parameter which may hold real or symbolic values.
+
+While functionality for a `QkParam` within a circuit is currently limited, a user is able to perform operations similar to the ones present in [`Parameter`](/docs/api/qiskit-c/2.4/qiskit-circuit-parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
+
+## Functions
+
+### qk\_param\_new\_symbol
+
+<Function id="qk_param_new_symbol" signature="QkParam *qk_param_new_symbol(const char *name)">
+  Construct a new `QkParam` representing an unbound symbol.
+
+  <span id="group__QkParam_1autotoc_md142" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  ```
+
+  <span id="group__QkParam_1autotoc_md143" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md143" />
+
+  The `name` parameter must be a pointer to memory that contains a valid nul terminator at the end of the string. It also must be valid for reads of bytes up to and including the nul terminator.
+
+  **Parameters**
+
+  *   **name** – The name of symbol. This cannot be empty.
+
+  **Returns**
+
+  A pointer to the created `QkParam`.
+</Function>
+
+### qk\_param\_zero
+
+<Function id="qk_param_zero" signature="QkParam *qk_param_zero(void)">
+  Construct a new `QkParam` with a value zero.
+
+  The `QkParam` returned from this function can be used to store the result of binary or unary operations.
+
+  <span id="group__QkParam_1autotoc_md144" />
+
+  #### Example
+
+  ```c
+  QkParam *t = qk_param_zero();
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *b = qk_param_new_symbol("b");
+  qk_param_add(t, a, b);
+  ```
+
+  **Returns**
+
+  A pointer to the created `QkParam`.
+</Function>
+
+### qk\_param\_free
+
+<Function id="qk_param_free" signature="void qk_param_free(QkParam *param)">
+  Free the `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md145" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  qk_param_free(a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md146" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md146" />
+
+  Behavior is undefined if `param` is not either null or a valid pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **param** – A pointer to the `QkParam` to free.
+</Function>
+
+### qk\_param\_from\_double
+
+<Function id="qk_param_from_double" signature="QkParam *qk_param_from_double(double value)">
+  Construct a new `QkParam` from a `double`.
+
+  <span id="group__QkParam_1autotoc_md147" />
+
+  #### Example
+
+  ```c
+  QkParam *r = qk_param_from_double(2.5);
+  ```
+
+  **Parameters**
+
+  *   **value** – A `double` to initialize the `QkParam`.
+
+  **Returns**
+
+  A pointer to the created `QkParam`.
+</Function>
+
+### qk\_param\_from\_complex
+
+<Function id="qk_param_from_complex" signature="QkParam *qk_param_from_complex(QkComplex64 value)">
+  Construct a new `QkParam` from a complex number, given as `QkComplex64`.
+
+  <span id="group__QkParam_1autotoc_md148" />
+
+  #### Example
+
+  ```c
+  QkComplex64 c = {1.0, 2.0};  // 1 + 2i
+  QkParam *param = qk_param_from_complex(c);
+  ```
+
+  **Parameters**
+
+  *   **value** – A `QkComplex64` to initialize the `QkParam`.
+
+  **Returns**
+
+  A pointer to the created `QkParam`.
+</Function>
+
+### qk\_param\_copy
+
+<Function id="qk_param_copy" signature="QkParam *qk_param_copy(const QkParam *param)">
+  Copy a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md149" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *b = qk_param_copy(a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md150" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md150" />
+
+  The behavior is undefined if `param` is not a valid pointer to a non-null `QkParam`.
+
+  **Parameters**
+
+  *   **param** – The `QkParam` to copy.
+
+  **Returns**
+
+  A pointer to the created `QkParam`.
+</Function>
+
+### qk\_param\_str
+
+<Function id="qk_param_str" signature="char *qk_param_str(const QkParam *param)">
+  Get a string representation of the `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md151" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  char* str = qk_param_str(a);
+  printf(str);
+  qk_str_free(str);
+  qk_param_free(a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md152" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md152" />
+
+  The behavior is undefined if `param` is not a valid pointer to a non-null `QkParam`.
+
+  The string must not be freed with the normal C free, you must use `qk_str_free` to free the memory consumed by the String. Not calling `qk_str_free` will lead to a memory leak.
+
+  Do not change the length of the string after it’s returned (by writing a nul byte somewhere inside the string or removing the final one), although values can be mutated.
+
+  **Parameters**
+
+  *   **param** – A pointer to the `QkParam`.
+
+  **Returns**
+
+  A pointer to a nul-terminated char array of the string representation for `param`.
+</Function>
+
+### qk\_param\_add
+
+<Function id="qk_param_add" signature="QkExitCode qk_param_add(QkParam *out, const QkParam *lhs, const QkParam *rhs)">
+  Add two `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md153" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *b = qk_param_new_symbol("b");
+  QkParam *out = qk_param_zero();
+  qk_param_add(out, a, b);
+  ```
+
+  <span id="group__QkParam_1autotoc_md154" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md154" />
+
+  The behavior is undefined if any of `out`, `lhs` or `rhs` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result of `lhs + rhs`.
+  *   **lhs** – A pointer to the left hand side `QkParam`.
+  *   **rhs** – A pointer to the right hand side `QkParam`.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_sub
+
+<Function id="qk_param_sub" signature="QkExitCode qk_param_sub(QkParam *out, const QkParam *lhs, const QkParam *rhs)">
+  Subtract two `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md155" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *b = qk_param_new_symbol("b");
+  QkParam *out = qk_param_zero();
+  qk_param_sub(out, a, b);
+  ```
+
+  <span id="group__QkParam_1autotoc_md156" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md156" />
+
+  The behavior is undefined if any of `out`, `lhs` or `rhs` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to a `QkParam` to store the result of `lhs - rhs`.
+  *   **lhs** – A pointer to the left hand side `QkParam`.
+  *   **rhs** – A pointer to the right hand side `QkParam`.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_mul
+
+<Function id="qk_param_mul" signature="QkExitCode qk_param_mul(QkParam *out, const QkParam *lhs, const QkParam *rhs)">
+  Multiply two `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md157" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *b = qk_param_new_symbol("b");
+  QkParam *out = qk_param_zero();
+  qk_param_mul(out, a, b);
+  ```
+
+  <span id="group__QkParam_1autotoc_md158" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md158" />
+
+  The behavior is undefined if any of `out`, `lhs` or `rhs` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to a `QkParam` to store the result of `lhs * rhs`.
+  *   **lhs** – A pointer to the left hand side `QkParam`.
+  *   **rhs** – A pointer to the right hand side `QkParam`.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_div
+
+<Function id="qk_param_div" signature="QkExitCode qk_param_div(QkParam *out, const QkParam *num, const QkParam *den)">
+  Divide a `QkParam` by another.
+
+  <span id="group__QkParam_1autotoc_md159" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *b = qk_param_new_symbol("b");
+  QkParam *out = qk_param_zero();
+  qk_param_div(out, a, b);
+  ```
+
+  <span id="group__QkParam_1autotoc_md160" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md160" />
+
+  The behavior is undefined if any of `out`, `num` or `den` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to a `QkParam` to store the result of `lhs / rhs`.
+  *   **num** – A pointer to the numerator `QkParam`.
+  *   **den** – A pointer to the denominator `QkParam`.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_pow
+
+<Function id="qk_param_pow" signature="QkExitCode qk_param_pow(QkParam *out, const QkParam *base, const QkParam *pow)">
+  Raise a `QkParam` to the power of another.
+
+  <span id="group__QkParam_1autotoc_md161" />
+
+  #### Example
+
+  ```c
+  QkParam *base = qk_param_new_symbol("a");
+  QkParam *pow = qk_param_new_symbol("b");
+  QkParam *out = qk_param_zero();
+  qk_param_pow(out, base, pow);
+  ```
+
+  <span id="group__QkParam_1autotoc_md162" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md162" />
+
+  The behavior is undefined if any of `out`, `base` or `pow` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to a `QkParam` to store the result of `lhs ** rhs`.
+  *   **base** – A pointer to the left hand side `QkParam`.
+  *   **pow** – A pointer to the right hand side `QkParam`.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_sin
+
+<Function id="qk_param_sin" signature="QkExitCode qk_param_sin(QkParam *out, const QkParam *src)">
+  Calculate the sine of a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md163" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_sin(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md164" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md164" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result, `sin(src)`.
+  *   **src** – A pointer to the `QkParam` to apply the sine to.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_cos
+
+<Function id="qk_param_cos" signature="QkExitCode qk_param_cos(QkParam *out, const QkParam *src)">
+  Calculate the cosine of a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md165" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_cos(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md166" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md166" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result, `cos(src)`.
+  *   **src** – A pointer to the `QkParam` to apply the cosine to.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_tan
+
+<Function id="qk_param_tan" signature="QkExitCode qk_param_tan(QkParam *out, const QkParam *src)">
+  Calculate the tangent of a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md167" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_tan(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md168" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md168" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result, `tan(src)`.
+  *   **src** – A pointer to the `QkParam` to apply the tangent to.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_asin
+
+<Function id="qk_param_asin" signature="QkExitCode qk_param_asin(QkParam *out, const QkParam *src)">
+  Calculate the arcsine of a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md169" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_asin(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md170" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md170" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result, `asin(src)`.
+  *   **src** – A pointer to the `QkParam` to apply the arcsine to.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_acos
+
+<Function id="qk_param_acos" signature="QkExitCode qk_param_acos(QkParam *out, const QkParam *src)">
+  Calculate the arccosine of a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md171" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_acos(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md172" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md172" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result, `acos(src)`.
+  *   **src** – A pointer to the `QkParam` to apply the cosine to.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_atan
+
+<Function id="qk_param_atan" signature="QkExitCode qk_param_atan(QkParam *out, const QkParam *src)">
+  Calculate the arctangent of a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md173" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_atan(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md174" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md174" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store a result, `atan(src)`.
+  *   **src** – A pointer to the `QkParam` to apply the arctangent to.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_log
+
+<Function id="qk_param_log" signature="QkExitCode qk_param_log(QkParam *out, const QkParam *src)">
+  Calculate the natural logarithm of a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md175" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_log(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md176" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md176" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result, `log(src)`.
+  *   **src** – A pointer to the `QkParam` to apply the logarithm to.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_exp
+
+<Function id="qk_param_exp" signature="QkExitCode qk_param_exp(QkParam *out, const QkParam *src)">
+  Apply the exponential function to a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md177" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_exp(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md178" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md178" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result, `exp(src)`.
+  *   **src** – A pointer to the `QkParam` to compute the exponential of.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_abs
+
+<Function id="qk_param_abs" signature="QkExitCode qk_param_abs(QkParam *out, const QkParam *src)">
+  Calculate the absolute value of a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md179" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_abs(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md180" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md180" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the QkParam to store a result.
+  *   **src** – A pointer to the QkParam.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_sign
+
+<Function id="qk_param_sign" signature="QkExitCode qk_param_sign(QkParam *out, const QkParam *src)">
+  Get the sign of a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md181" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_sign(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md182" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md182" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result, `sign(src)`.
+  *   **src** – A pointer to the `QkParam` to get the sign of.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_neg
+
+<Function id="qk_param_neg" signature="QkExitCode qk_param_neg(QkParam *out, const QkParam *src)">
+  Negate a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md183" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_neg(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md184" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md184" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result, `-src`.
+  *   **src** – A pointer to the `QkParam` to negate.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_conjugate
+
+<Function id="qk_param_conjugate" signature="QkExitCode qk_param_conjugate(QkParam *out, const QkParam *src)">
+  Calculate the complex conjugate of a `QkParam`.
+
+  <span id="group__QkParam_1autotoc_md185" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *out = qk_param_zero();
+  qk_param_conjugate(out, a);
+  ```
+
+  <span id="group__QkParam_1autotoc_md186" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md186" />
+
+  The behavior is undefined if any of `out` or `src` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **out** – A pointer to the `QkParam` to store the result, `conj(src)`.
+  *   **src** – A pointer to the `QkParam` to conjugate.
+
+  **Returns**
+
+  An exit code indicating `QkExitCode_Success` upon success and an error otherwise.
+</Function>
+
+### qk\_param\_equal
+
+<Function id="qk_param_equal" signature="bool qk_param_equal(const QkParam *lhs, const QkParam *rhs)">
+  Compare two `QkParam` for equality.
+
+  <span id="group__QkParam_1autotoc_md187" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *one = qk_param_from_value(1.0);
+  QkParam *mone = qk_param_from_value(-1.0);
+
+  QkParam *x = qk_param_add(a, one);
+  QkParam *y = qk_param_sub(a, mone);
+
+  bool equal = qk_param_equal(x, y);
+  ```
+
+  <span id="group__QkParam_1autotoc_md188" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md188" />
+
+  The behavior is undefined if any of `lhs` or `rhs` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **lhs** – A pointer to the left hand side `QkParam`.
+  *   **rhs** – A pointer to the right hand side `QkParam`.
+
+  **Returns**
+
+  `true` if the `QkParam` objects are equal, `false` otherwise.
+</Function>
+
+### qk\_param\_as\_real
+
+<Function id="qk_param_as_real" signature="double qk_param_as_real(const QkParam *param)">
+  Attempt casting the `QkParam` as `double`.
+
+  If the parameter could not be cast to a `double`, because there were unbound parameters, `NAN` is returned. Note that for `QkParam` representing complex values the real part is returned.
+
+  <span id="group__QkParam_1autotoc_md189" />
+
+  #### Example
+
+  ```c
+  QkParam *a = qk_param_new_symbol("a");
+  QkParam *b = qk_param_new_symbol("b");
+  QkParam *x = qk_param_zero();
+  qk_param_add(x, a, b);
+
+  const QkParam* keys[2] = {a, b};
+  QkParam *y = qk_param_zero();
+  qk_param_bind(y, x, keys, {1.0, 2.0}, 2);
+
+  double out = qk_param_as_real(y);
+  ```
+
+  <span id="group__QkParam_1autotoc_md190" />
+
+  #### Safety
+
+  <span id="group__QkParam_1autotoc_md190" />
+
+  The behavior is undefined if `param` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **param** – A pointer to the `QkParam` to evaluate.
+
+  **Returns**
+
+  The value, if casting was successful, otherwise `NAN`.
+</Function>
+

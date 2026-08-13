@@ -67,8 +67,8 @@ python_api_name: qiskit.dagcircuit.DAGDependency
     **Parameters**
 
     *   **operation** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – operation as a quantum gate
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of qubits on which the operation acts
-    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – list of classical wires to attach to
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Qubit*](/docs/api/qiskit/dev/circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of qubits on which the operation acts
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Clbit*](/docs/api/qiskit/dev/circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – list of classical wires to attach to
   </Function>
 
   ### add\_qreg
@@ -285,12 +285,12 @@ python_api_name: qiskit.dagcircuit.DAGDependency
 
     *   **node\_block** (*List\[*[*DAGDepNode*](qiskit.dagcircuit.DAGDepNode "qiskit.dagcircuit.DAGDepNode")*]*) – A list of dag nodes that represents the node block to be replaced
     *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The operation to replace the block with
-    *   **wire\_pos\_map** (*Dict\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The dictionary mapping the qarg to the position. This is necessary to reconstruct the qarg order over multiple gates in the combined single op node.
+    *   **wire\_pos\_map** (*Dict\[*[*Qubit*](/docs/api/qiskit/dev/circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The dictionary mapping the qarg to the position. This is necessary to reconstruct the qarg order over multiple gates in the combined single op node.
     *   **cycle\_check** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – When set to True this method will check that replacing the provided `node_block` with a single node would introduce a cycle (which would invalidate the `DAGDependency`) and will raise a `DAGDependencyError` if a cycle would be introduced. This checking comes with a run time penalty. If you can guarantee that your input `node_block` is a contiguous block and won’t introduce a cycle when it’s contracted to a single node, this can be set to `False` to improve the runtime performance of this method.
 
     **Raises**
 
-    [**DAGDependencyError**](dagcircuit#qiskit.dagcircuit.DAGDependencyError "qiskit.dagcircuit.DAGDependencyError") – if `cycle_check` is set to `True` and replacing the specified block introduces a cycle or if `node_block` is empty.
+    [**DAGDependencyError**](/docs/api/qiskit/dev/dagcircuit#qiskit.dagcircuit.DAGDependencyError "qiskit.dagcircuit.DAGDependencyError") – if `cycle_check` is set to `True` and replacing the specified block introduces a cycle or if `node_block` is empty.
   </Function>
 
   ### size

@@ -1,0 +1,58 @@
+---
+title: layout (latest version)
+description: API reference for qiskit_paulice.layout in the latest version of qiskit-addon-paulice
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_paulice.layout
+---
+
+<span id="module-qiskit_paulice.layout" />
+
+<span id="layout-qiskit-paulice-layout" />
+
+# Layout
+
+`qiskit_paulice.layout`
+
+Functionality for finding layouts for checks dressed with spacetime Pauli checks.
+
+### get\_low\_overhead\_ancillas
+
+<Function id="qiskit_paulice.layout.get_low_overhead_ancillas" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/layout.py#L58-L82" signature="get_low_overhead_ancillas(coupling_map, layout)">
+  Create a mapping from ancillas to `layout` qubits to which they are adjacent.
+
+  **Parameters**
+
+  *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap)) – A qubit connectivity graph.
+  *   **layout** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Physical qubit indices occupied by the payload circuit.
+
+  **Returns**
+
+  A mapping from ancilla indices to the list of `layout` qubits to which it is adjacent. An ancilla bordering several layout qubits maps to all of them, and a layout qubit bordering several ancillas appears in each of their lists.
+
+  **Return type**
+
+  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[int](https://docs.python.org/3/library/functions.html#int), [list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)]]
+</Function>
+
+### get\_check\_qubits
+
+<Function id="qiskit_paulice.layout.get_check_qubits" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/layout.py#L23-L55" signature="get_check_qubits(backend, layout)">
+  Pair qubits in `layout` with neighboring ancillas.
+
+  Generate equal-length lists of target and ancilla qubits, such that target qubit `i` is adjacent to ancilla qubit `i` in the coupling map. Target and ancilla qubits may appear at most one time in their respective lists.
+
+  **Parameters**
+
+  *   **backend** ([*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2)  *|*[*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap)) – The target backend, or a [`CouplingMap`](/docs/api/qiskit/qiskit.transpiler.CouplingMap) describing its connectivity.
+  *   **layout** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – A list of physical qubit indices.
+
+  **Returns**
+
+  A length-2 tuple of lists, `(target_qubits, ancilla_qubits)`. `target_qubits[i]` pairs with `ancilla_qubits[i]`.
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)], [list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)]]
+</Function>
+

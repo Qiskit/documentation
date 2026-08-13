@@ -1,6 +1,6 @@
 ---
 title: Create access groups and policies
-description: How to create and manage access groups for your organization's account users.
+description: Instructions to create access groups and policies to manage users
 
 ---
 
@@ -14,18 +14,18 @@ You can create additional access groups by using the IBM Cloud&reg; [console](ht
 
 
 <Admonition type="caution" title="Important">
-To determine the actions allowed by each role, from the [IAM Roles](https://cloud.ibm.com/iam/roles) page, select Qiskit Runtime in the dropdown menu at the top of the page.  For a more detailed list, click the number in the column next to the role name.  For example, by visiting that page and clicking the number by the Manager role, you can see that this role includes the ability to delete a job (`quantum-computing.job.delete`).
+To determine the actions allowed by each role, from the [IAM Roles](https://cloud.ibm.com/iam/roles) page, select Quantum Compute in the dropdown menu at the top of the page.  For a more detailed list, click the number in the column next to the role name.  For example, by visiting that page and clicking the number by the Manager role, you can see that this role includes the ability to delete a job (`quantum-computing.job.delete`).
 
 The [Compare pre-defined service role actions](#compare-actions) section provides a comparison of the pre-defined Manager, Writer, and Reader roles.
 </Admonition>
 
 <span id="create-ibm-quantum-administrators"></span>
 ## Create an IBM Quantum Administrators access group
-After setting up an account for your organization, it's recommended that you create an IBM Quantum Administrators access group. This access group lets other users create and manage instances, and manage user access for the Qiskit Runtime service.
+After setting up an account for your organization, it's recommended that you create an IBM Quantum Administrators access group. This access group lets other users create and manage instances, and manage user access for IBM Quantum Compute Service.
 
 When you create this access group, include the following policies:
 
-- Qiskit Runtime service - Grant access to manage all IBM Quantum instances in the account and view account usage analytics.
+- IBM Quantum Compute Service - Grant access to manage all IBM Quantum instances in the account and view account usage analytics.
   - **Manager** service access role
   - **Administrator** platform management access role
 - All account management services - Grant access to list all the resource groups in the account.
@@ -39,7 +39,9 @@ When you create this access group, include the following policies:
 <Admonition type="note">
   Users with the `viewer` platform management role on "all account management services" can also view services such as billing. If you want to prevent this extra view access, use the IBM Cloud CLI to give them access to just Resource groups:
   ```cli
-  ibmcloud iam access-group-policy-create <group name> --roles Viewer --resource-type resource-group
+  ibmcloud iam access-group-policy-create \
+   (<group name> --roles Viewer --resource-type resource-group)
+        --resource-type resource-group)
   ```
 </Admonition>
 
@@ -57,7 +59,13 @@ ibmcloud iam access-group-create GROUP_NAME [-d, --description DESCRIPTION]
 To create an access group _policy_ by using the CLI, use the [`ibmcloud iam access-group-policy-create`](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_access_group_policy_create) command.
 
 ```cli
-ibmcloud iam access-group-policy-create GROUP_NAME {-f, --file @JSON_FILE | --roles ROLE_NAME1,ROLE_NAME2... [--service-name SERVICE_NAME] [--service-instance SERVICE_INSTANCE] [--region REGION] [--resource-type RESOURCE_TYPE] [--resource RESOURCE] [--resource-group-name RESOURCE_GROUP_NAME] [--resource-group-id RESOURCE_GROUP_ID]}
+ibmcloud iam access-group-policy-create GROUP_NAME \
+        {-f, --file @JSON_FILE | --roles ROLE_NAME1,ROLE_NAME2... \
+        [--service-name SERVICE_NAME] \
+        [--service-instance SERVICE_INSTANCE] [--region REGION] \
+        [--resource-type RESOURCE_TYPE] [--resource RESOURCE] \
+        [--resource-group-name RESOURCE_GROUP_NAME] \
+        [--resource-group-id RESOURCE_GROUP_ID]}
 ```
 
 You can use the following JSON code to create policies for an Administrators access group:
@@ -88,7 +96,7 @@ You can use the following JSON code to create policies for an Administrators acc
 }
 ```
 
-- Qiskit Runtime Service (Manager, Administrator)
+- IBM Quantum Compute Service (Manager, Administrator)
 ```json
 {
     "type": "access",
@@ -178,10 +186,10 @@ As an account owner or administrator, follow these steps to create an IBM Quantu
 1. On the left panel in the **Manage access** section, click **Access groups**, then click **Create**.
 1. In the **Create access group** window that opens, add a name and description that represent the group of users that you will invite.  For example, IBM Quantum Administrators. Click **Create**.
 
-Next, create policies for the Qiskit Runtime service,  for All IAM Account Management services, and for All Account Management services.
+Next, create policies for IBM Quantum Compute Service, for All IAM Account Management services, and for All Account Management services.
 1. In the access group just created, click the **Access** tab, then click **Assign access**.
 1. In the **Create policy** page that opens, define these elements:
-   - **Service** - Search for Qiskit Runtime and select it. Click **Next**.
+   - **Service** - Search for Quantum Compute and select it. Click **Next**.
    - **Resources** - Select **All resources**. Click **Next**.
       Note: If you were creating a policy that you want to apply only to a certain instance, you would instead choose **Specific resources**, **Service instance**, **string equals**, then select the instance.
    - **Roles and actions** - Select the following values:
@@ -235,19 +243,19 @@ Key:
 
 | Permissions | Account owner | IBM Quantum Administrators (access group) | Instance collaborators (access group) |
 | --- | --- | --- | --- |
-| Full access to all IBM Cloud resources | ✅| ✅ (*Only to Qiskit Runtime instances*)| ❌ (*Only to a particular Qiskit Runtime instance*)| 
-| Assign access to others | ✅| ✅ (*Only to Qiskit Runtime service*)| ❌| 
-| Create service instances  | ✅ (*All IBM Cloud catalog*)| ✅ (*Only Qiskit Runtime service instances*)| ❌| 
+| Full access to all IBM Cloud resources | ✅| ✅ (*Only to Quantum Compute instances*)| ❌ (*Only to a particular Quantum Compute instance*)| 
+| Assign access to others | ✅| ✅ (*Only to IBM Quantum Compute Service*)| ❌| 
+| Create service instances  | ✅ (*All IBM Cloud catalog*)| ✅ (*Only Quantum Compute instances*)| ❌| 
 | View all users | ✅| ✅| ✴️ (*Depends on user visibility settings*)| 
 | Set user visibility | ✅| ❌| ❌| 
 | Invite users to the account | ✅| ✅| ❌| 
 | Billing responsibility | ✅| ❌| ❌| 
 | View billing information | ✅| ✅| ❌| 
 | Owner notifications | ✅| ❌| ❌| 
-| Submit quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*)| ✅ (*Only on a particular Qiskit Runtime instance*) | 
-| View quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*)| ✅ (*Only on a particular Qiskit Runtime instance*)| 
-| Cancel quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*)| ✅ (*Only on a particular Qiskit Runtime instance*)| 
-| Delete quantum workloads | ✅ (*On all Qiskit Runtime instances*)| ✅ (*On all Qiskit Runtime instances*) | ❌| 
+| Submit quantum workloads | ✅ (*On all Quantum Compute instances*)| ✅ (*On all Quantum Compute instances*)| ✅ (*Only on a particular Quantum Compute instance*) | 
+| View quantum workloads | ✅ (*On all Quantum Compute instances*)| ✅ (*On all Quantum Compute instances*)| ✅ (*Only on a particular Quantum Compute instance*)| 
+| Cancel quantum workloads | ✅ (*On all Quantum Compute instances*)| ✅ (*On all Quantum Compute instances*)| ✅ (*Only on a particular Quantum Compute instance*)| 
+| Delete quantum workloads | ✅ (*On all Quantum Compute instances*)| ✅ (*On all Quantum Compute instances*) | ❌| 
 | Create support cases | ✅| ✅ (*If the access policy is included in the access group*) | ✅ (*If the access group gives access to a Premium Plan instance*)| 
 | Configure an [identity provider](https://cloud.ibm.com/iam/identity-providers) to connect your external user repositories to your IBM Cloud account | ✅| ❌| ❌| 
 
@@ -273,6 +281,6 @@ The following table displays examples of actions that can be taken by the pre-de
    - Understand the [IBM Cloud account structure](/docs/guides/cloud-account-structure), including access policies, groups, and roles.
    - Read about [how IBM Cloud IAM works](https://cloud.ibm.com/docs/account?topic=account-iamoverview).
    - Read more about how to [set up access groups](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui).
-   - Understand the the [IAM Roles](https://cloud.ibm.com/iam/roles) (select Qiskit Runtime from the dropdown at the top of the page).
+   - Understand the the [IAM Roles](https://cloud.ibm.com/iam/roles) (select Quantum Compute from the dropdown at the top of the page).
    - Learn about [creating custom roles](/docs/guides/custom-roles).
 </Admonition>

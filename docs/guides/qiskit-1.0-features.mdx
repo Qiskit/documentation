@@ -187,7 +187,8 @@ For example, for a [`DiagonalGate`](/docs/api/qiskit/qiskit.circuit.library.Diag
 
 ```python
 from qiskit.circuit import QuantumCircuit
-from qiskit.circuit.library import DiagonalGate  # new location in the circuit library
+# new location in the circuit library:
+from qiskit.circuit.library import DiagonalGate  
 
 circuit = QuantumCircuit(2)
 circuit.h([0, 1])  # some initial state
@@ -471,8 +472,8 @@ sampler_v2 = StatevectorSampler()
         ```python
         # Sample two circuits at 128 shots each.
         sampler_v2.run([circuit1, circuit2], shots=128)
-        # Sample two circuits at different amounts of shots. The "None"s are necessary
-        # as placeholders
+        # Sample two circuits at different amounts of shots. 
+        # The "None"s are necessary as placeholders
         # for the lack of parameter values in this example.
         sampler_v2.run([(circuit1, None, 123), (circuit2, None, 456)])
         ```
@@ -482,7 +483,9 @@ sampler_v2 = StatevectorSampler()
       primitive implementation should target for expectation values estimates:
         ```python
         # Estimate expectation values for two PUBs, both with 0.05 precision.
-        estimator_v2.run([(circuit1, obs_array1), (circuit2, obs_array_2)], precision=0.05)
+        estimator_v2.run([(circuit1, obs_array1), 
+          (circuit2, obs_array_2)], precision=0.05
+          )
         ```
 
 <span id="v1-changes"></span>

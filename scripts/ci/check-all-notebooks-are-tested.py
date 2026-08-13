@@ -15,6 +15,7 @@ Check all notebooks are listed in `scripts/config/notebook-testing.toml` so
 they don't slip through our CI tests.
 """
 
+import fnmatch
 from pathlib import Path
 import tomllib
 import sys
@@ -22,15 +23,21 @@ import sys
 config_path = Path("scripts/config/notebook-testing.toml")
 config = tomllib.loads(config_path.read_text())
 
-categorized_notebooks = set()
+categorized_notebooks: set[Path] = set()
+categorized_globs: list[str] = []
 for group in config["groups"].values():
     for path in group.get("notebooks", []):
-        categorized_notebooks.add(Path(path))
+        if "*" in path or "?" in path:
+            categorized_globs.append(path)
+        else:
+            categorized_notebooks.add(Path(path))
 
 uncategorized = [
     path
     for path in Path(".").glob("[!.]*/**/*.ipynb")
-    if not path.match("**/.ipynb_checkpoints/**") and path not in categorized_notebooks
+    if not path.match("**/.ipynb_checkpoints/**")
+    and path not in categorized_notebooks
+    and not any(fnmatch.fnmatch(str(path), g) for g in categorized_globs)
 ]
 
 if uncategorized:

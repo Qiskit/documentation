@@ -18,6 +18,7 @@ import {
   handleSphinxDesignCards,
   maybeSetPythonModuleMetadata,
   renameAllH1s,
+  removeInternalImageReferenceLinks,
   removeHtmlExtensionsInRelativeLinks,
   removeDownloadSourceCode,
   removePermalinks,
@@ -28,6 +29,7 @@ import {
   convertRubricsToHeaders,
   processMembersAndSetMeta,
   handleFootnotes,
+  expandTableRowspan,
 } from "./processHtml.js";
 import { Metadata } from "./Metadata.js";
 import { CheerioDoc } from "../testUtils.js";
@@ -37,15 +39,24 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/logo.png" alt="Logo"><img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images", false, false);
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images",
+      false,
+      false,
+      "subdir/index.html",
+    );
     expect(images).toEqual([
       {
         fileName: "logo.png",
         dest: "/my-images/logo.avif",
+        originSrc: "_static/logo.png",
       },
       {
         fileName: "view-page-source-icon.svg",
         dest: "/my-images/view-page-source-icon.svg",
+        originSrc: "_static/images/view-page-source-icon.svg",
       },
     ]);
     doc.expectHtml(
@@ -57,11 +68,19 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, false);
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images/0.45",
+      true,
+      false,
+      "subdir/release-notes.html",
+    );
     expect(images).toEqual([
       {
         fileName: "view-page-source-icon.svg",
         dest: "/my-images/view-page-source-icon.svg",
+        originSrc: "_static/images/view-page-source-icon.svg",
       },
     ]);
     doc.expectHtml(`<img src="/my-images/view-page-source-icon.svg">`);
@@ -71,14 +90,68 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, true);
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images/0.45",
+      true,
+      true,
+      "subdir/release-notes.html",
+    );
     expect(images).toEqual([
       {
         fileName: "view-page-source-icon.svg",
         dest: "/my-images/0.45/view-page-source-icon.svg",
+        originSrc: "_static/images/view-page-source-icon.svg",
       },
     ]);
     doc.expectHtml(`<img src="/my-images/0.45/view-page-source-icon.svg">`);
+  });
+
+  test("external image URLs are not rewritten", () => {
+    const doc = CheerioDoc.load(
+      `<img src="https://img.shields.io/github/stars/Qiskit/qiskit-addon-cutting?style=social" alt="Stars"><img src="../_static/logo.png" alt="Logo">`,
+    );
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images",
+      false,
+      false,
+      "subdir/index.html",
+    );
+    expect(images).toEqual([
+      {
+        fileName: "logo.png",
+        dest: "/my-images/logo.avif",
+        originSrc: "_static/logo.png",
+      },
+    ]);
+    doc.expectHtml(
+      `<img src="https://img.shields.io/github/stars/Qiskit/qiskit-addon-cutting?style=social" alt="Stars"><img src="/my-images/logo.avif" alt="Logo">`,
+    );
+  });
+
+  test("_static image (nbsphinx thumbnail) is resolved from artifact root", () => {
+    const doc = CheerioDoc.load(
+      `<img alt="" src="../_static/nbsphinx-no-thumbnail.svg">`,
+    );
+    const images = loadImages(
+      doc.$,
+      doc.$main,
+      "/my-images",
+      false,
+      false,
+      "how-tos/index.html",
+    );
+    expect(images).toEqual([
+      {
+        fileName: "nbsphinx-no-thumbnail.svg",
+        dest: "/my-images/nbsphinx-no-thumbnail.svg",
+        originSrc: "_static/nbsphinx-no-thumbnail.svg",
+      },
+    ]);
+    doc.expectHtml(`<img alt="" src="/my-images/nbsphinx-no-thumbnail.svg">`);
   });
 });
 
@@ -138,6 +211,20 @@ test("renameAllH1s()", () => {
   const doc = CheerioDoc.load(`<h1>Release Notes!!!</h1><h2>0.45.0</h2>`);
   renameAllH1s(doc.$, "New Title");
   doc.expectHtml(`<h1>New Title</h1><h2>0.45.0</h2>`);
+});
+
+test("removeInternalImageReferenceLinks()", () => {
+  // Internal image-reference links (Sphinx lightbox) should be unwrapped.
+  // External image-reference links (e.g. badge links) should be preserved.
+  const doc = CheerioDoc.load(
+    `<a class="reference internal image-reference" href="_images/foo.png"><img src="/docs/images/foo.avif" alt="foo"/></a>` +
+      `<a class="reference external image-reference" href="https://example.com"><img src="https://img.shields.io/badge.svg" alt="badge"/></a>`,
+  );
+  removeInternalImageReferenceLinks(doc.$, doc.$main);
+  doc.expectHtml(
+    `<img src="/docs/images/foo.avif" alt="foo">` +
+      `<a class="reference external image-reference" href="https://example.com"><img src="https://img.shields.io/badge.svg" alt="badge"></a>`,
+  );
 });
 
 test("removeHtmlExtensionsInRelativeLinks()", () => {
@@ -465,7 +552,7 @@ test.describe("processMembersAndSetMeta()", () => {
       isIbmQuantumSchemasPage: false,
     });
     doc.expectHtml(`      <h1>Circuit Converters</h1>
-<h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)¶" modifiers="" extrasignatures="[]">
+<h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" attributetypehint="undefined" attributetypehinthref="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)¶" modifiers="" extrasignatures="[]">
   
 <div><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
 <dl class="field-list simple">
@@ -517,7 +604,7 @@ backends may not have this attribute.</p>
       isIbmQuantumSchemasPage: false,
     });
     doc.expectHtml(`<h1>least_busy</h1>
-<div><function id="qiskit_ibm_provider.least_busy" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)¶" modifiers="" extrasignatures="[]">
+<div><function id="qiskit_ibm_provider.least_busy" attributetypehint="undefined" attributetypehinthref="undefined" attributevalue="undefined" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)¶" modifiers="" extrasignatures="[]">
   
 <div><p>Return the least busy backend from a list.</p>
 <p>Return the least busy available backend for those that
@@ -583,7 +670,7 @@ particular error, which subclasses both <a class="reference internal" href="#qis
     doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
 <h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
 <p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
-<h3 data-header-type="class-header">QiskitError</h3><div><class id="qiskit.exceptions.QiskitError" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/exceptions.html#QiskitError" signature="qiskit.exceptions.QiskitError(*message)¶" modifiers="exception" extrasignatures="[]">
+<h3 data-header-type="class-header">QiskitError</h3><div><class id="qiskit.exceptions.QiskitError" attributetypehint="undefined" attributetypehinthref="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/exceptions.html#QiskitError" signature="qiskit.exceptions.QiskitError(*message)¶" modifiers="exception" extrasignatures="[]">
   
 <div><p>Base class for errors raised by Qiskit.</p>
 <p>Set the error message.</p>
@@ -631,7 +718,7 @@ marked as builtins since they are not actually present in any include file this 
       isIbmQuantumSchemasPage: false,
     });
     doc.expectHtml(`
-<h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" attributetypehint="" attributevalue="" isdedicatedpage="undefined" github="undefined" signature="" modifiers="" extrasignatures="[]">
+<h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" attributetypehint="" attributetypehinthref="undefined" attributevalue="" isdedicatedpage="undefined" github="undefined" signature="" modifiers="" extrasignatures="[]">
   
 <div><p>A tuple containing the extra <cite>custom_instructions</cite> that Qiskit’s legacy built-in converters used
 if <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> is included, and there is any definition of a <code class="docutils literal notranslate"><span class="pre">delay</span></code> instruction.  The gates
@@ -674,7 +761,7 @@ marked as builtins since they are not actually present in any include file this 
       isRoot: false,
       isIbmQuantumSchemasPage: false,
     });
-    doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" attributetypehint=\"undefined\" attributevalue=\"undefined\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)¶\" modifiers=\"\" extrasignatures=\"[]\">
+    doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" attributetypehint=\"undefined\" attributetypehinthref=\"undefined\" attributevalue=\"undefined\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)¶\" modifiers=\"\" extrasignatures=\"[]\">
   
 <div><p>Construct the identity observable.</p>
 <section id=\"group__QkSparseObservable_1autotoc_md4\">
@@ -697,5 +784,33 @@ marked as builtins since they are not actually present in any include file this 
       apiType: "function",
       apiName: "qk_obs_identity",
     });
+  });
+});
+
+test.describe("expandTableRowspan()", () => {
+  test("duplicates rowspan cell into subsequent rows", () => {
+    const doc = CheerioDoc.load(`
+<table>
+<tbody>
+<tr><td>iSwapGate</td><td>A</td><td rowspan="2">49</td></tr>
+<tr><td>SwapGate</td><td>B</td></tr>
+</tbody>
+</table>`);
+    expandTableRowspan(doc.$, doc.$main);
+    const rows = doc.$main.find("tr").toArray();
+    expect(
+      doc
+        .$(rows[0])
+        .find("td")
+        .map((_, el) => doc.$(el).text())
+        .toArray(),
+    ).toEqual(["iSwapGate", "A", "49"]);
+    expect(
+      doc
+        .$(rows[1])
+        .find("td")
+        .map((_, el) => doc.$(el).text())
+        .toArray(),
+    ).toEqual(["SwapGate", "B", "49"]);
   });
 });
