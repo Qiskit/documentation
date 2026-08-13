@@ -1,0 +1,62 @@
+---
+title: PostCircuitBitFlipChecksOptions (latest version)
+description: API reference for qiskit_ibm_runtime.options_models.PostCircuitBitFlipChecksOptions in the latest version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options_models.PostCircuitBitFlipChecksOptions
+---
+
+<span id="qiskit-ibm-runtime-options-models-postcircuitbitflipchecksoptions" />
+
+# qiskit\_ibm\_runtime.options\_models.PostCircuitBitFlipChecksOptions
+
+<Class id="qiskit_ibm_runtime.options_models.PostCircuitBitFlipChecksOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.49/qiskit_ibm_runtime/options_models/bit_flip_checks_options.py#L20-L40" signature="PostCircuitBitFlipChecksOptions" modifiers="pydantic model">
+  Bases: `BaseOptionsModel`
+
+  Options to apply post-circuit bit-flip checks to the results of noise learning circuits.
+
+  **Config**
+
+  *   **validate\_assignment**: *bool = True*
+  *   **extra**: *str = forbid*
+
+  ### enable
+
+  <Attribute id="qiskit_ibm_runtime.options_models.PostCircuitBitFlipChecksOptions.enable" attributeTypeHint="bool" attributeValue="False" modifiers="field">
+    Whether to apply post-circuit bit-flip checks.
+
+    If `False`, all the other fields will be ignored.
+  </Attribute>
+
+  ### strategy
+
+  <Attribute id="qiskit_ibm_runtime.options_models.PostCircuitBitFlipChecksOptions.strategy" attributeTypeHint="Literal['node', 'edge']" attributeValue="'node'" modifiers="field">
+    The strategy used to decide if a shot should be kept or discarded.
+
+    The available startegies are:
+
+    *   `'node'`: Discard every shot where one or more bits failed to flip. Keep every other shot.
+    *   `'edge'`: Discard every shot where there exists a pair of neighbouring qubits for which both of the bits failed to flip. Keep every other shot.
+  </Attribute>
+
+  ### x\_pulse\_type
+
+  <Attribute id="qiskit_ibm_runtime.options_models.PostCircuitBitFlipChecksOptions.x_pulse_type" attributeTypeHint="Literal['xslow', 'rx']" attributeValue="'xslow'" modifiers="field">
+    The type of the X-pulse used for the post-circuit bit-flip checks.
+  </Attribute>
+
+  ### update
+
+  <Function id="qiskit_ibm_runtime.options_models.PostCircuitBitFlipChecksOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.49/qiskit_ibm_runtime/options_models/base.py#L46-L54" signature="update(**kwargs)">
+    Update the options.
+
+    **Parameters**
+
+    **kwargs** (*Any*)
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+
