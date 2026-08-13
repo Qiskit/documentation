@@ -50,7 +50,7 @@ description: The latest updates from IBM Quantum Compute Service, including the 
 ## July 2026
 
 <span id="qr-rename"></span>
-
+### Qiskit Runtime rename
 - **Qiskit Runtime service is now IBM Quantum Compute Service** &mdash; This is a naming change only and does not require any code changes or updates to existing applications. You might notice the new name throughout the user interface and documentation.
 
     Historically, the term _Qiskit Runtime_ was used to refer to three related but distinct concepts.
@@ -73,13 +73,9 @@ description: The latest updates from IBM Quantum Compute Service, including the 
 
     - IBM Qiskit Runtime (or IBM Qiskit Runtime Execution Environment): the execution environment running on the quantum computer that processes and executes Qiskit primitives.
 
-## Previous updates
-
-### 2026
-<Accordion>
-<AccordionItem title="May 2026">
-
+## May 2026
 <span id="store-instruction"></span>
+### Store instruction
 - **Support for the [Store](/docs/api/qiskit/circuit#store) instruction on IBM&reg; QPUs** - Now you can simplify complex classical computations in your quantum circuits with the Store instruction.
 
   - Compute a classical expression mid-circuit and save the result to a variable or register, which can then immediately control subsequent quantum gates.  Instead of deeply nested inline expressions, you can break computations into named intermediate steps, so that complex classical feedback logic is easier to read and maintain. **Common use cases** include the following:
@@ -92,11 +88,10 @@ description: The latest updates from IBM Quantum Compute Service, including the 
 
     *Note that before submitting jobs, you should verify compatibility with each primitive's options in the documentation*: [Sampler options](/docs/guides/sampler-options) | [Estimator options](/docs/guides/estimator-options) | [Executor options](/docs/guides/executor-options)
 
+## April 2026
 <span id="classroom-accounts"></span>
+### Classroom accounts
 - **New Classroom Accounts**: Professors can now request a [Classroom Account](/docs/guides/classroom-accounts) to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information.
-</AccordionItem>
-<AccordionItem title="April 2026">
-
   - **New export options now available in IBM Quantum**: Introducing new export capabilities that make it easier for account administrators to analyze, share, and work with their data.
 
     - New in the [Analytics](https://quantum.cloud.ibm.com/analytics) page:
@@ -122,7 +117,7 @@ description: The latest updates from IBM Quantum Compute Service, including the 
 
       These efforts reflect our commitment to open access, open education, and open science in quantum computing. Read more: [Doubling down on open-access quantum computing](https://www.ibm.com/quantum/blog/open-plan-updates)
 
-  #### Upcoming discontinuation of Qiskit Code Assistant service
+  ### Upcoming discontinuation of Qiskit Code Assistant service
 
   On 29 May 2026, IBM Quantum will discontinue the preview Qiskit Code Assistant service and archive the supporting extensions for Visual Studio Code and JupyterLab.
 
@@ -132,7 +127,7 @@ description: The latest updates from IBM Quantum Compute Service, including the 
 
   For setup guidance, see the [Qiskit Code Assistant](/docs/guides/qiskit-code-assistant) guide.
 
-  #### Nighthawk arrives in the EU
+  ### Nighthawk arrives in the EU
 
   Premium and Flex Plans now have early access to [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin)! It is the first IBM Quantum Nighthawk r1 QPU in the EU (`eu-de` region) and the second Nighthawk in our global fleet, after [`ibm_miami`](https://quantum.cloud.ibm.com/computers?system=ibm_miami) in the US (`us-east` region). `ibm_berlin` features faster two-qubit gates than `ibm_miami` (68 ns versus 138 ns, median) while maintaining similar fleet-leading coherence (T$_1$ of ~350 &#181;s).
 
@@ -143,49 +138,48 @@ description: The latest updates from IBM Quantum Compute Service, including the 
   - Default repetition time has been temporarily increased from 250 &#181;s to 4 ms, which impacts QPU time required to execute workloads. Users can manually select a shorter repetition time, but performance might be degraded.
   - Dynamic circuits are not yet supported, and quality of mid-circuit measurements is limited.
 
-  #### Upcoming retirements
+  ### Upcoming retirements
 
   As we expand EU capacity and roll out the latest Nighthawk and Heron processors, `ibm_brussels` and `ibm_strasbourg` are scheduled to be retired on or around 30 April 2026.
 
   Once these QPUs are retired, they will no longer accept jobs. If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU ahead of the retirement date to take advantage of the latest systems. For guidance on retrieving data from past jobs, refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
-  #### `ibm_torino` is now retired
+  ### `ibm_torino` is now retired
 
   The quantum computer `ibm_torino` has been retired and will no longer accept workload submissions. Any workloads that were already queued on this QPU might still be processed and return results.
 
   If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions.](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu)
 
-  #### ibm_brussels and ibm_strasbourg are now retired
+  ### ibm_brussels and ibm_strasbourg are now retired
     
   `ibm_brussels` and `ibm_strasbourg` have been retired and will no longer accept jobs.
 
   This change is part of the continued evolution and expansion of the IBM Quantum fleet in the EU, including the recently released Nighthawk QPU [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin) and the upgraded Heron r3 QPU [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen). The global fleet has now fully transitioned away from Eagle, IBM Quantum's first utility‑scale processor family, introduced in 2021.
 
   If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU to take advantage of the latest hardware. For guidance on retrieving data from past jobs, refer to the [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
-</AccordionItem>
-<AccordionItem title="March 2026">
 
-  #### The EU gets its first Heron r3
+## March 2026
+
+### The EU gets its first Heron r3
 
   Maintenance has been completed on [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen) and the QPU is now back online in the eu‑de region.  `ibm_aachen` has also been upgraded to be the first QPU in the EU to feature the latest [Heron r3](https://www.linkedin.com/posts/jay-gambetta-a274753a_following-up-on-an-earlier-post-https-activity-7364268815720824834-aZ0k) processor. It is the third r3 in our global fleet, after [`ibm_boston`](https://quantum.cloud.ibm.com/computers?system=ibm_boston) and [`ibm_pittsburgh`](https://quantum.cloud.ibm.com/computers?system=ibm_pittsburgh) in the US.
 
   Heron r3 continues to deliver improved error rates and overall system performance compared to Heron r2, demonstrating more reliable execution and better results for workloads. For example, on `ibm_aachen`, we observe a large boost in $T_2$ (phase coherence time) from 150&nbsp;&#181;s to 250&nbsp;&#181;s. You can view metrics like these for all QPUs in the shared fleet on the [Compute resources](https://quantum.cloud.ibm.com/computers) page.
-</AccordionItem>
-<AccordionItem title="February 2026">
 
-  #### `ibm_torino` to retire
+## February 2026
+  ### `ibm_torino` to retire
 
   The `ibm_torino` QPU will retire on or around 1 April 2026. Once this QPU is retired, it will no longer accept jobs.
 
   If you would like to retrieve job data from important past jobs, please refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
-  #### Increase in repetition delay time maximum
+  ### Increase in repetition delay time maximum
 
   To provide more flexibility for users, we have expanded the allowable repetition delay time range from 20-500 &#181;s to 20-2000 &#181;s on our Heron and Eagle QPUs. The Nighthawk QPU delay time range continues to be 1000-4000 &#181;s as previously announced. Note that if you choose to increase repetition delay (`rep_delay`), it will have a direct impact on your execution time and capacity consumption, but it might improve the fidelity of certain circuits. The default `rep_delay` remains unchanged on all QPUs.
 
   You can find more information about repetition delay time, including how to change it, in [Qubit initialization](/docs/guides/repetition-rate-execution).
-</AccordionItem>
-<AccordionItem title="January 2026">
+
+## January 2026
 
   - The latest enhancements to the [Compute resources](https://quantum.cloud.ibm.com/computers) page include the following:
 
@@ -215,8 +209,8 @@ description: The latest updates from IBM Quantum Compute Service, including the 
       - Administrators can reactivate an instance at any time.
 
   - [**Directed execution model.**](/docs/guides/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](https://qiskit.github.io/samplomatic/index.html) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
-  </AccordionItem>
-</Accordion>
+
+## Previous updates
 
 ### 2025
 
