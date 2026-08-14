@@ -42,10 +42,10 @@ python_api_name: qiskit_ibm_runtime.results.NoiseLearnerV3Results
 
   ### to\_dict
 
-  <Function id="qiskit_ibm_runtime.results.NoiseLearnerV3Results.to_dict" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L141-L196" signature="to_dict(instructions, require_refs=True, group_by='inject_noise')">
+  <Function id="qiskit_ibm_runtime.results.NoiseLearnerV3Results.to_dict" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L141-L196" signature="to_dict(instructions, require_refs=True, mode='injection')">
     Convert to a dictionary from references to `PauliLindbladMap` objects.
 
-    References can be one of `InjectNoise.ref` or `Tag.ref` depending on `group_by` selection.
+    References can be one of `InjectNoise.ref` or `Tag.ref` depending on `mode` selection.
 
     This function iterates over a sequence of instructions, extracts the `ref` value from the annotation of each instruction, and returns a dictionary mapping those refs to the corresponding noise data (in `PauliLindbladMap` format) stored in this [`NoiseLearnerV3Results`](#qiskit_ibm_runtime.results.NoiseLearnerV3Results "qiskit_ibm_runtime.results.NoiseLearnerV3Results") object.
 
@@ -53,7 +53,7 @@ python_api_name: qiskit_ibm_runtime.results.NoiseLearnerV3Results
 
     *   **instructions** (*Sequence\[CircuitInstruction]*) – The instructions to get the refs from.
     *   **require\_refs** (*bool*) – Whether to raise if some of the instructions do not own an annotation. If `False`, all the instructions that do not contain an annotation are simply skipped when constructing the returned dictionary.
-    *   **group\_by** (*Literal\['inject\_noise', 'tag']*) – If `"tag"`, it groups by `Tag` annotations. Otherwise, by `InjectNoise` annotations.
+    *   **mode** (*Literal\['injection', 'simulation']*) – If `"simulation"`, it groups by `Tag` annotations. Otherwise, by `InjectNoise` annotations.
 
     **Raises**
 
