@@ -68,6 +68,8 @@ export class Pkg {
     "qiskit-addon-utils",
     "qiskit-addon-paulice",
     "qiskit-addon-pna",
+    "pauli-prop",
+    "qiskit-addon-slc",
   ];
 
   static VALID_NAMES = [
@@ -144,7 +146,7 @@ export class Pkg {
     if (name === "qiskit-ibm-runtime") {
       return new Pkg({
         ...args,
-        title: "Qiskit Runtime client",
+        title: "IBM Quantum Compute client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
         kebabCaseAndShortenUrls: true,
         language: "Python",
@@ -222,6 +224,24 @@ export class Pkg {
         ...args,
         title: "Qiskit propagated noise absorption",
         githubSlug: "Qiskit/qiskit-addon-pna",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "pauli-prop") {
+      return new Pkg({
+        ...args,
+        title: "Pauli propagation",
+        githubSlug: "Qiskit/pauli-prop",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-addon-slc") {
+      return new Pkg({
+        ...args,
+        title: "Shaded lightcones",
+        githubSlug: "Qiskit/qiskit-addon-slc",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });

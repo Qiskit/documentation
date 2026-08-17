@@ -15,10 +15,10 @@ description: "API reference for Quantum Elements Orbit, including inputs, output
     />
 </CardGroup>
 
-Quantum Elements Orbit is a Qiskit Function that prepares quantum circuits for a selected IBM Quantum&reg; backend, inserts dynamical decoupling (DD) into scheduled idle windows, and runs the resulting workload through a Qiskit Runtime primitive. Orbit accepts Sampler and Estimator PUBs and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) with Orbit-specific metadata attached to the top-level result and to each [Primitive Unified Bloc (PUB)](/docs/guides/primitive-input-output) result.
+Quantum Elements Orbit is a Qiskit Function that prepares quantum circuits for a selected IBM Quantum&reg; backend, inserts dynamical decoupling (DD) into scheduled idle windows, and runs the resulting workload through an IBM Quantum primitive. Orbit accepts Sampler and Estimator PUBs and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) with Orbit-specific metadata attached to the top-level result and to each [Primitive Unified Bloc (PUB)](/docs/guides/primitive-input-output) result.
 
 <Admonition type="note" title="Default behavior">
-  If `backend_name` is omitted, Orbit selects an eligible least-busy IBM Quantum backend available to the Qiskit Runtime service. If `options` is omitted or `None`, Orbit uses its built-in defaults: transpile and schedule circuits, insert the default DD strategy, submit to the service, and attach DD insertion metadata to the result.
+  If `backend_name` is omitted, Orbit selects an eligible least-busy IBM Quantum backend available to IBM Quantum Compute Service. If `options` is omitted or `None`, Orbit uses its built-in defaults: transpile and schedule circuits, insert the default DD strategy, submit to the service, and attach DD insertion metadata to the result.
 </Admonition>
 
 ## Inputs
@@ -46,7 +46,7 @@ job = orbit.run(
 result = job.result()
 ```
 
-`pubs` provides the circuits and primitive inputs to run. `primitive` selects the Qiskit Runtime primitive contract. `backend_name` selects the IBM Quantum backend, or can be omitted to let Orbit choose a least-busy backend. `options` controls Orbit's DD insertion, Qiskit Runtime options, preview/simulator behavior, and metadata features. Full details for each input are below.
+`pubs` provides the circuits and primitive inputs to run. `primitive` selects the IBM Quantum primitive contract. `backend_name` selects the IBM Quantum backend, or can be omitted to let Orbit choose a least-busy backend. `options` controls Orbit's DD insertion, Quantum Compute options, preview/simulator behavior, and metadata features. Full details for each input are below.
 
 ### `pubs`
 
@@ -66,7 +66,7 @@ Each PUB must match the selected primitive's input contract.
 
 <Attribute attributeTypeHint="str">
 
-Selects which Qiskit Runtime primitive Orbit uses for execution.
+Selects which IBM Quantum primitive Orbit uses for execution.
 - Required: Yes
 - Valid input types: `str`
 
@@ -98,7 +98,7 @@ Function-specific options controlling Orbit execution behavior.
 - Default value: `None`
 - Valid input types: `dict` or `None`
 
-Options control transpilation, DD insertion, Qiskit Runtime options, preview mode, simulator mode, backend-information export, and measurement error mitigation.
+Options control transpilation, DD insertion, Quantum Compute options, preview mode, simulator mode, backend-information export, and measurement error mitigation.
 - Unknown option keys are rejected.
 - Pass `None`, `{}`, or omit `options` to use all defaults.
 - Example: 
@@ -127,13 +127,13 @@ Options control transpilation, DD insertion, Qiskit Runtime options, preview mod
 
 <Attribute attributeTypeHint="bool" attributeValue="False">
 
-Whether Orbit returns a DD insertion report without submitting a Qiskit Runtime job.
+Whether Orbit returns a DD insertion report without submitting a Quantum Compute job.
 - Required: No
 - Default value: `False`
 - Valid input types: `bool`
 
 - When `True`, no QPU time is used; orbit simply pre-processes the circuits in `pubs` and provides an insertion report.
-- When `False` (default value), a Qiskit Runtime job with Orbit-modified circuits is submitted and processed.
+- When `False` (default value), a Quantum Compute job with Orbit-modified circuits is submitted and processed.
 - If both `preview` and `simulator` are `True`, preview mode takes precedence and simulator execution is ignored.
 </Attribute>
 
@@ -224,7 +224,7 @@ Per-PUB execution modes and overrides.
 - `{"mode": "custom"}` can override `transpilation_mode`, `physical_layout`, `dd_qubits`, `dd_strategy`, `dynamic_dd_seq`, and `mem` for that PUB.
 - Raw mode always uses `transpilation_mode="prepare"` with `physical_layout=None`, skips Orbit DD, and ignores global preparation options.
 - Orbit and custom PUBs inherit global `transpilation_mode` and `physical_layout` unless they override them per PUB.
-- Use duplicated PUBs with `pub_options` to compare raw, Orbit defaults, and a custom DD strategy in one Qiskit Runtime job. For a naive CPMG baseline, use `{"dd_sequence": "CPMG", "pulse_density": 1.00, "dd_reps": 1}` inside the custom PUB's `dd_strategy`.
+- Use duplicated PUBs with `pub_options` to compare raw, Orbit defaults, and a custom DD strategy in one Quantum Compute job. For a naive CPMG baseline, use `{"dd_sequence": "CPMG", "pulse_density": 1.00, "dd_reps": 1}` inside the custom PUB's `dd_strategy`.
 
 For caller-prepared circuits, use `transpilation_mode="validate"` for the Orbit-enabled PUBs:
 
@@ -331,7 +331,7 @@ Global default allowlist of qubit indices eligible for Orbit DD insertion.
 
 <Attribute attributeTypeHint="bool" attributeValue="False">
 
-Whether Orbit saves backend calibration properties after an executed Qiskit Runtime job.
+Whether Orbit saves backend calibration properties after an executed Quantum Compute job.
 - Required: No
 - Default value: `False`
 - Valid input types: `bool`
@@ -371,12 +371,12 @@ Default target precision used for Estimator PUBs that do not specify precision e
 
 <Attribute attributeTypeHint="dict">
 
-[Qiskit Runtime primitive options](/docs/guides/runtime-options-overview) passed through to the underlying SamplerV2 or EstimatorV2 primitive.
+[IBM Quantum primitive options](/docs/guides/runtime-options-overview) passed through to the underlying SamplerV2 or EstimatorV2 primitive.
 - Required: No
 - Default value: `{"resilience_level": 0, "dynamical_decoupling": {"enable": false}}`
 - Valid input types: `dict`
 
-- Nested option dictionaries are accepted, including advanced and experimental Qiskit Runtime options for the selected primitive.
+- Nested option dictionaries are accepted, including advanced and experimental options for the selected primitive.
 - Runtime dynamical decoupling is disabled by default so Orbit's DD insertion is the only DD pass unless the user opts in.
 
 For example, advanced Sampler users can enable dynamic-circuit debugging fields:
@@ -415,7 +415,7 @@ options = {
     `dynamical_decoupling`
         <Attribute attributeTypeHint="dict">
 
-        Dynamical-decoupling options passed through to Qiskit Runtime.
+        Dynamical-decoupling options passed through to Quantum Compute.
         - Required: No
         - Default value: `{"enable": false}`
         - Valid input types: `dict`
@@ -425,7 +425,7 @@ options = {
             `enable`
                 <Attribute attributeTypeHint="bool" attributeValue="False">
 
-                Whether to enable Qiskit Runtime DD in addition to Orbit DD insertion.
+                Whether to enable `qiskit-ibm-runtime` DD in addition to Orbit DD insertion.
                 - Required: No
                 - Default value: `False`
                 - Valid input types: `bool`
@@ -442,7 +442,7 @@ options = {
                 - Default value: `None`
                 - Valid input types: `str` or `None`
 
-                Passed through to Qiskit Runtime when provided.
+                Passed through to Quantum Compute when provided.
                 </Attribute>
 
             `scheduling_method`
@@ -453,7 +453,7 @@ options = {
                 - Default value: `None`
                 - Valid input types: `str` or `None`
 
-                Passed through to Qiskit Runtime when provided.
+                Passed through to Quantum Compute when provided.
                 </Attribute>
 
             `extra_slack_distribution`
@@ -464,7 +464,7 @@ options = {
                 - Default value: `None`
                 - Valid input types: `str` or `None`
 
-                Passed through to Qiskit Runtime when provided.
+                Passed through to Quantum Compute when provided.
                 </Attribute>
 
             `skip_reset_qubits`
@@ -475,7 +475,7 @@ options = {
                 - Default value: `None`
                 - Valid input types: `bool` or `None`
 
-                Passed through to Qiskit Runtime when provided.
+                Passed through to Quantum Compute when provided.
                 </Attribute>
         </LeftColoredBar>
 </LeftColoredBar>
@@ -484,7 +484,7 @@ options = {
 
 <Attribute attributeTypeHint="int or None" attributeValue="None">
 
-Soft cap on the Qiskit Runtime job's maximum execution time.
+Soft cap on the Quantum Compute job's maximum execution time.
 - Required: No
 - Default value: `None`
 - Valid input types: `int` or `None`
@@ -543,10 +543,10 @@ Duration of one DD gate or pulse.
 The function returns a Qiskit `PrimitiveResult` containing one `PubResult` per input PUB. Orbit preserves the selected primitive's normal result data and adds Orbit metadata under `quantum_elements_orbit`.
 
 <Attribute attributeTypeHint="PrimitiveResult">
-Standard Qiskit primitive result with Orbit metadata attached.
+Standard `PrimitiveResult` with Orbit metadata attached.
 - For `primitive="sampler"`, each `PubResult.data` contains Sampler result data such as classical-register bit arrays.
 - For `primitive="estimator"`, each `PubResult.data` contains Estimator result data such as expectation values and standard errors.
-- In preview mode, each `PubResult.data` is empty because no Qiskit Runtime primitive is submitted.
+- In preview mode, each `PubResult.data` is empty because no IBM Quantum primitive is submitted.
 </Attribute>
 
 ### Top-level metadata
@@ -625,7 +625,7 @@ Standard Qiskit primitive result with Orbit metadata attached.
 
             `backendInfo`
                 <Attribute attributeTypeHint="dict[str, Any]">
-                Backend calibration export status. Includes `enabled`, `saved`, and, when available, backend name, Qiskit Runtime job ID, saved path, and warnings.
+                Backend calibration export status. Includes `enabled`, `saved`, and, when available, backend name, job ID, saved path, and warnings.
                 </Attribute>
 
             `warnings`
@@ -729,7 +729,7 @@ Each `PubResult.metadata["quantum_elements_orbit"]` contains the insertion repor
 
 ### Preview output
 
-When `options.preview` is `True`, Orbit returns a metadata-only `PrimitiveResult`. No Qiskit Runtime job is submitted, no Sampler counts or Estimator values are populated, and QPU time is reported as `0.0`. Use preview mode to inspect DD insertion reports before running on hardware.
+When `options.preview` is `True`, Orbit returns a metadata-only `PrimitiveResult`. No Quantum Compute job is submitted, no Sampler counts or Estimator values are populated, and QPU time is reported as `0.0`. Use preview mode to inspect DD insertion reports before running on hardware.
 
 ### Simulator output
 
@@ -760,23 +760,23 @@ unmitigated measurement results. This treatment is appropriate for bitstrings
 intended as circuit outputs, but users should not interpret it as correction
 of the dynamic control flow that produced those outputs.
 
-If mitigation fails, Orbit preserves the raw Qiskit Runtime result and records the failure status and error message in metadata.
+If mitigation fails, Orbit preserves the raw result and records the failure status and error message in metadata.
 
 ## Error handling
 
 Orbit raises structured `qiskit_serverless.ServerlessError` errors for fatal failures. Each error includes a `code`, `message`, and `details` payload. Orbit maps errors to existing IBM Quantum error-code categories when possible; validation errors use code `1221`. Orbit-specific errors use the QE reserved code range `4700` through `4709` when no existing IBM Quantum code is a better match. See the [IBM Quantum error code reference](/docs/errors) for general error-code guidance.
 
 <Admonition type="caution" title="Common fatal errors">
-  Check the error `message` and `details` fields first. They identify the invalid field, backend, PUB index, or upstream Qiskit Runtime failure when Orbit can determine it.
+  Check the error `message` and `details` fields first. They identify the invalid field, backend, PUB index, or upstream Quantum Compute failure when Orbit can determine it.
 
   - Input validation errors use code `1221`. These include invalid option types, unknown option keys, empty `pubs`, invalid `dd_strategy`, invalid `pub_options` length, `dd_qubits` with resolved `transpilation_mode` other than `"validate"`, caller-prepared circuits that are not compatible with the selected backend target, invalid `physical_layout` values, and incompatible MEM requests such as `mem=True` with `primitive="estimator"`, `preview=True`, or `simulator=True`.
   - Unsupported primitive errors use code `1211`. Orbit accepts only `primitive="sampler"` and `primitive="estimator"`.
   - Backend selection or backend capability errors use code `1007` or `1009`. These include unavailable backend names, no eligible least-busy backend, or a backend without the timing information required for DD insertion.
   - DD insertion and QASM round-trip failures use code `1003`. These can occur when a circuit cannot be transpiled, scheduled, converted, or padded consistently for the selected backend and DD strategy.
-  - Qiskit Runtime submission failures use code `1245`; jobs that fail before producing a result use code `5203`. Orbit preserves an upstream Qiskit Runtime error code when one is exposed, with the Orbit fallback code in `details`.
+  - Quantum Compute submission failures use code `1245`; jobs that fail before producing a result use code `5203`. Orbit preserves an upstream Quantum Compute error code when one is exposed, with the Orbit fallback code in `details`.
   - Unexpected Orbit-specific failures are reported as structured errors in the QE reserved range (`4700--4709`) when no existing IBM Quantum error code applies.
 </Admonition>
 
-Non-fatal conditions are reported as warnings instead of failing the job when Orbit can safely preserve the result. Run-level warnings appear in `metadata["quantum_elements_orbit"]["warnings"]`; PUB-level warnings appear in each PUB report. Recoverable warning events use code `1300` when the Qiskit Functions environment accepts warning events. Examples include `preview=True` taking precedence over `simulator=True`, Qiskit Runtime DD being enabled alongside Orbit DD, Sampler ignoring `runtime_options.resilience_level`, or backend calibration export failing while the primitive result is otherwise available.
+Non-fatal conditions are reported as warnings instead of failing the job when Orbit can safely preserve the result. Run-level warnings appear in `metadata["quantum_elements_orbit"]["warnings"]`; PUB-level warnings appear in each PUB report. Recoverable warning events use code `1300` when the Qiskit Functions environment accepts warning events. Examples include `preview=True` taking precedence over `simulator=True`, `qiskit-ibm-runtime` DD being enabled alongside Orbit DD, Sampler ignoring `runtime_options.resilience_level`, or backend calibration export failing while the primitive result is otherwise available.
 
 Measurement error mitigation failures are also non-fatal. If M3 mitigation cannot be applied, Orbit preserves the raw Sampler result and records `measurementErrorMitigation.status="failed"` with an error message in Orbit metadata.
