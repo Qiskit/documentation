@@ -1,0 +1,77 @@
+---
+title: "Installation instructions"
+description: "Installation instructions for the latest version of Operator backpropagation (OBP)"
+---
+
+# Installation instructions
+
+Before installing the package, choose how you’re going to run and install the packages. There are two primary ways to do this:
+
+*   [Option 1: Install from PyPI](#option-1)
+*   [Option 2: Install from source](#option-2)
+
+## Preinstallation
+
+First, create a minimal environment with only Python installed in it. We recommend using [Python virtual environments](https://docs.python.org/3.10/tutorial/venv.html).
+
+```sh
+python3 -m venv /path/to/virtual/environment
+```
+
+Activate your new environment.
+
+```sh
+source /path/to/virtual/environment/bin/activate
+```
+
+Note: If you are using Windows, use the following commands in PowerShell:
+
+```pwsh
+python3 -m venv c:\path\to\virtual\environment
+c:\path\to\virtual\environment\Scripts\Activate.ps1
+```
+
+<span id="option-1" />
+
+## Option 1: Install from PyPI
+
+The most straightforward way to install the `qiskit-addon-obp` package is by using `PyPI`.
+
+```sh
+pip install 'qiskit-addon-obp'
+```
+
+<span id="option-2" />
+
+## Option 2: Install from source
+
+Users who want to develop in the repository or run the notebooks locally might want to install from source.
+
+If so, the first step is to clone the `qiskit-addon-obp` repository.
+
+```sh
+git clone git@github.com:Qiskit/qiskit-addon-obp.git
+```
+
+Next, upgrade pip and enter the repository.
+
+```sh
+pip install --upgrade pip
+cd qiskit-addon-obp
+```
+
+The next step is to install `qiskit-addon-obp` to the virtual environment. If you plan on running the notebooks, install the notebook dependencies so you can run visualizations. If you plan on developing in the repository, you might want to install the `dev` dependencies.
+
+Adjust the options below to suit your needs.
+
+```sh
+pip install tox notebook -e '.[notebook-dependencies,dev]'
+```
+
+If you installed the notebook dependencies, you can get started by running the notebooks in the docs directory.
+
+```python
+cd docs/
+jupyter lab
+```
+

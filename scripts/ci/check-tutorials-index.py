@@ -37,7 +37,7 @@ def is_hidden(path: Path) -> bool:
     return any(part.startswith(".") for part in path.parts)
 
 def get_notebook_title(path: Path) -> str:
-    data = json.loads(path.read_text())
+    data = json.loads(path.read_text(encoding="utf-8"))
     info_message = "Check the MDX guide (https://github.com/Qiskit/documentation/blob/main/mdx-guide.md#page-metadata) for more information."
 
     first_md_cell = next((item for item in data['cells'] if item['cell_type'] == 'markdown'), None)
@@ -61,7 +61,7 @@ def get_expected_links() -> Iterator[Link]:
     notebook_paths = TUTORIALS_ROOT.rglob("**/*.ipynb")
     return (
         Link(
-            href=f"/{path.with_suffix('')}",
+            href=f"/{path.with_suffix('').as_posix()}",
             link_text=get_notebook_title(path)
         )
         for path in notebook_paths
