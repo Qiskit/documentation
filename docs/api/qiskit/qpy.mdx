@@ -56,7 +56,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/qpy/interface.py#L277-L443" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/qpy/interface.py#L267-L433" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
@@ -104,7 +104,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/qpy/interface.py#L89-L274" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=17, annotation_factories=None)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/qpy/interface.py#L89-L264" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=17, annotation_factories=None)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -157,10 +157,6 @@ with open('twenty_bells.qpy', 'rb') as fd:
           If specified with an older version of QPY the limitations and potential bugs stemming from the QPY format at that version will persist. This should only be used if compatibility with loading the payload with an older version of Qiskit is necessary.
         </Admonition>
 
-        <Admonition title="Note" type="note">
-          If serializing a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that contains [`ParameterExpression`](/docs/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects with `version` set low with the intent to load the payload using a historical release of Qiskit, it is safest to set the `use_symengine` flag to `False`. Versions of Qiskit prior to 1.2.4 cannot load QPY files containing `symengine`-serialized [`ParameterExpression`](/docs/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects unless the version of `symengine` used between the loading and generating environments matches.
-        </Admonition>
-
   *   **annotation\_factories** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*, Callable\[\[],* [*annotation.QPYSerializer*](circuit_annotation#qiskit.circuit.annotation.QPYSerializer "qiskit.circuit.annotation.QPYSerializer")*]] | None*) – Mapping of namespaces to functions that create new instances of `annotation.QPUSerializer`, for handling the dumping of custom [`Annotation`](/docs/api/qiskit/qiskit.circuit.Annotation "qiskit.circuit.Annotation") objects. The subsequent call to [`load()`](#qiskit.qpy.load "qiskit.qpy.load") will need to use similar serializer objects, that understand the custom output format of those serializers.
 
   **Raises**
@@ -171,7 +167,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### get\_qpy\_version
 
-<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/qpy/interface.py#L446-L473" signature="qiskit.qpy.get_qpy_version(file_obj)">
+<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/qpy/interface.py#L436-L463" signature="qiskit.qpy.get_qpy_version(file_obj)">
   This function identifies the QPY version of the file.
 
   This function will read the header of `file_obj` and will return the QPY format version. It will **not** advance the cursor of `file_obj`. If you are using this for a subsequent read, such as to call [`load()`](#qiskit.qpy.load "qiskit.qpy.load"), you can pass `file_obj` directly. For example:
@@ -284,6 +280,7 @@ If you’re planning to load a QPY file between different Qiskit versions knowin
 
 | Qiskit (qiskit-terra for \< 1.0.0) version | [`dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") format(s) output versions | [`load()`](#qiskit.qpy.load "qiskit.qpy.load") maximum supported version (older format versions can always be read) |
 | ------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| 2.5.2                                      | 13, 14, 15, 16, 17                                                       | 17                                                                                                                  |
 | 2.5.1                                      | 13, 14, 15, 16, 17                                                       | 17                                                                                                                  |
 | 2.5.0                                      | 13, 14, 15, 16, 17                                                       | 17                                                                                                                  |
 | 2.4.1                                      | 13, 14, 15, 16, 17                                                       | 17                                                                                                                  |
