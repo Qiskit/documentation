@@ -1284,13 +1284,13 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcp\_noaux\_default
 
-<Function id="qiskit.synthesis.synth_mcp_noaux_default" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcp_synthesis.py#L237-L265" signature="qiskit.synthesis.synth_mcp_noaux_default(num_ctrl_qubits, phase)">
+<Function id="qiskit.synthesis.synth_mcp_noaux_default" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcp_synthesis.py#L240-L268" signature="qiskit.synthesis.synth_mcp_noaux_default(num_ctrl_qubits, phase)">
   Choose the best synthesis code for [`MCPhaseGate`](/docs/api/qiskit/dev/qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate") according to the number of control qubits.
 
   **Parameters**
 
   *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of control qubits.
-  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The phase angle for the multi-controlled phase gate.
+  *   **phase** ([*ParameterExpression*](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)) – The phase angle for the multi-controlled phase gate.
 
   **Returns**
 
@@ -1307,7 +1307,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcp\_noaux\_sp22
 
-<Function id="qiskit.synthesis.synth_mcp_noaux_sp22" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcp_synthesis.py#L165-L234" signature="qiskit.synthesis.synth_mcp_noaux_sp22(num_ctrl_qubits, phase)">
+<Function id="qiskit.synthesis.synth_mcp_noaux_sp22" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcp_synthesis.py#L168-L237" signature="qiskit.synthesis.synth_mcp_noaux_sp22(num_ctrl_qubits, phase)">
   Synthesize a multi-controlled phase gate with $n$ controls based on the paper by da Silva et al. \[1] and the implementation in qclib \[2].
 
   For $n \ge 2$, the method produces a circuit with $4n^2-4n+2$ CX gates and requires $O(n)$ depth. For $n \le 4$, it is more efficient to use [`synth_mcp_noaux_v24()`](#qiskit.synthesis.synth_mcp_noaux_v24 "qiskit.synthesis.synth_mcp_noaux_v24"), which produces a circuit with less CX gates.
@@ -1331,7 +1331,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
   **Parameters**
 
   *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of control qubits.
-  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The phase angle for the multi-controlled phase gate.
+  *   **phase** ([*ParameterExpression*](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)) – The phase angle for the multi-controlled phase gate.
 
   **Returns**
 
@@ -1354,7 +1354,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcp\_noaux\_v24
 
-<Function id="qiskit.synthesis.synth_mcp_noaux_v24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcp_synthesis.py#L20-L122" signature="qiskit.synthesis.synth_mcp_noaux_v24(num_ctrl_qubits, phase)">
+<Function id="qiskit.synthesis.synth_mcp_noaux_v24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcp_synthesis.py#L21-L123" signature="qiskit.synthesis.synth_mcp_noaux_v24(num_ctrl_qubits, phase)">
   Synthesize a multi-controlled phase gate with no auxiliary qubits.
 
   This method implements the synthesis of a multi-controlled phase gate using multi-controlled RZ gates.
@@ -1416,7 +1416,7 @@ $$
   **Parameters**
 
   *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of control qubits.
-  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The phase angle for the multi-controlled phase gate.
+  *   **phase** ([*ParameterExpression*](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float)) – The phase angle for the multi-controlled phase gate.
 
   **Returns**
 

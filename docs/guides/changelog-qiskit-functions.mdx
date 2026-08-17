@@ -1,0 +1,165 @@
+---
+title: Qiskit Functions changelogs
+description: The latest updates from Qiskit Functions, including the latest package release summaries and platform updates.
+
+---
+
+{/* cspell:ignore GGUF Phasecraft */}
+
+<span id="latest-qiskit-functions"></span>
+# Qiskit Functions
+
+<span id="new-methods"></span>
+## July 2026
+
+- New pre-flight checks and new `backend` methods in Qiskit Functions v0.17.0: New methods in `qiskit-ibm-catalog` let you check runtime capacity and backend access before you run, and `run()` now validates both before it submits a job.
+
+  - **What's new**
+    - When you call `run()` on a function, the service checks three things first: that your instance has runtime capacity, that you can reach the backend you named, and that at least one backend is available. If something is wrong, you get a clear error right away instead of waiting in the queue.
+
+      You can also check these resources yourself, at any time:
+
+      - Check your remaining runtime capacity with `usage()`.
+      - List the backends your instance can reach with `backends()`.
+      - Look up a single backend and confirm access with `backend()`.
+      - Find the backend with the fewest pending jobs with `least_busy()`.
+
+  - **Common use cases**
+    - Check your remaining capacity before a long batch of jobs, and skip the run if there is not enough left to finish it.
+    - Choose a backend in code instead of hard-coding a name.
+    - Fail fast in pipelines and notebooks instead of waiting in the queue.
+
+  - **Get started**
+
+    - First ensure you're running the latest version of `qiskit-ibm-catalog`:
+
+      ```
+      pip install --upgrade qiskit-ibm-catalog
+      ```
+
+    - Then see the [documentation](/docs/guides/functions-get-started) for more information and an example.
+
+## Previous updates
+
+### 2026
+
+#### April 2026
+
+- All API reference content for Qiskit Functions can now be found with other API reference documentation: [Qiskit Functions API reference](/docs/api/functions)
+
+### 2025
+
+<Accordion>
+<AccordionItem title="Third quarter">
+#### 18 July 2025
+
+Qiskit Functions templates provide you with a modular pipeline that allows you to swap in new tools, methods, or configurations for your own custom experiments. All function templates are also readily deployable to [Qiskit Serverless](/docs/guides/serverless), where you can easily leverage classical compute as part of running your workflow. You can deploy your serverless package on your preferred cloud environment, or take advantage of the hosted service provided by IBM for Premium and Flex Plan users. Regardless of which option you choose, Qiskit Serverless helps to simplify execution and parallelize portions of your workflow.
+
+Visit the [Qiskit Functions templates](/docs/guides/qiskit-function-templates) guide to learn more, or read an overview of [Qiskit Functions](/docs/guides/functions) in the documentation.
+</AccordionItem>
+<AccordionItem title="Second quarter">
+#### 5 June 2025
+- We're excited to roll out two new functions for finance and optimization:
+  - [QUICK-PDE](https://quantum.cloud.ibm.com/functions?id=colibritd-quick-pde) by ColibriTD allows users to solve certain differential equations for material deformation and computational fluid dynamics problems. For example, one team of researchers has already begun using the QUICK-PDE function to study the dynamics of novel reactive fluids developed to transfer heat more efficiently in a type of nuclear reactor known as Small Modular Reactors.
+
+  - [Quantum Portfolio Optimizer](https://quantum.cloud.ibm.com/functions?id=global-data-quantum-quantum-portfolio-optimizer) by Global Data Quantum enables quantitative finance researchers to back-test portfolio optimization strategies. Running on over 100 qubits, this function calculates a portfolio's Sharpe ratio versus return across a specified time period. Early users are exploring the optimizer's ability to evaluate historical performance of an investment strategy and to enable comparisons of different portfolios under similar conditions.
+
+Check out the [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions) to request a free trial today.
+
+#### 4 June 2025
+- New updates
+
+  - Documentation for Singularity Machine Learning - Classification has been updated. View the [Changelog](/docs/guides/multiverse-computing-singularity#changelog).
+
+#### 16 May 2025
+- Over the coming weeks, every function will give detailed information to help you run, debug, and analyze your workflows. This includes:
+
+  - When jobs fail, you can use `job.error_message()` to find specific error codes and messages to help you debug your workflows
+  - `job.status()` will give more information on what's happening while a Function is `RUNNING`, including:
+    - `RUNNING: MAPPING`
+    - `RUNNING: OPTIMIZING_FOR_HARDWARE`
+    - `RUNNING: WAITING_FOR_QPU`
+    - `RUNNING: EXECUTING_QPU`
+    - `RUNNING: POST_PROCESSING`
+  - Finally, after a Qiskit Function is complete, you can inspect how much time is spent across each stage with `job.result()['metadata']['resource_usage']`, as in the following example.
+
+<Accordion>
+<AccordionItem title="Expand for code example">
+  ```json
+  {
+        ...,
+    "metadata": {
+      "resource_usage": {
+        {
+          "RUNNING: MAPPING": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          },
+          "RUNNING: OPTIMIZING_FOR_HARDWARE": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          },
+          "RUNNING: WAITING_FOR_QPU": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          },
+          "RUNNING: EXECUTING_QPU": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          },
+          "RUNNING: POST_PROCESSING": {
+            "CPU_TIME": seconds,
+            "GPU_TIME": seconds,
+            "QPU_TIME": seconds,
+          },
+        },
+      }
+    }
+  }
+  ```
+</AccordionItem>
+</Accordion>
+
+  We're hoping these changes make it easier to use Qiskit Functions, and [you can get started with free trials in the catalog today](https://quantum.cloud.ibm.com/functions).
+</AccordionItem>
+<AccordionItem title="First quarter">
+#### 10 March 2025
+- Latest additions to the Qiskit Functions Catalog
+
+  - [Iskay Quantum Optimizer - A Qiskit Function by Kipu Quantum](/docs/guides/kipu-optimization)
+  - [Singularity Machine Learning - Classification: A Qiskit Function by Multiverse Computing](/docs/guides/multiverse-computing-singularity)
+  - [HI-VQE Chemistry - A Qiskit Function by Qunova Computing](/docs/guides/qunova-chemistry)
+
+
+To get started, explore the [Qiskit Functions documentation](/docs/guides/functions).
+</AccordionItem>
+</Accordion>
+### 2024
+
+#### 16 September 2024
+- Introducing the Qiskit Functions preview, for IBM Quantum Premium Plan users. To get started, `pip install qiskit-ibm-catalog` and explore the [Qiskit Functions documentation](/docs/guides/functions). With the Qiskit Functions Catalog client, you can submit workloads to abstracted services designed to accelerate your research. Sign in with your existing IBM Quantum Platform credentials.
+
+  The Qiskit Functions Catalog preview provides access to Premium Plan users to explore the available functions, including those written by IBM and those written by other members of our ecosystem. The catalog contains two kinds of functions: circuit functions and application functions.
+
+    - **Circuit functions** provide a simplified interface for running circuits. They receive user-provided abstract circuits and observables as input, then manage synthesis, optimization, and execution of the representative ISA circuit. Circuit functions bring together the latest capabilities in transpilation, error suppression, and error mitigation to make utility-grade performance accessible out of the box. This allows computational scientists to focus on mapping their problems to circuits, rather than building the pattern for each problem from scratch.
+
+    - **Application functions** cover higher-level tasks, like exploring algorithms and domain-specific use cases. Enterprise developers and data scientists may not have the background quantum information science knowledge for working with circuits, and instead hope to bring their domain knowledge to advance quantum computing algorithms and applications. With application functions, users can enter their classical inputs and receive solutions so they can more easily experiment with plugging quantum into their domain-specific workflows.
+
+- With the launch of the Qiskit Functions Catalog, Premium Plan developers can explore the IBM Circuit function. The IBM Circuit function includes the latest AI-powered extensions to Qiskit for circuit synthesis, optimization, and scheduling, as well as advanced error mitigation methods to return the most accurate estimations possible with today's hardware.
+
+  Users can purchase licenses for the following functions contributed by our partners at Q-CTRL, QEDMA, and Algorithmiq.
+
+- **Circuit functions**
+
+  - Q-CTRL is releasing a circuit function that applies AI-driven quantum control techniques, with which users can scale successfully to larger problems.
+  - Algorithmiq is releasing a circuit function that applies TEM (tensor-network error mitigation), an error mitigation method for obtaining estimators with fewer shots than the PEC (probabilistic error cancellation) method.
+  - QEDMA is releasing a circuit function that uses proprietary protocols for efficient and accurate characterization of the noisy QPU operations, and applies error suppression and error mitigation based on the characterization data.
+
+- **Application functions**
+
+  - Q-CTRL is releasing an optimization solver with which users can pass a graph or an objective, and receive solution costs.
+
