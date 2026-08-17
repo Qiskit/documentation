@@ -26,6 +26,7 @@ import {
 export type ComponentProps = {
   id?: string;
   attributeTypeHint?: string;
+  attributeTypeHintHref?: string;
   attributeValue?: string;
   githubSourceLink?: string;
   rawSignature?: string;
@@ -42,7 +43,7 @@ export async function createMdxComponent(
   priorApiType: ApiTypeName | undefined,
   apiType: ApiObjectName,
   id: string,
-  options: { isCApi: boolean },
+  options: { isCApi: boolean; normalizeUrl?: (url: string) => string },
 ): Promise<string> {
   const tagName = API_OBJECTS[apiType].tagName;
 
@@ -97,7 +98,7 @@ function prepareProps(
   apiType: ApiObjectName,
   id: string,
   headerLevel: number,
-  options: { isCApi: boolean },
+  options: { isCApi: boolean; normalizeUrl?: (url: string) => string },
 ): ComponentProps {
   const prepClassOrException = () =>
     prepareClassOrExceptionProps(
@@ -129,6 +130,7 @@ function prepareProps(
       githubSourceLink,
       id,
       headerLevel,
+      options.normalizeUrl,
     );
 
   const preparePropsPerApiType: Record<ApiObjectName, () => ComponentProps> = {
@@ -250,6 +252,7 @@ function prepareAttributeOrPropertyProps(
   githubSourceLink: string | undefined,
   id: string,
   headerLevel: number,
+  normalizeUrl?: (url: string) => string,
 ): ComponentProps {
   // Properties/attributes have multiple `span.property` values to set:
   //
@@ -300,9 +303,21 @@ function prepareAttributeOrPropertyProps(
     .trim();
   const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
+  // If the type hint element contains a link, capture its href so the
+  // rendered component can make the type hint clickable.
+  const rawHref =
+    $child.find("em.property a, span.property a").first().attr("href") ??
+    undefined;
+  const hrefPath = rawHref?.split("#")[0];
+  const attributeTypeHintHref =
+    hrefPath && normalizeUrl && !hrefPath.startsWith("http")
+      ? normalizeUrl(hrefPath)
+      : hrefPath;
+
   const props = {
     id,
     attributeTypeHint,
+    attributeTypeHintHref,
     attributeValue,
     githubSourceLink,
     modifiers: filteredModifiers,
@@ -392,9 +407,10 @@ export async function createOpeningTag(
     extraSignatures.push(`"${await htmlSignatureToMd(sig!)}"`);
   }
 
-  return `<${tagName} 
+  return `<${tagName}
     id='${props.id}'
     attributeTypeHint='${attributeTypeHint}'
+    attributeTypeHintHref='${props.attributeTypeHintHref}'
     attributeValue='${attributeValue}'
     isDedicatedPage='${props.isDedicatedPage}'
     github='${props.githubSourceLink}'

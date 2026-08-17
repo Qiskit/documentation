@@ -55,21 +55,6 @@ function shouldIncludeEntry(
   if (entry.name.startsWith("group__")) return false;
   if (entry.name.startsWith("struct_")) return false;
 
-  // std: entries are Sphinx RST cross-reference labels for document structure
-  // (page titles, section headings, etc.). They point to prose pages that are
-  // not published in this repo — only API symbol pages under stubs/ and
-  // apidocs/ are. Without this filter, the link checker would treat these as
-  // broken internal links.
-  if (
-    entry.domainAndRole.startsWith("std:") &&
-    !entry.uri.startsWith("apidocs/") &&
-    !entry.uri.startsWith("stubs/") &&
-    !entry.name.startsWith("/apidocs/") &&
-    !entry.name.startsWith("/stubs/")
-  ) {
-    return false;
-  }
-
   // This happens during link checking.
   if (packageLanguage === "any") return true;
 

@@ -39,6 +39,7 @@ export async function sphinxHtmlToMarkdown(options: {
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;
   hasRootNamespaceFile: boolean;
+  normalizeUrl?: (url: string) => string;
 }): Promise<HtmlToMdResult> {
   const processedHtml = await processHtml(options);
   const markdown = await generateMarkdownFile(
@@ -365,6 +366,11 @@ function buildApiComponent(h: H, node: any): any {
     hastTree,
     "attributeTypeHint",
     node.properties.attributetypehint,
+  );
+  maybeAddAttribute(
+    hastTree,
+    "attributeTypeHintHref",
+    node.properties.attributetypehinthref,
   );
   maybeAddAttribute(hastTree, "attributeValue", node.properties.attributevalue);
   maybeAddExpressionAttribute(

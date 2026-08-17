@@ -30,7 +30,7 @@ Read on for more information about how to support this project:
 This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&reg; documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit SDK API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
-- For problems you've found in the [Qiskit Runtime client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
+- For problems you've found in the [IBM Quantum Compute client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
 - For problems you've found in any other section of [docs](https://docs.quantum.ibm.com), open a content bug issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
 
 #### 2. Suggest new content
@@ -415,7 +415,7 @@ All release types start with the following steps:
    3. Click the CI run name. (Not the middle column with the blue link!)
    4. In the left navbar, it should show as selected the "Summary" page with the house.
    5. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
-   6. Download the artifact by clicking on its name.
+   6. Download the artifact by clicking on its name. **Note:** For `qiskit-addon-utils` (and possibly others) the downloaded zip file might contain an extra parent directory. This will cause the `gen-addon` script to run incorrectly and leave your changes in a broken state. To fix this, uncompress the zip file and open the top-level directory, so you are viewing a collection of files and folders such as `_downloads`, `_images`, `objects.inv`, and others. Select all these files and folders and compress into a new zip file, which you will rename (see step 5 below) and upload (step 6).
 
 4. On some operating systems, the downloaded zip file will be auto-expanded rather than staying a zip file. If this happens, compress it back to a zip file. On macOS, secondary-click on the folder in Finder and use the "Compress" option.
 5. Rename the downloaded zip file with its minor-version number. For example, for the release `0.45.2`, rename `html_docs.zip` to `0.45.zip`. For release candidates (rc), use a value like `2.3-rc.zip`.
