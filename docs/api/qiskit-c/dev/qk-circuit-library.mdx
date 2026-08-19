@@ -123,6 +123,94 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   A newly allocated `QkCircuit*` (caller must free with `qk_circuit_free`).
 </Function>
 
+### qk\_circuit\_library\_n\_local
+
+<Function id="qk_circuit_library_n_local" signature="QkCircuit *qk_circuit_library_n_local(uint32_t num_qubits, const QkGate *rotation_blocks, size_t rotation_blocks_size, const QkGate *entanglement_blocks, size_t entanglement_blocks_size, const QkNLocalSettings *settings)">
+  Construct an n-local variational circuit.
+
+  The structure of the n-local circuit are alternating rotation and entanglement layers. In both layers, parameterized circuit-blocks act on the circuit in a defined way. In the rotation layer, the blocks are applied stacked on top of each other, while in the entanglement layer according to the `entanglement` strategy. The circuit blocks can have arbitrary sizes (smaller equal to the number of qubits in the circuit). Each layer is repeated `reps` times, and by default a final rotation layer is appended.
+
+  For instance, a rotation block on 2 qubits and an entanglement block on 4 qubits using `QkEntanglementStrategy_Linear` entanglement yields the following circuit.
+
+  ```c
+  ┌──────┐ ░ ┌──────┐                      ░ ┌──────┐
+  ┤0     ├─░─┤0     ├──────────────── ... ─░─┤0     ├
+  │  Rot │ ░ │      │┌──────┐              ░ │  Rot │
+  ┤1     ├─░─┤1     ├┤0     ├──────── ... ─░─┤1     ├
+  ├──────┤ ░ │  Ent ││      │┌──────┐      ░ ├──────┤
+  ┤0     ├─░─┤2     ├┤1     ├┤0     ├ ... ─░─┤0     ├
+  │  Rot │ ░ │      ││  Ent ││      │      ░ │  Rot │
+  ┤1     ├─░─┤3     ├┤2     ├┤1     ├ ... ─░─┤1     ├
+  ├──────┤ ░ └──────┘│      ││  Ent │      ░ ├──────┤
+  ┤0     ├─░─────────┤3     ├┤2     ├ ... ─░─┤0     ├
+  │  Rot │ ░         └──────┘│      │      ░ │  Rot │
+  ┤1     ├─░─────────────────┤3     ├ ... ─░─┤1     ├
+  └──────┘ ░                 └──────┘      ░ └──────┘
+
+  |                                 |
+  +---------------------------------+
+         repeated reps times
+  ```
+
+  Entanglement:
+
+  The entanglement describes the connections of the gates in the entanglement layer. For a two-qubit gate for example, the entanglement contains pairs of qubits on which the gate should acts, e.g. `[[ctrl0, target0], [ctrl1, target1], ...]`. To know more about the available entanglement strategies see `QkEntanglementStrategy`.
+
+  <span id="group__QkCircuitLibrary_1autotoc_md102" />
+
+  #### Example
+
+  ```c
+  size_t num_qubits = 2;
+  QkGate rotation_blocks[1] = {QkGate_H};
+  QkGate entanglement_blocks[1] = {QkGate_CRX};
+
+  QkNLocalSettings settings = qk_circuit_library_n_local_settings_default();
+  settings.reps = 2;
+  // For this example we use QkEntanglementStrategy_Linear since
+  // the default is QkEntanglementStrategy_Full
+  settings.entanglement_strategy = QkEntanglementStrategy_Linear;
+
+  QkCircuit *qc = qk_circuit_library_n_local(num_qubits, rotation_blocks, 1,
+                                             entanglement_blocks, 1, &settings);
+
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuitLibrary_1autotoc_md103" />
+
+  #### Safety
+
+  <span id="group__QkCircuitLibrary_1autotoc_md103" />
+
+  *   Behavior is undefined if `rotation_blocks` is not a valid, non-null pointer to a sequence of `rotation_blocks_size` consecutive elements of `StandardGate`.
+  *   Behavior is undefined if `entanglement_blocks` is not a valid, non-null pointer to a sequence of `entanglement_blocks_size` consecutive elements of `StandardGate`.
+  *   Behavior is undefined if `settings` is not a valid, non-null pointer.
+
+  **Parameters**
+
+  *   **num\_qubits** – The number of qubits of the circuit.
+  *   **rotation\_blocks** – The blocks used in the rotation layers.
+  *   **rotation\_blocks\_size** – Length of the array of rotation blocks provided.
+  *   **entanglement\_blocks** – The blocks used in the entanglement layers.
+  *   **entanglement\_blocks\_size** – Length of the list of entanglement blocks provided.
+  *   **settings** – A `QkNLocalSettings` pointer that is the settings to be applied to the generated circuit. If `NULL`, the default settings are used, see `QkNLocalSettings` for more details.
+
+  **Returns**
+
+  A pointer to the generated circuit.
+</Function>
+
+### qk\_circuit\_library\_n\_local\_settings\_default
+
+<Function id="qk_circuit_library_n_local_settings_default" signature="QkNLocalSettings qk_circuit_library_n_local_settings_default(void)">
+  Generate default options for `qk_circuit_library_n_local`.
+
+  **Returns**
+
+  A `QkNLocalSettings` object with default settings.
+</Function>
+
 ### qk\_pauli\_product\_rotation\_clear
 
 <Function id="qk_pauli_product_rotation_clear" signature="void qk_pauli_product_rotation_clear(QkPauliProductRotation *inst)">
@@ -130,7 +218,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   This frees the memory of the `z` and `x` arrays and frees the `angle`. This function should only be called for `QkPauliProductRotation` objects whose data has been populated by Rust.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md102" />
+  <span id="group__QkCircuitLibrary_1autotoc_md104" />
 
   #### Example
 
@@ -158,11 +246,11 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   qk_param_free(angle);
   ```
 
-  <span id="group__QkCircuitLibrary_1autotoc_md103" />
+  <span id="group__QkCircuitLibrary_1autotoc_md105" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md103" />
+  <span id="group__QkCircuitLibrary_1autotoc_md105" />
 
   Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkPauliProductRotation`, or if the internal data of `QkPauliProductRotation` is incoherent.
 
@@ -178,7 +266,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   This frees the memory of the `z` and `x` arrays. This function should only be called for `QkPauliProductMeasurement` objects whose data has been populated by Rust.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md104" />
+  <span id="group__QkCircuitLibrary_1autotoc_md106" />
 
   #### Example
 
@@ -205,11 +293,11 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   // since this data is allocated by C, we do not call `qk_pauli_product_measurement_clear(&inst)`
   ```
 
-  <span id="group__QkCircuitLibrary_1autotoc_md105" />
+  <span id="group__QkCircuitLibrary_1autotoc_md107" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md105" />
+  <span id="group__QkCircuitLibrary_1autotoc_md107" />
 
   Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkPauliProductMeasurement`, or if the internal data of `QkPauliProductMeasurement` is incoherent.
 
@@ -229,7 +317,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   \[1] A. Cross et al. Validating quantum computers using randomized model circuits, Phys. Rev. A 100, 032328 (2019). [arXiv:1811.12926](https://arxiv.org/abs/1811.12926)
 
-  <span id="group__QkCircuitLibrary_1autotoc_md106" />
+  <span id="group__QkCircuitLibrary_1autotoc_md108" />
 
   #### Example
 
@@ -255,7 +343,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   The Suzuki-Trotter formulas improve the error of the Lie-Trotter approximation. In this implementation, the operators are provided as sum terms of a Pauli operator. Higher order decompositions are based on recursions, see Ref. \[1] for more details.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md107" />
+  <span id="group__QkCircuitLibrary_1autotoc_md109" />
 
   #### Example
 
@@ -276,19 +364,19 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   qk_circuit_free(qc);
   ```
 
-  <span id="group__QkCircuitLibrary_1autotoc_md108" />
+  <span id="group__QkCircuitLibrary_1autotoc_md110" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md108" />
+  <span id="group__QkCircuitLibrary_1autotoc_md110" />
 
   Behavior is undefined `op` is not a valid, non-null pointer to a `QkObs`.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md109" />
+  <span id="group__QkCircuitLibrary_1autotoc_md111" />
 
   #### References
 
-  <span id="group__QkCircuitLibrary_1autotoc_md109" />
+  <span id="group__QkCircuitLibrary_1autotoc_md111" />
 
   \[1]: D. Berry, G. Ahokas, R. Cleve and B. Sanders, “Efficient quantum algorithms for simulating sparse Hamiltonians” (2006). [arXiv:quant-ph/0508139](https://arxiv.org/abs/quant-ph/0508139)
 
