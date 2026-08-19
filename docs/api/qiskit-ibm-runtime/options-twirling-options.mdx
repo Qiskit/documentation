@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.options.TwirlingOptions
 
 # TwirlingOptions
 
-<Class id="qiskit_ibm_runtime.options.TwirlingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.46/qiskit_ibm_runtime/options/twirling_options.py#L28-L117" signature="TwirlingOptions(enable_gates=Unset, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.TwirlingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.49/qiskit_ibm_runtime/options/twirling_options.py#L27-L121" signature="TwirlingOptions(enable_gates=Unset, enable_measure=Unset, num_randomizations=Unset, shots_per_randomization=Unset, strategy=Unset)" modifiers="class">
   Bases: `object`
 
   Twirling options.
@@ -25,7 +25,11 @@ python_api_name: qiskit_ibm_runtime.options.TwirlingOptions
 
   ### enable\_gates
 
-  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.enable_gates" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.enable_gates">
+    Type: `UnsetType` | `bool`
+
+    Default value: `Unset`
+
     Whether to apply 2-qubit Clifford gate twirling.
 
     Default: - For the Sampler: `False`. - For the Estimator: If `enables_gates` is `Unset`, it is determined by the server according to the resilience level: it is `False` for resilience levels 0 and 1, and `True` for resilience level 2.
@@ -33,7 +37,11 @@ python_api_name: qiskit_ibm_runtime.options.TwirlingOptions
 
   ### enable\_measure
 
-  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.enable_measure" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.enable_measure">
+    Type: `UnsetType` | `bool`
+
+    Default value: `Unset`
+
     Whether to enable twirling to measurement instructions, as long as the measurement is not involved within a conditional block.
 
     Default: - For the Sampler: `False`. - For the Estimator: If `enable_measure` is `Unset`, it is determined by the server according to the resilience level: it is `False` for resilience level 0, and `True` for resilience levels 1 and 2.
@@ -41,7 +49,11 @@ python_api_name: qiskit_ibm_runtime.options.TwirlingOptions
 
   ### num\_randomizations
 
-  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.num_randomizations" attributeTypeHint="UnsetType | int | Literal['auto']" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.num_randomizations">
+    Type: `UnsetType` | `int` | `Literal`\[`'auto'`]
+
+    Default value: `Unset`
+
     The number of random samples to use when twirling or peforming sampled mitigation.
 
     If `num_randomizations` is “auto”, for every pub executed `shots` times:
@@ -52,13 +64,17 @@ python_api_name: qiskit_ibm_runtime.options.TwirlingOptions
     > Default: `"auto"`.
 
     <Admonition title="Note" type="note">
-      The `shots` value specified in a PUB or in the `run()` method is considered part of the primitive execution interface and therefore is always obeyed. `default_shots`, on the other hand, is considered a Qiskit Runtime specific option. Therefore, the product of `num_randomizations` and `shots_per_randomization` takes precedence over `default_shots`.
+      The `shots` value specified in a PUB or in the `run()` method is considered part of the primitive execution interface and therefore is always obeyed. `default_shots`, on the other hand, is considered a IBM Quantum Compute (formerly Qiskit Runtime) specific option. Therefore, the product of `num_randomizations` and `shots_per_randomization` takes precedence over `default_shots`.
     </Admonition>
   </Attribute>
 
   ### shots\_per\_randomization
 
-  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.shots_per_randomization" attributeTypeHint="UnsetType | int | Literal['auto']" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.shots_per_randomization">
+    Type: `UnsetType` | `int` | `Literal`\[`'auto'`]
+
+    Default value: `Unset`
+
     The number of shots to run for each random sample.
 
     If “auto”, for every pub executed `shots` times:
@@ -69,13 +85,17 @@ python_api_name: qiskit_ibm_runtime.options.TwirlingOptions
     > Default: `"auto"`.
 
     <Admonition title="Note" type="note">
-      The `shots` value specified in a PUB or in the `run()` method is considered part of the primitive execution interface and therefore is always obeyed. `default_shots`, on the other hand, is considered a Qiskit Runtime specific option. Therefore, the product of `num_randomizations` and `shots_per_randomization` takes precedence over `default_shots`.
+      The `shots` value specified in a PUB or in the `run()` method is considered part of the primitive execution interface and therefore is always obeyed. `default_shots`, on the other hand, is considered a IBM Quantum Compute (formerly Qiskit Runtime) specific option. Therefore, the product of `num_randomizations` and `shots_per_randomization` takes precedence over `default_shots`.
     </Admonition>
   </Attribute>
 
   ### strategy
 
-  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.strategy" attributeTypeHint="UnsetType | Literal['active', 'active-accum', 'active-circuit', 'all']" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.strategy">
+    Type: `UnsetType` | `Literal`\[`'active'`, `'active-accum'`, `'active-circuit'`, `'all'`]
+
+    Default value: `Unset`
+
     Specify the strategy of twirling qubits in identified layers of 2-qubit twirled gates.
 
     Allowed values are:

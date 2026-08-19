@@ -1,44 +1,544 @@
 ---
-title: Use IBM Cloud Platform APIs to access instances
-description: Parameters to set when provisioning a Qiskit Runtime service instance, and extension fields returned when accessing an instance.
+title: Use IBM Cloud Resource Controller API for instance management
+description: Use the IBM Cloud Resource Controller REST API to get, list, update, and create IBM Quantum Compute Service instances.
 
 ---
-{/* cspell:ignore ResourceController  */}
 
-# Use IBM Cloud Platform APIs to access instances
+{/* cspell:ignore Abluemix, apikey */}
 
+# Use IBM Cloud Resource Controller API for instance management
 
-This guide is for anyone using the IBM Cloud Platform APIs to provision, update, or manage access to instances. It provides details on the [parameters](#parameters) you can set when provisioning an instance, as well as the set of [extension fields](#extensions) returned when you access an instance.
+You can use the IBM Cloud&reg; Resource Controller REST API to programmatically get, create, and update [instances](/docs/guides/instances). 
 
-<Admonition type="note">
-Refer to the IBM Cloud&reg; ResourceController API documentation for more information.
+All Resource Controller endpoints require that you authenticate by passing a header called `Authorization` with the bearer token. Refer to the [REST API setup guide](/docs/guides/cloud-setup-rest-api).
 
-Some relevant pages:
-- [Create (provision) a new resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance)
-- [Update a resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#update-resource-instance)
-- [Get a resource instance](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#get-resource-instance)
-- [Get a list of all resource instances](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances)  
-    
-    When getting a list of all resource instances, note that you can filter to only Qiskit Runtime instances with `resource_id = "b6049020-80f4-11eb-a0f7-e35ec9b4054f"`
+## Get an instance
 
+Use the [`GET /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#get-resource-instance) endpoint to get information about a particular instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
+
+In addition to the standard Resource Controller fields, the response includes quantum-specific fields in both `parameters` and `extensions`. `extensions` stores the instance's normalized metadata, whereas `parameters` only stores the most recent request to modify the instance. Therefore, you should read from `extensions` rather than `parameters`.
+
+The `extensions` object includes these fields:
+
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
+
+<Admonition type="caution" title="The backends field may be outdated">
+  The `backends` field in the `extensions` object may be outdated. This can happen when IBM Quantum Support changes your account in a way that impacts instances. For example, when a backend is removed from an account, it will update the `backends` for the instance, but that change is currently not yet reflected in the Resource Controller API.
+
+  Instead, the current workaround is to use the [IBM Quantum Compute Service REST API](/docs/api/qiskit-runtime-rest) with the [`GET /v1/backends`](/docs/api/qiskit-runtime-rest/tags/backends#tags__backends__operations__list_backends) endpoint. (Make sure that you set the `Service-CRN` header to your instance's CRN.)
 </Admonition>
 
-## `parameters`
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    The CRN must be URL-encoded in the path. Replace each `:` with `%3A` and each `/` with `%2F`. For example, `crn:v1:bluemix:...` becomes `crn%3Av1%3Abluemix%3A...`.
 
-In the body when provisioning or updating an instance:
+    ```bash
+    curl \
+      --request GET \
+      --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances/<YOUR_INSTANCE_CRN_URL_ENCODED>' \
+      --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>'
+    ```
+  </TabItem>
 
+  <TabItem value="python" label="Python">
+    ```python
+    import urllib.parse
+    import requests
 
-- **instance_limit_seconds** (string or null, `^[0-9]+$`): The limit to set on the instance. For Open Plan: if omitted, this defaults to 10 minutes.
-.
-- **usage_allocation_seconds** (string or null, `^[0-9]+$`): Allotted time for the instance, used by the fair-share scheduler to determine the priority in the queue, based on usage of all QPUs. (This does not apply to Pay-As-You-Go instances.)
-- **backends** (array of lists of backends (strings or null) or array with "ANY"): the allow-list of names of backends that are available to this instance. Default: `["ANY"]`, means all backends available on this plan. `[]` means no backends.
+    crn = "<YOUR_INSTANCE_CRN>"
+    # We use urllib.parse.quote to URL-encode the CRN.
+    url = (
+        "https://resource-controller.cloud.ibm.com/v2/resource_instances/"
+        + urllib.parse.quote(crn, safe="")
+    )
 
-## `extensions`
+    resp = requests.get(
+        url,
+        headers={"Authorization": f"Bearer {token}"},
+        timeout=30,
+    )
+    resp.raise_for_status()
+    print(resp.json())
+    ```
+  </TabItem>
+</Tabs>
 
-In the response when provisioning or when getting the details of an instance:
+## Get a list of all instances
 
-Additional instance properties contributed by the service that are represented as key-value pairs. These properties persist with the instance under the extensions property.
+Use the [`GET /v2/resource_instances`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#list-resource-instances) endpoint to get a list of all your instances. Set the `resource_id` query parameter to `b6049020-80f4-11eb-a0f7-e35ec9b4054f` to filter to IBM Quantum&reg; instances.
 
-- **instance_limit_seconds** (integer or null, `>= 0`): The time limit to set on the instance.
-- **usage_allocation_seconds** (integer or null, `>= 0`): Allotted time for the instance, used by the fair-share scheduler to determine the priority in the queue, based on usage of all QPUs.
-- **backends** (Required; array of lists of backends (strings) or array with "ANY" (strings)): The allow-list of names of backends that are available to this instance. Default: `["ANY"]`, means all backends are available on this plan. `[]` means no backends.
+If your account has multiple plans and you want to filter by plan, set the `resource_plan_id` query parameter to one of the following values:
+
+| Plan | `resource_plan_id` |
+|------|---------------------|
+| Premium | `7f666d17-7893-47d8-bf9d-2b2389fc4dfc` |
+| Flex | `53bde9d3-cdbb-46f5-a98f-60ebcadf7260` |
+| Pay-As-You-Go | `5304b575-3cff-4455-90dc-ae4367762093` |
+| Open | `850b21a7-71de-4e53-9441-1abdd202f35d` |
+
+Each result includes the same `extensions` field as described in [Get an instance](#get-an-instance).
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+    curl \
+      --request GET \
+      --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances?resource_id=b6049020-80f4-11eb-a0f7-e35ec9b4054f' \
+      --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+    import requests
+
+    resp = requests.get(
+        "https://resource-controller.cloud.ibm.com/v2/resource_instances?resource_id=b6049020-80f4-11eb-a0f7-e35ec9b4054f",
+        headers={"Authorization": f"Bearer {token}"},
+        timeout=30,
+    )
+    resp.raise_for_status()
+    print(resp.json())
+    ```
+  </TabItem>
+</Tabs>
+
+## Update an instance
+
+Use the [`PATCH /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#update-resource-instance) endpoint to update the limit, allocation, and permitted backends for an instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
+
+Pass a `parameters` JSON object in the request body with the fields you want to change, along with the header `"Content-Type: application/json"`. Omitted fields are left unchanged.
+
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+
+<Admonition type="caution" title="Always include a unique timestamp">
+  The API silently ignores the request if `parameters` is identical to the previous request. In the `parameters` object, always include a `timestamp` field set to the current time so each request is treated as unique.
+</Admonition>
+
+The endpoint's response is similar to [getting an instance](#get-an-instance), including how it handles the `extensions` object.
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    The CRN must be URL-encoded in the path. Replace each `:` with `%3A` and each `/` with `%2F`. For example, `crn:v1:bluemix:...` becomes `crn%3Av1%3Abluemix%3A...`.
+
+    ```bash
+    curl \
+    --request PATCH \
+    --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances/<YOUR_INSTANCE_CRN_URL_ENCODED>' \
+    --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>' \
+    --header 'Content-Type: application/json' \
+    --data "{
+        \"parameters\": {
+            \"timestamp\": \"$(date -u +"%Y-%m-%dT%H:%M:%SZ")\",
+            \"usage_allocation_seconds\": 220
+        }
+    }"
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+    import urllib.parse
+    import datetime
+    import requests
+
+    crn = "<YOUR_INSTANCE_CRN>"
+    # We use urllib.parse.quote to URL-encode the CRN.
+    url = (
+        "https://resource-controller.cloud.ibm.com/v2/resource_instances/"
+        + urllib.parse.quote(crn, safe="")
+    )
+
+    timestamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    body = {
+        "parameters": {
+            "timestamp": timestamp,
+            "usage_allocation_seconds": 220,
+        }
+    }
+
+    resp = requests.patch(
+        url,
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+        json=body,
+        timeout=30,
+    )
+    resp.raise_for_status()
+    print(resp.json())
+    ```
+  </TabItem>
+</Tabs>
+
+## Create a new instance
+
+Use the [`POST /v2/resource_instances`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#create-resource-instance) endpoint to create (provision) a new instance. Pass a JSON body with the header `"Content-Type: application/json"`.
+
+Required fields:
+
+- `name` — A human-readable name for the instance.
+- `target` — The region, such as `us-east` or `eu-de`.
+- `resource_plan_id` — The plan for this instance. See the [plan ID table](#get-a-list-of-all-instances).
+- `resource_group` — The [resource group](https://cloud.ibm.com/docs/account?topic=account-rgs) to use.
+
+You can also include a `parameters` object to set quantum-specific values:
+
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+    curl \
+      --request POST \
+      --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances' \
+      --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>' \
+      --header 'Content-Type: application/json' \
+      --data '{
+          "name": "my-new-instance",
+          "target": "us-east",
+          "resource_plan_id": "7f666d17-7893-47d8-bf9d-2b2389fc4dfc",
+          "resource_group": "<YOUR_RESOURCE_GROUP_ID>",
+          "parameters": {
+              "instance_limit_seconds": 300,
+              "usage_allocation_seconds": 220
+          }
+      }'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+    import requests
+
+    body = {
+        "name": "my-new-instance",
+        "target": "us-east",
+        "resource_plan_id": "7f666d17-7893-47d8-bf9d-2b2389fc4dfc",
+        "resource_group": "<YOUR_RESOURCE_GROUP_ID>",
+        "parameters": {
+            "instance_limit_seconds": 300,
+            "usage_allocation_seconds": 220,
+        },
+    }
+
+    resp = requests.post(
+        "https://resource-controller.cloud.ibm.com/v2/resource_instances",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+        json=body,
+        timeout=30,
+    )
+    resp.raise_for_status()
+    print(resp.json())
+    ```
+  </TabItem>
+</Tabs>
+
+<span id="functions-api" />
+## Configure Qiskit Functions access on an instance
+
+Use these instructions to configure Qiskit Functions access on an existing IBM Quantum Compute Service instance by using the IBM Cloud Resource Controller API.  Follow the instructions in order, as the commands build on each other.  For example, variables such as the token and URL are set in one step and reused in later steps. 
+
+### Prerequisites
+
+- An IBM Cloud API key (also called a token).  If necessary, create your API key on the [dashboard](https://quantum.cloud.ibm.com). 
+- The CRN of the instance you want to configure.  The instance's CRN is listed on your [Instances](https://quantum.cloud.ibm.com/instances) page.
+
+### Step 1: Get a bearer token
+
+Exchange your API key for a bearer token. You will pass this token in the authorization header of all resource controller requests. Run the following code to generate a bearer token:
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+curl --request POST \
+  --url 'https://iam.cloud.ibm.com/identity/token' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data 'apikey=<YOUR_API_KEY>&grant_type=urn%3Aibm%3Aparams%3Aoauth%3Agrant-type%3Aapikey'
+  --silent | jq .
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+import requests
+
+api_key = "<YOUR_API_KEY>"
+
+resp = requests.post(
+    "https://iam.cloud.ibm.com/identity/token",
+    headers={"Content-Type": "application/x-www-form-urlencoded"},
+    params={
+        "apikey": api_key,
+        "grant_type": "urn:ibm:params:oauth:grant-type:apikey",
+    },
+    timeout=30,
+)
+resp.raise_for_status()
+token = resp.json()["access_token"]
+print(token) 
+    ```
+  </TabItem>
+</Tabs>
+
+The response includes an `access_token` field, which is your bearer token. Copy this value.
+
+### Step 2: Verify access
+
+Before making any changes, confirm that your token works and inspect the current instance configuration.
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+<Admonition type="note" title="Important">
+The CRN must be manually URL-encoded in the path. Replace each `:` with `%3A` and each `/` with `%2F`. For example, `crn:v1:bluemix:...` becomes `crn%3Av1%3Abluemix%3A...`.
+</Admonition>
+
+    ```bash
+curl --request GET \
+  --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances/<YOUR_INSTANCE_CRN_URL_ENCODED>' \
+  --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>'
+
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+import urllib.parse
+
+crn = "<YOUR_INSTANCE_CRN>"
+# The CRN will be URL-encoded into the path.
+instance_url = (
+    "https://resource-controller.cloud.ibm.com/v2/resource_instances/"
+    + urllib.parse.quote(crn, safe="")
+)
+headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+
+resp = requests.get(instance_url, headers=headers, timeout=30)
+resp.raise_for_status()
+print(resp.json()["extensions"])
+
+    ```
+  </TabItem>
+</Tabs>
+
+A `200 OK` response confirms that your token is valid. The current instance configuration is in the extensions field of the response. Use this instead of parameters, which might be stale.
+
+<span id="step-3" />
+### Step 3: Look up the account-level functions configuration
+
+An instance can only be granted access to what the account is entitled to. Before configuring the instance, look up the account's configuration so you know which functions, business models, and permissions are available to grant. This is the source of truth for the values you will send in Step 4.
+
+Call `GET /accounts/{id}` on the Qiskit Runtime API with your API key. The `{id}` is your account ID without the `a/` prefix.  You can find it from the instance CRN (`crn:v1:bluemix:public:quantum-computing:...:a/<ACCOUNT_ID>:...`).
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+curl --request GET \
+  --url 'https://quantum.cloud.ibm.com/api/v1/accounts/<ACCOUNT_ID>' \
+  --header 'Authorization: apikey <YOUR_API_KEY>'
+
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+account_id = "<ACCOUNT_ID>"  # from the CRN: crn:...:a/<ACCOUNT_ID>:...
+
+resp = requests.get(
+    f"https://quantum.cloud.ibm.com/api/v1/accounts/{account_id}",
+    headers={"Authorization": f"apikey {api_key}"},
+    timeout=30,
+)
+resp.raise_for_status()
+for plan in resp.json()["plans"]:
+    print(plan["plan_id"], plan.get("functions"), plan.get("custom_functions"))
+
+    ```
+  </TabItem>
+</Tabs>
+
+Each plan in the response includes a functions array and, if configured, a `custom_functions` object. These list the exact name, provider, business model, and permissions values you can grant to an instance under that plan.
+
+<Admonition type="note">
+`GET /accounts/{id}` shows what is available to grant at the account level. `GET /functions` (see [Verify the result](#verify-result)) shows what a specific instance has already been granted. Use the **account** endpoint to discover valid values, and the **functions** endpoint to confirm the result.
+</Admonition>
+
+### Step 4: Configure functions access
+
+Update the instance to grant access to Catalog Functions and Custom Functions.
+
+<Admonition type="note" title="Important notes">
+- The `name`, `provider`, and `business_model` values in functions must exactly match entries configured at the account level (see the [previous step](#step-3)). Permissions must be a non-empty subset of the account's permissions for that function. Similarly, `custom_functions.permissions` must be a non-empty subset of the account's `custom_functions` permissions.
+- Include a timestamp in parameters on every PATCH. The Resource Controller deduplicates PATCH requests by comparing incoming parameters to the last value it stored. If they match, the request is silently dropped with `200 OK` without reaching the service. Include a changing timestamp value to prevent this.
+</Admonition>
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+curl --request PATCH \
+  --url 'https://resource-controller.cloud.ibm.com/v2/resource_instances/<YOUR_INSTANCE_CRN_URL_ENCODED>' \
+  --header 'Authorization: Bearer <YOUR_BEARER_TOKEN>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "parameters": {
+      "timestamp": "2026-06-30T00:00:00Z",
+      "functions": [
+        {
+          "name": "<FUNCTION_NAME>",
+          "provider": "<PROVIDER>",
+          "business_model": "<BUSINESS_MODEL>",
+          "permissions": [
+            "function.read",
+            "function.run",
+            "function-files.read",
+            "function-files.write"
+          ]
+        }
+      ],
+      "custom_functions": {
+        "permissions": [
+          "function-custom.write",
+          "function-custom.run"
+        ]
+      }
+    }
+  }'
+
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+from datetime import datetime, timezone
+
+# A changing timestamp keeps the Resource Controller from de-duplicating the request.
+_now = datetime.now(timezone.utc)
+timestamp = _now.strftime("%Y-%m-%dT%H:%M:%S.") + f"{_now.microsecond:06d}000Z"
+
+body = {
+    "parameters": {
+        "timestamp": timestamp,
+        "functions": [
+            {
+                "name": "<FUNCTION_NAME>",
+                "provider": "<PROVIDER>",
+                "business_model": "<BUSINESS_MODEL>",
+                "permissions": [
+                    "function.read",
+                    "function.run",
+                    "function-files.read",
+                    "function-files.write",
+                ],
+            }
+        ],
+        "custom_functions": {
+            "permissions": ["function-custom.write", "function-custom.run"],
+        },
+    }
+}
+
+resp = requests.patch(instance_url, headers=headers, json=body, timeout=30)
+resp.raise_for_status()
+print(resp.json()["extensions"])
+    ```
+  </TabItem>
+</Tabs>
+
+A `200 OK` response indicates success. The updated configuration appears in the extensions field of the response.
+
+### Remove functions access
+
+#### Catalog Functions
+
+To remove Catalog Functions from an instance, send a PATCH with `"functions": null`:
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+--data '{
+  "parameters": {
+    "timestamp": "2026-06-30T00:00:01Z",
+    "functions": null
+  }
+}'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+body = {"parameters": {"timestamp": timestamp, "functions": None}}
+resp = requests.patch(instance_url, headers=headers, json=body, timeout=30)
+resp.raise_for_status()
+    ```
+  </TabItem>
+</Tabs>
+
+Setting `"functions": []` (an empty array) equivalently clears Catalog Functions. `null` is the canonical form.
+
+#### Custom Functions
+
+To remove Custom Functions from an instance, send a PATCH with `"custom_functions": null`:
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+--data '{
+  "parameters": {
+    "timestamp": "2026-06-30T00:00:02Z",
+    "custom_functions": null
+  }
+}'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+body = {"parameters": {"timestamp": timestamp, "custom_functions": None}}
+resp = requests.patch(instance_url, headers=headers, json=body, timeout=30)
+resp.raise_for_status()
+    ```
+  </TabItem>
+</Tabs>
+
+Setting `"custom_functions": {"permissions": []}` equivalently clears custom functions. `null` is the canonical form.
+
+<span id="verify-result" />
+### Verify the result
+
+To confirm that the instance has the correct Qiskit Functions configuration, use `GET /functions` from the Qiskit Runtime API instead of the Resource Controller. The Resource Controller's stored state might be stale if account-level changes updated the instance outside of the Resource Controller.
+
+<Tabs>
+  <TabItem value="curl" label="cURL">
+    ```bash
+curl --request GET \
+  --url 'https://quantum.cloud.ibm.com/api/v1/functions' \
+  --header 'Authorization: apikey <YOUR_API_KEY>' \
+  --header 'Service-CRN: <YOUR_INSTANCE_CRN>'
+    ```
+  </TabItem>
+
+  <TabItem value="python" label="Python">
+    ```python
+# The Service-CRN header takes the raw CRN, not the URL-encoded form.
+resp = requests.get(
+    "https://quantum.cloud.ibm.com/api/v1/functions",
+    headers={"Authorization": f"apikey {api_key}", "Service-CRN": crn},
+    timeout=30,
+)
+resp.raise_for_status()
+print(resp.json())
+    ```
+  </TabItem>
+</Tabs>
+
+The response lists the functions that the instance currently has access to.

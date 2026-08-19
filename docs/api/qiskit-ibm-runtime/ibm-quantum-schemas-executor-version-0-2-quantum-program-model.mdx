@@ -10,14 +10,16 @@ python_api_name: ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel
 
 # QuantumProgramModel
 
-<Class id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.5.20260320/ibm_quantum_schemas/executor/version_0_2/models.py#L182-L221" signature="QuantumProgramModel" modifiers="pydantic model">
+<Class id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10.20260723/ibm_quantum_schemas/executor/version_0_2/models.py#L182-L221" signature="QuantumProgramModel" modifiers="pydantic model">
   Bases: `BaseModel`
 
   Model to store a quantum program.
 
   ### items
 
-  <Attribute id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel.items" attributeTypeHint="list[Annotated[CircuitItemModel | SamplexItemModel, Field(discriminator" attributeValue="'item_type')]] [Required]" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel.items" modifiers="field">
+    Type: `list`\[`Annotated`\[[`CircuitItemModel`](ibm-quantum-schemas-executor-version-0-2-circuit-item-model "ibm_quantum_schemas.executor.version_0_2.CircuitItemModel") | [`SamplexItemModel`](ibm-quantum-schemas-executor-version-0-2-samplex-item-model "ibm_quantum_schemas.executor.version_0_2.SamplexItemModel"), `Field`(`discriminator``=``'item_type'`)]]
+
     Items of the program.
 
     **Validated by**
@@ -27,7 +29,11 @@ python_api_name: ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel
 
   ### meas\_level
 
-  <Attribute id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel.meas_level" attributeTypeHint="Literal['classified', 'kerneled', 'avg_kerneled']" attributeValue="'classified'" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel.meas_level" modifiers="field">
+    Type: `Literal`\[`'classified'`, `'kerneled'`, `'avg_kerneled'`]
+
+    Default value: `'classified'`
+
     The level at which to return all classical register measurement results.
 
     This option sets the return type of all classical registers in all quantum program items and determines whether the raw complex data from low-level measurement devices is discriminated into bits or not.
@@ -51,7 +57,11 @@ python_api_name: ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel
 
   ### passthrough\_data
 
-  <Attribute id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel.passthrough_data" attributeTypeHint="DataTree" attributeValue="None" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel.passthrough_data" modifiers="field">
+    Type: `DataTree`
+
+    Default value: `None`
+
     Arbitrary nested data passed through execution without modification.
 
     **Validated by**
@@ -61,7 +71,9 @@ python_api_name: ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel
 
   ### shots
 
-  <Attribute id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel.shots" attributeTypeHint="int [Required]" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel.shots" modifiers="field">
+    Type: `int`
+
     The number of shots for each individually bound circuit.
 
     **Constraints**
@@ -75,7 +87,7 @@ python_api_name: ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel
 
   ### check\_chunk\_sizes\_are\_consistent
 
-  <Function id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel.check_chunk_sizes_are_consistent" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.5.20260320/ibm_quantum_schemas/executor/version_0_2/models.py#L191-L201" signature="check_chunk_sizes_are_consistent" modifiers="validator">
+  <Function id="ibm_quantum_schemas.executor.version_0_2.QuantumProgramModel.check_chunk_sizes_are_consistent" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10.20260723/ibm_quantum_schemas/executor/version_0_2/models.py#L191-L201" signature="check_chunk_sizes_are_consistent" modifiers="validator">
     Check that all program items set chunk sizes consistently.
   </Function>
 </Class>

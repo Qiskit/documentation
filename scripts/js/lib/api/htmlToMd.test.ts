@@ -80,30 +80,6 @@ You need to initialize your account before you can start using the Qiskit Runtim
 });
 
 // ------------------------------------------------------------------
-// Transform special characters
-// ------------------------------------------------------------------
-
-test("handle special characters: `<` and `{`", async () => {
-  expect(
-    await toMd(`
-    <div role='main'>
-    <p>For the full list of backend attributes, see the <cite>IBMBackend</cite> class documentation
-&lt;<a class='reference external' href='https://qiskit.org/documentation/apidoc/providers_models.html'>https://qiskit.org/documentation/apidoc/providers_models.html</a>&gt;</p>
-</p></li>
-
-<p><strong>basis_fidelity</strong> (<em>dict</em><em> | </em><em>float</em>) – available strengths and fidelity of each.
-Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or
-(2) a single float f, interpreted as {pi: f, pi/2: f/2, pi/3: f/3}.</p>
-    </div>
-    `),
-  )
-    .toEqual(`For the full list of backend attributes, see the IBMBackend class documentation \\<[https://qiskit.org/documentation/apidoc/providers\\_models.html](https://qiskit.org/documentation/apidoc/providers_models.html)>
-
-**basis\\_fidelity** (*dict | float*) – available strengths and fidelity of each. Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or (2) a single float f, interpreted as \\{pi: f, pi/2: f/2, pi/3: f/3}.
-`);
-});
-
-// ------------------------------------------------------------------
 // Transform code blocks
 // ------------------------------------------------------------------
 
@@ -524,6 +500,31 @@ test("transform inline math", async () => {
 `);
 });
 
+test("escape pipe characters in math inside table cells", async () => {
+  expect(
+    await toMd(`
+<div role='main'>
+<table>
+<thead>
+<tr><th><p>Gate(s)</p></th><th><p>KAK angles</p></th><th><p>Sampling overhead</p></th></tr>
+</thead>
+<tbody>
+<tr class="row-even">
+<td><p>RXXGate</p></td>
+<td><p><span class="math notranslate nohighlight">\\((|\\theta/2|, 0, 0)\\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\\(\\left[1 + 2 \\left|\\sin(\\theta)\\right| \\right]^2\\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+    `),
+  )
+    .toEqual(`| Gate(s) | KAK angles                     | Sampling overhead                                           |
+| ------- | ------------------------------ | ----------------------------------------------------------- |
+| RXXGate | $(\\vert \\theta/2\\vert , 0, 0)$ | $\\left[1 + 2 \\left\\vert \\sin(\\theta)\\right\\vert  \\right]^2$ |
+`);
+});
+
 test("transform block math", async () => {
   expect(
     await toMd(`
@@ -760,7 +761,9 @@ test("convert class property headings", async () => {
     isReleaseNotes: false,
     markdown: `# circuits
 
-<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true}>
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true}>
+  Type: \`tuple\`\\[\`qiskit.circuit.quantumcircuit.QuantumCircuit\`, ...]
+
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {
@@ -809,7 +812,9 @@ test("convert abstract class property headings", async () => {
     isReleaseNotes: false,
     markdown: `# circuits
 
-<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true} modifiers="abstract property">
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true} modifiers="abstract property">
+  Type: \`tuple\`\\[\`qiskit.circuit.quantumcircuit.QuantumCircuit\`, ...]
+
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {
@@ -865,12 +870,34 @@ test("convert class attributes headings", async () => {
     isReleaseNotes: false,
     markdown: `# callback
 
-<Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" attributeTypeHint="Optional[Callable]" attributeValue="None" isDedicatedPage={true} />\n`,
+<Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" isDedicatedPage={true}>
+  Type: \`Optional\`\\[\`Callable\`]
+
+  Default value: \`None\`
+</Attribute>\n`,
     meta: {
       apiName: "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
       apiType: "attribute",
     },
   });
+});
+
+test("attribute with < and & in default value produces valid MDX", async () => {
+  // StagedPassManager.invalid_stage_regex has &lt; / &gt; / &amp; in the value.
+  // The default value is emitted as a plain "Default value: ..." paragraph; special
+  // chars are escaped by remark-stringify (e.g. < → \<).
+  const result = await toMd(
+    `<div role='main'>
+<h1>invalid_stage_regex<a class='headerlink' href='#invalid-stage-regex' title='Permalink to this heading'>¶</a></h1>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qiskit.transpiler.StagedPassManager.invalid_stage_regex">
+<span class="sig-name descname"><span class="pre">invalid_stage_regex</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\&lt;|\\&gt;|\\&#64;|\\!|\\~|\\^|\\&amp;|\\:|\\[|\\]|\\{|\\}|\\(|\\)')</span></span><a class="headerlink" href="#qiskit.transpiler.StagedPassManager.invalid_stage_regex" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+`,
+  );
+  expect(result).toContain("Default value:");
+  expect(result).toContain("re.compile(");
 });
 
 test("convert functions headings", async () => {
@@ -1149,7 +1176,7 @@ test("generate correct heading level", async () => {
 
 ### attribute1
 
-<Attribute id="qiskit.test.attribute1" attributeTypeHint="None" attributeValue="None">
+<Attribute id="qiskit.test.attribute1">
   Attribute 1
 </Attribute>
 

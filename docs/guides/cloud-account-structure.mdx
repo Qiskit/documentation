@@ -12,7 +12,7 @@ Before setting up IBM Quantum&reg; Platform, it is important to understand the I
 ![A high level diagram is shown, illustrating the relationships between the account, users, instances, and access policies.](/docs/images/guides/cloud-account-structure/account-structure.svg 'Cloud account structure')
 
 
-This account contains multiple **users** and **service instances** (such as IBM Qiskit Runtime).  Each service instance exists in a specific **region** and has one **plan**, so if you want to have multiple plans available to your users, you will have multiple service instances, each associated with a different plan.
+This account contains multiple **users** and **service instances** (such as IBM Quantum Compute Service).  Each service instance exists in a specific **region** and has one **plan**, so if you want to have multiple plans available to your users, you will have multiple service instances, each associated with a different plan.
 
 Each user is assigned **access policies**, which grant them various levels of access to service instances.  Access policies can be grouped together as an **access group**.
 
@@ -36,7 +36,7 @@ There are two families of roles: platform management and service access.
 
 **Platform management** roles define allowable actions, such as assigning user access and creating service instances for managing resources at the platform level. Platform roles also apply to actions that can be taken within the context of account management services, such as inviting and removing users, managing access groups, and managing service IDs.
 
-**Service access** roles define allowable actions, such as calling service APIs or accessing a service's dashboard. These roles are customized based on the service that is selected within the policy. In the context of these guides, the service is always Qiskit Runtime.
+**Service access** roles define allowable actions, such as calling service APIs or accessing a service's dashboard. These roles are customized based on the service that is selected within the policy. In the context of these guides, the service is always Quantum Compute.
 
 Performing actions often requires a combination of platform management and service access roles.   The `writer` service role allows you to run jobs, for example, but not list instances. To list the instance you need at least the `viewer` role for the platform. Following are some commonly used roles:
 
@@ -44,27 +44,28 @@ Performing actions often requires a combination of platform management and servi
   <Admonition type="note">
   Users with the `viewer` platform management role on All account management services can also view services such as billing. If you want to prevent this extra view access, use the IBM Cloud CLI to give them access to just Resource groups:
   ```cli
-  ibmcloud iam access-group-policy-create <group name> --roles Viewer --resource-type resource-group
+  ibmcloud iam access-group-policy-create <group name> \
+    --roles Viewer --resource-type resource-group
   ```
   </Admonition>
 - Running jobs requires the `writer` service access role and `viewer` platform management role access to the instance.
 
 When creating an access policy (either on an access group or for a user), you can check which actions are part of the role by reviewing the description. For example `quantum-computing.job.create - Create a job to run a program`.
 
-You can also determine the actions allowed by each role from the [IAM Roles](https://cloud.ibm.com/iam/roles) page.  Select Qiskit Runtime in the dropdown menu at the top of the page.  Then, for a more detailed list, click the number in the column next to the role name.  For example, by visiting that page and clicking the number by the Manager role, you can see that this role includes the ability to delete a job (`quantum-computing.job.delete`).
+You can also determine the actions allowed by each role from the [IAM Roles](https://cloud.ibm.com/iam/roles) page.  Select Quantum Compute in the dropdown menu at the top of the page.  Then, for a more detailed list, click the number in the column next to the role name.  For example, by visiting that page and clicking the number by the Manager role, you can see that this role includes the ability to delete a job (`quantum-computing.job.delete`).
 
-The following table provides examples for some of the platform management actions that users can take within the context of the Qiskit Runtime service.
+The following table provides examples for some of the platform management actions that users can take within the context of IBM Quantum Compute Service.
 
-| Platform management role | Qiskit Runtime service                                       |
+| Platform management role | Quantum Compute                                              |
 |--------------------------|--------------------------------------------------------------|
 | Viewer role              | View instances and credentials                               |
 | Operator role            | View instances and manage credentials                        |
 | Editor role              | Create, delete, edit, and view instances. Manage credentials |
 | Administrator role       | All management actions for services                          |
 
-The following table provides examples for some of the platform management actions that users can take within the context of the Qiskit Runtime service.
+The following table provides examples for some of the platform management actions that users can take within the context of IBM Quantum Compute Service.
 
-| Service access role | Qiskit Runtime actions                                               |
+| Service access role | Quantum Compute                                                      |
 |---------------------|----------------------------------------------------------------------|
 | Reader              | Perform read-only actions, such as viewing jobs                      |
 | Writer              | Permissions beyond the reader role, including running jobs           |
@@ -75,5 +76,5 @@ The following table provides examples for some of the platform management action
 <Admonition type="tip" title="Recommendations">
   -  Create [instances](instances).
   -  [Upgrade from the Open Plan](upgrade-from-open).
-  -  Understand the the [IAM Roles](https://cloud.ibm.com/iam/roles) (select Qiskit Runtime from the dropdown at the top of the page).
+  -  Understand the the [IAM Roles](https://cloud.ibm.com/iam/roles) (select Quantum Compute from the dropdown at the top of the page).
 </Admonition>

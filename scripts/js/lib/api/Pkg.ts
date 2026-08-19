@@ -57,18 +57,27 @@ export class Pkg {
   readonly kebabCaseAndShortenUrls: boolean;
   readonly artifactPackageName: string;
   readonly hasRootNamespaceFile: boolean;
+  /** Slugs of docs/tutorials/ notebooks to surface under this addon's tutorials route. */
 
-  static VALID_NAMES = [
-    "qiskit",
-    "qiskit-ibm-runtime",
-    "qiskit-ibm-transpiler",
+  static ADDON_NAMES = [
     "qiskit-addon-aqc-tensor",
     "qiskit-addon-obp",
     "qiskit-addon-mpf",
     "qiskit-addon-sqd",
     "qiskit-addon-cutting",
     "qiskit-addon-utils",
+    "qiskit-addon-paulice",
+    "qiskit-addon-pna",
+    "pauli-prop",
+    "qiskit-addon-slc",
+  ];
+
+  static VALID_NAMES = [
+    "qiskit",
+    "qiskit-ibm-runtime",
+    "qiskit-ibm-transpiler",
     "qiskit-c",
+    ...Pkg.ADDON_NAMES,
   ];
 
   constructor(kwargs: {
@@ -137,7 +146,7 @@ export class Pkg {
     if (name === "qiskit-ibm-runtime") {
       return new Pkg({
         ...args,
-        title: "Qiskit Runtime client",
+        title: "IBM Quantum Compute client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
         kebabCaseAndShortenUrls: true,
         language: "Python",
@@ -201,6 +210,42 @@ export class Pkg {
         language: "Python",
       });
     }
+    if (name === "qiskit-addon-paulice") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Paulice",
+        githubSlug: "Qiskit/qiskit-addon-paulice",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-addon-pna") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit propagated noise absorption",
+        githubSlug: "Qiskit/qiskit-addon-pna",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "pauli-prop") {
+      return new Pkg({
+        ...args,
+        title: "Pauli propagation",
+        githubSlug: "Qiskit/pauli-prop",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-addon-slc") {
+      return new Pkg({
+        ...args,
+        title: "Shaded lightcones",
+        githubSlug: "Qiskit/qiskit-addon-slc",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
     if (name === "qiskit-addon-utils") {
       return new Pkg({
         ...args,
@@ -255,6 +300,10 @@ export class Pkg {
   }
 
   outputDir(parentDir: string): string {
+    return join(parentDir, this.name);
+  }
+
+  apiOutputDir(parentDir: string): string {
     let path = join(parentDir, "api", this.name);
     if (this.isHistorical()) {
       path = join(path, this.versionWithoutPatch);
@@ -282,6 +331,10 @@ export class Pkg {
 
   isCApi(): boolean {
     return this.language === "C";
+  }
+
+  isAddon(): boolean {
+    return Pkg.ADDON_NAMES.includes(this.name);
   }
 
   isProblematicLegacyQiskit(): boolean {

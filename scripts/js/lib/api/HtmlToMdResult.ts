@@ -15,6 +15,8 @@ import { Metadata } from "./Metadata.js";
 export type Image = {
   fileName: string;
   dest: string;
+  /** Path to the image relative to the artifact root (e.g. `_static/foo.svg` or `_images/foo.svg`) */
+  originSrc: string;
 };
 
 export type HtmlToMdResult = {

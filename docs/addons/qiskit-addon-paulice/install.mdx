@@ -1,0 +1,62 @@
+---
+title: "Installation instructions"
+description: "Installation instructions for the latest version of Qiskit Paulice"
+---
+
+# Installation instructions
+
+## Prerequisites
+
+First, create a minimal environment with only Python installed in it. We recommend using [Python virtual environments](https://docs.python.org/3.10/tutorial/venv.html).
+
+```sh
+python3 -m venv /path/to/virtual/environment
+```
+
+Activate your new environment.
+
+```sh
+source /path/to/virtual/environment/bin/activate
+```
+
+There are two primary ways to install this package: from PyPI or from source. The preferred method is to install from PyPI:
+
+## Install from PyPI
+
+```sh
+pip install qiskit-paulice
+```
+
+## Install from source
+
+If you plan to develop in the repository or run the notebooks locally, you should install from source.
+
+First, clone the `qiskit-paulice` repository.
+
+```sh
+git clone git@github.com:Qiskit/qiskit-paulice.git
+```
+
+Next, install the Rust toolchain, upgrade pip, and enter the repository. Refer to the [Rust documentation](https://www.rust-lang.org/tools/install) for instructions on installing the toolchain.
+
+```sh
+### <INSTALL RUST HERE> ###
+pip install --upgrade pip
+cd qiskit-paulice
+```
+
+The next step is to install `qiskit-paulice` to the virtual environment. If you plan to run the notebooks and their visualizations, install the notebook dependencies. If you plan on developing in the repository, install the `dev` dependencies.
+
+Adjust the options below to suit your needs.
+
+```sh
+pip install tox notebook -e '.[notebook-dependencies,dev]'
+```
+
+If you installed the notebook dependencies, you can get started by running the notebooks in the docs.
+
+```python
+cd docs/
+jupyter lab
+```
+

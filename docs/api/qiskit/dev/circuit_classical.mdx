@@ -18,7 +18,7 @@ python_api_name: qiskit.circuit.classical
 
 This module contains an exploratory representation of real-time operations on classical values during circuit execution.
 
-Currently, only simple expressions on bits and registers that result in a Boolean value are supported, and these are only valid for use in the conditions of [`QuantumCircuit.if_test()`](qiskit.circuit.QuantumCircuit#if_test "qiskit.circuit.QuantumCircuit.if_test") ([`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")) and [`QuantumCircuit.while_loop()`](qiskit.circuit.QuantumCircuit#while_loop "qiskit.circuit.QuantumCircuit.while_loop") ([`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp")), and in the target of [`QuantumCircuit.switch()`](qiskit.circuit.QuantumCircuit#switch "qiskit.circuit.QuantumCircuit.switch") ([`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp")).
+Currently, only simple expressions on bits and registers that result in a Boolean value are supported, and these are only valid for use in the conditions of [`QuantumCircuit.if_test()`](qiskit.circuit.QuantumCircuit#if_test "qiskit.circuit.QuantumCircuit.if_test") ([`IfElseOp`](/docs/api/qiskit/dev/qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")) and [`QuantumCircuit.while_loop()`](qiskit.circuit.QuantumCircuit#while_loop "qiskit.circuit.QuantumCircuit.while_loop") ([`WhileLoopOp`](/docs/api/qiskit/dev/qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp")), and in the target of [`QuantumCircuit.switch()`](qiskit.circuit.QuantumCircuit#switch "qiskit.circuit.QuantumCircuit.switch") ([`SwitchCaseOp`](/docs/api/qiskit/dev/qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp")).
 
 <Admonition title="Note" type="note">
   This is an exploratory module, and while we will commit to the standard Qiskit deprecation policy within it, please be aware that the module will be deliberately limited in scope at the start, and early versions may not evolve cleanly into the final version. It is possible that various components of this module will be replaced (subject to deprecations) instead of improved into a new form.
@@ -53,7 +53,7 @@ The expression system is based on tree representation. All nodes in the tree are
 
   This must not be subclassed by users; subclasses form the internal data of the representation of expressions, and it does not make sense to add more outside of Qiskit library code.
 
-  All subclasses are responsible for setting their `type` attribute in their `__init__`, and should not call the parent initializer.”””
+  All subclasses are responsible for setting their `type` attribute in their `__init__`, and should not call the parent initializer.
 </Class>
 
 These objects are mutable and should not be reused in a different location without a copy.
@@ -71,12 +71,12 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
 
   These variables take two forms: a new-style variable that owns its storage location and has an associated name; and an old-style variable that wraps a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instance that is owned by some containing circuit. In general, construction of variables for use in programs should use [`Var.new()`](#qiskit.circuit.classical.expr.Var.new "qiskit.circuit.classical.expr.Var.new") or [`QuantumCircuit.add_var()`](qiskit.circuit.QuantumCircuit#add_var "qiskit.circuit.QuantumCircuit.add_var").
 
-  Variables are immutable after construction, so they can be used as dictionary keys.”””
+  Variables are immutable after construction, so they can be used as dictionary keys.
 
   ##### name
 
   <Attribute id="qiskit.circuit.classical.expr.Var.name">
-    The name of the variable. This is required to exist if the backing [`var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attribute is a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID), i.e. if it is a new-style variable, and must be `None` if it is an old-style variable.”””
+    The name of the variable. This is required to exist if the backing [`var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") attribute is a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID), i.e. if it is a new-style variable, and must be `None` if it is an old-style variable.
   </Attribute>
 
   ##### new
@@ -88,7 +88,7 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
   ##### var
 
   <Attribute id="qiskit.circuit.classical.expr.Var.var">
-    A reference to the backing data storage of the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance. When lifting old-style [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instances into a [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), this is exactly the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"). If the variable is a new-style classical variable (one that owns its own storage separate to the old [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")/[`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") model), this field will be a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID) to uniquely identify it.”””
+    A reference to the backing data storage of the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") instance. When lifting old-style [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instances into a [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), this is exactly the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"). If the variable is a new-style classical variable (one that owns its own storage separate to the old [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")/[`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") model), this field will be a [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID) to uniquely identify it.
   </Attribute>
 </Class>
 

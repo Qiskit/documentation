@@ -94,7 +94,7 @@ You can extend the quantum components of the OpenQASM 2 language by passing an i
 
   **Examples**
 
-  Instruct the importer to use Qiskit’s [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate") and [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate") objects to interpret `gate` statements that are known to have been created from those same objects during OpenQASM 2 export:
+  Instruct the importer to use Qiskit’s [`ECRGate`](/docs/api/qiskit/dev/qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate") and [`RZXGate`](/docs/api/qiskit/dev/qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate") objects to interpret `gate` statements that are known to have been created from those same objects during OpenQASM 2 export:
 
   ```python
   from qiskit import qasm2
@@ -126,7 +126,7 @@ You can extend the quantum components of the OpenQASM 2 language by passing an i
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str))
   *   **num\_params** ([*int*](https://docs.python.org/3/library/functions.html#int))
   *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int))
-  *   **constructor** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Unpack*](https://docs.python.org/3/library/typing.html#typing.Unpack)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*, ...]]],* [*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")*]*)
+  *   **constructor** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Unpack*](https://docs.python.org/3/library/typing.html#typing.Unpack)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*, ...]]],* [*Instruction*](/docs/api/qiskit/dev/qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")*]*)
   *   **builtin** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
 </Class>
 
@@ -358,7 +358,7 @@ circuits = [
 ]
 ```
 
-Sometimes you may want to influence the [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") objects that the importer emits for given named instructions. Gates that are defined by the statement `include "qelib1.inc";` will automatically be associated with a suitable Qiskit circuit-library gate, but you can extend this:
+Sometimes you may want to influence the [`Gate`](/docs/api/qiskit/dev/qiskit.circuit.Gate "qiskit.circuit.Gate") objects that the importer emits for given named instructions. Gates that are defined by the statement `include "qelib1.inc";` will automatically be associated with a suitable Qiskit circuit-library gate, but you can extend this:
 
 ```python
 from qiskit.circuit import Gate
@@ -435,7 +435,7 @@ $$
 
 where the $\sim$ symbol denotes equivalence only up to a global phase. When parsing OpenQASM 2, we need to choose how to handle a distinction between such gates; `u1` is defined in the prose to be different by a phase to `rz`, but the language is not designed to represent this.
 
-Qiskit’s default position is to interpret a usage of the standard-library `rz` using [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate"), and a usage of `u1` as using the phase-distinct [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate"). If you wish to use the phase conventions more implied by a direct interpretation of the `gate` statements in the header file, you can use [`CustomInstruction`](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.CustomInstruction") to override how Qiskit builds the circuit.
+Qiskit’s default position is to interpret a usage of the standard-library `rz` using [`RZGate`](/docs/api/qiskit/dev/qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate"), and a usage of `u1` as using the phase-distinct [`U1Gate`](/docs/api/qiskit/dev/qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate"). If you wish to use the phase conventions more implied by a direct interpretation of the `gate` statements in the header file, you can use [`CustomInstruction`](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.CustomInstruction") to override how Qiskit builds the circuit.
 
 For the standard `qelib1.inc` include there is only one point of difference, and so the override needed to switch its phase convention is:
 
@@ -456,7 +456,7 @@ custom = [
 ]
 ```
 
-This will use Qiskit’s [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate") class to represent the `rz` instruction, which is equal (including the phase) to [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate"):
+This will use Qiskit’s [`PhaseGate`](/docs/api/qiskit/dev/qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate") class to represent the `rz` instruction, which is equal (including the phase) to [`U1Gate`](/docs/api/qiskit/dev/qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate"):
 
 ```python
 Operator(qasm2.loads(program, custom_instructions=custom))
@@ -485,39 +485,39 @@ In particular, in the legacy importers:
 
     **`csx a, b`**
 
-    Controlled $\sqrt X$ gate, corresponding to [`CSXGate`](qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate").
+    Controlled $\sqrt X$ gate, corresponding to [`CSXGate`](/docs/api/qiskit/dev/qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate").
 
     **`cu(theta, phi, lambda, gamma) c, t`**
 
-    The four-parameter version of a controlled-$U$, corresponding to [`CUGate`](qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate").
+    The four-parameter version of a controlled-$U$, corresponding to [`CUGate`](/docs/api/qiskit/dev/qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate").
 
     **`rxx(theta) a, b`**
 
-    Two-qubit rotation around the $XX$ axis, corresponding to [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+    Two-qubit rotation around the $XX$ axis, corresponding to [`RXXGate`](/docs/api/qiskit/dev/qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
 
     **`rzz(theta) a, b`**
 
-    Two-qubit rotation around the $ZZ$ axis, corresponding to [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+    Two-qubit rotation around the $ZZ$ axis, corresponding to [`RZZGate`](/docs/api/qiskit/dev/qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
 
     **`rccx a, b, c`**
 
-    The double-controlled $X$ gate, but with relative phase differences over the standard Toffoli gate. This *should* correspond to the Qiskit gate [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate"), but the legacy converter wouldn’t actually output this type.
+    The double-controlled $X$ gate, but with relative phase differences over the standard Toffoli gate. This *should* correspond to the Qiskit gate [`RCCXGate`](/docs/api/qiskit/dev/qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate"), but the legacy converter wouldn’t actually output this type.
 
     **`rc3x a, b, c, d`**
 
-    The triple-controlled $X$ gate, but with relative phase differences over the standard definition. Corresponds to [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
+    The triple-controlled $X$ gate, but with relative phase differences over the standard definition. Corresponds to [`RC3XGate`](/docs/api/qiskit/dev/qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
 
     **`c3x a, b, c, d`**
 
-    The triple-controlled $X$ gate, corresponding to [`C3XGate`](qiskit.circuit.library.C3XGate "qiskit.circuit.library.C3XGate").
+    The triple-controlled $X$ gate, corresponding to [`C3XGate`](/docs/api/qiskit/dev/qiskit.circuit.library.C3XGate "qiskit.circuit.library.C3XGate").
 
     **`c3sqrtx a, b, c, d`**
 
-    The triple-controlled $\sqrt X$ gate, corresponding to [`C3SXGate`](qiskit.circuit.library.C3SXGate "qiskit.circuit.library.C3SXGate").
+    The triple-controlled $\sqrt X$ gate, corresponding to [`C3SXGate`](/docs/api/qiskit/dev/qiskit.circuit.library.C3SXGate "qiskit.circuit.library.C3SXGate").
 
     **`c4x a, b, c, d, e`**
 
-    The quadruple-controlled $X$ gate., corresponding to [`C4XGate`](qiskit.circuit.library.C4XGate "qiskit.circuit.library.C4XGate").
+    The quadruple-controlled $X$ gate., corresponding to [`C4XGate`](/docs/api/qiskit/dev/qiskit.circuit.library.C4XGate "qiskit.circuit.library.C4XGate").
 
 *   if *any* `opaque` or `gate` definition was given for the name `delay`, they attempt to output a [`Delay`](circuit#qiskit.circuit.Delay "qiskit.circuit.Delay") instruction at each call. To function, this expects a definition compatible with `opaque delay(t) q;`, where the time `t` is given in units of `dt`. The importer will raise errors on construction if there was not exactly one parameter and one qubit, or if the parameter is not integer-valued.
 
@@ -548,7 +548,7 @@ You can emulate this behavior in [`load()`](#qiskit.qasm2.load "qiskit.qasm2.loa
 On *all* the gates defined in Qiskit’s legacy version of `qelib1.inc` and the `delay` instruction, it does not matter how the gates are actually defined and used, the legacy importer will always attempt to output its custom objects for them. This can result in errors during the circuit construction, even after a successful parse. There is no way to emulate this buggy behavior with [`qiskit.qasm2`](#module-qiskit.qasm2 "qiskit.qasm2"); only an `include "qelib1.inc";` statement or the custom\_instructions argument can cause built-in Qiskit instructions to be used, and the signatures of these match each other.
 
 <Admonition title="Note" type="note">
-  Circuits imported with [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") with the above legacy-compatibility settings should compare equal to those created by Qiskit’s legacy importer, provided no non-`qelib1.inc` user gates are defined. User-defined gates are handled slightly differently in the new importer, and while they should have equivalent [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") fields on inspection, this module uses a custom class to lazily load the definition when it is requested (like most Qiskit objects), rather than eagerly creating it during the parse. Qiskit’s comparison rules for gates will see these two objects as unequal, although any pass through [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") for a particular backend should produce the same output circuits.
+  Circuits imported with [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") with the above legacy-compatibility settings should compare equal to those created by Qiskit’s legacy importer, provided no non-`qelib1.inc` user gates are defined. User-defined gates are handled slightly differently in the new importer, and while they should have equivalent [`definition`](/docs/api/qiskit/dev/qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") fields on inspection, this module uses a custom class to lazily load the definition when it is requested (like most Qiskit objects), rather than eagerly creating it during the parse. Qiskit’s comparison rules for gates will see these two objects as unequal, although any pass through [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") for a particular backend should produce the same output circuits.
 </Admonition>
 
 <span id="qasm2-alternatives" />

@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.PauliLindbladMap
 
 # PauliLindbladMap
 
-<Class id="qiskit.quantum_info.PauliLindbladMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.PauliLindbladMap(data, /, num_qubits=None)" modifiers="class">
+<Class id="qiskit.quantum_info.PauliLindbladMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/quantum_info/__init__.py" signature="qiskit.quantum_info.PauliLindbladMap(data, /, num_qubits=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   A Pauli Lindblad map stored in a qubit-sparse format.
@@ -61,7 +61,7 @@ $$
 
   #### GeneratorTerm
 
-  <Class id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm" github="https://github.com/Qiskit/qiskit/tree/stable/2.4/qiskit/quantum_info/__init__.py" signature="GeneratorTerm(rate, qubit_sparse_pauli)" modifiers="class">
+  <Class id="qiskit.quantum_info.PauliLindbladMap.GeneratorTerm" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/quantum_info/__init__.py" signature="GeneratorTerm(rate, qubit_sparse_pauli)" modifiers="class">
     Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
     A single term from a complete [`PauliLindbladMap`](#qiskit.quantum_info.PauliLindbladMap "qiskit.quantum_info.PauliLindbladMap").
@@ -200,7 +200,7 @@ $$
 
     **Parameters**
 
-    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – The layout to apply. Most uses of this function should pass the [`QuantumCircuit.layout`](qiskit.circuit.QuantumCircuit#layout "qiskit.circuit.QuantumCircuit.layout") field from a circuit that was transpiled for hardware. In addition, you can pass a list of new qubit indices. If given as explicitly `None`, no remapping is applied (but you can still use `num_qubits` to expand the map).
+    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – The layout to apply. Most uses of this function should pass the [`QuantumCircuit.layout`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#layout "qiskit.circuit.QuantumCircuit.layout") field from a circuit that was transpiled for hardware. In addition, you can pass a list of new qubit indices. If given as explicitly `None`, no remapping is applied (but you can still use `num_qubits` to expand the map).
     *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The number of qubits to expand the map to. If not supplied, the output will be as wide as the given [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), or the same width as the input if the `layout` is given in another form.
 
     **Returns**
@@ -555,6 +555,31 @@ $$
     **Return type**
 
     signs, qubit\_sparse\_pauli\_list
+  </Function>
+
+  ### parity\_sample\_with\_history
+
+  <Function id="qiskit.quantum_info.PauliLindbladMap.parity_sample_with_history" signature="parity_sample_with_history(num_samples, seed=None, scale=None, local_scale=None)">
+    Sample sign and Pauli operator pairs from the map, preserving the sampled generators.
+
+    This method is identical to [`parity_sample()`](#qiskit.quantum_info.PauliLindbladMap.parity_sample "qiskit.quantum_info.PauliLindbladMap.parity_sample") except for also returning the information which [`generators()`](#qiskit.quantum_info.PauliLindbladMap.generators "qiskit.quantum_info.PauliLindbladMap.generators") were actually sampled to yield the final Pauli operator and sign.
+
+    **Parameters**
+
+    *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of samples to draw.
+    *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Random seed.
+    *   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Scale to apply to all rates.
+    *   **local\_scale** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/library/functions.html#float)*]*) – Local scale to apply on a term-by-term basis.
+
+    **Returns**
+
+    **The boolean array of**
+
+    signs, the list of qubit sparse paulis, the two dimensional boolean array indicating which [`generators()`](#qiskit.quantum_info.PauliLindbladMap.generators "qiskit.quantum_info.PauliLindbladMap.generators") were sampled and the two dimensional boolean array indicating their signs.
+
+    **Return type**
+
+    signs, qubit\_sparse\_pauli\_list, pauli\_history, signs\_history
   </Function>
 
   ### pauli\_fidelity

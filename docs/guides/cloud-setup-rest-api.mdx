@@ -1,9 +1,9 @@
 ---
 title: Set up to use IBM Quantum Platform with REST API
-description: Setup instructions for using IBM Quantum on IBM Cloud to submit Qiskit SDK and Qiskit Runtime jobs by using the REST API
+description: Setup instructions to use the REST API to submit IBM Quantum Compute Service jobs
 ---
 
-{/* cspell:ignore urlendcoded, WQVY */}
+{/* cspell:ignore WQVY */}
 
 # Set up to use IBM Quantum Platform with REST API
 
@@ -43,7 +43,7 @@ You can access quantum processors with REST APIs, enabling you to work with QPUs
    url = 'https://iam.cloud.ibm.com/identity/token'
    api_key = 'MY_APIKEY'
    headers = {
-    'Content-Type': 'application/x-www-form-urlendcoded',
+    'Content-Type': 'application/x-www-form-urlencoded',
    }
    data = f'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey={api_key}'
    response = requests.post(url, headers=headers, data=data)
@@ -67,7 +67,9 @@ Choose the appropriate authentication method, depending on your working environm
 1. To set the IQP_API_TOKEN environment variable in your system, you can add the following line to your shell profile (for example, .bashrc or .zshrc) or by setting it directly in your terminal:
 
     ```shell
-    export IQP_API_TOKEN=<your-API_KEY> # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
+    export IQP_API_TOKEN=<your-API_KEY> 
+    # Use the 44-character API_KEY you created and saved 
+    # from the IBM Quantum Platform Home dashboard
     ```
     When you invoke the environment variable in your code, include `import os`, as in this example:
 
@@ -77,7 +79,7 @@ Choose the appropriate authentication method, depending on your working environm
     ```
     Note that when creating an environment variable, your API key is still stored locally in plain text, and should be safeguarded.
 
-1. Authenticate requests to the Qiskit Runtime REST API by including the CRN and bearer token to the request's headers.
+1. Authenticate requests to the REST API by including the CRN and bearer token to the request's headers.
 ```bash
 curl -X 'GET' \
    'https://quantum.cloud.ibm.com/api/v1/usage' \

@@ -3,33 +3,16 @@ title: Qiskit Code Assistant
 description: Learn how to use Qiskit Code Assistant, a generative AI code assistant.
 ---
 
-{/* cspell:ignore ollama, gguf, modelfile, safetensors, winget, MBPP */}
+{/* cspell:ignore ollama, gguf, modelfile, safetensors, winget, MBPP, opencode */}
 
 # Qiskit Code Assistant
 
-Qiskit Code Assistant aims to make quantum computing more accessible to new Qiskit adopters and to improve the coding experience for current users. It is a generative AI code assistant powered by [watsonx](https://www.ibm.com/products/watsonx-ai). It is trained using millions of text tokens from Qiskit SDK, years of Qiskit code examples, and IBM Quantum&reg; features. Qiskit Code Assistant can help your quantum development workflow by offering LLM-generated suggestions based on [IBM Granite models](https://www.ibm.com/products/watsonx-ai/foundation-models), which incorporate the latest features and functionalities from IBM&reg;.
+Qiskit Code Assistant LLMs aim to make quantum computing more accessible to new Qiskit adopters and to improve the coding experience for current users. It is trained using millions of text tokens from Qiskit SDK, years of Qiskit code examples, and IBM Quantum&reg; features. Qiskit Code Assistant can help your quantum development workflow by offering LLM-generated suggestions based on [IBM Granite and other open-source models](https://huggingface.co/Qiskit), which incorporate the latest features and functionalities from IBM&reg;.
 
 <Admonition type="note" title="Notes">
-    - This is an experimental feature available to IBM Quantum Premium Plan users registered on the new [IBM Quantum Platform](https://quantum.cloud.ibm.com/).
-    - Qiskit Code Assistant is in preview release status and is subject to change.
+    - **Want to skip to the installation instructions? Go to the [Install Qiskit Code Assistant](#install) section.**
     - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
 </Admonition>
-
-<IBMVideo id="134371941" title="A user uses Qiskit Code Assistant in JupyterLab. The user has a comment in the code to get the available backends for their account in IBM Quantum. Qiskit Code Assistant gives a code suggestion to get the available backends. The user executes the code, gets the available backends in IBM Quantum Platform for the current account. The user asks Qiskit Code Assistant to generate the code to get the T1, T2 and other properties for the qubit 1 in the device ibm_brisbane. The assistant gives a code suggestion. The user runs the suggested code and gets the desired output."/>
-
-## Features
-
-The following features are included in the [Visual Studio Code](https://code.visualstudio.com/) (VS Code) and compatible editors, as well as [JupyterLab](https://jupyterlab.readthedocs.io/en/latest/) extensions:
-
-* Accelerates Qiskit code generation by leveraging generative AI based on models specialized in generating Qiskit code.
-* Allows abstract and specific prompts to generate recommendations.
-* Presents suggestions that you can review, accept, or reject.
-* Supports Python code and Jupyter notebook files.
-* Includes guardrails to avoid answering questions that represent a potential risk for users, such as hateful speech.
-
-For instructions to integrate Qiskit Code Assistant directly into your development environment, follow the instructions in the appropriate topic:
-- [JupyterLab](/docs/guides/qiskit-code-assistant-jupyterlab)
-- [VS Code](/docs/guides/qiskit-code-assistant-vscode)
 
 ## The Large Language Model (LLM) behind Qiskit Code Assistant
 
@@ -46,131 +29,10 @@ The benchmarks are composed of approximately 150 tests, each one made from a fun
 
 The datasets for Qiskit HumanEval and Qiskit HumanEval Hard are available at these websites: [Qiskit HumanEval](https://huggingface.co/datasets/Qiskit/qiskit_humaneval) and [Qiskit HumanEval](https://huggingface.co/datasets/Qiskit/qiskit_humaneval_hard). You can contribute to the development of these benchmarks at the [GitHub repository](https://github.com/qiskit-community/qiskit-human-eval).
 
-
-## More information and citations
-
-To learn more about Qiskit Code Assistant, the Qiskit HumanEval, or Qiskit HumanEval Hard benchmarks, and cite them in your scientific publications, review these recommended citations:
-
-```
-@misc{2405.19495,
-Author = {Nicolas Dupuis and Luca Buratti and Sanjay Vishwakarma and Aitana Viudes Forrat and David Kremer and Ismael Faro and Ruchir Puri and Juan Cruz-Benito},
-Title = {Qiskit Code Assistant: Training LLMs for generating Quantum Computing Code},
-Year = {2024},
-Eprint = {arXiv:2405.19495},
-}
-```
-
-```
-@misc{2406.14712,
-Author = {Sanjay Vishwakarma and Francis Harkins and Siddharth Golecha and Vishal Sharathchandra Bajpe and Nicolas Dupuis and Luca Buratti and David Kremer and Ismael Faro and Ruchir Puri and Juan Cruz-Benito},
-Title = {Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models},
-Year = {2024},
-Eprint = {arXiv:2406.14712},
-}
-```
-
-```
-@misc{2508.20907,
-Author = {Nicolas Dupuis and Adarsh Tiwari and Youssef Mroueh and David Kremer and Ismael Faro and Juan Cruz-Benito},
-Title = {Quantum Verifiable Rewards for Post-Training Qiskit Code Assistant},
-Year = {2025},
-Eprint = {arXiv:2508.20907},
-}
-```
-
-## Use Qiskit Code Assistant in local mode
+<span id="install"></span>
+## Install Qiskit Code Assistant
 
 Learn how to install, configure, and use any of Qiskit Code Assistant models on your local machine.
-
-<Admonition type="note" title="Notes">
-    - Qiskit Code Assistant is in preview release status and is subject to change.
-    - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
-</Admonition>
-
-### Quick start (recommended)
-
-The easiest way to get started with Qiskit Code Assistant in local mode is to use the automated setup scripts for either the VS Code or JupyterLab extension. These scripts will automatically install [Ollama](https://ollama.com/) to run the LLMs, download the recommended model, and configure the extension for you.
-
-#### VS Code extension setup
-
-Run the following command in your terminal:
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/Qiskit/qiskit-code-assistant-vscode/main/setup_local.sh)
-```
-
-This script performs the following steps:
-- Install Ollama (if not already installed)
-- Download and configure the recommended Qiskit Code Assistant model
-- Set up the VS Code extension to work with your local deployment
-
-#### JupyterLab extension setup
-
-Run the following command in your terminal:
-
-```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/Qiskit/qiskit-code-assistant-jupyterlab/main/setup_local.sh)
-```
-
-This script will:
-- Install Ollama (if not already installed)
-- Download and configure the recommended Qiskit Code Assistant model
-- Set up the JupyterLab extension to work with your local deployment
-
-### Available models
-
-#### Current models
-
-These are the latest recommended models for use with Qiskit Code Assistant:
-
-1. [Qiskit/mistral-small-3.2-24b-qiskit](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit) - Released October 2025
-2. [qiskit/qwen2.5-coder-14b-qiskit](https://huggingface.co/Qiskit/qwen2.5-coder-14b-qiskit) - Released June 2025
-3. [qiskit/granite-3.3-8b-qiskit](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit) - Released June 2025
-4. [qiskit/granite-3.2-8b-qiskit](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit) - Released June 2025
-
-#### GGUF models (recommended for personal environments/laptops)
-
-GGUF format models are optimized for local use and require fewer computational resources:
-
-1. [mistral-small-3.2-24b-qiskit-GGUF](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit-GGUF) – Released **October 2025**  
-   *Trained with Qiskit data up to version **2.1***  
-
-2. [qiskit/qwen2.5-coder-14b-qiskit-GGUF](https://huggingface.co/Qiskit/qwen2.5-coder-14b-qiskit-GGUF) – Released **June 2025**  
-   *Trained with Qiskit data up to version **2.0***  
-
-3. [qiskit/granite-3.3-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF) – Released **June 2025**  
-   *Trained with Qiskit data up to version **2.0***  
-
-4. [qiskit/granite-3.2-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF) – Released **June 2025**  
-   *Trained with Qiskit data up to version **2.0***  
-
-The Open Source Qiskit Code Assistant models are available in <DefinitionTooltip definition="Safetensors is a file format designed specifically for storing machine learning model weights and tensors in a secure and efficient manner.">safetensors</DefinitionTooltip> or <DefinitionTooltip definition="GGUF is a binary format that is designed for quickly loading and saving models, and for readability.">GGUF file format</DefinitionTooltip> and can be downloaded from the Hugging Face as explained below.
-
-#### Qiskit versions used for training
-
-| **Model** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | **Benchmark Metrics** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | **Release date** | **Trained on Qiskit version** |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| &nbsp; | **QiskitHumanEval-Hard** | **QiskitHumanEval** | **HumanEval** | **ASDiv** | **MathQA** | **SciQ** | **MBPP** | **IFEval** | **CrowsPairs (English)** | **TruthfulQA (MC1 acc)** | &nbsp; | &nbsp; |
-| **mistral-small-3.2-24b-qiskit** | 32.45 | 47.02 | 77.49 | 3.77 | 49.68 | 97.50 | 64.00 | 48.44 | 67.08 | 39.41 | **January 2026** | **2.2** |
-| qwen2.5-coder-14b-qiskit | 25.17 | 49.01 | 91.46 | 4.21 | 53.90 | 97.00 | 77.60 | 49.64 | 65.18 | 37.82 | June 2025 | 2.0 |
-| granite-3.3-8b-qiskit | 14.57 | 27.15 | 62.80 | 0.48 | 38.66 | 93.30 | 52.40 | 59.71 | 59.75 | 39.05 | June 2025 | 2.0 |
-| granite-3.2-8b-qiskit | 9.93 | 24.50 | 57.32 | 0.09 | 41.41 | 96.30 | 51.80 | 60.79 | 66.79 | 40.51 | June 2025 | 2.0 |
-| granite-8b-qiskit-rc-0.10 | 15.89 | 38.41 | 59.76 | — | — | — | — | — | — | — | February 2025 | 1.3 |
-| granite-8b-qiskit | 17.88 | 44.37 | 53.66 | — | — | — | — | — | — | — | November 2024 | 1.2 |
-
-*Note: All models listed in the benchmark table were evaluated using their respective system prompt, defined in their Hugging Face model.*
-
-#### Deprecated models
-
-These models are no longer actively maintained but remain available:
-
-1. [qiskit/granite-8b-qiskit-rc-0.10](https://huggingface.co/Qiskit/granite-8b-qiskit-rc-0.10) - Released February 2025 (deprecated)
-2. [qiskit/granite-8b-qiskit](https://huggingface.co/Qiskit/granite-8b-qiskit) - Released November 2024 (deprecated)
-
-
-### Advanced setup
-
-If you prefer to manually configure your local setup or need more control over the installation process, expand the sections below.
 
 <Accordion>
 <AccordionItem title="Download from the Hugging Face website">
@@ -380,36 +242,221 @@ To ensure proper functionality of our Qiskit models, we recommend using the syst
 
 </AccordionItem>
 
-<AccordionItem title="Manually connect extensions to local deployment">
+<AccordionItem title="Manually connect Continue (VS Code)">
 
-Use the VS Code extension and JupyterLab extension for the Qiskit Code Assistant to prompt the locally deployed Qiskit Code Assistant model. Once you have the Ollama application [set up with the model](#using-the-ollama-application), you can configure the extensions to connect to the local service.
+#### [Continue](https://marketplace.visualstudio.com/items?itemName=Continue.continue) (VS Code)
 
+##### 1. Install the extension
 
-#### Connect with the Qiskit Code Assistant VS Code extension
+Open VS Code, go to Extensions (`Cmd+Shift+X`), search **Continue**, install it.
 
-With the Qiskit Code Assistant VS Code extension, you can interact with the model and perform code completion while writing your code. This can work well for users looking for assistance writing Qiskit code for their Python applications.
+##### 2. Open the config
 
-1. Install the [Qiskit Code Assistant VS Code extension](/docs/guides/qiskit-code-assistant-vscode).
-1. In VS Code, go to the **User Settings** and set the **Qiskit Code Assistant: Url** to the URL of your local Ollama deployment (for example, `http://localhost:11434`).
-1. Reload VS Code by going to **View > Command Palette...** and selecting **Developer: Reload Window**.
+Click the Continue icon in the sidebar, then click the gear icon, or open the command palette (`Cmd+Shift+P`) and run **Continue: Open Config File**.
 
-The Qiskit Code Assistant model configured in Ollama should appear in the status bar and is then ready to use.
+This opens `~/.continue/config.yaml` (or `config.json` in older versions).
 
-#### Connect with the Qiskit Code Assistant JupyterLab extension
+##### 3. Configure the model
 
-With the Qiskit Code Assistant JupyterLab extension, you can interact with the model and perform code completion directly in your Jupyter Notebook. Users who predominantly work with Jupyter Notebooks can take advantage of this extension to further enhance their experience writing Qiskit code.
+Add the following to `config.yaml`:
 
-1. Install the [Qiskit Code Assistant JupyterLab extension](/docs/guides/qiskit-code-assistant-jupyterlab).
-1. In JupyterLab, go to the **Settings Editor** and set the **Qiskit Code Assistant Service API** to the URL of your local Ollama deployment (for example, `http://localhost:11434`).
+```yaml
+models:
+  - name: Qiskit Code Assistant
+    provider: ollama
+    model: mistral-small-3.2-24b-qiskit
+    apiBase: http://localhost:11434
+```
 
-The Qiskit Code Assistant model configured in Ollama should appear in the status bar and is then ready to use.
+This makes the Qiskit model available in the **chat panel** (sidebar conversations, inline Q&A) and for **inline edit** commands.
 
+##### 4. Test it
+
+- **Chat:** Open the Continue panel in the sidebar and ask a question (e.g., "How do I create a parameterized circuit in Qiskit?")
+- **Inline edit:** Select a block of code, press `Cmd+I` (Mac) or `Ctrl+I` (Linux/Windows)
+  
+  
+  
+  
+  
+</AccordionItem>
+
+<AccordionItem title="Manually connect Jupyter AI (JupyterLab)">
+
+#### [Jupyter AI](https://jupyter-ai.readthedocs.io/en/v3/index.html) (JupyterLab)
+
+**Note:** These instructions cover Jupyter AI v2.x.
+
+##### 1. Install Jupyter AI and the Ollama provider
+
+```bash
+pip install "jupyter-ai<3" langchain-ollama
+```
+
+The `"jupyter-ai<3"` pin ensures you get v2.x. The `langchain-ollama` package is required for Jupyter AI to detect Ollama as a provider. Without it, Ollama will not appear in the settings panel.
+
+Then restart JupyterLab.
+
+##### 2. Configure the chat model
+
+Open JupyterLab and click the **chat icon** in the left sidebar. In the settings panel:
+
+1. Under **Language model**, select **Ollama** as the provider.
+2. Enter `mistral-small-3.2-24b-qiskit` as the model name.
+3. No API key is needed for Ollama (leave the field empty).
+4. Click the back arrow to start chatting.
+
+##### 3. Use the `%%ai` magic command
+
+The `%%ai` magic lets you query the model directly in notebook cells.
+
+```python
+%load_ext jupyter_ai_magics
+```
+
+Then in a cell:
+
+```python
+%%ai ollama:mistral-small-3.2-24b-qiskit
+Write a function that implements Grover's algorithm using Qiskit
+```
+
+##### 4. Custom Ollama host (optional)
+
+By default, Jupyter AI connects to `http://127.0.0.1:11434`. If your Ollama server runs on a different address or port:
+
+**In the chat UI:** Set the "Base API URL" field in the AI settings panel.
+
+</AccordionItem>
+
+<AccordionItem title="Manually connect OpenCode (Terminal)">
+
+#### [OpenCode](https://opencode.ai/) (Terminal)
+
+##### 1. Install OpenCode
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+##### 2. Configure the Qiskit model
+
+Create an `opencode.json` file in your project root (or `~/.config/opencode/opencode.json` for a global config):
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "mistral-small-3.2-24b-qiskit": {
+          "name": "Qiskit Code Assistant"
+        }
+      }
+    }
+  }
+}
+```
+
+##### 3. Select the model
+
+Launch OpenCode in your project directory:
+
+```bash
+opencode
+```
+
+Inside the TUI, run the `/models` command and select **Qiskit Code Assistant** from the list.
+
+##### 4. Test it
+
+Ask a question directly in the chat, for example: "Define a Bell circuit and run it using QiskitRuntimeService"
+  
 </AccordionItem>
 </Accordion>
 
-## Next steps
+## Available models
 
-<Admonition type="tip" title="Recommendations">
-  - Install and use the official [JupyterLab](/docs/guides/qiskit-code-assistant-jupyterlab) or [VS Code](/docs/guides/qiskit-code-assistant-vscode) extensions.
-  - See examples to use Qiskit Code Assistant for [circuits](/docs/guides/circuit-library), [configuring error suppression](/docs/guides/error-mitigation-and-suppression-techniques), and [transpiling with pass managers](/docs/guides/transpile-with-pass-managers).
-</Admonition>
+#### Current models
+
+These are the latest recommended models for use with Qiskit Code Assistant:
+
+1. [Qiskit/mistral-small-3.2-24b-qiskit](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit) - Released October 2025
+2. [Qiskit/Qwen2.5-Coder-14B-Qiskit](https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit) - Released June 2025
+3. [qiskit/granite-3.3-8b-qiskit](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit) - Released June 2025
+4. [qiskit/granite-3.2-8b-qiskit](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit) - Released June 2025
+
+#### GGUF models (recommended for personal environments/laptops)
+
+GGUF format models are optimized for local use and require fewer computational resources:
+
+1. [mistral-small-3.2-24b-qiskit-GGUF](https://huggingface.co/Qiskit/mistral-small-3.2-24b-qiskit-GGUF) – Released **October 2025**  
+   *Trained with Qiskit data up to version **2.1***  
+
+2. [Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF](https://huggingface.co/Qiskit/Qwen2.5-Coder-14B-Qiskit-GGUF) – Released **June 2025**  
+   *Trained with Qiskit data up to version **2.0***  
+
+3. [qiskit/granite-3.3-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.3-8b-qiskit-GGUF) – Released **June 2025**  
+   *Trained with Qiskit data up to version **2.0***  
+
+4. [qiskit/granite-3.2-8b-qiskit-GGUF](https://huggingface.co/Qiskit/granite-3.2-8b-qiskit-GGUF) – Released **June 2025**  
+   *Trained with Qiskit data up to version **2.0***  
+
+The Open Source Qiskit Code Assistant models are available in <DefinitionTooltip definition="Safetensors is a file format designed specifically for storing machine learning model weights and tensors in a secure and efficient manner.">safetensors</DefinitionTooltip> or <DefinitionTooltip definition="GGUF is a binary format that is designed for quickly loading and saving models, and for readability.">GGUF file format</DefinitionTooltip> and can be downloaded from the Hugging Face as explained below.
+
+#### Qiskit versions used for training
+
+| **Model** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp; | **Benchmark Metrics** | &nbsp; | &nbsp; | &nbsp; | &nbsp; | **Release date** | **Trained on Qiskit version** |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| &nbsp; | **QiskitHumanEval-Hard** | **QiskitHumanEval** | **HumanEval** | **ASDiv** | **MathQA** | **SciQ** | **MBPP** | **IFEval** | **CrowsPairs (English)** | **TruthfulQA (MC1 acc)** | &nbsp; | &nbsp; |
+| **mistral-small-3.2-24b-qiskit** | 32.45 | 47.02 | 77.49 | 3.77 | 49.68 | 97.50 | 64.00 | 48.44 | 67.08 | 39.41 | **January 2026** | **2.2** |
+| Qwen2.5-Coder-14B-Qiskit | 25.17 | 49.01 | 91.46 | 4.21 | 53.90 | 97.00 | 77.60 | 49.64 | 65.18 | 37.82 | June 2025 | 2.0 |
+| granite-3.3-8b-qiskit | 14.57 | 27.15 | 62.80 | 0.48 | 38.66 | 93.30 | 52.40 | 59.71 | 59.75 | 39.05 | June 2025 | 2.0 |
+| granite-3.2-8b-qiskit | 9.93 | 24.50 | 57.32 | 0.09 | 41.41 | 96.30 | 51.80 | 60.79 | 66.79 | 40.51 | June 2025 | 2.0 |
+| granite-8b-qiskit-rc-0.10 | 15.89 | 38.41 | 59.76 | — | — | — | — | — | — | — | February 2025 | 1.3 |
+| granite-8b-qiskit | 17.88 | 44.37 | 53.66 | — | — | — | — | — | — | — | November 2024 | 1.2 |
+
+*Note: All models listed in the benchmark table were evaluated using their respective system prompt, defined in their Hugging Face model.*
+
+#### Deprecated models
+
+These models are no longer actively maintained but remain available:
+
+1. [qiskit/granite-8b-qiskit-rc-0.10](https://huggingface.co/Qiskit/granite-8b-qiskit-rc-0.10) - Released February 2025 (deprecated)
+2. [qiskit/granite-8b-qiskit](https://huggingface.co/Qiskit/granite-8b-qiskit) - Released November 2024 (deprecated)
+
+## More information and citations
+
+To learn more about Qiskit Code Assistant, the Qiskit HumanEval, or Qiskit HumanEval Hard benchmarks, and cite them in your scientific publications, review these recommended citations:
+
+```
+@misc{2405.19495,
+Author = {Nicolas Dupuis and Luca Buratti and Sanjay Vishwakarma and Aitana Viudes Forrat and David Kremer and Ismael Faro and Ruchir Puri and Juan Cruz-Benito},
+Title = {Qiskit Code Assistant: Training LLMs for generating Quantum Computing Code},
+Year = {2024},
+Eprint = {arXiv:2405.19495},
+}
+```
+
+```
+@misc{2406.14712,
+Author = {Sanjay Vishwakarma and Francis Harkins and Siddharth Golecha and Vishal Sharathchandra Bajpe and Nicolas Dupuis and Luca Buratti and David Kremer and Ismael Faro and Ruchir Puri and Juan Cruz-Benito},
+Title = {Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models},
+Year = {2024},
+Eprint = {arXiv:2406.14712},
+}
+```
+
+```
+@misc{2508.20907,
+Author = {Nicolas Dupuis and Adarsh Tiwari and Youssef Mroueh and David Kremer and Ismael Faro and Juan Cruz-Benito},
+Title = {Quantum Verifiable Rewards for Post-Training Qiskit Code Assistant},
+Year = {2025},
+Eprint = {arXiv:2508.20907},
+}
+```

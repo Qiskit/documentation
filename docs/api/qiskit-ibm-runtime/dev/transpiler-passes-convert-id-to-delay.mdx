@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
 # ConvertIdToDelay
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/basis/convert_id_to_delay.py#L25-L87" signature="ConvertIdToDelay(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/basis/convert_id_to_delay.py#L29-L91" signature="ConvertIdToDelay(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass)
 
   Convert `qiskit.circuit.library.standard_gates.IGate` to a corresponding delay.
@@ -66,9 +66,9 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
     **Parameters**
 
-    *   **passmanager\_ir** (*Any*) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
-    *   **callback** (*Callable | None*) – A callback function which is called per execution of optimization task.
+    *   **passmanager\_ir** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – Qiskit IR to optimize.
+    *   **state** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** (*Callable\[\[Task,* [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)*,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*, float, int], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -76,7 +76,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
     **Return type**
 
-    tuple\[*Any*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+    tuple\[[*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
   </Function>
 
   ### name
@@ -91,16 +91,16 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/basis/convert_id_to_delay.py#L43-L46" signature="run(dag)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.ConvertIdToDelay.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/basis/convert_id_to_delay.py#L47-L50" signature="run(dag)">
     Run the pass on the DAGCircuit.
 
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit))
+    **dag** (*DAGCircuit*)
 
     **Return type**
 
-    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
+    DAGCircuit
   </Function>
 
   ### update\_status

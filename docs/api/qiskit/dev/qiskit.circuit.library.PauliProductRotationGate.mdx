@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PauliProductRotationGate
 
 # PauliProductRotationGate
 
-<Class id="qiskit.circuit.library.PauliProductRotationGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/pauli_product_rotation.py#L29-L182" signature="qiskit.circuit.library.PauliProductRotationGate(pauli, angle, label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.PauliProductRotationGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/pauli_product_rotation.py#L29-L195" signature="qiskit.circuit.library.PauliProductRotationGate(pauli, angle, label=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   A generic Pauli rotation.
@@ -167,7 +167,7 @@ $$
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
     **Return type**
 
@@ -194,7 +194,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `num_ctrl_qubits` or `ctrl_state`.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – invalid `num_ctrl_qubits` or `ctrl_state`.
   </Function>
 
   ### copy
@@ -224,7 +224,7 @@ $$
   ### is\_parameterized
 
   <Function id="qiskit.circuit.library.PauliProductRotationGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
-    Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+    Return whether the `Instruction` contains [compile-time parameters](/docs/api/qiskit/dev/circuit#circuit-compile-time-parameters).
   </Function>
 
   ### pauli
@@ -261,7 +261,7 @@ $$
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
   </Function>
 
   ### repeat
@@ -283,7 +283,7 @@ $$
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
   </Function>
 
   ### reverse\_ops
@@ -324,20 +324,16 @@ $$
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.library.PauliProductRotationGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/pauli_product_rotation.py#L179-L182" signature="to_matrix()">
-    Return a Numpy.array for the gate unitary matrix.
+  <Function id="qiskit.circuit.library.PauliProductRotationGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/pauli_product_rotation.py#L179-L195" signature="to_matrix()">
+    Returns a dense matrix representation of [`PauliProductRotationGate`](#qiskit.circuit.library.PauliProductRotationGate "qiskit.circuit.library.PauliProductRotationGate").
 
-    **Returns**
+    This implements
 
-    if the Gate subclass has a matrix definition.
+$$
+e^{-i \theta / 2 P} = \cos(\theta / 2) I - i \sin(\theta / 2) P
+$$
 
-    **Return type**
-
-    np.ndarray
-
-    **Raises**
-
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+    for a rotation angle $\theta$ and Pauli $P$.
   </Function>
 
   ### to\_mutable

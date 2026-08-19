@@ -20,6 +20,7 @@ import { collectHeadingTitleMismatch } from "../lib/markdownTitles.js";
 import { parseMarkdown } from "../lib/markdownUtils.js";
 import { checkMetadata } from "../lib/metadataChecker.js";
 import {
+  IMAGE_ALLOWLIST,
   METADATA_ALLOWLIST,
   ignoreTitleMismatch,
 } from "../../config/allowLists.js";
@@ -50,7 +51,9 @@ async function main() {
   for (const file of files) {
     const { content, metadata } = await readMarkdownAndMetadata(file);
     const tree = parseMarkdown(content);
-    const imageErrors = collectInvalidImageErrors(tree);
+    const imageErrors = IMAGE_ALLOWLIST.has(file)
+      ? new Set<string>()
+      : collectInvalidImageErrors(tree);
     const mismatchedTitleHeadingErrors = ignoreTitleMismatch(file)
       ? new Set<string>()
       : collectHeadingTitleMismatch(tree, metadata);

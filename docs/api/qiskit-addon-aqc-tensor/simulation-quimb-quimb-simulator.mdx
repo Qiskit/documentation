@@ -8,8 +8,8 @@ python_api_name: qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator
 
 # QuimbSimulator
 
-<Class id="qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/simulation/quimb/__init__.py#L75-L126" signature="QuimbSimulator(quimb_circuit_factory, autodiff_backend=None, progbar=False)" modifiers="class">
-  Bases: [`TensorNetworkSimulationSettings`](simulation#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings")
+<Class id="qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.3/qiskit_addon_aqc_tensor/simulation/quimb/__init__.py#L79-L130" signature="QuimbSimulator(quimb_circuit_factory, autodiff_backend=None, progbar=False)" modifiers="class">
+  Bases: [`TensorNetworkSimulationSettings`](/docs/api/qiskit-addon-aqc-tensor/simulation#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings")
 
   Settings for Quimb simulator.
 
@@ -25,7 +25,7 @@ python_api_name: qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator
   simulator_settings = QuimbSimulator(
       partial(
           quimb.tensor.CircuitMPS,
-          gate_opts={"cutoff": 1e-8},
+          cutoff=1e-8,
       ),
       autodiff_backend="jax",
   )
@@ -43,17 +43,27 @@ python_api_name: qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator
 
   ### autodiff\_backend
 
-  <Attribute id="qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator.autodiff_backend" attributeTypeHint="Optional[str]" attributeValue="None" />
+  <Attribute id="qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator.autodiff_backend">
+    Type: [`Optional`](https://docs.python.org/3/library/typing.html#typing.Optional)`[`[`str`](https://docs.python.org/3/library/stdtypes.html#str)`]`
+
+    Default value: `None`
+  </Attribute>
 
   ### progbar
 
-  <Attribute id="qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator.progbar" attributeTypeHint="bool" attributeValue="False">
+  <Attribute id="qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator.progbar">
+    Type: [`bool`](https://docs.python.org/3/library/functions.html#bool)
+
+    Default value: `False`
+
     Whether to display a progress bar while applying gates.
   </Attribute>
 
   ### quimb\_circuit\_factory
 
-  <Attribute id="qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator.quimb_circuit_factory" attributeTypeHint="QuimbCircuitFactory">
+  <Attribute id="qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator.quimb_circuit_factory">
+    Type: [`QuimbCircuitFactory`](simulation-quimb-quimb-circuit-factory "qiskit_addon_aqc_tensor.simulation.quimb.QuimbCircuitFactory")
+
     Callable for constructing the Quimb circuit, e.g., `Circuit()` or `CircuitMPS()`.
   </Attribute>
 </Class>
