@@ -17,31 +17,47 @@ python_api_name: ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultMo
 
   ### data
 
-  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultModel.data" attributeTypeHint="list[QuantumProgramResultItemModel] [Required]" attributeTypeHintHref="ibm-quantum-schemas-executor-version-2-0-quantum-program-result-item-model" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultModel.data" modifiers="field">
+    Type: `list`\[[`QuantumProgramResultItemModel`](ibm-quantum-schemas-executor-version-2-0-quantum-program-result-item-model "ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultItemModel")]
+
     Resulting data for each quantum program item.
   </Attribute>
 
   ### metadata
 
-  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultModel.metadata" attributeTypeHint="MetadataModel [Required]" attributeTypeHintHref="ibm-quantum-schemas-executor-version-2-0-metadata-model" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultModel.metadata" modifiers="field">
+    Type: [`MetadataModel`](ibm-quantum-schemas-executor-version-2-0-metadata-model "ibm_quantum_schemas.executor.version_2_0.MetadataModel")
+
     Execution metadata pertaining to the job as a whole.
   </Attribute>
 
   ### passthrough\_data
 
-  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultModel.passthrough_data" attributeTypeHint="DataTree" attributeValue="None" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultModel.passthrough_data" modifiers="field">
+    Type: `DataTree`
+
+    Default value: `None`
+
     Arbitrary nested data passed through execution without modification.
   </Attribute>
 
   ### schema\_version
 
-  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultModel.schema_version" attributeTypeHint="Literal['v2.0']" attributeValue="'v2.0'" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultModel.schema_version" modifiers="field">
+    Type: `Literal`\[`'v2.0'`]
+
+    Default value: `'v2.0'`
+
     Schema version of the result type.
   </Attribute>
 
   ### semantic\_role
 
-  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultModel.semantic_role" attributeTypeHint="str | None" attributeValue="None" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramResultModel.semantic_role" modifiers="field">
+    Type: `str` | `None`
+
+    Default value: `None`
+
     Semantic role indicating how execution results may be post-processed by runtime clients.
 
     Reserved system values include ‘sampler-v2’ and ‘estimator-v2’, and are subject to change without notice. Third party clients should not set or depend on this value.

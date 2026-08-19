@@ -17,7 +17,11 @@ python_api_name: ibm_quantum_schemas.executor.version_0_1.CircuitItemModel
 
   ### chunk\_size
 
-  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.chunk_size" attributeTypeHint="Annotated[int, FieldInfo(annotation" attributeValue="NoneType, required=True, metadata=[Ge(ge=1)])] | Literal['auto'] = 'auto'" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.chunk_size" modifiers="field">
+    Type: `Annotated`\[`int`, `FieldInfo`(`annotation``=``NoneType`, `required``=``True`, `metadata``=`\[`Ge`(`ge``=``1`)])] | `Literal`\[`'auto'`]
+
+    Default value: `'auto'`
+
     The maximum number circuit arguments to bind to the circuit per shot loop.
 
     When `"auto"`, the number is chosen server-side with heuristics designed to optimize execution speed. A quantum program must have items where either all chunk sizes are integer-valued, or all chunk sizes are `"auto"`. Integer values are only allowed inside of session exection mode.
@@ -29,7 +33,9 @@ python_api_name: ibm_quantum_schemas.executor.version_0_1.CircuitItemModel
 
   ### circuit
 
-  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.circuit" attributeTypeHint="QpyModelV13ToV16 [Required]" attributeTypeHintHref="ibm-quantum-schemas-common-qpy-model-v13-to-v16" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.circuit" modifiers="field">
+    Type: [`QpyModelV13ToV16`](ibm-quantum-schemas-common-qpy-model-v13-to-v16 "ibm_quantum_schemas.common.qpy.QpyModelV13ToV16")
+
     A QPY-encoded circuit.
 
     **Validated by**
@@ -39,7 +45,9 @@ python_api_name: ibm_quantum_schemas.executor.version_0_1.CircuitItemModel
 
   ### circuit\_arguments
 
-  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.circuit_arguments" attributeTypeHint="F64TensorModel [Required]" attributeTypeHintHref="ibm-quantum-schemas-common-f-64-tensor-model" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.circuit_arguments" modifiers="field">
+    Type: [`F64TensorModel`](ibm-quantum-schemas-common-f-64-tensor-model "ibm_quantum_schemas.common.tensor.F64TensorModel")
+
     Arguments to the parameters of the circuit.
 
     The last axis is over `circuit.parameters`. Execution broadcasts over the preceding axes; expect one result per element of the leading shape.
@@ -51,7 +59,11 @@ python_api_name: ibm_quantum_schemas.executor.version_0_1.CircuitItemModel
 
   ### item\_type
 
-  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.item_type" attributeTypeHint="Literal['circuit']" attributeValue="'circuit'" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_0_1.CircuitItemModel.item_type" modifiers="field">
+    Type: `Literal`\[`'circuit'`]
+
+    Default value: `'circuit'`
+
     The type of quantum program item.
 
     **Validated by**
