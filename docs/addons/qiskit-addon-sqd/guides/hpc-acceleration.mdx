@@ -1,0 +1,39 @@
+---
+title: "Support for multi-process and multi-threaded acceleration"
+description: "Support for multi-process and multi-threaded acceleration for the latest version of Sample-based quantum diagonalization (SQD)"
+---
+
+# Support for multi-process and multi-threaded acceleration
+
+This page documents the extent to which `qiskit-addon-sqd` supports multi-threaded and multi-process acceleration, and the assumptions that a high-performance-computing (HPC) developer can rely on when integrating this package into an accelerated workload.
+
+## The single-threaded assumption
+
+Unless otherwise specified, the APIs in this package are meant to be called from a single thread. High-level APIs exposed by this package are not guaranteed to be re-entrant, and end users should not invoke them from any thread other than the main thread.
+
+## Collective multi-process execution
+
+This package supports collective multi-process acceleration in the single-program, multiple-data (SPMD) style, in which the entire program is launched as multiple isolated processes that run with explicit global synchronization and communication between them (for example, `mpirun -n 128 python my_program.py`). Because the SPMD style composes cleanly with job schedulers and other parallel software and scales to large process counts, it is the recommended model for high-performance and large-scale workloads, and it is the subject of this page.
+
+Although this package is designed to accommodate different collective-execution backends, its current implementation targets MPI, the standard message-passing API for HPC systems. Regardless of implementation, this package assumes that a single thread controls each process. In the case of MPI, this corresponds to `MPI_THREAD_FUNNELED` or lower.
+
+If a function supports collective execution, its documentation must say so. If the documentation does not mention collective execution, the function has no collective semantics and must be called from the control process alone.
+
+The specific return-value and synchronization semantics of a collective function are documented with the function itself. In general, that documentation should make clear:
+
+*   Whether the function is meant to be called independently by each process on its own local data, or collectively by all processes.
+*   How its arguments must agree across processes.
+*   How its return value is delivered—whether the result exists only on the control process, whether all processes receive the same value, or whether each process receives a handle to a local portion of a distributed data structure.
+
+Only one function currently supports being called collectively from all processes: [`diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian"). When it is invoked collectively, the eigensolver step is where all processes participate and contribute work, so an eigensolver implementation can use every process. The remaining parts of the configuration-recovery loop have no distributed implementation and run on the control process (rank 0) only.
+
+Some existing eigensolver implementations instead require the calling program to run outside an MPI/SPMD environment, because they launch and manage their own parallel processes internally, for example by invoking `mpirun` on the user’s behalf. That mode is convenient for interactive and notebook-based work and remains supported; its requirements on the calling program are described in the API reference of the [`diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") function.
+
+## Error handling in a multi-process context
+
+A function that is called collectively from all processes must not raise an exception or abort only a single process, because that would leave the remaining processes deadlocked or in an inconsistent state. Instead, error handling follows fail-stop semantics for the execution context as a whole: upon an error, the implementation must be prepared to abort the entire execution context collectively (for example, by using `MPI_Abort`).
+
+The API cannot guarantee coordinated error reporting or collective delivery of exceptions across processes, because MPI implementations do not provide such guarantees. An implementation might additionally attempt to make an error visible to all participating processes—for example, by having each process raise an exception—but this can only be provided on a best-effort basis and must not be relied upon for correctness or recovery.
+
+These are properties that a collective implementation is permitted to have, not guarantees about any particular one. In this package, the only collective step is the eigensolver (see the preceding section); its default implementation is not distributed, so these considerations apply to a custom, collective eigensolver supplied by the user.
+
