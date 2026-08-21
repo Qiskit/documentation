@@ -104,7 +104,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L90-L274" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=17, annotation_factories=None)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L90-L274" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=18, annotation_factories=None)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -397,6 +397,14 @@ Changed in version QPY: 15 `ANNOTATION_HEADER` was added between `REGISTERS` and
 Changed in version QPY: 12 `STANDALONE_VARS` was added between `REGISTERS` and `CUSTOM_DEFINITIONS`.
 
 There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
+
+<span id="qpy-version-18" />
+
+### Version 18
+
+Version 18 removes the `CalibrationsPack` field from the circuit payload. Pulse gate calibrations were removed from Qiskit in version 2.0, and since then the field has always been written as an empty placeholder (`num_cals = 0`). Dropping it saves 2 bytes per circuit and cleans up the format.
+
+Version 18 also corrects the encoding of integer and float `INSTRUCTION_PARAM` values to big-endian byte order, consistent with the rest of the QPY specification. In versions 1–17 these were mistakenly written in little-endian.
 
 <span id="qpy-version-17" />
 
