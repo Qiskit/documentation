@@ -1,0 +1,62 @@
+---
+title: Qiskit Agent Skills
+description: Use Qiskit Agent Skills to give AI coding assistants Qiskit-specific expertise for common tasks.
+---
+
+# Qiskit Agent Skills
+
+Qiskit Agent Skills are a collection of [Agent Skills](https://agentskills.io) — packaged, version-controlled instructions that give AI coding assistants task-specific expertise. Each skill is a folder containing a `SKILL.md` file (plus optional scripts and reference material) that an assistant loads on demand when your task matches what the skill covers.
+
+Agent Skills are an open format originally developed by Anthropic and adopted across a wide range of AI coding tools, including Claude Code, Cursor, GitHub Copilot, and others. A Qiskit skill isn't tied to one assistant: any skills-compatible tool can use it.
+
+<Admonition type="note">
+    This is an open-source project. For the most up-to-date information and the full list of available skills, refer to the [Qiskit Skills GitHub repository](https://github.com/Qiskit/skills).
+</Admonition>
+
+## When should I use Qiskit Agent Skills?
+
+Use Qiskit Agent Skills when you want an AI coding assistant to follow a consistent, Qiskit-aware procedure for a task rather than improvising from general training knowledge, such as the following:
+
+- Migrating code that depends on older versions of Qiskit or Qiskit IBM Runtime
+- Choosing and applying an error mitigation strategy for a given workload
+- Other repeatable, multi-step Qiskit tasks where a documented procedure reduces the chance of outdated or incorrect API usage
+
+## What is included?
+
+<CardGroup>
+    <Card
+      title="Qiskit migration skill"
+      description="Migrate code written against older versions of Qiskit and qiskit-ibm-runtime to current APIs."
+      href="https://github.com/Qiskit/skills"
+      analyticsName="Skill: Qiskit migration"
+      linkText="Browse skill"
+    />
+
+    <Card
+      title="Error mitigation selection skill"
+      description="Choose and configure an error mitigation strategy for a given circuit and execution context."
+      href="https://github.com/Qiskit/skills"
+      analyticsName="Skill: Error mitigation selection"
+      linkText="Browse skill"
+    />
+</CardGroup>
+
+## Install Qiskit Agent Skills
+
+To use a skill with an Agent Skills-compatible assistant, add it to a location the assistant scans for skills. For example, with Claude Code:
+
+```bash
+git clone https://github.com/Qiskit/skills.git ~/.claude/skills
+```
+
+Or, to make a skill available only within a specific project, copy it into that project's `.claude/skills/` directory instead. Refer to your assistant's documentation for its specific skill directory conventions, since these vary by tool.
+
+## Next steps
+
+<Admonition type="info" title="Recommendations">
+
+- Visit the [Qiskit Skills GitHub repository](https://github.com/Qiskit/skills) for the full list of skills, source, and contribution guidelines.
+- Read the [Agent Skills specification](https://agentskills.io) to understand the underlying format.
+- Explore [Qiskit MCP Servers](/docs/guides/qiskit-mcp-servers) for a complementary way to connect AI assistants to Qiskit and IBM Quantum services.
+
+</Admonition>
