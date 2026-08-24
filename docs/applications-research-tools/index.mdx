@@ -1,0 +1,174 @@
+---
+title: Introduction to Qiskit Functions
+description: Explore IBM Qiskit Functions Catalog, abstracted circuit function and application function services designed to accelerate research and application prototyping.
+---
+
+
+{/* cspell:ignore Jarman, HIVQE, Cadavid, Chandarana, Leclerc, Sachdeva, HUBO, Filippov, Downfolding, Aharonov, Mundada, Yamauchi, supersymmetric, Paterakis, Gharibyan, Jaffali, Pellow */}
+
+# Introduction to Qiskit Functions
+<Admonition type="note" title="Notes">
+* Qiskit Functions are an experimental feature available only to IBM Quantum&reg; Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. They are in preview release status and subject to change.
+</Admonition>
+Qiskit Functions simplify and accelerate utility-scale algorithm discovery and application development, by abstracting away parts of the quantum software development workflow. In this way, Qiskit Functions free up time normally spent hand-writing code and fine-tuning experiments.
+
+[Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions)
+
+![Overview of Qiskit Functions](/docs/images/guides/functions/functions-overview.svg)
+Functions come in two forms:
+
+| Type | What does it do? | Example inputs and outputs | Who is it for? |
+| - | - | - | - |
+| Circuit function | Simplified interface for running circuits. Abstracts transpilation, error suppression, and error mitigation | **Input**: Abstract `PUB` objects <br/> **Output**: Mitigated expectation values | Researchers using Qiskit to discover new algorithms and applications, without needing to focus on optimizing for hardware or handling error. Circuit functions can be used to build custom application functions. |
+| Application function | Covers higher-level tasks, such as exploring algorithms and domain-specific use cases. Abstracts quantum workflow to solve tasks, with classical inputs and outputs | **Input**: Molecules, graphs <br/> **Output**: Ground + excited state energy, optimal values for cost function | Researchers in non-quantum domains, integrating quantum into existing large-scale classical workflows, without needing to map classical data to quantum circuits. |
+
+## Browse by domain
+
+Application functions and function templates are organized by the problem domain they target. Circuit functions are cross-cutting and apply across domains.
+
+### Optimization
+<CardGroup>
+    <Card
+      title="Iskay Quantum Optimizer"
+      description="Optimization workloads such as scheduling, logistics, routing, and QUBO/HUBO problems."
+      href="/docs/applications-research-tools/kipu-optimization"
+      analyticsName="Overview page: Iskay Quantum Optimizer"
+      linkText="Iskay Quantum Optimizer Qiskit Function guide"
+    />
+
+    <Card
+      title="Optimization Solver"
+      description="Binary optimization problems or any combinatorial problem that can be mapped to a binary cost function."
+      href="/docs/applications-research-tools/q-ctrl-optimization-solver"
+      analyticsName="Overview page: Optimization Solver"
+      linkText="Optimization Solver Qiskit Function guide"
+    />
+
+    <Card
+      title="Quantum Portfolio Optimizer"
+      description="Financial optimization workloads seeking optimal portfolio strategies over time while minimizing risk and maximizing returns."
+      href="/docs/applications-research-tools/global-data-quantum-optimizer"
+      analyticsName="Overview page: Quantum Portfolio Optimizer"
+      linkText="Quantum Portfolio Optimizer Qiskit Function guide"
+    />
+</CardGroup>
+
+### Machine learning
+<CardGroup>
+    <Card
+      title="Singularity Machine Learning"
+      description="Classical machine learning classification workflows that could benefit from improved accuracy or computational efficiency by leveraging quantum optimization executed on IBM hardware."
+      href="/docs/applications-research-tools/multiverse-computing-singularity"
+      analyticsName="Overview page: Singularity Machine Learning"
+      linkText="Singularity Machine Learning Qiskit Function guide"
+    />
+</CardGroup>
+
+### Differential equations
+<CardGroup>
+    <Card
+      title="QUICK-PDE"
+      description="Use quantum computation for multi-physics PDEs, while keeping full control over both quantum and physical modeling parameters."
+      href="/docs/applications-research-tools/colibritd-pde"
+      analyticsName="Overview page: QUICK-PDE"
+      linkText="QUICK-PDE Qiskit Function guide"
+    />
+</CardGroup>
+
+### Hamiltonian simulation
+<CardGroup>
+    <Card
+      title="HI-VQE Chemistry"
+      description="Computational chemistry, molecular simulation, materials science, or any Hamiltonian simulation that requires solving many-body electronic structure problems."
+      href="/docs/applications-research-tools/qunova-chemistry"
+      analyticsName="Overview page: HI-VQE Chemistry"
+      linkText="HI-VQE Chemistry Qiskit Function guide"
+    />
+</CardGroup>
+
+### Circuit performance
+<CardGroup>
+    <Card
+      title="Tensor-Network Error Mitigation"
+      description="Workloads that have low-weight observables and loop-free circuits."
+      href="/docs/applications-research-tools/algorithmiq-tem"
+      analyticsName="Overview page: Tensor-Network Error Mitigation"
+      linkText="Algorithmiq TEM Qiskit Function guide"
+    />
+
+    <Card
+      title="QESEM"
+      description="Workloads that include circuits with fractional or parameterized gates, high-weight observables, and workflows that require unbiased expectation values and accurate runtime estimates."
+      href="/docs/applications-research-tools/qedma-qesem"
+      analyticsName="Overview page: QESEM"
+      linkText="QESEM Qiskit Function guide"
+    />
+
+    <Card
+      title="Performance Management"
+      description="Workloads that contain parametric circuits, deep circuits, or require many circuit executions."
+      href="/docs/applications-research-tools/q-ctrl-performance-management"
+      analyticsName="Overview page: Performance Management"
+      linkText="Performance Management Qiskit Function guide"
+    />
+
+    <Card
+      title="Orbit"
+      description="Improves circuit execution with optimized transpilation, dynamical decoupling, and measurement error mitigation."
+      href="/docs/applications-research-tools/quantum-elements-orbit"
+      analyticsName="Overview page: Orbit"
+      linkText="Quantum Elements Orbit guide"
+    />
+</CardGroup>
+
+### Qiskit Function templates
+<CardGroup>
+    <Card
+      title="Introduction to Qiskit Function templates"
+      description="Learn how to use and build Qiskit Function templates."
+      href="/docs/applications-research-tools/qiskit-function-templates"
+      analyticsName="Overview page: Introduction to Qiskit Function templates"
+      linkText="Read the guide"
+    />
+
+    <Card
+      title="Template for chemistry simulation"
+      description="Learn how to deploy and execute the chemistry workflow template."
+      href="/docs/applications-research-tools/function-template-chemistry-workflow"
+      analyticsName="Overview page: Template for chemistry simulation"
+      linkText="Read the guide"
+    />
+
+    <Card
+      title="Template for Hamiltonian simulation"
+      description="Create a parallel transpilation program and deploy it to IBM Quantum Platform to use as a reusable remote service."
+      href="/docs/applications-research-tools/function-template-hamiltonian-simulation"
+      analyticsName="Overview page: Template for Hamiltonian simulation"
+      linkText="Read the guide"
+    />
+</CardGroup>
+
+Functions are provided by IBM&reg; and third-party partners. Each is performant for specific workload characteristics and has unique performance-tuning options.
+
+## Detailed comparison
+
+<span id="circuit"></span>
+### Circuit functions
+
+| Name | Provider | Recommended use | Unique benefits |
+|---|---|---|---|
+| Tensor-Network Error Mitigation<br/><br/>[Guide](/docs/guides/algorithmiq-tem)<br/>[API reference](/docs/api/functions/algorithmiq-tem)      | Algorithmiq  | Workloads that have low-weight observables and loop-free circuits. | Reduces measurement overhead and variance, outperforming standard error mitigation baselines such as Zero Noise Extrapolation (ZNE) and Probabilistic Error Cancellation (PEC) for relevant circuit classes. |
+| QESEM: Error Suppression and Error Mitigation<br/><br/>[Guide](/docs/guides/qedma-qesem)<br/>[API reference](/docs/api/functions/qedma-qesem)    | Qedma        | Workloads that  include circuits with fractional or parameterized gates, high-weight observables,  and workflows that require unbiased expectation values and accurate runtime estimates. | Produces unbiased expectation values with lower variance and resource overhead, outperforming ZNE and PEC for relevant circuit classes. |
+| Performance Management<br/><br/>[Guide](/docs/guides/q-ctrl-performance-management)<br/>[API reference](/docs/api/functions/q-ctrl-performance-management) | Q-CTRL       | Workloads that contain parametric circuits, deep circuits, or require many circuit executions. | Automatically applies AI-driven error suppression to quantum algorithms, maximizing the performance of IBM devices to deliver accurate results while reducing the number of shots, compute time, and cost required. <br/><br/>Zero-overhead method that improves execution accuracy for the Sampler and the Estimator primitives, compatible with any weight of observables. |
+
+<span id="application"></span>
+### Application functions
+
+| Name | Provider | Recommended use | Unique benefits |
+|---|---|---|---|
+| QUICK-PDE<br/><br/>[Guide](/docs/guides/colibritd-pde)<br/>[API reference](/docs/api/functions/colibritd-pde) | ColibriTD            | Use quantum computation for multi-physics PDEs.<br/><br/>Prepare simulation workflows for quantum hardware, while keeping full control over both quantum and physical modeling parameters.                     | Offers a robust hybrid VQA framework that delivers precise, scalable PDE solutions through advanced solution encoding and spectral methods, making it an ideal entry point for teams trying to build quantum-ready simulation capabilities. |
+| Quantum Portfolio Optimizer <br/><br/>[Guide](/docs/guides/global-data-quantum-optimizer)<br/>[API reference](/docs/api/functions/global-data-quantum-optimizer)  | Global Data Quantum  | Workloads for financial optimization, seeking optimal portfolio strategies over time while minimizing risk and maximizing returns, enabling trading strategy back-testing.                                   | Solves combinatorial optimization problems through a highly specialized adaptation of the VQE quantum algorithm for this financial use case, using optimized execution strategies and optimizers, along with noise-aware error mitigation techniques tailored to portfolio optimization. |
+| HI-VQE Chemistry<br/><br/>[Guide](/docs/guides/qunova-chemistry)<br/>[API reference](/docs/api/functions/qunova-chemistry)   | Qunova Computing     | Workloads in computational chemistry, molecular simulation, materials science, or any Hamiltonian simulation that require solving many-body electronic structure problems.                                   | Solves molecular electronic structures by using enhanced SQD with achieving chemical accuracy (1 kcal/mol, 1.6 mHa) for problems modeled with 40 to 60 qubits, outperforming some classical solutions on supercomputers or standard SQD in convergence speed or accuracy, respectively, by orders of magnitude.                                                                                                                                               |
+| Iskay Quantum Optimizer<br/><br/>[Guide](/docs/guides/kipu-optimization)<br/>[API reference](/docs/api/functions/kipu-optimization) | Kipu Quantum         | Optimization workloads such as  scheduling, logistics, routing, and QUBO/HUBO problems. <br/><br/>  | Integrated tunable classical pre- and post-processing methods for the quantum optimization routine. <br/><br/>Delivers runtime advantage over classical solvers (CPLEX, simulated annealing, and tabu search) on selected HUBO benchmarks. <br/><br/>Market Split `ms_5_100`, a hard challenge, solved within hours (see [this tutorial](/docs/tutorials/solve-market-split-problem-with-iskay-quantum-optimizer)).                                        |
+| Singularity Machine Learning<br/><br/>[Guide](/docs/guides/multiverse-computing-singularity)<br/>[API reference](/docs/api/functions/multiverse-computing-singularity)  | Multiverse Computing | Classical machine learning classification workflows that could benefit from improved accuracy or computational efficiency by leveraging quantum optimization executed on IBM hardware.               | Delivers accuracy comparable to or exceeding classical models such as Random Forest or XGBoost, while operating with significantly fewer learners and a more compact ensemble. <br/><br/>Powered by quantum-optimized voting, it selects the most informative learners and refines decision boundaries, resulting in greater efficiency, reduced model complexity, and more robust performance. |
+| Optimization Solver<br/><br/>[Guide](/docs/guides/q-ctrl-optimization-solver)<br/>[API reference](/docs/api/functions/q-ctrl-optimization-solver)             | Q-CTRL               | Binary optimization problems or any combinatorial problem that can be mapped to a binary cost function.  <br/><br/>Cost functions of any order and problem sizes up to the maximum device scale are supported. | Noise-aware, end-to-end quantum optimization solution that enables inputs of high-level problem definitions and automatically finds accurate solutions to classically challenging combinatorial problems on utility-scale quantum hardware. <br/><br/>It abstracts away complexity by handling error suppression, efficient mapping, and hybrid quantum-classical optimization to solve optimization tasks at full device scale without deep quantum expertise. |
