@@ -104,7 +104,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L90-L274" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=17, annotation_factories=None)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L90-L274" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=18, annotation_factories=None)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -397,6 +397,34 @@ Changed in version QPY: 15 `ANNOTATION_HEADER` was added between `REGISTERS` and
 Changed in version QPY: 12 `STANDALONE_VARS` was added between `REGISTERS` and `CUSTOM_DEFINITIONS`.
 
 There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
+
+<span id="qpy-version-18" />
+
+### Version 18
+
+Version 18 removes the `CalibrationsPack` field from the circuit payload. Pulse gate calibrations were removed from Qiskit in version 2.0, and since then the field has always been written as an empty placeholder (`num_cals = 0`). Dropping it saves 2 bytes per circuit and cleans up the format.
+
+Version 18 also corrects the encoding of integer and float `INSTRUCTION_PARAM` values to big-endian byte order, consistent with the rest of the QPY specification. In versions 1–17 these were mistakenly written in little-endian.
+
+#### New ParamRegisterPack
+
+Version 18 replaces the encoding of a Register payload, which stores either a whole [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or a single [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit"). It appears as an instruction’s condition (see [INSTRUCTIONS](#qpy-instructions)) and as an `INSTRUCTION_PARAM` of type `'R'`.
+
+Up to [version 17](#qpy-version-17) both cases shared one untyped utf8 string: a register was its bare name, while a clbit was a null character `"\x00"` followed by the bit’s index in the circuit *written out as decimal digits*. From version 18 the payload begins with a tag byte identifying which of the two it is:
+
+```c
+struct {                    // classical register, tag == 1
+  uint8_t kind;
+  char    name[];           // to the end of the payload
+}
+
+struct {                    // single clbit, tag == 0
+  uint8_t  kind;
+  uint32_t index;           // index of the bit in the circuit
+}
+```
+
+The register name needs no length of its own because the enclosing field already delimits the payload: `conditional_reg_name_size` for a condition, and the `INSTRUCTION_PARAM` header’s `size` for a parameter.
 
 <span id="qpy-version-17" />
 
@@ -1575,6 +1603,8 @@ struct {
 ```
 
 This metadata object is immediately followed by `name_size` bytes of utf8 bytes for the `name`. `name` here is the Qiskit class name for the Instruction class if it’s defined in Qiskit. Otherwise it falls back to the custom instruction name. Following the `name` bytes there are `label_size` bytes of utf8 data for the label if one was set on the instruction. Following the label bytes if `has_conditional` is `True` then there are `conditional_reg_name_size` bytes of utf8 data for the name of the conditional register name. In case of single classical bit conditions the register name utf8 data will be prefixed with a null character “x00” and then a utf8 string integer representing the classical bit index in the circuit that the condition is on.
+
+Changed in version QPY: 18 This payload is a tagged struct rather than a utf8 string; see [Version 18](#qpy-version-18).
 
 This is immediately followed by the INSTRUCTION\_ARG structs for the list of arguments of that instruction. These are in the order of all quantum arguments (there are num\_qargs of these) followed by all classical arguments (num\_cargs of these).
 
