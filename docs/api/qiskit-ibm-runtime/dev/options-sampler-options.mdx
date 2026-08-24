@@ -20,7 +20,7 @@ python_api_name: qiskit_ibm_runtime.options.SamplerOptions
   *   **\_VERSION** (*int*)
   *   **max\_execution\_time** (*UnsetType | int*)
   *   **environment** ([*EnvironmentOptions*](options-environment-options "qiskit_ibm_runtime.options.environment_options.EnvironmentOptions") *| Dict*)
-  *   **simulator** ([*LegacySimulatorOptions*](options-legacy-simulator-options "qiskit_ibm_runtime.options.simulator_options.LegacySimulatorOptions") *| Dict*)
+  *   **simulator** ([*SimulatorOptions*](options-simulator-options "qiskit_ibm_runtime.options.simulator_options.SimulatorOptions") *| Dict*)
   *   **default\_shots** (*UnsetType | int*)
   *   **dynamical\_decoupling** ([*DynamicalDecouplingOptions*](options-dynamical-decoupling-options "qiskit_ibm_runtime.options.dynamical_decoupling_options.DynamicalDecouplingOptions") *| Dict*)
   *   **execution** ([*SamplerExecutionOptionsV2*](options-sampler-execution-options-v2 "qiskit_ibm_runtime.options.sampler_execution_options.SamplerExecutionOptionsV2") *| Dict*)
@@ -29,7 +29,11 @@ python_api_name: qiskit_ibm_runtime.options.SamplerOptions
 
   ### default\_shots
 
-  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.default_shots" attributeTypeHint="UnsetType | int" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.default_shots">
+    Type: `UnsetType` | `int`
+
+    Default value: `Unset`
+
     The default number of shots to use if none are specified in the PUBs or in the run method.
 
     Default: 4096.
@@ -37,17 +41,29 @@ python_api_name: qiskit_ibm_runtime.options.SamplerOptions
 
   ### dynamical\_decoupling
 
-  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.dynamical_decoupling" attributeTypeHint="DynamicalDecouplingOptions | Dict" attributeTypeHintHref="options-dynamical-decoupling-options" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=DynamicalDecouplingOptions)">
+  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.dynamical_decoupling">
+    Type: [`DynamicalDecouplingOptions`](options-dynamical-decoupling-options "qiskit_ibm_runtime.options.dynamical_decoupling_options.DynamicalDecouplingOptions") | `Dict`
+
+    Default value: `FieldInfo(annotation=NoneType, required=False, default_factory=DynamicalDecouplingOptions)`
+
     Suboptions for dynamical decoupling. See [`DynamicalDecouplingOptions`](options-dynamical-decoupling-options "qiskit_ibm_runtime.options.DynamicalDecouplingOptions") for all available options.
   </Attribute>
 
   ### environment
 
-  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.environment" attributeTypeHint="EnvironmentOptions | Dict" attributeTypeHintHref="options-environment-options" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=EnvironmentOptions)" />
+  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.environment">
+    Type: [`EnvironmentOptions`](options-environment-options "qiskit_ibm_runtime.options.EnvironmentOptions") | `Dict`
+
+    Default value: `FieldInfo(annotation=NoneType, required=False, default_factory=EnvironmentOptions)`
+  </Attribute>
 
   ### execution
 
-  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.execution" attributeTypeHint="SamplerExecutionOptionsV2 | Dict" attributeTypeHintHref="options-sampler-execution-options-v2" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=SamplerExecutionOptionsV2)">
+  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.execution">
+    Type: [`SamplerExecutionOptionsV2`](options-sampler-execution-options-v2 "qiskit_ibm_runtime.options.sampler_execution_options.SamplerExecutionOptionsV2") | `Dict`
+
+    Default value: `FieldInfo(annotation=NoneType, required=False, default_factory=SamplerExecutionOptionsV2)`
+
     Execution time options.
 
     See [`SamplerExecutionOptionsV2`](options-sampler-execution-options-v2 "qiskit_ibm_runtime.options.SamplerExecutionOptionsV2") for all available options.
@@ -55,21 +71,37 @@ python_api_name: qiskit_ibm_runtime.options.SamplerOptions
 
   ### experimental
 
-  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.experimental" attributeTypeHint="UnsetType | dict" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.experimental">
+    Type: `UnsetType` | `dict`
+
+    Default value: `Unset`
+
     Experimental options.
   </Attribute>
 
   ### max\_execution\_time
 
-  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.max_execution_time" attributeTypeHint="UnsetType | int" attributeValue="Unset" />
+  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.max_execution_time">
+    Type: `UnsetType` | `int`
+
+    Default value: `Unset`
+  </Attribute>
 
   ### simulator
 
-  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.simulator" attributeTypeHint="LegacySimulatorOptions | Dict" attributeTypeHintHref="options-legacy-simulator-options" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=LegacySimulatorOptions)" />
+  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.simulator">
+    Type: [`SimulatorOptions`](options-simulator-options "qiskit_ibm_runtime.options.SimulatorOptions") | `Dict`
+
+    Default value: `FieldInfo(annotation=NoneType, required=False, default_factory=SimulatorOptions)`
+  </Attribute>
 
   ### twirling
 
-  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.twirling" attributeTypeHint="TwirlingOptions | Dict" attributeTypeHintHref="options-twirling-options" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=TwirlingOptions)">
+  <Attribute id="qiskit_ibm_runtime.options.SamplerOptions.twirling">
+    Type: [`TwirlingOptions`](options-twirling-options "qiskit_ibm_runtime.options.twirling_options.TwirlingOptions") | `Dict`
+
+    Default value: `FieldInfo(annotation=NoneType, required=False, default_factory=TwirlingOptions)`
+
     Pauli twirling options.
 
     See [`TwirlingOptions`](options-twirling-options "qiskit_ibm_runtime.options.TwirlingOptions") for all available options.

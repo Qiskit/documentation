@@ -7,7 +7,8 @@ description: Introduction to IBM Quantum primitives, and an explanation of avail
 
 Primitives were created to simplify the most common tasks for quantum computers: namely, sampling quantum states and calculating expectation values. The first IBM Quantum primitives ([`EstimatorV2`](/docs/api/qiskit-ibm-runtime/estimator-v2) and [`SamplerV2`](/docs/api/qiskit-ibm-runtime/sampler-v2)) are implementations of the Qiskit [primitives base classes](/docs/guides/primitives). They provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service and are used to access IBM Quantum&reg; hardware.
 
-The newest IBM Quantum primitive, [Executor](/docs/api/qiskit-ibm-runtime/executor) (which is in beta), provides a lower-level interface that gives more visibility and control without sacrificing performance.
+The newest IBM Quantum primitive, [Executor](/docs/api/qiskit-ibm-runtime/executor) (which is in beta), provides a lower-level interface that gives more visibility and control without sacrificing performance. 
+`Executor` also exposes **additional capabilities that Sampler does not offer**, such as additional twirling groups and twirling for circuits with fractional gates. Refer to [Migrate from Sampler to Executor](/docs/guides/migrate-from-sampler-to-executor) for more information on whether to migrate to `Executor`. 
 
 <CardGroup>
     <Card
