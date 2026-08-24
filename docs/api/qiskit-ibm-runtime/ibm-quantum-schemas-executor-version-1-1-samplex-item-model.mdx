@@ -10,7 +10,7 @@ python_api_name: ibm_quantum_schemas.executor.version_1_1.SamplexItemModel
 
 # SamplexItemModel
 
-<Class id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.9.20260612/ibm_quantum_schemas/executor/version_1_1/models.py#L126-L155" signature="SamplexItemModel" modifiers="pydantic model">
+<Class id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10.20260723/ibm_quantum_schemas/executor/version_1_1/models.py#L126-L155" signature="SamplexItemModel" modifiers="pydantic model">
   Bases: `BaseModel`
 
   Execution specifications for a single quantum circuit.
@@ -19,7 +19,11 @@ python_api_name: ibm_quantum_schemas.executor.version_1_1.SamplexItemModel
 
   ### chunk\_size
 
-  <Attribute id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel.chunk_size" attributeTypeHint="Annotated[int, Field(ge" attributeValue="1)] | Literal['auto'] = 'auto'" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel.chunk_size" modifiers="field">
+    Type: `Annotated`\[`int`, `Field`(`ge``=``1`)] | `Literal`\[`'auto'`]
+
+    Default value: `'auto'`
+
     The maximum number circuit arguments to bind to the circuit per shot loop.
 
     When `"auto"`, the number is chosen server-side with heuristics designed to optimize execution speed. A quantum program must have items where either all chunk sizes are integer-valued, or all chunk sizes are `"auto"`. Integer values are only allowed inside of session exection mode.
@@ -27,25 +31,35 @@ python_api_name: ibm_quantum_schemas.executor.version_1_1.SamplexItemModel
 
   ### item\_type
 
-  <Attribute id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel.item_type" attributeTypeHint="Literal['samplex']" attributeValue="'samplex'" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel.item_type" modifiers="field">
+    Type: `Literal`\[`'samplex'`]
+
+    Default value: `'samplex'`
+
     The type of quantum program item.
   </Attribute>
 
   ### samplex
 
-  <Attribute id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel.samplex" attributeTypeHint="SamplexModel [Required]" attributeTypeHintHref="ibm-quantum-schemas-common-samplex-model" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel.samplex" modifiers="field">
+    Type: [`SamplexModel`](ibm-quantum-schemas-common-samplex-model "ibm_quantum_schemas.common.SamplexModel")
+
     A JSON-encoded samplex.
   </Attribute>
 
   ### samplex\_arguments
 
-  <Attribute id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel.samplex_arguments" attributeTypeHint="dict[str, bool | int | PauliLindbladMapModel | TensorModel] [Required]" attributeTypeHintHref="ibm-quantum-schemas-common-pauli-lindblad-map-model" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel.samplex_arguments" modifiers="field">
+    Type: `dict`\[`str`, `bool` | `int` | [`PauliLindbladMapModel`](ibm-quantum-schemas-common-pauli-lindblad-map-model "ibm_quantum_schemas.common.PauliLindbladMapModel") | [`TensorModel`](ibm-quantum-schemas-common-tensor-model "ibm_quantum_schemas.common.TensorModel")]
+
     Arguments to the samplex.
   </Attribute>
 
   ### shape
 
-  <Attribute id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel.shape" attributeTypeHint="list[int] [Required]" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_1_1.SamplexItemModel.shape" modifiers="field">
+    Type: `list`\[`int`]
+
     The shape of this item.
 
     This shape must extend (via broadcasting) the implicit shape of the :attr:\~samplex\_arguments\`. The non-trivial axes it introduces enumerate randomizations.

@@ -1,0 +1,54 @@
+---
+title: StretchValueModel (dev version)
+description: API reference for ibm_quantum_schemas.executor.version_2_0.StretchValueModel in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.executor.version_2_0.StretchValueModel
+---
+
+<span id="ibm-quantum-schemas-executor-version-2-0-stretchvaluemodel" />
+
+# StretchValueModel
+
+<Class id="ibm_quantum_schemas.executor.version_2_0.StretchValueModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10.20260723/ibm_quantum_schemas/executor/version_2_0/models.py#L247-L268" signature="StretchValueModel" modifiers="pydantic model">
+  Bases: `BaseModel`
+
+  Describes circuit stretch value resolutions.
+
+  All timing information is expressed in terms of multiples of the quantity `dt`, time step duration of the control electronics, which can be queried in backend and target properties.
+
+  ### expanded\_values
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.StretchValueModel.expanded_values" modifiers="field">
+    Type: `list`\[`tuple`\[`int`, `int`]]
+
+    A sequence of pairs `(time, duration)` indicating the time and duration of each delay.
+
+    All units are `dt`, where the `time` denotes the absolute time of a delay in the circuit schedule, and the `duration` denotes the total duration of the delay.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.StretchValueModel.name" modifiers="field">
+    Type: `str`
+
+    The name of the stretch.
+  </Attribute>
+
+  ### remainder
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.StretchValueModel.remainder" modifiers="field">
+    Type: `int`
+
+    The time left over if `value` were to be used each stretch, in units of `dt`.
+  </Attribute>
+
+  ### value
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.StretchValueModel.value" modifiers="field">
+    Type: `int`
+
+    The resolved stretch value, up to the remainder, in units of `dt`.
+  </Attribute>
+</Class>
+

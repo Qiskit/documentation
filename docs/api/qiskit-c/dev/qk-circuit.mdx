@@ -916,6 +916,8 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_barrier" signature="QkExitCode qk_circuit_barrier(QkCircuit *circuit, const uint32_t *qubits, uint32_t num_qubits)">
   Append a barrier to the circuit.
 
+  If `qubits` is `NULL`, then `num_qubits` is ignored and the barrier is applied to all qubits in the circuit. This is a convenience; it is more efficient to allocate your own all-qubits buffer and re-use it, if you need multiple full-width barriers.
+
   <span id="group__QkCircuit_1autotoc_md57" />
 
   #### Example
@@ -932,15 +934,13 @@ The circuit C API currently only supports creating circuits that contain operati
 
   <span id="group__QkCircuit_1autotoc_md58" />
 
-  The length of the array `qubits` points to must be `num_qubits`. If there is a mismatch the behavior is undefined.
-
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`. If `qubits` is not `NULL`, it must be aligned and point to `num_qubits` valid initialized values that have no duplicates and are all in-bounds for the circuit.
 
   **Parameters**
 
   *   **circuit** – A pointer to the circuit to add the barrier to.
-  *   **num\_qubits** – The number of qubits wide the barrier is.
   *   **qubits** – The pointer to the array of `uint32_t` qubit indices to add the barrier on.
+  *   **num\_qubits** – The number of qubits wide the barrier is. Ignored if `qubits` is null.
 
   **Returns**
 
