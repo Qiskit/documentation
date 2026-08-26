@@ -236,6 +236,15 @@ export class Pkg {
         language: "Python",
       });
     }
+    if (name === "qiskit-addon-fermions-c") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Fermions",
+        githubSlug: "Qiskit/qiskit-addon-fermions",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
     if (name === "qiskit-addon-pna") {
       return new Pkg({
         ...args,
