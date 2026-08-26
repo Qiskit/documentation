@@ -1,0 +1,150 @@
+---
+title: F2QSynthesis (latest version)
+description: API reference for qiskit_fermions.transpiler.passes.F2QSynthesis in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.transpiler.passes.F2QSynthesis
+---
+
+# F2QSynthesis
+
+<Class id="qiskit_fermions.transpiler.passes.F2QSynthesis" isDedicatedPage={true} signature="F2QSynthesis(config=None)" modifiers="class">
+  Bases: [`GenericPass`](/docs/api/qiskit/qiskit.passmanager.GenericPass)\[[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)]
+
+  A transpilation pass to map fermion-based circuit instructions to qubit-based ones.
+
+  This transpilation pass works similarly to Qiskit’s [`HighLevelSynthesis`](/docs/api/qiskit/qiskit.transpiler.passes.HighLevelSynthesis) pass; given an input [`FermionicDAGCircuit`](qiskit-fermions-circuit-fermionic-dag-circuit "qiskit_fermions.circuit.FermionicDAGCircuit"), it iterates the contained instructions and delegates the translation to qubit-based instructions to matching [`methods`](#qiskit_fermions.transpiler.passes.F2QSynthesis.methods "qiskit_fermions.transpiler.passes.F2QSynthesis.methods"). The insertion of the qubit-based circuit instructions into the output [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit) is also left to the plugin method. This pass will merely have prepared the [`QuantumRegister`](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister) according to the global transpilation [`F2QLayout`](qiskit-fermions-transpiler-f-2-q-layout "qiskit_fermions.transpiler.F2QLayout") setting.
+
+  **Usage**
+
+  There are two ways to configure the plugins used by this transpiler pass. The examples below show the equivalent configuration to the [`generate_preset_jw_pass_manager()`](qiskit-fermions-transpiler-presets-generate-preset-jw-pass-manager "qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager").
+
+  1.  Providing a `config` during initialization:
+
+      ```pycon
+      >>> from qiskit_fermions.mappers.library import jordan_wigner
+      >>> from qiskit_fermions.transpiler import passes
+      >>>
+      >>> config = {
+      ...     "Evolution": ("MapperFn", (jordan_wigner,)),
+      ...     "InitializeModes": "TrivialOccupation",
+      ...     "OrbitalRotation": "GivensDecomposition",
+      ... }
+      >>> synth = passes.F2QSynthesis(config)
+      ```
+
+  2.  Manually populating the [`methods`](#qiskit_fermions.transpiler.passes.F2QSynthesis.methods "qiskit_fermions.transpiler.passes.F2QSynthesis.methods") attribute:
+
+      ```pycon
+      >>> from qiskit_fermions.mappers.library import jordan_wigner
+      >>> from qiskit_fermions.transpiler import passes
+      >>>
+      >>> synth = passes.F2QSynthesis()
+      >>> synth.methods["Evolution"] = passes.MapperFnEvolutionSynthesis(jordan_wigner)
+      >>> synth.methods["InitializeModes"] = passes.TrivialOccupationInitializeModesSynthesis()
+      >>> synth.methods["OrbitalRotation"] = passes.GivensDecompositionOrbitalRotationSynthesis()
+      ```
+
+      Through this manual approach it is also possible to inject custom [`F2QSynthesisPlugin`](qiskit-fermions-transpiler-passes-synthesis-f-2-q-synthesis-plugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin") implementations without requiring them to be registered through an [entry-point](https://setuptools.pypa.io/en/latest/userguide/entry_point.html).
+
+  Initializing this transpiler pass can be done with the arguments listed below.
+
+  **Parameters**
+
+  **config** ([*F2QSynthesisConfig*](qiskit-fermions-transpiler-passes-synthesis-synthesis-f-2-q-synthesis-config "qiskit_fermions.transpiler.passes.synthesis.synthesis.F2QSynthesisConfig") *| None*) – an optional dictionary to pre-populate the [`methods`](#qiskit_fermions.transpiler.passes.F2QSynthesis.methods "qiskit_fermions.transpiler.passes.F2QSynthesis.methods") with plugins provided by the [`F2QSynthesisPluginManager`](qiskit-fermions-transpiler-passes-synthesis-f-2-q-synthesis-plugin-manager "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPluginManager").
+
+  ## Attributes
+
+  ### methods
+
+  <Attribute id="qiskit_fermions.transpiler.passes.F2QSynthesis.methods">
+    Type: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str), [`F2QSynthesisPlugin`](qiskit-fermions-transpiler-passes-synthesis-f-2-q-synthesis-plugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin")]
+
+    A dictionary of fermion-to-qubit circuit instruction transpilation methods.
+
+    For this transpilation pass to have any effect, this dictionary must be populated with instances of the [`F2QSynthesisPlugin`](qiskit-fermions-transpiler-passes-synthesis-f-2-q-synthesis-plugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin") protocol. The keys of this dictionary correspond to the `__name__` of a circuit instruction.
+
+    All available transpilation plugins are managed by the [`F2QSynthesisPluginManager`](qiskit-fermions-transpiler-passes-synthesis-f-2-q-synthesis-plugin-manager "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPluginManager").
+
+    <Admonition title="Note" type="note">
+      This dictionary is **empty** by default! You can pre-populate it with plugins provided by the [`F2QSynthesisPluginManager`](qiskit-fermions-transpiler-passes-synthesis-f-2-q-synthesis-plugin-manager "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPluginManager") by providing a `config` argument during initialization of this transpiler pass instance.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit_fermions.transpiler.passes.F2QSynthesis.run" signature="run(dag)">
+    Runs this transpilation pass.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](qiskit-fermions-circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported.
+
+    **Returns**
+
+    The output circuit with qubit-based instructions.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – when a [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) is encountered whose [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) is not of type [`FermionicGate`](qiskit-fermions-circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate").
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – when a [`FermionicGate`](qiskit-fermions-circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") type is encountered for which no translation plugin is present in [`methods`](#qiskit_fermions.transpiler.passes.F2QSynthesis.methods "qiskit_fermions.transpiler.passes.F2QSynthesis.methods").
+
+    **Return type**
+
+    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
+  </Function>
+
+  **Inherited Methods**
+
+  ### execute
+
+  <Function id="qiskit_fermions.transpiler.passes.F2QSynthesis.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_fermions.transpiler.passes.F2QSynthesis.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_fermions.transpiler.passes.F2QSynthesis.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
+  </Function>
+</Class>
+

@@ -1,0 +1,39 @@
+---
+title: SupportsFermionOperator (latest version)
+description: API reference for qiskit_fermions.protocols.SupportsFermionOperator in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.protocols.SupportsFermionOperator
+---
+
+# SupportsFermionOperator
+
+<Class id="qiskit_fermions.protocols.SupportsFermionOperator" isDedicatedPage={true} signature="SupportsFermionOperator(*args, **kwargs)" modifiers="class">
+  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)
+
+  An equivalent of the [`ffsim.SupportsFermionOperator`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.SupportsFermionOperator.html#ffsim.SupportsFermionOperator "(in ffsim)") protocol.
+
+  See [`fermion_operator()`](qiskit-fermions-mappers-library-fermion-operator "qiskit_fermions.mappers.library.fermion_operator") for the type-agnostic helper function dispatching to the method below.
+
+  ```pycon
+  >>> from qiskit_fermions.operators import MajoranaOperator
+  >>> maj_op = MajoranaOperator.from_dict({(0, 1): 1})
+  >>> fer_op = maj_op._fermion_operator_()
+  >>> print(format(fer_op.normal_ordered().simplify()))
+    0.000000e0 +1.000000e0j * ()
+    0.000000e0 -2.000000e0j * (+0 -0)
+  ```
+
+  **Protocol Methods**
+
+  ### \_fermion\_operator\_
+
+  <Function id="qiskit_fermions.protocols.SupportsFermionOperator._fermion_operator_" signature="_fermion_operator_()">
+    Converts this operator into a [`FermionOperator`](qiskit-fermions-operators-fermion-operator "qiskit_fermions.operators.FermionOperator") instance.
+
+    **Return type**
+
+    [FermionOperator](qiskit-fermions-operators-fermion-operator "qiskit_fermions.operators.FermionOperator")
+  </Function>
+</Class>
+

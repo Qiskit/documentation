@@ -1,0 +1,1230 @@
+---
+title: FermionOperator (latest version)
+description: API reference for qiskit_fermions.operators.FermionOperator in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.operators.FermionOperator
+---
+
+# FermionOperator
+
+<Class id="qiskit_fermions.operators.FermionOperator" isDedicatedPage={true} signature="FermionOperator(coeffs, actions, modes, boundaries)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  A spin-less fermionic operator.
+
+  ## Definition
+
+  This operator is defined by a linear combination of products of fermionic creation and annihilation operators acting on spin-less fermionic modes. That is to say, the individual terms fulfill the following anti-commutation relations:   <span id="id1" />[\[1\]](#id2)
+
+$$
+\left\{a^\dagger_i, a^\dagger_j\right\} =
+\left\{a_i, a_j\right\} = 0,~~\text{and}~~
+\left\{a_i, a^\dagger_j\right\} = \delta_{ij} \, ,
+$$
+
+  where $i$ and $j$ do not distinguish the spin species of the fermionic modes they are indexing.
+
+  This makes the definition of the entire operator the following:
+
+$$
+\text{\texttt{FermionOperator}} = \sum_i c_i \bigotimes_j \hat{A_j} \, ,
+$$
+
+  where $\hat{A_j} \in \{ a_j, a^\dagger_j \}$ and $c_i$ is the (complex) coefficient making up the linear combination of products. The index $j$ can take any value between 0 and the number of fermionic modes acted upon by the operator minus 1.
+
+  <span id="fermionoperator-implementation" />
+
+  ## Implementation
+
+  This class stores the terms and coefficients in multiple sparse vectors, akin to the [compressed sparse row format](https://en.wikipedia.org/wiki/Sparse_matrix#Compressed_sparse_row_\(CSR,_CRS_or_Yale_format\)) commonly used for sparse matrices. More concretely, a single operator contains 4 arrays:
+
+  |              |                                                                                   |
+  | ------------ | --------------------------------------------------------------------------------- |
+  | `coeffs`     | A vector of complex coefficients consisting of two 64-bit floating point numbers. |
+  | `actions`    | A vector of booleans storing the nature of the second-quantization actions.       |
+  | `modes`      | A vector of 32-bit integers storing the fermionic mode indices acted upon.        |
+  | `boundaries` | A vector of integers indicating the boundaries in `actions` and `modes`.          |
+
+  Entries in `actions` indicate creation (annihilation) operators by `True` (`False`). Fermionic modes indexed by `modes` are considered spinless.
+
+  <Admonition title="Note" type="note">
+    You can access **read-only copies** of these internal arrays via their respective methods: [`get_coeffs()`](#qiskit_fermions.operators.FermionOperator.get_coeffs "qiskit_fermions.operators.FermionOperator.get_coeffs"), [`get_actions()`](#qiskit_fermions.operators.FermionOperator.get_actions "qiskit_fermions.operators.FermionOperator.get_actions"), [`get_modes()`](#qiskit_fermions.operators.FermionOperator.get_modes "qiskit_fermions.operators.FermionOperator.get_modes"), and [`get_boundaries()`](#qiskit_fermions.operators.FermionOperator.get_boundaries "qiskit_fermions.operators.FermionOperator.get_boundaries").
+  </Admonition>
+
+  This data structure allows for very efficient construction and manipulation of operators. However, it implies that duplicate terms might be contained in an operator at any moment. These must be resolved manually through the use of [`simplify()`](#qiskit_fermions.operators.FermionOperator.simplify "qiskit_fermions.operators.FermionOperator.simplify").
+
+  ### Construction
+
+  An operator can be constructed directly by providing the arrays outlined above:
+
+  ```pycon
+  >>> from qiskit_fermions.operators import FermionOperator
+  >>> coeffs = [1.0, 2.0, -3.0, 4.0j, -0.5j]
+  >>> actions = [True, False, False, True, True, True, False, False]
+  >>> modes = [0, 0, 0, 1, 0, 1, 2, 3]
+  >>> boundaries = [0, 0, 1, 2, 4, 8]
+  >>> op = FermionOperator(coeffs, actions, modes, boundaries)
+  >>> print(format(op))
+    1.000000e0 +0.000000e0j * ()
+   -3.000000e0 +0.000000e0j * (-0)
+    0.000000e0 +4.000000e0j * (-0 +1)
+    2.000000e0 +0.000000e0j * (+0)
+   -0.000000e0-5.000000e-1j * (+0 +1 -2 -3)
+  ```
+
+  For convenience, it is possible to construct an operator from a Python dictionary like so:
+
+  ```pycon
+  >>> from qiskit_fermions.operators import cre, ann
+  >>> op = FermionOperator.from_dict(
+  ...     {
+  ...         (): 1.0,
+  ...         (cre(0),): 2.0,
+  ...         (ann(0),): -3.0,
+  ...         (ann(0), cre(1)): 4.0j,
+  ...         (cre(0), cre(1), ann(2), ann(3)): -0.5j,
+  ...     }
+  ... )
+  >>> print(format(op))
+    1.000000e0 +0.000000e0j * ()
+   -3.000000e0 +0.000000e0j * (-0)
+    0.000000e0 +4.000000e0j * (-0 +1)
+    2.000000e0 +0.000000e0j * (+0)
+   -0.000000e0-5.000000e-1j * (+0 +1 -2 -3)
+  ```
+
+  In this example, we have leveraged [`cre()`](qiskit-fermions-operators-cre "qiskit_fermions.operators.cre") and [`ann()`](qiskit-fermions-operators-ann "qiskit_fermions.operators.ann") for creating the creation and annihilation operators at the specified modes.
+
+  In addition, the following construction and quick helper methods are available:
+
+  |                                                                                                                                                                         |                                                                                                                                                                                                                                                |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`zero`](#qiskit_fermions.operators.FermionOperator.zero "qiskit_fermions.operators.FermionOperator.zero")()                                                            | Constructs the additive identity operator.                                                                                                                                                                                                     |
+  | [`one`](#qiskit_fermions.operators.FermionOperator.one "qiskit_fermions.operators.FermionOperator.one")()                                                               | Constructs the multiplicative identity operator.                                                                                                                                                                                               |
+  | [`from_terms`](#qiskit_fermions.operators.FermionOperator.from_terms "qiskit_fermions.operators.FermionOperator.from_terms")(terms)                                     | Constructs a new operator from an iterator of terms (see also [`iter_terms()`](#qiskit_fermions.operators.FermionOperator.iter_terms "qiskit_fermions.operators.FermionOperator.iter_terms")).                                                 |
+  | [`from_terms_with_groups`](#qiskit_fermions.operators.FermionOperator.from_terms_with_groups "qiskit_fermions.operators.FermionOperator.from_terms_with_groups")(terms) | Constructs a new operator from an iterator of terms with groups (see also [`iter_terms_with_groups()`](#qiskit_fermions.operators.FermionOperator.iter_terms_with_groups "qiskit_fermions.operators.FermionOperator.iter_terms_with_groups")). |
+
+  ### Formatting
+
+  In the examples above, the constructed operators have been printed using the output from [`format()`](https://docs.python.org/3/library/functions.html#format), which results in a human-readable form of the operator.
+
+  ```pycon
+  >>> print(format(op))
+    1.000000e0 +0.000000e0j * ()
+   -3.000000e0 +0.000000e0j * (-0)
+    0.000000e0 +4.000000e0j * (-0 +1)
+    2.000000e0 +0.000000e0j * (+0)
+   -0.000000e0-5.000000e-1j * (+0 +1 -2 -3)
+  ```
+
+  <Admonition title="Note" type="note">
+    The printing order of `format(op)` gets explicitly sorted before printing. As such, it does not reflect the order of the terms inside the operator.
+  </Admonition>
+
+  An alternative form can be obtained from the [`repr()`](https://docs.python.org/3/library/functions.html#repr) function, which results in a Python-interpretable representation. In other words, this output can readily be copied and pasted into a Python shell:
+
+  ```pycon
+  >>> print(repr(op))
+  FermionOperator.from_dict({...})
+  ```
+
+  Finally, for large operators both of these outputs might be very long and undesirable. Then, a very simple form with minimal information can be obtained from the `str()` function:
+
+  ```pycon
+  >>> print(str(op))
+  <FermionOperator with 5 terms>
+  ```
+
+  ### Iteration
+
+  Since the underlying data structure is implemented in Rust and has a non-trivial layout, it cannot be iterated over directly:
+
+  ```pycon
+  >>> list(iter(op))
+  Traceback (most recent call last):
+    ...
+  TypeError: 'qiskit_fermions.operators.fermion_operator.FermionOperator' object is not iterable
+  ```
+
+  Instead, this class provides custom iterators to fulfill this purpose:
+
+  ```pycon
+  >>> list(sorted(op.iter_terms()))
+  [([], (1+0j)), ([(False, 0)], (-3+0j)), ([(False, 0), (True, 1)], 4j), ([(True, 0)], (2+0j)), ([(True, 0), (True, 1), (False, 2), (False, 3)], (-0-0.5j))]
+  ```
+
+  <Admonition title="See also" type="note">
+    **[`iter_terms()`](#qiskit_fermions.operators.FermionOperator.iter_terms "qiskit_fermions.operators.FermionOperator.iter_terms")**
+
+    For more relevant implementation details.
+  </Admonition>
+
+  The table below lists all available iterators:
+
+  |                                                                                                                                                                    |                                                                          |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+  | [`iter_terms`](#qiskit_fermions.operators.FermionOperator.iter_terms "qiskit_fermions.operators.FermionOperator.iter_terms")()                                     | An iterator over the operator's terms.                                   |
+  | [`iter_terms_with_groups`](#qiskit_fermions.operators.FermionOperator.iter_terms_with_groups "qiskit_fermions.operators.FermionOperator.iter_terms_with_groups")() | An iterator over the operator's terms with their associated group index. |
+
+  ### Arithmetics
+
+  The following arithmetic operations are supported:
+
+  <span id="addition-subtraction" />
+
+  #### Addition/Subtraction
+
+  ```pycon
+  >>> op = FermionOperator.one()
+  >>> (op + op).simplify()
+  FermionOperator.from_dict({(): 2+0j})
+  >>> (op - op).simplify()
+  FermionOperator.from_dict({})
+  >>> op += op
+  >>> op.simplify()
+  FermionOperator.from_dict({(): 2+0j})
+  >>> op -= op
+  >>> op.simplify()
+  FermionOperator.from_dict({})
+  ```
+
+  <span id="scalar-multiplication-divison" />
+
+  #### Scalar Multiplication/Divison
+
+  ```pycon
+  >>> op = FermionOperator.one()
+  >>> (2 * op).simplify()
+  FermionOperator.from_dict({(): 2+0j})
+  >>> (op / 2).simplify()
+  FermionOperator.from_dict({(): 0.5+0j})
+  >>> op *= 2
+  >>> op.simplify()
+  FermionOperator.from_dict({(): 2+0j})
+  >>> op /= 2
+  >>> op.simplify()
+  FermionOperator.from_dict({(): 1+0j})
+  ```
+
+  #### Operator Composition
+
+  <Admonition title="Note" type="note">
+    Operator composition corresponds to left-multiplication: `c = a & b` corresponds to $C = B A$. In other words, the composition of two operators returns a resulting operator that performs “first `a` and then `b`”.
+  </Admonition>
+
+  ```pycon
+  >>> op1 = FermionOperator.from_dict({(): 2.0, (cre(0),): 3.0})
+  >>> op2 = FermionOperator.from_dict({(): 1.5, (ann(1),): 4.0})
+  >>> comp = (op1 & op2).simplify()
+  >>> print(format(comp))
+    3.000000e0 +0.000000e0j * ()
+    8.000000e0 +0.000000e0j * (-1)
+    1.200000e1 +0.000000e0j * (-1 +0)
+    4.500000e0 +0.000000e0j * (+0)
+  >>> op2 &= op1
+  >>> print(format(op2.simplify()))
+    3.000000e0 +0.000000e0j * ()
+    8.000000e0 +0.000000e0j * (-1)
+    4.500000e0 +0.000000e0j * (+0)
+    1.200000e1 +0.000000e0j * (+0 -1)
+  >>> squared = (op1 ** 2).simplify()
+  >>> print(format(squared))
+    4.000000e0 +0.000000e0j * ()
+    1.200000e1 +0.000000e0j * (+0)
+    9.000000e0 +0.000000e0j * (+0 +0)
+  ```
+
+  <Admonition title="Note" type="note">
+    For convenience, the right-multiplication is implemented by `c = a @ b` (resulting in $C = A B$).
+  </Admonition>
+
+  ```pycon
+  >>> (op1 @ op2).equiv(op2 & op1)
+  True
+  ```
+
+  #### Other Operations
+
+  In addition to the magic methods that correspond to the arithmetic operations outlined above, the following methods are available:
+
+  |                                                                                                                                                       |                                                                              |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`adjoint`](#qiskit_fermions.operators.FermionOperator.adjoint "qiskit_fermions.operators.FermionOperator.adjoint")()                                 | Returns the Hermitian conjugate (or adjoint) of this operator.               |
+  | [`ichop`](#qiskit_fermions.operators.FermionOperator.ichop "qiskit_fermions.operators.FermionOperator.ichop")(\[atol])                                | Removes terms whose coefficient magnitude lies below the provided threshold. |
+  | [`simplify`](#qiskit_fermions.operators.FermionOperator.simplify "qiskit_fermions.operators.FermionOperator.simplify")(\[atol])                       | Returns an equivalent but simplified operator.                               |
+  | [`normal_ordered`](#qiskit_fermions.operators.FermionOperator.normal_ordered "qiskit_fermions.operators.FermionOperator.normal_ordered")(\[sandwich]) | Returns an equivalent operator with normal ordered terms.                    |
+  | [`relabel_modes`](#qiskit_fermions.operators.FermionOperator.relabel_modes "qiskit_fermions.operators.FermionOperator.relabel_modes")(permutation)    | Returns a new operator with relabeled modes.                                 |
+
+  #### Properties
+
+  Finally, various methods exist to check certain properties of an operator:
+
+  |                                                                                                                                                                             |                                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+  | [`is_hermitian`](#qiskit_fermions.operators.FermionOperator.is_hermitian "qiskit_fermions.operators.FermionOperator.is_hermitian")(\[atol])                                 | Returns whether this operator is Hermitian.                  |
+  | [`max_rank`](#qiskit_fermions.operators.FermionOperator.max_rank "qiskit_fermions.operators.FermionOperator.max_rank")()                                                    | Returns the maximum rank of the terms in this operator.      |
+  | [`conserves_particle_number`](#qiskit_fermions.operators.FermionOperator.conserves_particle_number "qiskit_fermions.operators.FermionOperator.conserves_particle_number")() | Returns whether this operator is particle-number conserving. |
+
+  <span id="id2" />
+
+  \[[1](#id1)]
+
+  [https://en.wikipedia.org/wiki/Second\_quantization#Fermion\_creation\_and\_annihilation\_operators](https://en.wikipedia.org/wiki/Second_quantization#Fermion_creation_and_annihilation_operators)
+
+  ## Attributes
+
+  ##### groups
+
+  <Attribute id="qiskit_fermions.operators.FermionOperator.groups">
+    An optional vector of group indices for each term.
+
+    For more information refer to the `grouping` module.
+  </Attribute>
+
+  ## Methods
+
+  ##### adjoint
+
+  <Function id="qiskit_fermions.operators.FermionOperator.adjoint" signature="adjoint()">
+    Returns the Hermitian conjugate (or adjoint) of this operator.
+
+    This affects the terms and coefficients as follows:
+
+    *   the actions in each term reverse their order and flip between creation and annihilation
+    *   the coefficients are complex conjugated
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({(): -1.0j, ((True, 0), (False, 1)): 1.0})
+    >>> adj = op.adjoint()
+    >>> print(format(adj))
+     -0.000000e0 +1.000000e0j * ()
+      1.000000e0 -0.000000e0j * (+1 -0)
+    ```
+  </Function>
+
+  ##### conserves\_particle\_number
+
+  <Function id="qiskit_fermions.operators.FermionOperator.conserves_particle_number" signature="conserves_particle_number()">
+    Returns whether this operator is particle-number conserving.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({((True, 0), (False, 1)): 1})
+    >>> op.conserves_particle_number()
+    True
+    >>> op = FermionOperator.from_dict({((True, 0),): 1})
+    >>> op.conserves_particle_number()
+    False
+    ```
+
+    **Returns**
+
+    Whether this operator is particle-number conserving.
+  </Function>
+
+  ##### conserves\_sector
+
+  <Function id="qiskit_fermions.operators.FermionOperator.conserves_sector" signature="conserves_sector(block_sizes)">
+    Returns whether every term conserves particle number within each mode block.
+
+    `block_sizes` partitions the mode range into consecutive, non-overlapping blocks: block `b` spans modes `[start_b, start_b + block_sizes[b])` where `start_b` is the sum of the preceding block sizes. A term conserves the sector if and only if, in *every* block, its number of creation operators equals its number of annihilation operators. A term acting on a mode beyond the final block does not conserve the sector.
+
+    An empty `block_sizes` treats all modes as a single block, making this equivalent to [`conserves_particle_number()`](#qiskit_fermions.operators.FermionOperator.conserves_particle_number "qiskit_fermions.operators.FermionOperator.conserves_particle_number"). A single block `[norb]` checks conservation for a spinless FCI sector, while two equal blocks `[norb, norb]` check that the alpha modes `[0, norb)` and beta modes `[norb, 2 * norb)` are each conserved – i.e. conservation of both particle number and the z-component of spin.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({((True, 0), (False, 2)): 1})
+    >>> op.conserves_sector([4])  # one spinless block of 4 orbitals
+    True
+    >>> op.conserves_sector([2, 2])  # moves a particle from the alpha block to the beta block
+    False
+    ```
+
+    **Parameters**
+
+    **block\_sizes** – the sizes of the consecutive mode blocks that each must be conserved.
+
+    **Returns**
+
+    Whether every term conserves particle number within each mode block.
+  </Function>
+
+  ##### equiv
+
+  <Function id="qiskit_fermions.operators.FermionOperator.equiv" signature="equiv(other, atol=1e-08)">
+    Checks this operator for equivalence with another operator.
+
+    Equivalence in this context means approximate equality up to the specified absolute tolerance. To be more precise, this method returns `True`, when all the absolute values of the coefficients in the difference `other - self` are below the specified threshold `atol`.
+
+    <Admonition title="Note" type="note">
+      This is the mathematical comparison you almost always want. It differs from the `==` operator, which tests exact equality of the *stored* terms (their coefficients, actions, modes, and internal term boundaries) with no tolerance and no simplification. Two mathematically equal operators can therefore compare unequal under `==` if they are stored differently – for example an unsimplified `a + a` versus `2 * a`, or terms held in a different order. Use `equiv` to compare operators up to numerical tolerance.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({(): 1e-7})
+    >>> zero = FermionOperator.zero()
+    >>> op.equiv(zero)
+    False
+    >>> op.equiv(zero, 1e-6)
+    True
+    >>> op.equiv(zero, 1e-9)
+    False
+    ```
+
+    **Parameters**
+
+    *   **other** – the other operator to compare with.
+    *   **atol** – the absolute tolerance for the comparison. This value defaults to `1e-8`.
+  </Function>
+
+  ##### from\_1body\_tril\_spin
+
+  <Function id="qiskit_fermions.operators.FermionOperator.from_1body_tril_spin" signature="from_1body_tril_spin(one_body_a, one_body_b, norb)" modifiers="classmethod">
+    Constructs an operator from separate spin-species triangular 1-body integrals.
+
+    The resulting operator is defined by
+
+$$
+\sum_i c^\alpha_{ii} a^\dagger_i a_i + c^\beta_{ii} a^\dagger_{i+n} a_{i+n} +
+\sum_{i \lt j} c^\alpha_{ij} (a^\dagger_i a_j + a^\dagger_j a_i) +
+c^\beta_{ij} (a^\dagger_{i+n} a_{j+n} + a^\dagger_{j+n} a_{i+n})
+$$
+
+    where $c^\alpha$ ($c^\beta$) are the integral coefficients stored in `one_body_a` (`one_body_b`, resp.), $i$ and $j$ are the indices expanded from the triangular index $ij$ which indexes the arrays, and $n$ is the number of orbitals, `norb`.
+
+    The resulting operator acts on $2n$ spin-less fermionic modes in block-spin ordering: modes $0, \dots, n-1$ are the $\alpha$-spin orbitals and modes $n, \dots, 2n-1$ are the $\beta$-spin orbitals (so orbital $i$ of the $\beta$-spin species is mode $i+n$).
+
+    ```pycon
+    >>> import numpy as np
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> one_body_a = np.array([1.0, 2.0, 3.0])
+    >>> one_body_b = np.array([-1.0, -2.0, -3.0])
+    >>> op = FermionOperator.from_1body_tril_spin(one_body_a, one_body_b, norb=2)
+    >>> print(format(op))
+      1.000000e0 +0.000000e0j * (+0 -0)
+      2.000000e0 +0.000000e0j * (+0 -1)
+      2.000000e0 +0.000000e0j * (+1 -0)
+      3.000000e0 +0.000000e0j * (+1 -1)
+     -1.000000e0 +0.000000e0j * (+2 -2)
+     -2.000000e0 +0.000000e0j * (+2 -3)
+     -2.000000e0 +0.000000e0j * (+3 -2)
+     -3.000000e0 +0.000000e0j * (+3 -3)
+    ```
+
+    **Parameters**
+
+    *   **one\_body\_a** – a 1-dimensional array of length $n * (n + 1) / 2$ storing the 1-body electronic integral coefficients of the $\alpha$-spin species, as a flattened triangular matrix.
+    *   **one\_body\_b** – a 1-dimensional array of length $n * (n + 1) / 2$ storing the 1-body electronic integral coefficients of the $\beta$-spin species, as a flattened triangular matrix.
+    *   **norb** – the number of orbitals, $n$.
+
+    **Returns**
+
+    The 1-body component of the electronic structure Hamiltonian as defined above.
+  </Function>
+
+  ##### from\_1body\_tril\_spin\_sym
+
+  <Function id="qiskit_fermions.operators.FermionOperator.from_1body_tril_spin_sym" signature="from_1body_tril_spin_sym(one_body_a, norb)" modifiers="classmethod">
+    Constructs an operator from spin-symmetric triangular 1-body integrals.
+
+    The resulting operator is defined by
+
+$$
+\sum_i c^\alpha_{ii} (a^\dagger_i a_i + a^\dagger_{i+n} a_{i+n}) +
+\sum_{i \lt j} c^\alpha_{ij} (a^\dagger_i a_j + a^\dagger_j a_i +
+a^\dagger_{i+n} a_{j+n} + a^\dagger_{j+n} a_{i+n})
+$$
+
+    where $c^\alpha$ are the integral coefficients stored in `one_body_a`, $i$ and $j$ are the indices expanded from the triangular index $ij$ which indexes the array, and $n$ is the number of orbitals, `norb`.
+
+    The resulting operator acts on $2n$ spin-less fermionic modes in block-spin ordering: modes $0, \dots, n-1$ are the $\alpha$-spin orbitals and modes $n, \dots, 2n-1$ are the $\beta$-spin orbitals (so orbital $i$ of the $\beta$-spin species is mode $i+n$).
+
+    ```pycon
+    >>> import numpy as np
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> one_body_a = np.array([1.0, 2.0, 3.0])
+    >>> op = FermionOperator.from_1body_tril_spin_sym(one_body_a, norb=2)
+    >>> print(format(op))
+      1.000000e0 +0.000000e0j * (+0 -0)
+      2.000000e0 +0.000000e0j * (+0 -1)
+      2.000000e0 +0.000000e0j * (+1 -0)
+      3.000000e0 +0.000000e0j * (+1 -1)
+      1.000000e0 +0.000000e0j * (+2 -2)
+      2.000000e0 +0.000000e0j * (+2 -3)
+      2.000000e0 +0.000000e0j * (+3 -2)
+      3.000000e0 +0.000000e0j * (+3 -3)
+    ```
+
+    **Parameters**
+
+    *   **one\_body\_a** – a 1-dimensional array of length $n * (n + 1) / 2$ storing the 1-body electronic integral coefficients of the $\alpha$-spin species, as a flattened triangular matrix.
+    *   **norb** – the number of orbitals, $n$.
+
+    **Returns**
+
+    The 1-body component of the electronic structure Hamiltonian as defined above.
+  </Function>
+
+  ##### from\_2body\_tril\_spin
+
+  <Function id="qiskit_fermions.operators.FermionOperator.from_2body_tril_spin" signature="from_2body_tril_spin(two_body_aa, two_body_ab, two_body_bb, norb)" modifiers="classmethod">
+    Constructs an operator from separate spin-species triangular 2-body integrals.
+
+    The resulting operator is defined by
+
+$$
+\sum_{ijkl} \frac{1}{2}
+\sum_{(i,j,k,l) \in \mathcal{P}(ijkl)}
+c^{\alpha\alpha}_{ijkl} a^\dagger_i a^\dagger_k a_l a_j +
+c^{\beta\beta}_{ijkl} a^\dagger_{i+n} a^\dagger_{k+n} a_{l+n} a_{j+n}
++ \sum_{ijkl} \frac{1}{2}
+\sum_{(i,j,k,l) \in \mathcal{P'}(ijkl)}
+c^{\alpha\beta}_{ijkl} a^\dagger_{i+n} a^\dagger_k a_l a_{j+n} +
+c^{\alpha\beta}_{ijkl} a^\dagger_i a^\dagger_{k+n} a_{l+n} a_j +
+$$
+
+    where $c^{\alpha\alpha}$ ($c^{\alpha\beta}$, $c^{\beta\beta}$) are the integral coefficients stored in `two_body_aa` (`two_body_ab`, `two_body_bb`, resp.), $ijkl$ is the running index of the array, $\mathcal{P}$ ($\mathcal{P'}$) generates the unique permutations of the 4-index $(i,j,k,l)$ (see below), and $n$ is the number of orbitals, `norb`.
+
+    The two-body coefficients are expected in chemist ordering, $(ij|kl)$, i.e. the two index pairs $(i,j)$ and $(k,l)$ each label a charge density. The factor of $\frac{1}{2}$ is the conventional two-body prefactor.
+
+    The resulting operator acts on $2n$ spin-less fermionic modes in block-spin ordering: modes $0, \dots, n-1$ are the $\alpha$-spin orbitals and modes $n, \dots, 2n-1$ are the $\beta$-spin orbitals (so orbital $i$ of the $\beta$-spin species is mode $i+n$).
+
+    <Admonition title="Note" type="note">
+      `two_body_aa` and `two_body_bb` are a S8-fold symmetric arrays. That means, they are the flattened lower-triangular data of matrices of shape `(npair, npair)`, where `npair = (norb * (norb + 1) // 2`. These in turn are the lower-triangular data of the 4-dimensional arrays of shape `(norb, norb, norb, norb)`. Therefore, $\mathcal{P}$ above expands the flattened index $ijkl$ into all index permutations $(i,j,k,l)$ that index these 4-dimensional arrays.
+
+      However, `two_body_ab` is only S4-fold symmetric. Thus, it contains the full data of the `(npair, npair)` matrix (but still in flattened form). $\mathcal{P'}$ performs the corresponding index expansion. (In the definition above, we reused the index $ijkl$ as an abuse of notation.)
+    </Admonition>
+
+    ```pycon
+    >>> import numpy as np
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> two_body_aa = np.arange(1, 7, dtype=float)
+    >>> two_body_ab = np.arange(11, 20, dtype=float)
+    >>> two_body_bb = np.arange(-1, -7, -1, dtype=float)
+    >>> op = FermionOperator.from_2body_tril_spin(two_body_aa, two_body_ab, two_body_bb, norb=2)
+    >>> len(op)
+    64
+    ```
+
+    **Parameters**
+
+    *   **two\_body\_aa** – a 1-dimensional array of the S8-fold symmetric 2-body electronic integral coefficients of the $\alpha\alpha$-spin species, as a flattened array.
+    *   **two\_body\_ab** – a 1-dimensional array of the S4-fold symmetric 2-body electronic integral coefficients of the $\alpha\beta$-spin species, as a flattened array.
+    *   **two\_body\_bb** – a 1-dimensional array of the S8-fold symmetric 2-body electronic integral coefficients of the $\beta\beta$-spin species, as a flattened array.
+    *   **norb** – the number of orbitals, $n$.
+
+    **Returns**
+
+    The 2-body component of the electronic structure Hamiltonian as defined above.
+  </Function>
+
+  ##### from\_2body\_tril\_spin\_sym
+
+  <Function id="qiskit_fermions.operators.FermionOperator.from_2body_tril_spin_sym" signature="from_2body_tril_spin_sym(two_body_aa, norb)" modifiers="classmethod">
+    Constructs an operator from spin-symmetric triangular 2-body integrals.
+
+    The resulting operator is defined by
+
+$$
+\sum_{ijkl} \frac{1}{2} c^{\alpha\alpha}_{ijkl}
+\sum_{(i,j,k,l) \in \mathcal{P}(ijkl)}
+(a^\dagger_i a^\dagger_k a_l a_j +
+a^\dagger_{i+n} a^\dagger_k a_l a_{j+n} +
+a^\dagger_i a^\dagger_{k+n} a_{l+n} a_j +
+a^\dagger_{i+n} a^\dagger_{k+n} a_{l+n} a_{j+n})
+$$
+
+    where $c^{\alpha\alpha}$ are the integral coefficients stored in `two_body_aa`, $ijkl$ is the running index of the array, $\mathcal{P}$ generates the unique permutations of the 4-index $(i,j,k,l)$ (see below), and $n$ is the number of orbitals, `norb`.
+
+    The two-body coefficients are expected in chemist ordering, $(ij|kl)$, i.e. the two index pairs $(i,j)$ and $(k,l)$ each label a charge density. The factor of $\frac{1}{2}$ is the conventional two-body prefactor.
+
+    The resulting operator acts on $2n$ spin-less fermionic modes in block-spin ordering: modes $0, \dots, n-1$ are the $\alpha$-spin orbitals and modes $n, \dots, 2n-1$ are the $\beta$-spin orbitals (so orbital $i$ of the $\beta$-spin species is mode $i+n$).
+
+    <Admonition title="Note" type="note">
+      `two_body_aa` is an S8-fold symmetric array. That means, it is the flattened lower-triangular data of a matrix of shape `(npair, npair)`, where `npair = (norb * (norb + 1) // 2`. This in turn is the lower-triangular data of the 4-dimensional array of shape `(norb, norb, norb, norb)`. Therefore, $\mathcal{P}$ above expands the flattened index $ijkl$ into all index permutations $(i,j,k,l)$ that index this 4-dimensional array.
+    </Admonition>
+
+    ```pycon
+    >>> import numpy as np
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> two_body_aa = np.arange(1, 7, dtype=float)
+    >>> op = FermionOperator.from_2body_tril_spin_sym(two_body_aa, norb=2)
+    >>> len(op)
+    64
+    ```
+
+    **Parameters**
+
+    *   **two\_body\_aa** – a 1-dimensional array of the S8-fold symmetric 2-body electronic integral coefficients of the $\alpha\alpha$-spin species, as a flattened array.
+    *   **norb** – the number of orbitals, $n$.
+
+    **Returns**
+
+    The 2-body component of the electronic structure Hamiltonian as defined above.
+  </Function>
+
+  ##### from\_dict
+
+  <Function id="qiskit_fermions.operators.FermionOperator.from_dict" signature="from_dict(data)" modifiers="classmethod">
+    Constructs a new operator from a dictionary.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict(
+    ...     {
+    ...         (): 1.0-1.0j,
+    ...         ((True, 0), (False, 1)): 2.0,
+    ...     }
+    ... )
+    >>> print(format(op))
+      1.000000e0 -1.000000e0j * ()
+      2.000000e0 +0.000000e0j * (+0 -1)
+    ```
+
+    **Parameters**
+
+    **data** – a dictionary mapping tuples of terms to complex coefficients. Each key is a tuple of `(bool, int)` pairs. You may use [`cre()`](qiskit-fermions-operators-cre "qiskit_fermions.operators.cre") and [`ann()`](qiskit-fermions-operators-ann "qiskit_fermions.operators.ann") to simplify their construction.
+
+    **Returns**
+
+    A new operator.
+  </Function>
+
+  ##### from\_fcidump
+
+  <Function id="qiskit_fermions.operators.FermionOperator.from_fcidump" signature="from_fcidump(fcidump)" modifiers="classmethod">
+    Constructs a [`FermionOperator`](#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator") from an [`FCIDump`](qiskit-fermions-operators-library-fci-dump "qiskit_fermions.operators.library.FCIDump") data structure.
+
+    Assuming you have an FCIDump file called `molecule.fcidump`, you can construct the second-quantized operator like so:
+
+    ```python
+    from qiskit_fermions.operators import FermionOperator
+    from qiskit_fermions.operators.library import FCIDump
+
+    fcidump = FCIDump.from_file("molecule.fcidump")
+    operator = FermionOperator.from_fcidump(fcidump)
+    ```
+
+    **Parameters**
+
+    **fcidump** – the FCIDump data structure.
+
+    **Returns**
+
+    The constructed operator. When the FCIDump provides a constant (e.g. nuclear-repulsion) energy, it is included as the identity term `()`.
+  </Function>
+
+  ##### from\_terms
+
+  <Function id="qiskit_fermions.operators.FermionOperator.from_terms" signature="from_terms(terms)" modifiers="classmethod">
+    Constructs a new operator from an iterator of terms (see also [`iter_terms()`](#qiskit_fermions.operators.FermionOperator.iter_terms "qiskit_fermions.operators.FermionOperator.iter_terms")).
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({(): 2.0, ((True, 0),): 1.0, ((False, 1),): -1.0j})
+    >>> op.equiv(FermionOperator.from_terms(op.iter_terms()))
+    True
+    ```
+
+    **Parameters**
+
+    **terms** – an iterator of terms as produced by [`iter_terms()`](#qiskit_fermions.operators.FermionOperator.iter_terms "qiskit_fermions.operators.FermionOperator.iter_terms").
+
+    **Returns**
+
+    A new operator.
+  </Function>
+
+  ##### from\_terms\_with\_groups
+
+  <Function id="qiskit_fermions.operators.FermionOperator.from_terms_with_groups" signature="from_terms_with_groups(terms)" modifiers="classmethod">
+    Constructs a new operator from an iterator of terms with groups (see also [`iter_terms_with_groups()`](#qiskit_fermions.operators.FermionOperator.iter_terms_with_groups "qiskit_fermions.operators.FermionOperator.iter_terms_with_groups")).
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator(
+    ...     [2.0, 1.0, -1.0],
+    ...     [True, False, True, False],
+    ...     [0, 1, 1, 0],
+    ...     [0, 0, 2, 4],
+    ... )
+    >>> op.groups = [0, 1, 1]
+    >>> reconstructed = FermionOperator.from_terms_with_groups(op.iter_terms_with_groups())
+    >>> op.equiv(reconstructed) and op.groups == reconstructed.groups
+    True
+    ```
+
+    **Parameters**
+
+    **terms** – an iterator of terms as produced by [`iter_terms_with_groups()`](#qiskit_fermions.operators.FermionOperator.iter_terms_with_groups "qiskit_fermions.operators.FermionOperator.iter_terms_with_groups").
+
+    **Returns**
+
+    A new operator.
+  </Function>
+
+  ##### get\_actions
+
+  <Function id="qiskit_fermions.operators.FermionOperator.get_actions" signature="get_actions()">
+    Returns a read-only list of the operator’s actions.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#fermionoperator-implementation).
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.one()
+    >>> op += FermionOperator.from_dict({((True, 0), (False, 1)): 1.0})
+    >>> op.get_actions()
+    [True, False]
+    ```
+
+    **Returns**
+
+    A list of the operator’s actions.
+  </Function>
+
+  ##### get\_boundaries
+
+  <Function id="qiskit_fermions.operators.FermionOperator.get_boundaries" signature="get_boundaries()">
+    Returns a read-only list of the indices indicating the boundaries between operator terms.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#fermionoperator-implementation).
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.one()
+    >>> op += FermionOperator.from_dict({((True, 0), (False, 1)): 1.0})
+    >>> op.get_boundaries()
+    [0, 0, 2]
+    ```
+
+    **Returns**
+
+    A list of the operator’s terms boundaries.
+  </Function>
+
+  ##### get\_coeffs
+
+  <Function id="qiskit_fermions.operators.FermionOperator.get_coeffs" signature="get_coeffs()">
+    Returns a read-only list of the operator’s coefficients.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#fermionoperator-implementation).
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.one()
+    >>> op += -1j * FermionOperator.one()
+    >>> op.get_coeffs()
+    [(1+0j), -1j]
+    ```
+
+    **Returns**
+
+    A list of the operator’s coefficients.
+  </Function>
+
+  ##### get\_modes
+
+  <Function id="qiskit_fermions.operators.FermionOperator.get_modes" signature="get_modes()">
+    Returns a read-only list of the operator’s acted-upon mode indices.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#fermionoperator-implementation).
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.one()
+    >>> op += FermionOperator.from_dict({((True, 0), (False, 1)): 1.0})
+    >>> op.get_modes()
+    [0, 1]
+    ```
+
+    **Returns**
+
+    A list of the operator’s modes.
+  </Function>
+
+  ##### get\_support
+
+  <Function id="qiskit_fermions.operators.FermionOperator.get_support" signature="get_support()">
+    Returns the set of mode indices which this operator acts upon.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict(
+    ...     {
+    ...         ((True, 0), (False, 4)): 1,
+    ...         ((True, 1), (True, 3), (False, 4), (False, 7)): 1,
+    ...     }
+    ... )
+    >>> assert op.get_support() == {0, 1, 3, 4, 7}
+    ```
+
+    **Returns**
+
+    The set of mode indices which this operator acts upon.
+  </Function>
+
+  ##### group\_weights
+
+  <Function id="qiskit_fermions.operators.FermionOperator.group_weights" signature="group_weights()">
+    Returns the mean absolute coefficient magnitude of each group.
+
+    The `i`-th entry is the sum of `abs(coeff)` over the terms in group `i`, divided by the number of terms in that group. If [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups") is `None`, this function also returns `None`.
+
+    This is the sampling weight of a randomized product formula (e.g. qDRIFT) that draws whole groups rather than individual terms. Computing it natively is considerably cheaper than reducing [`get_coeffs()`](#qiskit_fermions.operators.FermionOperator.get_coeffs "qiskit_fermions.operators.FermionOperator.get_coeffs") and [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups") in NumPy, because those two accessors each copy one value per *ungrouped* term out of the operator only for it to be aggregated back down to one value per group, whereas this returns just the [`num_groups()`](#qiskit_fermions.operators.FermionOperator.num_groups "qiskit_fermions.operators.FermionOperator.num_groups") reduced values.
+
+    <Admonition title="Note" type="note">
+      A group index that no term carries weighs `0.0`, which keeps it out of the sample.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator(
+    ...     [1.0, 2.0, -1.0, -2.0],
+    ...     [True, False, True, False, True, False, True, False],
+    ...     [0, 1, 2, 3, 1, 0, 3, 2],
+    ...     [0, 2, 4, 6, 8],
+    ... )
+    >>> print(op.group_weights())
+    None
+    >>> op.groups = [0, 1, 0, 1]
+    >>> op.group_weights()
+    [1.0, 2.0]
+    ```
+
+    **Returns**
+
+    The mean absolute coefficient magnitude of each group index.
+  </Function>
+
+  ##### has\_groups
+
+  <Function id="qiskit_fermions.operators.FermionOperator.has_groups" signature="has_groups()">
+    Returns whether this operator tracks group indices.
+
+    This is equivalent to (but cheaper than) checking `op.groups is not None`, because it does not copy the group indices out of the operator in order to inspect them.
+
+    <Admonition title="Note" type="note">
+      This returns `True` even when [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups") is an empty list, which is the state of a grouped operator that holds no terms.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator(
+    ...     [1.0, 2.0, -1.0, -2.0],
+    ...     [True, False, True, False, True, False, True, False],
+    ...     [0, 1, 2, 3, 1, 0, 3, 2],
+    ...     [0, 2, 4, 6, 8],
+    ... )
+    >>> op.has_groups()
+    False
+    >>> op.groups = [0, 1, 0, 1]
+    >>> op.has_groups()
+    True
+    ```
+
+    **Returns**
+
+    Whether [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups") is set on this operator.
+  </Function>
+
+  ##### ichop
+
+  <Function id="qiskit_fermions.operators.FermionOperator.ichop" signature="ichop(atol=1e-08)">
+    Removes terms whose coefficient magnitude lies below the provided threshold.
+
+    This method modifies the operator *in place* and returns `None`.
+
+    <Admonition title="Caution" type="note">
+      This method truncates coefficients greedily! If the acted upon operator may contain separate coefficients for duplicate terms consider calling [`simplify()`](#qiskit_fermions.operators.FermionOperator.simplify "qiskit_fermions.operators.FermionOperator.simplify") instead!
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({(): 1e-4, ((True, 0),): 1e-6, ((False, 0),): 1e-10})
+    >>> print(format(op))
+      1.000000e-4 +0.000000e0j * ()
+     1.000000e-10 +0.000000e0j * (-0)
+      1.000000e-6 +0.000000e0j * (+0)
+    >>> op.ichop()
+    >>> print(format(op))
+      1.000000e-4 +0.000000e0j * ()
+      1.000000e-6 +0.000000e0j * (+0)
+    >>> op.ichop(1e-5)
+    >>> print(format(op))
+      1.000000e-4 +0.000000e0j * ()
+    ```
+
+    **Parameters**
+
+    **atol** – the absolute tolerance for the cutoff. This value defaults to `1e-8`.
+  </Function>
+
+  ##### is\_hermitian
+
+  <Function id="qiskit_fermions.operators.FermionOperator.is_hermitian" signature="is_hermitian(atol=1e-08)">
+    Returns whether this operator is Hermitian.
+
+    <Admonition title="Note" type="note">
+      This check is implemented using [`equiv()`](#qiskit_fermions.operators.FermionOperator.equiv "qiskit_fermions.operators.FermionOperator.equiv") on the [`normal_ordered()`](#qiskit_fermions.operators.FermionOperator.normal_ordered "qiskit_fermions.operators.FermionOperator.normal_ordered") difference of `self` and its [`adjoint()`](#qiskit_fermions.operators.FermionOperator.adjoint "qiskit_fermions.operators.FermionOperator.adjoint") and [`zero()`](#qiskit_fermions.operators.FermionOperator.zero "qiskit_fermions.operators.FermionOperator.zero").
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({
+    ...     ((True, 0), (False, 1)): 1.00001j,
+    ...     ((True, 1), (False, 0)): -1j,
+    ... })
+    >>> op.is_hermitian()
+    False
+    >>> op.is_hermitian(1e-4)
+    True
+    ```
+
+    **Parameters**
+
+    **atol** – The numerical accuracy upto which coefficients are considered equal. This value defaults to `1e-8`.
+
+    **Returns**
+
+    Whether this operator is Hermitian.
+  </Function>
+
+  ##### iter\_terms
+
+  <Function id="qiskit_fermions.operators.FermionOperator.iter_terms" signature="iter_terms()">
+    An iterator over the operator’s terms.
+
+    <Admonition title="Warning" type="caution">
+      Mutating the iteration items does **not** affect the underlying operator data.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({(): 2.0, ((True, 0),): 1.0, ((False, 1),): -1.0j})
+    >>> list(sorted(op.iter_terms()))
+    [([], (2+0j)), ([(False, 1)], (-0-1j)), ([(True, 0)], (1+0j))]
+    ```
+  </Function>
+
+  ##### iter\_terms\_with\_groups
+
+  <Function id="qiskit_fermions.operators.FermionOperator.iter_terms_with_groups" signature="iter_terms_with_groups()">
+    An iterator over the operator’s terms with their associated group index.
+
+    <Admonition title="Warning" type="caution">
+      Mutating the iteration items does **not** affect the underlying operator data.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator(
+    ...     [2.0, 1.0, -1.0],
+    ...     [True, False, True, False],
+    ...     [0, 1, 1, 0],
+    ...     [0, 0, 2, 4],
+    ... )
+    >>> op.groups = [0, 1, 1]
+    >>> list(sorted(op.iter_terms_with_groups()))
+    [([], (2+0j), 0), ([(True, 0), (False, 1)], (1+0j), 1), ([(True, 1), (False, 0)], (-1+0j), 1)]
+    ```
+  </Function>
+
+  ##### max\_rank
+
+  <Function id="qiskit_fermions.operators.FermionOperator.max_rank" signature="max_rank()">
+    Returns the maximum rank of the terms in this operator.
+
+    <Admonition title="Note" type="note">
+      The length of the longest term can depend on the operator’s form which means that (for example) operator simplification or normal-ordering can result in a different maximum rank.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({
+    ...     ((True, 0), (False, 1), (True, 2), (False, 3)): 1,
+    ... })
+    >>> op.max_rank()
+    4
+    ```
+
+    **Returns**
+
+    The maximum rank of this operator.
+  </Function>
+
+  ##### normal\_ordered
+
+  <Function id="qiskit_fermions.operators.FermionOperator.normal_ordered" signature="normal_ordered(sandwich=None)">
+    Returns an equivalent operator with normal ordered terms.
+
+    The normal order of an operator term is defined such that all creation actions appear before all annihilation actions. Within each group, the acted-upon modes are ordered lexicographically. Whether their order is ascending or descending depends upon the value of the `sandwich` argument:
+
+    *   `None` (default): both groups are ordered lexicographically descending (e.g. `+1 +0 -1 -0`)
+    *   `True`: larger indices appear towards the middle, i.e. creation actions are lexicographically ascending while annihilation ones are descending (e.g. `+0 +1 -1 -0`)
+    *   `False`: smaller indices appear towards the middle, i.e. creation actions are lexicographically descending while annihilation ones are ascending (e.g. `+1 +0 -0 -1`)
+
+    <Admonition title="Note" type="note">
+      When a term is being reordered, the anti-commutation relations have to be taken into account, $a_i a^\dagger_j = \delta_{ij} - a^\dagger_j a^i$, implying that the number of terms may change.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({((False, 1), (True, 1), (False, 0), (True, 0)): 1})
+    >>> print(format(op.normal_ordered().simplify()))
+      1.000000e0 +0.000000e0j * ()
+     -1.000000e0 +0.000000e0j * (+0 -0)
+     -1.000000e0 +0.000000e0j * (+1 -1)
+     -1.000000e0 +0.000000e0j * (+1 +0 -1 -0)
+    >>> print(format(op.normal_ordered(sandwich=True).simplify()))
+      1.000000e0 +0.000000e0j * ()
+     -1.000000e0 +0.000000e0j * (+0 -0)
+      1.000000e0 +0.000000e0j * (+0 +1 -1 -0)
+     -1.000000e0 +0.000000e0j * (+1 -1)
+    >>> print(format(op.normal_ordered(sandwich=False).simplify()))
+      1.000000e0 +0.000000e0j * ()
+     -1.000000e0 +0.000000e0j * (+0 -0)
+     -1.000000e0 +0.000000e0j * (+1 -1)
+      1.000000e0 +0.000000e0j * (+1 +0 -0 -1)
+    ```
+
+    **Returns**
+
+    An equivalent but normal-ordered operator.
+  </Function>
+
+  ##### num\_groups
+
+  <Function id="qiskit_fermions.operators.FermionOperator.num_groups" signature="num_groups()">
+    Returns the number of groups.
+
+    If [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups") is `None`, this function also returns `None`. Otherwise, it will return the number of groups which is defined to be the largest occurring group index plus 1 (which may therefore be used as the index for the next group).
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator(
+    ...     [1.0, 2.0, -1.0, -2.0],
+    ...     [True, False, True, False, True, False, True, False],
+    ...     [0, 1, 2, 3, 1, 0, 3, 2],
+    ...     [0, 2, 4, 6, 8],
+    ... )
+    >>> op.groups = [0, 1, 0, 1]
+    >>> op.num_groups()
+    2
+    ```
+
+    **Returns**
+
+    The largest group index in [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups") plus 1.
+  </Function>
+
+  ##### one
+
+  <Function id="qiskit_fermions.operators.FermionOperator.one" signature="one()" modifiers="classmethod">
+    Constructs the multiplicative identity operator.
+
+    Composing the operator that is constructed by this method with another one has no effect.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({(): 2.0})
+    >>> one = FermionOperator.one()
+    >>> op & one == op
+    True
+    ```
+  </Function>
+
+  ##### relabel\_modes
+
+  <Function id="qiskit_fermions.operators.FermionOperator.relabel_modes" signature="relabel_modes(permutation)">
+    Returns a new operator with relabeled modes.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({
+    ...     ((True, 0), (False, 1)): 1,
+    ...     ((True, 0), (False, 1), (True, 2), (False, 3)): 1,
+    ... })
+    >>> permutation = [5, 6, 4, 3]
+    >>> relabeled = op.relabel_modes(permutation)
+    >>> print(format(relabeled))
+      1.000000e0 +0.000000e0j * (+5 -6)
+      1.000000e0 +0.000000e0j * (+5 -6 +4 -3)
+    ```
+
+    **Parameters**
+
+    **permutation** – the index permutation list. Mode `i` is relabeled to `permutation[i]`, so the list must contain no duplicate entries and must be long enough to index every mode the operator acts upon (its length must exceed the operator’s largest mode index).
+
+    **Returns**
+
+    A new operator with its modes relabeled.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `permutation` contains duplicate entries, or is too short to relabel some mode the operator acts upon.
+  </Function>
+
+  ##### simplify
+
+  <Function id="qiskit_fermions.operators.FermionOperator.simplify" signature="simplify(atol=1e-08)">
+    Returns an equivalent but simplified operator.
+
+    The simplification process first sums all coefficients that belong to equal terms and then only retains those whose total coefficient exceeds the specified tolerance (just like [`ichop()`](#qiskit_fermions.operators.FermionOperator.ichop "qiskit_fermions.operators.FermionOperator.ichop")).
+
+    When an operator has been arithmetically manipulated or constructed in a way that does not guarantee unique terms, this method should be called before applying any method that filters numerically small coefficients to avoid loss of information. See the example below which showcases how [`ichop()`](#qiskit_fermions.operators.FermionOperator.ichop "qiskit_fermions.operators.FermionOperator.ichop") can truncate terms that sum to a total coefficient magnitude which should not be truncated:
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> coeffs = [1e-5] * int(1e5)
+    >>> boundaries = [0] + [0] * int(1e5)
+    >>> op = FermionOperator(coeffs, [], [], boundaries)
+    >>> canon = op.simplify(1e-4)
+    >>> assert canon.equiv(op.one(), 1e-6)
+    >>> op.ichop(1e-4)
+    >>> assert op.equiv(op.zero(), 1e-6)
+    ```
+
+    **Parameters**
+
+    **atol** – the absolute tolerance for the cutoff. This value defaults to `1e-8`.
+
+    **Returns**
+
+    An equivalent but simplified operator.
+  </Function>
+
+  ##### split\_out\_groups
+
+  <Function id="qiskit_fermions.operators.FermionOperator.split_out_groups" signature="split_out_groups(group_indices=None)">
+    Splits this operator into an optional list of new operators based on [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups").
+
+    If [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups") is `None`, this function also returns `None`. Otherwise, if `group_indices` is `None` (the default), it returns a list of one new operator for every group index in [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups"), in index order. If `group_indices` is given, only the requested indices are built, in the given order: this avoids the cost of constructing operators for groups that are never used, which is especially beneficial when only a small number of groups out of a much larger total are needed, e.g. when subsampling groups for a randomized product formula. A duplicate index in `group_indices` is returned once per occurrence.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator(
+    ...     [1.0, 2.0, -1.0, -2.0],
+    ...     [True, False, True, False, True, False, True, False],
+    ...     [0, 1, 2, 3, 1, 0, 3, 2],
+    ...     [0, 2, 4, 6, 8],
+    ... )
+    >>> print(op.split_out_groups())
+    None
+    >>> op.groups = [0, 1, 0, 1]
+    >>> groups = op.split_out_groups()
+    >>> for g in groups:
+    ...     print(list(sorted(g.iter_terms())))
+    [([(True, 0), (False, 1)], (1+0j)), ([(True, 1), (False, 0)], (-1+0j))]
+    [([(True, 2), (False, 3)], (2+0j)), ([(True, 3), (False, 2)], (-2+0j))]
+    >>> groups = op.split_out_groups(group_indices=[1])
+    >>> for g in groups:
+    ...     print(list(sorted(g.iter_terms())))
+    [([(True, 2), (False, 3)], (2+0j)), ([(True, 3), (False, 2)], (-2+0j))]
+    ```
+
+    **Parameters**
+
+    **group\_indices** – the group indices for which to build operators, in the desired output order. When omitted, every group is built, in index order.
+
+    **Returns**
+
+    An optional vector of one new operator for each requested group index.
+  </Function>
+
+  ##### zero
+
+  <Function id="qiskit_fermions.operators.FermionOperator.zero" signature="zero()" modifiers="classmethod">
+    Constructs the additive identity operator.
+
+    Adding the operator that is constructed by this method to another one has no effect.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict({(): 2.0})
+    >>> zero = FermionOperator.zero()
+    >>> op + zero == op
+    True
+    ```
+  </Function>
+
+  **Protocol Methods**
+
+  ##### \_anti\_commutator\_
+
+  <Function id="qiskit_fermions.operators.FermionOperator._anti_commutator_" signature="_anti_commutator_(op_a, op_b)" modifiers="static" />
+
+  ##### \_commutator\_
+
+  <Function id="qiskit_fermions.operators.FermionOperator._commutator_" signature="_commutator_(op_a, op_b)" modifiers="static" />
+
+  ##### \_double\_commutator\_
+
+  <Function id="qiskit_fermions.operators.FermionOperator._double_commutator_" signature="_double_commutator_(op_a, op_b, op_c, sign)" modifiers="static" />
+
+  ##### \_fci\_linear\_operator\_
+
+  <Function id="qiskit_fermions.operators.FermionOperator._fci_linear_operator_" signature="_fci_linear_operator_(norb, nelec)" />
+
+  ##### \_linear\_operator\_
+
+  <Function id="qiskit_fermions.operators.FermionOperator._linear_operator_" signature="_linear_operator_(norb, nelec)">
+    Returns a SciPy `LinearOperator` for this operator on the `(norb, nelec)` FCI sector.
+
+    This implements the `SupportsLinearOperator` protocol, so an operator carrying a native FCI kernel can be passed directly to [`scipy.sparse.linalg.expm_multiply()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html#scipy.sparse.linalg.expm_multiply "(in SciPy v1.18.0)") or to [`ffsim.linear_operator()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.linear_operator.html#ffsim.linear_operator "(in ffsim)"). It depends only on the internal `_SupportsFciLinearOperator` contract – the `_fci_linear_operator_` carrier – rather than on any concrete operator type, and wraps that native matrix-vector kernel in a genuine [`scipy.sparse.linalg.LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)"); [`expm_multiply()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html#scipy.sparse.linalg.expm_multiply "(in SciPy v1.18.0)") requires the adjoint action, so both `matvec` and `rmatvec` are supplied.
+
+    The native kernel requires a contiguous one-dimensional `complex128` vector, whereas SciPy’s machinery may feed a [`LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)") real probe vectors (from its one-norm estimator) or non-contiguous `(dim, 1)` column slices. The `matvec`/`rmatvec` wrappers coerce the input with `numpy.ascontiguousarray(v, complex128).reshape(-1)`; the numpy handles are bound once here (per operator) rather than re-resolved on every matvec inside the [`expm_multiply()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html#scipy.sparse.linalg.expm_multiply "(in SciPy v1.18.0)") loop.
+
+    This is attached to the operator classes as `_linear_operator_` at import time (see [`qiskit_fermions.operators`](pydoc/qiskit-fermions-operators#module-qiskit_fermions.operators "qiskit_fermions.operators")): the native operator classes are compiled types whose instances cannot themselves subclass SciPy’s [`LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)"), so the protocol method is provided in Python.
+
+    **Parameters**
+
+    *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals.
+    *   **nelec** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the electron count – an integer for a spinless sector, or an `(n_alpha, n_beta)` pair for a spinful one.
+    *   **self** (*\_SupportsFciLinearOperator*)
+
+    **Returns**
+
+    A [`scipy.sparse.linalg.LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)") applying this operator on the requested sector.
+
+    **Return type**
+
+    [*LinearOperator*](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)")
+  </Function>
+
+  ##### \_majorana\_operator\_
+
+  <Function id="qiskit_fermions.operators.FermionOperator._majorana_operator_" signature="_majorana_operator_()">
+    Converts this operator into a [`MajoranaOperator`](qiskit-fermions-operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator").
+
+    This implements the [`SupportsMajoranaOperator`](qiskit-fermions-protocols-supports-majorana-operator "qiskit_fermions.protocols.SupportsMajoranaOperator") protocol by delegating to [`fermion_to_majorana()`](qiskit-fermions-mappers-library-fermion-to-majorana "qiskit_fermions.mappers.library.fermion_to_majorana").
+  </Function>
+</Class>
+

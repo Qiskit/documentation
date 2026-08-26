@@ -1,0 +1,28 @@
+---
+title: double_factorized_t2 (latest version)
+description: API reference for qiskit_fermions.linalg.double_factorized_t2 in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.linalg.double_factorized_t2
+---
+
+<span id="double-factorized-t2" />
+
+# double\_factorized\_t2
+
+<Function id="qiskit_fermions.linalg.double_factorized_t2" isDedicatedPage={true} signature="double_factorized_t2(t2_amplitudes, tol, max_terms=None)">
+  Double-factorized decomposition of spin-restricted $t_2$ amplitudes.
+
+  Factorizes $t_{ijab}$ (with $i, j$ occupied and $a, b$ virtual) into a list of $(Z, U)$ terms suitable for reconstruction by [`reconstruct_t2()`](qiskit-fermions-linalg-reconstruct-t-2 "qiskit_fermions.linalg.reconstruct_t2"). The number of terms is truncated to `max_terms` (default: all).
+
+  **Parameters**
+
+  *   **t2\_amplitudes** – the $t_2$ amplitudes of shape `(nocc, nocc, nvrt, nvrt)`.
+  *   **tol** – the tolerance controlling the truncation error of the decomposition.
+  *   **max\_terms** – the maximum number of terms to retain. Defaults to all.
+
+  **Returns**
+
+  A list of $(Z, U)$ 2-tuples, where `Z` is the diagonal Coulomb matrix and `U` is the orbital rotation.
+</Function>
+

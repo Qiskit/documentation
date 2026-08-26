@@ -1,0 +1,243 @@
+---
+title: OperatorTrait (latest version)
+description: API reference for qiskit_fermions.operators.OperatorTrait in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.operators.OperatorTrait
+---
+
+# OperatorTrait
+
+<Class id="qiskit_fermions.operators.OperatorTrait" isDedicatedPage={true} signature="OperatorTrait(*args, **kwargs)" modifiers="class">
+  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)
+
+  A protocol indicating all methods implemented by operator classes.
+
+  ## Attributes
+
+  ### groups
+
+  <Attribute id="qiskit_fermions.operators.OperatorTrait.groups">
+    Returns the groups indices.
+  </Attribute>
+
+  ## Methods
+
+  ### adjoint
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.adjoint" signature="adjoint()">
+    Returns the adjoint of this operator.
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### equiv
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.equiv" signature="equiv(other, atol)">
+    Checks this operator with another for equivalence up to the specified absolute tolerance.
+
+    **Parameters**
+
+    *   **other** ([*Self*](https://docs.python.org/3/library/typing.html#typing.Self))
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float))
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool)
+  </Function>
+
+  ### from\_terms
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.from_terms" signature="from_terms(terms)" modifiers="classmethod">
+    Constructs a new operator from an iterator (see also [`iter_terms()`](#qiskit_fermions.operators.OperatorTrait.iter_terms "qiskit_fermions.operators.OperatorTrait.iter_terms")).
+
+    **Parameters**
+
+    **terms** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable))
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### from\_terms\_with\_groups
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.from_terms_with_groups" signature="from_terms_with_groups(terms)" modifiers="classmethod">
+    Constructs a new operator from an iterator (see also [`iter_terms_with_groups()`](#qiskit_fermions.operators.OperatorTrait.iter_terms_with_groups "qiskit_fermions.operators.OperatorTrait.iter_terms_with_groups")).
+
+    **Parameters**
+
+    **terms** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable))
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### get\_coeffs
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.get_coeffs" signature="get_coeffs()">
+    Returns the term coefficients.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[complex](https://docs.python.org/3/library/functions.html#complex)]
+  </Function>
+
+  ### get\_support
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.get_support" signature="get_support()">
+    Returns the set of mode indices which this operator acts upon.
+
+    **Return type**
+
+    [frozenset](https://docs.python.org/3/library/stdtypes.html#frozenset)\[[int](https://docs.python.org/3/library/functions.html#int)]
+  </Function>
+
+  ### group\_weights
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.group_weights" signature="group_weights()">
+    Returns the mean absolute coefficient magnitude of each group.
+
+    This is equivalent to (but cheaper than) reducing [`get_coeffs()`](#qiskit_fermions.operators.OperatorTrait.get_coeffs "qiskit_fermions.operators.OperatorTrait.get_coeffs") and [`groups`](#qiskit_fermions.operators.OperatorTrait.groups "qiskit_fermions.operators.OperatorTrait.groups") down to one value per group in NumPy, because it does not copy one value per *ungrouped* term out of the operator just to aggregate it away again.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[float](https://docs.python.org/3/library/functions.html#float)] | None
+  </Function>
+
+  ### has\_groups
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.has_groups" signature="has_groups()">
+    Returns whether this operator tracks group indices.
+
+    This is equivalent to (but cheaper than) checking `op.groups is not None`, because it does not copy the group indices out of the operator in order to inspect them.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool)
+  </Function>
+
+  ### ichop
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.ichop" signature="ichop(atol)">
+    Trims coefficients below the absolute tolerance from this operator.
+
+    **Parameters**
+
+    **atol** ([*float*](https://docs.python.org/3/library/functions.html#float))
+  </Function>
+
+  ### iter\_terms
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.iter_terms" signature="iter_terms()">
+    Iterates over the terms of this operator.
+
+    **Return type**
+
+    [*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator)
+  </Function>
+
+  ### iter\_terms\_with\_groups
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.iter_terms_with_groups" signature="iter_terms_with_groups()">
+    Iterates over the terms of this operator with their group indices.
+
+    **Return type**
+
+    [*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator)
+  </Function>
+
+  ### normal\_ordered
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.normal_ordered" signature="normal_ordered(*args, **kwargs)">
+    Returns the normal-ordered form of this operator.
+
+    <Admonition title="Note" type="note">
+      A specific implementation of this method may take additional arguments.
+    </Admonition>
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### num\_groups
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.num_groups" signature="num_groups()">
+    Returns the number of groups.
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int) | None
+  </Function>
+
+  ### one
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.one" signature="one()" modifiers="classmethod">
+    Constructs the multiplicative identity operator.
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### relabel\_modes
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.relabel_modes" signature="relabel_modes(permutation)">
+    Relabels the modes of the operator.
+
+    **Parameters**
+
+    **permutation** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*)
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### simplify
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.simplify" signature="simplify(atol)">
+    Simplifies the terms of this operator, discarding those below the absolute tolerance.
+
+    **Parameters**
+
+    **atol** ([*float*](https://docs.python.org/3/library/functions.html#float))
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### split\_out\_groups
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.split_out_groups" signature="split_out_groups(group_indices=None)">
+    Splits this operator into an optional list of new operators based on its [`groups`](#qiskit_fermions.operators.OperatorTrait.groups "qiskit_fermions.operators.OperatorTrait.groups").
+
+    <Admonition title="Note" type="note">
+      If `group_indices` is omitted, every group is built, in index order. Otherwise, only the requested indices are built, in the given order.
+    </Admonition>
+
+    **Parameters**
+
+    **group\_indices** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*)
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[*Self*](https://docs.python.org/3/library/typing.html#typing.Self)]
+  </Function>
+
+  ### zero
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.zero" signature="zero()" modifiers="classmethod">
+    Constructs the additive identity operator.
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+</Class>
+

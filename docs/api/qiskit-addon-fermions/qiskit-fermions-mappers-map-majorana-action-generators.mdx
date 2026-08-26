@@ -1,0 +1,66 @@
+---
+title: map_majorana_action_generators (latest version)
+description: API reference for qiskit_fermions.mappers.map_majorana_action_generators in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.map_majorana_action_generators
+---
+
+<span id="map-majorana-action-generators" />
+
+# map\_majorana\_action\_generators
+
+<Function id="qiskit_fermions.mappers.map_majorana_action_generators" isDedicatedPage={true} signature="map_majorana_action_generators(operator, map_action, identity, compose=None)">
+  Map a [`MajoranaOperator`](qiskit-fermions-operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator") to another operator type.
+
+  This is a generic function to aid in implementing new mappers for [`MajoranaOperator`](qiskit-fermions-operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator") instances. At its core, it simply iterates over the terms of the operator, mapping each encountered [`MajoranaAction`](qiskit-fermions-operators-majorana-action-majorana-action "qiskit_fermions.operators.majorana_action.MajoranaAction") with the user-provided `map_action` function. In combination with the user-provided `identity` generator, this allows mapping to arbitrary output types.
+
+  <Admonition title="Note" type="note">
+    The output type `T` must support multiplication by a scalar via `__mul__`. If `compose=None` it must also support composition of two instances via `__and__`.
+  </Admonition>
+
+  ```pycon
+  >>> from qiskit_fermions.mappers import map_majorana_action_generators
+  >>> from qiskit_fermions.operators import MajoranaAction, MajoranaOperator, gamma
+  >>> from qiskit.quantum_info import SparsePauliOp
+  >>>
+  >>> def jordan_wigner(mode: MajoranaAction) -> SparsePauliOp:
+  ...     idx = mode // 2
+  ...     qubits = list(range(idx + 1))
+  ...     pauli = "Y" if mode % 2 else "X"
+  ...     return SparsePauliOp.from_sparse_list(
+  ...         [("Z" * idx + pauli, qubits, 1.0)],
+  ...         num_qubits=num_qubits,
+  ...     )
+  >>>
+  >>> num_qubits = 2
+  >>> def identity() -> SparsePauliOp:
+  ...     return SparsePauliOp.from_sparse_list([("", [], 1)], num_qubits)
+  >>>
+  >>> op = MajoranaOperator.from_dict({
+  ...     (0, 2): 0.5,
+  ...     (1, 3): 0.5,
+  ...     (0, 3): 0.5j,
+  ...     (1, 2): -0.5j,
+  ... })
+  >>> qop = map_majorana_action_generators(op, jordan_wigner, identity)
+  >>> print([(label, complex(coeff)) for label, coeff in sorted(qop.label_iter())])
+  [('II', 0j), ('XX', (0.5-0j)), ('XY', -0.5j), ('YX', 0.5j), ('YY', (0.5+0j))]
+  ```
+
+  **Parameters**
+
+  *   **operator** ([*MajoranaOperator*](qiskit-fermions-operators-majorana-operator "qiskit_fermions.operators.majorana_operator.MajoranaOperator")) – the operator to be mapped.
+  *   **map\_action** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*int*](https://docs.python.org/3/library/functions.html#int)*], T]*) – the function to map a single [`MajoranaAction`](qiskit-fermions-operators-majorana-action-majorana-action "qiskit_fermions.operators.majorana_action.MajoranaAction") to the desired output type.
+  *   **identity** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[], T]*) – the function to generate the multiplicative identity instance of the output type.
+  *   **compose** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[T, T], T] | None*) – an optional function to implement the compositiion logic of two output type instances. If this is not provided, it will default to using [`operator.and_()`](https://docs.python.org/3/library/operator.html#operator.and_).
+
+  **Returns**
+
+  The mapped operator.
+
+  **Return type**
+
+  *T*
+</Function>
+

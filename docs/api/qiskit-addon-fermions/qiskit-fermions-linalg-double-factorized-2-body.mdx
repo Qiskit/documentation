@@ -1,0 +1,31 @@
+---
+title: double_factorized_2body (latest version)
+description: API reference for qiskit_fermions.linalg.double_factorized_2body in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.linalg.double_factorized_2body
+---
+
+<span id="double-factorized-2body" />
+
+# double\_factorized\_2body
+
+<Function id="qiskit_fermions.linalg.double_factorized_2body" isDedicatedPage={true} signature="double_factorized_2body(two_body_tensor, tol, max_vecs=None, cholesky=True)">
+  Double-factorized decomposition of a real two-body tensor.
+
+  Represents $h_{pqrs} = \sum_t \sum_{kl} Z^{(t)}_{kl} U^{(t)}_{pk} U^{(t)}_{qk} U^{(t)}_{rl} U^{(t)}_{sl}$, returning a list of $(Z, U)$ terms where each $Z$ is a real symmetric diagonal Coulomb matrix and each $U$ is a unitary orbital rotation.
+
+  When `cholesky` is `True` (the default behavior) the outer factorization uses a modified Cholesky decomposition; otherwise it uses a truncated eigendecomposition.
+
+  **Parameters**
+
+  *   **two\_body\_tensor** – the real two-body tensor of shape `(norb, norb, norb, norb)`, in chemist ordering $(pq|rs)$ (i.e. the index pairs $(p,q)$ and $(r,s)$ each label a charge density, as in the reconstruction formula above).
+  *   **tol** – the tolerance controlling the truncation error of the decomposition.
+  *   **max\_vecs** – the maximum number of terms to retain. Defaults to `norb * (norb + 1) / 2`.
+  *   **cholesky** – whether to use the modified Cholesky decomposition (`True`) or a truncated eigendecomposition (`False`) for the outer factorization.
+
+  **Returns**
+
+  A list of $(Z, U)$ 2-tuples, where `Z` is the diagonal Coulomb matrix and `U` is the orbital rotation.
+</Function>
+

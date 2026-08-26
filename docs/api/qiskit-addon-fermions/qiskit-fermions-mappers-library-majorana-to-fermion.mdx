@@ -1,0 +1,47 @@
+---
+title: majorana_to_fermion (latest version)
+description: API reference for qiskit_fermions.mappers.library.majorana_to_fermion in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.library.majorana_to_fermion
+---
+
+<span id="majorana-to-fermion" />
+
+# majorana\_to\_fermion
+
+<Function id="qiskit_fermions.mappers.library.majorana_to_fermion" isDedicatedPage={true} signature="majorana_to_fermion(maj_op)">
+  Map a [`MajoranaOperator`](qiskit-fermions-operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator") to a [`FermionOperator`](qiskit-fermions-operators-fermion-operator "qiskit_fermions.operators.FermionOperator").
+
+  **Parameters**
+
+  **maj\_op** – the Majorana operator to map.
+
+  **Returns**
+
+  The mapped fermion operator.
+
+  ## Definition
+
+  This function implements the simple transformation:
+
+$$
+\gamma_j \rightarrow a^\dagger_j + a_j ~~\text{and}~~
+\gamma'_j \rightarrow i (a^\dagger_j - a_j)
+$$
+
+  where $\gamma_j$/$\gamma'_j$ are the two Majorana fermion operators (stored on the even and odd modes, respectively), and $a^\dagger_j$ ($a_j$) is the fermionic creation (annihilation) operator acting on the $j$-th spin-less fermionic mode.
+
+  ## Usage
+
+  ```pycon
+  >>> from qiskit_fermions.mappers.library import majorana_to_fermion
+  >>> from qiskit_fermions.operators import MajoranaOperator
+  >>> maj_op = MajoranaOperator.from_dict({(0, 1): 1})
+  >>> fer_op = majorana_to_fermion(maj_op)
+  >>> print(format(fer_op.normal_ordered().simplify()))
+   0.000000e0 +1.000000e0j * ()
+   0.000000e0 -2.000000e0j * (+0 -0)
+  ```
+</Function>
+

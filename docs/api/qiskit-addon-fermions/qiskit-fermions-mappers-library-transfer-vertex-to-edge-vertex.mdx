@@ -1,0 +1,41 @@
+---
+title: transfer_vertex_to_edge_vertex (latest version)
+description: API reference for qiskit_fermions.mappers.library.transfer_vertex_to_edge_vertex in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.library.transfer_vertex_to_edge_vertex
+---
+
+<span id="transfer-vertex-to-edge-vertex" />
+
+# transfer\_vertex\_to\_edge\_vertex
+
+<Function id="qiskit_fermions.mappers.library.transfer_vertex_to_edge_vertex" isDedicatedPage={true} signature="transfer_vertex_to_edge_vertex(inter_op)">
+  Map a [`TransferVertexOperator`](qiskit-fermions-operators-transfer-vertex-operator "qiskit_fermions.operators.TransferVertexOperator") to an [`EdgeVertexOperator`](qiskit-fermions-operators-edge-vertex-operator "qiskit_fermions.operators.EdgeVertexOperator").
+
+  **Parameters**
+
+  **inter\_op** – the transfer-vertex operator to map.
+
+  **Returns**
+
+  The mapped edge-vertex operator.
+
+  ## Definition
+
+  This function decomposes the transfer-vertex operators in terms of the edge-vertex operators as defined [here](qiskit-fermions-operators-transfer-vertex-operator#transfervertexoperator-definition).
+
+  ## Usage
+
+  ```pycon
+  >>> from qiskit_fermions.mappers.library import transfer_vertex_to_edge_vertex
+  >>> from qiskit_fermions.operators import TransferVertexOperator
+  >>> dir_op = TransferVertexOperator.from_dict({((0, 0),): 1, ((1, 2),): 2, ((2, 1),): -2})
+  >>> undir_op = transfer_vertex_to_edge_vertex(dir_op)
+  >>> print(format(undir_op.simplify()))
+    1.000000e0 +0.000000e0j * (V(0))
+    0.000000e0 +1.000000e0j * (V(1) E(1,2))
+   -0.000000e0 -1.000000e0j * (E(1,2) V(2))
+  ```
+</Function>
+

@@ -1,0 +1,43 @@
+---
+title: map_node_single_register (latest version)
+description: API reference for qiskit_fermions.transpiler.passes.utils.map_node_single_register in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.transpiler.passes.utils.map_node_single_register
+---
+
+<span id="map-node-single-register" />
+
+# map\_node\_single\_register
+
+<Function id="qiskit_fermions.transpiler.passes.utils.map_node_single_register" isDedicatedPage={true} signature="map_node_single_register(in_node, f2q_layout)">
+  Map the single fermionic mode register acted upon by the circuit operation.
+
+  Given a [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) and a [`F2QLayout`](qiskit-fermions-transpiler-f-2-q-layout "qiskit_fermions.transpiler.F2QLayout") this function will:
+
+  1.  ensure that all acted-upon fermionic modes belong to the same register
+  2.  map the node’s indices to their global indices with respect to said fermionic mode register
+  3.  map this fermionic mode register to the corresponding qubit register
+
+  <Admonition title="Caution" type="note">
+    The returned global fermionic mode register indices are knowingly dependent on the order of the fermionic modes during the construction of their original [`FermionicRegister`](qiskit-fermions-circuit-fermionic-register "qiskit_fermions.circuit.FermionicRegister"). This is unlikely to cause any issues but makes the usage of [`RelabelModes`](qiskit-fermions-transpiler-passes-relabel-modes "qiskit_fermions.transpiler.passes.RelabelModes") possibly more generally.
+  </Admonition>
+
+  **Parameters**
+
+  *   **in\_node** ([*DAGOpNode*](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode)) – the node whose indices to parse.
+  *   **f2q\_layout** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*,* [*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*]*) – the mapping of fermionic to qubit registers.
+
+  **Returns**
+
+  The list of the global fermionic mode indices and mapped qubit register instance.
+
+  **Raises**
+
+  [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when the provided node acts on fermionic modes that do not all belong to the same [`FermionicRegister`](qiskit-fermions-circuit-fermionic-register "qiskit_fermions.circuit.FermionicRegister").
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)], [*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)]
+</Function>
+

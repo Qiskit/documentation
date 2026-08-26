@@ -1,0 +1,40 @@
+---
+title: majorana_operator (latest version)
+description: API reference for qiskit_fermions.mappers.library.majorana_operator in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.library.majorana_operator
+---
+
+<span id="majorana-operator" />
+
+# majorana\_operator
+
+<Function id="qiskit_fermions.mappers.library.majorana_operator" isDedicatedPage={true} signature="majorana_operator(operator)">
+  Converts an operator into a [`MajoranaOperator`](qiskit-fermions-operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator").
+
+  This is a thin, type-agnostic wrapper around the [`SupportsMajoranaOperator`](qiskit-fermions-protocols-supports-majorana-operator "qiskit_fermions.protocols.SupportsMajoranaOperator") protocol method, mirroring the free-function style of [`fermion_operator()`](qiskit-fermions-mappers-library-fermion-operator "qiskit_fermions.mappers.library.fermion_operator").
+
+  **Parameters**
+
+  **operator** ([*SupportsMajoranaOperator*](qiskit-fermions-protocols-supports-majorana-operator "qiskit_fermions.protocols.majorana_operator.SupportsMajoranaOperator")) – the operator to convert, implementing [`SupportsMajoranaOperator`](qiskit-fermions-protocols-supports-majorana-operator "qiskit_fermions.protocols.SupportsMajoranaOperator").
+
+  **Returns**
+
+  The operator converted into a [`MajoranaOperator`](qiskit-fermions-operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator").
+
+  **Return type**
+
+  [*MajoranaOperator*](qiskit-fermions-operators-majorana-operator "qiskit_fermions.operators.majorana_operator.MajoranaOperator")
+
+  ```pycon
+  >>> from qiskit_fermions.mappers.library import majorana_operator
+  >>> from qiskit_fermions.operators import FermionOperator
+  >>> fer_op = FermionOperator.from_dict({((True, 0), (False, 0)): 1})
+  >>> maj_op = majorana_operator(fer_op)
+  >>> print(format(maj_op.normal_ordered().simplify()))
+   5.000000e-1 +0.000000e0j * ()
+    0.000000e0-5.000000e-1j * (γ'0 γ0)
+  ```
+</Function>
+

@@ -1,0 +1,219 @@
+---
+title: RelabelModes (latest version)
+description: API reference for qiskit_fermions.transpiler.passes.RelabelModes in the latest version of qiskit-addon-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.transpiler.passes.RelabelModes
+---
+
+# RelabelModes
+
+<Class id="qiskit_fermions.transpiler.passes.RelabelModes" isDedicatedPage={true} signature="RelabelModes(permutation=None, *, solver=None, **kwargs)" modifiers="class">
+  Bases: [`GenericPass`](/docs/api/qiskit/qiskit.passmanager.GenericPass)\[[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)]
+
+  A transpilation pass to relabel the fermionic modes.
+
+  This pass reorders the fermionic modes of a circuit. The reordering is described by a `permutation` list, read as a mapping from *original* to *new* mode index: original mode `i` is placed at new index `permutation[i]` in the relabeled circuit. For example, `permutation = [0, 2, 4, 1, 3, 5]` places original mode `1` at new index `2`, original mode `2` at new index `4`, and so on. Being a permutation, each index must appear exactly once.
+
+  **Post-processing**
+
+  The relabeling reorders the fermionic modes, which in turn influences the fermion-to-qubit mapping chosen by a later synthesis stage (and thus the achievable circuit depth). Because the mode order changes, any bitstring sampled from the final circuit is expressed in the *new* mode order and must be mapped back to the *original* order before it can be interpreted. The relabeling that was actually applied is recorded in a `permutation` field of the returned [`FermionicDAGCircuit`](qiskit-fermions-circuit-fermionic-dag-circuit "qiskit_fermions.circuit.FermionicDAGCircuit")’s [`metadata`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#metadata).
+
+  <Admonition title="Important" type="danger">
+    Always read the relabeling from the circuit metadata rather than from [`permutation`](#qiskit_fermions.transpiler.passes.RelabelModes.permutation "qiskit_fermions.transpiler.passes.RelabelModes.permutation"). When the automatic optimization is used (i.e. [`permutation`](#qiskit_fermions.transpiler.passes.RelabelModes.permutation "qiskit_fermions.transpiler.passes.RelabelModes.permutation") is `None`), the applied permutation is only available from the metadata; and even when [`permutation`](#qiskit_fermions.transpiler.passes.RelabelModes.permutation "qiskit_fermions.transpiler.passes.RelabelModes.permutation") was provided explicitly, the metadata is guaranteed to reflect what the pass did.
+
+    Note that the `permutation` metadata field is only present when the pass actually relabeled the circuit. When the pass has no effect – for example, when the automatic optimization cannot run because the optional `pyomo` dependency or a [`solver`](#qiskit_fermions.transpiler.passes.RelabelModes.solver "qiskit_fermions.transpiler.passes.RelabelModes.solver") is missing – the returned circuit is unchanged and carries no `permutation` metadata, so access it defensively (e.g. `qcirc.metadata.get("permutation")`).
+  </Admonition>
+
+  Conceptually, undoing the relabeling assigns to each original mode `m` the value that was measured for new mode `permutation[m]`. In practice this is complicated by the fact that [`FermionicRegister`](qiskit-fermions-circuit-fermionic-register "qiskit_fermions.circuit.FermionicRegister") modes and Qiskit’s classical bits run in opposite (little-endian) order, so the mode-space gather turns into an index negation (`~idx`) followed by a final reversal (`[::-1]`) on the counts bitstrings.
+
+  The example below relabels a six-mode system from a blocked spin ordering (`[u0, u1, u2, d0, d1, d2]`) to an interleaved one (`[u0, d0, u1, d1, u2, d2]`), a common trick to reduce the implementation depth, and then undoes the relabeling on the sampled counts:
+
+  ```pycon
+  >>> from qiskit.passmanager import MultiStagePassManager
+  >>> from qiskit.providers.basic_provider import BasicSimulator
+  >>> from qiskit_fermions.circuit import FermionicCircuit
+  >>> from qiskit_fermions.circuit.library import InitializeModes
+  >>> from qiskit_fermions.transpiler import FermionicCircuitToDAG, QuantumDAGToCircuit
+  >>> from qiskit_fermions.transpiler.passes import (
+  ...     F2QSynthesis, F2QSynthesisPluginManager, RelabelModes, TrivialF2QLayout,
+  ... )
+  >>>
+  >>> # blocked occupation: spin-up orbitals 0 and 1 and spin-down orbital 0 are occupied
+  >>> circ = FermionicCircuit(6)
+  >>> circ.append(InitializeModes([1, 1, 0, 1, 0, 0]), circ.modes)
+  >>>
+  >>> synth_plugins = F2QSynthesisPluginManager()
+  >>> synth = F2QSynthesis()
+  >>> synth.methods["InitializeModes"] = synth_plugins.method("InitializeModes", "TrivialOccupation")()
+  >>>
+  >>> # map blocked mode order onto the interleaved one
+  >>> relabel = RelabelModes(permutation=[0, 2, 4, 1, 3, 5])
+  >>>
+  >>> pm = MultiStagePassManager(
+  ...     init=FermionicCircuitToDAG(),
+  ...     optimization=relabel,
+  ...     layout=TrivialF2QLayout(),
+  ...     synthesis=synth,
+  ...     output=QuantumDAGToCircuit(),
+  ... )
+  >>>
+  >>> qcirc = pm.run(circ)
+  >>> qcirc.measure_all()
+  >>>
+  >>> bit_permutation = qcirc.metadata.get("permutation")
+  >>> print(bit_permutation)
+  [0, 2, 4, 1, 3, 5]
+  >>>
+  >>> res = BasicSimulator().run(qcirc, shots=1).result()
+  >>> counts = res.get_counts()
+  >>> print(counts)  # measured in the interleaved ordering
+  {'000111': 1}
+  >>>
+  >>> # undo the relabeling to recover the counts in the original blocked ordering
+  >>> post_processed = {
+  ...     "".join(bitstring[~idx] for idx in bit_permutation)[::-1]: count
+  ...     for bitstring, count in counts.items()
+  ... }
+  >>> print(post_processed)  # recovered in the original blocked ordering
+  {'001011': 1}
+  ```
+
+  Initializing this transpiler pass can be done with the arguments listed below.
+
+  **Parameters**
+
+  *   **permutation** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – the index permutation used to relabel the fermionic mode indices. When this is `None`, a permutation will be determined automatically based on [`build_excitation_span_minimization_model()`](qiskit-fermions-mappers-optimization-build-excitation-span-minimization-model "qiskit_fermions.mappers.optimization.build_excitation_span_minimization_model"). See also [`permutation`](#qiskit_fermions.transpiler.passes.RelabelModes.permutation "qiskit_fermions.transpiler.passes.RelabelModes.permutation") for more details.
+  *   **solver** (*pyomo.opt.SolverFactory | None*) – the optimization problem solver instance used to solve the [`build_excitation_span_minimization_model()`](qiskit-fermions-mappers-optimization-build-excitation-span-minimization-model "qiskit_fermions.mappers.optimization.build_excitation_span_minimization_model") problem. When this is `None`, no `permutation` can be determined automatically. See also [`solver`](#qiskit_fermions.transpiler.passes.RelabelModes.solver "qiskit_fermions.transpiler.passes.RelabelModes.solver") for more details.
+  *   **kwargs** – any additional keyword arguments will be forward to [`build_excitation_span_minimization_model()`](qiskit-fermions-mappers-optimization-build-excitation-span-minimization-model "qiskit_fermions.mappers.optimization.build_excitation_span_minimization_model").
+
+  ## Attributes
+
+  ### permutation
+
+  <Attribute id="qiskit_fermions.transpiler.passes.RelabelModes.permutation">
+    The index permutation used to relabel the fermionic mode indices.
+
+    This may either be a `list[int]`, mapping original mode index `i` to new mode index `permutation[i]` (see the class docstring for details). Its length has to match the number of fermionic modes of the circuit being transpiled, and each index has to appear exactly once. This scenario therefore requires the transpiler pass to be tailored quite specifically to the user’s circuit.
+
+    Or it may be `None`, in which case the [`build_excitation_span_minimization_model()`](qiskit-fermions-mappers-optimization-build-excitation-span-minimization-model "qiskit_fermions.mappers.optimization.build_excitation_span_minimization_model") function is used to define an optimization problem which tries to minimize the span of all occurring fermionic excitations. In this case the applied permutation is only available from the transpiled circuit’s metadata (see the class docstring).
+
+    <Admonition title="Note" type="note">
+      The use of this optimization model is only implemented for time evolution gates containing a [`FermionOperator`](qiskit-fermions-operators-fermion-operator "qiskit_fermions.operators.FermionOperator") instance.
+    </Admonition>
+  </Attribute>
+
+  ### solver
+
+  <Attribute id="qiskit_fermions.transpiler.passes.RelabelModes.solver">
+    The optimization problem solver instance to automatically find [`permutation`](#qiskit_fermions.transpiler.passes.RelabelModes.permutation "qiskit_fermions.transpiler.passes.RelabelModes.permutation").
+
+    When [`permutation`](#qiskit_fermions.transpiler.passes.RelabelModes.permutation "qiskit_fermions.transpiler.passes.RelabelModes.permutation") is `None`, the optimization problem defined by [`build_excitation_span_minimization_model()`](qiskit-fermions-mappers-optimization-build-excitation-span-minimization-model "qiskit_fermions.mappers.optimization.build_excitation_span_minimization_model") is used to automatically find a good permutation of mode indices. In such a case, the user must provide an optimizer to solve this model.
+  </Attribute>
+
+  ## Methods
+
+  ### find\_permutation
+
+  <Function id="qiskit_fermions.transpiler.passes.RelabelModes.find_permutation" signature="find_permutation(dag)">
+    Finds a mode index [`permutation`](#qiskit_fermions.transpiler.passes.RelabelModes.permutation "qiskit_fermions.transpiler.passes.RelabelModes.permutation") when not specified by the user.
+
+    This function only gets called when [`permutation`](#qiskit_fermions.transpiler.passes.RelabelModes.permutation "qiskit_fermions.transpiler.passes.RelabelModes.permutation") is not specified by the user (i.e. it is `None`). When that is the case, it does the following:
+
+    1.  ensure that the optional [pyomo](https://pypi.org/project/pyomo/) dependency is installed. Otherwise, no optimization can be performed and this transpiler pass has no effect.
+    2.  ensure that a [`solver`](#qiskit_fermions.transpiler.passes.RelabelModes.solver "qiskit_fermions.transpiler.passes.RelabelModes.solver") is specified. Otherwise, no optimization can be performed and this transpiler pass has no effect.
+    3.  gather all the fermionic excitations from any [`Evolution`](qiskit-fermions-circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates containing a [`FermionOperator`](qiskit-fermions-operators-fermion-operator "qiskit_fermions.operators.FermionOperator") instance.
+    4.  build the optimization problem using [`build_excitation_span_minimization_model()`](qiskit-fermions-mappers-optimization-build-excitation-span-minimization-model "qiskit_fermions.mappers.optimization.build_excitation_span_minimization_model"), forwarding any additional keyword arguments (`kwargs`) from when this transpiler pass was constructed.
+    5.  solve the optimization problem using [`solver`](#qiskit_fermions.transpiler.passes.RelabelModes.solver "qiskit_fermions.transpiler.passes.RelabelModes.solver") and extract the final permutation.
+
+    **Parameters**
+
+    **dag** ([*FermionicDAGCircuit*](qiskit-fermions-circuit-fermionic-dag-circuit "qiskit_fermions.circuit.FermionicDAGCircuit")) – the circuit to be transpiled.
+
+    **Returns**
+
+    The permutation to use. When `None`, this transpiler pass will have no effect.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when encountering an [`Evolution`](qiskit-fermions-circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate containing an operator that is not a [`FermionOperator`](qiskit-fermions-operators-fermion-operator "qiskit_fermions.operators.FermionOperator") instance.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)] | None, [pyomo.opt.results.results\_.SolverResults](https://pyomo.readthedocs.io/en/stable/api/pyomo.opt.results.results_.SolverResults.html#pyomo.opt.results.results_.SolverResults "(in Pyomo v6.10.1)") | None]
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_fermions.transpiler.passes.RelabelModes.run" signature="run(dag)">
+    Runs this transpilation pass.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](qiskit-fermions-circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported.
+
+    **Returns**
+
+    The output circuit which is still acting on a fermionic register.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when the provided input circuit has more than a single register.
+
+    **Return type**
+
+    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
+  </Function>
+
+  **Inherited Methods**
+
+  ### execute
+
+  <Function id="qiskit_fermions.transpiler.passes.RelabelModes.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_fermions.transpiler.passes.RelabelModes.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_fermions.transpiler.passes.RelabelModes.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
+  </Function>
+</Class>
+
