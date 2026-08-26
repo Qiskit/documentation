@@ -362,17 +362,7 @@ function buildApiComponent(h: H, node: any): any {
   };
 
   maybeAddAttribute(hastTree, "id", node.properties.id);
-  maybeAddAttribute(
-    hastTree,
-    "attributeTypeHint",
-    node.properties.attributetypehint,
-  );
-  maybeAddAttribute(
-    hastTree,
-    "attributeTypeHintHref",
-    node.properties.attributetypehinthref,
-  );
-  maybeAddAttribute(hastTree, "attributeValue", node.properties.attributevalue);
+  maybeAddAttribute(hastTree, "name", node.properties.name);
   maybeAddExpressionAttribute(
     hastTree,
     "isDedicatedPage",

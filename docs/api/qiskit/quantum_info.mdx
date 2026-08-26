@@ -705,47 +705,47 @@ $$
 
 ### random\_pauli
 
-<Function id="qiskit.quantum_info.random_pauli" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/quantum_info/operators/symplectic/random.py#L28-L54" signature="qiskit.quantum_info.random_pauli(num_qubits, group_phase=False, seed=None)">
-  Return a random Pauli.
+<Function id="qiskit.quantum_info.random_pauli" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/quantum_info/operators/symplectic/random.py#L28-L53" signature="qiskit.quantum_info.random_pauli(num_qubits, group_phase=False, seed=None)">
+  Return a random [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of qubits.
-  *   **group\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Optional. If True generate random phase. Otherwise the phase will be set so that the Pauli coefficient is +1 (default: False).
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits.
+  *   **group\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Optional. If `True` generate random phase. Otherwise the phase will be set so that the Pauli coefficient is +1 (default: `False`).
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator) *| None*) – Optional. Set a fixed seed or generator for RNG.
 
   **Returns**
 
-  a random Pauli
+  A random Pauli.
 
   **Return type**
 
-  [Pauli](/docs/api/qiskit/qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+  [*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")
 </Function>
 
 ### random\_clifford
 
-<Function id="qiskit.quantum_info.random_clifford" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/quantum_info/operators/symplectic/random.py#L90-L117" signature="qiskit.quantum_info.random_clifford(num_qubits, seed=None)">
+<Function id="qiskit.quantum_info.random_clifford" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/quantum_info/operators/symplectic/random.py#L89-L115" signature="qiskit.quantum_info.random_clifford(num_qubits, seed=None)">
   Return a random Clifford operator.
 
   The Clifford is sampled using the method of Reference \[1].
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of qubits for the Clifford
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits for the Clifford.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator) *| None*) – Optional. Set a fixed seed or generator for RNG.
 
   **Returns**
 
-  a random Clifford operator.
+  A random Clifford operator.
 
   **Return type**
 
-  [Clifford](/docs/api/qiskit/qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+  [*Clifford*](/docs/api/qiskit/qiskit.quantum_info.Clifford "qiskit.quantum_info.operators.symplectic.clifford.Clifford")
 
-  **Reference:**
+  References:
 
-  1.  S. Bravyi and D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*. [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+  \[1] S. Bravyi and D. Maslov (2020). Hadamard-free circuits expose the structure of the Clifford group. [arXiv:2003.09412](https://arxiv.org/abs/2003.09412)
 </Function>
 
 ### random\_quantum\_channel
@@ -796,23 +796,23 @@ $$
 
 ### random\_pauli\_list
 
-<Function id="qiskit.quantum_info.random_pauli_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/quantum_info/operators/symplectic/random.py#L57-L87" signature="qiskit.quantum_info.random_pauli_list(num_qubits, size=1, seed=None, phase=True)">
-  Return a random PauliList.
+<Function id="qiskit.quantum_info.random_pauli_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.5/qiskit/quantum_info/operators/symplectic/random.py#L56-L86" signature="qiskit.quantum_info.random_pauli_list(num_qubits, size=1, seed=None, phase=True)">
+  Return a random [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList").
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of qubits.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits.
   *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Optional. The length of the Pauli list (Default: 1).
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
-  *   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True the Pauli phases are randomized, otherwise the phases are fixed to 0. \[Default: True]
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator) *| None*) – Optional. Set a fixed seed or generator for RNG.
+  *   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Optional. If `True` the Pauli phases are randomized, otherwise the phases are fixed to 0 (Default: `True`).
 
   **Returns**
 
-  a random PauliList.
+  A random [`PauliList`](/docs/api/qiskit/qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList").
 
   **Return type**
 
-  [PauliList](/docs/api/qiskit/qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+  [*PauliList*](/docs/api/qiskit/qiskit.quantum_info.PauliList "qiskit.quantum_info.operators.symplectic.pauli_list.PauliList")
 </Function>
 
 ## Analysis
