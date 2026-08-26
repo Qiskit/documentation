@@ -68,6 +68,7 @@ export class Pkg {
     "qiskit-addon-utils",
     "qiskit-addon-paulice",
     "qiskit-addon-pna",
+    "qiskit-addon-fermions",
   ];
 
   static VALID_NAMES = [
@@ -213,6 +214,15 @@ export class Pkg {
         ...args,
         title: "Qiskit Paulice",
         githubSlug: "Qiskit/qiskit-addon-paulice",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-addon-fermions") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Fermions",
+        githubSlug: "Qiskit/qiskit-addon-fermions",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });
