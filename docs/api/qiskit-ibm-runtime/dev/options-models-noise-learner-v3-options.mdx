@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options_models.NoiseLearnerV3Options
 
 # qiskit\_ibm\_runtime.options\_models.NoiseLearnerV3Options
 
-<Class id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/noise_learner_v3.py#L27-L70" signature="NoiseLearnerV3Options" modifiers="pydantic model">
+<Class id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/noise_learner_v3.py#L28-L74" signature="NoiseLearnerV3Options" modifiers="pydantic model">
   Bases: `BaseOptionsModel`
 
   Options for [`NoiseLearnerV3`](noise-learner-v3-noise-learner-v3 "qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3").
@@ -20,21 +20,43 @@ python_api_name: qiskit_ibm_runtime.options_models.NoiseLearnerV3Options
   *   **validate\_assignment**: *bool = True*
   *   **extra**: *str = forbid*
 
+  ### bit\_flip\_checks
+
+  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.bit_flip_checks" modifiers="field">
+    Type: [`BitFlipChecksOptions`](options-models-bit-flip-checks-options "qiskit_ibm_runtime.options_models.BitFlipChecksOptions")
+
+    Default value: `BitFlipChecksOptions(pre_circuit=PreCircuitBitFlipChecksOptions(enable=False, x_pulse_type='xslow', strategy='node'), post_circuit=PostCircuitBitFlipChecksOptions(enable=False, x_pulse_type='xslow', strategy='node'))`
+
+    Options to apply bit-flip checks to the results of noise learning circuits.
+  </Attribute>
+
   ### environment
 
-  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.environment" attributeTypeHint="EnvironmentOptions" attributeValue="EnvironmentOptions(log_level='WARNING', job_tags=[], private=False, max_execution_time=None, image=None)" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.environment" modifiers="field">
+    Type: [`EnvironmentOptions`](options-models-environment-options "qiskit_ibm_runtime.options_models.EnvironmentOptions")
+
+    Default value: `EnvironmentOptions(log_level='WARNING', job_tags=[], private=False, max_execution_time=None, image=None)`
+
     Options related to the execution environment.
   </Attribute>
 
   ### execution
 
-  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.execution" attributeTypeHint="ExecutionOptions" attributeValue="ExecutionOptions(init_qubits=True, rep_delay=None, scheduler_timing=False, stretch_values=False)" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.execution" modifiers="field">
+    Type: [`ExecutionOptions`](options-models-execution-options "qiskit_ibm_runtime.options_models.ExecutionOptions")
+
+    Default value: `ExecutionOptions(init_qubits=True, rep_delay=None, scheduler_timing=False, stretch_values=False)`
+
     Low-level execution options.
   </Attribute>
 
   ### experimental
 
-  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.experimental" attributeTypeHint="dict" attributeValue="{}" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.experimental" modifiers="field">
+    Type: `dict`
+
+    Default value: `{}`
+
     Experimental options.
 
     These options are subject to change without notification, and stability is not guaranteed.
@@ -42,7 +64,11 @@ python_api_name: qiskit_ibm_runtime.options_models.NoiseLearnerV3Options
 
   ### layer\_pair\_depths
 
-  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.layer_pair_depths" attributeTypeHint="list[Annotated[int, Field(ge" attributeValue="0)]] = [0, 1, 2, 4, 16, 32]" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.layer_pair_depths" modifiers="field">
+    Type: `list`\[`Annotated`\[`int`, `Field`(`ge``=``0`)]]
+
+    Default value: `[0, 1, 2, 4, 16, 32]`
+
     The circuit depths (measured in number of pairs) to use in Pauli Lindblad experiments.
 
     Pairs are used as the unit because we exploit the order-2 nature of our entangling gates in the noise learning implementation. For example, a value of `3` corresponds to 6 repetitions of the layer of interest.
@@ -54,7 +80,11 @@ python_api_name: qiskit_ibm_runtime.options_models.NoiseLearnerV3Options
 
   ### num\_randomizations
 
-  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.num_randomizations" attributeTypeHint="Annotated[int, Field(ge" attributeValue="1)] = 32" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.num_randomizations" modifiers="field">
+    Type: `Annotated`\[`int`, `Field`(`ge``=``1`)]
+
+    Default value: `32`
+
     The number of random circuits to use per learning circuit configuration.
 
     For TREX experiments, a configuration is a measurement basis.
@@ -68,13 +98,21 @@ python_api_name: qiskit_ibm_runtime.options_models.NoiseLearnerV3Options
 
   ### post\_selection
 
-  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.post_selection" attributeTypeHint="PostSelectionOptions" attributeValue="PostSelectionOptions(enable=False, x_pulse_type='xslow', strategy='node')" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.post_selection" modifiers="field">
+    Type: [`PostSelectionOptions`](options-models-post-selection-options "qiskit_ibm_runtime.options_models.PostSelectionOptions")
+
+    Default value: `PostSelectionOptions(enable=False, x_pulse_type='xslow', strategy='node')`
+
     Options for post selecting the results of noise learning circuits.
   </Attribute>
 
   ### shots\_per\_randomization
 
-  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.shots_per_randomization" attributeTypeHint="Annotated[int, Field(ge" attributeValue="1)] = 128" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.shots_per_randomization" modifiers="field">
+    Type: `Annotated`\[`int`, `Field`(`ge``=``1`)]
+
+    Default value: `128`
+
     The total number of shots to use per randomized learning circuit.
 
     **Constraints**

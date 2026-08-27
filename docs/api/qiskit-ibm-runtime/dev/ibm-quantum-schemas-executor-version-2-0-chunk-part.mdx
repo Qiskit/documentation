@@ -1,0 +1,98 @@
+---
+title: ChunkPart (dev version)
+description: API reference for ibm_quantum_schemas.executor.version_2_0.ChunkPart in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.executor.version_2_0.ChunkPart
+---
+
+<span id="ibm-quantum-schemas-executor-version-2-0-chunkpart" />
+
+# ChunkPart
+
+<Class id="ibm_quantum_schemas.executor.version_2_0.ChunkPart" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/executor/version_2_0/models.py#L291-L349" signature="ChunkPart" modifiers="pydantic model">
+  Bases: `BaseModel`
+
+  A description of the contents of a single part of an execution chunk.
+
+  ### element\_range
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.ChunkPart.element_range" modifiers="field">
+    Type: `tuple`\[`int`, `int`, `int`]
+
+    Which elements of the item were executed in this chunk part.
+
+    This range has entries `(start_idx, stop_idx, step)` that slice the flattened shape of the corresponding quantum program item, after the `permutation` has been applied. That is, this part corresponds to the data elements `flatten(permute(arr))[start_idx:stop_idx:step]` for some data array `arr` whose shape matches the corresponding item shape. The lower index is inclusive, the upper index is exclusive, and the step must be positive.
+
+    It should hold that `size == max(0, ceil((stop_idx - start_idx) / step))`.
+
+    **Validated by**
+
+    *   `cross_validate`
+    *   `must_be_a_valid_range`
+  </Attribute>
+
+  ### idx\_item
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.ChunkPart.idx_item" modifiers="field">
+    Type: `int`
+
+    The index of an item in a quantum program.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### permutation
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.ChunkPart.permutation" modifiers="field">
+    Type: `list`\[`int`]
+
+    A permutation vector of the item shape before slicing elements with the `element_range`.
+
+    This list should hold contiguous integers starting at 0, in some order. The convention is that `permuted_shape[i] = shape[permutation[i]]` for every dimension index `i`.
+
+    **Validated by**
+
+    *   `cross_validate`
+    *   `must_be_permutation_of_range`
+  </Attribute>
+
+  ### size
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.ChunkPart.size" modifiers="field">
+    Type: `int`
+
+    The number of elements from the quantum program item that were executed.
+
+    For example, if a quantum program item has shape `(10, 5)`, then it has a total of `50` elements, so that if this `size` is `10`, it constitutes 20% of the total work for the item.
+
+    **Validated by**
+
+    *   `cross_validate`
+  </Attribute>
+
+  ### cross\_validate
+
+  <Function id="ibm_quantum_schemas.executor.version_2_0.ChunkPart.cross_validate" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/executor/version_2_0/models.py#L340-L349" signature="cross_validate" modifiers="validator">
+    Check for mutual compatibility of types and shapes of attributes.
+
+    **Return type**
+
+    *Self*
+  </Function>
+
+  ### must\_be\_a\_valid\_range
+
+  <Function id="ibm_quantum_schemas.executor.version_2_0.ChunkPart.must_be_a_valid_range" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/executor/version_2_0/models.py#L331-L338" signature="must_be_a_valid_range" modifiers="validator">
+    Check that we have a valid range tuple.
+  </Function>
+
+  ### must\_be\_permutation\_of\_range
+
+  <Function id="ibm_quantum_schemas.executor.version_2_0.ChunkPart.must_be_permutation_of_range" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/executor/version_2_0/models.py#L323-L329" signature="must_be_permutation_of_range" modifiers="validator">
+    Check that we have a valid permutation vector.
+  </Function>
+</Class>
+

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options_models.PostSelectionOptions
 
 # qiskit\_ibm\_runtime.options\_models.PostSelectionOptions
 
-<Class id="qiskit_ibm_runtime.options_models.PostSelectionOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/post_selection.py#L20-L54" signature="PostSelectionOptions" modifiers="pydantic model">
+<Class id="qiskit_ibm_runtime.options_models.PostSelectionOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/post_selection.py#L35-L69" signature="PostSelectionOptions" modifiers="pydantic model">
   Bases: `BaseOptionsModel`
 
   Options for post selecting results.
@@ -22,7 +22,11 @@ python_api_name: qiskit_ibm_runtime.options_models.PostSelectionOptions
 
   ### enable
 
-  <Attribute id="qiskit_ibm_runtime.options_models.PostSelectionOptions.enable" attributeTypeHint="bool" attributeValue="False" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.PostSelectionOptions.enable" modifiers="field">
+    Type: `Annotated`\[`bool`, `AfterValidator`(`func``=``warn_post_selection`)]
+
+    Default value: `False`
+
     Whether to enable Post Selection when performing learning experiments.
 
     If `True`, Post Selection is applied to all the learning circuits. In particular, the following steps are undertaken:
@@ -36,11 +40,19 @@ python_api_name: qiskit_ibm_runtime.options_models.PostSelectionOptions
         where one or more bits failed to flip, as explained in the docstring of `qiskit_addon_utils.noise_management.post_selection.PostSelector.compute_mask()`.
 
     If `False`, all the other Post Selection options will be ignored.
+
+    **Constraints**
+
+    *   **func** = \<function warn\_post\_selection at 0x7f55eafc9900>
   </Attribute>
 
   ### strategy
 
-  <Attribute id="qiskit_ibm_runtime.options_models.PostSelectionOptions.strategy" attributeTypeHint="Literal['node', 'edge']" attributeValue="'node'" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.PostSelectionOptions.strategy" modifiers="field">
+    Type: `Literal`\[`'node'`, `'edge'`]
+
+    Default value: `'node'`
+
     The strategy used to decide if a shot should be kept or discarded.
 
     The available startegies are:
@@ -56,7 +68,11 @@ python_api_name: qiskit_ibm_runtime.options_models.PostSelectionOptions
 
   ### x\_pulse\_type
 
-  <Attribute id="qiskit_ibm_runtime.options_models.PostSelectionOptions.x_pulse_type" attributeTypeHint="Literal['xslow', 'rx']" attributeValue="'xslow'" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.PostSelectionOptions.x_pulse_type" modifiers="field">
+    Type: `Literal`\[`'xslow'`, `'rx'`]
+
+    Default value: `'xslow'`
+
     The type of the X-pulse used for the post selection measurements.
   </Attribute>
 
