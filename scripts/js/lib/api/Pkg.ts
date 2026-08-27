@@ -70,8 +70,8 @@ export class Pkg {
     "qiskit-addon-utils",
     "qiskit-addon-paulice",
     "qiskit-addon-pna",
-    "qiskit-addon-fermions",
-    "qiskit-addon-fermions-c",
+    "qiskit-fermions",
+    "qiskit-fermions-c",
     "pauli-prop",
     "qiskit-addon-slc",
   ];
@@ -228,27 +228,27 @@ export class Pkg {
         hasAddonDocs: true,
       });
     }
-    if (name === "qiskit-addon-fermions") {
+    if (name === "qiskit-fermions") {
       return new Pkg({
         ...args,
         title: "Qiskit Fermions",
-        githubSlug: "Qiskit/qiskit-addon-fermions",
+        githubSlug: "Qiskit/qiskit-fermions",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });
     }
-    if (name === "qiskit-addon-fermions-c") {
+    if (name === "qiskit-fermions-c") {
       return new Pkg({
         ...args,
         title: "Qiskit Fermions",
-        githubSlug: "Qiskit/qiskit-addon-fermions",
+        githubSlug: "Qiskit/qiskit-fermions",
         kebabCaseAndShortenUrls: true,
         language: "C",
         releaseNotesConfig: new ReleaseNotesConfig({
           enabled: true,
-          linkToPackage: "qiskit-addon-fermions",
+          linkToPackage: "qiskit-fermions",
         }),
-        artifactPackageName: "qiskit-addon-fermions",
+        artifactPackageName: "qiskit-fermions",
       });
     }
     if (name === "qiskit-addon-pna") {

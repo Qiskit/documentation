@@ -1,0 +1,32 @@
+---
+title: linear_operator (latest version)
+description: API reference for qiskit_fermions.linalg.linear_operator in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.linalg.linear_operator
+---
+
+<span id="linear-operator" />
+
+# linear\_operator
+
+<Function id="qiskit_fermions.linalg.linear_operator" isDedicatedPage={true} signature="linear_operator(operator, norb, nelec)">
+  Returns a [`scipy.sparse.linalg.LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)") for an operator on the `(norb, nelec)` FCI sector.
+
+  This is a thin, type-agnostic wrapper around the [`SupportsLinearOperator`](protocols-supports-linear-operator "qiskit_fermions.protocols.SupportsLinearOperator") protocol method, mirroring the free-function style of [`ffsim.linear_operator()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.linear_operator.html#ffsim.linear_operator "(in ffsim)").
+
+  **Parameters**
+
+  *   **operator** ([*SupportsLinearOperator*](protocols-supports-linear-operator "qiskit_fermions.protocols.linear_operator.SupportsLinearOperator")) – the operator to convert, implementing [`SupportsLinearOperator`](protocols-supports-linear-operator "qiskit_fermions.protocols.SupportsLinearOperator").
+  *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals.
+  *   **nelec** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the electron count – an integer for a spinless sector, or an `(n_alpha, n_beta)` pair for a spinful one.
+
+  **Returns**
+
+  A [`scipy.sparse.linalg.LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)") applying `operator` on the requested sector.
+
+  **Return type**
+
+  [*LinearOperator*](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)")
+</Function>
+

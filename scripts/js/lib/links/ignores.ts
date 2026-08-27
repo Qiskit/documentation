@@ -583,14 +583,14 @@ function _fermionsCRegexes(): FilesToIgnores {
   // Sphinx emits lowercase anchors for C enumerator values (e.g. qfexitcode_alignmenterror),
   // but our generated pages use the original CamelCase IDs (e.g. QfExitCode_AlignmentError).
   return {
-    "public/docs/api/qiskit-addon-fermions-c/objects.inv": [
-      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_alignmenterror",
-      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_cinputerror",
-      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_duplicateindexerror",
-      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_indexerror",
-      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_nullpointererror",
-      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_success",
-      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_valueerror",
+    "public/docs/api/qiskit-fermions-c/objects.inv": [
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_alignmenterror",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_cinputerror",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_duplicateindexerror",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_indexerror",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_nullpointererror",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_success",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_valueerror",
     ],
   };
 }

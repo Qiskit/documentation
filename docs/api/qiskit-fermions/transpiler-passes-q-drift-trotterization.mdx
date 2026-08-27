@@ -1,0 +1,141 @@
+---
+title: QDriftTrotterization (latest version)
+description: API reference for qiskit_fermions.transpiler.passes.QDriftTrotterization in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.transpiler.passes.QDriftTrotterization
+---
+
+# QDriftTrotterization
+
+<Class id="qiskit_fermions.transpiler.passes.QDriftTrotterization" isDedicatedPage={true} signature="QDriftTrotterization(num_terms, *, filter_trivial=False, rng=None)" modifiers="class">
+  Bases: [`GenericPass`](/docs/api/qiskit/qiskit.passmanager.GenericPass)\[[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)]
+
+  A transpilation pass to Trotterize [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates via the qDRIFT protocol.
+
+  This pass replaces the exact evolution $e^{-i t H}$ of each [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate by a randomized product formula: it draws `num_terms` samples from the Hamiltonian’s terms (or [`groups`](operators-fermion-operator#groups "qiskit_fermions.operators.FermionOperator.groups"), if assigned), with each term sampled with a probability proportional to the magnitude of its coefficient, and emits one [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate per sample. Every sampled gate evolves its (unit-magnitude, sign-preserving) term for the same time
+
+$$
+\delta = \frac{\lambda t}{\texttt{num\_terms}}, \qquad \lambda = \sum_j |c_j|,
+$$
+
+  where the $c_j$ are the coefficients of the sampled terms/groups. The ordered product of the sampled evolutions does not reproduce $e^{-i t H}$ exactly; rather, its expectation over the sampling approximates the exact evolution, with an error that decreases as `num_terms` grows. Because the output depends on the random draws, it differs from run to run unless a fixed `rng` is supplied.
+
+  <Admonition title="Hint" type="note">
+    Terms that are diagonal in the occupation-number basis (i.e. products of number operators) have no effect on the sampled bitstrings, so including them only increases the sampling overhead. Filter them out with `filter_diagonal_terms()` on the Hamiltonian *before* constructing the [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate, rather than on every call to [`run()`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.run "qiskit_fermions.transpiler.passes.QDriftTrotterization.run"): this pass runs once per transpiled circuit, so filtering upstream avoids repeating the same filtering work for every circuit generated from the same Hamiltonian.
+  </Admonition>
+
+  <Admonition title="See also" type="note">
+    The qDRIFT protocol was introduced in [arXiv:1811.08017](https://arxiv.org/abs/1811.08017).
+  </Admonition>
+
+  Initializing this transpiler pass can be done with the arguments listed below.
+
+  **Parameters**
+
+  *   **num\_terms** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of terms to sample for the qDRIFT Trotterization. This equals the number of [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates emitted per input gate; a larger value reduces the Trotterization error at the cost of a deeper circuit.
+  *   **filter\_trivial** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – when set to `True`, the sampling loop rejects a sampled term unless it couples a mode known to be occupied with a mode known to be unoccupied. Any term acting only within one of these two sets cannot change the occupation and, thus, has no effect on a sampled bitstring, so re-drawing avoids wasting one of the `num_terms` slots on it. This requires an [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") or [`PrepareSlaterDeterminant`](circuit-library-prepare-slater-determinant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") gate to precede the [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates being Trotterized (to seed the initial occupied and unoccupied mode sets); if none is found, or if the mode sets it seeds turn out to be entirely occupied or entirely unoccupied, filtering is skipped for that gate and a [`UserWarning`](https://docs.python.org/3/library/exceptions.html#UserWarning) is emitted instead. Any [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") gate encountered before or between the [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates also updates these sets: every mode it acts on becomes “uncertain” (since the rotation may mix it with any other mode it touches), just like a mode touched by an accepted qDRIFT term. A [`PrepareSlaterDeterminant`](circuit-library-prepare-slater-determinant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") gate updates these sets the same way its [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") and [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") components would if applied in sequence: it seeds the occupied/unoccupied sets from its `occupation`, then immediately marks every mode it acts on as “uncertain” because of its rotation. See the [`run()`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.run "qiskit_fermions.transpiler.passes.QDriftTrotterization.run") docstring for the precise acceptance rule.
+  *   **rng** (*np.random.Generator |* [*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – the random number generator (rng) to be used. When this is an `int`, the internal rng will be initialized with `np.random.default_rng(seed=rng)`.
+
+  ## Attributes
+
+  ### MAX\_SAMPLE\_RETRIES
+
+  <Attribute id="qiskit_fermions.transpiler.passes.QDriftTrotterization.MAX_SAMPLE_RETRIES">
+    Default value: `1000000`
+
+    The maximum number of consecutive rejected samples tolerated by `filter_trivial` before [`run()`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.run "qiskit_fermions.transpiler.passes.QDriftTrotterization.run") gives up and raises [`RuntimeError`](https://docs.python.org/3/library/exceptions.html#RuntimeError). This guards against an infinite loop when the Hamiltonian’s remaining terms cannot bridge the tracked occupied/unoccupied mode sets — for example, when both sets remain small and disjoint (few modes have been marked occupied or unoccupied, and none have yet become “uncertain”) and no remaining term’s support touches both.
+  </Attribute>
+
+  ### num\_terms
+
+  <Attribute id="qiskit_fermions.transpiler.passes.QDriftTrotterization.num_terms">
+    The number of terms to include in the qDRIFT Trotterization.
+  </Attribute>
+
+  ### filter\_trivial
+
+  <Attribute id="qiskit_fermions.transpiler.passes.QDriftTrotterization.filter_trivial">
+    Whether to reject sampled terms that cannot affect the sampled bitstring (see the class docstring for the `filter_trivial` argument).
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit_fermions.transpiler.passes.QDriftTrotterization.run" signature="run(dag)">
+    Runs this transpilation pass.
+
+    Each [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") node is replaced by `num_terms` sampled single-term [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates (see the class docstring). Nodes that are not [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates are copied to the output unchanged. Since the sampling is random, the output varies between runs unless the `rng` was seeded.
+
+    When [`filter_trivial`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.filter_trivial "qiskit_fermions.transpiler.passes.QDriftTrotterization.filter_trivial") is set, this method tracks the sets of modes that are known to be occupied or unoccupied, seeded from any [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") gate(s) preceding the [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates in the circuit (several such gates placed in parallel, e.g. one per spin sector, are accumulated together). A sampled term is only accepted if its support intersects *both* sets, i.e. it couples a known-occupied mode with a known-unoccupied one; otherwise it is discarded and re-sampled, since it cannot affect the sampled bitstring. Once a term is accepted, every mode in its support becomes “uncertain” and is added to *both* sets, making it eligible to participate in either role for subsequent samples. Any [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") gate found in the circuit updates these sets the same way: every mode it acts on becomes “uncertain” too, since the rotation may mix it with any other mode in its support. A [`PrepareSlaterDeterminant`](circuit-library-prepare-slater-determinant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") gate is treated as its [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") and [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") components applied back-to-back: its `occupation` first seeds the occupied/unoccupied sets, and then every mode it acts on is immediately marked “uncertain”, since it also carries a rotation.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported.
+
+    **Returns**
+
+    The output circuit which is still acting on a fermionic register.
+
+    **Raises**
+
+    [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError) – if `filter_trivial` is `True` and [`MAX_SAMPLE_RETRIES`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.MAX_SAMPLE_RETRIES "qiskit_fermions.transpiler.passes.QDriftTrotterization.MAX_SAMPLE_RETRIES") consecutive samples are rejected without finding a non-trivial term to emit.
+
+    **Return type**
+
+    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
+  </Function>
+
+  **Inherited Methods**
+
+  ### execute
+
+  <Function id="qiskit_fermions.transpiler.passes.QDriftTrotterization.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_fermions.transpiler.passes.QDriftTrotterization.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str)
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_fermions.transpiler.passes.QDriftTrotterization.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
+  </Function>
+</Class>
+
