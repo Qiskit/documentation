@@ -1,0 +1,150 @@
+---
+title: Mapper Library (latest version)
+description: API reference for Mapper Library in the latest version of qiskit-addon-fermions-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Mapper Library
+---
+
+<span id="qf-mapper-library" />
+
+# Mapper Library
+
+The C API provides efficient implementations of commonly used operator representation mapper routines.
+
+|                                                                                      |                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`qf_ferm_op_jordan_wigner()`](#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner") | Map a [`QfFermionOperator`](qf-ferm-op#c.QfFermionOperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.   |
+| [`qf_fermion_to_majorana()`](#qf_fermion_to_majorana "qf_fermion_to_majorana")       | Map a [`QfFermionOperator`](qf-ferm-op#c.QfFermionOperator "QfFermionOperator") to a [`QfMajoranaOperator`](qf-maj-op#c.QfMajoranaOperator "QfMajoranaOperator"). |
+| [`qf_majorana_to_fermion()`](#qf_majorana_to_fermion "qf_majorana_to_fermion")       | Map a [`QfMajoranaOperator`](qf-maj-op#c.QfMajoranaOperator "QfMajoranaOperator") to a [`QfFermionOperator`](qf-ferm-op#c.QfFermionOperator "QfFermionOperator"). |
+
+***
+
+### qf\_ferm\_op\_jordan\_wigner
+
+<Function id="qf_ferm_op_jordan_wigner" signature="QfExitCode qf_ferm_op_jordan_wigner(const QfFermionOperator *op, uint32_t num_qubits, QkObs **out)">
+  Applies the Jordan-Wigner transformation to an operator.
+
+  Map a [`QfFermionOperator`](qf-ferm-op#c.QfFermionOperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.   <span id="id1" />[\[1\]](#id2)
+
+  #### Definition
+
+  The Jordan-Wigner transformation maps fermionic creation and annihilation operators to spin (or in this case, qubit) operators:
+
+$$
+a^\dagger_j \rightarrow \bigotimes_{k\lt j} \sigma^Z_k \otimes \sigma^-_j ~~\text{and}~~
+a_j \rightarrow \bigotimes_{k\lt j} \sigma^Z_k \otimes \sigma^+_j \, ,
+$$
+
+  where $a^\dagger_j$ ($a_j$) is the fermionic creation (annihilation) operator acting on the $j$-th spin-less fermionic mode, $\sigma^P$ with $P \in \{X,Y,Z\}$ are the spin-$\frac{1}{2}$ Pauli operators and $\sigma^\pm = (\sigma^X \pm \mathrm{i} \sigma^Y) / 2$.
+
+  This mapping preserves the fermionic anti-commutation relations by introducing a chain of $\sigma^Z$ operators on all qubits preceding the acted-upon index $j$.
+
+  <span id="id2" />
+
+  \[[1](#id1)]
+
+  P. Jordan and E. Wigner, Über das Paulische Äquivalenzverbot, Zeitschrift für Physik 47, No. 9. (1928), pp. 631–651, [doi:10.1007/BF01331938](https://link.springer.com/article/10.1007/BF01331938).
+
+  #### Example
+
+  ```c
+  1// define some kind of fermionic operator
+  2QfFermionOperator *hamil = qf_ferm_op_one();
+  3
+  4// and map it to a qubit operator
+  5QkObs *result;
+  6QfExitCode exit = qf_ferm_op_jordan_wigner(hamil, 4, &result);
+  7
+  8assert(exit == QfExitCode_Success);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator to be mapped.
+  *   **num\_qubits** – The number of qubits of the resulting operator. This must be strictly greater than the largest mode index acted upon by `op`.
+  *   **out** – A pointer to where the created qubit operator will be written on success. It is left untouched if the transformation fails.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_ValueError` is returned if `num_qubits` is too small to hold the operator’s support.
+</Function>
+
+### qf\_fermion\_to\_majorana
+
+<Function id="qf_fermion_to_majorana" signature="QfMajoranaOperator *qf_fermion_to_majorana(const QfFermionOperator *fer_op)">
+  Map a `QfFermionOperator` to a `QfMajoranaOperator`.
+
+  <span id="id3" />
+
+  #### Definition
+
+  This function implements the simple transformation:
+
+$$
+a^\dagger_j \rightarrow \frac{1}{2} (\gamma_j - i \gamma'_j) ~~\text{and}~~
+a_j \rightarrow \frac{1}{2} (\gamma_j + i \gamma'_j)
+$$
+
+  where $a^\dagger_j$ ($a_j$) is the fermionic creation (annihilation) operator acting on the $j$-th spin-less fermionic mode, and $\gamma_j$/$\gamma'_j$ are the two Majorana fermion operators. In the case of the [`QfMajoranaOperator`](qf-maj-op#c.QfMajoranaOperator "QfMajoranaOperator") these will be stored on the even and odd Majorana modes, respectively.
+
+  <span id="id4" />
+
+  #### Example
+
+  ```c
+  1// define some kind of fermionic operator
+  2QfFermionOperator *fer_op = qf_ferm_op_one();
+  3
+  4// and map it to a majorana operator
+  5QfMajoranaOperator *maj_op = qf_fermion_to_majorana(fer_op);
+  ```
+
+  **Parameters**
+
+  *   **fer\_op** – A pointer to the fermionic operator to be mapped.
+
+  **Returns**
+
+  A pointer to the mapped majorana operator.
+</Function>
+
+### qf\_majorana\_to\_fermion
+
+<Function id="qf_majorana_to_fermion" signature="QfFermionOperator *qf_majorana_to_fermion(const QfMajoranaOperator *maj_op)">
+  Map a `QfMajoranaOperator` to a `QfFermionOperator`.
+
+  <span id="id5" />
+
+  #### Definition
+
+  This function implements the simple transformation:
+
+$$
+\gamma_j \rightarrow a^\dagger_j + a_j ~~\text{and}~~
+\gamma'_j \rightarrow i (a^\dagger_j - a_j)
+$$
+
+  where $\gamma_j$/$\gamma'_j$ are the two Majorana fermion operators (stored on the even and odd modes, respectively), and $a^\dagger_j$ ($a_j$) is the fermionic creation (annihilation) operator acting on the $j$-th spin-less fermionic mode.
+
+  <span id="id6" />
+
+  #### Example
+
+  ```c
+  1// define some kind of majorana operator
+  2QfMajoranaOperator *maj_op = qf_maj_op_one();
+  3
+  4// and map it to a fermion operator
+  5QfFermionOperator *fer_op = qf_majorana_to_fermion(maj_op);
+  ```
+
+  **Parameters**
+
+  *   **maj\_op** – A pointer to the majorana operator to be mapped.
+
+  **Returns**
+
+  A pointer to the mapped fermion operator.
+</Function>
+
