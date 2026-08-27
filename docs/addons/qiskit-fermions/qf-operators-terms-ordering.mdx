@@ -1,0 +1,72 @@
+---
+title: "Ordering Functions"
+description: "Ordering Functions for the latest version of Qiskit Fermions"
+---
+
+# Ordering Functions
+
+### qf\_ferm\_op\_canonical\_order
+
+<Function id="c.qf_ferm_op_canonical_order" signature="QfFermionOperator *qf_ferm_op_canonical_order(const QfFermionOperator *op)">
+  Returns a copy of a fermionic operator with its terms in a canonical order.
+
+  The terms are sorted into a canonical order that depends only on each term’s structure (the operator string it represents) and not on its coefficient. The order is therefore deterministic for a given set of terms regardless of how the operator was assembled. The terms themselves are left untouched — this only reorders them, it does not simplify or normal-order the operator.
+
+  ```c
+   1QfFermionOperator *op = qf_ferm_op_zero();
+   2bool actions[2] = {true, false};
+   3uint32_t modes_a[2] = {1, 0};
+   4QkComplex64 coeff_a = {1.0, 0.0};
+   5qf_ferm_op_add_term(op, 2, actions, modes_a, &coeff_a);
+   6uint32_t modes_b[2] = {0, 1};
+   7QkComplex64 coeff_b = {2.0, 0.0};
+   8qf_ferm_op_add_term(op, 2, actions, modes_b, &coeff_b);
+   9
+  10QfFermionOperator *ordered = qf_ferm_op_canonical_order(op);
+  ```
+
+  <Admonition title="Note" type="note">
+    Any group indices (see [`qf_ferm_op_get_groups()`](qf-ferm-op#c.qf_ferm_op_get_groups "qf_ferm_op_get_groups")) are preserved: each term carries its group index along as it moves, since a group index is a per-term tag independent of term order. Terms of the same group are simply no longer contiguous afterwards. If the input has no groups, neither does the result.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator whose terms are to be reordered.
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+
+### qf\_maj\_op\_canonical\_order
+
+<Function id="c.qf_maj_op_canonical_order" signature="QfMajoranaOperator *qf_maj_op_canonical_order(const QfMajoranaOperator *op)">
+  Returns a copy of a Majorana operator with its terms in a canonical order.
+
+  The terms are sorted into a canonical order that depends only on each term’s structure (the operator string it represents) and not on its coefficient. The order is therefore deterministic for a given set of terms regardless of how the operator was assembled. The terms themselves are left untouched — this only reorders them, it does not simplify the operator.
+
+  ```c
+  1QfMajoranaOperator *op = qf_maj_op_zero();
+  2uint32_t modes_a[2] = {1, 0};
+  3QkComplex64 coeff_a = {1.0, 0.0};
+  4qf_maj_op_add_term(op, 2, modes_a, &coeff_a);
+  5uint32_t modes_b[2] = {0, 1};
+  6QkComplex64 coeff_b = {2.0, 0.0};
+  7qf_maj_op_add_term(op, 2, modes_b, &coeff_b);
+  8
+  9QfMajoranaOperator *ordered = qf_maj_op_canonical_order(op);
+  ```
+
+  <Admonition title="Note" type="note">
+    Any group indices (see [`qf_maj_op_get_groups()`](qf-maj-op#c.qf_maj_op_get_groups "qf_maj_op_get_groups")) are preserved: each term carries its group index along as it moves, since a group index is a per-term tag independent of term order. Terms of the same group are simply no longer contiguous afterwards. If the input has no groups, neither does the result.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator whose terms are to be reordered.
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+

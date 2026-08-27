@@ -1,0 +1,185 @@
+---
+title: "FCIDump"
+description: "FCIDump for the latest version of Qiskit Fermions"
+---
+
+# FCIDump
+
+<Class id="c.QfFCIDump" isDedicatedPage={true} signature="struct QfFCIDump" />
+
+An electronic structure Hamiltonian in FCIDump format.
+
+***
+
+## Definition
+
+The FCIDump format was originally defined by Knowles and Handy, 1989 <span id="id1" />[\[1\]](#id2). It is a widespread format for exporting electronic structure Hamiltonians in a plain-text file.
+
+The present data structure only stores the information relevant for constructing the second quantized operator. However, this implementation goes beyond the original definition by supporting unrestricted spin data to be loaded. The table below outlines how integrals are associated with spin species based on the intervals in which the indices fall (assuming a header with `NORB=n`):
+
+| Integral Type      | i          | j          | k          | l          |
+| ------------------ | ---------- | ---------- | ---------- | ---------- |
+| Constant           | ${0}$      | ${0}$      | ${0}$      | ${0}$      |
+| 1-body alpha       | ${0}$      | ${0}$      | $[1,n]$    | $[1,n]$    |
+| 1-body beta        | ${0}$      | ${0}$      | $[n+1,2n]$ | $[n+1,2n]$ |
+| 2-body alpha-alpha | $[1,n]$    | $[1,n]$    | $[1,n]$    | $[1,n]$    |
+| 2-body alpha-beta  | $[1,n]$    | $[1,n]$    | $[n+1,2n]$ | $[n+1,2n]$ |
+| 2-body beta-beta   | $[n+1,2n]$ | $[n+1,2n]$ | $[n+1,2n]$ | $[n+1,2n]$ |
+
+The only required values are the 1-body alpha-spin integrals.
+
+***
+
+<span id="id2" />
+
+\[[1](#id1)]
+
+16. 10. Knowles and N. C. Handy, Computer Physics Communications 54 (1989) 75-83.
+
+## Members
+
+### qf\_fcidump\_from\_file
+
+<Function id="c.qf_fcidump_from_file" signature="QfFCIDump *qf_fcidump_from_file(char *file_path)">
+  Parses an FCIDump file.
+
+  #### Example
+
+  Assuming you have an FCIDump file called `molecule.fcidump`, you use this function like so:
+
+  ```c
+  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
+  ```
+
+  **Parameters**
+
+  *   **file\_path** – The path to the FCIDump file.
+
+  **Returns**
+
+  A pointer to the FCIDump data structure.
+</Function>
+
+### qf\_fcidump\_free
+
+<Function id="c.qf_fcidump_free" signature="void qf_fcidump_free(QfFCIDump *fcidump)">
+  Frees an existing FCIDump data structure.
+
+  <span id="id3" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
+  2qf_fcidump_free(fcidump);
+  ```
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure to be freed.
+</Function>
+
+### qf\_fcidump\_norb
+
+<Function id="c.qf_fcidump_norb" signature="uint32_t qf_fcidump_norb(const QfFCIDump *fcidump)">
+  Gets the number of orbitals from an FCIDump.
+
+  This number, $n$, is extracted from the `NORB=n` field in the header of the FCIDump file.
+
+  <span id="id4" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
+  2uint32_t norb = qf_fcidump_norb(fcidump);
+  ```
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure to be freed.
+
+  **Returns**
+
+  The number of orbitals.
+</Function>
+
+### qf\_fcidump\_nelec
+
+<Function id="c.qf_fcidump_nelec" signature="uint32_t qf_fcidump_nelec(const QfFCIDump *fcidump)">
+  Gets the number of electrons from an FCIDump.
+
+  This number, $n$, is extracted from the `NELEC=n` field in the header of the FCIDump file.
+
+  <span id="id5" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
+  2uint32_t nelec = qf_fcidump_nelec(fcidump);
+  ```
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure to be freed.
+
+  **Returns**
+
+  The number of electrons.
+</Function>
+
+### qf\_fcidump\_ms2
+
+<Function id="c.qf_fcidump_ms2" signature="uint32_t qf_fcidump_ms2(const QfFCIDump *fcidump)">
+  Gets the spin quantum number from an FCIDump.
+
+  This number, $S$, is extracted from the `MS2=S` field in the header of the FCIDump file.
+
+  <span id="id6" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
+  2uint32_t ms2 = qf_fcidump_ms2(fcidump);
+  ```
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure to be freed.
+
+  **Returns**
+
+  The spin quantum number (multiplied by 2 to ensure an integer value).
+</Function>
+
+***
+
+## Conversion
+
+Operator representations which can be constructed from an instance of [`QfFCIDump`](#c.QfFCIDump "QfFCIDump") provide a `qf_*_from_fcidump` function:
+
+### qf\_ferm\_op\_from\_fcidump
+
+<Function id="c.qf_ferm_op_from_fcidump" signature="QfFermionOperator *qf_ferm_op_from_fcidump(const QfFCIDump *fcidump)">
+  Constructs an :c:struct:`QfFermionOperator` from a :c:struct:`QfFCIDump`.
+
+  <span id="id7" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
+  2QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
+  ```
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure.
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+

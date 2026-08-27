@@ -1,0 +1,59 @@
+---
+title: "Optional Dependencies"
+description: "Optional Dependencies for the latest version of Qiskit Fermions"
+---
+
+<span id="module-qiskit_fermions.utils.optionals" />
+
+# Optional Dependencies
+
+This module defines lazy availability testers for optional third-party dependencies. The checkers are instances of [`LazyImportTester`](/docs/api/qiskit/utils#qiskit.utils.LazyImportTester) and can be used as booleans (evaluated lazily), or to raise a [`MissingOptionalLibraryError`](/docs/api/qiskit/exceptions#qiskit.exceptions.MissingOptionalLibraryError) when a dependency is required.
+
+## Available Testers
+
+### HAS\_FFSIM
+
+<Attribute id="qiskit_fermions.utils.optionals.HAS_FFSIM">
+  Default value: `<qiskit.utils.lazy_tester.LazyImportTester object>`
+
+  [ffsim](https://github.com/qiskit-community/ffsim) is a high-performance simulator for fermionic quantum circuits that exploits particle-number and spin-Z conservation.
+
+  [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") instances can be simulated using [`ffsim.apply_unitary()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.apply_unitary.html#ffsim.apply_unitary "(in ffsim)").
+
+  <Admonition title="Note" type="note">
+    `ffsim` does not support Windows, which is why it is an optional dependency.
+  </Admonition>
+
+  <Admonition title="See also" type="note">
+    [`LazyDependencyManager`](/docs/api/qiskit/utils#qiskit.utils.LazyDependencyManager) for usage examples and the available methods of this object.
+  </Admonition>
+</Attribute>
+
+### HAS\_PYOMO
+
+<Attribute id="qiskit_fermions.utils.optionals.HAS_PYOMO">
+  Default value: `<qiskit.utils.lazy_tester.LazyImportTester object>`
+
+  [Pyomo](https://www.pyomo.org/) is a Python-based optimization modeling language used to build linear and mixed-integer programs (LP/MILP) for classical solvers.
+
+  <Admonition title="See also" type="note">
+    [`LazyDependencyManager`](/docs/api/qiskit/utils#qiskit.utils.LazyDependencyManager) for usage examples and the available methods of this object.
+  </Admonition>
+</Attribute>
+
+### HAS\_QISKIT\_ADDON\_SQD
+
+<Attribute id="qiskit_fermions.utils.optionals.HAS_QISKIT_ADDON_SQD">
+  Default value: `<qiskit.utils.lazy_tester.LazyImportTester object>`
+
+  [qiskit-addon-sqd](https://github.com/Qiskit/qiskit-addon-sqd) implements sample-based quantum diagonalization (SQD): it projects a Hamiltonian onto the subspace spanned by measured computational- basis configurations and iteratively refines that subspace via *configuration recovery*.
+
+  <Admonition title="Note" type="note">
+    `qiskit-addon-sqd` pulls in PySCF, which does not support Windows, which is why it is an optional dependency.
+  </Admonition>
+
+  <Admonition title="See also" type="note">
+    [`LazyDependencyManager`](/docs/api/qiskit/utils#qiskit.utils.LazyDependencyManager) for usage examples and the available methods of this object.
+  </Admonition>
+</Attribute>
+

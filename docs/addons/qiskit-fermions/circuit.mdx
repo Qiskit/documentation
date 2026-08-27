@@ -1,0 +1,27 @@
+---
+title: "Circuit Representation"
+description: "Circuit Representation for the latest version of Qiskit Fermions"
+---
+
+<span id="module-qiskit_fermions.circuit" />
+
+# Circuit Representation
+
+With this module you can build [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) objects that are interpreted as acting on fermionic modes rather than qubits.
+
+The following objects are simple type aliases to make this re-interpretation more clear:
+
+|                                                                                                                                                                            |                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [`FermionicDAGCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-dag-circuit#qiskit_fermions.circuit.FermionicDAGCircuit "qiskit_fermions.circuit.FermionicDAGCircuit") | A type alias of [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit). |
+| [`FermionicMode`](/docs/api/qiskit-fermions/circuit-fermionic-mode#qiskit_fermions.circuit.FermionicMode "qiskit_fermions.circuit.FermionicMode")                          | A type alias of [`Qubit`](/docs/api/qiskit/circuit#qiskit.circuit.Qubit).      |
+| [`FermionicRegister`](/docs/api/qiskit-fermions/circuit-fermionic-register#qiskit_fermions.circuit.FermionicRegister "qiskit_fermions.circuit.FermionicRegister")          | A type alias of `QubitRegister`.                                               |
+| [`FermionicSpecifier`](/docs/api/qiskit-fermions/circuit-fermionic-specifier#qiskit_fermions.circuit.FermionicSpecifier "qiskit_fermions.circuit.FermionicSpecifier")      | A type alias equivalent to Qiskit's `QubitSpecifier` but for fermionic modes.  |
+
+For actually expressing your circuits, you should use the [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") class along with the [`library`](circuit-library#module-qiskit_fermions.circuit.library "qiskit_fermions.circuit.library") of [`FermionicGate`](/docs/api/qiskit-fermions/circuit-fermionic-gate#qiskit_fermions.circuit.FermionicGate "qiskit_fermions.circuit.FermionicGate") implementations.
+
+|                                                                                                                                                                                        |                                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit")(num\_modes)              | A wrapper around [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) for expressing fermionic circuits. |
+| [`FermionicGate`](/docs/api/qiskit-fermions/circuit-fermionic-gate#qiskit_fermions.circuit.FermionicGate "qiskit_fermions.circuit.FermionicGate")(name, num\_modes, /\[, params, ...]) | The base class for all fermionic gates.                                                                                |
+

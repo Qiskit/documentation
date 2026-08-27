@@ -1,0 +1,55 @@
+---
+title: "Grouping Functions"
+description: "Grouping Functions for the latest version of Qiskit Fermions"
+---
+
+# Grouping Functions
+
+### qf\_ferm\_op\_group\_terms\_by\_electronic\_structure
+
+<Function id="c.qf_ferm_op_group_terms_by_electronic_structure" signature="QfExitCode qf_ferm_op_group_terms_by_electronic_structure(QfFermionOperator *op, uint32_t num_modes, bool two_body_physicist_order)">
+  Groups the terms of an operator by their electronic structure.
+
+  This function automatically populates the `groups` attribute (see also [`qf_ferm_op_get_groups()`](qf-ferm-op#c.qf_ferm_op_get_groups "qf_ferm_op_get_groups")) of the provided [`QfFermionOperator`](qf-ferm-op#c.QfFermionOperator "QfFermionOperator") such that terms satisfying a symmetric perturbation present in electronic-structure Hamiltonians are grouped.
+
+  <Admonition title="Caution" type="note">
+    The provided operator *must* be normal-ordered! This is an underlying assumption of the implementation that is *not* being verified! See [`qf_ferm_op_normal_ordered()`](qf-ferm-op#c.qf_ferm_op_normal_ordered "qf_ferm_op_normal_ordered") for how to get an operator of that form.
+  </Admonition>
+
+  More concretely, given an electronic-structure Hamiltonian of the form
+
+$$
+\mathcal{H} = \sum_{ij} c_{ij} a^\dagger_i a_j
++ \sum_{ijkl} c_{ijkl} a^\dagger_i a^\dagger_j a_k a_l \, ,
+$$
+
+  this function will group 1-body terms with permutational symmetry of `(i, j)` as well as the 2-body terms with permutational symmetry of `(i, j, k, l)`. For the 2-body terms, not all permutations will be grouped. Instead, the `two_body_physicist_order` determines how the four indices get grouped into pairs of two within which permutational symmetries exist:
+
+  *   `two_body_physicist_order=False` (default): `(i, l)` and `(j, k)`
+  *   `two_body_physicist_order=True`: `(i, k)` and `(j, l)`
+
+  ```c
+  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
+  2QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
+  3
+  4uint32_t num_modes = 2 * qf_fcidump_norb(fcidump);
+  5
+  6QfFermionOperator *normal = qf_ferm_op_normal_ordered(op, NULL);
+  7
+  8QfExitCode exit = qf_ferm_op_group_terms_by_electronic_structure(normal, num_modes, false);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the normal-ordered fermionic operator whose terms are to be grouped.
+  *   **num\_modes** – The number of fermionic modes in the operator.
+  *   **two\_body\_physicist\_order** – whether the 2-body terms are stored in physicists order.
+
+  **Returns**
+
+  An exit code.
+
+  *   `QfExitCode_Success` upon success
+  *   `QfExitCode_ValueError` if an invalid term is encountered during the grouping.
+</Function>
+
