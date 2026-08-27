@@ -71,6 +71,7 @@ export class Pkg {
     "qiskit-addon-paulice",
     "qiskit-addon-pna",
     "qiskit-addon-fermions",
+    "qiskit-addon-fermions-c",
     "pauli-prop",
     "qiskit-addon-slc",
   ];
@@ -242,7 +243,8 @@ export class Pkg {
         title: "Qiskit Fermions",
         githubSlug: "Qiskit/qiskit-addon-fermions",
         kebabCaseAndShortenUrls: true,
-        language: "Python",
+        language: "C",
+        artifactPackageName: "qiskit-addon-fermions",
       });
     }
     if (name === "qiskit-addon-pna") {
