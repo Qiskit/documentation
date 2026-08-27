@@ -579,6 +579,22 @@ function _qiskitCRegexes(): FilesToIgnores {
   };
 }
 
+function _fermionsCRegexes(): FilesToIgnores {
+  // Sphinx emits lowercase anchors for C enumerator values (e.g. qfexitcode_alignmenterror),
+  // but our generated pages use the original CamelCase IDs (e.g. QfExitCode_AlignmentError).
+  return {
+    "public/docs/api/qiskit-addon-fermions-c/objects.inv": [
+      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_alignmenterror",
+      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_cinputerror",
+      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_duplicateindexerror",
+      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_indexerror",
+      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_nullpointererror",
+      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_success",
+      "/docs/api/qiskit-addon-fermions-c/qf-exit-code#qfexitcode_valueerror",
+    ],
+  };
+}
+
 function _addonContentLinksToFix(): FilesToIgnores {
   // These links point to old addon-repo tutorial slugs that no longer exist.
   // The addon source docs need to be updated to use the new paths.
@@ -587,6 +603,7 @@ function _addonContentLinksToFix(): FilesToIgnores {
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
   _qiskitCRegexes(),
+  _fermionsCRegexes(),
   _addonContentLinksToFix(),
 );
 

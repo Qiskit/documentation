@@ -148,12 +148,26 @@ export async function postProcess(
 
 function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
   const apiBase = pkg.apiOutputDir(DOCS_BASE_PATH);
+  // For C API packages, stubs/pydoc links point to the companion Python package.
+  const pythonSiblingPkg = pkg.isCApi() ? pkg.artifactPackageName : pkg.name;
+  const pythonApiBase = apiBase.replace(pkg.name, pythonSiblingPkg);
   const githubIo = `https://qiskit.github.io/${pkg.name}`;
   for (const result of results) {
     result.markdown = result.markdown
       .replace(
-        /\]\((?:\.\.\/)*?(apidocs|apidoc|stubs)\/([^)]+)\)/g,
-        `](${apiBase}/$2)`,
+        /\]\((?:\.\.\/)*?(apidocs|apidoc|stubs|pydoc)\/([^)#]+)(#[^)]+)?\)/g,
+        (_, _folder, page, anchor) => {
+          // Only kebab-case the page name when the target package uses kebab-case
+          // URLs. For C packages the sibling is the Python companion; for Python
+          // packages the sibling is the package itself.
+          const targetPkg = pkg.isCApi() ? pythonSiblingPkg : pkg.name;
+          const targetUsesKebab =
+            pkg.kebabCaseAndShortenUrls && targetPkg !== "qiskit";
+          const kebabPage = targetUsesKebab
+            ? kebabCaseAndShortenPage(page, targetPkg)
+            : page;
+          return `](${pythonApiBase}/${kebabPage}${anchor ?? ""})`;
+        },
       )
       // Release notes live under the API pipeline's output, even when
       // referenced from addon guides/tutorials. Catches relative

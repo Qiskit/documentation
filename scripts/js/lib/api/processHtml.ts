@@ -186,9 +186,9 @@ export function removeInternalImageReferenceLinks(
 }
 
 /**
- * Sphinx's C domain emits cross-reference hrefs like `#c.symbol_name`, but our
- * <Function> components use bare IDs (e.g. `symbol_name`). Strip the `c.` prefix
- * so the anchors resolve correctly.
+ * Sphinx's C domain emits cross-reference hrefs like `#c.symbol_name` (same-page)
+ * and `page.html#c.symbol_name` (cross-page), but our <Function> components use
+ * bare IDs (e.g. `symbol_name`). Strip the `c.` prefix so the anchors resolve correctly.
  */
 export function removeCDomainPrefixFromAnchors(
   $: CheerioAPI,
@@ -197,8 +197,8 @@ export function removeCDomainPrefixFromAnchors(
   $main.find("a").each((_, link) => {
     const $link = $(link);
     const href = $link.attr("href");
-    if (href && href.startsWith("#c.")) {
-      $link.attr("href", `#${href.slice(3)}`);
+    if (href && href.includes("#c.")) {
+      $link.attr("href", href.replace("#c.", "#"));
     }
   });
 }
