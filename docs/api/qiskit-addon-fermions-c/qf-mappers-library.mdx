@@ -12,11 +12,11 @@ python_api_name: Mapper Library
 
 The C API provides efficient implementations of commonly used operator representation mapper routines.
 
-|                                                                                      |                                                                                                                                                                   |
-| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`qf_ferm_op_jordan_wigner()`](#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner") | Map a [`QfFermionOperator`](qf-ferm-op#c.QfFermionOperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.   |
-| [`qf_fermion_to_majorana()`](#qf_fermion_to_majorana "qf_fermion_to_majorana")       | Map a [`QfFermionOperator`](qf-ferm-op#c.QfFermionOperator "QfFermionOperator") to a [`QfMajoranaOperator`](qf-maj-op#c.QfMajoranaOperator "QfMajoranaOperator"). |
-| [`qf_majorana_to_fermion()`](#qf_majorana_to_fermion "qf_majorana_to_fermion")       | Map a [`QfMajoranaOperator`](qf-maj-op#c.QfMajoranaOperator "QfMajoranaOperator") to a [`QfFermionOperator`](qf-ferm-op#c.QfFermionOperator "QfFermionOperator"). |
+|                                                                                      |                                                                                                                                                               |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`qf_ferm_op_jordan_wigner()`](#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner") | Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation. |
+| [`qf_fermion_to_majorana()`](#qf_fermion_to_majorana "qf_fermion_to_majorana")       | Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator"). |
+| [`qf_majorana_to_fermion()`](#qf_majorana_to_fermion "qf_majorana_to_fermion")       | Map a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") to a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator"). |
 
 ***
 
@@ -25,7 +25,7 @@ The C API provides efficient implementations of commonly used operator represent
 <Function id="qf_ferm_op_jordan_wigner" signature="QfExitCode qf_ferm_op_jordan_wigner(const QfFermionOperator *op, uint32_t num_qubits, QkObs **out)">
   Applies the Jordan-Wigner transformation to an operator.
 
-  Map a [`QfFermionOperator`](qf-ferm-op#c.QfFermionOperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.   <span id="id1" />[\[1\]](#id2)
+  Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.   <span id="id1" />[\[1\]](#id2)
 
   #### Definition
 
@@ -86,7 +86,7 @@ a^\dagger_j \rightarrow \frac{1}{2} (\gamma_j - i \gamma'_j) ~~\text{and}~~
 a_j \rightarrow \frac{1}{2} (\gamma_j + i \gamma'_j)
 $$
 
-  where $a^\dagger_j$ ($a_j$) is the fermionic creation (annihilation) operator acting on the $j$-th spin-less fermionic mode, and $\gamma_j$/$\gamma'_j$ are the two Majorana fermion operators. In the case of the [`QfMajoranaOperator`](qf-maj-op#c.QfMajoranaOperator "QfMajoranaOperator") these will be stored on the even and odd Majorana modes, respectively.
+  where $a^\dagger_j$ ($a_j$) is the fermionic creation (annihilation) operator acting on the $j$-th spin-less fermionic mode, and $\gamma_j$/$\gamma'_j$ are the two Majorana fermion operators. In the case of the [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") these will be stored on the even and odd Majorana modes, respectively.
 
   <span id="id4" />
 

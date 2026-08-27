@@ -22,7 +22,7 @@ A Majorana fermion operator.
 
 ## Definition
 
-This operator is defined by a linear combination of products of Majorana operators <span id="id1" />[\[1\]](#id2), which can be defined in terms of the standard fermionic second-quantization creation and annihilation operators (see also [`.QfFermionOperator`](qf-ferm-op#c.QfFermionOperator ".QfFermionOperator")):
+This operator is defined by a linear combination of products of Majorana operators <span id="id1" />[\[1\]](#id2), which can be defined in terms of the standard fermionic second-quantization creation and annihilation operators (see also [`.QfFermionOperator`](qf-ferm-op#qffermionoperator ".QfFermionOperator")):
 
 $$
 \gamma = a^\dagger + a ~~\text{and}~~ \gamma' = i(a^\dagger - a)
@@ -62,7 +62,7 @@ This struct stores the terms and coefficients in multiple sparse vectors, akin t
 | `modes`      | A vector of 32-bit integers storing the majorana mode indices acted upon.         |
 | `boundaries` | A vector of integers indicating the boundaries in `actions` and `indices`.        |
 
-The integers in `modes` index the Majorana modes, $j$. When using the convenience function [`gamma()`](/docs/api/qiskit-addon-fermions-c/qiskit-fermions-operators-gamma#qiskit_fermions.operators.gamma "qiskit_fermions.operators.gamma"), even (odd) indices are used for $\gamma$ ($\gamma'$).
+The integers in `modes` index the Majorana modes, $j$. When using the convenience function [`gamma()`](/docs/api/qiskit-addon-fermions/qiskit-fermions-operators-gamma#qiskit_fermions.operators.gamma "qiskit_fermions.operators.gamma"), even (odd) indices are used for $\gamma$ ($\gamma'$).
 
 <Admonition title="Note" type="note">
   You can access **read-only copies** of these internal arrays via their respective functions:
