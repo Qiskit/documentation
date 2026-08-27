@@ -244,6 +244,10 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-fermions",
         kebabCaseAndShortenUrls: true,
         language: "C",
+        releaseNotesConfig: new ReleaseNotesConfig({
+          enabled: true,
+          linkToPackage: "qiskit-addon-fermions",
+        }),
         artifactPackageName: "qiskit-addon-fermions",
       });
     }
