@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.results.NoiseLearnerV3Results
 
 # NoiseLearnerV3Results
 
-<Class id="qiskit_ibm_runtime.results.NoiseLearnerV3Results" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L129-L208" signature="NoiseLearnerV3Results(data, metadata=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.results.NoiseLearnerV3Results" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L129-L207" signature="NoiseLearnerV3Results(data, metadata=None)" modifiers="class">
   Bases: `object`
 
   The results of a noise learner experiment.
@@ -22,7 +22,7 @@ python_api_name: qiskit_ibm_runtime.results.NoiseLearnerV3Results
 
   ### \_\_getitem\_\_
 
-  <Function id="qiskit_ibm_runtime.results.NoiseLearnerV3Results.__getitem__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L198-L199" signature="__getitem__(idx)">
+  <Function id="qiskit_ibm_runtime.results.NoiseLearnerV3Results.__getitem__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L197-L198" signature="__getitem__(idx)">
     **Parameters**
 
     **idx** (*int*)
@@ -34,7 +34,7 @@ python_api_name: qiskit_ibm_runtime.results.NoiseLearnerV3Results
 
   ### \_\_len\_\_
 
-  <Function id="qiskit_ibm_runtime.results.NoiseLearnerV3Results.__len__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L204-L205" signature="__len__()">
+  <Function id="qiskit_ibm_runtime.results.NoiseLearnerV3Results.__len__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L203-L204" signature="__len__()">
     **Return type**
 
     int
@@ -42,18 +42,15 @@ python_api_name: qiskit_ibm_runtime.results.NoiseLearnerV3Results
 
   ### to\_dict
 
-  <Function id="qiskit_ibm_runtime.results.NoiseLearnerV3Results.to_dict" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L141-L196" signature="to_dict(instructions, require_refs=True, mode='injection')">
-    Convert to a dictionary from references to `PauliLindbladMap` objects.
+  <Function id="qiskit_ibm_runtime.results.NoiseLearnerV3Results.to_dict" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L141-L191" signature="to_dict(instructions, require_refs=True)">
+    Convert to dictionary from `InjectNoise.ref` to `PauliLindbladMap` objects.
 
-    References can be one of `InjectNoise.ref` or `Tag.ref` depending on `mode` selection.
-
-    This function iterates over a sequence of instructions, extracts the `ref` value from the annotation of each instruction, and returns a dictionary mapping those refs to the corresponding noise data (in `PauliLindbladMap` format) stored in this [`NoiseLearnerV3Results`](#qiskit_ibm_runtime.results.NoiseLearnerV3Results "qiskit_ibm_runtime.results.NoiseLearnerV3Results") object.
+    This function iterates over a sequence of instructions, extracts the `ref` value from the inject noise annotation of each instruction, and returns a dictionary mapping those refs to the corresponding noise data (in `PauliLindbladMap` format) stored in this [`NoiseLearnerV3Results`](#qiskit_ibm_runtime.results.NoiseLearnerV3Results "qiskit_ibm_runtime.results.NoiseLearnerV3Results") object.
 
     **Parameters**
 
     *   **instructions** (*Sequence\[CircuitInstruction]*) – The instructions to get the refs from.
-    *   **require\_refs** (*bool*) – Whether to raise if some of the instructions do not own an annotation. If `False`, all the instructions that do not contain an annotation are simply skipped when constructing the returned dictionary.
-    *   **mode** (*Literal\['injection', 'simulation']*) – If `"simulation"`, it groups by `Tag` annotations. Otherwise, by `InjectNoise` annotations.
+    *   **require\_refs** (*bool*) – Whether to raise if some of the instructions do not own an inject noise annotation. If `False`, all the instructions that do not contain an inject noise annotation are simply skipped when constructing the returned dictionary.
 
     **Raises**
 
@@ -65,6 +62,16 @@ python_api_name: qiskit_ibm_runtime.results.NoiseLearnerV3Results
     **Return type**
 
     dict\[str, PauliLindbladMap]
+  </Function>
+
+  ### to\_pauli\_lindblad\_maps
+
+  <Function id="qiskit_ibm_runtime.results.NoiseLearnerV3Results.to_pauli_lindblad_maps" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/results/noise_learner_v3.py#L193-L195" signature="to_pauli_lindblad_maps()">
+    Return the `PauliLindbladMap` of the items stored in this results object.
+
+    **Return type**
+
+    list\[[*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)]
   </Function>
 </Class>
 
