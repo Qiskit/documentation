@@ -17,7 +17,7 @@ python_api_name: qiskit.passmanager.BasePassManager
 
   **Parameters**
 
-  *   **tasks** (*Task\[IR, IR] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[Task\[IR, IR]]*) – A pass set to be added to the pass manager schedule.
+  *   **tasks** ([*Task*](qiskit.passmanager.Task "qiskit.passmanager.Task")*\[IR, IR] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.Task")*\[IR, IR]]*) – A pass set to be added to the pass manager schedule.
   *   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum number of iterations the schedule will be looped if the condition is not met.
 
   ## Methods
@@ -29,7 +29,7 @@ python_api_name: qiskit.passmanager.BasePassManager
 
     **Parameters**
 
-    **tasks** (*Task\[IR, IR] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[Task\[IR, IR]]*) – A set of pass manager tasks to be added to schedule.
+    **tasks** ([*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*\[IR, IR] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*\[IR, IR]]*) – A set of pass manager tasks to be added to schedule.
 
     **Raises**
 
@@ -66,7 +66,7 @@ python_api_name: qiskit.passmanager.BasePassManager
     **Parameters**
 
     *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Task index to replace, based on the position in `tasks()`
-    *   **tasks** (*Task\[IR, IR] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[Task\[IR, IR]]*) – A set of pass manager tasks to be added to schedule.
+    *   **tasks** ([*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*\[IR, IR] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*\[IR, IR]]*) – A set of pass manager tasks to be added to schedule.
 
     **Raises**
 
@@ -87,7 +87,7 @@ python_api_name: qiskit.passmanager.BasePassManager
 
     *   **in\_programs** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]*) – Input programs to transform via all the registered passes. A single input object cannot be a Python builtin list object. A list object is considered as multiple input objects to optimize.
 
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[Task, IR,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) –
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*, IR,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) –
 
         A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments:
 

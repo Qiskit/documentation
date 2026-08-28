@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.CommutativeCancellation
 
 # CommutativeCancellation
 
-<Class id="qiskit.transpiler.passes.CommutativeCancellation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/commutative_cancellation.py#L28-L91" signature="qiskit.transpiler.passes.CommutativeCancellation(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.CommutativeCancellation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/commutative_cancellation.py#L31-L107" signature="qiskit.transpiler.passes.CommutativeCancellation(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Cancel the redundant (self-adjoint) gates through commutation relations.
@@ -27,6 +27,7 @@ python_api_name: qiskit.transpiler.passes.CommutativeCancellation
 
   *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – Basis gates to consider, e.g. `['u3', 'cx']`. For the effects of this pass, the basis is the set intersection between the `basis_gates` parameter and the gates in the dag.
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `basis_gates` and `target` are specified then this argument will take precedence and `basis_gates` will be ignored.
+  *   **approximation\_degree** – The threshold used in the average gate fidelity computation to decide whether pairs of gates can be considered as canceling or commuting. A floating point value between 0 and 1, where `1.0` means no approximation (default).
 
   ## Attributes
 
@@ -80,7 +81,7 @@ python_api_name: qiskit.transpiler.passes.CommutativeCancellation
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.CommutativeCancellation.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/commutative_cancellation.py#L78-L91" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.CommutativeCancellation.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/commutative_cancellation.py#L91-L107" signature="run(dag)">
     Run the CommutativeCancellation pass on dag.
 
     **Parameters**

@@ -1,0 +1,42 @@
+---
+title: Shaded lightcones release notes
+description: Changes made to Shaded lightcones
+in_page_toc_max_heading_level: 2
+---
+
+<span id="release-notes" />
+
+<span id="id1" />
+
+# Shaded lightcones release notes
+
+<span id="upcoming-release-main" />
+
+<span id="release-notes-upcoming-release-main" />
+
+## Upcoming release (`main`)
+
+<span id="release-notes-upcoming-release-main-new-features" />
+
+### New Features
+
+*   The parallelization of the forward and backward unequal time commutator bound computation has been reworked internally. As a result, long-running single tasks no longer cause other tasks to idle until the next circuit layer can be processed but instead all processes remain utilized at all times. Consequently, the perceived time-to-completion has shortened considerably when running with many parallel processes.
+
+    In addition to the above, a user may now use a `KeyboardInterrupt` signal to terminate the bound computation manually, which will be handled gracefully and preserves all results computed thus far.
+
+*   Added the `max_num_boxes` argument to [`compute_forward_bounds()`](/docs/api/qiskit-addon-slc/bounds#compute_forward_bounds "qiskit_addon_slc.bounds.compute_forward_bounds") and [`compute_backward_bounds()`](/docs/api/qiskit-addon-slc/bounds#compute_backward_bounds "qiskit_addon_slc.bounds.compute_backward_bounds"). This new optional setting will set the maximum number of [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) instructions for which to compute shaded light-cone bounds. Any remaining boxes with an [`InjectNoise`](https://qiskit.github.io/samplomatic/api/auto/samplomatic.InjectNoise.html#samplomatic.InjectNoise "(in samplomatic)") annotation will be given trivial upper bounds of $2.0$.
+
+*   The polling period of the bound computation progress indicator can now be configured via [`qiskit_addon_slc.globals.PROGRESS_POLLING_PERIOD`](/docs/api/qiskit-addon-slc/globals#progress_polling_period "qiskit_addon_slc.globals.PROGRESS_POLLING_PERIOD").
+
+<span id="release-notes-upcoming-release-main-deprecation-notes" />
+
+### Deprecation Notes
+
+*   The `atol` argument to the [`compute_forward_bounds()`](/docs/api/qiskit-addon-slc/bounds#compute_forward_bounds "qiskit_addon_slc.bounds.compute_forward_bounds") function has been deprecated. Use the new `atol_simplify` and `atol_eigenvalue` arguments instead.
+
+<span id="release-notes-upcoming-release-main-bug-fixes" />
+
+### Bug Fixes
+
+*   The pauli-propagation underlying the forward and backward-bound computations has been adjusted to remove terms whose coefficients are numerically zero. The truncation threshold to determine whether a term is numerically zero can be adjusted via [`qiskit_addon_slc.globals.ZERO_ATOL`](/docs/api/qiskit-addon-slc/globals#zero_atol "qiskit_addon_slc.globals.ZERO_ATOL").
+

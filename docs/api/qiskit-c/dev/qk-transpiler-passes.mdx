@@ -29,7 +29,7 @@ The Qiskit C API provides transpiler pass functions in two forms: ones that oper
 
   This pass is intended to be run before a layout (mapping virtual qubits to physical qubits) is set during the transpilation pipeline. This pass iterates over the DAG and when a Swap gate is encountered it permutes the virtual qubits in the DAG and removes the swap gate. This will effectively remove any swap gates in the DAG prior to running layout. This optimization is not valid after a layout has been set and should not be run in this case.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md383" />
+  <span id="group__QkTranspilerPasses_1autotoc_md385" />
 
   #### Example
 
@@ -51,11 +51,11 @@ The Qiskit C API provides transpiler pass functions in two forms: ones that oper
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md384" />
+  <span id="group__QkTranspilerPasses_1autotoc_md386" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md384" />
+  <span id="group__QkTranspilerPasses_1autotoc_md386" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDAG`.
 
@@ -75,7 +75,7 @@ The Qiskit C API provides transpiler pass functions in two forms: ones that oper
 
   The pass checks if the directions of two-qubit gates comply with the gate directions specified in a given target.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md387" />
+  <span id="group__QkTranspilerPasses_1autotoc_md389" />
 
   #### Example
 
@@ -98,11 +98,11 @@ The Qiskit C API provides transpiler pass functions in two forms: ones that oper
   qk_target_free(target);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md388" />
+  <span id="group__QkTranspilerPasses_1autotoc_md390" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md388" />
+  <span id="group__QkTranspilerPasses_1autotoc_md390" />
 
   Behavior is undefined if `dag` or `target` are not valid, non-null pointers to `QkDag` and `QkTarget` objects, respectively.
 
@@ -123,7 +123,7 @@ The Qiskit C API provides transpiler pass functions in two forms: ones that oper
 
   The GateDirection pass modifies asymmetric gates to match the hardware coupling directions. This pass supports replacements for the `cx`, `cz`, `ecr`, `swap`, `rzx`, `rxx`, `ryy` and `rzz` gates, using predefined identities.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md389" />
+  <span id="group__QkTranspilerPasses_1autotoc_md391" />
 
   #### Example
 
@@ -147,11 +147,11 @@ The Qiskit C API provides transpiler pass functions in two forms: ones that oper
   qk_target_free(target);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md390" />
+  <span id="group__QkTranspilerPasses_1autotoc_md392" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md390" />
+  <span id="group__QkTranspilerPasses_1autotoc_md392" />
 
   Behavior is undefined if `dag` or `target` are not valid, non-null pointers to `QkDag` and `QkTarget` objects, respectively.
 
@@ -178,7 +178,7 @@ The Qiskit C API provides transpiler pass functions in two forms: ones that oper
 
   This function is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md396" />
+  <span id="group__QkTranspilerPasses_1autotoc_md398" />
 
   #### Example
 
@@ -210,11 +210,11 @@ The Qiskit C API provides transpiler pass functions in two forms: ones that oper
   qk_quantum_register_free(qr);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md397" />
+  <span id="group__QkTranspilerPasses_1autotoc_md399" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md397" />
+  <span id="group__QkTranspilerPasses_1autotoc_md399" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `target` is not a valid pointer to a `QkTarget`.
 
@@ -231,7 +231,7 @@ The Qiskit C API provides transpiler pass functions in two forms: ones that oper
 
   Transpiler pass to remove diagonal gates (like RZ, T, Z, etc) before a measurement. Including diagonal 2Q gates.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md399" />
+  <span id="group__QkTranspilerPasses_1autotoc_md401" />
 
   #### Example
 
@@ -250,11 +250,11 @@ The Qiskit C API provides transpiler pass functions in two forms: ones that oper
   qk_classical_register_free(cr);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md400" />
+  <span id="group__QkTranspilerPasses_1autotoc_md402" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md400" />
+  <span id="group__QkTranspilerPasses_1autotoc_md402" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -283,7 +283,7 @@ $$
 
   This function is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the RAYON\_NUM\_THREADS environment variable. For example, setting RAYON\_NUM\_THREADS=4 would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspilerPasses_1autotoc_md402" />
+  <span id="group__QkTranspilerPasses_1autotoc_md404" />
 
   #### Example
 
@@ -316,11 +316,11 @@ $$
   qk_target_free(target);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md403" />
+  <span id="group__QkTranspilerPasses_1autotoc_md405" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md403" />
+  <span id="group__QkTranspilerPasses_1autotoc_md405" />
 
   Behavior is undefined if `dag` or `target` is not a valid, non-null pointer to a `QkDag` and `QkTarget`.
 
@@ -336,11 +336,11 @@ $$
 <Function id="qk_transpiler_pass_split_2q_unitaries" signature="QkTranspileLayout *qk_transpiler_pass_split_2q_unitaries(QkDag *dag, double requested_fidelity, bool split_swaps)">
   Run the Split2QUnitaries transpiler pass on a DAG Circuit
 
-  <span id="group__QkTranspilerPasses_1autotoc_md407" />
+  <span id="group__QkTranspilerPasses_1autotoc_md409" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md407" />
+  <span id="group__QkTranspilerPasses_1autotoc_md409" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDAG`.
 
@@ -368,7 +368,7 @@ $$
 
   This pass is multithreaded, and will perform the analysis in parallel and use all the cores available on your local system. You can refer to the [configuration guide](/docs/guides/configure-qiskit-local) for details on how to control the threading behavior for Qiskit more broadly which will also control this pass
 
-  <span id="group__QkTranspilerPasses_1autotoc_md410" />
+  <span id="group__QkTranspilerPasses_1autotoc_md412" />
 
   #### Example
 
@@ -401,11 +401,11 @@ $$
   qk_target_free(target);
   ```
 
-  <span id="group__QkTranspilerPasses_1autotoc_md411" />
+  <span id="group__QkTranspilerPasses_1autotoc_md413" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPasses_1autotoc_md411" />
+  <span id="group__QkTranspilerPasses_1autotoc_md413" />
 
   Behavior is undefined if `dag` or `target` is not a valid, non-null pointer to a `QkDag` and `QkTarget`.
 
@@ -427,7 +427,7 @@ $$
 
   The BasisTranslator transpiler pass translates gates to a target basis by searching for a set of translations from the standard EquivalenceLibrary.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md376" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md378" />
 
   #### Example
 
@@ -452,11 +452,11 @@ $$
   qk_target_free(target);
   ```
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md377" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md379" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md377" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md379" />
 
   Behavior is undefined if `circuit` and/or `target` are not valid, non-null pointers to a `QkCircuit` or `QkTarget`.
 
@@ -476,7 +476,7 @@ $$
 
   This function is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md378" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md380" />
 
   #### Example
 
@@ -489,11 +489,11 @@ $$
   qk_transpiler_pass_standalone_commutative_cancellation(qc, NULL, 1.0);
   ```
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md379" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md381" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md379" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md381" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, `QkCircuit` and `QkTarget`. `QkCircuit` is not expected to be null and behavior is undefined if it is.
 
@@ -515,11 +515,11 @@ $$
 
   ConsolidateBlocks is a transpiler pass that consolidates consecutive blocks of gates operating on the same qubits into a Unitary gate, to later on be resynthesized, which leads to a more optimal subcircuit.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md380" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md382" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md380" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md382" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `target` is not a valid pointer to a `QkTarget`.
 
@@ -538,11 +538,11 @@ $$
 
   This pass converts all standard gates (with less than 4 qubits) in the circuit into a sequence of `QkPauliProductRotation` gates and measurements into `QkPauliProductMeasurement` instructions. Note that this pass panics if the circuit contains non-standard gates. The suggested workflow is to first transpile into a standard basis, keeping rotation gates (such as `QkGate_RXX` and others) intact where possible, and then call this pass.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md381" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md383" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md381" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md383" />
 
   Behavior is undefined if `circuit` is not valid, non-null pointers to a `QkCircuit`.
 
@@ -558,11 +558,11 @@ $$
 
   Refer to the `qk_transpiler_pass_elide_permutations` function for more details about the pass.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md382" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md384" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md382" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md384" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -582,11 +582,11 @@ $$
 
   Refer to the `qk_transpiler_pass_check_gate_direction` function for more details about the pass.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md385" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md387" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md385" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md387" />
 
   Behavior is undefined if `circuit` or `target` are not valid, non-null pointers to `QkCircuit` and `QkTarget` objects, respectively.
 
@@ -607,11 +607,11 @@ $$
 
   Refer to the `qk_transpiler_pass_gate_direction` function for more details about the pass.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md386" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md388" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md386" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md388" />
 
   Behavior is undefined if `circuit` or `target` are not valid, non-null pointers to `QkCircuit` and `QkTarget` objects, respectively.
 
@@ -651,7 +651,7 @@ $$
   *   (QkGate\_SX, QkGate\_SXdg)
   *   (QkGate\_CS, QkGate\_CSdg)
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md391" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md393" />
 
   #### Example
 
@@ -665,11 +665,11 @@ $$
   qk_transpiler_pass_standalone_inverse_cancellation(qc);
   ```
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md392" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md394" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md392" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md394" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -685,11 +685,11 @@ $$
 
   This pass commutes all Clifford gates to the end of the circuit, converting Pauli rotation gates into `QkPauliProductRotation` gates and measurements into `QkPauliProductMeasurement` instructions. Note that this pass currently only supports circuits that have `QkGate_T`, `QkGate_Tdg` or `QkGate_RZ` gates as non-Cliffords and panics otherwise. The suggested workflow is to first transpile into a Clifford+RZ basis and then call this pass.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md393" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md395" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md393" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md395" />
 
   Behavior is undefined if `circuit` is not valid, non-null pointers to a `QkCircuit`.
 
@@ -710,11 +710,11 @@ $$
 
   This function is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md394" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md396" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md394" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md396" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `target` is not a valid pointer to a `QkTarget`.
 
@@ -733,11 +733,11 @@ $$
 
   This function is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md395" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md397" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md395" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md397" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `target` is not a valid pointer to a `QkTarget`.
 
@@ -754,11 +754,11 @@ $$
 
   Refer to the `qk_transpiler_pass_remove_diagonal_gates_before_measure` function for more details about the pass.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md398" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md400" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md398" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md400" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -776,11 +776,11 @@ $$
 
   This function is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the RAYON\_NUM\_THREADS environment variable. For example, setting RAYON\_NUM\_THREADS=4 would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md401" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md403" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md401" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md403" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`.
 
@@ -806,11 +806,11 @@ $$
 
   This function is multithreaded and will launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md404" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md406" />
 
   #### References
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md404" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md406" />
 
   \[1] Henry Zou and Matthew Treinish and Kevin Hartman and Alexander Ivrii and Jake Lishman. “LightSABRE: A Lightweight and Enhanced SABRE Algorithm” [arXiv:2409.08368](https://doi.org/10.48550/arXiv.2409.08368)
 
@@ -820,11 +820,11 @@ $$
 
   [arXiv:1809.02573](https://arxiv.org/pdf/1809.02573.pdf)
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md405" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md407" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md405" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md407" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`.
 
@@ -846,11 +846,11 @@ $$
 
   Refer to the `qk_transpiler_pass_split_2q_unitaries` function for more details about the pass.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md406" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md408" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md406" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md408" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -874,7 +874,7 @@ $$
 
   This function is multithreaded, and will perform the analysis in parallel and use all the cores available on your local system. You can refer to the [configuration guide](/docs/guides/configure-qiskit-local) for details on how to control the threading behavior for Qiskit more broadly which will also control this pass
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md408" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md410" />
 
   #### Example
 
@@ -904,11 +904,11 @@ $$
   qk_target_free(target);
   ```
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md409" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md411" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md409" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md411" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`.
 
@@ -930,7 +930,7 @@ $$
 
   This pass is multithreaded and will potentially launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md412" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md414" />
 
   #### Example
 
@@ -957,11 +957,11 @@ $$
   qk_transpiler_pass_standalone_unitary_synthesis(qc, target, 0, 1.0);
   ```
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md413" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md415" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md413" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md415" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`.
 
@@ -984,7 +984,7 @@ $$
 
   If this pass finds a solution that means there is a “perfect layout” and that no further swap mapping or routing is needed. However, there is not always a possible solution, or a solution might exist but it is not found within the limits specified when the pass is called.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md425" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md427" />
 
   #### Example
 
@@ -1013,11 +1013,11 @@ $$
   qk_vf2_layout_configuration_free(config);
   ```
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md426" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md428" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md426" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md428" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`. Behavior is undefined if `config` is a non-null pointer that does not point to a valid `QkVF2LayoutConfiguration` object (but a null pointer is fine).
 
@@ -1050,7 +1050,7 @@ $$
 
   In both of the first two cases, `qk_vf2_layout_has_match` will return `true`. In only the first case, `qk_vf2_layout_has_improvement` will return `true`.
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md427" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md429" />
 
   #### Example
 
@@ -1078,11 +1078,11 @@ $$
   qk_vf2_layout_configuration_free(config);
   ```
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md428" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md430" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md428" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md430" />
 
   Behavior is undefined if `circuit` or `target` is not a valid, non-null pointer to a `QkCircuit` and `QkTarget`. Behavior is undefined if `config` is a non-null pointer that does not point to a valid `QkVF2LayoutConfiguration` object (but a null pointer is fine).
 
@@ -1108,11 +1108,11 @@ $$
     Replaced by [`qk_transpiler_pass_standalone_vf2_layout_average()`](#qk_transpiler_pass_standalone_vf2_layout_average "qk_transpiler_pass_standalone_vf2_layout_average").
   </Admonition>
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md429" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md431" />
 
   #### Safety
 
-  <span id="group__QkTranspilerPassesStandalone_1autotoc_md429" />
+  <span id="group__QkTranspilerPassesStandalone_1autotoc_md431" />
 
   The safety requirements of `qk_transpiler_pass_standalone_vf2_layout_average` must be respected for `circuit` and `target`.
 

@@ -57,6 +57,8 @@ export class Pkg {
   readonly kebabCaseAndShortenUrls: boolean;
   readonly artifactPackageName: string;
   readonly hasRootNamespaceFile: boolean;
+  /** Whether this addon has a dedicated docs page at /docs/addons/{name}. */
+  readonly hasAddonDocs: boolean;
   /** Slugs of docs/tutorials/ notebooks to surface under this addon's tutorials route. */
 
   static ADDON_NAMES = [
@@ -68,6 +70,8 @@ export class Pkg {
     "qiskit-addon-utils",
     "qiskit-addon-paulice",
     "qiskit-addon-pna",
+    "pauli-prop",
+    "qiskit-addon-slc",
   ];
 
   static VALID_NAMES = [
@@ -91,6 +95,7 @@ export class Pkg {
     kebabCaseAndShortenUrls: boolean;
     artifactPackageName?: string;
     hasRootNamespaceFile?: boolean;
+    hasAddonDocs?: boolean;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -105,6 +110,7 @@ export class Pkg {
     this.kebabCaseAndShortenUrls = kwargs.kebabCaseAndShortenUrls;
     this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
     this.hasRootNamespaceFile = kwargs.hasRootNamespaceFile ?? false;
+    this.hasAddonDocs = kwargs.hasAddonDocs ?? false;
   }
 
   static async fromArgs(
@@ -144,7 +150,7 @@ export class Pkg {
     if (name === "qiskit-ibm-runtime") {
       return new Pkg({
         ...args,
-        title: "Qiskit Runtime client",
+        title: "IBM Quantum Compute client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
         kebabCaseAndShortenUrls: true,
         language: "Python",
@@ -178,6 +184,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-obp",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-mpf") {
@@ -197,6 +204,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-sqd",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-cutting") {
@@ -215,6 +223,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-paulice",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-pna") {
@@ -224,6 +233,27 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-pna",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    if (name === "pauli-prop") {
+      return new Pkg({
+        ...args,
+        title: "Pauli propagation",
+        githubSlug: "Qiskit/pauli-prop",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    if (name === "qiskit-addon-slc") {
+      return new Pkg({
+        ...args,
+        title: "Shaded lightcones",
+        githubSlug: "Qiskit/qiskit-addon-slc",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-utils") {

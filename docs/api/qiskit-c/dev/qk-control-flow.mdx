@@ -289,7 +289,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 <Function id="qk_control_flow_kind" signature="QkControlFlowKind qk_control_flow_kind(const QkControlFlowInstruction *cf_inst)">
   Get the kind of a control flow instruction.
 
-  <span id="group__QkControlFlow_1autotoc_md142" />
+  <span id="group__QkControlFlow_1autotoc_md144" />
 
   #### Example
 
@@ -321,11 +321,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md143" />
+  <span id="group__QkControlFlow_1autotoc_md145" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md143" />
+  <span id="group__QkControlFlow_1autotoc_md145" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -343,7 +343,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 <Function id="qk_control_flow_num_blocks" signature="size_t qk_control_flow_num_blocks(const QkControlFlowInstruction *cf_inst)">
   Get the number of circuit blocks in a control flow instruction.
 
-  <span id="group__QkControlFlow_1autotoc_md144" />
+  <span id="group__QkControlFlow_1autotoc_md146" />
 
   #### Example
 
@@ -356,11 +356,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md145" />
+  <span id="group__QkControlFlow_1autotoc_md147" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md145" />
+  <span id="group__QkControlFlow_1autotoc_md147" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -380,7 +380,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Control flow instructions contain one or more circuit blocks (e.g., IfElse has two blocks, Switch may have multiple blocks). This function retrieves a specific block by index.
 
-  <span id="group__QkControlFlow_1autotoc_md146" />
+  <span id="group__QkControlFlow_1autotoc_md148" />
 
   #### Example
 
@@ -391,11 +391,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Process the true and false blocks...
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md147" />
+  <span id="group__QkControlFlow_1autotoc_md149" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md147" />
+  <span id="group__QkControlFlow_1autotoc_md149" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -416,7 +416,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Returns a pointer to an array that maps the qubits used in the control flow instruction’s blocks to their indices in the top-level circuit. The array length equals the number of qubits used by the control flow instruction. For each qubit index `i` in the nested block, the mapping at index `i` in the array gives the corresponding qubit index in the top-level circuit.
 
-  <span id="group__QkControlFlow_1autotoc_md148" />
+  <span id="group__QkControlFlow_1autotoc_md150" />
 
   #### Example
 
@@ -429,11 +429,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md149" />
+  <span id="group__QkControlFlow_1autotoc_md151" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md149" />
+  <span id="group__QkControlFlow_1autotoc_md151" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -453,7 +453,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Returns a pointer to an array that maps the classical bits used in the control flow instruction’s blocks to their indices in the top-level circuit. The array length equals the number of classical bits used by the control flow instruction. For each classical bit index `i` in the nested block, the mapping at index `i` in the array gives the corresponding classical bit index in the top-level circuit.
 
-  <span id="group__QkControlFlow_1autotoc_md150" />
+  <span id="group__QkControlFlow_1autotoc_md152" />
 
   #### Example
 
@@ -466,11 +466,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md151" />
+  <span id="group__QkControlFlow_1autotoc_md153" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md151" />
+  <span id="group__QkControlFlow_1autotoc_md153" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -492,7 +492,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not an IfElse or While control flow instruction.
 
-  <span id="group__QkControlFlow_1autotoc_md152" />
+  <span id="group__QkControlFlow_1autotoc_md154" />
 
   #### Example
 
@@ -512,11 +512,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md153" />
+  <span id="group__QkControlFlow_1autotoc_md155" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md153" />
+  <span id="group__QkControlFlow_1autotoc_md155" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -538,7 +538,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not an IfElse or While control flow instruction, or if the condition is not a bit type.
 
-  <span id="group__QkControlFlow_1autotoc_md154" />
+  <span id="group__QkControlFlow_1autotoc_md156" />
 
   #### Example
 
@@ -548,11 +548,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   printf("Condition: clbit[%u] == %s\n", bit_info.clbit, bit_info.condition ? "true" : "false");
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md155" />
+  <span id="group__QkControlFlow_1autotoc_md157" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md155" />
+  <span id="group__QkControlFlow_1autotoc_md157" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -574,7 +574,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not an IfElse or While control flow instruction, or if the condition is not a register type.
 
-  <span id="group__QkControlFlow_1autotoc_md156" />
+  <span id="group__QkControlFlow_1autotoc_md158" />
 
   #### Example
 
@@ -584,11 +584,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   printf("Register bit width: %lu\n", bit_width);
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md157" />
+  <span id="group__QkControlFlow_1autotoc_md159" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md157" />
+  <span id="group__QkControlFlow_1autotoc_md159" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -610,7 +610,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not an IfElse or While control flow instruction, or if the condition is not a register type.
 
-  <span id="group__QkControlFlow_1autotoc_md158" />
+  <span id="group__QkControlFlow_1autotoc_md160" />
 
   #### Example
 
@@ -620,11 +620,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Use the classical register pointer
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md159" />
+  <span id="group__QkControlFlow_1autotoc_md161" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md159" />
+  <span id="group__QkControlFlow_1autotoc_md161" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -646,7 +646,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not an IfElse or While control flow instruction, if the condition is not a register type, or if the condition value does not fit in a `uint64_t`.
 
-  <span id="group__QkControlFlow_1autotoc_md160" />
+  <span id="group__QkControlFlow_1autotoc_md162" />
 
   #### Example
 
@@ -656,11 +656,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   printf("Expected register value: %lu\n", expected_value);
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md161" />
+  <span id="group__QkControlFlow_1autotoc_md163" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md161" />
+  <span id="group__QkControlFlow_1autotoc_md163" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -682,7 +682,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not an IfElse or While control flow instruction, or if the condition is not an expression type.
 
-  <span id="group__QkControlFlow_1autotoc_md162" />
+  <span id="group__QkControlFlow_1autotoc_md164" />
 
   #### Example Usage
 
@@ -695,11 +695,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md163" />
+  <span id="group__QkControlFlow_1autotoc_md165" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md163" />
+  <span id="group__QkControlFlow_1autotoc_md165" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -721,7 +721,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Box control flow instruction.
 
-  <span id="group__QkControlFlow_1autotoc_md164" />
+  <span id="group__QkControlFlow_1autotoc_md166" />
 
   #### Example
 
@@ -741,11 +741,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md165" />
+  <span id="group__QkControlFlow_1autotoc_md167" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md165" />
+  <span id="group__QkControlFlow_1autotoc_md167" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -767,7 +767,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Box control flow instruction with a concrete duration.
 
-  <span id="group__QkControlFlow_1autotoc_md166" />
+  <span id="group__QkControlFlow_1autotoc_md168" />
 
   #### Example
 
@@ -781,11 +781,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
    }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md167" />
+  <span id="group__QkControlFlow_1autotoc_md169" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md167" />
+  <span id="group__QkControlFlow_1autotoc_md169" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -807,7 +807,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Box control flow instruction with an expression duration.
 
-  <span id="group__QkControlFlow_1autotoc_md168" />
+  <span id="group__QkControlFlow_1autotoc_md170" />
 
   #### Example
 
@@ -817,11 +817,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Use the expression to evaluate or analyze the duration...
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md169" />
+  <span id="group__QkControlFlow_1autotoc_md171" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md169" />
+  <span id="group__QkControlFlow_1autotoc_md171" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -843,7 +843,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a ForLoop control flow instruction.
 
-  <span id="group__QkControlFlow_1autotoc_md170" />
+  <span id="group__QkControlFlow_1autotoc_md172" />
 
   #### Example
 
@@ -857,11 +857,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md171" />
+  <span id="group__QkControlFlow_1autotoc_md173" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md171" />
+  <span id="group__QkControlFlow_1autotoc_md173" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -883,7 +883,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a ForLoop control flow instruction with a list collection.
 
-  <span id="group__QkControlFlow_1autotoc_md172" />
+  <span id="group__QkControlFlow_1autotoc_md174" />
 
   #### Example
 
@@ -895,11 +895,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md173" />
+  <span id="group__QkControlFlow_1autotoc_md175" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md173" />
+  <span id="group__QkControlFlow_1autotoc_md175" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -921,7 +921,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a ForLoop control flow instruction with a range collection.
 
-  <span id="group__QkControlFlow_1autotoc_md174" />
+  <span id="group__QkControlFlow_1autotoc_md176" />
 
   #### Example
 
@@ -932,11 +932,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   printf("Loop range: start=%ld, stop=%ld, step=%ld\n", start, stop, step);
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md175" />
+  <span id="group__QkControlFlow_1autotoc_md177" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md175" />
+  <span id="group__QkControlFlow_1autotoc_md177" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`, or if any of `out_start`, `out_stop`, or `out_step` are not aligned valid pointers to write to.
 
@@ -957,7 +957,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a ForLoop control flow instruction.
 
-  <span id="group__QkControlFlow_1autotoc_md176" />
+  <span id="group__QkControlFlow_1autotoc_md178" />
 
   #### Example
 
@@ -971,11 +971,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md177" />
+  <span id="group__QkControlFlow_1autotoc_md179" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md177" />
+  <span id="group__QkControlFlow_1autotoc_md179" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -997,7 +997,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a ForLoop control flow instruction with a Parameter loop parameter.
 
-  <span id="group__QkControlFlow_1autotoc_md178" />
+  <span id="group__QkControlFlow_1autotoc_md180" />
 
   #### Example
 
@@ -1012,11 +1012,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   qk_str_free(symbol_info.name);
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md179" />
+  <span id="group__QkControlFlow_1autotoc_md181" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md179" />
+  <span id="group__QkControlFlow_1autotoc_md181" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -1038,7 +1038,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a ForLoop control flow instruction with a Variable loop parameter.
 
-  <span id="group__QkControlFlow_1autotoc_md180" />
+  <span id="group__QkControlFlow_1autotoc_md182" />
 
   #### Example
 
@@ -1048,11 +1048,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Use the loop variable pointer to access variable information
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md181" />
+  <span id="group__QkControlFlow_1autotoc_md183" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md181" />
+  <span id="group__QkControlFlow_1autotoc_md183" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -1074,7 +1074,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Switch control flow instruction.
 
-  <span id="group__QkControlFlow_1autotoc_md182" />
+  <span id="group__QkControlFlow_1autotoc_md184" />
 
   #### Example
 
@@ -1094,11 +1094,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md183" />
+  <span id="group__QkControlFlow_1autotoc_md185" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md183" />
+  <span id="group__QkControlFlow_1autotoc_md185" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -1120,7 +1120,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Switch control flow instruction with a classical bit target.
 
-  <span id="group__QkControlFlow_1autotoc_md184" />
+  <span id="group__QkControlFlow_1autotoc_md186" />
 
   #### Example
 
@@ -1130,11 +1130,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   printf("Switch operates on clbit %u\n", clbit_idx);
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md185" />
+  <span id="group__QkControlFlow_1autotoc_md187" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md185" />
+  <span id="group__QkControlFlow_1autotoc_md187" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -1156,7 +1156,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Switch control flow instruction with a register target.
 
-  <span id="group__QkControlFlow_1autotoc_md186" />
+  <span id="group__QkControlFlow_1autotoc_md188" />
 
   #### Example
 
@@ -1166,11 +1166,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Use the register to get its name, size, etc...
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md187" />
+  <span id="group__QkControlFlow_1autotoc_md189" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md187" />
+  <span id="group__QkControlFlow_1autotoc_md189" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -1192,7 +1192,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Switch control flow instruction with an expression target.
 
-  <span id="group__QkControlFlow_1autotoc_md188" />
+  <span id="group__QkControlFlow_1autotoc_md190" />
 
   #### Example
 
@@ -1202,11 +1202,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   // Evaluate the expression...
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md189" />
+  <span id="group__QkControlFlow_1autotoc_md191" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md189" />
+  <span id="group__QkControlFlow_1autotoc_md191" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -1228,7 +1228,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Switch control flow instruction.
 
-  <span id="group__QkControlFlow_1autotoc_md190" />
+  <span id="group__QkControlFlow_1autotoc_md192" />
 
   #### Example
 
@@ -1240,11 +1240,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md191" />
+  <span id="group__QkControlFlow_1autotoc_md193" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md191" />
+  <span id="group__QkControlFlow_1autotoc_md193" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -1266,7 +1266,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Switch control flow instruction.
 
-  <span id="group__QkControlFlow_1autotoc_md192" />
+  <span id="group__QkControlFlow_1autotoc_md194" />
 
   #### Example
 
@@ -1279,11 +1279,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   }
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md193" />
+  <span id="group__QkControlFlow_1autotoc_md195" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md193" />
+  <span id="group__QkControlFlow_1autotoc_md195" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -1306,7 +1306,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Switch control flow instruction.
 
-  <span id="group__QkControlFlow_1autotoc_md194" />
+  <span id="group__QkControlFlow_1autotoc_md196" />
 
   #### Example
 
@@ -1316,11 +1316,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   printf("Maximum bit width for case 0: %lu\n", bit_width);
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md195" />
+  <span id="group__QkControlFlow_1autotoc_md197" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md195" />
+  <span id="group__QkControlFlow_1autotoc_md197" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`.
 
@@ -1343,7 +1343,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   Panics if `cf_inst` is not a Switch control flow instruction or if a case label does not fit in `uint64_t`.
 
-  <span id="group__QkControlFlow_1autotoc_md196" />
+  <span id="group__QkControlFlow_1autotoc_md198" />
 
   #### Example
 
@@ -1356,11 +1356,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   qk_control_flow_switch_case_labels_clear(&case_labels);
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md197" />
+  <span id="group__QkControlFlow_1autotoc_md199" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md197" />
+  <span id="group__QkControlFlow_1autotoc_md199" />
 
   Behavior is undefined if `cf_inst` is not a valid pointer to a `QkControlFlowInstruction`, or if `out_labels` is not a valid pointer to a `QkSwitchCaseLabels` struct.
 
@@ -1381,7 +1381,7 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
 
   This function must be called to free the memory allocated by `qk_control_flow_switch_case_labels_uint`. After calling this function, the labels pointer in the struct will be set to null and the count will be set to zero.
 
-  <span id="group__QkControlFlow_1autotoc_md198" />
+  <span id="group__QkControlFlow_1autotoc_md200" />
 
   #### Example
 
@@ -1392,11 +1392,11 @@ The `QkControlFlowInstruction` opaque struct is the primary handle used by the C
   qk_control_flow_switch_case_labels_clear(&case_labels);
   ```
 
-  <span id="group__QkControlFlow_1autotoc_md199" />
+  <span id="group__QkControlFlow_1autotoc_md201" />
 
   #### Safety
 
-  <span id="group__QkControlFlow_1autotoc_md199" />
+  <span id="group__QkControlFlow_1autotoc_md201" />
 
   Behavior is undefined if `labels` is not a valid pointer to a `QkSwitchCaseLabels`.
 

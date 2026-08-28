@@ -26,21 +26,16 @@ import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
 const SYNTHETIC_FILES: string[] = [
   "learning/index.mdx",
   "docs/index.mdx",
-  "docs/admin/analytics.mdx",
   "docs/errors.mdx",
   "docs/api/qiskit-ibm-runtime/index.mdx",
-  "docs/api/qiskit-ibm-runtime/tags/jobs.mdx",
+  "docs/api/qiskit-runtime-rest/index.mdx",
+  "docs/api/qiskit-runtime-rest/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
-  "docs/api/qiskit-ibm-runtime/tags/usage.mdx",
-  "docs/api/qiskit-ibm-runtime/tags/sessions.mdx",
+  "docs/api/qiskit-runtime-rest/tags/usage.mdx",
+  "docs/api/qiskit-runtime-rest/tags/sessions.mdx",
   "docs/api/qiskit-runtime-rest/tags/instances.mdx",
   "docs/api/qiskit-runtime-rest/tags/backends.mdx",
   "docs/api/qiskit-runtime-rest/index.mdx",
-  "announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update.mdx",
-  "announcements/product-updates.mdx",
-  "announcements/index.mdx",
-  "announcements/product-updates/2025-03-03-new-version-dynamic-circuits.mdx",
-  "announcements/product-updates/2025-09-25-new-dynamic-circuits.mdx",
 ];
 
 interface Arguments {

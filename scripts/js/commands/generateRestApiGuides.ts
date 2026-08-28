@@ -14,31 +14,34 @@ import { writeFile } from "fs/promises";
 
 import { generateTable, extractEndpoints } from "../lib/restApiGuides.js";
 
-export const RUNTIME_API_TITLE = "Qiskit Runtime";
-export const QUANTUM_SYSTEM_API_TITLE = "the IBM Quantum System service";
+export const QUANTUM_COMPUTE_API_TITLE = "IBM Quantum Compute Service";
+export const QUANTUM_SYSTEM_API_TITLE = "IBM Quantum System Service";
 type OpenapiPkgTitle =
-  | typeof RUNTIME_API_TITLE
+  | typeof QUANTUM_COMPUTE_API_TITLE
   | typeof QUANTUM_SYSTEM_API_TITLE;
 
 const PACKAGE_TO_URL: Record<OpenapiPkgTitle, string> = {
-  [RUNTIME_API_TITLE]: "https://quantum.cloud.ibm.com/api/openapi.json",
+  [QUANTUM_COMPUTE_API_TITLE]: "https://quantum.cloud.ibm.com/api/openapi.json",
   [QUANTUM_SYSTEM_API_TITLE]:
     "https://quantum.cloud.ibm.com/endpoints-docs-learning/api/quantum-system-rest/openapi/latest",
 };
 
 async function main() {
+  // Activity tracking events, one guide per API.
   await writeObservabilityFile(
-    RUNTIME_API_TITLE,
+    QUANTUM_COMPUTE_API_TITLE,
     "docs/guides/observability-runtime-rest.mdx",
   );
   await writeObservabilityFile(
     QUANTUM_SYSTEM_API_TITLE,
     "docs/guides/observability-quantum-system.mdx",
   );
+  // Authorization roles, a single guide with a section per API.
+  await writeAuthorizationFile("docs/guides/authorization-roles.mdx");
 }
 
 function maybeAddPkgTitleRegisteredIcon(pkgTitle: string) {
-  return pkgTitle.replace("IBM", "IBM&reg;");
+  return pkgTitle.replace("IBM Quantum", "IBM Quantum&reg;");
 }
 
 async function writeObservabilityFile(
@@ -54,10 +57,28 @@ async function writeObservabilityFile(
   console.log(`✅ Wrote ${destPath}`);
 }
 
-const RUNTIME_REGION_SECTION = `
+async function writeAuthorizationFile(destPath: string) {
+  const pkgTitles: OpenapiPkgTitle[] = [
+    QUANTUM_COMPUTE_API_TITLE,
+    QUANTUM_SYSTEM_API_TITLE,
+  ];
+  const sections = pkgTitles.map(async (pkgTitle) => {
+    const response = await fetch(PACKAGE_TO_URL[pkgTitle]);
+    const jsonstr = await response.text();
+    const endpoints = extractEndpoints(jsonstr, "x-ibm-permissions", "actions");
+    const table = generateTable(endpoints, "Permission", "Required by");
+    return `## ${pkgTitle}\n\n${table}`;
+  });
+  const body = (await Promise.all(sections)).join("\n");
+  const mdx = `${getAuthorizationProse()}\n${body}`;
+  await writeFile(destPath, mdx, "utf8");
+  console.log(`✅ Wrote ${destPath}`);
+}
+
+const COMPUTE_REGION_SECTION = `
 ## Locations where activity tracking events are generated
 
-${RUNTIME_API_TITLE} sends activity tracking events in the following regions:
+${QUANTUM_COMPUTE_API_TITLE} sends activity tracking events in the following regions:
 
 - Washington ("us-east")
 - Frankfurt ("eu-de")
@@ -78,7 +99,7 @@ Activity tracking events report on activities that change the state of a service
 You can use IBM Cloud Activity Tracker Event Routing, a platform service, to route auditing events in your account to destinations of your choice by configuring targets and routes that define where activity tracking events are sent. For more information, see [About IBM Cloud Activity Tracker Events Routing](https://cloud.ibm.com/docs/atracker?topic=atracker-about).
 
 You can use IBM Cloud Logs to visualize and alert on events that are generated in your account and routed by IBM Cloud Activity Tracker Event Routing to an IBM Cloud Logs instance.
-${pkgTitle == RUNTIME_API_TITLE ? RUNTIME_REGION_SECTION : ""}
+${pkgTitle == QUANTUM_COMPUTE_API_TITLE ? COMPUTE_REGION_SECTION : ""}
 ## Viewing activity tracking events for ${pkgTitle}
 
 You can use IBM Cloud Logs to visualize and alert on events that are generated in your account and routed by IBM Cloud Activity Tracker Event Routing to an IBM Cloud Logs instance.
@@ -86,6 +107,18 @@ You can use IBM Cloud Logs to visualize and alert on events that are generated i
 ### Launching IBM Cloud Logs from the Observability page
 
 For information on launching the IBM Cloud Logs UI, see the [Launching the UI](https://cloud.ibm.com/docs/cloud-logs?topic=cloud-logs-instance-launch#instance-launch-cloud-ui) in the IBM Cloud Logs documentation.
+`;
+}
+
+function getAuthorizationProse(): string {
+  return `---
+title: Authorization roles
+description: Learn about the authorization roles and permissions available for the IBM Quantum REST APIs.
+---
+
+# Authorization roles
+
+Review the available roles and the actions mapped to each to help you assign access. See [IAM roles and actions](https://cloud.ibm.com/docs/iam?topic=iam-iam-service-roles-actions#service-roles-table155) on IBM Cloud&reg; for more information.
 `;
 }
 

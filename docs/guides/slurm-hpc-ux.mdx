@@ -146,18 +146,18 @@ Instead, during runtime, there can be two different modes that HPC users can spe
 * `exclusive=true` specifies that no other jobs can use the resource at the same time. An exclusive mode job gets all execution lanes and cannot run at the same time as a non-exclusive job
 * `exclusive=false` allows other jobs to run in parallel. In this case, there can be as many jobs as there are execution lanes, all running at the same time, and the job is assigned one lane
 
-#### Qiskit Runtime Service
+#### IBM Quantum Compute Service
 ##### User scope
 
 It is expected that users specify additional access details in environment variables.
 Specifically, this includes the following:
 
-* Qiskit Runtime service instance (CRN, Cloud Resource Name)
-* Endpoint for Qiskit Runtime (unless auto-detected from the CRN)
+* IBM Quantum Compute Service instance (CRN, Cloud Resource Name)
+* Endpoint for Quantum Compute (unless auto-detected from the CRN)
 * API key, which has access to the CRN
 * S3 instance, bucket, and access token/credentials for data transfers
 
-These details determine under which user and service instance the Qiskit Runtime service is used.
+These details determine under which user and service instance IBM Quantum Compute Service is used.
 Accordingly, IBM Quantum&reg; Platform scheduling considers the user's and service instance's capabilities for scheduling.
 
 At this time, users must provide the above details (no shared cluster-wide quantum access).

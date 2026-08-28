@@ -212,6 +212,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // These links should work when redirects are in place.
   "/docs/guides/configure-error-mitigation",
   "/docs/guides/configure-error-suppression",
+  "/docs/guides/v2-primitives",
 
   // This link will work because it is being merged at the same time as the notifications page is deployed.
   "/notifications",

@@ -1,0 +1,36 @@
+---
+title: MCXSynthesisNoAuxSP22 (dev version)
+description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxSP22 in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxSP22
+---
+
+# MCXSynthesisNoAuxSP22
+
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxSP22" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1457-L1494" signature="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxSP22" modifiers="class">
+  Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+
+  Synthesis plugin for a multi-controlled [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") based on the implementation for [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate"), which is in turn based on the paper by da Silva et al. \[1] and the implementation in qclib \[2].
+
+  See \[1, 2] for details.
+
+  This plugin name is `mcx.noaux_sp22` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  For a multi-controlled [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") with $k$ control qubits this synthesis method requires no additional clean auxiliary qubits. The synthesized circuit consists of $k + 1$ qubits. The number of CX-gates is quadratic in $k$.
+
+  References:
+
+  \[1] A. J. da Silva and D. K. Park, Linear-depth quantum circuits for multiqubit controlled gates, [Phys. Rev. A 106, 042602](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.106.042602).
+
+  \[2] [https://github.com/qclib/qclib/blob/master/qclib/gates/ldmcu.py](https://github.com/qclib/qclib/blob/master/qclib/gates/ldmcu.py)
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxSP22.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1482-L1494" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+    Run synthesis for the given MCX gate.
+  </Function>
+</Class>
+

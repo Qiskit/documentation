@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
 
 # DynamicalDecouplingOptions
 
-<Class id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.48/qiskit_ibm_runtime/options/dynamical_decoupling_options.py#L20-L67" signature="DynamicalDecouplingOptions(enable=Unset, sequence_type=Unset, extra_slack_distribution=Unset, scheduling_method=Unset, skip_reset_qubits=Unset)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.49/qiskit_ibm_runtime/options/dynamical_decoupling_options.py#L20-L67" signature="DynamicalDecouplingOptions(enable=Unset, sequence_type=Unset, extra_slack_distribution=Unset, scheduling_method=Unset, skip_reset_qubits=Unset)" modifiers="class">
   Bases: `object`
 
   Options for dynamical decoupling (DD).
@@ -25,7 +25,11 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
 
   ### enable
 
-  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.enable" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.enable">
+    Type: `UnsetType` | `bool`
+
+    Default value: `Unset`
+
     Whether to enable DD as specified by the other options in this class.
 
     Default: `False`.
@@ -33,7 +37,11 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
 
   ### extra\_slack\_distribution
 
-  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.extra_slack_distribution" attributeTypeHint="UnsetType | Literal['middle', 'edges']" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.extra_slack_distribution">
+    Type: `UnsetType` | `Literal`\[`'middle'`, `'edges'`]
+
+    Default value: `Unset`
+
     Where to put extra timing delays due to rounding issues.
 
     Rounding issues arise because the discrete time step `dt` of the system cannot be divided. This option takes following values.
@@ -49,7 +57,11 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
 
   ### scheduling\_method
 
-  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.scheduling_method" attributeTypeHint="UnsetType | Literal['alap', 'asap']" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.scheduling_method">
+    Type: `UnsetType` | `Literal`\[`'alap'`, `'asap'`]
+
+    Default value: `Unset`
+
     Whether to schedule gates as soon as (“asap”) or as late as (“alap”) possible.
 
     Default: `"alap"`.
@@ -57,7 +69,11 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
 
   ### sequence\_type
 
-  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.sequence_type" attributeTypeHint="UnsetType | Literal['XX', 'XpXm', 'XY4']" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.sequence_type">
+    Type: `UnsetType` | `Literal`\[`'XX'`, `'XpXm'`, `'XY4'`]
+
+    Default value: `Unset`
+
     Which dynamical decoupling sequence to use.
 
     Default: `"XX"`.
@@ -69,7 +85,11 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
 
   ### skip\_reset\_qubits
 
-  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.skip_reset_qubits" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.skip_reset_qubits">
+    Type: `UnsetType` | `bool`
+
+    Default value: `Unset`
+
     Whether to insert DD on idle periods that immediately follow initialized/reset qubits.
 
     Since qubits in the ground state are less susceptible to decoherence, it can be beneficial to let them be while they are known to be in this state.

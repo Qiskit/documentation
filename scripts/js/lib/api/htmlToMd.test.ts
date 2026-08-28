@@ -761,7 +761,9 @@ test("convert class property headings", async () => {
     isReleaseNotes: false,
     markdown: `# circuits
 
-<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true}>
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true}>
+  Type: \`tuple\`\\[\`qiskit.circuit.quantumcircuit.QuantumCircuit\`, ...]
+
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {
@@ -810,7 +812,9 @@ test("convert abstract class property headings", async () => {
     isReleaseNotes: false,
     markdown: `# circuits
 
-<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true} modifiers="abstract property">
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true} modifiers="abstract property">
+  Type: \`tuple\`\\[\`qiskit.circuit.quantumcircuit.QuantumCircuit\`, ...]
+
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {
@@ -866,12 +870,34 @@ test("convert class attributes headings", async () => {
     isReleaseNotes: false,
     markdown: `# callback
 
-<Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" attributeTypeHint="Optional[Callable]" attributeValue="None" isDedicatedPage={true} />\n`,
+<Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" isDedicatedPage={true}>
+  Type: \`Optional\`\\[\`Callable\`]
+
+  Default value: \`None\`
+</Attribute>\n`,
     meta: {
       apiName: "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
       apiType: "attribute",
     },
   });
+});
+
+test("attribute with < and & in default value produces valid MDX", async () => {
+  // StagedPassManager.invalid_stage_regex has &lt; / &gt; / &amp; in the value.
+  // The default value is emitted as a plain "Default value: ..." paragraph; special
+  // chars are escaped by remark-stringify (e.g. < → \<).
+  const result = await toMd(
+    `<div role='main'>
+<h1>invalid_stage_regex<a class='headerlink' href='#invalid-stage-regex' title='Permalink to this heading'>¶</a></h1>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qiskit.transpiler.StagedPassManager.invalid_stage_regex">
+<span class="sig-name descname"><span class="pre">invalid_stage_regex</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\&lt;|\\&gt;|\\&#64;|\\!|\\~|\\^|\\&amp;|\\:|\\[|\\]|\\{|\\}|\\(|\\)')</span></span><a class="headerlink" href="#qiskit.transpiler.StagedPassManager.invalid_stage_regex" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+`,
+  );
+  expect(result).toContain("Default value:");
+  expect(result).toContain("re.compile(");
 });
 
 test("convert functions headings", async () => {
@@ -1150,7 +1176,7 @@ test("generate correct heading level", async () => {
 
 ### attribute1
 
-<Attribute id="qiskit.test.attribute1" attributeTypeHint="None" attributeValue="None">
+<Attribute id="qiskit.test.attribute1">
   Attribute 1
 </Attribute>
 

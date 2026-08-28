@@ -81,7 +81,7 @@ export async function saveImages(
       await copyFile(source, dest);
     } else {
       try {
-        await $`magick ${source} ${dest}`;
+        await $`magick ${source} -quality 80 ${dest}`;
       } catch (err) {
         console.error(
           "Image conversion failed, make sure you have ImageMagick installed (https://imagemagick.org/index.php)",

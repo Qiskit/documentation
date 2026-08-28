@@ -10,14 +10,16 @@ python_api_name: ibm_quantum_schemas.common.CompressedTensorModel
 
 # CompressedTensorModel
 
-<Class id="ibm_quantum_schemas.common.CompressedTensorModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10.20260723/ibm_quantum_schemas/common/tensor.py#L134-L203" signature="CompressedTensorModel" modifiers="pydantic model">
+<Class id="ibm_quantum_schemas.common.CompressedTensorModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/common/tensor.py#L134-L203" signature="CompressedTensorModel" modifiers="pydantic model">
   Bases: [`TensorModel`](ibm-quantum-schemas-common-tensor-model "ibm_quantum_schemas.common.tensor.TensorModel")
 
   Model of compressed tensor data.
 
   ### data
 
-  <Attribute id="ibm_quantum_schemas.common.CompressedTensorModel.data" attributeTypeHint="str [Required]" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.common.CompressedTensorModel.data" modifiers="field">
+    Type: `str`
+
     Base-64-encoded data in litte endian format.
 
     Bool arrays are bitpacked, other types are IEEE753. Everything is little-endian. Tensors are C-ordering.
@@ -29,7 +31,9 @@ python_api_name: ibm_quantum_schemas.common.CompressedTensorModel
 
   ### dtype
 
-  <Attribute id="ibm_quantum_schemas.common.CompressedTensorModel.dtype" attributeTypeHint="Literal['f16', 'f32', 'f64', 'bool', 'i8', 'i16', 'i32', 'i64', 'u8', 'u16', 'u32', 'u64', 'c64', 'c128'] [Required]" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.common.CompressedTensorModel.dtype" modifiers="field">
+    Type: `Literal`\[`'f16'`, `'f32'`, `'f64'`, `'bool'`, `'i8'`, `'i16'`, `'i32'`, `'i64'`, `'u8'`, `'u16'`, `'u32'`, `'u64'`, `'c64'`, `'c128'`]
+
     The data type of the tensor.
 
     **Validated by**
@@ -39,7 +43,9 @@ python_api_name: ibm_quantum_schemas.common.CompressedTensorModel
 
   ### shape
 
-  <Attribute id="ibm_quantum_schemas.common.CompressedTensorModel.shape" attributeTypeHint="list[int] [Required]" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.common.CompressedTensorModel.shape" modifiers="field">
+    Type: `list`\[`int`]
+
     The shape of the tensor.
 
     **Validated by**
@@ -49,13 +55,13 @@ python_api_name: ibm_quantum_schemas.common.CompressedTensorModel
 
   ### check\_sizes
 
-  <Function id="ibm_quantum_schemas.common.CompressedTensorModel.check_sizes" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10.20260723/ibm_quantum_schemas/common/tensor.py#L191-L203" signature="check_sizes" modifiers="validator">
+  <Function id="ibm_quantum_schemas.common.CompressedTensorModel.check_sizes" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/common/tensor.py#L191-L203" signature="check_sizes" modifiers="validator">
     Cross-validate that all sizes are consistent.
   </Function>
 
   ### from\_numpy
 
-  <Function id="ibm_quantum_schemas.common.CompressedTensorModel.from_numpy" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10.20260723/ibm_quantum_schemas/common/tensor.py#L158-L173" signature="from_numpy(array)" modifiers="classmethod">
+  <Function id="ibm_quantum_schemas.common.CompressedTensorModel.from_numpy" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/common/tensor.py#L158-L173" signature="from_numpy(array)" modifiers="classmethod">
     Instantiate from a NumPy array.
 
     **Parameters**
@@ -65,7 +71,7 @@ python_api_name: ibm_quantum_schemas.common.CompressedTensorModel
 
   ### to\_numpy
 
-  <Function id="ibm_quantum_schemas.common.CompressedTensorModel.to_numpy" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.10.20260723/ibm_quantum_schemas/common/tensor.py#L175-L189" signature="to_numpy()">
+  <Function id="ibm_quantum_schemas.common.CompressedTensorModel.to_numpy" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/common/tensor.py#L175-L189" signature="to_numpy()">
     Convert to a NumPy Array.
 
     **Return type**

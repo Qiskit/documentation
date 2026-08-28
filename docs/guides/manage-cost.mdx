@@ -81,9 +81,11 @@ Only administrators and owners can edit the instance.  See the [Create access po
 
 ### What happens when the cost limit is reached
 
-When the instance’s cost limit is reached, the currently running job is stopped. Its status is set to Canceled with a reason of Ran too long. Any available partial results are kept.
+When a running job reports usage that causes the instance's cost limit to be exceeded, currently running jobs from that instance are stopped, their statuses are set to `Canceled` with a reason of `Ran too long`, and the account is billed for the usage.
 
-No further jobs can be submitted by using this instance until the cost limit is increased.
+Note that job runtime is only reported periodically during execution. Therefore, the job might continue to run past the limit, or even to completion, and, as a result, the account can be billed for usage over the specified limit.
+
+No further jobs submitted by this instance will begin execution until the cost limit is increased.
 
 ## How to see what you’re being charged
 

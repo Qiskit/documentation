@@ -1,0 +1,138 @@
+---
+title: QuantumProgramModel (dev version)
+description: API reference for ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel
+---
+
+<span id="ibm-quantum-schemas-executor-version-2-0-quantumprogrammodel" />
+
+# QuantumProgramModel
+
+<Class id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel" isDedicatedPage={true} github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/executor/version_2_0/models.py#L166-L230" signature="QuantumProgramModel" modifiers="pydantic model">
+  Bases: `BaseModel`
+
+  Model to store a quantum program.
+
+  ### circuits
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel.circuits" modifiers="field">
+    Type: [`CompressedQpyDataModel`](ibm-quantum-schemas-common-compressed-qpy-data-model "ibm_quantum_schemas.common.CompressedQpyDataModel")\[`QuantumCircuit`] | [`OpenQasm3DataModel`](ibm-quantum-schemas-common-open-qasm-3-data-model "ibm_quantum_schemas.common.OpenQasm3DataModel")\[`QuantumCircuit`]
+
+    One quantum circuit for every element of `items`.
+
+    These are stored outside of `items` to cosituate them inside of one QPY / OpenQASM3 blob.
+
+    **Validated by**
+
+    *   `check_chunk_sizes_are_consistent`
+    *   `check_circuit_count_is_consistent`
+  </Attribute>
+
+  ### items
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel.items" modifiers="field">
+    Type: `list`\[`Annotated`\[[`CircuitItemModel`](ibm-quantum-schemas-executor-version-2-0-circuit-item-model "ibm_quantum_schemas.executor.version_2_0.CircuitItemModel") | [`SamplexItemModel`](ibm-quantum-schemas-executor-version-2-0-samplex-item-model "ibm_quantum_schemas.executor.version_2_0.SamplexItemModel"), `Field`(`discriminator``=``'item_type'`)]]
+
+    Items of the program.
+
+    **Validated by**
+
+    *   `check_chunk_sizes_are_consistent`
+    *   `check_circuit_count_is_consistent`
+  </Attribute>
+
+  ### meas\_level
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel.meas_level" modifiers="field">
+    Type: `Literal`\[`'classified'`, `'kerneled'`, `'avg_kerneled'`, `'both'`]
+
+    Default value: `'classified'`
+
+    The level at which to return all classical register measurement results.
+
+    This option sets the return type of all classical registers in all quantum program items and determines whether the raw complex data from low-level measurement devices is discriminated into bits or not.
+
+    > *   **“classified”: Classical register data is returned as boolean arrays with the intrinsic shape**
+    >
+    >     `(num_shots, creg_size)`.
+    >
+    > *   **“kerneled”: Classical register data is returned as a complex array with the intrinsic shape**
+    >
+    >     `(num_shots, creg_size)`, where each entry represents an IQ data point (resulting from kerneling the measurement trace) in arbitrary units.
+    >
+    > *   **“avg\_kerneled”: Classical register data is returned as a complex array with the intrinsic**
+    >
+    >     shape `(creg_size,)`, where data is equivalent to “kerneled” except additionally averaged over shots.
+    >
+    > *   “both”: Both classified and kerneled data is returned for every classical register.
+
+    **Validated by**
+
+    *   `check_chunk_sizes_are_consistent`
+    *   `check_circuit_count_is_consistent`
+  </Attribute>
+
+  ### passthrough\_data
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel.passthrough_data" modifiers="field">
+    Type: `DataTree`
+
+    Default value: `None`
+
+    Arbitrary nested data passed through execution without modification.
+
+    **Validated by**
+
+    *   `check_chunk_sizes_are_consistent`
+    *   `check_circuit_count_is_consistent`
+  </Attribute>
+
+  ### semantic\_role
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel.semantic_role" modifiers="field">
+    Type: `str` | `None`
+
+    Default value: `None`
+
+    Semantic role indicating how execution results may be post-processed by runtime clients.
+
+    Reserved system values include ‘sampler-v2’ and ‘estimator-v2’, and are subject to change without notice. Third party clients should not set or depend on this value.
+
+    **Validated by**
+
+    *   `check_chunk_sizes_are_consistent`
+    *   `check_circuit_count_is_consistent`
+  </Attribute>
+
+  ### shots
+
+  <Attribute id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel.shots" modifiers="field">
+    Type: `int`
+
+    The number of shots for each individually bound circuit.
+
+    **Constraints**
+
+    *   **ge** = 1
+
+    **Validated by**
+
+    *   `check_chunk_sizes_are_consistent`
+    *   `check_circuit_count_is_consistent`
+  </Attribute>
+
+  ### check\_chunk\_sizes\_are\_consistent
+
+  <Function id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel.check_chunk_sizes_are_consistent" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/executor/version_2_0/models.py#L188-L198" signature="check_chunk_sizes_are_consistent" modifiers="validator">
+    Check that all program items set chunk sizes consistently.
+  </Function>
+
+  ### check\_circuit\_count\_is\_consistent
+
+  <Function id="ibm_quantum_schemas.executor.version_2_0.QuantumProgramModel.check_circuit_count_is_consistent" github="https://github.com/Qiskit/ibm-quantum-schemas/tree/0.11.20260824/ibm_quantum_schemas/executor/version_2_0/models.py#L200-L209" signature="check_circuit_count_is_consistent" modifiers="validator">
+    Check that there is one circuit for every item.
+  </Function>
+</Class>
+
