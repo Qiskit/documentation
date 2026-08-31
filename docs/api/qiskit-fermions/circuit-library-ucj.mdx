@@ -1,0 +1,228 @@
+---
+title: UCJ (latest version)
+description: API reference for qiskit_fermions.circuit.library.UCJ in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.circuit.library.UCJ
+---
+
+# UCJ
+
+<Class id="qiskit_fermions.circuit.library.UCJ" isDedicatedPage={true} signature="UCJ(variant, diag_coulomb_mats, orbital_rotations, *, final_orbital_rotation=None)" modifiers="class">
+  Bases: [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.fermionic_gate.FermionicGate")
+
+  Implements the (local) unitary cluster Jastrow ((L)UCJ) ansatz.
+
+  A unitary cluster Jastrow operator has the form
+
+$$
+\left(\prod_{k=1}^{L} \mathcal{U}_k\, e^{i \mathcal{J}_k}\, \mathcal{U}_k^\dagger\right)
+\mathcal{U}_\text{final}
+$$
+
+  where each $\mathcal{U}_k$ is an [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation"), each $\mathcal{J}_k$ is a diagonal Coulomb operator
+
+$$
+\mathcal{J} = \frac12 \sum_{ij,\sigma\tau} \mathbf{J}^{\sigma\tau}_{ij}\,
+n_{i\sigma}\, n_{j\tau},
+$$
+
+  and $\mathcal{U}_\text{final}$ is an optional final orbital rotation. The number of terms $L$ is the number of ansatz repetitions.
+
+  This gate supports three spin variants (see `UCJ.Variant`), selected explicitly by the `variant` argument and validated against the shapes of the supplied tensors (mirroring ffsim’s [`UCJOpSpinBalanced`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCJOpSpinBalanced.html#ffsim.UCJOpSpinBalanced "(in ffsim)"), [`UCJOpSpinUnbalanced`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCJOpSpinUnbalanced.html#ffsim.UCJOpSpinUnbalanced "(in ffsim)") and [`UCJOpSpinless`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCJOpSpinless.html#ffsim.UCJOpSpinless "(in ffsim)")). The number of spatial orbitals is *not* a constructor argument – it is inferred from those same tensor shapes (see [`norb`](#qiskit_fermions.circuit.library.UCJ.norb "qiskit_fermions.circuit.library.UCJ.norb")):
+
+  *   **spin-balanced** – `diag_coulomb_mats` has shape `(L, 2, norb, norb)` (the `[alpha-alpha, alpha-beta]` matrices, with beta-beta reusing alpha-alpha and beta-alpha reusing alpha-beta) and `orbital_rotations` has shape `(L, norb, norb)` (one rotation applied to both spin sectors). Acts on `2 * norb` block-spin modes.
+  *   **spin-unbalanced** – `diag_coulomb_mats` has shape `(L, 3, norb, norb)` (the `[alpha-alpha, alpha-beta, beta-beta]` matrices) and `orbital_rotations` has shape `(L, 2, norb, norb)` (independent `[alpha, beta]` rotations). Acts on `2 * norb` block-spin modes.
+  *   **spinless** – `diag_coulomb_mats` and `orbital_rotations` both have shape `(L, norb, norb)`. Acts on `norb` spinless modes. The equivalent two-register operator with a shared same-spin diagonal Coulomb matrix and no cross-spin interaction is expressible via the `"balanced"` variant with its alpha-beta block set to zero.
+
+  <Admonition title="Note" type="note">
+    This gate builds the ansatz from *exact* tensors. To use ffsim’s optimized (“compressed”) double factorization, construct an `ffsim` UCJ operator with `optimize=True` and pass its `diag_coulomb_mats` / `orbital_rotations` / `final_orbital_rotation` into this constructor directly.
+  </Admonition>
+
+  <Admonition title="Caution" type="note">
+    This is an early development prototype. Beware of changes to its interface without warning during the pre-release development of this package.
+  </Admonition>
+
+  Initializing an instance of this gate can be done with the arguments listed below.
+
+  The number of spatial orbitals is inferred from the supplied tensor shapes (see [`norb`](#qiskit_fermions.circuit.library.UCJ.norb "qiskit_fermions.circuit.library.UCJ.norb")).
+
+  **Parameters**
+
+  *   **variant** (*UCJ.Variant |* [*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the spin variant, a `UCJ.Variant` (or its string value `"balanced"`, `"unbalanced"`, or `"spinless"`). Determines the number of modes this gate acts on (see the class docstring) and the expected tensor shapes.
+  *   **diag\_coulomb\_mats** (*np.ndarray*) – the diagonal Coulomb matrices, of shape `(L, 2, norb, norb)` (spin-balanced), `(L, 3, norb, norb)` (spin-unbalanced), or `(L, norb, norb)` (spinless), where `L` is the number of ansatz repetitions.
+  *   **orbital\_rotations** (*np.ndarray*) – the orbital rotations, of shape `(L, norb, norb)` (spin-balanced or spinless) or `(L, 2, norb, norb)` (spin-unbalanced).
+  *   **final\_orbital\_rotation** (*np.ndarray | None*) – an optional final orbital rotation, of shape `(norb, norb)` (spin-balanced or spinless) or `(2, norb, norb)` (spin-unbalanced).
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `variant` is not recognized, or if the tensor shapes are inconsistent with each other or with `variant`.
+
+  ## Attributes
+
+  ### diag\_coulomb\_mats
+
+  <Attribute id="qiskit_fermions.circuit.library.UCJ.diag_coulomb_mats">
+    The diagonal Coulomb matrices defining each ansatz repetition.
+  </Attribute>
+
+  ### orbital\_rotations
+
+  <Attribute id="qiskit_fermions.circuit.library.UCJ.orbital_rotations">
+    The orbital rotations defining each ansatz repetition.
+  </Attribute>
+
+  ### final\_orbital\_rotation
+
+  <Attribute id="qiskit_fermions.circuit.library.UCJ.final_orbital_rotation">
+    The optional final orbital rotation.
+  </Attribute>
+
+  ### norb
+
+  <Attribute id="qiskit_fermions.circuit.library.UCJ.norb">
+    The number of spatial orbitals, inferred from the tensor shapes.
+  </Attribute>
+
+  ## Methods
+
+  ### from\_parameters
+
+  <Function id="qiskit_fermions.circuit.library.UCJ.from_parameters" signature="from_parameters(params, norb, variant, n_reps, *, interaction_pairs=None, with_final_orbital_rotation=False)" modifiers="classmethod">
+    Constructs a UCJ ansatz from a real-valued parameter vector.
+
+    **Parameters**
+
+    *   **params** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – the real-valued parameter vector.
+    *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals.
+    *   **variant** (*Variant |* [*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the spin variant, a `UCJ.Variant` (or its string value `"balanced"`, `"unbalanced"`, or `"spinless"`).
+    *   **n\_reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of ansatz repetitions.
+    *   **interaction\_pairs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]] | None, ...] | None*) – the allowed diagonal Coulomb interactions (see [`from_t_amplitudes()`](#qiskit_fermions.circuit.library.UCJ.from_t_amplitudes "qiskit_fermions.circuit.library.UCJ.from_t_amplitudes") for the exact per-variant shape convention). `None` (the default) imposes no restriction, so every block uses its full parameter count.
+    *   **with\_final\_orbital\_rotation** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether `params` includes a trailing final orbital rotation.
+
+    **Returns**
+
+    The constructed [`UCJ`](#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") gate.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `variant` is not recognized, or if `len(params)` does not match [`num_parameters()`](#qiskit_fermions.circuit.library.UCJ.num_parameters "qiskit_fermions.circuit.library.UCJ.num_parameters") for the given settings.
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### from\_t\_amplitudes
+
+  <Function id="qiskit_fermions.circuit.library.UCJ.from_t_amplitudes" signature="from_t_amplitudes(nelec, t2, *, t1=None, variant='balanced', n_reps=None, interaction_pairs=None, tol=1e-08)" modifiers="classmethod">
+    Constructs a UCJ ansatz from coupled-cluster $t_2$ (and optional $t_1$) amplitudes.
+
+    The ansatz layers are obtained from an *exact* double factorization of the $t_2$ amplitudes (via [`double_factorized_t2()`](linalg-double-factorized-t-2 "qiskit_fermions.linalg.double_factorized_t2") / [`double_factorized_t2_alpha_beta()`](linalg-double-factorized-t-2-alpha-beta "qiskit_fermions.linalg.double_factorized_t2_alpha_beta")) and, when $t_1$ is supplied, a final orbital rotation from [`OrbitalRotation.from_t1_amplitudes()`](circuit-library-orbital-rotation#from_t1_amplitudes "qiskit_fermions.circuit.library.OrbitalRotation.from_t1_amplitudes").
+
+    <Admonition title="Note" type="note">
+      Only the exact factorization is supported here. To use ffsim’s optimized (“compressed”) double factorization, build an `ffsim` UCJ operator with `optimize=True` and pass its tensors into [`UCJ`](#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") directly.
+    </Admonition>
+
+    **Parameters**
+
+    *   **nelec** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – either a single integer for a spinless system, or a pair of integers storing the numbers of spin alpha and spin beta fermions.
+    *   **t2** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*]*) – the $t_2$ amplitudes. For the `"balanced"` and `"spinless"` variants, a single array of shape `(nocc, nocc, nvrt, nvrt)`. For the `"unbalanced"` variant, a tuple `(t2aa, t2ab, t2bb)`.
+    *   **t1** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*] | None*) – the optional $t_1$ amplitudes producing the final orbital rotation. For `"unbalanced"`, a pair `(t1a, t1b)`; otherwise a single array of shape `(nocc, nvrt)`.
+    *   **variant** (*Variant |* [*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the spin variant to build, a `UCJ.Variant` (or its string value `"balanced"`, `"unbalanced"`, or `"spinless"`).
+    *   **n\_reps** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – the number of ansatz repetitions. If `None`, uses all terms of the double factorization; if larger, the ansatz is padded with identity rotations and zero diagonal Coulomb matrices. For the `"unbalanced"` variant a pair `(n_reps_ab, n_reps_same_spin)` independently sets the number of alpha-beta and same-spin terms; a tuple is only valid for that variant.
+    *   **interaction\_pairs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]] | None, ...] | None*) – the allowed diagonal Coulomb interactions (the “local” in LUCJ). For `"spinless"` a single list of upper-triangular `(i, j)` pairs; for `"balanced"` a pair `(pairs_aa, pairs_ab)`; for `"unbalanced"` a triple `(pairs_aa, pairs_ab, pairs_bb)`. A list of pairs restricts that block to exactly those entries; the same-spin (aa/bb) masks are symmetrized while the alpha-beta (ab) mask is not. Use `None` – not an empty list `[]` – to impose *no* restriction: a `None` element (or the whole argument being `None`) leaves the block untouched, whereas an empty list allows no interactions and so zeros the entire block.
+    *   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the double-factorization truncation tolerance.
+
+    **Returns**
+
+    The constructed [`UCJ`](#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") gate.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `variant` is not recognized, or if a tuple `n_reps` is passed for a variant other than `UCJ.Variant.UNBALANCED`.
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### num\_parameters
+
+  <Function id="qiskit_fermions.circuit.library.UCJ.num_parameters" signature="num_parameters(norb, variant, n_reps, *, interaction_pairs=None, with_final_orbital_rotation=False)" modifiers="classmethod">
+    Returns the number of parameters of a UCJ ansatz with the given settings.
+
+    **Parameters**
+
+    *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals.
+    *   **variant** (*Variant |* [*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the spin variant, a `UCJ.Variant` (or its string value `"balanced"`, `"unbalanced"`, or `"spinless"`).
+    *   **n\_reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of ansatz repetitions.
+    *   **interaction\_pairs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]] | None, ...] | None*) – the allowed diagonal Coulomb interactions (see [`from_t_amplitudes()`](#qiskit_fermions.circuit.library.UCJ.from_t_amplitudes "qiskit_fermions.circuit.library.UCJ.from_t_amplitudes") for the exact per-variant shape convention). `None` (the default) imposes no restriction, so every block uses its full parameter count.
+    *   **with\_final\_orbital\_rotation** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether the ansatz includes a final orbital rotation.
+
+    **Returns**
+
+    The number of parameters.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `variant` is not recognized.
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int)
+  </Function>
+
+  ### to\_parameters
+
+  <Function id="qiskit_fermions.circuit.library.UCJ.to_parameters" signature="to_parameters(*, interaction_pairs=None)">
+    Converts this UCJ ansatz to a real-valued parameter vector.
+
+    <Admonition title="Note" type="note">
+      If `interaction_pairs` restricts a block, the returned parameter vector incorporates only the diagonal Coulomb matrix entries corresponding to the allowed interactions, so the original operator is not recoverable from the parameter vector alone.
+    </Admonition>
+
+    <Admonition title="Note" type="note">
+      The returned vector is the *principal-branch* representative of this ansatz’s orbital rotations: each rotation is parameterized by `logm(U)`, which is unique only up to $2\pi i$ shifts of its eigenvalue phases. Consequently [`from_parameters()`](#qiskit_fermions.circuit.library.UCJ.from_parameters "qiskit_fermions.circuit.library.UCJ.from_parameters") applied to the returned vector reproduces this operator exactly, but the reverse composition does *not* generally return its input – `to_parameters(from_parameters(p))` equals `p` only when `p`’s generators already lie in the principal branch (all eigenvalue phases within $(-\pi, \pi]$). Both a wrapped `p` and the returned vector describe the same unitary, so the operator is unaffected. Amplitudes from [`from_t_amplitudes()`](#qiskit_fermions.circuit.library.UCJ.from_t_amplitudes "qiskit_fermions.circuit.library.UCJ.from_t_amplitudes") are well inside the principal branch; large hand-built parameter vectors need not be.
+    </Admonition>
+
+    **Parameters**
+
+    **interaction\_pairs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]] | None, ...] | None*) – the allowed diagonal Coulomb interactions (see [`from_t_amplitudes()`](#qiskit_fermions.circuit.library.UCJ.from_t_amplitudes "qiskit_fermions.circuit.library.UCJ.from_t_amplitudes") for the exact per-variant shape convention). `None` (the default) imposes no restriction, so every block’s full contents are included.
+
+    **Returns**
+
+    The real-valued parameter vector.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+
+  **Protocol Methods**
+
+  ### \_apply\_unitary\_placed\_
+
+  <Function id="qiskit_fermions.circuit.library.UCJ._apply_unitary_placed_" signature="_apply_unitary_placed_(vec, norb, nelec, copy, freg_indices)">
+    Applies the ansatz after placing its modes onto the vector’s global modes.
+
+    This builds the gate’s definition (the per-repetition orbital rotations and diagonal Coulomb evolutions) and applies it to `vec`, with the definition circuit placed onto the global modes `freg_indices` (each of its instructions is relabeled onto the corresponding absolute modes). See `_define()` for the exact gate sequence.
+
+    **Parameters**
+
+    *   **vec** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – the state vector to act on.
+    *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals of the *global* state vector.
+    *   **nelec** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – either a single integer for a spinless system, or a pair of integers storing the numbers of spin alpha and spin beta fermions.
+    *   **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to copy the vector before operating on it.
+    *   **freg\_indices** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the absolute (global) mode indices that this gate’s local modes map onto.
+
+    **Returns**
+
+    The transformed vector.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+</Class>
+

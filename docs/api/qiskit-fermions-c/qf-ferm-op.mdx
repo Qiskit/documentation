@@ -1,0 +1,1151 @@
+---
+title: QfFermionOperator (latest version)
+description: API reference for QfFermionOperator in the latest version of qiskit-fermions-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QfFermionOperator
+---
+
+# QfFermionOperator
+
+### QfFermionOperator
+
+<Class id="QfFermionOperator" signature="struct QfFermionOperator" />
+
+A spin-less fermionic operator.
+
+<Admonition title="Note" type="note">
+  This is an opaque data structure to the C API whose internals are implemented entirely in Rust. The remainder of this page describes the design and related functions to work with this struct.
+</Admonition>
+
+***
+
+## Definition
+
+This operator is defined by a linear combination of products of fermionic creation and annihilation operators acting on spin-less fermionic modes. That is to say, the individual terms fulfill the following anti-commutation relations: <span id="id1" />[\[1\]](#id2)
+
+$$
+\left\{a^\dagger_i, a^\dagger_j\right\} =
+\left\{a_i, a_j\right\} = 0,~~\text{and}~~
+\left\{a_i, a^\dagger_j\right\} = \delta_{ij} \, ,
+$$
+
+where $i$ and $j$ do not distinguish the spin species of the fermionic modes they are indexing.
+
+This makes the definition of the entire operator the following:
+
+$$
+\text{\texttt{QfFermionOperator}} = \sum_i c_i \bigotimes_j \hat{A_j} \, ,
+$$
+
+where $\hat{A_j} \in \{ a_j, a^\dagger_j \}$ and $c_i$ is the (complex) coefficient making up the linear combination of products. The index $j$ can take any value between 0 and the number of fermionic modes acted upon by the operator minus 1.
+
+***
+
+<span id="qf-ferm-op-implementation" />
+
+## Implementation
+
+This struct stores the terms and coefficients in multiple sparse vectors, akin to the [compressed sparse row format](https://en.wikipedia.org/wiki/Sparse_matrix#Compressed_sparse_row_\(CSR,_CRS_or_Yale_format\)) commonly used for sparse matrices. More concretely, a single operator contains 4 arrays:
+
+|              |                                                                                   |
+| ------------ | --------------------------------------------------------------------------------- |
+| `coeffs`     | A vector of complex coefficients consisting of two 64-bit floating point numbers. |
+| `actions`    | A vector of booleans storing the nature of the second-quantization actions.       |
+| `modes`      | A vector of 32-bit integers storing the fermionic mode indices acted upon.        |
+| `boundaries` | A vector of integers indicating the boundaries in `actions` and `modes`.          |
+
+Entries in `actions` indicate creation (annihilation) operators by `True` (`False`). Fermionic modes indexed by `modes` are considered spinless.
+
+<Admonition title="Note" type="note">
+  You can access **read-only copies** of these internal arrays via their respective functions:
+
+  *   [`qf_ferm_op_get_coeffs()`](#qf_ferm_op_get_coeffs "qf_ferm_op_get_coeffs")
+  *   [`qf_ferm_op_get_actions()`](#qf_ferm_op_get_actions "qf_ferm_op_get_actions")
+  *   [`qf_ferm_op_get_modes()`](#qf_ferm_op_get_modes "qf_ferm_op_get_modes")
+  *   [`qf_ferm_op_get_boundaries()`](#qf_ferm_op_get_boundaries "qf_ferm_op_get_boundaries")
+</Admonition>
+
+This data structure allows for very efficient construction and manipulation of operators. However, it implies that duplicate terms might be contained in an operator at any moment. These must be resolved manually through the use of [`qf_ferm_op_simplify()`](#qf_ferm_op_simplify "qf_ferm_op_simplify").
+
+### Construction
+
+A new operator can be constructed directly by specifying the corresponding arrays outlined above. Alternatively, an empty [`QfFermionOperator`](#qffermionoperator "QfFermionOperator") can be initialized with [`qf_ferm_op_zero()`](#qf_ferm_op_zero "qf_ferm_op_zero") and terms can be added iteratively via [`qf_ferm_op_add_term()`](#qf_ferm_op_add_term "qf_ferm_op_add_term").
+
+|                                                                       |                                                     |
+| --------------------------------------------------------------------- | --------------------------------------------------- |
+| [`qf_ferm_op_new()`](#qf_ferm_op_new "qf_ferm_op_new")                | Constructs a new operator from the provided arrays. |
+| [`qf_ferm_op_zero()`](#qf_ferm_op_zero "qf_ferm_op_zero")             | Constructs the additive identity operator.          |
+| [`qf_ferm_op_one()`](#qf_ferm_op_one "qf_ferm_op_one")                | Constructs the multiplicative identity operator.    |
+| [`qf_ferm_op_add_term()`](#qf_ferm_op_add_term "qf_ferm_op_add_term") | Adds a term to an existing `QfFermionOperator`.     |
+
+<Admonition title="Note" type="note">
+  A [`QfFermionOperator`](#qffermionoperator "QfFermionOperator") can be freed with [`qf_ferm_op_free()`](#qf_ferm_op_free "qf_ferm_op_free").
+</Admonition>
+
+### Arithmetics
+
+The following functions provide arithmetic manipulation:
+
+|                                                                    |                                           |
+| ------------------------------------------------------------------ | ----------------------------------------- |
+| [`qf_ferm_op_add()`](#qf_ferm_op_add "qf_ferm_op_add")             | Adds two operators together.              |
+| [`qf_ferm_op_mul()`](#qf_ferm_op_mul "qf_ferm_op_mul")             | Multiplies an operator by a scalar.       |
+| [`qf_ferm_op_compose()`](#qf_ferm_op_compose "qf_ferm_op_compose") | Composes two operators with each other.   |
+| [`qf_ferm_op_adjoint()`](#qf_ferm_op_adjoint "qf_ferm_op_adjoint") | Returns the Hermitian conjugate operator. |
+
+### Manipulation
+
+The following functions provide operator manipulation logic:
+
+|                                                                                         |                                                           |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`qf_ferm_op_ichop()`](#qf_ferm_op_ichop "qf_ferm_op_ichop")                            | Removes terms with small coefficient magnitudes.          |
+| [`qf_ferm_op_simplify()`](#qf_ferm_op_simplify "qf_ferm_op_simplify")                   | Returns an equivalent but simplified operator.            |
+| [`qf_ferm_op_normal_ordered()`](#qf_ferm_op_normal_ordered "qf_ferm_op_normal_ordered") | Returns an equivalent operator with normal ordered terms. |
+| [`qf_ferm_op_relabel_modes()`](#qf_ferm_op_relabel_modes "qf_ferm_op_relabel_modes")    | Relabels the modes of an operator.                        |
+
+### Properties
+
+The following functions exist to check certain properties of an operator.
+
+|                                                                                                                          |                                                            |
+| ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| [`qf_ferm_op_is_hermitian()`](#qf_ferm_op_is_hermitian "qf_ferm_op_is_hermitian")                                        | Returns whether an operator is Hermitian.                  |
+| [`qf_ferm_op_max_rank()`](#qf_ferm_op_max_rank "qf_ferm_op_max_rank")                                                    | Returns the maximum rank of the terms in this operator.    |
+| [`qf_ferm_op_conserves_particle_number()`](#qf_ferm_op_conserves_particle_number "qf_ferm_op_conserves_particle_number") | Returns whether an operator is particle-number conserving. |
+
+***
+
+<span id="id2" />
+
+\[[1](#id1)]
+
+[https://en.wikipedia.org/wiki/Second\_quantization#Fermion\_creation\_and\_annihilation\_operators](https://en.wikipedia.org/wiki/Second_quantization#Fermion_creation_and_annihilation_operators)
+
+## Members
+
+### qf\_ferm\_op\_new
+
+<Function id="qf_ferm_op_new" signature="QfFermionOperator *qf_ferm_op_new(uint64_t num_terms, uint64_t num_actions, const QkComplex64 *coeffs, const bool *actions, const uint32_t *modes, const uint32_t *boundaries)">
+  Constructs a new operator.
+
+  Any of the pointer arguments can be `NULL` if and only if their corresponding length is zero.
+
+  #### Example
+
+  ```c
+  1uint64_t num_terms = 3;
+  2uint64_t num_actions = 4;
+  3bool actions[4] = {true, false, true, false};
+  4uint32_t modes[4] = {0, 1, 2, 3};
+  5QkComplex64 coeffs[3] = {{1.0, 0.0}, {-1.0, 0.0}, {0.0, -1.0}};
+  6uint32_t boundaries[4] = {0, 0, 2, 4};
+  7QfFermionOperator *op = qf_ferm_op_new(num_terms, num_actions, coeffs,
+  8                                       actions, modes, boundaries);
+  ```
+
+  **Parameters**
+
+  *   **num\_terms** – The number of terms in the operator.
+  *   **num\_actions** – The number of actions summed over all terms.
+  *   **coeffs** – A pointer to an array of term coefficients. The length of this array should be `num_terms`.
+  *   **actions** – A pointer to an array of actions over all terms. The length of this array should be `num_actions`.
+  *   **modes** – A pointer to an array of action modes over all terms. The length of this array should be `num_actions`.
+  *   **boundaries** – A pointer to an array of the boundaries between terms. The length of this array should be `num_terms + 1`.
+</Function>
+
+### qf\_ferm\_op\_free
+
+<Function id="qf_ferm_op_free" signature="void qf_ferm_op_free(QfFermionOperator *op)">
+  Frees an existing operator.
+
+  <span id="id3" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *op = qf_ferm_op_one();
+  2qf_ferm_op_free(op);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator to be freed.
+</Function>
+
+### qf\_ferm\_op\_get\_coeffs
+
+<Function id="qf_ferm_op_get_coeffs" signature="void qf_ferm_op_get_coeffs(const QfFermionOperator *op, QkComplex64 **coeffs_out, uint64_t *coeffs_len)">
+  Provides read-only access to the operator’s coefficients.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data structure, [here](#qf-ferm-op-implementation).
+  </Admonition>
+
+  <span id="id4" />
+
+  #### Example
+
+  ```c
+   1uint64_t num_terms = 2;
+   2uint64_t num_actions = 0;
+   3QkComplex64 coeffs[2] = {{1.0, 0.0}, {0.0, -1.0}};
+   4uint32_t boundaries[3] = {0, 0, 0};
+   5QfFermionOperator *op =
+   6    qf_ferm_op_new(num_terms, num_actions, coeffs, NULL, NULL, boundaries);
+   7
+   8QkComplex64 *coeffs_out;
+   9uint64_t *coeffs_len;
+  10
+  11qf_ferm_op_get_coeffs(op, &coeffs_out, &coeffs_len);
+  12
+  13assert(coeffs_len == 2);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function returns a **copy** of the internal data.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose coefficients to access.
+  *   **coeffs\_out** – A pointer to the array of complex values into which to write the coefficients.
+  *   **coeffs\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_ferm\_op\_get\_actions
+
+<Function id="qf_ferm_op_get_actions" signature="void qf_ferm_op_get_actions(const QfFermionOperator *op, bool **actions_out, uint64_t *actions_len)">
+  Provides read-only access to the operator’s actions.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data structure, [here](#qf-ferm-op-implementation).
+  </Admonition>
+
+  <span id="id5" />
+
+  #### Example
+
+  ```c
+   1uint64_t num_terms = 2;
+   2uint64_t num_actions = 2;
+   3bool actions[2] = {true, false};
+   4uint32_t modes[2] = {0, 1};
+   5QkComplex64 coeffs[2] = {{1.0, 0.0}, {0.0, -1.0}};
+   6uint32_t boundaries[3] = {0, 0, 2};
+   7QfFermionOperator *op =
+   8    qf_ferm_op_new(num_terms, num_actions, coeffs, actions, modes, boundaries);
+   9
+  10QkComplex64 *actions_out;
+  11uint64_t *actions_len;
+  12
+  13qf_ferm_op_get_actions(op, &actions_out, &actions_len);
+  14
+  15assert(actions_len == 2);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function returns a **copy** of the internal data.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose actions to access.
+  *   **actions\_out** – A pointer to the array of boolean values into which to write the actions.
+  *   **actions\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_ferm\_op\_get\_modes
+
+<Function id="qf_ferm_op_get_modes" signature="void qf_ferm_op_get_modes(const QfFermionOperator *op, uint32_t **modes_out, uint64_t *modes_len)">
+  Provides read-only access to the operator’s acted-upon mode indices.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data structure, [here](#qf-ferm-op-implementation).
+  </Admonition>
+
+  <span id="id6" />
+
+  #### Example
+
+  ```c
+   1uint64_t num_terms = 2;
+   2uint64_t num_actions = 2;
+   3bool actions[2] = {true, false};
+   4uint32_t modes[2] = {0, 1};
+   5QkComplex64 coeffs[2] = {{1.0, 0.0}, {0.0, -1.0}};
+   6uint32_t boundaries[3] = {0, 0, 2};
+   7QfFermionOperator *op =
+   8    qf_ferm_op_new(num_terms, num_actions, coeffs, actions, modes, boundaries);
+   9
+  10QkComplex64 *modes_out;
+  11uint64_t *modes_len;
+  12
+  13qf_ferm_op_get_modes(op, &modes_out, &modes_len);
+  14
+  15assert(modes_len == 2);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function returns a **copy** of the internal data.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose modes to access.
+  *   **modes\_out** – A pointer to the array of boolean values into which to write the modes.
+  *   **modes\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_ferm\_op\_get\_boundaries
+
+<Function id="qf_ferm_op_get_boundaries" signature="void qf_ferm_op_get_boundaries(const QfFermionOperator *op, size_t **boundaries_out, uint64_t *boundaries_len)">
+  Provides read-only access to the indices indicating the boundaries between operator terms.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data structure, [here](#qf-ferm-op-implementation).
+  </Admonition>
+
+  <span id="id7" />
+
+  #### Example
+
+  ```c
+   1uint64_t num_terms = 2;
+   2uint64_t num_actions = 2;
+   3bool actions[2] = {true, false};
+   4uint32_t modes[2] = {0, 1};
+   5QkComplex64 coeffs[2] = {{1.0, 0.0}, {0.0, -1.0}};
+   6uint32_t boundaries[3] = {0, 0, 2};
+   7QfFermionOperator *op =
+   8    qf_ferm_op_new(num_terms, num_actions, coeffs, actions, modes, boundaries);
+   9
+  10QkComplex64 *boundaries_out;
+  11uint64_t *boundaries_len;
+  12
+  13qf_ferm_op_get_boundaries(op, &boundaries_out, &boundaries_len);
+  14
+  15assert(boundaries_len == 3);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function returns a **copy** of the internal data.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose boundaries to access.
+  *   **boundaries\_out** – A pointer to the array of boolean values into which to write the boundaries.
+  *   **boundaries\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_ferm\_op\_zero
+
+<Function id="qf_ferm_op_zero" signature="QfFermionOperator *qf_ferm_op_zero(void)">
+  Constructs the additive identity operator.
+
+  Adding the operator that is constructed by this method to another one has no effect.
+
+  <span id="id8" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *zero = qf_ferm_op_zero();
+  2
+  3QfFermionOperator *op_plus_zero = qf_ferm_op_add(op, zero);
+  4
+  5assert(qf_ferm_op_equal(op, op_plus_zero));
+  ```
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+
+### qf\_ferm\_op\_one
+
+<Function id="qf_ferm_op_one" signature="QfFermionOperator *qf_ferm_op_one(void)">
+  Constructs the multiplicative identity operator.
+
+  Composing the operator that is constructed by this method with another one has no effect.
+
+  <span id="id9" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *one = qf_ferm_op_one();
+  2
+  3QfFermionOperator *op_times_one = qf_ferm_op_compose(op, one);
+  4
+  5assert(qf_ferm_op_equal(op, op_times_one));
+  ```
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+
+### qf\_ferm\_op\_has\_groups
+
+<Function id="qf_ferm_op_has_groups" signature="bool qf_ferm_op_has_groups(const QfFermionOperator *op)">
+  Checks whether this operator tracks group indices.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id10" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
+  2QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
+  3
+  4bool has_groups = qf_ferm_op_has_groups(op);
+  5
+  6assert(!has_groups);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator to be checked.
+
+  **Returns**
+
+  Whether the provided operator has a `groups` attribute.
+</Function>
+
+### qf\_ferm\_op\_num\_groups
+
+<Function id="qf_ferm_op_num_groups" signature="uint32_t qf_ferm_op_num_groups(const QfFermionOperator *op)">
+  Gets the number of groups from an operator.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id11" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
+  2QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
+  3
+  4uint32_t num_groups = qf_ferm_op_num_groups(op);
+  ```
+
+  <Admonition title="Note" type="note">
+    The number of groups is evaluated lazily as the largest occurring group index plus 1.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose number of groups to get.
+
+  **Returns**
+
+  The number of group indices from the operator’s `groups` attribute.
+</Function>
+
+### qf\_ferm\_op\_group\_weights
+
+<Function id="qf_ferm_op_group_weights" signature="void qf_ferm_op_group_weights(const QfFermionOperator *op, double *weights_out)">
+  Gets the mean absolute coefficient magnitude of each group.
+
+  The `i`-th entry is the sum of `abs(coeff)` over the terms in group `i`, divided by the number of terms in that group. This is the sampling weight of a randomized product formula (e.g. qDRIFT) that draws whole groups rather than individual terms, and is computed in a single pass over the operator rather than by reducing [`qf_ferm_op_get_coeffs()`](#qf_ferm_op_get_coeffs "qf_ferm_op_get_coeffs") and [`qf_ferm_op_get_groups()`](#qf_ferm_op_get_groups "qf_ferm_op_get_groups") (one value per *ungrouped* term each) on the caller’s side.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id12" />
+
+  #### Example
+
+  ```c
+   1uint64_t num_terms = 4;
+   2uint64_t num_actions = 8;
+   3bool actions[8] = {true, false, true, false, true, false, true, false};
+   4uint32_t modes[8] = {0, 1, 2, 3, 1, 0, 3, 2};
+   5QkComplex64 coeffs[4] = {{1.0, 0.0}, {2.0, 0.0}, {-1.0, 0.0}, {-2.0, 0.0}};
+   6uint32_t boundaries[5] = {0, 2, 4, 6, 8};
+   7QfFermionOperator *op =
+   8    qf_ferm_op_new(num_terms, num_actions, coeffs, actions, modes, boundaries);
+   9
+  10uint32_t groups_in[4] = {0, 1, 0, 1};
+  11qf_ferm_op_set_groups(op, groups_in, num_terms);
+  12
+  13double weights[2];
+  14qf_ferm_op_group_weights(op, weights);
+  15
+  16assert(weights[0] == 1.0);
+  17assert(weights[1] == 2.0);
+  ```
+
+  <Admonition title="Note" type="note">
+    A group index that no term carries weighs `0.0`, which keeps it out of the sample.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose group weights to compute.
+  *   **weights\_out** – A pointer to the array of doubles into which to write the weights. Must be sized to :c:func:`qf_ferm_op_num_groups`.
+</Function>
+
+### qf\_ferm\_op\_get\_groups
+
+<Function id="qf_ferm_op_get_groups" signature="void qf_ferm_op_get_groups(const QfFermionOperator *op, uint32_t **groups_out, uint64_t *groups_len)">
+  Gets the group indices for all operator terms.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id13" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *op = ...;
+  2uint32_t *groups_out;
+  3uint32_t groups_len;
+  4
+  5qf_ferm_op_get_groups(op, &groups_out, &groups_len);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose group indices to get.
+  *   **groups\_out** – A pointer to the integer array into which to write the group indices.
+  *   **groups\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_ferm\_op\_set\_groups
+
+<Function id="qf_ferm_op_set_groups" signature="void qf_ferm_op_set_groups(QfFermionOperator *op, const uint32_t *groups_in, uint64_t groups_len)">
+  Sets the `groups` attribute of the provided operator.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id14" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *op = ...;
+  2
+  3uint32_t num_terms = 4;
+  4uint32_t groups_in[4] = {0, 1, 0, 1};
+  5qf_ferm_op_set_groups(op, groups_in, num_terms);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose `groups` attribute to write.
+  *   **groups\_in** – A pointer to the `groups` integer array to write into the operator.
+  *   **groups\_len** – The number of terms in the `groups_in` array.
+</Function>
+
+### qf\_ferm\_op\_del\_groups
+
+<Function id="qf_ferm_op_del_groups" signature="void qf_ferm_op_del_groups(QfFermionOperator *op)">
+  Deletes the `groups` attribute from the provided operator.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id15" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *op = ...;
+  2
+  3qf_ferm_op_del_groups(op);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose `groups` attribute to delete.
+</Function>
+
+### qf\_ferm\_op\_split\_out\_groups
+
+<Function id="qf_ferm_op_split_out_groups" signature="void qf_ferm_op_split_out_groups(const QfFermionOperator *op, const uint32_t *group_indices, uint64_t num_indices, QfFermionOperator **group_ops_out)">
+  Splits this operator into a list of new operators based on its `groups` attribute.
+
+  A duplicate index in `group_indices` is written once per occurrence in `group_ops_out`. Requesting only a small number of groups out of a much larger total is significantly cheaper than requesting all of them, since terms belonging to a group that is not requested are skipped rather than appended anywhere.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id16" />
+
+  #### Example
+
+  ```c
+   1uint64_t num_terms = 4;
+   2uint64_t num_actions = 8;
+   3bool actions[8] = {true, false, true, false, true, false, true, false};
+   4uint32_t modes[8] = {0, 1, 2, 3, 1, 0, 3, 2};
+   5QkComplex64 coeffs[4] = {{1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0}};
+   6uint32_t boundaries[5] = {0, 2, 4, 6, 8};
+   7QfFermionOperator *op =
+   8    qf_ferm_op_new(num_terms, num_actions, coeffs, actions, modes, boundaries);
+   9
+  10uint32_t groups_in[4] = {0, 1, 0, 1};
+  11qf_ferm_op_set_groups(op, groups_in, num_terms);
+  12
+  13// build every group, in index order
+  14QfFermionOperator *group_ops[2];
+  15qf_ferm_op_split_out_groups(op, NULL, 0, group_ops);
+  16
+  17// build only group 1
+  18uint32_t group_indices[1] = {1};
+  19QfFermionOperator *group_op[1];
+  20qf_ferm_op_split_out_groups(op, group_indices, 1, group_op);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose `groups` to split out.
+  *   **group\_indices** – A pointer to the array of group indices for which to build operators, in the desired output order. May be `NULL`, in which case every group is built, in index order (equivalent to passing every index from `0` to :c:func:`qf_ferm_op_num_groups` `- 1`).
+  *   **num\_indices** – The number of indices in the `group_indices` array. Ignored if `group_indices` is `NULL`.
+  *   **group\_ops\_out** – A pointer to the array of :c:struct:`QfFermionOperator` into which to write the operators for each requested group. Must be sized to `num_indices` when `group_indices` is non-`NULL`, or to :c:func:`qf_ferm_op_num_groups` when it is `NULL`.
+</Function>
+
+### qf\_ferm\_op\_add\_term
+
+<Function id="qf_ferm_op_add_term" signature="void qf_ferm_op_add_term(QfFermionOperator *op, uint64_t num_actions, const bool *actions, const uint32_t *modes, const QkComplex64 *coeff)">
+  Adds a term to an existing operator.
+
+  Any of the pointer arguments can be `NULL` if and only if their corresponding length is zero.
+
+  <Admonition title="Caution" type="note">
+    This function resets the operator’s `groups` attribute to `NULL`.
+  </Admonition>
+
+  <span id="id17" />
+
+  #### Example
+
+  ```c
+   1QfFermionOperator *one = qf_ferm_op_one();
+   2
+   3QfFermionOperator *op = qf_ferm_op_zero();
+   4bool actions[0] = {};
+   5uint32_t modes[0] = {};
+   6QkComplex64 coeff = {1.0, 0.0};
+   7
+   8qf_ferm_op_add_term(op, 0, actions, modes, &coeff);
+   9
+  10assert(qf_ferm_op_equal(op, one));
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator to be modified.
+  *   **num\_actions** – The length of the actions array.
+  *   **actions** – A pointer to an array of actions. The length of this array should be `num_actions`.
+  *   **modes** – A pointer to an array of action modes. The length of this array should be `num_actions`.
+  *   **coeff** – A pointer to the complex coefficient.
+</Function>
+
+### qf\_ferm\_op\_add
+
+<Function id="qf_ferm_op_add" signature="QfFermionOperator *qf_ferm_op_add(const QfFermionOperator *left, const QfFermionOperator *right)">
+  Adds two operators together.
+
+  <span id="id18" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *one = qf_ferm_op_one();
+  2QfFermionOperator *zero = qf_ferm_op_zero();
+  3
+  4QfFermionOperator *result = qf_ferm_op_add(one, zero);
+  5
+  6assert(qf_ferm_op_equal(result, one));
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+
+  **Returns**
+
+  A pointer to the resulting operator.
+</Function>
+
+### qf\_ferm\_op\_mul
+
+<Function id="qf_ferm_op_mul" signature="QfFermionOperator *qf_ferm_op_mul(const QfFermionOperator *op, const QkComplex64 *scalar)">
+  Multiplies an operator by a scalar.
+
+  <span id="id19" />
+
+  #### Example
+
+  ```c
+   1QfFermionOperator *one = qf_ferm_op_one();
+   2QkComplex64 coeff = {2.0, 0.0};
+   3QfFermionOperator *result = qf_ferm_op_mul(one, &coeff);
+   4
+   5QfFermionOperator *expected = qf_ferm_op_zero();
+   6bool actions[0] = {};
+   7uint32_t modes[0] = {};
+   8qf_ferm_op_add_term(expected, 0, actions, modes, &coeff);
+   9
+  10assert(qf_ferm_op_equal(result, expected));
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator.
+  *   **scalar** – A pointer to the scalar.
+
+  **Returns**
+
+  A pointer to the resulting operator.
+</Function>
+
+### qf\_ferm\_op\_compose
+
+<Function id="qf_ferm_op_compose" signature="QfFermionOperator *qf_ferm_op_compose(const QfFermionOperator *left, const QfFermionOperator *right)">
+  Composes two operators with each other.
+
+  <span id="id20" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *one = qf_ferm_op_one();
+  2QfFermionOperator *zero = qf_ferm_op_zero();
+  3
+  4QfFermionOperator *result = qf_ferm_op_compose(one, zero);
+  5
+  6assert(qf_ferm_op_equal(result, zero));
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+
+  **Returns**
+
+  A pointer to the resulting operator.
+</Function>
+
+### qf\_ferm\_op\_adjoint
+
+<Function id="qf_ferm_op_adjoint" signature="QfFermionOperator *qf_ferm_op_adjoint(const QfFermionOperator *op)">
+  Returns the Hermitian conjugate (or adjoint) of an operator.
+
+  This affects the terms and coefficients as follows:
+
+  *   the actions in each term reverse their order and flip between creation and annihilation
+  *   the coefficients are complex conjugated
+
+  <span id="id21" />
+
+  #### Example
+
+  ```c
+   1QfFermionOperator *op = qf_ferm_op_zero();
+   2bool actions[0] = {};
+   3uint32_t modes[0] = {};
+   4QkComplex64 coeff = {0.0, 1.0};
+   5qf_ferm_op_add_term(op, 0, actions, modes, &coeff);
+   6
+   7QfFermionOperator *adjoint = qf_ferm_op_adjoint(op);
+   8
+   9QfFermionOperator *expected = qf_ferm_op_zero();
+  10QkComplex64 coeff_adj = {0.0, -1.0};
+  11qf_ferm_op_add_term(expected, 0, actions, modes, &coeff_adj);
+  12
+  13assert(qf_ferm_op_equal(adjoint, expected));
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator.
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+
+### qf\_ferm\_op\_ichop
+
+<Function id="qf_ferm_op_ichop" signature="void qf_ferm_op_ichop(QfFermionOperator *op, double atol)">
+  Removes terms whose coefficient magnitude lies below the provided threshold.
+
+  <Admonition title="Caution" type="note">
+    This functions truncates coefficients greedily! If the acted upon operator might contain separate coefficients for duplicate terms consider calling [`qf_ferm_op_simplify()`](#qf_ferm_op_simplify "qf_ferm_op_simplify") instead!
+  </Admonition>
+
+  <span id="id22" />
+
+  #### Example
+
+  ```c
+   1QfFermionOperator *op = qf_ferm_op_zero();
+   2bool actions[0] = {};
+   3uint32_t modes[0] = {};
+   4QkComplex64 coeff = {1e-8};
+   5qf_ferm_op_add_term(op, 0, actions, modes, &coeff);
+   6
+   7qf_ferm_op_ichop(op, 1e-6);
+   8
+   9QfFermionOperator *expected = qf_ferm_op_zero();
+  10
+  11assert(qf_ferm_op_equal(op, expected));
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator.
+  *   **atol** – The absolute tolerance for coefficient truncation.
+</Function>
+
+### qf\_ferm\_op\_simplify
+
+<Function id="qf_ferm_op_simplify" signature="QfFermionOperator *qf_ferm_op_simplify(const QfFermionOperator *op, double atol)">
+  Returns an equivalent but simplified operator.
+
+  The simplification process first sums all coefficients that belong to equal terms and then only retains those whose total coefficient exceeds the specified tolerance (just like [`qf_ferm_op_ichop()`](#qf_ferm_op_ichop "qf_ferm_op_ichop")).
+
+  When an operator has been arithmetically manipulated or constructed in a way that does not guarantee unique terms, this method should be called before applying any method that filters numerically small coefficients to avoid loss of information. See the example below which showcases how [`qf_ferm_op_ichop()`](#qf_ferm_op_ichop "qf_ferm_op_ichop") can truncate terms that sum to a total coefficient magnitude which should not be truncated:
+
+  ```c
+   1uint64_t num_terms = 100000;
+   2uint64_t num_actions = 0;
+   3bool actions[0] = {};
+   4uint32_t modes[0] = {};
+   5QkComplex64 coeffs[100000];
+   6uint32_t boundaries[100001];
+   7for (int i = 0; i < 100000; i++) {
+   8  coeffs[i].re = 1e-5;
+   9  coeffs[i].im = 0.0;
+  10  boundaries[i] = 0;
+  11}
+  12boundaries[100000] = 0;
+  13QfFermionOperator *op = qf_ferm_op_new(num_terms, num_actions, coeffs,
+  14                                       actions, modes, boundaries);
+  15
+  16QfFermionOperator *canon = qf_ferm_op_simplify(op, 1e-4);
+  17
+  18QfFermionOperator *one = qf_ferm_op_one();
+  19bool canon_is_equal = qf_ferm_op_equiv(canon, one, 1e-6);
+  20
+  21qf_ferm_op_ichop(op, 1e-4);
+  22
+  23QfFermionOperator *zero = qf_ferm_op_zero();
+  24bool ichop_is_equal = qf_ferm_op_equiv(op, zero, 1e-6);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator to be simplified.
+  *   **atol** – The absolute tolerance for coefficient truncation.
+
+  **Returns**
+
+  An equivalent but simplified operator.
+</Function>
+
+### qf\_ferm\_op\_normal\_ordered
+
+<Function id="qf_ferm_op_normal_ordered" signature="QfFermionOperator *qf_ferm_op_normal_ordered(const QfFermionOperator *op, const bool *sandwich)">
+  Returns an equivalent operator with normal ordered terms.
+
+  The normal order of an operator term is defined such that all creation actions appear before all annihilation actions. Within each group, the acted-upon modes are ordered lexicographically. Whether their order is ascending or descending depends upon the value of the `sandwich` argument:
+
+  *   `NULL`: both groups are ordered lexicographically descending (e.g. `+_1 +_0 -_1 -_0`)
+  *   `True`: larger indices appear towards the middle, i.e. creation actions are lexicographically ascending while annihilation ones are descending (e.g. `+_0 +_1 -_1 -_0`)
+  *   `False`: smaller indices appear towards the middle, i.e. creation actions are lexicographically descending while annihilation ones are ascending (e.g. `+_1 +_0 -_0 -_1`)
+
+  <span id="id23" />
+
+  #### Example
+
+  ```c
+   1QfFermionOperator *op = qf_ferm_op_zero();
+   2bool actions[4] = {false, true, false, true};
+   3uint32_t modes[4] = {1, 1, 0, 0};
+   4QkComplex64 coeff = {1.0, 0.0};
+   5qf_ferm_op_add_term(op, 4, actions, modes, &coeff);
+   6
+   7QfFermionOperator *normal_ordered = qf_ferm_op_normal_ordered(op, NULL);
+   8
+   9uint64_t num_terms = 4;
+  10uint64_t num_actions = 8;
+  11bool actions_exp[8] = {true, false, true, false, true, true, false, false};
+  12uint32_t modes_exp[8] = {0, 0, 1, 1, 1, 0, 1, 0};
+  13QkComplex64 coeffs_exp[4] = {
+  14    {1.0, 0.0}, {-1.0, 0.0}, {-1.0, 0.0}, {-1.0, 0.0}};
+  15uint32_t boundaries_exp[5] = {0, 0, 2, 4, 8};
+  16QfFermionOperator *expected =
+  17    qf_ferm_op_new(num_terms, num_actions, coeffs_exp, actions_exp,
+  18                   modes_exp, boundaries_exp);
+  19
+  20assert(qf_ferm_op_equal(normal_ordered, expected));
+  ```
+
+  <Admonition title="Note" type="note">
+    When a term is being reordered, the anti-commutation relations have to be taken into account, $a_i a^\dagger_j = \delta_{ij} - a^\dagger_j a^i$, implying that the number of terms might change.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator.
+  *   **sandwich** – A pointer to a boolean value. This pointer can be `NULL`.
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+
+### qf\_ferm\_op\_is\_hermitian
+
+<Function id="qf_ferm_op_is_hermitian" signature="bool qf_ferm_op_is_hermitian(const QfFermionOperator *op, double atol)">
+  Checks whether an operator is Hermitian.
+
+  <span id="id24" />
+
+  #### Example
+
+  ```c
+   1QfFermionOperator *op = qf_ferm_op_zero();
+   2bool actions1[2] = {true, false};
+   3uint32_t modes1[2] = {0, 1};
+   4QkComplex64 coeff1 = {0.0, 1.00001};
+   5qf_ferm_op_add_term(op, 2, actions1, modes1, &coeff1);
+   6bool actions2[2] = {true, false};
+   7uint32_t modes2[2] = {1, 0};
+   8QkComplex64 coeff2 = {0.0, -1};
+   9qf_ferm_op_add_term(op, 2, actions2, modes2, &coeff1);
+  10
+  11assert(qf_ferm_op_is_hermitian(op, 1e-4));
+  12assert(!qf_ferm_op_is_hermitian(op, 1e-8));
+  ```
+
+  <Admonition title="Note" type="note">
+    This check is implemented using [`qf_ferm_op_equiv()`](#qf_ferm_op_equiv "qf_ferm_op_equiv") on the [`qf_ferm_op_normal_ordered()`](#qf_ferm_op_normal_ordered "qf_ferm_op_normal_ordered") difference of `op` and its [`qf_ferm_op_adjoint()`](#qf_ferm_op_adjoint "qf_ferm_op_adjoint") and [`qf_ferm_op_zero()`](#qf_ferm_op_zero "qf_ferm_op_zero").
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator to be checked.
+  *   **atol** – The absolute tolerance upto which coefficients are considered equal.
+
+  **Returns**
+
+  Whether the provided operator is Hermitian.
+</Function>
+
+### qf\_ferm\_op\_max\_rank
+
+<Function id="qf_ferm_op_max_rank" signature="uint32_t qf_ferm_op_max_rank(const QfFermionOperator *op)">
+  Checks the maximum rank of an operator.
+
+  <span id="id25" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *op = qf_ferm_op_zero();
+  2bool actions[4] = {true, false, true, false};
+  3uint32_t modes[4] = {0, 1, 2, 3};
+  4QkComplex64 coeff = {1.0, 0.0};
+  5qf_ferm_op_add_term(op, 4, actions, modes, &coeff);
+  6
+  7assert(qf_ferm_op_max_rank(op), 4);
+  ```
+
+  <Admonition title="Note" type="note">
+    The length of the longest term can depend on the operator’s form which means that (for example) operator simplification or normal-ordering can result in a different maximum rank.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator to be checked.
+
+  **Returns**
+
+  The maximum rank of the operator.
+</Function>
+
+### qf\_ferm\_op\_conserves\_particle\_number
+
+<Function id="qf_ferm_op_conserves_particle_number" signature="bool qf_ferm_op_conserves_particle_number(const QfFermionOperator *op)">
+  Checks whether an operator is particle-number conserving.
+
+  <span id="id26" />
+
+  #### Example
+
+  ```c
+   1QfFermionOperator *op = qf_ferm_op_zero();
+   2bool actions1[2] = {true, false};
+   3uint32_t modes1[2] = {0, 1};
+   4QkComplex64 coeff1 = {0.0, 1.00001};
+   5qf_ferm_op_add_term(op, 2, actions1, modes1, &coeff1);
+   6bool actions2[2] = {true, false};
+   7uint32_t modes2[2] = {1, 0};
+   8QkComplex64 coeff2 = {0.0, -1};
+   9qf_ferm_op_add_term(op, 2, actions2, modes2, &coeff2);
+  10
+  11assert(qf_ferm_op_is_hermitian(op, 1e-4));
+  12assert(!qf_ferm_op_is_hermitian(op, 1e-8));
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator to be checked.
+
+  **Returns**
+
+  Whether the provided operator is particle-number conserving.
+</Function>
+
+### qf\_ferm\_op\_equal
+
+<Function id="qf_ferm_op_equal" signature="bool qf_ferm_op_equal(const QfFermionOperator *left, const QfFermionOperator *right)">
+  Compare two operators for equality.
+
+  <span id="id27" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *one = qf_ferm_op_one();
+  2QfFermionOperator *zero = qf_ferm_op_zero();
+  3
+  4assert(qf_ferm_op_equal(one, one));
+  5assert(!qf_ferm_op_equal(one, zero));
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+
+  **Returns**
+
+  Whether the two operators are equal.
+</Function>
+
+### qf\_ferm\_op\_equiv
+
+<Function id="qf_ferm_op_equiv" signature="bool qf_ferm_op_equiv(const QfFermionOperator *left, const QfFermionOperator *right, double atol)">
+  Compare two operators for equivalence.
+
+  Equivalence in this context means approximate equality up to the specified absolute tolerance. To be more precise, this method returns `True`, when all the absolute values of the coefficients in the difference `other - self` are below the specified threshold `atol`.
+
+  <span id="id28" />
+
+  #### Example
+
+  ```c
+   1QfFermionOperator *zero = qf_ferm_op_zero();
+   2
+   3QfFermionOperator *op = qf_ferm_op_zero();
+   4bool actions[0] = {};
+   5uint32_t modes[0] = {};
+   6QkComplex64 coeff = {1e-7, 0.0};
+   7qf_ferm_op_add_term(op, 0, actions, modes, &coeff);
+   8
+   9assert(qf_ferm_op_equiv(op, zero, 1e-6));
+  10assert(!qf_ferm_op_equiv(op, zero, 1e-8));
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+  *   **atol** – The absolute tolerance for coefficient equivalence.
+
+  **Returns**
+
+  Whether the two operators are equivalent.
+</Function>
+
+### qf\_ferm\_op\_len
+
+<Function id="qf_ferm_op_len" signature="size_t qf_ferm_op_len(const QfFermionOperator *op)">
+  Returns the length (or number of terms) of the provided operator.
+
+  <span id="id29" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *op = qf_ferm_op_zero();
+  2bool actions[4] = {true, false, true, false};
+  3uint32_t modes[4] = {0, 1, 2, 3};
+  4QkComplex64 coeff = {1.0, 0.0};
+  5qf_ferm_op_add_term(op, 4, actions, modes, &coeff);
+  6
+  7assert(qf_ferm_op_len(op) == 1);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator.
+
+  **Returns**
+
+  The length (or number of terms) of the operator.
+</Function>
+
+### qf\_ferm\_op\_relabel\_modes
+
+<Function id="qf_ferm_op_relabel_modes" signature="QfExitCode qf_ferm_op_relabel_modes(QfFermionOperator *op, uint64_t num_modes, const uint32_t *permutation)">
+  Relabels the indices of the provided operator.
+
+  <span id="id30" />
+
+  #### Example
+
+  ```c
+   1QfFermionOperator *op = qf_ferm_op_zero();
+   2bool actions[4] = {true, false, true, false};
+   3uint32_t indices[4] = {0, 1, 2, 3};
+   4QkComplex64 coeff = {1.0, 0.0};
+   5qf_ferm_op_add_term(op, 4, actions, indices, &coeff);
+   6
+   7uint32_t permutation[4] = {3, 2, 1, 0};
+   8
+   9QfExitCode exit = qf_ferm_op_relabel_modes(op, 4, permutation);
+  10
+  11assert(exit == QfExitCode_Success);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator.
+  *   **num\_modes** – The number of mode indices in the provided permutation list.
+  *   **permutation** – The index permutation list.
+
+  **Returns**
+
+  An exit code.
+
+  *   `QfExitCode_Success` upon success
+  *   `QfExitCode_DuplicateIndexError` if duplicate indices were found in the permutation
+  *   `QfExitCode_IndexError` for any other index errors, such as invalid indices.
+</Function>
+

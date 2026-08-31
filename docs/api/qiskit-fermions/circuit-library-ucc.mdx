@@ -1,0 +1,290 @@
+---
+title: UCC (latest version)
+description: API reference for qiskit_fermions.circuit.library.UCC in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.circuit.library.UCC
+---
+
+# UCC
+
+<Class id="qiskit_fermions.circuit.library.UCC" isDedicatedPage={true} signature="UCC(variant, t1, t2, *, antisymmetric=False, atol=1e-08)" modifiers="class">
+  Bases: [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.fermionic_gate.FermionicGate")
+
+  Implements the unitary coupled cluster (UCC) ansatz.
+
+  A unitary coupled cluster operator has the form
+
+$$
+e^{T - T^\dagger}
+$$
+
+  where $T = T_1 + T_2$ is the cluster operator built from the single and double fermionic excitations, parameterized by the $t_1$ and $t_2$ amplitudes. Since $T - T^\dagger$ is anti-Hermitian, its exponential is unitary.
+
+  This gate supports three spin variants (see `UCC.Variant`), selected explicitly by the `variant` argument and validated against the shapes of the supplied amplitudes (mirroring ffsim’s [`UCCSDOpRestrictedReal`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpRestrictedReal.html#ffsim.UCCSDOpRestrictedReal "(in ffsim)") and [`UCCSDOpUnrestrictedReal`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpUnrestrictedReal.html#ffsim.UCCSDOpUnrestrictedReal "(in ffsim)")):
+
+  *   **restricted** – a single spin-summed amplitude pair. The cluster operator is
+
+$$
+\begin{align}
+T_1 &= \sum_{ia} t_{ia}\left(
+a^\dagger_{a\alpha} a_{i\alpha} + a^\dagger_{a\beta} a_{i\beta}\right), \\
+T_2 &= \sum_{ijab} t_{ijab}\left[
+\frac12\left(
+a^\dagger_{a\alpha} a^\dagger_{b\alpha} a_{j\alpha} a_{i\alpha}
++ a^\dagger_{a\beta} a^\dagger_{b\beta} a_{j\beta} a_{i\beta}\right)
++ a^\dagger_{a\alpha} a^\dagger_{b\beta} a_{j\beta} a_{i\alpha}\right],
+\end{align}
+$$
+
+      with `t1` of shape `(nocc, nvrt)` and `t2` of shape `(nocc, nocc, nvrt, nvrt)`. Acts on `2 * norb` block-spin modes.
+
+  *   **unrestricted** – independent per-spin amplitudes. The cluster operator is
+
+$$
+\begin{align}
+T_1 &= \sum_{ia} t^{(\alpha)}_{ia} a^\dagger_{a\alpha} a_{i\alpha}
++ \sum_{IA} t^{(\beta)}_{IA} a^\dagger_{A\beta} a_{I\beta}, \\
+T_2 &= \frac14 \sum_{ijab} t^{(\alpha\alpha)}_{ijab}
+a^\dagger_{a\alpha} a^\dagger_{b\alpha} a_{j\alpha} a_{i\alpha}
++ \frac14 \sum_{IJAB} t^{(\beta\beta)}_{IJAB}
+a^\dagger_{A\beta} a^\dagger_{B\beta} a_{J\beta} a_{I\beta}
++ \sum_{iJaB} t^{(\alpha\beta)}_{iJaB}
+a^\dagger_{a\alpha} a^\dagger_{B\beta} a_{J\beta} a_{i\alpha},
+\end{align}
+$$
+
+      with `t1` a pair `(t1a, t1b)` and `t2` a triple `(t2aa, t2ab, t2bb)`. Acts on `2 * norb` block-spin modes. Note that the occupied/virtual split is resolved **per spin sector**, so the two sectors may have different numbers of occupied orbitals.
+
+  *   **spinless** – a single register of `norb` spinless modes,
+
+$$
+T_1 = \sum_{ia} t_{ia}\, a^\dagger_a a_i, \qquad
+T_2 = \frac14 \sum_{ijab} t_{ijab}\,
+a^\dagger_a a^\dagger_b a_j a_i,
+$$
+
+      with the same amplitude shapes as the `"restricted"` variant. Acts on `norb` modes.
+
+  In every variant the occupied orbitals are ordered before the virtual ones, so orbital $i < n_\text{occ}$ is occupied and orbital $n_\text{occ} + a$ is virtual.
+
+  <Admonition title="Note" type="note">
+    Unlike [`UCJ`](circuit-library-ucj "qiskit_fermions.circuit.library.UCJ"), this ansatz carries no final orbital rotation: its $t_1$ amplitudes already provide the single excitations, so a trailing rotation would be redundant freedom. Append an [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") explicitly if you want one.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    By default only the symmetry the cluster operator actually enforces is imposed on the same-spin $t_2$ blocks. The stricter antisymmetry of the standard coupled-cluster convention is available opt-in via the `antisymmetric` flag (see [`antisymmetric`](#qiskit_fermions.circuit.library.UCC.antisymmetric "qiskit_fermions.circuit.library.UCC.antisymmetric")), which both validates supplied amplitudes and shrinks the parameter vector accordingly. It is not supported for the `"restricted"` variant, whose single $t_2$ also carries the cross-spin amplitudes.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    Because the individual excitation terms of $T - T^\dagger$ do **not** commute, the circuit `definition()` this gate produces is a *first-order product formula* (Trotter) approximation of the exponential, not an exact decomposition – the usual situation for UCC ansatz circuits. The state-vector simulation path ([`_apply_unitary_placed_()`](#qiskit_fermions.circuit.library.UCC._apply_unitary_placed_ "qiskit_fermions.circuit.library.UCC._apply_unitary_placed_")), by contrast, applies the exponential *exactly* via `scipy`’s `expm_multiply`. Consequently the simulated gate and its synthesized circuit agree only up to the Trotter error; use a higher-order product formula during transpilation to tighten it.
+  </Admonition>
+
+  <Admonition title="Caution" type="note">
+    This is an early development prototype. Beware of changes to its interface without warning during the pre-release development of this package.
+  </Admonition>
+
+  Initializing an instance of this gate can be done with the arguments listed below.
+
+  **Parameters**
+
+  *   **variant** (*UCC.Variant |* [*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the spin variant, a `UCC.Variant` (or its string value `"restricted"`, `"unrestricted"`, or `"spinless"`). Determines the number of modes this gate acts on (see the class docstring) and the expected amplitude shapes.
+  *   **t1** (*np.ndarray |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[np.ndarray, np.ndarray]*) – the $t_1$ (singles) amplitudes. For the `"restricted"` and `"spinless"` variants, a single array of shape `(nocc, nvrt)`. For the `"unrestricted"` variant, a pair `(t1a, t1b)`.
+  *   **t2** (*np.ndarray |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[np.ndarray, np.ndarray, np.ndarray]*) – the $t_2$ (doubles) amplitudes. For the `"restricted"` and `"spinless"` variants, a single array of shape `(nocc, nocc, nvrt, nvrt)`. For the `"unrestricted"` variant, a triple `(t2aa, t2ab, t2bb)`.
+  *   **antisymmetric** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether the same-spin $t_2$ blocks obey the *separate* occupied and virtual antisymmetry (the standard coupled-cluster convention, see [`antisymmetric`](#qiskit_fermions.circuit.library.UCC.antisymmetric "qiskit_fermions.circuit.library.UCC.antisymmetric")). When `True` the supplied blocks are validated against it and the parameter vector is restricted to the corresponding subspace. Not supported for the `"restricted"` variant.
+  *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the absolute tolerance for the `antisymmetric` validation.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `variant` is not recognized, if the amplitude shapes are inconsistent with each other or with `variant`, if `antisymmetric` is requested for the `"restricted"` variant, or if `antisymmetric` is requested but a same-spin $t_2$ block violates that antisymmetry.
+
+  ## Attributes
+
+  ### antisymmetric
+
+  <Attribute id="qiskit_fermions.circuit.library.UCC.antisymmetric">
+    Whether the same-spin $t_2$ blocks obey the separate occupied/virtual antisymmetry.
+
+    The cluster operator only ever sees the part of a same-spin $t_2$ block that is symmetric under the *simultaneous* exchange $t_2[i,j,a,b] = t_2[j,i,b,a]$, because the underlying excitation $a^\dagger_a a^\dagger_b a_j a_i$ is invariant under relabeling the pairs $(i,a) \leftrightarrow (j,b)$. That weaker symmetry is therefore always imposed.
+
+    The standard coupled-cluster convention additionally makes the block antisymmetric in each index pair *separately*, $t_2[i,j,a,b] = -t_2[j,i,a,b] = -t_2[i,j,b,a]$, which is a strict subspace of the above. Setting this flag opts into that convention: the supplied amplitudes are validated against it, and [`num_parameters()`](#qiskit_fermions.circuit.library.UCC.num_parameters "qiskit_fermions.circuit.library.UCC.num_parameters") / [`from_parameters()`](#qiskit_fermions.circuit.library.UCC.from_parameters "qiskit_fermions.circuit.library.UCC.from_parameters") / [`to_parameters()`](#qiskit_fermions.circuit.library.UCC.to_parameters "qiskit_fermions.circuit.library.UCC.to_parameters") switch to the smaller parameter basis that spans exactly this subspace.
+  </Attribute>
+
+  ### t1
+
+  <Attribute id="qiskit_fermions.circuit.library.UCC.t1">
+    Type: [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) | [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), ...]
+
+    The $t_1$ (singles) amplitudes.
+  </Attribute>
+
+  ### t2
+
+  <Attribute id="qiskit_fermions.circuit.library.UCC.t2">
+    Type: [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) | [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), ...]
+
+    The $t_2$ (doubles) amplitudes.
+  </Attribute>
+
+  ### norb
+
+  <Attribute id="qiskit_fermions.circuit.library.UCC.norb">
+    The number of spatial orbitals (or spinless modes, for the spinless variant).
+  </Attribute>
+
+  ## Methods
+
+  ### cluster\_operator
+
+  <Function id="qiskit_fermions.circuit.library.UCC.cluster_operator" signature="cluster_operator()">
+    Returns the anti-Hermitian cluster generator $T - T^\dagger$.
+
+    The generator is expressed in the block-spin mode convention (mode `p` is alpha orbital `p`, mode `norb + p` is beta orbital `p`) for the spinful variants, and directly on the `norb` modes for the spinless variant. Occupied orbitals are ordered before virtual ones.
+
+    Being anti-Hermitian, this generator relates to the ansatz unitary by $e^{T - T^\dagger} = e^{-i H}$ with the Hermitian $H = i (T - T^\dagger)$. That $H$ is what [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") consumes, since it requires a Hermitian operator to produce a unitary, and it is how `_build_definition()` expresses the ansatz.
+
+    The returned operator carries [`groups`](operators-fermion-operator#groups "qiskit_fermions.operators.FermionOperator.groups") that pair every excitation with its Hermitian conjugate. That grouping is load-bearing: [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") decomposes group-by-group, so each group becomes one factor $e^{-i H_k}$ of the product formula, and multiplying by $i$ leaves every group individually Hermitian – hence every factor a genuine unitary. Splitting term-by-term instead would not be (see the comment below).
+
+    **Returns**
+
+    The cluster generator $T - T^\dagger$ as a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator").
+
+    **Return type**
+
+    [*FermionOperator*](operators-fermion-operator "qiskit_fermions.operators.fermion_operator.FermionOperator")
+  </Function>
+
+  ### from\_parameters
+
+  <Function id="qiskit_fermions.circuit.library.UCC.from_parameters" signature="from_parameters(params, norb, nocc, variant, *, antisymmetric=False)" modifiers="classmethod">
+    Constructs a UCC ansatz from a real-valued parameter vector.
+
+    With `antisymmetric=False` (the default) the parameter ordering matches ffsim’s [`UCCSDOpRestrictedReal`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpRestrictedReal.html#ffsim.UCCSDOpRestrictedReal "(in ffsim)") / [`UCCSDOpUnrestrictedReal`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpUnrestrictedReal.html#ffsim.UCCSDOpUnrestrictedReal "(in ffsim)") convention, so a vector produced by ffsim’s own `to_parameters` round-trips through this method.
+
+    With `antisymmetric=True` the same-spin $t_2$ blocks are instead built from the smaller basis spanning the standard coupled-cluster antisymmetric subspace (see [`antisymmetric`](#qiskit_fermions.circuit.library.UCC.antisymmetric "qiskit_fermions.circuit.library.UCC.antisymmetric")), so the expected vector length differs and ffsim’s vectors no longer apply.
+
+    **Parameters**
+
+    *   **params** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – the real-valued parameter vector.
+    *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals (or spinless modes, for the spinless variant).
+    *   **nocc** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the number of occupied orbitals. For the `"unrestricted"` variant a pair `(nocc_a, nocc_b)`; otherwise a single integer.
+    *   **variant** (*Variant |* [*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the spin variant, a `UCC.Variant` (or its string value `"restricted"`, `"unrestricted"`, or `"spinless"`).
+    *   **antisymmetric** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to build the same-spin $t_2$ blocks in the antisymmetric subspace (see [`antisymmetric`](#qiskit_fermions.circuit.library.UCC.antisymmetric "qiskit_fermions.circuit.library.UCC.antisymmetric")). The resulting amplitudes then satisfy that antisymmetry by construction. Not supported for the `"restricted"` variant.
+
+    **Returns**
+
+    The constructed [`UCC`](#qiskit_fermions.circuit.library.UCC "qiskit_fermions.circuit.library.UCC") gate.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `variant` is not recognized, if `antisymmetric` is requested for the `"restricted"` variant, or if `len(params)` does not match [`num_parameters()`](#qiskit_fermions.circuit.library.UCC.num_parameters "qiskit_fermions.circuit.library.UCC.num_parameters") for the given settings.
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### from\_t\_amplitudes
+
+  <Function id="qiskit_fermions.circuit.library.UCC.from_t_amplitudes" signature="from_t_amplitudes(t2, *, t1=None, variant='restricted', antisymmetric=False, atol=1e-08)" modifiers="classmethod">
+    Constructs a UCC ansatz from coupled-cluster $t_2$ (and optional $t_1$) amplitudes.
+
+    This is a convenience constructor mirroring [`UCJ.from_t_amplitudes()`](circuit-library-ucj#from_t_amplitudes "qiskit_fermions.circuit.library.UCJ.from_t_amplitudes"). Unlike the (L)UCJ ansatz – which *factorizes* the amplitudes into diagonal Coulomb layers – the UCC ansatz uses the amplitudes directly as its parameters, so this simply defaults an omitted `t1` to zeros of the shape implied by `t2`, giving a doubles-only (UCCD) ansatz.
+
+    **Parameters**
+
+    *   **t2** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*]*) – the $t_2$ amplitudes. For the `"restricted"` and `"spinless"` variants, a single array of shape `(nocc, nocc, nvrt, nvrt)`. For the `"unrestricted"` variant, a triple `(t2aa, t2ab, t2bb)`.
+    *   **t1** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*] | None*) – the optional $t_1$ amplitudes. For `"unrestricted"`, a pair `(t1a, t1b)`; otherwise a single array of shape `(nocc, nvrt)`. Defaults to zeros.
+    *   **variant** (*Variant |* [*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the spin variant to build, a `UCC.Variant` (or its string value `"restricted"`, `"unrestricted"`, or `"spinless"`).
+    *   **antisymmetric** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to assert the standard coupled-cluster antisymmetry of the same-spin $t_2$ blocks (see [`antisymmetric`](#qiskit_fermions.circuit.library.UCC.antisymmetric "qiskit_fermions.circuit.library.UCC.antisymmetric")). Amplitudes from a genuine coupled-cluster calculation satisfy it, so this is a cheap way to confirm they survived whatever preprocessing produced them. Not supported for the `"restricted"` variant.
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the absolute tolerance for the `antisymmetric` validation.
+
+    **Returns**
+
+    The constructed [`UCC`](#qiskit_fermions.circuit.library.UCC "qiskit_fermions.circuit.library.UCC") gate.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `variant` is not recognized, if the amplitude shapes are inconsistent with each other or with `variant`, if `antisymmetric` is requested for the `"restricted"` variant, or if `antisymmetric` is requested but a same-spin $t_2$ block violates that antisymmetry.
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  ### num\_parameters
+
+  <Function id="qiskit_fermions.circuit.library.UCC.num_parameters" signature="num_parameters(norb, nocc, variant, *, antisymmetric=False)" modifiers="classmethod">
+    Returns the number of parameters of a UCC ansatz with the given settings.
+
+    **Parameters**
+
+    *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals (or spinless modes, for the spinless variant).
+    *   **nocc** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the number of occupied orbitals. For the `"unrestricted"` variant a pair `(nocc_a, nocc_b)` giving the per-spin occupations; otherwise a single integer.
+    *   **variant** (*Variant |* [*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the spin variant, a `UCC.Variant` (or its string value `"restricted"`, `"unrestricted"`, or `"spinless"`).
+    *   **antisymmetric** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether the same-spin $t_2$ blocks are restricted to the standard coupled-cluster antisymmetric subspace (see [`antisymmetric`](#qiskit_fermions.circuit.library.UCC.antisymmetric "qiskit_fermions.circuit.library.UCC.antisymmetric")), which needs strictly fewer parameters. Not supported for the `"restricted"` variant.
+
+    **Returns**
+
+    The number of parameters.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `variant` is not recognized, if `nocc` is a pair for a variant other than `UCC.Variant.UNRESTRICTED` (or an integer for that variant), or if `antisymmetric` is requested for the `"restricted"` variant.
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int)
+  </Function>
+
+  ### to\_parameters
+
+  <Function id="qiskit_fermions.circuit.library.UCC.to_parameters" signature="to_parameters()">
+    Converts this UCC ansatz to a real-valued parameter vector.
+
+    The inverse of [`from_parameters()`](#qiskit_fermions.circuit.library.UCC.from_parameters "qiskit_fermions.circuit.library.UCC.from_parameters"), using the same ordering and the same basis this gate’s [`antisymmetric`](#qiskit_fermions.circuit.library.UCC.antisymmetric "qiskit_fermions.circuit.library.UCC.antisymmetric") flag selects – so `from_parameters(gate.to_parameters(), ...)` round-trips as long as the flag is passed consistently.
+
+    <Admonition title="Note" type="note">
+      Only the independent amplitude entries implied by the variant’s symmetries (and by [`antisymmetric`](#qiskit_fermions.circuit.library.UCC.antisymmetric "qiskit_fermions.circuit.library.UCC.antisymmetric")) are written out; see [`num_parameters()`](#qiskit_fermions.circuit.library.UCC.num_parameters "qiskit_fermions.circuit.library.UCC.num_parameters"). Amplitudes violating those symmetries – or carrying a non-negligible imaginary part – are therefore not recoverable from the parameter vector.
+    </Admonition>
+
+    <Admonition title="Note" type="note">
+      The round-trip is two-sided and holds at *any* parameter scale: the amplitudes are this ansatz’s parameters directly, so both directions are a plain re-indexing.
+    </Admonition>
+
+    **Returns**
+
+    The real-valued parameter vector.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+
+  **Protocol Methods**
+
+  ### \_apply\_unitary\_placed\_
+
+  <Function id="qiskit_fermions.circuit.library.UCC._apply_unitary_placed_" signature="_apply_unitary_placed_(vec, norb, nelec, copy, freg_indices)">
+    Applies the ansatz after placing its modes onto the vector’s global modes.
+
+    This builds the gate’s definition (the cluster-operator evolution) and applies it to `vec`, with the definition circuit placed onto the global modes `freg_indices`. Because the definition’s single [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") carries the *whole* cluster generator, its own `_apply_unitary_placed_` exponentiates it exactly (via `scipy`’s `expm_multiply`) – so this path incurs no Trotter error, unlike the synthesized circuit. See `_define()` for the exact gate sequence.
+
+    **Parameters**
+
+    *   **vec** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – the state vector to act on.
+    *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals of the *global* state vector.
+    *   **nelec** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – either a single integer for a spinless system, or a pair of integers storing the numbers of spin alpha and spin beta fermions.
+    *   **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to copy the vector before operating on it.
+    *   **freg\_indices** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the absolute (global) mode indices that this gate’s local modes map onto.
+
+    **Returns**
+
+    The transformed vector.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+</Class>
+

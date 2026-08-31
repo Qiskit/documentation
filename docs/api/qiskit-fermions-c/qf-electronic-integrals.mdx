@@ -1,0 +1,169 @@
+---
+title: Electronic Integrals (latest version)
+description: API reference for Electronic Integrals in the latest version of qiskit-fermions-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Electronic Integrals
+---
+
+# Electronic Integrals
+
+The constructor functions listed here generally take the coefficients of electronic structure Hamiltonians as an input. Different flavors exist:
+
+*   `tril`: these functions consume 1-dimensional arrays of flattened (generalized) triangular indices
+*   `full`: these functions consume high-dimensional arrays
+*   `spin`: these functions take separate arrays for the different spin species
+*   `sym`: these functions take a single array for one spin species and infer the other spin species
+
+***
+
+### qf\_ferm\_op\_from\_1body\_tril\_spin\_sym
+
+<Function id="qf_ferm_op_from_1body_tril_spin_sym" signature="QfFermionOperator *qf_ferm_op_from_1body_tril_spin_sym(double *one_body_a, uint32_t norb)">
+  Constructs an operator from spin-symmetric triangular 1-body integrals.
+
+  The resulting operator is defined by
+
+$$
+\sum_i c^\alpha_{ii} (a^\dagger_i a_i + a^\dagger_{i+n} a_{i+n}) +
+\sum_{i \lt j} c^\alpha_{ij} (a^\dagger_i a_j + a^\dagger_j a_i +
+a^\dagger_{i+n} a_{j+n} + a^\dagger_{j+n} a_{i+n})
+$$
+
+  where $c^\alpha$ are the integral coefficients stored in `one_body_a`, $i$ and $j$ are the indices expanded from the triangular index $ij$ which indexes the array, and $n$ is the number of orbitals, `norb`.
+
+  ```c
+  1int norb = 2;
+  2double one_body_a[3] = {1.0, 2.0, 3.0};
+  3QfFermionOperator *op = qf_ferm_op_from_1body_tril_spin_sym(one_body_a, norb);
+  ```
+
+  **Parameters**
+
+  *   **one\_body\_a** – a 1-dimensional array of length `norb * (norb + 1) / 2` storing the 1-body electronic integral coefficients of the alpha-spin species, as a flattened triangular matrix.
+  *   **norb** – the number of orbitals.
+
+  **Returns**
+
+  The 1-body component of the electronic structure Hamiltonian as defined above.
+</Function>
+
+### qf\_ferm\_op\_from\_1body\_tril\_spin
+
+<Function id="qf_ferm_op_from_1body_tril_spin" signature="QfFermionOperator *qf_ferm_op_from_1body_tril_spin(double *one_body_a, double *one_body_b, uint32_t norb)">
+  Constructs an operator from separate spin-species triangular 1-body integrals.
+
+  The resulting operator is defined by
+
+$$
+\sum_i c^\alpha_{ii} a^\dagger_i a_i + c^\beta_{ii} a^\dagger_{i+n} a_{i+n} +
+\sum_{i \lt j} c^\alpha_{ij} (a^\dagger_i a_j + a^\dagger_j a_i) +
+c^\beta_{ij} (a^\dagger_{i+n} a_{j+n} + a^\dagger_{j+n} a_{i+n})
+$$
+
+  where $c^\alpha$ ($c^\beta$) are the integral coefficients stored in `one_body_a` (`one_body_b`, resp.), $i$ and $j$ are the indices expanded from the triangular index $ij$ which indexes the arrays, and $n$ is the number of orbitals, `norb`.
+
+  ```c
+  1int norb = 2;
+  2double one_body_a[3] = {1.0, 2.0, 3.0};
+  3double one_body_b[3] = {-1.0, -2.0, -3.0};
+  4QfFermionOperator *op = qf_ferm_op_from_1body_tril_spin(one_body_a, one_body_b, norb);
+  ```
+
+  **Parameters**
+
+  *   **one\_body\_a** – a 1-dimensional array of length `norb * (norb + 1) / 2` storing the 1-body electronic integral coefficients of the alpha-spin species, as a flattened triangular matrix.
+  *   **one\_body\_b** – a 1-dimensional array of length `norb * (norb + 1) / 2` storing the 1-body electronic integral coefficients of the beta-spin species, as a flattened triangular matrix.
+  *   **norb** – the number of orbitals.
+
+  **Returns**
+
+  The 1-body component of the electronic structure Hamiltonian as defined above.
+</Function>
+
+### qf\_ferm\_op\_from\_2body\_tril\_spin\_sym
+
+<Function id="qf_ferm_op_from_2body_tril_spin_sym" signature="QfFermionOperator *qf_ferm_op_from_2body_tril_spin_sym(double *two_body_aa, uint32_t norb)">
+  Constructs an operator from spin-symmetric triangular 2-body integrals.
+
+  The resulting operator is defined by
+
+$$
+\sum_{ijkl} \frac{1}{2} c^{\alpha\alpha}_{ijkl}
+\sum_{(i,j,k,l) \in \mathcal{P}(ijkl)}
+(a^\dagger_i a^\dagger_k a_l a_j +
+a^\dagger_{i+n} a^\dagger_k a_l a_{j+n} +
+a^\dagger_i a^\dagger_{k+n} a_{l+n} a_j +
+a^\dagger_{i+n} a^\dagger_{k+n} a_{l+n} a_{j+n})
+$$
+
+  where $c^{\alpha\alpha}$ are the integral coefficients stored in `two_body_aa`, $ijkl$ is the running index of the array, $\mathcal{P}$ generates the unique permutations of the 4-index $(i,j,k,l)$ (see below), and $n$ is the number of orbitals, `norb`.
+
+  ```c
+  1int norb = 2;
+  2double two_body_aa[6] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
+  3QfFermionOperator *op = qf_ferm_op_from_2body_tril_spin_sym(two_body_aa, norb);
+  ```
+
+  <Admonition title="Note" type="note">
+    `two_body_aa` is an S8-fold symmetric array. That means, it is the flattened lower-triangular data of a matrix of shape `(npair, npair)`, where `npair = (norb * (norb + 1) // 2`. This in turn is the lower-triangular data of the 4-dimensional array of shape `(norb, norb, norb, norb)`. Therefore, $\mathcal{P}$ above expands the flattened index $ijkl$ into all index permutations $(i,j,k,l)$ that index this 4-dimensional array.
+  </Admonition>
+
+  **Parameters**
+
+  *   **two\_body\_aa** – a 1-dimensional array of the S8-fold symmetric 2-body electronic integral coefficients of the alpha/alpha-spin species, as a flattened array.
+  *   **norb** – the number of orbitals.
+
+  **Returns**
+
+  The 2-body component of the electronic structure Hamiltonian as defined above.
+</Function>
+
+### qf\_ferm\_op\_from\_2body\_tril\_spin
+
+<Function id="qf_ferm_op_from_2body_tril_spin" signature="QfFermionOperator *qf_ferm_op_from_2body_tril_spin(double *two_body_aa, double *two_body_ab, double *two_body_bb, uint32_t norb)">
+  Constructs an operator from separate spin-species triangular 2-body integrals.
+
+  The resulting operator is defined by
+
+$$
+\sum_{ijkl} \frac{1}{2}
+\sum_{(i,j,k,l) \in \mathcal{P}(ijkl)}
+c^{\alpha\alpha}_{ijkl} a^\dagger_i a^\dagger_k a_l a_j +
+c^{\beta\beta}_{ijkl} a^\dagger_{i+n} a^\dagger_{k+n} a_{l+n} a_{j+n}
++ \sum_{ijkl} \frac{1}{2}
+\sum_{(i,j,k,l) \in \mathcal{P'}(ijkl)}
+c^{\alpha\beta}_{ijkl} a^\dagger_{i+n} a^\dagger_k a_l a_{j+n} +
+c^{\alpha\beta}_{ijkl} a^\dagger_i a^\dagger_{k+n} a_{l+n} a_j +
+$$
+
+  where $c^{\alpha\alpha}$ ($c^{\alpha\beta}$, $c^{\beta\beta}$) are the integral coefficients stored in `two_body_aa` (`two_body_ab`, `two_body_bb`, resp.), $ijkl$ is the running index of the array, $\mathcal{P}$ ($\mathcal{P'}$) generates the unique permutations of the 4-index $(i,j,k,l)$ (see below), and $n$ is the number of orbitals, `norb`.
+
+  ```c
+  1int norb = 2;
+  2double two_body_aa[6] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0};
+  3double two_body_ab[9] = {11.0, 12.0, 13.0, 14.0, 15.0,
+  4                         16.0, 17.0, 18.0, 19.0};
+  5double two_body_bb[6] = {-1.0, -2.0, -3.0, -4.0, -5.0, -6.0};
+  6QfFermionOperator *op = qf_ferm_op_from_2body_tril_spin(
+  7    two_body_aa, two_body_ab, two_body_bb, norb);
+  ```
+
+  <Admonition title="Note" type="note">
+    `two_body_aa` and `two_body_bb` are a S8-fold symmetric arrays. That means, they are the flattened lower-triangular data of matrices of shape `(npair, npair)`, where `npair = (norb * (norb + 1) // 2`. These in turn are the lower-triangular data of the 4-dimensional arrays of shape `(norb, norb, norb, norb)`. Therefore, $\mathcal{P}$ above expands the flattened index $ijkl$ into all index permutations $(i,j,k,l)$ that index these 4-dimensional arrays.
+
+    However, `two_body_ab` is only S4-fold symmetric. Thus, it contains the full data of the `(npair, npair)` matrix (but still in flattened form). $\mathcal{P'}$ performs the corresponding index expansion. (In the definition above, we reused the index $ijkl$ as an abuse of notation.)
+  </Admonition>
+
+  **Parameters**
+
+  *   **two\_body\_aa** – a 1-dimensional array of the S8-fold symmetric 2-body electronic integral coefficients of the alpha/alpha-spin species, as a flattened array.
+  *   **two\_body\_ab** – a 1-dimensional array of the S4-fold symmetric 2-body electronic integral coefficients of the alpha/beta-spin species, as a flattened array.
+  *   **two\_body\_bb** – a 1-dimensional array of the S8-fold symmetric 2-body electronic integral coefficients of the beta/beta-spin species, as a flattened array.
+  *   **norb** – the number of orbitals.
+
+  **Returns**
+
+  The 2-body component of the electronic structure Hamiltonian as defined above.
+</Function>
+
