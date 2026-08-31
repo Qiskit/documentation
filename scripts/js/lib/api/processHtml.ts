@@ -19,6 +19,7 @@ import { Image } from "./HtmlToMdResult.js";
 import { Metadata, ApiObjectName, API_OBJECTS } from "./Metadata.js";
 import { createMdxComponent } from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
+import { filenameToUri } from "cspell/dist/esm/util/fileHelper.js";
 
 export type ProcessedHtml = {
   html: string;
@@ -59,9 +60,6 @@ export async function processHtml(
   const isIndex = fileName.endsWith("index.html");
   const isRoot =
     options.hasRootNamespaceFile && fileName.endsWith("/root.html");
-  const isIbmQuantumSchemasPage = fileName.endsWith(
-    "/ibm_quantum_schemas.html",
-  );
   const images = loadImages(
     $,
     $main,
@@ -94,11 +92,7 @@ export async function processHtml(
   expandTableRowspan($, $main);
 
   const meta: Metadata = {};
-  await processMembersAndSetMeta($, $main, meta, {
-    ...options,
-    isRoot,
-    isIbmQuantumSchemasPage,
-  });
+  await processMembersAndSetMeta($, $main, meta, { ...options, isRoot });
   if (options.isCApi) maybeSetCMetadata($main, meta, isReleaseNotes, isIndex);
   else maybeSetPythonModuleMetadata($, $main, meta);
 
@@ -429,7 +423,7 @@ export async function processMembersAndSetMeta(
   options: {
     isCApi: boolean;
     isRoot: boolean;
-    isIbmQuantumSchemasPage: boolean;
+    fileName: string;
     normalizeUrl?: (url: string) => string;
   },
 ): Promise<void> {
@@ -443,9 +437,22 @@ export async function processMembersAndSetMeta(
 
   // qiskit-ibm-runtime documents the ibm-quantum-schemas package index page
   // manuall, so we create a synthetic module to add it to the left nav bar
-  if (options.isIbmQuantumSchemasPage) {
+  if (options.fileName.endsWith("/ibm_quantum_schemas.html")) {
     meta.apiType = "syntheticModule";
     meta.apiName = "IBM Quantum Schemas";
+    meta.untranslatable = true;
+    return;
+  }
+
+  // fermions transpiler.passes.plugins page uses .. currentmodule::  instead of .. automodule::
+  // so it  does not emits amodule-* anchor for maybeSetPythonModuleMetadata to detect
+  if (
+    options.fileName.endsWith(
+      "pydoc/qiskit_fermions.transpiler.passes.plugins.html",
+    )
+  ) {
+    meta.apiType = "syntheticModule";
+    meta.apiName = "Transpiler Pass Plugins";
     meta.untranslatable = true;
     return;
   }
