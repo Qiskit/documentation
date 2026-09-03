@@ -1,0 +1,38 @@
+---
+title: analysis (latest version)
+description: API reference for qiskit_noise_learning.analysis in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_noise_learning.analysis
+---
+
+<span id="module-qiskit_noise_learning.analysis" />
+
+<span id="analysis-qiskit-noise-learning-analysis" />
+
+# Analysis
+
+`qiskit_noise_learning.analysis`
+
+Data analysis.
+
+## Classes
+
+|                                                                                                                                                                              |                                                                                                                                                                                               |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`AnalysisPipeline`](generated/analysis-analysis-pipeline#qiskit_noise_learning.analysis.AnalysisPipeline "qiskit_noise_learning.analysis.AnalysisPipeline")                 | A composite [`AnalysisStage`](generated/analysis-analysis-stage#qiskit_noise_learning.analysis.AnalysisStage "qiskit_noise_learning.analysis.AnalysisStage") that chains stages sequentially. |
+| [`AnalysisStage`](generated/analysis-analysis-stage#qiskit_noise_learning.analysis.AnalysisStage "qiskit_noise_learning.analysis.AnalysisStage")                             | Abstract base for a stage in the analysis pipeline.                                                                                                                                           |
+| [`AverageObservables`](generated/analysis-average-observables#qiskit_noise_learning.analysis.AverageObservables "qiskit_noise_learning.analysis.AverageObservables")         | Average observables over randomizations for each unbound path and fragment depth pair.                                                                                                        |
+| [`ComputeObservables`](generated/analysis-compute-observables#qiskit_noise_learning.analysis.ComputeObservables "qiskit_noise_learning.analysis.ComputeObservables")         | Compute observable data from raw data.                                                                                                                                                        |
+| [`CurveFitObservables`](generated/analysis-curve-fit-observables#qiskit_noise_learning.analysis.CurveFitObservables "qiskit_noise_learning.analysis.CurveFitObservables")    | Fit observable data to exponential decays of the form `a * f**fragment_depth`, and average any remaining observables over randomizations.                                                     |
+| [`Fit`](generated/analysis-fit#qiskit_noise_learning.analysis.Fit "qiskit_noise_learning.analysis.Fit")                                                                      | Container for data at each level of the analysis hierarchy.                                                                                                                                   |
+| [`FlipPostSelect`](generated/analysis-flip-post-select#qiskit_noise_learning.analysis.FlipPostSelect "qiskit_noise_learning.analysis.FlipPostSelect")                        | Apply a mask to raw data based on bit flips across measurement outcomes.                                                                                                                      |
+| [`LegacySolve`](generated/analysis-legacy-solve#qiskit_noise_learning.analysis.LegacySolve "qiskit_noise_learning.analysis.LegacySolve")                                     | Solves for the [`ModelData`](generated/data-model-data#qiskit_noise_learning.data.ModelData "qiskit_noise_learning.data.ModelData") using the legacy pair-fidelity method.                    |
+| [`LinearSystemData`](generated/analysis-linear-system-data#qiskit_noise_learning.analysis.LinearSystemData "qiskit_noise_learning.analysis.LinearSystemData")                | The linear system to solve and metadata in raw format.                                                                                                                                        |
+| [`LSQLinearSolve`](generated/analysis-lsq-linear-solve#qiskit_noise_learning.analysis.LSQLinearSolve "qiskit_noise_learning.analysis.LSQLinearSolve")                        | Solves for the [`ModelData`](generated/data-model-data#qiskit_noise_learning.data.ModelData "qiskit_noise_learning.data.ModelData") using SciPy's linear least squares solver.                |
+| [`NNLSSolve`](generated/analysis-nnls-solve#qiskit_noise_learning.analysis.NNLSSolve "qiskit_noise_learning.analysis.NNLSSolve")                                             | Solves for the [`ModelData`](generated/data-model-data#qiskit_noise_learning.data.ModelData "qiskit_noise_learning.data.ModelData") using SciPy's non-negative least squares solver.          |
+| [`PositivityMinSolve`](generated/analysis-positivity-min-solve#qiskit_noise_learning.analysis.PositivityMinSolve "qiskit_noise_learning.analysis.PositivityMinSolve")        | Solves for the [`ModelData`](generated/data-model-data#qiskit_noise_learning.data.ModelData "qiskit_noise_learning.data.ModelData") while minimizing Pauli-Lindblad rate positivity.          |
+| [`SymmetrizeFidelities`](generated/analysis-symmetrize-fidelities#qiskit_noise_learning.analysis.SymmetrizeFidelities "qiskit_noise_learning.analysis.SymmetrizeFidelities") | Project generator rates into the fidelity-symmetry null space, gate by gate.                                                                                                                  |
+| [`SymmetrizeGenerators`](generated/analysis-symmetrize-generators#qiskit_noise_learning.analysis.SymmetrizeGenerators "qiskit_noise_learning.analysis.SymmetrizeGenerators") | Project generator rates to satisfy conjugation symmetry, gate by gate.                                                                                                                        |
+| [`ZeroPostSelect`](generated/analysis-zero-post-select#qiskit_noise_learning.analysis.ZeroPostSelect "qiskit_noise_learning.analysis.ZeroPostSelect")                        | Apply a mask to raw data based on whether bit values are all False.                                                                                                                           |
+
