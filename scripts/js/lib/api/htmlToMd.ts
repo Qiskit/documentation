@@ -264,7 +264,7 @@ function buildAdmonition(
       {
         type: "mdxJsxAttribute",
         name: "title",
-        value: toText(titleNode),
+        value: titleNode ? toText(titleNode) : "",
       },
       {
         type: "mdxJsxAttribute",
