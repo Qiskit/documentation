@@ -1,0 +1,19 @@
+[deps]
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+OrdinaryDiffEq = "1dea7af3-3e70-54e6-95c3-0bf5283fa5ed"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+Qiskit = "91d9a17d-f964-4b6c-a3c4-2f4cfdea2c95"
+QiskitIBMRuntime = "1f74880b-c9c8-4af4-a333-b5b4aaaec6f5"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
+TensorNetworkQuantumSimulator = "4de3b72a-362e-43dd-83ff-3f381eda9f9c"
+
+[compat]
+# Qiskit 0.5 pulls Qiskit_jll 2.4, whose QkCircuitInstruction stores gate
+# parameters as QkParam** rather than double*. qiskit_ibm_runtime_jll 0.38.1
+# still reads that field as double*, so every rotation angle is submitted to
+# the backend as a reinterpreted pointer (~7e-314). Holding Qiskit at 0.4 keeps
+# Qiskit_jll at 2.2.3 and qiskit_ibm_runtime_jll at 0.38.0, where the ABI matches.
+Qiskit = "0.4"
+QiskitIBMRuntime = "0.2"
