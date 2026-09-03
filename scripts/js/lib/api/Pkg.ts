@@ -294,7 +294,7 @@ export class Pkg {
     if (name === "qiskit-noise-learning") {
       return new Pkg({
         ...args,
-        title: "Qiskit noise liearning",
+        title: "Qiskit noise learning",
         githubSlug: "Qiskit/qiskit-noise-learning",
         kebabCaseAndShortenUrls: true,
         language: "Python",
