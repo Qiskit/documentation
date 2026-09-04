@@ -783,168 +783,24 @@ There are also specific data structures to represent a specific subset of inform
 For example, if we wanted to visualize the [`CouplingMap`](/docs/api/qiskit/dev/qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") for the example 3 qubit [`Target`](/docs/api/qiskit/dev/qiskit.transpiler.Target "qiskit.transpiler.Target") above:
 
 ```python
-from qiskit.circuit import Parameter, Measure
-from qiskit.transpiler import Target, InstructionProperties
-from qiskit.circuit.library import UGate, RZGate, RXGate, RYGate, CXGate, CZGate
-
-target = Target(num_qubits=3)
-target.add_instruction(CXGate(), {(0, 1): InstructionProperties(error=.0001, duration=5e-7)})
-target.add_instruction(
-    UGate(Parameter('theta'), Parameter('phi'), Parameter('lam')),
-    {
-        (0,): InstructionProperties(error=.00001, duration=5e-8),
-        (1,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RZGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RYGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RXGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    CZGate(),
-    {
-        (1, 2): InstructionProperties(error=.0001, duration=5e-7),
-        (2, 0): InstructionProperties(error=.0001, duration=5e-7)
-    }
-)
-target.add_instruction(
-    Measure(),
-    {
-        (0,): InstructionProperties(error=.001, duration=5e-5),
-        (1,): InstructionProperties(error=.002, duration=6e-5),
-        (2,): InstructionProperties(error=.2, duration=5e-7)
-    }
-)
-
 target.build_coupling_map().draw()
 ```
+
+![Output from the previous code.](/docs/images/api/qiskit/dev/transpiler-5.avif)
 
 This shows the global connectivity of the [`Target`](/docs/api/qiskit/dev/qiskit.transpiler.Target "qiskit.transpiler.Target") which is the combination of the supported qubits for [`CXGate`](/docs/api/qiskit/dev/qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") and [`CZGate`](/docs/api/qiskit/dev/qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"). To see the individual connectivity, you can pass the operation name to `CouplingMap.build_coupling_map()`:
 
 ```python
-from qiskit.circuit import Parameter, Measure
-from qiskit.transpiler import Target, InstructionProperties
-from qiskit.circuit.library import UGate, RZGate, RXGate, RYGate, CXGate, CZGate
-
-target = Target(num_qubits=3)
-target.add_instruction(CXGate(), {(0, 1): InstructionProperties(error=.0001, duration=5e-7)})
-target.add_instruction(
-    UGate(Parameter('theta'), Parameter('phi'), Parameter('lam')),
-    {
-        (0,): InstructionProperties(error=.00001, duration=5e-8),
-        (1,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RZGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RYGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RXGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    CZGate(),
-    {
-        (1, 2): InstructionProperties(error=.0001, duration=5e-7),
-        (2, 0): InstructionProperties(error=.0001, duration=5e-7)
-    }
-)
-target.add_instruction(
-    Measure(),
-    {
-        (0,): InstructionProperties(error=.001, duration=5e-5),
-        (1,): InstructionProperties(error=.002, duration=6e-5),
-        (2,): InstructionProperties(error=.2, duration=5e-7)
-    }
-)
-
 target.build_coupling_map('cx').draw()
 ```
 
+![Output from the previous code.](/docs/images/api/qiskit/dev/transpiler-6.avif)
+
 ```python
-from qiskit.circuit import Parameter, Measure
-from qiskit.transpiler import Target, InstructionProperties
-from qiskit.circuit.library import UGate, RZGate, RXGate, RYGate, CXGate, CZGate
-
-target = Target(num_qubits=3)
-target.add_instruction(CXGate(), {(0, 1): InstructionProperties(error=.0001, duration=5e-7)})
-target.add_instruction(
-    UGate(Parameter('theta'), Parameter('phi'), Parameter('lam')),
-    {
-        (0,): InstructionProperties(error=.00001, duration=5e-8),
-        (1,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RZGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RYGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RXGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    CZGate(),
-    {
-        (1, 2): InstructionProperties(error=.0001, duration=5e-7),
-        (2, 0): InstructionProperties(error=.0001, duration=5e-7)
-    }
-)
-target.add_instruction(
-    Measure(),
-    {
-        (0,): InstructionProperties(error=.001, duration=5e-5),
-        (1,): InstructionProperties(error=.002, duration=6e-5),
-        (2,): InstructionProperties(error=.2, duration=5e-7)
-    }
-)
-
 target.build_coupling_map('cz').draw()
 ```
+
+![Output from the previous code.](/docs/images/api/qiskit/dev/transpiler-7.avif)
 
 <span id="transpiler-scheduling-description" />
 
