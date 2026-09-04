@@ -1,0 +1,33 @@
+---
+title: Introduction
+description: An introduction to a course designed to guide teams and organizations early in their launch of quantum initiatives.
+---
+
+{/* cspell:ignore bootcamps hackathons */}
+
+# Introduction
+
+
+The world is approaching the era of quantum advantage. Here, quantum advantage refers to executing a task on a hybrid quantum–classical system such that:
+* The correctness of the output can be rigorously verified.
+* The computation demonstrates a quantum separation—providing superior efficiency, cost-effectiveness, or accuracy compared with classical methods alone.
+
+Reaching quantum advantage in the near term will require us to use every available tool to get the most out of today’s quantum hardware. In practice, that means confronting noise and errors head-on.
+We have an ever-expanding toolkit to address these challenges, including error suppression, error mitigation, error detection, and error correction. These concepts can be difficult to distinguish, in part because they lie along a continuum on the path toward fault-tolerant quantum computing. Roughly speaking:
+* Error suppression aims to reduce the probability of certain errors occurring in the first place.
+* Error mitigation seeks to reduce the impact of errors that have occurred on the final result.
+* Error detection and correction encode quantum information redundantly across multiple qubits, enabling errors to be detected and corrected through consistency checks.
+
+![Image of errors being reduced by error suppression, then correction, then mitigation.](/learning/images/courses/tools-for-quantum-advantage/intro/error-handling.avif)
+
+Some techniques blur these boundaries. For example, if errors can be detected at the circuit level and invalid shots are discarded or probabilistically recovered in post-processing, this may be viewed as a limited form of error correction, though it lacks the full fault-tolerant structure of quantum error-correcting codes.
+
+Pauli twirling, another example, reshapes noise so that it behaves like a stochastic Pauli process. This can slow the buildup of coherent errors and make other techniques, such as error mitigation, more effective. On its own, however, it is best described as a form of noise tailoring, rather than strictly suppression or mitigation.
+
+These tools are not mutually exclusive. Effective workflows often combine multiple approaches. Suppression and mitigation are widely applicable today, while error detection can be used in some workflows to discard erroneous results or probabilistically recover correct states. Meanwhile, increasingly advanced forms of error correction are steadily coming within reach. By leveraging and combining these methods, we can build a continuous path toward large scale fault tolerant quantum computing. For a streamlined approach to leveraging multiple error mitigation techniques, without much theoretical background, see [this tutorial](/tutorials/combine-error-mitigation-techniques) on the IBM Quantum Platform.
+
+In this course, Tools for Quantum Advantage, we will explore some of the most promising methods for managing quantum noise and errors. Our focus is on exploring practical applications using Qiskit, while providing enough theoretical background to help you determine which techniques are appropriate for your use case. We will also highlight which methods can be combined effectively within a single workflow—and which ones typically cannot.
+
+Join us as we explore the tools that will help bring quantum advantage within reach.
+
+
