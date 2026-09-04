@@ -1,0 +1,46 @@
+---
+title: models (latest version)
+description: API reference for qiskit_noise_learning.models in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_noise_learning.models
+---
+
+<span id="module-qiskit_noise_learning.models" />
+
+<span id="models-qiskit-noise-learning-models" />
+
+# Models
+
+`qiskit_noise_learning.models`
+
+Gate set noise models.
+
+## Classes
+
+|                                                                                                                                                                             |                                                                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`IdentityFidelityModel`](generated/models-identity-fidelity-model#qiskit_noise_learning.models.IdentityFidelityModel "qiskit_noise_learning.models.IdentityFidelityModel") | A fidelity model whose parameters are the log fidelities themselves.                                                                                                                                              |
+| [`LogFidelitySpace`](generated/models-log-fidelity-space#qiskit_noise_learning.models.LogFidelitySpace "qiskit_noise_learning.models.LogFidelitySpace")                     | The space of log fidelities of a gate set.                                                                                                                                                                        |
+| [`GeneratorIndex`](generated/models-generator-index#qiskit_noise_learning.models.GeneratorIndex "qiskit_noise_learning.models.GeneratorIndex")                              |                                                                                                                                                                                                                   |
+| [`PauliLindbladModel`](generated/models-pauli-lindblad-model#qiskit_noise_learning.models.PauliLindbladModel "qiskit_noise_learning.models.PauliLindbladModel")             | A linear mapping from Pauli-Lindblad generator rates to log fidelities.                                                                                                                                           |
+| [`RateSpace`](generated/models-rate-space#qiskit_noise_learning.models.RateSpace "qiskit_noise_learning.models.RateSpace")                                                  | Space of Pauli-Lindblad generator rates, indexed by [`GeneratorIndex`](generated/models-generator-index#qiskit_noise_learning.models.GeneratorIndex "qiskit_noise_learning.models.GeneratorIndex").               |
+| [`PauliLindbladSplit`](generated/models-pauli-lindblad-split#qiskit_noise_learning.models.PauliLindbladSplit "qiskit_noise_learning.models.PauliLindbladSplit")             | The decomposition of a map around its underlying [`PauliLindbladModel`](generated/models-pauli-lindblad-model#qiskit_noise_learning.models.PauliLindbladModel "qiskit_noise_learning.models.PauliLindbladModel"). |
+
+## Functions
+
+|                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`contains_pauli_lindblad_model`](generated/models-contains-pauli-lindblad-model#qiskit_noise_learning.models.contains_pauli_lindblad_model "qiskit_noise_learning.models.contains_pauli_lindblad_model")(model) | Whether a map is, or contains, a [`PauliLindbladModel`](generated/models-pauli-lindblad-model#qiskit_noise_learning.models.PauliLindbladModel "qiskit_noise_learning.models.PauliLindbladModel").                                                                                                                        |
+| [`get_noise_site`](generated/models-get-noise-site#qiskit_noise_learning.models.get_noise_site "qiskit_noise_learning.models.get_noise_site")(model)                                                             | The noise-site mapping of the map's [`PauliLindbladModel`](generated/models-pauli-lindblad-model#qiskit_noise_learning.models.PauliLindbladModel "qiskit_noise_learning.models.PauliLindbladModel"), if it has exactly one.                                                                                              |
+| [`is_fidelity_model`](generated/models-is-fidelity-model#qiskit_noise_learning.models.is_fidelity_model "qiskit_noise_learning.models.is_fidelity_model")(model)                                                 | Whether an object is a [`LinearMap`](generated/math-linear-map#qiskit_noise_learning.math.LinearMap "qiskit_noise_learning.math.LinearMap") with a [`LogFidelitySpace`](generated/models-log-fidelity-space#qiskit_noise_learning.models.LogFidelitySpace "qiskit_noise_learning.models.LogFidelitySpace") output space. |
+| [`split_pauli_lindblad_model`](generated/models-split-pauli-lindblad-model#qiskit_noise_learning.models.split_pauli_lindblad_model "qiskit_noise_learning.models.split_pauli_lindblad_model")(model)             | Split a map around its underlying [`PauliLindbladModel`](generated/models-pauli-lindblad-model#qiskit_noise_learning.models.PauliLindbladModel "qiskit_noise_learning.models.PauliLindbladModel").                                                                                                                       |
+
+## Type aliases
+
+### qiskit\_noise\_learning.models.FidelityModel
+
+<Attribute id="qiskit_noise_learning.models.FidelityModel">
+  alias of [`LinearMap`](generated/math-linear-map#qiskit_noise_learning.math.LinearMap "qiskit_noise_learning.math.linear_map.LinearMap")\[[`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable), [`FidelityIndex`](generated/sequences-fidelity-index#qiskit_noise_learning.sequences.FidelityIndex "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex")]
+</Attribute>
+

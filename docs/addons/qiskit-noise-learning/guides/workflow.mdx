@@ -1,0 +1,294 @@
+---
+title: "Build a learning experiment"
+description: "Build a learning experiment for the latest version of Qiskit noise learning"
+---
+
+# Build a learning experiment
+
+This guide demonstrates how to build a standard learning experiment from scratch, and use it to learn a model from simulated noisy data.
+
+1.  Define a gate set on a ring of qubits
+2.  Choose a 2-local Pauli-Lindblad model
+3.  Build the learning experiment
+4.  Generate circuits
+5.  Set up local simulation
+6.  Run the program
+7.  Analyze the data
+
+<Admonition title="Running on real hardware" type="note">
+  The circuits below are simulated locally, so this walkthrough needs no IBM Quantum® credentials. Three changes take it to a real device, each flagged again where it applies:
+
+  *   **Step 1**: replace [`FakeMarrakesh`](/docs/api/qiskit-ibm-runtime/fake-provider-fake-marrakesh "(in Qiskit Runtime IBM Client)") with a real backend.
+  *   **Step 5**: skip it.
+  *   **Step 6**: submit through [`Executor`](/docs/api/qiskit-ibm-runtime/executor "(in Qiskit Runtime IBM Client)").
+</Admonition>
+
+<span id="define-a-gate-set-on-a-ring-of-qubits" />
+
+## 1. Define a gate set on a ring of qubits
+
+Build a [`QiskitGateSet`](/docs/api/qiskit-noise-learning/generated-gate-sets-qiskit-gate-set#qiskit_noise_learning.gate_sets.QiskitGateSet "qiskit_noise_learning.gate_sets.QiskitGateSet") from a backend [`Target`](/docs/api/qiskit/qiskit.transpiler.Target) and a subset of its qubits — here a twelve-qubit ring of [`FakeMarrakesh`](/docs/api/qiskit-ibm-runtime/fake-provider-fake-marrakesh "(in Qiskit Runtime IBM Client)") — then add one gate to it: a layer of six `CZ` gates covering that ring. By default the gate set is initialized with a preparation gate `P` and a measurement gate `M`.
+
+```python
+from qiskit_ibm_runtime.fake_provider import FakeMarrakesh
+
+from qiskit_noise_learning.gate_sets import QiskitGateSet
+
+backend = FakeMarrakesh()
+
+qubit_subset = [*range(25, 30), *range(37, 39), *range(45, 50)]
+cz_pairs = [(25, 26), (27, 28), (29, 38), (37, 45), (46, 47), (48, 49)]
+
+gate_set = QiskitGateSet(backend.num_qubits, target=backend.target, qubit_subset=qubit_subset)
+
+with gate_set.build_new_gate("cz_gate", latex_str=r"\mathrm{CZ}") as builder:
+    for pair in cz_pairs:
+        builder.circuit.cz(*pair)
+
+list(gate_set)
+```
+
+```myst
+['M', 'P', 'cz_gate']
+```
+
+<Admonition title="Running on real hardware" type="note">
+  ```python
+  from qiskit_ibm_runtime import QiskitRuntimeService
+
+  backend = QiskitRuntimeService().backend("ibm_marrakesh")
+  ```
+</Admonition>
+
+Call [`draw()`](/docs/api/qiskit-noise-learning/generated-gate-sets-gate-set#qiskit_noise_learning.gate_sets.GateSet.draw "qiskit_noise_learning.gate_sets.GateSet.draw") to see the gate on the device topology: the ring of qubits in the gate set, and which pairs of them the gate entangles.
+
+```python
+gate_set.draw()
+```
+
+<span id="choose-a-2-local-pauli-lindblad-model" />
+
+## 2. Choose a 2-local Pauli-Lindblad model
+
+Decide which Pauli-Lindblad generators the noise is allowed to have with a [`PauliLindbladModel`](/docs/api/qiskit-noise-learning/generated-models-pauli-lindblad-model#qiskit_noise_learning.models.PauliLindbladModel "qiskit_noise_learning.models.PauliLindbladModel"). Build that generator set from the gate set’s connectivity with [`k_local()`](/docs/api/qiskit-noise-learning/generated-models-pauli-lindblad-model#qiskit_noise_learning.models.PauliLindbladModel.k_local "qiskit_noise_learning.models.PauliLindbladModel.k_local") — here every 2-local Pauli on connected qubit pairs of the unitary gate, and single-qubit Paulis for preparation and measurement.
+
+```python
+from qiskit_noise_learning.models import PauliLindbladModel
+
+model = PauliLindbladModel.k_local(gate_set, gate_k={"cz_gate": 2, "M": 1, "P": 1})
+```
+
+Display the unknown parameter count for the noise model of each gate.
+
+```python
+{name: len(generators) for name, generators in model.generators.items()}
+```
+
+```myst
+{'M': 12, 'P': 12, 'cz_gate': 144}
+```
+
+<span id="build-the-learning-experiment" />
+
+## 3. Build the learning experiment
+
+Assemble an [`Experiment`](/docs/api/qiskit-noise-learning/generated-experiment-builder-experiment#qiskit_noise_learning.experiment_builder.Experiment "qiskit_noise_learning.experiment_builder.Experiment") by composing builder stages. Each stage reads what earlier stages wrote, so order matters:
+
+```python
+from qiskit_noise_learning.experiment_builder import (
+    BindFragmentDepths,
+    CompleteSequences,
+    EvenDepthVanillaPaths,
+    Experiment,
+    GenerateInstructionSequences,
+    IdentifyRelations,
+    MergeInstructionSequences,
+    SPAMPaths,
+    VanillaInstructionSequences,
+)
+
+experiment_builder = (
+    # Add standard vanilla learning paths and instruction sequences, and identify relations
+    EvenDepthVanillaPaths()
+    + VanillaInstructionSequences()
+    + IdentifyRelations()
+    # Add paths for learning SPAM, then generate and merge instruction sequences for measuring them
+    + SPAMPaths()
+    + GenerateInstructionSequences()
+    + MergeInstructionSequences()
+    # Finalize by completing the instruction sequences and setting experiment depths
+    + CompleteSequences()
+    + BindFragmentDepths([2, 16, 32, 64])
+)
+
+experiment = experiment_builder.run(
+    Experiment(fidelity_model=model, shots=20, randomizations=50)
+)
+
+print(f"Number of paths: {len(experiment.paths)}")
+print(f"Number of instruction sequences: {len(experiment.instruction_sequences)}")
+```
+
+```myst
+Number of paths: 156
+Number of instruction sequences: 37
+```
+
+Observe design matrix rank:
+
+```python
+print(f"Design matrix rank: {experiment.design_matrix.rank}")
+```
+
+```myst
+Design matrix rank: 120
+```
+
+<span id="generate-circuits" />
+
+## 4. Generate circuits
+
+Compile the experiment with an [`ExecutorCircuitGenerator`](/docs/api/qiskit-noise-learning/generated-circuit-generator-executor-circuit-generator#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator"), generating a [`QuantumProgram`](/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program "(in Qiskit Runtime IBM Client)") — one parameterized template circuit per fragment depth — together with a data mapper that records how to interpret results.
+
+```python
+from qiskit_noise_learning.circuit_generator import ExecutorCircuitGenerator
+
+circuit_generator = ExecutorCircuitGenerator(gate_set)
+quantum_program, data_mapper = circuit_generator.generate(experiment)
+
+print(f"Number of template circuits: {len(quantum_program.items)}")
+```
+
+```myst
+Number of template circuits: 5
+```
+
+Draw a template circuit to inspect.
+
+```python
+quantum_program.items[0].circuit.draw("mpl", idle_wires=False, fold=False)
+```
+
+![../\_images/cbfeb7989573772757ac81e9b3a0665f8a0513450d76bfc5ab63e24f40c6b8f6.png](/docs/images/addons/qiskit-noise-learning/cbfeb7989573772757ac81e9b3a0665f8a0513450d76bfc5ab63e24f40c6b8f6.avif)
+
+<span id="set-up-local-simulation" />
+
+## 5. Set up local simulation
+
+An [`AerExecutor`](/docs/api/qiskit-noise-learning/generated-aer-executor-aer-executor#qiskit_noise_learning.aer_executor.AerExecutor "qiskit_noise_learning.aer_executor.AerExecutor") runs a program on a local Aer simulator, injecting Pauli-Lindblad noise at the barriers Samplomatic places around each twirled gate.
+
+Unlike the hand-picked noise of the [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated-noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") guide, give *every one* of the model’s 168 generators an independent random rate. The model’s generators are already exactly the Paulis to put in a [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap), so pair each one with a rate and build the map per gate directly:
+
+```python
+import numpy as np
+from qiskit.quantum_info import PauliLindbladMap
+
+rng = np.random.default_rng(1234)
+
+true_maps = {
+    name: PauliLindbladMap.from_terms(
+        [
+            PauliLindbladMap.GeneratorTerm(rate, generator)
+            for generator, rate in zip(generators, rng.uniform(2e-4, 1.5e-3, len(generators)))
+        ]
+    )
+    for name, generators in model.generators.items()
+}
+{name: noise_map.num_qubits for name, noise_map in true_maps.items()}
+```
+
+```myst
+{'M': 156, 'P': 156, 'cz_gate': 156}
+```
+
+Those maps are as wide as the device, since the model is expressed in `backend`’s qubit indexing, but [`AerExecutor`](/docs/api/qiskit-noise-learning/generated-aer-executor-aer-executor#qiskit_noise_learning.aer_executor.AerExecutor "qiskit_noise_learning.aer_executor.AerExecutor") wants each map to be as wide as the gate it applies to, with Pauli indices running over the gate’s qubits in ascending physical order. Narrow them with [`keep_qubits()`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap#keep_qubits), which traces out everything off the ring:
+
+```python
+noise_dict = {
+    name: noise_map.keep_qubits(qubit_subset) for name, noise_map in true_maps.items()
+}
+{name: noise_map.num_qubits for name, noise_map in noise_dict.items()}
+```
+
+```myst
+{'M': 12, 'P': 12, 'cz_gate': 12}
+```
+
+Instantiate [`AerExecutor`](/docs/api/qiskit-noise-learning/generated-aer-executor-aer-executor#qiskit_noise_learning.aer_executor.AerExecutor "qiskit_noise_learning.aer_executor.AerExecutor") with the stabilizer method. Set `root_seed` to make the simulated data reproducible.
+
+```python
+from qiskit_aer import AerSimulator
+
+from qiskit_noise_learning.aer_executor import AerExecutor
+
+executor = AerExecutor(
+    AerSimulator(method="stabilizer"), noise_dict=noise_dict, root_seed=42
+)
+```
+
+<Admonition title="Running on real hardware" type="note">
+  Skip this step entirely.
+</Admonition>
+
+<span id="run-the-program" />
+
+## 6. Run the program
+
+Run the program, then pair the returned bitstrings with the data mapper using [`collect()`](/docs/api/qiskit-noise-learning/generated-circuit-generator-executor-circuit-generator#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect"), which produces a [`Fit`](/docs/api/qiskit-noise-learning/generated-analysis-fit#qiskit_noise_learning.analysis.Fit "qiskit_noise_learning.analysis.Fit") — the container the analysis stages read from and write to.
+
+```python
+job = executor.run(quantum_program)
+fit = circuit_generator.collect(job.result(), data_mapper)
+```
+
+<Admonition title="Running on real hardware" type="note">
+  ```python
+  from qiskit_ibm_runtime import Executor
+
+  executor = Executor(mode=backend)
+  ```
+</Admonition>
+
+<span id="analyze-the-data" />
+
+## 7. Analyze the data
+
+Build an analysis pipeline around nonnegative least squares fitting of the model.
+
+```python
+from qiskit_noise_learning.analysis import (
+    ComputeObservables,  # computes observables from raw data
+    CurveFitObservables,  # performs exponential fitting
+    NNLSSolve,  # solves model with nonnegative least squares
+)
+
+analyzer = ComputeObservables() + CurveFitObservables() + NNLSSolve()
+
+fit = analyzer.run(fit)
+```
+
+```myst
+/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/qiskit_noise_learning/analysis/model_solve.py:244: UserWarning: 3 of 156 row(s) of the linear system have a non-positive or non-finite uncertainty, so they carry no usable statistical weight. Positions in LinearSystemData.row_labels: 145, 146, 147.
+  system = LinearSystemData.from_fit(fit)
+```
+
+Plot the measured observable means against their fitted exponentials, one subplot per `CZ` pair, to see whether the decays being fitted are exponential at all.
+
+```python
+fit.plot_qubit_pair_decays(
+    pairs=cz_pairs,
+    observable_type="means",
+    exponential_fit=True,
+)
+```
+
+Swap `exponential_fit` for `model_prediction` to compare the same data against the decays implied by the rates that came out of the non-negative least squares solve.
+
+```python
+fit.plot_qubit_pair_decays(
+    pairs=cz_pairs,
+    observable_type="means",
+    model_prediction=True,
+)
+```
+
