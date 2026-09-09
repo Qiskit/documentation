@@ -229,6 +229,42 @@ python_api_name: qiskit.circuit.ParameterVectorElement
     Sine of the expression.
   </Function>
 
+  ### structurally\_equal
+
+  <Function id="qiskit.circuit.ParameterVectorElement.structurally_equal" signature="structurally_equal(rhs)">
+    Are these two expressions exactly structurally equal?
+
+    This is a faster and stricter form of the standard `==` relationship, but does not take simplifications into account. Almost all expressions that are [`structurally_equal()`](#qiskit.circuit.ParameterVectorElement.structurally_equal "qiskit.circuit.ParameterVectorElement.structurally_equal") are all `==` to each other, but the reverse is not true. (In the presence of `nan` values, [`structurally_equal()`](#qiskit.circuit.ParameterVectorElement.structurally_equal "qiskit.circuit.ParameterVectorElement.structurally_equal") can sometimes return `True` when `==` compares `False`.)
+
+    This function is most useful in internal tests of the [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") logic.
+
+    <Admonition title="Note" type="note">
+      Many operations on [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") do on-the-fly simplification as they are constructed, so two expressions that appear to have been constructed in different orders can still be internally structurally equal.
+    </Admonition>
+
+    **Parameters**
+
+    **rhs** – the other object to compare.
+
+    **Returns**
+
+    Whether the two objects are structurally equal expressions.
+
+    **Examples**
+
+    Two expressions can simplify to each other when checking for equality, but not use the same internal structure:
+
+    ```python
+    from qiskit.circuit import Parameter
+
+    x, y = Parameter("x"), Parameter("y")
+    left = x + y + 1
+    right = 1 + y + x
+    assert left == right
+    assert not left.structurally_equal(right)
+    ```
+  </Function>
+
   ### subs
 
   <Function id="qiskit.circuit.ParameterVectorElement.subs" signature="subs(parameter_map, allow_unknown_parameters=False)">
