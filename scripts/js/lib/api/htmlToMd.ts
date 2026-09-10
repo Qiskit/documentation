@@ -141,7 +141,8 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
       // (e.g. `id="equation-foo"`), which is otherwise dropped by the default
       // div handler since it isn't a `section`.
       return node.properties.id &&
-        (nodeClasses.includes("section") || nodeClasses.includes("math-wrapper"))
+        (nodeClasses.includes("section") ||
+          nodeClasses.includes("math-wrapper"))
         ? [buildSpanId(node.properties.id), ...all(h, node)]
         : defaultHandlers.div(h, node);
     },
