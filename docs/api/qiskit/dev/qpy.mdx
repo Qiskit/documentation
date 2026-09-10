@@ -409,6 +409,45 @@ Version 18 removes the `CalibrationsPack` field from the circuit payload. Pulse 
 
 Version 18 also corrects the encoding of integer and float `INSTRUCTION_PARAM` values to big-endian byte order, consistent with the rest of the QPY specification. In versions 1–17 these were mistakenly written in little-endian.
 
+<span id="parameter-vector-table" />
+
+#### PARAMETER\_VECTOR\_TABLE
+
+Version 18 stores each [`ParameterVector`](/docs/api/qiskit/dev/qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") once per circuit payload and has its elements refer to it by index, instead of repeating the vector’s identity in every element.
+
+The circuit payload gains a `PARAMETER_VECTOR_TABLE` immediately after the annotation headers, before the custom instruction definitions:
+
+```c
+struct {
+    uint16_t num_vectors;
+}
+```
+
+followed by `num_vectors` entries of
+
+```c
+struct {
+    uint16_t vector_name_size;
+    uint64_t vector_size;
+    char     uuid[16];        // the vector's root UUID
+}
+```
+
+each immediately followed by `vector_name_size` utf8 bytes of the vector’s name.
+
+A [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector) is correspondingly reduced to a reference:
+
+```c
+struct {
+    uint16_t vector_index;    // index into PARAMETER_VECTOR_TABLE
+    uint64_t index;           // index of this element within that vector
+}
+```
+
+The element’s own UUID is no longer stored, because it is the vector’s root UUID plus the element’s index – the relationship the reader has always used to recover the owning vector. An element therefore costs 10 bytes rather than 34 plus the length of the vector name, at the cost of two bytes per circuit for the count when a circuit uses no parameter vectors at all.
+
+A nested payload – a control-flow block, or a custom instruction definition – carries its own table, so that each circuit remains decodable on its own.
+
 #### New ParamRegisterPack
 
 Version 18 replaces the encoding of a Register payload, which stores either a whole [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or a single [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit"). It appears as an instruction’s condition (see [INSTRUCTIONS](#qpy-instructions)) and as an `INSTRUCTION_PARAM` of type `'R'`.
@@ -453,6 +492,14 @@ struct {
 ```
 
 With the addition of the additional byte at the end of the struct for the `register_attachment` field. If this value is 1 this indicates a contiguous register attached to a circuit. This will make the array following the name with the bit indices be a length of 1 and that contains the starting index of the register. The indices are then the range of length `size` from that starting index. For example, if the starting index is 5 and the `size` is 10 the indices are 5, 6, 7, 8, 9, 10, 11, 12, 13, 14.
+
+<span id="changes-to-custom-instruction-names" />
+
+#### Changes to CUSTOM\_INSTRUCTION names
+
+From version 11 till 17, the names of `CUSTOM_INSTRUCTION` blocks were suffixed with a random UUID hexadecimal string (e.g. `"my_gate_b3ecab5b4d6a4eb6bc2b2dbf18d83e1e"`), as described in [Version 11](#qpy-version-11). Because the UUID was generated for every [`dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") call, repeated dumps of the same circuit produced different byte streams — QPY output was not deterministic.
+
+From version 18 the UUID suffix is replaced by a counter that is reset at the start of each [`dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") call (e.g. `"my_gate_0"`).
 
 <span id="qpy-version-17" />
 
@@ -1023,6 +1070,10 @@ struct {
 
 Where a value of `-1` indicates `None` (as in no register is associated with the bit). Following each `INITIAL_LAYOUT_BIT` struct is `register_size` bytes for a `utf8` encoded string for the register name.
 
+<Admonition title="Note" type="note">
+  From version 18, anonymous qubits (`index == -1`) omit the `register_size` field entirely — the struct is just a single `int32_t`. Named qubits are unchanged.
+</Admonition>
+
 Following the initial layout there is `input_mapping_size` array of `uint32_t` integers representing the positions of the physical bit from the initial layout. This enables constructing a list of virtual bits where the array index is its input mapping position.
 
 Finally, there is an array of `final_layout_size` `uint32_t` integers. Each element is an index in the circuit’s `qubits` attribute which enables building a mapping from qubit starting position to the output position at the end of the circuit.
@@ -1397,7 +1448,7 @@ followed by `size` elements that are INSTRUCTION\_PARAM payloads, where each of 
 
 ### Version 3
 
-Version 3 of the QPY format is identical to [Version 2](#qpy-version-2) except that it defines a struct format to represent a [`PauliEvolutionGate`](/docs/api/qiskit/dev/qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") natively in QPY. To accomplish this the [CUSTOM\_DEFINITIONS](#qpy-custom-definition) struct now supports a new type value `'p'` to represent a [`PauliEvolutionGate`](/docs/api/qiskit/dev/qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"). Enties in the custom instructions tables have unique name generated that start with the string `"###PauliEvolutionGate_"` followed by a uuid string. This gate name is reserved in QPY and if you have a custom [`Instruction`](/docs/api/qiskit/dev/qiskit.circuit.Instruction "qiskit.circuit.Instruction") object with a definition set and that name prefix it will error. If it’s of type `'p'` the data payload is defined as follows:
+Version 3 of the QPY format is identical to [Version 2](#qpy-version-2) except that it defines a struct format to represent a [`PauliEvolutionGate`](/docs/api/qiskit/dev/qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") natively in QPY. To accomplish this the [CUSTOM\_DEFINITIONS](#qpy-custom-definition) struct now supports a new type value `'p'` to represent a [`PauliEvolutionGate`](/docs/api/qiskit/dev/qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"). Entries in the custom instructions tables have unique name generated that starts with the string `"###PauliEvolutionGate_"` followed by a uuid string (versions 11–17) or a counter (version 18+, see [Version 18](#qpy-version-18)). This gate name is reserved in QPY and if you have a custom [`Instruction`](/docs/api/qiskit/dev/qiskit.circuit.Instruction "qiskit.circuit.Instruction") object with a definition set and that name prefix it will error. If it’s of type `'p'` the data payload is defined as follows:
 
 <span id="pauli-evolution" />
 
@@ -1455,6 +1506,10 @@ struct {
 ```
 
 which is immediately followed by `vector_name_size` utf8 bytes representing the parameter’s vector name.
+
+Changed in version QPY: 18
+
+The vector is stored once in the circuit’s `PARAMETER_VECTOR_TABLE` and this payload became a reference to it, `uint16_t vector_index` followed by `uint64_t index`, with no name, size or UUID of its own. See [Version 18](#qpy-version-18).
 
 <span id="parameter-expr" />
 
