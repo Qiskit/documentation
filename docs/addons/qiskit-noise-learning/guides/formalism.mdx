@@ -52,7 +52,7 @@ This is a general class of operations that includes unitary Clifford gates, meas
 As outlined in [\[1\]](#references), [\[7\]](#references) for the no-reset case, if a specific twirling strategy is applied to a noisy instance of such a gate, then the action of the resulting operation can be modeled mathematically as a *uniform Pauli instrument*. That is, within the quantum instrument notation, $\mathcal{E}_m = \mathcal{U}_mG$, where $G$ is the Clifford unitary, and:
 
 $$
- \mathcal{U}_m = \sum_{a,b \in \mathbb{Z}_2^M} \Lambda_{a,b} \otimes | m + a \rangle\!\rangle \langle\!\langle m + b |, 
+ \mathcal{U}_m = \sum_{a,b \in \mathbb{Z}_2^M} \Lambda_{a,b} \otimes | m + a \rangle\!\rangle\langle\!\langle m + b |, 
 $$
 
 where each $\Lambda_{a,b}$ is a sub-normalized Pauli channel on the unmeasured qubits $N = [K] \setminus M$. It is implied by this being a quantum instrument that $\sum_{a,b} \Lambda_{a,b}$ is also trace-preserving. Some notes:
@@ -66,30 +66,38 @@ Note that we are not concerned here with the specifics of the twirling strategy:
 
 In Lemma 1 of [\[7\]](#references), it is shown that $\mathcal{E}_m = \mathcal{U}_mG$ can be rewritten as:
 
+<span id="equation-clifford-mcm-form" />
+
 $$
  \mathcal{E}_m = \frac{1}{2^{2|M| + |N|}}\sum_{x, y \in \mathbb{Z}_2^M, Q \in \mathcal{P}^N} (-1)^{m \cdot (x + y)}
-\lambda^Q_{x, y}| Q \otimes Z^y \rangle\!\rangle \langle\!\langle G^\dagger(Q \otimes Z^x) |. 
+\lambda^Q_{x, y}| Q \otimes Z^y \rangle\!\rangle\langle\!\langle G^\dagger(Q \otimes Z^x) |. 
 $$
 
 for some real numbers $\lambda_{x,y}^Q$, which are called the *fidelities* of the instrument.
 
 Adding reset to this picture is relatively straightforward. A noisy reset operation on qubits $R \subset [K]$ can be modeled according to the decomposition:
 
+<span id="equation-reset-form" />
+
 $$
- \frac{1}{2^{|R|}}\sum_{r \in \mathbb{Z}_2^{R}} \lambda_r | Z^r \rangle\!\rangle \langle\!\langle I_R |. 
+ \frac{1}{2^{|R|}}\sum_{r \in \mathbb{Z}_2^{R}} \lambda_r | Z^r \rangle\!\rangle\langle\!\langle I_R |. 
 $$
 
 The above form explicitly utilizes the assumption that the reset is along the $Z$-axis for each qubit. Noise in the operation is encoded in the reset fidelities $\lambda_r$, which are simply indexed by qubit subsets.
 
 An analog to Equation [(1)](#equation-clifford-mcm-form) that includes a reset operation at the end can be attained by simply composing it with Equation [(2)](#equation-reset-form). This composition, after some simplification, yields:
 
+<span id="equation-clifford-mcm-reset-form" />
+
 $$
 \begin{split} \frac{1}{2^{2|M|+|N|}} \sum_{\substack{x \in \mathbb{Z}_2^M, y \in \mathbb{Z}_2^{M \cup R} \\ Q \in
 \mathcal{P}^{N\setminus R}}} (-1)^{m \cdot (x + y|_M)} \lambda^Q_{x,y}  | Q \otimes
-Z^y \rangle\!\rangle \langle\!\langle G^\dagger(Q \otimes I_{N \cap R} \otimes Z^x) |. \end{split}
+Z^y \rangle\!\rangle\langle\!\langle G^\dagger(Q \otimes I_{N \cap R} \otimes Z^x) |. \end{split}
 $$
 
 This decomposition indicates that the number of fidelities $\lambda^Q_{x, y}$ is
+
+<span id="equation-num-fidelities" />
 
 $$
 4^{|N \setminus R|} 2^{|M|}2^{|M \cup R|} = 4^{K}2^{|M|}2^{-|M \cup R|} = 4^K 2^{-|R \setminus M|}.
@@ -124,7 +132,7 @@ $$
 
 In other words, if we compute the expectation value $Z^{x + y|_M}$ on the classical register output by the MCM, then the “Heisenberg picture” evolution of an observable through the Clifford-MCM-reset gate maps $Q \otimes Z^y \rightarrow Q \otimes I_{N \cap R} \otimes Z^x$. This fact alone enables recovery of PTG-like analysis beyond the unitary gate set case: with a particular post-processing of the measurement results, even gates with measurements and resets can be viewed as deterministically mapping one Pauli operator to another.
 
-Before proving this, we write Equation [(3)](#equation-clifford-mcm-reset-form) in a more suggestive way. Note that for $x, y \in \mathbb{Z}_2^M$, it holds that $Z^{x+y} = \sum_{m \in \mathbb{Z}_2^M} (-1)^{m \cdot (x + y)} | m \rangle\langle m |$, and as such (in super operator notation) we have:
+Before proving this, we write Equation [(3)](#equation-clifford-mcm-reset-form) in a more suggestive way. Note that for $x, y \in \mathbb{Z}_2^M$, it holds that $Z^{x+y} = \sum_{m \in \mathbb{Z}_2^M} (-1)^{m \cdot (x + y)}| m \rangle\langle m |$, and as such (in super operator notation) we have:
 
 $$
 \begin{split} \begin{aligned} \sum_{m \in \mathbb{Z}_2^M} \mathcal{E}_m \otimes | m \rangle\!\rangle_M = \frac{1}{2^{2|M|+|N|}}\sum_{\substack{x \in
@@ -141,13 +149,13 @@ $$
 \begin{split}
 \begin{aligned}
 &\langle\!\langle Q \otimes Z^y | \otimes \langle\!\langle Z^{x + y|_M} | \left(\sum_{m\in \mathbb{Z}_2^M} \mathcal{E}_m \otimes | m \rangle\!\rangle\right)\\
-&= \langle\!\langle Q \otimes Z^y | \otimes \langle\!\langle Z^{x + y|_M} | \left( \frac{1}{2^{2|M|+|N|}} \sum_{\substack{a \in \mathbb{Z}_2^M, b \in \mathbb{Z}_2^{M \cup R} \\ P \in \mathcal{P}^{N\setminus R}}} \lambda^P_{a,b}  | P \otimes Z^b \rangle\!\rangle \langle\!\langle G^\dagger(P \otimes I_{N \cap R} \otimes Z^a) | \otimes | Z^{a + b|_M} \rangle\!\rangle \right) \\
+&= \langle\!\langle Q \otimes Z^y | \otimes \langle\!\langle Z^{x + y|_M} | \left( \frac{1}{2^{2|M|+|N|}} \sum_{\substack{a \in \mathbb{Z}_2^M, b \in \mathbb{Z}_2^{M \cup R} \\ P \in \mathcal{P}^{N\setminus R}}} \lambda^P_{a,b}  | P \otimes Z^b \rangle\!\rangle\langle\!\langle G^\dagger(P \otimes I_{N \cap R} \otimes Z^a) | \otimes | Z^{a + b|_M} \rangle\!\rangle \right) \\
 &=\frac{1}{2^{2|M| + |N|}}\sum_{\substack{a \in \mathbb{Z}_2^M, b \in \mathbb{Z}_2^{M \cup R} \\ P \in \mathcal{P}^{N \setminus R}}} \lambda^P_{a, b}\underbrace{\langle Q \otimes Z^y, P \otimes Z^b \rangle}_{2^{|M| + |N|} \delta_{P, Q}\delta_{y,b}} \underbrace{\langle Z^{x + y|_M}, Z^{a + b|_M} \rangle}_{2^{|M|}\delta_{x+y|_M,a+b|_M}}\langle\!\langle G^\dagger(P \otimes I_{N \cap R} \otimes Z^a) |
 \end{aligned}
 \end{split}
 $$
 
-  Lastly, observe that $\delta_{y,b}\delta_{x+y|_M,a+b|_M} = \delta_{y,b}\delta_{x,a}$, and hence the final term above collapses down to the single term $\lambda^Q_{x,y} \langle\!\langle G^\dagger(Q \otimes I_{N \cap R} \otimes Z^x) |$, yielding the desired result.
+  Lastly, observe that $\delta_{y,b}\delta_{x+y|_M,a+b|_M} = \delta_{y,b}\delta_{x,a}$, and hence the final term above collapses down to the single term $\lambda^Q_{x,y} \opbra{G^\dagger(Q \otimes I_{N \cap R} \otimes Z^x)}$, yielding the desired result.
 </Admonition>
 
 See [\[7\]](#references) for development beyond this point: the definition of the PTG, paths through the PTG, and the proof that any properly-defined path corresponds to an experiment.

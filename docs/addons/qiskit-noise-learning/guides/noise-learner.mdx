@@ -5,7 +5,7 @@ description: "Learn the noise model of a gate with NoiseLearner for the latest v
 
 # Learn the noise model of a gate with NoiseLearner
 
-This guide demonstrates using [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated-noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") to learn a noise model for a unitary gate.
+This guide demonstrates using [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") to learn a noise model for a unitary gate.
 
 1.  Define the gate
 2.  Set up local simulation
@@ -52,7 +52,7 @@ with circuit.box([Twirl(), InjectNoise("cz_gate")]):
 
 ## 2. Set up local simulation
 
-An [`AerExecutor`](/docs/api/qiskit-noise-learning/generated-aer-executor-aer-executor#qiskit_noise_learning.aer_executor.AerExecutor "qiskit_noise_learning.aer_executor.AerExecutor") runs a program on a local Aer simulator, injecting Pauli-Lindblad noise at the barriers Samplomatic places around each twirled gate.
+An [`AerExecutor`](/docs/api/qiskit-noise-learning/generated/aer-executor-aer-executor#qiskit_noise_learning.aer_executor.AerExecutor "qiskit_noise_learning.aer_executor.AerExecutor") runs a program on a local Aer simulator, injecting Pauli-Lindblad noise at the barriers Samplomatic places around each twirled gate.
 
 The Pauli indices inside each map are local to the gate, in ascending physical-qubit order:
 
@@ -98,7 +98,7 @@ spam_noise = PauliLindbladMap.from_sparse_list(
 noise_dict = {"cz_gate": cz_noise, "P": spam_noise, "M": spam_noise}
 ```
 
-Instantiate [`AerExecutor`](/docs/api/qiskit-noise-learning/generated-aer-executor-aer-executor#qiskit_noise_learning.aer_executor.AerExecutor "qiskit_noise_learning.aer_executor.AerExecutor") with the stabilizer method. Set `root_seed` to make the simulated data reproducible.
+Instantiate [`AerExecutor`](/docs/api/qiskit-noise-learning/generated/aer-executor-aer-executor#qiskit_noise_learning.aer_executor.AerExecutor "qiskit_noise_learning.aer_executor.AerExecutor") with the stabilizer method. Set `root_seed` to make the simulated data reproducible.
 
 ```python
 from qiskit_aer import AerSimulator
@@ -118,7 +118,7 @@ executor = AerExecutor(
 
 ## 3. Run the learner
 
-[`LearningOptions`](/docs/api/qiskit-noise-learning/generated-noise-learner-learning-options#qiskit_noise_learning.noise_learner.LearningOptions "qiskit_noise_learning.noise_learner.LearningOptions") controls the shape of the experiment: how deep the twirled gate is repeated, and how many randomizations and shots are spent at each depth. Passing `executor` diverts the generated program to the simulator; leave it out and [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated-noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") submits to `backend` through IBM Quantum instead.
+[`LearningOptions`](/docs/api/qiskit-noise-learning/generated/noise-learner-learning-options#qiskit_noise_learning.noise_learner.LearningOptions "qiskit_noise_learning.noise_learner.LearningOptions") controls the shape of the experiment: how deep the twirled gate is repeated, and how many randomizations and shots are spent at each depth. Passing `executor` diverts the generated program to the simulator; leave it out and [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") submits to `backend` through IBM Quantum instead.
 
 ```python
 from qiskit_noise_learning.noise_learner import LearningOptions, NoiseLearner
@@ -145,7 +145,7 @@ result = job.result()
 
 ## 4. Read the results
 
-Everything the analysis pipeline produced is reachable through [`fit`](/docs/api/qiskit-noise-learning/generated-noise-learner-noise-learner-result#qiskit_noise_learning.noise_learner.NoiseLearnerResult.fit "qiskit_noise_learning.noise_learner.NoiseLearnerResult.fit"). Use the fit to plot per-qubit-pair fidelity decays: both the data and the exponential fit.
+Everything the analysis pipeline produced is reachable through [`fit`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner-result#qiskit_noise_learning.noise_learner.NoiseLearnerResult.fit "qiskit_noise_learning.noise_learner.NoiseLearnerResult.fit"). Use the fit to plot per-qubit-pair fidelity decays: both the data and the exponential fit.
 
 ```python
 result.fit.plot_qubit_pair_decays(
@@ -155,7 +155,7 @@ result.fit.plot_qubit_pair_decays(
 )
 ```
 
-Extract the learned noise from [`to_dict()`](/docs/api/qiskit-noise-learning/generated-noise-learner-noise-learner-result#qiskit_noise_learning.noise_learner.NoiseLearnerResult.to_dict "qiskit_noise_learning.noise_learner.NoiseLearnerResult.to_dict"): one [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) per learned gate, keyed by the name from the `InjectNoise` annotation, and expressed in the backend’s own qubit indexing rather than that of the gate.
+Extract the learned noise from [`to_dict()`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner-result#qiskit_noise_learning.noise_learner.NoiseLearnerResult.to_dict "qiskit_noise_learning.noise_learner.NoiseLearnerResult.to_dict"): one [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) per learned gate, keyed by the name from the `InjectNoise` annotation, and expressed in the backend’s own qubit indexing rather than that of the gate.
 
 ```python
 learned = result.to_dict()["cz_gate"]
@@ -166,5 +166,4 @@ learned.num_terms
 144
 ```
 
-By default [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated-noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") fits a 2-local model, so the map carries a term for every Pauli supported on a connected pair of the gate’s qubits — 144 of them, of which only 24 were given a nonzero rate in step 2.
-
+By default [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") fits a 2-local model, so the map carries a term for every Pauli supported on a connected pair of the gate’s qubits — 144 of them, of which only 24 were given a nonzero rate in step 2.
