@@ -1,0 +1,60 @@
+---
+title: PauliEvolutionSynthesisMcts (dev version)
+description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisMcts in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisMcts
+---
+
+# PauliEvolutionSynthesisMcts
+
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisMcts" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L2255-L2354" signature="qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisMcts" modifiers="class">
+  Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+
+  Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") using Monte Carlo Tree Search (MCTS).
+
+  This plugin name is registered under the name `"PauliEvolution.mcts"`, which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  The synthesis algorithm is described in \[1].
+
+  On large circuits, this synthesis method may require a significant runtime.
+
+  The plugin supports the following additional options:
+
+  *   preserve\_order (bool): Preserve the order of Pauli rotations, up to commutativity.
+  *   upto\_clifford (bool): if True, the final Clifford operator is not synthesized.
+  *   upto\_phase (bool): if True, the returned circuit may differ from the input by a global phase.
+  *   num\_simulations (int): Number of Monte Carlo simulations to perform. This value must be at least 1.
+  *   max\_parallel\_simulations (int | None): Maximum number of simulations that can be performed in parallel. If integer, this value must be at least 1. The value of None means “unlimited”.
+
+  **References**
+
+  1.  Mulundano Machiya, Matt Menickelly, Paul Hovland, Ji Liu, *MonteQ: A Monte Carlo Tree Search Based Quantum Circuit Synthesis Framework*, [arXiv:2604.19029](https://arxiv.org/abs/2604.19029)
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisMcts.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L2286-L2354" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+    Run synthesis for the given Operation.
+
+    **Parameters**
+
+    *   **high\_level\_object** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The Operation to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object.
+    *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – The coupling map of the backend in case synthesis is done on a physical circuit.
+    *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the target backend.
+    *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of qubits over which the operation is defined in case synthesis is done on a physical circuit.
+    *   **options** – Additional method-specific optional kwargs.
+
+    **Returns**
+
+    **The quantum circuit representation of the Operation**
+
+    when successful, and `None` otherwise.
+
+    **Return type**
+
+    [QuantumCircuit](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+</Class>
+
