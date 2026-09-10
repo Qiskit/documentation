@@ -1,0 +1,183 @@
+---
+title: Fit (latest version)
+description: API reference for qiskit_noise_learning.analysis.Fit in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.Fit
+---
+
+<span id="qiskit-noise-learning-analysis-fit" />
+
+# qiskit\_noise\_learning.analysis.Fit
+
+<Class id="qiskit_noise_learning.analysis.Fit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/fit.py" signature="qiskit_noise_learning.analysis.Fit(*, model: LinearMap[Hashable, FidelityIndex] | None = None, paths: list[Path] | None = None, instruction_sequences: list[InstructionSequence] | None = None, relations: set[tuple[int, int]] | None = None, _store: dict[type[LeveledData], list[LeveledData | AbsentType | SkippedType]] | None = None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  Container for data at each level of the analysis hierarchy.
+
+  The `LEVELS` represent different stages of processed data. In order, they are:
+
+  *   `RawData` corresponding to bit counts of executed instruction sequences.
+  *   `ObservableData` corresponding to observables of randomizations of paths that traverse the instruction sequences.
+  *   `AggregatedObservableData` corresponding to a combination of observables aggregated across randomizations.
+  *   `ModelData` corresponding to model fit parameters.
+
+  Each level holds a history of all values written to it; the current value is always the most recent. New levels start as `Absent`. Levels bypassed by a stage are marked `Skipped`.
+
+  Example:
+
+  ```python
+  result = my_stage.run(my_raw_data)
+  result.raw_data           # current RawData
+  result.history.raw_data   # full write history at the RawData level
+  ```
+
+  **Parameters**
+
+  *   **model** – The model to fit. If given, it must be a fidelity model, i.e. a [`LinearMap`](math-linear-map "qiskit_noise_learning.math.LinearMap") whose output space is a [`LogFidelitySpace`](models-log-fidelity-space "qiskit_noise_learning.models.LogFidelitySpace") (see [`is_fidelity_model()`](models-is-fidelity-model "qiskit_noise_learning.models.is_fidelity_model")).
+  *   **paths** – The paths to analyze.
+  *   **instruction\_sequences** – The instruction sequences used in the experiment.
+  *   **relations** – A pre-computed set of `(path_idx, sequence_idx)` tuples indicating which paths are traversed by which instruction sequences.
+
+  **Raises**
+
+  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If `model` is not `None` and is not a fidelity model.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.Fit.__init__" signature="__init__(*, model: LinearMap[Hashable, FidelityIndex] | None = None, paths: list[Path] | None = None, instruction_sequences: list[InstructionSequence] | None = None, relations: set[tuple[int, int]] | None = None, _store: dict[type[LeveledData], list[LeveledData | AbsentType | SkippedType]] | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                       |                                                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.Fit.__init__ "qiskit_noise_learning.analysis.Fit.__init__")(\*\[, model, paths, ...])                                    |                                                                              |
+  | [`copy`](#qiskit_noise_learning.analysis.Fit.copy "qiskit_noise_learning.analysis.Fit.copy")()                                                                        | Return a copy preserving the full history at each level.                     |
+  | [`plot_qubit_pair_decays`](#qiskit_noise_learning.analysis.Fit.plot_qubit_pair_decays "qiskit_noise_learning.analysis.Fit.plot_qubit_pair_decays")(pairs, \*\[, ...]) | Plot a grid of fidelity decays over qubit pairs, drawn from this fit's data. |
+
+  ## Attributes
+
+  |                                                                                                                                                                |                                                                         |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+  | [`aggregated_observable_data`](#qiskit_noise_learning.analysis.Fit.aggregated_observable_data "qiskit_noise_learning.analysis.Fit.aggregated_observable_data") | Current data at the `AggregatedObservableData` level.                   |
+  | [`history`](#qiskit_noise_learning.analysis.Fit.history "qiskit_noise_learning.analysis.Fit.history")                                                          | The full write history for each level.                                  |
+  | [`instruction_sequences`](#qiskit_noise_learning.analysis.Fit.instruction_sequences "qiskit_noise_learning.analysis.Fit.instruction_sequences")                | The instruction sequences used in the experiment, or `None` if not set. |
+  | [`model`](#qiskit_noise_learning.analysis.Fit.model "qiskit_noise_learning.analysis.Fit.model")                                                                | The fidelity model used for design matrix construction.                 |
+  | [`model_data`](#qiskit_noise_learning.analysis.Fit.model_data "qiskit_noise_learning.analysis.Fit.model_data")                                                 | Current data at the `ModelData` level.                                  |
+  | [`observable_data`](#qiskit_noise_learning.analysis.Fit.observable_data "qiskit_noise_learning.analysis.Fit.observable_data")                                  | Current data at the `ObservableData` level.                             |
+  | [`paths`](#qiskit_noise_learning.analysis.Fit.paths "qiskit_noise_learning.analysis.Fit.paths")                                                                | The paths to compute observables for.                                   |
+  | [`raw_data`](#qiskit_noise_learning.analysis.Fit.raw_data "qiskit_noise_learning.analysis.Fit.raw_data")                                                       | Current data at the `RawData` level.                                    |
+  | [`relations`](#qiskit_noise_learning.analysis.Fit.relations "qiskit_noise_learning.analysis.Fit.relations")                                                    | Path-to-sequence relations, or `None` if not set.                       |
+
+  ### copy
+
+  <Function id="qiskit_noise_learning.analysis.Fit.copy" signature="copy() → Self">
+    Return a copy preserving the full history at each level.
+  </Function>
+
+  ### history
+
+  <Attribute id="qiskit_noise_learning.analysis.Fit.history">
+    Type: `FitHistory`
+
+    The full write history for each level.
+  </Attribute>
+
+  ### model
+
+  <Attribute id="qiskit_noise_learning.analysis.Fit.model">
+    Type: [`LinearMap`](math-linear-map "qiskit_noise_learning.math.linear_map.LinearMap")\[[`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable), [`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex")] | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    The fidelity model used for design matrix construction.
+  </Attribute>
+
+  ### raw\_data
+
+  <Attribute id="qiskit_noise_learning.analysis.Fit.raw_data">
+    Type: [`RawData`](data-raw-data "qiskit_noise_learning.data.raw_data.RawData") | `AbsentType` | `SkippedType`
+
+    Current data at the `RawData` level.
+  </Attribute>
+
+  ### observable\_data
+
+  <Attribute id="qiskit_noise_learning.analysis.Fit.observable_data">
+    Type: [`ObservableData`](data-observable-data "qiskit_noise_learning.data.observable_data.ObservableData") | `AbsentType` | `SkippedType`
+
+    Current data at the `ObservableData` level.
+  </Attribute>
+
+  ### aggregated\_observable\_data
+
+  <Attribute id="qiskit_noise_learning.analysis.Fit.aggregated_observable_data">
+    Type: [`AggregatedObservableData`](data-aggregated-observable-data "qiskit_noise_learning.data.aggregated_observable_data.AggregatedObservableData") | `AbsentType` | `SkippedType`
+
+    Current data at the `AggregatedObservableData` level.
+  </Attribute>
+
+  ### model\_data
+
+  <Attribute id="qiskit_noise_learning.analysis.Fit.model_data">
+    Type: [`ModelData`](data-model-data "qiskit_noise_learning.data.model_data.ModelData") | `AbsentType` | `SkippedType`
+
+    Current data at the `ModelData` level.
+  </Attribute>
+
+  ### paths
+
+  <Attribute id="qiskit_noise_learning.analysis.Fit.paths">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`Path`](sequences-path "qiskit_noise_learning.sequences.path.Path")]
+
+    The paths to compute observables for.
+  </Attribute>
+
+  ### instruction\_sequences
+
+  <Attribute id="qiskit_noise_learning.analysis.Fit.instruction_sequences">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`InstructionSequence`](sequences-instruction-sequence "qiskit_noise_learning.sequences.instruction_sequence.InstructionSequence")] | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    The instruction sequences used in the experiment, or `None` if not set.
+  </Attribute>
+
+  ### relations
+
+  <Attribute id="qiskit_noise_learning.analysis.Fit.relations">
+    Type: [`set`](https://docs.python.org/3/library/stdtypes.html#set)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/library/functions.html#int), [`int`](https://docs.python.org/3/library/functions.html#int)]] | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    Path-to-sequence relations, or `None` if not set.
+  </Attribute>
+
+  ### plot\_qubit\_pair\_decays
+
+  <Function id="qiskit_noise_learning.analysis.Fit.plot_qubit_pair_decays" signature="plot_qubit_pair_decays(pairs: Sequence[tuple[int, int]], *, observable_type: Literal['raw', 'means', 'both'] | None = None, exponential_fit: bool = False, model_prediction: bool = False, observable_marker_kwargs: Mapping[str, object] | None = None, means_marker_kwargs: Mapping[str, object] | None = None, exponential_fit_line_kwargs: Mapping[str, object] | None = None, model_line_kwargs: Mapping[str, object] | None = None, num_cols: int = 3, noise_site: Mapping[str, Literal['before', 'after']] | None = None, paths: Sequence[Path] | None = None, fragment_depths: Sequence[float] | None = None, title: str | None = None) → InteractiveFigure">
+    Plot a grid of fidelity decays over qubit pairs, drawn from this fit’s data.
+
+    One subplot per pair, sharing labels/colors across pairs. Which decays are drawn is controlled by the toggles below; all default to off, so enable the ones you want. A requested decay whose data has not been computed on this fit yet is skipped with a warning.
+
+    **Parameters**
+
+    *   **pairs** – The qubit pairs to plot, one subplot each. A pair is unordered – `(1, 0)` names the same subplot as `(0, 1)` – so no pair may be repeated.
+    *   **observable\_type** – How to draw the empirical observable data: `"raw"` (raw per-randomization scatter), `"means"` (per-fragment-depth means with error bars), `"both"`, or `None` (the default) to omit the empirical points. Uses this fit’s [`ObservableData`](data-observable-data "qiskit_noise_learning.data.ObservableData").
+    *   **exponential\_fit** – Whether to draw the fitted exponential decay curve, from this fit’s [`AggregatedObservableData`](data-aggregated-observable-data "qiskit_noise_learning.data.AggregatedObservableData") (its `fragment_depth == -1` fitted parameters). Defaults to `False`.
+    *   **model\_prediction** – Whether to draw the model-predicted decay curve, from this fit’s model and [`ModelData`](data-model-data "qiskit_noise_learning.data.ModelData"). Defaults to `False`.
+    *   **observable\_marker\_kwargs** – Optional `marker` overrides for the raw observable points.
+    *   **means\_marker\_kwargs** – Optional `marker` overrides for the observable-means points.
+    *   **exponential\_fit\_line\_kwargs** – Optional `line` overrides for the exponential-fit curve.
+    *   **model\_line\_kwargs** – Optional `line` overrides for the model curve.
+    *   **num\_cols** – The number of subplot columns; rows are derived from the pair count.
+    *   **noise\_site** – An optional noise-site mapping forwarded to the label formatter (with the default `"formula"` label style this yields the compact `f^{gate}_{pauli}` label). Defaults to the noise site of the fit’s model when it is, or contains, a single [`PauliLindbladModel`](models-pauli-lindblad-model "qiskit_noise_learning.models.PauliLindbladModel").
+    *   **paths** – The paths to draw across all layers. Defaults to the decay paths found in this fit’s observable/aggregated observable data, falling back to the fit’s own `paths` when no such data is present. Supply this to draw model-prediction curves for a fit that carries only a model (no observable or aggregated observable data to derive the paths from).
+    *   **fragment\_depths** – The fragment-depth range for the curves. Defaults to `0` through the largest fragment depth in the empirical data present, or `0`–`10` when there is none.
+    *   **title** – An optional figure title.
+
+    **Returns**
+
+    The figure with interactive legends.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the fit has no model (and hence no gate set) to build labels from, or if `pairs` names the same pair twice.
+    *   [**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError) – If `matplotlib` is not installed.
+  </Function>
+</Class>
+

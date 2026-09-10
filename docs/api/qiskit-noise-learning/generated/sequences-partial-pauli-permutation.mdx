@@ -1,0 +1,264 @@
+---
+title: PartialPauliPermutation (latest version)
+description: API reference for qiskit_noise_learning.sequences.PartialPauliPermutation in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.sequences.PartialPauliPermutation
+---
+
+<span id="qiskit-noise-learning-sequences-partialpaulipermutation" />
+
+# qiskit\_noise\_learning.sequences.PartialPauliPermutation
+
+<Class id="qiskit_noise_learning.sequences.PartialPauliPermutation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/sequences/partial_pauli_permutation.py" signature="qiskit_noise_learning.sequences.PartialPauliPermutation(partial_permutation_indices: NDArray[int8])" modifiers="class">
+  Bases: `Instruction`
+
+  Partially-specified permutations of the single-qubit phaseless Paulis on `n` qubits.
+
+  A [`PartialPauliPermutation`](#qiskit_noise_learning.sequences.PartialPauliPermutation "qiskit_noise_learning.sequences.PartialPauliPermutation") represents a partial-specification of a layer of single qubit Cliffords for situations where the specific phases of the Pauli group need not be constrained. The partial nature of the specification is to enable progressively building such layers. Once a partial permutation is “complete” in the sense that is a full specification of a permutation, as indicated by the `bool` property [`PartialPauliPermutation.is_complete`](#qiskit_noise_learning.sequences.PartialPauliPermutation.is_complete "qiskit_noise_learning.sequences.PartialPauliPermutation.is_complete"), a default Clifford implementing the permutation is assigned to each qubit according to the ordering in `COMPLETE_TO_C1_TABLEAU`.
+
+  Two partial permutations on a qubit are mergeable (see [`is_mergeable_with()`](#qiskit_noise_learning.sequences.PartialPauliPermutation.is_mergeable_with "qiskit_noise_learning.sequences.PartialPauliPermutation.is_mergeable_with") and [`merge()`](#qiskit_noise_learning.sequences.PartialPauliPermutation.merge "qiskit_noise_learning.sequences.PartialPauliPermutation.merge")) if there exists a single-qubit Clifford that implements both of their permutations, which without loss of generality is the statement that one doesn’t map a Pauli to a different Pauli than the other.
+
+  The main data representation of the class is a list of integers, where each integer indexes a particular single-qubit partial Pauli permutation given in `partial_permutation_sets()`, which provides a fixed ordering.
+
+  However, a human-readable `set`-based representation can also be used for construction via the [`PartialPauliPermutation.from_sets()`](#qiskit_noise_learning.sequences.PartialPauliPermutation.from_sets "qiskit_noise_learning.sequences.PartialPauliPermutation.from_sets") class method, or can be retrieved from an instance via the [`PartialPauliPermutation.to_sets()`](#qiskit_noise_learning.sequences.PartialPauliPermutation.to_sets "qiskit_noise_learning.sequences.PartialPauliPermutation.to_sets") method. For a single qubit, the partial permutation is specified as a `set` whose entries are `tuple`s of the form `(p0, p1)`, where `p0` and `p1` are strings drawn from `["Z", "X", "Y"]`. This `tuple` indicates that `p0` is mapped by the permutation to `p1`.
+
+  **Parameters**
+
+  **partial\_permutation\_indices** – A numpy array of index-specified partial permutations. The number of qubits is determined from the length.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.__init__" signature="__init__(partial_permutation_indices: NDArray[int8])" />
+
+  ## Methods
+
+  |                                                                                                                                                                                                                                    |                                                                               |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.sequences.PartialPauliPermutation.__init__ "qiskit_noise_learning.sequences.PartialPauliPermutation.__init__")(partial\_permutation\_indices)                                                  |                                                                               |
+  | [`complete`](#qiskit_noise_learning.sequences.PartialPauliPermutation.complete "qiskit_noise_learning.sequences.PartialPauliPermutation.complete")()                                                                               | Return a new partial Permutation that is complete and consistent with self.   |
+  | [`compose`](#qiskit_noise_learning.sequences.PartialPauliPermutation.compose "qiskit_noise_learning.sequences.PartialPauliPermutation.compose")(other)                                                                             | Compose with another partial permutation.                                     |
+  | [`empty`](#qiskit_noise_learning.sequences.PartialPauliPermutation.empty "qiskit_noise_learning.sequences.PartialPauliPermutation.empty")(num\_qubits)                                                                             | Generate the completely unspecified instance on `num_qubits`.                 |
+  | [`from_qubit_sparse_pauli_lists`](#qiskit_noise_learning.sequences.PartialPauliPermutation.from_qubit_sparse_pauli_lists "qiskit_noise_learning.sequences.PartialPauliPermutation.from_qubit_sparse_pauli_lists")(in\_paulis, ...) | Construct a `PartialPauliPermutation` that maps `in_paulis` to `out_paulis`.  |
+  | [`from_qubit_sparse_paulis`](#qiskit_noise_learning.sequences.PartialPauliPermutation.from_qubit_sparse_paulis "qiskit_noise_learning.sequences.PartialPauliPermutation.from_qubit_sparse_paulis")(in\_pauli, out\_pauli)          | Construct a `PartialPauliPermutation` that maps `in_pauli` to `out_pauli`.    |
+  | [`from_sets`](#qiskit_noise_learning.sequences.PartialPauliPermutation.from_sets "qiskit_noise_learning.sequences.PartialPauliPermutation.from_sets")(sets)                                                                        | Construct from a list of sets.                                                |
+  | [`is_mergeable_with`](#qiskit_noise_learning.sequences.PartialPauliPermutation.is_mergeable_with "qiskit_noise_learning.sequences.PartialPauliPermutation.is_mergeable_with")(other)                                               | Whether or not this instruction is mergeable with another one.                |
+  | [`merge`](#qiskit_noise_learning.sequences.PartialPauliPermutation.merge "qiskit_noise_learning.sequences.PartialPauliPermutation.merge")(other)                                                                                   | Merge self and other into a single instruction.                               |
+  | [`propagate`](#qiskit_noise_learning.sequences.PartialPauliPermutation.propagate "qiskit_noise_learning.sequences.PartialPauliPermutation.propagate")(...)                                                                         | Given a Pauli, propagate it through the Clifford implied by this permutation. |
+  | [`to_sets`](#qiskit_noise_learning.sequences.PartialPauliPermutation.to_sets "qiskit_noise_learning.sequences.PartialPauliPermutation.to_sets")()                                                                                  | Return the set representation.                                                |
+
+  ## Attributes
+
+  |                                                                                                                                                                                                             |                                                                                      |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+  | [`inverse`](#qiskit_noise_learning.sequences.PartialPauliPermutation.inverse "qiskit_noise_learning.sequences.PartialPauliPermutation.inverse")                                                             | Return the inversion of this partial permutation.                                    |
+  | [`is_complete`](#qiskit_noise_learning.sequences.PartialPauliPermutation.is_complete "qiskit_noise_learning.sequences.PartialPauliPermutation.is_complete")                                                 | Whether self represents a complete specification of single-qubit Pauli permutations. |
+  | `num_qubits`                                                                                                                                                                                                |                                                                                      |
+  | [`partial_permutation_indices`](#qiskit_noise_learning.sequences.PartialPauliPermutation.partial_permutation_indices "qiskit_noise_learning.sequences.PartialPauliPermutation.partial_permutation_indices") | Raw numerical format of the partial permutation.                                     |
+  | [`structure_token`](#qiskit_noise_learning.sequences.PartialPauliPermutation.structure_token "qiskit_noise_learning.sequences.PartialPauliPermutation.structure_token")                                     | A hashable summary of this instruction that constrains mergeability.                 |
+
+  ### inverse
+
+  <Attribute id="qiskit_noise_learning.sequences.PartialPauliPermutation.inverse">
+    Type: [`Self`](https://docs.python.org/3/library/typing.html#typing.Self)
+
+    Return the inversion of this partial permutation.
+
+    This returns a partially-specified inversion: only the existing mappings in this instance will be inverted. Note that the completion convention has been chosen to be consistent with inversion, in the sense that `self.inverse.complete() == self.complete().inverse`. Furthermore, the Clifford implied by `COMPLETE_TO_C1_TABLEAU` is the inverse of the implied Clifford.
+  </Attribute>
+
+  ### is\_complete
+
+  <Attribute id="qiskit_noise_learning.sequences.PartialPauliPermutation.is_complete">
+    Type: [`bool`](https://docs.python.org/3/library/functions.html#bool)
+
+    Whether self represents a complete specification of single-qubit Pauli permutations.
+  </Attribute>
+
+  ### partial\_permutation\_indices
+
+  <Attribute id="qiskit_noise_learning.sequences.PartialPauliPermutation.partial_permutation_indices">
+    Type: `NDArray`\[`int8`]
+
+    Raw numerical format of the partial permutation.
+  </Attribute>
+
+  ### structure\_token
+
+  <Attribute id="qiskit_noise_learning.sequences.PartialPauliPermutation.structure_token">
+    Type: [`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable)
+
+    A hashable summary of this instruction that constrains mergeability.
+
+    This token serves as a cheap check of non-mergeability: instructions with unequal structure tokens are never mergeable. The token must therefore distinguish instruction types from one another.
+  </Attribute>
+
+  ### complete
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.complete" signature="complete() → Self">
+    Return a new partial Permutation that is complete and consistent with self.
+
+    Note that the conventions have been chosen to ensure that:
+
+    *   Any partially-specified permutation consistent with the identity is mapped to the identity, and
+    *   `self.inverse.complete() == self.complete().inverse`.
+
+    **Returns**
+
+    A new [`PartialPauliPermutation`](#qiskit_noise_learning.sequences.PartialPauliPermutation "qiskit_noise_learning.sequences.PartialPauliPermutation") containing the completion of `self`.
+  </Function>
+
+  ### compose
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.compose" signature="compose(other: Self) → Self">
+    Compose with another partial permutation.
+
+    For complete permutations, `self.compose(other)` returns the permutation assciated with `C1 @ C2`, where `C1` and `C2` are the Cliffords associated, respectively, with `self` and `other`. Partially specified permutations only contain a single mapping, and the composition is defined in the natural way only when the output of `other` is the input of `self`. Note finally that composition is not defined if one of `self` and `other` is incomplete, and the other is complete. This is due to the inability to ensure the commutation of completion and composition, described below.
+
+    Note that the completion convention has been chosen to be consistent with composition, in the sense that `self.compose(other).complete() == self.complete().compose(other.complete())`. Furthermore, for complete permutations, the mapping to the Clifford implied by `COMPLETE_TO_C1_TABLEAU` is a group homomorphism (preserves multiplication).
+
+    **Parameters**
+
+    **other** – The other to compose with.
+
+    **Returns**
+
+    The composed permutation.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the composition of `self` with `other` is undefined.
+  </Function>
+
+  ### empty
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.empty" signature="empty(num_qubits: int) → Self" modifiers="classmethod">
+    Generate the completely unspecified instance on `num_qubits`.
+
+    **Parameters**
+
+    **num\_qubits** – Number of qubits.
+
+    **Returns**
+
+    A new, trivial [`PartialPauliPermutation`](#qiskit_noise_learning.sequences.PartialPauliPermutation "qiskit_noise_learning.sequences.PartialPauliPermutation").
+  </Function>
+
+  ### from\_qubit\_sparse\_paulis
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.from_qubit_sparse_paulis" signature="from_qubit_sparse_paulis(in_pauli: QubitSparsePauli, out_pauli: QubitSparsePauli) → Self" modifiers="classmethod">
+    Construct a `PartialPauliPermutation` that maps `in_pauli` to `out_pauli`.
+
+    **Parameters**
+
+    *   **in\_pauli** – The Pauli to be mapped.
+    *   **out\_pauli** – The Pauli to be mapped to.
+
+    **Returns**
+
+    A new [`PartialPauliPermutation`](#qiskit_noise_learning.sequences.PartialPauliPermutation "qiskit_noise_learning.sequences.PartialPauliPermutation") that maps `in_pauli` to `out_pauli`.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `in_pauli` and `out_pauli` are not on the same number of qubits, or if they do not act on the same qubits.
+  </Function>
+
+  ### from\_qubit\_sparse\_pauli\_lists
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.from_qubit_sparse_pauli_lists" signature="from_qubit_sparse_pauli_lists(in_paulis: QubitSparsePauliList, out_paulis: QubitSparsePauliList) → Self" modifiers="classmethod">
+    Construct a `PartialPauliPermutation` that maps `in_paulis` to `out_paulis`.
+
+    **Parameters**
+
+    *   **in\_paulis** – The Paulis to be mapped.
+    *   **out\_paulis** – The Paulis to be mapped to.
+
+    **Returns**
+
+    A new [`PartialPauliPermutation`](#qiskit_noise_learning.sequences.PartialPauliPermutation "qiskit_noise_learning.sequences.PartialPauliPermutation").
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the number of qubits are inconsistent, or the implied permutations are inconsistent.
+  </Function>
+
+  ### from\_sets
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.from_sets" signature="from_sets(sets: list[frozenset[tuple[str, str]]]) → Self" modifiers="classmethod">
+    Construct from a list of sets.
+
+    See the class documentation for a description of the expected format.
+
+    **Parameters**
+
+    **sets** – The sets specifying the partial permutation.
+
+    **Returns**
+
+    A new instance.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any of the sets are not valid.
+  </Function>
+
+  ### is\_mergeable\_with
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.is_mergeable_with" signature="is_mergeable_with(other)">
+    Whether or not this instruction is mergeable with another one.
+
+    Two instructions are mergeable if a third instruction exists that simultaneously implements both of their actions. The trivial case is when the instructions are equal: the third instruction can be a third instance of the same instruction. However, non-trivial cases are possible because some instruction types, notably [`PartialPauliPermutation`](#qiskit_noise_learning.sequences.PartialPauliPermutation "qiskit_noise_learning.sequences.PartialPauliPermutation"), do not necessarily fully specify their own action, so that unequal instances can nevertheless still have their constraints simultaneously satisfied by a single third instance.
+
+    If this method returns `True`, then the method [`merge()`](#qiskit_noise_learning.sequences.PartialPauliPermutation.merge "qiskit_noise_learning.sequences.PartialPauliPermutation.merge") should succeed.
+
+    **Parameters**
+
+    **other** – The other instruction to check mergeablitity with.
+
+    **Returns**
+
+    Whether this instruction is mergeable with the other.
+  </Function>
+
+  ### merge
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.merge" signature="merge(other)">
+    Merge self and other into a single instruction.
+
+    **Parameters**
+
+    **other** – The other instruction to merge with.
+
+    **Returns**
+
+    Some instruction (possibly the same instance) that simultaneously implements the action of this instruction and the other instruction.
+  </Function>
+
+  ### propagate
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.propagate" signature="propagate(pauli: QubitSparsePauli, inverse: bool = False) → QubitSparsePauli" extraSignatures={["propagate(pauli: PhasedQubitSparsePauli, inverse: bool = False) → PhasedQubitSparsePauli"]}>
+    Given a Pauli, propagate it through the Clifford implied by this permutation.
+
+    This method works for both phased and unphased propagation depending on the type of the Pauli supplied. Unphased propagation can be performed on incomplete permutations, so long as the permutation is defined on the Pauli. Phased propagation requires `self` to be complete, so that an explicit Clifford can be associated with this instance.
+
+    **Parameters**
+
+    **pauli** – The Pauli to apply the layer to.
+
+    **Returns**
+
+    The evolved Pauli.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `pauli.num_qubits != self.num_qubits`, or if `isinstance(pauli, PhasedQubitSparsePauli and not self.is_complete`, or if `pauli` is unphased and this instance is undefined on it.
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If `pauli` is an invalid type.
+  </Function>
+
+  ### to\_sets
+
+  <Function id="qiskit_noise_learning.sequences.PartialPauliPermutation.to_sets" signature="to_sets() → list[frozenset[tuple[str, str]]]">
+    Return the set representation.
+  </Function>
+</Class>
+

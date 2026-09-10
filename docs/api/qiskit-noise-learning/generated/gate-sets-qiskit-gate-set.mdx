@@ -1,0 +1,256 @@
+---
+title: QiskitGateSet (latest version)
+description: API reference for qiskit_noise_learning.gate_sets.QiskitGateSet in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.gate_sets.QiskitGateSet
+---
+
+<span id="qiskit-noise-learning-gate-sets-qiskitgateset" />
+
+# qiskit\_noise\_learning.gate\_sets.QiskitGateSet
+
+<Class id="qiskit_noise_learning.gate_sets.QiskitGateSet" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/gate_sets/qiskit_gate_set.py" signature="qiskit_noise_learning.gate_sets.QiskitGateSet(num_qubits: int | None = None, *, target: Target | None = None, qubit_subset: Iterable[int] | None = None, add_default_spam: bool = True, name: str | None = None, latex_str: str | None = None)" modifiers="class">
+  Bases: [`GateSet`](gate-sets-gate-set "qiskit_noise_learning.gate_sets.gate_set.GateSet")\[[`QiskitGate`](gate-sets-qiskit-gate "qiskit_noise_learning.gate_sets.qiskit_gate.QiskitGate")]
+
+  A gate set whose noise is to be learned and that is specified using Qiskit objects.
+
+  Here, we are using “gate” in the context of noise learning, where our operations of interest are not typically the smallest operations that are discretely executed on a device (such as `cz` gates), but rather collections of such operations whose noise will be learned together as a unit. To the point, typically, in this class, gates are layers. They need not be however; partial width layers and layers with overlapping operations within are valid. We require this object to represent a set of them because in certain cases their noise needs to be learned together in order to have a consistent gauge defined between their noise models, or to allow parametrizations of their noise models to be correlated.
+
+  This object satisfies the Python mapping protocol so that, for example, gates can be extracted with dictionary syntax. The names of gates are always strings.
+
+  ```python
+  >>> from qiskit_noise_learning.gate_sets import QiskitGateSet
+  >>> from qiskit.circuit import QuantumCircuit
+
+  >>> # instantiate a new gate set on 10 qubits
+  >>> gate_set = QiskitGateSet(10)
+
+  >>> # the gate set comes populated with preparation and measurement gates on all 10 qubits
+  >>> assert len(gate_set) == 2
+  >>> assert "P" in gate_set and "M" in gate_set
+  ```
+
+  **Parameters**
+
+  *   **num\_qubits** – How many qubits the QPU of interest has. If a `target` is provided, this field may be omitted.
+  *   **target** – An optional `Target` against which operations will be validated whenever gates are added to the gate set. Its number of qubits must match `num_qubits` if both are present.
+  *   **qubit\_subset** – A subset of `range(num_qubits)` specifying the region of interest of the QPU. All gates added must act within this subset. By default, contains all qubits. When `add_default_spam` is `True`, the iteration order of this argument determines the qubit ordering of the default preparation and measurement gates.
+  *   **add\_default\_spam** – Whether to initialize the gateset with gates that respectively implement state preparation (given name `"P"`) and state measurement (given name `"M"`) on all qubits in the region of interest.
+  *   **name** – Name for this gate set. If `None`, `name` falls back to the class name.
+  *   **latex\_str** – An optional LaTeX string for rendering this gate set.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.gate_sets.QiskitGateSet.__init__" signature="__init__(num_qubits: int | None = None, *, target: Target | None = None, qubit_subset: Iterable[int] | None = None, add_default_spam: bool = True, name: str | None = None, latex_str: str | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                               |                                                                         |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.gate_sets.QiskitGateSet.__init__ "qiskit_noise_learning.gate_sets.QiskitGateSet.__init__")(\[num\_qubits, target, qubit\_subset, ...])                    |                                                                         |
+  | [`add_box_as_gate`](#qiskit_noise_learning.gate_sets.QiskitGateSet.add_box_as_gate "qiskit_noise_learning.gate_sets.QiskitGateSet.add_box_as_gate")(box\_instr, \*\[, name, latex\_str])      | Add a Qiskit circuit instruction containing a box operation as a gate.  |
+  | [`add_circuit_as_gate`](#qiskit_noise_learning.gate_sets.QiskitGateSet.add_circuit_as_gate "qiskit_noise_learning.gate_sets.QiskitGateSet.add_circuit_as_gate")(circuit\[, qubit\_idxs, ...]) | Add a quantum circuit object as a gate.                                 |
+  | [`add_gate`](#qiskit_noise_learning.gate_sets.QiskitGateSet.add_gate "qiskit_noise_learning.gate_sets.QiskitGateSet.add_gate")(gate)                                                          | Add a gate to the gate set.                                             |
+  | [`add_measurement`](#qiskit_noise_learning.gate_sets.QiskitGateSet.add_measurement "qiskit_noise_learning.gate_sets.QiskitGateSet.add_measurement")(qubit\_idxs, operation\_type, ...)        | Add a gate to this gate set that measures specified qubits.             |
+  | [`add_preparation`](#qiskit_noise_learning.gate_sets.QiskitGateSet.add_preparation "qiskit_noise_learning.gate_sets.QiskitGateSet.add_preparation")(\[qubit\_idxs, annotations, ...])         | Add a gate to this gate set that prepares (or resets) specified qubits. |
+  | [`build_new_gate`](#qiskit_noise_learning.gate_sets.QiskitGateSet.build_new_gate "qiskit_noise_learning.gate_sets.QiskitGateSet.build_new_gate")(\[name, idle\_unused, latex\_str])           | Return a circuit builder whose contents will be added as a gate.        |
+  | `draw`()                                                                                                                                                                                      | Draw the device topology with per-gate coloring.                        |
+  | `get`(k\[,d])                                                                                                                                                                                 |                                                                         |
+  | `items`()                                                                                                                                                                                     |                                                                         |
+  | `keys`()                                                                                                                                                                                      |                                                                         |
+  | `values`()                                                                                                                                                                                    |                                                                         |
+
+  ## Attributes
+
+  |                                                                                                                                                  |                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+  | `label`                                                                                                                                          | A string label for use in plotter legends.                        |
+  | `latex_str`                                                                                                                                      | A LaTeX string for this gate set.                                 |
+  | `math_label`                                                                                                                                     | A string label for use within latex math mode.                    |
+  | [`model_gate_set`](#qiskit_noise_learning.gate_sets.QiskitGateSet.model_gate_set "qiskit_noise_learning.gate_sets.QiskitGateSet.model_gate_set") | The model for this gate set.                                      |
+  | `name`                                                                                                                                           | Name for this gate set, defaulting to the class name.             |
+  | `num_qubits`                                                                                                                                     | The total number of qubits of the device this gateset acts on.    |
+  | `qubit_subset`                                                                                                                                   | The indices of the subset of device qubits that all gates act on. |
+  | [`target`](#qiskit_noise_learning.gate_sets.QiskitGateSet.target "qiskit_noise_learning.gate_sets.QiskitGateSet.target")                         | The target of this gateset, if one exists.                        |
+
+  ### model\_gate\_set
+
+  <Attribute id="qiskit_noise_learning.gate_sets.QiskitGateSet.model_gate_set">
+    Type: [`ModelGateSet`](gate-sets-model-gate-set "qiskit_noise_learning.gate_sets.model_gate_set.ModelGateSet")
+
+    The model for this gate set.
+  </Attribute>
+
+  ### target
+
+  <Attribute id="qiskit_noise_learning.gate_sets.QiskitGateSet.target">
+    Type: [`Target`](/docs/api/qiskit/qiskit.transpiler.Target) | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    The target of this gateset, if one exists.
+  </Attribute>
+
+  ### add\_gate
+
+  <Function id="qiskit_noise_learning.gate_sets.QiskitGateSet.add_gate" signature="add_gate(gate: QiskitGate)">
+    Add a gate to the gate set.
+
+    ```python
+    >>> from qiskit_noise_learning.gate_sets import QiskitGateSet, QiskitGate
+    >>> from qiskit.circuit import QuantumCircuit
+
+    >>> gate_set = QiskitGateSet(10)
+    >>> circuit = QuantumCircuit(5)
+    >>> circuit.cx(3, 4)
+    >>> gate_set.add_gate(QiskitGate("gate0", circuit, [4, 5, 7, 8, 9]))
+
+    >>> assert "gate0" in gate_set
+    ```
+
+    **Parameters**
+
+    **gate** – The gate to add.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the gate acts on some qubits outside of the valid range, or this gate set has a target and some member of the gate does not comply, or if the name is already used in the gate set.
+  </Function>
+
+  ### add\_box\_as\_gate
+
+  <Function id="qiskit_noise_learning.gate_sets.QiskitGateSet.add_box_as_gate" signature="add_box_as_gate(box_instr: CircuitInstruction, *, name: str | None = None, latex_str: str | None = None) → str">
+    Add a Qiskit circuit instruction containing a box operation as a gate.
+
+    ```python
+    >>> from qiskit_noise_learning.gate_sets import QiskitGateSet, QiskitGate
+    >>> from qiskit.circuit import QuantumCircuit
+
+    >>> gate_set = QiskitGateSet(10)
+    >>> circuit = QuantumCircuit(10)
+    >>> with circuit.box():
+    ...     circuit.cx(3, 4)
+    ...     # use noop to indicate that only the first 7 qubits will be part of the gate,
+    ...     # otherwise it would be restricted to only qubits 3 and 4, and learned noise
+    ...     # will only be with respect to those two qubits
+    ...     circuit.noop(range(7))
+
+    >>> name = gate_set.add_box_as_gate(circuit[0])
+
+    >>> assert name in gate_set
+    ```
+
+    **Parameters**
+
+    *   **box\_instr** – The circuit instruction containing a box operation.
+    *   **name** – The name of the gate, or `None` to have a name chosen for you.
+    *   **latex\_str** – An optional LaTeX string for this gate.
+
+    **Returns**
+
+    The name of the added gate.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the provided instruction does not contain a [`qiskit.circuit.BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) operation, or if the instruction acts on non-physical qubits.
+  </Function>
+
+  ### add\_circuit\_as\_gate
+
+  <Function id="qiskit_noise_learning.gate_sets.QiskitGateSet.add_circuit_as_gate" signature="add_circuit_as_gate(circuit: QuantumCircuit, qubit_idxs: Iterable[int] | None = None, *, annotations: Iterable[Annotation] | None = None, name: str | None = None, latex_str: str | None = None) → str">
+    Add a quantum circuit object as a gate.
+
+    This method is a thin wrapper for [`add_gate()`](#qiskit_noise_learning.gate_sets.QiskitGateSet.add_gate "qiskit_noise_learning.gate_sets.QiskitGateSet.add_gate") that constructs a [`QiskitGate`](gate-sets-qiskit-gate "qiskit_noise_learning.gate_sets.QiskitGate") for you.
+
+    ```python
+    >>> from qiskit_noise_learning.gate_sets import QiskitGateSet, QiskitGate
+    >>> from qiskit.circuit import QuantumCircuit
+
+    >>> gate_set = QiskitGateSet(10)
+    >>> circuit = QuantumCircuit(5)
+    >>> circuit.cx(3, 4)
+    >>> name = gate_set.add_circuit_as_gate(circuit, [4, 5, 7, 8, 9])
+
+    >>> assert name in gate_set
+    ```
+
+    <Admonition title="Note" type="note">
+      The `circuit.qubits` are completely irrelevant and do not, for example, represent physical qubits. Instead, the mapping `dict(zip(circuit.qubits, qubit_idxs))` provides the recipe for which physical qubits each qubit in the circuit corresponds to.
+    </Admonition>
+
+    **Parameters**
+
+    *   **circuit** – The circuit to use as a gate.
+    *   **qubit\_idxs** – The physical qubits on which the circuit acts.
+    *   **annotations** – The annotations that describe how to implement the circuit, or `None` to use the default annotations of [`QiskitGate`](gate-sets-qiskit-gate "qiskit_noise_learning.gate_sets.QiskitGate").
+    *   **name** – The name of the gate, or `None` to have a name chosen for you.
+    *   **latex\_str** – An optional LaTeX string for this gate.
+
+    **Returns**
+
+    The name of the added gate.
+  </Function>
+
+  ### build\_new\_gate
+
+  <Function id="qiskit_noise_learning.gate_sets.QiskitGateSet.build_new_gate" signature="build_new_gate(name: str | None = None, idle_unused: bool = True, latex_str: str | None = None) → GateBuilder">
+    Return a circuit builder whose contents will be added as a gate.
+
+    ```python
+    >>> from qiskit_noise_learning.gate_sets import QiskitGateSet, QiskitGate
+    >>> from qiskit.circuit import QuantumCircuit
+
+    >>> gate_set = QiskitGateSet(10)
+    >>> with gate_set.build_new_gate() as builder:
+    ...    builder.circuit.cx(4, 5)
+
+    >>> assert builder.name in gate_set
+    >>> assert set(gate_set[builder.name].qubit_idxs) == set(range(10))
+    ```
+
+    **Parameters**
+
+    *   **name** – The name of the gate, or `None` to have a name chosen for you.
+    *   **idle\_unused** – Whether all qubits in [`qubit_subset`](gate-sets-gate-set#qubit_subset "qiskit_noise_learning.gate_sets.GateSet.qubit_subset") that are not already part of the gate will be automatically included as idling qubits.
+    *   **latex\_str** – An optional LaTeX string for this gate.
+
+    **Returns**
+
+    A circuit builder.
+  </Function>
+
+  ### add\_measurement
+
+  <Function id="qiskit_noise_learning.gate_sets.QiskitGateSet.add_measurement" signature="add_measurement(qubit_idxs: Iterable[int] | None = None, operation_type: type[Operation] = <class 'qiskit.circuit.measure.Measure'>, *, annotations: Iterable[Annotation] | None = None, name: str | None = None, latex_str: str | None = None) → str">
+    Add a gate to this gate set that measures specified qubits.
+
+    **Parameters**
+
+    *   **qubit\_idxs** – The physical qubit indices to measure.
+    *   **operation\_type** – The type of measurement operation to apply on each qubit.
+    *   **annotations** – The annotations that describe how to implement the measurement, or `None` to use the default annotations of [`QiskitGate`](gate-sets-qiskit-gate "qiskit_noise_learning.gate_sets.QiskitGate").
+    *   **name** – The name of the gate, or `None` to have a name chosen for you.
+    *   **latex\_str** – An optional LaTeX string for this gate.
+
+    **Returns**
+
+    The name of the added gate.
+  </Function>
+
+  ### add\_preparation
+
+  <Function id="qiskit_noise_learning.gate_sets.QiskitGateSet.add_preparation" signature="add_preparation(qubit_idxs: Iterable[int] | None = None, *, annotations: Iterable[Annotation] | None = None, name: str | None = None, latex_str: str | None = None) → str">
+    Add a gate to this gate set that prepares (or resets) specified qubits.
+
+    **Parameters**
+
+    *   **qubit\_idxs** – The physical qubit indices to prepare.
+    *   **annotations** – The annotations that describe how to implement the preparation, or `None` to use the default annotations of [`QiskitGate`](gate-sets-qiskit-gate "qiskit_noise_learning.gate_sets.QiskitGate").
+    *   **name** – The name of the gate, or `None` to have a name chosen for you.
+    *   **latex\_str** – An optional LaTeX string for this gate.
+
+    **Returns**
+
+    The name of the added gate.
+  </Function>
+</Class>
+

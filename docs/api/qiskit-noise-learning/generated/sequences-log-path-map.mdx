@@ -1,0 +1,60 @@
+---
+title: LogPathMap (latest version)
+description: API reference for qiskit_noise_learning.sequences.LogPathMap in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.sequences.LogPathMap
+---
+
+<span id="qiskit-noise-learning-sequences-logpathmap" />
+
+# qiskit\_noise\_learning.sequences.LogPathMap
+
+<Class id="qiskit_noise_learning.sequences.LogPathMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/sequences/log_path_map.py" signature="qiskit_noise_learning.sequences.LogPathMap(fidelity_space: IndexedSpace[FidelityIndex])" modifiers="class">
+  Bases: [`LinearMap`](math-linear-map "qiskit_noise_learning.math.linear_map.LinearMap")\[[`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex"), [`Path`](sequences-path "qiskit_noise_learning.sequences.path.Path")]
+
+  The linear map from a space of log fidelities to its associated log path space.
+
+  This map is purely combinatorial: the row of a path is the fragment-depth-weighted multiplicity of each fidelity index appearing in the path. It does not depend on any noise model, only on the [`Path`](sequences-path "qiskit_noise_learning.sequences.Path") structure and the fidelity indices’ membership in the input space.
+
+  **Parameters**
+
+  **fidelity\_space** – The space of log fidelities.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.sequences.LogPathMap.__init__" signature="__init__(fidelity_space: IndexedSpace[FidelityIndex])" />
+
+  ## Methods
+
+  |                                                                                                                                           |                                                                   |
+  | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.sequences.LogPathMap.__init__ "qiskit_noise_learning.sequences.LogPathMap.__init__")(fidelity\_space) |                                                                   |
+  | `compose`(outer)                                                                                                                          | Post-compose: self maps I->O, outer maps O->C, result maps I->C.  |
+  | `left_multiply`(matrix)                                                                                                                   | Multiply on the left by an explicit matrix.                       |
+  | `pre_compose`(inner)                                                                                                                      | Pre-compose: inner maps A->I, self maps I->O, result maps A->O.   |
+  | `projected_output`(output\_indices, vector)                                                                                               | Compute a projection of the map applied to a vector.              |
+  | [`rows`](#qiskit_noise_learning.sequences.LogPathMap.rows "qiskit_noise_learning.sequences.LogPathMap.rows")(output\_indices)             | Construct the sub-matrix whose rows are the given output indices. |
+
+  ## Attributes
+
+  |                |                   |
+  | -------------- | ----------------- |
+  | `input_space`  | The input space.  |
+  | `output_space` | The output space. |
+
+  ### rows
+
+  <Function id="qiskit_noise_learning.sequences.LogPathMap.rows" signature="rows(output_indices: Iterable[Path]) → IndexedMatrix[Path, FidelityIndex]">
+    Construct the sub-matrix whose rows are the given output indices.
+
+    **Parameters**
+
+    **output\_indices** – The labels for the desired rows of the matrix.
+
+    **Returns**
+
+    [`IndexedMatrix`](math-indexed-matrix "qiskit_noise_learning.math.IndexedMatrix")
+  </Function>
+</Class>
+

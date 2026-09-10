@@ -1,0 +1,55 @@
+---
+title: Depth1Paths (latest version)
+description: API reference for qiskit_noise_learning.experiment_builder.Depth1Paths in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.experiment_builder.Depth1Paths
+---
+
+<span id="qiskit-noise-learning-experiment-builder-depth1paths" />
+
+# qiskit\_noise\_learning.experiment\_builder.Depth1Paths
+
+<Class id="qiskit_noise_learning.experiment_builder.Depth1Paths" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/experiment_builder/stages/path_generators/depth1_paths.py" signature="qiskit_noise_learning.experiment_builder.Depth1Paths(*, prep_gate: ModelGate | None = None, meas_gate: ModelGate | None = None, gates: list[ModelGate] | None = None, input_paulis: dict[str, QubitSparsePauliList] | None = None)" modifiers="class">
+  Bases: [`AddPaths`](experiment-builder-add-paths "qiskit_noise_learning.experiment_builder.stages.path_generators.add_paths.AddPaths")
+
+  Generate depth-1 paths for each target gate.
+
+  **Parameters**
+
+  *   **prep\_gate** – The preparation gate. If `None`, defaults to the gate named `"P"`.
+  *   **meas\_gate** – The measurement gate. If `None`, defaults to the gate named `"M"`.
+  *   **gates** – Gates to generate paths for; these must be unitary (no preparation or measurement component). If `None`, defaults to all unitary (non-SPAM) gates.
+  *   **input\_paulis** – Optional mapping from gate name to input Paulis. If not specified, defaults to the gate generators if the fidelity model contains a [`PauliLindbladModel`](models-pauli-lindblad-model "qiskit_noise_learning.models.PauliLindbladModel"), otherwise a `ValueError` is raised.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.experiment_builder.Depth1Paths.__init__" signature="__init__(*, prep_gate: ModelGate | None = None, meas_gate: ModelGate | None = None, gates: list[ModelGate] | None = None, input_paulis: dict[str, QubitSparsePauliList] | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                         |                                                  |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+  | [`__init__`](#qiskit_noise_learning.experiment_builder.Depth1Paths.__init__ "qiskit_noise_learning.experiment_builder.Depth1Paths.__init__")(\*\[, prep\_gate, meas\_gate, gates, ...]) |                                                  |
+  | `run`(experiment)                                                                                                                                                                       | Validate required fields, then apply this stage. |
+
+  ## Attributes
+
+  |                                                                                                                                                                   |                              |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+  | `populates_fields`                                                                                                                                                |                              |
+  | [`required_fields`](#qiskit_noise_learning.experiment_builder.Depth1Paths.required_fields "qiskit_noise_learning.experiment_builder.Depth1Paths.required_fields") | Built-in immutable sequence. |
+
+  ### required\_fields
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Depth1Paths.required_fields">
+    Type: [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str), ...]
+
+    Built-in immutable sequence.
+
+    If no argument is given, the constructor returns an empty tuple. If iterable is specified the tuple is initialized from iterable’s items.
+
+    If the argument is a tuple, the return value is the same object.
+  </Attribute>
+</Class>
+

@@ -1,0 +1,59 @@
+---
+title: LogFidelitySpace (latest version)
+description: API reference for qiskit_noise_learning.models.LogFidelitySpace in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.models.LogFidelitySpace
+---
+
+<span id="qiskit-noise-learning-models-logfidelityspace" />
+
+# qiskit\_noise\_learning.models.LogFidelitySpace
+
+<Class id="qiskit_noise_learning.models.LogFidelitySpace" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/models/log_fidelity_space.py" signature="qiskit_noise_learning.models.LogFidelitySpace(gate_set: GateSet)" modifiers="class">
+  Bases: [`IndexedSpace`](math-indexed-space "qiskit_noise_learning.math.indexed_space.IndexedSpace")\[[`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex")]
+
+  The space of log fidelities of a gate set.
+
+  The basis indices are the [`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.FidelityIndex") objects of the gate set, excluding the trivial identity fidelity of each gate. See [`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.FidelityIndex") for more information.
+
+  **Parameters**
+
+  **gate\_set** – The gate set whose fidelities the space describes. Converted to a [`ModelGateSet`](gate-sets-model-gate-set "qiskit_noise_learning.gate_sets.ModelGateSet").
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.models.LogFidelitySpace.__init__" signature="__init__(gate_set: GateSet)" />
+
+  ## Methods
+
+  |                                                                                                                                           |   |
+  | ----------------------------------------------------------------------------------------------------------------------------------------- | - |
+  | [`__init__`](#qiskit_noise_learning.models.LogFidelitySpace.__init__ "qiskit_noise_learning.models.LogFidelitySpace.__init__")(gate\_set) |   |
+
+  ## Attributes
+
+  |                                                                                                                                |                                                                                      |
+  | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+  | [`dim`](#qiskit_noise_learning.models.LogFidelitySpace.dim "qiskit_noise_learning.models.LogFidelitySpace.dim")                | The total number of fidelities of the gate set, excluding the trivial identity ones. |
+  | [`gate_set`](#qiskit_noise_learning.models.LogFidelitySpace.gate_set "qiskit_noise_learning.models.LogFidelitySpace.gate_set") | The gate set whose fidelities this space describes.                                  |
+
+  ### gate\_set
+
+  <Attribute id="qiskit_noise_learning.models.LogFidelitySpace.gate_set">
+    Type: [`ModelGateSet`](gate-sets-model-gate-set "qiskit_noise_learning.gate_sets.model_gate_set.ModelGateSet")
+
+    The gate set whose fidelities this space describes.
+  </Attribute>
+
+  ### dim
+
+  <Attribute id="qiskit_noise_learning.models.LogFidelitySpace.dim">
+    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+
+    The total number of fidelities of the gate set, excluding the trivial identity ones.
+
+    Each gate contributes the count given by Equation [(4)](guides/formalism#equation-num-fidelities) of the [mathematical formalism](guides/formalism), less one.
+  </Attribute>
+</Class>
+
